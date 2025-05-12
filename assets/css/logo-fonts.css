@@ -1,0 +1,100 @@
+/* Elegant, Natural Logo Font Options */
+
+/* Option 1: Cormorant Garamond - Elegant serif with classic sophistication */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+/* Option 2: Playfair Display - Sophisticated serif with organic details */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Option 3: Marcellus - Modern, classic serif with soft elegance */
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+
+/* Option 4: Literata - Refined, bookish with organic shapes */
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400&display=swap');
+
+/* Option 5: Gilda Display - Classic serif with elegant proportions */
+@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&display=swap');
+
+/* Option 6: Cinzel - Elegant, regal serif inspired by Roman inscriptions */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap');
+
+/* Option 7: Fraunces - Sophisticated serif with organic, playful elements */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&display=swap');
+
+/* Custom logo font classes */
+.logo-font-cormorant {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.logo-font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.logo-font-marcellus {
+  font-family: 'Marcellus', serif;
+}
+
+.logo-font-literata {
+  font-family: 'Literata', serif;
+}
+
+.logo-font-gilda {
+  font-family: 'Gilda Display', serif;
+}
+
+.logo-font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.logo-font-fraunces {
+  font-family: 'Fraunces', serif;
+}
+
+/* Logo text styling for elegant effect */
+.elegant-logo-text {
+  letter-spacing: 0.03em;
+  font-weight: 500;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Subtle gradient effect */
+.elegant-gradient {
+  background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Soft gold accent for premium feel */
+.elegant-gold {
+  color: #f0e6d2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Organic letter spacing */
+.elegant-spaced {
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+/* Subtle animation for gentle hover effect */
+.elegant-hover {
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.elegant-hover:hover {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Natural animation */
+@keyframes subtle-breathe {
+  0%, 100% { opacity: 0.95; }
+  50% { opacity: 1; }
+}
+
+.elegant-breathe {
+  animation: subtle-breathe 4s ease-in-out infinite;
+}

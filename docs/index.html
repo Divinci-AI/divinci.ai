@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Divinci AI Documentation - Comprehensive guides, API references, and tutorials for building custom AI solutions with the Divinci platform." />
+        <meta name="keywords" content="divinci ai documentation, ai platform docs, rag documentation, custom ai docs, ai api docs" />
+
+        <!-- Open Graph / Social Media Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://divinci.ai/docs/" />
+        <meta property="og:title" content="Documentation | Divinci AI" />
+        <meta property="og:description" content="Comprehensive documentation for the Divinci AI platform. Learn how to build custom AI solutions with our guides, tutorials, and API reference." />
+        <meta property="og:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://divinci.ai/docs/" />
+        <meta name="twitter:title" content="Documentation | Divinci AI" />
+        <meta name="twitter:description" content="Comprehensive documentation for the Divinci AI platform. Learn how to build custom AI solutions with our guides, tutorials, and API reference." />
+        <meta name="twitter:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://divinci.ai/docs/" />
+
+        <!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
+
+        <!-- Page Title -->
+        <title>Documentation | Divinci AI</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="../official-document.css" />
+        <link rel="stylesheet" href="docs-styles.css" />
+        <link rel="stylesheet" href="../preview-banner.css" />
+        <link rel="stylesheet" href="../includes/header-styles.css" />
+        <link rel="stylesheet" href="../includes/section-content-fix.css" />
+    </head>
+    <body>
+        
+
+        <!-- Preview Banner -->
+        <div class="preview-banner">
+            <div class="preview-banner-content">
+                <p class="preview-banner-text">This page is a preview. <br/> Sign up to be notified when we launch!</p>
+                <a href="../index.html#signup" class="preview-banner-button"><i class="fas fa-bell preview-banner-icon"></i>Get Notified</a>
+            </div>
+        </div>
+
+        <!-- Header with Navigation -->
+        <nav class="navbar">
+            <a href="../index.html" class="logo-link">
+                <div class="nav-logo">
+                    <img
+                        src="../images/divinci_logo_inverted.svg"
+                        alt="Divinci Heart Robot logo"
+                        onerror="this.onerror=null; this.src='../images/divinci_logo.png';"
+                    />
+                </div>
+                <div class="nav-title">
+                    <span class="brand-name">Divinci ™</span><span class="mobile-hide">&nbsp;- Create your own custom AI</span>
+                </div>
+            </a>
+            <!-- Toggle switch for customer/company view -->
+            <div class="view-toggle-container mobile-hide">
+                <span class="view-label customer-view active">Client</span>
+                <label class="switch">
+                    <input type="checkbox" id="viewToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="view-label company-view">Company</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html#features">Features</a>
+                <a href="../index.html#team">Team</a>
+                <a href="../index.html#signup" class="signup-link"><span class="signup-button">Sign Up</span></a>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <!-- Hero Section -->
+            <section class="docs-hero">
+                <div class="container">
+                    <div class="docs-hero-content">
+                        <h1 class="docs-title">Documentation</h1>
+                        <p class="docs-subtitle">Comprehensive guides and references to help you build custom AI solutions with the Divinci platform.</p>
+
+                        <div class="docs-search">
+                            <input type="text" placeholder="Search documentation..." aria-label="Search documentation">
+                            <button type="submit">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Docs Main Content -->
+            <section class="container">
+                <div class="docs-main">
+                    <aside class="docs-sidebar">
+                        <h2 class="docs-nav-title">Documentation</h2>
+                        <nav class="docs-nav">
+                            <div class="docs-nav-section">
+                                <span class="docs-nav-section-title">Getting Started</span>
+                                <ul class="docs-nav-items">
+                                    <li class="docs-nav-item"><a href="#" class="active">Introduction</a></li>
+                                    <li class="docs-nav-item"><a href="#">Quick Start Guide</a></li>
+                                    <li class="docs-nav-item"><a href="#">Core Concepts</a></li>
+                                    <li class="docs-nav-item"><a href="#">Platform Overview</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="docs-nav-section">
+                                <span class="docs-nav-section-title">Features</span>
+                                <ul class="docs-nav-items">
+                                    <li class="docs-nav-item"><a href="#">AutoRAG</a></li>
+                                    <li class="docs-nav-item"><a href="#">Retrieval Optimization</a></li>
+                                    <li class="docs-nav-item"><a href="#">Vector Embedding</a></li>
+                                    <li class="docs-nav-item"><a href="#">Quality Assurance</a></li>
+                                    <li class="docs-nav-item"><a href="#">Release Cycle Management</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="docs-nav-section">
+                                <span class="docs-nav-section-title">Guides</span>
+                                <ul class="docs-nav-items">
+                                    <li class="docs-nav-item"><a href="#">Document Processing</a></li>
+                                    <li class="docs-nav-item"><a href="#">Custom AI Models</a></li>
+                                    <li class="docs-nav-item"><a href="#">Integration Patterns</a></li>
+                                    <li class="docs-nav-item"><a href="#">Security Best Practices</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="docs-nav-section">
+                                <span class="docs-nav-section-title">API Reference</span>
+                                <ul class="docs-nav-items">
+                                    <li class="docs-nav-item"><a href="../api/">API Overview</a></li>
+                                    <li class="docs-nav-item"><a href="#">Authentication</a></li>
+                                    <li class="docs-nav-item"><a href="#">Endpoints</a></li>
+                                    <li class="docs-nav-item"><a href="#">SDKs</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </aside>
+
+                    <div class="docs-content">
+                        <h1 class="docs-content-title">Introduction to Divinci AI</h1>
+
+                        <div class="docs-section">
+                            <h2 class="docs-section-title">What is Divinci AI?</h2>
+                            <p>Divinci AI is a platform that empowers organizations to create custom AI solutions without requiring specialized machine learning expertise. Our platform makes advanced AI capabilities accessible through intuitive interfaces and APIs.</p>
+                            <p>With Divinci AI, you can build AI applications that leverage your organization's unique data and knowledge, enhancing learning, creativity, and decision-making across your business.</p>
+                        </div>
+
+                        <div class="docs-section">
+                            <h2 class="docs-section-title">Key Features</h2>
+
+                            <div class="docs-card">
+                                <h3 class="docs-card-title">AutoRAG</h3>
+                                <p class="docs-card-description">Automate the complex process of implementing Retrieval-Augmented Generation systems, allowing your AI to access and reason over your organization's proprietary documents and knowledge.</p>
+                                <a href="#" class="docs-card-link">Learn more about AutoRAG <i class="fas fa-arrow-right"></i></a>
+                            </div>
+
+                            <div class="docs-card">
+                                <h3 class="docs-card-title">Quality Assurance for LLMs</h3>
+                                <p class="docs-card-description">Comprehensive tools to test, monitor, and improve the performance of your AI models, ensuring they meet your organization's standards for accuracy, relevance, and consistency.</p>
+                                <a href="#" class="docs-card-link">Explore QA capabilities <i class="fas fa-arrow-right"></i></a>
+                            </div>
+
+                            <div class="docs-card">
+                                <h3 class="docs-card-title">Release Cycle Management</h3>
+                                <p class="docs-card-description">Tools and workflows to manage the development, testing, and deployment of AI models in a controlled, repeatable way that integrates with your existing development processes.</p>
+                                <a href="#" class="docs-card-link">Discover release management <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="docs-section">
+                            <h2 class="docs-section-title">Getting Started</h2>
+                            <p>Ready to start building with Divinci AI? Here are some resources to help you get up and running:</p>
+
+                            <ul>
+                                <li><a href="#">Quick Start Guide</a> - Build your first AI application in less than 10 minutes</li>
+                                <li><a href="#">Core Concepts</a> - Understand the key ideas and architecture behind Divinci AI</li>
+                                <li><a href="#">Platform Overview</a> - Learn about all the components and capabilities of the platform</li>
+                                <li><a href="../tutorials/">Tutorials</a> - Step-by-step guides for common use cases</li>
+                            </ul>
+                        </div>
+
+                        <div class="coming-soon">
+                            <h3 class="coming-soon-title">Full Documentation Coming Soon</h3>
+                            <p class="coming-soon-message">We're currently building a comprehensive documentation site with detailed guides, API references, and examples. Check back soon for updates or subscribe to be notified when new documentation is available.</p>
+                            <a href="#" class="notify-button"><i class="fas fa-bell"></i> Notify me of updates</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer with Sacred Geometry and Bulma Integration -->
+        <footer class="site-footer">
+            <!-- Sacred Geometry Background Elements -->
+            <div class="footer-sacred-pattern"></div>
+            <div class="sacred-circle sacred-circle-1"></div>
+            <div class="sacred-circle sacred-circle-2"></div>
+            <div class="sacred-circle sacred-circle-3"></div>
+
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Top Section with Bulma Columns -->
+                    <div class="columns is-footer-links">
+                        <!-- Logo and Company Info -->
+                        <div class="column is-one-quarter">
+                            <div class="footer-brand">
+                                <div class="footer-logo">
+                                    <div style="
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+    filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
+    border-radius: 50%;
+    background: rgba(92, 226, 231, 0.1);
+    padding: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+">🖤</div>
+                                    <span class="footer-brand-name">Divinci AI</span>
+                                </div>
+                                <p class="footer-tagline">Empowering human-AI collaboration</p>
+                                <div class="social-links">
+                                    <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                    <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Links -->
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Product</h3>
+                                <ul>
+                                    <li><a href="../index.html#features">Features</a></li>
+                                    <li><a href="../pricing.html">Pricing</a></li>
+                                    <li><a href="../roadmap.html">Roadmap</a></li>
+                                    <li><a href="../changelog.html">Changelog</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Resources</h3>
+                                <ul>
+                                    <li><a href="../docs/">Documentation</a></li>
+                                    <li><a href="../blog/">Blog</a></li>
+                                    <li><a href="../tutorials/">Tutorials</a></li>
+                                    <li><a href="../api/">API</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Company</h3>
+                                <ul>
+                                    <li><a href="../about-us.html">About Us</a></li>
+                                    <li><a href="../careers.html">Careers</a></li>
+                                    <li><a href="../contact.html">Contact</a></li>
+                                    <li><a href="../press.html">Press</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="../terms-of-service.html">Terms of Service</a></li>
+                                    <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                                    <li><a href="../ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                                    <li><a href="../security.html">Security</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom with Bulma Level -->
+                <div class="footer-bottom">
+                    <div class="level is-footer-bottom">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="footer-bottom-links">
+                                    <a href="../sitemap.xml">Sitemap</a>
+                                    <a href="../accessibility.html">Accessibility</a>
+                                    <a href="../cookies.html">Cookie Policy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="../js/keyboard-navigation.js" defer></script>
+        <script src="../js/apply-sora-to-divinci.js" defer></script>
+    </body>
+</html>

@@ -1,0 +1,1602 @@
+/* Light Theme */
+:root {
+    --background-color: #ffffff;
+    --text-color: #ffffff;
+    --primary-color: #3273dc;
+    /* Add more variables as needed */
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --primary-color: #00d1b2;
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: "Inter", sans-serif;
+    color: #c4c5ca;
+    background: rgb(22 33 76);
+    /* background: radial-gradient(circle, rgba(30,45,102,1) 0%, rgba(12,18,41,1) 100%); */
+}
+
+body {
+    padding-top: 58px;
+    overflow-x: hidden;
+}
+
+a {
+    color: white;
+  :hover {
+    color: #c3c3c3;
+  }
+}
+
+nav {
+    width: 100%;
+    background: rgb(6, 15, 47);
+    background: radial-gradient(circle, rgb(6 15 47 / 57%) 0%, rgb(12 18 41 / 34%) 100%);
+    color: white;
+    text-align: center;
+    padding: 1.5em 0;
+}
+
+.navbar {
+    position: fixed; /* Keep the navbar fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000; /* Ensure it's above other content */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Align items vertically */
+    padding: 0px 2em;
+    margin: 1px auto 1px auto;
+    background-color: #3333338c;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds shadow for depth */
+    border-top: 7px solid #0e102dab;
+}
+
+/* Removed duplicate rule */
+
+.nav-title,
+.nav-menu {
+    display: flex;
+}
+
+.nav-title {
+    flex: 1; /* Take up 1 part of the space */
+    font-size: 21px;
+    margin-left: 27px; /* Space between logo and title */
+    justify-content: flex-start; /* Align to the left */
+    white-space: nowrap; /* Prevent wrapping */
+    display: flex;
+    align-items: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-title .brand-name {
+    white-space: nowrap;
+}
+
+.nav-title .mobile-hide {
+    white-space: nowrap;
+}
+
+.nav-menu {
+    flex: 1; /* Take up 1 part of the space */
+    justify-content: flex-end; /* Align to the right */
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px; /* Space between menu items */
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    align-items: center;
+    display: flex;
+}
+
+.nav-logo {
+    height: 50px; /* Adjust based on your logo's size */
+    max-width: fit-content;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-logo img {
+    height: 40px; /* Slightly smaller than the container */
+    position: relative;
+    z-index: 2;
+}
+
+/* Circle background for the logo */
+.nav-logo::before {
+    content: "";
+    position: absolute;
+    width: 77px;
+    height: 77px;
+    background: #0d102db3;
+    background: linear-gradient(45deg, black, transparent);
+    border-radius: 50%;
+    z-index: 1;
+    border: 2px solid rgb(0, 0, 93);
+}
+.signup-button {
+    background: #c25800;
+    padding: 7px 12px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-radius: 7px;
+    border: 1px solid black;
+    font-size: 15px;
+    margin-left: 18px;
+    width: auto;
+}
+
+.signup-button a {
+    margin: auto;
+    color: white;
+    font-weight: bold;
+}
+
+.page-title {
+    text-align: center;
+    font-family: "Outfit", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    color: #5ce2e7;
+}
+
+.geometry-group, .geometry-group-outer1, .geometry-group-outer2 {
+    position: absolute;
+    width: 100%; /* Ensure it spans the full width of its parent */
+    height: 100%; /* Ensure it spans the full height of its parent */
+    top: 25%;
+    left: 0;
+    justify-content: center; /* Not necessary unless using flex, but kept for reference */
+    overflow: visible !important; /* Make sure bubbles can extend outside */
+}
+
+/* Example positioning for a group, adjust as necessary */
+.geometry-group .circle {
+    margin: 0 10px;
+}
+
+.hero {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    overflow: visible !important; /* Force visible overflow */
+    background: rgb(30, 45, 102);
+    background: radial-gradient(
+        circle,
+        rgba(30, 45, 102, 1) 0%,
+        rgba(12, 18, 41, 1) 100%
+    );
+    z-index: 0;
+}
+
+.hero-tagline {
+    font-size: 22px;
+    position: absolute;
+    top: 15%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 22;
+    height: 120px; /* Fixed height to prevent layout shifts */
+
+    h1 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 37px;
+        font-weight: 600;
+        margin: 22px auto auto;
+        padding: 0 20px;
+        transition: opacity 7s ease-in-out;
+        position: absolute; /* Position absolutely to prevent layout shifts */
+        width: 100%; /* Full width */
+        left: 0; /* Align to left edge */
+        top: 0; /* Align to top */
+    }
+
+    /* Gradient text effects for hero taglines */
+    .gradient-text {
+        background: linear-gradient(to right, #ffffff, #1b3475);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        /* text-shadow: 0 0 10px rgba(92, 226, 231, 0.3); */
+        display: inline-block;
+        width: 100%; /* Ensure full width */
+        text-align: center; /* Center the text */
+    }
+
+    .gradient-text-company {
+        background: linear-gradient(to right, #ffffff, #000000);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        /* text-shadow: 0 0 10px rgb(45 45 45 / 30%); */
+        display: inline-block;
+        width: 100%; /* Ensure full width */
+        text-align: center; /* Center the text */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-tagline h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes breath {
+    0%,
+    100% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.flower-of-life {
+    width: 100%;
+    height: 100%;
+    /* overflow: show; */
+    animation: spin 20s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: auto; /* Center the SVG in its container */
+    /* Ensure the rotation is around the center */
+    transform-origin: center;
+    z-index: -1;
+    will-change: transform; /* Optimize for animation */
+    contain: layout style paint; /* Further optimization for browser rendering */
+    backface-visibility: hidden; /* Reduce composite layers */
+    perspective: 1000px; /* Improve 3D rendering performance */
+}
+
+.circle {
+    width: 77px; /* Adjust size as desired */
+    height: 77px; /* Adjust size as desired */
+    border-radius: 50%;
+    position: absolute;
+    display: flex; /* Enables flexbox properties */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    font-size: 48px;
+    z-index: 3; /* Ensure circles are above background elements */
+    /* filter: saturate(65%) brightness(85%) !important; */
+    will-change: transform; /* Optimize for animation */
+    contain: layout style paint; /* Further optimization for browser rendering */
+    backface-visibility: hidden; /* Reduce composite layers */
+    transform-style: preserve-3d; /* Improves 3D transformations */
+}
+
+/* Central circle fixed positioning */
+.central {
+    width: 222px !important;
+    height: 222px !important;
+    border-radius: 50%;
+    background-color: #0d102d;
+    background: linear-gradient(45deg, black, transparent);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid rgb(0, 0, 93);
+    z-index: 2;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+    cursor: pointer;
+
+    .central-logo {
+        width: 77%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 11px;
+        transition: filter 0.5s ease;
+    }
+}
+
+/* Company view styles for central circle */
+.company-view-active .central {
+    border-color: #000000bf;
+    background: linear-gradient(45deg, #f2f2ff96, #c3c1ff00);
+}
+
+.company-view-active .central .central-logo {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* Adjust positions of orbiting circles using top and left */
+.circle00 {
+    /* Directly above the central circle */
+    top: calc(26% - 115px);
+    left: calc(50% - 3px);
+    background-color: aqua;
+    border: 3px solid rgb(0, 205, 205);
+}
+.circle01 {
+    /* Top right */
+    top: calc(25% - 60px);
+    left: calc(50% + 55px);
+    background-color: blueviolet;
+    border: 3px solid rgb(110, 19, 195);
+}
+.circle02 {
+    /* Bottom right */
+    top: calc(20% + 40px);
+    left: calc(50% + 35px);
+    background-color: burlywood;
+    border: 3px solid rgb(192, 151, 98);
+}
+.circle03 {
+    /* Bottom left */
+    top: calc(20% + 45px);
+    left: calc(50% - 40px);
+    background-color: chocolate;
+    border: 3px solid rgb(176, 80, 12);
+}
+.circle04 {
+    /* Top left */
+    top: calc(25% - 60px);
+    left: calc(50% - 60px);
+    background-color: olivedrab;
+    border: 3px solid rgb(79, 109, 17);
+}
+
+/* Second Orbit (Inner Orbit) */
+.circle10 {
+    /* Directly above */
+    top: calc(25% - 100px);
+    left: 44%;
+    background-color: coral;
+    border: 3px solid rgb(226, 100, 55);
+    transform: translateX(-35%);
+}
+.circle11 {
+    /* Top right */
+    top: calc(20% - 30px);
+    left: calc(44% + 65px);
+    background-color: cyan;
+    border: 3px solid rgb(0, 205, 205);
+    transform: translateX(-35%);
+}
+.circle12 {
+    /* Bottom right */
+    top: calc(15% + 75px);
+    left: calc(45% + 60px);
+    background-color: darkorange;
+    border: 3px solid rgb(207, 114, 2);
+    transform: translateX(-35%);
+}
+.circle13 {
+    /* Bottom left */
+    top: calc(20% + 75px);
+    left: 45%;
+    background-color: deeppink;
+    border: 3px solid rgb(199, 1, 107);
+    transform: translateX(-35%);
+}
+.circle14 {
+    /* Top left */
+    top: calc(17% + 70px);
+    left: calc(44% - 45px);
+    background-color: gold;
+    border: 3px solid rgb(216, 183, 0);
+    transform: translateX(-35%);
+}
+.circle15 {
+    /* Top left */
+    top: calc(17%);
+    left: calc(44% - 60px);
+    background-color: blanchedalmond;
+    border: 3px solid rgb(214, 185, 141);
+    transform: translateX(-35%);
+}
+
+/* Outer Orbit Set 1 - shift more toward center (less to the right) */
+.circle20 {
+    /* Directly above */
+    top: calc(35% - 180px);
+    left: 50%;
+    background-color: lightseagreen;
+    border: 3px solid rgb(0, 157, 157);
+    transform: translateX(-50%);
+}
+.circle21 {
+    /* Top right */
+    top: calc(19% - 15px);
+    left: calc(52% + 25px);
+    background-color: mediumslateblue;
+    border: 3px solid rgb(82, 61, 197);
+    transform: translateX(-50%);
+}
+.circle22 {
+    /* Bottom right */
+    top: calc(21% + 35px);
+    left: calc(52% + 25px);
+    background-color: navy;
+    border: 3px solid rgb(17, 17, 177);
+    transform: translateX(-50%);
+}
+.circle23 {
+    /* Bottom left */
+    top: calc(20% + 65px);
+    left: calc(50%);
+    background-color: orchid;
+    border: 3px solid rgb(175, 69, 172);
+    transform: translateX(-50%);
+}
+.circle24 {
+    /* Top left */
+    top: calc(16% + 2px);
+    left: calc(48% - 25px);
+    background-color: palevioletred;
+    border: 3px solid rgb(171, 71, 105);
+    transform: translateX(-50%);
+}
+.circle25 {
+    /* Top left */
+    top: calc(19% + 45px);
+    left: calc(48% - 30px);
+    background-color: lightsteelblue;
+    border: 3px solid rgb(112, 143, 183);
+    transform: translateX(-50%);
+}
+
+/* Outer Orbit Set 2 (Largest Orbit) */
+.circle26 {
+    /* Directly above */
+    top: calc(50% - 180px);
+    left: 50%;
+    background-color: rgb(32, 69, 178);
+    border: 3px solid rgb(16, 48, 144);
+    transform: translateX(-50%);
+}
+.circle27 {
+    /* Top right */
+    top: calc(35% - 20px);
+    left: calc(52% + 22px);
+    background-color: rgb(78, 66, 145);
+    border: 3px solid rgb(53, 43, 109);
+    transform: translateX(-50%);
+}
+.circle28 {
+    /* Bottom right */
+    top: calc(36% + 35px);
+    left: calc(52% + 5px);
+    background-color: rgb(30, 30, 255);
+    border: 3px solid rgb(13, 13, 210);
+    transform: translateX(-50%);
+}
+.circle29 {
+    /* Bottom left */
+    top: calc(36% + 70px);
+    left: calc(50% - 15px);
+    background-color: rgb(129, 63, 165);
+    border: 3px solid rgb(92, 34, 124);
+    transform: translateX(-50%);
+}
+.circle30 {
+    /* Top left */
+    top: calc(30% + 5px);
+    left: calc(47% - 5px);
+    background-color: rgb(108, 48, 68);
+    border: 3px solid rgb(92, 29, 50);
+    transform: translateX(-50%);
+}
+.circle31 {
+    /* Top left */
+    top: calc(35% + 35px);
+    left: calc(45% + 15px);
+    background-color: lightsteelblue;
+    border: 3px solid rgb(112, 143, 182);
+    transform: translateX(-50%);
+}
+
+/* Orbit Animation */
+@keyframes orbit {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(350px)
+            rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(350px)
+            rotate(-360deg);
+    }
+}
+/* Orbit Animation */
+@keyframes orbit2 {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(-350px)
+            rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(-350px)
+            rotate(-360deg);
+    }
+}
+/* Orbit Animation - Outer orbit 1 (more spherical) */
+@keyframes orbit3 {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(350px)
+            rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(350px)
+            rotate(-360deg);
+    }
+}
+/* Orbit Animation */
+@keyframes orbit4 {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(-350px)
+            rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(-350px)
+            rotate(-360deg);
+    }
+}
+
+/* Apply the Orbit Animation to All Circles */
+/* Commented out to prevent empty ruleset warning
+.geometry-group .circle,
+.circle01,
+.circle02,
+.circle03,
+.circle04 {
+    animation: orbit 10s linear infinite;
+}
+*/
+
+/* Inner orbit animation - commented out to prevent empty ruleset warning
+.circle10,
+.circle11,
+.circle12,
+.circle13,
+.circle14,
+.circle15 {
+    animation: orbit2 10s linear infinite;
+}
+*/
+/* Shared styles for Outer Orbit Set 1 - commented out to prevent empty ruleset warning
+
+.circle20,
+.circle21,
+.circle22,
+.circle23,
+.circle24,
+.circle25 {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform-origin: center;
+    width: 77px;
+    height: 77px;
+    font-size: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    animation: orbit3 10s linear infinite;
+}
+
+*/
+
+/* Example for .circle20–.circle25 if they use orbit3 */
+.circle20,
+.circle21,
+.circle22,
+.circle23,
+.circle24,
+.circle25 {
+    /* Immediately place them at the "start orbit" position */
+    transform: translate(-50%, -50%) rotate(0deg) translateX(275px) rotate(0deg);
+
+    /* So the element holds that 0% transform from the moment it's in the DOM. */
+    animation-fill-mode: both; /* Keeps the 0% transform before + after animation. */
+    opacity: 0; /* If you're fading them in, start invisible. */
+    position: absolute;
+    /* etc. */
+}
+
+/* Outer orbit 2 animation - commented out to prevent empty ruleset warning
+.circle26,
+.circle27,
+.circle28,
+.circle29,
+.circle30,
+.circle31 {
+    animation: orbit4 10s linear infinite;
+}
+*/
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.chat-bubble {
+    position: absolute !important;
+    font-size: 42px;
+    display: flex !important; /* Force visibility with !important */
+    animation: popIn 0.5s ease forwards !important;
+    overflow: visible !important; /* Allow content to overflow */
+    text-align: center !important; /* Center text horizontally */
+    line-height: 1 !important; /* Prevent text from overflowing vertically */
+    top: -60px !important; /* Position above the emoji circle */
+    left: 50% !important; /* Center horizontally */
+    transform: translateX(-50%) !important; /* Center horizontally */
+    width: auto !important; /* Allow width to adjust to content */
+    height: auto !important; /* Allow height to adjust to content */
+    z-index: 9999 !important; /* Extremely high z-index with !important */
+    pointer-events: none !important; /* Don't block mouse events */
+    opacity: 1 !important; /* Force opacity to 1 */
+    visibility: visible !important; /* Force visibility */
+}
+
+/* Styling specifically for feature message bubbles to look like chat bubbles */
+.feature-bubble {
+    /* Remove position and top/left as they're set in the parent .chat-bubble */
+    animation: popIn 0.5s ease forwards !important; /* No breathing animation */
+    padding: 8px 16px !important; /* Larger padding */
+    background: radial-gradient(ellipse at center, white 60%, #f5f5f5 100%) !important;
+    color: black !important;
+    font-size: 0.8em !important; /* Larger font size */
+    white-space: nowrap !important;
+    /* Make the shape more oval */
+    min-width: 200px; /* Wider minimum width */
+    border-radius: 22px / 18px; /* horizontal radius / vertical radius for oval shape */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15), inset 0 1px 1px rgba(255,255,255,0.8) !important;
+    border: 1px solid rgba(0,0,0,0.1);
+    font-weight: 500; /* Slightly bolder font */
+    display: flex !important; /* Force visibility */
+    visibility: visible !important; /* Force visibility */
+    opacity: 1 !important; /* Force opacity to 1 */
+}
+
+/* Styling for reaction message bubbles with dark blue background and white text */
+.reaction-bubble {
+    /* Remove position and top/left as they're set in the parent .chat-bubble */
+    animation: popIn 0.5s ease forwards !important; /* No breathing animation */
+    padding: 6px 14px !important;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 67, 0.8) 60%, rgba(0, 0, 87, 0.9) 100%) !important;
+    color: white !important; /* White text */
+    font-size: 0.7em !important; /* Increased font size */
+    white-space: nowrap !important;
+    /* Make the shape more oval */
+    min-width: 100px; /* Wider minimum width */
+    border-radius: 20px / 16px; /* horizontal radius / vertical radius for oval shape */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.1) !important;
+    border: 1px solid rgba(0,0,0,0.2);
+    display: flex !important; /* Force visibility */
+    visibility: visible !important; /* Force visibility */
+    opacity: 1 !important; /* Force opacity to 1 */
+}
+
+/* Add chat bubble tail/pointer for feature bubbles (from the left bottom now) */
+.feature-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -6px; /* Adjusted to ensure visibility */
+    left: 50%; /* Center the pointer */
+    margin-left: -6px;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, white 30%, #f5f5f5 100%);
+    border-right: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transform: rotate(45deg);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+    z-index: 0; /* Changed from -1 to 0 to ensure visibility */
+    display: block !important; /* Force visibility of the pointer */
+    visibility: visible !important;
+}
+
+/* Add chat bubble tail/pointer for reaction bubbles (coming from the side) */
+.reaction-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -6px; /* Adjusted to ensure visibility */
+    left: 50%; /* Center the pointer */
+    margin-left: -6px;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, rgba(0, 0, 67, 0.8) 30%, rgba(0, 0, 87, 0.9) 100%);
+    border-right: 1px solid rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    transform: rotate(45deg);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    z-index: 0; /* Changed from -1 to 0 to ensure visibility */
+    display: block !important; /* Force visibility of the pointer */
+    visibility: visible !important;
+}
+
+.geometry-group,
+.geometry-group-inner,
+.geometry-group-outer1,
+.geometry-group-outer2 {
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* 1) Each group initially hidden and at the correct orbit start transform */
+.geometry-group .circle,
+.geometry-group-outer2 .circle {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(275px) rotate(0deg);
+    animation-fill-mode: both; /* So it 'sticks' to 0% transform even before anim starts */
+    opacity: 1; /* Ensure all circles are visible */
+}
+
+/* Specific transform for outer1 group with larger radius */
+.geometry-group-outer1 .circle {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(300px) rotate(0deg);
+    animation-fill-mode: both;
+    opacity: 1;
+}
+
+/* Ensure all geometry groups are visible with proper layering */
+.geometry-group {
+    opacity: 1 !important;
+    z-index: 4;
+}
+
+.geometry-group-outer1 {
+    opacity: 1 !important;
+    z-index: 3;
+}
+
+.geometry-group-outer2 {
+    opacity: 1 !important;
+    z-index: 2;
+}
+
+/* Override opacity for all circles to make them visible */
+.circle20, .circle21, .circle22, .circle23, .circle24, .circle25,
+.circle26, .circle27, .circle28, .circle29, .circle30, .circle31 {
+    opacity: 1 !important;
+}
+
+/* AI Logo styling */
+.ai-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.ai-logo img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+/* Specific background colors for each AI logo */
+.circle01.ai-logo {
+    background-color: white !important; /* ChatGPT with white background */
+}
+
+.circle03.ai-logo {
+    background-color: #d77655 !important; /* Claude with exact brand color */
+}
+
+.circle21.ai-logo {
+    background-color: white !important; /* Google Gemini with white background */
+}
+
+.circle23.ai-logo {
+    background-color: black !important; /* Grok with black background */
+}
+
+.circle27.ai-logo {
+    background-color: #1f1f1f !important; /* Perplexity with exact brand color */
+}
+
+.features-section {
+    height: 950px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 33px;
+    gap: 20px;
+    padding: 50px 20px;
+    position: relative;
+    background: transparent;
+    border-radius: 111px;
+    z-index: 0;
+    width: 100%;
+    overflow: visible;
+}
+
+.feature {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at center,
+        rgb(32, 55, 139),
+        rgba(6, 15, 47, 0.414)
+    );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 25px;
+    position: absolute;
+    margin: 3px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    box-shadow: 0 0 15px rgba(92, 226, 231, 0);
+
+    .feature-icon {
+        font-size: 42px;
+    }
+
+    h3 {
+        font-weight: bold;
+        margin-bottom: 11px;
+    }
+}
+
+.feature:hover {
+    background: radial-gradient(
+        circle at center,
+        rgb(45, 75, 170),
+        rgba(12, 25, 65, 0.5)
+    );
+    transform: scale(1.05);
+    border: 2px solid rgba(92, 226, 231, 0.4);
+    box-shadow: 0 0 25px rgba(92, 226, 231, 0.3);
+}
+
+/* Special styling for clickable features */
+.clickable-feature {
+    cursor: pointer;
+}
+
+/* External link icons removed */
+
+#features {
+    margin-top: 222px;
+    position: relative;
+    height: 950px;
+}
+#team {
+    margin-top: 242px;
+}
+#expert-ai a {
+    color: white;
+}
+
+/* Position each feature in a circle */
+/* Calculate the angle and distance for each feature */
+/* Explicit selectors to ensure correct placement regardless of order */
+#multiplayer {
+    transform: rotate(0deg) translate(400px) rotate(0deg);
+}
+#aiFamily {
+    transform: rotate(40deg) translate(400px) rotate(-40deg);
+}
+#voiceInOut {
+    transform: rotate(80deg) translate(400px) rotate(-80deg);
+}
+#imagesGraphs {
+    transform: rotate(118deg) translate(400px) rotate(-118deg);
+}
+#quality-assurance {
+    transform: rotate(158deg) translate(410px) rotate(-158deg);
+}
+#textMessaging {
+    transform: rotate(200deg) translate(400px) rotate(-200deg);
+}
+#release-management {
+    transform: rotate(240deg) translate(400px) rotate(-240deg);
+}
+#sharePrivate {
+    transform: rotate(282deg) translate(400px) rotate(-282deg);
+}
+#rag {
+    transform: rotate(322deg) translate(410px) rotate(-322deg);
+}
+#expertAi {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    z-index: 15;
+    background: radial-gradient(
+        circle at center,
+        rgb(70, 85, 159),
+        rgba(25, 35, 77, 0.8)
+    );
+    border: 3px solid rgba(100, 120, 255, 0.1);
+    box-shadow: 0 0 25px rgba(60, 80, 255, 0.2);
+}
+/* Adjust the starting position and angle increment for team features */
+.team-feature:nth-child(1) {
+    transform: rotate(-30deg) translate(500px) rotate(30deg);
+}
+.team-feature:nth-child(2) {
+    transform: rotate(10deg) translate(500px) rotate(-10deg);
+}
+.team-feature:nth-child(3) {
+    transform: rotate(50deg) translate(500px) rotate(-50deg);
+}
+.team-feature:nth-child(4) {
+    transform: rotate(90deg) translate(500px) rotate(-90deg);
+}
+.team-feature:nth-child(5) {
+    transform: rotate(130deg) translate(500px) rotate(-130deg);
+}
+.team-feature:nth-child(6) {
+    transform: rotate(170deg) translate(500px) rotate(-170deg);
+}
+.team-feature:nth-child(7) {
+    transform: rotate(210deg) translate(500px) rotate(-210deg);
+}
+.team-feature:nth-child(8) {
+    transform: rotate(250deg) translate(500px) rotate(-250deg);
+}
+.team-feature:nth-child(9) {
+    transform: rotate(290deg) translate(500px) rotate(-290deg);
+}
+
+/* Styling specific to team features */
+.team-feature {
+    overflow: hidden;
+}
+
+.team-feature img {
+    width: 100%; /* Ensure the image covers the full width */
+    height: 50%; /* Image covers the top half of the circle */
+    object-fit: cover; /* Cover the designated area without distortion */
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    top: 33px;
+}
+
+.team-feature h3,
+.team-feature h4,
+.team-feature p {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    padding: 0 20px; /* Padding to ensure text doesn't touch the edge */
+    z-index: 1;
+}
+
+.team-feature h3 {
+    margin-top: 0;
+    display: flex;
+    /* bottom: 80px; Adjust based on your layout */
+}
+
+.team-feature h4 {
+    margin-top: 31px;
+}
+
+.team-feature p {
+    background-color: rgb(18, 37, 107);
+    justify-content: center;
+    margin-top: 145px;
+    padding: 20px;
+}
+
+.linkedin-logo {
+    width: 32px !important;
+    height: 32px !important;
+    display: flex;
+    position: relative;
+    background-color: white;
+    border-radius: 2px !important;
+    z-index: 1;
+    right: -118px;
+    top: -15px;
+}
+
+.bryan-bg {
+    background: rgb(210, 214, 212);
+    background: linear-gradient(
+        90deg,
+        rgba(210, 214, 212, 1) 0%,
+        rgba(141, 139, 138, 1) 100%
+    );
+}
+.duane-bg {
+    background: rgb(113 149 180);
+    /* background: linear-gradient(90deg, rgb(113 149 180) 0%, rgba(141,139,138,1) 100%); */
+}
+
+/* Optional: Style for the SVG background circles to be placed behind the content */
+.features-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    /* Apply the SVG circles background styling here */
+}
+
+img.zoom-out {
+    width: 100%; /* or a specific width */
+    height: auto; /* or a specific height */
+    object-fit: cover; /* Cover the area of the container without stretching */
+    transform: scale(0.8); /* Zoom out to 80% of the original size */
+}
+
+.newsletter-signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 500px;
+    margin: -725px auto 555px auto; /* Adjusted to account for increased features section height */
+    border-radius: 50%;
+    background: rgb(6, 15, 47);
+    background: radial-gradient(
+        circle,
+        rgb(39, 71, 187) 0%,
+        rgba(12, 18, 41, 1) 100%
+    );
+    overflow: hidden; /* Ensures nothing spills outside the circular shape */
+    position: relative; /* Added to ensure proper stacking context */
+    z-index: 5; /* Added to ensure it appears above other elements */
+    padding: 20px; /* Added padding to ensure content doesn't touch the edges */
+    text-align: center; /* Center all text content */
+    font-size: 45px;
+}
+
+.title,
+.subtitle,
+strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+    color: var(--text-color);
+}
+
+#mc_embed_signup {
+    text-align: center; /* Center the form content */
+    width: 100%; /* Take full width of container */
+    max-width: 300px; /* Limit maximum width */
+    margin: 0 auto; /* Center the form */
+}
+
+#mc_embed_signup .foot {
+    display: flex !important;
+    justify-content: center;
+}
+
+#mc_embed_signup form {
+    display: inline-block;
+    width: 100%; /* Take full width */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+#mc_embed_signup .mc-field-group {
+    width: 100%; /* Take full width */
+    padding: 0; /* Remove default padding */
+    margin-bottom: 15px; /* Add space below the input field */
+}
+
+#mc_embed_signup .mc-field-group input {
+    width: 80%; /* Make the email input wider */
+    padding: 10px; /* Add some padding */
+    border-radius: 25px; /* Rounded corners for the input */
+    border: 1px solid #ccc; /* Add a border to the input */
+    text-align: center; /* Center the text in the input */
+}
+
+#mc_embed_signup .button {
+    background-color: #007bff; /* Primary button color */
+    border: none;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 25px; /* Rounded corners for the button */
+    color: #fff;
+    cursor: pointer; /* Change cursor on hover */
+    margin-top: 5px; /* Add space above the button */
+}
+
+.site-footer {
+    background-color: #0a192f; /* Dark blue, adjust to match your design */
+    color: #ffffff; /* White text */
+    text-align: center;
+    padding: 20px 0;
+}
+
+.home.site-footer {
+    margin-top: 450px; /* Adjusted to account for the increased features section height */
+}
+
+.site-footer .container {
+    max-width: 1170px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.site-footer p {
+    text-align: left;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    #expertAi {
+        left: auto;
+        top: auto;
+        position: relative !important;
+        transform: none !important;
+        margin: 10px auto !important;
+    }
+    main {
+        margin-top: 55px;
+    }
+    .mobile-hide {
+        display: none !important;
+    }
+    .features-section {
+        height: auto !important; /* Ensure override */
+    }
+
+    /* Adjust logo circle for mobile */
+    .nav-logo {
+        height: 45px;
+    }
+
+    .nav-logo img {
+        height: 35px;
+    }
+
+    .nav-logo::before {
+        width: 43px;
+        height: 43px;
+    }
+
+    #features,
+    #team {
+        margin-top: 0;
+    }
+
+    .feature,
+    .team-feature {
+        width: 360px !important;
+        height: 360px !important;
+        position: relative !important; /* Ensure override */
+        transform: none !important; /* Remove transformations */
+        margin: 10px auto !important; /* Add margin and centering */
+    }
+
+    /* Additional resets for team features if necessary */
+    .team-feature img {
+        border-radius: 0 !important; /* Reset border-radius if needed */
+    }
+
+    /* Disable or simplify sacred geometry overlay for mobile */
+    .sacred-geometry-overlay {
+        opacity: 0.3; /* Reduce opacity on mobile */
+    }
+
+    .inner-ring, .middle-ring, .outer-ring {
+        animation: none !important; /* Stop the spinning animation on mobile */
+    }
+
+    .flower-of-life-container {
+        opacity: 0.04 !important; /* Further reduce opacity */
+        animation: none !important; /* Stop the spinning animation on mobile */
+    }
+
+    .sacred-connection-line {
+        display: none !important; /* Hide connection lines on mobile */
+    }
+
+    .newsletter-signup {
+        margin: 20px auto auto auto; /* Reduced from 50px to move it up */
+        width: 375px;
+        height: 375px;
+        position: relative;
+        z-index: 5;
+        padding: 15px; /* Slightly smaller padding for mobile */
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 10px; /* Add some space between heading and form */
+        }
+    }
+    #mc_embed_signup .mc-field-group input {
+        padding: 8px;
+    }
+
+    .site-footer {
+        margin-top: 75px;
+    }
+
+    .mobile-hidden {
+        display: none;
+    }
+}
+
+/* Sacred Geometry Overlay */
+.sacred-geometry-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Makes the overlay non-interactive */
+    z-index: 1; /* Keep it below the feature content */
+}
+
+/* Rotating rings */
+.inner-ring, .middle-ring, .outer-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transform: translate(-50%, -50%);
+}
+
+.inner-ring {
+    width: 550px;
+    height: 550px;
+    animation: slow-spin 80s linear infinite;
+}
+
+.middle-ring {
+    width: 750px;
+    height: 750px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: reverse-spin 100s linear infinite;
+}
+
+.outer-ring {
+    width: 950px;
+    height: 950px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    animation: slow-spin 120s linear infinite;
+}
+
+/* Flower of Life container */
+.flower-of-life-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 950px;
+    height: 950px;
+    transform: translate(-50%, -50%);
+    opacity: 0.07;
+    animation: slow-spin 120s linear infinite;
+}
+
+/* Connection lines container */
+.connection-lines-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sacred-connection-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.3), rgba(255,255,255,0));
+    transform-origin: left center;
+    z-index: 5;
+    will-change: opacity; /* Optimize for animation */
+    contain: layout style paint; /* Further optimization for browser rendering */
+}
+
+/* Animation for the connection lines */
+@keyframes pulse-line {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.5; }
+}
+
+/* Animation for rotating elements */
+@keyframes slow-spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes reverse-spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+.flower-petal {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+/* View toggle styles */
+.view-toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1; /* Take up 1 part of the space */
+}
+
+.view-label {
+    font-size: 14px;
+    padding: 0 10px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.view-label.active {
+    color: white;
+    font-weight: bold;
+}
+
+/* Toggle switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: .4s;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: rgba(113, 149, 180, 0.6);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Content styles that change based on view */
+.customer-view-active .customer-content {
+    display: block;
+}
+
+.customer-view-active .company-content {
+    display: none;
+}
+
+.company-view-active .company-content {
+    display: block;
+}
+
+.company-view-active .customer-content {
+    display: none;
+}
+
+/* Additional responsive styles for toggle */
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .nav-logo {
+        flex: 0 0 auto;
+    }
+
+    .nav-title {
+        flex: 1;
+    }
+
+    .view-toggle-container {
+        flex: 1;
+        justify-content: center;
+        order: 3;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .nav-menu {
+        flex: 1;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 0.9em 1em;
+    }
+
+    .nav-title, .nav-menu, .view-toggle-container {
+        width: 100%;
+        justify-content: center;
+        margin: 5px 0;
+    }
+
+    .nav-menu {
+        order: 4;
+    }
+}
+
+/* Performance checking indicator */
+.performance-checking {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(92, 226, 231, 0.9);
+    color: #000;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+    z-index: 9999;
+    display: none;
+}
+
+/* Static Hero Styles */
+.static-hero {
+    position: relative;
+    background-color: #000033;
+    overflow: hidden;
+    transition: background-color 0.5s ease;
+}
+
+.static-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 0, 80, 0.3) 0%, rgba(0, 0, 50, 0.8) 70%);
+    z-index: 1;
+}
+
+.static-hero .circle.central {
+    animation: none;
+    box-shadow: 0 0 30px rgba(100, 100, 255, 0.5);
+    background-color: rgba(0, 0, 33, 0.8);
+}
+
+/* Performance monitoring hidden element */
+.performance-monitor {
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 5px;
+    height: 5px;
+    background: transparent;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Animation toggle styles */
+#toggle-animation-preference {
+    cursor: pointer;
+    font-size: 0.9em;
+    text-decoration: underline;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+#toggle-animation-preference:hover {
+    opacity: 1;
+}
+
+/* Loading indicator */
+.performance-checking {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 100;
+}
+
+.performance-checking.visible {
+    opacity: 1;
+}

@@ -1,0 +1,202 @@
+/**
+ * Custom Header Styles for Divinci AI
+ * Fixes styling issues and improves header appearance
+ */
+
+/* Fix for the Sign Up button height */
+.signup-link {
+    margin-left: 20px !important;
+    padding: 0 !important;
+    height: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+.signup-button {
+    background: #c25800;
+    padding: 7px 16px !important;
+    border-radius: 7px;
+    border: 1px solid black;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    display: inline-block !important;
+    line-height: 1.2 !important;
+    height: auto !important;
+}
+
+/* Ensure the button doesn't have extra padding from the parent link */
+.nav-menu a.signup-link {
+    margin-left: 20px;
+    padding: 0;
+}
+
+/* Ensure proper vertical alignment */
+.nav-menu {
+    align-items: center;
+}
+
+/* Ensure proper spacing between menu items */
+.nav-menu a {
+    margin-left: 20px;
+    display: inline-flex;
+    align-items: center;
+    height: auto;
+}
+
+/* View Toggle Styling */
+.view-toggle-container {
+    justify-content: end;
+}
+
+.view-label {
+    font-size: 14px;
+    transition: all 0.3s ease;
+    color: #888;
+    cursor: pointer;
+    user-select: none;
+    width: 70px; /* Fixed width for each label */
+    text-align: center;
+}
+
+.view-label.active {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Switch styling */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+    margin: 0 8px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #13104c;
+    background: linear-gradient(45deg, #13104c, transparent);
+    transition: .4s;
+    border: 1px solid #666;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #13104c;
+    background: linear-gradient(45deg, #13104c, transparent);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #5c72e2;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Additional class for manual toggle control */
+.slider.checked:before {
+    transform: translateX(20px);
+}
+
+.slider.checked {
+    background-color: #5c72e2;
+}
+
+/* Content visibility classes */
+.consumer-view-content, .company-view-content {
+    transition: opacity 0.3s ease;
+}
+
+/* Fix for the nav-title to prevent layout shifts */
+.nav-title {
+    position: relative;
+    min-width: 250px; /* Set a minimum width to prevent layout shifts */
+}
+
+.nav-title .consumer-view-content,
+.nav-title .company-view-content {
+    position: absolute;
+    left: 105px;
+    top: 0;
+    white-space: nowrap;
+}
+
+/* Header logo styling for company view */
+.header-logo {
+    transition: filter 0.5s ease;
+}
+
+.nav-logo::before {
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.company-view-active .header-logo {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.company-view-active .nav-logo::before {
+    border-color: #000000f7;
+    background: linear-gradient(45deg, #ffffffe3, #c3c1ff7d);
+    height: 65px;
+    width: 65px;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+    .mobile-hide {
+        display: none !important;
+    }
+
+    /* Ensure proper spacing between logo and text */
+    .nav-title {
+        margin-left: 12px !important;
+    }
+
+    /* Ensure the nav-menu is visible and properly aligned */
+    .nav-menu {
+        display: flex !important;
+        justify-content: flex-end;
+    }
+
+    /* Style the signup button */
+    .signup-button {
+        display: inline-block;
+        width: auto;
+    }
+
+    /* Adjust spacing for menu items */
+    .nav-menu a {
+        margin-left: 15px;
+    }
+}

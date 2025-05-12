@@ -1,0 +1,19 @@
+/**
+ * Fix for section-content text color on dark backgrounds
+ */
+
+.section-content {
+    color: #ffffff; /* White text for better readability on dark backgrounds */
+}
+
+/* Ensure proper contrast for different view modes */
+.section-content.consumer-view-content,
+.section-content.company-view-content {
+    color: #ffffff;
+}
+
+/* Additional styling for better readability */
+.section-title + .section-content {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}

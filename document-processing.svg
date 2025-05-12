@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" aria-labelledby="doc-process-title doc-process-desc">
+  <title id="doc-process-title">Document Processing</title>
+  <desc id="doc-process-desc">Visualization of AutoRAG's document processing, chunking, and preparation for embedding</desc>
+  
+  <defs>
+    <!-- Styles -->
+    <style>
+      /* Base styles using the Divinci color palette */
+      .background { fill: #F5F7FA; }
+      .container { fill: #F5F7FA; stroke: #485262; stroke-width: 1.5; }
+      .primary-connection { stroke: #2E5BFF; stroke-width: 2; fill: none; }
+      .secondary-connection { stroke: #00D8D8; stroke-width: 1.5; fill: none; }
+      .tertiary-connection { stroke: #B0B7C3; stroke-width: 1; stroke-dasharray: 4,2; fill: none; }
+      .highlight-connection { stroke: #8C54FF; stroke-width: 2.5; fill: none; }
+      
+      .primary-node { fill: #F5F7FA; stroke: #2E5BFF; stroke-width: 2; }
+      .secondary-node { fill: #F5F7FA; stroke: #00D8D8; stroke-width: 2; }
+      .tertiary-node { fill: #F5F7FA; stroke: #8C54FF; stroke-width: 2; }
+      .node-highlight { fill: #F0F5FF; }
+      
+      .icon-primary { fill: #2E5BFF; }
+      .icon-secondary { fill: #00D8D8; }
+      .icon-tertiary { fill: #8C54FF; }
+      
+      text {
+        font-family: 'Inter', sans-serif;
+        fill: #485262;
+      }
+      .title-text { 
+        font-size: 16px; 
+        font-weight: 500;
+      }
+      .subtitle-text { 
+        font-size: 14px; 
+        font-weight: 400;
+      }
+      .detail-text { 
+        font-size: 12px; 
+        font-weight: 400;
+      }
+      
+      /* Animation keyframes */
+      @keyframes flowAnimation {
+        from { stroke-dashoffset: 400; }
+        to { stroke-dashoffset: 0; }
+      }
+      
+      .animated-path {
+        stroke-dasharray: 5, 3;
+        animation: flowAnimation 10s linear infinite;
+      }
+      
+      .document-rect {
+        fill: #F5F7FA;
+        stroke: #2E5BFF;
+        stroke-width: 1.5;
+        rx: 4;
+        ry: 4;
+      }
+      
+      .process-box {
+        fill: #F5F7FA;
+        stroke: #00D8D8;
+        stroke-width: 1.5;
+        rx: 4;
+        ry: 4;
+      }
+      
+      .chunk-box {
+        fill: #F0F5FF;
+        stroke: #2E5BFF;
+        stroke-width: 1;
+        rx: 2;
+        ry: 2;
+      }
+    </style>
+    
+    <!-- Gradient for document flow -->
+    <linearGradient id="documentFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2E5BFF" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#00D8D8" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" class="background"/>
+  
+  <!-- Document Input -->
+  <g transform="translate(30, 30)">
+    <rect width="60" height="70" class="document-rect"/>
+    <text x="30" y="20" class="subtitle-text" text-anchor="middle">Input</text>
+    <line x1="15" y1="30" x2="45" y2="30" class="icon-primary" stroke-width="1"/>
+    <line x1="15" y1="40" x2="45" y2="40" class="icon-primary" stroke-width="1"/>
+    <line x1="15" y1="50" x2="45" y2="50" class="icon-primary" stroke-width="1"/>
+    <line x1="15" y1="60" x2="35" y2="60" class="icon-primary" stroke-width="1"/>
+  </g>
+  
+  <!-- Document Processing -->
+  <g transform="translate(120, 30)">
+    <rect width="70" height="70" class="process-box"/>
+    <text x="35" y="20" class="subtitle-text" text-anchor="middle">Processor</text>
+    <circle cx="35" cy="45" r="15" class="primary-node" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <text x="35" y="48" class="detail-text" text-anchor="middle">Parse</text>
+  </g>
+  
+  <!-- Chunking -->
+  <g transform="translate(220, 30)">
+    <rect width="60" height="70" class="process-box"/>
+    <text x="30" y="20" class="subtitle-text" text-anchor="middle">Chunking</text>
+    
+    <!-- Chunks inside -->
+    <rect x="10" y="30" width="40" height="10" class="chunk-box"/>
+    <rect x="10" y="45" width="40" height="10" class="chunk-box"/>
+    <rect x="10" y="60" width="40" height="10" class="chunk-box"/>
+  </g>
+  
+  <!-- Semantic Analysis -->
+  <g transform="translate(30, 130)">
+    <rect width="60" height="50" class="process-box"/>
+    <text x="30" y="20" class="subtitle-text" text-anchor="middle" font-size="12px">Semantic</text>
+    <text x="30" y="35" class="subtitle-text" text-anchor="middle" font-size="12px">Analysis</text>
+  </g>
+  
+  <!-- Metadata Extraction -->
+  <g transform="translate(120, 130)">
+    <rect width="70" height="50" class="process-box"/>
+    <text x="35" y="20" class="subtitle-text" text-anchor="middle" font-size="12px">Metadata</text>
+    <text x="35" y="35" class="subtitle-text" text-anchor="middle" font-size="12px">Extraction</text>
+  </g>
+  
+  <!-- Embedding Preparation -->
+  <g transform="translate(220, 130)">
+    <rect width="60" height="50" class="process-box"/>
+    <text x="30" y="20" class="subtitle-text" text-anchor="middle" font-size="12px">Embedding</text>
+    <text x="30" y="35" class="subtitle-text" text-anchor="middle" font-size="12px">Prep</text>
+  </g>
+  
+  <!-- Connections -->
+  <path d="M 90,65 L 120,65" class="primary-connection animated-path"/>
+  <path d="M 190,65 L 220,65" class="primary-connection animated-path"/>
+  
+  <path d="M 60,100 L 60,130" class="secondary-connection animated-path"/>
+  <path d="M 155,100 L 155,130" class="secondary-connection animated-path"/>
+  <path d="M 250,100 L 250,130" class="secondary-connection animated-path"/>
+  
+  <path d="M 90,155 L 120,155" class="secondary-connection animated-path"/>
+  <path d="M 190,155 L 220,155" class="secondary-connection animated-path"/>
+  
+  <!-- Flow description -->
+  <text x="150" y="190" class="detail-text" text-anchor="middle">Intelligent Document Processing Pipeline</text>
+</svg>

@@ -1,0 +1,616 @@
+/* Light Theme */
+:root {
+    --background-color: #ffffff;
+    --text-color: #ffffff;
+    --primary-color: #3273dc;
+    --color-primary: #0d102d;
+    --color-secondary: #5ce2e7;
+    --color-text: #c4c5ca;
+    --color-background: #16214c;
+    --color-dark: #0a0c1e;
+    --color-light: #f5f5f7;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --primary-color: #00d1b2;
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: "Inter", sans-serif;
+    color: #c4c5ca;
+    background: rgb(22 33 76);
+    /* background: radial-gradient(circle, rgba(30,45,102,1) 0%, rgba(12,18,41,1) 100%); */
+}
+
+body {
+    padding-top: 58px;
+    overflow-x: hidden;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #c3c3c3;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+nav {
+    width: 100%;
+    background: rgb(6, 15, 47);
+    background: radial-gradient(circle, rgb(6 15 47 / 57%) 0%, rgb(12 18 41 / 34%) 100%);
+    color: white;
+    text-align: center;
+    padding: 1.5em 0;
+}
+
+.navbar {
+    position: fixed; /* Keep the navbar fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it's above other content */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Align items vertically */
+    padding: 0px 2em;
+    margin: 1px auto 1px auto;
+    background-color: #3333338c;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds shadow for depth */
+    border-top: 7px solid #0e102dab;
+}
+
+.nav-title,
+.nav-menu {
+    display: flex;
+}
+
+.nav-title {
+    flex: 1; /* Take up 1 part of the space */
+    font-size: 24px;
+    margin-left: 22px; /* Space between logo and title */
+    justify-content: flex-start; /* Align to the left */
+    white-space: nowrap; /* Prevent wrapping */
+    display: flex;
+    align-items: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-title .brand-name {
+    white-space: nowrap;
+}
+
+.nav-title .mobile-hide {
+    white-space: nowrap;
+}
+
+.nav-menu {
+    flex: 1; /* Take up 1 part of the space */
+    justify-content: flex-end; /* Align to the right */
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px; /* Space between menu items */
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    align-items: center;
+    display: flex;
+}
+
+.nav-logo {
+    height: 50px; /* Adjust based on your logo's size */
+    max-width: fit-content;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-logo img {
+    height: 40px; /* Slightly smaller than the container */
+    position: relative;
+    z-index: 2;
+}
+
+/* Circle background for the logo */
+.nav-logo::before {
+    content: "";
+    position: absolute;
+    width: 77px;
+    height: 77px;
+    background:  #0d102db3;
+    border-radius: 50%;
+    z-index: 1;
+    /* border: 2px solid rgb(0, 0, 93); */
+}
+
+.signup-button {
+    background: #c25800;
+    padding: 7px 12px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-radius: 7px;
+    border: 1px solid black;
+    font-size: 15px;
+    margin-left: 18px;
+    width: auto;
+}
+
+.signup-button a {
+    margin: auto;
+    color: white;
+    font-weight: bold;
+}
+
+.page-title {
+    text-align: center;
+    font-family: "Outfit", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    color: #5ce2e7;
+}
+
+.geometry-group, .geometry-group-outer1, .geometry-group-outer2 {
+    position: absolute;
+    width: 100%; /* Ensure it spans the full width of its parent */
+    height: 100%; /* Ensure it spans the full height of its parent */
+    top: 0;
+    left: 0;
+    justify-content: center; /* Not necessary unless using flex, but kept for reference */
+    overflow: visible !important; /* Make sure bubbles can extend outside */
+    z-index: 3;
+}
+
+/* Orbit Animation */
+@keyframes orbit {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(150px) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(150px) rotate(-360deg);
+    }
+}
+
+@keyframes orbit2 {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(200px) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(200px) rotate(-360deg);
+    }
+}
+
+/* Apply animations to circle groups */
+.geometry-group .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: orbit 20s linear infinite;
+    transform-origin: center;
+    animation-play-state: running !important;
+}
+
+.geometry-group-outer1 .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: orbit2 30s linear infinite;
+    transform-origin: center;
+    animation-play-state: running !important;
+}
+
+.geometry-group-outer2 .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: orbit 40s linear infinite reverse;
+    transform-origin: center;
+    animation-play-state: running !important;
+}
+
+/* Override initial transforms for animation */
+.geometry-group .circle,
+.geometry-group-outer1 .circle,
+.geometry-group-outer2 .circle {
+    animation-delay: -5s; /* Start from a different point in the animation */
+}
+
+.hero {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    min-height: 600px;
+    overflow: visible !important; /* Force visible overflow */
+    background: rgb(30, 45, 102);
+    background: radial-gradient(
+        circle,
+        rgba(30, 45, 102, 1) 0%,
+        rgba(12, 18, 41, 1) 100%
+    );
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes breath {
+    0%,
+    100% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.flower-of-life {
+    width: 100%;
+    height: 100%;
+    /* overflow: show; */
+    animation: spin 20s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: auto; /* Center the SVG in its container */
+    /* Ensure the rotation is around the center */
+    transform-origin: center;
+    z-index: -1;
+    will-change: transform; /* Optimize for animation */
+    contain: layout style paint; /* Further optimization for browser rendering */
+    backface-visibility: hidden; /* Reduce composite layers */
+    perspective: 1000px; /* Improve 3D rendering performance */
+}
+
+.circle {
+    width: 77px; /* Adjust size as desired */
+    height: 77px; /* Adjust size as desired */
+    border-radius: 50%;
+    position: absolute;
+    display: flex; /* Enables flexbox properties */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    font-size: 48px;
+    z-index: 3; /* Ensure circles are above background elements */
+    /* filter: saturate(65%) brightness(85%) !important; */
+    will-change: transform; /* Optimize for animation */
+    contain: layout style paint; /* Further optimization for browser rendering */
+    backface-visibility: hidden; /* Reduce composite layers */
+    transform-style: preserve-3d; /* Improves 3D transformations */
+}
+
+/* Central circle fixed positioning */
+.central {
+    width: 222px !important;
+    height: 222px !important;
+    border-radius: 50%;
+    background-color: #0d102d;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid rgb(0, 0, 93);
+    z-index: 2;
+}
+
+.central-logo {
+    width: 77%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 11px;
+}
+
+/* Circle positions - Inner orbit */
+.circle00 {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(150px) rotate(0deg);
+    background-color: aqua;
+    border: 3px solid rgb(0, 205, 205);
+}
+.circle01 {
+    transform: translate(-50%, -50%) rotate(72deg) translateX(150px) rotate(-72deg);
+    background-color: blueviolet;
+    border: 3px solid rgb(110, 19, 195);
+}
+.circle02 {
+    transform: translate(-50%, -50%) rotate(144deg) translateX(150px) rotate(-144deg);
+    background-color: burlywood;
+    border: 3px solid rgb(192, 151, 98);
+}
+.circle03 {
+    transform: translate(-50%, -50%) rotate(216deg) translateX(150px) rotate(-216deg);
+    background-color: chocolate;
+    border: 3px solid rgb(176, 80, 12);
+}
+.circle04 {
+    transform: translate(-50%, -50%) rotate(288deg) translateX(150px) rotate(-288deg);
+    background-color: olivedrab;
+    border: 3px solid rgb(79, 109, 17);
+}
+
+/* Circle positions - Middle orbit */
+.circle20 {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(200px) rotate(0deg);
+    background-color: lightseagreen;
+    border: 3px solid rgb(0, 157, 157);
+}
+.circle21 {
+    transform: translate(-50%, -50%) rotate(60deg) translateX(200px) rotate(-60deg);
+    background-color: mediumslateblue;
+    border: 3px solid rgb(82, 61, 197);
+}
+.circle22 {
+    transform: translate(-50%, -50%) rotate(120deg) translateX(200px) rotate(-120deg);
+    background-color: navy;
+    border: 3px solid rgb(17, 17, 177);
+}
+.circle23 {
+    transform: translate(-50%, -50%) rotate(180deg) translateX(200px) rotate(-180deg);
+    background-color: orchid;
+    border: 3px solid rgb(175, 69, 172);
+}
+.circle24 {
+    transform: translate(-50%, -50%) rotate(240deg) translateX(200px) rotate(-240deg);
+    background-color: palevioletred;
+    border: 3px solid rgb(171, 71, 105);
+}
+.circle25 {
+    transform: translate(-50%, -50%) rotate(300deg) translateX(200px) rotate(-300deg);
+    background-color: lightsteelblue;
+    border: 3px solid rgb(112, 143, 183);
+}
+
+/* Circle positions - Outer orbit */
+.circle26 {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(250px) rotate(0deg);
+    background-color: rgb(32, 69, 178);
+    border: 3px solid rgb(16, 48, 144);
+}
+.circle27 {
+    transform: translate(-50%, -50%) rotate(60deg) translateX(250px) rotate(-60deg);
+    background-color: rgb(78, 66, 145);
+    border: 3px solid rgb(53, 43, 109);
+}
+.circle28 {
+    transform: translate(-50%, -50%) rotate(120deg) translateX(250px) rotate(-120deg);
+    background-color: rgb(30, 30, 255);
+    border: 3px solid rgb(13, 13, 210);
+}
+.circle29 {
+    transform: translate(-50%, -50%) rotate(180deg) translateX(250px) rotate(-180deg);
+    background-color: rgb(129, 63, 165);
+    border: 3px solid rgb(92, 34, 124);
+}
+.circle30 {
+    transform: translate(-50%, -50%) rotate(240deg) translateX(250px) rotate(-240deg);
+    background-color: rgb(108, 48, 68);
+    border: 3px solid rgb(92, 29, 50);
+}
+.circle31 {
+    transform: translate(-50%, -50%) rotate(300deg) translateX(250px) rotate(-300deg);
+    background-color: lightsteelblue;
+    border: 3px solid rgb(112, 143, 182);
+}
+
+/* Features Section */
+.features-section {
+    padding: 80px 0;
+    background-color: var(--color-primary);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Team Section */
+.profiles {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.team-feature {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+}
+
+.team-feature img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.team-feature h3 {
+    margin-bottom: 10px;
+}
+
+.team-feature p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.linkedin-logo {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* Newsletter Signup */
+.newsletter-signup {
+    padding: 60px 0;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.03);
+    margin-top: 40px;
+}
+
+.newsletter-signup h1 {
+    margin-bottom: 30px;
+}
+
+#mc_embed_signup {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.mc-field-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    margin-bottom: 15px;
+}
+
+#mc-embedded-subscribe {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+#mc-embedded-subscribe:hover {
+    background-color: #7eeaee;
+}
+
+/* Accessibility */
+.skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 15px;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    z-index: 1000;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .features-section {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .mobile-hide {
+        display: none;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+}
+
+/* AI Logo styling */
+.ai-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: white !important;
+}
+
+.ai-logo img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}

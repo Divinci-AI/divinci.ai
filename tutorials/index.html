@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Divinci AI tutorials provide step-by-step guides for implementing custom AI solutions, including RAG systems, vector embeddings, and document processing." />
+        <meta name="keywords" content="divinci ai tutorials, ai implementation guides, rag tutorials, vector embedding guides, ai step by step" />
+
+        <!-- Open Graph / Social Media Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://divinci.ai/tutorials/" />
+        <meta property="og:title" content="Tutorials | Divinci AI" />
+        <meta property="og:description" content="Divinci AI tutorials provide step-by-step guides for implementing custom AI solutions, including RAG systems, vector embeddings, and document processing." />
+        <meta property="og:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://divinci.ai/tutorials/" />
+        <meta name="twitter:title" content="Tutorials | Divinci AI" />
+        <meta name="twitter:description" content="Divinci AI tutorials provide step-by-step guides for implementing custom AI solutions, including RAG systems, vector embeddings, and document processing." />
+        <meta name="twitter:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://divinci.ai/tutorials/" />
+
+        <!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
+
+        <!-- Page Title -->
+        <title>Tutorials | Divinci AI</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="../preview-banner.css" />
+        <link rel="stylesheet" href="../includes/header-styles.css" />
+        <link rel="stylesheet" href="../includes/section-content-fix.css" />
+
+        <style>
+            /* Tutorial specific styles */
+            .tutorial-hero {
+                background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+                color: white;
+                padding: 5rem 0;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .tutorial-hero::before {
+                content: '';
+                position: absolute;
+                top: -100px;
+                right: -100px;
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                border: 2px solid rgba(92, 226, 231, 0.15);
+                opacity: 0.4;
+                z-index: 0;
+            }
+
+            .tutorial-hero-content {
+                position: relative;
+                z-index: 1;
+                text-align: center;
+            }
+
+            .tutorial-title {
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: white;
+            }
+
+            .tutorial-subtitle {
+                font-size: 1.2rem;
+                max-width: 800px;
+                margin: 0 auto;
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.6;
+            }
+
+            .tutorial-filter {
+                max-width: 700px;
+                margin: 2rem auto 0;
+                display: flex;
+                justify-content: center;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+
+            .filter-button {
+                padding: 0.5rem 1.25rem;
+                background-color: rgba(255, 255, 255, 0.15);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 30px;
+                color: white;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .filter-button:hover, .filter-button.active {
+                background-color: white;
+                color: #16214c;
+            }
+
+            .tutorials-section {
+                padding: 4rem 0;
+                background-color: #f9f9f9;
+            }
+
+            .tutorial-categories {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-bottom: 4rem;
+            }
+
+            .category-card {
+                background-color: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                transition: transform 0.3s ease;
+                text-decoration: none;
+                color: inherit;
+                display: block;
+            }
+
+            .category-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .category-icon {
+                height: 150px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(92, 226, 231, 0.1);
+                font-size: 3rem;
+                color: #16214c;
+            }
+
+            .category-content {
+                padding: 1.5rem;
+            }
+
+            .category-title {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 0.75rem;
+            }
+
+            .category-description {
+                color: #444;
+                font-size: 0.95rem;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+
+            .category-count {
+                display: inline-block;
+                padding: 0.2rem 0.75rem;
+                background-color: rgba(92, 226, 231, 0.1);
+                color: #16214c;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                border: 1px solid rgba(92, 226, 231, 0.3);
+            }
+
+            .tutorial-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+
+            .tutorial-card {
+                background-color: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                transition: transform 0.3s ease;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .tutorial-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .tutorial-image {
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+            }
+
+            .tutorial-card-content {
+                padding: 1.5rem;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .tutorial-level {
+                display: inline-block;
+                padding: 0.2rem 0.75rem;
+                font-size: 0.75rem;
+                border-radius: 20px;
+                margin-bottom: 0.75rem;
+            }
+
+            .level-beginner {
+                background-color: rgba(92, 231, 126, 0.1);
+                color: #0ba052;
+                border: 1px solid rgba(92, 231, 126, 0.3);
+            }
+
+            .level-intermediate {
+                background-color: rgba(231, 180, 92, 0.1);
+                color: #b37b21;
+                border: 1px solid rgba(231, 180, 92, 0.3);
+            }
+
+            .level-advanced {
+                background-color: rgba(231, 92, 107, 0.1);
+                color: #a82937;
+                border: 1px solid rgba(231, 92, 107, 0.3);
+            }
+
+            .tutorial-card-title {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 0.75rem;
+                line-height: 1.4;
+            }
+
+            .tutorial-description {
+                font-size: 0.95rem;
+                color: #444;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+                flex-grow: 1;
+            }
+
+            .tutorial-meta {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 0.85rem;
+                color: #666;
+                margin-top: auto;
+            }
+
+            .tutorial-duration {
+                display: flex;
+                align-items: center;
+            }
+
+            .tutorial-duration i {
+                margin-right: 0.4rem;
+                color: #5ce2e7;
+            }
+
+            .tutorial-link {
+                color: #16214c;
+                font-weight: 600;
+                text-decoration: none;
+                transition: color 0.2s ease;
+                display: inline-flex;
+                align-items: center;
+            }
+
+            .tutorial-link:hover {
+                color: #5ce2e7;
+            }
+
+            .tutorial-link i {
+                margin-left: 0.5rem;
+                transition: transform 0.2s ease;
+            }
+
+            .tutorial-link:hover i {
+                transform: translateX(3px);
+            }
+
+            .section-title {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 2rem;
+                text-align: center;
+            }
+
+            .section-description {
+                text-align: center;
+                max-width: 800px;
+                margin: 0 auto 3rem;
+                color: #444;
+                font-size: 1.1rem;
+                line-height: 1.7;
+            }
+
+            .featured-tutorials {
+                margin-bottom: 4rem;
+            }
+
+            .featured-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1.5rem;
+                text-align: center;
+            }
+
+            .featured-box {
+                background-color: white;
+                border-radius: 12px;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                border-top: 4px solid #5ce2e7;
+                margin-bottom: 3rem;
+            }
+
+            .featured-box-title {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1rem;
+            }
+
+            .featured-box-description {
+                color: #444;
+                line-height: 1.7;
+                margin-bottom: 1.5rem;
+            }
+
+            .featured-box-link {
+                display: inline-flex;
+                align-items: center;
+                padding: 0.75rem 1.5rem;
+                background: linear-gradient(135deg, #16214c, #254284);
+                color: white;
+                border-radius: 6px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .featured-box-link:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                color: white;
+            }
+
+            .featured-box-link i {
+                margin-right: 0.5rem;
+            }
+
+            .coming-soon {
+                background-color: white;
+                border-radius: 12px;
+                padding: 3rem;
+                text-align: center;
+                margin-top: 2rem;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            }
+
+            .coming-soon-title {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1rem;
+            }
+
+            .coming-soon-message {
+                color: #444;
+                font-size: 1.1rem;
+                line-height: 1.6;
+                max-width: 600px;
+                margin: 0 auto 2rem;
+            }
+
+            .notify-button {
+                display: inline-flex;
+                align-items: center;
+                background: linear-gradient(135deg, #16214c, #254284);
+                color: white;
+                border: none;
+                border-radius: 30px;
+                padding: 0.8rem 2rem;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .notify-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                color: white;
+            }
+
+            .notify-button i {
+                margin-right: 0.75rem;
+            }
+
+            /* Responsive adjustments */
+            @media screen and (max-width: 768px) {
+                .tutorial-title {
+                    font-size: 2.2rem;
+                }
+
+                .section-title {
+                    font-size: 1.8rem;
+                }
+
+                .filter-button {
+                    font-size: 0.85rem;
+                    padding: 0.4rem 1rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        
+
+        <!-- Preview Banner -->
+        <div class="preview-banner">
+            <div class="preview-banner-content">
+                <p class="preview-banner-text">This page is a preview. <br/> Sign up to be notified when we launch!</p>
+                <a href="../index.html#signup" class="preview-banner-button"><i class="fas fa-bell preview-banner-icon"></i>Get Notified</a>
+            </div>
+        </div>
+
+        <!-- Header with Navigation -->
+        <nav class="navbar">
+            <a href="../index.html" class="logo-link">
+                <div class="nav-logo">
+                    <img
+                        src="../images/divinci_logo_inverted.svg"
+                        alt="Divinci Heart Robot logo"
+                        onerror="this.onerror=null; this.src='../images/divinci_logo.png';"
+                    />
+                </div>
+                <div class="nav-title">
+                    <span class="brand-name">Divinci ™</span><span class="mobile-hide">&nbsp;- Create your own custom AI</span>
+                </div>
+            </a>
+            <!-- Toggle switch for customer/company view -->
+            <div class="view-toggle-container mobile-hide">
+                <span class="view-label customer-view active">Client</span>
+                <label class="switch">
+                    <input type="checkbox" id="viewToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="view-label company-view">Company</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html#features">Features</a>
+                <a href="../index.html#team">Team</a>
+                <a href="../index.html#signup" class="signup-link"><span class="signup-button">Sign Up</span></a>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <!-- Hero Section -->
+            <section class="tutorial-hero">
+                <div class="container">
+                    <div class="tutorial-hero-content">
+                        <h1 class="tutorial-title">Divinci AI Tutorials</h1>
+                        <p class="tutorial-subtitle">Step-by-step guides to help you implement custom AI solutions using the Divinci platform. From beginner guides to advanced techniques, we've got you covered.</p>
+
+                        <div class="tutorial-filter">
+                            <button class="filter-button active" data-filter="all">All Tutorials</button>
+                            <button class="filter-button" data-filter="beginner">Beginner</button>
+                            <button class="filter-button" data-filter="intermediate">Intermediate</button>
+                            <button class="filter-button" data-filter="advanced">Advanced</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coming Soon Section -->
+            <section class="tutorials-section">
+                <div class="container">
+                    <div class="coming-soon">
+                        <h2 class="coming-soon-title">Tutorials Coming Soon</h2>
+                        <p class="coming-soon-message">We're currently building a comprehensive collection of tutorials to help you make the most of the Divinci AI platform. Check back soon for updates or subscribe to be notified when new tutorials are available.</p>
+                        <a href="#" class="notify-button"><i class="fas fa-bell"></i> Notify me of updates</a>
+                    </div>
+
+                    <!-- Preview Content -->
+                    <div style="margin-top: 4rem;">
+                        <h2 class="section-title">Tutorial Categories</h2>
+                        <p class="section-description">Explore our tutorials by category to find the specific guidance you need for your AI implementation.</p>
+
+                        <div class="tutorial-categories">
+                            <a href="#" class="category-card">
+                                <div class="category-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div class="category-content">
+                                    <h3 class="category-title">Getting Started</h3>
+                                    <p class="category-description">Tutorials for beginners to help you set up and start using the Divinci AI platform.</p>
+                                    <span class="category-count">4 tutorials</span>
+                                </div>
+                            </a>
+
+                            <a href="#" class="category-card">
+                                <div class="category-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="category-content">
+                                    <h3 class="category-title">RAG Systems</h3>
+                                    <p class="category-description">Learn how to implement and optimize Retrieval-Augmented Generation for your specific use case.</p>
+                                    <span class="category-count">6 tutorials</span>
+                                </div>
+                            </a>
+
+                            <a href="#" class="category-card">
+                                <div class="category-icon">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <div class="category-content">
+                                    <h3 class="category-title">Vector Embeddings</h3>
+                                    <p class="category-description">Guides for working with vector embeddings to enhance search and retrieval capabilities.</p>
+                                    <span class="category-count">5 tutorials</span>
+                                </div>
+                            </a>
+
+                            <a href="#" class="category-card">
+                                <div class="category-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="category-content">
+                                    <h3 class="category-title">Document Processing</h3>
+                                    <p class="category-description">Tutorials on processing different document types for use with your AI applications.</p>
+                                    <span class="category-count">4 tutorials</span>
+                                </div>
+                            </a>
+
+                            <a href="#" class="category-card">
+                                <div class="category-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="category-content">
+                                    <h3 class="category-title">Security & Compliance</h3>
+                                    <p class="category-description">Best practices for implementing security measures in your AI solutions.</p>
+                                    <span class="category-count">3 tutorials</span>
+                                </div>
+                            </a>
+
+                            <a href="#" class="category-card">
+                                <div class="category-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="category-content">
+                                    <h3 class="category-title">API Integration</h3>
+                                    <p class="category-description">Step-by-step guides for integrating Divinci AI APIs into your applications.</p>
+                                    <span class="category-count">5 tutorials</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="featured-tutorials">
+                            <h2 class="featured-title">Featured Tutorial</h2>
+                            <div class="featured-box">
+                                <h3 class="featured-box-title">Building Your First RAG System with Divinci AI</h3>
+                                <p class="featured-box-description">
+                                    This comprehensive tutorial will guide you through the process of creating a Retrieval-Augmented Generation system using the Divinci AI platform. You'll learn how to process documents, create vector embeddings, and implement an effective retrieval mechanism to enhance your AI's responses with relevant context from your organization's knowledge base.
+                                </p>
+                                <a href="#" class="featured-box-link"><i class="fas fa-play-circle"></i> Start Tutorial</a>
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Popular Tutorials</h2>
+
+                        <div class="tutorial-grid">
+                            <div class="tutorial-card">
+                                <img src="../images/tutorial-getting-started.svg" alt="Getting Started Tutorial" class="tutorial-image">
+                                <div class="tutorial-card-content">
+                                    <span class="tutorial-level level-beginner">Beginner</span>
+                                    <h3 class="tutorial-card-title">Getting Started with Divinci AI</h3>
+                                    <p class="tutorial-description">
+                                        A comprehensive introduction to the Divinci AI platform. Learn how to set up your account, create your first project, and navigate the platform's features.
+                                    </p>
+                                    <div class="tutorial-meta">
+                                        <div class="tutorial-duration">
+                                            <i class="fas fa-clock"></i> 15 minutes
+                                        </div>
+                                        <a href="#" class="tutorial-link">Read <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tutorial-card">
+                                <img src="../images/tutorial-document-processing.svg" alt="Document Processing Tutorial" class="tutorial-image">
+                                <div class="tutorial-card-content">
+                                    <span class="tutorial-level level-intermediate">Intermediate</span>
+                                    <h3 class="tutorial-card-title">Processing PDF Documents for RAG Systems</h3>
+                                    <p class="tutorial-description">
+                                        Learn how to extract structured content from PDF documents and prepare it for use in your Retrieval-Augmented Generation systems.
+                                    </p>
+                                    <div class="tutorial-meta">
+                                        <div class="tutorial-duration">
+                                            <i class="fas fa-clock"></i> 25 minutes
+                                        </div>
+                                        <a href="#" class="tutorial-link">Read <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tutorial-card">
+                                <img src="../images/tutorial-vector-embeddings.svg" alt="Vector Embeddings Tutorial" class="tutorial-image">
+                                <div class="tutorial-card-content">
+                                    <span class="tutorial-level level-advanced">Advanced</span>
+                                    <h3 class="tutorial-card-title">Optimizing Vector Embeddings for Better Search Results</h3>
+                                    <p class="tutorial-description">
+                                        Advanced techniques for fine-tuning vector embeddings to improve the relevance and accuracy of your AI's retrieval capabilities.
+                                    </p>
+                                    <div class="tutorial-meta">
+                                        <div class="tutorial-duration">
+                                            <i class="fas fa-clock"></i> 40 minutes
+                                        </div>
+                                        <a href="#" class="tutorial-link">Read <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tutorial-card">
+                                <img src="../images/tutorial-api-integration.svg" alt="API Integration Tutorial" class="tutorial-image">
+                                <div class="tutorial-card-content">
+                                    <span class="tutorial-level level-intermediate">Intermediate</span>
+                                    <h3 class="tutorial-card-title">Integrating Divinci AI with Your Web Application</h3>
+                                    <p class="tutorial-description">
+                                        Step-by-step guide for adding Divinci AI capabilities to your web application using our REST APIs and JavaScript client library.
+                                    </p>
+                                    <div class="tutorial-meta">
+                                        <div class="tutorial-duration">
+                                            <i class="fas fa-clock"></i> 30 minutes
+                                        </div>
+                                        <a href="#" class="tutorial-link">Read <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer with Sacred Geometry and Bulma Integration -->
+        <footer class="site-footer">
+            <!-- Sacred Geometry Background Elements -->
+            <div class="footer-sacred-pattern"></div>
+            <div class="sacred-circle sacred-circle-1"></div>
+            <div class="sacred-circle sacred-circle-2"></div>
+            <div class="sacred-circle sacred-circle-3"></div>
+
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Top Section with Bulma Columns -->
+                    <div class="columns is-footer-links">
+                        <!-- Logo and Company Info -->
+                        <div class="column is-one-quarter">
+                            <div class="footer-brand">
+                                <div class="footer-logo">
+                                    <div style="
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+    filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
+    border-radius: 50%;
+    background: rgba(92, 226, 231, 0.1);
+    padding: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+">🖤</div>
+                                    <span class="footer-brand-name">Divinci AI</span>
+                                </div>
+                                <p class="footer-tagline">Empowering human-AI collaboration</p>
+                                <div class="social-links">
+                                    <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                    <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Links -->
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Product</h3>
+                                <ul>
+                                    <li><a href="../index.html#features">Features</a></li>
+                                    <li><a href="../pricing.html">Pricing</a></li>
+                                    <li><a href="../roadmap.html">Roadmap</a></li>
+                                    <li><a href="../changelog.html">Changelog</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Resources</h3>
+                                <ul>
+                                    <li><a href="../docs/">Documentation</a></li>
+                                    <li><a href="../blog/">Blog</a></li>
+                                    <li><a href="../tutorials/">Tutorials</a></li>
+                                    <li><a href="../api/">API</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Company</h3>
+                                <ul>
+                                    <li><a href="../about-us.html">About Us</a></li>
+                                    <li><a href="../careers.html">Careers</a></li>
+                                    <li><a href="../contact.html">Contact</a></li>
+                                    <li><a href="../press.html">Press</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="../terms-of-service.html">Terms of Service</a></li>
+                                    <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                                    <li><a href="../ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                                    <li><a href="../security.html">Security</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom with Bulma Level -->
+                <div class="footer-bottom">
+                    <div class="level is-footer-bottom">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="footer-bottom-links">
+                                    <a href="../sitemap.xml">Sitemap</a>
+                                    <a href="../accessibility.html">Accessibility</a>
+                                    <a href="../cookies.html">Cookie Policy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="../js/keyboard-navigation.js" defer></script>
+        <script src="../js/apply-sora-to-divinci.js" defer></script>
+
+        <!-- Tutorial filter script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const filterButtons = document.querySelectorAll('.filter-button');
+                const tutorialCards = document.querySelectorAll('.tutorial-card');
+
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+
+                        // Add active class to clicked button
+                        this.classList.add('active');
+
+                        // Get filter value
+                        const filter = this.getAttribute('data-filter');
+
+                        // Show/hide tutorial cards based on filter
+                        tutorialCards.forEach(card => {
+                            if (filter === 'all') {
+                                card.style.display = 'flex';
+                            } else {
+                                const level = card.querySelector('.tutorial-level').classList;
+                                card.style.display = level.contains(`level-${filter}`) ? 'flex' : 'none';
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

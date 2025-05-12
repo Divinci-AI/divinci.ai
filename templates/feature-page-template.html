@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+        <!-- SEO Meta Tags - Customize for each feature page -->
+        <meta name="description" content="Feature description - 150-160 characters explaining benefits and use cases." />
+        <meta name="keywords" content="divinci ai, feature keyword, enterprise ai, additional relevant keywords" />
+        
+        <!-- Open Graph / Social Media Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://divinci.ai/features/feature-name/" />
+        <meta property="og:title" content="Feature Title | Divinci AI" />
+        <meta property="og:description" content="Feature description - 150-160 characters explaining benefits and use cases." />
+        <meta property="og:image" content="https://divinci.ai/images/og-images/feature-name-og.jpg" />
+        
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://divinci.ai/features/feature-name/" />
+        <meta name="twitter:title" content="Feature Title | Divinci AI" />
+        <meta name="twitter:description" content="Feature description - 150-160 characters explaining benefits and use cases." />
+        <meta name="twitter:image" content="https://divinci.ai/images/og-images/feature-name-og.jpg" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://divinci.ai/features/feature-name/" />
+        
+        <!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+        
+        <!-- Page Title - Update for each feature -->
+        <title>Feature Title | Divinci AI</title>
+        
+        <!-- Mobile Animation Disabling - Load early to prevent animation render on mobile -->
+        <link rel="stylesheet" href="/mobile-disable-animation.css" />
+        
+        <!-- Emergency fix for blank white pages -->
+        <style>
+            body, html, main, section {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                background-color: rgb(22 33 76) !important;
+                color: #c4c5ca !important;
+            }
+        </style>
+        
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="/assets/css/fonts.css" />
+        <link rel="stylesheet" href="/assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" href="/accessibility.css" />
+        <link rel="stylesheet" href="/features.css" />
+        <link rel="stylesheet" href="/feature-page.css" />
+        <link rel="stylesheet" href="/feature-message-bubbles.css" />
+        <link rel="stylesheet" href="/circular-benefits.css" />
+        <link rel="stylesheet" href="/styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <!-- Mobile-specific stylesheets -->
+        <link rel="stylesheet" href="/includes/mobile-header.css" />
+        <link rel="stylesheet" href="/mobile-disable-animation.css" />
+        <link rel="stylesheet" href="/assets/css/disable-mobile-animation.css" />
+        
+        <!-- Temporarily comment out includes until fixed -->
+        <!-- <script src="/js/include-html.js" defer></script> -->
+        
+        <!-- Structured Data / Schema.org (JSON-LD) -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Feature Title | Divinci AI",
+            "description": "Feature description - 150-160 characters explaining benefits and use cases.",
+            "url": "https://divinci.ai/features/feature-name/",
+            "publisher": {
+                "@type": "Organization",
+                "name": "Divinci AI",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://divinci.ai/images/divinci_logo.png"
+                }
+            },
+            "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://divinci.ai/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Features",
+                        "item": "https://divinci.ai/features/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Feature Title",
+                        "item": "https://divinci.ai/features/feature-name/"
+                    }
+                ]
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <!-- Skip to content link for keyboard users -->
+        <div class="skip-links">
+            <a href="#main-content" class="skip-link">Skip to main content</a>
+            <a href="#feature-benefits" class="skip-link">Skip to benefits</a>
+            <a href="#feature-details" class="skip-link">Skip to details</a>
+            <a href="#feature-implementation" class="skip-link">Skip to implementation</a>
+        </div>
+        
+        <!-- Header with Navigation -->
+        <header role="banner">
+            <!-- Include the header -->
+            <div data-include="/includes/header.html"></div>
+        </header>
+
+        <!-- Visual breadcrumb navigation -->
+        <!-- <div class="breadcrumb-container" aria-label="Breadcrumb">
+            <nav class="breadcrumb" role="navigation">
+                <ol>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/features/">Features</a></li>
+                    <li aria-current="page">Feature Title</li>
+                </ol>
+            </nav>
+        </div> -->
+
+        <!-- Main content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <!-- Hero Section -->
+            <section class="feature-hero" aria-labelledby="feature-title">
+                <div class="container">
+                    <h1 id="feature-title" class="feature-title">Feature Title</h1>
+                    <p class="feature-tagline">A concise, compelling description of the feature and its primary benefit to users.</p>
+                    
+                    <div class="hero-cta">
+                        <a href="#contact" class="button primary-button">Request Demo</a>
+                        <a href="#details" class="button secondary-button">Learn More</a>
+                    </div>
+                    
+                    <!-- Hero Image/Illustration -->
+                    <div class="hero-animation-container" aria-hidden="true">
+                        <!-- Sacred Geometry Pattern -->
+                        <div class="sacred-geometry-pattern">
+                            <div class="sacred-flower"></div>
+                            <div class="sacred-hexagon"></div>
+                            <div class="sacred-triangle"></div>
+                            <div class="sacred-metatron"></div>
+                        </div>
+                        
+                        <!-- Desktop Animation (hidden on mobile) -->
+                        <iframe 
+                            src="../divinci-autoplay.html" 
+                            id="divinci-animation-frame" 
+                            frameborder="0" 
+                            scrolling="no" 
+                            title="Divinci AI Animation"
+                            style="width: 700px; height: 700px; border: none; overflow: hidden; position: relative; transform-origin: center center;"
+                            loading="lazy"
+                            allow="autoplay"
+                            aria-label="Divinci AI animated visualization"
+                            class="desktop-only">
+                        </iframe>
+                        
+                        <!-- Mobile Static Image (shown only on mobile) - Use feature-specific image -->
+                        <img 
+                            src="../images/feature-still-image.png" 
+                            alt="Feature Visualization" 
+                            class="mobile-only divinci-static-image"
+                            loading="lazy">
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Feature Overview Section -->
+            <section id="feature-overview" class="feature-overview section-padding" aria-labelledby="overview-heading">
+                <div class="container">
+                    <h2 id="overview-heading" class="section-heading">Feature Overview</h2>
+                    <div class="overview-content">
+                        <div class="overview-text">
+                            <p>Detailed overview of the feature, explaining what it is and how it works at a high level. This should be 2-3 paragraphs that establish the core functionality and value proposition.</p>
+                            
+                            <p>Include information about what problems this feature solves and why it matters to your target audience. Make sure to highlight any unique aspects that differentiate this feature from competitors.</p>
+                        </div>
+                        
+                        <!-- Overview Visualization (SVG recommended) -->
+                        <div class="overview-visualization">
+                            <!-- SVG visualization goes here -->
+                            <!-- Example: Feature workflow or architecture diagram -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Feature Benefits Section -->
+            <section id="feature-benefits" class="feature-benefits section-padding" aria-labelledby="benefits-heading">
+                <div class="container">
+                    <h2 id="benefits-heading" class="section-heading">Key Benefits</h2>
+                    
+                    <div class="benefits-grid">
+                        <!-- Benefit Item 1 -->
+                        <div class="benefit-item">
+                            <div class="benefit-icon" aria-hidden="true">
+                                <!-- SVG icon goes here -->
+                            </div>
+                            <h3>Benefit Title 1</h3>
+                            <p>Description of the first key benefit, focusing on specific outcomes or advantages.</p>
+                        </div>
+                        
+                        <!-- Benefit Item 2 -->
+                        <div class="benefit-item">
+                            <div class="benefit-icon" aria-hidden="true">
+                                <!-- SVG icon goes here -->
+                            </div>
+                            <h3>Benefit Title 2</h3>
+                            <p>Description of the second key benefit, focusing on specific outcomes or advantages.</p>
+                        </div>
+                        
+                        <!-- Benefit Item 3 -->
+                        <div class="benefit-item">
+                            <div class="benefit-icon" aria-hidden="true">
+                                <!-- SVG icon goes here -->
+                            </div>
+                            <h3>Benefit Title 3</h3>
+                            <p>Description of the third key benefit, focusing on specific outcomes or advantages.</p>
+                        </div>
+                        
+                        <!-- Benefit Item 4 -->
+                        <div class="benefit-item">
+                            <div class="benefit-icon" aria-hidden="true">
+                                <!-- SVG icon goes here -->
+                            </div>
+                            <h3>Benefit Title 4</h3>
+                            <p>Description of the fourth key benefit, focusing on specific outcomes or advantages.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Feature Details Section -->
+            <section id="feature-details" class="feature-details section-padding" aria-labelledby="details-heading">
+                <div class="container">
+                    <h2 id="details-heading" class="section-heading">Feature Details</h2>
+                    
+                    <!-- Tab or Accordion Interface for Details -->
+                    <div class="details-tabs" role="tablist">
+                        <!-- Tab 1 -->
+                        <button id="tab1-trigger" class="tab-trigger" role="tab" aria-selected="true" aria-controls="tab1-content">Capability 1</button>
+                        <!-- Tab 2 -->
+                        <button id="tab2-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab2-content">Capability 2</button>
+                        <!-- Tab 3 -->
+                        <button id="tab3-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab3-content">Capability 3</button>
+                    </div>
+                    
+                    <div class="tab-content-container">
+                        <!-- Tab 1 Content -->
+                        <div id="tab1-content" role="tabpanel" aria-labelledby="tab1-trigger" class="tab-content active">
+                            <h3>Capability 1 Details</h3>
+                            <p>Detailed explanation of the first capability, including technical specifications, functionality, and use cases.</p>
+                            
+                            <!-- Capability Visualization (SVG recommended) -->
+                            <div class="capability-visualization">
+                                <!-- SVG visualization goes here -->
+                            </div>
+                            
+                            <ul class="feature-list">
+                                <li>Feature aspect 1</li>
+                                <li>Feature aspect 2</li>
+                                <li>Feature aspect 3</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tab 2 Content -->
+                        <div id="tab2-content" role="tabpanel" aria-labelledby="tab2-trigger" class="tab-content" hidden>
+                            <h3>Capability 2 Details</h3>
+                            <p>Detailed explanation of the second capability, including technical specifications, functionality, and use cases.</p>
+                            
+                            <!-- Capability Visualization (SVG recommended) -->
+                            <div class="capability-visualization">
+                                <!-- SVG visualization goes here -->
+                            </div>
+                            
+                            <ul class="feature-list">
+                                <li>Feature aspect 1</li>
+                                <li>Feature aspect 2</li>
+                                <li>Feature aspect 3</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tab 3 Content -->
+                        <div id="tab3-content" role="tabpanel" aria-labelledby="tab3-trigger" class="tab-content" hidden>
+                            <h3>Capability 3 Details</h3>
+                            <p>Detailed explanation of the third capability, including technical specifications, functionality, and use cases.</p>
+                            
+                            <!-- Capability Visualization (SVG recommended) -->
+                            <div class="capability-visualization">
+                                <!-- SVG visualization goes here -->
+                            </div>
+                            
+                            <ul class="feature-list">
+                                <li>Feature aspect 1</li>
+                                <li>Feature aspect 2</li>
+                                <li>Feature aspect 3</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Feature Implementation Section -->
+            <section id="feature-implementation" class="feature-implementation section-padding" aria-labelledby="implementation-heading">
+                <div class="container">
+                    <h2 id="implementation-heading" class="section-heading">Implementation</h2>
+                    
+                    <!-- Implementation Timeline or Process -->
+                    <div class="implementation-timeline">
+                        <!-- Step 1 -->
+                        <div class="timeline-step">
+                            <div class="step-number" aria-hidden="true">1</div>
+                            <div class="step-content">
+                                <h3>Implementation Step 1</h3>
+                                <p>Description of the first implementation step, including requirements and considerations.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2 -->
+                        <div class="timeline-step">
+                            <div class="step-number" aria-hidden="true">2</div>
+                            <div class="step-content">
+                                <h3>Implementation Step 2</h3>
+                                <p>Description of the second implementation step, including requirements and considerations.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3 -->
+                        <div class="timeline-step">
+                            <div class="step-number" aria-hidden="true">3</div>
+                            <div class="step-content">
+                                <h3>Implementation Step 3</h3>
+                                <p>Description of the third implementation step, including requirements and considerations.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Implementation CTA -->
+                    <div class="implementation-cta">
+                        <a href="/resources/implementation-guide" class="button secondary-button">Download Implementation Guide</a>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Case Study Section -->
+            <section id="case-studies" class="case-studies section-padding" aria-labelledby="case-studies-heading">
+                <div class="container">
+                    <h2 id="case-studies-heading" class="section-heading">Success Stories</h2>
+                    
+                    <!-- Featured Case Study -->
+                    <div class="featured-case-study">
+                        <div class="case-study-content">
+                            <h3>Company Name</h3>
+                            <p class="case-study-highlight">Brief highlight of the key accomplishment or metric.</p>
+                            <p>Short description of the challenge, solution, and results achieved with this feature.</p>
+                            
+                            <blockquote class="testimonial">
+                                <p>"Testimonial quote from a customer about their experience with this feature."</p>
+                                <cite>— Name, Position, Company</cite>
+                            </blockquote>
+                            
+                            <a href="/case-studies/company-name" class="text-link">Read Full Case Study →</a>
+                        </div>
+                        
+                        <div class="case-study-metrics">
+                            <!-- Metrics Visualization (SVG recommended) -->
+                            <div class="metrics-visualization">
+                                <!-- SVG metrics visualization goes here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Case Studies (3-up grid) -->
+                    <div class="case-studies-grid">
+                        <!-- Case Study 1 -->
+                        <div class="case-study-card">
+                            <h3>Company 1</h3>
+                            <p>Brief description of the results achieved.</p>
+                            <a href="/case-studies/company-1" class="text-link">Read More →</a>
+                        </div>
+                        
+                        <!-- Case Study 2 -->
+                        <div class="case-study-card">
+                            <h3>Company 2</h3>
+                            <p>Brief description of the results achieved.</p>
+                            <a href="/case-studies/company-2" class="text-link">Read More →</a>
+                        </div>
+                        
+                        <!-- Case Study 3 -->
+                        <div class="case-study-card">
+                            <h3>Company 3</h3>
+                            <p>Brief description of the results achieved.</p>
+                            <a href="/case-studies/company-3" class="text-link">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Related Features Section -->
+            <section id="related-features" class="related-features section-padding" aria-labelledby="related-heading">
+                <div class="container">
+                    <h2 id="related-heading" class="section-heading">Related Features</h2>
+                    
+                    <div class="related-features-grid">
+                        <!-- Related Feature 1 -->
+                        <div class="related-feature-card">
+                            <div class="feature-icon" aria-hidden="true">
+                                <!-- SVG icon goes here -->
+                            </div>
+                            <h3>Related Feature 1</h3>
+                            <p>Brief description of how this feature complements the current one.</p>
+                            <a href="/features/related-feature-1" class="text-link">Learn More →</a>
+                        </div>
+                        
+                        <!-- Related Feature 2 -->
+                        <div class="related-feature-card">
+                            <div class="feature-icon" aria-hidden="true">
+                                <!-- SVG icon goes here -->
+                            </div>
+                            <h3>Related Feature 2</h3>
+                            <p>Brief description of how this feature complements the current one.</p>
+                            <a href="/features/related-feature-2" class="text-link">Learn More →</a>
+                        </div>
+                        
+                        <!-- Related Feature 3 -->
+                        <div class="related-feature-card">
+                            <div class="feature-icon" aria-hidden="true">
+                                <!-- SVG icon goes here -->
+                            </div>
+                            <h3>Related Feature 3</h3>
+                            <p>Brief description of how this feature complements the current one.</p>
+                            <a href="/features/related-feature-3" class="text-link">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CTA Section -->
+            <section id="cta" class="cta-section section-padding" aria-labelledby="cta-heading">
+                <div class="container">
+                    <h2 id="cta-heading" class="section-heading">Ready to Get Started?</h2>
+                    <p class="cta-description">Schedule a demo to see how this feature can transform your business.</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="/request-demo" class="button primary-button">Request Demo</a>
+                        <a href="/contact" class="button secondary-button">Contact Sales</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Include the footer -->
+        <div data-include="/includes/footer.html"></div>
+        
+        <!-- Scripts -->
+        <script src="/js/tabs.js" defer></script>
+        <script src="/js/feature-visualization.js" defer></script>
+        <script src="/js/feature-messages.js" defer></script>
+        <script src="/js/conditional-header.js" defer></script>
+        
+        <!-- Mobile Scripts -->
+        <script src="/js/mobile-menu.js" defer></script>
+        <script src="/js/performance-detector.js" defer></script>
+        
+        <!-- Accessibility Scripts -->
+        <script src="/js/keyboard-navigation.js" defer></script>
+        
+        <!-- Analytics (add your analytics code here) -->
+    </body>
+</html>

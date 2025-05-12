@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <circle cx="500" cy="500" r="500" fill="#091442" opacity="1"/>
+  <circle cx="500" cy="500" r="450" fill="none" stroke="#2a3779" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Robot head with antennas -->
+  <g transform="translate(430, 310)">
+    <rect x="0" y="0" width="140" height="100" rx="20" fill="white"/>
+    <circle cx="35" cy="50" r="20" fill="#091442"/>
+    <circle cx="105" cy="50" r="20" fill="#091442"/>
+    <line x1="30" y1="0" x2="30" y2="-40" stroke="white" stroke-width="10"/>
+    <circle cx="30" cy="-50" r="10" fill="white"/>
+    <line x1="110" y1="0" x2="110" y2="-40" stroke="white" stroke-width="10"/>
+    <circle cx="110" cy="-50" r="10" fill="white"/>
+  </g>
+  
+  <!-- Robot body with heart -->
+  <g transform="translate(350, 450)">
+    <path d="M80 0 L60 80 L0 80 L0 150 L300 150 L300 80 L240 80 L220 0 Z" fill="white"/>
+    <path d="M150 40 C120 0, 60 10, 60 60 C60 110, 120 120, 150 150 C180 120, 240 110, 240 60 C240 10, 180 0, 150 40 Z" fill="white"/>
+  </g>
+  
+  <!-- Document icon with glow -->
+  <g transform="translate(170, 600)">
+    <rect x="0" y="0" width="80" height="100" rx="10" fill="#091442" stroke="#44CF6C" stroke-width="2"/>
+    <rect x="10" y="10" width="60" height="10" fill="#44CF6C" opacity="0.5"/>
+    <rect x="10" y="30" width="60" height="10" fill="#44CF6C" opacity="0.5"/>
+    <rect x="10" y="50" width="60" height="10" fill="#44CF6C" opacity="0.5"/>
+    <rect x="10" y="70" width="40" height="10" fill="#44CF6C" opacity="0.5"/>
+    <filter id="glow1">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <rect x="0" y="0" width="80" height="100" rx="10" fill="none" stroke="#44CF6C" stroke-width="2" filter="url(#glow1)"/>
+  </g>
+  
+  <!-- Video camera icon with glow -->
+  <g transform="translate(550, 230)">
+    <rect x="0" y="0" width="100" height="80" rx="15" fill="#091442" stroke="#3B85F5" stroke-width="2"/>
+    <circle cx="25" cy="25" r="12" fill="#3B85F5" opacity="0.5"/>
+    <circle cx="60" cy="25" r="12" fill="#3B85F5" opacity="0.5"/>
+    <rect x="20" y="50" width="60" height="20" rx="5" fill="#3B85F5" opacity="0.5"/>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <rect x="0" y="0" width="100" height="80" rx="15" fill="none" stroke="#3B85F5" stroke-width="2" filter="url(#glow2)"/>
+  </g>
+  
+  <!-- Music note icon with glow -->
+  <g transform="translate(750, 600)">
+    <rect x="0" y="0" width="80" height="80" rx="15" fill="#091442" stroke="#E73C7E" stroke-width="2"/>
+    <path d="M30 20 L50 15 L50 55 C50 65, 30 65, 30 55 C30 45, 50 45, 50 55" stroke="#E73C7E" stroke-width="3" fill="none"/>
+    <circle cx="30" cy="55" r="10" fill="#E73C7E" opacity="0.5"/>
+    <filter id="glow3">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <rect x="0" y="0" width="80" height="80" rx="15" fill="none" stroke="#E73C7E" stroke-width="2" filter="url(#glow3)"/>
+  </g>
+</svg>

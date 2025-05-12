@@ -1,0 +1,147 @@
+<!-- Footer with Sacred Geometry Elements -->
+<!-- Load footer styles dynamically -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Font Awesome if not already loaded
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        }
+
+        // Load Bulma if not already loaded
+        if (!document.querySelector('link[href*="bulma"]')) {
+            const bulma = document.createElement('link');
+            bulma.rel = 'stylesheet';
+            bulma.href = 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+            document.head.appendChild(bulma);
+        }
+
+        // Load footer styles
+        const footerStyles = document.createElement('link');
+        footerStyles.rel = 'stylesheet';
+        footerStyles.href = (window.location.pathname.includes('/features/') ? '../../' : '') + 'styles-footer.css';
+        document.head.appendChild(footerStyles);
+    })();
+</script>
+<footer class="site-footer">
+    <!-- Sacred Geometry Background Elements -->
+    <div class="footer-sacred-pattern"></div>
+    <div class="sacred-circle sacred-circle-1"></div>
+    <div class="sacred-circle sacred-circle-2"></div>
+    <div class="sacred-circle sacred-circle-3"></div>
+
+    <div class="container">
+        <div class="footer-content">
+            <!-- Top Section with Bulma Columns -->
+            <div class="columns is-footer-links">
+                <!-- Logo and Company Info -->
+                <div class="column is-one-quarter">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <!-- <img src="images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
+                                onerror="this.onerror=null; this.src='images/divinci_logo.png';" /> -->
+                            <div class="heart">🖤</div>
+                            <span class="footer-brand-name">Divinci AI</span>
+                        </div>
+                        <p class="footer-tagline">Empowering human-AI collaboration</p>
+                        <div class="social-links">
+                            <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Product</h3>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="roadmap.html">Roadmap</a></li>
+                            <li><a href="changelog.html">Changelog</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="docs/">Documentation</a></li>
+                            <li><a href="blog/">Blog</a></li>
+                            <li><a href="tutorials/">Tutorials</a></li>
+                            <li><a href="api/">API</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="press.html">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                            <li><a href="security.html">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom with Bulma Level -->
+        <div class="footer-bottom">
+            <div class="level is-footer-bottom">
+                <div class="level-left">
+                    <div class="level-item">
+                        <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <div class="footer-bottom-links">
+                            <a href="sitemap.xml">Sitemap</a>
+                            <a href="accessibility.html">Accessibility</a>
+                            <a href="cookies.html">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Script to handle footer links based on current path -->
+<script>
+    // Properly set the href attributes based on location
+    (function() {
+        const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
+        const footerLinks = document.querySelectorAll('.footer-links-column a, .footer-bottom-links a');
+
+        footerLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                link.setAttribute('href', basePath + 'index.html' + href);
+            } else if (href && !href.startsWith('http') && !href.startsWith('/')) {
+                link.setAttribute('href', basePath + href);
+            }
+        });
+    })();
+</script>

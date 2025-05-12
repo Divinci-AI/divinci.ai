@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Divinci AI - Create your own custom AI{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="circle central">
+        <img
+            class="central-logo"
+            src="/images/divinci_logo_inverted.svg"
+            alt="Divinci Heart Robot logo black and white"
+        />
+    </div>
+
+    <!-- Hero content will go here -->
+    <div class="hero-content">
+        <h1>{{ section.title }}</h1>
+        <p>{{ section.description }}</p>
+    </div>
+
+    <svg class="flower-of-life" xmlns="http://www.w3.org/2000/svg">
+        <!-- Central Circle -->
+        <circle
+            cx="200"
+            cy="100"
+            r="50"
+            stroke="navy"
+            stroke-width="2"
+            fill="none"
+        />
+        <!-- First Ring of Circles -->
+        <circle
+            cx="200"
+            cy="50"
+            r="50"
+            stroke="navy"
+            stroke-width="2"
+            fill="none"
+        />
+        <circle
+            cx="200"
+            cy="50"
+            r="50"
+            stroke="navy"
+            stroke-width="2"
+            fill="none"
+        />
+        <circle
+            cx="250"
+            cy="75"
+            r="50"
+            stroke="navy"
+            stroke-width="2"
+            fill="none"
+        />
+        <circle
+            cx="250"
+            cy="25"
+            r="50"
+            stroke="navy"
+            stroke-width="2"
+            fill="none"
+        />
+        <circle
+            cx="150"
+            cy="75"
+            r="50"
+            stroke="navy"
+            stroke-width="2"
+            fill="none"
+        />
+        <circle
+            cx="150"
+            cy="25"
+            r="50"
+            stroke="navy"
+            stroke-width="2"
+            fill="none"
+        />
+    </svg>
+
+    <!-- Existing Group of Circles -->
+    <div class="geometry-group">
+        <div class="circle circle00">👴</div>
+        <div class="circle circle01 ai-logo"><img src="/images/chatgpt-icon.png" alt="ChatGPT"></div>
+        <div class="circle circle02">🧑🏽‍🦱</div>
+        <div class="circle circle03 ai-logo"><img src="/images/claude-ai-icon.png" alt="Claude AI"></div>
+        <div class="circle circle04">👨🏻</div>
+    </div>
+
+    <!-- Sets for Outer Orbit -->
+    <!-- Outer Orbit Set 1 -->
+    <div class="geometry-group-outer1">
+        <div class="circle circle20">🌞</div>
+        <div class="circle circle21 ai-logo"><img src="/images/google-gemini-icon.png" alt="Google Gemini"></div>
+        <div class="circle circle22">🤠</div>
+        <div class="circle circle23 ai-logo"><img src="/images/grok-icon.png" alt="Grok AI"></div>
+        <div class="circle circle24">😺</div>
+        <div class="circle circle25">👽</div>
+    </div>
+    <div class="geometry-group-outer2">
+        <div class="circle circle26">🧑🏾‍🦰</div>
+        <div class="circle circle27 ai-logo"><img src="/images/perplexity-ai-icon.png" alt="Perplexity AI"></div>
+        <div class="circle circle28">🧔🏽‍♂️</div>
+        <div class="circle circle29">🤖</div>
+        <div class="circle circle30">👱‍♀️</div>
+        <div class="circle circle31">🐸</div>
+    </div>
+</div>
+
+<!-- Main page content -->
+{{ section.content | safe }}
+{% endblock %}
+
+{% block extra_js %}
+<script src="/script.js" defer></script>
+<script src="/features-orbit-simple.js" defer></script>
+<script src="/hybrid-bubbles.js"></script>
+<script src="/divinci-animation.js" defer></script>
+{% endblock %}

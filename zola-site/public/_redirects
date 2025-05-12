@@ -1,0 +1,10 @@
+# Redirects for Cloudflare Pages
+# Format: [from] [to] [status]
+
+# Redirect old URLs to new ones
+/about /about-us 301
+/team /about-us 301
+/contact-us /contact 301
+
+# Handle 404s
+/* /404.html 404

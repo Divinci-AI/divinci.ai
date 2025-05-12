@@ -1,0 +1,62 @@
+[
+  {
+    "id": "mkt-01",
+    "content": "Create feature page template with SEO elements",
+    "status": "in_progress",
+    "priority": "high"
+  },
+  {
+    "id": "mkt-02",
+    "content": "Create URL structure and redirects plan",
+    "status": "pending",
+    "priority": "high"
+  },
+  {
+    "id": "mkt-03",
+    "content": "Create SVG design style guide",
+    "status": "pending",
+    "priority": "high"
+  },
+  {
+    "id": "mkt-04",
+    "content": "Create AutoRAG Overview page",
+    "status": "pending",
+    "priority": "high"
+  },
+  {
+    "id": "mkt-05",
+    "content": "Design knowledge base connection diagram SVG",
+    "status": "pending",
+    "priority": "high"
+  },
+  {
+    "id": "mkt-06",
+    "content": "Create Release Management Overview page",
+    "status": "pending",
+    "priority": "high"
+  },
+  {
+    "id": "mkt-07",
+    "content": "Design release cycle visualization SVG",
+    "status": "pending",
+    "priority": "high"
+  },
+  {
+    "id": "mkt-08",
+    "content": "Create LLM QA Overview page",
+    "status": "pending",
+    "priority": "high"
+  },
+  {
+    "id": "mkt-09",
+    "content": "Design QA process pipeline visualization SVG",
+    "status": "pending",
+    "priority": "high"
+  },
+  {
+    "id": "mkt-10",
+    "content": "Conduct keyword research for all planned content",
+    "status": "pending",
+    "priority": "high"
+  }
+]

@@ -1,0 +1,108 @@
+/**
+ * Custom styles for Sora font implementation across Divinci site
+ */
+
+/* Refine heading styles to take advantage of Sora's characteristics */
+h1 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600; /* Semi-bold for primary headings */
+  letter-spacing: -0.01em; /* Slight negative tracking for tighter headlines */
+}
+
+h2 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+h3, h4 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 500; /* Medium weight for smaller headings */
+  letter-spacing: 0;
+}
+
+h5, h6 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 500; 
+  letter-spacing: 0.01em; /* Slight positive tracking for smallest headings */
+}
+
+/* Special treatment for brand name in navbar */
+.brand-name, .nav-title {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Apply Sora to all instances of Divinci brand name */
+.divinci-brand,
+.site-footer p,
+.copyright,
+.company-name,
+[alt*="Divinci"] {
+  font-family: 'Sora', sans-serif !important;
+}
+
+/* Add subtle gradient highlight to primary headings */
+.section-heading {
+  background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.85));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Feature title styling */
+.feature-title {
+  font-weight: 700; /* Bold weight for feature titles */
+}
+
+/* Button text styling */
+.button {
+  font-family: 'Sora', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Special styling for page titles */
+.page-title {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Card and feature headings */
+.feature h3 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+}
+
+/* Enhanced focus styles that complement Sora */
+:focus {
+  outline: 2px solid rgba(92, 226, 231, 0.5);
+  outline-offset: 2px;
+}
+
+/* Tooltip styling */
+[data-tooltip]:hover::before {
+  font-family: 'Sora', sans-serif;
+  font-weight: 400;
+}
+
+/* Breadcrumb styling */
+.breadcrumb ol li {
+  font-family: 'Sora', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
+/* Enhance mobile typography */
+@media (max-width: 768px) {
+  h1 {
+    letter-spacing: -0.02em; /* Tighter tracking on mobile */
+  }
+  
+  h2, h3 {
+    letter-spacing: -0.01em;
+  }
+}

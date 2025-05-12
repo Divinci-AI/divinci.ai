@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Divinci AI API documentation provides comprehensive guides and reference material for integrating custom AI solutions into your applications." />
+        <meta name="keywords" content="divinci ai api, ai integration, rag api, ai api docs, custom ai api, vector embedding api" />
+
+        <!-- Open Graph / Social Media Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://divinci.ai/api/" />
+        <meta property="og:title" content="API Reference | Divinci AI" />
+        <meta property="og:description" content="Divinci AI API documentation provides comprehensive guides and reference material for integrating custom AI solutions into your applications." />
+        <meta property="og:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://divinci.ai/api/" />
+        <meta name="twitter:title" content="API Reference | Divinci AI" />
+        <meta name="twitter:description" content="Divinci AI API documentation provides comprehensive guides and reference material for integrating custom AI solutions into your applications." />
+        <meta name="twitter:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://divinci.ai/api/" />
+
+        <!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
+
+        <!-- Page Title -->
+        <title>API Reference | Divinci AI</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="../preview-banner.css" />
+        <link rel="stylesheet" href="../includes/header-styles.css" />
+        <link rel="stylesheet" href="../includes/section-content-fix.css" />
+
+        <style>
+            /* API specific styles */
+            .api-hero {
+                background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+                color: white;
+                padding: 5rem 0;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .api-hero::before {
+                content: '';
+                position: absolute;
+                top: -100px;
+                right: -100px;
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                border: 2px solid rgba(92, 226, 231, 0.15);
+                opacity: 0.4;
+                z-index: 0;
+            }
+
+            .api-hero-content {
+                position: relative;
+                z-index: 1;
+                text-align: center;
+            }
+
+            .api-title {
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: white;
+            }
+
+            .api-subtitle {
+                font-size: 1.2rem;
+                max-width: 800px;
+                margin: 0 auto;
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.6;
+            }
+
+            .api-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                margin-top: 2rem;
+                flex-wrap: wrap;
+            }
+
+            .api-button {
+                padding: 0.75rem 1.5rem;
+                border-radius: 30px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .api-button.primary {
+                background-color: white;
+                color: #16214c;
+            }
+
+            .api-button.primary:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                color: #16214c;
+            }
+
+            .api-button.secondary {
+                background-color: transparent;
+                color: white;
+                border: 1px solid white;
+            }
+
+            .api-button.secondary:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                color: white;
+            }
+
+            .api-section {
+                padding: 4rem 0;
+                background-color: #f9f9f9;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 2rem;
+                text-align: center;
+            }
+
+            .section-description {
+                text-align: center;
+                max-width: 800px;
+                margin: 0 auto 3rem;
+                color: #444;
+                font-size: 1.1rem;
+                line-height: 1.7;
+            }
+
+            .api-overview {
+                background-color: white;
+                border-radius: 12px;
+                padding: 2.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                margin-bottom: 3rem;
+            }
+
+            .overview-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1.5rem;
+            }
+
+            .overview-description {
+                color: #444;
+                line-height: 1.7;
+                margin-bottom: 1.5rem;
+            }
+
+            .api-endpoints {
+                background-color: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                margin-bottom: 3rem;
+                overflow: hidden;
+            }
+
+            .endpoints-header {
+                background-color: #f5f7f9;
+                padding: 1.5rem 2.5rem;
+                border-bottom: 1px solid #eaeaea;
+            }
+
+            .endpoints-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #16214c;
+                margin: 0;
+            }
+
+            .endpoints-content {
+                padding: 0 2.5rem;
+            }
+
+            .endpoint-category {
+                padding: 2rem 0;
+                border-bottom: 1px solid #eaeaea;
+            }
+
+            .endpoint-category:last-child {
+                border-bottom: none;
+            }
+
+            .category-title {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1.5rem;
+            }
+
+            .endpoints-list {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .endpoint-item {
+                margin-bottom: 1.5rem;
+                padding-left: 1.5rem;
+                position: relative;
+            }
+
+            .endpoint-item:last-child {
+                margin-bottom: 0;
+            }
+
+            .endpoint-item::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0.5rem;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: #5ce2e7;
+            }
+
+            .endpoint-method {
+                display: inline-block;
+                padding: 0.2rem 0.5rem;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: white;
+                margin-right: 0.5rem;
+                min-width: 50px;
+                text-align: center;
+            }
+
+            .method-get {
+                background-color: #4CAF50;
+            }
+
+            .method-post {
+                background-color: #2196F3;
+            }
+
+            .method-put {
+                background-color: #FF9800;
+            }
+
+            .method-delete {
+                background-color: #F44336;
+            }
+
+            .endpoint-path {
+                font-family: 'Courier New', monospace;
+                color: #333;
+                font-weight: 600;
+            }
+
+            .endpoint-description {
+                color: #666;
+                font-size: 0.95rem;
+                margin-top: 0.5rem;
+            }
+
+            .code-example {
+                background-color: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                margin-bottom: 3rem;
+                overflow: hidden;
+            }
+
+            .code-tabs {
+                display: flex;
+                background-color: #f5f7f9;
+                border-bottom: 1px solid #eaeaea;
+            }
+
+            .code-tab {
+                padding: 1rem 1.5rem;
+                cursor: pointer;
+                color: #666;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+
+            .code-tab.active {
+                color: #16214c;
+                border-bottom: 2px solid #5ce2e7;
+            }
+
+            .code-content {
+                padding: 0;
+                overflow: hidden;
+            }
+
+            .code-panel {
+                padding: 0;
+                display: none;
+            }
+
+            .code-panel.active {
+                display: block;
+            }
+
+            .code-block {
+                background-color: #16214c;
+                color: white;
+                font-family: 'Courier New', monospace;
+                padding: 1.5rem;
+                margin: 0;
+                border-radius: 0;
+                line-height: 1.6;
+                overflow-x: auto;
+                white-space: pre;
+                font-size: 0.9rem;
+            }
+
+            .code-string { color: #5ce2e7; }
+            .code-keyword { color: #ff79c6; }
+            .code-function { color: #ffb86c; }
+            .code-comment { color: #6272a4; }
+            .code-property { color: #8be9fd; }
+            .code-operator { color: #ff79c6; }
+            .code-number { color: #bd93f9; }
+
+            .sdk-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .sdk-card {
+                background-color: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                transition: transform 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .sdk-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .sdk-header {
+                background-color: #f5f7f9;
+                padding: 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                border-bottom: 1px solid #eaeaea;
+            }
+
+            .sdk-icon {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(92, 226, 231, 0.1);
+                border-radius: 8px;
+                font-size: 1.3rem;
+                color: #16214c;
+            }
+
+            .sdk-title {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #16214c;
+            }
+
+            .sdk-content {
+                padding: 1.5rem;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .sdk-description {
+                color: #444;
+                line-height: 1.7;
+                margin-bottom: 1rem;
+                flex-grow: 1;
+            }
+
+            .sdk-meta {
+                color: #666;
+                font-size: 0.85rem;
+                margin-bottom: 1.5rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .sdk-meta-item {
+                display: flex;
+                align-items: center;
+            }
+
+            .sdk-meta-item i {
+                margin-right: 0.5rem;
+                color: #5ce2e7;
+            }
+
+            .sdk-links {
+                display: flex;
+                gap: 1rem;
+                margin-top: auto;
+            }
+
+            .sdk-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: #16214c;
+                font-weight: 600;
+                text-decoration: none;
+                transition: color 0.2s ease;
+                font-size: 0.9rem;
+            }
+
+            .sdk-link:hover {
+                color: #5ce2e7;
+            }
+
+            .coming-soon {
+                background-color: white;
+                border-radius: 12px;
+                padding: 3rem;
+                text-align: center;
+                margin-top: 2rem;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            }
+
+            .coming-soon-title {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1rem;
+            }
+
+            .coming-soon-message {
+                color: #444;
+                font-size: 1.1rem;
+                line-height: 1.6;
+                max-width: 600px;
+                margin: 0 auto 2rem;
+            }
+
+            .notify-button {
+                display: inline-flex;
+                align-items: center;
+                background: linear-gradient(135deg, #16214c, #254284);
+                color: white;
+                border: none;
+                border-radius: 30px;
+                padding: 0.8rem 2rem;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .notify-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                color: white;
+            }
+
+            .notify-button i {
+                margin-right: 0.75rem;
+            }
+
+            /* Responsive adjustments */
+            @media screen and (max-width: 768px) {
+                .api-title {
+                    font-size: 2.2rem;
+                }
+
+                .section-title {
+                    font-size: 1.8rem;
+                }
+
+                .code-tabs {
+                    flex-wrap: wrap;
+                }
+
+                .api-buttons {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .api-button {
+                    width: 100%;
+                    max-width: 250px;
+                    text-align: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        
+
+        <!-- Preview Banner -->
+        <div class="preview-banner">
+            <div class="preview-banner-content">
+                <p class="preview-banner-text">This page is a preview. <br/> Sign up to be notified when we launch!</p>
+                <a href="../index.html#signup" class="preview-banner-button"><i class="fas fa-bell preview-banner-icon"></i>Get Notified</a>
+            </div>
+        </div>
+
+        <!-- Header with Navigation -->
+        <nav class="navbar">
+            <a href="../index.html" class="logo-link">
+                <div class="nav-logo">
+                    <img
+                        src="../images/divinci_logo_inverted.svg"
+                        alt="Divinci Heart Robot logo"
+                        onerror="this.onerror=null; this.src='../images/divinci_logo.png';"
+                    />
+                </div>
+                <div class="nav-title">
+                    <span class="brand-name">Divinci ™</span><span class="mobile-hide">&nbsp;- Create your own custom AI</span>
+                </div>
+            </a>
+            <!-- Toggle switch for customer/company view -->
+            <div class="view-toggle-container mobile-hide">
+                <span class="view-label customer-view active">Client</span>
+                <label class="switch">
+                    <input type="checkbox" id="viewToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="view-label company-view">Company</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html#features">Features</a>
+                <a href="../index.html#team">Team</a>
+                <a href="../index.html#signup" class="signup-link"><span class="signup-button">Sign Up</span></a>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <!-- Hero Section -->
+            <section class="api-hero">
+                <div class="container">
+                    <div class="api-hero-content">
+                        <h1 class="api-title">Divinci API</h1>
+                        <p class="api-subtitle">Integrate powerful AI capabilities into your applications with our comprehensive API. Build custom AI solutions that leverage RAG systems, vector embeddings, and document processing.</p>
+
+                        <div class="api-buttons">
+                            <a href="#" class="api-button primary">Get API Keys</a>
+                            <a href="../docs/" class="api-button secondary">View Documentation</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coming Soon Section -->
+            <section class="api-section">
+                <div class="container">
+                    <div class="coming-soon">
+                        <h2 class="coming-soon-title">Complete API Documentation Coming Soon</h2>
+                        <p class="coming-soon-message">We're currently building comprehensive API documentation including reference guides, code examples, and SDK documentation. Check back soon for updates or subscribe to be notified when our API documentation is available.</p>
+                        <a href="#" class="notify-button"><i class="fas fa-bell"></i> Notify me of updates</a>
+                    </div>
+
+                    <!-- Preview Content -->
+                    <div style="margin-top: 4rem;">
+                        <h2 class="section-title">API Overview</h2>
+                        <p class="section-description">The Divinci AI API provides REST endpoints for integrating our AI capabilities into your applications. Here's a preview of what's available.</p>
+
+                        <div class="api-overview">
+                            <h3 class="overview-title">API Architecture</h3>
+                            <p class="overview-description">
+                                The Divinci AI API follows RESTful principles and uses JSON for request and response payloads. All API requests require authentication using API keys, which you can generate from your Divinci AI dashboard.
+                            </p>
+                            <p class="overview-description">
+                                Our API is organized around resources such as AI models, documents, embeddings, and projects. We use standard HTTP methods (GET, POST, PUT, DELETE) and return appropriate HTTP status codes to indicate success or failure.
+                            </p>
+                            <p class="overview-description">
+                                Rate limits apply to all API endpoints, with higher limits available on paid plans. Detailed error messages are provided for troubleshooting, and comprehensive logs are available in your dashboard.
+                            </p>
+                        </div>
+
+                        <div class="api-endpoints">
+                            <div class="endpoints-header">
+                                <h3 class="endpoints-title">Core Endpoints</h3>
+                            </div>
+                            <div class="endpoints-content">
+                                <div class="endpoint-category">
+                                    <h4 class="category-title">Authentication</h4>
+                                    <ul class="endpoints-list">
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/v1/auth/token</span>
+                                            <div class="endpoint-description">Generate an authentication token using your API key</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-delete">DELETE</span>
+                                            <span class="endpoint-path">/v1/auth/token</span>
+                                            <div class="endpoint-description">Revoke an authentication token</div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="endpoint-category">
+                                    <h4 class="category-title">RAG Systems</h4>
+                                    <ul class="endpoints-list">
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/v1/rag/systems</span>
+                                            <div class="endpoint-description">Create a new RAG system</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/v1/rag/systems</span>
+                                            <div class="endpoint-description">List all RAG systems</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/v1/rag/systems/{system_id}</span>
+                                            <div class="endpoint-description">Get details of a specific RAG system</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-put">PUT</span>
+                                            <span class="endpoint-path">/v1/rag/systems/{system_id}</span>
+                                            <div class="endpoint-description">Update a RAG system</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/v1/rag/systems/{system_id}/query</span>
+                                            <div class="endpoint-description">Query a RAG system with user input</div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="endpoint-category">
+                                    <h4 class="category-title">Documents</h4>
+                                    <ul class="endpoints-list">
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/v1/documents</span>
+                                            <div class="endpoint-description">Upload a document for processing</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/v1/documents</span>
+                                            <div class="endpoint-description">List all documents</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/v1/documents/{document_id}</span>
+                                            <div class="endpoint-description">Get document details and processing status</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-delete">DELETE</span>
+                                            <span class="endpoint-path">/v1/documents/{document_id}</span>
+                                            <div class="endpoint-description">Delete a document</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-tabs">
+                                <div class="code-tab active" data-tab="curl">cURL</div>
+                                <div class="code-tab" data-tab="python">Python</div>
+                                <div class="code-tab" data-tab="javascript">JavaScript</div>
+                                <div class="code-tab" data-tab="go">Go</div>
+                            </div>
+                            <div class="code-content">
+                                <div class="code-panel active" data-panel="curl">
+<pre class="code-block"><span class="code-comment"># Query a RAG system</span>
+curl -X POST \
+  https://api.divinci.ai/v1/rag/systems/rag_123456/query \
+  -H <span class="code-string">"Authorization: Bearer YOUR_API_TOKEN"</span> \
+  -H <span class="code-string">"Content-Type: application/json"</span> \
+  -d '{
+    <span class="code-property">"query"</span>: <span class="code-string">"What are the key features of Divinci AI?"</span>,
+    <span class="code-property">"max_results"</span>: <span class="code-number">5</span>,
+    <span class="code-property">"include_sources"</span>: <span class="code-keyword">true</span>
+}'</pre>
+                                </div>
+                                <div class="code-panel" data-panel="python">
+<pre class="code-block"><span class="code-keyword">import</span> requests
+
+<span class="code-comment"># Set your API token</span>
+api_token = <span class="code-string">"YOUR_API_TOKEN"</span>
+
+<span class="code-comment"># Query a RAG system</span>
+response = requests.post(
+    <span class="code-string">"https://api.divinci.ai/v1/rag/systems/rag_123456/query"</span>,
+    headers={
+        <span class="code-string">"Authorization"</span>: <span class="code-string">f"Bearer {api_token}"</span>,
+        <span class="code-string">"Content-Type"</span>: <span class="code-string">"application/json"</span>
+    },
+    json={
+        <span class="code-string">"query"</span>: <span class="code-string">"What are the key features of Divinci AI?"</span>,
+        <span class="code-string">"max_results"</span>: <span class="code-number">5</span>,
+        <span class="code-string">"include_sources"</span>: <span class="code-keyword">True</span>
+    }
+)
+
+<span class="code-keyword">print</span>(response.json())</pre>
+                                </div>
+                                <div class="code-panel" data-panel="javascript">
+<pre class="code-block"><span class="code-comment">// Set your API token</span>
+<span class="code-keyword">const</span> apiToken = <span class="code-string">'YOUR_API_TOKEN'</span>;
+
+<span class="code-comment">// Query a RAG system</span>
+<span class="code-keyword">async function</span> <span class="code-function">queryRagSystem</span>() {
+  <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> fetch(<span class="code-string">'https://api.divinci.ai/v1/rag/systems/rag_123456/query'</span>, {
+    method: <span class="code-string">'POST'</span>,
+    headers: {
+      <span class="code-string">'Authorization'</span>: <span class="code-string">`Bearer ${apiToken}`</span>,
+      <span class="code-string">'Content-Type'</span>: <span class="code-string">'application/json'</span>
+    },
+    body: JSON.stringify({
+      query: <span class="code-string">'What are the key features of Divinci AI?'</span>,
+      max_results: <span class="code-number">5</span>,
+      include_sources: <span class="code-keyword">true</span>
+    })
+  });
+
+  <span class="code-keyword">const</span> data = <span class="code-keyword">await</span> response.json();
+  console.log(data);
+}
+
+queryRagSystem();</pre>
+                                </div>
+                                <div class="code-panel" data-panel="go">
+<pre class="code-block"><span class="code-keyword">package</span> main
+
+<span class="code-keyword">import</span> (
+	<span class="code-string">"bytes"</span>
+	<span class="code-string">"encoding/json"</span>
+	<span class="code-string">"fmt"</span>
+	<span class="code-string">"net/http"</span>
+)
+
+<span class="code-keyword">func</span> <span class="code-function">main</span>() {
+	<span class="code-comment">// Set your API token</span>
+	apiToken := <span class="code-string">"YOUR_API_TOKEN"</span>
+
+	<span class="code-comment">// Query payload</span>
+	queryPayload := <span class="code-keyword">map</span>[<span class="code-keyword">string</span>]<span class="code-keyword">interface</span>{}{
+		<span class="code-string">"query"</span>:          <span class="code-string">"What are the key features of Divinci AI?"</span>,
+		<span class="code-string">"max_results"</span>:    <span class="code-number">5</span>,
+		<span class="code-string">"include_sources"</span>: <span class="code-keyword">true</span>,
+	}
+
+	jsonPayload, _ := json.Marshal(queryPayload)
+
+	<span class="code-comment">// Create request</span>
+	req, _ := http.NewRequest(<span class="code-string">"POST"</span>, <span class="code-string">"https://api.divinci.ai/v1/rag/systems/rag_123456/query"</span>, bytes.NewBuffer(jsonPayload))
+	req.Header.Set(<span class="code-string">"Authorization"</span>, <span class="code-string">"Bearer "</span> + apiToken)
+	req.Header.Set(<span class="code-string">"Content-Type"</span>, <span class="code-string">"application/json"</span>)
+
+	<span class="code-comment">// Send request</span>
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	<span class="code-keyword">if</span> err != <span class="code-keyword">nil</span> {
+		fmt.Println(err)
+		<span class="code-keyword">return</span>
+	}
+	<span class="code-keyword">defer</span> resp.Body.Close()
+
+	<span class="code-comment">// Process response</span>
+	<span class="code-keyword">var</span> result <span class="code-keyword">map</span>[<span class="code-keyword">string</span>]<span class="code-keyword">interface</span>{}
+	json.NewDecoder(resp.Body).Decode(&result)
+	fmt.Println(result)
+}</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Client Libraries</h2>
+                        <p class="section-description">We provide client libraries in multiple programming languages to make integrating with our API easier.</p>
+
+                        <div class="sdk-cards">
+                            <div class="sdk-card">
+                                <div class="sdk-header">
+                                    <div class="sdk-icon">
+                                        <i class="fab fa-python"></i>
+                                    </div>
+                                    <h3 class="sdk-title">Python SDK</h3>
+                                </div>
+                                <div class="sdk-content">
+                                    <p class="sdk-description">
+                                        Our Python SDK provides a convenient interface to the Divinci AI API, making it easy to integrate AI capabilities into your Python applications.
+                                    </p>
+                                    <div class="sdk-meta">
+                                        <div class="sdk-meta-item">
+                                            <i class="fas fa-code-branch"></i> Version 0.9.5
+                                        </div>
+                                        <div class="sdk-meta-item">
+                                            <i class="fas fa-download"></i> 15K+ downloads
+                                        </div>
+                                    </div>
+                                    <div class="sdk-links">
+                                        <a href="#" class="sdk-link">
+                                            <i class="fas fa-book"></i> Documentation
+                                        </a>
+                                        <a href="#" class="sdk-link">
+                                            <i class="fab fa-github"></i> GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sdk-card">
+                                <div class="sdk-header">
+                                    <div class="sdk-icon">
+                                        <i class="fab fa-js"></i>
+                                    </div>
+                                    <h3 class="sdk-title">JavaScript SDK</h3>
+                                </div>
+                                <div class="sdk-content">
+                                    <p class="sdk-description">
+                                        Use our JavaScript SDK to integrate Divinci AI into web applications and Node.js projects with a simple, Promise-based API.
+                                    </p>
+                                    <div class="sdk-meta">
+                                        <div class="sdk-meta-item">
+                                            <i class="fas fa-code-branch"></i> Version 0.9.2
+                                        </div>
+                                        <div class="sdk-meta-item">
+                                            <i class="fas fa-download"></i> 12K+ downloads
+                                        </div>
+                                    </div>
+                                    <div class="sdk-links">
+                                        <a href="#" class="sdk-link">
+                                            <i class="fas fa-book"></i> Documentation
+                                        </a>
+                                        <a href="#" class="sdk-link">
+                                            <i class="fab fa-github"></i> GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sdk-card">
+                                <div class="sdk-header">
+                                    <div class="sdk-icon">
+                                        <i class="fab fa-java"></i>
+                                    </div>
+                                    <h3 class="sdk-title">Java SDK</h3>
+                                </div>
+                                <div class="sdk-content">
+                                    <p class="sdk-description">
+                                        Our Java SDK provides enterprise-grade integration with the Divinci AI platform, designed for performance and reliability.
+                                    </p>
+                                    <div class="sdk-meta">
+                                        <div class="sdk-meta-item">
+                                            <i class="fas fa-code-branch"></i> Version 0.8.5
+                                        </div>
+                                        <div class="sdk-meta-item">
+                                            <i class="fas fa-download"></i> 8K+ downloads
+                                        </div>
+                                    </div>
+                                    <div class="sdk-links">
+                                        <a href="#" class="sdk-link">
+                                            <i class="fas fa-book"></i> Documentation
+                                        </a>
+                                        <a href="#" class="sdk-link">
+                                            <i class="fab fa-github"></i> GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer with Sacred Geometry and Bulma Integration -->
+        <footer class="site-footer">
+            <!-- Sacred Geometry Background Elements -->
+            <div class="footer-sacred-pattern"></div>
+            <div class="sacred-circle sacred-circle-1"></div>
+            <div class="sacred-circle sacred-circle-2"></div>
+            <div class="sacred-circle sacred-circle-3"></div>
+
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Top Section with Bulma Columns -->
+                    <div class="columns is-footer-links">
+                        <!-- Logo and Company Info -->
+                        <div class="column is-one-quarter">
+                            <div class="footer-brand">
+                                <div class="footer-logo">
+                                    <div style="
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+    filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
+    border-radius: 50%;
+    background: rgba(92, 226, 231, 0.1);
+    padding: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+">🖤</div>
+                                    <span class="footer-brand-name">Divinci AI</span>
+                                </div>
+                                <p class="footer-tagline">Empowering human-AI collaboration</p>
+                                <div class="social-links">
+                                    <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                    <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Links -->
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Product</h3>
+                                <ul>
+                                    <li><a href="../index.html#features">Features</a></li>
+                                    <li><a href="../pricing.html">Pricing</a></li>
+                                    <li><a href="../roadmap.html">Roadmap</a></li>
+                                    <li><a href="../changelog.html">Changelog</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Resources</h3>
+                                <ul>
+                                    <li><a href="../docs/">Documentation</a></li>
+                                    <li><a href="../blog/">Blog</a></li>
+                                    <li><a href="../tutorials/">Tutorials</a></li>
+                                    <li><a href="../api/">API</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Company</h3>
+                                <ul>
+                                    <li><a href="../about-us.html">About Us</a></li>
+                                    <li><a href="../careers.html">Careers</a></li>
+                                    <li><a href="../contact.html">Contact</a></li>
+                                    <li><a href="../press.html">Press</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="../terms-of-service.html">Terms of Service</a></li>
+                                    <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                                    <li><a href="../ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                                    <li><a href="../security.html">Security</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom with Bulma Level -->
+                <div class="footer-bottom">
+                    <div class="level is-footer-bottom">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="footer-bottom-links">
+                                    <a href="../sitemap.xml">Sitemap</a>
+                                    <a href="../accessibility.html">Accessibility</a>
+                                    <a href="../cookies.html">Cookie Policy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="../js/keyboard-navigation.js" defer></script>
+        <script src="../js/apply-sora-to-divinci.js" defer></script>
+
+        <!-- Code tabs script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const codeTabs = document.querySelectorAll('.code-tab');
+                const codePanels = document.querySelectorAll('.code-panel');
+
+                codeTabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        // Remove active class from all tabs
+                        codeTabs.forEach(t => t.classList.remove('active'));
+
+                        // Add active class to clicked tab
+                        this.classList.add('active');
+
+                        // Get target panel
+                        const targetPanel = this.getAttribute('data-tab');
+
+                        // Hide all panels
+                        codePanels.forEach(panel => panel.classList.remove('active'));
+
+                        // Show target panel
+                        document.querySelector(`.code-panel[data-panel="${targetPanel}"]`).classList.add('active');
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

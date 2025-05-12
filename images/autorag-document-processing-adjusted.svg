@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" aria-labelledby="title-doc-proc desc-doc-proc">
+  <title id="title-doc-proc">Document Processing Visualization</title>
+  <desc id="desc-doc-proc">Visualization of how the AutoRAG system processes documents into analyzable chunks</desc>
+  
+  <defs>
+    <!-- Styles -->
+    <style>
+      /* Base styles using the Divinci color palette */
+      .doc-proc-bg { fill: #F5F7FA; }
+      .doc-proc-container { fill: #F5F7FA; stroke: #485262; stroke-width: 3; rx: 10; ry: 10; }
+      .doc-proc-connection { stroke: #2E5BFF; stroke-width: 3; fill: none; }
+      .doc-proc-highlight { stroke: #8C54FF; stroke-width: 4; fill: none; }
+      
+      .doc-proc-box { fill: #F5F7FA; stroke: #2E5BFF; stroke-width: 3; rx: 10; ry: 10; }
+      .doc-proc-chunk { fill: #F0F5FF; stroke: #00D8D8; stroke-width: 2; rx: 8; ry: 8; }
+      
+      .doc-proc-icon { fill: #2E5BFF; }
+      .doc-proc-icon-alt { fill: #00D8D8; }
+      
+      .doc-proc-text {
+        font-family: 'Inter', sans-serif;
+        fill: #485262;
+        font-size: 16px;
+      }
+      .doc-proc-title { 
+        font-size: 20px; 
+        font-weight: 500;
+      }
+      
+      /* Animation */
+      @keyframes docFlow {
+        from { stroke-dashoffset: 200; }
+        to { stroke-dashoffset: 0; }
+      }
+      
+      .doc-proc-animated {
+        stroke-dasharray: 12, 7;
+        animation: docFlow 5s linear infinite;
+      }
+      
+      @keyframes docHighlight {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 1; }
+      }
+      
+      .doc-proc-pulse {
+        animation: docHighlight 2s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="500" class="doc-proc-bg"/>
+  
+  <!-- Document Input -->
+  <g transform="translate(100, 80)">
+    <rect width="150" height="170" class="doc-proc-container"/>
+    <text x="75" y="45" class="doc-proc-title" text-anchor="middle">Source Documents</text>
+    
+    <!-- Document stack icon -->
+    <rect x="30" y="70" width="90" height="14" class="doc-proc-icon"/>
+    <rect x="30" y="95" width="90" height="14" class="doc-proc-icon" opacity="0.8"/>
+    <rect x="30" y="120" width="90" height="14" class="doc-proc-icon" opacity="0.6"/>
+    <rect x="30" y="145" width="90" height="14" class="doc-proc-icon" opacity="0.4"/>
+  </g>
+  
+  <!-- Processing Step -->
+  <g transform="translate(340, 100)">
+    <rect width="180" height="130" class="doc-proc-box doc-proc-pulse"/>
+    <text x="90" y="65" class="doc-proc-title" text-anchor="middle">Document</text>
+    <text x="90" y="95" class="doc-proc-title" text-anchor="middle">Processor</text>
+  </g>
+  
+  <!-- Output Chunks -->
+  <g transform="translate(600, 50)">
+    <rect width="120" height="50" class="doc-proc-chunk" opacity="0.9"/>
+    <text x="60" y="32" class="doc-proc-text" text-anchor="middle">Chunk 1</text>
+  </g>
+  
+  <g transform="translate(600, 110)">
+    <rect width="120" height="50" class="doc-proc-chunk" opacity="0.9"/>
+    <text x="60" y="32" class="doc-proc-text" text-anchor="middle">Chunk 2</text>
+  </g>
+  
+  <g transform="translate(600, 170)">
+    <rect width="120" height="50" class="doc-proc-chunk" opacity="0.9"/>
+    <text x="60" y="32" class="doc-proc-text" text-anchor="middle">Chunk 3</text>
+  </g>
+  
+  <g transform="translate(600, 230)">
+    <rect width="120" height="50" class="doc-proc-chunk" opacity="0.9"/>
+    <text x="60" y="32" class="doc-proc-text" text-anchor="middle">Chunk 4</text>
+  </g>
+  
+  <!-- Metadata Extraction -->
+  <g transform="translate(340, 300)">
+    <rect width="180" height="130" class="doc-proc-box" opacity="0.9"/>
+    <text x="90" y="65" class="doc-proc-title" text-anchor="middle">Metadata</text>
+    <text x="90" y="95" class="doc-proc-title" text-anchor="middle">Extraction</text>
+  </g>
+  
+  <!-- Content Tags -->
+  <g transform="translate(100, 330)">
+    <rect width="150" height="100" class="doc-proc-container"/>
+    <text x="75" y="45" class="doc-proc-title" text-anchor="middle">Content Tags</text>
+    
+    <!-- Tags -->
+    <rect x="30" y="60" width="40" height="24" rx="12" ry="12" class="doc-proc-icon-alt" opacity="0.7"/>
+    <rect x="80" y="60" width="40" height="24" rx="12" ry="12" class="doc-proc-icon-alt" opacity="0.7"/>
+    <rect x="55" y="60" width="50" height="24" rx="12" ry="12" class="doc-proc-icon-alt" opacity="0.5" transform="translate(0, 30)"/>
+  </g>
+  
+  <!-- Connections -->
+  <path d="M250,165 L340,165" class="doc-proc-connection doc-proc-animated"/>
+  <path d="M520,120 L600,75" class="doc-proc-connection doc-proc-animated"/>
+  <path d="M520,140 L600,135" class="doc-proc-connection doc-proc-animated"/>
+  <path d="M520,160 L600,195" class="doc-proc-connection doc-proc-animated"/>
+  <path d="M520,180 L600,255" class="doc-proc-connection doc-proc-animated"/>
+  
+  <path d="M430,230 L430,300" class="doc-proc-highlight doc-proc-animated"/>
+  <path d="M340,365 L250,365" class="doc-proc-highlight doc-proc-animated"/>
+  
+  <!-- Legend -->
+  <g transform="translate(600, 330)">
+    <rect width="150" height="150" class="doc-proc-bg" stroke="#485262" stroke-width="1" rx="8" ry="8"/>
+    <text x="75" y="40" class="doc-proc-title" text-anchor="middle" font-weight="500">Benefits</text>
+    
+    <circle cx="40" cy="70" r="8" class="doc-proc-icon"/>
+    <text x="130" y="75" class="doc-proc-text" text-anchor="end">Scalable</text>
+    
+    <circle cx="40" cy="105" r="8" class="doc-proc-icon-alt"/>
+    <text x="130" y="110" class="doc-proc-text" text-anchor="end">Metadata-rich</text>
+    
+    <circle cx="40" cy="140" r="8" fill="#8C54FF"/>
+    <text x="130" y="145" class="doc-proc-text" text-anchor="end">Automated</text>
+  </g>
+</svg>
