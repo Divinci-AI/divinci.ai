@@ -1,0 +1,71 @@
+{
+  "navigation": {
+    "features": "Características",
+    "team": "Equipo",
+    "buttons": {
+      "signUp": "Registrarse"
+    }
+  },
+  "homepage": {
+    "hero": {
+      "title": "Tu IA para el viaje de la vida, ¡con amigos!",
+      "subtitle": "Crea soluciones de IA personalizadas y colabora con tus modelos de IA favoritos en un entorno multijugador."
+    },
+    "features": {
+      "title": "Características",
+      "multiplayer": {
+        "title": "Multijugador",
+        "consumer": "Invita a más de tus amigos humanos a un chat con tus IAs favoritas."
+      },
+      "aiFamily": {
+        "title": "Familia de IA",
+        "consumer": "¡Elige entre ChatGPT, Gemini, Claude, Llama y muchos más!"
+      },
+      "voiceInOut": {
+        "title": "Entrada/Salida de Voz",
+        "consumer": "Voces de IA elegantes de Google para que te lean las respuestas con una voz natural. Usa tu micrófono para chatear con texto."
+      },
+      "imagesGraphs": {
+        "title": "Imágenes, Diagramas, Gráficos, Tablas",
+        "consumer": "Divinci sabe cuándo estás pidiendo generar una imagen, gráfico o diagrama."
+      },
+      "qualityAssurance": {
+        "title": "Control de Calidad",
+        "consumer": "Nuestras amigables verificaciones de calidad aseguran que las respuestas de IA sean útiles y precisas para ti."
+      },
+      "textMessaging": {
+        "title": "Mensajes de Texto",
+        "consumer": "Envía mensajes a Divinci™ mientras estás en movimiento, manos libres con \"Oye Siri/Google, envía un mensaje a Divinci\"."
+      },
+      "releaseManagement": {
+        "title": "Gestión de Versiones",
+        "consumer": "Actualizaciones regulares que te brindan nuevas funciones y mejoras para mejorar tu experiencia de IA."
+      },
+      "sharePrivate": {
+        "title": "Chats Compartibles/Privados",
+        "consumer": "Comparte chats con amigos para que se unan. Haz que un chat sea públicamente legible o completamente privado."
+      },
+      "rag": {
+        "title": "Recuperación Aumentada",
+        "consumer": "Sube archivos a tu chat para crear una IA personalizada que aprenda esos archivos y los priorice al responder."
+      },
+      "expertAi": {
+        "title": "IAs Expertas",
+        "consumer": "Obtén ayuda de IAs que se especializan en temas como salud, finanzas y más."
+      }
+    }
+  },
+  "team": {
+    "founder": "Fundador",
+    "cto": "Director de Tecnología",
+    "coo": "Directora de Operaciones",
+    "foundingEngineer": "Ingeniero Fundador",
+    "mlEngineer": "Ingeniero de Aprendizaje Automático",
+    "cpo": "Director de Producto"
+  },
+  "footer": {
+    "copyright": "© 2023 Divinci AI. Todos los derechos reservados.",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio"
+  }
+}

@@ -1,0 +1,386 @@
+/**
+ * Enhanced Accessibility Styles for Divinci AI
+ * Comprehensive accessibility improvements to meet WCAG 2.1 AA requirements
+ */
+
+/* Skip link - allows keyboard users to skip to main content */
+.skip-links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #0a66c2;
+  color: white;
+  padding: 15px 20px;
+  z-index: 9999;
+  transition: top 0.2s ease;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.skip-link:focus {
+  position: relative;
+  top: 0;
+  outline: 3px solid #ffe500;
+  text-decoration: underline;
+}
+
+/* Focus styles - ensure all interactive elements have visible focus indicators */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus,
+.btn:focus,
+.button:focus {
+  outline: 3px solid #ffe500 !important;
+  outline-offset: 2px !important;
+  text-decoration: underline !important;
+}
+
+/* Improved color contrast for text */
+/* body {
+  color: #333;
+} */
+
+/* p, li, td, th, label, legend, caption {
+  color: #333;
+} */
+
+/* Improved color contrast for links */
+a {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+a:hover, a:focus {
+  color: #003d82;
+  text-decoration: underline;
+}
+
+/* Improved color contrast for buttons */
+.btn, 
+.button,
+button,
+input[type="submit"],
+input[type="button"] {
+  background-color: #0056b3;
+  color: #fff;
+  border: 1px solid #0056b3;
+}
+
+.btn:hover, 
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.btn:focus, 
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="button"]:focus {
+  background-color: #003d82;
+  color: #fff;
+  border: 1px solid #003d82;
+}
+
+/* Secondary buttons */
+.btn-secondary,
+.button-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  border: 1px solid #6c757d;
+}
+
+.btn-secondary:hover,
+.button-secondary:hover,
+.btn-secondary:focus,
+.button-secondary:focus {
+  background-color: #545b62;
+  color: #fff;
+  border: 1px solid #545b62;
+}
+
+/* Improved color contrast for form elements */
+input, 
+select, 
+textarea {
+  border-color: #666;
+  color: #333;
+}
+
+/* Improved color contrast for placeholders */
+::placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+/* Improved color contrast for form labels */
+label {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Improved color contrast for headings */
+/* h1, h2, h3, h4, h5, h6 {
+  color: #333;
+} */
+
+/* Improved color contrast for the header */
+header {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Improved color contrast for the footer */
+footer {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Improved color contrast for the navigation */
+nav {
+  background-color: #f8f9fa;
+}
+
+nav a {
+  color: #0056b3;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #003d82;
+}
+
+/* Improved color contrast for alerts and notifications */
+.alert,
+.notification {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-success,
+.notification-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-info,
+.notification-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+.alert-warning,
+.notification-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+/* Improved color contrast for cards */
+.card {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+/* Improved color contrast for tables */
+table {
+  border-color: #ddd;
+}
+
+th {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Improved color contrast for code blocks */
+code, pre {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+/* Improved color contrast for blockquotes */
+blockquote {
+  background-color: #f8f9fa;
+  color: #333;
+  border-left: 5px solid #0056b3;
+}
+
+/* Improved color contrast for badges */
+.badge {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+/* Improved color contrast for tooltips */
+.tooltip {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Improved color contrast for modals */
+.modal {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.modal-header {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* ARIA live region styles */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.live-region-polite,
+.live-region-assertive {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  body {
+    color: #000;
+    background-color: #fff;
+  }
+  
+  a {
+    color: #0000EE;
+    text-decoration: underline;
+  }
+  
+  a:visited {
+    color: #551A8B;
+  }
+  
+  button, 
+  .btn, 
+  .button,
+  input[type="submit"],
+  input[type="button"] {
+    color: #fff;
+    background-color: #000;
+    border: 2px solid #000;
+  }
+  
+  input, 
+  select, 
+  textarea {
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #000;
+  }
+  
+  img, 
+  video {
+    filter: contrast(1.5);
+  }
+}
+
+/* Forced colors mode (Windows High Contrast Mode) */
+@media (forced-colors: active) {
+  .button,
+  a,
+  .social-link,
+  .language-option {
+    border: 1px solid currentColor;
+  }
+  
+  .skip-link:focus {
+    border: 2px solid;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .nav-title {
+  margin-right: 22px;
+  margin-left: 0;
+}
+
+[dir="rtl"] .nav-menu a {
+  margin-right: 20px;
+  margin-left: 0;
+}
+
+[dir="rtl"] .close-dialog {
+  right: auto;
+  left: 10px;
+}
+
+/* Specific fixes for the signup button */
+.signup-button {
+  background-color: #0056b3;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Fix for preview banner button */
+.preview-banner-button {
+  background-color: #0056b3;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Fix for unavailable pricing features */
+.unavailable {
+  color: #555;
+  text-decoration: line-through;
+}
+
+/* Fix for the subscribe button */
+#mc-embedded-subscribe {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+/* Fix for team member text */
+.team-feature p {
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+}

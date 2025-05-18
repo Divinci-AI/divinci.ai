@@ -1,0 +1,52 @@
+{
+  "brand": {
+    "name": "Divinci AI"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "features": "Fonctionnalités",
+    "pricing": "Tarifs",
+    "about": "À Propos",
+    "contact": "Contact"
+  },
+  "buttons": {
+    "getStarted": "Commencer",
+    "learnMore": "En Savoir Plus",
+    "signUp": "S'inscrire",
+    "logIn": "Se Connecter",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer"
+  },
+  "footer": {
+    "copyright": "© {{year}} Divinci AI. Tous droits réservés.",
+    "terms": "Conditions d'Utilisation",
+    "privacy": "Politique de Confidentialité",
+    "cookies": "Politique des Cookies",
+    "support": "Support",
+    "blog": "Blog"
+  },
+  "errors": {
+    "required": "Ce champ est obligatoire",
+    "invalidEmail": "Veuillez saisir une adresse e-mail valide",
+    "passwordLength": "Le mot de passe doit comporter au moins 8 caractères",
+    "passwordMatch": "Les mots de passe ne correspondent pas",
+    "serverError": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+    "notFound": "La ressource demandée n'a pas été trouvée."
+  },
+  "notifications": {
+    "success": "Succès !",
+    "error": "Erreur !",
+    "info": "Information",
+    "warning": "Avertissement"
+  },
+  "accessibility": {
+    "skipToContent": "Passer au contenu",
+    "menuToggle": "Basculer le menu",
+    "darkMode": "Basculer en mode sombre",
+    "closeModal": "Fermer la fenêtre",
+    "expandCollapse": "Développer/réduire la section"
+  },
+  "languageName": "Français"
+}

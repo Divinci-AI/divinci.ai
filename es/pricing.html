@@ -1,0 +1,902 @@
+<\!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <\!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/pricing.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/pricing.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/pricing.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/pricing.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/pricing.html" hreflang="ar" />
+        <\!-- SEO Meta Tags -->
+        <meta name="description" content="Divinci AI ofrece planes de precios flexibles para empresas de todos los tamaños. Elija entre nuestros planes Inicial, Pro y Empresarial para crear soluciones de IA personalizadas para su organización." />
+        <meta name="keywords" content="precios divinci ai, planes de precios ia, costo ia personalizada, precios ia empresarial, suscripción ia, precios rag" />
+
+        <\!-- Open Graph / Social Media Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://divinci.ai/es/pricing.html" />
+        <meta property="og:title" content="Planes de Precios | Divinci AI" />
+        <meta property="og:description" content="Divinci AI ofrece planes de precios flexibles para empresas de todos los tamaños. Elija entre nuestros planes Inicial, Pro y Empresarial para crear soluciones de IA personalizadas para su organización." />
+        <meta property="og:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <\!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://divinci.ai/es/pricing.html" />
+        <meta name="twitter:title" content="Planes de Precios | Divinci AI" />
+        <meta name="twitter:description" content="Divinci AI ofrece planes de precios flexibles para empresas de todos los tamaños. Elija entre nuestros planes Inicial, Pro y Empresarial para crear soluciones de IA personalizadas para su organización." />
+        <meta name="twitter:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <\!-- Canonical URL -->
+        <link rel="canonical" href="https://divinci.ai/es/pricing.html" />
+
+        <\!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
+
+        <\!-- Page Title -->
+        <title>Planes de Precios | Divinci AI</title>
+
+        <\!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="../preview-banner.css" />
+        <link rel="stylesheet" href="../includes/header-styles.css" />
+        <link rel="stylesheet" href="../includes/section-content-fix.css" />
+
+        <style>
+            /* Pricing-specific styles */
+            .pricing-section {
+                background-color: #f8fafc;
+                background-image: linear-gradient(to bottom, #f0f4f8, #f8fafc);
+                padding: 5rem 0;
+                position: relative;
+                overflow: hidden;
+            }
+
+            /* Sacred geometry background elements */
+            .pricing-section::before {
+                content: '';
+                position: absolute;
+                top: -200px;
+                right: -100px;
+                width: 400px;
+                height: 400px;
+                border-radius: 50%;
+                border: 1px solid rgba(92, 226, 231, 0.1);
+                opacity: 0.15;
+                z-index: 0;
+            }
+
+            .pricing-section::after {
+                content: '';
+                position: absolute;
+                bottom: -200px;
+                left: -100px;
+                width: 400px;
+                height: 400px;
+                border-radius: 50%;
+                border: 1px solid rgba(92, 226, 231, 0.1);
+                opacity: 0.1;
+                z-index: 0;
+            }
+
+            .pricing-header {
+                text-align: center;
+                margin-bottom: 4rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .pricing-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1rem;
+                background: linear-gradient(to right, #16214c, #5ce2e7);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                display: inline-block;
+            }
+
+            .pricing-subtitle {
+                font-size: 1.2rem;
+                color: #555;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            .pricing-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 2rem 0;
+            }
+
+            .pricing-toggle span {
+                font-size: 1rem;
+                color: #555;
+                cursor: pointer;
+                transition: color 0.3s ease;
+                padding: 0 1rem;
+            }
+
+            .pricing-toggle span.active {
+                color: #16214c;
+                font-weight: 600;
+            }
+
+            .toggle-switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 30px;
+                margin: 0 10px;
+            }
+
+            .toggle-switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .toggle-slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: .4s;
+                border-radius: 34px;
+            }
+
+            .toggle-slider:before {
+                position: absolute;
+                content: "";
+                height: 22px;
+                width: 22px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: .4s;
+                border-radius: 50%;
+            }
+
+            input:checked + .toggle-slider {
+                background-color: #5ce2e7;
+            }
+
+            input:checked + .toggle-slider:before {
+                transform: translateX(30px);
+            }
+
+            .pricing-cards {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 30px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .pricing-card {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                padding: 2.5rem;
+                flex: 1;
+                min-width: 280px;
+                max-width: 350px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .pricing-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            }
+
+            .pricing-card.featured {
+                border-top: 5px solid #5ce2e7;
+                transform: scale(1.05);
+            }
+
+            .pricing-card.featured:hover {
+                transform: scale(1.05) translateY(-5px);
+            }
+
+            .pricing-card::before {
+                content: '';
+                position: absolute;
+                top: -50px;
+                right: -50px;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                border: 1px solid rgba(92, 226, 231, 0.1);
+                opacity: 0.2;
+                z-index: 0;
+            }
+
+            .pricing-plan {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 0.5rem;
+            }
+
+            .pricing-description {
+                color: #666;
+                font-size: 0.9rem;
+                margin-bottom: 2rem;
+                min-height: 40px;
+            }
+
+            .pricing-price {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 0.5rem;
+            }
+
+            .pricing-price .currency {
+                font-size: 1.5rem;
+                vertical-align: super;
+                margin-right: 0.25rem;
+            }
+
+            .pricing-price .period {
+                font-size: 1rem;
+                color: #666;
+                font-weight: 400;
+            }
+
+            .pricing-popular {
+                position: absolute;
+                top: 15px;
+                right: -30px;
+                background: linear-gradient(135deg, #5ce2e7, #2fd6c2);
+                color: white;
+                padding: 5px 40px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                transform: rotate(45deg);
+            }
+
+            .pricing-features {
+                margin: 2rem 0;
+                padding: 0;
+                list-style-type: none;
+            }
+
+            .pricing-features li {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid #f0f0f0;
+                color: #444;
+                font-size: 0.95rem;
+                padding-left: 30px;
+                position: relative;
+            }
+
+            .pricing-features li:last-child {
+                border-bottom: none;
+            }
+
+            .pricing-features li::before {
+                content: '\f00c';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                color: #5ce2e7;
+                position: absolute;
+                left: 0;
+            }
+
+            .pricing-features li.unavailable {
+                color: #999;
+            }
+
+            .pricing-features li.unavailable::before {
+                content: '\f00d';
+                color: #ccc;
+            }
+
+            .pricing-cta {
+                display: block;
+                width: 100%;
+                padding: 1rem;
+                background: #16214c;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-weight: 600;
+                text-align: center;
+                text-decoration: none;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            .pricing-cta:hover {
+                background: #0e1633;
+                color: white;
+            }
+
+            .pricing-cta.featured {
+                background: linear-gradient(135deg, #5ce2e7, #2fd6c2);
+            }
+
+            .pricing-cta.featured:hover {
+                background: linear-gradient(135deg, #4ed1d6, #25c5b1);
+            }
+
+            .enterprise-card {
+                background: linear-gradient(135deg, #16214c, #254284);
+                color: white;
+                padding: 3rem;
+                border-radius: 12px;
+                text-align: center;
+                margin-top: 4rem;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            }
+
+            .enterprise-card::before {
+                content: '';
+                position: absolute;
+                top: -80px;
+                right: -80px;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                opacity: 0.2;
+            }
+
+            .enterprise-card::after {
+                content: '';
+                position: absolute;
+                bottom: -60px;
+                left: -60px;
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                opacity: 0.1;
+            }
+
+            .enterprise-title {
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                background: linear-gradient(to right, #fff, #5ce2e7);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                display: inline-block;
+            }
+
+            .enterprise-text {
+                font-size: 1.1rem;
+                max-width: 700px;
+                margin: 0 auto 2rem;
+                opacity: 0.9;
+            }
+
+            .enterprise-cta {
+                display: inline-block;
+                padding: 1rem 2rem;
+                background: white;
+                color: #16214c;
+                border-radius: 6px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .enterprise-cta:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                color: #16214c;
+            }
+
+            .faq-section {
+                padding: 5rem 0;
+                background: white;
+                position: relative;
+            }
+
+            .faq-title {
+                text-align: center;
+                font-size: 2rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 3rem;
+            }
+
+            .faq-item {
+                margin-bottom: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                overflow: hidden;
+                background: white;
+            }
+
+            .faq-question {
+                padding: 1.25rem;
+                color: #16214c;
+                font-weight: 600;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .faq-question:after {
+                content: '\f107';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                transition: transform 0.3s ease;
+            }
+
+            .faq-question.active:after {
+                transform: rotate(180deg);
+            }
+
+            .faq-answer {
+                padding: 0 1.25rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, padding 0.3s ease;
+            }
+
+            .faq-answer.active {
+                padding: 0 1.25rem 1.25rem;
+                max-height: 300px;
+            }
+
+            /* Annual/Monthly toggle display */
+            .pricing-amount {
+                display: none;
+            }
+
+            .pricing-amount.active {
+                display: block;
+            }
+
+            /* Responsive adjustments */
+            @media screen and (max-width: 768px) {
+                .pricing-card {
+                    max-width: 100%;
+                    margin-bottom: 2rem;
+                }
+
+                .pricing-card.featured {
+                    transform: none;
+                }
+
+                .pricing-card.featured:hover {
+                    transform: translateY(-5px);
+                }
+
+                .enterprise-card {
+                    padding: 2rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <\!-- Skip to content link for keyboard users -->
+        <div class="skip-links">
+            <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+        </div>
+
+        <\!-- Preview Banner -->
+        <div class="preview-banner">
+            <div class="preview-banner-content">
+                <p class="preview-banner-text">Esta página es una vista previa. <br/> ¡Regístrese para recibir una notificación cuando lancemos\!</p>
+                <a href="../index.html#signup" class="preview-banner-button"><i class="fas fa-bell preview-banner-icon"></i>Recibir Notificación</a>
+            </div>
+        </div>
+
+        <\!-- Header with Navigation -->
+        <nav class="navbar">
+            <a href="../index.html" class="logo-link">
+                <div class="nav-logo">
+                    <img
+                        class="header-logo"
+                        src="../images/divinci_logo_inverted.svg"
+                        alt="Logo del Robot Corazón Divinci"
+                        onerror="this.onerror=null; this.src='../../images/divinci_logo_inverted.svg';"
+                    />
+                </div>
+                <div class="nav-title">
+                    <span class="brand-name">Divinci ™</span><span class="mobile-hide">&nbsp;- Cree su propia IA personalizada</span>
+                </div>
+            </a>
+            <\!-- Toggle switch for customer/company view -->
+            <div class="view-toggle-container mobile-hide">
+                <span class="view-label customer-view active">Cliente</span>
+                <label class="switch">
+                    <input type="checkbox" id="viewToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="view-label company-view">Empresa</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html#features">Características</a>
+                <a href="../index.html#team">Equipo</a>
+                <a href="../index.html#signup" class="signup-link"><span class="signup-button">Registrarse</span></a>
+            </div>
+        </nav>
+
+        <\!-- Main content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <section class="pricing-section">
+                <div class="container">
+                    <div class="pricing-header">
+                        <h1 class="pricing-title">Precios Simples y Transparentes</h1>
+                        <p class="pricing-subtitle">Elija el plan adecuado para su empresa. Todos los planes incluyen funciones principales, actualizaciones y soporte básico.</p>
+
+                        <div class="pricing-toggle">
+                            <span class="monthly active">Mensual</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="pricingToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="annual">Anual <span class="has-text-success">(Ahorre 20%)</span></span>
+                        </div>
+                    </div>
+
+                    <div class="pricing-cards">
+                        <\!-- Starter Plan -->
+                        <div class="pricing-card">
+                            <h2 class="pricing-plan">Inicial</h2>
+                            <p class="pricing-description">Perfecto para equipos pequeños y proyectos individuales</p>
+
+                            <div class="pricing-amount monthly active">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>49<span class="period">/mes</span>
+                                </div>
+                            </div>
+
+                            <div class="pricing-amount annual">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>39<span class="period">/mes</span>
+                                </div>
+                                <div class="pricing-billed">Facturado anualmente ($468)</div>
+                            </div>
+
+                            <ul class="pricing-features">
+                                <li>5 Proyectos de IA personalizados</li>
+                                <li>Capacidades básicas de RAG</li>
+                                <li>10GB de almacenamiento de documentos</li>
+                                <li>100K tokens/día</li>
+                                <li>Análisis básicos</li>
+                                <li>Soporte por correo electrónico</li>
+                                <li class="unavailable">Funciones de seguridad avanzadas</li>
+                                <li class="unavailable">Colaboración en equipo</li>
+                                <li class="unavailable">Acceso a API</li>
+                                <li class="unavailable">Integraciones personalizadas</li>
+                            </ul>
+
+                            <a href="../index.html#signup" class="pricing-cta">Comenzar</a>
+                        </div>
+
+                        <\!-- Pro Plan -->
+                        <div class="pricing-card featured">
+                            <div class="pricing-popular">Más Popular</div>
+                            <h2 class="pricing-plan">Pro</h2>
+                            <p class="pricing-description">Ideal para empresas y equipos en crecimiento</p>
+
+                            <div class="pricing-amount monthly active">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>149<span class="period">/mes</span>
+                                </div>
+                            </div>
+
+                            <div class="pricing-amount annual">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>119<span class="period">/mes</span>
+                                </div>
+                                <div class="pricing-billed">Facturado anualmente ($1,428)</div>
+                            </div>
+
+                            <ul class="pricing-features">
+                                <li>20 Proyectos de IA personalizados</li>
+                                <li>Capacidades avanzadas de RAG</li>
+                                <li>50GB de almacenamiento de documentos</li>
+                                <li>500K tokens/día</li>
+                                <li>Panel de análisis completo</li>
+                                <li>Soporte prioritario</li>
+                                <li>Funciones de seguridad avanzadas</li>
+                                <li>Colaboración en equipo (hasta 10 usuarios)</li>
+                                <li>Acceso a API</li>
+                                <li class="unavailable">Integraciones personalizadas</li>
+                            </ul>
+
+                            <a href="../index.html#signup" class="pricing-cta featured">Comenzar</a>
+                        </div>
+
+                        <\!-- Business Plan -->
+                        <div class="pricing-card">
+                            <h2 class="pricing-plan">Negocio</h2>
+                            <p class="pricing-description">Para equipos más grandes con necesidades avanzadas</p>
+
+                            <div class="pricing-amount monthly active">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>299<span class="period">/mes</span>
+                                </div>
+                            </div>
+
+                            <div class="pricing-amount annual">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>239<span class="period">/mes</span>
+                                </div>
+                                <div class="pricing-billed">Facturado anualmente ($2,868)</div>
+                            </div>
+
+                            <ul class="pricing-features">
+                                <li>Proyectos de IA ilimitados</li>
+                                <li>Capacidades premium de RAG</li>
+                                <li>200GB de almacenamiento de documentos</li>
+                                <li>2M tokens/día</li>
+                                <li>Análisis e informes avanzados</li>
+                                <li>Soporte prioritario 24/7</li>
+                                <li>Seguridad de nivel empresarial</li>
+                                <li>Colaboración en equipo (hasta 25 usuarios)</li>
+                                <li>Acceso completo a API</li>
+                                <li>Integraciones estándar</li>
+                            </ul>
+
+                            <a href="../index.html#signup" class="pricing-cta">Comenzar</a>
+                        </div>
+                    </div>
+
+                    <\!-- Enterprise Section -->
+                    <div class="enterprise-card">
+                        <h2 class="enterprise-title">Empresarial</h2>
+                        <p class="enterprise-text">¿Necesita una solución personalizada para su gran organización? Nuestro plan Empresarial incluye desarrollo de modelos de IA personalizados, soporte dedicado, SSO, políticas de seguridad personalizadas y más.</p>
+                        <a href="../contact.html" class="enterprise-cta">Contactar con Ventas</a>
+                    </div>
+                </div>
+            </section>
+
+            <\!-- FAQ Section -->
+            <section class="faq-section">
+                <div class="container">
+                    <h2 class="faq-title">Preguntas Frecuentes</h2>
+
+                    <div class="faq-items">
+                        <div class="faq-item">
+                            <div class="faq-question">¿Qué incluyen todos los planes?</div>
+                            <div class="faq-answer">
+                                <p>Todos los planes incluyen acceso a nuestra plataforma principal Divinci AI, que le permite crear soluciones de IA personalizadas. Cada plan también incluye procesamiento básico de documentos, capacidades de extracción de conocimiento, actualizaciones regulares y acceso a nuestros recursos de soporte.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Cómo funciona el uso de tokens?</div>
+                            <div class="faq-answer">
+                                <p>Los tokens son las unidades de procesamiento de texto para modelos de IA. Cada plan incluye una asignación diaria de tokens que se reinicia cada 24 horas. El uso de tokens se calcula tanto para la entrada (prompts, documentos) como para la salida (respuestas de IA). Si excede su límite diario, puede comprar tokens adicionales o actualizar a un plan superior.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Puedo actualizar o bajar de categoría mi plan?</div>
+                            <div class="faq-answer">
+                                <p>Sí, puede actualizar su plan en cualquier momento, y el cambio entrará en vigor inmediatamente. Para las bajadas de categoría, el cambio entrará en vigor al final de su ciclo de facturación actual. Recibirá un crédito prorrateado por cualquier tiempo no utilizado en su plan anterior cuando actualice.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Qué métodos de pago aceptan?</div>
+                            <div class="faq-answer">
+                                <p>Aceptamos todas las principales tarjetas de crédito (Visa, Mastercard, American Express, Discover) y PayPal. Para planes empresariales, también ofrecemos opciones de facturación con términos neto-30.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Hay una prueba gratuita disponible?</div>
+                            <div class="faq-answer">
+                                <p>Sí, ofrecemos una prueba gratuita de 14 días en nuestros planes Inicial y Pro. No se requiere tarjeta de crédito para comenzar su prueba. Tendrá acceso completo a todas las funciones incluidas en el plan durante su período de prueba.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Qué sucede con mis datos si cancelo?</div>
+                            <div class="faq-answer">
+                                <p>Sus datos permanecerán en nuestro sistema durante 30 días después de la cancelación, dándole tiempo para exportar todo lo que necesite. Después de 30 días, todos los datos serán eliminados permanentemente de nuestros sistemas de acuerdo con nuestra política de retención de datos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <\!-- Footer with Sacred Geometry and Bulma Integration -->
+        <footer class="site-footer">
+            <\!-- Sacred Geometry Background Elements -->
+            <div class="footer-sacred-pattern"></div>
+            <div class="sacred-circle sacred-circle-1"></div>
+            <div class="sacred-circle sacred-circle-2"></div>
+            <div class="sacred-circle sacred-circle-3"></div>
+
+            <div class="container">
+                <div class="footer-content">
+                    <\!-- Top Section with Bulma Columns -->
+                    <div class="columns is-footer-links">
+                        <\!-- Logo and Company Info -->
+                        <div class="column is-one-quarter">
+                            <div class="footer-brand">
+                                <div class="footer-logo">
+                                                                <div style="
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+    filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
+    border-radius: 50%;
+    background: rgba(92, 226, 231, 0.1);
+    padding: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+">🖤</div>
+                                    <span class="footer-brand-name">Divinci AI</span>
+                                </div>
+                                <p class="footer-tagline">Potenciando la colaboración humano-IA</p>
+                                <div class="social-links">
+                                    <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                    <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <\!-- Navigation Links -->
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Producto</h3>
+                                <ul>
+                                    <li><a href="../index.html#features">Características</a></li>
+                                    <li><a href="pricing.html">Precios</a></li>
+                                    <li><a href="../roadmap.html">Hoja de Ruta</a></li>
+                                    <li><a href="../changelog.html">Registro de Cambios</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Recursos</h3>
+                                <ul>
+                                    <li><a href="../docs/">Documentación</a></li>
+                                    <li><a href="../blog/">Blog</a></li>
+                                    <li><a href="../tutorials/">Tutoriales</a></li>
+                                    <li><a href="../api/">API</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Empresa</h3>
+                                <ul>
+                                    <li><a href="about-us.html">Sobre Nosotros</a></li>
+                                    <li><a href="../careers.html">Carreras</a></li>
+                                    <li><a href="contact.html">Contacto</a></li>
+                                    <li><a href="../press.html">Prensa</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="../terms-of-service.html">Términos de Servicio</a></li>
+                                    <li><a href="../privacy-policy.html">Política de Privacidad</a></li>
+                                    <li><a href="../ai-safety-ethics.html">Seguridad y Ética de IA</a></li>
+                                    <li><a href="../security.html">Seguridad</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <\!-- Footer Bottom with Bulma Level -->
+                <div class="footer-bottom">
+                    <div class="level is-footer-bottom">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <p class="copyright">&copy; 2023-2025 Divinci AI. Todos los derechos reservados.</p>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="footer-bottom-links">
+                                    <a href="../sitemap.xml">Mapa del Sitio</a>
+                                    <a href="../accessibility.html">Accesibilidad</a>
+                                    <a href="../cookies.html">Política de Cookies</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <\!-- Scripts -->
+        <script src="../js/keyboard-navigation.js" defer></script>
+        <script src="../js/apply-sora-to-divinci.js" defer></script>
+
+        <\!-- Pricing toggle and FAQ accordion scripts -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Pricing toggle
+                const pricingToggle = document.getElementById('pricingToggle');
+                const monthlySpan = document.querySelector('.pricing-toggle .monthly');
+                const annualSpan = document.querySelector('.pricing-toggle .annual');
+                const monthlyPrices = document.querySelectorAll('.pricing-amount.monthly');
+                const annualPrices = document.querySelectorAll('.pricing-amount.annual');
+
+                pricingToggle.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Annual pricing
+                        monthlySpan.classList.remove('active');
+                        annualSpan.classList.add('active');
+
+                        monthlyPrices.forEach(price => price.classList.remove('active'));
+                        annualPrices.forEach(price => price.classList.add('active'));
+                    } else {
+                        // Monthly pricing
+                        monthlySpan.classList.add('active');
+                        annualSpan.classList.remove('active');
+
+                        monthlyPrices.forEach(price => price.classList.add('active'));
+                        annualPrices.forEach(price => price.classList.remove('active'));
+                    }
+                });
+
+                // Monthly/Annual text click also toggles
+                monthlySpan.addEventListener('click', function() {
+                    pricingToggle.checked = false;
+                    pricingToggle.dispatchEvent(new Event('change'));
+                });
+
+                annualSpan.addEventListener('click', function() {
+                    pricingToggle.checked = true;
+                    pricingToggle.dispatchEvent(new Event('change'));
+                });
+
+                // FAQ accordion
+                const faqQuestions = document.querySelectorAll('.faq-question');
+
+                faqQuestions.forEach(question => {
+                    question.addEventListener('click', function() {
+                        const answer = this.nextElementSibling;
+
+                        // Toggle active class on question
+                        this.classList.toggle('active');
+
+                        // Toggle active class on answer
+                        answer.classList.toggle('active');
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
+EOL < /dev/null

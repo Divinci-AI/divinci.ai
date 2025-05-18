@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/roadmap.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/roadmap.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/roadmap.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/roadmap.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/roadmap.html" hreflang="ar" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/roadmap.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/roadmap.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/roadmap.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/roadmap.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/roadmap.html" hreflang="ar" />
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Divinci AI's product roadmap details our upcoming features, enhancements, and strategic direction for our AI collaboration platform." />
+        <meta name="keywords" content="divinci ai, roadmap, product roadmap, upcoming features, ai development, future releases" />
+
+        <!-- Open Graph / Social Media Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://divinci.ai/roadmap.html" />
+        <meta property="og:title" content="Product Roadmap | Divinci AI" />
+        <meta property="og:description" content="Divinci AI's product roadmap details our upcoming features, enhancements, and strategic direction for our AI collaboration platform." />
+        <meta property="og:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://divinci.ai/roadmap.html" />
+        <meta name="twitter:title" content="Product Roadmap | Divinci AI" />
+        <meta name="twitter:description" content="Divinci AI's product roadmap details our upcoming features, enhancements, and strategic direction for our AI collaboration platform." />
+        <meta name="twitter:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://divinci.ai/roadmap.html" />
+
+        <!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="..//apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
+
+        <!-- Page Title -->
+        <title>Product Roadmap | Divinci AI - Español</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../accessibility.css" />
+        <link rel="stylesheet" href="../official-document.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="../includes/section-content-fix.css" />
+
+        <!-- Script to include HTML components -->
+        <script src="../js/include-html.js" defer></script>
+        <script src="../js/conditional-header.js" defer></script>
+
+        <style>
+            .roadmap-timeline {
+                position: relative;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 40px 0;
+            }
+
+            .roadmap-timeline::before {
+                content: '';
+                position: absolute;
+                width: 4px;
+                background: linear-gradient(to bottom, rgba(92, 226, 231, 0.8), rgba(92, 226, 231, 0.2));
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                margin-left: -2px;
+                border-radius: 4px;
+                z-index: 0;
+            }
+
+            .roadmap-quarter {
+                padding: 10px 30px;
+                position: relative;
+                width: 50%;
+                box-sizing: border-box;
+                margin-bottom: 50px;
+            }
+
+            .roadmap-quarter::after {
+                content: '';
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                right: -12px;
+                background: rgba(92, 226, 231, 0.7);
+                border: 4px solid #16214c;
+                top: 20px;
+                border-radius: 50%;
+                z-index: 1;
+                box-shadow: 0 0 10px rgba(92, 226, 231, 0.5);
+            }
+
+            .left {
+                left: 0;
+                text-align: right;
+            }
+
+            .right {
+                left: 50%;
+                text-align: left;
+            }
+
+            .right::after {
+                left: -12px;
+            }
+
+            .roadmap-card {
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 10px;
+                border: 1px solid rgba(92, 226, 231, 0.2);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(5px);
+                position: relative;
+            }
+
+            .roadmap-card::before {
+                content: '';
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                border: 1px solid rgba(92, 226, 231, 0.1);
+                opacity: 0.1;
+                z-index: 0;
+            }
+
+            .roadmap-quarter-title {
+                font-weight: 600;
+                color: #5ce2e7;
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+
+            .roadmap-status {
+                display: inline-block;
+                padding: 4px 10px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                margin-bottom: 15px;
+            }
+
+            .status-planned {
+                background-color: rgba(92, 226, 231, 0.1);
+                color: #5ce2e7;
+                border: 1px solid rgba(92, 226, 231, 0.3);
+            }
+
+            .status-development {
+                background-color: rgba(255, 193, 7, 0.1);
+                color: #ffc107;
+                border: 1px solid rgba(255, 193, 7, 0.3);
+            }
+
+            .status-completed {
+                background-color: rgba(40, 167, 69, 0.1);
+                color: #28a745;
+                border: 1px solid rgba(40, 167, 69, 0.3);
+            }
+
+            .roadmap-list {
+                margin-top: 15px;
+                list-style-type: none;
+                padding-left: 0;
+            }
+
+            .right .roadmap-list {
+                padding-left: 20px;
+            }
+
+            .left .roadmap-list {
+                padding-right: 20px;
+            }
+
+            .roadmap-list li {
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+            }
+
+            .left .roadmap-list li {
+                justify-content: flex-end;
+            }
+
+            .roadmap-list li .icon {
+                margin-right: 10px;
+                color: #5ce2e7;
+            }
+
+            .left .roadmap-list li .icon {
+                order: 2;
+                margin-right: 0;
+                margin-left: 10px;
+            }
+
+            @media screen and (max-width: 768px) {
+                .roadmap-timeline::before {
+                    left: 30px;
+                }
+
+                .roadmap-quarter {
+                    width: 100%;
+                    left: 0;
+                    text-align: left;
+                    padding-left: 70px;
+                }
+
+                .roadmap-quarter::after {
+                    left: 18px;
+                    right: auto;
+                }
+
+                .left .roadmap-list li {
+                    justify-content: flex-start;
+                }
+
+                .left .roadmap-list li .icon {
+                    order: 0;
+                    margin-right: 10px;
+                    margin-left: 0;
+                }
+
+                .left .roadmap-list {
+                    padding-right: 0;
+                }
+            }
+        </style>
+        <!-- Set default language -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.i18n && window.i18n.changeLanguage) {
+                window.i18n.changeLanguage('es');
+            }
+        });
+    </script>
+</head>
+    <body>
+        
+
+        <!-- Header with Navigation (included from header.html) -->
+        <div data-include="../includes/header.html"></div>
+
+        <!-- Main content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <section class="document-section">
+                <div class="container">
+                    <div class="document-header">
+                        <h1>Product Roadmap</h1>
+                        <p class="last-updated">Last Updated: May 2, 2025</p>
+                    </div>
+
+                    <div class="document-content">
+                        <p class="consumer-view-content">Our product roadmap shows you what exciting new features are coming to the Divinci AI platform. We're constantly improving based on your feedback to make your AI experience better and more personalized. This roadmap may change as we hear from users like you about what's most important.</p>
+                        <p class="company-view-content">Our product roadmap outlines the upcoming features and improvements we're planning for the Divinci AI platform. This roadmap is subject to change based on user feedback and market conditions. We prioritize developments that deliver the most value to our enterprise customers while advancing our mission of empowering human-AI collaboration across organization-wide deployments.</p>
+
+                        <div class="roadmap-timeline">
+                            <!-- Q2 2025 -->
+                            <div class="roadmap-quarter right">
+                                <div class="roadmap-card">
+                                    <h3 class="roadmap-quarter-title">Q2 2025</h3>
+                                    <span class="roadmap-status status-development">In Development</span>
+                                    <ul class="roadmap-list consumer-view-content">
+                                        <li><i class="fas fa-book icon"></i> <span>Personal knowledge bases for your documents</span></li>
+                                        <li><i class="fas fa-mobile-alt icon"></i> <span>Mobile app improvements for on-the-go AI</span></li>
+                                        <li><i class="fas fa-code icon"></i> <span>Simple code helper for beginners</span></li>
+                                        <li><i class="fas fa-comments icon"></i> <span>Share your AI with friends and family</span></li>
+                                        <li><i class="fas fa-palette icon"></i> <span>Creative tools for image generation</span></li>
+                                    </ul>
+                                    <ul class="roadmap-list company-view-content">
+                                        <li><i class="fas fa-code-branch icon"></i> <span>Advanced RAG integration with custom knowledge bases</span></li>
+                                        <li><i class="fas fa-user-shield icon"></i> <span>Enhanced security features for enterprise customers</span></li>
+                                        <li><i class="fas fa-code icon"></i> <span>Code generation and execution features</span></li>
+                                        <li><i class="fas fa-comments icon"></i> <span>Improved multiplayer chat experience</span></li>
+                                        <li><i class="fas fa-plug icon"></i> <span>Expanded API capabilities for developers</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Q3 2025 -->
+                            <div class="roadmap-quarter left">
+                                <div class="roadmap-card">
+                                    <h3 class="roadmap-quarter-title">Q3 2025</h3>
+                                    <span class="roadmap-status status-planned">Planned</span>
+                                    <ul class="roadmap-list">
+                                        <li><i class="fas fa-desktop icon"></i> <span>Desktop application for Windows, macOS, and Linux</span></li>
+                                        <li><i class="fas fa-image icon"></i> <span>Advanced image generation capabilities</span></li>
+                                        <li><i class="fas fa-robot icon"></i> <span>Custom AI assistant builder</span></li>
+                                        <li><i class="fas fa-brain icon"></i> <span>Specialized domain-specific LLMs</span></li>
+                                        <li><i class="fas fa-magic icon"></i> <span>UI/UX overhaul with customizable themes</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Q4 2025 -->
+                            <div class="roadmap-quarter right">
+                                <div class="roadmap-card">
+                                    <h3 class="roadmap-quarter-title">Q4 2025</h3>
+                                    <span class="roadmap-status status-planned">Planned</span>
+                                    <ul class="roadmap-list">
+                                        <li><i class="fas fa-chart-line icon"></i> <span>Advanced analytics dashboard for enterprises</span></li>
+                                        <li><i class="fas fa-language icon"></i> <span>Multilingual support with real-time translation</span></li>
+                                        <li><i class="fas fa-microchip icon"></i> <span>Custom fine-tuning platform for enterprise clients</span></li>
+                                        <li><i class="fas fa-link icon"></i> <span>Enhanced integration with third-party tools</span></li>
+                                        <li><i class="fas fa-shield-alt icon"></i> <span>Advanced compliance and governance features</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Q1 2026 -->
+                            <div class="roadmap-quarter left">
+                                <div class="roadmap-card">
+                                    <h3 class="roadmap-quarter-title">Q1 2026</h3>
+                                    <span class="roadmap-status status-planned">Planned</span>
+                                    <ul class="roadmap-list">
+                                        <li><i class="fas fa-vr-cardboard icon"></i> <span>VR/AR integration for immersive AI experiences</span></li>
+                                        <li><i class="fas fa-video icon"></i> <span>Video generation and editing capabilities</span></li>
+                                        <li><i class="fas fa-sitemap icon"></i> <span>Knowledge graph visualization tools</span></li>
+                                        <li><i class="fas fa-mobile-alt icon"></i> <span>Enhanced mobile experience with offline capabilities</span></li>
+                                        <li><i class="fas fa-network-wired icon"></i> <span>Advanced agent collaboration frameworks</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>Feedback and Suggestions</h2>
+                        <p>We value your input! Your feedback helps us prioritize our development efforts and ensure we're building features that truly enhance your experience with Divinci AI.</p>
+                        <p>To suggest a feature or provide feedback on our roadmap, please contact us at <a href="../mailto:feedback@divinci.ai">feedback@divinci.ai</a> or join our <a href="#">community forum</a>.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer with Sacred Geometry and Bulma Integration -->
+        <footer class="site-footer">
+            <!-- Sacred Geometry Background Elements -->
+            <div class="footer-sacred-pattern"></div>
+            <div class="sacred-circle sacred-circle-1"></div>
+            <div class="sacred-circle sacred-circle-2"></div>
+            <div class="sacred-circle sacred-circle-3"></div>
+
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Top Section with Bulma Columns -->
+                    <div class="columns is-footer-links">
+                        <!-- Logo and Company Info -->
+                        <div class="column is-one-quarter">
+                            <div class="footer-brand">
+                                <div class="footer-logo">
+                                                                <div style="
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+    filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
+    border-radius: 50%;
+    background: rgba(92, 226, 231, 0.1);
+    padding: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+">🖤</div>
+                                    <span class="footer-brand-name">Divinci AI</span>
+                                </div>
+                                <p class="footer-tagline">Empowering human-AI collaboration</p>
+                                <div class="social-links">
+                                    <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                    <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Links -->
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Product</h3>
+                                <ul>
+                                    <li><a href="../index.html#features">Features</a></li>
+                                    <li><a href="../pricing.html">Pricing</a></li>
+                                    <li><a href="../roadmap.html">Roadmap</a></li>
+                                    <li><a href="../changelog.html">Changelog</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Resources</h3>
+                                <ul>
+                                    <li><a href="../docs/">Documentation</a></li>
+                                    <li><a href="../blog/">Blog</a></li>
+                                    <li><a href="../tutorials/">Tutorials</a></li>
+                                    <li><a href="../api/">API</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Company</h3>
+                                <ul>
+                                    <li><a href="../about-us.html">About Us</a></li>
+                                    <li><a href="../careers.html">Careers</a></li>
+                                    <li><a href="../contact.html">Contact</a></li>
+                                    <li><a href="../press.html">Press</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="../terms-of-service.html">Terms of Service</a></li>
+                                    <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                                    <li><a href="../ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                                    <li><a href="../security.html">Security</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom with Bulma Level -->
+                <div class="footer-bottom">
+                    <div class="level is-footer-bottom">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="footer-bottom-links">
+                                    <a href="../sitemap.xml">Sitemap</a>
+                                    <a href="../accessibility.html">Accessibility</a>
+                                    <a href="../cookies.html">Cookie Policy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="../js/keyboard-navigation.js" defer></script>
+        <script src="../js/apply-sora-to-divinci.js" defer></script>
+        <script src="../js/mobile-menu.js" defer></script>
+        <script src="../js/view-toggle.js" defer></script>
+    </body>
+</html>

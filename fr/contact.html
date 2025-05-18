@@ -1,0 +1,638 @@
+<\!DOCTYPE html>
+<html lang="fr" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <\!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/contact.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/contact.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/contact.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/contact.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/contact.html" hreflang="ar" />
+        <\!-- Include meta tags -->
+        <div data-include="../includes/meta-tags.html"></div>
+
+        <\!-- Include structured data -->
+        <div data-include="../includes/structured-data.html"></div>
+
+        <\!-- Initialize page-specific meta tags and structured data -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set meta tags for this page
+                if (window.setMetaTags) {
+                    setMetaTags({
+                        title: "Contactez-Nous",
+                        description: "Contactez l'équipe de Divinci AI pour des questions sur notre plateforme, les tarifs ou pour demander une démo. Nous sommes là pour vous aider avec vos solutions d'IA personnalisées.",
+                        image: "contact-social.svg",
+                        url: "/fr/contact.html",
+                        type: "website",
+                        keywords: "divinci ai contact, support ia, formulaire de contact, demande commerciale, demande de démonstration, support technique"
+                    });
+                }
+
+                // Add structured data for this page
+                if (window.addStructuredData) {
+                    addStructuredData({
+                        type: "WebPage",
+                        title: "Contactez-Nous | Divinci AI",
+                        description: "Contactez l'équipe de Divinci AI pour des questions sur notre plateforme, les tarifs ou pour demander une démo. Nous sommes là pour vous aider avec vos solutions d'IA personnalisées.",
+                        image: "../images/social/contact-social.svg"
+                    });
+
+                    // Add LocalBusiness structured data
+                    const localBusinessData = {
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "Divinci AI",
+                        "url": "https://divinci.ai",
+                        "logo": "https://divinci.ai/images/divinci_logo.png",
+                        "contactPoint": {
+                            "@type": "ContactPoint",
+                            "telephone": "+1-800-555-1234",
+                            "contactType": "customer service",
+                            "email": "hello@divinci.ai",
+                            "availableLanguage": ["English", "Français"]
+                        },
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "123 AI Avenue",
+                            "addressLocality": "San Francisco",
+                            "addressRegion": "CA",
+                            "postalCode": "94107",
+                            "addressCountry": "US"
+                        }
+                    };
+
+                    const script = document.createElement('script');
+                    script.type = 'application/ld+json';
+                    script.textContent = JSON.stringify(localBusinessData);
+                    document.head.appendChild(script);
+                }
+            });
+        </script>
+
+        <\!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
+
+        <\!-- Page Title -->
+        <title>Contactez-Nous | Divinci AI</title>
+
+        <\!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="../includes/header-styles.css" />
+        <link rel="stylesheet" href="../includes/section-content-fix.css" />
+        <link rel="stylesheet" href="../css/social-sharing.css" />
+
+        <style>
+            /* Contact-specific styles */
+            .contact-section {
+                background-color: #f8fafc;
+                background-image: linear-gradient(to bottom, #f0f4f8, #f8fafc);
+                padding: 5rem 0;
+                position: relative;
+                overflow: hidden;
+            }
+
+            /* Sacred geometry background elements */
+            .contact-section::before {
+                content: '';
+                position: absolute;
+                top: -200px;
+                right: -100px;
+                width: 400px;
+                height: 400px;
+                border-radius: 50%;
+                border: 1px solid rgba(92, 226, 231, 0.1);
+                opacity: 0.15;
+                z-index: 0;
+            }
+
+            .contact-section::after {
+                content: '';
+                position: absolute;
+                bottom: -200px;
+                left: -100px;
+                width: 400px;
+                height: 400px;
+                border-radius: 50%;
+                border: 1px solid rgba(92, 226, 231, 0.1);
+                opacity: 0.1;
+                z-index: 0;
+            }
+
+            .contact-header {
+                text-align: center;
+                margin-bottom: 3rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .contact-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1rem;
+                background: linear-gradient(to right, #16214c, #5ce2e7);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                display: inline-block;
+            }
+
+            .contact-subtitle {
+                font-size: 1.2rem;
+                color: #555;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            .contact-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .contact-form-container {
+                flex: 3;
+                min-width: 300px;
+                background-color: white;
+                border-radius: 12px;
+                padding: 2.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                border-top: 5px solid #5ce2e7;
+            }
+
+            .contact-info-container {
+                flex: 1;
+                min-width: 250px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .contact-info-card {
+                background-color: white;
+                border-radius: 12px;
+                padding: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                display: flex;
+                align-items: center;
+                transition: transform 0.3s ease;
+            }
+
+            .contact-info-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: rgba(92, 226, 231, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 1rem;
+                color: #5ce2e7;
+                font-size: 1.2rem;
+            }
+
+            .contact-info-content h3 {
+                font-size: 1rem;
+                font-weight: 600;
+                color: #16214c;
+                margin-bottom: 0.25rem;
+            }
+
+            .contact-info-content p {
+                color: #555;
+                font-size: 0.9rem;
+            }
+
+            .contact-info-content a {
+                color: #16214c;
+                text-decoration: none;
+                transition: color 0.2s ease;
+            }
+
+            .contact-info-content a:hover {
+                color: #5ce2e7;
+            }
+
+            .contact-form {
+                margin-top: 1.5rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                color: #333;
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                font-size: 1rem;
+                transition: border 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .form-control:focus {
+                border-color: #5ce2e7;
+                box-shadow: 0 0 0 3px rgba(92, 226, 231, 0.2);
+                outline: none;
+            }
+
+            .contact-submit-btn {
+                background: linear-gradient(135deg, #16214c, #254284);
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                display: inline-flex;
+                align-items: center;
+            }
+
+            .contact-submit-btn i {
+                margin-right: 0.5rem;
+            }
+
+            .contact-submit-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .contact-submit-btn:focus {
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(92, 226, 231, 0.3), 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .form-check {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 1.5rem;
+            }
+
+            .form-check-input {
+                margin-right: 0.75rem;
+                margin-top: 0.25rem;
+            }
+
+            .form-check-label {
+                font-size: 0.9rem;
+                color: #555;
+            }
+
+            .form-check-label a {
+                color: #16214c;
+                text-decoration: underline;
+            }
+
+            .form-check-label a:hover {
+                color: #5ce2e7;
+            }
+
+            .contact-map {
+                margin-top: 3rem;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                height: 400px;
+                background-color: #f5f5f5;
+                position: relative;
+            }
+
+            .map-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(22, 33, 76, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .map-overlay:hover {
+                background-color: rgba(22, 33, 76, 0.05);
+            }
+
+            .map-message {
+                background-color: white;
+                padding: 1rem 2rem;
+                border-radius: 30px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                font-weight: 600;
+                color: #16214c;
+                display: flex;
+                align-items: center;
+            }
+
+            .map-message i {
+                margin-right: 0.5rem;
+                color: #5ce2e7;
+            }
+
+            .form-select {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                font-size: 1rem;
+                transition: border 0.3s ease, box-shadow 0.3s ease;
+                background-color: white;
+                appearance: none;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 0.75rem center;
+                background-size: 16px;
+            }
+
+            .form-select:focus {
+                border-color: #5ce2e7;
+                box-shadow: 0 0 0 3px rgba(92, 226, 231, 0.2);
+                outline: none;
+            }
+
+            /* Response message styling */
+            .form-response {
+                padding: 1rem;
+                border-radius: 6px;
+                margin-top: 1.5rem;
+                display: none;
+            }
+
+            .form-response.success {
+                background-color: rgba(92, 226, 231, 0.1);
+                border: 1px solid rgba(92, 226, 231, 0.3);
+                color: #0ba0a6;
+            }
+
+            .form-response.error {
+                background-color: rgba(255, 76, 76, 0.1);
+                border: 1px solid rgba(255, 76, 76, 0.3);
+                color: #e53935;
+            }
+
+            .form-response i {
+                margin-right: 0.5rem;
+            }
+
+            /* Sacred geometry pattern for form */
+            .sacred-pattern {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                width: 100px;
+                height: 100px;
+                opacity: 0.07;
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='30' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='20' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%235CE2E7' stroke-width='0.3' /%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%235CE2E7' stroke-width='0.3' /%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                z-index: 0;
+            }
+
+            /* Responsive adjustments */
+            @media screen and (max-width: 768px) {
+                .contact-wrapper {
+                    flex-direction: column;
+                }
+
+                .contact-form-container, .contact-info-container {
+                    width: 100%;
+                }
+
+                .contact-info-container {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 15px;
+                }
+
+                .contact-map {
+                    height: 300px;
+                }
+            }
+
+            @media screen and (max-width: 576px) {
+                .contact-info-container {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+
+        <\!-- Header with Navigation -->
+        <header role="banner">
+            <div data-include="../includes/header.html"></div>
+        </header>
+
+        <\!-- Main content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <section class="contact-section">
+                <div class="container">
+                    <div class="contact-header">
+                        <h1 class="contact-title">Contactez-Nous</h1>
+                        <p class="contact-subtitle">Vous avez des questions sur notre plateforme ou besoin d'aide pour démarrer ? Nous sommes là pour vous aider. Contactez-nous via le formulaire ci-dessous ou en utilisant nos coordonnées.</p>
+                    </div>
+
+                    <div class="contact-wrapper">
+                        <div class="contact-form-container">
+                            <h2>Envoyez-Nous un Message</h2>
+                            <div class="sacred-pattern"></div>
+
+                            <form class="contact-form" id="contactForm">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Votre Nom</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Entrez votre nom" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Adresse Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="company" class="form-label">Entreprise (Optionnel)</label>
+                                    <input type="text" class="form-control" id="company" name="company" placeholder="Nom de votre entreprise">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inquiryType" class="form-label">Type de Demande</label>
+                                    <select class="form-select" id="inquiryType" name="inquiryType" required>
+                                        <option value="" selected disabled>Sélectionnez une option</option>
+                                        <option value="general">Question Générale</option>
+                                        <option value="sales">Demande Commerciale</option>
+                                        <option value="demo">Demande de Démonstration</option>
+                                        <option value="support">Support Technique</option>
+                                        <option value="partnership">Opportunité de Partenariat</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message" class="form-label">Votre Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="privacy" name="privacy" required>
+                                    <label class="form-check-label" for="privacy">
+                                        J'accepte la <a href="../privacy-policy.html" target="_blank">Politique de Confidentialité</a> et je consens au traitement de mes données personnelles.
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="contact-submit-btn">
+                                    <i class="fas fa-paper-plane"></i> Envoyer le Message
+                                </button>
+
+                                <div class="form-response success" id="formSuccess">
+                                    <i class="fas fa-check-circle"></i> Merci pour votre message \! Nous vous répondrons dès que possible.
+                                </div>
+
+                                <div class="form-response error" id="formError">
+                                    <i class="fas fa-exclamation-circle"></i> Oups \! Quelque chose s'est mal passé. Veuillez réessayer plus tard ou nous contacter directement.
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="contact-info-container">
+                            <div class="contact-info-card">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h3>Email</h3>
+                                    <p><a href="mailto:hello@divinci.ai">hello@divinci.ai</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h3>Appelez-Nous</h3>
+                                    <p><a href="tel:+18005551234">+1 (800) 555-1234</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h3>Visitez-Nous</h3>
+                                    <p>123 AI Avenue<br>San Francisco, CA 94107</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h3>Heures d'Ouverture</h3>
+                                    <p>Lundi-Vendredi: 9h-18h PST<br>Weekend: Fermé</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-map">
+                        <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=San+Francisco,+CA,+USA&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8" title="Emplacement du Bureau Divinci AI"></iframe>
+                        <div class="map-overlay" id="mapOverlay">
+                            <div class="map-message">
+                                <i class="fas fa-map-marked-alt"></i> Cliquez pour interagir avec la carte
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <\!-- Load social sharing script -->
+        <script src="../js/social-sharing.js" defer></script>
+
+        <\!-- Footer -->
+        <div class="footer-wrapper" data-include="../includes/footer.html" style="width: 100%; overflow: hidden; box-sizing: border-box;"></div>
+
+        <\!-- Scripts -->
+        <script src="../js/keyboard-navigation.js" defer></script>
+        <script src="../js/apply-sora-to-divinci.js" defer></script>
+        <script src="../js/mobile-menu.js" defer></script>
+        <script src="../js/view-toggle.js" defer></script>
+
+        <\!-- Script to include HTML components -->
+        <script src="../debug-include.js"></script>
+
+        <\!-- Form submission and map interaction script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Form submission
+                const contactForm = document.getElementById('contactForm');
+                const formSuccess = document.getElementById('formSuccess');
+                const formError = document.getElementById('formError');
+
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // In a real implementation, this would send the form data to a server
+                    // For demo purposes, we'll just show the success message
+
+                    // Simulate form submission with a short delay
+                    setTimeout(function() {
+                        // Hide any existing messages
+                        formError.style.display = 'none';
+
+                        // Show success message
+                        formSuccess.style.display = 'block';
+
+                        // Reset form
+                        contactForm.reset();
+
+                        // Scroll to the success message
+                        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                        // Hide success message after 5 seconds
+                        setTimeout(function() {
+                            formSuccess.style.display = 'none';
+                        }, 5000);
+                    }, 1000);
+                });
+
+                // Map interaction
+                const mapOverlay = document.getElementById('mapOverlay');
+
+                mapOverlay.addEventListener('click', function() {
+                    this.style.display = 'none';
+                });
+            });
+        </script>
+    </body>
+</html>
+EOL < /dev/null

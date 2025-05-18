@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/tools/batch-convert.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/tools/batch-convert.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/tools/batch-convert.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/tools/batch-convert.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/tools/batch-convert.html" hreflang="ar" />
+    <title>Batch SVG to PNG/JPG Converter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1, h2, h3 {
+            color: #16214c;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #16214c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #254284;
+        }
+        a {
+            display: inline-block;
+            background-color: #5ce2e7;
+            color: #16214c;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 10px;
+        }
+        a:hover {
+            background-color: #4bc0c5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Batch SVG to PNG/JPG Converter</h1>
+        <p>This tool automatically converts all social media preview SVG files to PNG and JPG formats.</p>
+        <button id="startBtn">Start Conversion</button>
+    </div>
+    
+    <div id="output"></div>
+    
+    <script>
+        document.getElementById('startBtn').addEventListener('click', function() {
+            // Load and execute the conversion script
+            const script = document.createElement('script');
+            script.src = 'convert-svg-to-png.js';
+            document.body.appendChild(script);
+            
+            // Disable the button
+            this.disabled = true;
+            this.textContent = 'Converting...';
+        });
+    </script>
+</body>
+</html>

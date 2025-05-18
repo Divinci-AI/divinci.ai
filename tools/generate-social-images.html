@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/tools/generate-social-images.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/tools/generate-social-images.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/tools/generate-social-images.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/tools/generate-social-images.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/tools/generate-social-images.html" hreflang="ar" />
+    <title>Divinci Social Media Image Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #16214c;
+            text-align: center;
+        }
+        .canvas-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .controls {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #16214c;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #16214c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #254284;
+        }
+        .download-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .download-link {
+            display: inline-block;
+            background-color: #5ce2e7;
+            color: #16214c;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 10px;
+        }
+        .download-link:hover {
+            background-color: #4bc0c5;
+        }
+        .preview {
+            margin-top: 20px;
+        }
+        .preview h2 {
+            color: #16214c;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Divinci Social Media Image Generator</h1>
+    
+    <div class="controls">
+        <div class="form-group">
+            <label for="template">Template:</label>
+            <select id="template">
+                <option value="default">Default (Homepage)</option>
+                <option value="about">About Us</option>
+                <option value="feature">Feature Page</option>
+                <option value="team">Team Page</option>
+                <option value="social-good">Social Good</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" value="Divinci AI">
+        </div>
+        
+        <div class="form-group">
+            <label for="subtitle">Subtitle:</label>
+            <input type="text" id="subtitle" value="Your AI for Life's Journey">
+        </div>
+        
+        <div class="form-group">
+            <label for="url">URL Path:</label>
+            <input type="text" id="url" value="divinci.ai">
+        </div>
+        
+        <div class="form-group">
+            <label for="bgColor1">Background Color 1:</label>
+            <input type="color" id="bgColor1" value="#16214c">
+        </div>
+        
+        <div class="form-group">
+            <label for="bgColor2">Background Color 2:</label>
+            <input type="color" id="bgColor2" value="#254284">
+        </div>
+        
+        <div class="form-group">
+            <label for="accentColor">Accent Color:</label>
+            <input type="color" id="accentColor" value="#5ce2e7">
+        </div>
+        
+        <button id="generateBtn">Generate Image</button>
+        <button id="resetBtn">Reset</button>
+    </div>
+    
+    <div class="canvas-container">
+        <canvas id="socialCanvas" width="1200" height="630"></canvas>
+    </div>
+    
+    <div class="download-container">
+        <a id="downloadPng" class="download-link" download="divinci-social.png">Download PNG</a>
+        <a id="downloadJpg" class="download-link" download="divinci-social.jpg">Download JPG</a>
+    </div>
+    
+    <div class="preview">
+        <h2>Preview</h2>
+        <p>This is how your image will appear when shared on social media platforms.</p>
+    </div>
+    
+    <script>
+        // Wait for the page to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get canvas and context
+            const canvas = document.getElementById('socialCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Get form elements
+            const templateSelect = document.getElementById('template');
+            const titleInput = document.getElementById('title');
+            const subtitleInput = document.getElementById('subtitle');
+            const urlInput = document.getElementById('url');
+            const bgColor1Input = document.getElementById('bgColor1');
+            const bgColor2Input = document.getElementById('bgColor2');
+            const accentColorInput = document.getElementById('accentColor');
+            const generateBtn = document.getElementById('generateBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const downloadPngLink = document.getElementById('downloadPng');
+            const downloadJpgLink = document.getElementById('downloadJpg');
+            
+            // Load logo image
+            const logoImg = new Image();
+            logoImg.src = '../images/divinci_logo_inverted.svg';
+            
+            // Load team images
+            const mikeImg = new Image();
+            mikeImg.src = '../images/Michael-Mooring.jpeg';
+            
+            const samImg = new Image();
+            samImg.src = '../images/sam-tobia.jpg';
+            
+            const sierraImg = new Image();
+            sierraImg.src = '../images/sierra-hooshiari.jpeg';
+            
+            // Load feature image
+            const featureImg = new Image();
+            featureImg.src = '../images/ai-for-impact-1.avif';
+            
+            // Generate image based on form values
+            function generateImage() {
+                const template = templateSelect.value;
+                const title = titleInput.value;
+                const subtitle = subtitleInput.value;
+                const url = urlInput.value;
+                const bgColor1 = bgColor1Input.value;
+                const bgColor2 = bgColor2Input.value;
+                const accentColor = accentColorInput.value;
+                
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw background gradient
+                const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                gradient.addColorStop(0, bgColor1);
+                gradient.addColorStop(1, bgColor2);
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw decorative circles
+                drawDecorativeCircles(ctx, accentColor);
+                
+                // Draw content based on template
+                switch(template) {
+                    case 'about':
+                        drawAboutTemplate(ctx, title, subtitle, url, accentColor);
+                        break;
+                    case 'feature':
+                        drawFeatureTemplate(ctx, title, subtitle, url, accentColor);
+                        break;
+                    case 'team':
+                        drawTeamTemplate(ctx, title, subtitle, url, accentColor);
+                        break;
+                    case 'social-good':
+                        drawSocialGoodTemplate(ctx, title, subtitle, url, accentColor);
+                        break;
+                    default:
+                        drawDefaultTemplate(ctx, title, subtitle, url, accentColor);
+                }
+                
+                // Update download links
+                updateDownloadLinks();
+            }
+            
+            // Draw decorative circles
+            function drawDecorativeCircles(ctx, accentColor) {
+                // Large circle top left
+                ctx.beginPath();
+                ctx.arc(200, 150, 100, 0, Math.PI * 2);
+                ctx.strokeStyle = accentColor;
+                ctx.lineWidth = 2;
+                ctx.globalAlpha = 0.2;
+                ctx.stroke();
+                
+                // Large circle bottom right
+                ctx.beginPath();
+                ctx.arc(1000, 480, 150, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                // Small circle top
+                ctx.beginPath();
+                ctx.arc(600, 100, 50, 0, Math.PI * 2);
+                ctx.globalAlpha = 0.1;
+                ctx.stroke();
+                
+                // Medium circle bottom left
+                ctx.beginPath();
+                ctx.arc(400, 500, 80, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                // Reset opacity
+                ctx.globalAlpha = 1;
+            }
+            
+            // Draw default template (homepage)
+            function drawDefaultTemplate(ctx, title, subtitle, url, accentColor) {
+                // Draw logo
+                ctx.drawImage(logoImg, 550, 150, 100, 100);
+                
+                // Draw title
+                ctx.font = 'bold 72px "Segoe UI", Arial, sans-serif';
+                ctx.textAlign = 'center';
+                
+                // Create gradient for text
+                const textGradient = ctx.createLinearGradient(400, 0, 800, 0);
+                textGradient.addColorStop(0, '#ffffff');
+                textGradient.addColorStop(1, accentColor);
+                
+                ctx.fillStyle = textGradient;
+                ctx.fillText(title, 600, 350);
+                
+                // Draw subtitle
+                ctx.font = '32px "Segoe UI", Arial, sans-serif';
+                ctx.fillStyle = 'white';
+                ctx.fillText(subtitle, 600, 420);
+                
+                // Draw URL
+                ctx.font = '24px "Segoe UI", Arial, sans-serif';
+                ctx.globalAlpha = 0.7;
+                ctx.fillText(url, 600, 580);
+                ctx.globalAlpha = 1;
+            }
+            
+            // Draw about template
+            function drawAboutTemplate(ctx, title, subtitle, url, accentColor) {
+                // Draw logo
+                ctx.drawImage(logoImg, 250, 265, 100, 100);
+                
+                // Draw title
+                ctx.font = 'bold 72px "Segoe UI", Arial, sans-serif';
+                ctx.textAlign = 'center';
+                
+                // Create gradient for text
+                const textGradient = ctx.createLinearGradient(400, 0, 800, 0);
+                textGradient.addColorStop(0, '#ffffff');
+                textGradient.addColorStop(1, accentColor);
+                
+                ctx.fillStyle = textGradient;
+                ctx.fillText('About Us', 600, 280);
+                
+                // Draw company name
+                ctx.font = 'bold 48px "Segoe UI", Arial, sans-serif';
+                ctx.fillStyle = 'white';
+                ctx.fillText(title, 600, 350);
+                
+                // Draw subtitle
+                ctx.font = '28px "Segoe UI", Arial, sans-serif';
+                ctx.fillText(subtitle, 600, 420);
+                
+                // Draw URL
+                ctx.font = '24px "Segoe UI", Arial, sans-serif';
+                ctx.globalAlpha = 0.7;
+                ctx.fillText(url + '/about-us', 600, 580);
+                ctx.globalAlpha = 1;
+            }
+            
+            // Draw feature template
+            function drawFeatureTemplate(ctx, title, subtitle, url, accentColor) {
+                // Draw feature image with overlay
+                ctx.globalAlpha = 0.3;
+                ctx.drawImage(featureImg, 700, 150, 400, 300);
+                ctx.globalAlpha = 1;
+                
+                // Draw logo
+                ctx.drawImage(logoImg, 150, 150, 100, 100);
+                
+                // Draw title
+                ctx.font = 'bold 64px "Segoe UI", Arial, sans-serif';
+                ctx.textAlign = 'left';
+                
+                // Create gradient for text
+                const textGradient = ctx.createLinearGradient(150, 0, 650, 0);
+                textGradient.addColorStop(0, '#ffffff');
+                textGradient.addColorStop(1, accentColor);
+                
+                ctx.fillStyle = textGradient;
+                
+                // Handle long titles
+                if (title.length > 20) {
+                    const words = title.split(' ');
+                    let line1 = '';
+                    let line2 = '';
+                    
+                    for (let i = 0; i < words.length; i++) {
+                        if ((line1 + words[i]).length < 20) {
+                            line1 += words[i] + ' ';
+                        } else {
+                            line2 += words[i] + ' ';
+                        }
+                    }
+                    
+                    ctx.fillText(line1, 150, 300);
+                    ctx.fillText(line2, 150, 370);
+                } else {
+                    ctx.fillText(title, 150, 300);
+                }
+                
+                // Draw subtitle
+                ctx.font = '28px "Segoe UI", Arial, sans-serif';
+                ctx.fillStyle = 'white';
+                ctx.fillText(subtitle, 150, 420);
+                
+                // Draw URL
+                ctx.font = '24px "Segoe UI", Arial, sans-serif';
+                ctx.globalAlpha = 0.7;
+                ctx.fillText(url + '/features', 150, 580);
+                ctx.globalAlpha = 1;
+            }
+            
+            // Draw team template
+            function drawTeamTemplate(ctx, title, subtitle, url, accentColor) {
+                // Draw team member images
+                drawRoundedImage(ctx, mikeImg, 250, 200, 150, 150);
+                drawRoundedImage(ctx, samImg, 450, 200, 150, 150);
+                drawRoundedImage(ctx, sierraImg, 650, 200, 150, 150);
+                
+                // Draw title
+                ctx.font = 'bold 72px "Segoe UI", Arial, sans-serif';
+                ctx.textAlign = 'center';
+                
+                // Create gradient for text
+                const textGradient = ctx.createLinearGradient(400, 0, 800, 0);
+                textGradient.addColorStop(0, '#ffffff');
+                textGradient.addColorStop(1, accentColor);
+                
+                ctx.fillStyle = textGradient;
+                ctx.fillText('Our Team', 600, 420);
+                
+                // Draw subtitle
+                ctx.font = '32px "Segoe UI", Arial, sans-serif';
+                ctx.fillStyle = 'white';
+                ctx.fillText(subtitle, 600, 480);
+                
+                // Draw URL
+                ctx.font = '24px "Segoe UI", Arial, sans-serif';
+                ctx.globalAlpha = 0.7;
+                ctx.fillText(url + '/about-us', 600, 580);
+                ctx.globalAlpha = 1;
+            }
+            
+            // Draw social good template
+            function drawSocialGoodTemplate(ctx, title, subtitle, url, accentColor) {
+                // Draw feature image
+                ctx.drawImage(featureImg, 150, 150, 400, 300);
+                
+                // Draw semi-transparent overlay
+                ctx.fillStyle = 'rgba(22, 33, 76, 0.7)';
+                ctx.fillRect(150, 150, 400, 300);
+                
+                // Draw title
+                ctx.font = 'bold 48px "Segoe UI", Arial, sans-serif';
+                ctx.textAlign = 'center';
+                
+                // Create gradient for text
+                const textGradient = ctx.createLinearGradient(400, 0, 800, 0);
+                textGradient.addColorStop(0, '#ffffff');
+                textGradient.addColorStop(1, accentColor);
+                
+                ctx.fillStyle = textGradient;
+                ctx.fillText('AI for Social Impact', 600, 250);
+                
+                // Draw subtitle
+                ctx.font = '32px "Segoe UI", Arial, sans-serif';
+                ctx.fillStyle = 'white';
+                ctx.fillText(subtitle, 600, 320);
+                
+                // Draw description
+                ctx.font = '24px "Segoe UI", Arial, sans-serif';
+                ctx.fillText('Join us in using AI technology for meaningful', 600, 380);
+                ctx.fillText('social impact and community development', 600, 410);
+                
+                // Draw URL
+                ctx.font = '24px "Segoe UI", Arial, sans-serif';
+                ctx.globalAlpha = 0.7;
+                ctx.fillText(url + '/social-good', 600, 580);
+                ctx.globalAlpha = 1;
+            }
+            
+            // Helper function to draw rounded images
+            function drawRoundedImage(ctx, img, x, y, width, height) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(x + width/2, y + height/2, width/2, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.clip();
+                
+                ctx.drawImage(img, x, y, width, height);
+                
+                ctx.beginPath();
+                ctx.arc(x + width/2, y + height/2, width/2, 0, Math.PI * 2);
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = '#5ce2e7';
+                ctx.stroke();
+                
+                ctx.restore();
+            }
+            
+            // Update download links
+            function updateDownloadLinks() {
+                // PNG download
+                downloadPngLink.href = canvas.toDataURL('image/png');
+                downloadPngLink.download = `divinci-${templateSelect.value}-social.png`;
+                
+                // JPG download
+                downloadJpgLink.href = canvas.toDataURL('image/jpeg', 0.9);
+                downloadJpgLink.download = `divinci-${templateSelect.value}-social.jpg`;
+            }
+            
+            // Reset form to defaults
+            function resetForm() {
+                templateSelect.value = 'default';
+                titleInput.value = 'Divinci AI';
+                subtitleInput.value = 'Your AI for Life\'s Journey';
+                urlInput.value = 'divinci.ai';
+                bgColor1Input.value = '#16214c';
+                bgColor2Input.value = '#254284';
+                accentColorInput.value = '#5ce2e7';
+                
+                generateImage();
+            }
+            
+            // Event listeners
+            generateBtn.addEventListener('click', generateImage);
+            resetBtn.addEventListener('click', resetForm);
+            
+            // Template change handler
+            templateSelect.addEventListener('change', function() {
+                switch(this.value) {
+                    case 'about':
+                        subtitleInput.value = 'Building the future of human-AI collaboration';
+                        break;
+                    case 'feature':
+                        subtitleInput.value = 'Powerful AI features for your needs';
+                        break;
+                    case 'team':
+                        subtitleInput.value = 'Meet the people behind Divinci AI';
+                        break;
+                    case 'social-good':
+                        subtitleInput.value = 'Using AI for positive social impact';
+                        break;
+                    default:
+                        subtitleInput.value = 'Your AI for Life\'s Journey';
+                }
+            });
+            
+            // Generate initial image when all assets are loaded
+            Promise.all([
+                new Promise(resolve => { logoImg.onload = resolve; }),
+                new Promise(resolve => { mikeImg.onload = resolve; }),
+                new Promise(resolve => { samImg.onload = resolve; }),
+                new Promise(resolve => { sierraImg.onload = resolve; }),
+                new Promise(resolve => { featureImg.onload = resolve; })
+            ]).then(() => {
+                generateImage();
+            });
+        });
+    </script>
+</body>
+</html>

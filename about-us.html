@@ -3,26 +3,45 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-        <!-- SEO Meta Tags -->
-        <meta name="description" content="Divinci AI is building the future of human-AI collaboration. Learn about our mission, vision, team, and the story behind our innovative AI platform." />
-        <meta name="keywords" content="divinci ai, ai company, about divinci, ai platform, custom ai solutions, ai mission, ai team, ai founders" />
 
-        <!-- Open Graph / Social Media Meta Tags -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://divinci.ai/about-us.html" />
-        <meta property="og:title" content="About Us | Divinci AI" />
-        <meta property="og:description" content="Divinci AI is building the future of human-AI collaboration. Learn about our mission, vision, team, and the story behind our innovative AI platform." />
-        <meta property="og:image" content="https://divinci.ai/images/divinci_logo.png" />
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/about-us.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/about-us.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/about-us.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/about-us.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/about-us.html" hreflang="ar" />
+        <!-- Include meta tags -->
+        <div data-include="includes/meta-tags.html"></div>
 
-        <!-- Twitter Card Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://divinci.ai/about-us.html" />
-        <meta name="twitter:title" content="About Us | Divinci AI" />
-        <meta name="twitter:description" content="Divinci AI is building the future of human-AI collaboration. Learn about our mission, vision, team, and the story behind our innovative AI platform." />
-        <meta name="twitter:image" content="https://divinci.ai/images/divinci_logo.png" />
+        <!-- Include structured data -->
+        <div data-include="includes/structured-data.html"></div>
 
-        <!-- Canonical URL -->
-        <link rel="canonical" href="https://divinci.ai/about-us.html" />
+        <!-- Initialize page-specific meta tags and structured data -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set meta tags for this page
+                if (window.setMetaTags) {
+                    setMetaTags({
+                        title: "About Us",
+                        description: "Divinci AI is building the future of human-AI collaboration. Learn about our mission, vision, team, and the story behind our innovative AI platform.",
+                        image: "about-us-social.png",
+                        url: "/about-us.html",
+                        type: "website",
+                        keywords: "divinci ai, ai company, about divinci, ai platform, custom ai solutions, ai mission, ai team, ai founders"
+                    });
+                }
+
+                // Add structured data for this page
+                if (window.addStructuredData) {
+                    addStructuredData({
+                        type: "WebPage",
+                        title: "About Us | Divinci AI",
+                        description: "Divinci AI is building the future of human-AI collaboration. Learn about our mission, vision, team, and the story behind our innovative AI platform.",
+                        image: "images/social/about-us-social.png"
+                    });
+                }
+            });
+        </script>
 
         <!-- Favicons and App Icons -->
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -39,8 +58,162 @@
         <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="styles-footer.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        
+        <!-- Load include-html.js to ensure components are loaded properly -->
+        <script src="js/include-html.js"></script>
+        
+        <!-- Load language switcher scripts, but not the loader since we're using inline implementation -->
+        <script src="js/language-switcher.js" defer></script>
         <link rel="stylesheet" href="includes/header-styles.css" />
         <link rel="stylesheet" href="includes/section-content-fix.css" />
+        
+        <!-- Language Switcher Styles - Directly embedded for reliability -->
+        <style>
+            /* Language Switcher Styles */
+            .language-switcher {
+                position: relative !important;
+                display: inline-block !important;
+                font-family: 'Sora', sans-serif;
+                margin-left: 15px;
+                z-index: 9999 !important;
+                overflow: visible !important;
+            }
+
+            .language-switcher-current {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                padding: 4px 12px;
+                border-radius: 4px;
+                background-color: rgba(255, 255, 255, 0.1);
+                transition: background-color 0.3s;
+            }
+
+            .language-switcher-current:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .language-icon {
+                margin-right: 6px;
+                font-size: 16px;
+            }
+
+            .current-language {
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .dropdown-icon {
+                margin-left: 6px;
+                font-size: 10px;
+                transition: transform 0.3s;
+            }
+
+            .language-switcher.active .dropdown-icon {
+                transform: rotate(180deg);
+            }
+
+            .language-switcher-dropdown {
+                position: absolute !important;
+                top: 100% !important;
+                right: 0 !important;
+                left: auto !important;
+                width: 180px;
+                background-color: #fff;
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                display: none;
+                z-index: 9999 !important;
+                transform: none !important;
+            }
+
+            .language-switcher.active .language-switcher-dropdown {
+                display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                pointer-events: auto !important;
+            }
+
+            .language-option {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 15px;
+                text-decoration: none;
+                color: #333;
+                transition: background-color 0.3s;
+            }
+
+            .language-option:hover {
+                background-color: #f5f5f5;
+            }
+
+            .language-name {
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .language-native {
+                font-size: 14px;
+                color: #666;
+            }
+
+            /* RTL support */
+            [dir="rtl"] .language-icon {
+                margin-right: 0;
+                margin-left: 6px;
+            }
+
+            [dir="rtl"] .dropdown-icon {
+                margin-left: 0;
+                margin-right: 6px;
+            }
+
+            [dir="rtl"] .language-switcher-dropdown {
+                right: auto !important;
+                left: 0 !important;
+            }
+
+            /* Dark mode support */
+            @media (prefers-color-scheme: dark) {
+                .language-switcher-dropdown {
+                    background-color: #333;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                }
+
+                .language-option {
+                    color: #eee;
+                }
+
+                .language-option:hover {
+                    background-color: #444;
+                }
+
+                .language-native {
+                    color: #aaa;
+                }
+            }
+
+            /* Mobile styles */
+            @media screen and (max-width: 768px) {
+                .language-switcher {
+                    margin-left: 0;
+                    margin-top: 10px;
+                    width: 100%;
+                }
+
+                .language-switcher-current {
+                    justify-content: center;
+                }
+
+                .language-switcher-dropdown {
+                    width: 100%;
+                    left: 0 !important;
+                    right: 0 !important;
+                    position: absolute !important;
+                }
+            }
+        </style>
 
         <style>
             /* About page specific styles */
@@ -671,25 +844,21 @@
         </style>
     </head>
     <body>
+        <!-- Skip to content link for keyboard users -->
+        <div class="skip-links">
+            <a href="#main-content" class="skip-link">Skip to main content</a>
+        </div>
+
         <!-- Header with Navigation -->
         <nav class="navbar">
             <a href="index.html" class="logo-link">
                 <div class="nav-logo">
-                                    <div style="
-    width: 28px;
-    height: 28px;
-    margin-right: 12px;
-    filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
-    border-radius: 50%;
-    background: rgba(92, 226, 231, 0.1);
-    padding: 5px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
-    border: 1px solid rgba(92, 226, 231, 0.2);
-    justify-content: center;
-    align-items: center;
-    display: flex;
-">🖤</div>
+                    <img
+                        class="header-logo"
+                        src="images/divinci_logo_inverted.svg"
+                        alt="Divinci Heart Robot logo"
+                        onerror="this.onerror=null; this.src='../../images/divinci_logo_inverted.svg';"
+                    />
                 </div>
                 <div class="nav-title">
                     <span class="brand-name">Divinci ™</span><span class="mobile-hide">&nbsp;- Create your own custom AI</span>
@@ -708,6 +877,34 @@
                 <a href="index.html#features">Features</a>
                 <a href="index.html#team">Team</a>
                 <a href="index.html#signup" class="signup-link"><span class="signup-button">Sign Up</span></a>
+                <div id="language-switcher-container" style="display: inline-block; margin-left: 15px; position: relative; z-index: 9999; overflow: visible;">
+                    <!-- Direct embedding of language switcher instead of using data-include -->
+                    <div class="language-switcher">
+                        <div class="language-switcher-current">
+                            <span class="language-icon">🌐</span>
+                            <span class="current-language">English</span>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="language-switcher-dropdown">
+                            <a href="/" class="language-option" data-lang="en">
+                                <span class="language-name">English</span>
+                                <span class="language-native">English</span>
+                            </a>
+                            <a href="/es/" class="language-option" data-lang="es">
+                                <span class="language-name">Spanish</span>
+                                <span class="language-native">Español</span>
+                            </a>
+                            <a href="/fr/" class="language-option" data-lang="fr">
+                                <span class="language-name">French</span>
+                                <span class="language-native">Français</span>
+                            </a>
+                            <a href="/ar/" class="language-option" data-lang="ar">
+                                <span class="language-name">Arabic</span>
+                                <span class="language-native">العربية</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
 
@@ -842,13 +1039,13 @@
                             <img src="images/Michael-Mooring.jpeg" alt="Michael Mooring" class="member-image" style="object-position: 0 -44px;">
                             <div class="member-info">
                                 <h3 class="member-name">Michael Mooring</h3>
-                                <p class="member-title">Founder & CEO</p>
+                                <p class="member-title">CoFounder & CEO</p>
                                 <p class="member-bio">
                                     Michael brings over 15 years of experience in software development and AI research. He founded Divinci AI with a mission to democratize AI for businesses of all sizes.
                                 </p>
                                 <div class="member-social">
-                                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/in/michaelduanemooring/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="https://twitter.com/mikeumus" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -857,7 +1054,7 @@
                             <img src="images/sam-tobia.jpg" alt="Samuel Tobia" class="member-image">
                             <div class="member-info">
                                 <h3 class="member-name">Samuel Tobia</h3>
-                                <p class="member-title">CTO</p>
+                                <p class="member-title">CoFounder & CTO</p>
                                 <p class="member-bio">
                                     Sam leads Divinci AI's technical strategy and development, with over 15 years of software experience and expertise in machine learning, natural language processing, and scalable systems.
                                 </p>
@@ -877,7 +1074,7 @@
                                     Sierra leads our customer success team, ensuring organizations achieve their goals with Divinci AI and receive exceptional support throughout their journey.
                                 </p>
                                 <div class="member-social">
-                                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="https://www.linkedin.com/in/sierrahooshiari/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -1022,7 +1219,18 @@
                     <a href="careers.html" class="join-button">View Open Positions</a>
                 </div>
             </section>
+
+            <!-- Social Sharing Section -->
+            <section class="social-sharing-section">
+                <div class="container">
+                    <div data-include="includes/social-share.html"></div>
+                </div>
+            </section>
         </main>
+
+        <!-- Load social sharing script -->
+        <script src="js/social-sharing.js" defer></script>
+        <link rel="stylesheet" href="css/social-sharing.css" />
 
         <!-- Footer with Sacred Geometry and Bulma Integration -->
         <footer class="site-footer">
@@ -1040,21 +1248,21 @@
                         <div class="column is-one-quarter">
                             <div class="footer-brand">
                                 <div class="footer-logo">
-                                                                <div style="
-    width: 28px;
-    height: 28px;
-    margin-right: 12px;
-    filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
-    border-radius: 50%;
-    background: rgba(92, 226, 231, 0.1);
-    padding: 5px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
-    border: 1px solid rgba(92, 226, 231, 0.2);
-    justify-content: center;
-    align-items: center;
-    display: flex;
-">🖤</div>
+                                    <div style="
+                                        width: 28px;
+                                        height: 28px;
+                                        margin-right: 12px;
+                                        filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
+                                        border-radius: 50%;
+                                        background: rgba(92, 226, 231, 0.1);
+                                        padding: 5px;
+                                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+                                        box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
+                                        border: 1px solid rgba(92, 226, 231, 0.2);
+                                        justify-content: center;
+                                        align-items: center;
+                                        display: flex;
+                                    ">🖤</div>
                                     <span class="footer-brand-name">Divinci AI</span>
                                 </div>
                                 <p class="footer-tagline">Empowering human-AI collaboration</p>

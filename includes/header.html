@@ -11,7 +11,17 @@
         }
 
         // Load font styles
-        const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
 
         // Load fonts.css
         const fontStyles = document.createElement('link');
@@ -46,7 +56,14 @@
                 class="header-logo"
                 src="images/divinci_logo_inverted.svg"
                 alt="Divinci Heart Robot logo"
-                onerror="this.onerror=null; this.src='../../images/divinci_logo_inverted.svg';"
+                onerror="this.onerror=null; 
+                    if (window.location.pathname.includes('/features/')) {
+                        this.src='../../images/divinci_logo_inverted.svg';
+                    } else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+                        this.src='../images/divinci_logo_inverted.svg';
+                    } else {
+                        this.src='images/divinci_logo_inverted.svg';
+                    }"
             />
         </div>
         <div class="nav-title">
@@ -65,9 +82,37 @@
         <span class="view-label company-view" onclick="document.getElementById('viewToggle').checked = true; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">Company</span>
     </div>
     <div class="nav-menu">
-        <a href="#features">Features</a>
-        <a href="#team">Team</a>
-        <a href="#signup" class="signup-link"><span class="signup-button">Sign Up</span></a>
+        <a href="#features" data-i18n="navigation.features">Features</a>
+        <a href="#team" data-i18n="navigation.team">Team</a>
+        <a href="#signup" class="signup-link"><span class="signup-button" data-i18n="buttons.signUp">Sign Up</span></a>
+        <div id="language-switcher-container" style="display: inline-block; margin-left: 15px; position: relative; z-index: 9999; overflow: visible;">
+            <!-- Direct embedding of language switcher instead of using data-include -->
+            <div class="language-switcher">
+                <div class="language-switcher-current">
+                    <span class="language-icon">🌐</span>
+                    <span class="current-language">English</span>
+                    <span class="dropdown-icon">▼</span>
+                </div>
+                <div class="language-switcher-dropdown">
+                    <a href="/" class="language-option" data-lang="en">
+                        <span class="language-name">English</span>
+                        <span class="language-native">English</span>
+                    </a>
+                    <a href="/es/" class="language-option" data-lang="es">
+                        <span class="language-name">Spanish</span>
+                        <span class="language-native">Español</span>
+                    </a>
+                    <a href="/fr/" class="language-option" data-lang="fr">
+                        <span class="language-name">French</span>
+                        <span class="language-native">Français</span>
+                    </a>
+                    <a href="/ar/" class="language-option" data-lang="ar">
+                        <span class="language-name">Arabic</span>
+                        <span class="language-native">العربية</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -75,16 +120,69 @@
 <script>
     // Create dynamic script element to handle path resolution without document.write
     (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+        
         const script = document.createElement('script');
-        script.src = (window.location.pathname.includes('/features/') ? '../../' : '') + 'js/mobile-menu.js';
+        script.src = basePath + 'js/mobile-menu.js';
         script.defer = true;
         document.body.appendChild(script);
 
         // Add view toggle script
         const viewToggleScript = document.createElement('script');
-        viewToggleScript.src = (window.location.pathname.includes('/features/') ? '../../' : '') + 'js/view-toggle.js';
+        viewToggleScript.src = basePath + 'js/view-toggle.js';
         viewToggleScript.defer = true;
         document.body.appendChild(viewToggleScript);
+
+        // Load i18n scripts
+        const i18nConfigScript = document.createElement('script');
+        i18nConfigScript.src = basePath + 'js/i18n-config.js';
+        document.head.appendChild(i18nConfigScript);
+
+        const i18nScript = document.createElement('script');
+        i18nScript.src = basePath + 'js/i18n.js';
+        document.head.appendChild(i18nScript);
+
+        // Load language-switcher-translations.js
+        const languageSwitcherTranslationsScript = document.createElement('script');
+        languageSwitcherTranslationsScript.src = basePath + 'js/language-switcher-translations.js';
+        document.head.appendChild(languageSwitcherTranslationsScript);
+
+        // Load direct-translations.js
+        const directTranslationsScript = document.createElement('script');
+        directTranslationsScript.src = basePath + 'js/direct-translations.js';
+        document.head.appendChild(directTranslationsScript);
+
+        // Load direct-dom-translations.js
+        const directDomTranslationsScript = document.createElement('script');
+        directDomTranslationsScript.src = basePath + 'js/direct-dom-translations.js';
+        document.head.appendChild(directDomTranslationsScript);
+
+        // We'll let the data-include mechanism handle the language switcher
+        // This prevents duplicate event handlers
+        const languageSwitcherContainer = document.getElementById('language-switcher-container');
+        if (languageSwitcherContainer) {
+            // Make sure the dropdown is visible when active
+            const style = document.createElement('style');
+            style.textContent = `
+                .language-switcher.active .language-switcher-dropdown {
+                    display: block !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    pointer-events: auto !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
     })();
 </script>
 
@@ -92,7 +190,17 @@
 <script>
     // Properly set the href attributes based on location
     (function() {
-        const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
 
         // Set logo link to home
         const logoLink = document.getElementById('logoHomeLink');
@@ -122,5 +230,175 @@
                 }
             }
         });
+    })();
+</script>
+
+<!-- Language Switcher CSS -->
+<style>
+    /* Language Switcher Styles - Directly embedded for reliability */
+    .language-switcher {
+        position: relative !important;
+        display: inline-block !important;
+        font-family: 'Sora', sans-serif;
+        margin-left: 15px;
+        z-index: 9999 !important;
+        overflow: visible !important;
+    }
+
+    .language-switcher-current {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.3s;
+    }
+
+    .language-switcher-current:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .language-icon {
+        margin-right: 6px;
+        font-size: 16px;
+    }
+
+    .current-language {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .dropdown-icon {
+        margin-left: 6px;
+        font-size: 10px;
+        transition: transform 0.3s;
+    }
+
+    .language-switcher.active .dropdown-icon {
+        transform: rotate(180deg);
+    }
+
+    .language-switcher-dropdown {
+        position: absolute !important;
+        top: 100% !important;
+        right: 0 !important;
+        left: auto !important;
+        width: 180px;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: none;
+        z-index: 9999 !important;
+        transform: none !important;
+    }
+
+    .language-switcher.active .language-switcher-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .language-option {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s;
+    }
+
+    .language-option:hover {
+        background-color: #f5f5f5;
+    }
+
+    .language-name {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .language-native {
+        font-size: 14px;
+        color: #666;
+    }
+
+    /* RTL support */
+    [dir="rtl"] .language-icon {
+        margin-right: 0;
+        margin-left: 6px;
+    }
+
+    [dir="rtl"] .dropdown-icon {
+        margin-left: 0;
+        margin-right: 6px;
+    }
+
+    [dir="rtl"] .language-switcher-dropdown {
+        right: auto !important;
+        left: 0 !important;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+        .language-switcher-dropdown {
+            background-color: #333;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .language-option {
+            color: #eee;
+        }
+
+        .language-option:hover {
+            background-color: #444;
+        }
+
+        .language-native {
+            color: #aaa;
+        }
+    }
+
+    /* Mobile styles */
+    @media screen and (max-width: 768px) {
+        .language-switcher {
+            margin-left: 0;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .language-switcher-current {
+            justify-content: center;
+        }
+
+        .language-switcher-dropdown {
+            width: 100%;
+            left: 0 !important;
+            right: 0 !important;
+            position: absolute !important;
+        }
+    }
+</style>
+
+<!-- Script to load the language switcher JavaScript -->
+<script>
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+        
+        // Load only the simplified language switcher script
+        const languageSwitcherScript = document.createElement('script');
+        languageSwitcherScript.src = basePath + 'js/language-switcher.js';
+        document.head.appendChild(languageSwitcherScript);
     })();
 </script>

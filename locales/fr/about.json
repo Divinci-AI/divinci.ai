@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "title": "À Propos de Divinci AI",
+    "subtitle": "Transformer la façon dont les humains et l'IA travaillent ensemble"
+  },
+  "mission": {
+    "title": "Notre Mission",
+    "content": "Chez Divinci AI, notre mission est de créer des systèmes d'IA qui augmentent les capacités humaines tout en gardant les humains au centre de l'expérience. Nous croyons que les outils d'IA les plus puissants sont ceux qui améliorent la créativité, la productivité et la connexion humaine."
+  },
+  "values": {
+    "title": "Nos Valeurs",
+    "items": [
+      {
+        "title": "IA Centrée sur l'Humain",
+        "description": "Nous concevons des systèmes d'IA qui donnent du pouvoir aux personnes plutôt que de les remplacer, en gardant toujours les besoins et le bien-être humains au premier plan."
+      },
+      {
+        "title": "Innovation Éthique",
+        "description": "Nous nous engageons à développer l'IA de manière responsable, avec une attention rigoureuse à l'équité, la transparence et l'impact sociétal de notre technologie."
+      },
+      {
+        "title": "Intelligence Collaborative",
+        "description": "Nous croyons en la création de systèmes où les humains et l'IA travaillent ensemble, combinant la créativité et le jugement des personnes avec la puissance analytique des machines."
+      },
+      {
+        "title": "Apprentissage Continu",
+        "description": "Nous adoptons une culture d'amélioration constante, apprenant de nos utilisateurs, de nos erreurs et de la recherche en évolution pour construire de meilleurs systèmes d'IA."
+      }
+    ]
+  },
+  "team": {
+    "title": "Notre Équipe",
+    "subtitle": "Rencontrez les personnes derrière Divinci AI",
+    "members": [
+      {
+        "name": "Dr. Joel Fuhrman",
+        "title": "Fondateur et PDG",
+        "bio": "Avec plus de 15 ans d'expérience en IA et en apprentissage automatique, Dr. Fuhrman dirige notre vision de créer des systèmes d'IA centrés sur l'humain."
+      },
+      {
+        "name": "Sean Fuhrman",
+        "title": "Directeur Technique",
+        "bio": "Sean supervise notre stratégie technique et sa mise en œuvre, garantissant que nos systèmes sont robustes, évolutifs et sécurisés."
+      },
+      {
+        "name": "Sierra Hooshiari",
+        "title": "Responsable de l'Éthique en IA",
+        "bio": "Sierra guide notre approche du développement responsable de l'IA, en se concentrant sur l'équité, la transparence et l'impact social."
+      },
+      {
+        "name": "Abdul Rahman",
+        "title": "Responsable Produit",
+        "bio": "Abdul dirige notre développement de produits, traduisant des capacités d'IA de pointe en expériences utilisateur intuitives."
+      },
+      {
+        "name": "Paul-Marie Carfantan",
+        "title": "Chercheur Principal en IA",
+        "bio": "Paul-Marie dirige nos initiatives de recherche, nous maintenant à la pointe des innovations en traitement du langage naturel et en IA multimodale."
+      },
+      {
+        "name": "Bryan Reynolds",
+        "title": "VP Réussite Client",
+        "bio": "Bryan s'assure que nos clients reçoivent un support exceptionnel et maximisent la valeur de nos solutions d'IA."
+      }
+    ]
+  },
+  "story": {
+    "title": "Notre Histoire",
+    "content": "Divinci AI a été fondée en 2021 avec une vision claire : créer des outils d'IA qui améliorent les capacités humaines plutôt que de les remplacer. Notre voyage a commencé lorsque le Dr. Joel Fuhrman, frustré par les limitations et les aspects déshumanisants des systèmes d'IA existants, a réuni une équipe d'experts pour construire quelque chose de différent.\n\nDe nos premiers prototypes à notre suite actuelle de produits, nous sommes restés déterminés à garder les humains au centre de l'expérience d'IA. Nous sommes passés d'une petite équipe de cinq personnes à une organisation diverse de plus de cinquante professionnels dédiés à faire progresser la collaboration humain-IA.\n\nAujourd'hui, nous sommes fiers de mener l'industrie dans la création de systèmes d'IA qui augmentent véritablement le potentiel humain, aidant les gens à devenir plus créatifs, productifs et connectés grâce à une IA conçue avec réflexion."
+  },
+  "join": {
+    "title": "Rejoignez Notre Équipe",
+    "content": "Nous recherchons toujours des personnes talentueuses qui partagent notre passion pour l'IA centrée sur l'humain. Consultez notre page Carrières pour les postes actuellement ouverts.",
+    "button": "Voir les Postes Ouverts"
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "content": "Vous avez des questions sur Divinci AI ? Notre équipe est là pour vous aider.",
+    "button": "Contactez-Nous"
+  }
+}

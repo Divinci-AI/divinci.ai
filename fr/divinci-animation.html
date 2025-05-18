@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/divinci-animation.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/divinci-animation.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/divinci-animation.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/divinci-animation.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/divinci-animation.html" hreflang="ar" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/divinci-animation.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/divinci-animation.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/divinci-animation.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/divinci-animation.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/divinci-animation.html" hreflang="ar" />
+    <title>Divinci Robot Animation - Français</title>
+    <link rel="stylesheet" href="../divinci-animation.css">
+    <!-- Set default language -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.i18n && window.i18n.changeLanguage) {
+                window.i18n.changeLanguage('fr');
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="animation-container">
+        <!-- Media Elements -->
+        <div class="media-elements">
+            <div class="files-container">
+                <div class="media-element file" data-start-x="-300" data-start-y="0">
+                    <span class="emoji">📄</span>
+                </div>
+                <div class="media-element file" data-start-x="-250" data-start-y="-50">
+                    <span class="emoji">📁</span>
+                </div>
+                <div class="media-element file" data-start-x="-350" data-start-y="50">
+                    <span class="emoji">📝</span>
+                </div>
+            </div>
+            <div class="video-container">
+                <div class="media-element video" data-start-x="0" data-start-y="-300">
+                    <span class="emoji">🎬</span>
+                </div>
+                <div class="media-element video" data-start-x="-50" data-start-y="-250">
+                    <span class="emoji">📹</span>
+                </div>
+                <div class="media-element video" data-start-x="50" data-start-y="-350">
+                    <span class="emoji">🎥</span>
+                </div>
+            </div>
+            <div class="audio-container">
+                <div class="media-element audio" data-start-x="300" data-start-y="0">
+                    <span class="emoji">🎵</span>
+                </div>
+                <div class="media-element audio" data-start-x="250" data-start-y="-50">
+                    <span class="emoji">🔊</span>
+                </div>
+                <div class="media-element audio" data-start-x="350" data-start-y="50">
+                    <span class="emoji">🎧</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divinci Robot -->
+        <div class="robot-container">
+            <object id="divinci-robot" data="images/divinci_logo_animated.svg" type="image/svg+xml"></object>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="play-button">Play Animation</button>
+        </div>
+    </div>
+
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+
+    <!-- Our Animation Script -->
+    <script src="../divinci-animation.js"></script>
+</body>
+</html>

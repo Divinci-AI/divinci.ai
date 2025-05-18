@@ -18,15 +18,47 @@ function includeHTML() {
     const includes = document.querySelectorAll('[data-include]');
 
     includes.forEach(element => {
+        // Skip elements marked with data-include-special attribute
+        // These elements are handled by their own specialized code
+        if (element.getAttribute('data-include-special') === 'true') {
+            return;
+        }
+        
+        // Skip language switchers - they are now implemented directly in HTML
+        if (element.getAttribute('data-include') === 'includes/language-switcher.html') {
+            return;
+        }
+        
+        // Skip elements that have already been processed
+        if (element.getAttribute('data-processed') === 'true') {
+            return;
+        }
+
+        // Mark this element as processed to prevent reprocessing
+        element.setAttribute('data-processed', 'true');
+        
         const file = element.getAttribute('data-include');
 
         // Determine the correct path based on the current page location
         let path = file;
+        let basePath = '';
 
-        // If we're in a subdirectory, adjust the path
+        // Set the base path depending on the subdirectory
         if (window.location.pathname.includes('/features/')) {
-            // We're in a subdirectory like /features/quality-assurance/
-            path = '../../' + file;
+            // We're in a features subdirectory like /features/quality-assurance/
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+
+        // Special handling for includes directory and language subdirectories
+        if (file.startsWith('includes/') && /^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            // Always use the main includes directory for language versions
+            path = '../' + file;
+        } else {
+            path = basePath + file;
         }
 
         // For local development with file:// protocol, use a fallback approach
@@ -156,6 +188,54 @@ function initializeIncludedComponents() {
             }
         }
     }
+    
+    // Initialize language switchers
+    // This ensures language switcher dropdowns are positioned correctly on all pages
+    setTimeout(() => {
+        const languageSwitchers = document.querySelectorAll('.language-switcher');
+        languageSwitchers.forEach(switcher => {
+            // Add special class for positioning
+            switcher.classList.add('initialized-language-switcher');
+            
+            // Fix positioning of dropdown
+            const dropdown = switcher.querySelector('.language-switcher-dropdown');
+            if (dropdown) {
+                dropdown.style.position = 'absolute';
+                dropdown.style.top = '100%';
+                dropdown.style.right = '0';
+                dropdown.style.zIndex = '9999';
+                
+                // RTL support
+                if (document.documentElement.dir === 'rtl') {
+                    dropdown.style.right = 'auto';
+                    dropdown.style.left = '0';
+                }
+            }
+            
+            // Add click handler if not already present
+            const toggleButton = switcher.querySelector('.language-switcher-current');
+            if (toggleButton && !toggleButton.hasAttribute('data-handler-attached')) {
+                toggleButton.setAttribute('data-handler-attached', 'true');
+                toggleButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Toggle active class
+                    switcher.classList.toggle('active');
+                    
+                    // Update dropdown visibility
+                    if (dropdown) {
+                        if (switcher.classList.contains('active')) {
+                            dropdown.style.display = 'block';
+                        } else {
+                            dropdown.style.display = 'none';
+                        }
+                    }
+                });
+            }
+        });
+    }, 100);
+}
 
     // Fix navigation links for subdirectory pages
     if (window.location.pathname.includes('/features/')) {
@@ -170,6 +250,21 @@ function initializeIncludedComponents() {
         const logoImg = document.querySelector('.nav-logo img');
         if (logoImg && logoImg.getAttribute('src').startsWith('images/')) {
             logoImg.setAttribute('src', '../../' + logoImg.getAttribute('src'));
+        }
+    }
+    // Handle language subdirectories
+    else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').startsWith('index.html')) {
+                link.setAttribute('href', '../' + link.getAttribute('href'));
+            }
+        });
+
+        // Fix logo path
+        const logoImg = document.querySelector('.nav-logo img');
+        if (logoImg && logoImg.getAttribute('src').startsWith('images/')) {
+            logoImg.setAttribute('src', '../' + logoImg.getAttribute('src'));
         }
     }
 }

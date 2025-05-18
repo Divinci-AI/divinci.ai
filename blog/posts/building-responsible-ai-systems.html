@@ -3,6 +3,13 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/blog/posts/building-responsible-ai-systems.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/blog/posts/building-responsible-ai-systems.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/blog/posts/building-responsible-ai-systems.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/blog/posts/building-responsible-ai-systems.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/blog/posts/building-responsible-ai-systems.html" hreflang="ar" />
         <!-- SEO Meta Tags -->
         <meta name="description" content="Learn practical approaches to building responsible AI systems with ethical considerations, safety measures, and governance frameworks to ensure your AI solutions are fair, transparent, and accountable." />
         <meta name="keywords" content="responsible ai, ai ethics, ethical ai development, ai governance, ai safety, ai transparency, ai fairness" />
@@ -510,37 +517,11 @@
         </style>
     </head>
     <body>
-        
 
         <!-- Header with Navigation -->
-        <nav class="navbar">
-            <a href="../../index.html" class="logo-link">
-                <div class="nav-logo">
-                    <img
-                        src="../../images/divinci_logo_inverted.svg"
-                        alt="Divinci Heart Robot logo"
-                        onerror="this.onerror=null; this.src='../../images/divinci_logo.png';"
-                    />
-                </div>
-                <div class="nav-title">
-                    <span class="brand-name">Divinci ™</span><span class="mobile-hide">&nbsp;- Create your own custom AI</span>
-                </div>
-            </a>
-            <!-- Toggle switch for customer/company view -->
-            <div class="view-toggle-container mobile-hide">
-                <span class="view-label customer-view active">Client</span>
-                <label class="switch">
-                    <input type="checkbox" id="viewToggle">
-                    <span class="slider round"></span>
-                </label>
-                <span class="view-label company-view">Company</span>
-            </div>
-            <div class="nav-menu">
-                <a href="../../index.html#features">Features</a>
-                <a href="../../index.html#team">Team</a>
-                <a href="../../index.html#signup">Sign Up</a>
-            </div>
-        </nav>
+        <header role="banner">
+            <div data-include="../../includes/header.html"></div>
+        </header>
 
         <!-- Main content -->
         <main id="main-content" role="main" tabindex="-1">
@@ -1073,112 +1054,16 @@
             </section>
         </main>
 
-        <!-- Footer with Sacred Geometry and Bulma Integration -->
-        <footer class="site-footer">
-            <!-- Sacred Geometry Background Elements -->
-            <div class="footer-sacred-pattern"></div>
-            <div class="sacred-circle sacred-circle-1"></div>
-            <div class="sacred-circle sacred-circle-2"></div>
-            <div class="sacred-circle sacred-circle-3"></div>
-
-            <div class="container">
-                <div class="footer-content">
-                    <!-- Top Section with Bulma Columns -->
-                    <div class="columns is-footer-links">
-                        <!-- Logo and Company Info -->
-                        <div class="column is-one-quarter">
-                            <div class="footer-brand">
-                                <div class="footer-logo">
-                                    <img src="../../images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
-                                        onerror="this.onerror=null; this.src='../../images/divinci_logo.png';" />
-                                    <span class="footer-brand-name">Divinci AI</span>
-                                </div>
-                                <p class="footer-tagline">Empowering human-AI collaboration</p>
-                                <div class="social-links">
-                                    <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
-                                    <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Navigation Links -->
-                        <div class="column">
-                            <div class="footer-links-column">
-                                <h3>Product</h3>
-                                <ul>
-                                    <li><a href="../../index.html#features">Features</a></li>
-                                    <li><a href="../../pricing.html">Pricing</a></li>
-                                    <li><a href="../../roadmap.html">Roadmap</a></li>
-                                    <li><a href="../../changelog.html">Changelog</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="column">
-                            <div class="footer-links-column">
-                                <h3>Resources</h3>
-                                <ul>
-                                    <li><a href="../../docs/">Documentation</a></li>
-                                    <li><a href="../../blog/">Blog</a></li>
-                                    <li><a href="../../tutorials/">Tutorials</a></li>
-                                    <li><a href="../../api/">API</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="column">
-                            <div class="footer-links-column">
-                                <h3>Company</h3>
-                                <ul>
-                                    <li><a href="../../about-us.html">About Us</a></li>
-                                    <li><a href="../../careers.html">Careers</a></li>
-                                    <li><a href="../../contact.html">Contact</a></li>
-                                    <li><a href="../../press.html">Press</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="column">
-                            <div class="footer-links-column">
-                                <h3>Legal</h3>
-                                <ul>
-                                    <li><a href="../../terms-of-service.html">Terms of Service</a></li>
-                                    <li><a href="../../privacy-policy.html">Privacy Policy</a></li>
-                                    <li><a href="../../ai-safety-ethics.html">AI Safety & Ethics</a></li>
-                                    <li><a href="../../security.html">Security</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Footer Bottom with Bulma Level -->
-                <div class="footer-bottom">
-                    <div class="level is-footer-bottom">
-                        <div class="level-left">
-                            <div class="level-item">
-                                <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
-                            </div>
-                        </div>
-                        <div class="level-right">
-                            <div class="level-item">
-                                <div class="footer-bottom-links">
-                                    <a href="../../sitemap.xml">Sitemap</a>
-                                    <a href="../../accessibility.html">Accessibility</a>
-                                    <a href="../../cookies.html">Cookie Policy</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <!-- Footer -->
+        <div class="footer-wrapper" data-include="../../includes/footer.html" style="width: 100%; overflow: hidden; box-sizing: border-box;"></div>
 
         <!-- Scripts -->
         <script src="../../js/keyboard-navigation.js" defer></script>
         <script src="../../js/apply-sora-to-divinci.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-python.min.js"></script>
+
+        <!-- Script to include HTML components -->
+        <script src="../../debug-include.js"></script>
     </body>
 </html>

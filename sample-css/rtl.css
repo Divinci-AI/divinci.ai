@@ -1,0 +1,288 @@
+/**
+ * RTL (Right-to-Left) specific styles
+ * These styles are applied when the document direction is RTL
+ */
+
+/* Base RTL adjustments */
+[dir="rtl"] {
+  /* Text alignment */
+  text-align: right;
+}
+
+/* Navigation */
+[dir="rtl"] .nav-item {
+  margin-right: 0;
+  margin-left: 1.5rem;
+}
+
+[dir="rtl"] .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .dropdown-toggle::after {
+  margin-left: 0;
+  margin-right: 0.255em;
+}
+
+/* Icons and decorations */
+[dir="rtl"] .icon-left {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+[dir="rtl"] .icon-right {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+[dir="rtl"] .list-icon {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+[dir="rtl"] .list-icon i,
+[dir="rtl"] .list-icon svg {
+  left: auto;
+  right: 0;
+}
+
+/* Form elements */
+[dir="rtl"] .form-check {
+  padding-left: 0;
+  padding-right: 1.25rem;
+}
+
+[dir="rtl"] .form-check-input {
+  margin-left: 0;
+  margin-right: -1.25rem;
+}
+
+[dir="rtl"] .input-group > .input-group-prepend {
+  margin-right: 0;
+  margin-left: -1px;
+}
+
+[dir="rtl"] .input-group > .input-group-append {
+  margin-left: 0;
+  margin-right: -1px;
+}
+
+[dir="rtl"] .input-group > .form-control:not(:last-child) {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+[dir="rtl"] .input-group > .form-control:not(:first-child) {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Modals and dialogs */
+[dir="rtl"] .modal-header .close {
+  margin: -1rem auto -1rem -1rem;
+}
+
+[dir="rtl"] .modal-footer > :not(:first-child) {
+  margin-left: 0;
+  margin-right: 0.25rem;
+}
+
+[dir="rtl"] .modal-footer > :not(:last-child) {
+  margin-right: 0;
+  margin-left: 0.25rem;
+}
+
+/* Alerts and notifications */
+[dir="rtl"] .alert-dismissible {
+  padding-right: 1.25rem;
+  padding-left: 4rem;
+}
+
+[dir="rtl"] .alert-dismissible .close {
+  right: auto;
+  left: 0;
+}
+
+/* Cards */
+[dir="rtl"] .card-header-tabs {
+  margin-right: -0.625rem;
+  margin-left: -0.625rem;
+}
+
+/* Tables */
+[dir="rtl"] .table th,
+[dir="rtl"] .table td {
+  text-align: right;
+}
+
+/* Pagination */
+[dir="rtl"] .pagination {
+  padding-right: 0;
+}
+
+[dir="rtl"] .page-item:first-child .page-link {
+  margin-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+[dir="rtl"] .page-item:last-child .page-link {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+/* Progress bars */
+[dir="rtl"] .progress-bar {
+  float: right;
+}
+
+/* List groups */
+[dir="rtl"] .list-group {
+  padding-right: 0;
+}
+
+/* Breadcrumbs */
+[dir="rtl"] .breadcrumb-item {
+  float: right;
+}
+
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+  padding-left: 0.5rem;
+  padding-right: 0;
+}
+
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item {
+  padding-right: 0.5rem;
+  padding-left: 0;
+}
+
+/* Carousel */
+[dir="rtl"] .carousel-control-prev {
+  right: 0;
+  left: auto;
+}
+
+[dir="rtl"] .carousel-control-next {
+  left: 0;
+  right: auto;
+}
+
+[dir="rtl"] .carousel-indicators {
+  padding-right: 0;
+}
+
+/* Language switcher */
+[dir="rtl"] .language-switcher {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+/* Feature sections */
+[dir="rtl"] .feature-icon {
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+[dir="rtl"] .feature-list li::before {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+/* Testimonials */
+[dir="rtl"] .testimonial-quote::before {
+  left: auto;
+  right: 1rem;
+}
+
+/* Footer */
+[dir="rtl"] .footer-links {
+  padding-right: 0;
+}
+
+[dir="rtl"] .social-icons li {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+/* Using logical properties (preferred approach) */
+.button {
+  margin-inline-end: 1rem; /* Works for both LTR and RTL */
+  padding-inline: 1rem;
+  text-align: start;
+}
+
+.card {
+  padding-inline: 1.5rem;
+  margin-inline: auto;
+  border-start-start-radius: 0.25rem;
+  border-end-start-radius: 0.25rem;
+  border-start-end-radius: 0.25rem;
+  border-end-end-radius: 0.25rem;
+}
+
+.form-group {
+  margin-block-end: 1rem;
+  text-align: start;
+}
+
+.modal-header {
+  padding-inline: 1rem;
+}
+
+.modal-footer {
+  padding-inline: 1rem;
+}
+
+/* Specific components */
+[dir="rtl"] .hero-section .hero-content {
+  text-align: right;
+}
+
+[dir="rtl"] .feature-card .feature-header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .pricing-table .pricing-feature-list {
+  padding-right: 0;
+}
+
+[dir="rtl"] .pricing-table .pricing-feature-list li::before {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+[dir="rtl"] .contact-form .form-control {
+  text-align: right;
+}
+
+[dir="rtl"] .faq-accordion .accordion-button::after {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Mobile-specific RTL adjustments */
+@media (max-width: 768px) {
+  [dir="rtl"] .mobile-menu-toggle {
+    right: auto;
+    left: 1rem;
+  }
+  
+  [dir="rtl"] .mobile-menu {
+    right: auto;
+    left: 0;
+    transform: translateX(-100%);
+  }
+  
+  [dir="rtl"] .mobile-menu.open {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,40 @@
+# robots.txt for divinci.ai
+# Last updated: 2023-11-01
+
+User-agent: *
+Allow: /
+
+# Disallow admin and development areas
+Disallow: /admin/
+Disallow: /dev/
+Disallow: /test/
+Disallow: /beta/
+
+# Allow all bots to access CSS, JS, and images
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Temporary disallow for pages under construction
+Disallow: /coming-soon/
+
+# Crawl delay for specific bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://divinci.ai/sitemap.xml
+
+# Alternate language sitemaps
+Sitemap: https://divinci.ai/sitemap_en.xml
+Sitemap: https://divinci.ai/sitemap_es.xml
+Sitemap: https://divinci.ai/sitemap_fr.xml
+Sitemap: https://divinci.ai/sitemap_ar.xml
