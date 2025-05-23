@@ -13,19 +13,19 @@
         <span class="dropdown-icon">▼</span>
     </div>
     <div class="language-switcher-dropdown">
-        <a href="/" class="language-option" data-lang="en" onclick="if(window.directDomTranslations) window.directDomTranslations.changeLanguage('en');">
+        <a href="#" class="language-option" data-lang="en">
             <span class="language-name">English</span>
             <span class="language-native">English</span>
         </a>
-        <a href="/es/" class="language-option" data-lang="es" onclick="if(window.directDomTranslations) window.directDomTranslations.changeLanguage('es');">
+        <a href="#" class="language-option" data-lang="es">
             <span class="language-name">Spanish</span>
             <span class="language-native">Español</span>
         </a>
-        <a href="/fr/" class="language-option" data-lang="fr" onclick="if(window.directDomTranslations) window.directDomTranslations.changeLanguage('fr');">
+        <a href="#" class="language-option" data-lang="fr">
             <span class="language-name">French</span>
             <span class="language-native">Français</span>
         </a>
-        <a href="/ar/" class="language-option" data-lang="ar" onclick="if(window.directDomTranslations) window.directDomTranslations.changeLanguage('ar');">
+        <a href="#" class="language-option" data-lang="ar">
             <span class="language-name">Arabic</span>
             <span class="language-native">العربية</span>
         </a>
@@ -131,13 +131,13 @@
         margin-left: 0;
         margin-right: 6px;
     }
-    
+
     /* Fix dropdown positioning for RTL and all language versions */
     [dir="rtl"] .language-switcher-dropdown {
         right: auto;
         left: 0;
     }
-    
+
     /* Ensure the dropdown stays within the viewport for all language versions */
     html:not([dir="rtl"]) .language-switcher-dropdown {
         right: 0 !important;
@@ -148,7 +148,7 @@
         transform: none !important;
         top: 100% !important;
     }
-    
+
     /* Keep the language switcher itself aligned properly in the header */
     .language-switcher {
         position: relative !important;
@@ -194,7 +194,7 @@
             right: 0;
             position: absolute;
         }
-        
+
         /* Fix for all language versions on mobile */
         [dir="rtl"] .language-switcher-dropdown,
         [dir="ltr"] .language-switcher-dropdown {
@@ -229,13 +229,13 @@
         transform: none !important;
         z-index: 9999 !important;
     }
-    
+
     [dir="rtl"] .language-page-switcher .language-switcher-dropdown,
     [dir="rtl"] #language-switcher-container .language-switcher-dropdown {
         left: 0 !important;
         right: auto !important;
     }
-    
+
     /* Global fix for headers in all pages */
     .navbar .language-switcher-dropdown {
         position: absolute !important;
@@ -245,7 +245,7 @@
         z-index: 9999 !important;
         transform: none !important;
     }
-    
+
     /* RTL specific fix for all pages */
     [dir="rtl"] .navbar .language-switcher-dropdown {
         right: auto !important;
