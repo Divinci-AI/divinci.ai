@@ -1,6 +1,6 @@
 # Divinci.ai
 
-A modern website for Divinci.ai featuring interactive elements, animations, multilingual support, and comprehensive testing.
+A modern website for Divinci.ai featuring interactive elements, animations, multilingual support, and comprehensive testing. Static HTML website designed for Cloudflare Pages. 
 
 ## 🚀 Features
 

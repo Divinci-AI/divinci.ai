@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/blog/index.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/blog/index.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/blog/index.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/blog/index.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/blog/index.html" hreflang="ar" />
+        <!-- Include meta tags -->
+        <!-- SEO Meta Tags -->
+<meta name="description" content="Divinci AI is your AI for life's journey, with friends! Create custom AI solutions and collaborate with your favorite AI models in a multiplayer environment." />
+<meta name="keywords" content="divinci ai, multiplayer ai, ai chat, custom ai, chatgpt, claude, gemini, ai collaboration" />
+
+<!-- Open Graph / Social Media Meta Tags -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://divinci.ai/index.html" />
+<meta property="og:title" content="Divinci™ Multiplayer AI Chat | Divinci AI" />
+<meta property="og:description" content="Divinci AI is your AI for life's journey, with friends! Create custom AI solutions and collaborate with your favorite AI models in a multiplayer environment." />
+<meta property="og:image" content="https://divinci.ai/images/social/divinci-default-social.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Divinci AI" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DivinciAI" />
+<meta name="twitter:title" content="Divinci™ Multiplayer AI Chat | Divinci AI" />
+<meta name="twitter:description" content="Divinci AI is your AI for life's journey, with friends! Create custom AI solutions and collaborate with your favorite AI models in a multiplayer environment." />
+<meta name="twitter:image" content="https://divinci.ai/images/social/divinci-default-social.png" />
+<meta name="twitter:creator" content="@DivinciAI" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://divinci.ai/index.html" />
+
+<!-- Script to populate meta tags with page-specific data -->
+<script>
+    // Function to set meta tags based on page data
+    function setMetaTags(pageData) {
+        // Default values
+        const defaults = {
+            title: document.title.replace(' | Divinci AI', ''),
+            description: "Divinci AI is building the future of human-AI collaboration, empowering organizations to create custom AI solutions.",
+            image: "divinci-default-social.jpg",
+            url: window.location.pathname,
+            type: "website",
+            keywords: "divinci ai, ai platform, custom ai solutions"
+        };
+        
+        // Merge provided data with defaults
+        const data = {...defaults, ...pageData};
+        
+        // Get all meta elements
+        const metaTags = document.querySelectorAll('meta');
+        
+        // Update meta tags with page data
+        metaTags.forEach(tag => {
+            const property = tag.getAttribute('property') || tag.getAttribute('name');
+            
+            if (!property) return;
+            
+            if (property === 'og:title' || property === 'twitter:title') {
+                tag.setAttribute('content', `${data.title} | Divinci AI`);
+            }
+            
+            if (property === 'og:description' || property === 'twitter:description' || property === 'description') {
+                tag.setAttribute('content', data.description);
+            }
+            
+            if (property === 'og:image' || property === 'twitter:image') {
+                tag.setAttribute('content', `https://divinci.ai/images/social/${data.image}`);
+            }
+            
+            if (property === 'og:url' || property === 'twitter:url') {
+                tag.setAttribute('content', `https://divinci.ai${data.url}`);
+            }
+            
+            if (property === 'og:type') {
+                tag.setAttribute('content', data.type);
+            }
+            
+            if (property === 'keywords') {
+                tag.setAttribute('content', data.keywords);
+            }
+        });
+        
+        // Update canonical link
+        const canonicalLink = document.querySelector('link[rel="canonical"]');
+        if (canonicalLink) {
+            canonicalLink.setAttribute('href', `https://divinci.ai${data.url}`);
+        }
+    }
+    
+    // Example usage:
+    // Call this function with page-specific data after including this file
+    // setMetaTags({
+    //     title: "About Us",
+    //     description: "Learn about Divinci AI's mission, vision, team, and the story behind our innovative AI platform.",
+    //     image: "about-us-social.jpg",
+    //     url: "/about-us.html",
+    //     type: "website",
+    //     keywords: "divinci ai, about divinci, ai team, ai founders"
+    // });
+</script>
+
+
+        <!-- Include structured data -->
+        <!-- Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Divinci AI",
+  "url": "https://divinci.ai",
+  "logo": "https://divinci.ai/images/divinci_logo.png",
+  "sameAs": [
+    "https://twitter.com/DivinciAI",
+    "https://www.linkedin.com/company/divinci-ai",
+    "https://github.com/Divinci-AI"
+  ],
+  "description": "Your AI for Life's Journey, with friends! Create custom AI solutions and collaborate with your favorite AI models in a multiplayer environment.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@divinci.ai"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Divinci AI",
+  "url": "https://divinci.ai",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://divinci.ai/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "inLanguage": ["en", "es", "fr", "ar"]
+}
+</script>
+
+<!-- Page-specific structured data will be added dynamically -->
+<script>
+    /**
+     * Add structured data for the current page
+     * @param {Object} pageData - Data for the current page
+     */
+    function addStructuredData(pageData) {
+        // Default to WebPage if no type specified
+        const type = pageData.type || 'WebPage';
+
+        // Create structured data object
+        const structuredData = {
+            "@context": "https://schema.org",
+            "@type": type,
+            "name": pageData.title || document.title,
+            "description": pageData.description || "",
+            "url": pageData.url || window.location.href
+        };
+
+        // Add image if available
+        if (pageData.image) {
+            structuredData.image = pageData.image.startsWith('http')
+                ? pageData.image
+                : `https://divinci.ai/images/social/${pageData.image}`;
+        }
+
+        // Add additional fields based on type
+        if (type === 'Article') {
+            structuredData.headline = pageData.title || document.title;
+            structuredData.datePublished = pageData.datePublished || "";
+            structuredData.dateModified = pageData.dateModified || pageData.datePublished || "";
+
+            // Add author if available
+            if (pageData.author) {
+                structuredData.author = {
+                    "@type": "Person",
+                    "name": pageData.author
+                };
+            }
+
+            // Add publisher
+            structuredData.publisher = {
+                "@type": "Organization",
+                "name": "Divinci AI",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://divinci.ai/images/divinci_logo.png"
+                }
+            };
+        } else if (type === 'Product') {
+            // Add product-specific fields
+            if (pageData.brand) {
+                structuredData.brand = {
+                    "@type": "Brand",
+                    "name": pageData.brand
+                };
+            }
+
+            if (pageData.offers) {
+                structuredData.offers = {
+                    "@type": "Offer",
+                    "price": pageData.offers.price || "0",
+                    "priceCurrency": pageData.offers.currency || "USD",
+                    "availability": pageData.offers.availability || "https://schema.org/InStock"
+                };
+            }
+
+            if (pageData.features) {
+                structuredData.features = pageData.features;
+            }
+        } else if (type === 'FAQPage') {
+            // Add FAQ-specific fields
+            if (pageData.faqs && Array.isArray(pageData.faqs)) {
+                structuredData.mainEntity = pageData.faqs.map(faq => ({
+                    "@type": "Question",
+                    "name": faq.question,
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": faq.answer
+                    }
+                }));
+            }
+        } else if (type === 'BreadcrumbList') {
+            // Add breadcrumb-specific fields
+            if (pageData.breadcrumbs && Array.isArray(pageData.breadcrumbs)) {
+                structuredData.itemListElement = pageData.breadcrumbs.map((item, index) => ({
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "name": item.name,
+                    "item": item.url
+                }));
+            }
+        } else if (type === 'HowTo') {
+            // Add HowTo-specific fields
+            structuredData.totalTime = pageData.totalTime || "PT30M";
+
+            if (pageData.steps && Array.isArray(pageData.steps)) {
+                structuredData.step = pageData.steps.map((step, index) => ({
+                    "@type": "HowToStep",
+                    "position": index + 1,
+                    "name": step.name,
+                    "text": step.text,
+                    "url": step.url || window.location.href + `#step${index + 1}`
+                }));
+            }
+        }
+
+        // Add language information
+        if (pageData.language) {
+            structuredData.inLanguage = pageData.language;
+        } else {
+            const htmlLang = document.documentElement.lang;
+            if (htmlLang) {
+                structuredData.inLanguage = htmlLang;
+            }
+        }
+
+        // Add the structured data to the page
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(structuredData);
+        document.head.appendChild(script);
+    }
+
+    /**
+     * Add breadcrumb structured data
+     * @param {Array} breadcrumbs - Array of breadcrumb items
+     */
+    function addBreadcrumbStructuredData(breadcrumbs) {
+        addStructuredData({
+            type: 'BreadcrumbList',
+            breadcrumbs: breadcrumbs
+        });
+    }
+
+    /**
+     * Add FAQ structured data
+     * @param {Array} faqs - Array of FAQ items
+     */
+    function addFAQStructuredData(faqs) {
+        addStructuredData({
+            type: 'FAQPage',
+            faqs: faqs
+        });
+    }
+
+    /**
+     * Add Product structured data
+     * @param {Object} productData - Product data
+     */
+    function addProductStructuredData(productData) {
+        addStructuredData({
+            type: 'Product',
+            title: productData.name,
+            description: productData.description,
+            image: productData.image,
+            brand: productData.brand || 'Divinci AI',
+            offers: productData.offers,
+            features: productData.features
+        });
+    }
+
+    // Example usage:
+    // addStructuredData({
+    //     type: 'Article',
+    //     title: 'Building Responsible AI Systems',
+    //     description: 'Learn how to build AI systems that are ethical, transparent, and beneficial.',
+    //     image: 'blog/responsible-ai-social.jpg',
+    //     datePublished: '2023-09-15T08:00:00+00:00',
+    //     dateModified: '2023-09-20T10:30:00+00:00',
+    //     author: 'Paul-Marie Carfantan',
+    //     language: 'en'
+    // });
+
+    // Add breadcrumb example:
+    // addBreadcrumbStructuredData([
+    //     { name: "Home", url: "https://divinci.ai/" },
+    //     { name: "Features", url: "https://divinci.ai/features/" },
+    //     { name: "Quality Assurance", url: "https://divinci.ai/features/quality-assurance/" }
+    // ]);
+</script>
+
+
+        
+
+        <!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
+
+        <!-- Page Title -->
+        <title>Blog | Divinci AI</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="../css/social-sharing.css" />
+
+        <style>
+            /* Blog specific styles */
+            .blog-hero {
+                background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+                color: white;
+                padding: 5rem 0;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .blog-hero::before {
+                content: '';
+                position: absolute;
+                top: -100px;
+                right: -100px;
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                border: 2px solid rgba(92, 226, 231, 0.15);
+                opacity: 0.4;
+                z-index: 0;
+            }
+
+            .blog-hero-content {
+                position: relative;
+                z-index: 1;
+                text-align: center;
+            }
+
+            .blog-title {
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: white;
+            }
+
+            .blog-subtitle {
+                font-size: 1.2rem;
+                max-width: 800px;
+                margin: 0 auto;
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.6;
+            }
+
+            .blog-section {
+                padding: 4rem 0;
+                background-color: #f9f9f9;
+            }
+
+            .blog-main {
+                display: flex;
+                gap: 2.5rem;
+            }
+
+            .blog-container {
+                flex: 3;
+            }
+
+            .blog-sidebar {
+                flex: 1;
+                min-width: 300px;
+                align-self: flex-start;
+                position: sticky;
+                top: 2rem;
+            }
+
+            .featured-post {
+                background-color: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                margin-bottom: 3rem;
+            }
+
+            .featured-image {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+            }
+
+            .featured-content {
+                padding: 2rem;
+            }
+
+            .featured-tag {
+                display: inline-block;
+                padding: 0.3rem 1rem;
+                background-color: rgba(92, 226, 231, 0.1);
+                color: #16214c;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+                border: 1px solid rgba(92, 226, 231, 0.3);
+            }
+
+            .featured-title {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1rem;
+                line-height: 1.3;
+            }
+
+            .featured-excerpt {
+                font-size: 1.1rem;
+                color: #444;
+                line-height: 1.7;
+                margin-bottom: 1.5rem;
+            }
+
+            .post-meta {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1.5rem;
+            }
+
+            .author-avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 1rem;
+            }
+
+            .post-info {
+                font-size: 0.9rem;
+                color: #666;
+            }
+
+            .post-info .author-name {
+                font-weight: 600;
+                color: #16214c;
+            }
+
+            .read-more {
+                display: inline-flex;
+                align-items: center;
+                padding: 0.75rem 1.5rem;
+                background: linear-gradient(135deg, #16214c, #254284);
+                color: white;
+                border-radius: 6px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .read-more:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                color: white;
+            }
+
+            .read-more i {
+                margin-left: 0.5rem;
+                transition: transform 0.2s ease;
+            }
+
+            .read-more:hover i {
+                transform: translateX(3px);
+            }
+
+            .posts-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .post-card {
+                background-color: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                transition: transform 0.3s ease;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .post-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .post-image {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .post-content {
+                padding: 1.5rem;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .post-tag {
+                display: inline-block;
+                padding: 0.2rem 0.75rem;
+                background-color: rgba(92, 226, 231, 0.1);
+                color: #16214c;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                margin-bottom: 0.75rem;
+                border: 1px solid rgba(92, 226, 231, 0.3);
+            }
+
+            .post-title {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 0.75rem;
+                line-height: 1.4;
+                flex-grow: 1;
+            }
+
+            .post-date {
+                font-size: 0.85rem;
+                color: #666;
+                margin-bottom: 0.75rem;
+            }
+
+            .post-excerpt {
+                font-size: 0.95rem;
+                color: #444;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+
+            .post-link {
+                display: inline-flex;
+                align-items: center;
+                color: #16214c;
+                font-weight: 600;
+                text-decoration: none;
+                font-size: 0.9rem;
+                margin-top: auto;
+                transition: all 0.3s ease;
+            }
+
+            .post-link:hover {
+                color: #5ce2e7;
+            }
+
+            .post-link i {
+                margin-left: 0.5rem;
+                transition: transform 0.2s ease;
+            }
+
+            .post-link:hover i {
+                transform: translateX(3px);
+            }
+
+            .sidebar-section {
+                background-color: white;
+                border-radius: 12px;
+                padding: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                margin-bottom: 2rem;
+            }
+
+            .sidebar-title {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1.25rem;
+                padding-bottom: 0.75rem;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .categories-list, .tags-list, .popular-list {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .categories-list li, .tags-list li {
+                margin-bottom: 0.75rem;
+            }
+
+            .categories-list a, .tags-list a {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #444;
+                text-decoration: none;
+                transition: color 0.2s ease;
+                padding: 0.4rem 0;
+            }
+
+            .categories-list a:hover, .tags-list a:hover {
+                color: #5ce2e7;
+            }
+
+            .categories-list .count, .tags-list .count {
+                background-color: #f5f5f5;
+                border-radius: 20px;
+                padding: 0.2rem 0.75rem;
+                font-size: 0.8rem;
+                color: #666;
+            }
+
+            .tags-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+
+            .tags-list li {
+                margin-bottom: 0;
+            }
+
+            .tags-list a {
+                background-color: #f5f5f5;
+                border-radius: 20px;
+                padding: 0.3rem 1rem;
+                font-size: 0.85rem;
+                color: #444;
+                transition: all 0.3s ease;
+            }
+
+            .tags-list a:hover {
+                background-color: #16214c;
+                color: white;
+            }
+
+            .popular-list li {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1.25rem;
+            }
+
+            .popular-list li:last-child {
+                margin-bottom: 0;
+            }
+
+            .popular-image {
+                width: 60px;
+                height: 60px;
+                border-radius: 6px;
+                object-fit: cover;
+                margin-right: 1rem;
+            }
+
+            .popular-content {
+                flex: 1;
+            }
+
+            .popular-title {
+                font-weight: 600;
+                color: #16214c;
+                line-height: 1.4;
+                font-size: 0.95rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .popular-date {
+                font-size: 0.8rem;
+                color: #666;
+            }
+
+            .popular-list a {
+                text-decoration: none;
+            }
+
+            .load-more {
+                display: block;
+                width: 200px;
+                margin: 3rem auto 0;
+                padding: 0.8rem 0;
+                background-color: transparent;
+                color: #16214c;
+                border: 2px solid #16214c;
+                border-radius: 30px;
+                font-weight: 600;
+                text-align: center;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+
+            .load-more:hover {
+                background-color: #16214c;
+                color: white;
+            }
+
+            .pagination {
+                margin-top: 3rem;
+                display: flex;
+                justify-content: center;
+            }
+
+            .pagination-list {
+                display: flex;
+                list-style-type: none;
+                padding: 0;
+                gap: 0.5rem;
+            }
+
+            .pagination-link {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: white;
+                color: #16214c;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            .pagination-link:hover, .pagination-link.is-current {
+                background-color: #16214c;
+                color: white;
+            }
+
+            .coming-soon {
+                background-color: white;
+                border-radius: 12px;
+                padding: 3rem;
+                text-align: center;
+                margin-top: 2rem;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            }
+
+            .coming-soon-title {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1rem;
+            }
+
+            .coming-soon-message {
+                color: #444;
+                font-size: 1.1rem;
+                line-height: 1.6;
+                max-width: 600px;
+                margin: 0 auto 2rem;
+            }
+
+            .notify-button {
+                display: inline-flex;
+                align-items: center;
+                background: linear-gradient(135deg, #16214c, #254284);
+                color: white;
+                border: none;
+                border-radius: 30px;
+                padding: 0.8rem 2rem;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .notify-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                color: white;
+            }
+
+            .notify-button i {
+                margin-right: 0.75rem;
+            }
+
+            /* Responsive adjustments */
+            @media screen and (max-width: 1023px) {
+                .blog-main {
+                    flex-direction: column;
+                }
+
+                .blog-sidebar {
+                    min-width: 100%;
+                    position: static;
+                }
+            }
+
+            @media screen and (max-width: 768px) {
+                .blog-title {
+                    font-size: 2.2rem;
+                }
+
+                .featured-title {
+                    font-size: 1.5rem;
+                }
+
+                .featured-image {
+                    height: 250px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Header with Navigation -->
+        <header role="banner">
+            <!-- Mobile Header Style - Using base URL to ensure paths work from any directory -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Google Fonts (Sora and Inter)
+        if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+            const googleFonts = document.createElement('link');
+            googleFonts.rel = 'stylesheet';
+            googleFonts.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap';
+            document.head.appendChild(googleFonts);
+        }
+
+        // Load font styles
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+
+        // Load fonts.css
+        const fontStyles = document.createElement('link');
+        fontStyles.rel = 'stylesheet';
+        fontStyles.href = basePath + 'assets/css/fonts.css';
+        document.head.appendChild(fontStyles);
+
+        // Load Sora styles
+        const soraStyles = document.createElement('link');
+        soraStyles.rel = 'stylesheet';
+        soraStyles.href = basePath + 'assets/css/sora-styles.css';
+        document.head.appendChild(soraStyles);
+
+        // Load mobile header styles
+        const mobileHeaderStyles = document.createElement('link');
+        mobileHeaderStyles.rel = 'stylesheet';
+        mobileHeaderStyles.href = basePath + 'includes/mobile-header.css';
+        document.head.appendChild(mobileHeaderStyles);
+
+        // Load custom header styles
+        const headerStyles = document.createElement('link');
+        headerStyles.rel = 'stylesheet';
+        headerStyles.href = basePath + 'includes/header-styles.css';
+        document.head.appendChild(headerStyles);
+    })();
+</script>
+
+<nav class="navbar">
+    <a href="" class="logo-link" id="logoHomeLink">
+        <div class="nav-logo">
+            <img
+                class="header-logo"
+                src="images/divinci_logo_inverted.svg"
+                alt="Divinci Heart Robot logo"
+                onerror="this.onerror=null; 
+                    if (window.location.pathname.includes('/features/')) {
+                        this.src='../../images/divinci_logo_inverted.svg';
+                    } else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+                        this.src='../images/divinci_logo_inverted.svg';
+                    } else {
+                        this.src='images/divinci_logo_inverted.svg';
+                    }"
+            />
+        </div>
+        <div class="nav-title">
+            <span class="brand-name">Divinci ™</span>
+            <span class="mobile-hide consumer-view-content">&nbsp;- Create your own custom AI</span>
+            <span class="mobile-hide company-view-content" style="display: none; opacity: 0;">&nbsp;- Enterprise AI Solutions</span>
+        </div>
+    </a>
+    <!-- Toggle switch for customer/company view -->
+    <div class="view-toggle-container mobile-hide">
+        <span style ="margin-right: 22px" class="view-label customer-view active" onclick="document.getElementById('viewToggle').checked = false; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">Consumer</span>
+        <label class="switch">
+            <input type="checkbox" id="viewToggle">
+            <span class="slider round"></span>
+        </label>
+        <span class="view-label company-view" onclick="document.getElementById('viewToggle').checked = true; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">Company</span>
+    </div>
+    <div class="nav-menu">
+        <a href="#features" data-i18n="navigation.features">Features</a>
+        <a href="#team" data-i18n="navigation.team">Team</a>
+        <a href="#signup" class="signup-link"><span class="signup-button" data-i18n="buttons.signUp">Sign Up</span></a>
+        <div id="language-switcher-container" style="display: inline-block; margin-left: 15px; position: relative; z-index: 9999; overflow: visible;">
+            <!-- Direct embedding of language switcher instead of using data-include -->
+            <div class="language-switcher">
+                <div class="language-switcher-current">
+                    <span class="language-icon" style="display:inline-flex; align-items:center;">
+                      <svg id="globe-animated" viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;cursor:pointer;">
+                        <circle cx="16" cy="16" r="15" stroke="#2863c2" stroke-width="2" fill="#e9f2ff"/>
+                        <ellipse cx="16" cy="16" rx="7" ry="15" stroke="#2863c2" stroke-width="2" fill="none"/>
+                        <ellipse cx="16" cy="16" rx="15" ry="7" stroke="#2863c2" stroke-width="2" fill="none"/>
+                        <path id="anim-orbit" d="M 1 16 Q 16 0, 31 16 Q 16 32, 1 16 Z" fill="none" stroke="#45a4f3" stroke-width="1.2" />
+                      </svg>
+                    </span>
+                    <span class="current-language">English</span>
+                    <span class="dropdown-icon">▼</span>
+                </div>
+                <div class="language-switcher-dropdown">
+                    <a href="/" class="language-option" data-lang="en">
+                        <span class="language-name">English</span>
+                        <span class="language-native">English</span>
+                    </a>
+                    <a href="/es/" class="language-option" data-lang="es">
+                        <span class="language-name">Spanish</span>
+                        <span class="language-native">Español</span>
+                    </a>
+                    <a href="/fr/" class="language-option" data-lang="fr">
+                        <span class="language-name">French</span>
+                        <span class="language-native">Français</span>
+                    </a>
+                    <a href="/ar/" class="language-option" data-lang="ar">
+                        <span class="language-name">Arabic</span>
+                        <span class="language-native">العربية</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu Script -->
+<script>
+    // Create dynamic script element to handle path resolution without document.write
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+        
+        const script = document.createElement('script');
+        script.src = basePath + 'js/mobile-menu.js';
+        script.defer = true;
+        document.body.appendChild(script);
+
+        // Add view toggle script
+        const viewToggleScript = document.createElement('script');
+        viewToggleScript.src = basePath + 'js/view-toggle.js';
+        viewToggleScript.defer = true;
+        document.body.appendChild(viewToggleScript);
+
+        // Load i18n scripts
+        const i18nConfigScript = document.createElement('script');
+        i18nConfigScript.src = basePath + 'js/i18n-config.js';
+        document.head.appendChild(i18nConfigScript);
+
+        const i18nScript = document.createElement('script');
+        i18nScript.src = basePath + 'js/i18n.js';
+        document.head.appendChild(i18nScript);
+
+        // Load language-switcher-translations.js
+        const languageSwitcherTranslationsScript = document.createElement('script');
+        languageSwitcherTranslationsScript.src = basePath + 'js/language-switcher-translations.js';
+        document.head.appendChild(languageSwitcherTranslationsScript);
+
+        // Load direct-translations.js
+        const directTranslationsScript = document.createElement('script');
+        directTranslationsScript.src = basePath + 'js/direct-translations.js';
+        document.head.appendChild(directTranslationsScript);
+
+        // Load direct-dom-translations.js
+        const directDomTranslationsScript = document.createElement('script');
+        directDomTranslationsScript.src = basePath + 'js/direct-dom-translations.js';
+        document.head.appendChild(directDomTranslationsScript);
+
+        // We'll let the data-include mechanism handle the language switcher
+        // This prevents duplicate event handlers
+        const languageSwitcherContainer = document.getElementById('language-switcher-container');
+        if (languageSwitcherContainer) {
+            // Make sure the dropdown is visible when active
+            const style = document.createElement('style');
+            style.textContent = `
+                .language-switcher.active .language-switcher-dropdown {
+                    display: block !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    pointer-events: auto !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    })();
+</script>
+
+<!-- Script to handle navigation links based on current path -->
+<script>
+    // Properly set the href attributes based on location
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+
+        // Set logo link to home
+        const logoLink = document.getElementById('logoHomeLink');
+        if (logoLink) {
+            logoLink.setAttribute('href', basePath + 'index.html');
+        }
+
+        // Set navigation links
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                // Preserve the signup-link class and signup-button span when updating the href
+                if (link.classList.contains('signup-link')) {
+                    link.setAttribute('href', basePath + 'index.html' + href);
+                    // Ensure the signup button is properly styled
+                    if (!link.querySelector('.signup-button')) {
+                        const text = link.textContent.trim();
+                        link.innerHTML = '';
+                        const span = document.createElement('span');
+                        span.className = 'signup-button';
+                        span.textContent = text;
+                        link.appendChild(span);
+                    }
+                } else {
+                    link.setAttribute('href', basePath + 'index.html' + href);
+                }
+            }
+        });
+    })();
+</script>
+
+<!-- Language Switcher CSS -->
+<style>
+    /* Language Switcher Styles - Directly embedded for reliability */
+    .language-switcher {
+        position: relative !important;
+        display: inline-block !important;
+        font-family: 'Sora', sans-serif;
+        margin-left: 15px;
+        z-index: 9999 !important;
+        overflow: visible !important;
+    }
+
+    .language-switcher-current {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.3s;
+    }
+
+    .language-switcher-current:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .language-icon {
+        margin-right: 6px;
+        font-size: 16px;
+    }
+
+    .current-language {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .dropdown-icon {
+        margin-left: 6px;
+        font-size: 10px;
+        transition: transform 0.3s;
+    }
+
+    .language-switcher.active .dropdown-icon {
+        transform: rotate(180deg);
+    }
+
+    .language-switcher-dropdown {
+        position: absolute !important;
+        top: 100% !important;
+        right: 0 !important;
+        left: auto !important;
+        width: 180px;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: none;
+        z-index: 9999 !important;
+        transform: none !important;
+    }
+
+    .language-switcher.active .language-switcher-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .language-option {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s;
+    }
+
+    .language-option:hover {
+        background-color: #f5f5f5;
+    }
+
+    .language-name {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .language-native {
+        font-size: 14px;
+        color: #666;
+    }
+
+    /* RTL support */
+    [dir="rtl"] .language-icon {
+        margin-right: 0;
+        margin-left: 6px;
+    }
+
+    [dir="rtl"] .dropdown-icon {
+        margin-left: 0;
+        margin-right: 6px;
+    }
+
+    [dir="rtl"] .language-switcher-dropdown {
+        right: auto !important;
+        left: 0 !important;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+        .language-switcher-dropdown {
+            background-color: #333;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .language-option {
+            color: #eee;
+        }
+
+        .language-option:hover {
+            background-color: #444;
+        }
+
+        .language-native {
+            color: #aaa;
+        }
+    }
+
+    /* Mobile styles */
+    @media screen and (max-width: 768px) {
+        .language-switcher {
+            margin-left: 0;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .language-switcher-current {
+            justify-content: center;
+        }
+
+        .language-switcher-dropdown {
+            width: 100%;
+            left: 0 !important;
+            right: 0 !important;
+            position: absolute !important;
+        }
+    }
+</style>
+
+<!-- Script to load the language switcher JavaScript -->
+<script>
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+        
+        // Load only the simplified language switcher script
+        const languageSwitcherScript = document.createElement('script');
+        languageSwitcherScript.src = basePath + 'js/language-switcher.js';
+        document.head.appendChild(languageSwitcherScript);
+    })();
+</script>
+
+        </header>
+
+        <!-- Main content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <!-- Hero Section -->
+            <section class="blog-hero">
+                <div class="container">
+                    <div class="blog-hero-content">
+                        <h1 class="blog-title">Divinci AI Blog</h1>
+                        <p class="blog-subtitle">Insights, updates, and thought leadership on artificial intelligence, RAG systems, and the future of human-AI collaboration.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coming Soon Section -->
+            <section class="blog-section">
+                <div class="container">
+                    <div class="coming-soon" style="display: none;">
+                        <h2 class="coming-soon-title">Blog Coming Soon</h2>
+                        <p class="coming-soon-message">We're currently building our blog with insights on AI technology, implementation strategies, and industry trends. Check back soon for updates or subscribe to be notified when new content is available.</p>
+                        <a href="#" class="notify-button"><i class="fas fa-bell"></i> Notify me of updates</a>
+                    </div>
+
+                    <!-- Preview Content -->
+                    <div class="blog-main" style="margin-top: 4rem;">
+                        <div class="blog-container">
+                            <article class="featured-post">
+                                <img src="../images/autorag-still.png" alt="Featured Post Image" class="featured-image">
+                                <div class="featured-content">
+                                    <span class="featured-tag">Artificial Intelligence</span>
+                                    <h2 class="featured-title">The Future of RAG Systems: Beyond Simple Document Retrieval</h2>
+                                    <div class="post-meta">
+                                        <img src="../images/Michael-Mooring.jpeg" alt="Michael Mooring" class="author-avatar">
+                                        <div class="post-info">
+                                            By <span class="author-name">Michael Mooring</span> • May 1, 2025
+                                        </div>
+                                    </div>
+                                    <p class="featured-excerpt">
+                                        Retrieval-Augmented Generation (RAG) systems have revolutionized how AI models access and reason over large datasets. In this article, we explore the next generation of RAG technology and how it's enabling more sophisticated AI applications that go beyond simple document retrieval.
+                                    </p>
+                                    <a href="posts/future-of-rag-systems.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </article>
+
+                            <h2 style="font-size: 1.8rem; font-weight: 700; color: #16214c; margin-bottom: 2rem;">Recent Articles</h2>
+
+                            <div class="posts-grid">
+                                <article class="post-card">
+                                    <img src="../images/AI-Standards-Hub-Logo_04-1.png" alt="AI Ethics Post Image" class="post-image">
+                                    <div class="post-content">
+                                        <span class="post-tag">AI Ethics</span>
+                                        <h3 class="post-title">Building Responsible AI Systems: A Practical Guide</h3>
+                                        <div class="post-date">April 15, 2025</div>
+                                        <a href="posts/building-responsible-ai-systems.html" class="post-link">Read more <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </article>
+
+                                <article class="post-card">
+                                    <img src="../images/autorag-vector-embedding-adjusted.svg" alt="Technical Guides Post Image" class="post-image">
+                                    <div class="post-content">
+                                        <span class="post-tag">Technical Guides</span>
+                                        <h3 class="post-title">Optimizing Vector Embeddings for Better Search Results</h3>
+                                        <div class="post-date">April 8, 2025</div>
+                                        <a href="posts/optimizing-vector-embeddings.html" class="post-link">Read more <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </article>
+
+                                <article class="post-card">
+                                    <img src="../images/qa-pipeline-diagram.svg" alt="Case Studies Post Image" class="post-image">
+                                    <div class="post-content">
+                                        <span class="post-tag">Case Studies</span>
+                                        <h3 class="post-title">How FinTech Startup Streamlined Customer Support with Custom AI</h3>
+                                        <div class="post-date">March 25, 2025</div>
+                                        <a href="posts/fintech-customer-support-case-study.html" class="post-link">Read more <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+
+                        <aside class="blog-sidebar">
+                            <div class="sidebar-section">
+                                <h3 class="sidebar-title">Categories</h3>
+                                <ul class="categories-list">
+                                    <li><a href="#">Artificial Intelligence <span class="count">12</span></a></li>
+                                    <li><a href="#">RAG Systems <span class="count">8</span></a></li>
+                                    <li><a href="#">Technical Guides <span class="count">15</span></a></li>
+                                    <li><a href="#">Case Studies <span class="count">6</span></a></li>
+                                    <li><a href="#">Product Updates <span class="count">10</span></a></li>
+                                    <li><a href="#">AI Ethics <span class="count">4</span></a></li>
+                                </ul>
+                            </div>
+
+                            <div class="sidebar-section">
+                                <h3 class="sidebar-title">Popular Tags</h3>
+                                <ul class="tags-list">
+                                    <li><a href="#">AI</a></li>
+                                    <li><a href="#">RAG</a></li>
+                                    <li><a href="#">LLMs</a></li>
+                                    <li><a href="#">Vector Embeddings</a></li>
+                                    <li><a href="#">Tutorials</a></li>
+                                    <li><a href="#">Integration</a></li>
+                                    <li><a href="#">Automation</a></li>
+                                    <li><a href="#">Ethics</a></li>
+                                    <li><a href="#">Quality Assurance</a></li>
+                                    <li><a href="#">Enterprise</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="sidebar-section">
+                                <h3 class="sidebar-title">Popular Posts</h3>
+                                <ul class="popular-list">
+                                    <li>
+                                        <a href="posts/future-of-rag-systems.html">
+                                            <img src="../images/autorag-still.png" alt="Future of RAG Systems" class="popular-image">
+                                            <div class="popular-content">
+                                                <div class="popular-title">The Future of RAG Systems: Beyond Simple Document Retrieval</div>
+                                                <div class="popular-date">May 1, 2025</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="posts/building-responsible-ai-systems.html">
+                                            <img src="../images/AI-Standards-Hub-Logo_04-1.png" alt="Responsible AI Systems" class="popular-image">
+                                            <div class="popular-content">
+                                                <div class="popular-title">Building Responsible AI Systems: A Practical Guide</div>
+                                                <div class="popular-date">April 15, 2025</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="posts/optimizing-vector-embeddings.html">
+                                            <img src="../images/autorag-vector-embedding-adjusted.svg" alt="Vector Embeddings" class="popular-image">
+                                            <div class="popular-content">
+                                                <div class="popular-title">Optimizing Vector Embeddings for Better Search Results</div>
+                                                <div class="popular-date">April 8, 2025</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Load social sharing script -->
+        <script src="../js/social-sharing.js" defer></script>
+
+        <!-- Footer -->
+        <!-- Footer with Sacred Geometry Elements -->
+<!-- Load footer styles dynamically -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Font Awesome if not already loaded
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        }
+
+        // Load Bulma if not already loaded
+        if (!document.querySelector('link[href*="bulma"]')) {
+            const bulma = document.createElement('link');
+            bulma.rel = 'stylesheet';
+            bulma.href = 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+            document.head.appendChild(bulma);
+        }
+
+        // Load footer styles
+        const footerStyles = document.createElement('link');
+        footerStyles.rel = 'stylesheet';
+        footerStyles.href = (window.location.pathname.includes('/features/') ? '../../' : '') + 'styles-footer.css';
+        document.head.appendChild(footerStyles);
+    })();
+</script>
+<footer class="site-footer">
+    <!-- Sacred Geometry Background Elements -->
+    <div class="footer-sacred-pattern"></div>
+    <div class="sacred-circle sacred-circle-1"></div>
+    <div class="sacred-circle sacred-circle-2"></div>
+    <div class="sacred-circle sacred-circle-3"></div>
+
+    <div class="container">
+        <div class="footer-content">
+            <!-- Top Section with Bulma Columns -->
+            <div class="columns is-footer-links">
+                <!-- Logo and Company Info -->
+                <div class="column is-one-quarter">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <!-- <img src="images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
+                                onerror="this.onerror=null; this.src='images/divinci_logo.png';" /> -->
+                            <div class="heart">🖤</div>
+                            <span class="footer-brand-name">Divinci AI</span>
+                        </div>
+                        <p class="footer-tagline">Empowering human-AI collaboration</p>
+                        <div class="social-links">
+                            <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Product</h3>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="roadmap.html">Roadmap</a></li>
+                            <li><a href="changelog.html">Changelog</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="docs/">Documentation</a></li>
+                            <li><a href="blog/">Blog</a></li>
+                            <li><a href="tutorials/">Tutorials</a></li>
+                            <li><a href="api/">API</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="press.html">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                            <li><a href="security.html">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom with Bulma Level -->
+        <div class="footer-bottom">
+            <div class="level is-footer-bottom">
+                <div class="level-left">
+                    <div class="level-item">
+                        <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <div class="footer-bottom-links">
+                            <a href="sitemap.xml">Sitemap</a>
+                            <a href="accessibility.html">Accessibility</a>
+                            <a href="cookies.html">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Script to handle footer links based on current path -->
+<script>
+    // Properly set the href attributes based on location
+    (function() {
+        const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
+        const footerLinks = document.querySelectorAll('.footer-links-column a, .footer-bottom-links a');
+
+        footerLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                link.setAttribute('href', basePath + 'index.html' + href);
+            } else if (href && !href.startsWith('http') && !href.startsWith('/')) {
+                link.setAttribute('href', basePath + href);
+            }
+        });
+    })();
+</script>
+
+
+        <!-- Scripts -->
+        <script src="../js/keyboard-navigation.js" defer></script>
+        <script src="../js/apply-sora-to-divinci.js" defer></script>
+
+        <!-- Script to include HTML components -->
+        
+    </body>
+</html>

@@ -41,6 +41,24 @@ function initLanguageSwitcher() {
                 switcher.classList.toggle('active');
             });
         }
+
+        // Set up once-per-hover animation for globe SVG
+        const globe = switcher.querySelector('.language-icon #globe-animated');
+        if (globe) {
+            let animating = false;
+            const runGlobeAnimation = () => {
+                if (animating) return;
+                animating = true;
+                globe.classList.add('animate-once');
+                globe.addEventListener('animationend', () => {
+                    globe.classList.remove('animate-once');
+                    animating = false;
+                }, { once: true });
+            };
+            // Both mouse and keyboard accessible
+            globe.parentElement.addEventListener('mouseenter', runGlobeAnimation);
+            globe.parentElement.addEventListener('focus', runGlobeAnimation);
+        }
         
         // Update displayed language
         updateCurrentLanguage(switcher);

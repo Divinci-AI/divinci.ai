@@ -1,22 +1,22 @@
-<\!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es" dir="ltr">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-    <\!-- Hreflang tags for language alternatives -->
+    <!-- Hreflang tags for language alternatives -->
     <link rel="alternate" href="https://divinci.ai/about-us.html" hreflang="x-default" />
     <link rel="alternate" href="https://divinci.ai/about-us.html" hreflang="en" />
     <link rel="alternate" href="https://divinci.ai/es/about-us.html" hreflang="es" />
     <link rel="alternate" href="https://divinci.ai/fr/about-us.html" hreflang="fr" />
     <link rel="alternate" href="https://divinci.ai/ar/about-us.html" hreflang="ar" />
-        <\!-- Include meta tags -->
+        <!-- Include meta tags -->
         <div data-include="../includes/meta-tags.html"></div>
 
-        <\!-- Include structured data -->
+        <!-- Include structured data -->
         <div data-include="../includes/structured-data.html"></div>
 
-        <\!-- Initialize page-specific meta tags and structured data -->
+        <!-- Initialize page-specific meta tags and structured data -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 // Set meta tags for this page
@@ -43,15 +43,15 @@
             });
         </script>
 
-        <\!-- Favicons and App Icons -->
+        <!-- Favicons and App Icons -->
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
 
-        <\!-- Page Title -->
+        <!-- Page Title -->
         <title>Sobre Nosotros | Divinci AI</title>
 
-        <\!-- Stylesheets -->
+        <!-- Stylesheets -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
         <link rel="stylesheet" href="../assets/css/fonts.css" />
         <link rel="stylesheet" href="../assets/css/sora-styles.css" />
@@ -59,24 +59,24 @@
         <link rel="stylesheet" href="../styles-footer.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         
-        <\!-- Load include-html.js to ensure components are loaded properly -->
+        <!-- Load include-html.js to ensure components are loaded properly -->
         <script src="../js/include-html.js"></script>
         
-        <\!-- Load language switcher scripts, but not the loader since we're using inline implementation -->
+        <!-- Load language switcher scripts, but not the loader since we're using inline implementation -->
         <script src="../js/language-switcher.js" defer></script>
         <link rel="stylesheet" href="../includes/header-styles.css" />
         <link rel="stylesheet" href="../includes/section-content-fix.css" />
         
-        <\!-- Language Switcher Styles - Directly embedded for reliability -->
+        <!-- Language Switcher Styles - Directly embedded for reliability -->
         <style>
             /* Language Switcher Styles */
             .language-switcher {
-                position: relative \!important;
-                display: inline-block \!important;
+                position: relative !important;
+                display: inline-block !important;
                 font-family: 'Sora', sans-serif;
                 margin-left: 15px;
-                z-index: 9999 \!important;
-                overflow: visible \!important;
+                z-index: 9999 !important;
+                overflow: visible !important;
             }
 
             .language-switcher-current {
@@ -114,25 +114,25 @@
             }
 
             .language-switcher-dropdown {
-                position: absolute \!important;
-                top: 100% \!important;
-                right: 0 \!important;
-                left: auto \!important;
+                position: absolute !important;
+                top: 100% !important;
+                right: 0 !important;
+                left: auto !important;
                 width: 180px;
                 background-color: #fff;
                 border-radius: 4px;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
                 overflow: hidden;
                 display: none;
-                z-index: 9999 \!important;
-                transform: none \!important;
+                z-index: 9999 !important;
+                transform: none !important;
             }
 
             .language-switcher.active .language-switcher-dropdown {
-                display: block \!important;
-                opacity: 1 \!important;
-                visibility: visible \!important;
-                pointer-events: auto \!important;
+                display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                pointer-events: auto !important;
             }
 
             .language-option {
@@ -170,8 +170,8 @@
             }
 
             [dir="rtl"] .language-switcher-dropdown {
-                right: auto \!important;
-                left: 0 \!important;
+                right: auto !important;
+                left: 0 !important;
             }
 
             /* Dark mode support */
@@ -208,9 +208,9 @@
 
                 .language-switcher-dropdown {
                     width: 100%;
-                    left: 0 \!important;
-                    right: 0 \!important;
-                    position: absolute \!important;
+                    left: 0 !important;
+                    right: 0 !important;
+                    position: absolute !important;
                 }
             }
         </style>
@@ -330,7 +330,7 @@
             /* Fix for mission and vision card text */
             .mission-card .section-content,
             .vision-card .section-content {
-                color: #444 \!important; /* Dark text for better readability on white background */
+                color: #444 !important; /* Dark text for better readability on white background */
             }
 
             /* Ensure text is visible on dark backgrounds */
@@ -339,7 +339,7 @@
             .team-section .section-content,
             .values-section .section-content,
             .dark-section .section-content {
-                color: rgba(255, 255, 255, 0.9) \!important;
+                color: rgba(255, 255, 255, 0.9) !important;
             }
 
             /* Fix for section content in dark backgrounds */
@@ -347,14 +347,14 @@
             .join-team-section .section-content,
             .team-section .section-content,
             .values-section .section-content {
-                color: rgba(255, 255, 255, 0.9) \!important;
+                color: rgba(255, 255, 255, 0.9) !important;
             }
 
             /* Make sure the section content directly below section titles is visible */
             .story-section h2.section-title + p.section-content,
             .team-section h2.section-title + p.section-content,
             .values-section h2.section-title + p.section-content {
-                color: rgba(255, 255, 255, 0.9) \!important;
+                color: rgba(255, 255, 255, 0.9) !important;
                 font-weight: 500;
             }
 
@@ -816,7 +816,7 @@
 
                 .timeline-item {
                     width: 100%;
-                    margin-left: 0 \!important;
+                    margin-left: 0 !important;
                     padding: 0 0 4rem 2.5rem;
                 }
 
@@ -844,12 +844,12 @@
         </style>
     </head>
     <body>
-        <\!-- Skip to content link for keyboard users -->
+        <!-- Skip to content link for keyboard users -->
         <div class="skip-links">
             <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
         </div>
 
-        <\!-- Header with Navigation -->
+        <!-- Header with Navigation -->
         <nav class="navbar">
             <a href="index.html" class="logo-link">
                 <div class="nav-logo">
@@ -864,7 +864,7 @@
                     <span class="brand-name">Divinci ™</span><span class="mobile-hide">&nbsp;- Crea tu propia IA personalizada</span>
                 </div>
             </a>
-            <\!-- Toggle switch for customer/company view -->
+            <!-- Toggle switch for customer/company view -->
             <div class="view-toggle-container mobile-hide">
                 <span class="view-label customer-view active">Cliente</span>
                 <label class="switch">
@@ -878,7 +878,7 @@
                 <a href="index.html#team">Equipo</a>
                 <a href="index.html#signup" class="signup-link"><span class="signup-button">Regístrate</span></a>
                 <div id="language-switcher-container" style="display: inline-block; margin-left: 15px; position: relative; z-index: 9999; overflow: visible;">
-                    <\!-- Direct embedding of language switcher instead of using data-include -->
+                    <!-- Direct embedding of language switcher instead of using data-include -->
                     <div class="language-switcher">
                         <div class="language-switcher-current">
                             <span class="language-icon">🌐</span>
@@ -908,9 +908,9 @@
             </div>
         </nav>
 
-        <\!-- Main content -->
+        <!-- Main content -->
         <main id="main-content" role="main" tabindex="-1">
-            <\!-- Hero Section -->
+            <!-- Hero Section -->
             <section class="about-hero">
                 <div class="container">
                     <div class="about-hero-content">
@@ -920,7 +920,7 @@
                 </div>
             </section>
 
-            <\!-- Mission & Vision Section -->
+            <!-- Mission & Vision Section -->
             <section class="mission-section">
                 <div class="container">
                     <div class="mission-vision-container">
@@ -953,7 +953,7 @@
                 </div>
             </section>
 
-            <\!-- Values Section -->
+            <!-- Values Section -->
             <section class="values-section">
                 <div class="sacred-pattern sacred-pattern-1"></div>
                 <div class="container">
@@ -1026,7 +1026,7 @@
                 </div>
             </section>
 
-            <\!-- Team Section -->
+            <!-- Team Section -->
             <section class="team-section">
                 <div class="container">
                     <h2 class="section-title">Conoce a Nuestro Equipo</h2>
@@ -1082,7 +1082,7 @@
                 </div>
             </section>
 
-            <\!-- Our Story Section -->
+            <!-- Our Story Section -->
             <section class="story-section">
                 <div class="sacred-pattern sacred-pattern-2"></div>
                 <div class="container">
@@ -1180,7 +1180,7 @@
                 </div>
             </section>
 
-            <\!-- Social Good Section -->
+            <!-- Social Good Section -->
             <section class="social-good-section">
                 <div class="container">
                     <h2 class="section-title" style="background: linear-gradient(to right, #16214c, #5ce2e7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: none;">Iniciativas de IA para el Bien</h2>
@@ -1209,7 +1209,7 @@
                 </div>
             </section>
 
-            <\!-- Join Our Team Section -->
+            <!-- Join Our Team Section -->
             <section class="join-team-section">
                 <div class="container">
                     <h2 class="join-title">Únete a Nuestro Equipo</h2>
@@ -1220,7 +1220,7 @@
                 </div>
             </section>
 
-            <\!-- Social Sharing Section -->
+            <!-- Social Sharing Section -->
             <section class="social-sharing-section">
                 <div class="container">
                     <div data-include="../includes/social-share.html"></div>
@@ -1228,13 +1228,13 @@
             </section>
         </main>
 
-        <\!-- Load social sharing script -->
+        <!-- Load social sharing script -->
         <script src="../js/social-sharing.js" defer></script>
         <link rel="stylesheet" href="../css/social-sharing.css" />
 
-        <\!-- Footer with Sacred Geometry and Bulma Integration -->
+        <!-- Footer with Sacred Geometry and Bulma Integration -->
         <footer class="site-footer">
-            <\!-- Sacred Geometry Background Elements -->
+            <!-- Sacred Geometry Background Elements -->
             <div class="footer-sacred-pattern"></div>
             <div class="sacred-circle sacred-circle-1"></div>
             <div class="sacred-circle sacred-circle-2"></div>
@@ -1242,9 +1242,9 @@
 
             <div class="container">
                 <div class="footer-content">
-                    <\!-- Top Section with Bulma Columns -->
+                    <!-- Top Section with Bulma Columns -->
                     <div class="columns is-footer-links">
-                        <\!-- Logo and Company Info -->
+                        <!-- Logo and Company Info -->
                         <div class="column is-one-quarter">
                             <div class="footer-brand">
                                 <div class="footer-logo">
@@ -1274,7 +1274,7 @@
                             </div>
                         </div>
 
-                        <\!-- Navigation Links -->
+                        <!-- Navigation Links -->
                         <div class="column">
                             <div class="footer-links-column">
                                 <h3>Producto</h3>
@@ -1325,7 +1325,7 @@
                     </div>
                 </div>
 
-                <\!-- Footer Bottom with Bulma Level -->
+                <!-- Footer Bottom with Bulma Level -->
                 <div class="footer-bottom">
                     <div class="level is-footer-bottom">
                         <div class="level-left">
@@ -1347,7 +1347,7 @@
             </div>
         </footer>
 
-        <\!-- Scripts -->
+        <!-- Scripts -->
         <script src="../js/keyboard-navigation.js" defer></script>
         <script src="../js/apply-sora-to-divinci.js" defer></script>
     </body>

@@ -1,7 +1,14 @@
 <!-- Language Switcher Component -->
 <div class="language-switcher">
     <div class="language-switcher-current">
-        <span class="language-icon">🌐</span>
+        <span class="language-icon" style="display:inline-flex; align-items:center;">
+          <svg id="globe-animated" viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;cursor:pointer;">
+            <circle cx="16" cy="16" r="15" stroke="#2863c2" stroke-width="2" fill="#e9f2ff"/>
+            <ellipse cx="16" cy="16" rx="7" ry="15" stroke="#2863c2" stroke-width="2" fill="none"/>
+            <ellipse cx="16" cy="16" rx="15" ry="7" stroke="#2863c2" stroke-width="2" fill="none"/>
+            <path id="anim-orbit" d="M 1 16 Q 16 0, 31 16 Q 16 32, 1 16 Z" fill="none" stroke="#45a4f3" stroke-width="1.2" />
+          </svg>
+        </span>
         <span class="current-language">English</span>
         <span class="dropdown-icon">▼</span>
     </div>
