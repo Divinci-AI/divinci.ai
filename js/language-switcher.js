@@ -60,23 +60,7 @@ function initLanguageSwitcher() {
             });
         });
 
-        // Set up once-per-hover animation for globe SVG
-        const globe = switcher.querySelector('.language-icon #globe-animated');
-        if (globe) {
-            let animating = false;
-            const runGlobeAnimation = () => {
-                if (animating) return;
-                animating = true;
-                globe.classList.add('animate-once');
-                globe.addEventListener('animationend', () => {
-                    globe.classList.remove('animate-once');
-                    animating = false;
-                }, { once: true });
-            };
-            // Both mouse and keyboard accessible
-            globe.parentElement.addEventListener('mouseenter', runGlobeAnimation);
-            globe.parentElement.addEventListener('focus', runGlobeAnimation);
-        }
+        // Font Awesome icon is now used instead of animated SVG globe
 
         // Update displayed language
         updateCurrentLanguage(switcher);
@@ -147,67 +131,131 @@ function updateCurrentLanguage(switcher) {
 function navigateToLanguage(lang) {
     const currentPath = window.location.pathname;
     const currentOrigin = window.location.origin;
-    const langRegex = /^\/(es|fr|ar)\//;
-    const hasLangPrefix = langRegex.test(currentPath);
+    const currentHref = window.location.href;
 
-    let newPath;
-    if (lang === 'en') {
-        // For English, remove language prefix
-        newPath = hasLangPrefix ? currentPath.replace(langRegex, '/') : currentPath;
-    } else {
-        // For other languages, add or replace language prefix
-        if (hasLangPrefix) {
-            newPath = currentPath.replace(langRegex, `/${lang}/`);
-        } else {
-            // Handle root path specially
-            if (currentPath === '/' || currentPath === '') {
-                newPath = `/${lang}/`;
+    // Detect if we're on a static site
+    const isStaticSite = currentOrigin.startsWith('file://') ||
+                        (!currentOrigin.includes('localhost') &&
+                         !currentOrigin.includes('127.0.0.1') &&
+                         !currentOrigin.includes('dev') &&
+                         !currentOrigin.includes('staging'));
+
+    // For file:// URLs, we need to extract the relative path from the full file path
+    let relativePath = currentPath;
+    if (isStaticSite && currentOrigin.startsWith('file://')) {
+        // Extract the relative path by finding the project directory or root
+        // currentPath might be something like: /Users/mikeumus/Documents/divinci.ai/fr/index.html
+        // We want to extract: /fr/index.html or /index.html
+        const pathParts = currentPath.split('/');
+        const projectIndex = pathParts.findIndex(part => part === 'divinci.ai');
+        if (projectIndex !== -1 && projectIndex < pathParts.length - 1) {
+            // Get everything after the project directory
+            const relativePathParts = pathParts.slice(projectIndex + 1);
+            relativePath = '/' + relativePathParts.join('/');
+        }
+    }
+    // For hosted static sites (like Cloudflare Pages), currentPath is already relative
+
+    const langRegex = /^\/(es|fr|ar)\//;
+    const hasLangPrefix = langRegex.test(relativePath);
+
+
+
+    // Get the current page filename (default to index.html)
+    let currentPage = 'index.html';
+    if (relativePath && relativePath !== '/') {
+        // Extract the filename from the relative path
+        const pathParts = relativePath.split('/').filter(part => part.length > 0);
+
+        // Remove language prefix if present
+        if (hasLangPrefix && pathParts.length > 0) {
+            pathParts.shift(); // Remove language code
+        }
+
+        // Get the last part as the filename, or use index.html if it's a directory
+        if (pathParts.length > 0) {
+            const lastPart = pathParts[pathParts.length - 1];
+            if (lastPart.includes('.html') || lastPart.includes('.htm')) {
+                currentPage = lastPart;
             } else {
-                newPath = `/${lang}${currentPath}`;
+                // It's a directory, so we want index.html
+                currentPage = 'index.html';
             }
         }
     }
 
-    // For static sites, we need to handle the navigation differently
-    // Check if we're on a static site (no server-side routing)
-    const isStaticSite = !currentOrigin.includes('localhost') && !currentOrigin.includes('127.0.0.1');
+    let targetUrl;
 
     if (isStaticSite) {
-        // For static sites, construct the full URL
-        let targetUrl;
+        // For static sites, construct the full URL with proper directory structure
         if (lang === 'en') {
-            // Navigate to root
-            targetUrl = currentOrigin + '/';
+            // For English, navigate to root directory
+            if (currentOrigin.startsWith('file://')) {
+                // For file:// protocol, we need to construct the path differently
+                const basePath = currentHref.substring(0, currentHref.lastIndexOf('/') + 1);
+                // Remove any language directory from the base path
+                let cleanBasePath = basePath;
+                if (hasLangPrefix) {
+                    // Remove the language directory part
+                    cleanBasePath = basePath.replace(/\/(es|fr|ar)\//, '/');
+                }
+                targetUrl = cleanBasePath + currentPage;
+            } else {
+                // For hosted static sites (like Cloudflare Pages)
+                targetUrl = currentOrigin + '/' + currentPage;
+            }
         } else {
-            // Navigate to language subdirectory
-            targetUrl = currentOrigin + `/${lang}/`;
+            // For other languages, navigate to language subdirectory
+            if (currentOrigin.startsWith('file://')) {
+                // For file:// protocol
+                const basePath = currentHref.substring(0, currentHref.lastIndexOf('/') + 1);
+                // Remove any existing language directory from the base path
+                let cleanBasePath = basePath;
+                if (hasLangPrefix) {
+                    // Replace existing language directory
+                    cleanBasePath = basePath.replace(/\/(es|fr|ar)\//, '/');
+                }
+                targetUrl = cleanBasePath + lang + '/' + currentPage;
+            } else {
+                // For hosted static sites (like Cloudflare Pages)
+                targetUrl = currentOrigin + '/' + lang + '/' + currentPage;
+            }
         }
-        window.location.href = targetUrl;
     } else {
-        // For development/local, use the path-based approach
-        if (newPath !== currentPath) {
-            window.location.href = newPath;
+        // For development/server-based sites, use the original path-based approach
+        let newPath;
+        if (lang === 'en') {
+            // For English, remove language prefix
+            newPath = hasLangPrefix ? relativePath.replace(langRegex, '/') : relativePath;
+        } else {
+            // For other languages, add or replace language prefix
+            if (hasLangPrefix) {
+                newPath = relativePath.replace(langRegex, `/${lang}/`);
+            } else {
+                // Handle root path specially
+                if (relativePath === '/' || relativePath === '') {
+                    newPath = `/${lang}/`;
+                } else {
+                    newPath = `/${lang}${relativePath}`;
+                }
+            }
+        }
+
+        if (newPath !== relativePath) {
+            targetUrl = newPath;
+        } else {
+            return; // No change needed
+        }
+    }
+
+    // Navigate to the target URL
+    if (targetUrl) {
+        // Check if the target URL is different from current URL
+        if (targetUrl !== currentHref) {
+            window.location.href = targetUrl;
         }
     }
 }
 
-// Global language change function
-window.changeLanguage = function(lang) {
-    const currentPath = window.location.pathname;
-    const langRegex = /^\/(es|fr|ar)\//;
-    const hasLangPrefix = langRegex.test(currentPath);
-
-    let newPath;
-    if (lang === 'en') {
-        newPath = hasLangPrefix ? currentPath.replace(langRegex, '/') : currentPath;
-    } else {
-        newPath = hasLangPrefix ? currentPath.replace(langRegex, `/${lang}/`) : `/${lang}${currentPath}`;
-    }
-
-    if (newPath !== currentPath) {
-        window.location.href = newPath;
-    }
-};
-
-// Updated global language change function (for backward compatibility)
+// Global language change function (for backward compatibility)
 window.changeLanguage = navigateToLanguage;

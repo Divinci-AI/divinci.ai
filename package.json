@@ -9,9 +9,14 @@
   "scripts": {
     "test": "playwright test",
     "test:e2e": "playwright test tests/e2e/",
-    "test:visual": "playwright test tests/visual/",
+    "test:visual": "node scripts/run-visual-tests.js",
+    "test:visual:playwright": "playwright test tests/visual/ --config=playwright.visual.config.js",
+    "test:visual:update": "playwright test tests/visual/ --config=playwright.visual.config.js --update-snapshots",
+    "test:visual:headed": "node scripts/run-visual-tests.js --headed",
+    "test:visual:continue": "node scripts/run-visual-tests.js --continue-on-failure",
     "test:update-snapshots": "playwright test --update-snapshots",
     "test:report": "playwright show-report",
+    "test:visual:report": "playwright show-report visual-test-results",
     "test:core": "playwright test tests/core-navigation.spec.ts",
     "test:file-cleanup": "node scripts/cleanup-files.js --list-only",
     "test:file-cleanup:dry": "node scripts/cleanup-files.js --dry-run",
@@ -25,7 +30,10 @@
     "dev": "eleventy --input=_eleventy --output=_site --serve --watch",
     "clean": "rm -rf _site",
     "rebuild": "npm run clean && npm run build",
-    "start": "npx serve"
+    "start": "npx serve",
+    "inline-includes": "node inline-includes.js",
+    "fix-eol": "node fix-eol-issue.js",
+    "prepare-static": "npm run fix-eol && npm run inline-includes"
   },
   "repository": {
     "type": "git",

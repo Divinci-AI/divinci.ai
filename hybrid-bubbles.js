@@ -1,7 +1,7 @@
 // Hybrid approach - fixed position bubbles that sync with emoji movement
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Hybrid bubbles script loaded');
-  
+
   // Enhanced marketing-style feature messages for the chat bubbles
   // Company-focused messages (enterprise/professional)
   const companyFeatureMessages = [
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     "🖼️ Multi-modal model support",
     "📝 Customizable prompt templates"
   ];
-  
+
   // Consumer-focused messages (friendly/personal)
   const consumerFeatureMessages = [
     "🚀 Create your own personal AI assistant",
@@ -50,27 +50,30 @@ document.addEventListener('DOMContentLoaded', function() {
     "🖼️ Create images and diagrams easily",
     "📝 Write better with AI assistance"
   ];
-  
+
   // Check the current view toggle state from localStorage (uses the same key as view-toggle.js)
   let isCompanyView = localStorage.getItem('divinciContentView') === 'company';
-  
+
   // Set initial messages based on current toggle state
   let featureMessages = isCompanyView ? [...companyFeatureMessages] : [...consumerFeatureMessages];
-  
+
   // Listen for toggle changes
   document.addEventListener('viewToggled', function(event) {
     const isCompany = event.detail.isCompanyView;
-    
+
     // Update feature messages when the toggle changes
     featureMessages = isCompany ? [...companyFeatureMessages] : [...consumerFeatureMessages];
-    
+
     // Update reaction messages when the toggle changes
     reactionMessages = isCompany ? [...companyReactionMessages] : [...consumerReactionMessages];
-    
+
     // Reset indices to start showing the new messages immediately
     currentFeatureIndex = 0;
     currentReactionIndex = 0;
-    
+
+    // Reset cycle to start with features
+    isFeatureCycle = true;
+
     // Force a refresh of the bubbles to show new content right away
     if (bubbleInterval) {
       clearInterval(bubbleInterval);
@@ -94,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     "Competitively advantageous 🏆",
     "Security-forward! 🔒"
   ];
-  
+
   // Consumer-friendly reactions
   const consumerReactionMessages = [
     "Love that! 😍",
@@ -109,14 +112,17 @@ document.addEventListener('DOMContentLoaded', function() {
     "That's clever! 💡",
     "So exciting! ✨"
   ];
-  
+
   // Set initial reaction messages based on view
   let reactionMessages = isCompanyView ? [...companyReactionMessages] : [...consumerReactionMessages];
-  
+
   // Initialize indices for tracking current message position
   let currentFeatureIndex = 0;
   let currentReactionIndex = 0;
-  
+
+  // Track whether we're showing feature messages or reaction messages in current cycle
+  let isFeatureCycle = true;
+
   // Check for view toggle on page load
   const viewToggle = document.getElementById('viewToggle');
   if (viewToggle) {
@@ -126,10 +132,10 @@ document.addEventListener('DOMContentLoaded', function() {
     featureMessages = isCompanyView ? [...companyFeatureMessages] : [...consumerFeatureMessages];
     reactionMessages = isCompanyView ? [...companyReactionMessages] : [...consumerReactionMessages];
   }
-  
+
   // Keep track of active bubbles and their matching circles
   const activeBubbles = [];
-  
+
   // Predefined circle selectors to simulate attachment
   const circleSelectors = [
     '.geometry-group .circle00',
@@ -142,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
     '.geometry-group-outer2 .circle28',
     '.geometry-group-outer2 .circle30'
   ];
-  
+
   // Skip AI logo circles
   const aiLogoSelectors = [
     '.geometry-group .circle01',
@@ -151,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
     '.geometry-group-outer1 .circle23',
     '.geometry-group-outer2 .circle27'
   ];
-  
+
   // Create a bubble positioned to appear above a specific circle
   function createBubble(circleSelector, isFeature) {
     const circle = document.querySelector(circleSelector);
@@ -159,31 +165,31 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log(`Circle not found: ${circleSelector}`);
       return null;
     }
-    
+
     // Create the bubble
     const bubble = document.createElement('div');
     const bubbleId = `bubble-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-    
+
     // Set content
-    bubble.textContent = isFeature 
+    bubble.textContent = isFeature
       ? featureMessages[currentFeatureIndex++ % featureMessages.length]
       : reactionMessages[currentReactionIndex++ % reactionMessages.length];
-    
+
     bubble.id = bubbleId;
     document.body.appendChild(bubble);
-    
+
     // Get current view state for styling
     const isCompanyView = localStorage.getItem('divinciContentView') === 'company';
-    
+
     // Style differences based on company vs consumer view
     const featureBgColor = isCompanyView ? 'rgba(8, 8, 66, 0.97)' : 'white';
     const featureTextColor = isCompanyView ? 'white' : 'black';
     const featureBorderColor = isCompanyView ? 'rgba(92, 114, 226, 0.5)' : 'rgba(0,0,0,0.1)';
     const featureShadowColor = isCompanyView ? 'rgba(92, 114, 226, 0.4)' : 'rgba(0,0,0,0.3)';
-    
+
     const reactionBgColor = isCompanyView ? 'rgba(92, 114, 226, 0.9)' : 'rgba(0, 0, 67, 0.9)';
     const reactionBorderColor = isCompanyView ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,100,0.2)';
-    
+
     // Apply styles directly to the element for maximum reliability
     bubble.style.cssText = `
       position: absolute !important;
@@ -207,11 +213,11 @@ document.addEventListener('DOMContentLoaded', function() {
       transform: translateX(-50%) !important;
       ${isCompanyView && isFeature ? 'letter-spacing: 0.5px !important;' : ''}
     `;
-    
+
     // Add a pointer/stem (separate element for reliability)
     const pointer = document.createElement('div');
     pointer.id = `pointer-${bubbleId}`;
-    
+
     pointer.style.cssText = `
       content: '' !important;
       position: absolute !important;
@@ -230,87 +236,105 @@ document.addEventListener('DOMContentLoaded', function() {
       visibility: visible !important;
       opacity: 1 !important;
     `;
-    
+
     bubble.appendChild(pointer);
-    
+
     // Store bubble and its associated circle
     activeBubbles.push({
       bubble: bubble,
       circle: circle,
       circleSelector: circleSelector
     });
-    
+
     // Initial position update
     updateBubblePosition(bubble, circle);
-    
+
     return bubble;
   }
-  
+
   // Update a bubble's position to match its circle's current position
   function updateBubblePosition(bubble, circle) {
     if (!bubble || !circle) return;
-    
+
     const rect = circle.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const topY = rect.top - 20; // Position higher above the circle (moved up 5px from -15)
-    
+
     // Update bubble position to match circle
     bubble.style.left = `${centerX}px`;
     bubble.style.top = `${topY}px`;
   }
-  
+
   // Animation frame ID for position updates
   let positionUpdateFrameId = null;
-  
+
   // Update all bubble positions to follow their circles
   function updateAllBubblePositions() {
     // Cancel any existing animation frame
     if (positionUpdateFrameId) {
       cancelAnimationFrame(positionUpdateFrameId);
     }
-    
+
     // Update all bubble positions
     activeBubbles.forEach(item => {
       updateBubblePosition(item.bubble, item.circle);
     });
-    
+
     // Continue updating positions even if no bubbles are currently active
     // This ensures the animation loop is always running when bubbles appear
     positionUpdateFrameId = requestAnimationFrame(updateAllBubblePositions);
   }
-  
+
   // Show a set of bubbles
   function showBubbles() {
-    console.log('Showing hybrid bubbles');
-    
+    console.log(`Showing hybrid bubbles - ${isFeatureCycle ? 'Feature' : 'Reaction'} cycle`);
+
     // Clear any existing bubbles
     clearBubbles();
-    
+
     // Randomly choose circles to attach bubbles to
     // Make sure to exclude AI logo circles
     const shuffledSelectors = [...circleSelectors].sort(() => Math.random() - 0.5);
-    
-    // Create feature bubble on first selected circle
-    const featureBubble = createBubble(shuffledSelectors[0], true);
-    
-    // Start updating positions immediately for the first bubble
-    requestAnimationFrame(updateAllBubblePositions);
-    
-    // Create reaction bubbles with delays
-    setTimeout(() => {
-      createBubble(shuffledSelectors[1], false);
-      // No need to start updateAllBubblePositions again - it's already running
-      
+
+    if (isFeatureCycle) {
+      // Feature cycle: Show only feature messages (1-3 bubbles)
+      createBubble(shuffledSelectors[0], true);
+
+      // Start updating positions immediately for the first bubble
+      requestAnimationFrame(updateAllBubblePositions);
+
+      // Add more feature bubbles with delays
       setTimeout(() => {
-        createBubble(shuffledSelectors[2], false);
-        // No need to start updateAllBubblePositions again - it's already running
-      }, 1000);
-    }, 1500);
-    
+        createBubble(shuffledSelectors[1], true);
+
+        setTimeout(() => {
+          createBubble(shuffledSelectors[2], true);
+        }, 1000);
+      }, 1500);
+    } else {
+      // Reaction cycle: Show only reaction messages (1-3 bubbles)
+      createBubble(shuffledSelectors[0], false);
+
+      // Start updating positions immediately for the first bubble
+      requestAnimationFrame(updateAllBubblePositions);
+
+      // Add more reaction bubbles with delays
+      setTimeout(() => {
+        createBubble(shuffledSelectors[1], false);
+
+        setTimeout(() => {
+          createBubble(shuffledSelectors[2], false);
+        }, 1000);
+      }, 1500);
+    }
+
+    // Toggle cycle for next time
+    isFeatureCycle = !isFeatureCycle;
+
     // Clear bubbles after display time
     setTimeout(clearBubbles, 6000);
   }
-  
+
   // Clear all bubbles
   function clearBubbles() {
     while (activeBubbles.length > 0) {
@@ -320,17 +344,17 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   }
-  
+
   // Start showing bubbles on a regular interval
   let bubbleInterval = null;
-  
+
   function startBubbles() {
     // Show first set immediately
     showBubbles();
-    
+
     // Set up interval for subsequent sets
     bubbleInterval = setInterval(showBubbles, 9000);
-    
+
     // Handle page visibility
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
@@ -346,10 +370,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  
+
   // Start displaying bubbles after a short delay
   setTimeout(startBubbles, 1500);
-  
+
   // Start the position update loop immediately
   updateAllBubblePositions();
 

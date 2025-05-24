@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/toggle-test.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/toggle-test.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/toggle-test.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/toggle-test.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/toggle-test.html" hreflang="ar" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/toggle-test.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/toggle-test.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/toggle-test.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/toggle-test.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/toggle-test.html" hreflang="ar" />
+        <title>Content Toggle Test | Divinci AI - Español</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+        <!-- Script to include HTML components -->
+        <script src="../js/include-html.js" defer></script>
+        <script src="../js/conditional-header.js" defer></script>
+
+        <style>
+            .test-section {
+                padding: 3rem 0;
+            }
+            
+            .content-card {
+                background-color: white;
+                border-radius: 12px;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                margin-bottom: 2rem;
+            }
+            
+            .card-header {
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .test-content {
+                padding: 1rem;
+                margin: 1rem 0;
+                border-left: 4px solid #5ce2e7;
+                background-color: rgba(92, 226, 231, 0.05);
+            }
+        </style>
+        <!-- Set default language -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.i18n && window.i18n.changeLanguage) {
+                window.i18n.changeLanguage('es');
+            }
+        });
+    </script>
+</head>
+    <body>
+        <!-- Header Section with Navbar -->
+        <header>
+            <!-- Mobile Header Style - Using base URL to ensure paths work from any directory -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Google Fonts (Sora and Inter)
+        if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+            const googleFonts = document.createElement('link');
+            googleFonts.rel = 'stylesheet';
+            googleFonts.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap';
+            document.head.appendChild(googleFonts);
+        }
+
+        // Load font styles
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+
+        // Load fonts.css
+        const fontStyles = document.createElement('link');
+        fontStyles.rel = 'stylesheet';
+        fontStyles.href = basePath + 'assets/css/fonts.css';
+        document.head.appendChild(fontStyles);
+
+        // Load Sora styles
+        const soraStyles = document.createElement('link');
+        soraStyles.rel = 'stylesheet';
+        soraStyles.href = basePath + 'assets/css/sora-styles.css';
+        document.head.appendChild(soraStyles);
+
+        // Load mobile header styles
+        const mobileHeaderStyles = document.createElement('link');
+        mobileHeaderStyles.rel = 'stylesheet';
+        mobileHeaderStyles.href = basePath + 'includes/mobile-header.css';
+        document.head.appendChild(mobileHeaderStyles);
+
+        // Load custom header styles
+        const headerStyles = document.createElement('link');
+        headerStyles.rel = 'stylesheet';
+        headerStyles.href = basePath + 'includes/header-styles.css';
+        document.head.appendChild(headerStyles);
+    })();
+</script>
+
+<nav class="navbar">
+    <a href="" class="logo-link" id="logoHomeLink">
+        <div class="nav-logo">
+            <img
+                class="header-logo"
+                src="images/divinci_logo_inverted.svg"
+                alt="Divinci Heart Robot logo"
+                onerror="this.onerror=null; 
+                    if (window.location.pathname.includes('/features/')) {
+                        this.src='../../images/divinci_logo_inverted.svg';
+                    } else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+                        this.src='../images/divinci_logo_inverted.svg';
+                    } else {
+                        this.src='images/divinci_logo_inverted.svg';
+                    }"
+            />
+        </div>
+        <div class="nav-title">
+            <span class="brand-name">Divinci ™</span>
+            <span class="mobile-hide consumer-view-content">&nbsp;- Create your own custom AI</span>
+            <span class="mobile-hide company-view-content" style="display: none; opacity: 0;">&nbsp;- Enterprise AI Solutions</span>
+        </div>
+    </a>
+    <!-- Toggle switch for customer/company view -->
+    <div class="view-toggle-container mobile-hide">
+        <span style ="margin-right: 22px" class="view-label customer-view active" onclick="document.getElementById('viewToggle').checked = false; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">Consumer</span>
+        <label class="switch">
+            <input type="checkbox" id="viewToggle">
+            <span class="slider round"></span>
+        </label>
+        <span class="view-label company-view" onclick="document.getElementById('viewToggle').checked = true; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">Company</span>
+    </div>
+    <div class="nav-menu">
+        <a href="#features" data-i18n="navigation.features">Features</a>
+        <a href="#team" data-i18n="navigation.team">Team</a>
+        <a href="#signup" class="signup-link"><span class="signup-button" data-i18n="buttons.signUp">Sign Up</span></a>
+        <div id="language-switcher-container" style="display: inline-block; margin-left: 15px; position: relative; z-index: 9999; overflow: visible;">
+            <!-- Direct embedding of language switcher instead of using data-include -->
+            <div class="language-switcher">
+                <div class="language-switcher-current">
+                    <span class="language-icon" style="display:inline-flex; align-items:center;">
+                      <svg id="globe-animated" viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;cursor:pointer;">
+                        <circle cx="16" cy="16" r="15" stroke="#2863c2" stroke-width="2" fill="#e9f2ff"/>
+                        <ellipse cx="16" cy="16" rx="7" ry="15" stroke="#2863c2" stroke-width="2" fill="none"/>
+                        <ellipse cx="16" cy="16" rx="15" ry="7" stroke="#2863c2" stroke-width="2" fill="none"/>
+                        <path id="anim-orbit" d="M 1 16 Q 16 0, 31 16 Q 16 32, 1 16 Z" fill="none" stroke="#45a4f3" stroke-width="1.2" />
+                      </svg>
+                    </span>
+                    <span class="current-language">English</span>
+                    <span class="dropdown-icon">▼</span>
+                </div>
+                <div class="language-switcher-dropdown">
+                    <a href="/" class="language-option" data-lang="en">
+                        <span class="language-name">English</span>
+                        <span class="language-native">English</span>
+                    </a>
+                    <a href="/es/" class="language-option" data-lang="es">
+                        <span class="language-name">Spanish</span>
+                        <span class="language-native">Español</span>
+                    </a>
+                    <a href="/fr/" class="language-option" data-lang="fr">
+                        <span class="language-name">French</span>
+                        <span class="language-native">Français</span>
+                    </a>
+                    <a href="/ar/" class="language-option" data-lang="ar">
+                        <span class="language-name">Arabic</span>
+                        <span class="language-native">العربية</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu Script -->
+<script>
+    // Create dynamic script element to handle path resolution without document.write
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+        
+        const script = document.createElement('script');
+        script.src = basePath + 'js/mobile-menu.js';
+        script.defer = true;
+        document.body.appendChild(script);
+
+        // Add view toggle script
+        const viewToggleScript = document.createElement('script');
+        viewToggleScript.src = basePath + 'js/view-toggle.js';
+        viewToggleScript.defer = true;
+        document.body.appendChild(viewToggleScript);
+
+        // Load i18n scripts
+        const i18nConfigScript = document.createElement('script');
+        i18nConfigScript.src = basePath + 'js/i18n-config.js';
+        document.head.appendChild(i18nConfigScript);
+
+        const i18nScript = document.createElement('script');
+        i18nScript.src = basePath + 'js/i18n.js';
+        document.head.appendChild(i18nScript);
+
+        // Load language-switcher-translations.js
+        const languageSwitcherTranslationsScript = document.createElement('script');
+        languageSwitcherTranslationsScript.src = basePath + 'js/language-switcher-translations.js';
+        document.head.appendChild(languageSwitcherTranslationsScript);
+
+        // Load direct-translations.js
+        const directTranslationsScript = document.createElement('script');
+        directTranslationsScript.src = basePath + 'js/direct-translations.js';
+        document.head.appendChild(directTranslationsScript);
+
+        // Load direct-dom-translations.js
+        const directDomTranslationsScript = document.createElement('script');
+        directDomTranslationsScript.src = basePath + 'js/direct-dom-translations.js';
+        document.head.appendChild(directDomTranslationsScript);
+
+        // We'll let the data-include mechanism handle the language switcher
+        // This prevents duplicate event handlers
+        const languageSwitcherContainer = document.getElementById('language-switcher-container');
+        if (languageSwitcherContainer) {
+            // Make sure the dropdown is visible when active
+            const style = document.createElement('style');
+            style.textContent = `
+                .language-switcher.active .language-switcher-dropdown {
+                    display: block !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    pointer-events: auto !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    })();
+</script>
+
+<!-- Script to handle navigation links based on current path -->
+<script>
+    // Properly set the href attributes based on location
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+
+        // Set logo link to home
+        const logoLink = document.getElementById('logoHomeLink');
+        if (logoLink) {
+            logoLink.setAttribute('href', basePath + 'index.html');
+        }
+
+        // Set navigation links
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                // Preserve the signup-link class and signup-button span when updating the href
+                if (link.classList.contains('signup-link')) {
+                    link.setAttribute('href', basePath + 'index.html' + href);
+                    // Ensure the signup button is properly styled
+                    if (!link.querySelector('.signup-button')) {
+                        const text = link.textContent.trim();
+                        link.innerHTML = '';
+                        const span = document.createElement('span');
+                        span.className = 'signup-button';
+                        span.textContent = text;
+                        link.appendChild(span);
+                    }
+                } else {
+                    link.setAttribute('href', basePath + 'index.html' + href);
+                }
+            }
+        });
+    })();
+</script>
+
+<!-- Language Switcher CSS -->
+<style>
+    /* Language Switcher Styles - Directly embedded for reliability */
+    .language-switcher {
+        position: relative !important;
+        display: inline-block !important;
+        font-family: 'Sora', sans-serif;
+        margin-left: 15px;
+        z-index: 9999 !important;
+        overflow: visible !important;
+    }
+
+    .language-switcher-current {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.3s;
+    }
+
+    .language-switcher-current:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .language-icon {
+        margin-right: 6px;
+        font-size: 16px;
+    }
+
+    .current-language {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .dropdown-icon {
+        margin-left: 6px;
+        font-size: 10px;
+        transition: transform 0.3s;
+    }
+
+    .language-switcher.active .dropdown-icon {
+        transform: rotate(180deg);
+    }
+
+    .language-switcher-dropdown {
+        position: absolute !important;
+        top: 100% !important;
+        right: 0 !important;
+        left: auto !important;
+        width: 180px;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: none;
+        z-index: 9999 !important;
+        transform: none !important;
+    }
+
+    .language-switcher.active .language-switcher-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .language-option {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s;
+    }
+
+    .language-option:hover {
+        background-color: #f5f5f5;
+    }
+
+    .language-name {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .language-native {
+        font-size: 14px;
+        color: #666;
+    }
+
+    /* RTL support */
+    [dir="rtl"] .language-icon {
+        margin-right: 0;
+        margin-left: 6px;
+    }
+
+    [dir="rtl"] .dropdown-icon {
+        margin-left: 0;
+        margin-right: 6px;
+    }
+
+    [dir="rtl"] .language-switcher-dropdown {
+        right: auto !important;
+        left: 0 !important;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+        .language-switcher-dropdown {
+            background-color: #333;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .language-option {
+            color: #eee;
+        }
+
+        .language-option:hover {
+            background-color: #444;
+        }
+
+        .language-native {
+            color: #aaa;
+        }
+    }
+
+    /* Mobile styles */
+    @media screen and (max-width: 768px) {
+        .language-switcher {
+            margin-left: 0;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .language-switcher-current {
+            justify-content: center;
+        }
+
+        .language-switcher-dropdown {
+            width: 100%;
+            left: 0 !important;
+            right: 0 !important;
+            position: absolute !important;
+        }
+    }
+</style>
+
+<!-- Script to load the language switcher JavaScript -->
+<script>
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+        
+        // Load only the simplified language switcher script
+        const languageSwitcherScript = document.createElement('script');
+        languageSwitcherScript.src = basePath + 'js/language-switcher.js';
+        document.head.appendChild(languageSwitcherScript);
+    })();
+</script>
+
+        </header>
+
+        <!-- Main Content Section for Testing -->
+        <main id="test-toggle" role="main" tabindex="-1">
+            <div class="container">
+                <section class="test-section">
+                    <h1 class="title has-text-centered">Consumer/Company Toggle Test</h1>
+                    <p class="subtitle has-text-centered">This page demonstrates the toggle between consumer and company content views.</p>
+                    
+                    <div class="content-card">
+                        <div class="card-header">
+                            <h2 class="is-size-4">Example 1: Product Description</h2>
+                        </div>
+                        <div class="test-content consumer-view-content">
+                            <h3>For Consumers</h3>
+                            <p>Divinci AI is your personal AI assistant that helps you create custom AI solutions for your everyday needs. Whether you want to organize your photos, create custom chatbots, or manage your schedule, our easy-to-use platform makes AI accessible to everyone.</p>
+                        </div>
+                        <div class="test-content company-view-content">
+                            <h3>For Companies</h3>
+                            <p>Divinci AI is an enterprise-grade platform for developing and deploying custom AI solutions across your organization. Our robust infrastructure supports multi-team collaboration, governance controls, and seamless integration with your existing systems and workflows.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-header">
+                            <h2 class="is-size-4">Example 2: Feature Highlights</h2>
+                        </div>
+                        <div class="test-content consumer-view-content">
+                            <h3>Consumer Features</h3>
+                            <ul>
+                                <li>Simple drag-and-drop interface</li>
+                                <li>Pre-built templates for common tasks</li>
+                                <li>Share your creations with friends</li>
+                                <li>Use on any device with a web browser</li>
+                                <li>Affordable monthly subscription</li>
+                            </ul>
+                        </div>
+                        <div class="test-content company-view-content">
+                            <h3>Enterprise Features</h3>
+                            <ul>
+                                <li>Role-based access control</li>
+                                <li>Custom integrations with your data sources</li>
+                                <li>Audit logs and compliance reporting</li>
+                                <li>On-premise deployment options</li>
+                                <li>Enterprise SLAs and dedicated support</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-header">
+                            <h2 class="is-size-4">Example 3: Getting Started</h2>
+                        </div>
+                        <div class="test-content consumer-view-content">
+                            <h3>For Individual Users</h3>
+                            <p>Getting started with Divinci AI is easy! Just sign up for a free account, choose a template or start from scratch, and create your first custom AI in minutes. No technical skills required!</p>
+                        </div>
+                        <div class="test-content company-view-content">
+                            <h3>For Organizations</h3>
+                            <p>Our enterprise onboarding process includes a dedicated solutions architect, technical workshops for your teams, and a phased implementation plan tailored to your organization's specific needs and goals.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <!-- Footer with Sacred Geometry Elements -->
+<!-- Load footer styles dynamically -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Font Awesome if not already loaded
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        }
+
+        // Load Bulma if not already loaded
+        if (!document.querySelector('link[href*="bulma"]')) {
+            const bulma = document.createElement('link');
+            bulma.rel = 'stylesheet';
+            bulma.href = 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+            document.head.appendChild(bulma);
+        }
+
+        // Load footer styles
+        const footerStyles = document.createElement('link');
+        footerStyles.rel = 'stylesheet';
+        footerStyles.href = (window.location.pathname.includes('/features/') ? '../../' : '') + 'styles-footer.css';
+        document.head.appendChild(footerStyles);
+    })();
+</script>
+<footer class="site-footer">
+    <!-- Sacred Geometry Background Elements -->
+    <div class="footer-sacred-pattern"></div>
+    <div class="sacred-circle sacred-circle-1"></div>
+    <div class="sacred-circle sacred-circle-2"></div>
+    <div class="sacred-circle sacred-circle-3"></div>
+
+    <div class="container">
+        <div class="footer-content">
+            <!-- Top Section with Bulma Columns -->
+            <div class="columns is-footer-links">
+                <!-- Logo and Company Info -->
+                <div class="column is-one-quarter">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <!-- <img src="images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
+                                onerror="this.onerror=null; this.src='images/divinci_logo.png';" /> -->
+                            <div class="heart">🖤</div>
+                            <span class="footer-brand-name">Divinci AI</span>
+                        </div>
+                        <p class="footer-tagline">Empowering human-AI collaboration</p>
+                        <div class="social-links">
+                            <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Product</h3>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="roadmap.html">Roadmap</a></li>
+                            <li><a href="changelog.html">Changelog</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="docs/">Documentation</a></li>
+                            <li><a href="blog/">Blog</a></li>
+                            <li><a href="tutorials/">Tutorials</a></li>
+                            <li><a href="api/">API</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="press.html">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                            <li><a href="security.html">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom with Bulma Level -->
+        <div class="footer-bottom">
+            <div class="level is-footer-bottom">
+                <div class="level-left">
+                    <div class="level-item">
+                        <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <div class="footer-bottom-links">
+                            <a href="sitemap.xml">Sitemap</a>
+                            <a href="accessibility.html">Accessibility</a>
+                            <a href="cookies.html">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Script to handle footer links based on current path -->
+<script>
+    // Properly set the href attributes based on location
+    (function() {
+        const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
+        const footerLinks = document.querySelectorAll('.footer-links-column a, .footer-bottom-links a');
+
+        footerLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                link.setAttribute('href', basePath + 'index.html' + href);
+            } else if (href && !href.startsWith('http') && !href.startsWith('/')) {
+                link.setAttribute('href', basePath + href);
+            }
+        });
+    })();
+</script>
+
+
+        <!-- Scripts -->
+        <script src="../js/keyboard-navigation.js" defer></script>
+    </body>
+</html>

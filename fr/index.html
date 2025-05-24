@@ -12,10 +12,327 @@
     <link rel="alternate" href="https://divinci.ai/ar/index.html" hreflang="ar" />
 
         <!-- Include meta tags -->
-        <div data-include="../includes/meta-tags.html"></div>
+        <!-- SEO Meta Tags -->
+<meta name="description" content="{{page_description}}" />
+<meta name="keywords" content="{{page_keywords}}" />
+
+<!-- Open Graph / Social Media Meta Tags -->
+<meta property="og:type" content="{{og_type}}" />
+<meta property="og:url" content="https://divinci.ai{{page_url}}" />
+<meta property="og:title" content="{{page_title}} | Divinci AI" />
+<meta property="og:description" content="{{page_description}}" />
+<meta property="og:image" content="https://divinci.ai/images/social/{{og_image}}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Divinci AI" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DivinciAI" />
+<meta name="twitter:title" content="{{page_title}} | Divinci AI" />
+<meta name="twitter:description" content="{{page_description}}" />
+<meta name="twitter:image" content="https://divinci.ai/images/social/{{og_image}}" />
+<meta name="twitter:creator" content="@DivinciAI" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://divinci.ai{{page_url}}" />
+
+<!-- Script to populate meta tags with page-specific data -->
+<script>
+    // Function to set meta tags based on page data
+    function setMetaTags(pageData) {
+        // Default values
+        const defaults = {
+            title: document.title.replace(' | Divinci AI', ''),
+            description: "Divinci AI is building the future of human-AI collaboration, empowering organizations to create custom AI solutions.",
+            image: "divinci-default-social.jpg",
+            url: window.location.pathname,
+            type: "website",
+            keywords: "divinci ai, ai platform, custom ai solutions"
+        };
+
+        // Merge provided data with defaults
+        const data = {...defaults, ...pageData};
+
+        // Get all meta elements
+        const metaTags = document.querySelectorAll('meta');
+
+        // Update meta tags with page data
+        metaTags.forEach(tag => {
+            const property = tag.getAttribute('property') || tag.getAttribute('name');
+
+            if (!property) return;
+
+            if (property === 'og:title' || property === 'twitter:title') {
+                tag.setAttribute('content', `${data.title} | Divinci AI`);
+            }
+
+            if (property === 'og:description' || property === 'twitter:description' || property === 'description') {
+                tag.setAttribute('content', data.description);
+            }
+
+            if (property === 'og:image' || property === 'twitter:image') {
+                tag.setAttribute('content', `https://divinci.ai/images/social/${data.image}`);
+            }
+
+            if (property === 'og:url' || property === 'twitter:url') {
+                tag.setAttribute('content', `https://divinci.ai${data.url}`);
+            }
+
+            if (property === 'og:type') {
+                tag.setAttribute('content', data.type);
+            }
+
+            if (property === 'keywords') {
+                tag.setAttribute('content', data.keywords);
+            }
+        });
+
+        // Update canonical link
+        const canonicalLink = document.querySelector('link[rel="canonical"]');
+        if (canonicalLink) {
+            canonicalLink.setAttribute('href', `https://divinci.ai${data.url}`);
+        }
+    }
+
+    // Example usage:
+    // Call this function with page-specific data after including this file
+    // setMetaTags({
+    //     title: "About Us",
+    //     description: "Learn about Divinci AI's mission, vision, team, and the story behind our innovative AI platform.",
+    //     image: "about-us-social.jpg",
+    //     url: "/about-us.html",
+    //     type: "website",
+    //     keywords: "divinci ai, about divinci, ai team, ai founders"
+    // });
+</script>
+
 
         <!-- Include structured data -->
-        <div data-include="../includes/structured-data.html"></div>
+        <!-- Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Divinci AI",
+  "url": "https://divinci.ai",
+  "logo": "https://divinci.ai/images/divinci_logo.png",
+  "sameAs": [
+    "https://twitter.com/DivinciAI",
+    "https://www.linkedin.com/company/divinci-ai",
+    "https://github.com/Divinci-AI"
+  ],
+  "description": "Your AI for Life's Journey, with friends! Create custom AI solutions and collaborate with your favorite AI models in a multiplayer environment.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@divinci.ai"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Divinci AI",
+  "url": "https://divinci.ai",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://divinci.ai/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "inLanguage": ["en", "es", "fr", "ar"]
+}
+</script>
+
+<!-- Page-specific structured data will be added dynamically -->
+<script>
+    /**
+     * Add structured data for the current page
+     * @param {Object} pageData - Data for the current page
+     */
+    function addStructuredData(pageData) {
+        // Default to WebPage if no type specified
+        const type = pageData.type || 'WebPage';
+
+        // Create structured data object
+        const structuredData = {
+            "@context": "https://schema.org",
+            "@type": type,
+            "name": pageData.title || document.title,
+            "description": pageData.description || "",
+            "url": pageData.url || window.location.href
+        };
+
+        // Add image if available
+        if (pageData.image) {
+            structuredData.image = pageData.image.startsWith('http')
+                ? pageData.image
+                : `https://divinci.ai/images/social/${pageData.image}`;
+        }
+
+        // Add additional fields based on type
+        if (type === 'Article') {
+            structuredData.headline = pageData.title || document.title;
+            structuredData.datePublished = pageData.datePublished || "";
+            structuredData.dateModified = pageData.dateModified || pageData.datePublished || "";
+
+            // Add author if available
+            if (pageData.author) {
+                structuredData.author = {
+                    "@type": "Person",
+                    "name": pageData.author
+                };
+            }
+
+            // Add publisher
+            structuredData.publisher = {
+                "@type": "Organization",
+                "name": "Divinci AI",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://divinci.ai/images/divinci_logo.png"
+                }
+            };
+        } else if (type === 'Product') {
+            // Add product-specific fields
+            if (pageData.brand) {
+                structuredData.brand = {
+                    "@type": "Brand",
+                    "name": pageData.brand
+                };
+            }
+
+            if (pageData.offers) {
+                structuredData.offers = {
+                    "@type": "Offer",
+                    "price": pageData.offers.price || "0",
+                    "priceCurrency": pageData.offers.currency || "USD",
+                    "availability": pageData.offers.availability || "https://schema.org/InStock"
+                };
+            }
+
+            if (pageData.features) {
+                structuredData.features = pageData.features;
+            }
+        } else if (type === 'FAQPage') {
+            // Add FAQ-specific fields
+            if (pageData.faqs && Array.isArray(pageData.faqs)) {
+                structuredData.mainEntity = pageData.faqs.map(faq => ({
+                    "@type": "Question",
+                    "name": faq.question,
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": faq.answer
+                    }
+                }));
+            }
+        } else if (type === 'BreadcrumbList') {
+            // Add breadcrumb-specific fields
+            if (pageData.breadcrumbs && Array.isArray(pageData.breadcrumbs)) {
+                structuredData.itemListElement = pageData.breadcrumbs.map((item, index) => ({
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "name": item.name,
+                    "item": item.url
+                }));
+            }
+        } else if (type === 'HowTo') {
+            // Add HowTo-specific fields
+            structuredData.totalTime = pageData.totalTime || "PT30M";
+
+            if (pageData.steps && Array.isArray(pageData.steps)) {
+                structuredData.step = pageData.steps.map((step, index) => ({
+                    "@type": "HowToStep",
+                    "position": index + 1,
+                    "name": step.name,
+                    "text": step.text,
+                    "url": step.url || window.location.href + `#step${index + 1}`
+                }));
+            }
+        }
+
+        // Add language information
+        if (pageData.language) {
+            structuredData.inLanguage = pageData.language;
+        } else {
+            const htmlLang = document.documentElement.lang;
+            if (htmlLang) {
+                structuredData.inLanguage = htmlLang;
+            }
+        }
+
+        // Add the structured data to the page
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(structuredData);
+        document.head.appendChild(script);
+    }
+
+    /**
+     * Add breadcrumb structured data
+     * @param {Array} breadcrumbs - Array of breadcrumb items
+     */
+    function addBreadcrumbStructuredData(breadcrumbs) {
+        addStructuredData({
+            type: 'BreadcrumbList',
+            breadcrumbs: breadcrumbs
+        });
+    }
+
+    /**
+     * Add FAQ structured data
+     * @param {Array} faqs - Array of FAQ items
+     */
+    function addFAQStructuredData(faqs) {
+        addStructuredData({
+            type: 'FAQPage',
+            faqs: faqs
+        });
+    }
+
+    /**
+     * Add Product structured data
+     * @param {Object} productData - Product data
+     */
+    function addProductStructuredData(productData) {
+        addStructuredData({
+            type: 'Product',
+            title: productData.name,
+            description: productData.description,
+            image: productData.image,
+            brand: productData.brand || 'Divinci AI',
+            offers: productData.offers,
+            features: productData.features
+        });
+    }
+
+    // Example usage:
+    // addStructuredData({
+    //     type: 'Article',
+    //     title: 'Building Responsible AI Systems',
+    //     description: 'Learn how to build AI systems that are ethical, transparent, and beneficial.',
+    //     image: 'blog/responsible-ai-social.jpg',
+    //     datePublished: '2023-09-15T08:00:00+00:00',
+    //     dateModified: '2023-09-20T10:30:00+00:00',
+    //     author: 'Paul-Marie Carfantan',
+    //     language: 'en'
+    // });
+
+    // Add breadcrumb example:
+    // addBreadcrumbStructuredData([
+    //     { name: "Home", url: "https://divinci.ai/" },
+    //     { name: "Features", url: "https://divinci.ai/features/" },
+    //     { name: "Quality Assurance", url: "https://divinci.ai/features/quality-assurance/" }
+    // ]);
+</script>
+
 
         <!-- Initialize page-specific meta tags and structured data -->
         <script>
@@ -118,13 +435,15 @@
                 position: absolute;
                 top: 100%;
                 left: 0;
-                width: 180px;
+                width: 200px;
                 background-color: #fff;
-                border-radius: 4px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+                border: 1px solid rgba(0, 0, 0, 0.08);
                 overflow: hidden;
                 display: none;
                 z-index: 1001;
+                margin-top: 4px;
             }
 
             .language-switcher.active .language-switcher-dropdown {
@@ -134,23 +453,36 @@
             .language-option {
                 display: flex;
                 justify-content: space-between;
-                padding: 10px 15px;
+                align-items: center;
+                padding: 12px 16px;
                 text-decoration: none;
-                color: #333;
-                transition: background-color 0.3s;
+                color: #1a1a1a;
+                transition: all 0.2s ease;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .language-option:last-child {
+                border-bottom: none;
             }
 
             .language-option:hover {
-                background-color: #f5f5f5;
+                background-color: #e8f4fd;
+                color: #2863c2;
             }
 
             .language-name {
+                font-size: 14px;
                 font-weight: 500;
             }
 
             .language-native {
-                color: #666;
-                font-size: 0.9em;
+                font-size: 13px;
+                color: #555;
+                font-weight: 400;
+            }
+
+            .language-option:hover .language-native {
+                color: #2863c2;
             }
 
             /* RTL Support */
@@ -184,6 +516,7 @@
         <link rel="stylesheet" href="../optimized/css/includes/header-styles.min.css" />
         <link rel="stylesheet" href="../optimized/css/includes/section-content-fix.min.css" />
         <link rel="stylesheet" href="../optimized/css/assets/css/enhanced-accessibility.min.css" />
+        <link rel="stylesheet" href="../css/mobile-accessibility-fixes.css" />
 
         <style>
 
@@ -451,7 +784,9 @@
                         <!-- Language Switcher Component -->
                         <div class="language-switcher">
                             <div class="language-switcher-current">
-                                <span class="language-icon">🌐</span>
+                                <span class="language-icon" style="display:inline-flex; align-items:center;">
+                                  <i class="fa-solid fa-language" style="font-size: 20px;"></i>
+                                </span>
                                 <span class="current-language">Français</span>
                                 <span class="dropdown-icon">▼</span>
                             </div>
@@ -484,7 +819,7 @@
                 const script = document.createElement('script');
                 script.src = '../js/language-switcher.js';
                 document.head.appendChild(script);
-                
+
                 // Load the language switcher fix script
                 const fixScript = document.createElement('script');
                 fixScript.src = '../js/language-switcher-fix.js';
@@ -1178,7 +1513,154 @@
         </main>
 
         <!-- Footer -->
-        <div class="footer-wrapper" data-include="../includes/footer.html" style="width: 100%; overflow: hidden; box-sizing: border-box;"></div>
+        <!-- Footer with Sacred Geometry Elements -->
+<!-- Load footer styles dynamically -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Font Awesome if not already loaded
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        }
+
+        // Load Bulma if not already loaded
+        if (!document.querySelector('link[href*="bulma"]')) {
+            const bulma = document.createElement('link');
+            bulma.rel = 'stylesheet';
+            bulma.href = 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+            document.head.appendChild(bulma);
+        }
+
+        // Load footer styles
+        const footerStyles = document.createElement('link');
+        footerStyles.rel = 'stylesheet';
+        footerStyles.href = (window.location.pathname.includes('/features/') ? '../../' : '') + 'styles-footer.css';
+        document.head.appendChild(footerStyles);
+    })();
+</script>
+<footer class="site-footer">
+    <!-- Sacred Geometry Background Elements -->
+    <div class="footer-sacred-pattern"></div>
+    <div class="sacred-circle sacred-circle-1"></div>
+    <div class="sacred-circle sacred-circle-2"></div>
+    <div class="sacred-circle sacred-circle-3"></div>
+
+    <div class="container">
+        <div class="footer-content">
+            <!-- Top Section with Bulma Columns -->
+            <div class="columns is-footer-links">
+                <!-- Logo and Company Info -->
+                <div class="column is-one-quarter">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <!-- <img src="images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
+                                onerror="this.onerror=null; this.src='images/divinci_logo.png';" /> -->
+                            <div class="heart">🖤</div>
+                            <span class="footer-brand-name">Divinci AI</span>
+                        </div>
+                        <p class="footer-tagline">Empowering human-AI collaboration</p>
+                        <div class="social-links">
+                            <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Product</h3>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="roadmap.html">Roadmap</a></li>
+                            <li><a href="changelog.html">Changelog</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="docs/">Documentation</a></li>
+                            <li><a href="blog/">Blog</a></li>
+                            <li><a href="tutorials/">Tutorials</a></li>
+                            <li><a href="api/">API</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="press.html">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                            <li><a href="security.html">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom with Bulma Level -->
+        <div class="footer-bottom">
+            <div class="level is-footer-bottom">
+                <div class="level-left">
+                    <div class="level-item">
+                        <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <div class="footer-bottom-links">
+                            <a href="sitemap.xml">Sitemap</a>
+                            <a href="accessibility.html">Accessibility</a>
+                            <a href="cookies.html">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Script to handle footer links based on current path -->
+<script>
+    // Properly set the href attributes based on location
+    (function() {
+        const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
+        const footerLinks = document.querySelectorAll('.footer-links-column a, .footer-bottom-links a');
+
+        footerLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                link.setAttribute('href', basePath + 'index.html' + href);
+            } else if (href && !href.startsWith('http') && !href.startsWith('/')) {
+                link.setAttribute('href', basePath + href);
+            }
+        });
+    })();
+</script>
+
 
 
         <!-- GSAP Animation Libraries -->
@@ -1208,4 +1690,3 @@
         <!-- End of HubSpot Embed Code -->
     </body>
 </html>
-EOL < /dev/null

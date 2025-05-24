@@ -1,7 +1,9 @@
 <!-- Language Switcher Component -->
 <div class="language-switcher">
     <div class="language-switcher-current">
-        <span class="language-icon">🌐</span>
+        <span class="language-icon" style="display:inline-flex; align-items:center;">
+          <i class="fa-solid fa-language" style="font-size: 20px;"></i>
+        </span>
         <span class="current-language">Français</span>
         <span class="dropdown-icon">▼</span>
     </div>
@@ -72,13 +74,15 @@
         position: absolute;
         top: 100%;
         right: 0;
-        width: 180px;
+        width: 200px;
         background-color: #fff;
-        border-radius: 4px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(0, 0, 0, 0.08);
         overflow: hidden;
         display: none;
         z-index: 1001;
+        margin-top: 4px;
     }
 
     .language-switcher.active .language-switcher-dropdown {
@@ -91,14 +95,21 @@
     .language-option {
         display: flex;
         justify-content: space-between;
-        padding: 10px 15px;
+        align-items: center;
+        padding: 12px 16px;
         text-decoration: none;
-        color: #333;
-        transition: background-color 0.3s;
+        color: #1a1a1a;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .language-option:last-child {
+        border-bottom: none;
     }
 
     .language-option:hover {
-        background-color: #f5f5f5;
+        background-color: #e8f4fd;
+        color: #2863c2;
     }
 
     .language-name {
@@ -107,8 +118,13 @@
     }
 
     .language-native {
-        font-size: 14px;
-        color: #666;
+        font-size: 13px;
+        color: #555;
+        font-weight: 400;
+    }
+
+    .language-option:hover .language-native {
+        color: #2863c2;
     }
 
     /* RTL support */

@@ -183,23 +183,36 @@
             .language-option {
                 display: flex;
                 justify-content: space-between;
-                padding: 10px 15px;
+                align-items: center;
+                padding: 12px 16px;
                 text-decoration: none;
-                color: #333;
-                transition: background-color 0.3s;
+                color: #1a1a1a;
+                transition: all 0.2s ease;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .language-option:last-child {
+                border-bottom: none;
             }
 
             .language-option:hover {
-                background-color: #f5f5f5;
+                background-color: #e8f4fd;
+                color: #2863c2;
             }
 
             .language-name {
+                font-size: 14px;
                 font-weight: 500;
             }
 
             .language-native {
-                color: #666;
-                font-size: 0.9em;
+                font-size: 13px;
+                color: #555;
+                font-weight: 400;
+            }
+
+            .language-option:hover .language-native {
+                color: #2863c2;
             }
 
             /* RTL Support */
@@ -233,6 +246,7 @@
         <link rel="stylesheet" href="optimized/css/includes/header-styles.min.css" />
         <link rel="stylesheet" href="optimized/css/includes/section-content-fix.min.css" />
         <link rel="stylesheet" href="optimized/css/assets/css/enhanced-accessibility.min.css" />
+        <link rel="stylesheet" href="css/mobile-accessibility-fixes.css" />
 
         <style>
 
@@ -505,19 +519,19 @@
                                 <span class="dropdown-icon">▼</span>
                             </div>
                             <div class="language-switcher-dropdown">
-                                <a href="/" class="language-option" data-lang="en">
+                                <a href="#" class="language-option" data-lang="en">
                                     <span class="language-name">English</span>
                                     <span class="language-native">English</span>
                                 </a>
-                                <a href="/es/" class="language-option" data-lang="es">
+                                <a href="#" class="language-option" data-lang="es">
                                     <span class="language-name">Spanish</span>
                                     <span class="language-native">Español</span>
                                 </a>
-                                <a href="/fr/" class="language-option" data-lang="fr">
+                                <a href="#" class="language-option" data-lang="fr">
                                     <span class="language-name">French</span>
                                     <span class="language-native">Français</span>
                                 </a>
-                                <a href="/ar/" class="language-option" data-lang="ar">
+                                <a href="#" class="language-option" data-lang="ar">
                                     <span class="language-name">Arabic</span>
                                     <span class="language-native">العربية</span>
                                 </a>
