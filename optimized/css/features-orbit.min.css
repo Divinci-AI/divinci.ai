@@ -1,0 +1,1 @@
+.features-section .feature{z-index:10;will-change:transform,opacity,left,top;backface-visibility:hidden}.features-section .feature[style*="position: fixed"]{z-index:1000}

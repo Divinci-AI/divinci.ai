@@ -1,0 +1,52 @@
+{
+  "brand": {
+    "name": "Divinci AI"
+  },
+  "navigation": {
+    "home": "Home",
+    "features": "Features",
+    "pricing": "Pricing",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "buttons": {
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "signUp": "Sign Up",
+    "logIn": "Log In",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete"
+  },
+  "footer": {
+    "copyright": "© {{year}} Divinci AI. All rights reserved.",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "support": "Support",
+    "blog": "Blog"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "passwordLength": "Password must be at least 8 characters long",
+    "passwordMatch": "Passwords do not match",
+    "serverError": "An error occurred. Please try again later.",
+    "notFound": "The requested resource was not found."
+  },
+  "notifications": {
+    "success": "Success!",
+    "error": "Error!",
+    "info": "Information",
+    "warning": "Warning"
+  },
+  "accessibility": {
+    "skipToContent": "Skip to content",
+    "menuToggle": "Toggle menu",
+    "darkMode": "Toggle dark mode",
+    "closeModal": "Close modal",
+    "expandCollapse": "Expand/collapse section"
+  },
+  "languageName": "English"
+}

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/accessibility-test.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/accessibility-test.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/accessibility-test.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/accessibility-test.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/accessibility-test.html" hreflang="ar" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/accessibility-test.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/accessibility-test.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/accessibility-test.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/accessibility-test.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/accessibility-test.html" hreflang="ar" />
+    <meta name="description" content="Accessibility Test Page for Divinci AI">
+
+    <title>Accessibility Test - Divinci AI - Español</title>
+
+    <!-- Favicons and App Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="..//apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+
+    <!-- Stylesheets -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="../assets/css/fonts.css">
+    <link rel="stylesheet" href="../assets/css/sora-styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles-footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-accessibility.css">
+
+    <style>
+        .test-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .test-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .test-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            z-index: 1001;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            margin: 0;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            margin-bottom: 15px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            max-width: 300px;
+            display: none;
+        }
+
+        .dynamic-content {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: #007bff;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+    <!-- Set default language -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.i18n && window.i18n.changeLanguage) {
+                window.i18n.changeLanguage('es');
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Skip to content link for keyboard users -->
+    <div class="skip-links">
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+    </div>
+
+    <!-- Header -->
+    <header role="banner">
+        <div data-include="../includes/header.html"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <div class="container">
+            <h1 class="title">Accessibility Test Page</h1>
+            <p class="subtitle">This page tests the accessibility improvements implemented on the website.</p>
+
+            <section class="test-section">
+                <h2>Skip Link Test</h2>
+                <p>Press the Tab key to see if the skip link appears at the top of the page.</p>
+            </section>
+
+            <section class="test-section">
+                <h2>ARIA Live Regions Test</h2>
+                <p>ARIA live regions allow screen readers to announce dynamic content changes.</p>
+
+                <div id="live-region-demo" class="dynamic-content">
+                    This content will update dynamically.
+                </div>
+
+                <div class="test-buttons">
+                    <button id="update-polite" class="button is-primary">Update (Polite)</button>
+                    <button id="update-assertive" class="button is-danger">Update (Assertive)</button>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>Modal Dialog Test</h2>
+                <p>Test keyboard accessibility and focus management in modal dialogs.</p>
+
+                <button id="open-modal" class="button is-primary">Open Modal</button>
+
+                <!-- Modal -->
+                <div id="test-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+                    <div class="modal-header">
+                        <h3 id="modal-title" class="modal-title">Accessible Modal</h3>
+                        <button id="close-modal" class="close-button" aria-label="Close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>This is an accessible modal dialog. It traps focus and can be closed with the Escape key.</p>
+                        <form>
+                            <div class="field">
+                                <label for="modal-name">Name</label>
+                                <div class="control">
+                                    <input type="text" id="modal-name" name="name" class="input">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="modal-email">Email</label>
+                                <div class="control">
+                                    <input type="email" id="modal-email" name="email" class="input">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="modal-cancel" class="button is-light">Cancel</button>
+                        <button id="modal-submit" class="button is-primary">Submit</button>
+                    </div>
+                </div>
+
+                <div id="modal-overlay" class="modal-overlay"></div>
+            </section>
+
+            <section class="test-section">
+                <h2>Form Validation Test</h2>
+                <p>Test accessible form validation.</p>
+
+                <form id="validation-form">
+                    <div class="field">
+                        <label for="name">Name (required)</label>
+                        <div class="control">
+                            <input type="text" id="name" name="name" class="input" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email (required)</label>
+                        <div class="control">
+                            <input type="email" id="email" name="email" class="input" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <div class="control">
+                            <textarea id="message" name="message" class="textarea" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <section class="test-section">
+                <h2>Notification Test</h2>
+                <p>Test accessible notifications.</p>
+
+                <button id="show-notification" class="button is-primary">Show Notification</button>
+
+                <div id="notification" class="notification" role="alert" aria-live="assertive">
+                    This is a notification.
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>Loading State Test</h2>
+                <p>Test accessible loading states.</p>
+
+                <div id="loading-demo" class="dynamic-content">
+                    Click the button to simulate loading content.
+                </div>
+
+                <button id="start-loading" class="button is-primary">Load Content</button>
+            </section>
+
+            <section class="test-section">
+                <h2>Keyboard Navigation Test</h2>
+                <p>Test keyboard navigation and focus management.</p>
+
+                <div class="test-buttons">
+                    <button class="button is-primary">Button 1</button>
+                    <button class="button is-primary">Button 2</button>
+                    <button class="button is-primary">Button 3</button>
+                </div>
+
+                <div class="field">
+                    <label for="test-input">Test Input</label>
+                    <div class="control">
+                        <input type="text" id="test-input" name="test-input" class="input">
+                    </div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>Color Contrast Test</h2>
+                <p>Test color contrast improvements.</p>
+
+                <div class="columns">
+                    <div class="column">
+                        <h3>Text</h3>
+                        <p>This is regular text with improved contrast.</p>
+                        <p><a href="#">This is a link with improved contrast.</a></p>
+                    </div>
+                    <div class="column">
+                        <h3>Buttons</h3>
+                        <button class="button is-primary">Primary Button</button>
+                        <button class="button is-light">Secondary Button</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div class="footer-wrapper" data-include="../includes/footer.html" style="width: 100%; overflow: hidden; box-sizing: border-box;"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="../js/apply-sora-to-divinci.js" defer></script>
+    <script src="../js/enhanced-accessibility.js" defer></script>
+    <script src="../debug-include.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ARIA Live Regions Test
+            document.getElementById('update-polite').addEventListener('click', function() {
+                const currentTime = new Date().toLocaleTimeString();
+                window.a11y.announce(`Content updated at ${currentTime}.`);
+                window.a11y.updateContent('live-region-demo', `Content updated at ${currentTime}.`, {
+                    announce: true,
+                    announceText: `Content updated at ${currentTime}.`
+                });
+            });
+
+            document.getElementById('update-assertive').addEventListener('click', function() {
+                const currentTime = new Date().toLocaleTimeString();
+                window.a11y.announce(`Important update at ${currentTime}.`, { assertive: true });
+                window.a11y.updateContent('live-region-demo', `Important update at ${currentTime}.`, {
+                    announce: true,
+                    announceText: `Important update at ${currentTime}.`,
+                    assertive: true
+                });
+            });
+
+            // Modal Dialog Test
+            const modal = document.getElementById('test-modal');
+            const modalOverlay = document.getElementById('modal-overlay');
+
+            document.getElementById('open-modal').addEventListener('click', function() {
+                // Open modal
+                window.a11y.openModal('test-modal');
+
+                // Show modal and overlay
+                modal.style.display = 'block';
+                modalOverlay.style.display = 'block';
+            });
+
+            document.getElementById('close-modal').addEventListener('click', function() {
+                // Close modal
+                window.a11y.closeModal('test-modal');
+
+                // Hide modal and overlay
+                modal.style.display = 'none';
+                modalOverlay.style.display = 'none';
+            });
+
+            document.getElementById('modal-cancel').addEventListener('click', function() {
+                // Close modal
+                window.a11y.closeModal('test-modal');
+
+                // Hide modal and overlay
+                modal.style.display = 'none';
+                modalOverlay.style.display = 'none';
+            });
+
+            document.getElementById('modal-submit').addEventListener('click', function() {
+                // Close modal
+                window.a11y.closeModal('test-modal');
+
+                // Hide modal and overlay
+                modal.style.display = 'none';
+                modalOverlay.style.display = 'none';
+
+                // Show notification
+                window.a11y.showNotification('Form submitted successfully!', {
+                    duration: 3000
+                });
+            });
+
+            // Form Validation Test
+            document.getElementById('validation-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Show notification
+                window.a11y.showNotification('Form submitted successfully!', {
+                    duration: 3000
+                });
+            });
+
+            // Notification Test
+            document.getElementById('show-notification').addEventListener('click', function() {
+                // Show notification
+                window.a11y.showNotification('This is a notification message.', {
+                    duration: 3000
+                });
+            });
+
+            // Loading State Test
+            document.getElementById('start-loading').addEventListener('click', function() {
+                const loadingDemo = document.getElementById('loading-demo');
+
+                // Show loading state
+                loadingDemo.innerHTML = 'Loading content... <span class="loading"></span>';
+
+                // Announce loading state
+                window.a11y.announce('Loading content, please wait.');
+
+                // Simulate loading delay
+                setTimeout(function() {
+                    // Update content
+                    window.a11y.updateContent('loading-demo', 'Content loaded successfully!', {
+                        announce: true,
+                        announceText: 'Content loaded successfully!'
+                    });
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -3,26 +3,74 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-        <!-- SEO Meta Tags -->
-        <meta name="description" content="Contact Divinci AI's team for questions about our platform, pricing, or to request a demo. We're here to help with your custom AI solutions." />
-        <meta name="keywords" content="divinci ai contact, ai support, contact form, sales inquiry, demo request, technical support" />
 
-        <!-- Open Graph / Social Media Meta Tags -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://divinci.ai/contact.html" />
-        <meta property="og:title" content="Contact Us | Divinci AI" />
-        <meta property="og:description" content="Contact Divinci AI's team for questions about our platform, pricing, or to request a demo. We're here to help with your custom AI solutions." />
-        <meta property="og:image" content="https://divinci.ai/images/divinci_logo.png" />
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/contact.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/contact.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/contact.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/contact.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/contact.html" hreflang="ar" />
+        <!-- Include meta tags -->
+        <div data-include="includes/meta-tags.html"></div>
 
-        <!-- Twitter Card Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://divinci.ai/contact.html" />
-        <meta name="twitter:title" content="Contact Us | Divinci AI" />
-        <meta name="twitter:description" content="Contact Divinci AI's team for questions about our platform, pricing, or to request a demo. We're here to help with your custom AI solutions." />
-        <meta name="twitter:image" content="https://divinci.ai/images/divinci_logo.png" />
+        <!-- Include structured data -->
+        <div data-include="includes/structured-data.html"></div>
 
-        <!-- Canonical URL -->
-        <link rel="canonical" href="https://divinci.ai/contact.html" />
+        <!-- Initialize page-specific meta tags and structured data -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set meta tags for this page
+                if (window.setMetaTags) {
+                    setMetaTags({
+                        title: "Contact Us",
+                        description: "Contact Divinci AI's team for questions about our platform, pricing, or to request a demo. We're here to help with your custom AI solutions.",
+                        image: "contact-social.svg",
+                        url: "/contact.html",
+                        type: "website",
+                        keywords: "divinci ai contact, ai support, contact form, sales inquiry, demo request, technical support"
+                    });
+                }
+
+                // Add structured data for this page
+                if (window.addStructuredData) {
+                    addStructuredData({
+                        type: "WebPage",
+                        title: "Contact Us | Divinci AI",
+                        description: "Contact Divinci AI's team for questions about our platform, pricing, or to request a demo. We're here to help with your custom AI solutions.",
+                        image: "images/social/contact-social.svg"
+                    });
+
+                    // Add LocalBusiness structured data
+                    const localBusinessData = {
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "Divinci AI",
+                        "url": "https://divinci.ai",
+                        "logo": "https://divinci.ai/images/divinci_logo.png",
+                        "contactPoint": {
+                            "@type": "ContactPoint",
+                            "telephone": "+1-800-555-1234",
+                            "contactType": "customer service",
+                            "email": "hello@divinci.ai",
+                            "availableLanguage": ["English"]
+                        },
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "123 AI Avenue",
+                            "addressLocality": "San Francisco",
+                            "addressRegion": "CA",
+                            "postalCode": "94107",
+                            "addressCountry": "US"
+                        }
+                    };
+
+                    const script = document.createElement('script');
+                    script.type = 'application/ld+json';
+                    script.textContent = JSON.stringify(localBusinessData);
+                    document.head.appendChild(script);
+                }
+            });
+        </script>
 
         <!-- Favicons and App Icons -->
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -41,6 +89,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         <link rel="stylesheet" href="includes/header-styles.css" />
         <link rel="stylesheet" href="includes/section-content-fix.css" />
+        <link rel="stylesheet" href="css/social-sharing.css" />
 
         <style>
             /* Contact-specific styles */
@@ -398,8 +447,10 @@
     <body>
 
 
-        <!-- Header with Navigation (included from header.html) -->
-        <div data-include="includes/header.html"></div>
+        <!-- Header with Navigation -->
+        <header role="banner">
+            <div data-include="includes/header.html"></div>
+        </header>
 
         <!-- Main content -->
         <main id="main-content" role="main" tabindex="-1">
@@ -524,14 +575,20 @@
             </section>
         </main>
 
-        <!-- Footer with Sacred Geometry and Bulma Integration (included from footer.html) -->
-        <div data-include="includes/footer.html"></div>
+        <!-- Load social sharing script -->
+        <script src="js/social-sharing.js" defer></script>
+
+        <!-- Footer -->
+        <div class="footer-wrapper" data-include="includes/footer.html" style="width: 100%; overflow: hidden; box-sizing: border-box;"></div>
 
         <!-- Scripts -->
         <script src="js/keyboard-navigation.js" defer></script>
         <script src="js/apply-sora-to-divinci.js" defer></script>
         <script src="js/mobile-menu.js" defer></script>
         <script src="js/view-toggle.js" defer></script>
+
+        <!-- Script to include HTML components -->
+        <script src="debug-include.js"></script>
 
         <!-- Form submission and map interaction script -->
         <script>

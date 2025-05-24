@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/features/data-management/autorag.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/features/data-management/autorag.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/features/data-management/autorag.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/features/data-management/autorag.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/features/data-management/autorag.html" hreflang="ar" />
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="AutoRAG de Divinci AI simplifie l'intégration de bases de connaissances IA, automatisant la récupération, le traitement et l'optimisation de contenu pour les LLMs d'entreprise avec une précision et une efficacité inégalées." />
+        <meta name="keywords" content="divinci ai, autorag, rag, génération augmentée par récupération, ia d'entreprise, base de connaissances, recherche sémantique, base de données vectorielle, fenêtre contextuelle, intégration llm" />
+
+        <!-- Critical CSS for mobile - loads before any JavaScript -->
+        <style type="text/css">
+            /* Ensure the page is visible on mobile */
+            @media (max-width: 768px) {
+                body, main, section, .container, .feature-hero, .feature-overview,
+                .feature-benefits, .feature-details, .feature-implementation,
+                .benefits-circle-container, .center-benefit, .orbital-benefit {
+                    display: block !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    position: static !important;
+                    transform: none !important;
+                }
+
+                .mobile-only {
+                    display: block !important;
+                }
+
+                .desktop-only {
+                    display: none !important;
+                }
+
+                * {
+                    animation: none !important;
+                    transition: none !important;
+                }
+
+                .orbital-element {
+                    position: static !important;
+                    transform: none !important;
+                    margin: 10px auto !important;
+                }
+            }
+        </style>
+
+        <!-- Immediate mobile fix script - runs before anything else -->
+        <script>
+            // Force mobile detection to happen immediately
+            (function() {
+                window.isMobileView = window.innerWidth < 768;
+                console.log("IMMEDIATE mobile detection: " +
+                            (window.isMobileView ? "MOBILE" : "DESKTOP") +
+                            " - Width: " + window.innerWidth + "px");
+
+                // If mobile, add more specific fixes
+                if (window.isMobileView) {
+                    // Prevent any scripts from hiding the page
+                    Object.defineProperty(window, 'isMobileView', {
+                        value: true,
+                        writable: false,
+                        configurable: false
+                    });
+
+                    // Add a class to the html element for CSS targeting
+                    document.documentElement.classList.add('mobile-view');
+
+                    // Add a style tag to ensure the page is visible on mobile
+                    var styleTag = document.createElement('style');
+                    styleTag.id = 'mobile-visibility-fix';
+                    styleTag.type = 'text/css';
+                    // Simpler style tag to avoid rendering issues
+                    styleTag.innerHTML = '.mobile-view{display:block}' +
+                        '.mobile-only{display:block!important}' +
+                        '.desktop-only{display:none!important}';
+                    document.head.appendChild(styleTag);
+                }
+            })();
+        </script>
+
+        <!-- Open Graph / Social Media Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://divinci.ai/fr/features/data-management/autorag/" />
+        <meta property="og:title" content="AutoRAG : Génération Augmentée par Récupération Automatisée | Divinci AI" />
+        <meta property="og:description" content="AutoRAG de Divinci AI simplifie l'intégration de bases de connaissances IA, automatisant la récupération, le traitement et l'optimisation de contenu pour les LLMs d'entreprise avec une précision et une efficacité inégalées." />
+        <meta property="og:image" content="https://divinci.ai/images/og-images/autorag-og.jpg" />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://divinci.ai/fr/features/data-management/autorag/" />
+        <meta name="twitter:title" content="AutoRAG : Génération Augmentée par Récupération Automatisée | Divinci AI" />
+        <meta name="twitter:description" content="AutoRAG de Divinci AI simplifie l'intégration de bases de connaissances IA, automatisant la récupération, le traitement et l'optimisation de contenu pour les LLMs d'entreprise avec une précision et une efficacité inégalées." />
+        <meta name="twitter:image" content="https://divinci.ai/images/og-images/autorag-og.jpg" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://divinci.ai/fr/features/data-management/autorag/" />
+
+        <!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../../images/favicon-16x16.png" />
+
+        <!-- Page Title -->
+        <title>AutoRAG : Génération Augmentée par Récupération Automatisée | Divinci AI</title>
+
+        <!-- Simplified mobile display logic -->
+        <style>
+            /* Desktop/Mobile display classes */
+            .desktop-only {
+                display: block;
+            }
+
+            .mobile-only {
+                display: none;
+            }
+
+            @media screen and (max-width: 992px) {
+                .desktop-only {
+                    display: none !important;
+                }
+
+                .mobile-only {
+                    display: block !important;
+                }
+
+                /* Mobile static image styling */
+                .divinci-static-image {
+                    max-width: 90% !important;
+                    width: auto !important;
+                    height: auto !important;
+                    margin: 0 auto !important;
+                }
+
+                /* Hero animation container on mobile */
+                .hero-animation-container {
+                    height: auto !important;
+                    max-height: 350px !important;
+                    width: auto !important;
+                    margin-top: 0 !important;
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                .divinci-static-image {
+                    max-width: 80% !important;
+                }
+
+                .hero-animation-container {
+                    max-height: 300px !important;
+                }
+            }
+        </style>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../../../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../../../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../../../styles.css" />
+        <link rel="stylesheet" href="../../../accessibility.css" />
+        <link rel="stylesheet" href="../../../features.css" />
+        <link rel="stylesheet" href="../../../feature-page.css" />
+        <link rel="stylesheet" href="../../../feature-message-bubbles.css" />
+        <link rel="stylesheet" href="../../../circular-benefits.css" />
+        <link rel="stylesheet" href="../../../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <!-- Mobile-specific stylesheets -->
+        <link rel="stylesheet" href="../../../includes/mobile-header.css" />
+        <link rel="stylesheet" href="../../../mobile-disable-animation.css" />
+        <link rel="stylesheet" href="../../../assets/css/disable-mobile-animation.css" />
+        <!-- Orbital elements fix -->
+        <link rel="stylesheet" href="../../../orbital-elements-fix.css" />
+        <link rel="stylesheet" href="../../../zola-site/static/orbital-elements-fix.css" />
+
+        <!-- Script to include HTML components -->
+        <script src="../../../debug-include.js"></script>
+
+        <!-- GSAP Animation Library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    </head>
+    <body class="is-preload">
+
+        <!-- Header with Navigation -->
+        <header role="banner">
+            <div data-include="../../../includes/header.html"></div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <!-- Hero Section -->
+            <section id="feature-hero" class="feature-hero is-relative">
+                <div class="container">
+                    <div class="hero-content">
+                        <div class="feature-title-area">
+                            <h1 id="feature-title" class="feature-title">AutoRAG</h1>
+                            <p class="feature-tagline">Génération Augmentée par Récupération Automatisée qui surperforme votre IA avec une intégration instantanée et précise des connaissances et des données.</p>
+
+                            <div class="hero-cta">
+                                <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="button primary-button" target="_blank">Demander une Démo</a>
+                            </div>
+                        </div>
+
+                        <!-- Animation Container -->
+                        <div class="hero-animation-container">
+                            <!-- Sacred Geometry Background Elements -->
+                            <div class="sacred-geometry-pattern sacred-flower"></div>
+                            <div class="sacred-geometry-pattern sacred-hexagon"></div>
+                            <div class="sacred-geometry-pattern sacred-triangle"></div>
+                            <div class="sacred-geometry-pattern sacred-metatron"></div>
+
+                            <!-- Desktop Animation (shown only on desktop) -->
+                            <iframe
+                                id="divinci-animation-frame"
+                                src="../../../divinci-animation.html"
+                                width="600"
+                                height="600"
+                                frameborder="0"
+                                allow="autoplay"
+                                aria-label="Animation automatisée de Divinci AI montrant le traitement des données"
+                                class="desktop-only">
+                            </iframe>
+
+                            <!-- Mobile Static Image (shown only on mobile) -->
+                            <img
+                                src="../../../images/autorag-still.png"
+                                alt="Visualisation AutoRAG de Divinci AI"
+                                class="mobile-only divinci-static-image"
+                                style="max-width: 100%; width: auto; height: auto; display: block !important;"
+                                loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feature Overview Section -->
+            <section id="feature-overview" class="feature-overview section-padding" aria-labelledby="overview-heading">
+                <div class="container">
+                    <h2 id="overview-heading" class="section-heading title is-2 has-text-centered">Qu'est-ce que AutoRAG ?</h2>
+                    <div class="overview-content">
+                        <div class="overview-text">
+                            <p class="is-size-5">AutoRAG est la solution complète de Divinci AI pour trouver automatiquement le pipeline RAG optimal pour vos données spécifiques et cas d'utilisation. Contrairement aux implémentations RAG génériques, AutoRAG évalue plusieurs combinaisons de stratégies de récupération et de génération pour déterminer ce qui fonctionne le mieux avec votre contenu unique.</p>
+
+                            <p>Les implémentations RAG traditionnelles nécessitent une configuration manuelle extensive, un prétraitement des documents et un ajustement continu pour rester efficaces. De nombreuses organisations ont du mal à sélectionner les bons modules et pipelines RAG pour leurs données spécifiques, gaspillant un temps et des ressources précieux sur des configurations sous-optimales. AutoRAG élimine ces obstacles en évaluant automatiquement diverses combinaisons de modules RAG, en gérant l'analyse des documents, l'optimisation du découpage, la sélection de la stratégie de récupération et la génération de réponses, tout en apprenant et en s'améliorant continuellement à partir des métriques d'évaluation.</p>
+
+                            <p>Avec AutoRAG, vos applications d'IA d'entreprise accèdent instantanément aux informations propriétaires de votre organisation avec une précision et une pertinence sans précédent. Le système crée automatiquement des ensembles de données de questions-réponses à partir de votre corpus, évalue plusieurs stratégies de récupération et de génération, et identifie la configuration optimale du pipeline, réduisant considérablement les hallucinations et fournissant des réponses entièrement sourcées qui créent de la confiance auprès de vos utilisateurs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full-width visualization section -->
+                <div class="full-width-visualization">
+                    <div class="overview-visualization">
+                        <img src="../../../images/autorag-diagram.svg" alt="Diagramme de Connexion de Base de Connaissances AutoRAG" class="responsive-svg" width="100%" height="auto">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feature Benefits Section -->
+            <section id="feature-benefits" class="feature-benefits section-padding" aria-labelledby="benefits-heading">
+                <div class="container">
+                    <h2 id="benefits-heading" class="section-heading" style="margin-bottom: 60px;">Avantages Clés</h2>
+
+                    <!-- Circular Benefits Layout -->
+                    <div class="benefits-circle-container">
+                        <!-- Center Benefit -->
+                        <div id="center-benefit" class="center-benefit" style="width: 365px; height: 365px; padding: 40px;">
+                            <div class="benefit-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80">
+                                    <circle cx="50" cy="50" r="45" stroke="#5ce2e7" stroke-width="1" fill="none" opacity="0.3" />
+                                    <circle cx="50" cy="50" r="35" stroke="#5ce2e7" stroke-width="1" fill="none" opacity="0.5" />
+                                    <path d="M30,50 L70,50" stroke="#5ce2e7" stroke-width="3" fill="none" />
+                                    <path d="M50,30 L50,70" stroke="#5ce2e7" stroke-width="3" fill="none" />
+                                    <circle cx="50" cy="50" r="15" stroke="#5ce2e7" stroke-width="2" fill="none">
+                                        <animate attributeName="r" values="15;20;15" dur="3s" repeatCount="indefinite" />
+                                    </circle>
+                                </svg>
+                            </div>
+                            <h3>AutoRAG</h3>
+                            <p>Génération Augmentée par Récupération Automatisée qui connecte parfaitement votre IA aux connaissances de votre organisation avec une configuration minimale et une précision maximale.</p>
+                        </div>
+
+                        <!-- Orbital Benefit 1 -->
+                        <div id="benefit-1" class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px;">
+                            <div class="benefit-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+                                    <circle cx="50" cy="50" r="40" stroke="#5ce2e7" stroke-width="1" fill="none" opacity="0.3" />
+                                    <path d="M30,50 L70,50" stroke="#5ce2e7" stroke-width="3" fill="none" />
+                                    <path d="M50,30 L50,70" stroke="#5ce2e7" stroke-width="3" fill="none" />
+                                    <circle cx="50" cy="50" r="10" stroke="#5ce2e7" stroke-width="2" fill="none">
+                                        <animate attributeName="r" values="10;15;10" dur="3s" repeatCount="indefinite" />
+                                    </circle>
+                                </svg>
+                            </div>
+                            <h3>Intégration Rapide</h3>
+                            <p>Connectez votre base de connaissances en minutes, et non en mois, avec un traitement et une indexation automatiques des documents.</p>
+                        </div>
+
+                        <!-- Orbital Benefit 2 -->
+                        <div id="benefit-2" class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px;">
+                            <div class="benefit-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+                                    <circle cx="50" cy="50" r="40" stroke="#5ce2e7" stroke-width="1" fill="none" opacity="0.3" />
+                                    <path d="M30,50 C45,35 55,65 70,50" stroke="#5ce2e7" stroke-width="2" fill="none">
+                                        <animate attributeName="d" values="M30,50 C45,35 55,65 70,50;M30,50 C45,65 55,35 70,50;M30,50 C45,35 55,65 70,50" dur="6s" repeatCount="indefinite" />
+                                    </path>
+                                    <circle cx="30" cy="50" r="4" fill="#5ce2e7" opacity="0.7" />
+                                    <circle cx="70" cy="50" r="4" fill="#5ce2e7" opacity="0.7" />
+                                </svg>
+                            </div>
+                            <h3>Récupération Adaptative</h3>
+                            <p>Notre système sélectionne automatiquement la stratégie de récupération optimale pour chaque requête pour une pertinence maximale.</p>
+                        </div>
+
+                        <!-- Orbital Benefit 3 -->
+                        <div id="benefit-3" class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px;">
+                            <div class="benefit-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+                                    <circle cx="50" cy="50" r="40" stroke="#5ce2e7" stroke-width="1" fill="none" opacity="0.3" />
+                                    <path d="M30,70 L70,30" stroke="#5ce2e7" stroke-width="2" fill="none" />
+                                    <circle cx="30" cy="70" r="5" fill="#5ce2e7" opacity="0.7" />
+                                    <circle cx="70" cy="30" r="5" fill="#5ce2e7" opacity="0.7" />
+                                    <path d="M30,30 L70,70" stroke="#5ce2e7" stroke-width="2" fill="none" stroke-dasharray="5,5" />
+                                </svg>
+                            </div>
+                            <h3>Réduction des Hallucinations</h3>
+                            <p>Réduit les hallucinations de l'IA jusqu'à 97% avec un contexte précis et une vérification des faits en temps réel.</p>
+                        </div>
+
+                        <!-- Orbital Benefit 4 -->
+                        <div id="benefit-4" class="orbital-benefit" style="width: 305px; height: 305px; padding: 35px;">
+                            <div class="benefit-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+                                    <circle cx="50" cy="50" r="40" stroke="#5ce2e7" stroke-width="1" fill="none" opacity="0.3" />
+                                    <path d="M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30" stroke="#5ce2e7" stroke-width="2" fill="none">
+                                        <animate attributeName="d" values="M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30;M50,30 C75,35 75,65 50,70 C25,65 25,35 50,30;M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30" dur="8s" repeatCount="indefinite" />
+                                    </path>
+                                    <circle cx="50" cy="50" r="5" fill="#5ce2e7" opacity="0.7">
+                                        <animate attributeName="r" values="5;8;5" dur="4s" repeatCount="indefinite" />
+                                    </circle>
+                                </svg>
+                            </div>
+                            <h3>Performance Auto-Améliorante</h3>
+                            <p>Optimise continuellement les modèles de récupération et la génération de réponses en fonction des interactions des utilisateurs.</p>
+                        </div>
+
+                        <!-- Orbital Benefit 5 -->
+                        <div id="benefit-5" class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px; transform: translate(-50%, -50%) rotate(288deg) translateY(-400px) rotate(-288deg);">
+                            <style>
+                                /* Override hover for this specific item */
+                                #benefit-5:hover {
+                                    transform: translate(-50%, -50%) rotate(288deg) translateY(-400px) rotate(-288deg) scale(1.05);
+                                }
+                            </style>
+                            <div class="benefit-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+                                    <circle cx="50" cy="50" r="40" stroke="#5ce2e7" stroke-width="1" fill="none" opacity="0.3" />
+                                    <path d="M30,40 L70,40" stroke="#5ce2e7" stroke-width="2" fill="none" />
+                                    <path d="M30,60 L70,60" stroke="#5ce2e7" stroke-width="2" fill="none" />
+                                    <path d="M40,30 L40,70" stroke="#5ce2e7" stroke-width="2" fill="none" />
+                                    <path d="M60,30 L60,70" stroke="#5ce2e7" stroke-width="2" fill="none" />
+                                </svg>
+                            </div>
+                            <h3>Support Multi-Format</h3>
+                            <p>Traite divers types de contenu, y compris des documents, des bases de données, des wikis et des sources de données structurées.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feature Details Section -->
+            <section id="feature-details" class="feature-details section-padding" aria-labelledby="details-heading">
+                <div class="container">
+                    <h2 id="details-heading" class="section-heading">Détails de la Fonctionnalité</h2>
+
+                    <!-- Tab Interface for Details -->
+                    <div class="details-tabs" role="tablist" aria-label="Capacités d'AutoRAG">
+                        <!-- Tab 1 -->
+                        <button id="tab1-trigger" class="tab-trigger" role="tab" aria-selected="true" aria-controls="tab1-content">Processus de Création de Données</button>
+                        <!-- Tab 2 -->
+                        <button id="tab2-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab2-content">Évaluation de Récupération</button>
+                        <!-- Tab 3 -->
+                        <button id="tab3-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab3-content">Optimisation de Génération</button>
+                    </div>
+
+                    <div class="tab-content-container">
+                        <!-- Tab 1 Content -->
+                        <div id="tab1-content" role="tabpanel" aria-labelledby="tab1-trigger" class="tab-content active">
+                            <h3>Traitement Intelligent de Documents et Création de Données</h3>
+                            <p class="is-size-5">Le pipeline de traitement de documents d'AutoRAG transforme votre contenu brut en ensembles de données optimisés grâce à un processus complet en quatre étapes : analyse de documents, découpage intelligent, création de corpus et génération automatisée d'ensembles de données de questions-réponses. Cette approche de bout en bout garantit à la fois une extraction optimale des connaissances et des données d'évaluation précises pour l'optimisation du pipeline.</p>
+
+                            <!-- Capability Visualization (SVG recommended) -->
+                            <div class="capability-visualization">
+                                <img src="../../../images/autorag-data-creation-final.svg" alt="Processus de Création de Données AutoRAG" class="responsive-svg" />
+                                <p class="caption" style="text-align: center; margin-top: 10px; color: #8C9DB5; font-size: 14px;">Le processus complet de création de données d'AutoRAG transforme les documents bruts en corpus optimisés et ensembles de données QA</p>
+                            </div>
+
+                            <h4 style="margin: 2rem 0 1rem; font-size: 20px; color: #5ce2e7; text-align: center; font-weight: 600;">Capacités Clés de Notre Pipeline de Traitement de Documents</h4>
+
+                            <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
+                                <div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+                                    <div class="feature-content" style="display: flex; align-items: flex-start;">
+                                        <div class="feature-icon" style="margin-right: 15px; color: #5ce2e7; font-size: 24px;">
+                                            <i class="fas fa-file-alt"></i>
+                                        </div>
+                                        <div class="feature-text">
+                                            <p class="feature-title" style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: white;">Modules d'Analyse Avancés</p>
+                                            <p style="font-size: 14px; line-height: 1.5; margin: 0;">Multiples méthodes d'analyse pour différents types de documents, y compris PDFMiner, PyPDF, Unstructured, et des analyseurs personnalisés pour les formats spécialisés</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section id="cta" class="cta-section section-padding" aria-labelledby="cta-heading">
+                <div class="container">
+                    <h2 id="cta-heading" class="section-heading">Prêt à Surperformer Votre IA avec AutoRAG ?</h2>
+                    <p class="cta-description">Planifiez une démo pour voir comment AutoRAG peut transformer votre IA d'entreprise avec une intégration de connaissances précise et fiable.</p>
+
+                    <div class="cta-buttons">
+                        <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="button primary-button" target="_blank">Demander une Démo</a>
+                        <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="button secondary-button" target="_blank">Contacter les Ventes</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div data-include="../../../includes/footer.html"></div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="../../../js/keyboard-navigation.js" defer></script>
+        <script src="../../../js/apply-sora-to-divinci.js" defer></script>
+        <script src="../../../js/mobile-menu.js" defer></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Process all include-html elements
+                if (typeof includeHTML === 'function') {
+                    includeHTML();
+                }
+            });
+        </script>
+    </body>
+</html>

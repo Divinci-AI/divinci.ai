@@ -1,0 +1,313 @@
+/**
+ * Accessibility improvements for the website
+ * This CSS file provides accessibility enhancements to meet WCAG 2.1 AA requirements
+ */
+
+/* Skip link - allows keyboard users to skip to main content */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff !important;
+  padding: 8px;
+  z-index: 9999;
+  transition: top 0.2s;
+  text-decoration: none;
+  border: 2px solid #fff;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Focus styles - ensure all interactive elements have visible focus indicators */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus,
+.btn:focus,
+.button:focus {
+  outline: 3px solid #4d90fe !important;
+  outline-offset: 2px !important;
+  text-decoration: underline !important;
+}
+
+/* Improved color contrast for text */
+body {
+  color: #333 !important;
+}
+
+p, li, td, th, label, legend, caption {
+  color: #333 !important;
+}
+
+/* Improved color contrast for links */
+a {
+  color: #0056b3 !important;
+  text-decoration: underline;
+}
+
+a:hover, a:focus {
+  color: #003d82 !important;
+  text-decoration: underline;
+}
+
+/* Improved color contrast for buttons */
+.btn, 
+.button,
+button,
+input[type="submit"],
+input[type="button"] {
+  background-color: #0056b3 !important;
+  color: #fff !important;
+  border: 1px solid #0056b3 !important;
+}
+
+.btn:hover, 
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.btn:focus, 
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="button"]:focus {
+  background-color: #003d82 !important;
+  color: #fff !important;
+  border: 1px solid #003d82 !important;
+}
+
+/* Secondary buttons */
+.btn-secondary,
+.button-secondary {
+  background-color: #6c757d !important;
+  color: #fff !important;
+  border: 1px solid #6c757d !important;
+}
+
+.btn-secondary:hover,
+.button-secondary:hover,
+.btn-secondary:focus,
+.button-secondary:focus {
+  background-color: #545b62 !important;
+  color: #fff !important;
+  border: 1px solid #545b62 !important;
+}
+
+/* Improved color contrast for form elements */
+input, 
+select, 
+textarea {
+  border-color: #666 !important;
+  color: #333 !important;
+}
+
+/* Improved color contrast for placeholders */
+::placeholder {
+  color: #666 !important;
+  opacity: 1 !important;
+}
+
+/* Improved color contrast for form labels */
+label {
+  color: #333 !important;
+  font-weight: bold;
+}
+
+/* Improved color contrast for headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #333 !important;
+}
+
+/* Improved color contrast for the header */
+header {
+  background-color: #f8f9fa !important;
+  color: #333 !important;
+}
+
+/* Improved color contrast for the footer */
+footer {
+  background-color: #f8f9fa !important;
+  color: #333 !important;
+}
+
+/* Improved color contrast for the navigation */
+nav {
+  background-color: #f8f9fa !important;
+}
+
+nav a {
+  color: #0056b3 !important;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #003d82 !important;
+}
+
+/* Improved color contrast for alerts and notifications */
+.alert,
+.notification {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+  border: 1px solid #f5c6cb !important;
+}
+
+.alert-success,
+.notification-success {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+  border: 1px solid #c3e6cb !important;
+}
+
+.alert-info,
+.notification-info {
+  background-color: #d1ecf1 !important;
+  color: #0c5460 !important;
+  border: 1px solid #bee5eb !important;
+}
+
+.alert-warning,
+.notification-warning {
+  background-color: #fff3cd !important;
+  color: #856404 !important;
+  border: 1px solid #ffeeba !important;
+}
+
+/* Improved color contrast for cards */
+.card {
+  background-color: #fff !important;
+  color: #333 !important;
+  border: 1px solid #ddd !important;
+}
+
+/* Improved color contrast for tables */
+table {
+  border-color: #ddd !important;
+}
+
+th {
+  background-color: #f8f9fa !important;
+  color: #333 !important;
+}
+
+/* Improved color contrast for code blocks */
+code, pre {
+  background-color: #f8f9fa !important;
+  color: #333 !important;
+  border: 1px solid #ddd !important;
+}
+
+/* Improved color contrast for blockquotes */
+blockquote {
+  background-color: #f8f9fa !important;
+  color: #333 !important;
+  border-left: 5px solid #0056b3 !important;
+}
+
+/* Improved color contrast for badges */
+.badge {
+  background-color: #0056b3 !important;
+  color: #fff !important;
+}
+
+/* Improved color contrast for tooltips */
+.tooltip {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Improved color contrast for modals */
+.modal {
+  background-color: #fff !important;
+  color: #333 !important;
+  border: 1px solid #ddd !important;
+}
+
+.modal-header {
+  background-color: #f8f9fa !important;
+  color: #333 !important;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  body {
+    color: #000 !important;
+    background-color: #fff !important;
+  }
+  
+  a {
+    color: #0000EE !important;
+    text-decoration: underline !important;
+  }
+  
+  a:visited {
+    color: #551A8B !important;
+  }
+  
+  button, 
+  .btn, 
+  .button,
+  input[type="submit"],
+  input[type="button"] {
+    color: #fff !important;
+    background-color: #000 !important;
+    border: 2px solid #000 !important;
+  }
+  
+  input, 
+  select, 
+  textarea {
+    color: #000 !important;
+    background-color: #fff !important;
+    border: 2px solid #000 !important;
+  }
+  
+  img, 
+  video {
+    filter: contrast(1.5) !important;
+  }
+}
+
+/* Specific fixes for the signup button */
+.signup-button {
+  background-color: #0056b3 !important;
+  color: #fff !important;
+  padding: 8px 16px !important;
+  border-radius: 4px !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+}
+
+/* Fix for preview banner button */
+.preview-banner-button {
+  background-color: #0056b3 !important;
+  color: #fff !important;
+  padding: 8px 16px !important;
+  border-radius: 4px !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+}
+
+/* Fix for unavailable pricing features */
+.unavailable {
+  color: #555 !important;
+  text-decoration: line-through;
+}
+
+/* Fix for the subscribe button */
+#mc-embedded-subscribe {
+  background-color: #0056b3 !important;
+  color: #fff !important;
+}
+
+/* Fix for team member text */
+.team-feature p {
+  color: #333 !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  padding: 5px !important;
+}

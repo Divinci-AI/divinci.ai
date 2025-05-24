@@ -1,0 +1,1690 @@
+<!doctype html>
+<html lang="es" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/index.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/index.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/index.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/index.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/index.html" hreflang="ar" />
+
+        <!-- Include meta tags -->
+        <!-- SEO Meta Tags -->
+<meta name="description" content="{{page_description}}" />
+<meta name="keywords" content="{{page_keywords}}" />
+
+<!-- Open Graph / Social Media Meta Tags -->
+<meta property="og:type" content="{{og_type}}" />
+<meta property="og:url" content="https://divinci.ai{{page_url}}" />
+<meta property="og:title" content="{{page_title}} | Divinci AI" />
+<meta property="og:description" content="{{page_description}}" />
+<meta property="og:image" content="https://divinci.ai/images/social/{{og_image}}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Divinci AI" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DivinciAI" />
+<meta name="twitter:title" content="{{page_title}} | Divinci AI" />
+<meta name="twitter:description" content="{{page_description}}" />
+<meta name="twitter:image" content="https://divinci.ai/images/social/{{og_image}}" />
+<meta name="twitter:creator" content="@DivinciAI" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://divinci.ai{{page_url}}" />
+
+<!-- Script to populate meta tags with page-specific data -->
+<script>
+    // Function to set meta tags based on page data
+    function setMetaTags(pageData) {
+        // Default values
+        const defaults = {
+            title: document.title.replace(' | Divinci AI', ''),
+            description: "Divinci AI is building the future of human-AI collaboration, empowering organizations to create custom AI solutions.",
+            image: "divinci-default-social.jpg",
+            url: window.location.pathname,
+            type: "website",
+            keywords: "divinci ai, ai platform, custom ai solutions"
+        };
+
+        // Merge provided data with defaults
+        const data = {...defaults, ...pageData};
+
+        // Get all meta elements
+        const metaTags = document.querySelectorAll('meta');
+
+        // Update meta tags with page data
+        metaTags.forEach(tag => {
+            const property = tag.getAttribute('property') || tag.getAttribute('name');
+
+            if (!property) return;
+
+            if (property === 'og:title' || property === 'twitter:title') {
+                tag.setAttribute('content', `${data.title} | Divinci AI`);
+            }
+
+            if (property === 'og:description' || property === 'twitter:description' || property === 'description') {
+                tag.setAttribute('content', data.description);
+            }
+
+            if (property === 'og:image' || property === 'twitter:image') {
+                tag.setAttribute('content', `https://divinci.ai/images/social/${data.image}`);
+            }
+
+            if (property === 'og:url' || property === 'twitter:url') {
+                tag.setAttribute('content', `https://divinci.ai${data.url}`);
+            }
+
+            if (property === 'og:type') {
+                tag.setAttribute('content', data.type);
+            }
+
+            if (property === 'keywords') {
+                tag.setAttribute('content', data.keywords);
+            }
+        });
+
+        // Update canonical link
+        const canonicalLink = document.querySelector('link[rel="canonical"]');
+        if (canonicalLink) {
+            canonicalLink.setAttribute('href', `https://divinci.ai${data.url}`);
+        }
+    }
+
+    // Example usage:
+    // Call this function with page-specific data after including this file
+    // setMetaTags({
+    //     title: "About Us",
+    //     description: "Learn about Divinci AI's mission, vision, team, and the story behind our innovative AI platform.",
+    //     image: "about-us-social.jpg",
+    //     url: "/about-us.html",
+    //     type: "website",
+    //     keywords: "divinci ai, about divinci, ai team, ai founders"
+    // });
+</script>
+
+
+        <!-- Include structured data -->
+        <!-- Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Divinci AI",
+  "url": "https://divinci.ai",
+  "logo": "https://divinci.ai/images/divinci_logo.png",
+  "sameAs": [
+    "https://twitter.com/DivinciAI",
+    "https://www.linkedin.com/company/divinci-ai",
+    "https://github.com/Divinci-AI"
+  ],
+  "description": "Your AI for Life's Journey, with friends! Create custom AI solutions and collaborate with your favorite AI models in a multiplayer environment.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@divinci.ai"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Divinci AI",
+  "url": "https://divinci.ai",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://divinci.ai/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "inLanguage": ["en", "es", "fr", "ar"]
+}
+</script>
+
+<!-- Page-specific structured data will be added dynamically -->
+<script>
+    /**
+     * Add structured data for the current page
+     * @param {Object} pageData - Data for the current page
+     */
+    function addStructuredData(pageData) {
+        // Default to WebPage if no type specified
+        const type = pageData.type || 'WebPage';
+
+        // Create structured data object
+        const structuredData = {
+            "@context": "https://schema.org",
+            "@type": type,
+            "name": pageData.title || document.title,
+            "description": pageData.description || "",
+            "url": pageData.url || window.location.href
+        };
+
+        // Add image if available
+        if (pageData.image) {
+            structuredData.image = pageData.image.startsWith('http')
+                ? pageData.image
+                : `https://divinci.ai/images/social/${pageData.image}`;
+        }
+
+        // Add additional fields based on type
+        if (type === 'Article') {
+            structuredData.headline = pageData.title || document.title;
+            structuredData.datePublished = pageData.datePublished || "";
+            structuredData.dateModified = pageData.dateModified || pageData.datePublished || "";
+
+            // Add author if available
+            if (pageData.author) {
+                structuredData.author = {
+                    "@type": "Person",
+                    "name": pageData.author
+                };
+            }
+
+            // Add publisher
+            structuredData.publisher = {
+                "@type": "Organization",
+                "name": "Divinci AI",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://divinci.ai/images/divinci_logo.png"
+                }
+            };
+        } else if (type === 'Product') {
+            // Add product-specific fields
+            if (pageData.brand) {
+                structuredData.brand = {
+                    "@type": "Brand",
+                    "name": pageData.brand
+                };
+            }
+
+            if (pageData.offers) {
+                structuredData.offers = {
+                    "@type": "Offer",
+                    "price": pageData.offers.price || "0",
+                    "priceCurrency": pageData.offers.currency || "USD",
+                    "availability": pageData.offers.availability || "https://schema.org/InStock"
+                };
+            }
+
+            if (pageData.features) {
+                structuredData.features = pageData.features;
+            }
+        } else if (type === 'FAQPage') {
+            // Add FAQ-specific fields
+            if (pageData.faqs && Array.isArray(pageData.faqs)) {
+                structuredData.mainEntity = pageData.faqs.map(faq => ({
+                    "@type": "Question",
+                    "name": faq.question,
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": faq.answer
+                    }
+                }));
+            }
+        } else if (type === 'BreadcrumbList') {
+            // Add breadcrumb-specific fields
+            if (pageData.breadcrumbs && Array.isArray(pageData.breadcrumbs)) {
+                structuredData.itemListElement = pageData.breadcrumbs.map((item, index) => ({
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "name": item.name,
+                    "item": item.url
+                }));
+            }
+        } else if (type === 'HowTo') {
+            // Add HowTo-specific fields
+            structuredData.totalTime = pageData.totalTime || "PT30M";
+
+            if (pageData.steps && Array.isArray(pageData.steps)) {
+                structuredData.step = pageData.steps.map((step, index) => ({
+                    "@type": "HowToStep",
+                    "position": index + 1,
+                    "name": step.name,
+                    "text": step.text,
+                    "url": step.url || window.location.href + `#step${index + 1}`
+                }));
+            }
+        }
+
+        // Add language information
+        if (pageData.language) {
+            structuredData.inLanguage = pageData.language;
+        } else {
+            const htmlLang = document.documentElement.lang;
+            if (htmlLang) {
+                structuredData.inLanguage = htmlLang;
+            }
+        }
+
+        // Add the structured data to the page
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(structuredData);
+        document.head.appendChild(script);
+    }
+
+    /**
+     * Add breadcrumb structured data
+     * @param {Array} breadcrumbs - Array of breadcrumb items
+     */
+    function addBreadcrumbStructuredData(breadcrumbs) {
+        addStructuredData({
+            type: 'BreadcrumbList',
+            breadcrumbs: breadcrumbs
+        });
+    }
+
+    /**
+     * Add FAQ structured data
+     * @param {Array} faqs - Array of FAQ items
+     */
+    function addFAQStructuredData(faqs) {
+        addStructuredData({
+            type: 'FAQPage',
+            faqs: faqs
+        });
+    }
+
+    /**
+     * Add Product structured data
+     * @param {Object} productData - Product data
+     */
+    function addProductStructuredData(productData) {
+        addStructuredData({
+            type: 'Product',
+            title: productData.name,
+            description: productData.description,
+            image: productData.image,
+            brand: productData.brand || 'Divinci AI',
+            offers: productData.offers,
+            features: productData.features
+        });
+    }
+
+    // Example usage:
+    // addStructuredData({
+    //     type: 'Article',
+    //     title: 'Building Responsible AI Systems',
+    //     description: 'Learn how to build AI systems that are ethical, transparent, and beneficial.',
+    //     image: 'blog/responsible-ai-social.jpg',
+    //     datePublished: '2023-09-15T08:00:00+00:00',
+    //     dateModified: '2023-09-20T10:30:00+00:00',
+    //     author: 'Paul-Marie Carfantan',
+    //     language: 'en'
+    // });
+
+    // Add breadcrumb example:
+    // addBreadcrumbStructuredData([
+    //     { name: "Home", url: "https://divinci.ai/" },
+    //     { name: "Features", url: "https://divinci.ai/features/" },
+    //     { name: "Quality Assurance", url: "https://divinci.ai/features/quality-assurance/" }
+    // ]);
+</script>
+
+
+        <!-- Initialize page-specific meta tags and structured data -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set meta tags for this page
+                if (window.setMetaTags) {
+                    setMetaTags({
+                        title: "Divinci™ Chat de IA Multijugador",
+                        description: "Divinci AI es tu IA para el viaje de la vida, ¡con amigos! Crea soluciones de IA personalizadas y colabora con tus modelos de IA favoritos en un entorno multijugador.",
+                        image: "divinci-default-social.png",
+                        url: "/es/index.html",
+                        type: "website",
+                        keywords: "divinci ai, ia multijugador, chat de ia, ia personalizada, chatgpt, claude, gemini, colaboración ia"
+                    });
+                }
+
+                // Add structured data for this page
+                if (window.addStructuredData) {
+                    addStructuredData({
+                        type: "WebPage",
+                        title: "Divinci™ Chat de IA Multijugador",
+                        description: "Divinci AI es tu IA para el viaje de la vida, ¡con amigos! Crea soluciones de IA personalizadas y colabora con tus modelos de IA favoritos en un entorno multijugador.",
+                        image: "../images/social/divinci-default-social.png"
+                    });
+                }
+            });
+        </script>
+
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="../images/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="../images/favicon-16x16.png"
+        />
+        <title>Divinci™ Chat de IA Multijugador - Español</title>
+        <!-- Preload resources for better performance -->
+        <link rel="preload" href="../optimized/css/styles.min.css" as="style" />
+        <link rel="preload" href="../optimized/js/script.min.js" as="script" />
+        <link rel="preload" href="../optimized/js/features-orbit.min.js" as="script" />
+        <link rel="preload" href="../optimized/images/divinci_logo_inverted.svg" as="image" />
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" as="style" />
+        <link rel="preload" href="../js/language-switcher.js" as="script" />
+        <link rel="preload" href="../js/language-switcher-fix.js" as="script" />
+
+        <!-- Language Switcher Styles -->
+        <style>
+            /* Language Switcher Styles */
+            .language-switcher {
+                position: relative;
+                font-family: 'Inter', sans-serif;
+                z-index: 1000;
+                margin-left: 10px;
+            }
+
+            .language-switcher-current {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                padding: 5px 10px;
+                border-radius: 4px;
+                background-color: rgba(255, 255, 255, 0.1);
+                transition: background-color 0.3s;
+            }
+
+            .language-switcher-current:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .language-icon {
+                margin-right: 5px;
+                font-size: 16px;
+            }
+
+            .current-language {
+                margin: 0 5px;
+                font-size: 14px;
+            }
+
+            .dropdown-icon {
+                font-size: 10px;
+                transition: transform 0.3s;
+            }
+
+            .language-switcher.active .dropdown-icon {
+                transform: rotate(180deg);
+            }
+
+            .language-switcher-dropdown {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 180px;
+                background-color: #fff;
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                display: none;
+                z-index: 1001;
+            }
+
+            .language-switcher.active .language-switcher-dropdown {
+                display: block;
+            }
+
+            .language-option {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 16px;
+                text-decoration: none;
+                color: #1a1a1a;
+                transition: all 0.2s ease;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .language-option:last-child {
+                border-bottom: none;
+            }
+
+            .language-option:hover {
+                background-color: #e8f4fd;
+                color: #2863c2;
+            }
+
+            .language-name {
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .language-native {
+                font-size: 13px;
+                color: #555;
+                font-weight: 400;
+            }
+
+            .language-option:hover .language-native {
+                color: #2863c2;
+            }
+
+            /* RTL Support */
+            html[dir="rtl"] .language-switcher-dropdown {
+                left: auto;
+                right: 0;
+            }
+
+            html[dir="rtl"] .language-option {
+                flex-direction: row-reverse;
+            }
+
+            html[dir="rtl"] .language-icon {
+                margin-right: 0;
+                margin-left: 5px;
+            }
+
+            html[dir="rtl"] .current-language {
+                margin: 0 5px;
+            }
+        </style>
+
+        <!-- Apply CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../optimized/css/assets/css/fonts.min.css" />
+        <link rel="stylesheet" href="../optimized/css/assets/css/sora-styles.min.css" />
+        <link rel="stylesheet" href="../optimized/css/styles.min.css" />
+        <link rel="stylesheet" href="../optimized/css/features-orbit.min.css" />
+        <link rel="stylesheet" href="../optimized/css/styles-footer.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="../optimized/css/includes/header-styles.min.css" />
+        <link rel="stylesheet" href="../optimized/css/includes/section-content-fix.min.css" />
+        <link rel="stylesheet" href="../optimized/css/assets/css/enhanced-accessibility.min.css" />
+        <link rel="stylesheet" href="../css/mobile-accessibility-fixes.css" />
+
+        <style>
+
+            .hero-tagline {
+                text-align: center;
+                margin-top: 150px;
+                position: relative;
+            }
+            /* Social Good Section Styles */
+            .social-good-section {
+                width: 100%;
+                padding: 4rem 0;
+                background-color: #f0f4f8;
+                position: relative;
+                overflow: hidden;
+                margin-top: 17rem;
+                border-top: 1px solid rgba(22, 33, 76, 0.1);
+                border-bottom: 1px solid rgba(22, 33, 76, 0.1);
+            }
+
+            .social-good-section::before {
+                content: '';
+                position: absolute;
+                top: -100px;
+                right: -50px;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                border: 2px solid rgba(92, 226, 231, 0.15);
+                opacity: 0.4;
+                z-index: 0;
+            }
+
+            .social-good-container {
+                width: 100%;
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 0 2rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .social-good-section .section-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 2rem;
+                color: #16214c;
+                text-align: center;
+                position: relative;
+            }
+
+            .social-good-section .section-title::after {
+                content: '';
+                display: block;
+                width: 80px;
+                height: 4px;
+                background: #5ce2e7;
+                margin: 0.5rem auto 0;
+                border-radius: 2px;
+            }
+
+            .social-good-content {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 2rem;
+                background-color: #ffffff;
+                border-radius: 15px;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .social-good-image {
+                flex: 1;
+                min-width: 300px;
+                text-align: center;
+            }
+
+            .social-good-image img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .social-good-image img:hover {
+                transform: scale(1.02);
+            }
+
+            .social-good-text {
+                flex: 1;
+                min-width: 300px;
+            }
+
+            .social-good-text h3 {
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                color: #16214c;
+            }
+
+            .social-good-text p {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                color: #444;
+                margin-bottom: 1.5rem;
+            }
+
+            .social-good-button {
+                display: inline-block;
+                padding: 0.8rem 1.5rem;
+                background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+                color: white;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .social-good-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                color: white;
+            }
+
+            /* Newsletter signup styles */
+            .newsletter-signup {
+                margin: 20px auto !important;
+                margin-top: 184px !important;
+                position: relative !important;
+                z-index: 5;
+            }
+
+            @media screen and (max-width: 768px) {
+                /* Social Good Section Mobile Styles */
+                .social-good-section {
+                    margin-top: 1rem;
+                    padding: 3rem 0;
+                }
+
+                .social-good-container {
+                    padding: 0 1rem;
+                }
+
+                .social-good-content {
+                    flex-direction: column;
+                    padding: 1.5rem;
+                }
+
+                .social-good-image, .social-good-text {
+                    width: 100%;
+                }
+
+                .social-good-section .section-title {
+                    font-size: 2rem;
+                }
+
+                /* Fix for features not showing in mobile view */
+                .features-section {
+                    height: auto !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                }
+
+                .feature {
+                    position: relative !important;
+                    transform: none !important;
+                    margin: 10px auto !important;
+                    width: 350px !important;
+                    height: 350px !important;
+                    display: flex !important;
+                }
+
+                #features .feature,
+                #team .feature {
+                    position: relative !important;
+                    transform: none !important;
+                    left: auto !important;
+                    top: auto !important;
+                }
+
+                /* Ensure team features display properly */
+                .features-section.profiles {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                }
+
+                .team-feature {
+                    position: relative !important;
+                    transform: none !important;
+                    margin: 10px auto !important;
+                }
+
+                /* Footer mobile fixes */
+                .footer-wrapper {
+                    width: 100% !important;
+                    margin-left: 0 !important;
+                    padding: 0 !important;
+                }
+
+                .site-footer {
+                    width: 100% !important;
+                    margin-left: 0 !important;
+                    padding: 40px 0 20px !important;
+                }
+            }
+        </style>
+
+        <!-- Script to include HTML components -->
+        <script src="../optimized/js/debug-include.min.js"></script>
+        <script src="../optimized/js/js/feature-circle-links.min.js" defer></script>
+        <script src="../optimized/js/js/social-sharing.min.js" defer></script>
+        <link rel="stylesheet" href="../optimized/css/css/social-sharing.min.css" />
+        <!-- view-toggle.js is loaded by header.html -->
+        <!-- Load structured data script -->
+        <script src="../js/structured-data.js"></script>
+        <!-- Set default language -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.i18n && window.i18n.changeLanguage) {
+                window.i18n.changeLanguage('es');
+            }
+        });
+    </script>
+</head>
+    <body>
+        <!-- Skip to content link for keyboard users -->
+        <div class="skip-links">
+            <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+        </div>
+
+        <!-- Header with Navigation -->
+        <header role="banner">
+            <nav class="navbar">
+                <a href="" class="logo-link" id="logoHomeLink">
+                    <div class="nav-logo">
+                        <img
+                            class="header-logo"
+                            src="../images/divinci_logo_inverted.svg"
+                            alt="Logo del robot Divinci Heart"
+                        />
+                    </div>
+                    <div class="nav-title">
+                        <span class="brand-name">Divinci ™</span>
+                        <span class="mobile-hide consumer-view-content">&nbsp;- Crea tu propia IA personalizada</span>
+                        <span class="mobile-hide company-view-content" style="display: none; opacity: 0;">&nbsp;- Soluciones Empresariales de IA</span>
+                    </div>
+                </a>
+        <!-- Toggle switch for customer/company view -->
+                <div class="view-toggle-container mobile-hide">
+                    <span style ="margin-right: 22px" class="view-label customer-view active" onclick="document.getElementById('viewToggle').checked = false; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">Consumidor</span>
+                    <label class="switch">
+                        <input type="checkbox" id="viewToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="view-label company-view" onclick="document.getElementById('viewToggle').checked = true; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">Empresa</span>
+                </div>
+                <div class="nav-menu">
+                    <a href="#features" data-i18n="navigation.features">Características</a>
+                    <a href="#team" data-i18n="navigation.team">Equipo</a>
+                    <a href="#signup" class="signup-link"><span class="signup-button" data-i18n="buttons.signUp">Regístrate</span></a>
+                    <div id="language-switcher-container" style="display: inline-block; margin-left: 15px;">
+                        <!-- Language Switcher Component -->
+                        <div class="language-switcher">
+                            <div class="language-switcher-current">
+                                <span class="language-icon" style="display:inline-flex; align-items:center;">
+                                  <i class="fa-solid fa-language" style="font-size: 20px;"></i>
+                                </span>
+                                <span class="current-language">Español</span>
+                                <span class="dropdown-icon">▼</span>
+                            </div>
+                            <div class="language-switcher-dropdown">
+                                <a href="/" class="language-option" data-lang="en">
+                                    <span class="language-name">Inglés</span>
+                                    <span class="language-native">English</span>
+                                </a>
+                                <a href="/es/" class="language-option" data-lang="es">
+                                    <span class="language-name">Español</span>
+                                    <span class="language-native">Español</span>
+                                </a>
+                                <a href="/fr/" class="language-option" data-lang="fr">
+                                    <span class="language-name">Francés</span>
+                                    <span class="language-native">Français</span>
+                                </a>
+                                <a href="/ar/" class="language-option" data-lang="ar">
+                                    <span class="language-name">Árabe</span>
+                                    <span class="language-native">العربية</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Load language switcher script -->
+            <script>
+                // Load the language switcher script
+                const script = document.createElement('script');
+                script.src = '../js/language-switcher.js';
+                document.head.appendChild(script);
+
+                // Load the language switcher fix script
+                const fixScript = document.createElement('script');
+                fixScript.src = '../js/language-switcher-fix.js';
+                document.head.appendChild(fixScript);
+
+                // Initialize view toggle
+                const viewToggleScript = document.createElement('script');
+                viewToggleScript.src = '../js/view-toggle.js';
+                viewToggleScript.defer = true;
+                document.body.appendChild(viewToggleScript);
+
+                // Initialize mobile menu
+                const mobileMenuScript = document.createElement('script');
+                mobileMenuScript.src = '../js/mobile-menu.js';
+                mobileMenuScript.defer = true;
+                document.body.appendChild(mobileMenuScript);
+            </script>
+        </header>
+
+        <main id="main-content" role="main">
+        <div class="hero">
+            <div class="circle central">
+                <img
+                    class="central-logo"
+                    src="../images/divinci_logo_inverted.svg"
+                    alt="Logo del robot Divinci Heart en blanco y negro"
+                />
+            </div>
+
+            <div class="hero-tagline">
+                <h1 class="consumer-view-content gradient-text">
+                    Tu IA para el viaje de la vida,
+                     </br/>
+                     <i style="font-weight: lighter;">¡con amigos!</i>
+                </h1>
+                <h1 class="company-view-content gradient-text-company" style="display: none; opacity: 0;">
+                    Moderniza tu negocio en la Era de la IA
+                    <br/>
+                </h1>
+            </div>
+
+            <svg class="flower-of-life" xmlns="http://www.w3.org/2000/svg">
+                <!-- Central Circle -->
+                <circle
+                    cx="200"
+                    cy="100"
+                    r="50"
+                    stroke="navy"
+                    stroke-width="2"
+                    fill="none"
+                />
+                <!-- First Ring of Circles -->
+                <circle
+                    cx="200"
+                    cy="50"
+                    r="50"
+                    stroke="navy"
+                    stroke-width="2"
+                    fill="none"
+                />
+                <circle
+                    cx="200"
+                    cy="50"
+                    r="50"
+                    stroke="navy"
+                    stroke-width="2"
+                    fill="none"
+                />
+                <circle
+                    cx="250"
+                    cy="75"
+                    r="50"
+                    stroke="navy"
+                    stroke-width="2"
+                    fill="none"
+                />
+                <circle
+                    cx="250"
+                    cy="25"
+                    r="50"
+                    stroke="navy"
+                    stroke-width="2"
+                    fill="none"
+                />
+                <circle
+                    cx="150"
+                    cy="75"
+                    r="50"
+                    stroke="navy"
+                    stroke-width="2"
+                    fill="none"
+                />
+                <circle
+                    cx="150"
+                    cy="25"
+                    r="50"
+                    stroke="navy"
+                    stroke-width="2"
+                    fill="none"
+                />
+                <!-- Second Ring of Circles (partial example) -->
+                <!-- <circle cx="150" cy="100" r="50" stroke="black" stroke-width="2" fill="none"/> -->
+                <!-- Add more circles as needed -->
+            </svg>
+
+            <!-- Existing Group of Circles -->
+            <div class="geometry-group">
+                <div class="circle circle00">👴</div>
+                <div class="circle circle01 ai-logo"><img src="../images/chatgpt-icon.png" alt="ChatGPT"></div>
+                <div class="circle circle02">🧑🏽‍🦱</div>
+                <div class="circle circle03 ai-logo"><img src="../images/claude-ai-icon.png" alt="Claude AI"></div>
+                <div class="circle circle04">👨🏻</div>
+            </div>
+            <!-- Second Set of Circles for Inner Orbit -->
+        <!-- <div class="geometry-group-inner">
+                <div class="circle circle10">🤖</div>
+                <div class="circle circle11">👨🏻‍🔬</div>
+                <div class="circle circle12">🤖</div>
+                <div class="circle circle13">👩🏻‍⚕️</div>
+                <div class="circle circle14">🤖</div>
+                <div class="circle circle15">👩🏻‍💼</div>
+            </div> -->
+            <!-- Sets for Outer Orbit -->
+            <!-- Outer Orbit Set 1 -->
+            <div class="geometry-group-outer1">
+                <div class="circle circle20">🌞</div>
+                <div class="circle circle21 ai-logo"><img src="../images/google-gemini-icon.png" alt="Google Gemini"></div>
+                <div class="circle circle22">🤠</div>
+                <div class="circle circle23 ai-logo"><img src="../images/grok-icon.png" alt="Grok AI"></div>
+                <div class="circle circle24">😺</div>
+                <div class="circle circle25">👽</div>
+            </div>
+            <div class="geometry-group-outer2">
+                <div class="circle circle26">🧑🏾‍🦰</div>
+                <div class="circle circle27 ai-logo"><img src="../images/perplexity-ai-icon.png" alt="Perplexity AI"></div>
+                <div class="circle circle28">🧔🏽‍♂️</div>
+                <div class="circle circle29">🤖</div>
+                <div class="circle circle30">👱‍♀️</div>
+                <div class="circle circle31">🐸</div>
+            </div>
+        </div>
+        <!-- .hero section -->
+
+        <!-- Features section with sacred geometry overlay -->
+        <section id="features" class="features-section">
+            <div class="sacred-geometry-overlay">
+                <div class="inner-ring"></div>
+                <div class="middle-ring"></div>
+                <div class="outer-ring"></div>
+                <div id="flowerOfLife" class="flower-of-life-container"></div>
+                <div id="connectionLines" class="connection-lines-container"></div>
+            </div>
+            <div id="multiplayer" class="feature">
+                <span class="feature-icon">👥</span>
+                <h3>Multijugador</h3>
+                <p class="consumer-view-content">Invita a más de tus amigos humanos a un chat con tus IAs favoritas.</p>
+                <p class="company-view-content" style="display: none; opacity: 0;">Permite la colaboración entre múltiples partes interesadas con espacios de trabajo de IA compartidos para equipos multifuncionales.</p>
+            </div>
+            <div id="aiFamily" class="feature">
+                <span class="feature-icon">🤖</span>
+                <h3>Familia de IA</h3>
+                <p class="consumer-view-content">¡Elige entre ChatGPT, Gemini, Claude, Llama y muchos más!</p>
+                <p class="company-view-content" style="display: none; opacity: 0;">Accede a modelos de nivel empresarial de los principales proveedores con controles unificados de gobernanza y seguridad.</p>
+            </div>
+            <div id="voiceInOut" class="feature">
+                <span class="feature-icon">🗣️</span>
+                <h3>Entrada/Salida de Voz</h3>
+                <p class="consumer-view-content">Elegantes voces de IA de Google para que te lean las respuestas con una voz natural. Usa tu micrófono para chatear con texto.</p>
+                <p class="company-view-content" style="display: none; opacity: 0;">Transcripción de voz empresarial y dictado con cumplimiento de accesibilidad y soporte multilingüe.</p>
+            </div>
+            <div id="imagesGraphs" class="feature">
+                <span class="feature-icon">📊</span>
+                <h3>Imágenes, Diagramas, Gráficos, Tablas</h3>
+                <p class="consumer-view-content">Divinci sabe cuándo estás pidiendo generar una imagen, gráfico o diagrama.</p>
+                <p class="company-view-content" style="display: none; opacity: 0;">Genera visualizaciones y representaciones de datos listas para presentaciones de inteligencia empresarial.</p>
+            </div>
+            <div id="quality-assurance" class="feature">
+                <span class="feature-icon">✅</span>
+                <h3><a href="../features/quality-assurance/llm-quality-assurance.html">Garantía de Calidad</a></h3>
+                <p class="consumer-view-content">Nuestras amigables comprobaciones de calidad aseguran que las respuestas de IA sean útiles y precisas para ti.</p>
+                <p class="company-view-content" style="display: none; opacity: 0;">Nuestra exhaustiva Garantía de Calidad de LLM garantiza respuestas de IA precisas, confiables y conformes para uso empresarial.</p>
+            </div>
+            <div id="textMessaging" class="feature">
+                <span class="feature-icon">💬</span>
+                <h3>Mensajes de Texto</h3>
+                <p class="consumer-view-content">Envía mensajes de texto a Divinci™ mientras estás en movimiento, manos libres con "Oye Siri/Google, envía un mensaje a Divinci".</p>
+                <p class="company-view-content" style="display: none; opacity: 0;">Integración móvil segura con SSO empresarial y registro de conversaciones compatible con normativas.</p>
+            </div>
+            <div id="release-management" class="feature">
+                <span class="feature-icon">🔄</span>
+                <h3><a href="../features/development-tools/release-cycle-management.html">Gestión de Versiones</a></h3>
+                <p class="consumer-view-content">Actualizaciones regulares que te brindan nuevas funciones y mejoras para mejorar tu experiencia con la IA.</p>
+                <p class="company-view-content" style="display: none; opacity: 0;">Herramientas especializadas para versionado, pruebas, implementación y monitoreo de LLM para el desarrollo empresarial de IA.</p>
+            </div>
+            <div id="sharePrivate" class="feature">
+                <span class="feature-icon">🔒</span>
+                <h3>Chats Compartibles/Privados</h3>
+                <p class="consumer-view-content">Comparte chats con amigos para que se unan. Haz que un chat sea legible públicamente o completamente privado.</p>
+                <p class="company-view-content" style="display: none; opacity: 0;">Controles de acceso basados en roles y gestión de permisos para compartir información sensible.</p>
+            </div>
+            <div id="rag" class="feature">
+                <span class="feature-icon">📚</span>
+                <h3><a href="../features/data-management/autorag.html">Aumento por Recuperación</a></h3>
+                <p class="consumer-view-content">Sube archivos a tu chat para crear una IA personalizada que aprenda de esos archivos y los priorice al responder.</p>
+                <p class="company-view-content" style="display: none; opacity: 0;">Integración del conocimiento empresarial con ingesta segura de documentos y protección de datos propietarios.</p>
+            </div>
+            <div id="expertAi" class="feature">
+                <span class="feature-icon">👨‍⚕️</span>
+                <h3><a href="https://galvani.ai/" target="_blank">IAs Expertas</a><br />(próximamente)</h3>
+                <p class="consumer-view-content">Obtén ayuda de IAs especializadas en temas como salud, finanzas y más.</p>
+                <p class="company-view-content" style="display: none; opacity: 0;">Soluciones de IA específicas de dominio entrenadas en conjuntos de datos líderes en la industria con cumplimiento normativo.</p>
+            </div>
+        </section>
+        <!-- End Feature 1-->
+
+        <div class="features-section profiles" id="team">
+            <div class="feature team-feature" id="founder">
+                <h3>Fundador</h3>
+                <img
+                    src="../images/Michael-Mooring.jpeg"
+                    style="object-position: center 15%"
+                    alt="Michael-Mooring"
+                />
+                <h4>Mike Mooring</h4>
+                <p>
+                    15+ Años de Experiencia en Software
+                    <br />
+                    Emprendedor Serial de Software
+                </p>
+                <a
+                    href="https://www.linkedin.com/in/michaelduanemooring/"
+                    target="_blank"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="linkedin-logo"
+                        viewBox="0 0 24 24"
+                        data-supported-dps="24x24"
+                        fill="#0a66c2"
+                        class="mercado-match"
+                        width="24"
+                        height="24"
+                        focusable="false"
+                    >
+                        <path
+                            d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"
+                        ></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="feature team-feature" id="cto">
+                <h3 style="color: rgb(22 33 76)">CTO</h3>
+                <img
+                    src="../images/sam-tobia.jpg"
+                    style="object-position: center 20%"
+                    alt="Samual Tobia"
+                />
+                <h4 style="color: rgb(22 33 76)">Samuel Tobia</h4>
+                <p>
+                    15+ Años de Experiencia en Software
+                    <br />
+                    Ingeniero de Software Principal
+                </p>
+                <a
+                    href="https://www.linkedin.com/in/sam-tobia-1aa2762b/"
+                    target="_blank"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="linkedin-logo"
+                        viewBox="0 0 24 24"
+                        data-supported-dps="24x24"
+                        fill="#0a66c2"
+                        class="mercado-match"
+                        width="24"
+                        height="24"
+                        focusable="false"
+                    >
+                        <path
+                            d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"
+                        ></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="feature team-feature" id="Sierra-Hooshiari">
+                <h3 style="color: rgb(22 33 76); margin: -27px 0 0 -16px">
+                    COO
+                </h3>
+                <div style="overflow: hidden; display: contents">
+                    <img src="" style="background-color: #5ce2e7" alt="" />
+                    <img
+                        src="../images/sierra-hooshiari.jpeg"
+                        style="
+                            transform: scale(1.2);
+                            object-fit: contain;
+                            object-position: center 20%;
+                            height: 133px;
+                            margin-top: 16px;
+                        "
+                        alt="Sierra Hooshiari"
+                    />
+                </div>
+                <h4
+                    style="
+                        color: rgb(22 33 76);
+                        background-color: #5ce2e7a3;
+                        width: 152px;
+                        padding: 0 0 0 20px;
+                        border-radius: 3px;
+                        margin: 18px 0 0 -16px;
+                    "
+                >
+                    Sierra Hooshiari
+                </h4>
+                <p>
+                    Fundadora/CEO de BrainPOP Drink
+                    <br />
+                    Escuela de Negocios Cornell ILR
+                </p>
+                <a
+                    href="https://www.linkedin.com/in/sierrahooshiari/"
+                    target="_blank"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="linkedin-logo"
+                        viewBox="0 0 24 24"
+                        data-supported-dps="24x24"
+                        fill="#0a66c2"
+                        class="mercado-match"
+                        width="24"
+                        height="24"
+                        focusable="false"
+                    >
+                        <path
+                            d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"
+                        ></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="feature team-feature" id="Abdul-Sarnor">
+                <h3
+                    style="
+                        color: rgb(222, 220, 232);
+                        background-color: rgba(0, 0, 22, 0.6);
+                        width: 207px;
+                        padding: 0 0 0 20px;
+                        border-radius: 3px;
+                    "
+                >
+                    Ingeniero Fundador
+                </h3>
+                <img
+                    src="../images/abdul.jpeg"
+                    style="object-position: center 20%"
+                    alt="Abdul-Sarnor"
+                />
+                <h4
+                    style="
+                        color: rgb(222, 220, 232);
+                        background-color: rgba(0, 0, 22, 0.6);
+                        width: 131px;
+                        padding: 0 0 0 20px;
+                        border-radius: 3px;
+                    "
+                >
+                    Abdul Sarnor
+                </h4>
+                <p>Ex Ingeniero Fundador de Peechy</p>
+                <a
+                    href="https://www.linkedin.com/in/abdul-sarnor/"
+                    target="_blank"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="linkedin-logo"
+                        viewBox="0 0 24 24"
+                        data-supported-dps="24x24"
+                        fill="#0a66c2"
+                        class="mercado-match"
+                        width="24"
+                        height="24"
+                        focusable="false"
+                    >
+                        <path
+                            d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"
+                        ></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="feature team-feature" id="sean-fuhrman">
+                <h3
+                    style="
+                        background-color: rgb(89 122 54 / 53%);
+                        width: 144px;
+                        padding: 0 0 0 20px;
+                        margin: 3px 0 0 -18px;
+                    "
+                >
+                    Ingeniero ML
+                </h3>
+                <img src="" style="background-color: rgb(89 122 54)" alt="" />
+                <img
+                    src="../images/sean-fuhrman.jpeg"
+                    style="
+                        transform: scale(1.07);
+                        object-fit: contain;
+                        object-position: center 20%;
+                        height: 162px;
+                        margin-top: 7px;
+                    "
+                    alt="sean-fuhrman"
+                />
+                <h4
+                    style="
+                        background-color: rgb(89 122 54 / 53%);
+                        width: 159px;
+                        border-radius: 3px;
+                        margin: 43px 0 0 -16px;
+                    "
+                >
+                    Sean Fuhrman
+                </h4>
+                <p>
+                    SEELab en UCSD
+                    <br />
+                    Científico de Datos Publicado
+                </p>
+                <a
+                    href="https://www.linkedin.com/in/sean-fuhrman/"
+                    target="_blank"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="linkedin-logo"
+                        viewBox="0 0 24 24"
+                        data-supported-dps="24x24"
+                        fill="#0a66c2"
+                        class="mercado-match"
+                        width="24"
+                        height="24"
+                        focusable="false"
+                    >
+                        <path
+                            d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"
+                        ></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="feature team-feature" id="duane-moorig">
+                <h3
+                    style="
+                        color: rgb(22 33 76);
+                        background-color: rgb(113 149 180 / 60%);
+                        width: 95px;
+                        margin: -16px 0 0 -10px;
+                    "
+                >
+                    CPO
+                </h3>
+                <img src="" class="duane-bg" alt="" />
+                <img
+                    src="../images/duane-mooring.png"
+                    style="
+                        transform: scale(1.3);
+                        object-fit: contain;
+                        object-position: center 20%;
+                        height: 155px;
+                        margin-top: 24px;
+                        border-radius: 136px 136px 0 0;
+                    "
+                    alt="duane-mooring"
+                />
+                <h4
+                    style="
+                        color: rgb(22 33 76);
+                        background-color: rgb(113 149 180 / 60%);
+                        width: 153px;
+                        padding: 0 0 0 20px;
+                        border-radius: 3px;
+                        margin: 21px 0 0 -10px;
+                    "
+                >
+                    Duane Mooring
+                </h4>
+                <p>
+                    Ex Gerente en Sitrof (vendida)
+                    <br />
+                    Experiencia de gestión de por vida
+                </p>
+            </div>
+            <div class="feature team-feature" id="founder">
+                <h3 style="color: rgb(22 33 76); margin: -20px 0 0 -12px">
+                    Asesor
+                </h3>
+                <img src="" style="background-color: white" alt="" />
+                <img
+                    src="../images/drjoelfuhrman.jpeg"
+                    style="
+                        transform: scale(1.3);
+                        object-fit: contain;
+                        object-position: center 20%;
+                        height: 133px;
+                        margin-top: 30px;
+                    "
+                    alt="dr-joel-fuhrman"
+                />
+                <h4
+                    style="
+                        color: rgb(22 33 76);
+                        background-color: #ffffffc2;
+                        width: 159px;
+                        padding: 0 0 0 20px;
+                        border-radius: 3px;
+                        margin: 25px 0 0 -16px;
+                    "
+                >
+                    Dr.Joel Fuhrman
+                </h4>
+                <p>
+                    7x Best Seller del NY Times
+                    <br />
+                    Médico y autor reconocido
+                </p>
+                <a
+                    href="https://www.drfuhrman.com/"
+                    target="_blank"
+                    style="text-decoration: none;"
+                >
+                  <div class="linkedin-logo" style="background-color: #5e7cc9;border-radius: 50% !important;margin: auto;display: flex;justify-content: center;align-items: anchor-center;">🌐</div>
+                </a>
+            </div>
+
+            <div class="newsletter-signup" id="signup">
+                <h1>
+                    Regístrate, <br />
+                    ¡Mantente informado!
+                </h1>
+            <!-- Begin Mailchimp Signup Form -->
+            <link
+                href="//cdn-images.mailchimp.com/embedcode/classic-071822.css"
+                rel="stylesheet"
+                type="text/css"
+            />
+            <style type="text/css">
+                #mc_embed_signup {
+                    clear: left;
+                    font:
+                        14px Helvetica,
+                        Arial,
+                        sans-serif;
+                }
+                .email {
+                    margin-bottom: 11px;
+                }
+                /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+    We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+            </style>
+            <div id="mc_embed_signup">
+                <form
+                    action="https://app.us21.list-manage.com/subscribe/post?u=50defbdc8145d92b64b450183&amp;id=f5115ea39a&amp;f_id=000753e1f0"
+                    method="post"
+                    id="mc-embedded-subscribe-form"
+                    name="mc-embedded-subscribe-form"
+                    class="validate"
+                    target="_blank"
+                    novalidate
+                >
+                    <div id="mc_embed_signup_scroll">
+                        <div class="mc-field-group">
+                            <input
+                                type="email"
+                                value=""
+                                placeholder="Tu Email"
+                                name="EMAIL"
+                                class="required email"
+                                id="mce-EMAIL"
+                                required
+                            />
+                        </div>
+                        <div id="mce-responses" class="clear foot">
+                            <div
+                                class="response"
+                                id="mce-error-response"
+                                style="display: none"
+                            ></div>
+                            <div
+                                class="response"
+                                id="mce-success-response"
+                                style="display: none"
+                            ></div>
+                        </div>
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div
+                            style="position: absolute; left: -5000px"
+                            aria-hidden="true"
+                        >
+                            <input
+                                type="text"
+                                name="b_50defbdc8145d92b64b450183_f5115ea39a"
+                                tabindex="-1"
+                                value=""
+                            />
+                        </div>
+                        <div class="optionalParent">
+                            <div class="clear foot">
+                                <input
+                                    type="submit"
+                                    value="Suscribirse"
+                                    name="subscribe"
+                                    id="mc-embedded-subscribe"
+                                    class="button"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script
+                type="text/javascript"
+                src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
+            ></script>
+            <script type="text/javascript">
+                (function ($) {
+                    window.fnames = new Array();
+                    window.ftypes = new Array();
+                    fnames[0] = "EMAIL";
+                    ftypes[0] = "email";
+                    fnames[1] = "FNAME";
+                    ftypes[1] = "text";
+                    fnames[2] = "LNAME";
+                    ftypes[2] = "text";
+                    fnames[3] = "ADDRESS";
+                    ftypes[3] = "address";
+                    fnames[4] = "PHONE";
+                    ftypes[4] = "phone";
+                    fnames[5] = "BIRTHDAY";
+                    ftypes[5] = "birthday";
+                })(jQuery);
+                var $mcj = jQuery.noConflict(true);
+            </script>
+            <!--End mc_embed_signup-->
+        </div>
+        </div> <!-- Close the .features-section.profiles div -->
+
+        <!-- Social Good Section -->
+        <section class="social-good-section" id="social-good">
+            <div class="social-good-container">
+                <h2 class="section-title">IA para el Bien</h2>
+                <div class="social-good-content">
+                    <div class="social-good-image">
+                        <a href="https://lu.ma/cmuj911s" target="_blank">
+                            <img src="../images/ai-for-impact-1.avif" alt="IA para el Impacto: Dentro del Programa Piloto de Prevención de la Falta de Vivienda de LA" />
+                        </a>
+                    </div>
+                    <div class="social-good-text">
+                        <h3>IA para el Impacto: Dentro del Programa Piloto de Prevención de la Falta de Vivienda de LA</h3>
+                        <div class="consumer-view-content">
+                            <p>
+                                Divinci AI se enorgullece de apoyar iniciativas que utilizan la inteligencia artificial para el bien social.
+                                Únete a nosotros para este próximo evento de AI LA que explora cómo se está utilizando la IA para abordar
+                                la falta de vivienda en Los Ángeles a través de programas innovadores de prevención.
+                            </p>
+                            <a href="https://lu.ma/cmuj911s" class="social-good-button" target="_blank">Más Información</a>
+
+                            <!-- Social sharing for this event -->
+                            <div class="social-share-container"
+                                 data-share-url="https://lu.ma/cmuj911s"
+                                 data-share-title="IA para el Impacto: Dentro del Programa Piloto de Prevención de la Falta de Vivienda de LA"
+                                 data-share-text="Únete a este evento que explora cómo se está utilizando la IA para abordar la falta de vivienda en Los Ángeles a través de programas innovadores de prevención."
+                                 data-platforms="twitter,linkedin,facebook"
+                                 data-include-copy="true"
+                                 data-heading="Comparte este evento"
+                                 data-force-share="true">
+                            </div>
+                        </div>
+                        <div class="company-view-content" style="display: none; opacity: 0;">
+                            <p>
+                                Divinci AI está comprometida con la responsabilidad social corporativa a través de iniciativas estratégicas de IA.
+                                Nuestras soluciones empresariales van más allá de las aplicaciones comerciales para abordar desafíos sociales críticos.
+                                Únete a nosotros para este próximo evento que muestra cómo las organizaciones pueden aprovechar la tecnología de IA para
+                                un impacto social significativo y desarrollo comunitario.
+                            </p>
+                            <a href="https://lu.ma/cmuj911s" class="social-good-button" target="_blank">Asóciate con Nosotros</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </main>
+
+        <!-- Footer -->
+        <!-- Footer with Sacred Geometry Elements -->
+<!-- Load footer styles dynamically -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Font Awesome if not already loaded
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        }
+
+        // Load Bulma if not already loaded
+        if (!document.querySelector('link[href*="bulma"]')) {
+            const bulma = document.createElement('link');
+            bulma.rel = 'stylesheet';
+            bulma.href = 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+            document.head.appendChild(bulma);
+        }
+
+        // Load footer styles
+        const footerStyles = document.createElement('link');
+        footerStyles.rel = 'stylesheet';
+        footerStyles.href = (window.location.pathname.includes('/features/') ? '../../' : '') + 'styles-footer.css';
+        document.head.appendChild(footerStyles);
+    })();
+</script>
+<footer class="site-footer">
+    <!-- Sacred Geometry Background Elements -->
+    <div class="footer-sacred-pattern"></div>
+    <div class="sacred-circle sacred-circle-1"></div>
+    <div class="sacred-circle sacred-circle-2"></div>
+    <div class="sacred-circle sacred-circle-3"></div>
+
+    <div class="container">
+        <div class="footer-content">
+            <!-- Top Section with Bulma Columns -->
+            <div class="columns is-footer-links">
+                <!-- Logo and Company Info -->
+                <div class="column is-one-quarter">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <!-- <img src="images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
+                                onerror="this.onerror=null; this.src='images/divinci_logo.png';" /> -->
+                            <div class="heart">🖤</div>
+                            <span class="footer-brand-name">Divinci AI</span>
+                        </div>
+                        <p class="footer-tagline">Empowering human-AI collaboration</p>
+                        <div class="social-links">
+                            <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Product</h3>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="roadmap.html">Roadmap</a></li>
+                            <li><a href="changelog.html">Changelog</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="docs/">Documentation</a></li>
+                            <li><a href="blog/">Blog</a></li>
+                            <li><a href="tutorials/">Tutorials</a></li>
+                            <li><a href="api/">API</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="press.html">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                            <li><a href="security.html">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom with Bulma Level -->
+        <div class="footer-bottom">
+            <div class="level is-footer-bottom">
+                <div class="level-left">
+                    <div class="level-item">
+                        <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <div class="footer-bottom-links">
+                            <a href="sitemap.xml">Sitemap</a>
+                            <a href="accessibility.html">Accessibility</a>
+                            <a href="cookies.html">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Script to handle footer links based on current path -->
+<script>
+    // Properly set the href attributes based on location
+    (function() {
+        const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
+        const footerLinks = document.querySelectorAll('.footer-links-column a, .footer-bottom-links a');
+
+        footerLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                link.setAttribute('href', basePath + 'index.html' + href);
+            } else if (href && !href.startsWith('http') && !href.startsWith('/')) {
+                link.setAttribute('href', basePath + href);
+            }
+        });
+    })();
+</script>
+
+
+
+        <!-- GSAP Animation Libraries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+
+        <!-- Core scripts -->
+        <script src="../optimized/js/script.min.js" defer></script>
+        <script src="../optimized/js/features-orbit-simple.min.js" defer></script>
+        <!-- Hybrid approach that follows emoji circles -->
+        <script src="../optimized/js/hybrid-bubbles.min.js"></script>
+        <!-- Divinci animation -->
+        <script src="../optimized/js/divinci-animation.min.js" defer></script>
+        <!-- Apply Sora to all Divinci occurrences -->
+        <script src="../optimized/js/js/apply-sora-to-divinci.min.js" defer></script>
+        <!-- Enhanced accessibility -->
+        <script src="../optimized/js/js/enhanced-accessibility.min.js" defer></script>
+
+        <!-- Start of HubSpot Embed Code -->
+        <script
+            type="text/javascript"
+            id="hs-script-loader"
+            async
+            defer
+            src="//js.hs-scripts.com/48021503.js"
+        ></script>
+        <!-- End of HubSpot Embed Code -->
+    </body>
+</html>

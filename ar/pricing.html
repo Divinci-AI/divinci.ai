@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/pricing.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/pricing.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/pricing.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/pricing.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/pricing.html" hreflang="ar" />
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="تقدم ديفينشي للذكاء الاصطناعي خطط أسعار مرنة للشركات بجميع أحجامها. اختر من بين خططنا المبتدئة والاحترافية والمؤسسية لإنشاء حلول ذكاء اصطناعي مخصصة لمؤسستك." />
+        <meta name="keywords" content="أسعار ديفينشي للذكاء الاصطناعي، خطط أسعار الذكاء الاصطناعي، تكلفة الذكاء الاصطناعي المخصص، أسعار الذكاء الاصطناعي للمؤسسات، اشتراك الذكاء الاصطناعي، أسعار راغ" />
+
+        <!-- Open Graph / Social Media Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://divinci.ai/ar/pricing.html" />
+        <meta property="og:title" content="خطط الأسعار | ديفينشي للذكاء الاصطناعي" />
+        <meta property="og:description" content="تقدم ديفينشي للذكاء الاصطناعي خطط أسعار مرنة للشركات بجميع أحجامها. اختر من بين خططنا المبتدئة والاحترافية والمؤسسية لإنشاء حلول ذكاء اصطناعي مخصصة لمؤسستك." />
+        <meta property="og:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://divinci.ai/ar/pricing.html" />
+        <meta name="twitter:title" content="خطط الأسعار | ديفينشي للذكاء الاصطناعي" />
+        <meta name="twitter:description" content="تقدم ديفينشي للذكاء الاصطناعي خطط أسعار مرنة للشركات بجميع أحجامها. اختر من بين خططنا المبتدئة والاحترافية والمؤسسية لإنشاء حلول ذكاء اصطناعي مخصصة لمؤسستك." />
+        <meta name="twitter:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://divinci.ai/ar/pricing.html" />
+
+        <!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
+
+        <!-- Page Title -->
+        <title>خطط الأسعار | ديفينشي للذكاء الاصطناعي</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="../preview-banner.css" />
+        <link rel="stylesheet" href="../includes/header-styles.css" />
+        <link rel="stylesheet" href="../includes/section-content-fix.css" />
+        <link rel="stylesheet" href="../css/rtl.css" />
+
+        <style>
+            /* RTL specific styles */
+            body {
+                direction: rtl;
+                text-align: right;
+                font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            
+            .nav-menu {
+                direction: rtl;
+            }
+            
+            /* Reverse the order of flex items */
+            .navbar {
+                flex-direction: row-reverse;
+            }
+            
+            /* Pricing-specific styles */
+            .pricing-section {
+                background-color: #f8fafc;
+                background-image: linear-gradient(to bottom, #f0f4f8, #f8fafc);
+                padding: 5rem 0;
+                position: relative;
+                overflow: hidden;
+            }
+
+            /* Sacred geometry background elements */
+            .pricing-section::before {
+                content: '';
+                position: absolute;
+                top: -200px;
+                left: -100px; /* Flipped from right to left for RTL */
+                width: 400px;
+                height: 400px;
+                border-radius: 50%;
+                border: 1px solid rgba(92, 226, 231, 0.1);
+                opacity: 0.15;
+                z-index: 0;
+            }
+
+            .pricing-section::after {
+                content: '';
+                position: absolute;
+                bottom: -200px;
+                right: -100px; /* Flipped from left to right for RTL */
+                width: 400px;
+                height: 400px;
+                border-radius: 50%;
+                border: 1px solid rgba(92, 226, 231, 0.1);
+                opacity: 0.1;
+                z-index: 0;
+            }
+
+            .pricing-header {
+                text-align: center;
+                margin-bottom: 4rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .pricing-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1rem;
+                background: linear-gradient(to left, #16214c, #5ce2e7); /* Flipped for RTL */
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                display: inline-block;
+            }
+
+            .pricing-subtitle {
+                font-size: 1.2rem;
+                color: #555;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            .pricing-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 2rem 0;
+            }
+
+            .pricing-toggle span {
+                font-size: 1rem;
+                color: #555;
+                cursor: pointer;
+                transition: color 0.3s ease;
+                padding: 0 1rem;
+            }
+
+            .pricing-toggle span.active {
+                color: #16214c;
+                font-weight: 600;
+            }
+
+            .toggle-switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 30px;
+                margin: 0 10px;
+            }
+
+            .toggle-switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .toggle-slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: .4s;
+                border-radius: 34px;
+            }
+
+            .toggle-slider:before {
+                position: absolute;
+                content: "";
+                height: 22px;
+                width: 22px;
+                right: 4px; /* Flipped from left to right for RTL */
+                bottom: 4px;
+                background-color: white;
+                transition: .4s;
+                border-radius: 50%;
+            }
+
+            input:checked + .toggle-slider {
+                background-color: #5ce2e7;
+            }
+
+            input:checked + .toggle-slider:before {
+                transform: translateX(-30px); /* Flipped direction for RTL */
+            }
+
+            .pricing-cards {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 30px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .pricing-card {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                padding: 2.5rem;
+                flex: 1;
+                min-width: 280px;
+                max-width: 350px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                text-align: right;
+            }
+
+            .pricing-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            }
+
+            .pricing-card.featured {
+                border-top: 5px solid #5ce2e7;
+                transform: scale(1.05);
+            }
+
+            .pricing-card.featured:hover {
+                transform: scale(1.05) translateY(-5px);
+            }
+
+            .pricing-card::before {
+                content: '';
+                position: absolute;
+                top: -50px;
+                left: -50px; /* Flipped from right to left for RTL */
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                border: 1px solid rgba(92, 226, 231, 0.1);
+                opacity: 0.2;
+                z-index: 0;
+            }
+
+            .pricing-plan {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 0.5rem;
+            }
+
+            .pricing-description {
+                color: #666;
+                font-size: 0.9rem;
+                margin-bottom: 2rem;
+                min-height: 40px;
+            }
+
+            .pricing-price {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 0.5rem;
+            }
+
+            .pricing-price .currency {
+                font-size: 1.5rem;
+                vertical-align: super;
+                margin-left: 0.25rem; /* Flipped from right to left for RTL */
+                margin-right: 0;
+            }
+
+            .pricing-price .period {
+                font-size: 1rem;
+                color: #666;
+                font-weight: 400;
+            }
+
+            .pricing-popular {
+                position: absolute;
+                top: 15px;
+                left: -30px; /* Flipped from right to left for RTL */
+                background: linear-gradient(135deg, #5ce2e7, #2fd6c2);
+                color: white;
+                padding: 5px 40px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                transform: rotate(-45deg); /* Flipped direction for RTL */
+            }
+
+            .pricing-features {
+                margin: 2rem 0;
+                padding: 0;
+                list-style-type: none;
+            }
+
+            .pricing-features li {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid #f0f0f0;
+                color: #444;
+                font-size: 0.95rem;
+                padding-right: 30px; /* Flipped from left to right for RTL */
+                padding-left: 0;
+                position: relative;
+            }
+
+            .pricing-features li:last-child {
+                border-bottom: none;
+            }
+
+            .pricing-features li::before {
+                content: '\f00c';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                color: #5ce2e7;
+                position: absolute;
+                right: 0; /* Flipped from left to right for RTL */
+                left: auto;
+            }
+
+            .pricing-features li.unavailable {
+                color: #999;
+            }
+
+            .pricing-features li.unavailable::before {
+                content: '\f00d';
+                color: #ccc;
+            }
+
+            .pricing-cta {
+                display: block;
+                width: 100%;
+                padding: 1rem;
+                background: #16214c;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-weight: 600;
+                text-align: center;
+                text-decoration: none;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            .pricing-cta:hover {
+                background: #0e1633;
+                color: white;
+            }
+
+            .pricing-cta.featured {
+                background: linear-gradient(135deg, #5ce2e7, #2fd6c2);
+            }
+
+            .pricing-cta.featured:hover {
+                background: linear-gradient(135deg, #4ed1d6, #25c5b1);
+            }
+
+            .enterprise-card {
+                background: linear-gradient(135deg, #16214c, #254284);
+                color: white;
+                padding: 3rem;
+                border-radius: 12px;
+                text-align: center;
+                margin-top: 4rem;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            }
+
+            .enterprise-card::before {
+                content: '';
+                position: absolute;
+                top: -80px;
+                left: -80px; /* Flipped from right to left for RTL */
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                opacity: 0.2;
+            }
+
+            .enterprise-card::after {
+                content: '';
+                position: absolute;
+                bottom: -60px;
+                right: -60px; /* Flipped from left to right for RTL */
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                opacity: 0.1;
+            }
+
+            .enterprise-title {
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                background: linear-gradient(to left, #fff, #5ce2e7); /* Flipped for RTL */
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                display: inline-block;
+            }
+
+            .enterprise-text {
+                font-size: 1.1rem;
+                max-width: 700px;
+                margin: 0 auto 2rem;
+                opacity: 0.9;
+            }
+
+            .enterprise-cta {
+                display: inline-block;
+                padding: 1rem 2rem;
+                background: white;
+                color: #16214c;
+                border-radius: 6px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .enterprise-cta:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                color: #16214c;
+            }
+
+            .faq-section {
+                padding: 5rem 0;
+                background: white;
+                position: relative;
+            }
+
+            .faq-title {
+                text-align: center;
+                font-size: 2rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 3rem;
+            }
+
+            .faq-item {
+                margin-bottom: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                overflow: hidden;
+                background: white;
+            }
+
+            .faq-question {
+                padding: 1.25rem;
+                color: #16214c;
+                font-weight: 600;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .faq-question:after {
+                content: '\f107';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                transition: transform 0.3s ease;
+            }
+
+            .faq-question.active:after {
+                transform: rotate(180deg);
+            }
+
+            .faq-answer {
+                padding: 0 1.25rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, padding 0.3s ease;
+                text-align: right;
+            }
+
+            .faq-answer.active {
+                padding: 0 1.25rem 1.25rem;
+                max-height: 300px;
+            }
+
+            /* Annual/Monthly toggle display */
+            .pricing-amount {
+                display: none;
+            }
+
+            .pricing-amount.active {
+                display: block;
+            }
+            
+            /* Footer adjustments for RTL */
+            .footer-content, .footer-bottom {
+                text-align: right;
+            }
+            
+            .footer-links-column h3 {
+                text-align: right;
+            }
+            
+            .footer-links-column ul {
+                padding-right: 0;
+            }
+            
+            .level.is-footer-bottom {
+                flex-direction: row-reverse;
+            }
+
+            /* Responsive adjustments */
+            @media screen and (max-width: 768px) {
+                .pricing-card {
+                    max-width: 100%;
+                    margin-bottom: 2rem;
+                }
+
+                .pricing-card.featured {
+                    transform: none;
+                }
+
+                .pricing-card.featured:hover {
+                    transform: translateY(-5px);
+                }
+
+                .enterprise-card {
+                    padding: 2rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Skip to content link for keyboard users -->
+        <div class="skip-links">
+            <a href="#main-content" class="skip-link">انتقل إلى المحتوى الرئيسي</a>
+        </div>
+
+        <!-- Preview Banner -->
+        <div class="preview-banner">
+            <div class="preview-banner-content">
+                <p class="preview-banner-text">هذه الصفحة هي معاينة. <br/> سجل ليتم إخطارك عند الإطلاق!</p>
+                <a href="../index.html#signup" class="preview-banner-button"><i class="fas fa-bell preview-banner-icon"></i>الحصول على إشعار</a>
+            </div>
+        </div>
+
+        <!-- Header with Navigation -->
+        <nav class="navbar">
+            <a href="../index.html" class="logo-link">
+                <div class="nav-logo">
+                    <img
+                        class="header-logo"
+                        src="../images/divinci_logo_inverted.svg"
+                        alt="شعار روبوت قلب ديفينشي"
+                        onerror="this.onerror=null; this.src='../../images/divinci_logo_inverted.svg';"
+                    />
+                </div>
+                <div class="nav-title">
+                    <span class="brand-name">ديفينشي ™</span><span class="mobile-hide">&nbsp;- أنشئ ذكاءك الاصطناعي المخصص</span>
+                </div>
+            </a>
+            <!-- Toggle switch for customer/company view -->
+            <div class="view-toggle-container mobile-hide">
+                <span class="view-label customer-view active">عميل</span>
+                <label class="switch">
+                    <input type="checkbox" id="viewToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="view-label company-view">شركة</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html#features">الميزات</a>
+                <a href="../index.html#team">الفريق</a>
+                <a href="../index.html#signup" class="signup-link"><span class="signup-button">التسجيل</span></a>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <section class="pricing-section">
+                <div class="container">
+                    <div class="pricing-header">
+                        <h1 class="pricing-title">أسعار بسيطة وشفافة</h1>
+                        <p class="pricing-subtitle">اختر الخطة المناسبة لعملك. تتضمن جميع الخطط الميزات الأساسية والتحديثات والدعم الأساسي.</p>
+
+                        <div class="pricing-toggle">
+                            <span class="monthly active">شهري</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="pricingToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="annual">سنوي <span class="has-text-success">(وفر 20%)</span></span>
+                        </div>
+                    </div>
+
+                    <div class="pricing-cards">
+                        <!-- Starter Plan -->
+                        <div class="pricing-card">
+                            <h2 class="pricing-plan">المبتدئ</h2>
+                            <p class="pricing-description">مثالي للفرق الصغيرة والمشاريع الفردية</p>
+
+                            <div class="pricing-amount monthly active">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>49<span class="period">/شهرياً</span>
+                                </div>
+                            </div>
+
+                            <div class="pricing-amount annual">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>39<span class="period">/شهرياً</span>
+                                </div>
+                                <div class="pricing-billed">تُدفع سنوياً ($468)</div>
+                            </div>
+
+                            <ul class="pricing-features">
+                                <li>5 مشاريع ذكاء اصطناعي مخصصة</li>
+                                <li>قدرات RAG أساسية</li>
+                                <li>10 جيجابايت تخزين للوثائق</li>
+                                <li>100 ألف رمز/يومياً</li>
+                                <li>تحليلات أساسية</li>
+                                <li>دعم عبر البريد الإلكتروني</li>
+                                <li class="unavailable">ميزات أمان متقدمة</li>
+                                <li class="unavailable">تعاون الفريق</li>
+                                <li class="unavailable">الوصول إلى واجهة برمجة التطبيقات</li>
+                                <li class="unavailable">تكاملات مخصصة</li>
+                            </ul>
+
+                            <a href="../index.html#signup" class="pricing-cta">ابدأ الآن</a>
+                        </div>
+
+                        <!-- Pro Plan -->
+                        <div class="pricing-card featured">
+                            <div class="pricing-popular">الأكثر شعبية</div>
+                            <h2 class="pricing-plan">احترافي</h2>
+                            <p class="pricing-description">مثالي للشركات والفرق النامية</p>
+
+                            <div class="pricing-amount monthly active">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>149<span class="period">/شهرياً</span>
+                                </div>
+                            </div>
+
+                            <div class="pricing-amount annual">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>119<span class="period">/شهرياً</span>
+                                </div>
+                                <div class="pricing-billed">تُدفع سنوياً ($1,428)</div>
+                            </div>
+
+                            <ul class="pricing-features">
+                                <li>20 مشروع ذكاء اصطناعي مخصص</li>
+                                <li>قدرات RAG متقدمة</li>
+                                <li>50 جيجابايت تخزين للوثائق</li>
+                                <li>500 ألف رمز/يومياً</li>
+                                <li>لوحة تحليلات كاملة</li>
+                                <li>دعم ذو أولوية</li>
+                                <li>ميزات أمان متقدمة</li>
+                                <li>تعاون الفريق (حتى 10 مستخدمين)</li>
+                                <li>الوصول إلى واجهة برمجة التطبيقات</li>
+                                <li class="unavailable">تكاملات مخصصة</li>
+                            </ul>
+
+                            <a href="../index.html#signup" class="pricing-cta featured">ابدأ الآن</a>
+                        </div>
+
+                        <!-- Business Plan -->
+                        <div class="pricing-card">
+                            <h2 class="pricing-plan">الأعمال</h2>
+                            <p class="pricing-description">للفرق الأكبر ذات الاحتياجات المتقدمة</p>
+
+                            <div class="pricing-amount monthly active">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>299<span class="period">/شهرياً</span>
+                                </div>
+                            </div>
+
+                            <div class="pricing-amount annual">
+                                <div class="pricing-price">
+                                    <span class="currency">$</span>239<span class="period">/شهرياً</span>
+                                </div>
+                                <div class="pricing-billed">تُدفع سنوياً ($2,868)</div>
+                            </div>
+
+                            <ul class="pricing-features">
+                                <li>مشاريع ذكاء اصطناعي غير محدودة</li>
+                                <li>قدرات RAG متميزة</li>
+                                <li>200 جيجابايت تخزين للوثائق</li>
+                                <li>2 مليون رمز/يومياً</li>
+                                <li>تحليلات وتقارير متقدمة</li>
+                                <li>دعم ذو أولوية على مدار الساعة</li>
+                                <li>أمان على مستوى المؤسسات</li>
+                                <li>تعاون الفريق (حتى 25 مستخدم)</li>
+                                <li>وصول كامل إلى واجهة برمجة التطبيقات</li>
+                                <li>تكاملات قياسية</li>
+                            </ul>
+
+                            <a href="../index.html#signup" class="pricing-cta">ابدأ الآن</a>
+                        </div>
+                    </div>
+
+                    <!-- Enterprise Section -->
+                    <div class="enterprise-card">
+                        <h2 class="enterprise-title">المؤسسات</h2>
+                        <p class="enterprise-text">هل تحتاج إلى حل مخصص لمؤسستك الكبيرة؟ تتضمن خطة المؤسسات تطوير نماذج ذكاء اصطناعي مخصصة، ودعم مخصص، وتسجيل دخول موحد، وسياسات أمان مخصصة، والمزيد.</p>
+                        <a href="../contact.html" class="enterprise-cta">اتصل بالمبيعات</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <div class="container">
+                    <h2 class="faq-title">الأسئلة الشائعة</h2>
+
+                    <div class="faq-items">
+                        <div class="faq-item">
+                            <div class="faq-question">ما الذي تتضمنه جميع الخطط؟</div>
+                            <div class="faq-answer">
+                                <p>تتضمن جميع الخطط الوصول إلى منصة ديفينشي للذكاء الاصطناعي الأساسية، والتي تمكنك من إنشاء حلول ذكاء اصطناعي مخصصة. كما تتضمن كل خطة معالجة أساسية للوثائق، وقدرات استخراج المعرفة، وتحديثات منتظمة، ووصولًا إلى موارد الدعم الخاصة بنا.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">كيف يعمل استخدام الرموز؟</div>
+                            <div class="faq-answer">
+                                <p>الرموز هي وحدات معالجة النصوص لنماذج الذكاء الاصطناعي. تتضمن كل خطة مخصصات يومية من الرموز يتم إعادة تعيينها كل 24 ساعة. يتم حساب استخدام الرموز لكل من المدخلات (الأوامر، المستندات) والمخرجات (ردود الذكاء الاصطناعي). إذا تجاوزت الحد اليومي الخاص بك، يمكنك شراء رموز إضافية أو الترقية إلى خطة أعلى.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">هل يمكنني الترقية أو تخفيض خطتي؟</div>
+                            <div class="faq-answer">
+                                <p>نعم، يمكنك ترقية خطتك في أي وقت، وسيتم تفعيل التغيير على الفور. بالنسبة لتخفيض الخطة، سيتم تفعيل التغيير في نهاية دورة الفوترة الحالية. ستتلقى رصيدًا متناسبًا مع أي وقت غير مستخدم في خطتك السابقة عند الترقية.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">ما هي طرق الدفع التي تقبلونها؟</div>
+                            <div class="faq-answer">
+                                <p>نقبل جميع بطاقات الائتمان الرئيسية (فيزا، ماستركارد، أمريكان إكسبريس، ديسكفر) وباي بال. بالنسبة لخطط المؤسسات، نقدم أيضًا خيارات الفوترة بشروط صافي 30 يومًا.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">هل تتوفر فترة تجريبية مجانية؟</div>
+                            <div class="faq-answer">
+                                <p>نعم، نقدم فترة تجريبية مجانية لمدة 14 يومًا على خططنا المبتدئة والاحترافية. لا تحتاج إلى بطاقة ائتمان لبدء التجربة. ستتمتع بوصول كامل إلى جميع الميزات المضمنة في الخطة خلال فترة التجربة.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">ماذا يحدث لبياناتي إذا ألغيت الاشتراك؟</div>
+                            <div class="faq-answer">
+                                <p>ستبقى بياناتك في نظامنا لمدة 30 يومًا بعد الإلغاء، مما يمنحك الوقت لتصدير أي شيء تحتاجه. بعد 30 يومًا، سيتم حذف جميع البيانات نهائيًا من أنظمتنا وفقًا لسياسة الاحتفاظ بالبيانات لدينا.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer with Sacred Geometry and Bulma Integration -->
+        <footer class="site-footer">
+            <!-- Sacred Geometry Background Elements -->
+            <div class="footer-sacred-pattern"></div>
+            <div class="sacred-circle sacred-circle-1"></div>
+            <div class="sacred-circle sacred-circle-2"></div>
+            <div class="sacred-circle sacred-circle-3"></div>
+
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Top Section with Bulma Columns -->
+                    <div class="columns is-footer-links">
+                        <!-- Logo and Company Info -->
+                        <div class="column is-one-quarter">
+                            <div class="footer-brand">
+                                <div class="footer-logo">
+                                                                <div style="
+    width: 28px;
+    height: 28px;
+    margin-left: 12px;
+    filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
+    border-radius: 50%;
+    background: rgba(92, 226, 231, 0.1);
+    padding: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+">🖤</div>
+                                    <span class="footer-brand-name">ديفينشي للذكاء الاصطناعي</span>
+                                </div>
+                                <p class="footer-tagline">تمكين التعاون بين الإنسان والذكاء الاصطناعي</p>
+                                <div class="social-links">
+                                    <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                    <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Links -->
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>المنتج</h3>
+                                <ul>
+                                    <li><a href="../index.html#features">الميزات</a></li>
+                                    <li><a href="pricing.html">الأسعار</a></li>
+                                    <li><a href="../roadmap.html">خارطة الطريق</a></li>
+                                    <li><a href="../changelog.html">سجل التغييرات</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>الموارد</h3>
+                                <ul>
+                                    <li><a href="../docs/">التوثيق</a></li>
+                                    <li><a href="../blog/">المدونة</a></li>
+                                    <li><a href="../tutorials/">البرامج التعليمية</a></li>
+                                    <li><a href="../api/">واجهة برمجة التطبيقات</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>الشركة</h3>
+                                <ul>
+                                    <li><a href="about-us.html">عن الشركة</a></li>
+                                    <li><a href="../careers.html">الوظائف</a></li>
+                                    <li><a href="contact.html">اتصل بنا</a></li>
+                                    <li><a href="../press.html">الصحافة</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>قانوني</h3>
+                                <ul>
+                                    <li><a href="../terms-of-service.html">شروط الخدمة</a></li>
+                                    <li><a href="../privacy-policy.html">سياسة الخصوصية</a></li>
+                                    <li><a href="../ai-safety-ethics.html">سلامة وأخلاقيات الذكاء الاصطناعي</a></li>
+                                    <li><a href="../security.html">الأمن</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom with Bulma Level -->
+                <div class="footer-bottom">
+                    <div class="level is-footer-bottom">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <p class="copyright">&copy; 2023-2025 ديفينشي للذكاء الاصطناعي. جميع الحقوق محفوظة.</p>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="footer-bottom-links">
+                                    <a href="../sitemap.xml">خريطة الموقع</a>
+                                    <a href="../accessibility.html">إمكانية الوصول</a>
+                                    <a href="../cookies.html">سياسة ملفات تعريف الارتباط</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="../js/keyboard-navigation.js" defer></script>
+        <script src="../js/apply-sora-to-divinci.js" defer></script>
+
+        <!-- Pricing toggle and FAQ accordion scripts -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Pricing toggle
+                const pricingToggle = document.getElementById('pricingToggle');
+                const monthlySpan = document.querySelector('.pricing-toggle .monthly');
+                const annualSpan = document.querySelector('.pricing-toggle .annual');
+                const monthlyPrices = document.querySelectorAll('.pricing-amount.monthly');
+                const annualPrices = document.querySelectorAll('.pricing-amount.annual');
+
+                pricingToggle.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Annual pricing
+                        monthlySpan.classList.remove('active');
+                        annualSpan.classList.add('active');
+
+                        monthlyPrices.forEach(price => price.classList.remove('active'));
+                        annualPrices.forEach(price => price.classList.add('active'));
+                    } else {
+                        // Monthly pricing
+                        monthlySpan.classList.add('active');
+                        annualSpan.classList.remove('active');
+
+                        monthlyPrices.forEach(price => price.classList.add('active'));
+                        annualPrices.forEach(price => price.classList.remove('active'));
+                    }
+                });
+
+                // Monthly/Annual text click also toggles
+                monthlySpan.addEventListener('click', function() {
+                    pricingToggle.checked = false;
+                    pricingToggle.dispatchEvent(new Event('change'));
+                });
+
+                annualSpan.addEventListener('click', function() {
+                    pricingToggle.checked = true;
+                    pricingToggle.dispatchEvent(new Event('change'));
+                });
+
+                // FAQ accordion
+                const faqQuestions = document.querySelectorAll('.faq-question');
+
+                faqQuestions.forEach(question => {
+                    question.addEventListener('click', function() {
+                        const answer = this.nextElementSibling;
+
+                        // Toggle active class on question
+                        this.classList.toggle('active');
+
+                        // Toggle active class on answer
+                        answer.classList.toggle('active');
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

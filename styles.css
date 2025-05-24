@@ -329,8 +329,8 @@ nav {
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 11px;
         transition: filter 0.5s ease;
+        opacity: 0.86;
     }
 }
 

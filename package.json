@@ -7,12 +7,33 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "playwright test",
+    "test:e2e": "playwright test tests/e2e/",
+    "test:visual": "node scripts/run-visual-tests.js",
+    "test:visual:playwright": "playwright test tests/visual/ --config=playwright.visual.config.js",
+    "test:visual:update": "playwright test tests/visual/ --config=playwright.visual.config.js --update-snapshots",
+    "test:visual:headed": "node scripts/run-visual-tests.js --headed",
+    "test:visual:continue": "node scripts/run-visual-tests.js --continue-on-failure",
+    "test:update-snapshots": "playwright test --update-snapshots",
+    "test:report": "playwright show-report",
+    "test:visual:report": "playwright show-report visual-test-results",
+    "test:core": "playwright test tests/core-navigation.spec.ts",
+    "test:file-cleanup": "node scripts/cleanup-files.js --list-only",
+    "test:file-cleanup:dry": "node scripts/cleanup-files.js --dry-run",
+    "test:file-cleanup:run": "node scripts/cleanup-files.js",
+    "test:refactor-tests": "node scripts/cleanup-tests.js --dry-run",
+    "test:refactor-tests:run": "node scripts/cleanup-tests.js",
+    "optimize": "node scripts/optimize-assets.js",
+    "optimize:css": "node scripts/optimize-assets.js --css-js-only",
     "build": "eleventy --input=_eleventy --output=_site",
     "serve": "eleventy --input=_eleventy --output=_site --serve",
     "dev": "eleventy --input=_eleventy --output=_site --serve --watch",
     "clean": "rm -rf _site",
-    "rebuild": "npm run clean && npm run build"
+    "rebuild": "npm run clean && npm run build",
+    "start": "npx serve",
+    "inline-includes": "node inline-includes.js",
+    "fix-eol": "node fix-eol-issue.js",
+    "prepare-static": "npm run fix-eol && npm run inline-includes"
   },
   "repository": {
     "type": "git",
@@ -27,6 +48,19 @@
   },
   "homepage": "https://github.com/DivinciApp/divinci.ai#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "@playwright/test": "^1.52.0",
+    "axios": "^1.9.0",
+    "browserslist": "^4.24.5",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.5.0",
+    "form-data": "^4.0.2",
+    "glob": "^11.0.2",
+    "http-server": "^14.1.1",
+    "jsdom": "^26.1.0",
+    "lightningcss": "^1.30.1",
+    "lightningcss-cli": "^1.30.1",
+    "puppeteer": "^24.8.2",
+    "serve": "^14.2.4"
   }
 }

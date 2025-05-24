@@ -1,0 +1,73 @@
+{
+  "hero": {
+    "title": "Votre IA pour le voyage de la vie, avec des amis !",
+    "companyTitle": "Modernisez votre entreprise à l'ère de l'IA",
+    "subtitle": "Créez des solutions d'IA personnalisées et collaborez avec vos modèles d'IA préférés dans un environnement multijoueur.",
+    "cta": "Commencez Aujourd'hui"
+  },
+  "features": {
+    "title": "Fonctionnalités Clés",
+    "multiplayer": {
+      "title": "Multijoueur",
+      "description": "Invitez plus de vos amis humains dans une conversation avec vos IA préférées.",
+      "companyDescription": "Permettez la collaboration multi-parties prenantes avec des espaces de travail d'IA partagés pour les équipes transversales."
+    },
+    "aiFamily": {
+      "title": "Famille d'IA",
+      "description": "Choisissez parmi ChatGPT, Gemini, Claude, Llama, et bien d'autres !",
+      "companyDescription": "Accédez à des modèles de qualité entreprise des principaux fournisseurs avec une gouvernance unifiée et des contrôles de sécurité."
+    },
+    "voiceInOut": {
+      "title": "Entrée/Sortie Vocale",
+      "description": "Des voix IA sophistiquées de Google pour vous lire vos réponses avec une voix naturelle. Utilisez votre micro pour discuter.",
+      "companyDescription": "Transcription vocale et dictée d'entreprise avec conformité d'accessibilité et support multilingue."
+    },
+    "imagesGraphs": {
+      "title": "Images, Diagrammes, Graphiques, Tableaux",
+      "description": "Divinci sait quand vous demandez de générer une image, un graphique ou un diagramme.",
+      "companyDescription": "Générez des visualisations prêtes à être présentées et des représentations de données pour l'intelligence d'affaires."
+    },
+    "qualityAssurance": {
+      "title": "Assurance Qualité",
+      "description": "Nos vérifications de qualité conviviales s'assurent que les réponses de l'IA sont utiles et précises pour vous.",
+      "companyDescription": "Notre Assurance Qualité LLM complète garantit des réponses d'IA précises, fiables et conformes pour une utilisation en entreprise."
+    },
+    "textMessaging": {
+      "title": "Messagerie Texte",
+      "description": "Envoyez des messages à Divinci™ en déplacement, mains libres avec \"Hé Siri/Google, envoie un message à Divinci\".",
+      "companyDescription": "Intégration mobile sécurisée avec SSO d'entreprise et journalisation des conversations conforme aux règlements."
+    },
+    "releaseManagement": {
+      "title": "Gestion des Versions",
+      "description": "Des mises à jour régulières qui vous apportent de nouvelles fonctionnalités et des améliorations pour enrichir votre expérience IA.",
+      "companyDescription": "Outils spécialisés pour le versionnement, les tests, le déploiement et la surveillance des LLM pour le développement d'IA d'entreprise."
+    },
+    "sharePrivate": {
+      "title": "Conversations Partageables/Privées",
+      "description": "Partagez des conversations avec des amis pour qu'ils se joignent. Rendez une conversation lisible publiquement ou complètement privée.",
+      "companyDescription": "Contrôles d'accès basés sur les rôles et gestion des permissions pour le partage d'informations sensibles."
+    },
+    "rag": {
+      "title": "Augmentation par Récupération",
+      "description": "Téléchargez des fichiers dans votre conversation pour créer une IA personnalisée qui apprend de ces fichiers et les priorise dans ses réponses.",
+      "companyDescription": "Intégration des connaissances d'entreprise avec ingestion sécurisée de documents et protection des données propriétaires."
+    },
+    "expertAi": {
+      "title": "IA Expertes",
+      "description": "Obtenez de l'aide d'IA spécialisées dans des domaines comme la santé, la finance, et plus encore.",
+      "companyDescription": "Solutions d'IA spécifiques à un domaine, formées sur des ensembles de données de pointe avec conformité réglementaire."
+    }
+  },
+  "navigation": {
+    "team": "Équipe"
+  },
+  "cta": {
+    "title": "Prêt à Expérimenter le Futur de l'IA ?",
+    "subtitle": "Rejoignez des milliers d'utilisateurs qui améliorent déjà leur productivité avec Divinci AI.",
+    "button": "Inscrivez-vous Gratuitement",
+    "note": "Aucune carte de crédit requise. Plan gratuit disponible."
+  },
+  "dynamicContent": {
+    "lastUpdated": "Dernière mise à jour : {{time}}"
+  }
+}

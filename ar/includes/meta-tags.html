@@ -1,0 +1,95 @@
+<!-- SEO Meta Tags -->
+<meta name="description" content="{{page_description}}" />
+<meta name="keywords" content="{{page_keywords}}" />
+
+<!-- Open Graph / Social Media Meta Tags -->
+<meta property="og:type" content="{{og_type}}" />
+<meta property="og:url" content="https://divinci.ai{{page_url}}" />
+<meta property="og:title" content="{{page_title}} | Divinci AI" />
+<meta property="og:description" content="{{page_description}}" />
+<meta property="og:image" content="https://divinci.ai/images/social/{{og_image}}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Divinci AI" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DivinciAI" />
+<meta name="twitter:title" content="{{page_title}} | Divinci AI" />
+<meta name="twitter:description" content="{{page_description}}" />
+<meta name="twitter:image" content="https://divinci.ai/images/social/{{og_image}}" />
+<meta name="twitter:creator" content="@DivinciAI" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://divinci.ai{{page_url}}" />
+
+<!-- Script to populate meta tags with page-specific data -->
+<script>
+    // Function to set meta tags based on page data
+    function setMetaTags(pageData) {
+        // Default values
+        const defaults = {
+            title: document.title.replace(' | Divinci AI', ''),
+            description: "Divinci AI is building the future of human-AI collaboration, empowering organizations to create custom AI solutions.",
+            image: "divinci-default-social.jpg",
+            url: window.location.pathname,
+            type: "website",
+            keywords: "divinci ai, ai platform, custom ai solutions"
+        };
+        
+        // Merge provided data with defaults
+        const data = {...defaults, ...pageData};
+        
+        // Get all meta elements
+        const metaTags = document.querySelectorAll('meta');
+        
+        // Update meta tags with page data
+        metaTags.forEach(tag => {
+            const property = tag.getAttribute('property') || tag.getAttribute('name');
+            
+            if (!property) return;
+            
+            if (property === 'og:title' || property === 'twitter:title') {
+                tag.setAttribute('content', `${data.title} | Divinci AI`);
+            }
+            
+            if (property === 'og:description' || property === 'twitter:description' || property === 'description') {
+                tag.setAttribute('content', data.description);
+            }
+            
+            if (property === 'og:image' || property === 'twitter:image') {
+                tag.setAttribute('content', `https://divinci.ai/images/social/${data.image}`);
+            }
+            
+            if (property === 'og:url' || property === 'twitter:url') {
+                tag.setAttribute('content', `https://divinci.ai${data.url}`);
+            }
+            
+            if (property === 'og:type') {
+                tag.setAttribute('content', data.type);
+            }
+            
+            if (property === 'keywords') {
+                tag.setAttribute('content', data.keywords);
+            }
+        });
+        
+        // Update canonical link
+        const canonicalLink = document.querySelector('link[rel="canonical"]');
+        if (canonicalLink) {
+            canonicalLink.setAttribute('href', `https://divinci.ai${data.url}`);
+        }
+    }
+    
+    // Example usage:
+    // Call this function with page-specific data after including this file
+    // setMetaTags({
+    //     title: "About Us",
+    //     description: "Learn about Divinci AI's mission, vision, team, and the story behind our innovative AI platform.",
+    //     image: "about-us-social.jpg",
+    //     url: "/about-us.html",
+    //     type: "website",
+    //     keywords: "divinci ai, about divinci, ai team, ai founders"
+    // });
+</script>

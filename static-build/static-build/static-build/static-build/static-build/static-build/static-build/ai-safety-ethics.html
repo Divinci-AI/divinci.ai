@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/ai-safety-ethics.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/ai-safety-ethics.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/ai-safety-ethics.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/ai-safety-ethics.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/ai-safety-ethics.html" hreflang="ar" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="images/favicon-32x32.png"
+        />
+        <title>Divinci AI Safety, Trust & Ethics Statement</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+        />
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" as="style" />
+        <link rel="stylesheet" href="assets/css/fonts.css" />
+        <link rel="stylesheet" href="assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="official-document.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+        <!-- Script to include HTML components -->
+        <script src="js/include-html.js" defer></script>
+        <script src="js/conditional-header.js" defer></script>
+    </head>
+    <body>
+        <!-- Header Section with Navbar -->
+        <header>
+            <!-- Mobile Header Style - Using base URL to ensure paths work from any directory -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Google Fonts (Sora and Inter)
+        if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+            const googleFonts = document.createElement('link');
+            googleFonts.rel = 'stylesheet';
+            googleFonts.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap';
+            document.head.appendChild(googleFonts);
+        }
+
+        // Load font styles
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+
+        // Load fonts.css
+        const fontStyles = document.createElement('link');
+        fontStyles.rel = 'stylesheet';
+        fontStyles.href = basePath + 'assets/css/fonts.css';
+        document.head.appendChild(fontStyles);
+
+        // Load Sora styles
+        const soraStyles = document.createElement('link');
+        soraStyles.rel = 'stylesheet';
+        soraStyles.href = basePath + 'assets/css/sora-styles.css';
+        document.head.appendChild(soraStyles);
+
+        // Load mobile header styles
+        const mobileHeaderStyles = document.createElement('link');
+        mobileHeaderStyles.rel = 'stylesheet';
+        mobileHeaderStyles.href = basePath + 'includes/mobile-header.css';
+        document.head.appendChild(mobileHeaderStyles);
+
+        // Load custom header styles
+        const headerStyles = document.createElement('link');
+        headerStyles.rel = 'stylesheet';
+        headerStyles.href = basePath + 'includes/header-styles.css';
+        document.head.appendChild(headerStyles);
+    })();
+</script>
+
+<nav class="navbar">
+    <a href="" class="logo-link" id="logoHomeLink">
+        <div class="nav-logo">
+            <img
+                class="header-logo"
+                src="images/divinci_logo_inverted.svg"
+                alt="Divinci Heart Robot logo"
+                onerror="this.onerror=null; 
+                    if (window.location.pathname.includes('/features/')) {
+                        this.src='../../images/divinci_logo_inverted.svg';
+                    } else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+                        this.src='../images/divinci_logo_inverted.svg';
+                    } else {
+                        this.src='images/divinci_logo_inverted.svg';
+                    }"
+            />
+        </div>
+        <div class="nav-title">
+            <span class="brand-name">Divinci ™</span>
+            <span class="mobile-hide consumer-view-content">&nbsp;- Create your own custom AI</span>
+            <span class="mobile-hide company-view-content" style="display: none; opacity: 0;">&nbsp;- Enterprise AI Solutions</span>
+        </div>
+    </a>
+    <!-- Toggle switch for customer/company view -->
+    <div class="view-toggle-container mobile-hide">
+        <span style ="margin-right: 22px" class="view-label customer-view active" onclick="document.getElementById('viewToggle').checked = false; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">Consumer</span>
+        <label class="switch">
+            <input type="checkbox" id="viewToggle">
+            <span class="slider round"></span>
+        </label>
+        <span class="view-label company-view" onclick="document.getElementById('viewToggle').checked = true; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">Company</span>
+    </div>
+    <div class="nav-menu">
+        <a href="#features" data-i18n="navigation.features">Features</a>
+        <a href="#team" data-i18n="navigation.team">Team</a>
+        <a href="#signup" class="signup-link"><span class="signup-button" data-i18n="buttons.signUp">Sign Up</span></a>
+        <div id="language-switcher-container" style="display: inline-block; margin-left: 15px; position: relative; z-index: 9999; overflow: visible;">
+            <!-- Direct embedding of language switcher instead of using data-include -->
+            <div class="language-switcher">
+                <div class="language-switcher-current">
+                    <span class="language-icon" style="display:inline-flex; align-items:center;">
+                      <svg id="globe-animated" viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;cursor:pointer;">
+                        <circle cx="16" cy="16" r="15" stroke="#2863c2" stroke-width="2" fill="#e9f2ff"/>
+                        <ellipse cx="16" cy="16" rx="7" ry="15" stroke="#2863c2" stroke-width="2" fill="none"/>
+                        <ellipse cx="16" cy="16" rx="15" ry="7" stroke="#2863c2" stroke-width="2" fill="none"/>
+                        <path id="anim-orbit" d="M 1 16 Q 16 0, 31 16 Q 16 32, 1 16 Z" fill="none" stroke="#45a4f3" stroke-width="1.2" />
+                      </svg>
+                    </span>
+                    <span class="current-language">English</span>
+                    <span class="dropdown-icon">▼</span>
+                </div>
+                <div class="language-switcher-dropdown">
+                    <a href="/" class="language-option" data-lang="en">
+                        <span class="language-name">English</span>
+                        <span class="language-native">English</span>
+                    </a>
+                    <a href="/es/" class="language-option" data-lang="es">
+                        <span class="language-name">Spanish</span>
+                        <span class="language-native">Español</span>
+                    </a>
+                    <a href="/fr/" class="language-option" data-lang="fr">
+                        <span class="language-name">French</span>
+                        <span class="language-native">Français</span>
+                    </a>
+                    <a href="/ar/" class="language-option" data-lang="ar">
+                        <span class="language-name">Arabic</span>
+                        <span class="language-native">العربية</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu Script -->
+<script>
+    // Create dynamic script element to handle path resolution without document.write
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+        
+        const script = document.createElement('script');
+        script.src = basePath + 'js/mobile-menu.js';
+        script.defer = true;
+        document.body.appendChild(script);
+
+        // Add view toggle script
+        const viewToggleScript = document.createElement('script');
+        viewToggleScript.src = basePath + 'js/view-toggle.js';
+        viewToggleScript.defer = true;
+        document.body.appendChild(viewToggleScript);
+
+        // Load i18n scripts
+        const i18nConfigScript = document.createElement('script');
+        i18nConfigScript.src = basePath + 'js/i18n-config.js';
+        document.head.appendChild(i18nConfigScript);
+
+        const i18nScript = document.createElement('script');
+        i18nScript.src = basePath + 'js/i18n.js';
+        document.head.appendChild(i18nScript);
+
+        // Load language-switcher-translations.js
+        const languageSwitcherTranslationsScript = document.createElement('script');
+        languageSwitcherTranslationsScript.src = basePath + 'js/language-switcher-translations.js';
+        document.head.appendChild(languageSwitcherTranslationsScript);
+
+        // Load direct-translations.js
+        const directTranslationsScript = document.createElement('script');
+        directTranslationsScript.src = basePath + 'js/direct-translations.js';
+        document.head.appendChild(directTranslationsScript);
+
+        // Load direct-dom-translations.js
+        const directDomTranslationsScript = document.createElement('script');
+        directDomTranslationsScript.src = basePath + 'js/direct-dom-translations.js';
+        document.head.appendChild(directDomTranslationsScript);
+
+        // We'll let the data-include mechanism handle the language switcher
+        // This prevents duplicate event handlers
+        const languageSwitcherContainer = document.getElementById('language-switcher-container');
+        if (languageSwitcherContainer) {
+            // Make sure the dropdown is visible when active
+            const style = document.createElement('style');
+            style.textContent = `
+                .language-switcher.active .language-switcher-dropdown {
+                    display: block !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    pointer-events: auto !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    })();
+</script>
+
+<!-- Script to handle navigation links based on current path -->
+<script>
+    // Properly set the href attributes based on location
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+
+        // Set logo link to home
+        const logoLink = document.getElementById('logoHomeLink');
+        if (logoLink) {
+            logoLink.setAttribute('href', basePath + 'index.html');
+        }
+
+        // Set navigation links
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                // Preserve the signup-link class and signup-button span when updating the href
+                if (link.classList.contains('signup-link')) {
+                    link.setAttribute('href', basePath + 'index.html' + href);
+                    // Ensure the signup button is properly styled
+                    if (!link.querySelector('.signup-button')) {
+                        const text = link.textContent.trim();
+                        link.innerHTML = '';
+                        const span = document.createElement('span');
+                        span.className = 'signup-button';
+                        span.textContent = text;
+                        link.appendChild(span);
+                    }
+                } else {
+                    link.setAttribute('href', basePath + 'index.html' + href);
+                }
+            }
+        });
+    })();
+</script>
+
+<!-- Language Switcher CSS -->
+<style>
+    /* Language Switcher Styles - Directly embedded for reliability */
+    .language-switcher {
+        position: relative !important;
+        display: inline-block !important;
+        font-family: 'Sora', sans-serif;
+        margin-left: 15px;
+        z-index: 9999 !important;
+        overflow: visible !important;
+    }
+
+    .language-switcher-current {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.3s;
+    }
+
+    .language-switcher-current:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .language-icon {
+        margin-right: 6px;
+        font-size: 16px;
+    }
+
+    .current-language {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .dropdown-icon {
+        margin-left: 6px;
+        font-size: 10px;
+        transition: transform 0.3s;
+    }
+
+    .language-switcher.active .dropdown-icon {
+        transform: rotate(180deg);
+    }
+
+    .language-switcher-dropdown {
+        position: absolute !important;
+        top: 100% !important;
+        right: 0 !important;
+        left: auto !important;
+        width: 180px;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: none;
+        z-index: 9999 !important;
+        transform: none !important;
+    }
+
+    .language-switcher.active .language-switcher-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .language-option {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s;
+    }
+
+    .language-option:hover {
+        background-color: #f5f5f5;
+    }
+
+    .language-name {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .language-native {
+        font-size: 14px;
+        color: #666;
+    }
+
+    /* RTL support */
+    [dir="rtl"] .language-icon {
+        margin-right: 0;
+        margin-left: 6px;
+    }
+
+    [dir="rtl"] .dropdown-icon {
+        margin-left: 0;
+        margin-right: 6px;
+    }
+
+    [dir="rtl"] .language-switcher-dropdown {
+        right: auto !important;
+        left: 0 !important;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+        .language-switcher-dropdown {
+            background-color: #333;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .language-option {
+            color: #eee;
+        }
+
+        .language-option:hover {
+            background-color: #444;
+        }
+
+        .language-native {
+            color: #aaa;
+        }
+    }
+
+    /* Mobile styles */
+    @media screen and (max-width: 768px) {
+        .language-switcher {
+            margin-left: 0;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .language-switcher-current {
+            justify-content: center;
+        }
+
+        .language-switcher-dropdown {
+            width: 100%;
+            left: 0 !important;
+            right: 0 !important;
+            position: absolute !important;
+        }
+    }
+</style>
+
+<!-- Script to load the language switcher JavaScript -->
+<script>
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+        
+        // Load only the simplified language switcher script
+        const languageSwitcherScript = document.createElement('script');
+        languageSwitcherScript.src = basePath + 'js/language-switcher.js';
+        document.head.appendChild(languageSwitcherScript);
+    })();
+</script>
+
+        </header>
+
+        <!-- Main Content Section for AI Trust & Ethics -->
+        <main id="ai-trust-ethics">
+            <section class="section">
+                <div class="container">
+                    <div class="official-document-wrapper">
+                        <div class="document-header">
+                            <img src="images/divinci_logo.svg" alt="Divinci AI Logo" class="document-logo">
+                            <div class="document-divider"></div>
+                            <div class="official-badge">OFFICIAL DOCUMENT</div>
+                        </div>
+
+                        <header>
+                            <h1 class="document-title">
+                                AI Safety, Trust and Ethics Statement
+                            </h1>
+                            <p class="document-subtitle">
+                                Divinci AI's Commitment to Responsible and
+                                Trustworthy AI
+                            </p>
+
+                            <div class="has-text-centered">
+                                <div class="certification-badge">
+                                    <span class="icon">
+                                        <i class="fas fa-certificate"></i>
+                                    </span>
+                                    <span>
+                                        Standards Compliant · NIST Framework Aligned · ISO/IEC Informed
+                                    </span>
+                                </div>
+                            </div>
+                        </header>
+
+                        <article class="content">
+                            <section aria-labelledby="commitment" class="document-section">
+                                <p id="commitment" class="consumer-view-content">
+                                    At Divinci AI, we prioritize safe, ethical, and
+                                    transparent AI solutions. Our products,
+                                    including web and mobile applications, serve
+                                    diverse use cases in healthcare and other
+                                    sensitive fields. This document details our
+                                    commitment to using only licensed data, ensuring
+                                    rigorous safety measures, and implementing
+                                    robust human interfaces in our
+                                    Retrieval-Augmented Generation (RAG) and
+                                    Fine-Tuned language models.
+                                </p>
+                                <p id="commitment-company" class="company-view-content">
+                                    Divinci AI is committed to building enterprise-grade 
+                                    AI solutions with the highest standards of safety,
+                                    ethics, and transparency. Our platform powers business 
+                                    applications across regulated industries including healthcare, 
+                                    financial services, and legal sectors. This document outlines 
+                                    our enterprise commitment to data licensing compliance, 
+                                    comprehensive safety protocols, and robust governance frameworks 
+                                    for our enterprise Retrieval-Augmented Generation (RAG) and 
+                                    Fine-Tuned language model deployments.
+                                </p>
+                            </section>
+
+                            <!-- Licensed Data and Responsible AI Development -->
+                            <section aria-labelledby="licensed-data" class="document-section">
+                                <h2 id="licensed-data">
+                                    1. Licensed Data and Responsible AI Development
+                                </h2>
+                                <p>
+                                    We are committed to using only licensed and
+                                    ethically sourced data in training our AI
+                                    models. Our data governance practices ensure
+                                    that every dataset is verified for legitimacy,
+                                    licensing compliance, and relevance. This
+                                    approach aligns with guidelines like those set
+                                    by ANSI for trustworthy AI, emphasizing
+                                    transparency and ethical sourcing
+                                    (<a
+                                        href="https://aistandardshub.org/ai-standards/guidelines-for-developing-trustworthy-artificial-intelligence-systems/"
+                                        target="_blank"
+                                        >Guidelines for Developing Trustworthy AI
+                                        <i class="fas fa-external-link-alt"></i
+                                    ></a>,
+                                    <a
+                                        href="https://aistandardshub.org/ai-standards/recommended-practice-for-organizational-governance-of-artificial-intelligence/"
+                                        target="_blank"
+                                        >Recommended Practice for AI Governance
+                                        <i class="fas fa-external-link-alt"></i></a
+                                    >).
+                                </p>
+                            </section>
+
+                            <!-- Human-Centered Safety and Moderation -->
+                            <section aria-labelledby="human-centered-safety" class="document-section">
+                                <h2 id="human-centered-safety">
+                                    2. Human-Centered Safety and Moderation
+                                </h2>
+                                <p>
+                                    Divinci AI integrates human moderation
+                                    interfaces across all custom AI solutions to
+                                    foster responsible use and prevent misuse. These
+                                    interfaces support:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <strong>Content Management:</strong> We
+                                        provide tools for reviewing, editing, and
+                                        controlling the information our AI models
+                                        generate, helping to align responses with
+                                        ethical standards.
+                                    </li>
+                                    <li>
+                                        <strong>Testing and Validation:</strong>
+                                        Every model goes through rigorous testing to
+                                        minimize bias, confabulation, and
+                                        misinformation
+                                        (<a
+                                            href="https://aistandardshub.org/ai-standards/emotion-enabled-multimodal-user-interface-based-on-artificial-neural-networks/"
+                                            target="_blank"
+                                            >Emotion enabled multimodal user
+                                            interface
+                                            <i class="fas fa-external-link-alt"></i
+                                        ></a>,
+                                        <a
+                                            href="https://aistandardshub.org/ai-standards/nist-artifical-intelligence-risk-management-framework/"
+                                            target="_blank"
+                                            >AI Risk Management Framework
+                                            <i
+                                                class="fas fa-external-link-alt"
+                                            ></i></a
+                                        >).
+                                    </li>
+                                    <li>
+                                        <strong>Release Management:</strong> Our
+                                        models undergo controlled release processes
+                                        to ensure they are only deployed once they
+                                        meet our high safety and reliability
+                                        standards.
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <!-- Safety Features in Consumer and Patient-Facing Models -->
+                            <section aria-labelledby="safety-features" class="document-section">
+                                <h2 id="safety-features">
+                                    3. Safety Features in Consumer and
+                                    Patient-Facing Models
+                                </h2>
+                                <p>
+                                    For applications involving consumers or
+                                    patients, Divinci AI incorporates robust safety
+                                    features such as:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <strong>Transparency and Explainability:</strong>
+                                        We strive for clarity in AI responses,
+                                        helping users understand how decisions are
+                                        made and why specific recommendations
+                                        appear. This commitment reduces
+                                        over-reliance and ensures user trust
+                                        (<a
+                                            href="https://aistandardshub.org/ai-standards/guidelines-for-developing-trustworthy-artificial-intelligence-systems/"
+                                            target="_blank"
+                                            >Guidelines for Developing Trustworthy
+                                            AI
+                                            <i class="fas fa-external-link-alt"></i
+                                        ></a>,
+                                        <a
+                                            href="https://aistandardshub.org/ai-standards/the-use-of-artificial-intelligence-in-health-care-trustworthiness/"
+                                            target="_blank"
+                                            >The Use of AI in Health Care
+                                            <i
+                                                class="fas fa-external-link-alt"
+                                            ></i></a
+                                        >).
+                                    </li>
+                                    <li>
+                                        <strong>Moderation for Harmful Content:</strong>
+                                        We actively moderate against harmful
+                                        outputs, including any content that may be
+                                        biased, inappropriate, or potentially
+                                        misleading. Our systems implement safeguards
+                                        to monitor and restrict outputs that could
+                                        negatively impact users
+                                        (<a
+                                            href="https://aistandardshub.org/ai-standards/nist-artifical-intelligence-risk-management-framework/"
+                                            target="_blank"
+                                            >AI Risk Management Framework
+                                            <i
+                                                class="fas fa-external-link-alt"
+                                            ></i></a
+                                        >).
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <!-- Trust, Transparency, and User Accountability -->
+                            <section aria-labelledby="trust-transparency" class="document-section">
+                                <h2 id="trust-transparency">
+                                    4. Trust, Transparency, and User Accountability
+                                </h2>
+                                <p>
+                                    Divinci AI fosters trust by creating transparent
+                                    AI solutions. We provide clear user guidelines,
+                                    outlining system capabilities, limitations, and
+                                    ethical constraints. For healthcare
+                                    applications, we follow ANSI's standards to
+                                    align our systems with trusted guidelines on
+                                    data privacy, bias mitigation, and compliance
+                                    with relevant regulatory standards
+                                    <a
+                                        href="https://aistandardshub.org/ai-standards/the-use-of-artificial-intelligence-in-health-care-trustworthiness/"
+                                        target="_blank"
+                                        >The Use of AI in Health Care
+                                        <i class="fas fa-external-link-alt"></i></a
+                                    >.
+                                </p>
+                            </section>
+
+                            <!-- AI Governance and Compliance -->
+                            <section aria-labelledby="ai-governance" class="document-section">
+                                <h2 id="ai-governance">
+                                    5. AI Governance and Compliance
+                                </h2>
+                                <p>
+                                    Our adherence to the AI governance framework
+                                    aligns with standards like those from NIST and
+                                    IEEE, focusing on accountability, transparency,
+                                    and robust performance metrics. Regular audits
+                                    of our systems ensure that our AI models remain
+                                    aligned with Divinci AI's ethical standards
+                                    throughout their lifecycle
+                                    <a
+                                        href="https://aistandardshub.org/ai-standards/recommended-practice-for-organizational-governance-of-artificial-intelligence/"
+                                        target="_blank"
+                                        >Recommended Practice for AI Governance
+                                        <i class="fas fa-external-link-alt"></i></a
+                                    >.
+                                </p>
+                            </section>
+
+                            <!-- Acknowledgment to AI Standards Hub -->
+                            <section aria-labelledby="acknowledgment" class="document-section">
+                                <h2 id="acknowledgment">Acknowledgment</h2>
+                                <p>
+                                    We'd like to thank
+                                    <a
+                                        href="https://aistandardshub.org/"
+                                        target="_blank"
+                                        style="color: #0077b5;"
+                                        >The Alan Turing Institute's AI Standards
+                                        Hub <i class="fas fa-external-link-alt"></i
+                                    ></a>
+                                    for providing invaluable AI standards resources
+                                    that have inspired and informed Divinci AI's AI
+                                    Safety and Ethics policies.
+                                </p>
+                            </section>
+
+                            <!-- Contributors Section -->
+                            <section aria-labelledby="contributors" class="document-section">
+                                <h2 id="contributors">Contributors</h2>
+
+                                <style>
+                                    .contributor-grid {
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        justify-content: center;
+                                        gap: 1.5rem;
+                                        margin-top: 1.5rem;
+                                    }
+                                    .contributor-card {
+                                        display: flex;
+                                        align-items: center;
+                                        background: white;
+                                        border-radius: 8px;
+                                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                                        padding: 1rem;
+                                        width: auto;
+                                        min-width: 300px;
+                                        max-width: fit-content;
+                                        transition: all 0.2s ease;
+                                    }
+                                    .contributor-card:hover {
+                                        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                                        transform: translateY(-2px);
+                                    }
+                                    .contributor-avatar {
+                                        width: 70px;
+                                        height: 70px;
+                                        border-radius: 50%;
+                                        overflow: hidden;
+                                        border: 2px solid #5ce2e7;
+                                        flex-shrink: 0;
+                                    }
+                                    .contributor-avatar img {
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: cover;
+                                    }
+                                    .contributor-info {
+                                        margin-left: 1rem;
+                                        flex-grow: 1;
+                                    }
+                                    .contributor-name {
+                                        font-weight: 600;
+                                        font-size: 1.1rem;
+                                        margin-bottom: 0.25rem;
+                                        color: #363636;
+                                    }
+                                    .contributor-title {
+                                        font-size: 0.9rem;
+                                        color: #444;
+                                        margin-bottom: 0.5rem;
+                                    }
+                                    .contributor-social {
+                                        margin-left: auto;
+                                    }
+                                    .social-link {
+                                        display: inline-flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        width: 32px;
+                                        height: 32px;
+                                        border-radius: 50%;
+                                        background-color: #0077b5;
+                                        color: white !important;
+                                        transition: all 0.2s ease;
+                                    }
+                                    .social-link:hover {
+                                        transform: scale(1.1);
+                                        box-shadow: 0 0 8px rgba(0, 119, 181, 0.5);
+                                    }
+                                </style>
+
+                                <div class="contributor-grid">
+                                    <div class="contributor-card" style="width: 300px;">
+                                        <div class="contributor-avatar">
+                                            <img src="images/Michael-Mooring.jpeg" alt="Michael Mooring" style="object-position: center -2px;">
+                                        </div>
+                                        <div class="contributor-info">
+                                            <div class="contributor-name">Michael Mooring</div>
+                                            <div class="contributor-title">Co-founder & CTO</div>
+                                        </div>
+                                        <div class="contributor-social">
+                                            <a href="https://www.linkedin.com/in/michaelduanemooring/" target="_blank" class="social-link" aria-label="Michael Mooring LinkedIn Profile">
+                                                <i class="fab fa-linkedin-in"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="contributor-card" style="width: 300px;">
+                                        <div class="contributor-avatar">
+                                            <img src="images/paul-marie-carfantan.jpeg" alt="Paul-Marie Carfantan">
+                                        </div>
+                                        <div class="contributor-info">
+                                            <div class="contributor-name">Paul-Marie Carfantan</div>
+                                            <div class="contributor-title">AI Ethics Advisor</div>
+                                        </div>
+                                        <div class="contributor-social">
+                                            <a href="https://www.linkedin.com/in/paul-marie-carfantan/" target="_blank" class="social-link" aria-label="Paul-Marie Carfantan LinkedIn Profile">
+                                                <i class="fab fa-linkedin-in"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="contributor-card" style="width: 300px;">
+                                        <div class="contributor-avatar" style="display: flex; justify-content: center; align-items: center; background-color: #f5f5f5;">
+                                            <img src="images/AI-Standards-Hub-Logo_04-1.png" alt="AI Standards Hub Logo" style="width: 80%; height: auto; object-fit: contain;">
+                                        </div>
+                                        <div class="contributor-info">
+                                            <div class="contributor-name">AI Standards Hub</div>
+                                            <div class="contributor-title">Best Practice Framework</div>
+                                        </div>
+                                        <div class="contributor-social">
+                                            <a href="https://aistandardshub.org/" target="_blank" class="social-link" style="background-color: #4a7aff;" aria-label="AI Standards Hub Website">
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Document footer with certification -->
+                            <div class="document-footer">
+                                <div class="document-stamp">
+                                    <span class="icon"><i class="fas fa-calendar-check"></i></span>
+                                    <span>Last Updated: October 31, 2024</span>
+                                </div>
+                                <div class="document-stamp">
+                                    <span class="icon"><i class="fas fa-shield-alt"></i></span>
+                                    <span>Version: 1.2.1</span>
+                                </div>
+                                <div class="document-stamp">
+                                    <span class="icon"><i class="fas fa-check-circle"></i></span>
+                                    <span>Document ID: ETHICS-2024-001</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Section -->
+        <!-- Footer with Sacred Geometry Elements -->
+<!-- Load footer styles dynamically -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Font Awesome if not already loaded
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        }
+
+        // Load Bulma if not already loaded
+        if (!document.querySelector('link[href*="bulma"]')) {
+            const bulma = document.createElement('link');
+            bulma.rel = 'stylesheet';
+            bulma.href = 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+            document.head.appendChild(bulma);
+        }
+
+        // Load footer styles
+        const footerStyles = document.createElement('link');
+        footerStyles.rel = 'stylesheet';
+        footerStyles.href = (window.location.pathname.includes('/features/') ? '../../' : '') + 'styles-footer.css';
+        document.head.appendChild(footerStyles);
+    })();
+</script>
+<footer class="site-footer">
+    <!-- Sacred Geometry Background Elements -->
+    <div class="footer-sacred-pattern"></div>
+    <div class="sacred-circle sacred-circle-1"></div>
+    <div class="sacred-circle sacred-circle-2"></div>
+    <div class="sacred-circle sacred-circle-3"></div>
+
+    <div class="container">
+        <div class="footer-content">
+            <!-- Top Section with Bulma Columns -->
+            <div class="columns is-footer-links">
+                <!-- Logo and Company Info -->
+                <div class="column is-one-quarter">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <!-- <img src="images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
+                                onerror="this.onerror=null; this.src='images/divinci_logo.png';" /> -->
+                            <div class="heart">🖤</div>
+                            <span class="footer-brand-name">Divinci AI</span>
+                        </div>
+                        <p class="footer-tagline">Empowering human-AI collaboration</p>
+                        <div class="social-links">
+                            <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Product</h3>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="roadmap.html">Roadmap</a></li>
+                            <li><a href="changelog.html">Changelog</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="docs/">Documentation</a></li>
+                            <li><a href="blog/">Blog</a></li>
+                            <li><a href="tutorials/">Tutorials</a></li>
+                            <li><a href="api/">API</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="press.html">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                            <li><a href="security.html">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom with Bulma Level -->
+        <div class="footer-bottom">
+            <div class="level is-footer-bottom">
+                <div class="level-left">
+                    <div class="level-item">
+                        <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <div class="footer-bottom-links">
+                            <a href="sitemap.xml">Sitemap</a>
+                            <a href="accessibility.html">Accessibility</a>
+                            <a href="cookies.html">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Script to handle footer links based on current path -->
+<script>
+    // Properly set the href attributes based on location
+    (function() {
+        const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
+        const footerLinks = document.querySelectorAll('.footer-links-column a, .footer-bottom-links a');
+
+        footerLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                link.setAttribute('href', basePath + 'index.html' + href);
+            } else if (href && !href.startsWith('http') && !href.startsWith('/')) {
+                link.setAttribute('href', basePath + href);
+            }
+        });
+    })();
+</script>
+
+    </body>
+</html>

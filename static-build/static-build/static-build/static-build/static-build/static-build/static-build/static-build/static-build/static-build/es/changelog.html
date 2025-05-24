@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/changelog.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/changelog.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/changelog.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/changelog.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/changelog.html" hreflang="ar" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/changelog.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/changelog.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/changelog.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/changelog.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/changelog.html" hreflang="ar" />
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Divinci AI's changelog tracks our product updates, new features, and improvements over time to keep our users informed about our development progress." />
+        <meta name="keywords" content="divinci ai, changelog, product updates, feature releases, version history, release notes" />
+
+        <!-- Open Graph / Social Media Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://divinci.ai/changelog.html" />
+        <meta property="og:title" content="Changelog | Divinci AI" />
+        <meta property="og:description" content="Divinci AI's changelog tracks our product updates, new features, and improvements over time to keep our users informed about our development progress." />
+        <meta property="og:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://divinci.ai/changelog.html" />
+        <meta name="twitter:title" content="Changelog | Divinci AI" />
+        <meta name="twitter:description" content="Divinci AI's changelog tracks our product updates, new features, and improvements over time to keep our users informed about our development progress." />
+        <meta name="twitter:image" content="https://divinci.ai/images/divinci_logo.png" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://divinci.ai/changelog.html" />
+
+        <!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="..//apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
+
+        <!-- Page Title -->
+        <title>Changelog | Divinci AI - Español</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../official-document.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="../includes/section-content-fix.css" />
+
+        <!-- Script to include HTML components -->
+        <script src="../js/include-html.js" defer></script>
+        <script src="../js/conditional-header.js" defer></script>
+
+        <style>
+            /* Changelog-specific styles */
+            .version-tag {
+                display: inline-block;
+                padding: 4px 10px;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                margin-right: 10px;
+                color: white;
+            }
+
+            .version-tag.major {
+                background: linear-gradient(135deg, #16214c, #254284);
+            }
+
+            .version-tag.minor {
+                background: linear-gradient(135deg, #5ce2e7, #2fd6c2);
+            }
+
+            .version-tag.patch {
+                background: linear-gradient(135deg, #7f9ef3, #5f7be0);
+            }
+
+            .changelog-item {
+                border-left: 3px solid rgba(92, 226, 231, 0.3);
+                padding-left: 20px;
+                margin-bottom: 30px;
+                position: relative;
+            }
+
+            .changelog-item::before {
+                content: '';
+                position: absolute;
+                left: -9px;
+                top: 0;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                background: #5ce2e7;
+                box-shadow: 0 0 8px rgba(92, 226, 231, 0.6);
+            }
+
+            .release-date {
+                font-size: 0.9rem;
+                color: #666;
+                margin-left: 5px;
+            }
+
+            .changelog-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+            }
+
+            .changelog-title {
+                font-size: 1.3rem;
+                font-weight: 600;
+                color: #16214c;
+            }
+
+            .change-category {
+                display: inline-block;
+                padding: 3px 8px;
+                border-radius: 4px;
+                font-size: 0.7rem;
+                font-weight: 600;
+                margin-right: 6px;
+                margin-bottom: 6px;
+            }
+
+            .category-new {
+                background-color: rgba(92, 226, 231, 0.15);
+                color: #0ba0a6;
+                border: 1px solid rgba(92, 226, 231, 0.3);
+            }
+
+            .category-improvement {
+                background-color: rgba(127, 158, 243, 0.15);
+                color: #3d66e5;
+                border: 1px solid rgba(127, 158, 243, 0.3);
+            }
+
+            .category-fix {
+                background-color: rgba(255, 152, 0, 0.15);
+                color: #e07d00;
+                border: 1px solid rgba(255, 152, 0, 0.3);
+            }
+
+            .category-security {
+                background-color: rgba(233, 30, 99, 0.15);
+                color: #c2185b;
+                border: 1px solid rgba(233, 30, 99, 0.3);
+            }
+
+            .changelog-details ul {
+                list-style-type: none;
+                padding-left: 0;
+            }
+
+            .changelog-details li {
+                margin-bottom: 10px;
+                padding-left: 20px;
+                position: relative;
+            }
+
+            .changelog-details li::before {
+                content: '•';
+                position: absolute;
+                left: 0;
+                color: #5ce2e7;
+                font-weight: bold;
+            }
+
+            .changelog-filters {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+            }
+
+            .filter-button {
+                padding: 5px 12px;
+                border-radius: 20px;
+                background-color: #f5f7f9;
+                border: 1px solid #e0e0e0;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                font-size: 0.85rem;
+            }
+
+            .filter-button:hover, .filter-button.active {
+                background-color: rgba(92, 226, 231, 0.1);
+                border-color: rgba(92, 226, 231, 0.3);
+            }
+
+            /* Sacred geometry decoration for changelog */
+            .changelog-sacred-pattern {
+                position: absolute;
+                top: 50px;
+                right: 50px;
+                width: 150px;
+                height: 150px;
+                opacity: 0.07;
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='30' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='20' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%235CE2E7' stroke-width='0.3' /%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%235CE2E7' stroke-width='0.3' /%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                z-index: 0;
+            }
+        </style>
+        <!-- Set default language -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.i18n && window.i18n.changeLanguage) {
+                window.i18n.changeLanguage('es');
+            }
+        });
+    </script>
+</head>
+    <body>
+        
+
+        <!-- Header with Navigation (included from header.html) -->
+        <!-- Mobile Header Style - Using base URL to ensure paths work from any directory -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Google Fonts (Sora and Inter)
+        if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+            const googleFonts = document.createElement('link');
+            googleFonts.rel = 'stylesheet';
+            googleFonts.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap';
+            document.head.appendChild(googleFonts);
+        }
+
+        // Load font styles
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+
+        // Load fonts.css
+        const fontStyles = document.createElement('link');
+        fontStyles.rel = 'stylesheet';
+        fontStyles.href = basePath + 'assets/css/fonts.css';
+        document.head.appendChild(fontStyles);
+
+        // Load Sora styles
+        const soraStyles = document.createElement('link');
+        soraStyles.rel = 'stylesheet';
+        soraStyles.href = basePath + 'assets/css/sora-styles.css';
+        document.head.appendChild(soraStyles);
+
+        // Load mobile header styles
+        const mobileHeaderStyles = document.createElement('link');
+        mobileHeaderStyles.rel = 'stylesheet';
+        mobileHeaderStyles.href = basePath + 'includes/mobile-header.css';
+        document.head.appendChild(mobileHeaderStyles);
+
+        // Load custom header styles
+        const headerStyles = document.createElement('link');
+        headerStyles.rel = 'stylesheet';
+        headerStyles.href = basePath + 'includes/header-styles.css';
+        document.head.appendChild(headerStyles);
+    })();
+</script>
+
+<nav class="navbar">
+    <a href="" class="logo-link" id="logoHomeLink">
+        <div class="nav-logo">
+            <img
+                class="header-logo"
+                src="images/divinci_logo_inverted.svg"
+                alt="Divinci Heart Robot logo"
+                onerror="this.onerror=null; 
+                    if (window.location.pathname.includes('/features/')) {
+                        this.src='../../images/divinci_logo_inverted.svg';
+                    } else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+                        this.src='../images/divinci_logo_inverted.svg';
+                    } else {
+                        this.src='images/divinci_logo_inverted.svg';
+                    }"
+            />
+        </div>
+        <div class="nav-title">
+            <span class="brand-name">Divinci ™</span>
+            <span class="mobile-hide consumer-view-content">&nbsp;- Create your own custom AI</span>
+            <span class="mobile-hide company-view-content" style="display: none; opacity: 0;">&nbsp;- Enterprise AI Solutions</span>
+        </div>
+    </a>
+    <!-- Toggle switch for customer/company view -->
+    <div class="view-toggle-container mobile-hide">
+        <span style ="margin-right: 22px" class="view-label customer-view active" onclick="document.getElementById('viewToggle').checked = false; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">Consumer</span>
+        <label class="switch">
+            <input type="checkbox" id="viewToggle">
+            <span class="slider round"></span>
+        </label>
+        <span class="view-label company-view" onclick="document.getElementById('viewToggle').checked = true; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">Company</span>
+    </div>
+    <div class="nav-menu">
+        <a href="#features" data-i18n="navigation.features">Features</a>
+        <a href="#team" data-i18n="navigation.team">Team</a>
+        <a href="#signup" class="signup-link"><span class="signup-button" data-i18n="buttons.signUp">Sign Up</span></a>
+        <div id="language-switcher-container" style="display: inline-block; margin-left: 15px; position: relative; z-index: 9999; overflow: visible;">
+            <!-- Direct embedding of language switcher instead of using data-include -->
+            <div class="language-switcher">
+                <div class="language-switcher-current">
+                    <span class="language-icon" style="display:inline-flex; align-items:center;">
+                      <svg id="globe-animated" viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;cursor:pointer;">
+                        <circle cx="16" cy="16" r="15" stroke="#2863c2" stroke-width="2" fill="#e9f2ff"/>
+                        <ellipse cx="16" cy="16" rx="7" ry="15" stroke="#2863c2" stroke-width="2" fill="none"/>
+                        <ellipse cx="16" cy="16" rx="15" ry="7" stroke="#2863c2" stroke-width="2" fill="none"/>
+                        <path id="anim-orbit" d="M 1 16 Q 16 0, 31 16 Q 16 32, 1 16 Z" fill="none" stroke="#45a4f3" stroke-width="1.2" />
+                      </svg>
+                    </span>
+                    <span class="current-language">English</span>
+                    <span class="dropdown-icon">▼</span>
+                </div>
+                <div class="language-switcher-dropdown">
+                    <a href="/" class="language-option" data-lang="en">
+                        <span class="language-name">English</span>
+                        <span class="language-native">English</span>
+                    </a>
+                    <a href="/es/" class="language-option" data-lang="es">
+                        <span class="language-name">Spanish</span>
+                        <span class="language-native">Español</span>
+                    </a>
+                    <a href="/fr/" class="language-option" data-lang="fr">
+                        <span class="language-name">French</span>
+                        <span class="language-native">Français</span>
+                    </a>
+                    <a href="/ar/" class="language-option" data-lang="ar">
+                        <span class="language-name">Arabic</span>
+                        <span class="language-native">العربية</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu Script -->
+<script>
+    // Create dynamic script element to handle path resolution without document.write
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+        
+        const script = document.createElement('script');
+        script.src = basePath + 'js/mobile-menu.js';
+        script.defer = true;
+        document.body.appendChild(script);
+
+        // Add view toggle script
+        const viewToggleScript = document.createElement('script');
+        viewToggleScript.src = basePath + 'js/view-toggle.js';
+        viewToggleScript.defer = true;
+        document.body.appendChild(viewToggleScript);
+
+        // Load i18n scripts
+        const i18nConfigScript = document.createElement('script');
+        i18nConfigScript.src = basePath + 'js/i18n-config.js';
+        document.head.appendChild(i18nConfigScript);
+
+        const i18nScript = document.createElement('script');
+        i18nScript.src = basePath + 'js/i18n.js';
+        document.head.appendChild(i18nScript);
+
+        // Load language-switcher-translations.js
+        const languageSwitcherTranslationsScript = document.createElement('script');
+        languageSwitcherTranslationsScript.src = basePath + 'js/language-switcher-translations.js';
+        document.head.appendChild(languageSwitcherTranslationsScript);
+
+        // Load direct-translations.js
+        const directTranslationsScript = document.createElement('script');
+        directTranslationsScript.src = basePath + 'js/direct-translations.js';
+        document.head.appendChild(directTranslationsScript);
+
+        // Load direct-dom-translations.js
+        const directDomTranslationsScript = document.createElement('script');
+        directDomTranslationsScript.src = basePath + 'js/direct-dom-translations.js';
+        document.head.appendChild(directDomTranslationsScript);
+
+        // We'll let the data-include mechanism handle the language switcher
+        // This prevents duplicate event handlers
+        const languageSwitcherContainer = document.getElementById('language-switcher-container');
+        if (languageSwitcherContainer) {
+            // Make sure the dropdown is visible when active
+            const style = document.createElement('style');
+            style.textContent = `
+                .language-switcher.active .language-switcher-dropdown {
+                    display: block !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    pointer-events: auto !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    })();
+</script>
+
+<!-- Script to handle navigation links based on current path -->
+<script>
+    // Properly set the href attributes based on location
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+
+        // Set logo link to home
+        const logoLink = document.getElementById('logoHomeLink');
+        if (logoLink) {
+            logoLink.setAttribute('href', basePath + 'index.html');
+        }
+
+        // Set navigation links
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                // Preserve the signup-link class and signup-button span when updating the href
+                if (link.classList.contains('signup-link')) {
+                    link.setAttribute('href', basePath + 'index.html' + href);
+                    // Ensure the signup button is properly styled
+                    if (!link.querySelector('.signup-button')) {
+                        const text = link.textContent.trim();
+                        link.innerHTML = '';
+                        const span = document.createElement('span');
+                        span.className = 'signup-button';
+                        span.textContent = text;
+                        link.appendChild(span);
+                    }
+                } else {
+                    link.setAttribute('href', basePath + 'index.html' + href);
+                }
+            }
+        });
+    })();
+</script>
+
+<!-- Language Switcher CSS -->
+<style>
+    /* Language Switcher Styles - Directly embedded for reliability */
+    .language-switcher {
+        position: relative !important;
+        display: inline-block !important;
+        font-family: 'Sora', sans-serif;
+        margin-left: 15px;
+        z-index: 9999 !important;
+        overflow: visible !important;
+    }
+
+    .language-switcher-current {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.3s;
+    }
+
+    .language-switcher-current:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .language-icon {
+        margin-right: 6px;
+        font-size: 16px;
+    }
+
+    .current-language {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .dropdown-icon {
+        margin-left: 6px;
+        font-size: 10px;
+        transition: transform 0.3s;
+    }
+
+    .language-switcher.active .dropdown-icon {
+        transform: rotate(180deg);
+    }
+
+    .language-switcher-dropdown {
+        position: absolute !important;
+        top: 100% !important;
+        right: 0 !important;
+        left: auto !important;
+        width: 180px;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: none;
+        z-index: 9999 !important;
+        transform: none !important;
+    }
+
+    .language-switcher.active .language-switcher-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .language-option {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s;
+    }
+
+    .language-option:hover {
+        background-color: #f5f5f5;
+    }
+
+    .language-name {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .language-native {
+        font-size: 14px;
+        color: #666;
+    }
+
+    /* RTL support */
+    [dir="rtl"] .language-icon {
+        margin-right: 0;
+        margin-left: 6px;
+    }
+
+    [dir="rtl"] .dropdown-icon {
+        margin-left: 0;
+        margin-right: 6px;
+    }
+
+    [dir="rtl"] .language-switcher-dropdown {
+        right: auto !important;
+        left: 0 !important;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+        .language-switcher-dropdown {
+            background-color: #333;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .language-option {
+            color: #eee;
+        }
+
+        .language-option:hover {
+            background-color: #444;
+        }
+
+        .language-native {
+            color: #aaa;
+        }
+    }
+
+    /* Mobile styles */
+    @media screen and (max-width: 768px) {
+        .language-switcher {
+            margin-left: 0;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .language-switcher-current {
+            justify-content: center;
+        }
+
+        .language-switcher-dropdown {
+            width: 100%;
+            left: 0 !important;
+            right: 0 !important;
+            position: absolute !important;
+        }
+    }
+</style>
+
+<!-- Script to load the language switcher JavaScript -->
+<script>
+    (function() {
+        // Determine the correct base path based on the current URL
+        let basePath = '';
+        
+        // Check if we're in a features subdirectory
+        if (window.location.pathname.includes('/features/')) {
+            basePath = '../../';
+        } 
+        // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
+        else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
+            basePath = '../';
+        }
+        
+        // Load only the simplified language switcher script
+        const languageSwitcherScript = document.createElement('script');
+        languageSwitcherScript.src = basePath + 'js/language-switcher.js';
+        document.head.appendChild(languageSwitcherScript);
+    })();
+</script>
+
+
+        <!-- Main content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <section class="document-section">
+                <div class="container">
+                    <div class="document-header">
+                        <h1>Changelog</h1>
+                        <p class="last-updated">Last Updated: May 2, 2025</p>
+                    </div>
+
+                    <!-- Sacred geometry decoration -->
+                    <div class="changelog-sacred-pattern"></div>
+
+                    <div class="document-content">
+                        <div class="changelog-filters">
+                            <button class="filter-button active" data-filter="all">All Updates</button>
+                            <button class="filter-button" data-filter="major">Major Releases</button>
+                            <button class="filter-button" data-filter="new">New Features</button>
+                            <button class="filter-button" data-filter="improvement">Improvements</button>
+                            <button class="filter-button" data-filter="fix">Bug Fixes</button>
+                            <button class="filter-button" data-filter="security">Security Updates</button>
+                        </div>
+
+                        <!-- Changelog entry 1 -->
+                        <div class="changelog-item">
+                            <div class="changelog-header">
+                                <span class="version-tag major">v1.0.0</span>
+                                <h2 class="changelog-title">Initial Public Release</h2>
+                                <span class="release-date">May 1, 2025</span>
+                            </div>
+                            <div class="changelog-details">
+                                <div class="change-categories">
+                                    <span class="change-category category-new">New</span>
+                                </div>
+                                <p>Our first public release of Divinci AI after extensive private beta testing. This release includes all core functionality that allows users to create custom AI solutions.</p>
+                                <ul>
+                                    <li>Custom AI model creation with no-code interface</li>
+                                    <li>Advanced RAG (Retrieval-Augmented Generation) capabilities</li>
+                                    <li>Document processing and knowledge extraction</li>
+                                    <li>Vector embedding optimization</li>
+                                    <li>API access for enterprise integrations</li>
+                                    <li>Quality assurance tooling for LLMs</li>
+                                    <li>Release cycle management for AI projects</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Changelog entry 2 -->
+                        <div class="changelog-item">
+                            <div class="changelog-header">
+                                <span class="version-tag minor">v0.9.5</span>
+                                <h2 class="changelog-title">Pre-release Feature Completion</h2>
+                                <span class="release-date">April 15, 2025</span>
+                            </div>
+                            <div class="changelog-details">
+                                <div class="change-categories">
+                                    <span class="change-category category-new">New</span>
+                                    <span class="change-category category-improvement">Improvement</span>
+                                </div>
+                                <p>Final pre-release version with completed feature set and significant improvements based on beta user feedback.</p>
+                                <ul>
+                                    <li>Added enterprise-grade security features and compliance certifications</li>
+                                    <li>Implemented advanced analytics dashboard for tracking AI model performance</li>
+                                    <li>Improved documentation and added comprehensive tutorial system</li>
+                                    <li>Enhanced user interface with accessibility improvements</li>
+                                    <li>Optimized backend performance for faster model training and response times</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Changelog entry 3 -->
+                        <div class="changelog-item">
+                            <div class="changelog-header">
+                                <span class="version-tag minor">v0.9.0</span>
+                                <h2 class="changelog-title">Extended Beta Release</h2>
+                                <span class="release-date">March 10, 2025</span>
+                            </div>
+                            <div class="changelog-details">
+                                <div class="change-categories">
+                                    <span class="change-category category-new">New</span>
+                                    <span class="change-category category-improvement">Improvement</span>
+                                    <span class="change-category category-fix">Fix</span>
+                                </div>
+                                <p>Major update to our beta platform with expanded features and significant improvements.</p>
+                                <ul>
+                                    <li>Added support for multi-modal AI models (text, image, audio)</li>
+                                    <li>Implemented fine-tuning capabilities for specialized domains</li>
+                                    <li>Enhanced RAG system with improved context handling and relevance scoring</li>
+                                    <li>Fixed critical issues with document processing for complex file formats</li>
+                                    <li>Added version control system for AI models</li>
+                                    <li>Improved collaboration features for team environments</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Changelog entry 4 -->
+                        <div class="changelog-item">
+                            <div class="changelog-header">
+                                <span class="version-tag patch">v0.8.2</span>
+                                <h2 class="changelog-title">Beta Stability Update</h2>
+                                <span class="release-date">February 25, 2025</span>
+                            </div>
+                            <div class="changelog-details">
+                                <div class="change-categories">
+                                    <span class="change-category category-fix">Fix</span>
+                                    <span class="change-category category-security">Security</span>
+                                </div>
+                                <p>Stability and security update focusing on core system reliability.</p>
+                                <ul>
+                                    <li>Fixed memory leak issues in the document processing pipeline</li>
+                                    <li>Resolved authentication issues for enterprise SSO integrations</li>
+                                    <li>Patched security vulnerabilities in API endpoints</li>
+                                    <li>Improved error handling and reporting throughout the system</li>
+                                    <li>Enhanced system logging for better diagnostics</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Changelog entry 5 -->
+                        <div class="changelog-item">
+                            <div class="changelog-header">
+                                <span class="version-tag minor">v0.8.0</span>
+                                <h2 class="changelog-title">Closed Beta Launch</h2>
+                                <span class="release-date">January 15, 2025</span>
+                            </div>
+                            <div class="changelog-details">
+                                <div class="change-categories">
+                                    <span class="change-category category-new">New</span>
+                                </div>
+                                <p>Initial closed beta release of the Divinci AI platform to selected partners and early adopters.</p>
+                                <ul>
+                                    <li>Core platform functionality released for testing</li>
+                                    <li>Basic RAG capabilities for document processing</li>
+                                    <li>Initial API endpoints for integration testing</li>
+                                    <li>Fundamental user interface for AI model configuration</li>
+                                    <li>Limited dataset support for proof-of-concept deployments</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer with Sacred Geometry and Bulma Integration -->
+        <footer class="site-footer">
+            <!-- Sacred Geometry Background Elements -->
+            <div class="footer-sacred-pattern"></div>
+            <div class="sacred-circle sacred-circle-1"></div>
+            <div class="sacred-circle sacred-circle-2"></div>
+            <div class="sacred-circle sacred-circle-3"></div>
+
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Top Section with Bulma Columns -->
+                    <div class="columns is-footer-links">
+                        <!-- Logo and Company Info -->
+                        <div class="column is-one-quarter">
+                            <div class="footer-brand">
+                                <div class="footer-logo">
+                                                                <div style="
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+    filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
+    border-radius: 50%;
+    background: rgba(92, 226, 231, 0.1);
+    padding: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+">🖤</div>
+                                    <span class="footer-brand-name">Divinci AI</span>
+                                </div>
+                                <p class="footer-tagline">Empowering human-AI collaboration</p>
+                                <div class="social-links">
+                                    <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                    <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Links -->
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Product</h3>
+                                <ul>
+                                    <li><a href="../index.html#features">Features</a></li>
+                                    <li><a href="../pricing.html">Pricing</a></li>
+                                    <li><a href="../roadmap.html">Roadmap</a></li>
+                                    <li><a href="../changelog.html">Changelog</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Resources</h3>
+                                <ul>
+                                    <li><a href="../docs/">Documentation</a></li>
+                                    <li><a href="../blog/">Blog</a></li>
+                                    <li><a href="../tutorials/">Tutorials</a></li>
+                                    <li><a href="../api/">API</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Company</h3>
+                                <ul>
+                                    <li><a href="../about-us.html">About Us</a></li>
+                                    <li><a href="../careers.html">Careers</a></li>
+                                    <li><a href="../contact.html">Contact</a></li>
+                                    <li><a href="../press.html">Press</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="../terms-of-service.html">Terms of Service</a></li>
+                                    <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                                    <li><a href="../ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                                    <li><a href="../security.html">Security</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom with Bulma Level -->
+                <div class="footer-bottom">
+                    <div class="level is-footer-bottom">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="footer-bottom-links">
+                                    <a href="../sitemap.xml">Sitemap</a>
+                                    <a href="../accessibility.html">Accessibility</a>
+                                    <a href="../cookies.html">Cookie Policy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="../js/keyboard-navigation.js" defer></script>
+        <script src="../js/apply-sora-to-divinci.js" defer></script>
+        <script src="../js/mobile-menu.js" defer></script>
+        <script src="../js/view-toggle.js" defer></script>
+
+        <!-- Changelog filtering script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const filterButtons = document.querySelectorAll('.filter-button');
+                const changelogItems = document.querySelectorAll('.changelog-item');
+
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        // Add active class to clicked button
+                        this.classList.add('active');
+
+                        const filter = this.getAttribute('data-filter');
+
+                        changelogItems.forEach(item => {
+                            if (filter === 'all') {
+                                item.style.display = 'block';
+                            } else if (filter === 'major') {
+                                // Check if item has major version tag
+                                const hasTag = item.querySelector('.version-tag.major');
+                                item.style.display = hasTag ? 'block' : 'none';
+                            } else {
+                                // Check if item has the specified category
+                                const hasCategory = item.querySelector(`.category-${filter}`);
+                                item.style.display = hasCategory ? 'block' : 'none';
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

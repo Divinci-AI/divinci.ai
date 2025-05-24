@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/about-us.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/about-us.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/about-us.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/about-us.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/about-us.html" hreflang="ar" />
+        <!-- Include meta tags -->
+        <div data-include="../includes/meta-tags.html"></div>
+
+        <!-- Include structured data -->
+        <div data-include="../includes/structured-data.html"></div>
+
+        <!-- Initialize page-specific meta tags and structured data -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set meta tags for this page
+                if (window.setMetaTags) {
+                    setMetaTags({
+                        title: "Sobre Nosotros",
+                        description: "Divinci AI está construyendo el futuro de la colaboración humano-IA. Conozca sobre nuestra misión, visión, equipo y la historia detrás de nuestra innovadora plataforma de IA.",
+                        image: "about-us-social.png",
+                        url: "/es/about-us.html",
+                        type: "website",
+                        keywords: "divinci ai, empresa de ia, sobre divinci, plataforma de ia, soluciones personalizadas de ia, misión de ia, equipo de ia, fundadores de ia"
+                    });
+                }
+
+                // Add structured data for this page
+                if (window.addStructuredData) {
+                    addStructuredData({
+                        type: "WebPage",
+                        title: "Sobre Nosotros | Divinci AI",
+                        description: "Divinci AI está construyendo el futuro de la colaboración humano-IA. Conozca sobre nuestra misión, visión, equipo y la historia detrás de nuestra innovadora plataforma de IA.",
+                        image: "../images/social/about-us-social.png"
+                    });
+                }
+            });
+        </script>
+
+        <!-- Favicons and App Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png" />
+
+        <!-- Page Title -->
+        <title>Sobre Nosotros | Divinci AI</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        
+        <!-- Load include-html.js to ensure components are loaded properly -->
+        <script src="../js/include-html.js"></script>
+        
+        <!-- Load language switcher scripts, but not the loader since we're using inline implementation -->
+        <script src="../js/language-switcher.js" defer></script>
+        <link rel="stylesheet" href="../includes/header-styles.css" />
+        <link rel="stylesheet" href="../includes/section-content-fix.css" />
+        
+        <!-- Language Switcher Styles - Directly embedded for reliability -->
+        <style>
+            /* Language Switcher Styles */
+            .language-switcher {
+                position: relative !important;
+                display: inline-block !important;
+                font-family: 'Sora', sans-serif;
+                margin-left: 15px;
+                z-index: 9999 !important;
+                overflow: visible !important;
+            }
+
+            .language-switcher-current {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                padding: 4px 12px;
+                border-radius: 4px;
+                background-color: rgba(255, 255, 255, 0.1);
+                transition: background-color 0.3s;
+            }
+
+            .language-switcher-current:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .language-icon {
+                margin-right: 6px;
+                font-size: 16px;
+            }
+
+            .current-language {
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .dropdown-icon {
+                margin-left: 6px;
+                font-size: 10px;
+                transition: transform 0.3s;
+            }
+
+            .language-switcher.active .dropdown-icon {
+                transform: rotate(180deg);
+            }
+
+            .language-switcher-dropdown {
+                position: absolute !important;
+                top: 100% !important;
+                right: 0 !important;
+                left: auto !important;
+                width: 180px;
+                background-color: #fff;
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                display: none;
+                z-index: 9999 !important;
+                transform: none !important;
+            }
+
+            .language-switcher.active .language-switcher-dropdown {
+                display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                pointer-events: auto !important;
+            }
+
+            .language-option {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 15px;
+                text-decoration: none;
+                color: #333;
+                transition: background-color 0.3s;
+            }
+
+            .language-option:hover {
+                background-color: #f5f5f5;
+            }
+
+            .language-name {
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .language-native {
+                font-size: 14px;
+                color: #666;
+            }
+
+            /* RTL support */
+            [dir="rtl"] .language-icon {
+                margin-right: 0;
+                margin-left: 6px;
+            }
+
+            [dir="rtl"] .dropdown-icon {
+                margin-left: 0;
+                margin-right: 6px;
+            }
+
+            [dir="rtl"] .language-switcher-dropdown {
+                right: auto !important;
+                left: 0 !important;
+            }
+
+            /* Dark mode support */
+            @media (prefers-color-scheme: dark) {
+                .language-switcher-dropdown {
+                    background-color: #333;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                }
+
+                .language-option {
+                    color: #eee;
+                }
+
+                .language-option:hover {
+                    background-color: #444;
+                }
+
+                .language-native {
+                    color: #aaa;
+                }
+            }
+
+            /* Mobile styles */
+            @media screen and (max-width: 768px) {
+                .language-switcher {
+                    margin-left: 0;
+                    margin-top: 10px;
+                    width: 100%;
+                }
+
+                .language-switcher-current {
+                    justify-content: center;
+                }
+
+                .language-switcher-dropdown {
+                    width: 100%;
+                    left: 0 !important;
+                    right: 0 !important;
+                    position: absolute !important;
+                }
+            }
+        </style>
+
+        <style>
+            /* About page specific styles */
+            .about-hero {
+                background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+                color: white;
+                padding: 6rem 0;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .about-hero::before {
+                content: '';
+                position: absolute;
+                top: -100px;
+                right: -100px;
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                border: 2px solid rgba(92, 226, 231, 0.15);
+                opacity: 0.4;
+                z-index: 0;
+            }
+
+            .about-hero::after {
+                content: '';
+                position: absolute;
+                bottom: -150px;
+                left: -150px;
+                width: 400px;
+                height: 400px;
+                border-radius: 50%;
+                border: 2px solid rgba(92, 226, 231, 0.15);
+                opacity: 0.3;
+                z-index: 0;
+            }
+
+            .about-hero-content {
+                position: relative;
+                z-index: 1;
+                text-align: center;
+            }
+
+            .about-title {
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: white;
+            }
+
+            .about-subtitle {
+                font-size: 1.2rem;
+                max-width: 800px;
+                margin: 0 auto;
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.6;
+            }
+
+            .mission-section, .vision-section {
+                padding: 5rem 0;
+                position: relative;
+            }
+
+            .values-section {
+                padding: 5rem 0;
+                position: relative;
+                background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+                color: white;
+            }
+
+            .team-section {
+                padding: 5rem 0;
+                position: relative;
+                background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+                color: white;
+            }
+
+            .story-section {
+                padding: 5rem 0;
+                position: relative;
+                background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+                color: white;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+                font-weight: 700;
+                margin-bottom: 2rem;
+                background: linear-gradient(to right, #16214c, #5ce2e7);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                display: inline-block;
+                text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+            }
+
+            /* Special gradient for section titles on dark backgrounds */
+            .story-section .section-title,
+            .join-team-section .section-title,
+            .team-section .section-title,
+            .values-section .section-title {
+                background: linear-gradient(to right, #ffffff, #5ce2e7);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .section-content {
+                font-size: 1.1rem;
+                line-height: 1.7;
+                color: #444;
+            }
+
+            /* Fix for mission and vision card text */
+            .mission-card .section-content,
+            .vision-card .section-content {
+                color: #444 !important; /* Dark text for better readability on white background */
+            }
+
+            /* Ensure text is visible on dark backgrounds */
+            .story-section .section-content,
+            .join-team-section .section-content,
+            .team-section .section-content,
+            .values-section .section-content,
+            .dark-section .section-content {
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+
+            /* Fix for section content in dark backgrounds */
+            .story-section .section-content,
+            .join-team-section .section-content,
+            .team-section .section-content,
+            .values-section .section-content {
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+
+            /* Make sure the section content directly below section titles is visible */
+            .story-section h2.section-title + p.section-content,
+            .team-section h2.section-title + p.section-content,
+            .values-section h2.section-title + p.section-content {
+                color: rgba(255, 255, 255, 0.9) !important;
+                font-weight: 500;
+            }
+
+            .mission-vision-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+
+            .mission-card, .vision-card {
+                flex: 1;
+                min-width: 300px;
+                background-color: white;
+                border-radius: 12px;
+                padding: 2.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .mission-card::before, .vision-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 5px;
+                height: 100%;
+                background: linear-gradient(to bottom, #16214c, #5ce2e7);
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1.5rem;
+            }
+
+            .card-icon {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background-color: rgba(92, 226, 231, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1.5rem;
+                color: #16214c;
+                font-size: 1.5rem;
+            }
+
+            .team-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .team-member {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                overflow: hidden;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                backdrop-filter: blur(5px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .team-member:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+                background-color: rgba(255, 255, 255, 0.15);
+            }
+
+            .member-image {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                border-bottom: 3px solid #5ce2e7;
+            }
+
+            .member-info {
+                padding: 1.5rem;
+            }
+
+            .member-name {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: white;
+                margin-bottom: 0.5rem;
+            }
+
+            .member-title {
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .member-bio {
+                font-size: 0.9rem;
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.6;
+            }
+
+            .member-social {
+                display: flex;
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .member-social a {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.2);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                transition: all 0.3s ease;
+            }
+
+            .member-social a:hover {
+                background-color: #5ce2e7;
+                color: #16214c;
+            }
+
+            .values-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .value-card {
+                background-color: white;
+                border-radius: 12px;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                transition: transform 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .value-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .value-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: rgba(92, 226, 231, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1.5rem;
+                color: #16214c;
+                font-size: 1.5rem;
+            }
+
+            .value-title {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1rem;
+            }
+
+            .value-description {
+                font-size: 0.95rem;
+                color: #444;
+                line-height: 1.6;
+                flex-grow: 1;
+            }
+
+            .story-timeline {
+                position: relative;
+                max-width: 1200px;
+                margin: 3rem auto 0;
+            }
+
+            .story-timeline::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                width: 2px;
+                height: 100%;
+                background: linear-gradient(to bottom, #16214c, #5ce2e7);
+                transform: translateX(-50%);
+            }
+
+            .timeline-item {
+                position: relative;
+                width: 50%;
+                padding: 0 2.5rem 4rem;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .timeline-item:nth-child(even) {
+                margin-left: 50%;
+            }
+
+            .timeline-item:nth-child(even)::before {
+                left: -2.5rem;
+            }
+
+            /* Timeline SVG illustrations */
+            .timeline-illustration {
+                width: 150px;
+                height: 150px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                transition: all 0.3s ease;
+            }
+
+            .timeline-illustration:hover {
+                transform: translateY(-50%) scale(1.1);
+                filter: drop-shadow(0 0 8px rgba(92, 226, 231, 0.5));
+            }
+
+            /* SVG animation */
+            .timeline-illustration circle,
+            .timeline-illustration path,
+            .timeline-illustration rect {
+                transition: all 0.3s ease;
+            }
+
+            .timeline-illustration:hover circle,
+            .timeline-illustration:hover rect {
+                stroke-width: 3;
+            }
+
+            .timeline-illustration:hover path {
+                stroke-width: 3.5;
+            }
+
+            /* Position illustrations on the opposite side of the timeline */
+            .timeline-item:nth-child(odd) .timeline-illustration {
+                right: -200px; /* Position to the right of the content */
+            }
+
+            .timeline-item:nth-child(even) .timeline-illustration {
+                left: -200px; /* Position to the left of the content */
+            }
+
+            .timeline-date {
+                display: inline-block;
+                padding: 0.5rem 1rem;
+                background-color: rgba(92, 226, 231, 0.1);
+                border-radius: 20px;
+                font-weight: 600;
+                color: #16214c;
+                margin-bottom: 1rem;
+                border: 1px solid rgba(92, 226, 231, 0.3);
+            }
+
+            .story-section .timeline-date {
+                color: white;
+                background-color: rgba(92, 226, 231, 0.2);
+                border: 1px solid rgba(92, 226, 231, 0.5);
+            }
+
+            .timeline-title {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1rem;
+            }
+
+            .story-section .timeline-title {
+                color: white;
+            }
+
+            .timeline-content {
+                background-color: white;
+                border-radius: 12px;
+                padding: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            }
+
+            .timeline-content p {
+                color: #444;
+            }
+
+            .join-team-section {
+                background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+                color: white;
+                padding: 4rem 0;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .join-team-section::before, .join-team-section::after {
+                content: '';
+                position: absolute;
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                opacity: 0.2;
+            }
+
+            .join-team-section::before {
+                top: -150px;
+                right: -150px;
+            }
+
+            .join-team-section::after {
+                bottom: -150px;
+                left: -150px;
+            }
+
+            .join-title {
+                font-size: 2.2rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: white;
+            }
+
+            .join-description {
+                font-size: 1.1rem;
+                max-width: 800px;
+                margin: 0 auto 2rem;
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            .join-button {
+                display: inline-block;
+                padding: 1rem 2rem;
+                background-color: white;
+                color: #16214c;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                border: none;
+            }
+
+            .join-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                color: #16214c;
+            }
+
+            .sacred-pattern {
+                position: absolute;
+                width: 200px;
+                height: 200px;
+                opacity: 0.07;
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='30' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='20' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%235CE2E7' stroke-width='0.3' /%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%235CE2E7' stroke-width='0.3' /%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                z-index: 0;
+            }
+
+            .sacred-pattern-1 {
+                top: 50px;
+                right: 50px;
+            }
+
+            .sacred-pattern-2 {
+                bottom: 50px;
+                left: 50px;
+            }
+
+            /* Social Good Section Styles */
+            .social-good-section {
+                padding: 5rem 0;
+                background-color: #f8f9fa;
+                position: relative;
+            }
+
+            .social-good-container {
+                margin-top: 3rem;
+            }
+
+            .social-good-card {
+                display: flex;
+                flex-wrap: wrap;
+                background-color: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                overflow: hidden;
+                margin-bottom: 2rem;
+            }
+
+            .social-good-image {
+                flex: 1;
+                min-width: 300px;
+            }
+
+            .social-good-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .social-good-image img:hover {
+                transform: scale(1.02);
+            }
+
+            .social-good-content {
+                flex: 2;
+                padding: 2rem;
+                min-width: 300px;
+            }
+
+            .social-good-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #16214c;
+                margin-bottom: 1rem;
+            }
+
+            .social-good-description {
+                font-size: 1rem;
+                line-height: 1.6;
+                color: #444;
+                margin-bottom: 1.5rem;
+            }
+
+            .social-good-link {
+                display: inline-flex;
+                align-items: center;
+                color: #16214c;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .social-good-link i {
+                margin-left: 0.5rem;
+                transition: transform 0.3s ease;
+            }
+
+            .social-good-link:hover {
+                color: #5ce2e7;
+            }
+
+            .social-good-link:hover i {
+                transform: translateX(5px);
+            }
+
+            /* Responsive adjustments */
+            @media screen and (max-width: 768px) {
+                .about-title {
+                    font-size: 2.2rem;
+                }
+
+                .section-title {
+                    font-size: 1.8rem;
+                }
+
+                .timeline-item {
+                    width: 100%;
+                    margin-left: 0 !important;
+                    padding: 0 0 4rem 2.5rem;
+                }
+
+                .story-timeline::before {
+                    left: 0;
+                }
+
+                .timeline-item::before {
+                    left: 0;
+                    transform: none;
+                }
+
+                .timeline-item:nth-child(even)::before {
+                    left: 0;
+                }
+
+                .social-good-card {
+                    flex-direction: column;
+                }
+
+                .social-good-image, .social-good-content {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Skip to content link for keyboard users -->
+        <div class="skip-links">
+            <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+        </div>
+
+        <!-- Header with Navigation -->
+        <nav class="navbar">
+            <a href="index.html" class="logo-link">
+                <div class="nav-logo">
+                    <img
+                        class="header-logo"
+                        src="../images/divinci_logo_inverted.svg"
+                        alt="Logo de Divinci Heart Robot"
+                        onerror="this.onerror=null; this.src='../images/divinci_logo_inverted.svg';"
+                    />
+                </div>
+                <div class="nav-title">
+                    <span class="brand-name">Divinci ™</span><span class="mobile-hide">&nbsp;- Crea tu propia IA personalizada</span>
+                </div>
+            </a>
+            <!-- Toggle switch for customer/company view -->
+            <div class="view-toggle-container mobile-hide">
+                <span class="view-label customer-view active">Cliente</span>
+                <label class="switch">
+                    <input type="checkbox" id="viewToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="view-label company-view">Empresa</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html#features">Características</a>
+                <a href="index.html#team">Equipo</a>
+                <a href="index.html#signup" class="signup-link"><span class="signup-button">Regístrate</span></a>
+                <div id="language-switcher-container" style="display: inline-block; margin-left: 15px; position: relative; z-index: 9999; overflow: visible;">
+                    <!-- Direct embedding of language switcher instead of using data-include -->
+                    <div class="language-switcher">
+                        <div class="language-switcher-current">
+                            <span class="language-icon">🌐</span>
+                            <span class="current-language">Español</span>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="language-switcher-dropdown">
+                            <a href="/" class="language-option" data-lang="en">
+                                <span class="language-name">Inglés</span>
+                                <span class="language-native">English</span>
+                            </a>
+                            <a href="/es/" class="language-option" data-lang="es">
+                                <span class="language-name">Español</span>
+                                <span class="language-native">Español</span>
+                            </a>
+                            <a href="/fr/" class="language-option" data-lang="fr">
+                                <span class="language-name">Francés</span>
+                                <span class="language-native">Français</span>
+                            </a>
+                            <a href="/ar/" class="language-option" data-lang="ar">
+                                <span class="language-name">Árabe</span>
+                                <span class="language-native">العربية</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <!-- Hero Section -->
+            <section class="about-hero">
+                <div class="container">
+                    <div class="about-hero-content">
+                        <h1 class="about-title">Sobre Divinci AI</h1>
+                        <p class="about-subtitle">Estamos construyendo el futuro de la colaboración humano-IA, capacitando a las organizaciones para crear soluciones de IA personalizadas que transforman cómo aprendemos, trabajamos e innovamos.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission & Vision Section -->
+            <section class="mission-section">
+                <div class="container">
+                    <div class="mission-vision-container">
+                        <div class="mission-card">
+                            <div class="card-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h2 class="card-title">Nuestra Misión</h2>
+                            <p class="section-content consumer-view-content">
+                                En Divinci AI, nuestra misión es hacer que la inteligencia artificial sea accesible para todos mediante la creación de herramientas fáciles de usar que ayuden a las personas a construir sus propias soluciones de IA personalizadas. Estamos dedicados a empoderar a las personas para que utilicen la IA para el aprendizaje, la creatividad y la resolución de problemas cotidianos.
+                            </p>
+                            <p class="section-content company-view-content">
+                                En Divinci AI, nuestra misión es democratizar la inteligencia artificial haciéndola accesible, personalizable y valiosa para empresas de todos los tamaños. Estamos dedicados a acelerar el descubrimiento humano a través de soluciones innovadoras de IA que mejoran el aprendizaje, la creatividad y la toma de decisiones en entornos empresariales.
+                            </p>
+                        </div>
+
+                        <div class="vision-card">
+                            <div class="card-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h2 class="card-title">Nuestra Visión</h2>
+                            <p class="section-content consumer-view-content">
+                                Visualizamos un futuro donde la IA sea un asistente personal para todos, ayudándote a lograr tus objetivos sin requerir experiencia técnica. Nuestra plataforma facilita la creación de IA que comprende tus necesidades únicas y te ayuda a hacer las cosas a tu manera.
+                            </p>
+                            <p class="section-content company-view-content">
+                                Visualizamos un futuro donde la IA amplifica el potencial humano en lugar de reemplazarlo. Nuestra plataforma permite a las organizaciones crear aplicaciones de IA específicas que resuelven desafíos concretos, impulsando la innovación y la eficiencia mientras mantienen el toque humano que hace que las empresas sean únicas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Values Section -->
+            <section class="values-section">
+                <div class="sacred-pattern sacred-pattern-1"></div>
+                <div class="container">
+                    <h2 class="section-title">Nuestros Valores Fundamentales</h2>
+                    <p class="section-content">
+                        Estos principios guían todo lo que hacemos en <span class="divinci-brand">Divinci</span> AI, desde el desarrollo de productos hasta las relaciones con los clientes.
+                    </p>
+
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h3 class="value-title">IA Centrada en el Humano</h3>
+                            <p class="value-description">
+                                Diseñamos sistemas de IA que potencian las capacidades humanas en lugar de reemplazarlas, enfocándonos en la colaboración entre las personas y la tecnología.
+                            </p>
+                        </div>
+
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 class="value-title">Innovación con Propósito</h3>
+                            <p class="value-description">
+                                Perseguimos el avance tecnológico no por sí mismo, sino para resolver problemas reales y crear un impacto significativo para nuestros clientes.
+                            </p>
+                        </div>
+
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="value-title">IA Responsable</h3>
+                            <p class="value-description">
+                                Estamos comprometidos con el desarrollo responsable de la IA, con fuertes directrices éticas, transparencia y salvaguardas contra daños potenciales.
+                            </p>
+                        </div>
+
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="value-title">Diseño Inclusivo</h3>
+                            <p class="value-description">
+                                Construimos para todos, asegurando que nuestra tecnología sea accesible, comprensible y beneficiosa para diversos grupos de usuarios y casos de uso.
+                            </p>
+                        </div>
+
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <h3 class="value-title">Seguridad Primero</h3>
+                            <p class="value-description">
+                                La protección de datos y la privacidad son fundamentales para nuestra plataforma, con seguridad de nivel empresarial integrada en cada capa de nuestra tecnología.
+                            </p>
+                        </div>
+
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3 class="value-title">Asociación con el Cliente</h3>
+                            <p class="value-description">
+                                Vemos nuestras relaciones con los clientes como asociaciones a largo plazo, colaborando estrechamente para asegurar su éxito con nuestra plataforma.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Section -->
+            <section class="team-section">
+                <div class="container">
+                    <h2 class="section-title">Conoce a Nuestro Equipo</h2>
+                    <p class="section-content">
+                        Divinci AI está construido por un equipo diverso de investigadores de IA, ingenieros de software, diseñadores de productos y expertos de la industria comprometidos con hacer la IA accesible y valiosa para las empresas.
+                    </p>
+
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <img src="../images/Michael-Mooring.jpeg" alt="Michael Mooring" class="member-image" style="object-position: 0 -44px;">
+                            <div class="member-info">
+                                <h3 class="member-name">Michael Mooring</h3>
+                                <p class="member-title">CoFundador y CEO</p>
+                                <p class="member-bio">
+                                    Michael aporta más de 15 años de experiencia en desarrollo de software e investigación de IA. Fundó Divinci AI con la misión de democratizar la IA para empresas de todos los tamaños.
+                                </p>
+                                <div class="member-social">
+                                    <a href="https://www.linkedin.com/in/michaelduanemooring/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="https://twitter.com/mikeumus" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-member">
+                            <img src="../images/sam-tobia.jpg" alt="Samuel Tobia" class="member-image">
+                            <div class="member-info">
+                                <h3 class="member-name">Samuel Tobia</h3>
+                                <p class="member-title">CoFundador y CTO</p>
+                                <p class="member-bio">
+                                    Sam lidera la estrategia técnica y el desarrollo de Divinci AI, con más de 15 años de experiencia en software y especialización en aprendizaje automático, procesamiento de lenguaje natural y sistemas escalables.
+                                </p>
+                                <div class="member-social">
+                                    <a href="https://www.linkedin.com/in/sam-tobia-1aa2762b/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-member">
+                            <img src="../images/sierra-hooshiari.jpeg" alt="Sierra Hooshiari" class="member-image">
+                            <div class="member-info">
+                                <h3 class="member-name">Sierra Hooshiari</h3>
+                                <p class="member-title">VP de Éxito del Cliente</p>
+                                <p class="member-bio">
+                                    Sierra lidera nuestro equipo de éxito del cliente, asegurando que las organizaciones alcancen sus objetivos con Divinci AI y reciban un soporte excepcional durante todo su recorrido.
+                                </p>
+                                <div class="member-social">
+                                    <a href="https://www.linkedin.com/in/sierrahooshiari/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Story Section -->
+            <section class="story-section">
+                <div class="sacred-pattern sacred-pattern-2"></div>
+                <div class="container">
+                    <h2 class="section-title">Nuestra Historia</h2>
+                    <p class="section-content">
+                        El viaje de Divinci AI del concepto a la realidad, impulsado por nuestra pasión por hacer la IA accesible y valiosa.
+                    </p>
+
+                    <div class="story-timeline">
+                        <div class="timeline-item">
+                            <span class="timeline-date">2023</span>
+                            <h3 class="timeline-title">El Comienzo</h3>
+                            <svg class="timeline-illustration" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="45" fill="#16214c" stroke="#5ce2e7" stroke-width="2"/>
+                                <path d="M50 20 L50 80" stroke="#5ce2e7" stroke-width="2"/>
+                                <path d="M20 50 L80 50" stroke="#5ce2e7" stroke-width="2"/>
+                                <circle cx="50" cy="50" r="20" fill="#5ce2e7" opacity="0.3"/>
+                                <text x="50" y="55" font-family="Arial" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">INICIO</text>
+                            </svg>
+                            <div class="timeline-content">
+                                <p>Divinci AI se fundó con una visión clara: democratizar la tecnología de IA para empresas de todos los tamaños. Después de experimentar el potencial transformador de los grandes modelos de lenguaje, nuestros fundadores reconocieron que muchas organizaciones carecían de la experiencia para implementar soluciones de IA personalizadas de manera efectiva.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-date">Q3 2023</span>
+                            <h3 class="timeline-title">Primer Prototipo</h3>
+                            <svg class="timeline-illustration" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="10" y="20" width="80" height="60" rx="5" fill="#16214c" stroke="#5ce2e7" stroke-width="2"/>
+                                <rect x="20" y="30" width="60" height="30" rx="2" fill="#5ce2e7" opacity="0.2"/>
+                                <circle cx="30" cy="70" r="6" fill="#5ce2e7"/>
+                                <circle cx="50" cy="70" r="6" fill="#5ce2e7"/>
+                                <circle cx="70" cy="70" r="6" fill="#5ce2e7"/>
+                                <path d="M25 40 L35 50 L25 60" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+                                <path d="M45 40 L55 50 L45 60" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+                                <path d="M65 40 L75 50 L65 60" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+                            </svg>
+                            <div class="timeline-content">
+                                <p>Comenzó el desarrollo de nuestra tecnología central, enfocándonos en construir una plataforma que hiciera la creación e implementación de soluciones de IA personalizadas intuitivas y accesibles sin requerir experiencia técnica profunda en aprendizaje automático.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-date">Q1 2024</span>
+                            <h3 class="timeline-title">Lanzamiento Beta</h3>
+                            <svg class="timeline-illustration" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="42" fill="#16214c" stroke="#5ce2e7" stroke-width="2"/>
+                                <path d="M30 50 L70 50" stroke="#5ce2e7" stroke-width="3"/>
+                                <path d="M50 30 L50 70" stroke="#5ce2e7" stroke-width="3"/>
+                                <text x="50" y="55" font-family="Arial" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">β</text>
+                                <path d="M20 20 L30 10" stroke="#5ce2e7" stroke-width="1.5"/>
+                                <path d="M80 20 L70 10" stroke="#5ce2e7" stroke-width="1.5"/>
+                                <path d="M20 80 L30 90" stroke="#5ce2e7" stroke-width="1.5"/>
+                                <path d="M80 80 L70 90" stroke="#5ce2e7" stroke-width="1.5"/>
+                            </svg>
+                            <div class="timeline-content">
+                                <p>Lanzamos nuestro programa beta cerrado con un grupo selecto de empresas asociadas en varias industrias. Sus valiosos comentarios nos ayudaron a refinar nuestra plataforma y comprender las diversas necesidades de diferentes sectores empresariales.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-date">Q3 2024</span>
+                            <h3 class="timeline-title">Lanzamiento Oficial</h3>
+                            <svg class="timeline-illustration" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="10" y="40" width="80" height="50" rx="5" fill="#16214c" stroke="#5ce2e7" stroke-width="2"/>
+                                <path d="M50 40 L50 10" stroke="#5ce2e7" stroke-width="2.5"/>
+                                <path d="M30 10 L70 10" stroke="#5ce2e7" stroke-width="2.5"/>
+                                <path d="M35 10 L50 25 L65 10" fill="#5ce2e7"/>
+                                <rect x="20" y="50" width="60" height="30" rx="2" fill="#5ce2e7" opacity="0.2"/>
+                                <text x="50" y="70" font-family="Arial" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">LANZAMIENTO</text>
+                            </svg>
+                            <div class="timeline-content">
+                                <p>Después de extensas pruebas y refinamiento, Divinci AI se lanzó oficialmente al público. La interfaz intuitiva y las potentes capacidades de nuestra plataforma rápidamente ganaron tracción entre empresas que buscaban implementar soluciones de IA personalizadas.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-date">Hoy</span>
+                            <h3 class="timeline-title">Creciendo y Evolucionando</h3>
+                            <svg class="timeline-illustration" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="42" fill="#16214c" stroke="#5ce2e7" stroke-width="2"/>
+                                <path d="M30 70 Q50 20 70 70" stroke="#5ce2e7" stroke-width="3.5" fill="none"/>
+                                <circle cx="30" cy="70" r="6" fill="#5ce2e7"/>
+                                <circle cx="70" cy="70" r="6" fill="#5ce2e7"/>
+                                <circle cx="50" cy="30" r="6" fill="#5ce2e7"/>
+                                <path d="M20 50 Q50 60 80 50" stroke="#5ce2e7" stroke-width="1.5" fill="none"/>
+                                <path d="M20 40 Q50 50 80 40" stroke="#5ce2e7" stroke-width="1.5" fill="none"/>
+                                <path d="M20 60 Q50 70 80 60" stroke="#5ce2e7" stroke-width="1.5" fill="none"/>
+                            </svg>
+                            <div class="timeline-content">
+                                <p>Divinci AI continúa creciendo y evolucionando, con nuevas características y capacidades que se añaden regularmente. Estamos trabajando con organizaciones de todos los tamaños para transformar sus operaciones a través de IA personalizada, mientras construimos una comunidad de empresas con visión de futuro que impulsan la innovación en sus industrias.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Good Section -->
+            <section class="social-good-section">
+                <div class="container">
+                    <h2 class="section-title" style="background: linear-gradient(to right, #16214c, #5ce2e7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: none;">Iniciativas de IA para el Bien</h2>
+                    <p class="section-content" style="color: #333;">
+                        En Divinci AI, creemos en el poder de la inteligencia artificial para abordar desafíos sociales críticos y crear un impacto positivo en nuestras comunidades.
+                    </p>
+
+                    <div class="social-good-container">
+                        <div class="social-good-card">
+                            <div class="social-good-image">
+                                <a href="https://lu.ma/cmuj911s" target="_blank">
+                                    <img src="../images/ai-for-impact-1.avif" alt="IA para el Impacto: Dentro del Programa Piloto de Prevención de la Falta de Vivienda de LA">
+                                </a>
+                            </div>
+                            <div class="social-good-content">
+                                <h3 class="social-good-title" style="color: #16214c;">IA para el Impacto: Dentro del Programa Piloto de Prevención de la Falta de Vivienda de LA</h3>
+                                <p class="social-good-description" style="color: #333;">
+                                    Divinci AI se enorgullece de apoyar iniciativas que utilizan la inteligencia artificial para el bien social.
+                                    Únete a nosotros para este próximo evento de AI LA que explora cómo se está utilizando la IA para abordar
+                                    la falta de vivienda en Los Ángeles a través de programas innovadores de prevención.
+                                </p>
+                                <a href="https://lu.ma/cmuj911s" class="social-good-link" target="_blank">Más Información <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Join Our Team Section -->
+            <section class="join-team-section">
+                <div class="container">
+                    <h2 class="join-title">Únete a Nuestro Equipo</h2>
+                    <p class="join-description">
+                        Siempre estamos buscando personas talentosas apasionadas por la IA y su potencial para transformar empresas. Únete a nosotros en la construcción del futuro de la colaboración humano-IA.
+                    </p>
+                    <a href="careers.html" class="join-button">Ver Posiciones Abiertas</a>
+                </div>
+            </section>
+
+            <!-- Social Sharing Section -->
+            <section class="social-sharing-section">
+                <div class="container">
+                    <div data-include="../includes/social-share.html"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Load social sharing script -->
+        <script src="../js/social-sharing.js" defer></script>
+        <link rel="stylesheet" href="../css/social-sharing.css" />
+
+        <!-- Footer with Sacred Geometry and Bulma Integration -->
+        <footer class="site-footer">
+            <!-- Sacred Geometry Background Elements -->
+            <div class="footer-sacred-pattern"></div>
+            <div class="sacred-circle sacred-circle-1"></div>
+            <div class="sacred-circle sacred-circle-2"></div>
+            <div class="sacred-circle sacred-circle-3"></div>
+
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Top Section with Bulma Columns -->
+                    <div class="columns is-footer-links">
+                        <!-- Logo and Company Info -->
+                        <div class="column is-one-quarter">
+                            <div class="footer-brand">
+                                <div class="footer-logo">
+                                    <div style="
+                                        width: 28px;
+                                        height: 28px;
+                                        margin-right: 12px;
+                                        filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
+                                        border-radius: 50%;
+                                        background: rgba(92, 226, 231, 0.1);
+                                        padding: 5px;
+                                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+                                        box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
+                                        border: 1px solid rgba(92, 226, 231, 0.2);
+                                        justify-content: center;
+                                        align-items: center;
+                                        display: flex;
+                                    ">🖤</div>
+                                    <span class="footer-brand-name">Divinci AI</span>
+                                </div>
+                                <p class="footer-tagline">Potenciando la colaboración humano-IA</p>
+                                <div class="social-links">
+                                    <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                    <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Links -->
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Producto</h3>
+                                <ul>
+                                    <li><a href="index.html#features">Características</a></li>
+                                    <li><a href="pricing.html">Precios</a></li>
+                                    <li><a href="roadmap.html">Hoja de Ruta</a></li>
+                                    <li><a href="changelog.html">Registro de Cambios</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Recursos</h3>
+                                <ul>
+                                    <li><a href="docs/">Documentación</a></li>
+                                    <li><a href="blog/">Blog</a></li>
+                                    <li><a href="tutorials/">Tutoriales</a></li>
+                                    <li><a href="api/">API</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Compañía</h3>
+                                <ul>
+                                    <li><a href="about-us.html">Sobre Nosotros</a></li>
+                                    <li><a href="careers.html">Carreras</a></li>
+                                    <li><a href="contact.html">Contacto</a></li>
+                                    <li><a href="press.html">Prensa</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="terms-of-service.html">Términos de Servicio</a></li>
+                                    <li><a href="privacy-policy.html">Política de Privacidad</a></li>
+                                    <li><a href="ai-safety-ethics.html">Seguridad y Ética de IA</a></li>
+                                    <li><a href="security.html">Seguridad</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom with Bulma Level -->
+                <div class="footer-bottom">
+                    <div class="level is-footer-bottom">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <p class="copyright">&copy; 2023-2025 Divinci AI. Todos los derechos reservados.</p>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="footer-bottom-links">
+                                    <a href="sitemap.xml">Mapa del Sitio</a>
+                                    <a href="accessibility.html">Accesibilidad</a>
+                                    <a href="cookies.html">Política de Cookies</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="../js/keyboard-navigation.js" defer></script>
+        <script src="../js/apply-sora-to-divinci.js" defer></script>
+    </body>
+</html>

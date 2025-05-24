@@ -1,0 +1,86 @@
+{
+  "hero": {
+    "title": "Blog de Divinci AI",
+    "subtitle": "Perspectivas, actualizaciones y opiniones sobre tecnología de IA y sus aplicaciones"
+  },
+  "categories": {
+    "allPosts": "Todas las Entradas",
+    "technology": "Tecnología",
+    "industry": "Perspectivas de la Industria",
+    "tutorials": "Tutoriales",
+    "casestudies": "Casos de Estudio",
+    "company": "Noticias de la Empresa"
+  },
+  "featured": {
+    "title": "Entradas Destacadas",
+    "viewAll": "Ver Todas las Entradas"
+  },
+  "recent": {
+    "title": "Artículos Recientes",
+    "viewAll": "Ver Todo"
+  },
+  "popular": {
+    "title": "Entradas Populares",
+    "viewAll": "Ver Todo"
+  },
+  "postMeta": {
+    "readTime": "{{minutes}} min de lectura",
+    "publishedOn": "Publicado el {{date}}",
+    "updatedOn": "Actualizado el {{date}}",
+    "writtenBy": "Escrito por {{author}}",
+    "share": "Compartir esta entrada",
+    "tags": "Etiquetas:",
+    "relatedPosts": "Entradas Relacionadas"
+  },
+  "pagination": {
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "page": "Página {{number}}",
+    "of": "de {{total}}"
+  },
+  "search": {
+    "placeholder": "Buscar entradas del blog...",
+    "button": "Buscar",
+    "results": "{{count}} resultados encontrados",
+    "noResults": "No se encontraron resultados. Prueba con palabras clave diferentes."
+  },
+  "subscribe": {
+    "title": "Suscríbete a Nuestro Boletín",
+    "subtitle": "Mantente actualizado con las últimas perspectivas y noticias de Divinci AI",
+    "emailPlaceholder": "Tu dirección de correo electrónico",
+    "button": "Suscribirse",
+    "privacy": "Respetamos tu privacidad. Puedes darte de baja en cualquier momento.",
+    "success": "¡Gracias por suscribirte!",
+    "error": "Hubo un error. Por favor, inténtalo de nuevo."
+  },
+  "sidebar": {
+    "categories": "Categorías",
+    "recentPosts": "Entradas Recientes",
+    "archive": "Archivo",
+    "tags": "Etiquetas"
+  },
+  "author": {
+    "aboutAuthor": "Sobre el Autor",
+    "viewProfile": "Ver Perfil",
+    "otherPosts": "Otras Entradas de {{author}}"
+  },
+  "comments": {
+    "title": "Comentarios",
+    "count": "{{count}} Comentarios",
+    "noComments": "Aún no hay comentarios. ¡Sé el primero en comentar!",
+    "writeComment": "Escribe un Comentario",
+    "namePlaceholder": "Tu Nombre",
+    "emailPlaceholder": "Tu Email",
+    "commentPlaceholder": "Tu Comentario",
+    "submitButton": "Enviar Comentario",
+    "replyButton": "Responder",
+    "cancelButton": "Cancelar",
+    "success": "¡Comentario enviado con éxito!",
+    "error": "Hubo un error al enviar tu comentario. Por favor, inténtalo de nuevo."
+  },
+  "cta": {
+    "title": "¿Listo para experimentar Divinci AI?",
+    "button": "Comienza Hoy",
+    "subtitle": "Únete a miles de usuarios que ya están mejorando su productividad con Divinci AI."
+  }
+}

@@ -1,0 +1,59 @@
+<nav class="navbar">
+    <a href="../..//" class="logo-link">
+        <div class="nav-logo">
+            <img
+                src="../..//images/divinci_logo_inverted.svg"
+                alt="Divinci Heart Robot logo"
+                onerror="this.onerror=null; this.src='/images/divinci_logo_inverted.svg';"
+            />
+        </div>
+        <div class="nav-title">
+            <span class="brand-name">Divinci ™</span><span class="mobile-hide">&nbsp;- Create your own custom AI</span>
+        </div>
+    </a>
+    <!-- Toggle switch for customer/company view -->
+    <div class="view-toggle-container mobile-hide">
+        <span class="view-label customer-view active">Client</span>
+        <label class="switch">
+            <input type="checkbox" id="viewToggle">
+            <span class="slider round"></span>
+        </label>
+        <span class="view-label company-view">Company</span>
+    </div>
+    <div class="nav-menu">
+        <a href="../..//#features">Features</a>
+        <a href="../..//#team">Team</a>
+        <a href="../..//#signup">Sign Up</a>
+        <div id="language-switcher-container" style="display: inline-block; margin-left: 15px; position: relative; z-index: 9999; overflow: visible;">
+            <!-- Direct embedding of language switcher instead of using data-include -->
+            <div class="language-switcher">
+                <div class="language-switcher-current">
+                    <span class="language-icon">🌐</span>
+                    <span class="current-language">Français</span>
+                    <span class="dropdown-icon">▼</span>
+                </div>
+                <div class="language-switcher-dropdown">
+                    <a href="/" class="language-option" data-lang="en">
+                        <span class="language-name">English</span>
+                        <span class="language-native">English</span>
+                    </a>
+                    <a href="/es/" class="language-option" data-lang="es">
+                        <span class="language-name">Spanish</span>
+                        <span class="language-native">Español</span>
+                    </a>
+                    <a href="/fr/" class="language-option" data-lang="fr">
+                        <span class="language-name">French</span>
+                        <span class="language-native">Français</span>
+                    </a>
+                    <a href="/ar/" class="language-option" data-lang="ar">
+                        <span class="language-name">Arabic</span>
+                        <span class="language-native">العربية</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu Script -->
+<script src="../..//js/mobile-menu.js" defer></script>

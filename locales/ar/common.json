@@ -1,0 +1,52 @@
+{
+  "brand": {
+    "name": "Divinci AI"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "features": "المميزات",
+    "pricing": "الأسعار",
+    "about": "من نحن",
+    "contact": "اتصل بنا"
+  },
+  "buttons": {
+    "getStarted": "ابدأ الآن",
+    "learnMore": "اعرف المزيد",
+    "signUp": "تسجيل",
+    "logIn": "تسجيل الدخول",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف"
+  },
+  "footer": {
+    "copyright": "© {{year}} Divinci AI. جميع الحقوق محفوظة.",
+    "terms": "شروط الخدمة",
+    "privacy": "سياسة الخصوصية",
+    "cookies": "سياسة ملفات تعريف الارتباط",
+    "support": "الدعم",
+    "blog": "المدونة"
+  },
+  "errors": {
+    "required": "هذا الحقل مطلوب",
+    "invalidEmail": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "passwordLength": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+    "passwordMatch": "كلمات المرور غير متطابقة",
+    "serverError": "حدث خطأ. يرجى المحاولة مرة أخرى لاحقًا.",
+    "notFound": "لم يتم العثور على المورد المطلوب."
+  },
+  "notifications": {
+    "success": "تم بنجاح!",
+    "error": "خطأ!",
+    "info": "معلومات",
+    "warning": "تحذير"
+  },
+  "accessibility": {
+    "skipToContent": "تخطي إلى المحتوى",
+    "menuToggle": "تبديل القائمة",
+    "darkMode": "تبديل الوضع الداكن",
+    "closeModal": "إغلاق النافذة",
+    "expandCollapse": "توسيع/طي القسم"
+  },
+  "languageName": "العربية"
+}

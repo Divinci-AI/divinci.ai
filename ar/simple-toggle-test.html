@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/simple-toggle-test.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/simple-toggle-test.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/simple-toggle-test.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/simple-toggle-test.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/simple-toggle-test.html" hreflang="ar" />
+
+    <!-- Hreflang tags for language alternatives -->
+    <link rel="alternate" href="https://divinci.ai/simple-toggle-test.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/simple-toggle-test.html" hreflang="en" />
+    <link rel="alternate" href="https://divinci.ai/es/simple-toggle-test.html" hreflang="es" />
+    <link rel="alternate" href="https://divinci.ai/fr/simple-toggle-test.html" hreflang="fr" />
+    <link rel="alternate" href="https://divinci.ai/ar/simple-toggle-test.html" hreflang="ar" />
+    <title>Simple Toggle Test - العربية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .test-container {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .view-toggle-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .view-label {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .active {
+            font-weight: bold;
+            color: blue;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .slider.round {
+            border-radius: 34px;
+        }
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        .consumer-view-content, .company-view-content {
+            transition: opacity 0.2s ease-in-out;
+        }
+        .company-view-content {
+            display: none;
+            opacity: 0;
+        }
+    </style>
+    <!-- Set default language -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.i18n && window.i18n.changeLanguage) {
+                window.i18n.changeLanguage('ar');
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Simple Toggle Test</h1>
+    
+    <div class="view-toggle-container">
+        <span class="view-label customer-view active" id="customer-view-label">Consumer</span>
+        <label class="switch">
+            <input type="checkbox" id="viewToggle">
+            <span class="slider round"></span>
+        </label>
+        <span class="view-label company-view" id="company-view-label">Company</span>
+    </div>
+    
+    <div class="test-container">
+        <h2>Test Content</h2>
+        <div class="consumer-view-content">
+            <h3>Consumer View Content</h3>
+            <p>This content should be visible when in Consumer view.</p>
+        </div>
+        <div class="company-view-content">
+            <h3>Company View Content</h3>
+            <p>This content should be visible when in Company view.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Get the view toggle element
+        const viewToggle = document.getElementById('viewToggle');
+        const customerLabel = document.getElementById('customer-view-label');
+        const companyLabel = document.getElementById('company-view-label');
+        
+        // Get all content elements that should be toggled
+        const consumerElements = document.querySelectorAll('.consumer-view-content');
+        const companyElements = document.querySelectorAll('.company-view-content');
+        
+        console.log('Consumer elements:', consumerElements.length);
+        console.log('Company elements:', companyElements.length);
+        
+        // Function to update content visibility
+        function updateContentVisibility(isCompanyView) {
+            console.log('Updating content visibility, isCompanyView =', isCompanyView);
+            
+            // Update labels
+            customerLabel.classList.toggle('active', !isCompanyView);
+            companyLabel.classList.toggle('active', isCompanyView);
+            
+            // Update content visibility
+            consumerElements.forEach(element => {
+                if (isCompanyView) {
+                    element.style.opacity = '0';
+                    setTimeout(() => {
+                        element.style.display = 'none';
+                    }, 200);
+                } else {
+                    element.style.display = '';
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                    }, 10);
+                }
+            });
+            
+            companyElements.forEach(element => {
+                if (isCompanyView) {
+                    element.style.display = '';
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                    }, 10);
+                } else {
+                    element.style.opacity = '0';
+                    setTimeout(() => {
+                        element.style.display = 'none';
+                    }, 200);
+                }
+            });
+        }
+        
+        // Add event listener for the toggle
+        viewToggle.addEventListener('change', function() {
+            const isCompanyView = this.checked;
+            console.log('Toggle changed, isCompanyView =', isCompanyView);
+            updateContentVisibility(isCompanyView);
+        });
+        
+        // Add event listeners for the labels
+        customerLabel.addEventListener('click', function() {
+            viewToggle.checked = false;
+            viewToggle.dispatchEvent(new Event('change'));
+        });
+        
+        companyLabel.addEventListener('click', function() {
+            viewToggle.checked = true;
+            viewToggle.dispatchEvent(new Event('change'));
+        });
+        
+        // Initialize content visibility based on initial toggle state
+        updateContentVisibility(viewToggle.checked);
+    </script>
+</body>
+</html>

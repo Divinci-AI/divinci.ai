@@ -1,0 +1,332 @@
+/* 
+ * Mobile Accessibility Fixes
+ * Comprehensive fixes for white-on-white text and contrast issues
+ * Addresses all issues found in visual testing analysis
+ */
+
+/* ==========================================================================
+   CRITICAL CONTRAST FIXES
+   ========================================================================== */
+
+/* Navigation and Header Fixes */
+.logo-link,
+.nav-title,
+.brand-name {
+    color: #1a1a1a !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.mobile-hide.consumer-view-content,
+.mobile-hide.company-view-content {
+    color: #2c3e50 !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+}
+
+.view-toggle-container {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    padding: 8px 12px !important;
+    border-radius: 8px !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.view-label {
+    color: #2c3e50 !important;
+}
+
+.view-label.active {
+    color: #1a1a1a !important;
+    font-weight: 700 !important;
+}
+
+/* Navigation Menu Fixes */
+.nav-menu {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    padding: 8px 12px !important;
+    border-radius: 8px !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.nav-menu a {
+    color: #1a1a1a !important;
+    background-color: transparent !important;
+    padding: 6px 12px !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+}
+
+.nav-menu a:hover {
+    color: #2863c2 !important;
+    background-color: #e8f4fd !important;
+}
+
+.signup-link {
+    background-color: #c25800 !important;
+    border-radius: 6px !important;
+    padding: 8px 16px !important;
+}
+
+.signup-button {
+    color: #ffffff !important;
+    background-color: #c25800 !important;
+    border: 1px solid #a04600 !important;
+    font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   LANGUAGE SWITCHER CRITICAL FIXES
+   ========================================================================== */
+
+.language-switcher {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-radius: 8px !important;
+    padding: 4px !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.language-switcher-current {
+    color: #1a1a1a !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+}
+
+.current-language {
+    color: #1a1a1a !important;
+    font-weight: 500 !important;
+}
+
+.dropdown-icon {
+    color: #1a1a1a !important;
+}
+
+/* Language Dropdown - CRITICAL FIX */
+.language-switcher-dropdown {
+    background-color: #ffffff !important;
+    border: 2px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    padding: 4px !important;
+}
+
+.language-option {
+    color: #1a1a1a !important;
+    background-color: transparent !important;
+    padding: 12px 16px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    text-decoration: none !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    transition: all 0.2s ease !important;
+}
+
+.language-option:last-child {
+    border-bottom: none !important;
+}
+
+.language-option:hover {
+    color: #2863c2 !important;
+    background-color: #e8f4fd !important;
+}
+
+.language-name {
+    color: inherit !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+.language-native {
+    color: #555 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+}
+
+.language-option:hover .language-native {
+    color: #2863c2 !important;
+}
+
+/* ==========================================================================
+   HERO SECTION FIXES
+   ========================================================================== */
+
+.hero h1.gradient-text,
+.hero h1.gradient-text-company {
+    color: #1a1a1a !important;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 50%, #34495e 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.hero h1 i {
+    color: #2c3e50 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
+}
+
+/* ==========================================================================
+   SOCIAL GOOD SECTION FIXES
+   ========================================================================== */
+
+.social-good-button {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%) !important;
+    border: 1px solid #16214c !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+}
+
+.social-good-button:hover {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #254284 0%, #16214c 100%) !important;
+}
+
+/* ==========================================================================
+   FOOTER FIXES
+   ========================================================================== */
+
+footer,
+.site-footer,
+.footer-content,
+.footer-brand,
+.footer-logo {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+.footer-brand-name {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+.footer-tagline {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.footer-links-column h11,
+.footer-links-column h3,
+.footer-links-column h4 {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+.footer-links-column ul,
+.footer-links-column li,
+.footer-links-column a {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.footer-links-column a:hover {
+    color: #5ce2e7 !important;
+    text-decoration: underline !important;
+}
+
+.footer-bottom,
+.footer-bottom-links,
+.copyright {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.footer-bottom-links a {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.footer-bottom-links a:hover {
+    color: #5ce2e7 !important;
+}
+
+/* ==========================================================================
+   MOBILE SPECIFIC FIXES
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    /* Ensure all navigation elements are visible on mobile */
+    .nav-menu,
+    .language-switcher,
+    .logo-link,
+    .nav-title {
+        background-color: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(15px) !important;
+    }
+    
+    /* Mobile language switcher */
+    .language-switcher {
+        margin-left: 10px !important;
+    }
+    
+    .language-switcher-dropdown {
+        position: fixed !important;
+        top: 60px !important;
+        right: 10px !important;
+        left: auto !important;
+        z-index: 9999 !important;
+        max-width: 200px !important;
+    }
+    
+    /* Mobile navigation text */
+    .nav-menu a {
+        font-size: 14px !important;
+        padding: 8px 12px !important;
+    }
+    
+    /* Mobile hero text */
+    .hero h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.3 !important;
+    }
+}
+
+/* ==========================================================================
+   HIGH CONTRAST MODE SUPPORT
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+    .language-switcher-dropdown {
+        background-color: #ffffff !important;
+        border: 3px solid #000000 !important;
+    }
+    
+    .language-option {
+        color: #000000 !important;
+        border-bottom: 2px solid #000000 !important;
+    }
+    
+    .language-option:hover {
+        color: #ffffff !important;
+        background-color: #000000 !important;
+    }
+    
+    .nav-menu a {
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+    }
+    
+    .nav-menu a:hover {
+        color: #ffffff !important;
+        background-color: #000000 !important;
+    }
+}
+
+/* ==========================================================================
+   FORCED COLORS MODE SUPPORT
+   ========================================================================== */
+
+@media (forced-colors: active) {
+    .language-option,
+    .nav-menu a,
+    .social-good-button {
+        border: 1px solid !important;
+    }
+    
+    .language-switcher-dropdown {
+        border: 2px solid !important;
+    }
+}

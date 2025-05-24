@@ -1,3 +1,12 @@
+/* ---- Language Globe Animated ---- */
+.language-icon svg#globe-animated.animate-once {
+  animation: globe-rotate-once 1.2s cubic-bezier(0.65,0,0.35,1) 1;
+}
+@keyframes globe-rotate-once {
+  0% { transform: rotate(0deg); }
+  80% { transform: rotate(355deg); }
+  100% { transform: rotate(360deg); }
+}
 /**
  * Custom Header Styles for Divinci AI
  * Fixes styling issues and improves header appearance
@@ -172,6 +181,50 @@ input:checked + .slider:before {
     width: 65px;
 }
 
+/* Language Switcher Styles */
+.language-switcher {
+    margin-left: 20px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.language-switcher-select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #16214c;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.language-switcher-select:hover {
+    background-color: #254284;
+}
+
+.language-switcher-select:focus {
+    border-color: #5ce2e7;
+    box-shadow: 0 0 0 2px rgba(92, 226, 231, 0.3);
+}
+
+/* RTL language support */
+[dir="rtl"] .language-switcher {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+[dir="rtl"] .signup-link {
+    margin-left: 0 !important;
+    margin-right: 20px !important;
+}
+
+[dir="rtl"] .nav-menu a {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
 /* Mobile adjustments */
 @media screen and (max-width: 768px) {
     .mobile-hide {
@@ -187,6 +240,7 @@ input:checked + .slider:before {
     .nav-menu {
         display: flex !important;
         justify-content: flex-end;
+        align-items: center;
     }
 
     /* Style the signup button */
@@ -198,5 +252,23 @@ input:checked + .slider:before {
     /* Adjust spacing for menu items */
     .nav-menu a {
         margin-left: 15px;
+    }
+
+    /* Mobile language switcher */
+    .language-switcher {
+        margin-left: 15px;
+    }
+
+    .language-switcher-select {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    [dir="rtl"] .nav-menu a {
+        margin-right: 15px;
+    }
+
+    [dir="rtl"] .language-switcher {
+        margin-right: 15px;
     }
 }

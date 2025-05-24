@@ -10,7 +10,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Code Style Guidelines
 - HTML: Use 4 spaces for indentation, lowercase tags, double quotes for attributes
-- CSS: Use consistent class naming, 4-space indentation
+- CSS: 
+  - Use consistent class naming, 4-space indentation
+  - Modern CSS nesting is used for organization
+  - Keep related styles grouped by components
 - JavaScript: 
   - Use camelCase for variables and functions
   - ES6+ syntax preferred

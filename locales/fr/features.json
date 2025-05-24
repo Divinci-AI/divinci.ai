@@ -1,0 +1,120 @@
+{
+  "hero": {
+    "title": "Fonctionnalités",
+    "subtitle": "Découvrez ce qui rend Divinci AI puissant et unique"
+  },
+  "categories": {
+    "dataManagement": "Gestion des Données",
+    "developmentTools": "Outils de Développement",
+    "qualityAssurance": "Assurance Qualité",
+    "collaboration": "Collaboration",
+    "integration": "Intégration",
+    "security": "Sécurité et Conformité"
+  },
+  "autorag": {
+    "title": "AutoRAG",
+    "subtitle": "Génération Augmentée par Récupération Avancée",
+    "description": "Notre technologie AutoRAG traite et indexe intelligemment vos documents et données, les rendant instantanément accessibles aux modèles d'IA avec une haute précision et pertinence.",
+    "benefits": [
+      {
+        "title": "Traitement Automatique des Documents",
+        "description": "Téléchargez des documents dans n'importe quel format, et notre système les traite, les découpe et les indexe automatiquement pour une récupération optimale."
+      },
+      {
+        "title": "Embeddings Vectoriels Intelligents",
+        "description": "Créez des embeddings vectoriels de haute qualité qui capturent le sens sémantique de votre contenu, permettant une récupération d'information plus précise."
+      },
+      {
+        "title": "Optimisation de la Récupération",
+        "description": "Des algorithmes avancés garantissent que les informations les plus pertinentes sont récupérées de votre base de connaissances lorsque nécessaire."
+      },
+      {
+        "title": "Apprentissage Continu",
+        "description": "Le système s'améliore avec le temps, apprenant des interactions pour améliorer la précision et la pertinence de la récupération."
+      }
+    ],
+    "cta": "En savoir plus sur AutoRAG"
+  },
+  "releaseCycle": {
+    "title": "Gestion du Cycle de Mise en Production",
+    "subtitle": "Rationalisez Votre Cycle de Vie de Développement d'IA",
+    "description": "Nos outils complets de Gestion du Cycle de Mise en Production vous aident à développer, tester, déployer et surveiller les modèles d'IA avec confiance et efficacité.",
+    "benefits": [
+      {
+        "title": "Contrôle de Version",
+        "description": "Suivez les modifications de vos modèles d'IA, prompts et ensembles de données avec un contrôle de version robuste spécialement conçu pour le développement d'IA."
+      },
+      {
+        "title": "Tests Automatisés",
+        "description": "Exécutez des suites de tests complètes pour évaluer la performance, la précision et le comportement du modèle dans une variété de scénarios."
+      },
+      {
+        "title": "Déploiement Sans Interruption",
+        "description": "Déployez de nouveaux modèles en production sans temps d'arrêt, avec la possibilité de déployer progressivement les changements et de surveiller les performances."
+      },
+      {
+        "title": "Surveillance des Performances",
+        "description": "Suivez les métriques clés en temps réel, avec des capacités d'alerte pour vous informer de tout problème ou anomalie."
+      }
+    ],
+    "cta": "Explorer la Gestion du Cycle de Mise en Production"
+  },
+  "qualityAssurance": {
+    "title": "Assurance Qualité LLM",
+    "subtitle": "Assurez des Réponses d'IA Précises, Sûres et Fiables",
+    "description": "Nos outils d'Assurance Qualité LLM fournissent des capacités complètes de test, de surveillance et d'amélioration pour vos modèles d'IA.",
+    "benefits": [
+      {
+        "title": "Tests Automatisés",
+        "description": "Exécutez des milliers de cas de test sur vos modèles pour identifier les problèmes de précision, de biais, de sécurité et plus encore."
+      },
+      {
+        "title": "Red Teaming",
+        "description": "Identifiez de manière proactive les vulnérabilités potentielles et les cas limites avec des outils et méthodologies spécialisés de red teaming."
+      },
+      {
+        "title": "Surveillance Continue",
+        "description": "Suivez les performances du modèle en production, avec des alertes en temps réel pour les comportements ou réponses inattendus."
+      },
+      {
+        "title": "Flux de Travail d'Amélioration",
+        "description": "Processus rationalisés pour résoudre les problèmes identifiés, de l'ajustement fin du modèle à l'ingénierie de prompts."
+      }
+    ],
+    "cta": "Découvrir l'Assurance Qualité LLM"
+  },
+  "otherFeatures": {
+    "title": "Autres Fonctionnalités Puissantes",
+    "items": [
+      {
+        "title": "Support Multi-Modèles",
+        "description": "Connectez-vous à tous les modèles d'IA leaders via une interface unifiée, vous permettant d'exploiter le meilleur modèle pour chaque tâche spécifique."
+      },
+      {
+        "title": "Sécurité Entreprise",
+        "description": "Sécurité de niveau bancaire avec chiffrement de bout en bout, contrôles d'accès basés sur les rôles et journalisation d'audit complète."
+      },
+      {
+        "title": "Ajustement Fin Personnalisé",
+        "description": "Créez des modèles spécialisés ajustés sur vos données propriétaires pour des applications spécifiques à un domaine."
+      },
+      {
+        "title": "Intégration API",
+        "description": "Connectez Divinci AI à vos systèmes et flux de travail existants via notre API complète."
+      },
+      {
+        "title": "Tableau de Bord Analytique",
+        "description": "Suivez l'utilisation, les performances et le ROI avec des analyses détaillées et des rapports personnalisables."
+      },
+      {
+        "title": "Outils de Collaboration",
+        "description": "Permettez aux équipes de travailler efficacement ensemble avec des espaces de travail partagés, des bases de connaissances et un contrôle de version."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Prêt à exploiter la puissance de Divinci AI ?",
+    "button": "Commencez Aujourd'hui",
+    "subtitle": "Contactez-nous pour une démonstration personnalisée adaptée aux besoins de votre entreprise."
+  }
+}
