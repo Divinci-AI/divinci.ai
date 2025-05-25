@@ -56,7 +56,7 @@ a:hover, a:focus {
 }
 
 /* Improved color contrast for buttons */
-.btn, 
+.btn,
 .button,
 button,
 input[type="submit"],
@@ -66,12 +66,12 @@ input[type="button"] {
   border: 1px solid #0056b3 !important;
 }
 
-.btn:hover, 
+.btn:hover,
 .button:hover,
 button:hover,
 input[type="submit"]:hover,
 input[type="button"]:hover,
-.btn:focus, 
+.btn:focus,
 .button:focus,
 button:focus,
 input[type="submit"]:focus,
@@ -99,8 +99,8 @@ input[type="button"]:focus {
 }
 
 /* Improved color contrast for form elements */
-input, 
-select, 
+input,
+select,
 textarea {
   border-color: #666 !important;
   color: #333 !important;
@@ -239,18 +239,18 @@ blockquote {
     color: #000 !important;
     background-color: #fff !important;
   }
-  
+
   a {
     color: #0000EE !important;
     text-decoration: underline !important;
   }
-  
+
   a:visited {
     color: #551A8B !important;
   }
-  
-  button, 
-  .btn, 
+
+  button,
+  .btn,
   .button,
   input[type="submit"],
   input[type="button"] {
@@ -258,16 +258,16 @@ blockquote {
     background-color: #000 !important;
     border: 2px solid #000 !important;
   }
-  
-  input, 
-  select, 
+
+  input,
+  select,
   textarea {
     color: #000 !important;
     background-color: #fff !important;
     border: 2px solid #000 !important;
   }
-  
-  img, 
+
+  img,
   video {
     filter: contrast(1.5) !important;
   }
