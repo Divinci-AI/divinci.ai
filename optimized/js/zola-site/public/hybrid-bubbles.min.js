@@ -583,12 +583,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Track clear timeout to avoid conflicts
+  let clearTimeoutId = null;
+
   // Show a set of bubbles
   function showBubbles() {
     console.log(`Showing hybrid bubbles - ${isFeatureCycle ? 'Feature' : 'Reaction'} cycle`);
 
-    // Clear any existing bubbles
+    // Clear any existing bubbles and timeouts
     clearBubbles();
+    if (clearTimeoutId) {
+      clearTimeout(clearTimeoutId);
+      clearTimeoutId = null;
+    }
 
     // Randomly choose circles to attach bubbles to
     // Make sure to exclude AI logo circles
@@ -600,7 +607,7 @@ document.addEventListener('DOMContentLoaded', function() {
       startPositionUpdates();
 
       // Clear after 4 seconds
-      setTimeout(clearBubbles, 4000);
+      clearTimeoutId = setTimeout(clearBubbles, 4000);
     } else {
       // Reaction cycle: Show 1-2 reaction messages
       createBubble(shuffledSelectors[0], false);
@@ -612,7 +619,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 1500);
 
       // Clear after 4 seconds
-      setTimeout(clearBubbles, 4000);
+      clearTimeoutId = setTimeout(clearBubbles, 4000);
     }
 
     // Toggle cycle for next time
