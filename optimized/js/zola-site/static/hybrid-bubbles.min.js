@@ -609,7 +609,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const mainBubble = createBubble(randomMainCircle, true);
       startPositionUpdates();
 
-      // Remove just this bubble after 6 seconds (longer for main message)
+      // Remove just this bubble after 8 seconds (longer to overlap with full reaction cycle)
       setTimeout(() => {
         if (mainBubble && mainBubble.parentNode) {
           mainBubble.parentNode.removeChild(mainBubble);
@@ -619,7 +619,7 @@ document.addEventListener('DOMContentLoaded', function() {
             activeBubbles.splice(index, 1);
           }
         }
-      }, 6000);
+      }, 8000);
     } else {
       // Reaction cycle: Show 1-2 reaction messages in Groups 2 & 3
       // DON'T clear existing bubbles - let them coexist
@@ -634,7 +634,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const randomSecondCircle = secondReactionCircles[Math.floor(Math.random() * secondReactionCircles.length)];
         const reaction2 = createBubble(randomSecondCircle, false);
 
-        // Remove both reactions after 4 seconds
+        // Remove both reactions after 3 seconds (shorter for cleaner cycle)
         setTimeout(() => {
           [reaction1, reaction2].forEach(bubble => {
             if (bubble && bubble.parentNode) {
@@ -646,7 +646,7 @@ document.addEventListener('DOMContentLoaded', function() {
               }
             }
           });
-        }, 4000);
+        }, 3000);
       }, 1500);
     }
 
