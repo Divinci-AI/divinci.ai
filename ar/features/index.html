@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المميزات - Divinci AI</title>
+    <meta name="description" content="استكشف المميزات الشاملة لـ Divinci AI لإدارة البيانات وأدوات التطوير وضمان الجودة.">
+    
+    <!-- Include styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../styles-footer.css">
+</head>
+<body>
+    <!-- Include header -->
+    <script>
+        fetch('../includes/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+    </script>
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="section">
+        <div class="container">
+            <div class="content">
+                <h1 class="title is-2">المميزات</h1>
+                <p class="subtitle">اكتشف القدرات القوية لـ Divinci AI</p>
+                
+                <div class="columns is-multiline">
+                    <!-- Data Management -->
+                    <div class="column is-one-third">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title is-4">
+                                    <i class="fas fa-database"></i>
+                                    إدارة البيانات
+                                </h2>
+                                <p class="content">
+                                    أدوات متقدمة لمعالجة وإدارة البيانات لتطبيقات الذكاء الاصطناعي.
+                                </p>
+                                <div class="buttons">
+                                    <a href="data-management/autorag.html" class="button is-primary">
+                                        <span class="icon">
+                                            <i class="fas fa-robot"></i>
+                                        </span>
+                                        <span>AutoRAG</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Development Tools -->
+                    <div class="column is-one-third">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title is-4">
+                                    <i class="fas fa-code"></i>
+                                    أدوات التطوير
+                                </h2>
+                                <p class="content">
+                                    سير عمل تطوير مبسط وإدارة الإصدارات.
+                                </p>
+                                <div class="buttons">
+                                    <a href="development-tools/release-cycle-management.html" class="button is-primary">
+                                        <span class="icon">
+                                            <i class="fas fa-rocket"></i>
+                                        </span>
+                                        <span>إدارة دورة الإصدار</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quality Assurance -->
+                    <div class="column is-one-third">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title is-4">
+                                    <i class="fas fa-shield-alt"></i>
+                                    ضمان الجودة
+                                </h2>
+                                <p class="content">
+                                    اختبار شامل وضمان الجودة لنماذج الذكاء الاصطناعي.
+                                </p>
+                                <div class="buttons">
+                                    <a href="quality-assurance/llm-quality-assurance.html" class="button is-primary">
+                                        <span class="icon">
+                                            <i class="fas fa-check-circle"></i>
+                                        </span>
+                                        <span>ضمان جودة LLM</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back to Home -->
+                <div class="has-text-centered mt-6">
+                    <a href="../index.html" class="button is-link">
+                        <span class="icon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span>العودة إلى الصفحة الرئيسية</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Include footer -->
+    <script>
+        fetch('../includes/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+    <div id="footer-placeholder"></div>
+</body>
+</html>

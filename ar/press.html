@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
     <head>
+        <!-- Google Fonts for Sora -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
@@ -56,7 +60,7 @@
         <link rel="stylesheet" href="../includes/section-content-fix.css" />
 
         <!-- Script to include HTML components -->
-        <script src="../js/include-html.js" defer></script>
+        
         <script src="../js/conditional-header.js" defer></script>
 
         <style>
@@ -433,12 +437,189 @@
             }
         });
     </script>
-</head>
+
+        <style>
+            /* Language Switcher Styles */
+            .language-switcher {
+                position: relative;
+                display: inline-block;
+                margin-left: 15px;
+            }
+
+            .language-switcher-current {
+                display: flex;
+                align-items: center;
+                padding: 8px 12px;
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                color: white;
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .language-switcher-current:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .language-icon {
+                margin-right: 8px;
+                display: flex;
+                align-items: center;
+            }
+
+            .current-language {
+                margin: 0 8px;
+            }
+
+            .dropdown-icon {
+                font-size: 10px;
+                transition: transform 0.3s ease;
+            }
+
+            .language-switcher.active .dropdown-icon {
+                transform: rotate(180deg);
+            }
+
+            .language-switcher-dropdown {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+                z-index: 1000;
+                min-width: 160px;
+            }
+
+            .language-switcher.active .language-switcher-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .language-option {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 12px;
+                color: #333;
+                text-decoration: none;
+                transition: background-color 0.2s ease;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .language-option:last-child {
+                border-bottom: none;
+            }
+
+            .language-option:hover {
+                background-color: #f8f9fa;
+                color: #2863c2;
+            }
+
+            .language-name {
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .language-native {
+                font-size: 13px;
+                color: #555;
+                font-weight: 400;
+            }
+
+            .language-option:hover .language-native {
+                color: #2863c2;
+            }
+
+            /* RTL Support */
+            html[dir="rtl"] .language-switcher-dropdown {
+                left: auto;
+                right: 0;
+            }
+
+            html[dir="rtl"] .language-option {
+                flex-direction: row-reverse;
+            }
+
+            html[dir="rtl"] .language-icon {
+                margin-right: 0;
+                margin-left: 5px;
+            }
+
+            html[dir="rtl"] .current-language {
+                margin: 0 5px;
+            }
+        </style>
+    </head>
     <body>
         
 
         <!-- Header with Navigation (included from header.html) -->
-        <div data-include="../includes/header.html"></div>
+        <!-- Header with Navigation -->
+        <header role="banner">
+            <nav class="navbar">
+                <a href="../index.html" class="logo-link">
+                    <div class="nav-logo">
+                        <img
+                            class="header-logo"
+                            src="../images/divinci_logo_inverted.svg"
+                            alt="Divinci Heart Robot logo"
+                            onerror="this.onerror=null; this.src='../images/divinci_logo_inverted.svg';"
+                        />
+                    </div>
+                    <div class="nav-title">
+                        <span class="brand-name">Divinci ™</span>
+                        <span class="mobile-hide">&nbsp;- أنشئ ذكاءك الاصطناعي المخصص</span>
+                    </div>
+                </a>
+                <div class="nav-menu">
+                    <a href="../index.html#features">الميزات</a>
+                    <a href="../index.html#team">الفريق</a>
+                    <a href="../index.html#signup" class="signup-link"><span class="signup-button">التسجيل</span></a>
+                    <div id="language-switcher-container" style="display: inline-block; margin-left: 15px;">
+                        <!-- Language Switcher Component -->
+                        <div class="language-switcher">
+                            <div class="language-switcher-current">
+                                <span class="language-icon" style="display:inline-flex; align-items:center;">
+                                  <i class="fa-solid fa-language" style="font-size: 20px;"></i>
+                                </span>
+                                <span class="current-language">العربية</span>
+                                <span class="dropdown-icon">▼</span>
+                            </div>
+                            <div class="language-switcher-dropdown">
+                                <a href="../press.html" class="language-option" data-lang="en">
+                                    <span class="language-name">English</span>
+                                    <span class="language-native">English</span>
+                                </a>
+                                <a href="#" class="language-option" data-lang="es">
+                                    <span class="language-name">Spanish</span>
+                                    <span class="language-native">Español</span>
+                                </a>
+                                <a href="#" class="language-option" data-lang="fr">
+                                    <span class="language-name">French</span>
+                                    <span class="language-native">Français</span>
+                                </a>
+                                <a href="#" class="language-option" data-lang="ar">
+                                    <span class="language-name">Arabic</span>
+                                    <span class="language-native">العربية</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
         <!-- Main content -->
         <main id="main-content" role="main" tabindex="-1">
@@ -446,16 +627,16 @@
             <section class="press-hero">
                 <div class="container">
                     <div class="press-hero-content">
-                        <h1 class="press-title">Press Resources</h1>
-                        <p class="press-subtitle">Find the latest news, media coverage, and resources about Divinci AI. For press inquiries, please contact our media relations team.</p>
+                        <h1 class="press-title">موارد الصحافة</h1>
+                        <p class="press-subtitle">اعثر على آخر الأخبار والتغطية الإعلامية والموارد حول ديفينشي للذكاء الاصطناعي. للاستفسارات الصحفية، يرجى الاتصال بفريق علاقاتنا الإعلامية.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Press Contact Section -->
+            <!-- جهة اتصال الصحافة Section -->
             <section class="press-section">
                 <div class="container">
-                    <h2 class="section-title">Press Contact</h2>
+                    <h2 class="section-title">جهة اتصال الصحافة</h2>
 
                     <div class="contact-card">
                         <div class="contact-info">
@@ -463,7 +644,7 @@
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div class="contact-details">
-                                <div class="contact-label">Email</div>
+                                <div class="contact-label">البريد الإلكتروني</div>
                                 <div class="contact-value">
                                     <a href="../mailto:press@divinci.ai">press@divinci.ai</a>
                                 </div>
@@ -475,7 +656,7 @@
                                 <i class="fas fa-phone-alt"></i>
                             </div>
                             <div class="contact-details">
-                                <div class="contact-label">Phone</div>
+                                <div class="contact-label">الهاتف</div>
                                 <div class="contact-value">
                                     <a href="../tel:+18005551234">+1 (800) 555-1234</a>
                                 </div>
@@ -487,23 +668,23 @@
                                 <i class="fas fa-user"></i>
                             </div>
                             <div class="contact-details">
-                                <div class="contact-label">Media Relations</div>
+                                <div class="contact-label">العلاقات الإعلامية</div>
                                 <div class="contact-value">
-                                    Sierra Hooshiari, VP of Communications
+                                    سييرا هوشياري، نائب رئيس الاتصالات
                                 </div>
                             </div>
                         </div>
 
-                        <p style="margin-top: 1rem;">Our media relations team is available to assist journalists, industry analysts, and content creators with information, interviews, and resources about Divinci AI and our perspective on the AI industry.</p>
+                        <p style="margin-top: 1rem;">فريق علاقاتنا الإعلامية متاح لمساعدة الصحفيين ومحللي الصناعة ومنشئي المحتوى بالمعلومات والمقابلات والموارد حول ديفينشي للذكاء الاصطناعي ووجهة نظرنا حول صناعة الذكاء الاصطناعي.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Press Releases Section -->
+            <!-- البيانات الصحفية Section -->
             <section class="press-section">
                 <div class="sacred-pattern sacred-pattern-1"></div>
                 <div class="container">
-                    <h2 class="section-title">Press Releases</h2>
+                    <h2 class="section-title">البيانات الصحفية</h2>
 
                     <div class="news-grid">
                         <div class="news-item">
@@ -514,7 +695,7 @@
                                 <p class="news-excerpt">
                                     Divinci AI today announced the general availability of its platform designed to make custom AI solutions accessible to businesses of all sizes, without requiring specialized machine learning expertise.
                                 </p>
-                                <a href="#" class="news-link">Read more <i class="fas fa-arrow-right"></i></a>
+                                <a href="#" class="news-link">اقرأ المزيد <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
 
@@ -526,7 +707,7 @@
                                 <p class="news-excerpt">
                                     The new AutoRAG feature automates the complex process of implementing Retrieval-Augmented Generation systems, allowing businesses to easily create AI that leverages their proprietary knowledge.
                                 </p>
-                                <a href="#" class="news-link">Read more <i class="fas fa-arrow-right"></i></a>
+                                <a href="#" class="news-link">اقرأ المزيد <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
 
@@ -538,18 +719,18 @@
                                 <p class="news-excerpt">
                                     As part of its commitment to ethical AI, Divinci AI has joined the AI Standards Hub to contribute to the development of standards for secure, responsible, and transparent artificial intelligence.
                                 </p>
-                                <a href="#" class="news-link">Read more <i class="fas fa-arrow-right"></i></a>
+                                <a href="#" class="news-link">اقرأ المزيد <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Media Coverage Section -->
+            <!-- التغطية الإعلامية Section -->
             <section class="press-section">
                 <div class="sacred-pattern sacred-pattern-2"></div>
                 <div class="container">
-                    <h2 class="section-title">Media Coverage</h2>
+                    <h2 class="section-title">التغطية الإعلامية</h2>
 
                     <div class="coverage-grid">
                         <div class="coverage-item">
@@ -562,7 +743,7 @@
                                 <p class="coverage-excerpt">
                                     TechCrunch reviews Divinci AI's new platform and how it's bringing enterprise-grade AI capabilities to small and medium-sized businesses.
                                 </p>
-                                <a href="#" class="coverage-link">Read article <i class="fas fa-arrow-right"></i></a>
+                                <a href="#" class="coverage-link">اقرأ المقال <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
 
@@ -576,7 +757,7 @@
                                 <p class="coverage-excerpt">
                                     VentureBeat explores how Divinci AI's AutoRAG technology simplifies the complex process of implementing document-aware AI systems.
                                 </p>
-                                <a href="#" class="coverage-link">Read article <i class="fas fa-arrow-right"></i></a>
+                                <a href="#" class="coverage-link">اقرأ المقال <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
 
@@ -590,30 +771,30 @@
                                 <p class="coverage-excerpt">
                                     Forbes includes Divinci AI in its annual list of promising AI startups transforming how businesses implement artificial intelligence solutions.
                                 </p>
-                                <a href="#" class="coverage-link">Read article <i class="fas fa-arrow-right"></i></a>
+                                <a href="#" class="coverage-link">اقرأ المقال <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Brand Assets Section -->
+            <!-- أصول العلامة التجارية Section -->
             <section class="press-section">
                 <div class="container">
-                    <h2 class="section-title">Brand Assets</h2>
-                    <p>Download official Divinci AI logos, product screenshots, and founder photos for media use. All assets are provided in high resolution and are available in multiple formats.</p>
+                    <h2 class="section-title">أصول العلامة التجارية</h2>
+                    <p>قم بتنزيل شعارات ديفينشي للذكاء الاصطناعي الرسمية ولقطات شاشة المنتج وصور المؤسسين للاستخدام الإعلامي. جميع الأصول متوفرة بدقة عالية ومتاحة بتنسيقات متعددة.</p>
 
                     <div class="brand-assets">
-                        <h3 style="font-weight: 600; margin-bottom: 1rem; color: #16214c;">Logos</h3>
+                        <h3 style="font-weight: 600; margin-bottom: 1rem; color: #16214c;">الشعارات</h3>
                         <div class="assets-grid">
                             <div class="asset-item">
                                 <div class="asset-preview">
                                     <img src="../images/divinci_logo.svg" alt="Divinci AI Logo">
                                 </div>
                                 <div class="asset-info">
-                                    <div class="asset-name">Primary Logo</div>
+                                    <div class="asset-name">الشعار الأساسي</div>
                                     <div class="asset-format">SVG, PNG, JPG</div>
-                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> تنزيل</a>
                                 </div>
                             </div>
 
@@ -622,45 +803,45 @@
                                     <img src="../images/divinci_logo_inverted.svg" alt="Divinci AI Logo Inverted">
                                 </div>
                                 <div class="asset-info">
-                                    <div class="asset-name">Inverted Logo</div>
+                                    <div class="asset-name">الشعار المعكوس</div>
                                     <div class="asset-format">SVG, PNG, JPG</div>
-                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> تنزيل</a>
                                 </div>
                             </div>
 
                             <div class="asset-item">
                                 <div class="asset-preview">
-                                    <img src="../images/divinci_logo_animated.svg" alt="Divinci AI Animated Logo">
+                                    <img src="../images/divinci_logo_animated.svg" alt="Divinci AI الشعار المتحرك">
                                 </div>
                                 <div class="asset-info">
-                                    <div class="asset-name">Animated Logo</div>
+                                    <div class="asset-name">الشعار المتحرك</div>
                                     <div class="asset-format">SVG, GIF</div>
-                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> تنزيل</a>
                                 </div>
                             </div>
                         </div>
 
-                        <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: #16214c;">Product Screenshots</h3>
+                        <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: #16214c;">لقطات شاشة المنتج</h3>
                         <div class="assets-grid">
                             <div class="asset-item">
                                 <div class="asset-preview">
                                     <img src="../images/autorag-still.png" alt="AutoRAG Feature Screenshot">
                                 </div>
                                 <div class="asset-info">
-                                    <div class="asset-name">AutoRAG Dashboard</div>
+                                    <div class="asset-name">لوحة تحكم AutoRAG</div>
                                     <div class="asset-format">PNG, JPG</div>
-                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> تنزيل</a>
                                 </div>
                             </div>
 
                             <div class="asset-item">
                                 <div class="asset-preview">
-                                    <img src="../images/qa-pipeline-diagram.svg" alt="QA Pipeline Screenshot">
+                                    <img src="../images/qa-pipeline-diagram.svg" alt="خط أنابيب ضمان الجودة Screenshot">
                                 </div>
                                 <div class="asset-info">
-                                    <div class="asset-name">QA Pipeline</div>
+                                    <div class="asset-name">خط أنابيب ضمان الجودة</div>
                                     <div class="asset-format">PNG, JPG</div>
-                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> تنزيل</a>
                                 </div>
                             </div>
 
@@ -669,23 +850,23 @@
                                     <img src="../images/release-cycle-diagram.svg" alt="Release Cycle Screenshot">
                                 </div>
                                 <div class="asset-info">
-                                    <div class="asset-name">Release Cycle Manager</div>
+                                    <div class="asset-name">مدير دورة الإصدار</div>
                                     <div class="asset-format">PNG, JPG</div>
-                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> تنزيل</a>
                                 </div>
                             </div>
                         </div>
 
-                        <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: #16214c;">Team Photos</h3>
+                        <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: #16214c;">صور الفريق</h3>
                         <div class="assets-grid">
                             <div class="asset-item">
                                 <div class="asset-preview">
                                     <img src="../images/Michael-Mooring.jpeg" alt="Michael Mooring">
                                 </div>
                                 <div class="asset-info">
-                                    <div class="asset-name">Michael Mooring, CEO</div>
+                                    <div class="asset-name">مايكل مورينغ، الرئيس التنفيذي</div>
                                     <div class="asset-format">JPG, PNG</div>
-                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> تنزيل</a>
                                 </div>
                             </div>
 
@@ -694,9 +875,9 @@
                                     <img src="../images/sam-tobia.jpg" alt="Samuel Tobia">
                                 </div>
                                 <div class="asset-info">
-                                    <div class="asset-name">Samuel Tobia, CTO</div>
+                                    <div class="asset-name">صموئيل توبيا، كبير مسؤولي التكنولوجيا</div>
                                     <div class="asset-format">JPG, PNG</div>
-                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> تنزيل</a>
                                 </div>
                             </div>
 
@@ -705,30 +886,21 @@
                                     <img src="../images/sierra-hooshiari.jpeg" alt="Sierra Hooshiari">
                                 </div>
                                 <div class="asset-info">
-                                    <div class="asset-name">Sierra Hooshiari, VP of Communications</div>
+                                    <div class="asset-name">سييرا هوشياري، نائب رئيس الاتصالات</div>
                                     <div class="asset-format">JPG, PNG</div>
-                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> تنزيل</a>
                                 </div>
                             </div>
 
-                            <div class="asset-item">
-                                <div class="asset-preview">
-                                    <img src="../images/paul-marie-carfantan.jpeg" alt="Paul-Marie Carfantan">
-                                </div>
-                                <div class="asset-info">
-                                    <div class="asset-name">Paul-Marie Carfantan, AI Safety Advisor</div>
-                                    <div class="asset-format">JPG, PNG</div>
-                                    <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
 
                     <div class="press-kit-section">
-                        <h3 class="press-kit-title">Complete Press Kit</h3>
-                        <p class="press-kit-description">Download our complete press kit, which includes all logos, screenshots, team photos, product fact sheets, and company backgrounders in a single package.</p>
+                        <h3 class="press-kit-title">مجموعة الصحافة الكاملة</h3>
+                        <p class="press-kit-description">قم بتنزيل مجموعة الصحافة الكاملة، والتي تتضمن جميع الشعارات ولقطات الشاشة وصور الفريق وأوراق حقائق المنتج ومعلومات الشركة في حزمة واحدة.</p>
                         <a href="#" class="press-kit-button">
-                            <i class="fas fa-file-archive"></i> Download Press Kit (ZIP, 25MB)
+                            <i class="fas fa-file-archive"></i> تنزيل مجموعة الصحافة (ZIP، 25 ميجابايت)
                         </a>
                     </div>
                 </div>
@@ -736,6 +908,7 @@
         </main>
 
         <!-- Footer with Sacred Geometry and Bulma Integration -->
+        <!-- Footer -->
         <footer class="site-footer">
             <!-- Sacred Geometry Background Elements -->
             <div class="footer-sacred-pattern"></div>
@@ -751,24 +924,10 @@
                         <div class="column is-one-quarter">
                             <div class="footer-brand">
                                 <div class="footer-logo">
-                                                                <div style="
-    width: 28px;
-    height: 28px;
-    margin-right: 12px;
-    filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
-    border-radius: 50%;
-    background: rgba(92, 226, 231, 0.1);
-    padding: 5px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
-    border: 1px solid rgba(92, 226, 231, 0.2);
-    justify-content: center;
-    align-items: center;
-    display: flex;
-">🖤</div>
+                                    <div class="heart">🖤</div>
                                     <span class="footer-brand-name">Divinci AI</span>
                                 </div>
-                                <p class="footer-tagline">Empowering human-AI collaboration</p>
+                                <p class="footer-tagline">تمكين التعاون بين الإنسان والذكاء الاصطناعي</p>
                                 <div class="social-links">
                                     <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
                                     <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -780,48 +939,48 @@
                         <!-- Navigation Links -->
                         <div class="column">
                             <div class="footer-links-column">
-                                <h3>Product</h3>
+                                <h3>المنتج</h3>
                                 <ul>
-                                    <li><a href="../index.html#features">Features</a></li>
-                                    <li><a href="../pricing.html">Pricing</a></li>
-                                    <li><a href="../roadmap.html">Roadmap</a></li>
-                                    <li><a href="../changelog.html">Changelog</a></li>
+                                    <li><a href="../index.html#features">الميزات</a></li>
+                                    <li><a href="../pricing.html">التسعير</a></li>
+                                    <li><a href="../roadmap.html">خارطة الطريق</a></li>
+                                    <li><a href="../changelog.html">سجل التغييرات</a></li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="column">
                             <div class="footer-links-column">
-                                <h3>Resources</h3>
+                                <h3>الموارد</h3>
                                 <ul>
-                                    <li><a href="../docs/">Documentation</a></li>
-                                    <li><a href="../blog/">Blog</a></li>
-                                    <li><a href="../tutorials/">Tutorials</a></li>
-                                    <li><a href="../api/">API</a></li>
+                                    <li><a href="../docs/">التوثيق</a></li>
+                                    <li><a href="blog/">المدونة</a></li>
+                                    <li><a href="../tutorials/">الدروس</a></li>
+                                    <li><a href="../api/">واجهة برمجة التطبيقات</a></li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="column">
                             <div class="footer-links-column">
-                                <h3>Company</h3>
+                                <h3>الشركة</h3>
                                 <ul>
-                                    <li><a href="../about-us.html">About Us</a></li>
-                                    <li><a href="../careers.html">Careers</a></li>
-                                    <li><a href="../contact.html">Contact</a></li>
-                                    <li><a href="../press.html">Press</a></li>
+                                    <li><a href="../about-us.html">من نحن</a></li>
+                                    <li><a href="../careers.html">الوظائف</a></li>
+                                    <li><a href="../contact.html">اتصل بنا</a></li>
+                                    <li><a href="../press.html">الصحافة</a></li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="column">
                             <div class="footer-links-column">
-                                <h3>Legal</h3>
+                                <h3>قانوني</h3>
                                 <ul>
-                                    <li><a href="../terms-of-service.html">Terms of Service</a></li>
-                                    <li><a href="../privacy-policy.html">Privacy Policy</a></li>
-                                    <li><a href="../ai-safety-ethics.html">AI Safety & Ethics</a></li>
-                                    <li><a href="../security.html">Security</a></li>
+                                    <li><a href="../terms-of-service.html">شروط الخدمة</a></li>
+                                    <li><a href="../privacy-policy.html">سياسة الخصوصية</a></li>
+                                    <li><a href="../ai-safety-ethics.html">أمان وأخلاقيات الذكاء الاصطناعي</a></li>
+                                    <li><a href="../security.html">الأمان</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -833,15 +992,15 @@
                     <div class="level is-footer-bottom">
                         <div class="level-left">
                             <div class="level-item">
-                                <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                                <p class="copyright">&copy; 2023-2025 Divinci AI. جميع الحقوق محفوظة.</p>
                             </div>
                         </div>
                         <div class="level-right">
                             <div class="level-item">
                                 <div class="footer-bottom-links">
-                                    <a href="../sitemap.xml">Sitemap</a>
-                                    <a href="../accessibility.html">Accessibility</a>
-                                    <a href="../cookies.html">Cookie Policy</a>
+                                    <a href="../sitemap.xml">خريطة الموقع</a>
+                                    <a href="../accessibility.html">إمكانية الوصول</a>
+                                    <a href="../cookies.html">سياسة ملفات تعريف الارتباط</a>
                                 </div>
                             </div>
                         </div>

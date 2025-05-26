@@ -25,7 +25,33 @@
     "privacy": "Politique de Confidentialité",
     "cookies": "Politique des Cookies",
     "support": "Support",
-    "blog": "Blog"
+    "blog": "Blog",
+    "sections": {
+      "product": "Produit",
+      "resources": "Ressources",
+      "company": "Entreprise",
+      "legal": "Légal"
+    },
+    "links": {
+      "features": "Fonctionnalités",
+      "pricing": "Tarifs",
+      "roadmap": "Feuille de Route",
+      "changelog": "Journal des Modifications",
+      "documentation": "Documentation",
+      "tutorials": "Tutoriels",
+      "api": "API",
+      "aboutUs": "À Propos de Nous",
+      "careers": "Carrières",
+      "contact": "Contact",
+      "press": "Presse",
+      "termsOfService": "Conditions d'Utilisation",
+      "privacyPolicy": "Politique de Confidentialité",
+      "aiSafetyEthics": "Sécurité IA et Éthique",
+      "security": "Sécurité",
+      "sitemap": "Plan du Site",
+      "accessibility": "Accessibilité",
+      "cookiePolicy": "Politique des Cookies"
+    }
   },
   "errors": {
     "required": "Ce champ est obligatoire",

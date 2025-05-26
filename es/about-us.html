@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
     <head>
+        <!-- Google Fonts for Sora -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
@@ -11,36 +15,16 @@
     <link rel="alternate" href="https://divinci.ai/fr/about-us.html" hreflang="fr" />
     <link rel="alternate" href="https://divinci.ai/ar/about-us.html" hreflang="ar" />
         <!-- Include meta tags -->
-        <div data-include="../includes/meta-tags.html"></div>
+        
 
         <!-- Include structured data -->
-        <div data-include="../includes/structured-data.html"></div>
+        
 
         <!-- Initialize page-specific meta tags and structured data -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 // Set meta tags for this page
-                if (window.setMetaTags) {
-                    setMetaTags({
-                        title: "Sobre Nosotros",
-                        description: "Divinci AI está construyendo el futuro de la colaboración humano-IA. Conozca sobre nuestra misión, visión, equipo y la historia detrás de nuestra innovadora plataforma de IA.",
-                        image: "about-us-social.png",
-                        url: "/es/about-us.html",
-                        type: "website",
-                        keywords: "divinci ai, empresa de ia, sobre divinci, plataforma de ia, soluciones personalizadas de ia, misión de ia, equipo de ia, fundadores de ia"
-                    });
-                }
-
-                // Add structured data for this page
-                if (window.addStructuredData) {
-                    addStructuredData({
-                        type: "WebPage",
-                        title: "Sobre Nosotros | Divinci AI",
-                        description: "Divinci AI está construyendo el futuro de la colaboración humano-IA. Conozca sobre nuestra misión, visión, equipo y la historia detrás de nuestra innovadora plataforma de IA.",
-                        image: "../images/social/about-us-social.png"
-                    });
-                }
-            });
+                // Meta tags handled directly in HTML head);
         </script>
 
         <!-- Favicons and App Icons -->
@@ -60,7 +44,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         
         <!-- Load include-html.js to ensure components are loaded properly -->
-        <script src="../js/include-html.js"></script>
+        
         
         <!-- Load language switcher scripts, but not the loader since we're using inline implementation -->
         <script src="../js/language-switcher.js" defer></script>
@@ -878,7 +862,7 @@
                 <a href="index.html#team">Equipo</a>
                 <a href="index.html#signup" class="signup-link"><span class="signup-button">Regístrate</span></a>
                 <div id="language-switcher-container" style="display: inline-block; margin-left: 15px; position: relative; z-index: 9999; overflow: visible;">
-                    <!-- Direct embedding of language switcher instead of using data-include -->
+                    <!-- Include removed -->
                     <div class="language-switcher">
                         <div class="language-switcher-current">
                             <span class="language-icon">🌐</span>
@@ -1223,7 +1207,7 @@
             <!-- Social Sharing Section -->
             <section class="social-sharing-section">
                 <div class="container">
-                    <div data-include="../includes/social-share.html"></div>
+                    
                 </div>
             </section>
         </main>
@@ -1233,6 +1217,7 @@
         <link rel="stylesheet" href="../css/social-sharing.css" />
 
         <!-- Footer with Sacred Geometry and Bulma Integration -->
+        <!-- Footer -->
         <footer class="site-footer">
             <!-- Sacred Geometry Background Elements -->
             <div class="footer-sacred-pattern"></div>
@@ -1248,21 +1233,7 @@
                         <div class="column is-one-quarter">
                             <div class="footer-brand">
                                 <div class="footer-logo">
-                                    <div style="
-                                        width: 28px;
-                                        height: 28px;
-                                        margin-right: 12px;
-                                        filter: drop-shadow(0 0 5px rgba(92, 226, 231, 0.5));
-                                        border-radius: 50%;
-                                        background: rgba(92, 226, 231, 0.1);
-                                        padding: 5px;
-                                        transition: transform 0.3s ease, box-shadow 0.3s ease;
-                                        box-shadow: 0 0 8px rgba(92, 226, 231, 0.3);
-                                        border: 1px solid rgba(92, 226, 231, 0.2);
-                                        justify-content: center;
-                                        align-items: center;
-                                        display: flex;
-                                    ">🖤</div>
+                                    <div class="heart">🖤</div>
                                     <span class="footer-brand-name">Divinci AI</span>
                                 </div>
                                 <p class="footer-tagline">Potenciando la colaboración humano-IA</p>
@@ -1279,10 +1250,10 @@
                             <div class="footer-links-column">
                                 <h3>Producto</h3>
                                 <ul>
-                                    <li><a href="index.html#features">Características</a></li>
-                                    <li><a href="pricing.html">Precios</a></li>
-                                    <li><a href="roadmap.html">Hoja de Ruta</a></li>
-                                    <li><a href="changelog.html">Registro de Cambios</a></li>
+                                    <li><a href="../index.html#features">Características</a></li>
+                                    <li><a href="../pricing.html">Precios</a></li>
+                                    <li><a href="../roadmap.html">Hoja de Ruta</a></li>
+                                    <li><a href="../changelog.html">Registro de Cambios</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -1291,22 +1262,22 @@
                             <div class="footer-links-column">
                                 <h3>Recursos</h3>
                                 <ul>
-                                    <li><a href="docs/">Documentación</a></li>
+                                    <li><a href="../docs/">Documentación</a></li>
                                     <li><a href="blog/">Blog</a></li>
-                                    <li><a href="tutorials/">Tutoriales</a></li>
-                                    <li><a href="api/">API</a></li>
+                                    <li><a href="../tutorials/">Tutoriales</a></li>
+                                    <li><a href="../api/">API</a></li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="column">
                             <div class="footer-links-column">
-                                <h3>Compañía</h3>
+                                <h3>Empresa</h3>
                                 <ul>
-                                    <li><a href="about-us.html">Sobre Nosotros</a></li>
-                                    <li><a href="careers.html">Carreras</a></li>
-                                    <li><a href="contact.html">Contacto</a></li>
-                                    <li><a href="press.html">Prensa</a></li>
+                                    <li><a href="../about-us.html">Acerca de Nosotros</a></li>
+                                    <li><a href="../careers.html">Carreras</a></li>
+                                    <li><a href="../contact.html">Contacto</a></li>
+                                    <li><a href="../press.html">Prensa</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -1315,10 +1286,10 @@
                             <div class="footer-links-column">
                                 <h3>Legal</h3>
                                 <ul>
-                                    <li><a href="terms-of-service.html">Términos de Servicio</a></li>
-                                    <li><a href="privacy-policy.html">Política de Privacidad</a></li>
-                                    <li><a href="ai-safety-ethics.html">Seguridad y Ética de IA</a></li>
-                                    <li><a href="security.html">Seguridad</a></li>
+                                    <li><a href="../terms-of-service.html">Términos de Servicio</a></li>
+                                    <li><a href="../privacy-policy.html">Política de Privacidad</a></li>
+                                    <li><a href="../ai-safety-ethics.html">Seguridad y Ética de IA</a></li>
+                                    <li><a href="../security.html">Seguridad</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -1336,9 +1307,9 @@
                         <div class="level-right">
                             <div class="level-item">
                                 <div class="footer-bottom-links">
-                                    <a href="sitemap.xml">Mapa del Sitio</a>
-                                    <a href="accessibility.html">Accesibilidad</a>
-                                    <a href="cookies.html">Política de Cookies</a>
+                                    <a href="../sitemap.xml">Mapa del Sitio</a>
+                                    <a href="../accessibility.html">Accesibilidad</a>
+                                    <a href="../cookies.html">Política de Cookies</a>
                                 </div>
                             </div>
                         </div>

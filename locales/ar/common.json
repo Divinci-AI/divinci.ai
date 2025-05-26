@@ -25,7 +25,33 @@
     "privacy": "سياسة الخصوصية",
     "cookies": "سياسة ملفات تعريف الارتباط",
     "support": "الدعم",
-    "blog": "المدونة"
+    "blog": "المدونة",
+    "sections": {
+      "product": "المنتج",
+      "resources": "الموارد",
+      "company": "الشركة",
+      "legal": "قانوني"
+    },
+    "links": {
+      "features": "المميزات",
+      "pricing": "الأسعار",
+      "roadmap": "خارطة الطريق",
+      "changelog": "سجل التغييرات",
+      "documentation": "التوثيق",
+      "tutorials": "الدروس التعليمية",
+      "api": "واجهة برمجة التطبيقات",
+      "aboutUs": "من نحن",
+      "careers": "الوظائف",
+      "contact": "اتصل بنا",
+      "press": "الصحافة",
+      "termsOfService": "شروط الخدمة",
+      "privacyPolicy": "سياسة الخصوصية",
+      "aiSafetyEthics": "أمان الذكاء الاصطناعي والأخلاق",
+      "security": "الأمان",
+      "sitemap": "خريطة الموقع",
+      "accessibility": "إمكانية الوصول",
+      "cookiePolicy": "سياسة ملفات تعريف الارتباط"
+    }
   },
   "errors": {
     "required": "هذا الحقل مطلوب",

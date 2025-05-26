@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
     <head>
+        <!-- Google Fonts for Sora -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
@@ -10,66 +14,32 @@
     <link rel="alternate" href="https://divinci.ai/es/contact.html" hreflang="es" />
     <link rel="alternate" href="https://divinci.ai/fr/contact.html" hreflang="fr" />
     <link rel="alternate" href="https://divinci.ai/ar/contact.html" hreflang="ar" />
-        <!-- Include meta tags -->
-        <div data-include="../includes/meta-tags.html"></div>
+        <!-- Meta tags handled directly in HTML head -->
 
-        <!-- Include structured data -->
-        <div data-include="../includes/structured-data.html"></div>
-
-        <!-- Initialize page-specific meta tags and structured data -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Set meta tags for this page
-                if (window.setMetaTags) {
-                    setMetaTags({
-                        title: "Contáctenos",
-                        description: "Contacte con el equipo de Divinci AI para preguntas sobre nuestra plataforma, precios o para solicitar una demostración. Estamos aquí para ayudarle con sus soluciones de IA personalizadas.",
-                        image: "contact-social.svg",
-                        url: "/es/contact.html",
-                        type: "website",
-                        keywords: "divinci ai contacto, soporte ia, formulario de contacto, consulta de ventas, solicitud de demostración, soporte técnico"
-                    });
-                }
-
-                // Add structured data for this page
-                if (window.addStructuredData) {
-                    addStructuredData({
-                        type: "WebPage",
-                        title: "Contáctenos | Divinci AI",
-                        description: "Contacte con el equipo de Divinci AI para preguntas sobre nuestra plataforma, precios o para solicitar una demostración. Estamos aquí para ayudarle con sus soluciones de IA personalizadas.",
-                        image: "../images/social/contact-social.svg"
-                    });
-
-                    // Add LocalBusiness structured data
-                    const localBusinessData = {
-                        "@context": "https://schema.org",
-                        "@type": "Organization",
-                        "name": "Divinci AI",
-                        "url": "https://divinci.ai",
-                        "logo": "https://divinci.ai/images/divinci_logo.png",
-                        "contactPoint": {
-                            "@type": "ContactPoint",
-                            "telephone": "+1-800-555-1234",
-                            "contactType": "customer service",
-                            "email": "hello@divinci.ai",
-                            "availableLanguage": ["English", "Español"]
-                        },
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "123 AI Avenue",
-                            "addressLocality": "San Francisco",
-                            "addressRegion": "CA",
-                            "postalCode": "94107",
-                            "addressCountry": "US"
-                        }
-                    };
-
-                    const script = document.createElement('script');
-                    script.type = 'application/ld+json';
-                    script.textContent = JSON.stringify(localBusinessData);
-                    document.head.appendChild(script);
-                }
-            });
+        <!-- Structured data for contact page -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Divinci AI",
+            "url": "https://divinci.ai",
+            "logo": "https://divinci.ai/images/divinci_logo.png",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+1-800-555-1234",
+                "contactType": "customer service",
+                "email": "hello@divinci.ai",
+                "availableLanguage": ["English", "Español"]
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "123 AI Avenue",
+                "addressLocality": "San Francisco",
+                "addressRegion": "CA",
+                "postalCode": "94107",
+                "addressCountry": "US"
+            }
+        }
         </script>
 
         <!-- Favicons and App Icons -->
@@ -443,14 +413,218 @@
                 }
             }
         </style>
+
+        <style>
+            /* Language Switcher Styles */
+            .language-switcher {
+                position: relative;
+                display: inline-block;
+                margin-left: 15px;
+            }
+
+            .language-switcher-current {
+                display: flex;
+                align-items: center;
+                padding: 8px 12px;
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                color: white;
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .language-switcher-current:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .language-icon {
+                margin-right: 8px;
+                display: flex;
+                align-items: center;
+            }
+
+            .current-language {
+                margin: 0 8px;
+            }
+
+            .dropdown-icon {
+                font-size: 10px;
+                transition: transform 0.3s ease;
+            }
+
+            .language-switcher.active .dropdown-icon {
+                transform: rotate(180deg);
+            }
+
+            .language-switcher-dropdown {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+                z-index: 1000;
+                min-width: 160px;
+            }
+
+            .language-switcher.active .language-switcher-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .language-option {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 12px;
+                color: #333;
+                text-decoration: none;
+                transition: background-color 0.2s ease;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .language-option:last-child {
+                border-bottom: none;
+            }
+
+            .language-option:hover {
+                background-color: #f8f9fa;
+                color: #2863c2;
+            }
+
+            .language-name {
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .language-native {
+                font-size: 13px;
+                color: #555;
+                font-weight: 400;
+            }
+
+            .language-option:hover .language-native {
+                color: #2863c2;
+            }
+
+            /* RTL Support */
+            html[dir="rtl"] .language-switcher-dropdown {
+                left: auto;
+                right: 0;
+            }
+
+            html[dir="rtl"] .language-option {
+                flex-direction: row-reverse;
+            }
+
+            html[dir="rtl"] .language-icon {
+                margin-right: 0;
+                margin-left: 5px;
+            }
+
+            html[dir="rtl"] .current-language {
+                margin: 0 5px;
+            }
+        </style>
     </head>
     <body>
 
 
         <!-- Header with Navigation -->
         <header role="banner">
-            <div data-include="../includes/header.html"></div>
+            <!-- Header with Navigation -->
+        <header role="banner">
+            <nav class="navbar">
+                <a href="../index.html" class="logo-link">
+                    <div class="nav-logo">
+                        <img
+                            class="header-logo"
+                            src="../images/divinci_logo_inverted.svg"
+                            alt="Divinci Heart Robot logo"
+                            onerror="this.onerror=null; this.src='../images/divinci_logo_inverted.svg';"
+                        />
+                    </div>
+                    <div class="nav-title">
+                        <span class="brand-name">Divinci ™</span>
+                        <span class="mobile-hide">&nbsp;- Crea tu propia IA personalizada</span>
+                    </div>
+                </a>
+                <div class="nav-menu">
+                    <a href="../index.html#features">Características</a>
+                    <a href="../index.html#team">Equipo</a>
+                    <a href="../index.html#signup" class="signup-link"><span class="signup-button">Registrarse</span></a>
+                    <div id="language-switcher-container" style="display: inline-block; margin-left: 15px;">
+                        <!-- Language Switcher Component -->
+                        <div class="language-switcher">
+                            <div class="language-switcher-current">
+                                <span class="language-icon" style="display:inline-flex; align-items:center;">
+                                  <i class="fa-solid fa-language" style="font-size: 20px;"></i>
+                                </span>
+                                <span class="current-language">Español</span>
+                                <span class="dropdown-icon">▼</span>
+                            </div>
+                            <div class="language-switcher-dropdown">
+                                <a href="../contact.html" class="language-option" data-lang="en">
+                                    <span class="language-name">English</span>
+                                    <span class="language-native">English</span>
+                                </a>
+                                <a href="#" class="language-option" data-lang="es">
+                                    <span class="language-name">Spanish</span>
+                                    <span class="language-native">Español</span>
+                                </a>
+                                <a href="#" class="language-option" data-lang="fr">
+                                    <span class="language-name">French</span>
+                                    <span class="language-native">Français</span>
+                                </a>
+                                <a href="#" class="language-option" data-lang="ar">
+                                    <span class="language-name">Arabic</span>
+                                    <span class="language-native">العربية</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
+        </header>
+
+            <!-- Load language switcher script -->
+            <script>
+                // Ensure scripts load in correct order
+                function loadLanguageSwitcherScripts() {
+                    // Load the main language switcher script first
+                    const script = document.createElement('script');
+                    script.src = '../js/language-switcher.js';
+                    script.onload = function() {
+                        // Only load the fix script after the main script is loaded
+                        const fixScript = document.createElement('script');
+                        fixScript.src = '../js/language-switcher-fix.js';
+                        document.head.appendChild(fixScript);
+                    };
+                    script.onerror = function() {
+                        console.warn('Could not load language-switcher.js');
+                    };
+                    document.head.appendChild(script);
+                }
+
+                // Load scripts when DOM is ready
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', loadLanguageSwitcherScripts);
+                } else {
+                    loadLanguageSwitcherScripts();
+                }
+            </script>
 
         <!-- Main content -->
         <main id="main-content" role="main" tabindex="-1">
@@ -579,7 +753,105 @@
         <script src="../js/social-sharing.js" defer></script>
 
         <!-- Footer -->
-        <div class="footer-wrapper" data-include="../includes/footer.html" style="width: 100%; overflow: hidden; box-sizing: border-box;"></div>
+        <footer class="site-footer">
+            <!-- Sacred Geometry Background Elements -->
+            <div class="footer-sacred-pattern"></div>
+            <div class="sacred-circle sacred-circle-1"></div>
+            <div class="sacred-circle sacred-circle-2"></div>
+            <div class="sacred-circle sacred-circle-3"></div>
+
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Top Section with Bulma Columns -->
+                    <div class="columns is-footer-links">
+                        <!-- Logo and Company Info -->
+                        <div class="column is-one-quarter">
+                            <div class="footer-brand">
+                                <div class="footer-logo">
+                                    <div class="heart">🖤</div>
+                                    <span class="footer-brand-name">Divinci AI</span>
+                                </div>
+                                <p class="footer-tagline">Potenciando la colaboración humano-IA</p>
+                                <div class="social-links">
+                                    <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                    <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Links -->
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Producto</h3>
+                                <ul>
+                                    <li><a href="../index.html#features">Características</a></li>
+                                    <li><a href="../pricing.html">Precios</a></li>
+                                    <li><a href="../roadmap.html">Hoja de Ruta</a></li>
+                                    <li><a href="../changelog.html">Registro de Cambios</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Recursos</h3>
+                                <ul>
+                                    <li><a href="../docs/">Documentación</a></li>
+                                    <li><a href="blog/">Blog</a></li>
+                                    <li><a href="../tutorials/">Tutoriales</a></li>
+                                    <li><a href="../api/">API</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Empresa</h3>
+                                <ul>
+                                    <li><a href="../about-us.html">Acerca de Nosotros</a></li>
+                                    <li><a href="../careers.html">Carreras</a></li>
+                                    <li><a href="contact.html">Contacto</a></li>
+                                    <li><a href="../press.html">Prensa</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="terms-of-service.html">Términos de Servicio</a></li>
+                                    <li><a href="privacy-policy.html">Política de Privacidad</a></li>
+                                    <li><a href="ai-safety-ethics.html">Seguridad y Ética de IA</a></li>
+                                    <li><a href="../security.html">Seguridad</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom with Bulma Level -->
+                <div class="footer-bottom">
+                    <div class="level is-footer-bottom">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <p class="copyright">&copy; 2023-2025 Divinci AI. Todos los derechos reservados.</p>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="footer-bottom-links">
+                                    <a href="../sitemap.xml">Mapa del Sitio</a>
+                                    <a href="accessibility.html">Accesibilidad</a>
+                                    <a href="cookies.html">Política de Cookies</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
         <!-- Scripts -->
         <script src="../js/keyboard-navigation.js" defer></script>
@@ -587,8 +859,7 @@
         <script src="../js/mobile-menu.js" defer></script>
         <script src="../js/view-toggle.js" defer></script>
 
-        <!-- Script to include HTML components -->
-        <script src="../debug-include.js"></script>
+        <!-- HTML components are hardcoded directly in the page -->
 
         <!-- Form submission and map interaction script -->
         <script>

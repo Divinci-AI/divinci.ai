@@ -37,13 +37,14 @@
         <link rel="stylesheet" href="../assets/css/fonts.css" />
         <link rel="stylesheet" href="../assets/css/sora-styles.css" />
         <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../styles-footer.css" />
         <link rel="stylesheet" href="../official-document.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         />
         <!-- Script to include HTML components -->
-        <script src="../js/include-html.js" defer></script>
+        
         <script src="../js/conditional-header.js" defer></script>
         <!-- Set default language -->
     <script>
@@ -53,12 +54,216 @@
             }
         });
     </script>
-</head>
+
+        <style>
+            /* Language Switcher Styles */
+            .language-switcher {
+                position: relative;
+                display: inline-block;
+                margin-left: 15px;
+            }
+
+            .language-switcher-current {
+                display: flex;
+                align-items: center;
+                padding: 8px 12px;
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                color: white;
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .language-switcher-current:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .language-icon {
+                margin-right: 8px;
+                display: flex;
+                align-items: center;
+            }
+
+            .current-language {
+                margin: 0 8px;
+            }
+
+            .dropdown-icon {
+                font-size: 10px;
+                transition: transform 0.3s ease;
+            }
+
+            .language-switcher.active .dropdown-icon {
+                transform: rotate(180deg);
+            }
+
+            .language-switcher-dropdown {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+                z-index: 1000;
+                min-width: 160px;
+            }
+
+            .language-switcher.active .language-switcher-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .language-option {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 12px;
+                color: #333;
+                text-decoration: none;
+                transition: background-color 0.2s ease;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .language-option:last-child {
+                border-bottom: none;
+            }
+
+            .language-option:hover {
+                background-color: #f8f9fa;
+                color: #2863c2;
+            }
+
+            .language-name {
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .language-native {
+                font-size: 13px;
+                color: #555;
+                font-weight: 400;
+            }
+
+            .language-option:hover .language-native {
+                color: #2863c2;
+            }
+
+            /* RTL Support */
+            html[dir="rtl"] .language-switcher-dropdown {
+                left: auto;
+                right: 0;
+            }
+
+            html[dir="rtl"] .language-option {
+                flex-direction: row-reverse;
+            }
+
+            html[dir="rtl"] .language-icon {
+                margin-right: 0;
+                margin-left: 5px;
+            }
+
+            html[dir="rtl"] .current-language {
+                margin: 0 5px;
+            }
+        </style>
+    </head>
     <body>
         <!-- Header Section with Navbar -->
         <header>
-            <div data-include="../includes/header.html"></div>
+            <!-- Header with Navigation -->
+        <header role="banner">
+            <nav class="navbar">
+                <a href="../index.html" class="logo-link">
+                    <div class="nav-logo">
+                        <img
+                            class="header-logo"
+                            src="../images/divinci_logo_inverted.svg"
+                            alt="Divinci Heart Robot logo"
+                            onerror="this.onerror=null; this.src='../images/divinci_logo_inverted.svg';"
+                        />
+                    </div>
+                    <div class="nav-title">
+                        <span class="brand-name">Divinci ™</span>
+                        <span class="mobile-hide">&nbsp;- Crea tu propia IA personalizada</span>
+                    </div>
+                </a>
+                <div class="nav-menu">
+                    <a href="../index.html#features">Características</a>
+                    <a href="../index.html#team">Equipo</a>
+                    <a href="../index.html#signup" class="signup-link"><span class="signup-button">Registrarse</span></a>
+                    <div id="language-switcher-container" style="display: inline-block; margin-left: 15px;">
+                        <!-- Language Switcher Component -->
+                        <div class="language-switcher">
+                            <div class="language-switcher-current">
+                                <span class="language-icon" style="display:inline-flex; align-items:center;">
+                                  <i class="fa-solid fa-language" style="font-size: 20px;"></i>
+                                </span>
+                                <span class="current-language">Español</span>
+                                <span class="dropdown-icon">▼</span>
+                            </div>
+                            <div class="language-switcher-dropdown">
+                                <a href="../ai-safety-ethics.html" class="language-option" data-lang="en">
+                                    <span class="language-name">English</span>
+                                    <span class="language-native">English</span>
+                                </a>
+                                <a href="#" class="language-option" data-lang="es">
+                                    <span class="language-name">Spanish</span>
+                                    <span class="language-native">Español</span>
+                                </a>
+                                <a href="#" class="language-option" data-lang="fr">
+                                    <span class="language-name">French</span>
+                                    <span class="language-native">Français</span>
+                                </a>
+                                <a href="#" class="language-option" data-lang="ar">
+                                    <span class="language-name">Arabic</span>
+                                    <span class="language-native">العربية</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
+        </header>
+            
+            <!-- Load language switcher script -->
+            <script>
+                // Ensure scripts load in correct order
+                function loadLanguageSwitcherScripts() {
+                    // Load the main language switcher script first
+                    const script = document.createElement('script');
+                    script.src = '../js/language-switcher.js';
+                    script.onload = function() {
+                        // Only load the fix script after the main script is loaded
+                        const fixScript = document.createElement('script');
+                        fixScript.src = '../js/language-switcher-fix.js';
+                        document.head.appendChild(fixScript);
+                    };
+                    script.onerror = function() {
+                        console.warn('Could not load language-switcher.js');
+                    };
+                    document.head.appendChild(script);
+                }
+
+                // Load scripts when DOM is ready
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', loadLanguageSwitcherScripts);
+                } else {
+                    loadLanguageSwitcherScripts();
+                }
+            </script>
 
         <!-- Main Content Section for AI Trust & Ethics -->
         <main id="ai-trust-ethics">
@@ -462,6 +667,152 @@
         </main>
 
         <!-- Footer Section -->
-        <div data-include="../includes/footer.html"></div>
+        <!-- Footer with Sacred Geometry Elements -->
+<!-- Load footer styles dynamically -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Font Awesome if not already loaded
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        }
+
+        // Load Bulma if not already loaded
+        if (!document.querySelector('link[href*="bulma"]')) {
+            const bulma = document.createElement('link');
+            bulma.rel = 'stylesheet';
+            bulma.href = 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+            document.head.appendChild(bulma);
+        }
+
+        // Load footer styles
+        const footerStyles = document.createElement('link');
+        footerStyles.rel = 'stylesheet';
+        footerStyles.href = (window.location.pathname.includes('/features/') ? '../../' : '') + 'styles-footer.css';
+        document.head.appendChild(footerStyles);
+    })();
+</script>
+<!-- Footer -->
+        <footer class="site-footer">
+            <!-- Sacred Geometry Background Elements -->
+            <div class="footer-sacred-pattern"></div>
+            <div class="sacred-circle sacred-circle-1"></div>
+            <div class="sacred-circle sacred-circle-2"></div>
+            <div class="sacred-circle sacred-circle-3"></div>
+
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Top Section with Bulma Columns -->
+                    <div class="columns is-footer-links">
+                        <!-- Logo and Company Info -->
+                        <div class="column is-one-quarter">
+                            <div class="footer-brand">
+                                <div class="footer-logo">
+                                    <div class="heart">🖤</div>
+                                    <span class="footer-brand-name">Divinci AI</span>
+                                </div>
+                                <p class="footer-tagline">Potenciando la colaboración humano-IA</p>
+                                <div class="social-links">
+                                    <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                    <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Links -->
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Producto</h3>
+                                <ul>
+                                    <li><a href="../index.html#features">Características</a></li>
+                                    <li><a href="../pricing.html">Precios</a></li>
+                                    <li><a href="../roadmap.html">Hoja de Ruta</a></li>
+                                    <li><a href="../changelog.html">Registro de Cambios</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Recursos</h3>
+                                <ul>
+                                    <li><a href="../docs/">Documentación</a></li>
+                                    <li><a href="blog/">Blog</a></li>
+                                    <li><a href="../tutorials/">Tutoriales</a></li>
+                                    <li><a href="../api/">API</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Empresa</h3>
+                                <ul>
+                                    <li><a href="../about-us.html">Acerca de Nosotros</a></li>
+                                    <li><a href="../careers.html">Carreras</a></li>
+                                    <li><a href="../contact.html">Contacto</a></li>
+                                    <li><a href="../press.html">Prensa</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="footer-links-column">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="../terms-of-service.html">Términos de Servicio</a></li>
+                                    <li><a href="../privacy-policy.html">Política de Privacidad</a></li>
+                                    <li><a href="../ai-safety-ethics.html">Seguridad y Ética de IA</a></li>
+                                    <li><a href="../security.html">Seguridad</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom with Bulma Level -->
+                <div class="footer-bottom">
+                    <div class="level is-footer-bottom">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <p class="copyright">&copy; 2023-2025 Divinci AI. Todos los derechos reservados.</p>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="footer-bottom-links">
+                                    <a href="../sitemap.xml">Mapa del Sitio</a>
+                                    <a href="../accessibility.html">Accesibilidad</a>
+                                    <a href="../cookies.html">Política de Cookies</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+<!-- Script to handle footer links based on current path -->
+<script>
+    // Properly set the href attributes based on location
+    (function() {
+        const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
+        const footerLinks = document.querySelectorAll('.footer-links-column a, .footer-bottom-links a');
+
+        footerLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                link.setAttribute('href', basePath + 'index.html' + href);
+            } else if (href && !href.startsWith('http') && !href.startsWith('/')) {
+                link.setAttribute('href', basePath + href);
+            }
+        });
+    })();
+</script>
+
     </body>
 </html>

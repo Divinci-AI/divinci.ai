@@ -30,7 +30,7 @@ module.exports = defineConfig({
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://localhost:61443',
+    baseURL: 'http://localhost:8000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -91,10 +91,11 @@ module.exports = defineConfig({
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
   outputDir: 'test-results/',
 
-  /* Using existing server instead of starting a new one */
-  /* webServer: {
-    command: 'npx serve',
-    port: 58287,
+  /* Start a server for testing */
+  webServer: {
+    command: 'npx serve -l 8000',
+    port: 8000,
     reuseExistingServer: !process.env.CI,
-  }, */
+    timeout: 120 * 1000,
+  },
 });
