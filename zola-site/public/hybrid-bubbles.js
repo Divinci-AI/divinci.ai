@@ -602,52 +602,82 @@ document.addEventListener('DOMContentLoaded', function() {
     // Group 3: Second reaction circles (last third)
     const secondReactionCircles = shuffledSelectors.slice(groupSize * 2);
 
+    // Get currently used circle selectors to avoid conflicts
+    const usedCircleSelectors = activeBubbles.map(item => item.circleSelector);
+
+    // Filter out used circles from each group
+    const availableMainCircles = mainMessageCircles.filter(selector => !usedCircleSelectors.includes(selector));
+    const availableFirstReactionCircles = firstReactionCircles.filter(selector => !usedCircleSelectors.includes(selector));
+    const availableSecondReactionCircles = secondReactionCircles.filter(selector => !usedCircleSelectors.includes(selector));
+
     if (isFeatureCycle) {
       // Feature cycle: Show 1 main feature message in Group 1
       // DON'T clear existing bubbles - let them coexist
-      const randomMainCircle = mainMessageCircles[Math.floor(Math.random() * mainMessageCircles.length)];
-      const mainBubble = createBubble(randomMainCircle, true);
-      startPositionUpdates();
+      if (availableMainCircles.length > 0) {
+        const randomMainCircle = availableMainCircles[Math.floor(Math.random() * availableMainCircles.length)];
+        const mainBubble = createBubble(randomMainCircle, true);
+        startPositionUpdates();
 
-      // Remove just this bubble after 5 seconds (right timing for main message)
-      setTimeout(() => {
-        if (mainBubble && mainBubble.parentNode) {
-          mainBubble.parentNode.removeChild(mainBubble);
-          // Remove from activeBubbles array
-          const index = activeBubbles.findIndex(item => item.bubble === mainBubble);
-          if (index > -1) {
-            activeBubbles.splice(index, 1);
+        // Remove just this bubble after 5 seconds (right timing for main message)
+        setTimeout(() => {
+          if (mainBubble && mainBubble.parentNode) {
+            mainBubble.parentNode.removeChild(mainBubble);
+            // Remove from activeBubbles array
+            const index = activeBubbles.findIndex(item => item.bubble === mainBubble);
+            if (index > -1) {
+              activeBubbles.splice(index, 1);
+            }
           }
-        }
-      }, 5000);
+        }, 5000);
+      } else {
+        console.log('No available main message circles - skipping this cycle');
+      }
     } else {
       // Reaction cycle: Show 1-2 reaction messages in Groups 2 & 3
       // DON'T clear existing bubbles - let them coexist
+      // ENSURE reactions never use Group 1 (main message group)
 
-      // First reaction in Group 2
-      const randomFirstCircle = firstReactionCircles[Math.floor(Math.random() * firstReactionCircles.length)];
-      const reaction1 = createBubble(randomFirstCircle, false);
-      startPositionUpdates();
+      // First reaction in Group 2 (only if available)
+      if (availableFirstReactionCircles.length > 0) {
+        const randomFirstCircle = availableFirstReactionCircles[Math.floor(Math.random() * availableFirstReactionCircles.length)];
+        const reaction1 = createBubble(randomFirstCircle, false);
+        startPositionUpdates();
 
-      // Add a second reaction bubble with delay in Group 3
-      setTimeout(() => {
-        const randomSecondCircle = secondReactionCircles[Math.floor(Math.random() * secondReactionCircles.length)];
-        const reaction2 = createBubble(randomSecondCircle, false);
-
-        // Remove both reactions after 3 seconds (shorter for cleaner cycle)
+        // Add a second reaction bubble with delay in Group 3 (only if available)
         setTimeout(() => {
-          [reaction1, reaction2].forEach(bubble => {
-            if (bubble && bubble.parentNode) {
-              bubble.parentNode.removeChild(bubble);
-              // Remove from activeBubbles array
-              const index = activeBubbles.findIndex(item => item.bubble === bubble);
-              if (index > -1) {
-                activeBubbles.splice(index, 1);
+          if (availableSecondReactionCircles.length > 0) {
+            const randomSecondCircle = availableSecondReactionCircles[Math.floor(Math.random() * availableSecondReactionCircles.length)];
+            const reaction2 = createBubble(randomSecondCircle, false);
+
+            // Remove both reactions after 3 seconds (shorter for cleaner cycle)
+            setTimeout(() => {
+              [reaction1, reaction2].forEach(bubble => {
+                if (bubble && bubble.parentNode) {
+                  bubble.parentNode.removeChild(bubble);
+                  // Remove from activeBubbles array
+                  const index = activeBubbles.findIndex(item => item.bubble === bubble);
+                  if (index > -1) {
+                    activeBubbles.splice(index, 1);
+                  }
+                }
+              });
+            }, 3000);
+          } else {
+            // If no Group 3 available, just remove the first reaction
+            setTimeout(() => {
+              if (reaction1 && reaction1.parentNode) {
+                reaction1.parentNode.removeChild(reaction1);
+                const index = activeBubbles.findIndex(item => item.bubble === reaction1);
+                if (index > -1) {
+                  activeBubbles.splice(index, 1);
+                }
               }
-            }
-          });
-        }, 3000);
-      }, 1500);
+            }, 3000);
+          }
+        }, 1500);
+      } else {
+        console.log('No available reaction circles - skipping this cycle');
+      }
     }
 
     // Toggle cycle for next time
