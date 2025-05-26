@@ -594,6 +594,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Make sure to exclude AI logo circles
     const shuffledSelectors = [...circleSelectors].sort(() => Math.random() - 0.5);
 
+    let currentCycleIsFeature = isFeatureCycle;
+
     if (isFeatureCycle) {
       // Feature cycle: Show 1 main feature message
       createBubble(shuffledSelectors[0], true);
@@ -616,8 +618,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Toggle cycle for next time
     isFeatureCycle = !isFeatureCycle;
 
-    // Clear bubbles after display time
-    setTimeout(clearBubbles, 6000);
+    // Clear bubbles after display time - give main messages longer display time
+    const displayTime = currentCycleIsFeature ? 6000 : 4500; // Main messages get 6s, reactions get 4.5s
+    setTimeout(clearBubbles, displayTime);
   }
 
   // Clear all bubbles
