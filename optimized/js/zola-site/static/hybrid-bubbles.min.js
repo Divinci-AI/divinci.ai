@@ -609,7 +609,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const mainBubble = createBubble(randomMainCircle, true);
       startPositionUpdates();
 
-      // Remove just this bubble after 7 seconds (perfect overlap without double main messages)
+      // Remove just this bubble after 5 seconds (right timing for main message)
       setTimeout(() => {
         if (mainBubble && mainBubble.parentNode) {
           mainBubble.parentNode.removeChild(mainBubble);
@@ -619,7 +619,7 @@ document.addEventListener('DOMContentLoaded', function() {
             activeBubbles.splice(index, 1);
           }
         }
-      }, 7000);
+      }, 5000);
     } else {
       // Reaction cycle: Show 1-2 reaction messages in Groups 2 & 3
       // DON'T clear existing bubbles - let them coexist
