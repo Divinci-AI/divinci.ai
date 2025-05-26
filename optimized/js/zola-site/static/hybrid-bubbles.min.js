@@ -595,34 +595,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const shuffledSelectors = [...circleSelectors].sort(() => Math.random() - 0.5);
 
     if (isFeatureCycle) {
-      // Feature cycle: Show only feature messages (1-3 bubbles)
+      // Feature cycle: Show 1 main feature message
       createBubble(shuffledSelectors[0], true);
 
       // Start updating positions immediately for the first bubble
       startPositionUpdates();
-
-      // Add more feature bubbles with delays
-      setTimeout(() => {
-        createBubble(shuffledSelectors[1], true);
-
-        setTimeout(() => {
-          createBubble(shuffledSelectors[2], true);
-        }, 1000);
-      }, 1500);
     } else {
-      // Reaction cycle: Show only reaction messages (1-3 bubbles)
+      // Reaction cycle: Show 1-2 reaction messages
       createBubble(shuffledSelectors[0], false);
 
       // Start updating positions immediately for the first bubble
       startPositionUpdates();
 
-      // Add more reaction bubbles with delays
+      // Add a second reaction bubble with delay
       setTimeout(() => {
         createBubble(shuffledSelectors[1], false);
-
-        setTimeout(() => {
-          createBubble(shuffledSelectors[2], false);
-        }, 1000);
       }, 1500);
     }
 
