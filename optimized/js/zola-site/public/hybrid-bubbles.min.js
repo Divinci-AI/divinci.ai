@@ -590,14 +590,23 @@ document.addEventListener('DOMContentLoaded', function() {
   function showBubbles() {
     console.log(`Showing hybrid bubbles - ${isFeatureCycle ? 'Feature' : 'Reaction'} cycle`);
 
-    // Randomly choose circles to attach bubbles to
-    // Make sure to exclude AI logo circles
+    // Divide circles into 3 distinct groups for organized placement
     const shuffledSelectors = [...circleSelectors].sort(() => Math.random() - 0.5);
+    const totalCircles = shuffledSelectors.length;
+    const groupSize = Math.floor(totalCircles / 3);
+
+    // Group 1: Main message circles (first third)
+    const mainMessageCircles = shuffledSelectors.slice(0, groupSize);
+    // Group 2: First reaction circles (middle third)
+    const firstReactionCircles = shuffledSelectors.slice(groupSize, groupSize * 2);
+    // Group 3: Second reaction circles (last third)
+    const secondReactionCircles = shuffledSelectors.slice(groupSize * 2);
 
     if (isFeatureCycle) {
-      // Feature cycle: Show 1 main feature message
+      // Feature cycle: Show 1 main feature message in Group 1
       // DON'T clear existing bubbles - let them coexist
-      const mainBubble = createBubble(shuffledSelectors[0], true);
+      const randomMainCircle = mainMessageCircles[Math.floor(Math.random() * mainMessageCircles.length)];
+      const mainBubble = createBubble(randomMainCircle, true);
       startPositionUpdates();
 
       // Remove just this bubble after 6 seconds (longer for main message)
@@ -612,14 +621,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }, 6000);
     } else {
-      // Reaction cycle: Show 1-2 reaction messages
+      // Reaction cycle: Show 1-2 reaction messages in Groups 2 & 3
       // DON'T clear existing bubbles - let them coexist
-      const reaction1 = createBubble(shuffledSelectors[1], false);
+
+      // First reaction in Group 2
+      const randomFirstCircle = firstReactionCircles[Math.floor(Math.random() * firstReactionCircles.length)];
+      const reaction1 = createBubble(randomFirstCircle, false);
       startPositionUpdates();
 
-      // Add a second reaction bubble with delay
+      // Add a second reaction bubble with delay in Group 3
       setTimeout(() => {
-        const reaction2 = createBubble(shuffledSelectors[2], false);
+        const randomSecondCircle = secondReactionCircles[Math.floor(Math.random() * secondReactionCircles.length)];
+        const reaction2 = createBubble(randomSecondCircle, false);
 
         // Remove both reactions after 4 seconds
         setTimeout(() => {
