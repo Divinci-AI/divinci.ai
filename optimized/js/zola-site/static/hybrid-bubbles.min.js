@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Show a set of bubbles
   function showBubbles() {
-    console.log(`Showing hybrid bubbles - ${isFeatureCycle ? 'Feature' : 'Reaction'} cycle`);
+    console.log('Showing bubble sequence: main message → reactions');
 
     // Clear any existing bubbles
     clearBubbles();
@@ -594,33 +594,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Make sure to exclude AI logo circles
     const shuffledSelectors = [...circleSelectors].sort(() => Math.random() - 0.5);
 
-    let currentCycleIsFeature = isFeatureCycle;
+    // Always show the full sequence: main message → first reaction → second reaction
+    // All bubbles stay visible together until the end
 
-    if (isFeatureCycle) {
-      // Feature cycle: Show 1 main feature message
-      createBubble(shuffledSelectors[0], true);
+    // 1. Show main feature message immediately
+    createBubble(shuffledSelectors[0], true);
+    startPositionUpdates();
 
-      // Start updating positions immediately for the first bubble
-      startPositionUpdates();
-    } else {
-      // Reaction cycle: Show 1-2 reaction messages
-      createBubble(shuffledSelectors[0], false);
+    // 2. Add first reaction after 2 seconds
+    setTimeout(() => {
+      createBubble(shuffledSelectors[1], false);
+    }, 2000);
 
-      // Start updating positions immediately for the first bubble
-      startPositionUpdates();
+    // 3. Add second reaction after 4 seconds
+    setTimeout(() => {
+      createBubble(shuffledSelectors[2], false);
+    }, 4000);
 
-      // Add a second reaction bubble with delay
-      setTimeout(() => {
-        createBubble(shuffledSelectors[1], false);
-      }, 1500);
-    }
-
-    // Toggle cycle for next time
-    isFeatureCycle = !isFeatureCycle;
-
-    // Clear bubbles after display time - give main messages longer display time
-    const displayTime = currentCycleIsFeature ? 6000 : 4500; // Main messages get 6s, reactions get 4.5s
-    setTimeout(clearBubbles, displayTime);
+    // 4. Clear all bubbles after 8 seconds (main message visible for full duration)
+    setTimeout(clearBubbles, 8000);
   }
 
   // Clear all bubbles
@@ -649,12 +641,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show first set immediately
     showBubbles();
 
-    // Set up interval for subsequent sets
+    // Set up interval for subsequent sets (8s cycle + 2s gap = 10s total)
     bubbleInterval = setInterval(() => {
       if (isHeroVisible) {
         showBubbles();
       }
-    }, 9000);
+    }, 10000);
 
     // Handle page visibility
     document.addEventListener('visibilitychange', () => {
@@ -666,7 +658,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isHeroVisible) {
               showBubbles();
             }
-          }, 9000);
+          }, 10000);
         }
       } else {
         clearInterval(bubbleInterval);
