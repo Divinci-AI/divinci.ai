@@ -590,36 +590,51 @@ document.addEventListener('DOMContentLoaded', function() {
   function showBubbles() {
     console.log(`Showing hybrid bubbles - ${isFeatureCycle ? 'Feature' : 'Reaction'} cycle`);
 
-    // Clear any existing bubbles and timeouts
-    clearBubbles();
-    if (clearTimeoutId) {
-      clearTimeout(clearTimeoutId);
-      clearTimeoutId = null;
-    }
-
     // Randomly choose circles to attach bubbles to
     // Make sure to exclude AI logo circles
     const shuffledSelectors = [...circleSelectors].sort(() => Math.random() - 0.5);
 
     if (isFeatureCycle) {
       // Feature cycle: Show 1 main feature message
-      createBubble(shuffledSelectors[0], true);
+      // DON'T clear existing bubbles - let them coexist
+      const mainBubble = createBubble(shuffledSelectors[0], true);
       startPositionUpdates();
 
-      // Clear after 4 seconds
-      clearTimeoutId = setTimeout(clearBubbles, 4000);
+      // Remove just this bubble after 6 seconds (longer for main message)
+      setTimeout(() => {
+        if (mainBubble && mainBubble.parentNode) {
+          mainBubble.parentNode.removeChild(mainBubble);
+          // Remove from activeBubbles array
+          const index = activeBubbles.findIndex(item => item.bubble === mainBubble);
+          if (index > -1) {
+            activeBubbles.splice(index, 1);
+          }
+        }
+      }, 6000);
     } else {
       // Reaction cycle: Show 1-2 reaction messages
-      createBubble(shuffledSelectors[0], false);
+      // DON'T clear existing bubbles - let them coexist
+      const reaction1 = createBubble(shuffledSelectors[1], false);
       startPositionUpdates();
 
       // Add a second reaction bubble with delay
       setTimeout(() => {
-        createBubble(shuffledSelectors[1], false);
-      }, 1500);
+        const reaction2 = createBubble(shuffledSelectors[2], false);
 
-      // Clear after 4 seconds
-      clearTimeoutId = setTimeout(clearBubbles, 4000);
+        // Remove both reactions after 4 seconds
+        setTimeout(() => {
+          [reaction1, reaction2].forEach(bubble => {
+            if (bubble && bubble.parentNode) {
+              bubble.parentNode.removeChild(bubble);
+              // Remove from activeBubbles array
+              const index = activeBubbles.findIndex(item => item.bubble === bubble);
+              if (index > -1) {
+                activeBubbles.splice(index, 1);
+              }
+            }
+          });
+        }, 4000);
+      }, 1500);
     }
 
     // Toggle cycle for next time
