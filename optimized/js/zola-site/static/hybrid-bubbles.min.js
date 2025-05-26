@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Show a set of bubbles
   function showBubbles() {
-    console.log('Showing bubble sequence: main message → reactions');
+    console.log(`Showing hybrid bubbles - ${isFeatureCycle ? 'Feature' : 'Reaction'} cycle`);
 
     // Clear any existing bubbles
     clearBubbles();
@@ -594,25 +594,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Make sure to exclude AI logo circles
     const shuffledSelectors = [...circleSelectors].sort(() => Math.random() - 0.5);
 
-    // Always show the full sequence: main message → first reaction → second reaction
-    // All bubbles stay visible together until the end
+    if (isFeatureCycle) {
+      // Feature cycle: Show 1 main feature message
+      createBubble(shuffledSelectors[0], true);
+      startPositionUpdates();
 
-    // 1. Show main feature message immediately
-    createBubble(shuffledSelectors[0], true);
-    startPositionUpdates();
+      // Clear after 4 seconds
+      setTimeout(clearBubbles, 4000);
+    } else {
+      // Reaction cycle: Show 1-2 reaction messages
+      createBubble(shuffledSelectors[0], false);
+      startPositionUpdates();
 
-    // 2. Add first reaction after 2 seconds
-    setTimeout(() => {
-      createBubble(shuffledSelectors[1], false);
-    }, 2000);
+      // Add a second reaction bubble with delay
+      setTimeout(() => {
+        createBubble(shuffledSelectors[1], false);
+      }, 1500);
 
-    // 3. Add second reaction after 4 seconds
-    setTimeout(() => {
-      createBubble(shuffledSelectors[2], false);
-    }, 4000);
+      // Clear after 4 seconds
+      setTimeout(clearBubbles, 4000);
+    }
 
-    // 4. Clear all bubbles after 8 seconds (main message visible for full duration)
-    setTimeout(clearBubbles, 8000);
+    // Toggle cycle for next time
+    isFeatureCycle = !isFeatureCycle;
   }
 
   // Clear all bubbles
@@ -641,12 +645,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show first set immediately
     showBubbles();
 
-    // Set up interval for subsequent sets (8s cycle + 2s gap = 10s total)
+    // Set up interval for subsequent sets
     bubbleInterval = setInterval(() => {
       if (isHeroVisible) {
         showBubbles();
       }
-    }, 10000);
+    }, 6000);
 
     // Handle page visibility
     document.addEventListener('visibilitychange', () => {
@@ -658,7 +662,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isHeroVisible) {
               showBubbles();
             }
-          }, 10000);
+          }, 6000);
         }
       } else {
         clearInterval(bubbleInterval);
