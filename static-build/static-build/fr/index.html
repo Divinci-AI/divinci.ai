@@ -334,7 +334,7 @@
 </script>
 
 
-        
+
 
         <link
             rel="apple-touch-icon"
@@ -491,6 +491,7 @@
         <link rel="stylesheet" href="../optimized/css/includes/header-styles.min.css" />
         <link rel="stylesheet" href="../optimized/css/includes/section-content-fix.min.css" />
         <link rel="stylesheet" href="../optimized/css/assets/css/enhanced-accessibility.min.css" />
+        <link rel="stylesheet" href="../css/mobile-accessibility-fixes.css" />
 
         <style>
 
@@ -702,13 +703,13 @@
         </style>
 
         <!-- Script to include HTML components -->
-        
+
         <script src="../optimized/js/js/feature-circle-links.min.js" defer></script>
         <script src="../optimized/js/js/social-sharing.min.js" defer></script>
         <link rel="stylesheet" href="../optimized/css/css/social-sharing.min.css" />
         <!-- view-toggle.js is loaded by header.html -->
         <!-- Load structured data script -->
-        
+
         <!-- Set default language -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -798,6 +799,11 @@
                 const fixScript = document.createElement('script');
                 fixScript.src = '../js/language-switcher-fix.js';
                 document.head.appendChild(fixScript);
+
+                // Load the language-aware navigation script
+                const langNavScript = document.createElement('script');
+                langNavScript.src = '../js/language-aware-navigation.js';
+                document.head.appendChild(langNavScript);
 
                 // Initialize view toggle
                 const viewToggleScript = document.createElement('script');

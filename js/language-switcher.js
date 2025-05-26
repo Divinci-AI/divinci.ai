@@ -129,6 +129,13 @@ function updateCurrentLanguage(switcher) {
 
 // Navigate to a specific language
 function navigateToLanguage(lang) {
+    // Save language preference to localStorage
+    try {
+        localStorage.setItem('divinci_preferred_language', lang);
+    } catch (e) {
+        console.warn('Could not save language preference to localStorage:', e);
+    }
+
     const currentPath = window.location.pathname;
     const currentOrigin = window.location.origin;
     const currentHref = window.location.href;
