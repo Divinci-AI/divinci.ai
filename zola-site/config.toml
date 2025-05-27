@@ -1,0 +1,155 @@
+# Zola Configuration for Divinci AI Website
+base_url = "https://divinci.ai"
+
+# Build settings
+compile_sass = true
+minify_html = true
+generate_feed = true
+build_search_index = true
+hard_link_static = false
+
+# Theme and output settings
+output_dir = "public"
+default_language = "en"
+
+# Markdown settings
+[markdown]
+highlight_code = true
+highlight_theme = "base16-ocean-dark"
+render_emoji = true
+external_links_target_blank = true
+external_links_no_follow = true
+external_links_no_referrer = true
+smart_punctuation = true
+
+
+
+# Extra configuration
+[extra]
+author = "Divinci AI"
+company = "Divinci AI"
+email = "support@divinci.ai"
+twitter = "@DivinciAI"
+linkedin = "company/divinci-ai"
+github = "Divinci-AI"
+
+# Analytics and tracking
+google_analytics = ""
+google_tag_manager = ""
+
+# SEO settings
+default_image = "/images/social/divinci-default-social.png"
+favicon = "/images/favicon-32x32.png"
+
+# Language configurations
+[languages.en]
+title = "Divinci AI"
+description = "Empowering human-AI collaboration"
+weight = 1
+
+[languages.en.translations]
+site_name = "Divinci AI"
+tagline = "Empowering human-AI collaboration"
+home = "Home"
+about = "About"
+features = "Features"
+pricing = "Pricing"
+contact = "Contact"
+blog = "Blog"
+docs = "Documentation"
+careers = "Careers"
+press = "Press"
+support = "Support"
+terms = "Terms of Service"
+privacy = "Privacy Policy"
+cookies = "Cookie Policy"
+accessibility = "Accessibility"
+sitemap = "Sitemap"
+sign_up = "Sign Up"
+learn_more = "Learn More"
+get_started = "Get Started"
+read_more = "Read More"
+
+[languages.es]
+title = "Divinci AI"
+description = "Potenciando la colaboración humano-IA"
+weight = 2
+
+[languages.es.translations]
+site_name = "Divinci AI"
+tagline = "Potenciando la colaboración humano-IA"
+home = "Inicio"
+about = "Acerca de"
+features = "Características"
+pricing = "Precios"
+contact = "Contacto"
+blog = "Blog"
+docs = "Documentación"
+careers = "Carreras"
+press = "Prensa"
+support = "Soporte"
+terms = "Términos de Servicio"
+privacy = "Política de Privacidad"
+cookies = "Política de Cookies"
+accessibility = "Accesibilidad"
+sitemap = "Mapa del Sitio"
+sign_up = "Registrarse"
+learn_more = "Saber Más"
+get_started = "Comenzar"
+read_more = "Leer Más"
+
+[languages.fr]
+title = "Divinci AI"
+description = "Renforcer la collaboration humain-IA"
+weight = 3
+
+[languages.fr.translations]
+site_name = "Divinci AI"
+tagline = "Renforcer la collaboration humain-IA"
+home = "Accueil"
+about = "À Propos"
+features = "Fonctionnalités"
+pricing = "Tarifs"
+contact = "Contact"
+blog = "Blog"
+docs = "Documentation"
+careers = "Carrières"
+press = "Presse"
+support = "Support"
+terms = "Conditions de Service"
+privacy = "Politique de Confidentialité"
+cookies = "Politique des Cookies"
+accessibility = "Accessibilité"
+sitemap = "Plan du Site"
+sign_up = "S'inscrire"
+learn_more = "En Savoir Plus"
+get_started = "Commencer"
+read_more = "Lire Plus"
+
+[languages.ar]
+title = "Divinci AI"
+description = "تمكين التعاون بين الإنسان والذكاء الاصطناعي"
+weight = 4
+
+[languages.ar.translations]
+site_name = "Divinci AI"
+tagline = "تمكين التعاون بين الإنسان والذكاء الاصطناعي"
+home = "الرئيسية"
+about = "من نحن"
+features = "الميزات"
+pricing = "التسعير"
+contact = "اتصل بنا"
+blog = "المدونة"
+docs = "التوثيق"
+careers = "الوظائف"
+press = "الصحافة"
+support = "الدعم"
+terms = "شروط الخدمة"
+privacy = "سياسة الخصوصية"
+cookies = "سياسة ملفات تعريف الارتباط"
+accessibility = "إمكانية الوصول"
+sitemap = "خريطة الموقع"
+sign_up = "التسجيل"
+learn_more = "اعرف المزيد"
+get_started = "ابدأ"
+read_more = "اقرأ المزيد"

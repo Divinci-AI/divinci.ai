@@ -1,16 +1,40 @@
 {% extends "base.html" %}
 
-{% block title %}{{ page.title }} | Divinci AI{% endblock %}
+{% block title %}{{ page.title }}{% endblock %}
 {% block description %}{{ page.description }}{% endblock %}
 
 {% block content %}
-<section class="page-content">
+<main class="page-content">
     <div class="container">
-        <h1>{{ page.title }}</h1>
-        
+        <div class="page-header">
+            <h1 class="page-title">{{ page.title }}</h1>
+            {% if page.description %}
+            <p class="page-description">{{ page.description }}</p>
+            {% endif %}
+        </div>
+
         <div class="content">
             {{ page.content | safe }}
         </div>
+
+        {% if page.extra.show_toc and page.toc %}
+        <aside class="table-of-contents">
+            <h2>{{ trans(key="table_of_contents", default="Table of Contents", lang=lang) }}</h2>
+            <ul>
+            {% for h1 in page.toc %}
+                <li><a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+                {% if h1.children %}
+                    <ul>
+                    {% for h2 in h1.children %}
+                        <li><a href="{{ h2.permalink | safe }}">{{ h2.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </aside>
+        {% endif %}
     </div>
-</section>
+</main>
 {% endblock %}

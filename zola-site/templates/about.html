@@ -1,0 +1,400 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }}{% endblock %}
+{% block description %}{{ page.description }}{% endblock %}
+
+{% block content %}
+<main class="about-content">
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero-content">
+                <h1 class="about-title">{{ page.extra.hero_title | default(value=page.title) }}</h1>
+                <p class="about-subtitle">{{ page.extra.hero_subtitle | default(value=page.description) }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-vision-container">
+                <div class="mission-card">
+                    <div class="card-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h2 class="card-title">{{ page.extra.mission_title | default(value="Our Mission") }}</h2>
+                    <p class="section-content consumer-view-content">
+                        {{ page.extra.mission_consumer }}
+                    </p>
+                    <p class="section-content company-view-content" style="display: none; opacity: 0;">
+                        {{ page.extra.mission_company }}
+                    </p>
+                </div>
+                
+                <div class="vision-card">
+                    <div class="card-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h2 class="card-title">{{ page.extra.vision_title | default(value="Our Vision") }}</h2>
+                    <p class="section-content consumer-view-content">
+                        {{ page.extra.vision_consumer }}
+                    </p>
+                    <p class="section-content company-view-content" style="display: none; opacity: 0;">
+                        {{ page.extra.vision_company }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    {% if page.extra.values %}
+    <section class="values-section">
+        <div class="container">
+            <h2 class="section-title">Our Values</h2>
+            <p class="section-content">The principles that guide everything we do</p>
+            
+            <div class="values-grid">
+                {% for value in page.extra.values %}
+                <div class="value-card">
+                    <div class="value-icon">{{ value.icon }}</div>
+                    <h3 class="value-title">{{ value.title }}</h3>
+                    <p class="value-description">{{ value.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Team Section -->
+    {% if page.extra.team_members %}
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-content">The brilliant minds building the future of AI collaboration</p>
+            
+            <div class="team-grid">
+                {% for member in page.extra.team_members %}
+                <div class="team-member">
+                    <img src="{{ get_url(path=member.image) }}" alt="{{ member.name }}" class="member-image">
+                    <div class="member-info">
+                        <h3 class="member-name">{{ member.name }}</h3>
+                        <p class="member-title">{{ member.role }}</p>
+                        <p class="member-bio">{{ member.bio }}</p>
+                        <div class="member-social">
+                            {% if member.linkedin %}
+                            <a href="{{ member.linkedin }}" aria-label="LinkedIn" target="_blank">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            {% endif %}
+                            {% if member.twitter %}
+                            <a href="{{ member.twitter }}" aria-label="X (Twitter)" target="_blank">
+                                <i class="fab fa-x-twitter"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <div class="story-content">
+                {{ page.content | safe }}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your AI Experience?</h2>
+                <p>Join thousands of users already building with Divinci AI</p>
+                <a href="/#signup" class="cta-button">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+/* About Page Specific Styles */
+.about-hero {
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    color: white;
+    padding: 8rem 0 6rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #5ce2e7, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.about-subtitle {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.mission-section {
+    padding: 5rem 0;
+    background: #f8f9fa;
+}
+
+.mission-vision-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.mission-card, .vision-card {
+    flex: 1;
+    min-width: 300px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.mission-card::before, .vision-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, #16214c, #5ce2e7);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: #16214c;
+    margin-bottom: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #16214c;
+    margin-bottom: 1rem;
+}
+
+.values-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    color: white;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.section-content {
+    text-align: center;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 3rem;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.value-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.value-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.value-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.value-description {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.team-section {
+    padding: 5rem 0;
+    background: #f8f9fa;
+}
+
+.team-section .section-title {
+    color: #16214c;
+}
+
+.team-section .section-content {
+    color: #666;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.team-member {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.member-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 4px solid #5ce2e7;
+}
+
+.member-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #16214c;
+    margin-bottom: 0.5rem;
+}
+
+.member-title {
+    font-size: 1rem;
+    color: #5ce2e7;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.member-bio {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.member-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.member-social a {
+    color: #16214c;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.member-social a:hover {
+    color: #5ce2e7;
+}
+
+.story-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    color: white;
+}
+
+.story-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.cta-section {
+    padding: 5rem 0;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    color: #16214c;
+    margin-bottom: 1rem;
+}
+
+.cta-content p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(45deg, #16214c, #5ce2e7);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 2.5rem;
+    }
+    
+    .mission-vision-container {
+        flex-direction: column;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

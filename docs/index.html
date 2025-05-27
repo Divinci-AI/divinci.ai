@@ -53,7 +53,7 @@
         <link rel="stylesheet" href="../includes/section-content-fix.css" />
     </head>
     <body>
-        
+
 
         <!-- Preview Banner -->
         <div class="preview-banner">
@@ -90,8 +90,199 @@
                 <a href="../index.html#features">Features</a>
                 <a href="../index.html#team">Team</a>
                 <a href="../index.html#signup" class="signup-link"><span class="signup-button">Sign Up</span></a>
+                <div id="language-switcher-container" style="display: inline-block; margin-left: 15px; position: relative; z-index: 9999; overflow: visible;">
+                    <!-- Language Switcher Component -->
+                    <div class="language-switcher">
+                        <div class="language-switcher-current">
+                            <span class="language-icon" style="display:inline-flex; align-items:center;">
+                              <i class="fa-solid fa-language" style="font-size: 20px;"></i>
+                            </span>
+                            <span class="current-language">English</span>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="language-switcher-dropdown">
+                            <a href="../docs/index.html" class="language-option" data-lang="en">
+                                <span class="language-name">English</span>
+                                <span class="language-native">English</span>
+                            </a>
+                            <a href="../es/index.html" class="language-option" data-lang="es">
+                                <span class="language-name">Spanish</span>
+                                <span class="language-native">Español</span>
+                            </a>
+                            <a href="../fr/index.html" class="language-option" data-lang="fr">
+                                <span class="language-name">French</span>
+                                <span class="language-native">Français</span>
+                            </a>
+                            <a href="../ar/index.html" class="language-option" data-lang="ar">
+                                <span class="language-name">Arabic</span>
+                                <span class="language-native">العربية</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
+
+        <!-- Language Switcher Styles -->
+        <style>
+            /* Language Switcher Styles */
+            .language-switcher {
+                position: relative !important;
+                display: inline-block !important;
+                font-family: 'Sora', sans-serif;
+                margin-left: 15px;
+                z-index: 9999 !important;
+                overflow: visible !important;
+            }
+
+            .language-switcher-current {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                padding: 8px 12px;
+                border-radius: 4px;
+                background-color: rgba(255, 255, 255, 0.1);
+                transition: background-color 0.3s;
+                color: white;
+            }
+
+            .language-switcher-current:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .language-icon {
+                margin-right: 6px;
+                font-size: 16px;
+                color: white;
+            }
+
+            .current-language {
+                font-size: 14px;
+                font-weight: 500;
+                color: white;
+            }
+
+            .dropdown-icon {
+                margin-left: 6px;
+                font-size: 10px;
+                transition: transform 0.3s;
+                color: white;
+            }
+
+            .language-switcher.active .dropdown-icon {
+                transform: rotate(180deg);
+            }
+
+            .language-switcher-dropdown {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                min-width: 200px;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+                z-index: 10000;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .language-switcher.active .language-switcher-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .language-option {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 16px;
+                text-decoration: none;
+                color: #333;
+                transition: background-color 0.2s;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .language-option:last-child {
+                border-bottom: none;
+                border-radius: 0 0 8px 8px;
+            }
+
+            .language-option:first-child {
+                border-radius: 8px 8px 0 0;
+            }
+
+            .language-option:hover {
+                background-color: #f8f9fa;
+                color: #333;
+            }
+
+            .language-name {
+                font-weight: 500;
+                font-size: 14px;
+            }
+
+            .language-native {
+                font-size: 12px;
+                color: #666;
+                font-style: italic;
+            }
+
+            /* Close dropdown when clicking outside */
+            .language-switcher-dropdown::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+        </style>
+
+        <!-- Language Switcher JavaScript -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const languageSwitcher = document.querySelector('.language-switcher');
+                const toggleButton = languageSwitcher.querySelector('.language-switcher-current');
+                const dropdown = languageSwitcher.querySelector('.language-switcher-dropdown');
+                const languageOptions = languageSwitcher.querySelectorAll('.language-option');
+
+                // Toggle dropdown
+                toggleButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    languageSwitcher.classList.toggle('active');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!languageSwitcher.contains(e.target)) {
+                        languageSwitcher.classList.remove('active');
+                    }
+                });
+
+                // Handle language option clicks
+                languageOptions.forEach(option => {
+                    option.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const href = this.getAttribute('href');
+                        if (href) {
+                            // Close dropdown
+                            languageSwitcher.classList.remove('active');
+
+                            // Navigate to the new language
+                            window.location.href = href;
+                        }
+                    });
+                });
+            });
+        </script>
 
         <!-- Main content -->
         <main id="main-content" role="main" tabindex="-1">

@@ -1,36 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang }}" dir="{% if lang == 'ar' %}rtl{% else %}ltr{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 
     <!-- Hreflang tags for language alternatives -->
-    <link rel="alternate" href="https://divinci.ai/zola-site/templates/base.html" hreflang="x-default" />
-    <link rel="alternate" href="https://divinci.ai/zola-site/templates/base.html" hreflang="en" />
-    <link rel="alternate" href="https://divinci.ai/es/zola-site/templates/base.html" hreflang="es" />
-    <link rel="alternate" href="https://divinci.ai/fr/zola-site/templates/base.html" hreflang="fr" />
-    <link rel="alternate" href="https://divinci.ai/ar/zola-site/templates/base.html" hreflang="ar" />
-    <meta name="description" content="{% block description %}Divinci AI - Empowering human-AI collaboration{% endblock %}">
-    
-    <title>{% block title %}Divinci AI{% endblock %}</title>
-    
+    {% if config.languages %}
+    <link rel="alternate" href="{{ config.base_url }}" hreflang="x-default" />
+    {% for lang_code, lang_config in config.languages %}
+    <link rel="alternate" href="{{ config.base_url }}{% if lang_code != config.default_language %}/{{ lang_code }}{% endif %}/" hreflang="{{ lang_code }}" />
+    {% endfor %}
+    {% endif %}
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block description %}{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.description }}{% endif %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}divinci ai, artificial intelligence, ai collaboration, custom ai, ai platform{% endblock %}">
+    <meta name="author" content="{{ config.extra.author }}">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{{ current_url }}">
+    <meta property="og:title" content="{% block og_title %}{% if page.title %}{{ page.title }}{% elif section.title %}{{ section.title }}{% else %}{{ config.title }}{% endif %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.description }}{% endif %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ config.base_url }}{{ config.extra.default_image }}{% endblock %}">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ current_url }}">
+    <meta name="twitter:title" content="{% block twitter_title %}{% if page.title %}{{ page.title }}{% elif section.title %}{{ section.title }}{% else %}{{ config.title }}{% endif %}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.description }}{% endif %}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ config.base_url }}{{ config.extra.default_image }}{% endblock %}">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ current_url }}">
+
+    <title>{% block title %}{% if page.title %}{{ page.title }} | {{ config.title }}{% elif section.title %}{{ section.title }} | {{ config.title }}{% else %}{{ config.title }}{% endif %}{% endblock %}</title>
+
     <!-- Favicons and App Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-    
-    <!-- Stylesheets -->
+
+    <!-- Preload critical resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" as="style">
+    <link rel="preload" href="{{ get_url(path='images/divinci_logo_inverted.svg') }}" as="image">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="/assets/css/fonts.css">
-    <link rel="stylesheet" href="/assets/css/sora-styles.css">
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/styles-footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="/main.css">
-    
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{{ get_url(path='styles.css') }}">
+    <link rel="stylesheet" href="{{ get_url(path='styles-footer.css') }}">
+    <link rel="stylesheet" href="{{ get_url(path='main.css') }}">
+
+    <!-- Component CSS -->
+    {% if config.extra.css_components %}
+    {% for component in config.extra.css_components %}
+    <link rel="stylesheet" href="{{ get_url(path='css/components/' ~ component ~ '.css') }}">
+    {% endfor %}
+    {% endif %}
+
     {% block extra_css %}{% endblock %}
-    
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "{{ config.title }}",
+        "url": "{{ config.base_url }}",
+        "logo": "{{ config.base_url }}/images/divinci_logo_inverted.svg",
+        "description": "{{ config.description }}",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "{{ config.extra.email }}"
+        },
+        "sameAs": [
+            "https://twitter.com/{{ config.extra.twitter | replace(from='@', to='') }}",
+            "https://linkedin.com/{{ config.extra.linkedin }}",
+            "https://github.com/{{ config.extra.github }}"
+        ]
+    }
+    </script>
+
     <!-- Additional head content -->
     {% block extra_head %}{% endblock %}
 </head>
@@ -39,24 +94,46 @@
     <div class="skip-links">
         <a href="#main-content" class="skip-link">Skip to main content</a>
     </div>
-    
+
     <!-- Header -->
     {% include "partials/header.html" %}
-    
+
     <!-- Main Content -->
     <main id="main-content" role="main" tabindex="-1">
         {% block content %}{% endblock %}
     </main>
-    
+
     <!-- Footer -->
     {% include "partials/footer.html" %}
-    
+
     <!-- Core scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
-    <script src="/js/keyboard-navigation.js" defer></script>
-    <script src="/js/apply-sora-to-divinci.js" defer></script>
-    
+
+    <!-- Core JavaScript -->
+    <script src="{{ get_url(path='js/main.js') }}" defer></script>
+    <script src="{{ get_url(path='js/keyboard-navigation.js') }}" defer></script>
+    <script src="{{ get_url(path='js/apply-sora-to-divinci.js') }}" defer></script>
+
+    <!-- Component JavaScript -->
+    {% if config.extra.js_components %}
+    {% for component in config.extra.js_components %}
+    <script src="{{ get_url(path='js/components/' ~ component ~ '.js') }}" defer></script>
+    {% endfor %}
+    {% endif %}
+
     {% block extra_js %}{% endblock %}
+
+    <!-- Analytics -->
+    {% if config.extra.google_analytics %}
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.extra.google_analytics }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ config.extra.google_analytics }}');
+    </script>
+    {% endif %}
 </body>
 </html>

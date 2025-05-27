@@ -1,21 +1,24 @@
 {% extends "base.html" %}
 
-{% block title %}Divinci AI - Create your own custom AI{% endblock %}
+{% block title %}{{ section.title }}{% endblock %}
 
 {% block content %}
 <div class="hero">
     <div class="circle central">
         <img
             class="central-logo"
-            src="/images/divinci_logo_inverted.svg"
-            alt="Divinci Heart Robot logo black and white"
+            src="{{ get_url(path='images/divinci_logo_inverted.svg') }}"
+            alt="{{ trans(key='logo_alt', default='Divinci Heart Robot logo black and white', lang=lang) }}"
         />
     </div>
 
-    <!-- Hero content will go here -->
-    <div class="hero-content">
-        <h1>{{ section.title }}</h1>
-        <p>{{ section.description }}</p>
+    <div class="hero-tagline">
+        <h1 class="consumer-view-content gradient-text">
+            {{ trans(key="hero_title", default=section.extra.hero_title, lang=lang) }}
+        </h1>
+        <h1 class="company-view-content gradient-text-company" style="display: none; opacity: 0;">
+            {{ trans(key="hero_title_company", default=section.extra.hero_title_company, lang=lang) }}
+        </h1>
     </div>
 
     <svg class="flower-of-life" xmlns="http://www.w3.org/2000/svg">
@@ -82,9 +85,9 @@
     <!-- Existing Group of Circles -->
     <div class="geometry-group">
         <div class="circle circle00">👴</div>
-        <div class="circle circle01 ai-logo"><img src="/images/chatgpt-icon.png" alt="ChatGPT"></div>
+        <div class="circle circle01 ai-logo"><img src="{{ get_url(path='images/chatgpt-icon.png') }}" alt="ChatGPT"></div>
         <div class="circle circle02">🧑🏽‍🦱</div>
-        <div class="circle circle03 ai-logo"><img src="/images/claude-ai-icon.png" alt="Claude AI"></div>
+        <div class="circle circle03 ai-logo"><img src="{{ get_url(path='images/claude-ai-icon.png') }}" alt="Claude AI"></div>
         <div class="circle circle04">👨🏻</div>
     </div>
 
@@ -92,20 +95,102 @@
     <!-- Outer Orbit Set 1 -->
     <div class="geometry-group-outer1">
         <div class="circle circle20">🌞</div>
-        <div class="circle circle21 ai-logo"><img src="/images/google-gemini-icon.png" alt="Google Gemini"></div>
+        <div class="circle circle21 ai-logo"><img src="{{ get_url(path='images/google-gemini-icon.png') }}" alt="Google Gemini"></div>
         <div class="circle circle22">🤠</div>
-        <div class="circle circle23 ai-logo"><img src="/images/grok-icon.png" alt="Grok AI"></div>
+        <div class="circle circle23 ai-logo"><img src="{{ get_url(path='images/grok-icon.png') }}" alt="Grok AI"></div>
         <div class="circle circle24">😺</div>
         <div class="circle circle25">👽</div>
     </div>
     <div class="geometry-group-outer2">
         <div class="circle circle26">🧑🏾‍🦰</div>
-        <div class="circle circle27 ai-logo"><img src="/images/perplexity-ai-icon.png" alt="Perplexity AI"></div>
+        <div class="circle circle27 ai-logo"><img src="{{ get_url(path='images/perplexity-ai-icon.png') }}" alt="Perplexity AI"></div>
         <div class="circle circle28">🧔🏽‍♂️</div>
         <div class="circle circle29">🤖</div>
         <div class="circle circle30">👱‍♀️</div>
         <div class="circle circle31">🐸</div>
     </div>
+
+    <!-- Features Section -->
+    {% if section.extra.features %}
+    <section id="features" class="features-section">
+        <div class="sacred-geometry-overlay">
+            <div class="inner-ring"></div>
+            <div class="middle-ring"></div>
+            <div class="outer-ring"></div>
+            <div id="flowerOfLife" class="flower-of-life-container"></div>
+            <div id="connectionLines" class="connection-lines-container"></div>
+        </div>
+
+        {% for feature in section.extra.features %}
+        <div id="{{ feature.title | lower | replace(from=' ', to='') }}" class="feature">
+            <span class="feature-icon">{{ feature.icon }}</span>
+            {% if feature.link %}
+            <h3><a href="{{ feature.link }}">{{ feature.title }}</a></h3>
+            {% else %}
+            <h3>{{ feature.title }}</h3>
+            {% endif %}
+            <p class="consumer-view-content">{{ feature.consumer_description }}</p>
+            <p class="company-view-content" style="display: none; opacity: 0;">{{ feature.company_description }}</p>
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- Team Section -->
+    {% if section.extra.team_members %}
+    <section class="features-section profiles" id="team">
+        {% for member in section.extra.team_members %}
+        <div class="feature team-feature" id="{{ member.name | lower | replace(from=' ', to='-') }}">
+            <h3>{{ member.role }}</h3>
+            <img
+                src="{{ get_url(path=member.image) }}"
+                alt="{{ member.name }}"
+                style="object-position: center 15%"
+            />
+            <h4>{{ member.name }}</h4>
+            <p>{{ member.description | safe }}</p>
+            {% if member.linkedin %}
+            <a href="{{ member.linkedin }}" target="_blank">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="linkedin-logo"
+                    viewBox="0 0 24 24"
+                    data-supported-dps="24x24"
+                    fill="#0a66c2"
+                    width="24"
+                    height="24"
+                    focusable="false"
+                >
+                    <path
+                        d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"
+                    ></path>
+                </svg>
+            </a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- Signup Section -->
+    <section id="signup" class="signup-section">
+        <div class="container">
+            <h2>{{ section.extra.signup_title | default(value="Ready to Get Started?") }}</h2>
+            <p>{{ section.extra.signup_subtitle | default(value="Join thousands of users already building with Divinci AI") }}</p>
+
+            <form class="signup-form" data-form-type="signup">
+                <div class="signup-input-group">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="signup-button">
+                        <span class="button-text">Get Notified</span>
+                        <span class="button-loading" style="display: none;">...</span>
+                    </button>
+                </div>
+            </form>
+
+            <div class="form-message" style="display: none;"></div>
+        </div>
+    </section>
 </div>
 
 <!-- Main page content -->
@@ -113,8 +198,8 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="/script.js" defer></script>
-<script src="/features-orbit-simple.js" defer></script>
-<script src="/hybrid-bubbles.js"></script>
-<script src="/divinci-animation.js" defer></script>
+<script src="{{ get_url(path='script.js') }}" defer></script>
+<script src="{{ get_url(path='features-orbit-simple.js') }}" defer></script>
+<script src="{{ get_url(path='hybrid-bubbles.js') }}"></script>
+<script src="{{ get_url(path='divinci-animation.js') }}" defer></script>
 {% endblock %}

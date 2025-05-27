@@ -1,31 +1,73 @@
-<nav class="navbar">
-    <a href="/" class="logo-link">
-        <div class="nav-logo">
-            <img
-                src="/images/divinci_logo_inverted.svg"
-                alt="Divinci Heart Robot logo"
-                onerror="this.onerror=null; this.src='/images/divinci_logo_inverted.svg';"
-            />
-        </div>
-        <div class="nav-title">
-            <span class="brand-name">Divinci ™</span><span class="mobile-hide">&nbsp;- Create your own custom AI</span>
-        </div>
-    </a>
-    <!-- Toggle switch for customer/company view -->
-    <div class="view-toggle-container mobile-hide">
-        <span class="view-label customer-view active">Client</span>
-        <label class="switch">
-            <input type="checkbox" id="viewToggle">
-            <span class="slider round"></span>
-        </label>
-        <span class="view-label company-view">Company</span>
+<!-- Preview Banner -->
+<div class="preview-banner">
+    <div class="preview-banner-content">
+        <p class="preview-banner-text">{{ trans(key="preview_banner_text", default="This page is a preview. Sign up to be notified when we launch!", lang=lang) }}</p>
+        <a href="{{ get_url(path='@/_index.md', lang=lang) }}#signup" class="preview-banner-button">
+            <i class="fas fa-bell preview-banner-icon"></i>{{ trans(key="get_notified", default="Get Notified", lang=lang) }}
+        </a>
     </div>
-    <div class="nav-menu">
-        <a href="/#features">Features</a>
-        <a href="/#team">Team</a>
-        <a href="/#signup">Sign Up</a>
-    </div>
-</nav>
+</div>
 
-<!-- Mobile Menu Script -->
-<script src="/js/mobile-menu.js" defer></script>
+<!-- Header with Navigation -->
+<header role="banner">
+    <nav class="navbar">
+        <a href="{{ get_url(path='@/_index.md', lang=lang) }}" class="logo-link" id="logoHomeLink">
+            <div class="nav-logo">
+                <img
+                    class="header-logo"
+                    src="{{ get_url(path='images/divinci_logo_inverted.svg') }}"
+                    alt="{{ trans(key='logo_alt', default='Divinci Heart Robot logo', lang=lang) }}"
+                />
+            </div>
+            <div class="nav-title">
+                <span class="brand-name">{{ config.title }}</span>
+                <span class="mobile-hide consumer-view-content">&nbsp;- {{ trans(key="tagline_consumer", default="Create your own custom AI", lang=lang) }}</span>
+                <span class="mobile-hide company-view-content" style="display: none; opacity: 0;">&nbsp;- {{ trans(key="tagline_company", default="Enterprise AI Solutions", lang=lang) }}</span>
+            </div>
+        </a>
+
+        <!-- Toggle switch for customer/company view -->
+        <div class="view-toggle-container mobile-hide">
+            <span style="margin-right: 22px" class="view-label customer-view active" onclick="document.getElementById('viewToggle').checked = false; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">{{ trans(key="consumer", default="Consumer", lang=lang) }}</span>
+            <label class="switch">
+                <input type="checkbox" id="viewToggle">
+                <span class="slider round"></span>
+            </label>
+            <span class="view-label company-view" onclick="document.getElementById('viewToggle').checked = true; document.getElementById('viewToggle').dispatchEvent(new Event('change'));">{{ trans(key="company", default="Company", lang=lang) }}</span>
+        </div>
+
+        <div class="nav-menu">
+            <a href="{{ get_url(path='@/_index.md', lang=lang) }}#features">{{ trans(key="features", default="Features", lang=lang) }}</a>
+            <a href="{{ get_url(path='@/_index.md', lang=lang) }}#team">{{ trans(key="team", default="Team", lang=lang) }}</a>
+            <a href="{{ get_url(path='@/_index.md', lang=lang) }}#signup" class="signup-link">
+                <span class="signup-button">{{ trans(key="sign_up", default="Sign Up", lang=lang) }}</span>
+            </a>
+
+            <!-- Language Switcher -->
+            {% include "partials/language-switcher.html" %}
+        </div>
+    </nav>
+</header>
+
+<!-- Header JavaScript -->
+<script>
+    // Load header-related scripts
+    document.addEventListener('DOMContentLoaded', function() {
+        // Load language switcher script
+        const languageSwitcherScript = document.createElement('script');
+        languageSwitcherScript.src = '{{ get_url(path="js/components/language-switcher.js") }}';
+        document.head.appendChild(languageSwitcherScript);
+
+        // Load view toggle script
+        const viewToggleScript = document.createElement('script');
+        viewToggleScript.src = '{{ get_url(path="js/components/view-toggle.js") }}';
+        viewToggleScript.defer = true;
+        document.body.appendChild(viewToggleScript);
+
+        // Load mobile menu script
+        const mobileMenuScript = document.createElement('script');
+        mobileMenuScript.src = '{{ get_url(path="js/components/mobile-menu.js") }}';
+        mobileMenuScript.defer = true;
+        document.body.appendChild(mobileMenuScript);
+    });
+</script>

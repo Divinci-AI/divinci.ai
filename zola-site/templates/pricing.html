@@ -1,0 +1,574 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }}{% endblock %}
+{% block description %}{{ page.description }}{% endblock %}
+
+{% block content %}
+<main class="pricing-content">
+    <!-- Pricing Header -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-header">
+                <h1 class="pricing-title">{{ page.extra.pricing_title | default(value="Simple, Transparent Pricing") }}</h1>
+                <p class="pricing-subtitle">{{ page.extra.pricing_subtitle | default(value="Choose the plan that's right for your business. All plans include core features, updates, and basic support.") }}</p>
+
+                <div class="pricing-toggle">
+                    <span class="monthly active">Monthly</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="pricingToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="annual">Annual <span class="has-text-success">(Save 20%)</span></span>
+                </div>
+            </div>
+
+            <!-- Pricing Cards -->
+            {% if page.extra.plans %}
+            <div class="pricing-cards">
+                {% for plan in page.extra.plans %}
+                <div class="pricing-card{% if plan.featured %} featured{% endif %}">
+                    {% if plan.popular %}
+                    <div class="pricing-popular">Most Popular</div>
+                    {% endif %}
+                    
+                    <h2 class="pricing-plan">{{ plan.name }}</h2>
+                    <p class="pricing-description">{{ plan.description }}</p>
+
+                    <div class="pricing-amount monthly active">
+                        <div class="pricing-price">
+                            <span class="currency">$</span>{{ plan.monthly_price }}<span class="period">/mo</span>
+                        </div>
+                    </div>
+
+                    <div class="pricing-amount annual">
+                        <div class="pricing-price">
+                            <span class="currency">$</span>{{ plan.annual_price }}<span class="period">/mo</span>
+                        </div>
+                        <div class="pricing-billed">Billed annually (${{ plan.annual_total }})</div>
+                    </div>
+
+                    <ul class="pricing-features">
+                        {% for feature in plan.features %}
+                        <li>{{ feature }}</li>
+                        {% endfor %}
+                        {% if plan.unavailable_features %}
+                        {% for feature in plan.unavailable_features %}
+                        <li class="unavailable">{{ feature }}</li>
+                        {% endfor %}
+                        {% endif %}
+                    </ul>
+
+                    <a href="{{ plan.cta_link | default(value='/#signup') }}" class="pricing-cta{% if plan.featured %} featured{% endif %}">
+                        {{ plan.cta_text | default(value="Get Started") }}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Enterprise Section -->
+            <div class="enterprise-section">
+                <div class="enterprise-card">
+                    <h2>Enterprise</h2>
+                    <p>Custom solutions for large organizations with specific requirements</p>
+                    <div class="enterprise-features">
+                        <div class="enterprise-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Advanced Security & Compliance</span>
+                        </div>
+                        <div class="enterprise-feature">
+                            <i class="fas fa-users"></i>
+                            <span>Unlimited Team Members</span>
+                        </div>
+                        <div class="enterprise-feature">
+                            <i class="fas fa-cog"></i>
+                            <span>Custom Integrations</span>
+                        </div>
+                        <div class="enterprise-feature">
+                            <i class="fas fa-headset"></i>
+                            <span>Dedicated Support</span>
+                        </div>
+                    </div>
+                    <a href="/contact" class="pricing-cta enterprise">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    {% if page.extra.faqs %}
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            <div class="faq-items">
+                {% for faq in page.extra.faqs %}
+                <div class="faq-item">
+                    <div class="faq-question">{{ faq.question }}</div>
+                    <div class="faq-answer">
+                        <p>{{ faq.answer }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- CTA Section -->
+    <section class="pricing-cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Get Started?</h2>
+                <p>Join thousands of users already building with Divinci AI</p>
+                <a href="/#signup" class="cta-button">Start Your Free Trial</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+/* Pricing Page Styles */
+.pricing-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.pricing-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #16214c;
+    margin-bottom: 1rem;
+}
+
+.pricing-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.pricing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.pricing-toggle span {
+    font-weight: 600;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.pricing-toggle span.active {
+    color: #16214c;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 30px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: #5ce2e7;
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(30px);
+}
+
+.pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.pricing-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-card.featured {
+    border: 3px solid #5ce2e7;
+    transform: scale(1.05);
+}
+
+.pricing-plan {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #16214c;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    min-height: 40px;
+}
+
+.pricing-amount {
+    margin-bottom: 2rem;
+}
+
+.pricing-amount.annual {
+    display: none;
+}
+
+.pricing-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #16214c;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-price .currency {
+    font-size: 1.5rem;
+    vertical-align: super;
+    margin-right: 0.25rem;
+}
+
+.pricing-price .period {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 400;
+}
+
+.pricing-billed {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.pricing-popular {
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background: linear-gradient(135deg, #5ce2e7, #2fd6c2);
+    color: white;
+    padding: 5px 40px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transform: rotate(45deg);
+}
+
+.pricing-features {
+    margin: 2rem 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.pricing-features li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: #444;
+    font-size: 0.95rem;
+    padding-left: 30px;
+    position: relative;
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
+}
+
+.pricing-features li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #5ce2e7;
+    position: absolute;
+    left: 0;
+}
+
+.pricing-features li.unavailable {
+    color: #999;
+}
+
+.pricing-features li.unavailable::before {
+    content: '\f00d';
+    color: #ccc;
+}
+
+.pricing-cta {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: #16214c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.pricing-cta:hover {
+    background: #254284;
+    color: white;
+}
+
+.pricing-cta.featured {
+    background: linear-gradient(135deg, #5ce2e7, #2fd6c2);
+}
+
+.pricing-cta.featured:hover {
+    background: linear-gradient(135deg, #2fd6c2, #5ce2e7);
+}
+
+.enterprise-section {
+    margin-top: 3rem;
+}
+
+.enterprise-card {
+    background: linear-gradient(135deg, #16214c, #254284);
+    color: white;
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+}
+
+.enterprise-card h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.enterprise-card p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.enterprise-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.enterprise-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.enterprise-feature i {
+    color: #5ce2e7;
+    font-size: 1.2rem;
+}
+
+.pricing-cta.enterprise {
+    background: #5ce2e7;
+    color: #16214c;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.pricing-cta.enterprise:hover {
+    background: #2fd6c2;
+    color: #16214c;
+}
+
+.faq-section {
+    padding: 5rem 0;
+    background: white;
+}
+
+.faq-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    color: #16214c;
+    margin-bottom: 3rem;
+}
+
+.faq-items {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem 0;
+}
+
+.faq-question {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #16214c;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    position: relative;
+    padding-right: 2rem;
+}
+
+.faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    font-size: 1.5rem;
+    color: #5ce2e7;
+}
+
+.faq-answer {
+    color: #666;
+    line-height: 1.6;
+}
+
+.pricing-cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    text-align: center;
+    color: white;
+}
+
+.pricing-cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.pricing-cta-section p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    display: inline-block;
+    background: #5ce2e7;
+    color: #16214c;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    color: #16214c;
+}
+
+/* JavaScript for pricing toggle */
+.pricing-amount.monthly.active {
+    display: block;
+}
+
+.pricing-amount.annual.active {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .pricing-title {
+        font-size: 2rem;
+    }
+    
+    .pricing-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .pricing-card.featured {
+        transform: none;
+    }
+    
+    .enterprise-features {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const pricingToggle = document.getElementById('pricingToggle');
+    const monthlyLabels = document.querySelectorAll('.pricing-toggle .monthly');
+    const annualLabels = document.querySelectorAll('.pricing-toggle .annual');
+    const monthlyAmounts = document.querySelectorAll('.pricing-amount.monthly');
+    const annualAmounts = document.querySelectorAll('.pricing-amount.annual');
+
+    function updatePricing(isAnnual) {
+        if (isAnnual) {
+            monthlyLabels.forEach(label => label.classList.remove('active'));
+            annualLabels.forEach(label => label.classList.add('active'));
+            monthlyAmounts.forEach(amount => amount.classList.remove('active'));
+            annualAmounts.forEach(amount => amount.classList.add('active'));
+        } else {
+            annualLabels.forEach(label => label.classList.remove('active'));
+            monthlyLabels.forEach(label => label.classList.add('active'));
+            annualAmounts.forEach(amount => amount.classList.remove('active'));
+            monthlyAmounts.forEach(amount => amount.classList.add('active'));
+        }
+    }
+
+    pricingToggle.addEventListener('change', function() {
+        updatePricing(this.checked);
+    });
+
+    // FAQ toggle functionality
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            const isOpen = answer.style.display === 'block';
+            
+            // Close all other answers
+            document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+            document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+            
+            if (!isOpen) {
+                answer.style.display = 'block';
+                this.classList.add('active');
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
