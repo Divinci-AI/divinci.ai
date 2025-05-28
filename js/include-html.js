@@ -1,21 +1,45 @@
 /**
  * Include HTML Components
  * This script allows for including HTML components like headers and footers across multiple pages
+ * Enhanced with safety checks to prevent infinite loops
  */
 
+// Safety flag to prevent multiple simultaneous executions
+let includeHTMLRunning = false;
+let initComponentsRunning = false;
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Only run if not already running
+    if (includeHTMLRunning) {
+        console.warn('includeHTML already running, skipping duplicate call');
+        return;
+    }
+
     // Load all elements with data-include attribute
     includeHTML();
 
     // Initialize any event listeners or functionality needed for included components
-    initializeIncludedComponents();
+    // Use a small delay to ensure DOM is fully updated
+    setTimeout(() => {
+        initializeIncludedComponents();
+    }, 100);
 });
 
 /**
  * Includes HTML content from external files
  */
 function includeHTML() {
-    const includes = document.querySelectorAll('[data-include]');
+    // Prevent multiple simultaneous executions
+    if (includeHTMLRunning) {
+        console.warn('includeHTML already running, preventing duplicate execution');
+        return;
+    }
+
+    includeHTMLRunning = true;
+
+    try {
+        const includes = document.querySelectorAll('[data-include]');
+        console.log(`Found ${includes.length} elements with data-include attribute`);
 
     includes.forEach(element => {
         // Skip elements marked with data-include-special attribute
@@ -23,12 +47,12 @@ function includeHTML() {
         if (element.getAttribute('data-include-special') === 'true') {
             return;
         }
-        
+
         // Skip language switchers - they are now implemented directly in HTML
         if (element.getAttribute('data-include') === 'includes/language-switcher.html') {
             return;
         }
-        
+
         // Skip elements that have already been processed
         if (element.getAttribute('data-processed') === 'true') {
             return;
@@ -36,7 +60,7 @@ function includeHTML() {
 
         // Mark this element as processed to prevent reprocessing
         element.setAttribute('data-processed', 'true');
-        
+
         const file = element.getAttribute('data-include');
 
         // Determine the correct path based on the current page location
@@ -47,7 +71,7 @@ function includeHTML() {
         if (window.location.pathname.includes('/features/')) {
             // We're in a features subdirectory like /features/quality-assurance/
             basePath = '../../';
-        } 
+        }
         // Check if we're in a language subdirectory (like /fr/, /es/, /ar/)
         else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
             basePath = '../';
@@ -113,8 +137,10 @@ function includeHTML() {
                     // Execute any scripts in the included HTML
                     executeScripts(element);
 
-                    // Initialize components after insertion
-                    initializeIncludedComponents();
+                    // Initialize components after insertion with a small delay
+                    setTimeout(() => {
+                        initializeIncludedComponents();
+                    }, 50);
                 })
                 .catch(error => {
                     console.error('Error including HTML:', error);
@@ -122,6 +148,15 @@ function includeHTML() {
                 });
         }
     });
+
+    } catch (error) {
+        console.error('Error in includeHTML:', error);
+    } finally {
+        // Reset the flag after a short delay to allow for async operations
+        setTimeout(() => {
+            includeHTMLRunning = false;
+        }, 1000);
+    }
 }
 
 /**
@@ -149,8 +184,17 @@ function executeScripts(element) {
  * Initialize any JavaScript functionality needed for included components
  */
 function initializeIncludedComponents() {
-    // Initialize view toggle if it exists
-    const viewToggle = document.getElementById('viewToggle');
+    // Prevent multiple simultaneous executions
+    if (initComponentsRunning) {
+        console.warn('initializeIncludedComponents already running, preventing duplicate execution');
+        return;
+    }
+
+    initComponentsRunning = true;
+
+    try {
+        // Initialize view toggle if it exists
+        const viewToggle = document.getElementById('viewToggle');
     if (viewToggle) {
         viewToggle.addEventListener('change', function() {
             const customerView = document.querySelector('.customer-view');
@@ -164,22 +208,22 @@ function initializeIncludedComponents() {
                 companyView.classList.remove('active');
             }
         });
-        
+
         // Support for conditional header
         // This will be called by include-html.js and potentially overridden by conditional-header.js
         const currentPath = window.location.pathname;
-        
+
         // Default list of pages for no toggle (minimal version, extended in conditional-header.js)
         const noTogglePages = [
             '/internships.html',
             '/internships'
         ];
-        
+
         // Check if we're on a no-toggle page
-        const shouldHideToggle = noTogglePages.some(page => 
+        const shouldHideToggle = noTogglePages.some(page =>
             currentPath.endsWith(page) || currentPath === page
         );
-        
+
         // Hide toggle if needed - will be overridden by conditional-header.js if loaded
         if (shouldHideToggle) {
             const toggleContainer = document.querySelector('.view-toggle-container');
@@ -188,7 +232,7 @@ function initializeIncludedComponents() {
             }
         }
     }
-    
+
     // Initialize language switchers
     // This ensures language switcher dropdowns are positioned correctly on all pages
     setTimeout(() => {
@@ -196,7 +240,7 @@ function initializeIncludedComponents() {
         languageSwitchers.forEach(switcher => {
             // Add special class for positioning
             switcher.classList.add('initialized-language-switcher');
-            
+
             // Fix positioning of dropdown
             const dropdown = switcher.querySelector('.language-switcher-dropdown');
             if (dropdown) {
@@ -204,14 +248,14 @@ function initializeIncludedComponents() {
                 dropdown.style.top = '100%';
                 dropdown.style.right = '0';
                 dropdown.style.zIndex = '9999';
-                
+
                 // RTL support
                 if (document.documentElement.dir === 'rtl') {
                     dropdown.style.right = 'auto';
                     dropdown.style.left = '0';
                 }
             }
-            
+
             // Add click handler if not already present
             const toggleButton = switcher.querySelector('.language-switcher-current');
             if (toggleButton && !toggleButton.hasAttribute('data-handler-attached')) {
@@ -219,10 +263,10 @@ function initializeIncludedComponents() {
                 toggleButton.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    
+
                     // Toggle active class
                     switcher.classList.toggle('active');
-                    
+
                     // Update dropdown visibility
                     if (dropdown) {
                         if (switcher.classList.contains('active')) {
@@ -235,7 +279,6 @@ function initializeIncludedComponents() {
             }
         });
     }, 100);
-}
 
     // Fix navigation links for subdirectory pages
     if (window.location.pathname.includes('/features/')) {
@@ -266,5 +309,12 @@ function initializeIncludedComponents() {
         if (logoImg && logoImg.getAttribute('src').startsWith('images/')) {
             logoImg.setAttribute('src', '../' + logoImg.getAttribute('src'));
         }
+    }
+
+    } catch (error) {
+        console.error('Error in initializeIncludedComponents:', error);
+    } finally {
+        // Reset the flag
+        initComponentsRunning = false;
     }
 }
