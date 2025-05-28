@@ -9,7 +9,6 @@
             googleFonts.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap';
             document.head.appendChild(googleFonts);
         }
-
         // Load font styles
         // Determine the correct base path based on the current URL
         let basePath = '';
@@ -22,30 +21,42 @@
         else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
             basePath = '../';
         }
-
-        // Load fonts.css
-        const fontStyles = document.createElement('link');
-        fontStyles.rel = 'stylesheet';
-        fontStyles.href = basePath + 'assets/css/fonts.css';
-        document.head.appendChild(fontStyles);
-
-        // Load Sora styles
-        const soraStyles = document.createElement('link');
-        soraStyles.rel = 'stylesheet';
-        soraStyles.href = basePath + 'assets/css/sora-styles.css';
-        document.head.appendChild(soraStyles);
-
-        // Load mobile header styles
-        const mobileHeaderStyles = document.createElement('link');
-        mobileHeaderStyles.rel = 'stylesheet';
-        mobileHeaderStyles.href = basePath + 'includes/mobile-header.css';
-        document.head.appendChild(mobileHeaderStyles);
-
-        // Load custom header styles
-        const headerStyles = document.createElement('link');
-        headerStyles.rel = 'stylesheet';
-        headerStyles.href = basePath + 'includes/header-styles.css';
-        document.head.appendChild(headerStyles);
+        // Load fonts.css (only if not already loaded)
+        const fontsId = 'divinci-fonts-css';
+        if (!document.getElementById(fontsId)) {
+            const fontStyles = document.createElement('link');
+            fontStyles.id = fontsId;
+            fontStyles.rel = 'stylesheet';
+            fontStyles.href = basePath + 'assets/css/fonts.css';
+            document.head.appendChild(fontStyles);
+        }
+        // Load Sora styles (only if not already loaded)
+        const soraId = 'divinci-sora-css';
+        if (!document.getElementById(soraId)) {
+            const soraStyles = document.createElement('link');
+            soraStyles.id = soraId;
+            soraStyles.rel = 'stylesheet';
+            soraStyles.href = basePath + 'assets/css/sora-styles.css';
+            document.head.appendChild(soraStyles);
+        }
+        // Load mobile header styles (only if not already loaded)
+        const mobileId = 'divinci-mobile-header-css';
+        if (!document.getElementById(mobileId)) {
+            const mobileHeaderStyles = document.createElement('link');
+            mobileHeaderStyles.id = mobileId;
+            mobileHeaderStyles.rel = 'stylesheet';
+            mobileHeaderStyles.href = basePath + 'includes/mobile-header.css';
+            document.head.appendChild(mobileHeaderStyles);
+        }
+        // Load custom header styles (only if not already loaded)
+        const headerStylesId = 'divinci-header-styles-css';
+        if (!document.getElementById(headerStylesId)) {
+            const headerStyles = document.createElement('link');
+            headerStyles.id = headerStylesId;
+            headerStyles.rel = 'stylesheet';
+            headerStyles.href = basePath + 'includes/header-styles.css';
+            document.head.appendChild(headerStyles);
+        }
     })();
 </script>
 
@@ -138,7 +149,6 @@
         else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
             basePath = '../';
         }
-
         const script = document.createElement('script');
         script.src = basePath + 'js/mobile-menu.js';
         script.defer = true;
@@ -153,26 +163,26 @@
         // Load i18n scripts
         const i18nConfigScript = document.createElement('script');
         i18nConfigScript.src = basePath + 'js/i18n-config.js';
-        document.head.appendChild(i18nConfigScript);
+            document.head.appendChild(i18nConfigScript);
 
         const i18nScript = document.createElement('script');
         i18nScript.src = basePath + 'js/i18n.js';
-        document.head.appendChild(i18nScript);
+            document.head.appendChild(i18nScript);
 
         // Load language-switcher-translations.js
         const languageSwitcherTranslationsScript = document.createElement('script');
         languageSwitcherTranslationsScript.src = basePath + 'js/language-switcher-translations.js';
-        document.head.appendChild(languageSwitcherTranslationsScript);
+            document.head.appendChild(languageSwitcherTranslationsScript);
 
         // Load direct-translations.js
         const directTranslationsScript = document.createElement('script');
         directTranslationsScript.src = basePath + 'js/direct-translations.js';
-        document.head.appendChild(directTranslationsScript);
+            document.head.appendChild(directTranslationsScript);
 
         // Load direct-dom-translations.js
         const directDomTranslationsScript = document.createElement('script');
         directDomTranslationsScript.src = basePath + 'js/direct-dom-translations.js';
-        document.head.appendChild(directDomTranslationsScript);
+            document.head.appendChild(directDomTranslationsScript);
 
         // We'll let the data-include mechanism handle the language switcher
         // This prevents duplicate event handlers
@@ -186,7 +196,7 @@
                     opacity: 1 !important;
                     visibility: visible !important;
                     pointer-events: auto !important;
-                }
+        }
             `;
             document.head.appendChild(style);
         }
@@ -208,13 +218,11 @@
         else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
             basePath = '../';
         }
-
         // Set logo link to home
         const logoLink = document.getElementById('logoHomeLink');
         if (logoLink) {
             logoLink.setAttribute('href', basePath + 'index.html');
         }
-
         // Set navigation links
         const navLinks = document.querySelectorAll('.nav-menu a');
         navLinks.forEach(link => {
@@ -231,11 +239,11 @@
                         span.className = 'signup-button';
                         span.textContent = text;
                         link.appendChild(span);
-                    }
+        }
                 } else {
                     link.setAttribute('href', basePath + 'index.html' + href);
-                }
-            }
+        }
+        }
         });
     })();
 </script>
@@ -250,8 +258,7 @@
         margin-left: 15px;
         z-index: 9999 !important;
         overflow: visible !important;
-    }
-
+        }
     .language-switcher-current {
         display: flex;
         align-items: center;
@@ -260,32 +267,26 @@
         border-radius: 4px;
         background-color: rgba(255, 255, 255, 0.1);
         transition: background-color 0.3s;
-    }
-
+        }
     .language-switcher-current:hover {
         background-color: rgba(255, 255, 255, 0.2);
-    }
-
+        }
     .language-icon {
         margin-right: 6px;
         font-size: 16px;
-    }
-
+        }
     .current-language {
         font-size: 14px;
         font-weight: 500;
-    }
-
+        }
     .dropdown-icon {
         margin-left: 6px;
         font-size: 10px;
         transition: transform 0.3s;
-    }
-
+        }
     .language-switcher.active .dropdown-icon {
         transform: rotate(180deg);
-    }
-
+        }
     .language-switcher-dropdown {
         position: absolute !important;
         top: 100% !important;
@@ -301,15 +302,13 @@
         z-index: 9999 !important;
         transform: none !important;
         margin-top: 4px;
-    }
-
+        }
     .language-switcher.active .language-switcher-dropdown {
         display: block !important;
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto !important;
-    }
-
+        }
     .language-option {
         display: flex;
         justify-content: space-between;
@@ -319,48 +318,39 @@
         color: #1a1a1a;
         transition: all 0.2s ease;
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
+        }
     .language-option:last-child {
         border-bottom: none;
-    }
-
+        }
     .language-option:hover {
         background-color: #e8f4fd;
         color: #2863c2;
-    }
-
+        }
     .language-name {
         font-size: 14px;
         font-weight: 500;
-    }
-
+        }
     .language-native {
         font-size: 13px;
         color: #555;
         font-weight: 400;
-    }
-
+        }
     .language-option:hover .language-native {
         color: #2863c2;
-    }
-
+        }
     /* RTL support */
     [dir="rtl"] .language-icon {
         margin-right: 0;
         margin-left: 6px;
-    }
-
+        }
     [dir="rtl"] .dropdown-icon {
         margin-left: 0;
         margin-right: 6px;
-    }
-
+        }
     [dir="rtl"] .language-switcher-dropdown {
         right: auto !important;
         left: 0 !important;
-    }
-
+        }
     /* Dark mode support */
     @media (prefers-color-scheme: dark) {
         .language-switcher-dropdown {
@@ -368,26 +358,21 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
-
         .language-option {
             color: #eee;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
-
         .language-option:hover {
             background-color: #3a3a3a;
             color: #4a9eff;
         }
-
         .language-native {
             color: #aaa;
         }
-
         .language-option:hover .language-native {
             color: #4a9eff;
         }
-    }
-
+        }
     /* Mobile styles */
     @media screen and (max-width: 768px) {
         .language-switcher {
@@ -395,18 +380,16 @@
             margin-top: 10px;
             width: 100%;
         }
-
         .language-switcher-current {
             justify-content: center;
         }
-
         .language-switcher-dropdown {
             width: 100%;
             left: 0 !important;
             right: 0 !important;
             position: absolute !important;
         }
-    }
+        }
 </style>
 
 <!-- Script to load the language switcher JavaScript -->
@@ -423,10 +406,9 @@
         else if (/^\/(fr|es|ar)\//.test(window.location.pathname)) {
             basePath = '../';
         }
-
         // Load only the simplified language switcher script
         const languageSwitcherScript = document.createElement('script');
         languageSwitcherScript.src = basePath + 'js/language-switcher.js';
-        document.head.appendChild(languageSwitcherScript);
+            document.head.appendChild(languageSwitcherScript);
     })();
 </script>

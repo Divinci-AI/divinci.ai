@@ -2,29 +2,61 @@
 
 ## Problem Identified
 
-The divinci.ai website was experiencing infinite reloading of header resources due to several issues:
+The divinci.ai website was experiencing infinite reloading of header resources due to several critical issues:
 
+### Root Cause: CSS Link Duplication in Header Files
+The main issue was that header files (`includes/header.html`, `ar/includes/custom-header.html`, etc.) contained JavaScript that **dynamically creates and appends CSS link elements** every time the header is loaded. When the `data-include` system loaded headers multiple times, this caused:
+
+- **Recursive path corruption**: URLs like `https://divinci.ai/optimized/images/optimized/css/styles.min.css`
+- **MIME type errors**: CSS files being served as HTML due to incorrect paths
+- **Thousands of failed requests**: Over 1597 failed requests in barely over a minute
+
+### Contributing Issues:
 1. **Multiple Include Systems**: Pages were using `debug-include.js` which had excessive logging and could cause infinite loops
 2. **Recursive Component Initialization**: The `initializeIncludedComponents()` function was being called recursively after each include
 3. **Missing Safety Checks**: No protection against multiple simultaneous executions
 4. **Event Listener Duplication**: Multiple event listeners being attached without proper cleanup
+5. **No CSS Duplication Prevention**: Header scripts created new CSS links on every execution
 
 ## Solution Implemented
 
-### 1. Enhanced `include-html.js` with Safety Checks
+### 1. **CRITICAL FIX**: Added CSS Duplication Prevention to Header Files
+
+**Fixed all header files** to prevent duplicate CSS link creation:
+- `includes/header.html`
+- `ar/includes/custom-header.html`
+- `fr/includes/custom-header.html`
+- `es/includes/custom-header.html`
+- `fr/includes/header.html`
+- `es/includes/header.html`
+- `ar/includes/header.html`
+
+**Changes made:**
+- Added unique IDs to all CSS link elements
+- Added `document.getElementById()` checks before creating new links
+- Prevents duplicate CSS links from being appended to `<head>`
+
+### 2. Enhanced Global CSS Protection
+
+Added to `infinite-reload-fix.js`:
+- **Override `document.head.appendChild()`** to prevent duplicate CSS links
+- **Path normalization** to catch similar/corrupted paths
+- **Console logging** of prevented duplicates
+
+### 3. Enhanced `include-html.js` with Safety Checks
 
 - Added safety flags to prevent multiple simultaneous executions
 - Added try-catch blocks for error handling
 - Added delays to prevent race conditions
 - Enhanced logging for debugging
 
-### 2. Replaced `debug-include.js` References
+### 4. Replaced `debug-include.js` References
 
 - Replaced all instances of `debug-include.js` with the safer `include-html.js`
 - Updated 33 HTML files across all language versions
 - Fixed script paths based on file locations
 
-### 3. Added Infinite Reload Fix Script
+### 5. Added Infinite Reload Fix Script
 
 - Applied `infinite-reload-fix.js` to all pages using data-include
 - This script provides additional protection against:
@@ -33,8 +65,9 @@ The divinci.ai website was experiencing infinite reloading of header resources d
   - Script duplication
   - Fetch loops
   - Event listener duplication
+  - **CSS link duplication** (NEW)
 
-### 4. Added Resource Loading Debugger
+### 6. Added Resource Loading Debugger
 
 - Applied `resource-loading-debugger.js` to monitor resource loading
 - Provides real-time debugging information
@@ -45,8 +78,17 @@ The divinci.ai website was experiencing infinite reloading of header resources d
 
 ### Core JavaScript Files:
 - `js/include-html.js` - Enhanced with safety checks
-- `js/infinite-reload-fix.js` - Already existed, now properly applied
+- `js/infinite-reload-fix.js` - Enhanced with CSS duplication prevention
 - `js/resource-loading-debugger.js` - Already existed, now properly applied
+
+### Header Files (CRITICAL FIXES):
+- `includes/header.html` - Added CSS duplication prevention
+- `ar/includes/custom-header.html` - Added CSS duplication prevention
+- `fr/includes/custom-header.html` - Added CSS duplication prevention
+- `es/includes/custom-header.html` - Added CSS duplication prevention
+- `fr/includes/header.html` - Added CSS duplication prevention
+- `es/includes/header.html` - Added CSS duplication prevention
+- `ar/includes/header.html` - Added CSS duplication prevention
 
 ### HTML Files Updated (33 total):
 - All accessibility test pages
@@ -67,14 +109,17 @@ Found X elements with data-include attribute
 Resource loading debugger activated
 Debugging tools initialized
 Infinite reload fix applied
+Prevented duplicate CSS link: [URL]
+Prevented similar CSS link: [URL]
 ```
 
-**Warning Signs:**
+**Warning Signs (should be rare now):**
 ```
 ⚠️ Reloading (X): filename.js
 ⚠️ Script re-added: filename.js
 ⚠️ DOM churn: X elements/sec
 Prevented rapid re-fetch of URL
+Refused to apply style from '[URL]' because its MIME type ('text/html') is not a supported stylesheet MIME type
 ```
 
 ### 2. Visual Debug Panel
@@ -114,8 +159,8 @@ If issues occur, you can quickly rollback by:
    ```bash
    # Remove infinite-reload-fix.js references
    find . -name "*.html" -exec sed -i 's/<script src="[^"]*infinite-reload-fix\.js"><\/script>//g' {} \;
-   
-   # Remove resource-loading-debugger.js references  
+
+   # Remove resource-loading-debugger.js references
    find . -name "*.html" -exec sed -i 's/<script src="[^"]*resource-loading-debugger\.js"><\/script>//g' {} \;
    ```
 

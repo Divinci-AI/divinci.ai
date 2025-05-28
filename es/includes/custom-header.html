@@ -9,33 +9,45 @@
             googleFonts.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap';
             document.head.appendChild(googleFonts);
         }
-
         // Load font styles
         const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
 
-        // Load fonts.css
+        // Load fonts.css (only if not already loaded)
+        const fontsId = 'divinci-fonts-css';
+        if (!document.getElementById(fontsId)) {
         const fontStyles = document.createElement('link');
-        fontStyles.rel = 'stylesheet';
-        fontStyles.href = basePath + '../optimized/css/assets/css/fonts.min.css';
-        document.head.appendChild(fontStyles);
-
-        // Load Sora styles
+            fontStyles.id = fontsId;
+            fontStyles.rel = 'stylesheet';
+            fontStyles.href = basePath + '../optimized/css/assets/css/fonts.min.css';
+            document.head.appendChild(fontStyles);
+        }
+        // Load Sora styles (only if not already loaded)
+        const soraId = 'divinci-sora-css';
+        if (!document.getElementById(soraId)) {
         const soraStyles = document.createElement('link');
-        soraStyles.rel = 'stylesheet';
-        soraStyles.href = basePath + '../optimized/css/assets/css/sora-styles.min.css';
-        document.head.appendChild(soraStyles);
-
-        // Load mobile header styles
+            soraStyles.id = soraId;
+            soraStyles.rel = 'stylesheet';
+            soraStyles.href = basePath + '../optimized/css/assets/css/sora-styles.min.css';
+            document.head.appendChild(soraStyles);
+        }
+        // Load mobile header styles (only if not already loaded)
+        const mobileId = 'divinci-mobile-header-css';
+        if (!document.getElementById(mobileId)) {
         const mobileHeaderStyles = document.createElement('link');
-        mobileHeaderStyles.rel = 'stylesheet';
-        mobileHeaderStyles.href = basePath + '../optimized/css/includes/mobile-header.min.css';
-        document.head.appendChild(mobileHeaderStyles);
-
-        // Load custom header styles
+            mobileHeaderStyles.id = mobileId;
+            mobileHeaderStyles.rel = 'stylesheet';
+            mobileHeaderStyles.href = basePath + '../optimized/css/includes/mobile-header.min.css';
+            document.head.appendChild(mobileHeaderStyles);
+        }
+        // Load custom header styles (only if not already loaded)
+        const headerStylesId = 'divinci-header-styles-css';
+        if (!document.getElementById(headerStylesId)) {
         const headerStyles = document.createElement('link');
-        headerStyles.rel = 'stylesheet';
-        headerStyles.href = basePath + '../optimized/css/includes/header-styles.min.css';
-        document.head.appendChild(headerStyles);
+            headerStyles.id = headerStylesId;
+            headerStyles.rel = 'stylesheet';
+            headerStyles.href = basePath + '../optimized/css/includes/header-styles.min.css';
+            document.head.appendChild(headerStyles);
+        }
     })();
 </script>
 
@@ -127,7 +139,6 @@
         if (logoLink) {
             logoLink.setAttribute('href', basePath + 'index.html');
         }
-
         // Set navigation links
         const navLinks = document.querySelectorAll('.nav-menu a');
         navLinks.forEach(link => {
@@ -144,11 +155,11 @@
                         span.className = 'signup-button';
                         span.textContent = text;
                         link.appendChild(span);
-                    }
+        }
                 } else {
                     link.setAttribute('href', basePath + 'index.html' + href);
-                }
-            }
+        }
+        }
         });
     })();
 </script>
@@ -174,8 +185,8 @@
                                     newScript.src = script.src;
                                 } else {
                                     newScript.textContent = script.textContent;
-                                }
-                                document.head.appendChild(newScript);
+        }
+            document.head.appendChild(newScript);
                             });
 
                             // Initialize language switcher
@@ -194,7 +205,7 @@
                                     document.addEventListener('click', function(e) {
                                         if (!languageSwitcher.contains(e.target)) {
                                             languageSwitcher.classList.remove('active');
-                                        }
+        }
                                     });
 
                                     // Set the current language based on the HTML lang attribute
@@ -210,17 +221,17 @@
                                         };
 
                                         currentLanguageEl.textContent = languageNames[currentLang] || 'Español';
-                                    }
-                                }
-                            }
+        }
+        }
+        }
                         } else {
                             console.error('Failed to load included file:', filePath);
-                        }
-                    }
+        }
+        }
                 };
                 xhr.open('GET', filePath, true);
                 xhr.send();
-            }
+        }
         });
     })();
 </script>
