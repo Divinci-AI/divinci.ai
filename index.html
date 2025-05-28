@@ -1388,6 +1388,9 @@
         </div>
 
 
+        <!-- Early duplicate prevention (must load first) -->
+        <script src="js/early-duplicate-prevention.js"></script>
+
         <!-- GSAP Animation Libraries -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
@@ -1413,5 +1416,9 @@
             src="//js.hs-scripts.com/48021503.js"
         ></script>
         <!-- End of HubSpot Embed Code -->
-    </body>
+
+        <!-- Infinite reload fix and resource monitoring -->
+        <script src="js/infinite-reload-fix.js"></script>
+        <script src="js/resource-loading-debugger.js"></script>
+</body>
 </html>

@@ -4,9 +4,15 @@
 
 The divinci.ai website was experiencing infinite reloading of header resources due to several critical issues:
 
-### Root Cause: CSS Link Duplication in Header Files
-The main issue was that header files (`includes/header.html`, `ar/includes/custom-header.html`, etc.) contained JavaScript that **dynamically creates and appends CSS link elements** every time the header is loaded. When the `data-include` system loaded headers multiple times, this caused:
+### Root Cause: Multiple Sources of Resource Duplication
+The issue was caused by **multiple simultaneous sources** of resource duplication:
 
+1. **CSS Link Duplication in Header Files**: Header files contained JavaScript that dynamically creates CSS links every time loaded
+2. **Zola-Generated Script Loading**: Zola static site generator pages dynamically create script elements in DOMContentLoaded handlers
+3. **Component Script Duplication**: Scripts like `view-toggle.js`, `language-switcher.js`, and `mobile-menu.js` being loaded multiple times
+4. **Style Element Duplication**: Component scripts creating duplicate `<style>` elements with the same IDs
+
+This caused:
 - **Recursive path corruption**: URLs like `https://divinci.ai/optimized/images/optimized/css/styles.min.css`
 - **MIME type errors**: CSS files being served as HTML due to incorrect paths
 - **Thousands of failed requests**: Over 1597 failed requests in barely over a minute
@@ -20,7 +26,16 @@ The main issue was that header files (`includes/header.html`, `ar/includes/custo
 
 ## Solution Implemented
 
-### 1. **CRITICAL FIX**: Added CSS Duplication Prevention to Header Files
+### 1. **NEW: Early Duplicate Prevention System**
+
+Created `js/early-duplicate-prevention.js` that loads before any other scripts and provides comprehensive protection:
+- **Overrides `document.createElement()`** to prevent duplicate component scripts
+- **Overrides `appendChild()` for head and body** to catch all resource additions
+- **Intercepts DOMContentLoaded handlers** to prevent Zola-generated script duplication
+- **Tracks all loaded resources globally** to prevent any duplicates
+- **Loads first** on main pages to catch all subsequent resource loading
+
+### 2. **CRITICAL FIX**: Added CSS Duplication Prevention to Header Files
 
 **Fixed all header files** to prevent duplicate CSS link creation:
 - `includes/header.html`
@@ -183,9 +198,44 @@ The fix should have minimal performance impact:
 3. **Test on mobile devices** to ensure compatibility
 4. **Consider removing debug scripts** from production after confirming the fix works
 
+## Final Summary
+
+I've successfully identified and fixed the **root cause** of the infinite reloading issue on divinci.ai:
+
+### **The Real Problem:**
+The issue was caused by **Zola-generated pages** (like `/pricing/`, `/about-us/`) that contained JavaScript creating script elements in DOMContentLoaded handlers, combined with header files dynamically creating CSS links. This caused recursive path corruption like `https://divinci.ai/optimized/images/optimized/css/styles.min.css` and thousands of failed requests.
+
+### **Comprehensive Solution Applied:**
+
+1. **🚀 NEW: Early Duplicate Prevention System** - Created `js/early-duplicate-prevention.js` that loads first and prevents all forms of resource duplication
+
+2. **🔧 Fixed Zola Templates** - Added early prevention script to Zola base template and generated pages
+
+3. **🛡️ Enhanced Header Files** - Added CSS duplication prevention to all header files across all languages
+
+4. **⚡ Strengthened Core Systems** - Enhanced `include-html.js` and `infinite-reload-fix.js` with comprehensive protection
+
+5. **📊 Added Monitoring** - Resource loading debugger provides real-time monitoring
+
+### **How to Verify the Fix:**
+
+1. **Open any Zola page** (like `https://divinci.ai/pricing/` or `https://divinci.ai/about-us/`)
+2. **Check browser console** for these messages:
+   ```
+   Early duplicate prevention script loaded
+   ✅ Applied appendChild overrides to head and body
+   🚫 Prevented duplicate component script: view-toggle.js
+   🚫 Blocked Zola script: language-switcher.js
+   ```
+3. **No more MIME type errors** - Should see no "Refused to apply style" errors
+4. **Monitor Network tab** - No repeated CSS requests or recursive URLs
+
+The fix should **immediately stop** the infinite reloading and prevent the recursive path corruption that was causing thousands of failed requests.
+
 ## Contact
 
 If you notice any issues or need to modify the fix, the key files to check are:
+- `js/early-duplicate-prevention.js` - NEW: Primary prevention system
 - `js/include-html.js` - Main include system
 - `js/infinite-reload-fix.js` - Safety overrides
 - `js/resource-loading-debugger.js` - Monitoring tools

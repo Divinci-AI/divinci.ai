@@ -176,34 +176,97 @@
     return style;
   };
 
-  // ISSUE #7: Prevent duplicate CSS link elements
-  // Override appendChild to prevent duplicate CSS links
+  // ISSUE #7: Prevent duplicate CSS link elements and script elements
+  // Override appendChild to prevent duplicate CSS links and scripts
   const originalAppendChildHead = document.head.appendChild;
-  document.head.appendChild = function(node) {
-    // Only intercept link nodes with CSS
-    if (node.nodeName === 'LINK' && node.rel === 'stylesheet' && node.href) {
-      // Check if a link with the same href already exists
-      const existingLinks = document.querySelectorAll(`link[href="${node.href}"]`);
-      if (existingLinks.length > 0) {
-        console.log(`Prevented duplicate CSS link: ${node.href}`);
-        return node; // Return the node without appending it
+  const originalAppendChildBody = document.body.appendChild;
+
+  // Track loaded scripts to prevent duplicates
+  const loadedScriptSrcs = new Set();
+
+  function preventDuplicateAppend(originalMethod, context) {
+    return function(node) {
+      // Handle CSS link elements
+      if (node.nodeName === 'LINK' && node.rel === 'stylesheet' && node.href) {
+        // Check if a link with the same href already exists
+        const existingLinks = document.querySelectorAll(`link[href="${node.href}"]`);
+        if (existingLinks.length > 0) {
+          console.log(`Prevented duplicate CSS link: ${node.href}`);
+          return node; // Return the node without appending it
+        }
+
+        // Also check for similar paths that might be duplicates
+        const normalizedHref = node.href.replace(/\/+/g, '/').replace(/^\//, '');
+        const existingSimilar = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).find(link => {
+          const existingNormalized = link.href.replace(/\/+/g, '/').replace(/^\//, '');
+          return existingNormalized.includes(normalizedHref) || normalizedHref.includes(existingNormalized);
+        });
+
+        if (existingSimilar) {
+          console.log(`Prevented similar CSS link: ${node.href} (similar to ${existingSimilar.href})`);
+          return node;
+        }
       }
 
-      // Also check for similar paths that might be duplicates
-      const normalizedHref = node.href.replace(/\/+/g, '/').replace(/^\//, '');
-      const existingSimilar = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).find(link => {
-        const existingNormalized = link.href.replace(/\/+/g, '/').replace(/^\//, '');
-        return existingNormalized.includes(normalizedHref) || normalizedHref.includes(existingNormalized);
+      // Handle script elements
+      if (node.nodeName === 'SCRIPT' && node.src) {
+        if (loadedScriptSrcs.has(node.src)) {
+          console.log(`Prevented duplicate script: ${node.src}`);
+          return node;
+        }
+        loadedScriptSrcs.add(node.src);
+      }
+
+      // Handle style elements with IDs (from component scripts)
+      if (node.nodeName === 'STYLE' && node.id) {
+        const existingStyle = document.getElementById(node.id);
+        if (existingStyle) {
+          console.log(`Prevented duplicate style element: ${node.id}`);
+          return node;
+        }
+      }
+
+      // Call the original method for all other cases
+      return originalMethod.call(this, node);
+    };
+  }
+
+  document.head.appendChild = preventDuplicateAppend(originalAppendChildHead, document.head);
+  document.body.appendChild = preventDuplicateAppend(originalAppendChildBody, document.body);
+
+  // ISSUE #8: Prevent duplicate component script initialization
+  // Track which component scripts have been initialized
+  const initializedComponents = new Set();
+
+  // Override createElement to track component script creation
+  const originalCreateElement = document.createElement;
+  document.createElement = function(tagName) {
+    const element = originalCreateElement.call(this, tagName);
+
+    // If it's a script element, add a setter for src to track component scripts
+    if (tagName.toLowerCase() === 'script') {
+      const originalSrcSetter = Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype, 'src').set;
+      Object.defineProperty(element, 'src', {
+        set: function(value) {
+          // Check if this is a component script that's already been loaded
+          if (value && (value.includes('/components/') || value.includes('view-toggle') || value.includes('language-switcher') || value.includes('mobile-menu'))) {
+            const scriptName = value.split('/').pop();
+            if (initializedComponents.has(scriptName)) {
+              console.log(`Prevented duplicate component script: ${scriptName}`);
+              return; // Don't set the src, effectively preventing the script from loading
+            }
+            initializedComponents.add(scriptName);
+          }
+          originalSrcSetter.call(this, value);
+        },
+        get: function() {
+          return this.getAttribute('src');
+        },
+        configurable: true
       });
-
-      if (existingSimilar) {
-        console.log(`Prevented similar CSS link: ${node.href} (similar to ${existingSimilar.href})`);
-        return node;
-      }
     }
 
-    // Call the original method for all other cases
-    return originalAppendChildHead.call(this, node);
+    return element;
   };
 
   // Add emergency styles to prevent visual glitches
