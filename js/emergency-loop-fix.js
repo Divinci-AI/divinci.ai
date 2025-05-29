@@ -1,26 +1,47 @@
 /**
- * EMERGENCY INFINITE LOOP FIX
- * 
- * This script immediately stops all infinite loading loops on the production site.
+ * ULTRA-AGGRESSIVE EMERGENCY INFINITE LOOP FIX
+ *
+ * This script immediately stops ALL infinite loading loops on the production site.
  * Load this script FIRST before any other scripts to prevent the loops.
+ * This version is more aggressive and catches more edge cases.
  */
 
 (function() {
     'use strict';
+
+    console.log('🚨🚨🚨 ULTRA-AGGRESSIVE EMERGENCY LOOP FIX ACTIVATED 🚨🚨🚨');
+    console.log('Timestamp:', new Date().toISOString());
     
-    console.log('🚨 EMERGENCY LOOP FIX ACTIVATED');
-    
+    // 0. NUCLEAR OPTION - DISABLE ALL PROBLEMATIC PATTERNS IMMEDIATELY
+
+    // Block ALL functions that might cause loops
+    const blockedFunctions = [
+        'includeHTML',
+        'initializeIncludedComponents',
+        'loadLanguageSwitcher',
+        'initLanguageSwitcher',
+        'loadComponents',
+        'executeScripts'
+    ];
+
+    blockedFunctions.forEach(funcName => {
+        window[funcName] = function() {
+            console.log(`🚫 BLOCKED: ${funcName} disabled by emergency fix`);
+            return;
+        };
+    });
+
     // 1. IMMEDIATELY DISABLE PROBLEMATIC FUNCTIONS
-    
+
     // Disable includeHTML completely to stop the loop
     window.includeHTML = function() {
-        console.log('includeHTML disabled by emergency fix');
+        console.log('🚫 includeHTML disabled by emergency fix');
         return;
     };
-    
+
     // Disable initializeIncludedComponents to stop recursive calls
     window.initializeIncludedComponents = function() {
-        console.log('initializeIncludedComponents disabled by emergency fix');
+        console.log('🚫 initializeIncludedComponents disabled by emergency fix');
         return;
     };
     
@@ -28,27 +49,40 @@
     
     const loadedResources = new Set();
     
-    // Override fetch to prevent rapid duplicate requests
+    // Override fetch to prevent rapid duplicate requests - ULTRA AGGRESSIVE
     const originalFetch = window.fetch;
+    const fetchCallCounts = new Map();
+
     window.fetch = function(resource, options) {
         const url = resource.toString();
-        
-        // Block rapid duplicate requests (less than 2 seconds apart)
-        const now = Date.now();
-        const resourceKey = url + '_' + Math.floor(now / 2000); // 2-second buckets
-        
-        if (loadedResources.has(resourceKey)) {
-            console.log('🚫 Blocked duplicate fetch:', url);
-            return Promise.reject(new Error('Duplicate fetch blocked by emergency fix'));
+
+        // ULTRA AGGRESSIVE: Block ANY CSS file that's been requested more than once
+        if (url.includes('.css') || url.includes('styles')) {
+            const count = fetchCallCounts.get(url) || 0;
+            if (count > 0) {
+                console.log('🚫🚫🚫 BLOCKED DUPLICATE CSS FETCH:', url, 'Count:', count + 1);
+                return Promise.reject(new Error('CSS fetch blocked - already loaded'));
+            }
+            fetchCallCounts.set(url, count + 1);
         }
-        
+
+        // Block rapid duplicate requests (less than 5 seconds apart for any resource)
+        const now = Date.now();
+        const resourceKey = url + '_' + Math.floor(now / 5000); // 5-second buckets
+
+        if (loadedResources.has(resourceKey)) {
+            console.log('🚫 Blocked rapid duplicate fetch:', url);
+            return Promise.reject(new Error('Rapid duplicate fetch blocked by emergency fix'));
+        }
+
         loadedResources.add(resourceKey);
-        
-        // Clean up old entries every 10 seconds
+
+        // Clean up old entries every 30 seconds
         setTimeout(() => {
             loadedResources.delete(resourceKey);
-        }, 10000);
-        
+        }, 30000);
+
+        console.log('✅ Allowing fetch:', url);
         return originalFetch.call(this, resource, options);
     };
     

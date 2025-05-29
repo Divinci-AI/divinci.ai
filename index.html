@@ -540,7 +540,9 @@
                 </div>
             </nav>
 
-            <!-- Load language switcher script -->
+            <!-- EMERGENCY: DISABLED DYNAMIC SCRIPT LOADING TO STOP INFINITE LOOPS -->
+            <!-- This inline script was causing the infinite loading loops -->
+            <!--
             <script>
                 // Load the language switcher script
                 const script = document.createElement('script');
@@ -564,6 +566,7 @@
                 mobileMenuScript.defer = true;
                 document.body.appendChild(mobileMenuScript);
             </script>
+            -->
         </header>
 
         <main id="main-content" role="main">
