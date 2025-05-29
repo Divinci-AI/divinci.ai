@@ -18,11 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load all elements with data-include attribute
     includeHTML();
 
-    // Initialize any event listeners or functionality needed for included components
-    // Use a small delay to ensure DOM is fully updated
-    setTimeout(() => {
-        initializeIncludedComponents();
-    }, 100);
+    // CRITICAL FIX: Only initialize components ONCE after initial load
+    // Do NOT call initializeIncludedComponents repeatedly as it causes loops
+    console.log('Initial includeHTML completed');
 });
 
 /**
@@ -98,8 +96,9 @@ function includeHTML() {
                         // Execute any scripts in the included HTML
                         executeScripts(element);
 
-                        // Initialize components after insertion
-                        initializeIncludedComponents();
+                        // CRITICAL FIX: Do NOT call initializeIncludedComponents again
+                        // This was causing infinite loops by re-triggering includeHTML
+                        console.log('HTML content loaded successfully via XHR for:', path);
                     } else {
                         // Error handling - provide a more helpful message for local development
                         console.error(`Error loading ${path}. For local development, please use a web server.`);
@@ -137,10 +136,9 @@ function includeHTML() {
                     // Execute any scripts in the included HTML
                     executeScripts(element);
 
-                    // Initialize components after insertion with a small delay
-                    setTimeout(() => {
-                        initializeIncludedComponents();
-                    }, 50);
+                    // CRITICAL FIX: Do NOT call initializeIncludedComponents again
+                    // This was causing infinite loops by re-triggering includeHTML
+                    console.log('HTML content loaded successfully for:', path);
                 })
                 .catch(error => {
                     console.error('Error including HTML:', error);
