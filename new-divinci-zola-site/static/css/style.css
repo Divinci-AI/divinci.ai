@@ -951,17 +951,23 @@ html[dir="rtl"] .language-icon {
 .features-section {
   padding: 4rem 0;
   background-color: #f8f4f0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .features-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  width: calc(100% - 2px);
+  margin: 0 1px;
+  padding: 0;
 }
 
 .features-header {
   text-align: center;
   margin-bottom: 3rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
 }
 
 .features-header h2 {
@@ -972,19 +978,271 @@ html[dir="rtl"] .language-icon {
   margin-bottom: 1rem;
 }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+.davinci-journal-showcase {
+  display: flex;
+  width: 100%;
+  min-height: 700px;
   gap: 2rem;
-  margin-top: 2rem;
+  padding: 0 2rem;
+  background: linear-gradient(to bottom, #f8f4f0 0%, #f0e8dc 100%);
 }
 
-.feature-card {
-  background-color: #fff;
+.journal-stack {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid rgba(30, 58, 43, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.journal-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.8rem;
+  color: #5c4a3a;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.journal-pages-container {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  height: 500px;
+  perspective: 1000px;
+}
+
+/* Da Vinci Journal Page Styles */
+.journal-page {
+  position: absolute;
+  width: 250px;
+  height: 350px;
+  background: linear-gradient(135deg, #f5f0e6 0%, #e8ddc7 100%);
+  border: 1px solid #d4c4a0;
+  border-radius: 3px;
+  box-shadow: 
+    0 2px 5px rgba(0, 0, 0, 0.1),
+    inset 0 0 30px rgba(139, 115, 85, 0.1);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+/* Aged paper texture */
+.journal-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(139, 115, 85, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(160, 140, 110, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(100, 80, 60, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.page-content {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.page-number {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  color: #8b7355;
+  font-style: italic;
+}
+
+.sketch-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 40px 0;
+}
+
+.sketch-area .feature-icon {
+  position: absolute;
+  font-size: 2.5rem;
+  opacity: 0.3;
+  filter: sepia(0.5);
+}
+
+.davinci-sketch {
+  width: 100%;
+  height: 100%;
+  max-width: 180px;
+  max-height: 180px;
+}
+
+.mirror-text {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(-1);
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  color: #8b7355;
+  opacity: 0.4;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+.annotations {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.annotation {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-size: 12px;
+  color: #8b7355;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+.annotation.top-right {
+  top: 40px;
+  right: 25px;
+}
+
+.annotation.bottom-left {
+  bottom: 30px;
+  left: 25px;
+}
+
+/* Journal Page Stack Positioning */
+.journal-page:nth-child(1) { transform: translateX(0px) translateY(0px) rotate(-2deg); z-index: 10; }
+.journal-page:nth-child(2) { transform: translateX(10px) translateY(3px) rotate(-1.5deg); z-index: 9; }
+.journal-page:nth-child(3) { transform: translateX(20px) translateY(6px) rotate(-1deg); z-index: 8; }
+.journal-page:nth-child(4) { transform: translateX(30px) translateY(9px) rotate(-0.5deg); z-index: 7; }
+.journal-page:nth-child(5) { transform: translateX(40px) translateY(12px) rotate(0deg); z-index: 6; }
+.journal-page:nth-child(6) { transform: translateX(50px) translateY(15px) rotate(0.5deg); z-index: 5; }
+.journal-page:nth-child(7) { transform: translateX(60px) translateY(18px) rotate(1deg); z-index: 4; }
+.journal-page:nth-child(8) { transform: translateX(70px) translateY(21px) rotate(1.5deg); z-index: 3; }
+.journal-page:nth-child(9) { transform: translateX(80px) translateY(24px) rotate(2deg); z-index: 2; }
+.journal-page:nth-child(10) { transform: translateX(90px) translateY(27px) rotate(2.5deg); z-index: 1; }
+
+/* Active Journal Page */
+.journal-page.active {
+  transform: translateX(-80px) translateY(-30px) rotate(-5deg) scale(1.15);
+  z-index: 20;
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    inset 0 0 40px rgba(139, 115, 85, 0.15);
+}
+
+.journal-page:hover:not(.active) {
+  transform: translateY(-10px);
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.15),
+    inset 0 0 30px rgba(139, 115, 85, 0.1);
+}
+
+/* Ink stains and aging effects */
+.journal-page.active::after {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(ellipse at center, rgba(139, 115, 85, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: rotate(45deg);
+}
+
+/* Feature Details Area */
+.feature-details {
+  flex: 0 0 60%;
+  padding: 2rem 4rem;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to right, transparent 0%, rgba(248, 244, 240, 0.5) 10%);
+}
+
+.feature-content {
+  display: none;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.4s ease;
+}
+
+.feature-content.active {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.feature-content h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 2.5rem;
+  color: #1e3a2b;
+  margin-bottom: 1.5rem;
+}
+
+.feature-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: rgba(30, 58, 43, 0.8);
+  max-width: 600px;
+}
+
+/* Responsive styles for playing cards layout */
+@media (max-width: 1024px) {
+  .features-showcase {
+    flex-direction: column;
+  }
+  
+  .playing-cards-deck {
+    flex: 1;
+    width: 100%;
+    min-height: 400px;
+  }
+  
+  .feature-details {
+    flex: 1;
+    width: 100%;
+    padding: 2rem;
+  }
+  
+  .cards-container {
+    height: 300px;
+  }
+  
+  .playing-card {
+    width: 100px;
+    height: 140px;
+  }
+  
+  .card-value {
+    font-size: 16px;
+  }
+  
+  .card-suit {
+    font-size: 18px;
+  }
+  
+  .card-center {
+    font-size: 2.5rem;
+  }
 }
 
 .feature-card:hover {
@@ -1355,5 +1613,223 @@ html[dir="rtl"] .language-icon {
   
   .principle-icon {
     font-size: 3rem;
+  }
+}
+
+/* Expert Answers Section */
+.expert-answers-section {
+  padding: 5rem 0;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+.expert-answers-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.expert-answers-content h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 3rem;
+  font-weight: 400;
+  color: #1e3a2b;
+  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.expert-answers-description {
+  font-size: 1.1rem;
+  color: rgba(30, 58, 43, 0.8);
+  text-align: center;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem;
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e3a2b;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+  background-color: #f8f8f8;
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: rgba(30, 58, 43, 0.6);
+  transition: transform 0.3s ease;
+}
+
+.faq-question.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  padding: 0 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer.active {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  max-height: 300px;
+}
+
+.faq-answer p {
+  font-size: 1rem;
+  color: rgba(30, 58, 43, 0.8);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 5rem 0;
+  background-color: #f0f0f0;
+  position: relative;
+}
+
+.contact-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.contact-header h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 3rem;
+  font-weight: 400;
+  color: #1e3a2b;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.contact-subtitle {
+  font-size: 1.1rem;
+  color: rgba(30, 58, 43, 0.8);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.contact-method {
+  text-align: center;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-method:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.contact-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  background-color: #f8f8f8;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  color: rgba(30, 58, 43, 0.6);
+}
+
+.contact-method h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e3a2b;
+  margin-bottom: 1rem;
+}
+
+.contact-method p {
+  font-size: 1rem;
+  color: rgba(30, 58, 43, 0.8);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.contact-link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e3a2b;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.contact-link:hover {
+  border-bottom-color: #1e3a2b;
+}
+
+@media (max-width: 768px) {
+  .expert-answers-content h2,
+  .contact-header h2 {
+    font-size: 2rem;
+  }
+
+  .contact-methods {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contact-method {
+    padding: 1.5rem;
   }
 }

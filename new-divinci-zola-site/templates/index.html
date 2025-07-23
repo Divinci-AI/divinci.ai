@@ -142,56 +142,245 @@
             <h2>{{ translations.features.title | default(value="Supercharge your workflow with AI") }}</h2>
             <p class="section-intro">{{ translations.features.description | default(value="Discover features designed for enterprise teams that need reliable, scalable AI collaboration.") }}</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <span class="feature-icon">👥</span>
-                <h3>{{ translations.features.list.multiplayer.title | default(value="Multiplayer") }}</h3>
-                <p>{{ translations.features.list.multiplayer.description | default(value="Enable multi-stakeholder collaboration with shared AI workspaces for cross-functional teams.") }}</p>
+        <div class="davinci-journal-showcase">
+            <div class="journal-stack">
+                <h3 class="journal-title">{{ translations.features.journal_title | default(value="Da Vinci's Innovation Codex") }}</h3>
+                <div class="journal-pages-container">
+                    <div class="journal-page" data-feature="multiplayer">
+                        <div class="page-content">
+                            <div class="page-number">I</div>
+                            <div class="sketch-area">
+                                <span class="feature-icon">👥</span>
+                                <svg class="davinci-sketch" viewBox="0 0 200 200">
+                                    <circle cx="100" cy="60" r="25" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+                                    <circle cx="70" cy="100" r="25" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+                                    <circle cx="130" cy="100" r="25" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+                                    <line x1="100" y1="85" x2="70" y2="100" stroke="#8b7355" stroke-width="1" opacity="0.4"/>
+                                    <line x1="100" y1="85" x2="130" y2="100" stroke="#8b7355" stroke-width="1" opacity="0.4"/>
+                                </svg>
+                            </div>
+                            <div class="mirror-text">reyalpitluM</div>
+                            <div class="annotations">
+                                <span class="annotation top-right">φ = 1.618</span>
+                                <span class="annotation bottom-left">Harmonia</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journal-page" data-feature="ai_family">
+                        <div class="page-content">
+                            <div class="page-number">II</div>
+                            <div class="sketch-area">
+                                <span class="feature-icon">🤖</span>
+                                <svg class="davinci-sketch" viewBox="0 0 200 200">
+                                    <circle cx="100" cy="100" r="40" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+                                    <rect x="60" y="60" width="80" height="80" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.4"/>
+                                    <path d="M100,60 L140,100 L100,140 L60,100 Z" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
+                                </svg>
+                            </div>
+                            <div class="mirror-text">ylimaF IA</div>
+                            <div class="annotations">
+                                <span class="annotation top-right">Machina</span>
+                                <span class="annotation bottom-left">∞</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journal-page" data-feature="voice_io">
+                        <div class="page-content">
+                            <div class="page-number">III</div>
+                            <div class="sketch-area">
+                                <span class="feature-icon">🎤</span>
+                                <svg class="davinci-sketch" viewBox="0 0 200 200">
+                                    <path d="M50,100 Q100,50 150,100 Q100,150 50,100" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+                                    <circle cx="100" cy="100" r="5" fill="#8b7355" opacity="0.4"/>
+                                    <path d="M70,100 L130,100" stroke="#8b7355" stroke-width="1" opacity="0.3" stroke-dasharray="2,2"/>
+                                </svg>
+                            </div>
+                            <div class="mirror-text">ecioV</div>
+                            <div class="annotations">
+                                <span class="annotation top-right">Vox</span>
+                                <span class="annotation bottom-left">Echo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journal-page" data-feature="performance_analytics">
+                        <div class="page-content">
+                            <div class="page-number">IV</div>
+                            <div class="sketch-area">
+                                <span class="feature-icon">📊</span>
+                                <svg class="davinci-sketch" viewBox="0 0 200 200">
+                                    <polyline points="20,150 50,120 80,130 110,80 140,100 170,60" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+                                    <line x1="20" y1="150" x2="170" y2="150" stroke="#8b7355" stroke-width="1" opacity="0.3"/>
+                                    <line x1="20" y1="50" x2="20" y2="150" stroke="#8b7355" stroke-width="1" opacity="0.3"/>
+                                </svg>
+                            </div>
+                            <div class="mirror-text">scitylanA</div>
+                            <div class="annotations">
+                                <span class="annotation top-right">Mensura</span>
+                                <span class="annotation bottom-left">Δ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journal-page" data-feature="enterprise_security">
+                        <div class="page-content">
+                            <div class="page-number">V</div>
+                            <div class="sketch-area">
+                                <span class="feature-icon">🔒</span>
+                                <svg class="davinci-sketch" viewBox="0 0 200 200">
+                                    <rect x="70" y="80" width="60" height="80" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+                                    <circle cx="100" cy="70" r="20" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
+                                    <path d="M80,70 Q100,50 120,70" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.4"/>
+                                </svg>
+                            </div>
+                            <div class="mirror-text">ytiruceS</div>
+                            <div class="annotations">
+                                <span class="annotation top-right">Fortis</span>
+                                <span class="annotation bottom-left">Custodia</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journal-page" data-feature="lightning_responses">
+                        <div class="page-content">
+                            <div class="page-number">VI</div>
+                            <div class="sketch-area">
+                                <span class="feature-icon">⚡</span>
+                                <svg class="davinci-sketch" viewBox="0 0 200 200">
+                                    <path d="M100,20 L80,90 L110,90 L90,180 L120,80 L90,80 Z" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+                                </svg>
+                            </div>
+                            <div class="mirror-text">gninthgiL</div>
+                            <div class="annotations">
+                                <span class="annotation top-right">Fulgor</span>
+                                <span class="annotation bottom-left">Celer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journal-page" data-feature="domain_specialization">
+                        <div class="page-content">
+                            <div class="page-number">VII</div>
+                            <div class="sketch-area">
+                                <span class="feature-icon">🎯</span>
+                                <svg class="davinci-sketch" viewBox="0 0 200 200">
+                                    <circle cx="100" cy="100" r="50" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.4"/>
+                                    <circle cx="100" cy="100" r="30" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
+                                    <circle cx="100" cy="100" r="10" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+                                    <circle cx="100" cy="100" r="3" fill="#8b7355" opacity="0.7"/>
+                                </svg>
+                            </div>
+                            <div class="mirror-text">niamoD</div>
+                            <div class="annotations">
+                                <span class="annotation top-right">Focus</span>
+                                <span class="annotation bottom-left">Precisio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journal-page" data-feature="smart_workflows">
+                        <div class="page-content">
+                            <div class="page-number">VIII</div>
+                            <div class="sketch-area">
+                                <span class="feature-icon">🔄</span>
+                                <svg class="davinci-sketch" viewBox="0 0 200 200">
+                                    <circle cx="100" cy="100" r="40" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+                                    <path d="M100,60 A40,40 0 0,1 140,100" stroke="#8b7355" stroke-width="2" opacity="0.5" marker-end="url(#arrowhead)"/>
+                                    <path d="M140,100 A40,40 0 0,1 100,140" stroke="#8b7355" stroke-width="2" opacity="0.5" marker-end="url(#arrowhead)"/>
+                                    <path d="M100,140 A40,40 0 0,1 60,100" stroke="#8b7355" stroke-width="2" opacity="0.5" marker-end="url(#arrowhead)"/>
+                                    <path d="M60,100 A40,40 0 0,1 100,60" stroke="#8b7355" stroke-width="2" opacity="0.5" marker-end="url(#arrowhead)"/>
+                                </svg>
+                            </div>
+                            <div class="mirror-text">swolfkroW</div>
+                            <div class="annotations">
+                                <span class="annotation top-right">Perpetuum</span>
+                                <span class="annotation bottom-left">Motus</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journal-page" data-feature="api_integration">
+                        <div class="page-content">
+                            <div class="page-number">IX</div>
+                            <div class="sketch-area">
+                                <span class="feature-icon">🌐</span>
+                                <svg class="davinci-sketch" viewBox="0 0 200 200">
+                                    <rect x="50" y="80" width="30" height="40" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
+                                    <rect x="120" y="80" width="30" height="40" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
+                                    <line x1="80" y1="100" x2="120" y2="100" stroke="#8b7355" stroke-width="1" opacity="0.6" stroke-dasharray="3,3"/>
+                                    <circle cx="100" cy="100" r="5" fill="#8b7355" opacity="0.4"/>
+                                </svg>
+                            </div>
+                            <div class="mirror-text">noitargetnI</div>
+                            <div class="annotations">
+                                <span class="annotation top-right">Nexus</span>
+                                <span class="annotation bottom-left">Vinculum</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journal-page" data-feature="scalability">
+                        <div class="page-content">
+                            <div class="page-number">X</div>
+                            <div class="sketch-area">
+                                <span class="feature-icon">📈</span>
+                                <svg class="davinci-sketch" viewBox="0 0 200 200">
+                                    <rect x="80" y="120" width="40" height="40" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
+                                    <rect x="70" y="100" width="60" height="60" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
+                                    <rect x="60" y="80" width="80" height="80" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.4"/>
+                                </svg>
+                            </div>
+                            <div class="mirror-text">ytilibalacsS</div>
+                            <div class="annotations">
+                                <span class="annotation top-right">Crescendo</span>
+                                <span class="annotation bottom-left">∞</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- SVG definitions for arrows and other elements -->
+                <svg style="position: absolute; width: 0; height: 0; overflow: hidden;">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#8b7355" opacity="0.5"/>
+                        </marker>
+                    </defs>
+                </svg>
             </div>
-            <div class="feature-card">
-                <span class="feature-icon">🤖</span>
-                <h3>{{ translations.features.list.ai_family.title | default(value="AI Family") }}</h3>
-                <p>{{ translations.features.list.ai_family.description | default(value="Access enterprise-grade models from leading providers with unified governance and security controls.") }}</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🎤</span>
-                <h3>{{ translations.features.list.voice_io.title | default(value="Voice In/Out") }}</h3>
-                <p>{{ translations.features.list.voice_io.description | default(value="Enable seamless voice interactions with enterprise-grade text-to-speech and speech-to-text capabilities.") }}</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📊</span>
-                <h3>{{ translations.features.list.performance_analytics.title | default(value="Performance Analytics") }}</h3>
-                <p>{{ translations.features.list.performance_analytics.description | default(value="Track usage, efficiency, and quality patterns across all AI interactions with detailed analytics.") }}</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🔒</span>
-                <h3>{{ translations.features.list.enterprise_security.title | default(value="Enterprise Security") }}</h3>
-                <p>{{ translations.features.list.enterprise_security.description | default(value="Secure all data and conversations with end-to-end encryption, access controls, and comprehensive auditing.") }}</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">⚡</span>
-                <h3>{{ translations.features.list.lightning_responses.title | default(value="Lightning Responses") }}</h3>
-                <p>{{ translations.features.list.lightning_responses.description | default(value="Get instant responses with optimized latency and distributed network architecture for maximum performance.") }}</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🎯</span>
-                <h3>{{ translations.features.list.domain_specialization.title | default(value="Domain Specialization") }}</h3>
-                <p>{{ translations.features.list.domain_specialization.description | default(value="Fine-tune AI models for specific industries with specialized knowledge and customized use cases.") }}</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🔄</span>
-                <h3>{{ translations.features.list.smart_workflows.title | default(value="Smart Workflows") }}</h3>
-                <p>{{ translations.features.list.smart_workflows.description | default(value="Automate complex tasks with AI workflows that learn and adapt to your team's processes.") }}</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🌐</span>
-                <h3>{{ translations.features.list.api_integration.title | default(value="API Integration") }}</h3>
-                <p>{{ translations.features.list.api_integration.description | default(value="Connect seamlessly with your existing tools through robust APIs and comprehensive developer documentation.") }}</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📈</span>
-                <h3>{{ translations.features.list.scalability.title | default(value="Scalability") }}</h3>
-                <p>{{ translations.features.list.scalability.description | default(value="Scale from small teams to enterprise organizations with infrastructure that automatically scales.") }}</p>
+            <div class="feature-details">
+                <div class="feature-content active" data-feature="multiplayer">
+                    <h3>{{ translations.features.list.multiplayer.title | default(value="Multiplayer") }}</h3>
+                    <p>{{ translations.features.list.multiplayer.description | default(value="Enable multi-stakeholder collaboration with shared AI workspaces for cross-functional teams.") }}</p>
+                </div>
+                <div class="feature-content" data-feature="ai_family">
+                    <h3>{{ translations.features.list.ai_family.title | default(value="AI Family") }}</h3>
+                    <p>{{ translations.features.list.ai_family.description | default(value="Access enterprise-grade models from leading providers with unified governance and security controls.") }}</p>
+                </div>
+                <div class="feature-content" data-feature="voice_io">
+                    <h3>{{ translations.features.list.voice_io.title | default(value="Voice In/Out") }}</h3>
+                    <p>{{ translations.features.list.voice_io.description | default(value="Enable seamless voice interactions with enterprise-grade text-to-speech and speech-to-text capabilities.") }}</p>
+                </div>
+                <div class="feature-content" data-feature="performance_analytics">
+                    <h3>{{ translations.features.list.performance_analytics.title | default(value="Performance Analytics") }}</h3>
+                    <p>{{ translations.features.list.performance_analytics.description | default(value="Track usage, efficiency, and quality patterns across all AI interactions with detailed analytics.") }}</p>
+                </div>
+                <div class="feature-content" data-feature="enterprise_security">
+                    <h3>{{ translations.features.list.enterprise_security.title | default(value="Enterprise Security") }}</h3>
+                    <p>{{ translations.features.list.enterprise_security.description | default(value="Secure all data and conversations with end-to-end encryption, access controls, and comprehensive auditing.") }}</p>
+                </div>
+                <div class="feature-content" data-feature="lightning_responses">
+                    <h3>{{ translations.features.list.lightning_responses.title | default(value="Lightning Responses") }}</h3>
+                    <p>{{ translations.features.list.lightning_responses.description | default(value="Get instant responses with optimized latency and distributed network architecture for maximum performance.") }}</p>
+                </div>
+                <div class="feature-content" data-feature="domain_specialization">
+                    <h3>{{ translations.features.list.domain_specialization.title | default(value="Domain Specialization") }}</h3>
+                    <p>{{ translations.features.list.domain_specialization.description | default(value="Fine-tune AI models for specific industries with specialized knowledge and customized use cases.") }}</p>
+                </div>
+                <div class="feature-content" data-feature="smart_workflows">
+                    <h3>{{ translations.features.list.smart_workflows.title | default(value="Smart Workflows") }}</h3>
+                    <p>{{ translations.features.list.smart_workflows.description | default(value="Automate complex tasks with AI workflows that learn and adapt to your team's processes.") }}</p>
+                </div>
+                <div class="feature-content" data-feature="api_integration">
+                    <h3>{{ translations.features.list.api_integration.title | default(value="API Integration") }}</h3>
+                    <p>{{ translations.features.list.api_integration.description | default(value="Connect seamlessly with your existing tools through robust APIs and comprehensive developer documentation.") }}</p>
+                </div>
+                <div class="feature-content" data-feature="scalability">
+                    <h3>{{ translations.features.list.scalability.title | default(value="Scalability") }}</h3>
+                    <p>{{ translations.features.list.scalability.description | default(value="Scale from small teams to enterprise organizations with infrastructure that automatically scales.") }}</p>
+                </div>
             </div>
         </div>
     </div>
@@ -342,6 +531,94 @@
             </div>
             <div class="ai-for-good-image">
                 <img src="{{ get_url(path="images/ai-for-impact-1.avif") }}" alt="AI for Good Impact">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Expert Answers Section -->
+<section class="expert-answers-section">
+    <div class="expert-answers-container">
+        <div class="expert-answers-content">
+            <h2>{{ translations.expert_answers.title | default(value="Expert answers. Enterprise clarity.") }}</h2>
+            <p class="expert-answers-description">{{ translations.expert_answers.description | default(value="Find comprehensive insights on our platform's release management and quality assurance for large language models. Explore detailed, professional responses to your most pressing questions.") }}</p>
+
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        {{ translations.expert_answers.faqs.model_reliability.question | default(value="How do you guarantee model reliability?") }}
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>{{ translations.expert_answers.faqs.model_reliability.answer | default(value="We implement a multi-layered validation process, combining automated regression, performance, and security testing with expert manual reviews. Each model release is rigorously assessed to ensure it consistently meets enterprise-grade standards for accuracy, stability, and compliance.") }}</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        {{ translations.expert_answers.faqs.language_models.question | default(value="Which language models are compatible?") }}
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>{{ translations.expert_answers.faqs.language_models.answer | default(value="Our platform supports all major language models including GPT-4, Claude, Gemini, and custom fine-tuned models. We provide unified APIs and governance frameworks that work seamlessly across different model providers.") }}</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        {{ translations.expert_answers.faqs.quality_assurance.question | default(value="How is ongoing quality assurance achieved?") }}
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>{{ translations.expert_answers.faqs.quality_assurance.answer | default(value="We employ continuous monitoring with automated performance tracking, bias detection, and compliance verification. Our system provides real-time alerts, detailed analytics, and automated rollback capabilities to maintain consistent quality standards.") }}</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        {{ translations.expert_answers.faqs.workflow_integration.question | default(value="Does the platform fit existing workflows?") }}
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>{{ translations.expert_answers.faqs.workflow_integration.answer | default(value="Yes, our platform is designed for seamless integration with existing DevOps, MLOps, and enterprise workflows. We provide comprehensive APIs, webhooks, and integrations with popular tools like Jenkins, GitHub Actions, and enterprise monitoring systems.") }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+    <div class="contact-container">
+        <div class="contact-header">
+            <p class="contact-label">{{ translations.contact.get_in_touch | default(value="GET IN TOUCH") }}</p>
+            <h2>{{ translations.contact.title | default(value="Connect with our experts") }}</h2>
+            <p class="contact-subtitle">{{ translations.contact.subtitle | default(value="Contact us for strategic AI guidance and robust support tailored to your business needs.") }}</p>
+        </div>
+
+        <div class="contact-methods">
+            <div class="contact-method">
+                <div class="contact-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3>{{ translations.contact.email_specialists.title | default(value="Email our specialists") }}</h3>
+                <p>{{ translations.contact.email_specialists.description | default(value="Receive detailed, thoughtful responses to your technical and business inquiries.") }}</p>
+                <a href="mailto:{{ translations.contact.email_specialists.email | default(value="contact@divinciai.com") }}" class="contact-link">{{ translations.contact.email_specialists.email | default(value="contact@divinciai.com") }}</a>
+            </div>
+
+            <div class="contact-method">
+                <div class="contact-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16.42v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.42z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3>{{ translations.contact.speak_consultant.title | default(value="Speak with a consultant") }}</h3>
+                <p>{{ translations.contact.speak_consultant.description | default(value="Available Monday-Friday, 8am-5pm EST for in-depth assistance.") }}</p>
+                <a href="tel:{{ translations.contact.speak_consultant.phone | default(value="+1 (555) 000-0000") }}" class="contact-link">{{ translations.contact.speak_consultant.phone | default(value="+1 (555) 000-0000") }}</a>
             </div>
         </div>
     </div>

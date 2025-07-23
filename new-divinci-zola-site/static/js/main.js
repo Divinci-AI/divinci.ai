@@ -202,4 +202,161 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   });
+
+  // Initialize FAQ accordion
+  initializeFAQAccordion();
+  
+  // Initialize Playing Cards Feature Showcase
+  initializePlayingCards();
 });
+
+// FAQ Accordion functionality
+function initializeFAQAccordion() {
+  const faqQuestions = document.querySelectorAll('.faq-question');
+
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', function() {
+      const faqItem = this.parentElement;
+      const faqAnswer = faqItem.querySelector('.faq-answer');
+      const isActive = this.classList.contains('active');
+
+      // Close all other FAQ items
+      faqQuestions.forEach(otherQuestion => {
+        if (otherQuestion !== this) {
+          otherQuestion.classList.remove('active');
+          const otherAnswer = otherQuestion.parentElement.querySelector('.faq-answer');
+          if (otherAnswer) {
+            otherAnswer.classList.remove('active');
+          }
+        }
+      });
+
+      // Toggle current FAQ item
+      if (isActive) {
+        this.classList.remove('active');
+        faqAnswer.classList.remove('active');
+      } else {
+        this.classList.add('active');
+        faqAnswer.classList.add('active');
+      }
+    });
+  });
+}
+
+// Global function for FAQ toggle (called from HTML onclick)
+function toggleFaq(element) {
+  const faqItem = element.parentElement;
+  const faqAnswer = faqItem.querySelector('.faq-answer');
+  const isActive = element.classList.contains('active');
+
+  // Close all other FAQ items
+  const allQuestions = document.querySelectorAll('.faq-question');
+  allQuestions.forEach(question => {
+    if (question !== element) {
+      question.classList.remove('active');
+      const otherAnswer = question.parentElement.querySelector('.faq-answer');
+      if (otherAnswer) {
+        otherAnswer.classList.remove('active');
+      }
+    }
+  });
+
+  // Toggle current FAQ item
+  if (isActive) {
+    element.classList.remove('active');
+    faqAnswer.classList.remove('active');
+  } else {
+    element.classList.add('active');
+    faqAnswer.classList.add('active');
+  }
+}
+
+// Da Vinci Journal Feature Showcase functionality
+function initializePlayingCards() {
+  const journalPages = document.querySelectorAll('.journal-page');
+  const featureContents = document.querySelectorAll('.feature-content');
+  let currentActivePage = null;
+
+  // Set first page as active by default
+  if (journalPages.length > 0) {
+    const firstPage = journalPages[0];
+    firstPage.classList.add('active');
+    currentActivePage = firstPage;
+  }
+
+  journalPages.forEach((page, index) => {
+    page.addEventListener('click', function() {
+      const targetFeature = this.getAttribute('data-feature');
+      
+      // Remove active class from all pages
+      journalPages.forEach(p => p.classList.remove('active'));
+      
+      // Add active class to clicked page
+      this.classList.add('active');
+      
+      // Animate page movement with paper-like effect
+      if (currentActivePage && currentActivePage !== this) {
+        // Add a paper flip effect to the clicked page
+        this.style.transition = 'all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1)';
+        setTimeout(() => {
+          this.style.transition = 'all 0.4s ease';
+        }, 500);
+      }
+      
+      currentActivePage = this;
+      
+      // Hide all feature contents with fade out
+      featureContents.forEach(content => {
+        content.classList.remove('active');
+        content.style.opacity = '0';
+      });
+      
+      // Show the selected feature content with fade in
+      setTimeout(() => {
+        const targetContent = document.querySelector(`.feature-content[data-feature="${targetFeature}"]`);
+        if (targetContent) {
+          targetContent.classList.add('active');
+          setTimeout(() => {
+            targetContent.style.opacity = '1';
+          }, 50);
+        }
+      }, 300);
+    });
+    
+    // Add hover effect for non-active pages
+    page.addEventListener('mouseenter', function() {
+      if (!this.classList.contains('active')) {
+        // Get current transform and add hover effect
+        const currentTransform = window.getComputedStyle(this).transform;
+        this.style.transform = currentTransform + ' translateY(-15px)';
+      }
+    });
+    
+    page.addEventListener('mouseleave', function() {
+      if (!this.classList.contains('active')) {
+        // Reset to original position
+        const index = Array.from(journalPages).indexOf(this);
+        // Reset will be handled by CSS
+        this.style.transform = '';
+      }
+    });
+  });
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (!currentActivePage) return;
+    
+    const currentIndex = Array.from(journalPages).indexOf(currentActivePage);
+    let newIndex = currentIndex;
+    
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      newIndex = currentIndex > 0 ? currentIndex - 1 : journalPages.length - 1;
+    } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      newIndex = currentIndex < journalPages.length - 1 ? currentIndex + 1 : 0;
+    }
+    
+    if (newIndex !== currentIndex) {
+      journalPages[newIndex].click();
+    }
+  });
+}
