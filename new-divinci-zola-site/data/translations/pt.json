@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "title": "Divinci AI - Excelência, sempre",
+    "description": "Capacite seu negócio com gerenciamento avançado de releases e garantia rigorosa de qualidade para modelos de linguagem personalizados. Alcance confiabilidade operacional, conformidade regulatória e desempenho otimizado através de um processo estruturado de implementação de ponta a ponta.",
+    "og_title": "Divinci AI",
+    "og_description": "Releases de IA. Excelência, sempre."
+  },
+  "navigation": {
+    "features": "Recursos",
+    "team": "Equipe",
+    "signup": "Cadastrar",
+    "support": "Suporte",
+    "request_demo": "Solicitar demo"
+  },
+  "hero": {
+    "heading": "Releases de IA.",
+    "subheading": "Excelência\nsempre.",
+    "description": "Capacite seu negócio com gerenciamento avançado de releases e garantia rigorosa de qualidade para modelos de linguagem personalizados. Alcance confiabilidade operacional, conformidade regulatória e desempenho otimizado através de um processo estruturado de implementação de ponta a ponta.",
+    "features": {
+      "test_automation": "Automação inteligente de testes",
+      "compliance_records": "Registros detalhados de conformidade", 
+      "version_recovery": "Recuperação instantânea de versão"
+    },
+    "cta": {
+      "primary": "Solicitar demo",
+      "secondary": "Explorar plataforma"
+    }
+  },
+  "enterprise": {
+    "title": "IA empresarial, gerenciada com expertise",
+    "description": "Desbloqueie gerenciamento robusto de releases e garantia rigorosa de qualidade para grandes modelos de linguagem. Nossa plataforma equipa empresas com ferramentas avançadas para otimizar implementação, aplicar conformidade e garantir desempenho consistente e de alta qualidade de IA em escala.",
+    "features": {
+      "release_orchestration": {
+        "title": "Orquestração inteligente de releases",
+        "description": "Automatize e coordene pipelines de implementação complexos com precisão. Garanta que cada release de modelo seja validado, documentado e transicionado sem problemas para produção, minimizando riscos e maximizando eficiência operacional."
+      },
+      "model_oversight": {
+        "title": "Supervisão proativa de modelos", 
+        "description": "Monitore desempenho e conformidade de modelos em tempo real. Aproveite verificações automatizadas e análises abrangentes para detectar problemas precocemente, manter padrões regulatórios e preservar integridade ótima do modelo."
+      },
+      "performance_analytics": {
+        "title": "Análises de desempenho personalizadas",
+        "description": "Estabeleça e acompanhe métricas de avaliação personalizadas alinhadas com seus objetivos de negócio. Analise precisão, viés e outros fatores críticos para informar decisões estratégicas ao longo do ciclo de vida do modelo."
+      },
+      "team_collaboration": {
+        "title": "Colaboração integrada de equipe",
+        "description": "Otimize revisões multifuncionais com fluxos de trabalho estruturados. Atribua responsabilidades, colete feedback e documente aprovações para garantir que cada release atenda às expectativas organizacionais e regulatórias."
+      }
+    }
+  },
+  "features": {
+    "title": "Turbine seu fluxo de trabalho com IA",
+    "description": "Descubra recursos projetados para equipes empresariais que precisam de colaboração de IA confiável e escalável.",
+    "list": {
+      "multiplayer": {
+        "title": "Multijogador",
+        "description": "Permita colaboração multi-stakeholder com espaços de trabalho de IA compartilhados para equipes multifuncionais."
+      },
+      "ai_family": {
+        "title": "Família de IA", 
+        "description": "Acesse modelos de nível empresarial de provedores líderes com governança unificada e controles de segurança."
+      },
+      "voice_io": {
+        "title": "Entrada/Saída de Voz",
+        "description": "Permita interações de voz perfeitas com capacidades de texto para fala e fala para texto de nível empresarial."
+      },
+      "performance_analytics": {
+        "title": "Análises de Desempenho",
+        "description": "Acompanhe uso, eficiência e padrões de qualidade em todas as interações de IA com análises detalhadas."
+      },
+      "enterprise_security": {
+        "title": "Segurança Empresarial", 
+        "description": "Proteja todos os dados e conversas com criptografia de ponta a ponta, controles de acesso e auditoria abrangente."
+      },
+      "lightning_responses": {
+        "title": "Respostas Relâmpago",
+        "description": "Obtenha respostas instantâneas com latência otimizada e arquitetura de rede distribuída para máximo desempenho."
+      },
+      "domain_specialization": {
+        "title": "Especialização de Domínio",
+        "description": "Ajuste fino de modelos de IA para indústrias específicas com conhecimento especializado e casos de uso personalizados."
+      },
+      "smart_workflows": {
+        "title": "Fluxos de Trabalho Inteligentes",
+        "description": "Automatize tarefas complexas com fluxos de trabalho de IA que aprendem e se adaptam aos processos da sua equipe."
+      },
+      "api_integration": {
+        "title": "Integração de API",
+        "description": "Conecte-se perfeitamente com suas ferramentas existentes através de APIs robustas e documentação abrangente para desenvolvedores."
+      },
+      "scalability": {
+        "title": "Escalabilidade",
+        "description": "Escale de pequenas equipes para organizações empresariais com infraestrutura que escala automaticamente."
+      }
+    }
+  },
+  "team": {
+    "title": "Conheça nossa equipe",
+    "description": "Conheça os inovadores que estão moldando o futuro da colaboração humano-IA.",
+    "members": {
+      "connect": "Conectar"
+    },
+    "roles": {
+      "ceo_founder": "CEO e Fundador",
+      "cto_cofounder": "CTO e Cofundador", 
+      "head_product": "Chefe de Produto",
+      "senior_data_scientist": "Cientista de Dados Sênior",
+      "ux_ui_designer": "Designer UX/UI",
+      "software_engineer": "Engenheiro de Software"
+    }
+  },
+  "signup": {
+    "title": "Inicie sua jornada com IA", 
+    "description": "Junte-se a milhares de equipes já transformando seu trabalho com Divinci AI. Obtenha acesso antecipado à nossa plataforma.",
+    "email_placeholder": "Seu email",
+    "button": "Solicitar acesso",
+    "note": "Sem spam. Cancele a qualquer momento."
+  },
+  "ai_for_good": {
+    "title": "IA para o bem",
+    "description": "Estamos comprometidos em desenvolver IA responsável que beneficie a humanidade. Nossa plataforma é projetada com princípios éticos fortes, transparência e foco em capacitar pessoas, não substituí-las.",
+    "principles": {
+      "safe_development": {
+        "title": "Desenvolvimento seguro",
+        "description": "Testes rigorosos de segurança e medidas protetivas."
+      },
+      "fair_ai": {
+        "title": "IA justa",
+        "description": "Redução de viés e promoção de equidade em todos os resultados."
+      },
+      "positive_impact": {
+        "title": "Impacto positivo", 
+        "description": "Contribuindo para soluções que abordam desafios globais."
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Capacitando a colaboração humano-IA",
+    "sections": {
+      "product": {
+        "title": "Produto",
+        "links": {
+          "features": "Recursos",
+          "pricing": "Preços", 
+          "roadmap": "Roadmap",
+          "changelog": "Changelog"
+        }
+      },
+      "resources": {
+        "title": "Recursos",
+        "links": {
+          "documentation": "Documentação",
+          "blog": "Blog",
+          "tutorials": "Tutoriais",
+          "api": "API"
+        }
+      },
+      "company": {
+        "title": "Empresa",
+        "links": {
+          "about": "Sobre Nós",
+          "careers": "Carreiras", 
+          "contact": "Contato",
+          "press": "Imprensa"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "links": {
+          "terms": "Termos de Serviço",
+          "privacy": "Política de Privacidade",
+          "ai_safety": "Segurança e Ética de IA",
+          "security": "Segurança"
+        }
+      }
+    },
+    "bottom": {
+      "copyright": "© 2023-2025 Divinci AI. Todos os direitos reservados.",
+      "links": {
+        "sitemap": "Mapa do Site",
+        "accessibility": "Acessibilidade", 
+        "cookies": "Política de Cookies"
+      }
+    }
+  },
+  "language_switcher": {
+    "current_language": "Português",
+    "languages": {
+      "en": "English",
+      "es": "Español", 
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands", 
+      "hi": "हिन्दी"
+    }
+  }
+}

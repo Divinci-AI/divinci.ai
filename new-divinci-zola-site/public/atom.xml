@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Divinci AI - Excellence, every time</title>
+    <subtitle>Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://new-divinci.ai/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://new-divinci.ai"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-01-20T00:00:00+00:00</updated>
+    <id>https://new-divinci.ai/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Accessibility Statement</title>
+        <published>2025-01-20T00:00:00+00:00</published>
+        <updated>2025-01-20T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://new-divinci.ai/accessibility/"/>
+        <id>https://new-divinci.ai/accessibility/</id>
+        
+        <content type="html" xml:base="https://new-divinci.ai/accessibility/">&lt;h1 id=&quot;accessibility-statement&quot;&gt;Accessibility Statement&lt;&#x2F;h1&gt;
+&lt;p&gt;Divinci AI is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;our-commitment&quot;&gt;Our Commitment&lt;&#x2F;h2&gt;
+&lt;p&gt;We are dedicated to providing an inclusive experience for all users, regardless of ability or technology. Our website aims to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 at the AA level.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;accessibility-features&quot;&gt;Accessibility Features&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;navigation-and-structure&quot;&gt;Navigation and Structure&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Skip Navigation Links&lt;&#x2F;strong&gt;: Quick access to main content areas&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Clear Heading Structure&lt;&#x2F;strong&gt;: Logical hierarchy from H1 to H6 for screen readers&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Landmark Regions&lt;&#x2F;strong&gt;: Properly marked navigation, main content, and footer areas&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Consistent Navigation&lt;&#x2F;strong&gt;: Predictable layout and menu structure across all pages&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;visual-design&quot;&gt;Visual Design&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High Contrast&lt;&#x2F;strong&gt;: Color combinations that meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Scalable Text&lt;&#x2F;strong&gt;: Content remains readable and functional when zoomed up to 200%&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Clear Focus Indicators&lt;&#x2F;strong&gt;: Visible outlines on interactive elements when using keyboard navigation&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;No Color-Only Information&lt;&#x2F;strong&gt;: Important information is not conveyed through color alone&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;keyboard-navigation&quot;&gt;Keyboard Navigation&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Full Keyboard Access&lt;&#x2F;strong&gt;: All interactive elements can be accessed using only a keyboard&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Logical Tab Order&lt;&#x2F;strong&gt;: Sequential navigation through page elements&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Keyboard Shortcuts&lt;&#x2F;strong&gt;: Standard browser shortcuts work throughout the site&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;No Keyboard Traps&lt;&#x2F;strong&gt;: Users can navigate away from any element using standard methods&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;content-and-media&quot;&gt;Content and Media&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Alternative Text&lt;&#x2F;strong&gt;: Descriptive alt text for all informative images&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Meaningful Link Text&lt;&#x2F;strong&gt;: Links that describe their destination or function&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Form Labels&lt;&#x2F;strong&gt;: Clear labels associated with all form inputs&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Error Messages&lt;&#x2F;strong&gt;: Clear, helpful messages when form validation fails&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;multilingual-support&quot;&gt;Multilingual Support&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;13 Languages Supported&lt;&#x2F;strong&gt;: Including right-to-left (RTL) support for Arabic&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Proper Language Attributes&lt;&#x2F;strong&gt;: Correctly marked language codes for assistive technologies&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Cultural Adaptations&lt;&#x2F;strong&gt;: Appropriate formatting for numbers, dates, and text direction&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;assistive-technology-compatibility&quot;&gt;Assistive Technology Compatibility&lt;&#x2F;h2&gt;
+&lt;p&gt;Our website has been tested with:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Screen Readers&lt;&#x2F;strong&gt;: NVDA, JAWS, VoiceOver, TalkBack&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Voice Control Software&lt;&#x2F;strong&gt;: Dragon NaturallySpeaking, Voice Control&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Keyboard-Only Navigation&lt;&#x2F;strong&gt;: For users who cannot use a pointing device&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Browser Zoom&lt;&#x2F;strong&gt;: Up to 200% magnification without horizontal scrolling&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;standards-compliance&quot;&gt;Standards Compliance&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;wcag-2-1-aa-compliance&quot;&gt;WCAG 2.1 AA Compliance&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Perceivable&lt;&#x2F;strong&gt;: Information and UI components are presentable in ways users can perceive&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Operable&lt;&#x2F;strong&gt;: Interface components and navigation are operable by all users&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Understandable&lt;&#x2F;strong&gt;: Information and UI operation are understandable&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Robust&lt;&#x2F;strong&gt;: Content is robust enough to be interpreted by a wide variety of user agents and assistive technologies&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;testing-and-validation&quot;&gt;Testing and Validation&lt;&#x2F;h2&gt;
+&lt;p&gt;We regularly test our website using:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Automated accessibility testing tools&lt;&#x2F;li&gt;
+&lt;li&gt;Manual testing with assistive technologies&lt;&#x2F;li&gt;
+&lt;li&gt;User testing with individuals who have disabilities&lt;&#x2F;li&gt;
+&lt;li&gt;Code validation for semantic HTML markup&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;known-issues-and-limitations&quot;&gt;Known Issues and Limitations&lt;&#x2F;h2&gt;
+&lt;p&gt;We are actively working to address any accessibility barriers. Currently known issues:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some complex interactive elements may require additional testing with specific assistive technologies&lt;&#x2F;li&gt;
+&lt;li&gt;Third-party content (such as embedded videos) may not fully conform to our accessibility standards&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;feedback-and-contact&quot;&gt;Feedback and Contact&lt;&#x2F;h2&gt;
+&lt;p&gt;We welcome feedback on the accessibility of our website. If you encounter any accessibility barriers or have suggestions for improvement:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Email&lt;&#x2F;strong&gt;: accessibility@divinci.ai&lt;br &#x2F;&gt;
+&lt;strong&gt;Phone&lt;&#x2F;strong&gt;: +1 (555) 123-4567&lt;br &#x2F;&gt;
+&lt;strong&gt;Mail&lt;&#x2F;strong&gt;: Divinci AI Accessibility Team, 123 Innovation Drive, Tech City, TC 12345&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;when-contacting-us-please-include&quot;&gt;When contacting us, please include:&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The specific page or feature you’re having trouble with&lt;&#x2F;li&gt;
+&lt;li&gt;The assistive technology you’re using (if applicable)&lt;&#x2F;li&gt;
+&lt;li&gt;A description of the accessibility barrier&lt;&#x2F;li&gt;
+&lt;li&gt;Your contact information for follow-up&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;response-time&quot;&gt;Response Time&lt;&#x2F;h2&gt;
+&lt;p&gt;We aim to respond to accessibility feedback within 2 business days and will work to resolve issues as quickly as possible. Complex issues may require additional time for proper testing and implementation.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;continuous-improvement&quot;&gt;Continuous Improvement&lt;&#x2F;h2&gt;
+&lt;p&gt;Accessibility is an ongoing effort. We regularly:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Review and update our accessibility policies&lt;&#x2F;li&gt;
+&lt;li&gt;Train our development team on accessibility best practices&lt;&#x2F;li&gt;
+&lt;li&gt;Conduct user testing with individuals who have disabilities&lt;&#x2F;li&gt;
+&lt;li&gt;Monitor emerging accessibility standards and technologies&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;alternative-formats&quot;&gt;Alternative Formats&lt;&#x2F;h2&gt;
+&lt;p&gt;If you need information from our website in an alternative format, please contact us. We can provide content in:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Large print&lt;&#x2F;li&gt;
+&lt;li&gt;Audio format&lt;&#x2F;li&gt;
+&lt;li&gt;Simplified language&lt;&#x2F;li&gt;
+&lt;li&gt;Other formats upon request&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;third-party-content&quot;&gt;Third-Party Content&lt;&#x2F;h2&gt;
+&lt;p&gt;While we strive to ensure all content on our website is accessible, some third-party content may not fully conform to our accessibility standards. We work with our partners to improve accessibility and are happy to help users access this content in alternative ways.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;legal-information&quot;&gt;Legal Information&lt;&#x2F;h2&gt;
+&lt;p&gt;This accessibility statement applies to the Divinci AI website (divinci.ai and all subdomains). We review and update this statement regularly to reflect our current accessibility efforts and any changes to our website.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;&lt;em&gt;Last updated: January 20, 2025&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;For questions about this accessibility statement or to report accessibility issues, please contact our accessibility team using the information provided above.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

@@ -1,0 +1,39 @@
+<!-- Header Component -->
+{# Language and translations are now inherited from parent template #}
+
+
+<header>
+    <div class="logo">
+        <a href="{% if current_lang == 'en' %}/{% else %}/{{ current_lang }}/{% endif %}">
+            <img src="{{ get_url(path="images/divinci-renaissance_no-bg.png") }}" alt="Divinci AI Logo">
+            <span>Divinci</span>
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li class="dropdown">
+                <a href="#features">{{ translations.navigation.features | default(value="Features") }}</a>
+                <span class="dropdown-arrow">▼</span>
+                <div class="dropdown-menu">
+                    <a href="{% if current_lang == 'en' %}/autorag/{% else %}/{{ current_lang }}/autorag/{% endif %}">AutoRAG</a>
+                    <a href="{% if current_lang == 'en' %}/quality-assurance/{% else %}/{{ current_lang }}/quality-assurance/{% endif %}">Quality Assurance</a>
+                    <a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">Release Management</a>
+                </div>
+            </li>
+            <li><a href="#team">{{ translations.navigation.team | default(value="Team") }}</a></li>
+            <li><a href="#signup">{{ translations.navigation.signup | default(value="Sign Up") }}</a></li>
+            <li class="dropdown">
+                <a href="#support">{{ translations.navigation.support | default(value="Support") }}</a>
+                <span class="dropdown-arrow">▼</span>
+                <div class="dropdown-menu">
+                    <a href="{% if current_lang == 'en' %}/terms-of-service/{% else %}/{{ current_lang }}/terms-of-service/{% endif %}">Terms of Service</a>
+                    <a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}">Privacy Policy</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="header-actions">
+        {% include "language-switcher.html" %}
+        <button class="cta-button">{{ translations.navigation.request_demo | default(value="Request demo") }}</button>
+    </div>
+</header>

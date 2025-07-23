@@ -22,7 +22,7 @@
         // Load footer styles
         const footerStyles = document.createElement('link');
         footerStyles.rel = 'stylesheet';
-        footerStyles.href = (window.location.pathname.includes('/features/') ? '../../' : '') + 'styles-footer.css';
+        footerStyles.href = '/styles-footer.css';
         document.head.appendChild(footerStyles);
     })();
 </script>
@@ -41,12 +41,12 @@
                 <div class="column is-one-quarter">
                     <div class="footer-brand">
                         <div class="footer-logo">
-                            <!-- <img src="../images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
+                            <!-- <img src="/images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
                                 onerror="this.onerror=null; this.src='images/divinci_logo.png';" /> -->
                             <div class="heart">🖤</div>
                             <span class="footer-brand-name">Divinci AI</span>
                         </div>
-                        <p class="footer-tagline">Empowering human-AI collaboration</p>
+                        <p class="footer-tagline">تمكين التعاون بين الإنسان والذكاء الاصطناعي</p>
                         <div class="social-links">
                             <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
                             <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -60,10 +60,10 @@
                     <div class="footer-links-column">
                         <h3>المنتج</h3>
                         <ul>
-                            <li><a href="#features">المميزات</a></li>
-                            <li><a href="../pricing.html">الأسعار</a></li>
-                            <li><a href="../roadmap.html">خارطة الطريق</a></li>
-                            <li><a href="../changelog.html">سجل التغييرات</a></li>
+                            <li><a href="#features">الميزات</a></li>
+                            <li><a href="pricing.html">الأسعار</a></li>
+                            <li><a href="roadmap.html">خارطة الطريق</a></li>
+                            <li><a href="changelog.html">سجل التغييرات</a></li>
                         </ul>
                     </div>
                 </div>
@@ -72,10 +72,10 @@
                     <div class="footer-links-column">
                         <h3>الموارد</h3>
                         <ul>
-                            <li><a href="../docs/index.html">التوثيق</a></li>
-                            <li><a href="../blog/">المدونة</a></li>
-                            <li><a href="../tutorials/">الدروس التعليمية</a></li>
-                            <li><a href="../api/">واجهة برمجة التطبيقات</a></li>
+                            <li><a href="docs/index.html">التوثيق</a></li>
+                            <li><a href="blog/">المدونة</a></li>
+                            <li><a href="tutorials/">الدروس</a></li>
+                            <li><a href="api/">API</a></li>
                         </ul>
                     </div>
                 </div>
@@ -84,10 +84,10 @@
                     <div class="footer-links-column">
                         <h3>الشركة</h3>
                         <ul>
-                            <li><a href="../about-us.html">من نحن</a></li>
-                            <li><a href="../careers.html">الوظائف</a></li>
-                            <li><a href="../contact.html">اتصل بنا</a></li>
-                            <li><a href="../press.html">الصحافة</a></li>
+                            <li><a href="about-us.html">معلومات عنا</a></li>
+                            <li><a href="careers.html">الوظائف</a></li>
+                            <li><a href="contact.html">اتصل بنا</a></li>
+                            <li><a href="press.html">الصحافة</a></li>
                         </ul>
                     </div>
                 </div>
@@ -96,10 +96,10 @@
                     <div class="footer-links-column">
                         <h3>قانوني</h3>
                         <ul>
-                            <li><a href="../terms-of-service.html">شروط الخدمة</a></li>
-                            <li><a href="../privacy-policy.html">سياسة الخصوصية</a></li>
-                            <li><a href="../ai-safety-ethics.html">أمان الذكاء الاصطناعي والأخلاق</a></li>
-                            <li><a href="../security.html">الأمان</a></li>
+                            <li><a href="terms-of-service.html">شروط الخدمة</a></li>
+                            <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+                            <li><a href="ai-safety-ethics.html">أمان وأخلاقيات الذكاء الاصطناعي</a></li>
+                            <li><a href="security.html">الأمان</a></li>
                         </ul>
                     </div>
                 </div>
@@ -111,15 +111,15 @@
             <div class="level is-footer-bottom">
                 <div class="level-left">
                     <div class="level-item">
-                        <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                        <p class="copyright">&copy; 2023-2025 Divinci AI. كل الحقوق محفوظة.</p>
                     </div>
                 </div>
                 <div class="level-right">
                     <div class="level-item">
                         <div class="footer-bottom-links">
-                            <a href="../sitemap.xml">خريطة الموقع</a>
-                            <a href="../accessibility.html">إمكانية الوصول</a>
-                            <a href="../cookies.html">سياسة ملفات تعريف الارتباط</a>
+                            <a href="sitemap.xml">خريطة الموقع</a>
+                            <a href="accessibility.html">إمكانية الوصول</a>
+                            <a href="cookies.html">سياسة ملفات تعريف الارتباط</a>
                         </div>
                     </div>
                 </div>
@@ -127,21 +127,3 @@
         </div>
     </div>
 </footer>
-
-<!-- Script to handle footer links based on current path -->
-<script>
-    // Properly set the href attributes based on location
-    (function() {
-        const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
-        const footerLinks = document.querySelectorAll('.footer-links-column a, .footer-bottom-links a');
-
-        footerLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                link.setAttribute('href', basePath + 'index.html' + href);
-            } else if (href && !href.startsWith('http') && !href.startsWith('/')) {
-                link.setAttribute('href', basePath + href);
-            }
-        });
-    })();
-</script>

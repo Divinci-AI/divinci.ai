@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "title": "Divinci AI - Exzellenz jedes Mal",
+    "description": "Stärken Sie Ihr Unternehmen mit fortschrittlichem Release-Management und rigoroser Qualitätssicherung für benutzerdefinierte Sprachmodelle. Erreichen Sie operative Zuverlässigkeit, regulatorische Compliance und optimale Leistung durch einen strukturierten, durchgängigen Bereitstellungsprozess.",
+    "og_title": "Divinci AI",
+    "og_description": "KI-Releases. Exzellenz jedes Mal."
+  },
+  "navigation": {
+    "features": "Funktionen",
+    "team": "Team",
+    "signup": "Anmelden",
+    "support": "Unterstützung",
+    "request_demo": "Demo anfordern"
+  },
+  "hero": {
+    "heading": "KI-Releases.",
+    "subheading": "Exzellenz\njedes Mal.",
+    "description": "Stärken Sie Ihr Unternehmen mit fortschrittlichem Release-Management und rigoroser Qualitätssicherung für benutzerdefinierte Sprachmodelle. Erreichen Sie operative Zuverlässigkeit, regulatorische Compliance und optimale Leistung durch einen strukturierten, durchgängigen Bereitstellungsprozess.",
+    "features": {
+      "test_automation": "Intelligente Testautomatisierung",
+      "compliance_records": "Detaillierte Compliance-Aufzeichnungen", 
+      "version_recovery": "Sofortige Versionserholung"
+    },
+    "cta": {
+      "primary": "Demo anfordern",
+      "secondary": "Plattform erkunden"
+    }
+  },
+  "enterprise": {
+    "title": "Unternehmens-KI, fachmännisch verwaltet",
+    "description": "Erschließen Sie robustes Release-Management und rigorose Qualitätssicherung für große Sprachmodelle. Unsere Plattform stattet Unternehmen mit fortschrittlichen Tools aus, um Bereitstellung zu optimieren, Compliance durchzusetzen und konsistente, hochwertige KI-Leistung im großen Maßstab sicherzustellen.",
+    "features": {
+      "release_orchestration": {
+        "title": "Intelligente Release-Orchestrierung",
+        "description": "Automatisieren und koordinieren Sie komplexe Bereitstellungs-Pipelines mit Präzision. Stellen Sie sicher, dass jeder Modell-Release validiert, dokumentiert und nahtlos in die Produktion überführt wird, minimieren Sie Risiken und maximieren Sie operative Effizienz."
+      },
+      "model_oversight": {
+        "title": "Proaktive Modellüberwachung", 
+        "description": "Überwachen Sie Modellleistung und Compliance in Echtzeit. Nutzen Sie automatisierte Prüfungen und umfassende Analytik, um Probleme frühzeitig zu erkennen, regulatorische Standards aufrechtzuerhalten und optimale Modellintegrität zu bewahren."
+      },
+      "performance_analytics": {
+        "title": "Maßgeschneiderte Leistungsanalytik",
+        "description": "Etablieren und verfolgen Sie benutzerdefinierte Bewertungsmetriken, die mit Ihren Geschäftszielen übereinstimmen. Analysieren Sie Genauigkeit, Verzerrung und andere kritische Faktoren, um strategische Entscheidungen während des gesamten Modelllebenszyklus zu informieren."
+      },
+      "team_collaboration": {
+        "title": "Integrierte Teamzusammenarbeit",
+        "description": "Optimieren Sie funktionsübergreifende Reviews mit strukturierten Workflows. Weisen Sie Verantwortlichkeiten zu, sammeln Sie Feedback und dokumentieren Sie Genehmigungen, um sicherzustellen, dass jeder Release organisatorische und regulatorische Erwartungen erfüllt."
+      }
+    }
+  },
+  "features": {
+    "title": "Turboladen Sie Ihren Workflow mit KI",
+    "description": "Entdecken Sie Features, die für Unternehmensteams entwickelt wurden, die zuverlässige, skalierbare KI-Zusammenarbeit benötigen.",
+    "list": {
+      "multiplayer": {
+        "title": "Multiplayer",
+        "description": "Ermöglichen Sie Multi-Stakeholder-Zusammenarbeit mit geteilten KI-Arbeitsbereichen für funktionsübergreifende Teams."
+      },
+      "ai_family": {
+        "title": "KI-Familie", 
+        "description": "Zugriff auf Enterprise-Grade-Modelle von führenden Anbietern mit vereinheitlichter Governance und Sicherheitskontrollen."
+      },
+      "voice_io": {
+        "title": "Spracheingabe/-ausgabe",
+        "description": "Ermöglichen Sie nahtlose Sprachinteraktionen mit Enterprise-Grade Text-to-Speech und Speech-to-Text-Funktionen."
+      },
+      "performance_analytics": {
+        "title": "Leistungsanalytik",
+        "description": "Verfolgen Sie Nutzung, Effizienz und Qualitätsmuster über alle KI-Interaktionen mit detaillierter Analytik."
+      },
+      "enterprise_security": {
+        "title": "Unternehmenssicherheit", 
+        "description": "Sichern Sie alle Daten und Gespräche mit Ende-zu-Ende-Verschlüsselung, Zugriffskontrollen und umfassendem Auditing."
+      },
+      "lightning_responses": {
+        "title": "Blitzschnelle Antworten",
+        "description": "Erhalten Sie sofortige Antworten mit optimierter Latenz und verteilter Netzwerkarchitektur für maximale Leistung."
+      },
+      "domain_specialization": {
+        "title": "Domänenspezialisierung",
+        "description": "Feinabstimmung von KI-Modellen für spezifische Branchen mit spezialisiertem Wissen und angepassten Anwendungsfällen."
+      },
+      "smart_workflows": {
+        "title": "Intelligente Workflows",
+        "description": "Automatisieren Sie komplexe Aufgaben mit KI-Workflows, die lernen und sich an die Prozesse Ihres Teams anpassen."
+      },
+      "api_integration": {
+        "title": "API-Integration",
+        "description": "Verbinden Sie sich nahtlos mit Ihren bestehenden Tools durch robuste APIs und umfassende Entwicklerdokumentation."
+      },
+      "scalability": {
+        "title": "Skalierbarkeit",
+        "description": "Skalieren Sie von kleinen Teams zu Unternehmensorganisationen mit Infrastruktur, die automatisch skaliert."
+      }
+    }
+  },
+  "team": {
+    "title": "Lernen Sie unser Team kennen",
+    "description": "Lernen Sie die Innovatoren kennen, die die Zukunft der Mensch-KI-Zusammenarbeit gestalten.",
+    "members": {
+      "connect": "Verbinden"
+    },
+    "roles": {
+      "ceo_founder": "CEO & Gründer",
+      "cto_cofounder": "CTO & Mitgründer", 
+      "head_product": "Produktleiter",
+      "senior_data_scientist": "Senior Data Scientist",
+      "ux_ui_designer": "UX/UI Designer",
+      "software_engineer": "Software-Ingenieur"
+    }
+  },
+  "signup": {
+    "title": "Starten Sie Ihre KI-Reise", 
+    "description": "Schließen Sie sich Tausenden von Teams an, die bereits ihre Arbeit mit Divinci AI transformieren. Erhalten Sie frühen Zugang zu unserer Plattform.",
+    "email_placeholder": "Ihre E-Mail",
+    "button": "Zugang anfordern",
+    "note": "Kein Spam. Jederzeit abbestellbar."
+  },
+  "ai_for_good": {
+    "title": "KI für das Gute",
+    "description": "Wir sind der Entwicklung verantwortlicher KI verpflichtet, die der Menschheit zugute kommt. Unsere Plattform ist mit starken ethischen Prinzipien, Transparenz und einem Fokus auf die Befähigung von Menschen, nicht deren Ersetzung, konzipiert.",
+    "principles": {
+      "safe_development": {
+        "title": "Sichere Entwicklung",
+        "description": "Rigorose Sicherheitstests und Schutzmaßnahmen."
+      },
+      "fair_ai": {
+        "title": "Faire KI",
+        "description": "Verzerrungsreduzierung und Fairnessförderung in allen Ergebnissen."
+      },
+      "positive_impact": {
+        "title": "Positive Auswirkung", 
+        "description": "Beitrag zu Lösungen, die globale Herausforderungen angehen."
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Befähigung der Mensch-KI-Zusammenarbeit",
+    "sections": {
+      "product": {
+        "title": "Produkt",
+        "links": {
+          "features": "Features",
+          "pricing": "Preise", 
+          "roadmap": "Roadmap",
+          "changelog": "Changelog"
+        }
+      },
+      "resources": {
+        "title": "Ressourcen",
+        "links": {
+          "documentation": "Dokumentation",
+          "blog": "Blog",
+          "tutorials": "Tutorials",
+          "api": "API"
+        }
+      },
+      "company": {
+        "title": "Unternehmen",
+        "links": {
+          "about": "Über uns",
+          "careers": "Karriere", 
+          "contact": "Kontakt",
+          "press": "Presse"
+        }
+      },
+      "legal": {
+        "title": "Rechtliches",
+        "links": {
+          "terms": "Nutzungsbedingungen",
+          "privacy": "Datenschutzrichtlinie",
+          "ai_safety": "KI-Sicherheit & Ethik",
+          "security": "Sicherheit"
+        }
+      }
+    },
+    "bottom": {
+      "copyright": "© 2023-2025 Divinci AI. Alle Rechte vorbehalten.",
+      "links": {
+        "sitemap": "Sitemap",
+        "accessibility": "Barrierefreiheit", 
+        "cookies": "Cookie-Richtlinie"
+      }
+    }
+  },
+  "language_switcher": {
+    "current_language": "Deutsch",
+    "languages": {
+      "en": "English",
+      "es": "Español", 
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands", 
+      "hi": "हिन्दी"
+    }
+  }
+}

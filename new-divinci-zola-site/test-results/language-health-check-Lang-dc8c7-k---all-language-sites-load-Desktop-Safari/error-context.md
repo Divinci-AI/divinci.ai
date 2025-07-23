@@ -1,0 +1,216 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - link "Divinci AI Logo Divinci":
+    - /url: /de/
+    - img "Divinci AI Logo"
+    - text: Divinci
+  - navigation:
+    - list:
+      - listitem:
+        - link "Funktionen":
+          - /url: "#features"
+        - text: ▼
+      - listitem:
+        - link "Team":
+          - /url: "#team"
+      - listitem:
+        - link "Anmelden":
+          - /url: "#signup"
+      - listitem:
+        - link "Unterstützung":
+          - /url: "#support"
+        - text: ▼
+  - text:  Deutsch ▼
+  - button "Demo anfordern"
+- button "Unmute"
+- heading "KI-Releases. Exzellenz jedes Mal." [level=1]
+- paragraph: Stärken Sie Ihr Unternehmen mit fortschrittlichem Release-Management und rigoroser Qualitätssicherung für benutzerdefinierte Sprachmodelle. Erreichen Sie operative Zuverlässigkeit, regulatorische Compliance und optimale Leistung durch einen strukturierten, durchgängigen Bereitstellungsprozess.
+- text: ✧ Intelligente Testautomatisierung ↻ Detaillierte Compliance-Aufzeichnungen ♡ Sofortige Versionserholung
+- button "Demo anfordern"
+- button "Plattform erkunden"
+- heading "Unternehmens-KI, fachmännisch verwaltet" [level=2]
+- paragraph: Erschließen Sie robustes Release-Management und rigorose Qualitätssicherung für große Sprachmodelle. Unsere Plattform stattet Unternehmen mit fortschrittlichen Tools aus, um Bereitstellung zu optimieren, Compliance durchzusetzen und konsistente, hochwertige KI-Leistung im großen Maßstab sicherzustellen.
+- img
+- heading "Intelligente Release-Orchestrierung" [level=3]
+- paragraph: Automatisieren und koordinieren Sie komplexe Bereitstellungs-Pipelines mit Präzision. Stellen Sie sicher, dass jeder Modell-Release validiert, dokumentiert und nahtlos in die Produktion überführt wird, minimieren Sie Risiken und maximieren Sie operative Effizienz.
+- img
+- heading "Proaktive Modellüberwachung" [level=3]
+- paragraph: Überwachen Sie Modellleistung und Compliance in Echtzeit. Nutzen Sie automatisierte Prüfungen und umfassende Analytik, um Probleme frühzeitig zu erkennen, regulatorische Standards aufrechtzuerhalten und optimale Modellintegrität zu bewahren.
+- img
+- heading "Maßgeschneiderte Leistungsanalytik" [level=3]
+- paragraph: Etablieren und verfolgen Sie benutzerdefinierte Bewertungsmetriken, die mit Ihren Geschäftszielen übereinstimmen. Analysieren Sie Genauigkeit, Verzerrung und andere kritische Faktoren, um strategische Entscheidungen während des gesamten Modelllebenszyklus zu informieren.
+- img
+- heading "Integrierte Teamzusammenarbeit" [level=3]
+- paragraph: Optimieren Sie funktionsübergreifende Reviews mit strukturierten Workflows. Weisen Sie Verantwortlichkeiten zu, sammeln Sie Feedback und dokumentieren Sie Genehmigungen, um sicherzustellen, dass jeder Release organisatorische und regulatorische Erwartungen erfüllt.
+- heading "Turboladen Sie Ihren Workflow mit KI" [level=2]
+- paragraph: Entdecken Sie Features, die für Unternehmensteams entwickelt wurden, die zuverlässige, skalierbare KI-Zusammenarbeit benötigen.
+- text: 👥
+- heading "Multiplayer" [level=3]
+- paragraph: Ermöglichen Sie Multi-Stakeholder-Zusammenarbeit mit geteilten KI-Arbeitsbereichen für funktionsübergreifende Teams.
+- text: 🤖
+- heading "KI-Familie" [level=3]
+- paragraph: Zugriff auf Enterprise-Grade-Modelle von führenden Anbietern mit vereinheitlichter Governance und Sicherheitskontrollen.
+- text: 🎤
+- heading "Spracheingabe/-ausgabe" [level=3]
+- paragraph: Ermöglichen Sie nahtlose Sprachinteraktionen mit Enterprise-Grade Text-to-Speech und Speech-to-Text-Funktionen.
+- text: 📊
+- heading "Leistungsanalytik" [level=3]
+- paragraph: Verfolgen Sie Nutzung, Effizienz und Qualitätsmuster über alle KI-Interaktionen mit detaillierter Analytik.
+- text: 🔒
+- heading "Unternehmenssicherheit" [level=3]
+- paragraph: Sichern Sie alle Daten und Gespräche mit Ende-zu-Ende-Verschlüsselung, Zugriffskontrollen und umfassendem Auditing.
+- text: ⚡
+- heading "Blitzschnelle Antworten" [level=3]
+- paragraph: Erhalten Sie sofortige Antworten mit optimierter Latenz und verteilter Netzwerkarchitektur für maximale Leistung.
+- text: 🎯
+- heading "Domänenspezialisierung" [level=3]
+- paragraph: Feinabstimmung von KI-Modellen für spezifische Branchen mit spezialisiertem Wissen und angepassten Anwendungsfällen.
+- text: 🔄
+- heading "Intelligente Workflows" [level=3]
+- paragraph: Automatisieren Sie komplexe Aufgaben mit KI-Workflows, die lernen und sich an die Prozesse Ihres Teams anpassen.
+- text: 🌐
+- heading "API-Integration" [level=3]
+- paragraph: Verbinden Sie sich nahtlos mit Ihren bestehenden Tools durch robuste APIs und umfassende Entwicklerdokumentation.
+- text: 📈
+- heading "Skalierbarkeit" [level=3]
+- paragraph: Skalieren Sie von kleinen Teams zu Unternehmensorganisationen mit Infrastruktur, die automatisch skaliert.
+- heading "Lernen Sie unser Team kennen" [level=2]
+- paragraph: Lernen Sie die Innovatoren kennen, die die Zukunft der Mensch-KI-Zusammenarbeit gestalten.
+- img "Michael Mooring"
+- heading "Michael Mooring" [level=3]
+- paragraph: CEO & Gründer
+- paragraph: Visionary with 15+ years in enterprise technology, leading the conversational AI revolution.
+- link " Verbinden":
+  - /url: https://linkedin.com/in/michaelmooring
+- img "Duane Mooring"
+- heading "Duane Mooring" [level=3]
+- paragraph: CTO & Mitgründer
+- paragraph: Systems architect with expertise in scalable AI infrastructure and natural language processing.
+- link " Verbinden":
+  - /url: https://linkedin.com/in/duanemooring
+- img "Sam Tobia"
+- heading "Sam Tobia" [level=3]
+- paragraph: Produktleiter
+- paragraph: Product strategist with a track record of delivering user-centric AI solutions for enterprise teams.
+- link " Verbinden":
+  - /url: https://linkedin.com/in/samtobia
+- img "Abdul Rahman"
+- heading "Abdul Rahman" [level=3]
+- paragraph: Senior Data Scientist
+- paragraph: Machine learning expert specialized in model optimization and performance analysis for AI systems.
+- link " Verbinden":
+  - /url: https://linkedin.com/in/abdulrahman
+- img "Sierra Hooshiari"
+- heading "Sierra Hooshiari" [level=3]
+- paragraph: UX/UI Designer
+- paragraph: Creative designer focused on creating intuitive interfaces that make complex AI interactions accessible.
+- link " Verbinden":
+  - /url: https://linkedin.com/in/sierrahooshiari
+- img "Sean Fuhrman"
+- heading "Sean Fuhrman" [level=3]
+- paragraph: Software-Ingenieur
+- paragraph: Full-stack developer with experience in microservices architecture and distributed systems for AI applications.
+- link " Verbinden":
+  - /url: https://linkedin.com/in/seanfuhrman
+- heading "Starten Sie Ihre KI-Reise" [level=2]
+- paragraph: Schließen Sie sich Tausenden von Teams an, die bereits ihre Arbeit mit Divinci AI transformieren. Erhalten Sie frühen Zugang zu unserer Plattform.
+- textbox "Ihre E-Mail"
+- button "Zugang anfordern"
+- paragraph: Kein Spam. Jederzeit abbestellbar.
+- heading "KI für das Gute" [level=2]
+- paragraph: Wir sind der Entwicklung verantwortlicher KI verpflichtet, die der Menschheit zugute kommt. Unsere Plattform ist mit starken ethischen Prinzipien, Transparenz und einem Fokus auf die Befähigung von Menschen, nicht deren Ersetzung, konzipiert.
+- text: 🛡️
+- heading "Sichere Entwicklung" [level=3]
+- paragraph: Rigorose Sicherheitstests und Schutzmaßnahmen.
+- text: ⚖️
+- heading "Faire KI" [level=3]
+- paragraph: Verzerrungsreduzierung und Fairnessförderung in allen Ergebnissen.
+- text: 🌍
+- heading "Positive Auswirkung" [level=3]
+- paragraph: Beitrag zu Lösungen, die globale Herausforderungen angehen.
+- img "AI for Good Impact"
+- contentinfo:
+  - img "Divinci AI Logo"
+  - text: Divinci AI
+  - paragraph: Befähigung der Mensch-KI-Zusammenarbeit
+  - link "":
+    - /url: "@DivinciAI"
+  - link "":
+    - /url: company/divinci-ai
+  - link "":
+    - /url: Divinci-AI
+  - heading "Produkt" [level=3]
+  - list:
+    - listitem:
+      - link "Features":
+        - /url: "#features"
+    - listitem:
+      - link "AutoRAG":
+        - /url: /de/autorag/
+    - listitem:
+      - link "Quality Assurance":
+        - /url: /de/quality-assurance/
+    - listitem:
+      - link "Release Management":
+        - /url: /de/release-management/
+    - listitem:
+      - link "Preise":
+        - /url: /pricing
+    - listitem:
+      - link "Roadmap":
+        - /url: /roadmap
+    - listitem:
+      - link "Changelog":
+        - /url: /changelog
+  - heading "Ressourcen" [level=3]
+  - list:
+    - listitem:
+      - link "Dokumentation":
+        - /url: /docs
+    - listitem:
+      - link "Blog":
+        - /url: /blog
+    - listitem:
+      - link "Tutorials":
+        - /url: /tutorials
+    - listitem:
+      - link "API":
+        - /url: /api
+  - heading "Unternehmen" [level=3]
+  - list:
+    - listitem:
+      - link "Über uns":
+        - /url: /about
+    - listitem:
+      - link "Karriere":
+        - /url: /careers
+    - listitem:
+      - link "Kontakt":
+        - /url: /contact
+    - listitem:
+      - link "Presse":
+        - /url: /press
+  - heading "Rechtliches" [level=3]
+  - list:
+    - listitem:
+      - link "Nutzungsbedingungen":
+        - /url: /de/terms-of-service/
+    - listitem:
+      - link "Datenschutzrichtlinie":
+        - /url: /de/privacy-policy/
+    - listitem:
+      - link "KI-Sicherheit & Ethik":
+        - /url: /ai-safety
+    - listitem:
+      - link "Sicherheit":
+        - /url: /security
+  - paragraph: © 2023-2025 Divinci AI. Alle Rechte vorbehalten.
+  - link "Sitemap":
+    - /url: /de/sitemap
+  - link "Barrierefreiheit":
+    - /url: /de/accessibility
+  - link "Cookie-Richtlinie":
+    - /url: /de/cookies
+```

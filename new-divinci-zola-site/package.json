@@ -1,0 +1,33 @@
+{
+  "name": "new-divinci-zola-site",
+  "version": "1.0.0",
+  "description": "New Divinci AI Zola Site",
+  "scripts": {
+    "build": "zola build",
+    "serve": "zola serve --port 1111",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:visual": "playwright test --config=playwright.config.js --project=Visual-Desktop --project=Visual-Mobile --project=Visual-Tablet",
+    "test:visual:update": "playwright test --config=playwright.config.js --project=Visual-Desktop --project=Visual-Mobile --project=Visual-Tablet --update-snapshots",
+    "test:e2e": "playwright test --config=playwright.config.js --project=Desktop-Chrome --project=Mobile-Chrome",
+    "test:report": "playwright show-report",
+    "test:debug": "playwright test --debug",
+    "test:accessibility": "playwright test tests/accessibility*.spec.js",
+    "test:a11y": "playwright test tests/accessibility*.spec.js --headed",
+    "test:a11y:report": "playwright test tests/accessibility*.spec.js --reporter=html --output-dir=accessibility-report",
+    "test:a11y:config": "playwright test --config=accessibility.config.js",
+    "test:a11y:visual": "playwright test tests/accessibility-visual.spec.js",
+    "test:a11y:i18n": "playwright test tests/accessibility-i18n.spec.js",
+    "test:a11y:keyboard": "playwright test tests/accessibility.spec.js --grep='Keyboard'",
+    "test:a11y:contrast": "playwright test tests/accessibility-visual.spec.js --grep='Color Contrast'",
+    "test:all-langs": "playwright test tests/accessibility-i18n.spec.js",
+    "test:compare": "playwright test tests-new/e2e/site-comparison.test.js",
+    "test:compare:report": "playwright test tests-new/e2e/site-comparison.test.js --reporter=html --output-dir=comparison-report",
+    "dev": "zola serve --port 1111 --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@playwright/test": "^1.52.0"
+  }
+}

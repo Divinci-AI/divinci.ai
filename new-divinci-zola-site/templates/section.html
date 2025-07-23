@@ -1,0 +1,887 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if section.extra.lang == "es" %}
+    Divinci AI - Excelencia, siempre
+  {% elif section.extra.lang == "fr" %}
+    Divinci AI - Excellence, à chaque fois
+  {% elif section.extra.lang == "ar" %}
+    ديفينشي الذكاء الاصطناعي - التميز، في كل مرة
+  {% elif section.extra.lang == "ja" %}
+    Divinci AI - 常に優秀
+  {% elif section.extra.lang == "zh" %}
+    Divinci AI - 卓越，每一次
+  {% elif section.extra.lang == "it" %}
+    Divinci AI - Eccellenza, ogni volta
+  {% elif section.extra.lang == "ru" %}
+    Divinci AI - Совершенство, каждый раз
+  {% elif section.extra.lang == "de" %}
+    Divinci AI - Exzellenz, jedes Mal
+  {% elif section.extra.lang == "pt" %}
+    Divinci AI - Excelência, sempre
+  {% elif section.extra.lang == "ko" %}
+    Divinci AI - 매번 우수함
+  {% elif section.extra.lang == "nl" %}
+    Divinci AI - Uitmuntendheid, elke keer
+  {% elif section.extra.lang == "hi" %}
+    Divinci AI - हर बार उत्कृष्टता
+  {% else %}
+    {{ config.extra.tagline | default(value="Divinci AI - Excellence, every time") }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+{% include "partials/header.html" %}
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-image">
+            <img src="{{ get_url(path="images/Davinci_the_painter_painting_a_robot_in_a_line_art.png") }}" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster">
+            <video id="hero-video" muted loop playsinline preload="metadata" data-lazy-video>
+                <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.webm") }}" type="video/webm">
+                <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.mp4") }}" type="video/mp4">
+            </video>
+            <button id="sound-toggle" style="display: none;">Unmute</button>
+        </div>
+        <div class="hero-text">
+            <h1>
+                {% if section.extra.lang == "es" %}
+                    Lanzamientos de IA.<br>
+                    Excelencia,
+                    siempre.
+                {% elif section.extra.lang == "fr" %}
+                    Versions d'IA.<br>
+                    Excellence,
+                    à chaque fois.
+                {% elif section.extra.lang == "ar" %}
+                    إصدارات الذكاء الاصطناعي.<br>
+                    التميز،
+                    في كل مرة.
+                {% elif section.extra.lang == "ja" %}
+                    AIリリース。<br>
+                    常に
+                    優秀。
+                {% elif section.extra.lang == "zh" %}
+                    AI版本发布。<br>
+                    卓越，
+                    每一次。
+                {% elif section.extra.lang == "it" %}
+                    Rilasci AI.<br>
+                    Eccellenza,
+                    ogni volta.
+                {% elif section.extra.lang == "ru" %}
+                    AI релизы.<br>
+                    Совершенство,
+                    каждый раз.
+                {% elif section.extra.lang == "de" %}
+                    KI-Releases.<br>
+                    Exzellenz,
+                    jedes Mal.
+                {% elif section.extra.lang == "pt" %}
+                    Lançamentos de IA.<br>
+                    Excelência,
+                    sempre.
+                {% elif section.extra.lang == "ko" %}
+                    AI 릴리스.<br>
+                    우수함,
+                    매번.
+                {% elif section.extra.lang == "nl" %}
+                    AI-releases.<br>
+                    Uitmuntendheid,
+                    elke keer.
+                {% elif section.extra.lang == "hi" %}
+                    एआई रिलीज़।<br>
+                    उत्कृष्टता,
+                    हर बार।
+                {% else %}
+                    AI releases.<br>
+                    Excellence,
+                    every time.
+                {% endif %}
+            </h1>
+            <p>
+                {% if section.extra.lang == "es" %}
+                    Potencie su negocio con gestión avanzada de versiones y aseguramiento de calidad riguroso para modelos de lenguaje personalizados. Logre confiabilidad operativa, cumplimiento regulatorio y rendimiento óptimo a través de un proceso de implementación estructurado de extremo a extremo.
+                {% elif section.extra.lang == "fr" %}
+                    Renforcez votre entreprise avec une gestion avancée des versions et une assurance qualité rigoureuse pour les modèles de langage personnalisés. Obtenez fiabilité opérationnelle, conformité réglementaire et performance optimale grâce à un processus de déploiement structuré de bout en bout.
+                {% elif section.extra.lang == "ar" %}
+                    قوّي عملك بإدارة الإصدارات المتقدمة وضمان الجودة الصارم لنماذج اللغة المخصصة. حقق الموثوقية التشغيلية والامتثال التنظيمي والأداء الأمثل من خلال عملية نشر منظمة من البداية إلى النهاية.
+                {% elif section.extra.lang == "ja" %}
+                    カスタム言語モデルの高度なリリース管理と厳格な品質保証でビジネスを強化。運用信頼性、規制遵守、最適なパフォーマンスを実現します。
+                {% elif section.extra.lang == "zh" %}
+                    通过先进的发布管理和严格的质量保证增强您的业务，用于定制语言模型。实现运营可靠性、法规合规性和最佳性能。
+                {% elif section.extra.lang == "it" %}
+                    Potenzia la tua azienda con gestione avanzata dei rilasci e garanzia di qualità rigorosa per modelli di linguaggio personalizzati. Ottieni affidabilità operativa, conformità normativa e prestazioni ottimali.
+                {% elif section.extra.lang == "ru" %}
+                    Усильте свой бизнес с продвинутым управлением релизами и строгим обеспечением качества для пользовательских языковых моделей. Достигните операционной надежности, соответствия требованиям и оптимальной производительности.
+                {% elif section.extra.lang == "de" %}
+                    Stärken Sie Ihr Unternehmen mit fortschrittlichem Release-Management und rigoroser Qualitätssicherung für benutzerdefinierte Sprachmodelle. Erreichen Sie operative Zuverlässigkeit, regulatorische Compliance und optimale Leistung.
+                {% elif section.extra.lang == "pt" %}
+                    Potencialize seu negócio com gerenciamento avançado de lançamentos e garantia de qualidade rigorosa para modelos de linguagem personalizados. Alcance confiabilidade operacional, conformidade regulatória e desempenho ótimo.
+                {% elif section.extra.lang == "ko" %}
+                    고급 릴리스 관리와 맞춤형 언어 모델에 대한 엄격한 품질 보증으로 비즈니스를 강화하세요. 운영 신뢰성, 규제 준수 및 최적의 성능을 달성하세요.
+                {% elif section.extra.lang == "nl" %}
+                    Versterk uw bedrijf met geavanceerd release management en rigoureuze kwaliteitsborging voor aangepaste taalmodellen. Bereik operationele betrouwbaarheid, regelgevingsnaleving en optimale prestaties.
+                {% elif section.extra.lang == "hi" %}
+                    कस्टम भाषा मॉडल के लिए उन्नत रिलीज़ प्रबंधन और कठोर गुणवत्ता आश्वासन के साथ अपने व्यवसाय को सशक्त बनाएं। परिचालन विश्वसनीयता, नियामक अनुपालन और इष्टतम प्रदर्शन प्राप्त करें।
+                {% else %}
+                    Empower your business with advanced release management and
+                    rigorous quality assurance for custom language models. Achieve
+                    operational reliability, regulatory compliance, and optimal
+                    performance through a structured, end-to-end deployment process.
+                {% endif %}
+            </p>
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-icon feature-icon-star">✧</span>
+                    <span class="feature-text">Intelligent test automation</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon feature-icon-rotate">↻</span>
+                    <span class="feature-text">Detailed compliance records</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon feature-icon-heart">♡</span>
+                    <span class="feature-text">Instant version recovery</span>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <button class="primary-button">Request demo</button>
+                <button class="secondary-button">Explore platform</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="enterprise-ai" id="solutions">
+    <div class="enterprise-header">
+        <h2>Enterprise AI, expertly managed</h2>
+        <p class="section-intro">
+            Unlock robust release management and rigorous quality assurance for large language models. Our platform equips enterprises with advanced tools to streamline deployment, enforce compliance, and ensure consistent, high-quality AI performance at scale.
+        </p>
+    </div>
+    <div class="video-background-container">
+        <!-- Default background video -->
+        <video id="background-video-default" class="background-video active" muted loop playsinline preload="metadata" data-lazy-video>
+            <source src="{{ get_url(path="images/background-video.webm") }}" type="video/webm">
+        </video>
+        
+        <!-- Panel 2 hover video (business parody) -->
+        <video id="background-video-panel2" class="background-video" muted loop playsinline preload="none" data-lazy-video data-panel="2">
+            <source src="{{ get_url(path="images/business-parody-optimized.webm") }}" type="video/webm">
+            <source src="{{ get_url(path="images/business-parody-social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_2ce28274-76c9-4ec1-b4f8-3acc57789616_3.mp4") }}" type="video/mp4">
+        </video>
+        
+        <!-- Panel 3 hover video (rag machine) -->
+        <video id="background-video-panel3" class="background-video" muted loop playsinline preload="none" data-lazy-video data-panel="3">
+            <source src="{{ get_url(path="images/rag-machine-optimized.webm") }}" type="video/webm">
+            <source src="{{ get_url(path="images/rag-machine-social_u4943574663_Young_Leonardo_da_Vinci_in_Renaissance_workshop_t_ad808b44-961d-49e8-b0db-06c848541449_1.mp4") }}" type="video/mp4">
+        </video>
+    </div>
+    <div class="enterprise-content">
+        <div class="circular-panels-wrapper">
+            <div class="panels-container">
+                <div class="panel default-open">
+                    <div class="panel-art">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 10 C 20 10, 10 50, 50 90 S 80 90, 90 50 S 60 10, 50 10" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M50 10 C 80 10, 90 50, 50 90 S 20 90, 10 50 S 40 10, 50 10" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Intelligent release orchestration</h3>
+                    <p>Automate and coordinate complex deployment pipelines with precision. Ensure every model release is validated, documented, and seamlessly transitioned to production, minimizing risk and maximizing operational efficiency.</p>
+                </div>
+                <div class="panel panel-with-bg">
+                    <div class="panel-art">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="50" cy="50" r="5" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>Proactive model oversight</h3>
+                    <p>Monitor model performance and compliance in real time. Leverage automated checks and comprehensive analytics to detect issues early, uphold regulatory standards, and maintain optimal model integrity.</p>
+                </div>
+                <div class="panel">
+                    <div class="panel-art">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Fibonacci spiral with golden ratio rectangles -->
+                            <path d="M50 50 A 8 8 0 0 1 42 58 A 13 13 0 0 1 29 45 A 21 21 0 0 1 50 24 A 34 34 0 0 1 84 58 A 55 55 0 0 1 29 113" fill="none" stroke="currentColor" stroke-width="1.5" class="fibonacci-spiral"/>
+                            <!-- Golden ratio rectangles -->
+                            <rect x="42" y="50" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1" class="golden-rect-1"/>
+                            <rect x="29" y="45" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1" class="golden-rect-2"/>
+                            <rect x="29" y="24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1" class="golden-rect-3"/>
+                            <rect x="50" y="24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1" class="golden-rect-4"/>
+                        </svg>
+                    </div>
+                    <h3>Tailored performance analytics</h3>
+                    <p>Establish and track custom evaluation metrics aligned with your business objectives. Analyze accuracy, bias, and other critical factors to inform strategic decisions throughout the model lifecycle.</p>
+                </div>
+                <div class="panel">
+                    <div class="panel-art">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 50 L50 10 L90 50 L50 90 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 50 L50 90 L90 50 L50 10 Z" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(45 50 50)"/>
+                        </svg>
+                    </div>
+                    <h3>Integrated team collaboration</h3>
+                    <p>Streamline cross-functional reviews with structured workflows. Assign responsibilities, collect feedback, and document approvals to ensure every release meets organizational and regulatory expectations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-section" id="features">
+    <div class="features-container">
+        <div class="features-header">
+            <h2>
+                {% if section.extra.lang == "es" %}
+                    Potencia tu flujo de trabajo con IA
+                {% elif section.extra.lang == "fr" %}
+                    Renforcez votre flux de travail avec l'IA
+                {% elif section.extra.lang == "ar" %}
+                    عزز سير عملك بالذكاء الاصطناعي
+                {% elif section.extra.lang == "ja" %}
+                    AIでワークフローを強化
+                {% elif section.extra.lang == "zh" %}
+                    用AI增强您的工作流程
+                {% elif section.extra.lang == "it" %}
+                    Potenzia il tuo flusso di lavoro con l'AI
+                {% elif section.extra.lang == "ru" %}
+                    Улучшите свой рабочий процесс с ИИ
+                {% elif section.extra.lang == "de" %}
+                    Verbessern Sie Ihren Workflow mit KI
+                {% elif section.extra.lang == "pt" %}
+                    Potencialize seu fluxo de trabalho com IA
+                {% elif section.extra.lang == "ko" %}
+                    AI로 워크플로우를 강화하세요
+                {% elif section.extra.lang == "nl" %}
+                    Versterk uw workflow met AI
+                {% elif section.extra.lang == "hi" %}
+                    AI के साथ अपने वर्कफ़्लो को बेहतर बनाएं
+                {% else %}
+                    Supercharge your workflow with AI
+                {% endif %}
+            </h2>
+            <p class="section-intro">
+                {% if section.extra.lang == "es" %}
+                    Descubre características diseñadas para equipos empresariales que necesitan colaboración confiable y escalable con IA.
+                {% elif section.extra.lang == "fr" %}
+                    Découvrez des fonctionnalités conçues pour les équipes d'entreprise qui ont besoin d'une collaboration IA fiable et évolutive.
+                {% elif section.extra.lang == "ar" %}
+                    اكتشف الميزات المصممة لفرق المؤسسات التي تحتاج إلى تعاون موثوق وقابل للتوسع مع الذكاء الاصطناعي.
+                {% elif section.extra.lang == "ja" %}
+                    信頼性とスケーラビリティのあるAIコラボレーションが必要な企業チーム向けに設計された機能をご覧ください。
+                {% elif section.extra.lang == "zh" %}
+                    发现专为需要可靠、可扩展AI协作的企业团队设计的功能。
+                {% elif section.extra.lang == "it" %}
+                    Scopri le funzionalità progettate per team aziendali che necessitano di collaborazione AI affidabile e scalabile.
+                {% elif section.extra.lang == "ru" %}
+                    Откройте для себя функции, разработанные для корпоративных команд, которым нужно надежное, масштабируемое сотрудничество с ИИ.
+                {% elif section.extra.lang == "de" %}
+                    Entdecken Sie Funktionen, die für Unternehmensteams entwickelt wurden, die zuverlässige, skalierbare KI-Zusammenarbeit benötigen.
+                {% elif section.extra.lang == "pt" %}
+                    Descubra recursos projetados para equipes empresariais que precisam de colaboração confiável e escalável com IA.
+                {% elif section.extra.lang == "ko" %}
+                    신뢰할 수 있고 확장 가능한 AI 협업이 필요한 기업 팀을 위해 설계된 기능을 살펴보세요.
+                {% elif section.extra.lang == "nl" %}
+                    Ontdek functies ontworpen voor bedrijfsteams die betrouwbare, schaalbare AI-samenwerking nodig hebben.
+                {% elif section.extra.lang == "hi" %}
+                    उन एंटरप्राइज़ टीमों के लिए डिज़ाइन की गई सुविधाओं की खोज करें जिन्हें विश्वसनीय, स्केलेबल AI सहयोग की आवश्यकता है।
+                {% else %}
+                    Discover features designed for enterprise teams that need reliable, scalable AI collaboration.
+                {% endif %}
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">👥</span>
+                <h3>
+                    {% if section.extra.lang == "es" %}Multijugador
+                    {% elif section.extra.lang == "fr" %}Multijoueur
+                    {% elif section.extra.lang == "ar" %}متعدد اللاعبين
+                    {% else %}Multiplayer{% endif %}
+                </h3>
+                <p>
+                    {% if section.extra.lang == "es" %}
+                        Habilita la colaboración de múltiples partes interesadas con espacios de trabajo de IA compartidos para equipos multifuncionales.
+                    {% elif section.extra.lang == "fr" %}
+                        Permettez la collaboration multi-parties prenantes avec des espaces de travail IA partagés pour les équipes transversales.
+                    {% elif section.extra.lang == "ar" %}
+                        مكّن التعاون متعدد أصحاب المصلحة مع مساحات العمل المشتركة للذكاء الاصطناعي للفرق متعددة الوظائف.
+                    {% else %}
+                        Enable multi-stakeholder collaboration with shared AI workspaces for cross-functional teams.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🤖</span>
+                <h3>
+                    {% if section.extra.lang == "es" %}Familia de IA
+                    {% elif section.extra.lang == "fr" %}Famille IA
+                    {% elif section.extra.lang == "ar" %}عائلة الذكاء الاصطناعي
+                    {% else %}AI Family{% endif %}
+                </h3>
+                <p>
+                    {% if section.extra.lang == "es" %}
+                        Accede a modelos de nivel empresarial de proveedores líderes con controles unificados de gobernanza y seguridad.
+                    {% elif section.extra.lang == "fr" %}
+                        Accédez aux modèles de niveau entreprise des fournisseurs leaders avec des contrôles unifiés de gouvernance et de sécurité.
+                    {% elif section.extra.lang == "ar" %}
+                        الوصول إلى نماذج على مستوى المؤسسة من الموردين الرائدين مع ضوابط الحوكمة والأمان الموحدة.
+                    {% else %}
+                        Access enterprise-grade models from leading providers with unified governance and security controls.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🎤</span>
+                <h3>
+                    {% if section.extra.lang == "es" %}Voz de entrada/salida
+                    {% elif section.extra.lang == "fr" %}Voix d'entrée/sortie
+                    {% elif section.extra.lang == "ar" %}صوت الدخل/الخرج
+                    {% else %}Voice In/Out{% endif %}
+                </h3>
+                <p>
+                    {% if section.extra.lang == "es" %}
+                        Habilita interacciones de voz fluidas con capacidades de texto a voz y voz a texto de nivel empresarial.
+                    {% elif section.extra.lang == "fr" %}
+                        Permettez des interactions vocales fluides avec des capacités de synthèse vocale et de reconnaissance vocale de niveau entreprise.
+                    {% elif section.extra.lang == "ar" %}
+                        مكّن التفاعلات الصوتية السلسة مع قدرات تحويل النص إلى كلام والكلام إلى نص على مستوى المؤسسة.
+                    {% else %}
+                        Enable seamless voice interactions with enterprise-grade text-to-speech and speech-to-text capabilities.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>
+                    {% if section.extra.lang == "es" %}Análisis de rendimiento
+                    {% elif section.extra.lang == "fr" %}Analyse de performance
+                    {% elif section.extra.lang == "ar" %}تحليل الأداء
+                    {% else %}Performance Analytics{% endif %}
+                </h3>
+                <p>
+                    {% if section.extra.lang == "es" %}
+                        Rastrea el uso, la eficiencia y los patrones de calidad en todas las interacciones de IA con análisis detallados.
+                    {% elif section.extra.lang == "fr" %}
+                        Suivez l'utilisation, l'efficacité et les modèles de qualité dans toutes les interactions IA avec des analyses détaillées.
+                    {% elif section.extra.lang == "ar" %}
+                        تتبع الاستخدام والكفاءة وأنماط الجودة عبر جميع تفاعلات الذكاء الاصطناعي مع التحليلات التفصيلية.
+                    {% else %}
+                        Track usage, efficiency, and quality patterns across all AI interactions with detailed analytics.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <h3>
+                    {% if section.extra.lang == "es" %}Seguridad empresarial
+                    {% elif section.extra.lang == "fr" %}Sécurité d'entreprise
+                    {% elif section.extra.lang == "ar" %}أمان المؤسسة
+                    {% else %}Enterprise Security{% endif %}
+                </h3>
+                <p>
+                    {% if section.extra.lang == "es" %}
+                        Asegura todos los datos y conversaciones con cifrado de extremo a extremo, controles de acceso y auditoría completa.
+                    {% elif section.extra.lang == "fr" %}
+                        Sécurisez toutes les données et conversations avec un chiffrement de bout en bout, des contrôles d'accès et un audit complet.
+                    {% elif section.extra.lang == "ar" %}
+                        أمّن جميع البيانات والمحادثات مع التشفير من النهاية إلى النهاية وضوابط الوصول والتدقيق الشامل.
+                    {% else %}
+                        Secure all data and conversations with end-to-end encryption, access controls, and comprehensive auditing.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>
+                    {% if section.extra.lang == "es" %}Respuestas rápidas
+                    {% elif section.extra.lang == "fr" %}Réponses rapides
+                    {% elif section.extra.lang == "ar" %}إجابات سريعة
+                    {% else %}Lightning Responses{% endif %}
+                </h3>
+                <p>
+                    {% if section.extra.lang == "es" %}
+                        Obtén respuestas instantáneas con latencia optimizada y arquitectura de red distribuida para máximo rendimiento.
+                    {% elif section.extra.lang == "fr" %}
+                        Obtenez des réponses instantanées avec une latence optimisée et une architecture réseau distribuée pour des performances maximales.
+                    {% elif section.extra.lang == "ar" %}
+                        احصل على استجابات فورية مع زمن استجابة محسّن وهندسة شبكة موزعة لأقصى أداء.
+                    {% else %}
+                        Get instant responses with optimized latency and distributed network architecture for maximum performance.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3>
+                    {% if section.extra.lang == "es" %}Especialización de dominio
+                    {% elif section.extra.lang == "fr" %}Spécialisation de domaine
+                    {% elif section.extra.lang == "ar" %}التخصص في المجال
+                    {% else %}Domain Specialization{% endif %}
+                </h3>
+                <p>
+                    {% if section.extra.lang == "es" %}
+                        Ajusta modelos de IA para industrias específicas con conocimiento especializado y casos de uso personalizados.
+                    {% elif section.extra.lang == "fr" %}
+                        Ajustez les modèles IA pour des industries spécifiques avec des connaissances spécialisées et des cas d'utilisation personnalisés.
+                    {% elif section.extra.lang == "ar" %}
+                        اضبط نماذج الذكاء الاصطناعي للصناعات المحددة مع المعرفة المتخصصة وحالات الاستخدام المخصصة.
+                    {% else %}
+                        Fine-tune AI models for specific industries with specialized knowledge and customized use cases.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔄</span>
+                <h3>
+                    {% if section.extra.lang == "es" %}Flujos de trabajo inteligentes
+                    {% elif section.extra.lang == "fr" %}Flux de travail intelligents
+                    {% elif section.extra.lang == "ar" %}سير العمل الذكي
+                    {% else %}Smart Workflows{% endif %}
+                </h3>
+                <p>
+                    {% if section.extra.lang == "es" %}
+                        Automatiza tareas complejas con flujos de trabajo de IA que aprenden y se adaptan a los procesos de tu equipo.
+                    {% elif section.extra.lang == "fr" %}
+                        Automatisez des tâches complexes avec des flux de travail IA qui apprennent et s'adaptent aux processus de votre équipe.
+                    {% elif section.extra.lang == "ar" %}
+                        أتمت المهام المعقدة مع سير العمل الذكي الذي يتعلم ويتكيف مع عمليات فريقك.
+                    {% else %}
+                        Automate complex tasks with AI workflows that learn and adapt to your team's processes.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🌐</span>
+                <h3>
+                    {% if section.extra.lang == "es" %}Integración API
+                    {% elif section.extra.lang == "fr" %}Intégration API
+                    {% elif section.extra.lang == "ar" %}تكامل واجهة برمجة التطبيقات
+                    {% else %}API Integration{% endif %}
+                </h3>
+                <p>
+                    {% if section.extra.lang == "es" %}
+                        Conecta sin problemas con tus herramientas existentes a través de APIs robustas y documentación completa para desarrolladores.
+                    {% elif section.extra.lang == "fr" %}
+                        Connectez-vous facilement avec vos outils existants via des API robustes et une documentation complète pour les développeurs.
+                    {% elif section.extra.lang == "ar" %}
+                        اتصل بسلاسة مع أدواتك الموجودة من خلال واجهات برمجة التطبيقات القوية والوثائق الشاملة للمطورين.
+                    {% else %}
+                        Connect seamlessly with your existing tools through robust APIs and comprehensive developer documentation.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📈</span>
+                <h3>
+                    {% if section.extra.lang == "es" %}Escalabilidad
+                    {% elif section.extra.lang == "fr" %}Évolutivité
+                    {% elif section.extra.lang == "ar" %}قابلية التوسع
+                    {% else %}Scalability{% endif %}
+                </h3>
+                <p>
+                    {% if section.extra.lang == "es" %}
+                        Crece desde equipos pequeños hasta organizaciones empresariales con infraestructura que escala automáticamente.
+                    {% elif section.extra.lang == "fr" %}
+                        Évoluez des petites équipes aux organisations d'entreprise avec une infrastructure qui évolue automatiquement.
+                    {% elif section.extra.lang == "ar" %}
+                        انمو من الفرق الصغيرة إلى المؤسسات الكبيرة مع البنية التحتية التي تتوسع تلقائياً.
+                    {% else %}
+                        Scale from small teams to enterprise organizations with infrastructure that automatically scales.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-section" id="team">
+    <div class="team-container">
+        <div class="team-header">
+            <h2>
+                {% if section.extra.lang == "es" %}
+                    Conoce a nuestro equipo
+                {% elif section.extra.lang == "fr" %}
+                    Rencontrez notre équipe
+                {% elif section.extra.lang == "ar" %}
+                    تعرف على فريقنا
+                {% else %}
+                    Meet our team
+                {% endif %}
+            </h2>
+            <p class="section-intro">
+                {% if section.extra.lang == "es" %}
+                    Conoce a los innovadores que están dando forma al futuro de la colaboración humano-IA.
+                {% elif section.extra.lang == "fr" %}
+                    Rencontrez les innovateurs qui façonnent l'avenir de la collaboration humain-IA.
+                {% elif section.extra.lang == "ar" %}
+                    تعرف على المبدعين الذين يشكلون مستقبل التعاون بين الإنسان والذكاء الاصطناعي.
+                {% else %}
+                    Meet the innovators shaping the future of human-AI collaboration.
+                {% endif %}
+            </p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/Michael-Mooring.jpeg") }}" alt="Michael Mooring">
+                </div>
+                <h3>Michael Mooring</h3>
+                <p class="role">
+                    {% if section.extra.lang == "es" %}CEO y Fundador
+                    {% elif section.extra.lang == "fr" %}PDG et Fondateur
+                    {% elif section.extra.lang == "ar" %}الرئيس التنفيذي والمؤسس
+                    {% else %}CEO & Founder{% endif %}
+                </p>
+                <p class="bio">
+                    {% if section.extra.lang == "es" %}
+                        Visionario con más de 15 años de experiencia en tecnología empresarial, liderando la revolución de la IA conversacional.
+                    {% elif section.extra.lang == "fr" %}
+                        Visionnaire avec plus de 15 ans d'expérience en technologie d'entreprise, menant la révolution de l'IA conversationnelle.
+                    {% elif section.extra.lang == "ar" %}
+                        رؤيوي مع أكثر من 15 عامًا من الخبرة في التكنولوجيا المؤسسية، يقود ثورة الذكاء الاصطناعي التحادثي.
+                    {% else %}
+                        Visionary with 15+ years in enterprise technology, leading the conversational AI revolution.
+                    {% endif %}
+                </p>
+                <a href="https://linkedin.com/in/michaelmooring" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                    {% if section.extra.lang == "es" %}Conectar
+                    {% elif section.extra.lang == "fr" %}Se connecter
+                    {% elif section.extra.lang == "ar" %}تواصل
+                    {% else %}Connect{% endif %}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/duane-mooring.png") }}" alt="Duane Mooring">
+                </div>
+                <h3>Duane Mooring</h3>
+                <p class="role">
+                    {% if section.extra.lang == "es" %}CTO y Cofundador
+                    {% elif section.extra.lang == "fr" %}CTO et Cofondateur
+                    {% elif section.extra.lang == "ar" %}المدير التقني والمؤسس المشارك
+                    {% else %}CTO & Co-Founder{% endif %}
+                </p>
+                <p class="bio">
+                    {% if section.extra.lang == "es" %}
+                        Arquitecto de sistemas con experiencia en infraestructura de IA escalable y procesamiento de lenguaje natural.
+                    {% elif section.extra.lang == "fr" %}
+                        Architecte de systèmes avec une expertise en infrastructure IA évolutive et traitement du langage naturel.
+                    {% elif section.extra.lang == "ar" %}
+                        مهندس أنظمة مع خبرة في البنية التحتية للذكاء الاصطناعي القابلة للتوسع ومعالجة اللغة الطبيعية.
+                    {% else %}
+                        Systems architect with expertise in scalable AI infrastructure and natural language processing.
+                    {% endif %}
+                </p>
+                <a href="https://linkedin.com/in/duanemooring" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                    {% if section.extra.lang == "es" %}Conectar
+                    {% elif section.extra.lang == "fr" %}Se connecter
+                    {% elif section.extra.lang == "ar" %}تواصل
+                    {% else %}Connect{% endif %}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/sam-tobia.jpg") }}" alt="Sam Tobia">
+                </div>
+                <h3>Sam Tobia</h3>
+                <p class="role">
+                    {% if section.extra.lang == "es" %}Jefe de Producto
+                    {% elif section.extra.lang == "fr" %}Directeur Produit
+                    {% elif section.extra.lang == "ar" %}رئيس المنتج
+                    {% else %}Head of Product{% endif %}
+                </p>
+                <p class="bio">
+                    {% if section.extra.lang == "es" %}
+                        Estratega de productos con un historial de entrega de soluciones de IA centradas en el usuario para equipos empresariales.
+                    {% elif section.extra.lang == "fr" %}
+                        Stratège produit avec un historique de livraison de solutions IA centrées sur l'utilisateur pour les équipes d'entreprise.
+                    {% elif section.extra.lang == "ar" %}
+                        استراتيجي المنتج مع سجل حافل في تقديم حلول الذكاء الاصطناعي المتمحورة حول المستخدم للفرق المؤسسية.
+                    {% else %}
+                        Product strategist with a track record of delivering user-centric AI solutions for enterprise teams.
+                    {% endif %}
+                </p>
+                <a href="https://linkedin.com/in/samtobia" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                    {% if section.extra.lang == "es" %}Conectar
+                    {% elif section.extra.lang == "fr" %}Se connecter
+                    {% elif section.extra.lang == "ar" %}تواصل
+                    {% else %}Connect{% endif %}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/abdul.jpeg") }}" alt="Abdul Rahman">
+                </div>
+                <h3>Abdul Rahman</h3>
+                <p class="role">
+                    {% if section.extra.lang == "es" %}Científico de Datos Senior
+                    {% elif section.extra.lang == "fr" %}Scientifique de Données Senior
+                    {% elif section.extra.lang == "ar" %}عالم البيانات الأول
+                    {% else %}Senior Data Scientist{% endif %}
+                </p>
+                <p class="bio">
+                    {% if section.extra.lang == "es" %}
+                        Experto en aprendizaje automático especializado en optimización de modelos y análisis de rendimiento para sistemas de IA.
+                    {% elif section.extra.lang == "fr" %}
+                        Expert en apprentissage automatique spécialisé dans l'optimisation de modèles et l'analyse de performance pour les systèmes d'IA.
+                    {% elif section.extra.lang == "ar" %}
+                        خبير في التعلم الآلي متخصص في تحسين النماذج وتحليل الأداء لأنظمة الذكاء الاصطناعي.
+                    {% else %}
+                        Machine learning expert specialized in model optimization and performance analysis for AI systems.
+                    {% endif %}
+                </p>
+                <a href="https://linkedin.com/in/abdulrahman" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                    {% if section.extra.lang == "es" %}Conectar
+                    {% elif section.extra.lang == "fr" %}Se connecter
+                    {% elif section.extra.lang == "ar" %}تواصل
+                    {% else %}Connect{% endif %}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/sierra-hooshiari.jpeg") }}" alt="Sierra Hooshiari">
+                </div>
+                <h3>Sierra Hooshiari</h3>
+                <p class="role">
+                    {% if section.extra.lang == "es" %}Diseñadora UX/UI
+                    {% elif section.extra.lang == "fr" %}Conceptrice UX/UI
+                    {% elif section.extra.lang == "ar" %}مصممة تجربة المستخدم/واجهة المستخدم
+                    {% else %}UX/UI Designer{% endif %}
+                </p>
+                <p class="bio">
+                    {% if section.extra.lang == "es" %}
+                        Diseñadora creativa enfocada en crear interfaces intuitivas que hacen que las interacciones complejas de IA sean accesibles.
+                    {% elif section.extra.lang == "fr" %}
+                        Conceptrice créative axée sur la création d'interfaces intuitives qui rendent les interactions IA complexes accessibles.
+                    {% elif section.extra.lang == "ar" %}
+                        مصممة مبدعة تركز على إنشاء واجهات بديهية تجعل التفاعلات المعقدة للذكاء الاصطناعي سهلة المنال.
+                    {% else %}
+                        Creative designer focused on creating intuitive interfaces that make complex AI interactions accessible.
+                    {% endif %}
+                </p>
+                <a href="https://linkedin.com/in/sierrahooshiari" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                    {% if section.extra.lang == "es" %}Conectar
+                    {% elif section.extra.lang == "fr" %}Se connecter
+                    {% elif section.extra.lang == "ar" %}تواصل
+                    {% else %}Connect{% endif %}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/sean-fuhrman.jpeg") }}" alt="Sean Fuhrman">
+                </div>
+                <h3>Sean Fuhrman</h3>
+                <p class="role">
+                    {% if section.extra.lang == "es" %}Ingeniero de Software
+                    {% elif section.extra.lang == "fr" %}Ingénieur Logiciel
+                    {% elif section.extra.lang == "ar" %}مهندس برمجيات
+                    {% else %}Software Engineer{% endif %}
+                </p>
+                <p class="bio">
+                    {% if section.extra.lang == "es" %}
+                        Desarrollador full-stack con experiencia en arquitectura de microservicios y sistemas distribuidos para aplicaciones de IA.
+                    {% elif section.extra.lang == "fr" %}
+                        Développeur full-stack avec une expérience en architecture de microservices et systèmes distribués pour les applications d'IA.
+                    {% elif section.extra.lang == "ar" %}
+                        مطور متكامل مع خبرة في هندسة الخدمات المصغرة والأنظمة الموزعة لتطبيقات الذكاء الاصطناعي.
+                    {% else %}
+                        Full-stack developer with experience in microservices architecture and distributed systems for AI applications.
+                    {% endif %}
+                </p>
+                <a href="https://linkedin.com/in/seanfuhrman" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                    {% if section.extra.lang == "es" %}Conectar
+                    {% elif section.extra.lang == "fr" %}Se connecter
+                    {% elif section.extra.lang == "ar" %}تواصل
+                    {% else %}Connect{% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="signup-section" id="signup">
+    <div class="signup-container">
+        <div class="signup-content">
+            <h2>
+                {% if section.extra.lang == "es" %}
+                    Comienza tu viaje con IA
+                {% elif section.extra.lang == "fr" %}
+                    Commencez votre voyage avec l'IA
+                {% elif section.extra.lang == "ar" %}
+                    ابدأ رحلتك مع الذكاء الاصطناعي
+                {% else %}
+                    Start your AI journey
+                {% endif %}
+            </h2>
+            <p class="signup-intro">
+                {% if section.extra.lang == "es" %}
+                    Únete a miles de equipos que ya están transformando su trabajo con Divinci AI. Obtén acceso temprano a nuestra plataforma.
+                {% elif section.extra.lang == "fr" %}
+                    Rejoignez des milliers d'équipes qui transforment déjà leur travail avec Divinci AI. Obtenez un accès anticipé à notre plateforme.
+                {% elif section.extra.lang == "ar" %}
+                    انضم إلى آلاف الفرق التي تحول عملها بالفعل مع ديفينشي للذكاء الاصطناعي. احصل على وصول مبكر إلى منصتنا.
+                {% else %}
+                    Join thousands of teams already transforming their work with Divinci AI. Get early access to our platform.
+                {% endif %}
+            </p>
+            <div class="signup-form">
+                <form action="/signup" method="post">
+                    <div class="form-group">
+                        <input type="email" name="email" required placeholder="{% if section.extra.lang == 'es' %}Tu correo electrónico{% elif lang == 'fr' %}Votre email{% elif lang == 'ar' %}بريدك الإلكتروني{% else %}Your email{% endif %}">
+                        <button type="submit" class="signup-button">
+                            {% if section.extra.lang == "es" %}
+                                Solicitar acceso
+                            {% elif section.extra.lang == "fr" %}
+                                Demander l'accès
+                            {% elif section.extra.lang == "ar" %}
+                                طلب الوصول
+                            {% else %}
+                                Request access
+                            {% endif %}
+                        </button>
+                    </div>
+                </form>
+                <p class="signup-note">
+                    {% if section.extra.lang == "es" %}
+                        Sin spam. Cancelar suscripción en cualquier momento.
+                    {% elif section.extra.lang == "fr" %}
+                        Pas de spam. Désabonnez-vous à tout moment.
+                    {% elif section.extra.lang == "ar" %}
+                        لا رسائل مزعجة. إلغاء الاشتراك في أي وقت.
+                    {% else %}
+                        No spam. Unsubscribe at any time.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ai-for-good-section">
+    <div class="ai-for-good-container">
+        <div class="ai-for-good-content">
+            <div class="ai-for-good-text">
+                <h2>
+                    {% if section.extra.lang == "es" %}
+                        IA para el bien
+                    {% elif section.extra.lang == "fr" %}
+                        IA pour le bien
+                    {% elif section.extra.lang == "ar" %}
+                        الذكاء الاصطناعي للخير
+                    {% else %}
+                        AI for good
+                    {% endif %}
+                </h2>
+                <p>
+                    {% if section.extra.lang == "es" %}
+                        Estamos comprometidos con el desarrollo responsable de IA que beneficie a la humanidad. Nuestra plataforma está diseñada con principios éticos sólidos, transparencia y un enfoque en empoderar a las personas, no reemplazarlas.
+                    {% elif section.extra.lang == "fr" %}
+                        Nous nous engageons à développer une IA responsable qui profite à l'humanité. Notre plateforme est conçue avec des principes éthiques solides, la transparence et un accent sur l'autonomisation des personnes, pas leur remplacement.
+                    {% elif section.extra.lang == "ar" %}
+                        نحن ملتزمون بتطوير ذكاء اصطناعي مسؤول يفيد البشرية. منصتنا مصممة بمبادئ أخلاقية قوية والشفافية والتركيز على تمكين الناس، وليس استبدالهم.
+                    {% else %}
+                        We're committed to developing responsible AI that benefits humanity. Our platform is designed with strong ethical principles, transparency, and a focus on empowering people, not replacing them.
+                    {% endif %}
+                </p>
+                <div class="ai-for-good-principles">
+                    <div class="principle">
+                        <span class="principle-icon">🛡️</span>
+                        <div class="principle-text">
+                            <h3>
+                                {% if section.extra.lang == "es" %}Desarrollo seguro
+                                {% elif section.extra.lang == "fr" %}Développement sûr
+                                {% elif section.extra.lang == "ar" %}تطوير آمن
+                                {% else %}Safe development{% endif %}
+                            </h3>
+                            <p>
+                                {% if section.extra.lang == "es" %}
+                                    Rigurosas pruebas de seguridad y medidas de protección.
+                                {% elif section.extra.lang == "fr" %}
+                                    Tests de sécurité rigoureux et mesures de protection.
+                                {% elif section.extra.lang == "ar" %}
+                                    اختبارات الأمان الصارمة وتدابير الحماية.
+                                {% else %}
+                                    Rigorous safety testing and protective measures.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="principle">
+                        <span class="principle-icon">⚖️</span>
+                        <div class="principle-text">
+                            <h3>
+                                {% if section.extra.lang == "es" %}IA justa
+                                {% elif section.extra.lang == "fr" %}IA équitable
+                                {% elif section.extra.lang == "ar" %}ذكاء اصطناعي عادل
+                                {% else %}Fair AI{% endif %}
+                            </h3>
+                            <p>
+                                {% if section.extra.lang == "es" %}
+                                    Reducción de sesgos y promoción de equidad en todos los resultados.
+                                {% elif section.extra.lang == "fr" %}
+                                    Réduction des biais et promotion de l'équité dans tous les résultats.
+                                {% elif section.extra.lang == "ar" %}
+                                    تقليل التحيز وتعزيز العدالة في جميع النتائج.
+                                {% else %}
+                                    Bias reduction and fairness promotion in all outcomes.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="principle">
+                        <span class="principle-icon">🌍</span>
+                        <div class="principle-text">
+                            <h3>
+                                {% if section.extra.lang == "es" %}Impacto positivo
+                                {% elif section.extra.lang == "fr" %}Impact positif
+                                {% elif section.extra.lang == "ar" %}تأثير إيجابي
+                                {% else %}Positive impact{% endif %}
+                            </h3>
+                            <p>
+                                {% if section.extra.lang == "es" %}
+                                    Contribuir a soluciones que abordan desafíos globales.
+                                {% elif section.extra.lang == "fr" %}
+                                    Contribuer à des solutions qui relèvent les défis mondiaux.
+                                {% elif section.extra.lang == "ar" %}
+                                    المساهمة في الحلول التي تعالج التحديات العالمية.
+                                {% else %}
+                                    Contributing to solutions that address global challenges.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ai-for-good-image">
+                <img src="{{ get_url(path="images/ai-for-impact-1.avif") }}" alt="AI for Good Impact">
+            </div>
+        </div>
+    </div>
+</section>
+
+<svg style="display: none;">
+    <defs>
+        <filter id="fresco-texture">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise"/>
+            <feDiffuseLighting in="noise" lightingColor="white" surfaceScale="2" result="light">
+                <feDistantLight azimuth="225" elevation="45"/>
+            </feDiffuseLighting>
+            <feComposite in="SourceGraphic" in2="light" operator="arithmetic" k1="1" k2="0" k3="0" k4="0"/>
+        </filter>
+    </defs>
+</svg>
+
+{% include "partials/footer.html" %}
+{% endblock %}

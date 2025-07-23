@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "title": "Divinci AI - 완벽함, 매번",
+    "description": "맞춤형 언어 모델을 위한 고급 릴리스 관리 및 엄격한 품질 보증으로 비즈니스의 역량을 강화하세요. 구조화된 엔드투엔드 배포 프로세스를 통해 운영 신뢰성, 규제 준수, 그리고 최적의 성능을 달성하세요.",
+    "og_title": "Divinci AI",
+    "og_description": "AI 릴리스. 완벽함, 매번."
+  },
+  "navigation": {
+    "features": "기능",
+    "team": "팀",
+    "signup": "가입",
+    "support": "지원",
+    "request_demo": "데모 요청"
+  },
+  "hero": {
+    "heading": "AI 릴리스.",
+    "subheading": "완벽함\n매번.",
+    "description": "맞춤형 언어 모델을 위한 고급 릴리스 관리 및 엄격한 품질 보증으로 비즈니스의 역량을 강화하세요. 구조화된 엔드투엔드 배포 프로세스를 통해 운영 신뢰성, 규제 준수, 그리고 최적의 성능을 달성하세요.",
+    "features": {
+      "test_automation": "지능적인 테스트 자동화",
+      "compliance_records": "상세한 준수 기록", 
+      "version_recovery": "즉시 버전 복구"
+    },
+    "cta": {
+      "primary": "데모 요청",
+      "secondary": "플랫폼 탐색"
+    }
+  },
+  "enterprise": {
+    "title": "기업용 AI, 전문적으로 관리됨",
+    "description": "대형 언어 모델을 위한 강력한 릴리스 관리 및 엄격한 품질 보증을 활용하세요. 우리 플랫폼은 기업에게 배포를 간소화하고, 준수를 강화하며, 대규모로 일관되고 고품질의 AI 성능을 보장하는 고급 도구를 제공합니다.",
+    "features": {
+      "release_orchestration": {
+        "title": "지능적인 릴리스 오케스트레이션",
+        "description": "정밀하게 복잡한 배포 파이프라인을 자동화하고 조정합니다. 모든 모델 릴리스가 검증되고, 문서화되며, 원활하게 프로덕션으로 전환되도록 보장하여 위험을 최소화하고 운영 효율성을 극대화합니다."
+      },
+      "model_oversight": {
+        "title": "사전 예방적 모델 감독", 
+        "description": "실시간으로 모델 성능과 준수를 모니터링합니다. 자동화된 검사와 포괄적인 분석을 활용하여 문제를 조기에 감지하고, 규제 표준을 유지하며, 최적의 모델 무결성을 보존합니다."
+      },
+      "performance_analytics": {
+        "title": "맞춤형 성능 분석",
+        "description": "비즈니스 목표와 일치하는 맞춤형 평가 지표를 설정하고 추적합니다. 정확도, 편향성 및 기타 중요한 요소를 분석하여 모델 수명 주기 전반에 걸쳐 전략적 의사결정을 지원합니다."
+      },
+      "team_collaboration": {
+        "title": "통합된 팀 협업",
+        "description": "구조화된 워크플로우로 부서 간 검토를 최적화합니다. 책임을 할당하고, 피드백을 수집하며, 승인을 문서화하여 모든 릴리스가 조직적 및 규제적 기대를 충족하도록 보장합니다."
+      }
+    }
+  },
+  "features": {
+    "title": "AI로 워크플로우를 가속화하세요",
+    "description": "신뢰할 수 있고 확장 가능한 AI 협업이 필요한 기업 팀을 위해 설계된 기능을 발견하세요.",
+    "list": {
+      "multiplayer": {
+        "title": "멀티플레이어",
+        "description": "부서 간 팀을 위한 공유 AI 워크스페이스로 다중 이해관계자 협업을 가능하게 합니다."
+      },
+      "ai_family": {
+        "title": "AI 패밀리", 
+        "description": "통합된 거버넌스 및 보안 제어로 선도적인 공급업체의 엔터프라이즈급 모델에 액세스합니다."
+      },
+      "voice_io": {
+        "title": "음성 입력/출력",
+        "description": "엔터프라이즈급 텍스트 음성 변환 및 음성 텍스트 변환 기능으로 원활한 음성 상호작용을 가능하게 합니다."
+      },
+      "performance_analytics": {
+        "title": "성능 분석",
+        "description": "상세한 분석으로 모든 AI 상호작용에서 사용, 효율성 및 품질 패턴을 추적합니다."
+      },
+      "enterprise_security": {
+        "title": "엔터프라이즈 보안", 
+        "description": "엔드투엔드 암호화, 액세스 제어 및 포괄적인 감사로 모든 데이터와 대화를 보호합니다."
+      },
+      "lightning_responses": {
+        "title": "번개 같은 응답",
+        "description": "최적화된 지연 시간과 분산 네트워크 아키텍처로 최대 성능을 위한 즉시 응답을 받으세요."
+      },
+      "domain_specialization": {
+        "title": "도메인 전문화",
+        "description": "전문 지식과 맞춤형 사용 사례로 특정 산업을 위한 AI 모델을 미세 조정합니다."
+      },
+      "smart_workflows": {
+        "title": "스마트 워크플로우",
+        "description": "팀의 프로세스에 학습하고 적응하는 AI 워크플로우로 복잡한 작업을 자동화합니다."
+      },
+      "api_integration": {
+        "title": "API 통합",
+        "description": "강력한 API와 포괄적인 개발자 문서를 통해 기존 도구와 원활하게 연결합니다."
+      },
+      "scalability": {
+        "title": "확장성",
+        "description": "자동으로 확장되는 인프라로 소규모 팀에서 기업 조직까지 확장합니다."
+      }
+    }
+  },
+  "team": {
+    "title": "우리 팀을 만나보세요",
+    "description": "인간-AI 협업의 미래를 형성하는 혁신가들을 만나보세요.",
+    "members": {
+      "connect": "연결"
+    },
+    "roles": {
+      "ceo_founder": "CEO 및 창립자",
+      "cto_cofounder": "CTO 및 공동창립자", 
+      "head_product": "제품 책임자",
+      "senior_data_scientist": "선임 데이터 사이언티스트",
+      "ux_ui_designer": "UX/UI 디자이너",
+      "software_engineer": "소프트웨어 엔지니어"
+    }
+  },
+  "signup": {
+    "title": "AI 여정을 시작하세요", 
+    "description": "이미 Divinci AI로 업무를 변혁하고 있는 수천 개의 팀에 합류하세요. 우리 플랫폼에 대한 얼리 액세스를 받으세요.",
+    "email_placeholder": "이메일 주소",
+    "button": "액세스 요청",
+    "note": "스팸 없음. 언제든지 구독 취소 가능."
+  },
+  "ai_for_good": {
+    "title": "선을 위한 AI",
+    "description": "우리는 인류에게 도움이 되는 책임감 있는 AI 개발에 전념하고 있습니다. 우리 플랫폼은 강력한 윤리적 원칙, 투명성, 그리고 사람을 대체하는 것이 아닌 역량을 강화하는 데 중점을 두고 설계되었습니다.",
+    "principles": {
+      "safe_development": {
+        "title": "안전한 개발",
+        "description": "엄격한 안전 테스트 및 보호 조치."
+      },
+      "fair_ai": {
+        "title": "공정한 AI",
+        "description": "모든 결과에서 편향성 감소 및 공정성 촉진."
+      },
+      "positive_impact": {
+        "title": "긍정적 영향", 
+        "description": "글로벌 도전과제를 해결하는 솔루션에 기여."
+      }
+    }
+  },
+  "footer": {
+    "tagline": "인간-AI 협업 역량 강화",
+    "sections": {
+      "product": {
+        "title": "제품",
+        "links": {
+          "features": "기능",
+          "pricing": "가격", 
+          "roadmap": "로드맵",
+          "changelog": "변경로그"
+        }
+      },
+      "resources": {
+        "title": "리소스",
+        "links": {
+          "documentation": "문서",
+          "blog": "블로그",
+          "tutorials": "튜토리얼",
+          "api": "API"
+        }
+      },
+      "company": {
+        "title": "회사",
+        "links": {
+          "about": "회사 소개",
+          "careers": "채용", 
+          "contact": "연락처",
+          "press": "보도자료"
+        }
+      },
+      "legal": {
+        "title": "법적 정보",
+        "links": {
+          "terms": "서비스 약관",
+          "privacy": "개인정보 처리방침",
+          "ai_safety": "AI 안전 및 윤리",
+          "security": "보안"
+        }
+      }
+    },
+    "bottom": {
+      "copyright": "© 2023-2025 Divinci AI. 모든 권리 보유.",
+      "links": {
+        "sitemap": "사이트맵",
+        "accessibility": "접근성", 
+        "cookies": "쿠키 정책"
+      }
+    }
+  },
+  "language_switcher": {
+    "current_language": "한국어",
+    "languages": {
+      "en": "English",
+      "es": "Español", 
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands", 
+      "hi": "हिन्दी"
+    }
+  }
+}

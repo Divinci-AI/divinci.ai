@@ -19,25 +19,25 @@
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
-    <meta property="og:url" content="{{ current_url }}">
+    <meta property="og:url" content="{% if current_url %}{{ current_url }}{% else %}{{ config.base_url }}{% endif %}">
     <meta property="og:title" content="{% block og_title %}{% if page.title %}{{ page.title }}{% elif section.title %}{{ section.title }}{% else %}{{ config.title }}{% endif %}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.description }}{% endif %}{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{{ config.base_url }}{{ config.extra.default_image }}{% endblock %}">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="{{ current_url }}">
+    <meta name="twitter:url" content="{% if current_url %}{{ current_url }}{% else %}{{ config.base_url }}{% endif %}">
     <meta name="twitter:title" content="{% block twitter_title %}{% if page.title %}{{ page.title }}{% elif section.title %}{{ section.title }}{% else %}{{ config.title }}{% endif %}{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_description %}{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.description }}{% endif %}{% endblock %}">
     <meta name="twitter:image" content="{% block twitter_image %}{{ config.base_url }}{{ config.extra.default_image }}{% endblock %}">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="{{ current_url }}">
+    <link rel="canonical" href="{% if current_url %}{{ current_url }}{% else %}{{ config.base_url }}{% endif %}">
 
-    <title>{% block title %}{% if page.title %}{{ page.title }} | {{ config.title }}{% elif section.title %}{{ section.title }} | {{ config.title }}{% else %}{{ config.title }}{% endif %}{% endblock %}</title>
+    <title>{{ config.title }}</title>
 
     <!-- Favicons and App Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
 
@@ -54,6 +54,11 @@
     <link rel="stylesheet" href="{{ get_url(path='styles.css') }}">
     <link rel="stylesheet" href="{{ get_url(path='styles-footer.css') }}">
     <link rel="stylesheet" href="{{ get_url(path='main.css') }}">
+    <link rel="stylesheet" href="{{ get_url(path='features.css') }}">
+    <link rel="stylesheet" href="{{ get_url(path='feature-page.css') }}">
+    <link rel="stylesheet" href="{{ get_url(path='features-orbit.css') }}">
+    <link rel="stylesheet" href="{{ get_url(path='divinci-animation.css') }}">
+    <link rel="stylesheet" href="{{ get_url(path='orbital-elements-fix.css') }}">
 
     <!-- Component CSS -->
     {% if config.extra.css_components %}
@@ -89,10 +94,10 @@
     <!-- Additional head content -->
     {% block extra_head %}{% endblock %}
 </head>
-<body>
+<body class="company-view-active">
     <!-- Skip to content link for keyboard users -->
     <div class="skip-links">
-        <a href="#main-content" class="skip-link">Skip to main content</a>
+        <a href="{{ get_url(path='/', lang=lang) }}#main-content" class="skip-link">Skip to main content</a>
     </div>
 
     <!-- Header -->
@@ -126,6 +131,21 @@
     {% endif %}
 
     {% block extra_js %}{% endblock %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const consumerElements = document.querySelectorAll('.consumer-view-content');
+            const companyElements = document.querySelectorAll('.company-view-content');
+
+            consumerElements.forEach(element => {
+                element.removeAttribute('style');
+            });
+
+            companyElements.forEach(element => {
+                element.removeAttribute('style');
+            });
+        });
+    </script>
 
     <!-- Analytics -->
     {% if config.extra.google_analytics %}

@@ -505,16 +505,16 @@
 
         <!-- Apply CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-        <link rel="stylesheet" href="../optimized/css/assets/css/fonts.min.css" />
-        <link rel="stylesheet" href="../optimized/css/assets/css/sora-styles.min.css" />
-        <link rel="stylesheet" href="../optimized/css/styles.min.css" />
-        <link rel="stylesheet" href="../optimized/css/features-orbit.min.css" />
-        <link rel="stylesheet" href="../optimized/css/styles-footer.min.css" />
+        <link rel="stylesheet" href="/optimized/css/assets/css/fonts.min.css" />
+        <link rel="stylesheet" href="/optimized/css/assets/css/sora-styles.min.css" />
+        <link rel="stylesheet" href="/optimized/css/styles.min.css" />
+        <link rel="stylesheet" href="/optimized/css/features-orbit.min.css" />
+        <link rel="stylesheet" href="/optimized/css/styles-footer.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-        <link rel="stylesheet" href="../optimized/css/includes/header-styles.min.css" />
-        <link rel="stylesheet" href="../optimized/css/includes/section-content-fix.min.css" />
-        <link rel="stylesheet" href="../optimized/css/assets/css/enhanced-accessibility.min.css" />
-        <link rel="stylesheet" href="../css/mobile-accessibility-fixes.css" />
+        <link rel="stylesheet" href="/optimized/css/includes/header-styles.min.css" />
+        <link rel="stylesheet" href="/optimized/css/includes/section-content-fix.min.css" />
+        <link rel="stylesheet" href="/optimized/css/assets/css/enhanced-accessibility.min.css" />
+        <link rel="stylesheet" href="/css/mobile-accessibility-fixes.css" />
 
         <style>
 
@@ -726,19 +726,18 @@
         </style>
 
         <!-- Script to include HTML components -->
-        <script src="../optimized/js/debug-include.min.js"></script>
-        <script src="../optimized/js/js/feature-circle-links.min.js" defer></script>
-        <script src="../optimized/js/js/social-sharing.min.js" defer></script>
-        <link rel="stylesheet" href="../optimized/css/css/social-sharing.min.css" />
+        <script src="/optimized/js/debug-include.min.js"></script>
+        <script src="/optimized/js/js/feature-circle-links.min.js" defer></script>
+        <script src="/optimized/js/js/social-sharing.min.js" defer></script>
+        <link rel="stylesheet" href="/optimized/css/css/social-sharing.min.css" />
         <!-- view-toggle.js is loaded by header.html -->
         <!-- Load structured data script -->
         <script src="../js/structured-data.js"></script>
         <!-- Set default language -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            if (window.i18n && window.i18n.changeLanguage) {
-                window.i18n.changeLanguage('es');
-            }
+            // Disable i18n system on language-specific pages to prevent overriding hardcoded translations
+            // The content is already translated in the HTML
         });
     </script>
 </head>
@@ -755,7 +754,7 @@
                     <div class="nav-logo">
                         <img
                             class="header-logo"
-                            src="../images/divinci_logo_inverted.svg"
+                            src="/images/divinci_logo_inverted.svg"
                             alt="Logo del robot Divinci Heart"
                         />
                     </div>
@@ -842,7 +841,7 @@
             <div class="circle central">
                 <img
                     class="central-logo"
-                    src="../images/divinci_logo_inverted.svg"
+                    src="/images/divinci_logo_inverted.svg"
                     alt="Logo del robot Divinci Heart en blanco y negro"
                 />
             </div>
@@ -926,9 +925,9 @@
             <!-- Existing Group of Circles -->
             <div class="geometry-group">
                 <div class="circle circle00">👴</div>
-                <div class="circle circle01 ai-logo"><img src="../images/chatgpt-icon.png" alt="ChatGPT"></div>
+                <div class="circle circle01 ai-logo"><img src="/images/chatgpt-icon.png" alt="ChatGPT"></div>
                 <div class="circle circle02">🧑🏽‍🦱</div>
-                <div class="circle circle03 ai-logo"><img src="../images/claude-ai-icon.png" alt="Claude AI"></div>
+                <div class="circle circle03 ai-logo"><img src="/images/claude-ai-icon.png" alt="Claude AI"></div>
                 <div class="circle circle04">👨🏻</div>
             </div>
             <!-- Second Set of Circles for Inner Orbit -->
@@ -944,15 +943,15 @@
             <!-- Outer Orbit Set 1 -->
             <div class="geometry-group-outer1">
                 <div class="circle circle20">🌞</div>
-                <div class="circle circle21 ai-logo"><img src="../images/google-gemini-icon.png" alt="Google Gemini"></div>
+                <div class="circle circle21 ai-logo"><img src="/images/google-gemini-icon.png" alt="Google Gemini"></div>
                 <div class="circle circle22">🤠</div>
-                <div class="circle circle23 ai-logo"><img src="../images/grok-icon.png" alt="Grok AI"></div>
+                <div class="circle circle23 ai-logo"><img src="/images/grok-icon.png" alt="Grok AI"></div>
                 <div class="circle circle24">😺</div>
                 <div class="circle circle25">👽</div>
             </div>
             <div class="geometry-group-outer2">
                 <div class="circle circle26">🧑🏾‍🦰</div>
-                <div class="circle circle27 ai-logo"><img src="../images/perplexity-ai-icon.png" alt="Perplexity AI"></div>
+                <div class="circle circle27 ai-logo"><img src="/images/perplexity-ai-icon.png" alt="Perplexity AI"></div>
                 <div class="circle circle28">🧔🏽‍♂️</div>
                 <div class="circle circle29">🤖</div>
                 <div class="circle circle30">👱‍♀️</div>
@@ -1037,7 +1036,7 @@
             <div class="feature team-feature" id="founder">
                 <h3>Fundador</h3>
                 <img
-                    src="../images/Michael-Mooring.jpeg"
+                    src="/images/Michael-Mooring.jpeg"
                     style="object-position: center 15%"
                     alt="Michael-Mooring"
                 />
@@ -1072,7 +1071,7 @@
             <div class="feature team-feature" id="cto">
                 <h3 style="color: rgb(22 33 76)">CTO</h3>
                 <img
-                    src="../images/sam-tobia.jpg"
+                    src="/images/sam-tobia.jpg"
                     style="object-position: center 20%"
                     alt="Samual Tobia"
                 />
@@ -1110,7 +1109,7 @@
                 <div style="overflow: hidden; display: contents">
                     <img src="" style="background-color: #5ce2e7" alt="" />
                     <img
-                        src="../images/sierra-hooshiari.jpeg"
+                        src="/images/sierra-hooshiari.jpeg"
                         style="
                             transform: scale(1.2);
                             object-fit: contain;
@@ -1172,7 +1171,7 @@
                     Ingeniero Fundador
                 </h3>
                 <img
-                    src="../images/abdul.jpeg"
+                    src="/images/abdul.jpeg"
                     style="object-position: center 20%"
                     alt="Abdul-Sarnor"
                 />
@@ -1222,7 +1221,7 @@
                 </h3>
                 <img src="" style="background-color: rgb(89 122 54)" alt="" />
                 <img
-                    src="../images/sean-fuhrman.jpeg"
+                    src="/images/sean-fuhrman.jpeg"
                     style="
                         transform: scale(1.07);
                         object-fit: contain;
@@ -1511,7 +1510,8 @@
         </main>
 
         <!-- Footer -->
-        <!-- Footer with Sacred Geometry Elements -->
+        <div class="footer-wrapper" style="width: 100%; overflow: hidden; box-sizing: border-box;">
+            <!-- Footer with Sacred Geometry Elements -->
 <!-- Load footer styles dynamically -->
 <script>
     // Create dynamic link element to handle path resolution without document.write
@@ -1535,7 +1535,7 @@
         // Load footer styles
         const footerStyles = document.createElement('link');
         footerStyles.rel = 'stylesheet';
-        footerStyles.href = (window.location.pathname.includes('/features/') ? '../../' : '') + 'styles-footer.css';
+        footerStyles.href = '/styles-footer.css';
         document.head.appendChild(footerStyles);
     })();
 </script>
@@ -1554,12 +1554,12 @@
                 <div class="column is-one-quarter">
                     <div class="footer-brand">
                         <div class="footer-logo">
-                            <!-- <img src="images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
+                            <!-- <img src="/images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
                                 onerror="this.onerror=null; this.src='images/divinci_logo.png';" /> -->
                             <div class="heart">🖤</div>
                             <span class="footer-brand-name">Divinci AI</span>
                         </div>
-                        <p class="footer-tagline">Empowering human-AI collaboration</p>
+                        <p class="footer-tagline">Potenciando la colaboración humano-IA</p>
                         <div class="social-links">
                             <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
                             <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -1571,23 +1571,23 @@
                 <!-- Navigation Links -->
                 <div class="column">
                     <div class="footer-links-column">
-                        <h3>Product</h3>
+                        <h3>Producto</h3>
                         <ul>
-                            <li><a href="#features">Features</a></li>
-                            <li><a href="pricing.html">Pricing</a></li>
-                            <li><a href="roadmap.html">Roadmap</a></li>
-                            <li><a href="changelog.html">Changelog</a></li>
+                            <li><a href="#features">Características</a></li>
+                            <li><a href="pricing.html">Precios</a></li>
+                            <li><a href="roadmap.html">Hoja de Ruta</a></li>
+                            <li><a href="changelog.html">Registro de Cambios</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="column">
                     <div class="footer-links-column">
-                        <h3>Resources</h3>
+                        <h3>Recursos</h3>
                         <ul>
-                            <li><a href="docs/index.html">Documentation</a></li>
+                            <li><a href="docs/index.html">Documentación</a></li>
                             <li><a href="blog/">Blog</a></li>
-                            <li><a href="tutorials/">Tutorials</a></li>
+                            <li><a href="tutorials/">Tutoriales</a></li>
                             <li><a href="api/">API</a></li>
                         </ul>
                     </div>
@@ -1595,12 +1595,12 @@
 
                 <div class="column">
                     <div class="footer-links-column">
-                        <h3>Company</h3>
+                        <h3>Empresa</h3>
                         <ul>
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="careers.html">Careers</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="press.html">Press</a></li>
+                            <li><a href="about-us.html">Sobre Nosotros</a></li>
+                            <li><a href="careers.html">Carreras</a></li>
+                            <li><a href="contact.html">Contacto</a></li>
+                            <li><a href="press.html">Prensa</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1609,10 +1609,10 @@
                     <div class="footer-links-column">
                         <h3>Legal</h3>
                         <ul>
-                            <li><a href="terms-of-service.html">Terms of Service</a></li>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="ai-safety-ethics.html">AI Safety & Ethics</a></li>
-                            <li><a href="security.html">Security</a></li>
+                            <li><a href="terms-of-service.html">Términos de Servicio</a></li>
+                            <li><a href="privacy-policy.html">Política de Privacidad</a></li>
+                            <li><a href="ai-safety-ethics.html">Seguridad y Ética de la IA</a></li>
+                            <li><a href="security.html">Seguridad</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1624,15 +1624,15 @@
             <div class="level is-footer-bottom">
                 <div class="level-left">
                     <div class="level-item">
-                        <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                        <p class="copyright">&copy; 2023-2025 Divinci AI. Todos los derechos reservados.</p>
                     </div>
                 </div>
                 <div class="level-right">
                     <div class="level-item">
                         <div class="footer-bottom-links">
-                            <a href="sitemap.xml">Sitemap</a>
-                            <a href="accessibility.html">Accessibility</a>
-                            <a href="cookies.html">Cookie Policy</a>
+                            <a href="sitemap.xml">Mapa del Sitio</a>
+                            <a href="accessibility.html">Accesibilidad</a>
+                            <a href="cookies.html">Política de Cookies</a>
                         </div>
                     </div>
                 </div>
@@ -1640,26 +1640,7 @@
         </div>
     </div>
 </footer>
-
-<!-- Script to handle footer links based on current path -->
-<script>
-    // Properly set the href attributes based on location
-    (function() {
-        const basePath = window.location.pathname.includes('/features/') ? '../../' : '';
-        const footerLinks = document.querySelectorAll('.footer-links-column a, .footer-bottom-links a');
-
-        footerLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                link.setAttribute('href', basePath + 'index.html' + href);
-            } else if (href && !href.startsWith('http') && !href.startsWith('/')) {
-                link.setAttribute('href', basePath + href);
-            }
-        });
-    })();
-</script>
-
-
+        </div>
 
         <!-- GSAP Animation Libraries -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -1686,5 +1667,6 @@
             src="//js.hs-scripts.com/48021503.js"
         ></script>
         <!-- End of HubSpot Embed Code -->
+        <script src="../debug-include.js"></script>
     </body>
 </html>

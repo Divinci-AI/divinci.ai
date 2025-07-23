@@ -1,0 +1,83 @@
+<!-- Footer Component -->
+{# Language and translations are now inherited from parent template #}
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-section brand-section">
+            <div class="footer-logo">
+                <img src="{{ get_url(path="images/divinci_logo_inverted.svg") }}" alt="Divinci AI Logo">
+                <span>Divinci AI</span>
+            </div>
+            <p class="footer-tagline">
+                {{ translations.footer.tagline | default(value="Empowering human-AI collaboration") }}
+            </p>
+            <div class="footer-social">
+                <a href="{{ config.extra.twitter }}" target="_blank" rel="noopener">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="{{ config.extra.linkedin }}" target="_blank" rel="noopener">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="{{ config.extra.github }}" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>{{ translations.footer.sections.product.title | default(value="Product") }}</h3>
+            <ul>
+                <li><a href="#features">{{ translations.footer.sections.product.links.features | default(value="Features") }}</a></li>
+                <li><a href="{% if current_lang == 'en' %}/autorag/{% else %}/{{ current_lang }}/autorag/{% endif %}">AutoRAG</a></li>
+                <li><a href="{% if current_lang == 'en' %}/quality-assurance/{% else %}/{{ current_lang }}/quality-assurance/{% endif %}">Quality Assurance</a></li>
+                <li><a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">Release Management</a></li>
+                <li><a href="/pricing">{{ translations.footer.sections.product.links.pricing | default(value="Pricing") }}</a></li>
+                <li><a href="/roadmap">{{ translations.footer.sections.product.links.roadmap | default(value="Roadmap") }}</a></li>
+                <li><a href="/changelog">{{ translations.footer.sections.product.links.changelog | default(value="Changelog") }}</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>{{ translations.footer.sections.resources.title | default(value="Resources") }}</h3>
+            <ul>
+                <li><a href="/docs">{{ translations.footer.sections.resources.links.documentation | default(value="Documentation") }}</a></li>
+                <li><a href="/blog">{{ translations.footer.sections.resources.links.blog | default(value="Blog") }}</a></li>
+                <li><a href="/tutorials">{{ translations.footer.sections.resources.links.tutorials | default(value="Tutorials") }}</a></li>
+                <li><a href="/api">{{ translations.footer.sections.resources.links.api | default(value="API") }}</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>{{ translations.footer.sections.company.title | default(value="Company") }}</h3>
+            <ul>
+                <li><a href="/about">{{ translations.footer.sections.company.links.about | default(value="About Us") }}</a></li>
+                <li><a href="/careers">{{ translations.footer.sections.company.links.careers | default(value="Careers") }}</a></li>
+                <li><a href="/contact">{{ translations.footer.sections.company.links.contact | default(value="Contact") }}</a></li>
+                <li><a href="/press">{{ translations.footer.sections.company.links.press | default(value="Press") }}</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>{{ translations.footer.sections.legal.title | default(value="Legal") }}</h3>
+            <ul>
+                <li><a href="{% if current_lang == 'en' %}/terms-of-service/{% else %}/{{ current_lang }}/terms-of-service/{% endif %}">{{ translations.footer.sections.legal.links.terms | default(value="Terms of Service") }}</a></li>
+                <li><a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}">{{ translations.footer.sections.legal.links.privacy | default(value="Privacy Policy") }}</a></li>
+                <li><a href="/ai-safety">{{ translations.footer.sections.legal.links.ai_safety | default(value="AI Safety & Ethics") }}</a></li>
+                <li><a href="/security">{{ translations.footer.sections.legal.links.security | default(value="Security") }}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <p class="copyright">
+                {{ translations.footer.bottom.copyright | default(value="© 2023-2025 Divinci AI. All rights reserved.") }}
+            </p>
+            <div class="footer-bottom-links">
+                <a href="{% if current_lang == 'en' %}/sitemap{% else %}/{{ current_lang }}/sitemap{% endif %}">{{ translations.footer.bottom.links.sitemap | default(value="Sitemap") }}</a>
+                <a href="{% if current_lang == 'en' %}/accessibility{% else %}/{{ current_lang }}/accessibility{% endif %}">{{ translations.footer.bottom.links.accessibility | default(value="Accessibility") }}</a>
+                <a href="{% if current_lang == 'en' %}/cookies{% else %}/{{ current_lang }}/cookies{% endif %}">{{ translations.footer.bottom.links.cookies | default(value="Cookie Policy") }}</a>
+            </div>
+        </div>
+    </div>
+</footer>

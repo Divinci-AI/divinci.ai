@@ -270,6 +270,174 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }, 4.5);
                 }
+
+                // Function to create path variations for media elements
+                function createMediaPath(element, timeline) {
+                    // Extract element type
+                    const isFile = element.classList.contains('file');
+                    const isVideo = element.classList.contains('video');
+                    const isAudio = element.classList.contains('audio');
+                    
+                    // Create path variations based on element type
+                    if (isFile) {
+                        // Files come from left with a slight arc path
+                        timeline.to(element, {
+                            motionPath: {
+                                path: [
+                                    {x: parseInt(element.getAttribute('data-start-x')), y: parseInt(element.getAttribute('data-start-y'))},
+                                    {x: parseInt(element.getAttribute('data-start-x'))/2, y: parseInt(element.getAttribute('data-start-y')) - 20 + Math.random() * 40},
+                                    {x: -20, y: -10 + Math.random() * 20}
+                                ],
+                                curviness: 1.5
+                            },
+                            duration: 1.8 + Math.random() * 0.4,
+                            ease: "power2.inOut"
+                        }, 0);
+                    } else if (isVideo) {
+                        // Videos come from top with a straight path with slight variation
+                        timeline.to(element, {
+                            motionPath: {
+                                path: [
+                                    {x: parseInt(element.getAttribute('data-start-x')), y: parseInt(element.getAttribute('data-start-y'))},
+                                    {x: parseInt(element.getAttribute('data-start-x')) - 10 + Math.random() * 20, y: parseInt(element.getAttribute('data-start-y'))/2},
+                                    {x: -10 + Math.random() * 20, y: -20}
+                                ],
+                                curviness: 0.8
+                            },
+                            duration: 1.5 + Math.random() * 0.5,
+                            ease: "power1.inOut"
+                        }, 0);
+                    } else if (isAudio) {
+                        // Audio comes from right with a wavy path
+                        timeline.to(element, {
+                            motionPath: {
+                                path: [
+                                    {x: parseInt(element.getAttribute('data-start-x')), y: parseInt(element.getAttribute('data-start-y'))},
+                                    {x: parseInt(element.getAttribute('data-start-x'))/2, y: parseInt(element.getAttribute('data-start-y')) + 30 * Math.sin(Math.random() * Math.PI)},
+                                    {x: 20, y: -10 + Math.random() * 20}
+                                ],
+                                curviness: 2
+                            },
+                            duration: 1.7 + Math.random() * 0.6,
+                            ease: "power3.inOut"
+                        }, 0);
+                    }
+                }
+
+                // Call the animateMediaElements function if it exists
+                if (mediaElements && mediaElements.length > 0) {
+                    animateMediaElements(timeline);
+                }
+
+                // Add robot animation only if all parts exist
+                if (leftAntenna && rightAntenna && leftArm && rightArm && heart) {
+                    // 2. Divinci responds - antennas tilt outward
+                    timeline.to(leftAntenna, {
+                        rotate: -45,
+                        duration: 1.5,
+                        ease: "elastic.out(1, 0.5)"
+                    }, 1);
+
+                    timeline.to(rightAntenna, {
+                        rotate: 45,
+                        duration: 1.5,
+                        ease: "elastic.out(1, 0.5)"
+                    }, 1);
+
+                    // 3. Arms raise - REFACTORED for a more natural lifting motion
+                    // For left arm - create a natural upward lifting motion
+                    timeline.to(leftArm, {
+                        rotation: -30,      // Slightly more dramatic rotation
+                        y: -40,             // Increased upward movement
+                        x: 10,              // Adjusted inward movement
+                        duration: 1.5,
+                        ease: "power2.out"  // Smoother acceleration/deceleration
+                    }, 1.2);
+
+                    // For right arm - create a natural upward lifting motion
+                    timeline.to(rightArm, {
+                        rotation: 30,       // Slightly more dramatic rotation
+                        y: -40,             // Increased upward movement
+                        x: -10,             // Adjusted inward movement
+                        duration: 1.5,
+                        ease: "power2.out"  // Smoother acceleration/deceleration
+                    }, 1.2);
+
+                    // 4. Media reception - elements shrink and fade as they're "absorbed"
+                    if (mediaElements && mediaElements.length > 0) {
+                        timeline.to(mediaElements, {
+                            scale: 0.1,
+                            opacity: 0,
+                            duration: 0.5,
+                            stagger: 0.1,
+                            ease: "power3.in"
+                        }, 2.5);
+                    }
+
+                    // 5. Heart pulses to indicate processing
+                    timeline.to(heart, {
+                        scale: 1.3,
+                        fill: "#ff5555", // Change color to red
+                        duration: 0.5,
+                        repeat: 3,
+                        yoyo: true,
+                        ease: "sine.inOut"
+                    }, 3);
+
+                    // 6. Add glow effect to the robot
+                    timeline.to('.robot-container', {
+                        className: '+=glow',
+                        duration: 0.5
+                    }, 3);
+
+                    // 7. Return to neutral position
+                    timeline.to([leftAntenna, rightAntenna], {
+                        rotate: 0,
+                        duration: 1.5,
+                        ease: "elastic.out(1, 0.5)"
+                    }, 5);
+                    
+                    // Return arms to original position
+                    timeline.to(leftArm, {
+                        rotation: 0,
+                        x: 0,
+                        y: 0,
+                        duration: 1.5,
+                        ease: "elastic.out(1, 0.5)"
+                    }, 5);
+                    
+                    timeline.to(rightArm, {
+                        rotation: 0,
+                        x: 0,
+                        y: 0,
+                        duration: 1.5,
+                        ease: "elastic.out(1, 0.5)"
+                    }, 5);
+
+                    // 8. Remove glow effect
+                    timeline.to('.robot-container', {
+                        className: '-=glow',
+                        duration: 0.5
+                    }, 6);
+                }
+
+                // If play button exists, add click event listener
+                if (playButton) {
+                    playButton.addEventListener('click', () => {
+                        // Play animation
+                        timeline.play(0);
+                        
+                        // Create orbit paths
+                        createOrbitPaths();
+                    });
+                } else {
+                    // If no play button but animation container exists, auto-play
+                    const animationContainer = document.querySelector('.animation-container');
+                    if (animationContainer) {
+                        timeline.play(0);
+                        createOrbitPaths();
+                    }
+                }
             } catch (err) {
                 console.error('Error in initAnimation:', err);
             }

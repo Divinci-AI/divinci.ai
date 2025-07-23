@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "title": "Divinci AI - Excellence, every time",
+    "description": "Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance through a structured, end-to-end deployment process.",
+    "og_title": "Divinci AI",
+    "og_description": "AI releases. Excellence, every time."
+  },
+  "navigation": {
+    "features": "Features",
+    "team": "Team",
+    "signup": "Sign Up",
+    "support": "Support",
+    "request_demo": "Request demo"
+  },
+  "hero": {
+    "heading": "AI releases.",
+    "subheading": "Excellence,\nevery time.",
+    "description": "Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance through a structured, end-to-end deployment process.",
+    "features": {
+      "test_automation": "Intelligent test automation",
+      "compliance_records": "Detailed compliance records", 
+      "version_recovery": "Instant version recovery"
+    },
+    "cta": {
+      "primary": "Request demo",
+      "secondary": "Explore platform"
+    }
+  },
+  "enterprise": {
+    "title": "Enterprise AI, expertly managed",
+    "description": "Unlock robust release management and rigorous quality assurance for large language models. Our platform equips enterprises with advanced tools to streamline deployment, enforce compliance, and ensure consistent, high-quality AI performance at scale.",
+    "features": {
+      "release_orchestration": {
+        "title": "Intelligent release orchestration",
+        "description": "Automate and coordinate complex deployment pipelines with precision. Ensure every model release is validated, documented, and seamlessly transitioned to production, minimizing risk and maximizing operational efficiency."
+      },
+      "model_oversight": {
+        "title": "Proactive model oversight", 
+        "description": "Monitor model performance and compliance in real time. Leverage automated checks and comprehensive analytics to detect issues early, uphold regulatory standards, and maintain optimal model integrity."
+      },
+      "performance_analytics": {
+        "title": "Tailored performance analytics",
+        "description": "Establish and track custom evaluation metrics aligned with your business objectives. Analyze accuracy, bias, and other critical factors to inform strategic decisions throughout the model lifecycle."
+      },
+      "team_collaboration": {
+        "title": "Integrated team collaboration",
+        "description": "Streamline cross-functional reviews with structured workflows. Assign responsibilities, collect feedback, and document approvals to ensure every release meets organizational and regulatory expectations."
+      }
+    }
+  },
+  "features": {
+    "title": "Supercharge your workflow with AI",
+    "description": "Discover features designed for enterprise teams that need reliable, scalable AI collaboration.",
+    "list": {
+      "multiplayer": {
+        "title": "Multiplayer",
+        "description": "Enable multi-stakeholder collaboration with shared AI workspaces for cross-functional teams."
+      },
+      "ai_family": {
+        "title": "AI Family", 
+        "description": "Access enterprise-grade models from leading providers with unified governance and security controls."
+      },
+      "voice_io": {
+        "title": "Voice In/Out",
+        "description": "Enable seamless voice interactions with enterprise-grade text-to-speech and speech-to-text capabilities."
+      },
+      "performance_analytics": {
+        "title": "Performance Analytics",
+        "description": "Track usage, efficiency, and quality patterns across all AI interactions with detailed analytics."
+      },
+      "enterprise_security": {
+        "title": "Enterprise Security", 
+        "description": "Secure all data and conversations with end-to-end encryption, access controls, and comprehensive auditing."
+      },
+      "lightning_responses": {
+        "title": "Lightning Responses",
+        "description": "Get instant responses with optimized latency and distributed network architecture for maximum performance."
+      },
+      "domain_specialization": {
+        "title": "Domain Specialization",
+        "description": "Fine-tune AI models for specific industries with specialized knowledge and customized use cases."
+      },
+      "smart_workflows": {
+        "title": "Smart Workflows",
+        "description": "Automate complex tasks with AI workflows that learn and adapt to your team's processes."
+      },
+      "api_integration": {
+        "title": "API Integration",
+        "description": "Connect seamlessly with your existing tools through robust APIs and comprehensive developer documentation."
+      },
+      "scalability": {
+        "title": "Scalability",
+        "description": "Scale from small teams to enterprise organizations with infrastructure that automatically scales."
+      }
+    }
+  },
+  "team": {
+    "title": "Meet our team",
+    "description": "Meet the innovators shaping the future of human-AI collaboration.",
+    "members": {
+      "connect": "Connect"
+    },
+    "roles": {
+      "ceo_founder": "CEO & Founder",
+      "cto_cofounder": "CTO & Co-Founder", 
+      "head_product": "Head of Product",
+      "senior_data_scientist": "Senior Data Scientist",
+      "ux_ui_designer": "UX/UI Designer",
+      "software_engineer": "Software Engineer"
+    }
+  },
+  "signup": {
+    "title": "Start your AI journey", 
+    "description": "Join thousands of teams already transforming their work with Divinci AI. Get early access to our platform.",
+    "email_placeholder": "Your email",
+    "button": "Request access",
+    "note": "No spam. Unsubscribe at any time."
+  },
+  "ai_for_good": {
+    "title": "AI for good",
+    "description": "We're committed to developing responsible AI that benefits humanity. Our platform is designed with strong ethical principles, transparency, and a focus on empowering people, not replacing them.",
+    "principles": {
+      "safe_development": {
+        "title": "Safe development",
+        "description": "Rigorous safety testing and protective measures."
+      },
+      "fair_ai": {
+        "title": "Fair AI",
+        "description": "Bias reduction and fairness promotion in all outcomes."
+      },
+      "positive_impact": {
+        "title": "Positive impact", 
+        "description": "Contributing to solutions that address global challenges."
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Empowering human-AI collaboration",
+    "sections": {
+      "product": {
+        "title": "Product",
+        "links": {
+          "features": "Features",
+          "pricing": "Pricing", 
+          "roadmap": "Roadmap",
+          "changelog": "Changelog"
+        }
+      },
+      "resources": {
+        "title": "Resources",
+        "links": {
+          "documentation": "Documentation",
+          "blog": "Blog",
+          "tutorials": "Tutorials",
+          "api": "API"
+        }
+      },
+      "company": {
+        "title": "Company",
+        "links": {
+          "about": "About Us",
+          "careers": "Careers", 
+          "contact": "Contact",
+          "press": "Press"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "links": {
+          "terms": "Terms of Service",
+          "privacy": "Privacy Policy",
+          "ai_safety": "AI Safety & Ethics",
+          "security": "Security"
+        }
+      }
+    },
+    "bottom": {
+      "copyright": "© 2023-2025 Divinci AI. All rights reserved.",
+      "links": {
+        "sitemap": "Sitemap",
+        "accessibility": "Accessibility", 
+        "cookies": "Cookie Policy"
+      }
+    }
+  },
+  "language_switcher": {
+    "current_language": "English",
+    "languages": {
+      "en": "English",
+      "es": "Español", 
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands", 
+      "hi": "हिन्दी"
+    }
+  }
+}

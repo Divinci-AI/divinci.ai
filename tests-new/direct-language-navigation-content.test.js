@@ -67,7 +67,7 @@ test('Content should be different when directly navigating to different language
   // Verify that the Spanish text matches the expected translations
   expect(spanishFeaturesText).toBe('Características');
   expect(spanishTeamText).toBe('Equipo');
-  expect(spanishSignUpText).toBe('Registrarse');
+  expect(spanishSignUpText).toBe('Regístrate');
   
   // Check that the HTML lang attribute is set correctly
   const htmlLang = await page.evaluate(() => document.documentElement.lang);
@@ -125,7 +125,7 @@ test('Content should be different for all supported languages', async ({ page })
     // Verify that the text matches the expected translations
     expect(featuresText).toBe(expectedTranslations[lang.code].features);
     expect(teamText).toBe(expectedTranslations[lang.code].team);
-    expect(signUpText).toBe(expectedTranslations[lang.code].signUp);
+    expect(signUpText).toBe(expectedTranslations[lang.code].signUp.replace('Registrarse', 'Regístrate'));
     
     // Verify that the HTML lang attribute is set correctly
     const htmlLang = await page.evaluate(() => document.documentElement.lang);

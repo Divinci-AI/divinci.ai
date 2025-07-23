@@ -71,34 +71,7 @@
             // Update body class for central circle styling
             document.body.classList.toggle('company-view-active', isCompanyView);
 
-            // Update content visibility with fade effect
-            consumerElements.forEach(element => {
-                if (isCompanyView) {
-                    element.style.opacity = '0';
-                    setTimeout(() => {
-                        element.style.display = 'none';
-                    }, 200);
-                } else {
-                    element.style.display = '';
-                    setTimeout(() => {
-                        element.style.opacity = '1';
-                    }, 10);
-                }
-            });
-
-            companyElements.forEach(element => {
-                if (isCompanyView) {
-                    element.style.display = '';
-                    setTimeout(() => {
-                        element.style.opacity = '1';
-                    }, 10);
-                } else {
-                    element.style.opacity = '0';
-                    setTimeout(() => {
-                        element.style.display = 'none';
-                    }, 200);
-                }
-            });
+            
 
             // Save preference to localStorage
             localStorage.setItem('divinciContentView', isCompanyView ? 'company' : 'consumer');

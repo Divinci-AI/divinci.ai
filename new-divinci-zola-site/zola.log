@@ -1,0 +1,139 @@
+Building site...
+Warning: config.toml contains both default language specific information at base and under section `[languages.en]`, which may cause merge conflicts. Please use only one to specify language specific information
+Checking all internal links with anchors.
+> Successfully checked 0 internal link(s) with anchors.
+-> Creating 0 pages (0 orphan) and 25 sections
+Done in 23ms.
+
+Web server is available at http://127.0.0.1:1027 (bound to 127.0.0.1:1027)
+
+Listening for changes in /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/{config.toml,content,sass,static,templates}
+Press Ctrl+C to stop
+
+Change detected @ 2025-07-17 12:32:54
+-> Config changed. The browser needs to be refreshed to make the changes visible.
+Warning: config.toml contains both default language specific information at base and under section `[languages.en]`, which may cause merge conflicts. Please use only one to specify language specific information
+Checking all internal links with anchors.
+> Successfully checked 0 internal link(s) with anchors.
+-> Creating 0 pages (0 orphan) and 25 sections
+Error: Failed to build the site
+Error: Failed to render section '/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/content/es/_index.md'
+Error: Reason: Failed to render 'section.html' (error happened in a parent template)
+Error: Reason: Variable `config.extra.description` not found in context while rendering 'section.html'
+Done in 22ms.
+
+Change detected @ 2025-07-17 12:33:16
+-> Config changed. The browser needs to be refreshed to make the changes visible.
+Warning: config.toml contains both default language specific information at base and under section `[languages.en]`, which may cause merge conflicts. Please use only one to specify language specific information
+Checking all internal links with anchors.
+> Successfully checked 0 internal link(s) with anchors.
+-> Creating 0 pages (0 orphan) and 25 sections
+Done in 27ms.
+
+Change detected @ 2025-07-17 12:33:32
+-> Config changed. The browser needs to be refreshed to make the changes visible.
+Error: Failed to build the site
+Error: TOML parse error at line 95, column 1
+   |
+95 | [extra]
+   | ^
+invalid table header
+duplicate key `extra` in document root
+
+Done in 2ms.
+
+Change detected @ 2025-07-17 12:33:49
+-> Config changed. The browser needs to be refreshed to make the changes visible.
+Warning: config.toml contains both default language specific information at base and under section `[languages.en]`, which may cause merge conflicts. Please use only one to specify language specific information
+Checking all internal links with anchors.
+> Successfully checked 0 internal link(s) with anchors.
+-> Creating 0 pages (0 orphan) and 25 sections
+Done in 30ms.
+
+Change detected @ 2025-07-17 15:18:35
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/section.html
+Reloading only template
+Done in 44ms.
+
+Change detected @ 2025-07-17 15:18:47
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/section.html
+Reloading only template
+Done in 15ms.
+
+Change detected @ 2025-07-17 15:19:10
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/section.html
+Reloading only template
+Done in 43ms.
+
+Change detected @ 2025-07-17 15:19:21
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/section.html
+Reloading only template
+Done in 15ms.
+
+Change detected @ 2025-07-17 15:19:21
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/section.html
+Reloading only template
+Done in 17ms.
+
+Change detected @ 2025-07-17 15:19:36
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/section.html
+Reloading only template
+Done in 19ms.
+
+Change detected @ 2025-07-17 15:20:02
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/base.html
+Reloading only template
+Done in 36ms.
+
+Change detected @ 2025-07-17 15:20:24
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/section.html
+Reloading only template
+Done in 25ms.
+
+Change detected @ 2025-07-17 15:20:25
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/section.html
+Reloading only template
+Done in 19ms.
+
+Change detected @ 2025-07-17 15:20:30
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/section.html
+Reloading only template
+Done in 12ms.
+
+Change detected @ 2025-07-17 15:20:31
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/section.html
+Reloading only template
+Done in 10ms.
+
+Change detected @ 2025-07-17 15:20:41
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/section.html
+Reloading only template
+Done in 25ms.
+
+Change detected @ 2025-07-17 15:21:02
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/base.html
+Reloading only template
+Done in 66ms.
+
+Change detected @ 2025-07-17 16:12:26
+-> Static file changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/static/js/language-switcher.js
+Done in 0ms.
+
+Change detected @ 2025-07-17 16:12:32
+-> Static file changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/static/js/language-switcher.js
+Done in 2ms.
+
+Change detected @ 2025-07-17 16:12:40
+-> Static file changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/static/js/language-switcher.js
+Done in 0ms.
+
+Change detected @ 2025-07-17 16:15:58
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/base.html
+Reloading only template
+Done in 94ms.
+
+Change detected @ 2025-07-17 16:16:25
+-> Template file(s) changed /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/templates/index.html
+Reloading only template
+Done in 27ms.
+

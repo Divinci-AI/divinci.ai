@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+{%- set current_lang = page.extra.lang | default(value="en") -%}
+
+<!-- Include Header -->
+{% include "partials/header.html" %}
+
+<!-- Full-width content without restrictions for feature pages -->
+<main class="feature-page">
+    {{ page.content | safe }}
+</main>
+
+<!-- Include Footer -->
+{% include "partials/footer.html" %}
+
+<style>
+/* Feature page specific styles - full width, no content restrictions */
+.feature-page {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.feature-page .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.feature-page h1, .feature-page h2, .feature-page h3, .feature-page h4, .feature-page h5, .feature-page h6 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.feature-page p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.feature-page ul, .feature-page ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.feature-page li {
+    margin-bottom: 0.5rem;
+}
+
+.feature-page a {
+    color: #16214c;
+    text-decoration: none;
+}
+
+.feature-page a:hover {
+    color: #254284;
+    text-decoration: underline;
+}
+
+/* Ensure proper spacing for custom sections */
+.feature-page section {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Desktop responsive adjustments */
+@media (max-width: 768px) {
+    .feature-page .container {
+        padding: 0 1rem;
+    }
+    
+    .hero-animation-container {
+        width: 300px !important;
+        height: 300px !important;
+    }
+    
+    .benefits-circle-container {
+        width: 400px !important;
+        height: 400px !important;
+    }
+    
+    .desktop-only {
+        display: none !important;
+    }
+}
+</style>
+{% endblock %}

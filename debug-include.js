@@ -32,23 +32,9 @@ function includeHTML() {
             console.log(`Include file path: ${file}`);
 
             // Determine the correct path based on the current page location
-            let path = file;
-            console.log(`Current location: ${window.location.pathname}`);
-
-            // If the path starts with a slash, it's an absolute path
-            if (file.startsWith('/')) {
-                // Remove the leading slash for fetch (relative to domain root)
-                path = file.substring(1);
-                console.log(`Absolute path detected, adjusted to: ${path}`);
-            }
-            // If we're in a subdirectory, adjust the path
-            else if (window.location.pathname.includes('/features/')) {
-                // We're in a subdirectory like /features/quality-assurance/
-                path = '../../' + file;
-                console.log(`In features subdirectory, adjusted path to: ${path}`);
-            }
-
-            console.log(`Final path to fetch: ${path}`);
+            let path = new URL(file, window.location.href).href;
+            console.log(`Resolved path to fetch: ${path}`);
+            
             console.log(`Protocol: ${window.location.protocol}`);
 
             // For local development with file:// protocol, use a fallback approach

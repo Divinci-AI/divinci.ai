@@ -49,7 +49,7 @@ test('All supported languages should be accessible via direct URL', async ({ pag
     const url = lang.default ? config.baseUrl : `${config.baseUrl}/${lang.code}/`;
     
     // Navigate to the language-specific version with longer timeout
-    await page.goto(url, { timeout: 30000 });
+    await page.goto(url, { timeout: 30000, waitUntil: 'domcontentloaded' });
     
     // Take a screenshot of the loaded page
     await page.screenshot({ path: `test-results/direct-url-${lang.code}.png` });
@@ -122,7 +122,7 @@ test('Language switcher should change the page language', async ({ page }) => {
     await langOption.click();
     
     // Wait for navigation to complete - this may take longer for initial page load
-    await page.waitForURL(`**/${lang.code}**`, { timeout: 30000 });
+    await expect(page).toHaveURL(new RegExp(`.*${lang.code}`));
     
     // Take a screenshot after navigation
     await page.screenshot({ path: `test-results/after-${lang.code}-click.png` });

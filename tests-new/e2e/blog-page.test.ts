@@ -18,11 +18,16 @@ test.describe('Blog Page', () => {
   });
 
   test('should navigate to post detail when clicking a post link', async ({ page }) => {
-    const titles = await blog.getAllPostTitles();
-    const firstTitle = titles[0];
-    await blog.clickPostByTitle(firstTitle);
-    await expect(page).toHaveURL(/posts\//);
-    await expect(page.locator('h1')).toHaveText(firstTitle);
+    const firstTitle = await blog.postTitles.first().textContent();
+    expect(firstTitle).not.toBeNull();
+
+    await blog.clickPostByTitle(firstTitle!);
+    
+    await page.waitForURL(/\/blog\/posts\//);
+
+    const pageTitle = page.locator('h1');
+    await expect(pageTitle).toBeVisible();
+    await expect(pageTitle).toHaveText(firstTitle!);
   });
 
   test('should display categories and popular tags', async () => {

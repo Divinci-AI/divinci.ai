@@ -1,0 +1,94 @@
+# Zola Configuration for New Divinci AI Website
+base_url = "https://new-divinci.ai"
+
+# Build settings
+compile_sass = true
+minify_html = true
+generate_feeds = true
+build_search_index = false
+hard_link_static = false
+
+# Theme and output settings
+output_dir = "public"
+default_language = "en"
+
+
+# Markdown settings
+[markdown]
+highlight_code = false
+highlight_theme = "base16-ocean-dark"
+render_emoji = true
+external_links_target_blank = true
+external_links_no_follow = true
+external_links_no_referrer = true
+smart_punctuation = true
+
+# Language configurations
+[languages]
+
+[languages.en]
+title = "Divinci AI - Excellence, every time"
+description = "Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance."
+
+[languages.es]
+title = "Divinci AI - Excelencia, siempre"
+description = "Potencie su negocio con gestión avanzada de versiones y aseguramiento de calidad riguroso para modelos de lenguaje personalizados. Logre confiabilidad operativa, cumplimiento regulatorio y rendimiento óptimo."
+
+[languages.fr]
+title = "Divinci AI - Excellence, à chaque fois"
+description = "Renforcez votre entreprise avec une gestion avancée des versions et une assurance qualité rigoureuse pour les modèles de langage personnalisés. Obtenez fiabilité opérationnelle, conformité réglementaire et performance optimale."
+
+[languages.ar]
+title = "ديفينشي الذكاء الاصطناعي - التميز، في كل مرة"
+description = "قوّي عملك بإدارة الإصدارات المتقدمة وضمان الجودة الصارم لنماذج اللغة المخصصة. حقق الموثوقية التشغيلية والامتثال التنظيمي والأداء الأمثل."
+
+[languages.ja]
+title = "Divinci AI - 常に優秀"
+description = "カスタム言語モデルの高度なリリース管理と厳格な品質保証でビジネスを強化。運用信頼性、規制遵守、最適なパフォーマンスを実現します。"
+
+[languages.zh]
+title = "Divinci AI - 卓越，每一次"
+description = "通过先进的发布管理和严格的质量保证增强您的业务，用于定制语言模型。实现运营可靠性、法规合规性和最佳性能。"
+
+[languages.it]
+title = "Divinci AI - Eccellenza, ogni volta"
+description = "Potenzia la tua azienda con gestione avanzata dei rilasci e garanzia di qualità rigorosa per modelli di linguaggio personalizzati. Ottieni affidabilità operativa, conformità normativa e prestazioni ottimali."
+
+[languages.ru]
+title = "Divinci AI - Совершенство каждый раз"
+description = "Усильте свой бизнес с продвинутым управлением релизами и строгим обеспечением качества для пользовательских языковых моделей. Достигните операционной надежности, соответствия требованиям и оптимальной производительности."
+
+[languages.de]
+title = "Divinci AI - Exzellenz, jedes Mal"
+description = "Stärken Sie Ihr Unternehmen mit fortschrittlichem Release-Management und rigoroser Qualitätssicherung für benutzerdefinierte Sprachmodelle. Erreichen Sie operative Zuverlässigkeit, regulatorische Compliance und optimale Leistung."
+
+[languages.pt]
+title = "Divinci AI - Excelência, sempre"
+description = "Potencialize seu negócio com gerenciamento avançado de lançamentos e garantia de qualidade rigorosa para modelos de linguagem personalizados. Alcance confiabilidade operacional, conformidade regulatória e desempenho ótimo."
+
+[languages.ko]
+title = "Divinci AI - 우수함, 매번"
+description = "고급 릴리스 관리와 맞춤형 언어 모델에 대한 엄격한 품질 보증으로 비즈니스를 강화하세요. 운영 신뢰성, 규제 준수 및 최적의 성능을 달성하세요."
+
+[languages.nl]
+title = "Divinci AI - Excellentie, elke keer"
+description = "Versterk uw bedrijf met geavanceerd release management en rigoureuze kwaliteitsborging voor aangepaste taalmodellen. Bereik operationele betrouwbaarheid, regelgevingsnaleving en optimale prestaties."
+
+[languages.hi]
+title = "Divinci AI - उत्कृष्टता, हर बार"
+description = "कस्टम भाषा मॉडल के लिए उन्नत रिलीज़ प्रबंधन और कठोर गुणवत्ता आश्वासन के साथ अपने व्यवसाय को सशक्त बनाएं। परिचालन विश्वसनीयता, नियामक अनुपालन और इष्टतम प्रदर्शन प्राप्त करें।"
+
+# Extra configuration
+[extra]
+author = "Divinci AI"
+company = "Divinci AI"
+email = "support@divinci.ai"
+twitter = "@DivinciAI"
+linkedin = "company/divinci-ai"
+github = "Divinci-AI"
+description = "AI releases. Excellence, every time."
+
+# SEO settings
+default_image = "/images/social-preview.png"
+favicon = "/images/favicon-32x32.png"
+tagline = "AI releases. Excellence, every time."

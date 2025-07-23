@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "title": "Divinci AI - 始终卓越",
+    "description": "通过先进的发布管理和严格的质量保证为定制语言模型增强您的业务。通过结构化的端到端部署流程实现运营可靠性、法规合规性和最佳性能。",
+    "og_title": "Divinci AI - 始终卓越",
+    "og_description": "AI发布。始终卓越。"
+  },
+  "navigation": {
+    "features": "功能",
+    "team": "团队",
+    "signup": "注册",
+    "support": "支持",
+    "request_demo": "申请演示"
+  },
+  "hero": {
+    "heading": "AI发布。",
+    "subheading": "卓越，\n始终如一。",
+    "description": "通过先进的发布管理和严格的质量保证为定制语言模型增强您的业务。通过结构化的端到端部署流程实现运营可靠性、法规合规性和最佳性能。",
+    "features": {
+      "test_automation": "智能测试自动化",
+      "compliance_records": "详细合规记录",
+      "version_recovery": "即时版本恢复"
+    },
+    "cta": {
+      "primary": "申请演示",
+      "secondary": "探索平台"
+    }
+  },
+  "enterprise": {
+    "title": "企业级AI，专业管理",
+    "description": "为大型语言模型解锁强大的发布管理和严格的质量保证。我们的平台为企业提供先进工具，简化部署、强化合规性，并确保大规模的一致高质量AI性能。",
+    "features": {
+      "release_orchestration": {
+        "title": "智能发布编排",
+        "description": "精确自动化和协调复杂的部署管道。确保每个模型发布都经过验证、记录，并无缝转移到生产环境，最小化风险并最大化运营效率。"
+      },
+      "model_oversight": {
+        "title": "主动模型监督",
+        "description": "实时监控模型性能和合规性。利用自动检查和全面分析来早期发现问题，维护监管标准，并保持最佳模型完整性。"
+      },
+      "performance_analytics": {
+        "title": "定制性能分析",
+        "description": "建立并跟踪与您业务目标一致的定制评估指标。分析准确性、偏见和其他关键因素，为整个模型生命周期的战略决策提供信息。"
+      },
+      "team_collaboration": {
+        "title": "集成团队协作",
+        "description": "通过结构化工作流程简化跨职能审查。分配责任、收集反馈并记录批准，确保每个发布都符合组织和监管期望。"
+      }
+    }
+  },
+  "features": {
+    "title": "用AI增强您的工作流程",
+    "description": "发现为需要可靠、可扩展AI协作的企业团队设计的功能。",
+    "list": {
+      "multiplayer": {
+        "title": "多人协作",
+        "description": "通过跨职能团队的共享AI工作空间启用多利益相关者协作。"
+      },
+      "ai_family": {
+        "title": "AI系列",
+        "description": "通过统一的治理和安全控制访问领先提供商的企业级模型。"
+      },
+      "voice_io": {
+        "title": "语音输入/输出",
+        "description": "通过企业级文本转语音和语音转文本功能实现无缝语音交互。"
+      },
+      "performance_analytics": {
+        "title": "性能分析",
+        "description": "通过详细分析跟踪所有AI交互的使用情况、效率和质量模式。"
+      },
+      "enterprise_security": {
+        "title": "企业安全",
+        "description": "通过端到端加密、访问控制和全面审计保护所有数据和对话。"
+      },
+      "lightning_responses": {
+        "title": "闪电响应",
+        "description": "通过优化延迟和分布式网络架构获得即时响应，实现最佳性能。"
+      },
+      "domain_specialization": {
+        "title": "领域专业化",
+        "description": "通过专业知识和定制用例为特定行业调整AI模型。"
+      },
+      "smart_workflows": {
+        "title": "智能工作流程",
+        "description": "通过学习和适应您团队流程的AI工作流程自动化复杂任务。"
+      },
+      "api_integration": {
+        "title": "API集成",
+        "description": "通过强大的API和全面的开发者文档与您现有的工具无缝连接。"
+      },
+      "scalability": {
+        "title": "可扩展性",
+        "description": "通过自动扩展的基础设施从小团队扩展到企业组织。"
+      }
+    }
+  },
+  "team": {
+    "title": "认识我们的团队",
+    "description": "认识塑造人类-AI协作未来的创新者。",
+    "members": {
+      "connect": "连接"
+    },
+    "roles": {
+      "ceo_founder": "首席执行官兼创始人",
+      "cto_cofounder": "首席技术官兼联合创始人",
+      "head_product": "产品负责人",
+      "senior_data_scientist": "高级数据科学家",
+      "ux_ui_designer": "UX/UI设计师",
+      "software_engineer": "软件工程师"
+    }
+  },
+  "signup": {
+    "title": "开始您的AI之旅",
+    "description": "加入已经在使用Divinci AI转变工作的数千个团队。获得我们平台的早期访问权限。",
+    "email_placeholder": "您的邮箱",
+    "button": "申请访问",
+    "note": "无垃圾邮件。随时取消订阅。"
+  },
+  "ai_for_good": {
+    "title": "AI为善",
+    "description": "我们致力于开发造福人类的负责任AI。我们的平台设计有强大的道德原则、透明度，并专注于赋能人们，而不是取代他们。",
+    "principles": {
+      "safe_development": {
+        "title": "安全开发",
+        "description": "严格的安全测试和保护措施。"
+      },
+      "fair_ai": {
+        "title": "公平AI",
+        "description": "在所有结果中减少偏见并促进公平。"
+      },
+      "positive_impact": {
+        "title": "积极影响",
+        "description": "为解决全球挑战的解决方案做出贡献。"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "赋能人类-AI协作",
+    "sections": {
+      "product": {
+        "title": "产品",
+        "links": {
+          "features": "功能",
+          "pricing": "定价",
+          "roadmap": "路线图",
+          "changelog": "更新日志"
+        }
+      },
+      "resources": {
+        "title": "资源",
+        "links": {
+          "documentation": "文档",
+          "blog": "博客",
+          "tutorials": "教程",
+          "api": "API"
+        }
+      },
+      "company": {
+        "title": "公司",
+        "links": {
+          "about": "关于我们",
+          "careers": "职业机会",
+          "contact": "联系我们",
+          "press": "媒体"
+        }
+      },
+      "legal": {
+        "title": "法律",
+        "links": {
+          "terms": "服务条款",
+          "privacy": "隐私政策",
+          "ai_safety": "AI安全与伦理",
+          "security": "安全"
+        }
+      }
+    },
+    "bottom": {
+      "copyright": "© 2023-2025 Divinci AI. 保留所有权利。",
+      "links": {
+        "sitemap": "网站地图",
+        "accessibility": "无障碍访问",
+        "cookies": "Cookie政策"
+      }
+    }
+  },
+  "language_switcher": {
+    "current_language": "中文",
+    "languages": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands",
+      "hi": "हिन्दी"
+    }
+  }
+}

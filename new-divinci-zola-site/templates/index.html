@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ translations.meta.title | default(value="Divinci AI - Excellence, every time") }}
+{% endblock %}
+
+{% block content %}
+
+{% include "partials/header.html" %}
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-image">
+            <img src="{{ get_url(path="images/Davinci_the_painter_painting_a_robot_in_a_line_art.png") }}" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster">
+            <video id="hero-video" muted loop playsinline preload="metadata" data-lazy-video>
+                <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.webm") }}" type="video/webm">
+                <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.mp4") }}" type="video/mp4">
+            </video>
+            <button id="sound-toggle" style="display: none;">Unmute</button>
+        </div>
+        <div class="hero-text">
+            <h1>
+                {{ translations.hero.heading | default(value="AI releases.") }}<br>
+                {{ translations.hero.subheading | default(value="Excellence, every time.") }}
+            </h1>
+            <p>
+                {{ translations.hero.description | default(value="Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance through a structured, end-to-end deployment process.") }}
+            </p>
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-icon feature-icon-star">✧</span>
+                    <span class="feature-text">{{ translations.hero.features.test_automation | default(value="Intelligent test automation") }}</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon feature-icon-rotate">↻</span>
+                    <span class="feature-text">{{ translations.hero.features.compliance_records | default(value="Detailed compliance records") }}</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon feature-icon-heart">♡</span>
+                    <span class="feature-text">{{ translations.hero.features.version_recovery | default(value="Instant version recovery") }}</span>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <button class="primary-button">{{ translations.hero.cta.primary | default(value="Request demo") }}</button>
+                <button class="secondary-button">{{ translations.hero.cta.secondary | default(value="Explore platform") }}</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="enterprise-ai" id="solutions">
+    <div class="enterprise-header">
+        <h2>{{ translations.enterprise.title | default(value="Enterprise AI, expertly managed") }}</h2>
+        <p class="section-intro">{{ translations.enterprise.description | default(value="Unlock robust release management and rigorous quality assurance for large language models. Our platform equips enterprises with advanced tools to streamline deployment, enforce compliance, and ensure consistent, high-quality AI performance at scale.") }}</p>
+    </div>
+    <div class="video-background-container">
+        <!-- Default background video -->
+        <video id="background-video-default" class="background-video active" muted loop playsinline preload="metadata" data-lazy-video>
+            <source src="{{ get_url(path="images/background-video.webm") }}" type="video/webm">
+        </video>
+        
+        <!-- Panel 2 hover video (business parody) -->
+        <video id="background-video-panel2" class="background-video" muted loop playsinline preload="none" data-lazy-video data-panel="2">
+            <source src="{{ get_url(path="images/business-parody-optimized.webm") }}" type="video/webm">
+            <source src="{{ get_url(path="images/business-parody-social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_2ce28274-76c9-4ec1-b4f8-3acc57789616_3.mp4") }}" type="video/mp4">
+        </video>
+        
+        <!-- Panel 3 hover video (rag machine) -->
+        <video id="background-video-panel3" class="background-video" muted loop playsinline preload="none" data-lazy-video data-panel="3">
+            <source src="{{ get_url(path="images/rag-machine-optimized.webm") }}" type="video/webm">
+            <source src="{{ get_url(path="images/rag-machine-social_u4943574663_Young_Leonardo_da_Vinci_in_Renaissance_workshop_t_ad808b44-961d-49e8-b0db-06c848541449_1.mp4") }}" type="video/mp4">
+        </video>
+    </div>
+    <div class="enterprise-content">
+        <div class="circular-panels-wrapper">
+            <div class="panels-container">
+                <div class="panel default-open">
+                    <div class="panel-art">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 10 C 20 10, 10 50, 50 90 S 80 90, 90 50 S 60 10, 50 10" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M50 10 C 80 10, 90 50, 50 90 S 20 90, 10 50 S 40 10, 50 10" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>{{ translations.enterprise.features.release_orchestration.title | default(value="Intelligent release orchestration") }}</h3>
+                    <p>{{ translations.enterprise.features.release_orchestration.description | default(value="Automate and coordinate complex deployment pipelines with precision. Ensure every model release is validated, documented, and seamlessly transitioned to production, minimizing risk and maximizing operational efficiency.") }}</p>
+                </div>
+                <div class="panel panel-with-bg">
+                    <div class="panel-art">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="50" cy="50" r="5" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>
+{{ translations.enterprise.features.model_oversight.title | default(value="Proactive model oversight") }}
+                    </h3>
+                    <p>{{ translations.enterprise.features.model_oversight.description | default(value="Monitor model performance and compliance in real time. Leverage automated checks and comprehensive analytics to detect issues early, uphold regulatory standards, and maintain optimal model integrity.") }}</p>
+                </div>
+                <div class="panel">
+                    <div class="panel-art">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Fibonacci spiral with golden ratio rectangles -->
+                            <path d="M50 50 A 8 8 0 0 1 42 58 A 13 13 0 0 1 29 45 A 21 21 0 0 1 50 24 A 34 34 0 0 1 84 58 A 55 55 0 0 1 29 113" fill="none" stroke="currentColor" stroke-width="1.5" class="fibonacci-spiral"/>
+                            <!-- Golden ratio rectangles -->
+                            <rect x="42" y="50" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1" class="golden-rect-1"/>
+                            <rect x="29" y="45" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1" class="golden-rect-2"/>
+                            <rect x="29" y="24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1" class="golden-rect-3"/>
+                            <rect x="50" y="24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1" class="golden-rect-4"/>
+                        </svg>
+                    </div>
+                    <h3>
+{{ translations.enterprise.features.performance_analytics.title | default(value="Tailored performance analytics") }}
+                    </h3>
+                    <p>
+{{ translations.enterprise.features.performance_analytics.description | default(value="Establish and track custom evaluation metrics aligned with your business objectives. Analyze accuracy, bias, and other critical factors to inform strategic decisions throughout the model lifecycle.") }}
+                    </p>
+                </div>
+                <div class="panel">
+                    <div class="panel-art">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 50 L50 10 L90 50 L50 90 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 50 L50 90 L90 50 L50 10 Z" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(45 50 50)"/>
+                        </svg>
+                    </div>
+                    <h3>
+{{ translations.enterprise.features.team_collaboration.title | default(value="Integrated team collaboration") }}
+                    </h3>
+                    <p>
+{{ translations.enterprise.features.team_collaboration.description | default(value="Streamline cross-functional reviews with structured workflows. Assign responsibilities, collect feedback, and document approvals to ensure every release meets organizational and regulatory expectations.") }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-section" id="features">
+    <div class="features-container">
+        <div class="features-header">
+            <h2>{{ translations.features.title | default(value="Supercharge your workflow with AI") }}</h2>
+            <p class="section-intro">{{ translations.features.description | default(value="Discover features designed for enterprise teams that need reliable, scalable AI collaboration.") }}</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">👥</span>
+                <h3>{{ translations.features.list.multiplayer.title | default(value="Multiplayer") }}</h3>
+                <p>{{ translations.features.list.multiplayer.description | default(value="Enable multi-stakeholder collaboration with shared AI workspaces for cross-functional teams.") }}</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🤖</span>
+                <h3>{{ translations.features.list.ai_family.title | default(value="AI Family") }}</h3>
+                <p>{{ translations.features.list.ai_family.description | default(value="Access enterprise-grade models from leading providers with unified governance and security controls.") }}</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🎤</span>
+                <h3>{{ translations.features.list.voice_io.title | default(value="Voice In/Out") }}</h3>
+                <p>{{ translations.features.list.voice_io.description | default(value="Enable seamless voice interactions with enterprise-grade text-to-speech and speech-to-text capabilities.") }}</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>{{ translations.features.list.performance_analytics.title | default(value="Performance Analytics") }}</h3>
+                <p>{{ translations.features.list.performance_analytics.description | default(value="Track usage, efficiency, and quality patterns across all AI interactions with detailed analytics.") }}</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <h3>{{ translations.features.list.enterprise_security.title | default(value="Enterprise Security") }}</h3>
+                <p>{{ translations.features.list.enterprise_security.description | default(value="Secure all data and conversations with end-to-end encryption, access controls, and comprehensive auditing.") }}</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>{{ translations.features.list.lightning_responses.title | default(value="Lightning Responses") }}</h3>
+                <p>{{ translations.features.list.lightning_responses.description | default(value="Get instant responses with optimized latency and distributed network architecture for maximum performance.") }}</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3>{{ translations.features.list.domain_specialization.title | default(value="Domain Specialization") }}</h3>
+                <p>{{ translations.features.list.domain_specialization.description | default(value="Fine-tune AI models for specific industries with specialized knowledge and customized use cases.") }}</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔄</span>
+                <h3>{{ translations.features.list.smart_workflows.title | default(value="Smart Workflows") }}</h3>
+                <p>{{ translations.features.list.smart_workflows.description | default(value="Automate complex tasks with AI workflows that learn and adapt to your team's processes.") }}</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🌐</span>
+                <h3>{{ translations.features.list.api_integration.title | default(value="API Integration") }}</h3>
+                <p>{{ translations.features.list.api_integration.description | default(value="Connect seamlessly with your existing tools through robust APIs and comprehensive developer documentation.") }}</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📈</span>
+                <h3>{{ translations.features.list.scalability.title | default(value="Scalability") }}</h3>
+                <p>{{ translations.features.list.scalability.description | default(value="Scale from small teams to enterprise organizations with infrastructure that automatically scales.") }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-section" id="team">
+    <div class="team-container">
+        <div class="team-header">
+            <h2>{{ translations.team.title | default(value="Meet our team") }}</h2>
+            <p class="section-intro">{{ translations.team.description | default(value="Meet the innovators shaping the future of human-AI collaboration.") }}</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/Michael-Mooring.jpeg") }}" alt="Michael Mooring">
+                </div>
+                <h3>Michael Mooring</h3>
+                <p class="role">{{ translations.team.roles.ceo_founder | default(value="CEO & Founder") }}</p>
+                <p class="bio">
+                    {{ translations.team.members.michael_bio | default(value="Visionary with 15+ years in enterprise technology, leading the conversational AI revolution.") }}
+                </p>
+                <a href="https://linkedin.com/in/michaelmooring" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+{{ translations.team.members.connect | default(value="Connect") }}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/duane-mooring.png") }}" alt="Duane Mooring">
+                </div>
+                <h3>Duane Mooring</h3>
+                <p class="role">{{ translations.team.roles.cto_cofounder | default(value="CTO & Co-Founder") }}</p>
+                <p class="bio">
+                    {{ translations.team.members.duane_bio | default(value="Systems architect with expertise in scalable AI infrastructure and natural language processing.") }}
+                </p>
+                <a href="https://linkedin.com/in/duanemooring" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+{{ translations.team.members.connect | default(value="Connect") }}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/sam-tobia.jpg") }}" alt="Sam Tobia">
+                </div>
+                <h3>Sam Tobia</h3>
+                <p class="role">{{ translations.team.roles.head_product | default(value="Head of Product") }}</p>
+                <p class="bio">
+                    {{ translations.team.members.sam_bio | default(value="Product strategist with a track record of delivering user-centric AI solutions for enterprise teams.") }}
+                </p>
+                <a href="https://linkedin.com/in/samtobia" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+{{ translations.team.members.connect | default(value="Connect") }}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/abdul.jpeg") }}" alt="Abdul Rahman">
+                </div>
+                <h3>Abdul Rahman</h3>
+                <p class="role">{{ translations.team.roles.senior_data_scientist | default(value="Senior Data Scientist") }}</p>
+                <p class="bio">
+                    {{ translations.team.members.abdul_bio | default(value="Machine learning expert specialized in model optimization and performance analysis for AI systems.") }}
+                </p>
+                <a href="https://linkedin.com/in/abdulrahman" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+{{ translations.team.members.connect | default(value="Connect") }}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/sierra-hooshiari.jpeg") }}" alt="Sierra Hooshiari">
+                </div>
+                <h3>Sierra Hooshiari</h3>
+                <p class="role">{{ translations.team.roles.ux_ui_designer | default(value="UX/UI Designer") }}</p>
+                <p class="bio">
+                    {{ translations.team.members.sierra_bio | default(value="Creative designer focused on creating intuitive interfaces that make complex AI interactions accessible.") }}
+                </p>
+                <a href="https://linkedin.com/in/sierrahooshiari" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+{{ translations.team.members.connect | default(value="Connect") }}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/sean-fuhrman.jpeg") }}" alt="Sean Fuhrman">
+                </div>
+                <h3>Sean Fuhrman</h3>
+                <p class="role">{{ translations.team.roles.software_engineer | default(value="Software Engineer") }}</p>
+                <p class="bio">
+                    {{ translations.team.members.sean_bio | default(value="Full-stack developer with experience in microservices architecture and distributed systems for AI applications.") }}
+                </p>
+                <a href="https://linkedin.com/in/seanfuhrman" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+{{ translations.team.members.connect | default(value="Connect") }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="signup-section" id="signup">
+    <div class="signup-container">
+        <div class="signup-content">
+            <h2>{{ translations.signup.title | default(value="Start your AI journey") }}</h2>
+            <p class="signup-intro">{{ translations.signup.description | default(value="Join thousands of teams already transforming their work with Divinci AI. Get early access to our platform.") }}</p>
+            <div class="signup-form">
+                <form action="/signup" method="post">
+                    <div class="form-group">
+                        <input type="email" name="email" required placeholder="{{ translations.signup.email_placeholder | default(value="Your email") }}">
+                        <button type="submit" class="signup-button">{{ translations.signup.button | default(value="Request access") }}</button>
+                    </div>
+                </form>
+                <p class="signup-note">{{ translations.signup.note | default(value="No spam. Unsubscribe at any time.") }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ai-for-good-section">
+    <div class="ai-for-good-container">
+        <div class="ai-for-good-content">
+            <div class="ai-for-good-text">
+                <h2>{{ translations.ai_for_good.title | default(value="AI for good") }}</h2>
+                <p>{{ translations.ai_for_good.description | default(value="We're committed to developing responsible AI that benefits humanity. Our platform is designed with strong ethical principles, transparency, and a focus on empowering people, not replacing them.") }}</p>
+                <div class="ai-for-good-principles">
+                    <div class="principle">
+                        <span class="principle-icon">🛡️</span>
+                        <div class="principle-text">
+                            <h3>{{ translations.ai_for_good.principles.safe_development.title | default(value="Safe development") }}</h3>
+                            <p>{{ translations.ai_for_good.principles.safe_development.description | default(value="Rigorous safety testing and protective measures.") }}</p>
+                        </div>
+                    </div>
+                    <div class="principle">
+                        <span class="principle-icon">⚖️</span>
+                        <div class="principle-text">
+                            <h3>{{ translations.ai_for_good.principles.fair_ai.title | default(value="Fair AI") }}</h3>
+                            <p>{{ translations.ai_for_good.principles.fair_ai.description | default(value="Bias reduction and fairness promotion in all outcomes.") }}</p>
+                        </div>
+                    </div>
+                    <div class="principle">
+                        <span class="principle-icon">🌍</span>
+                        <div class="principle-text">
+                            <h3>{{ translations.ai_for_good.principles.positive_impact.title | default(value="Positive impact") }}</h3>
+                            <p>{{ translations.ai_for_good.principles.positive_impact.description | default(value="Contributing to solutions that address global challenges.") }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ai-for-good-image">
+                <img src="{{ get_url(path="images/ai-for-impact-1.avif") }}" alt="AI for Good Impact">
+            </div>
+        </div>
+    </div>
+</section>
+
+<svg style="display: none;">
+    <defs>
+        <filter id="fresco-texture">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise"/>
+            <feDiffuseLighting in="noise" lightingColor="white" surfaceScale="2" result="light">
+                <feDistantLight azimuth="225" elevation="45"/>
+            </feDiffuseLighting>
+            <feComposite in="SourceGraphic" in2="light" operator="arithmetic" k1="1" k2="0" k3="0" k4="0"/>
+        </filter>
+    </defs>
+</svg>
+
+{% include "partials/footer.html" %}
+{% endblock %}

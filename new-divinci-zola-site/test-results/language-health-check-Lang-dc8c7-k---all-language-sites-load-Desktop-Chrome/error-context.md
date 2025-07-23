@@ -1,0 +1,216 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - link "Divinci AI Logo Divinci":
+    - /url: /fr/
+    - img "Divinci AI Logo"
+    - text: Divinci
+  - navigation:
+    - list:
+      - listitem:
+        - link "Fonctionnalités":
+          - /url: "#features"
+        - text: ▼
+      - listitem:
+        - link "Équipe":
+          - /url: "#team"
+      - listitem:
+        - link "S'inscrire":
+          - /url: "#signup"
+      - listitem:
+        - link "Support":
+          - /url: "#support"
+        - text: ▼
+  - text:  Français ▼
+  - button "Demander une démo"
+- button "Unmute"
+- heading "Versions d'IA. Excellence, à chaque fois." [level=1]
+- paragraph: Renforcez votre entreprise avec une gestion avancée des versions et une assurance qualité rigoureuse pour les modèles de langage personnalisés. Obtenez fiabilité opérationnelle, conformité réglementaire et performance optimale grâce à un processus de déploiement structuré de bout en bout.
+- text: ✧ Automatisation intelligente des tests ↻ Enregistrements de conformité détaillés ♡ Récupération instantanée de version
+- button "Demander une démo"
+- button "Explorer la plateforme"
+- heading "IA d'entreprise, gérée par des experts" [level=2]
+- paragraph: Débloquez une gestion robuste des versions et une assurance qualité rigoureuse pour les grands modèles de langage. Notre plateforme équipe les entreprises d'outils avancés pour rationaliser le déploiement, faire respecter la conformité et garantir des performances IA cohérentes et de haute qualité à grande échelle.
+- img
+- heading "Orchestration intelligente des versions" [level=3]
+- paragraph: Automatisez et coordonnez des pipelines de déploiement complexes avec précision. Assurez-vous que chaque version de modèle soit validée, documentée et transférée sans problème en production, minimisant les risques et maximisant l'efficacité opérationnelle.
+- img
+- heading "Surveillance proactive du modèle" [level=3]
+- paragraph: Surveillez les performances et la conformité du modèle en temps réel. Tirez parti des vérifications automatisées et d'analyses complètes pour détecter les problèmes tôt, maintenir les normes réglementaires et préserver l'intégrité optimale du modèle.
+- img
+- heading "Analyses de performance sur mesure" [level=3]
+- paragraph: Établissez et suivez des métriques d'évaluation personnalisées alignées sur vos objectifs commerciaux. Analysez la précision, les biais et d'autres facteurs critiques pour informer les décisions stratégiques tout au long du cycle de vie du modèle.
+- img
+- heading "Collaboration d'équipe intégrée" [level=3]
+- paragraph: Rationalisez les révisions transversales avec des flux de travail structurés. Assignez les responsabilités, collectez les commentaires et documentez les approbations pour vous assurer que chaque version répond aux attentes organisationnelles et réglementaires.
+- heading "Renforcez votre flux de travail avec l'IA" [level=2]
+- paragraph: Découvrez des fonctionnalités conçues pour les équipes d'entreprise qui ont besoin d'une collaboration IA fiable et évolutive.
+- text: 👥
+- heading "Multijoueur" [level=3]
+- paragraph: Permettez la collaboration multi-parties prenantes avec des espaces de travail IA partagés pour les équipes transversales.
+- text: 🤖
+- heading "Famille IA" [level=3]
+- paragraph: Accédez aux modèles de niveau entreprise des fournisseurs leaders avec des contrôles unifiés de gouvernance et de sécurité.
+- text: 🎤
+- heading "Voix d'entrée/sortie" [level=3]
+- paragraph: Permettez des interactions vocales fluides avec des capacités de synthèse vocale et de reconnaissance vocale de niveau entreprise.
+- text: 📊
+- heading "Analyse de performance" [level=3]
+- paragraph: Suivez l'utilisation, l'efficacité et les modèles de qualité dans toutes les interactions IA avec des analyses détaillées.
+- text: 🔒
+- heading "Sécurité d'entreprise" [level=3]
+- paragraph: Sécurisez toutes les données et conversations avec un chiffrement de bout en bout, des contrôles d'accès et un audit complet.
+- text: ⚡
+- heading "Réponses rapides" [level=3]
+- paragraph: Obtenez des réponses instantanées avec une latence optimisée et une architecture réseau distribuée pour des performances maximales.
+- text: 🎯
+- heading "Spécialisation de domaine" [level=3]
+- paragraph: Ajustez les modèles IA pour des industries spécifiques avec des connaissances spécialisées et des cas d'utilisation personnalisés.
+- text: 🔄
+- heading "Flux de travail intelligents" [level=3]
+- paragraph: Automatisez des tâches complexes avec des flux de travail IA qui apprennent et s'adaptent aux processus de votre équipe.
+- text: 🌐
+- heading "Intégration API" [level=3]
+- paragraph: Connectez-vous facilement avec vos outils existants via des API robustes et une documentation complète pour les développeurs.
+- text: 📈
+- heading "Évolutivité" [level=3]
+- paragraph: Évoluez des petites équipes aux organisations d'entreprise avec une infrastructure qui évolue automatiquement.
+- heading "Rencontrez notre équipe" [level=2]
+- paragraph: Rencontrez les innovateurs qui façonnent l'avenir de la collaboration humain-IA.
+- img "Michael Mooring"
+- heading "Michael Mooring" [level=3]
+- paragraph: PDG et Fondateur
+- paragraph: Visionary with 15+ years in enterprise technology, leading the conversational AI revolution.
+- link " Se connecter":
+  - /url: https://linkedin.com/in/michaelmooring
+- img "Duane Mooring"
+- heading "Duane Mooring" [level=3]
+- paragraph: CTO et Cofondateur
+- paragraph: Systems architect with expertise in scalable AI infrastructure and natural language processing.
+- link " Se connecter":
+  - /url: https://linkedin.com/in/duanemooring
+- img "Sam Tobia"
+- heading "Sam Tobia" [level=3]
+- paragraph: Directeur Produit
+- paragraph: Product strategist with a track record of delivering user-centric AI solutions for enterprise teams.
+- link " Se connecter":
+  - /url: https://linkedin.com/in/samtobia
+- img "Abdul Rahman"
+- heading "Abdul Rahman" [level=3]
+- paragraph: Scientifique de Données Senior
+- paragraph: Machine learning expert specialized in model optimization and performance analysis for AI systems.
+- link " Se connecter":
+  - /url: https://linkedin.com/in/abdulrahman
+- img "Sierra Hooshiari"
+- heading "Sierra Hooshiari" [level=3]
+- paragraph: Conceptrice UX/UI
+- paragraph: Creative designer focused on creating intuitive interfaces that make complex AI interactions accessible.
+- link " Se connecter":
+  - /url: https://linkedin.com/in/sierrahooshiari
+- img "Sean Fuhrman"
+- heading "Sean Fuhrman" [level=3]
+- paragraph: Ingénieur Logiciel
+- paragraph: Full-stack developer with experience in microservices architecture and distributed systems for AI applications.
+- link " Se connecter":
+  - /url: https://linkedin.com/in/seanfuhrman
+- heading "Commencez votre voyage avec l'IA" [level=2]
+- paragraph: Rejoignez des milliers d'équipes qui transforment déjà leur travail avec Divinci AI. Obtenez un accès anticipé à notre plateforme.
+- textbox "Votre email"
+- button "Demander l'accès"
+- paragraph: Pas de spam. Désabonnez-vous à tout moment.
+- heading "IA pour le bien" [level=2]
+- paragraph: Nous nous engageons à développer une IA responsable qui profite à l'humanité. Notre plateforme est conçue avec des principes éthiques solides, la transparence et un accent sur l'autonomisation des personnes, pas leur remplacement.
+- text: 🛡️
+- heading "Développement sûr" [level=3]
+- paragraph: Tests de sécurité rigoureux et mesures de protection.
+- text: ⚖️
+- heading "IA équitable" [level=3]
+- paragraph: Réduction des biais et promotion de l'équité dans tous les résultats.
+- text: 🌍
+- heading "Impact positif" [level=3]
+- paragraph: Contribuer à des solutions qui relèvent les défis mondiaux.
+- img "AI for Good Impact"
+- contentinfo:
+  - img "Divinci AI Logo"
+  - text: Divinci AI
+  - paragraph: Autonomiser la collaboration humain-IA
+  - link "":
+    - /url: "@DivinciAI"
+  - link "":
+    - /url: company/divinci-ai
+  - link "":
+    - /url: Divinci-AI
+  - heading "Produit" [level=3]
+  - list:
+    - listitem:
+      - link "Fonctionnalités":
+        - /url: "#features"
+    - listitem:
+      - link "AutoRAG":
+        - /url: /fr/autorag/
+    - listitem:
+      - link "Quality Assurance":
+        - /url: /fr/quality-assurance/
+    - listitem:
+      - link "Release Management":
+        - /url: /fr/release-management/
+    - listitem:
+      - link "Tarification":
+        - /url: /pricing
+    - listitem:
+      - link "Feuille de route":
+        - /url: /roadmap
+    - listitem:
+      - link "Journal des modifications":
+        - /url: /changelog
+  - heading "Ressources" [level=3]
+  - list:
+    - listitem:
+      - link "Documentation":
+        - /url: /docs
+    - listitem:
+      - link "Blog":
+        - /url: /blog
+    - listitem:
+      - link "Tutoriels":
+        - /url: /tutorials
+    - listitem:
+      - link "API":
+        - /url: /api
+  - heading "Entreprise" [level=3]
+  - list:
+    - listitem:
+      - link "À propos de nous":
+        - /url: /about
+    - listitem:
+      - link "Carrières":
+        - /url: /careers
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+    - listitem:
+      - link "Presse":
+        - /url: /press
+  - heading "Légal" [level=3]
+  - list:
+    - listitem:
+      - link "Conditions de service":
+        - /url: /fr/terms-of-service/
+    - listitem:
+      - link "Politique de confidentialité":
+        - /url: /fr/privacy-policy/
+    - listitem:
+      - link "Sécurité et éthique IA":
+        - /url: /ai-safety
+    - listitem:
+      - link "Sécurité":
+        - /url: /security
+  - paragraph: © 2023-2025 Divinci AI. Tous droits réservés.
+  - link "Plan du site":
+    - /url: /fr/sitemap
+  - link "Accessibilité":
+    - /url: /fr/accessibility
+  - link "Politique des cookies":
+    - /url: /fr/cookies
+```

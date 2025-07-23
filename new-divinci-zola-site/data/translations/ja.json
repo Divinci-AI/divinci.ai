@@ -1,0 +1,210 @@
+{
+  "meta": {
+    "title": "Divinci AI - 常に優秀",
+    "description": "カスタム言語モデルの高度なリリース管理と厳格な品質保証でビジネスを強化。運用信頼性、規制遵守、最適なパフォーマンスを実現します。",
+    "og_title": "Divinci AI - 常に優秀", 
+    "og_description": "AIリリース。常に優秀。"
+  },
+  "navigation": {
+    "features": "機能",
+    "team": "チーム",
+    "signup": "サインアップ",
+    "support": "サポート",
+    "request_demo": "デモをリクエスト"
+  },
+  "hero": {
+    "heading": "AIリリース。",
+    "subheading": "常に\n優秀。",
+    "description": "カスタム言語モデルの高度なリリース管理と厳格な品質保証でビジネスを強化。運用信頼性、規制遵守、最適なパフォーマンスを実現します。",
+    "features": {
+      "test_automation": "インテリジェントテスト自動化",
+      "compliance_records": "詳細なコンプライアンス記録",
+      "version_recovery": "インスタントバージョン復旧"
+    },
+    "cta": {
+      "primary": "デモをリクエスト",
+      "secondary": "プラットフォームを探索"
+    }
+  },
+  "enterprise": {
+    "title": "エンタープライズAI、専門的に管理",
+    "description": "大規模言語モデルの堅牢なリリース管理と厳格な品質保証を実現。当社のプラットフォームは、企業に高度なツールを提供し、デプロイメントの合理化、コンプライアンスの確保、規模での一貫した高品質AIパフォーマンスを保証します。",
+    "features": {
+      "release_orchestration": {
+        "title": "インテリジェントリリースオーケストレーション",
+        "description": "精密で複雑なデプロイメントパイプラインを自動化・調整。すべてのモデルリリースが検証、文書化され、本番環境にシームレスに移行されることを保証し、リスクを最小化し運用効率を最大化します。"
+      },
+      "model_oversight": {
+        "title": "プロアクティブモデル監視",
+        "description": "モデルのパフォーマンスとコンプライアンスをリアルタイムで監視。自動チェックと包括的分析を活用して問題を早期発見し、規制基準を維持し、最適なモデル整合性を保持します。"
+      },
+      "performance_analytics": {
+        "title": "カスタマイズされたパフォーマンス分析",
+        "description": "ビジネス目標に合わせたカスタム評価メトリクスを確立・追跡。精度、バイアス、その他重要な要因を分析し、モデルライフサイクル全体における戦略的意思決定を支援します。"
+      },
+      "team_collaboration": {
+        "title": "統合チームコラボレーション",
+        "description": "構造化されたワークフローで機能横断的レビューを合理化。責任を割り当て、フィードバックを収集し、承認を文書化して、すべてのリリースが組織と規制の期待に応えることを保証します。"
+      }
+    }
+  },
+  "features": {
+    "title": "AIでワークフローを強化",
+    "description": "信頼性とスケーラビリティのあるAIコラボレーションが必要な企業チーム向けに設計された機能をご覧ください。",
+    "list": {
+      "multiplayer": {
+        "title": "マルチプレイヤー",
+        "description": "機能横断チーム向けの共有AIワークスペースでマルチステークホルダーコラボレーションを可能にします。"
+      },
+      "ai_family": {
+        "title": "AIファミリー",
+        "description": "統一されたガバナンスとセキュリティ制御で主要プロバイダーのエンタープライズグレードモデルにアクセス。"
+      },
+      "voice_io": {
+        "title": "音声入出力",
+        "description": "エンタープライズグレードのテキスト読み上げと音声認識機能でシームレスな音声インタラクションを実現。"
+      },
+      "performance_analytics": {
+        "title": "パフォーマンス分析",
+        "description": "詳細な分析ですべてのAIインタラクションの使用状況、効率性、品質パターンを追跡。"
+      },
+      "enterprise_security": {
+        "title": "エンタープライズセキュリティ",
+        "description": "エンドツーエンド暗号化、アクセス制御、包括的監査ですべてのデータと会話を保護。"
+      },
+      "lightning_responses": {
+        "title": "高速レスポンス",
+        "description": "最適化された遅延と分散ネットワークアーキテクチャで最大パフォーマンスの即座レスポンスを実現。"
+      },
+      "domain_specialization": {
+        "title": "ドメイン特化",
+        "description": "専門知識とカスタマイズされたユースケースで特定業界向けにAIモデルを微調整。"
+      },
+      "smart_workflows": {
+        "title": "スマートワークフロー",
+        "description": "チームのプロセスに学習・適応するAIワークフローで複雑なタスクを自動化。"
+      },
+      "api_integration": {
+        "title": "API統合",
+        "description": "堅牢なAPIと包括的な開発者ドキュメンテーションで既存ツールとシームレスに接続。"
+      },
+      "scalability": {
+        "title": "スケーラビリティ",
+        "description": "自動スケールするインフラストラクチャで小規模チームから企業組織まで拡張。"
+      }
+    }
+  },
+  "team": {
+    "title": "チームメンバー紹介",
+    "description": "人間とAIのコラボレーションの未来を形作るイノベーターたちをご紹介します。",
+    "members": {
+      "connect": "つながる",
+      "michael_bio": "企業技術分野で15年以上の経験を持つビジョナリー、対話型AI革命を主導。",
+      "duane_bio": "スケーラブルAIインフラストラクチャと自然言語処理の専門知識を持つシステムアーキテクト。",
+      "sam_bio": "企業チーム向けユーザー中心のAIソリューション提供の実績を持つプロダクト戦略家。",
+      "abdul_bio": "AIシステムのモデル最適化とパフォーマンス分析を専門とする機械学習エキスパート。",
+      "sierra_bio": "複雑なAIインタラクションを親しみやすくする直感的なインターフェース作成に焦点を当てたクリエイティブデザイナー。",
+      "sean_bio": "AIアプリケーション向けマイクロサービスアーキテクチャと分散システムの経験を持つフルスタック開発者。"
+    },
+    "roles": {
+      "ceo_founder": "CEO兼創設者",
+      "cto_cofounder": "CTO兼共同創設者",
+      "head_product": "プロダクト責任者",
+      "senior_data_scientist": "シニアデータサイエンティスト",
+      "ux_ui_designer": "UX/UIデザイナー",
+      "software_engineer": "ソフトウェアエンジニア"
+    }
+  },
+  "signup": {
+    "title": "AIジャーニーを始めよう",
+    "description": "すでにDivinci AIで業務を変革している数千のチームに参加しましょう。プラットフォームへの早期アクセスを取得。",
+    "email_placeholder": "メールアドレス",
+    "button": "アクセスをリクエスト",
+    "note": "スパムなし。いつでも配信停止可能。"
+  },
+  "ai_for_good": {
+    "title": "社会のためのAI",
+    "description": "私たちは人類に利益をもたらす責任あるAI開発にコミットしています。当社のプラットフォームは強固な倫理原則、透明性、人々を置き換えるのではなく力を与えることに焦点を当てて設計されています。",
+    "principles": {
+      "safe_development": {
+        "title": "安全な開発",
+        "description": "厳格な安全テストと保護措置。"
+      },
+      "fair_ai": {
+        "title": "公正なAI",
+        "description": "すべての結果におけるバイアス削減と公平性促進。"
+      },
+      "positive_impact": {
+        "title": "ポジティブな影響",
+        "description": "グローバル課題に対処するソリューションへの貢献。"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "人間とAIのコラボレーションを支援",
+    "sections": {
+      "product": {
+        "title": "製品",
+        "links": {
+          "features": "機能",
+          "pricing": "価格",
+          "roadmap": "ロードマップ",
+          "changelog": "変更履歴"
+        }
+      },
+      "resources": {
+        "title": "リソース",
+        "links": {
+          "documentation": "ドキュメンテーション",
+          "blog": "ブログ",
+          "tutorials": "チュートリアル",
+          "api": "API"
+        }
+      },
+      "company": {
+        "title": "会社",
+        "links": {
+          "about": "私たちについて",
+          "careers": "キャリア",
+          "contact": "お問い合わせ",
+          "press": "プレス"
+        }
+      },
+      "legal": {
+        "title": "法的事項",
+        "links": {
+          "terms": "利用規約",
+          "privacy": "プライバシーポリシー",
+          "ai_safety": "AI安全性と倫理",
+          "security": "セキュリティ"
+        }
+      }
+    },
+    "bottom": {
+      "copyright": "© 2023-2025 Divinci AI. 全著作権所有。",
+      "links": {
+        "sitemap": "サイトマップ",
+        "accessibility": "アクセシビリティ",
+        "cookies": "クッキーポリシー"
+      }
+    }
+  },
+  "language_switcher": {
+    "current_language": "日本語",
+    "languages": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands",
+      "hi": "हिन्दी"
+    }
+  }
+}

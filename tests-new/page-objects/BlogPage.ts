@@ -1,4 +1,3 @@
-
 /**
  * Blog Page Object for Divinci AI
  * 
@@ -9,12 +8,18 @@ import { Page, Locator } from '@playwright/test';
 
 export class BlogPage {
   readonly page: Page;
+  readonly postTitles: Locator;
+  readonly categories: Locator;
+  readonly popularTags: Locator;
   readonly socialShareButtons: Locator;
   readonly blogPostTitle: Locator;
   readonly blogPostContent: Locator;
   
   constructor(page: Page) {
     this.page = page;
+    this.postTitles = page.locator('h2.featured-title, h3.post-title');
+    this.categories = page.locator('.categories-list li a');
+    this.popularTags = page.locator('.tags-list li a');
     this.socialShareButtons = page.locator('.social-share-container .social-share-button');
     this.blogPostTitle = page.locator('article h1').first();
     this.blogPostContent = page.locator('article .content');
@@ -82,5 +87,23 @@ export class BlogPage {
     const author = await authorElement.isVisible() ? await authorElement.textContent() || undefined : undefined;
     
     return { title, date, author };
+  }
+
+  async getAllPostTitles(): Promise<string[]> {
+    return this.postTitles.allTextContents();
+  }
+
+  async clickPostByTitle(title: string): Promise<void> {
+    const postContainer = this.page.locator(`article:has-text("${title}")`);
+    const link = postContainer.locator('a[href*="posts/"]');
+    await link.click();
+  }
+
+  async getCategories(): Promise<string[]> {
+    return this.categories.allTextContents();
+  }
+
+  async getPopularTags(): Promise<string[]> {
+    return this.popularTags.allTextContents();
   }
 }

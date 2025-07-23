@@ -1,0 +1,79 @@
+{% macro get_translations(lang) %}
+{%- if lang == "es" -%}
+{{ load_data(path="data/translations/es.json") }}
+{%- elif lang == "fr" -%}
+{{ load_data(path="data/translations/fr.json") }}
+{%- elif lang == "ar" -%}
+{{ load_data(path="data/translations/ar.json") }}
+{%- elif lang == "ja" -%}
+{{ load_data(path="data/translations/ja.json") }}
+{%- elif lang == "zh" -%}
+{{ load_data(path="data/translations/zh.json") }}
+{%- elif lang == "it" -%}
+{{ load_data(path="data/translations/it.json") }}
+{%- elif lang == "ru" -%}
+{{ load_data(path="data/translations/ru.json") }}
+{%- elif lang == "de" -%}
+{{ load_data(path="data/translations/de.json") }}
+{%- elif lang == "pt" -%}
+{{ load_data(path="data/translations/pt.json") }}
+{%- elif lang == "ko" -%}
+{{ load_data(path="data/translations/ko.json") }}
+{%- elif lang == "nl" -%}
+{{ load_data(path="data/translations/nl.json") }}
+{%- elif lang == "hi" -%}
+{{ load_data(path="data/translations/hi.json") }}
+{%- else -%}
+{{ load_data(path="data/translations/en.json") }}
+{%- endif -%}
+{% endmacro get_translations %}
+
+{% macro t(translations, key, fallback="") %}
+  {%- set keys = key | split(pat=".") -%}
+  {%- set value = translations -%}
+  {%- for k in keys -%}
+    {%- if value and value[k] -%}
+      {%- set value = value[k] -%}
+    {%- else -%}
+      {%- set value = fallback -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {{ value }}
+{% endmacro t %}
+
+{% macro t_with_fallback(lang, key, fallback_lang="en") %}
+  {%- set translations = self::get_translations(lang=lang) -%}
+  {%- set keys = key | split(pat=".") -%}
+  {%- set value = translations -%}
+  {%- for k in keys -%}
+    {%- if value and value[k] -%}
+      {%- set value = value[k] -%}
+    {%- else -%}
+      {%- set value = false -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+  
+  {%- if not value and fallback_lang != lang -%}
+    {%- set fallback_translations = self::get_translations(lang=fallback_lang) -%}
+    {%- set fallback_value = fallback_translations -%}
+    {%- for k in keys -%}
+      {%- if fallback_value and fallback_value[k] -%}
+        {%- set fallback_value = fallback_value[k] -%}
+      {%- else -%}
+        {%- set fallback_value = false -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if fallback_value -%}
+      {{ fallback_value }}
+    {%- else -%}
+      [Missing: {{ key }}]
+    {%- endif -%}
+  {%- elif value -%}
+    {{ value }}
+  {%- else -%}
+    [Missing: {{ key }}]
+  {%- endif -%}
+{% endmacro t_with_fallback %}

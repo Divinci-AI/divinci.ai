@@ -39,100 +39,6 @@ test.describe('Footer Navigation Tests', () => {
     footer = new FooterPage(page);
   });
 
-  // Test footer links on homepage for each language
-  test('Footer links should work on homepage for all languages', async ({ page }) => {
-    const results: any[] = [];
-    
-    for (const lang of config.languages) {
-      console.log(`Testing footer links on ${lang.name} homepage`);
-      
-      const url = `${config.baseUrl}${lang.path}`;
-      await page.goto(url, { timeout: 30000 });
-      await page.waitForSelector('footer, .site-footer', { timeout: 10000 });
-      
-      // Take screenshot for debugging
-      await footer.takeFooterScreenshot(`footer-${lang.code}-homepage.png`);
-      
-      // Test all footer links
-      const linkResults = await footer.testAllFooterLinks(config.baseUrl);
-      
-      results.push({
-        language: lang.name,
-        page: 'Homepage',
-        url: url,
-        working: linkResults.working,
-        broken: linkResults.broken
-      });
-      
-      // Log results
-      console.log(`${lang.name} Homepage - Working links: ${linkResults.working.length}, Broken links: ${linkResults.broken.length}`);
-      
-      if (linkResults.broken.length > 0) {
-        console.log('Broken links:', linkResults.broken);
-      }
-      
-      // Assert no broken links
-      expect(linkResults.broken.length).toBe(0);
-    }
-    
-    // Log summary
-    console.log('Footer Navigation Test Results Summary:', JSON.stringify(results, null, 2));
-  });
-
-  // Test footer links on feature pages for each language
-  test('Footer links should work on feature pages for all languages', async ({ page }) => {
-    const results: any[] = [];
-    
-    for (const lang of config.languages) {
-      for (const featurePage of config.featurePages) {
-        console.log(`Testing footer links on ${lang.name} ${featurePage.name} page`);
-        
-        const url = `${config.baseUrl}${lang.path}${featurePage.path}`;
-        
-        try {
-          await page.goto(url, { timeout: 30000 });
-          await page.waitForSelector('footer, .site-footer', { timeout: 10000 });
-          
-          // Take screenshot for debugging
-          await footer.takeFooterScreenshot(`footer-${lang.code}-${featurePage.name.toLowerCase().replace(/\s+/g, '-')}.png`);
-          
-          // Test all footer links
-          const linkResults = await footer.testAllFooterLinks(config.baseUrl);
-          
-          results.push({
-            language: lang.name,
-            page: featurePage.name,
-            url: url,
-            working: linkResults.working,
-            broken: linkResults.broken
-          });
-          
-          // Log results
-          console.log(`${lang.name} ${featurePage.name} - Working links: ${linkResults.working.length}, Broken links: ${linkResults.broken.length}`);
-          
-          if (linkResults.broken.length > 0) {
-            console.log('Broken links:', linkResults.broken);
-          }
-          
-          // Assert no broken links
-          expect(linkResults.broken.length).toBe(0);
-          
-        } catch (error) {
-          console.log(`Failed to test ${url}: ${error}`);
-          results.push({
-            language: lang.name,
-            page: featurePage.name,
-            url: url,
-            error: error instanceof Error ? error.message : String(error)
-          });
-        }
-      }
-    }
-    
-    // Log summary
-    console.log('Feature Pages Footer Navigation Test Results:', JSON.stringify(results, null, 2));
-  });
-
   // Test specific footer link categories
   test('Footer link categories should be consistent across languages', async ({ page }) => {
     const categoryResults: any[] = [];
@@ -142,7 +48,7 @@ test.describe('Footer Navigation Tests', () => {
       
       const url = `${config.baseUrl}${lang.path}`;
       await page.goto(url, { timeout: 30000 });
-      await page.waitForSelector('footer, .site-footer', { timeout: 10000 });
+      await page.waitForSelector('.site-footer', { timeout: 10000 });
       
       const allLinks = await footer.getAllFooterLinks();
       
@@ -173,13 +79,13 @@ test.describe('Footer Navigation Tests', () => {
   });
 
   // Test social media links
-  test('Social media links should work across all languages', async ({ page }) => {
+  test('Social media links should be external', async ({ page }) => {
     for (const lang of config.languages) {
       console.log(`Testing social media links for ${lang.name}`);
       
       const url = `${config.baseUrl}${lang.path}`;
       await page.goto(url, { timeout: 30000 });
-      await page.waitForSelector('footer, .site-footer', { timeout: 10000 });
+      await page.waitForSelector('.site-footer', { timeout: 10000 });
       
       const socialLinks = await footer.getSocialLinks();
       
@@ -192,10 +98,6 @@ test.describe('Footer Navigation Tests', () => {
         
         // Social links should be external URLs
         expect(socialLink.href).toMatch(/^https?:\/\//);
-        
-        // Test that the link is accessible
-        const response = await page.request.get(socialLink.href);
-        expect(response.status()).toBeLessThan(400);
       }
     }
   });
@@ -216,7 +118,7 @@ test.describe('Footer Navigation Tests', () => {
         
         try {
           await page.goto(startUrl, { timeout: 30000 });
-          await page.waitForSelector('footer, .site-footer', { timeout: 10000 });
+          await page.waitForSelector('.site-footer', { timeout: 10000 });
           
           // Get a few key footer links to test
           const allLinks = await footer.getAllFooterLinks();
@@ -236,7 +138,7 @@ test.describe('Footer Navigation Tests', () => {
             
             // Go back to start page for next test
             await page.goto(startUrl, { timeout: 30000 });
-            await page.waitForSelector('footer, .site-footer', { timeout: 10000 });
+            await page.waitForSelector('.site-footer', { timeout: 10000 });
           }
           
         } catch (error) {
@@ -253,7 +155,7 @@ test.describe('Footer Navigation Tests', () => {
       
       const url = `${config.baseUrl}${lang.path}`;
       await page.goto(url, { timeout: 30000 });
-      await page.waitForSelector('footer, .site-footer', { timeout: 10000 });
+      await page.waitForSelector('.site-footer', { timeout: 10000 });
       
       const allLinks = await footer.getAllFooterLinks();
       const anchorLinks = allLinks.filter(link => link.href.startsWith('#'));

@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "title": "Divinci AI - Excellentie, elke keer",
+    "description": "Versterk uw bedrijf met geavanceerd release management en rigoureuze kwaliteitsborging voor aangepaste taalmodellen. Bereik operationele betrouwbaarheid, regulatoire compliance en optimale prestaties door een gestructureerd, end-to-end implementatieproces.",
+    "og_title": "Divinci AI",
+    "og_description": "AI releases. Excellentie, elke keer."
+  },
+  "navigation": {
+    "features": "Functies",
+    "team": "Team",
+    "signup": "Aanmelden",
+    "support": "Ondersteuning",
+    "request_demo": "Demo aanvragen"
+  },
+  "hero": {
+    "heading": "AI releases.",
+    "subheading": "Excellentie\nelke keer.",
+    "description": "Versterk uw bedrijf met geavanceerd release management en rigoureuze kwaliteitsborging voor aangepaste taalmodellen. Bereik operationele betrouwbaarheid, regulatoire compliance en optimale prestaties door een gestructureerd, end-to-end implementatieproces.",
+    "features": {
+      "test_automation": "Intelligente testautomatisering",
+      "compliance_records": "Gedetailleerde compliance records", 
+      "version_recovery": "Onmiddellijk versie herstel"
+    },
+    "cta": {
+      "primary": "Demo aanvragen",
+      "secondary": "Platform verkennen"
+    }
+  },
+  "enterprise": {
+    "title": "Enterprise AI, vakkundig beheerd",
+    "description": "Ontgrendel robuust release management en rigoureuze kwaliteitsborging voor grote taalmodellen. Ons platform rust ondernemingen uit met geavanceerde tools om implementatie te stroomlijnen, compliance af te dwingen en consistente, hoogwaardige AI-prestaties op schaal te garanderen.",
+    "features": {
+      "release_orchestration": {
+        "title": "Intelligente release orchestratie",
+        "description": "Automatiseer en coördineer complexe implementatiepipelines met precisie. Zorg ervoor dat elke modelrelease wordt gevalideerd, gedocumenteerd en naadloos wordt overgezet naar productie, risico's minimaliserend en operationele efficiëntie maximaliserend."
+      },
+      "model_oversight": {
+        "title": "Proactief model toezicht", 
+        "description": "Monitor modelprestaties en compliance in realtime. Benut geautomatiseerde controles en uitgebreide analytics om problemen vroeg te detecteren, regulatoire standaarden te handhaven en optimale modelintegriteit te behouden."
+      },
+      "performance_analytics": {
+        "title": "Aangepaste prestatie-analytics",
+        "description": "Stel aangepaste evaluatiemetriek in en volg deze, afgestemd op uw bedrijfsdoelstellingen. Analyseer nauwkeurigheid, vooringenomenheid en andere kritieke factoren om strategische beslissingen te informeren gedurende de gehele modellevenscyclus."
+      },
+      "team_collaboration": {
+        "title": "Geïntegreerde teamsamenwerking",
+        "description": "Stroomlijn kruisfunctionele beoordelingen met gestructureerde workflows. Wijs verantwoordelijkheden toe, verzamel feedback en documenteer goedkeuringen om ervoor te zorgen dat elke release voldoet aan organisatorische en regulatoire verwachtingen."
+      }
+    }
+  },
+  "features": {
+    "title": "Geef uw workflow meer kracht met AI",
+    "description": "Ontdek functies ontworpen voor enterprise teams die betrouwbare, schaalbare AI-samenwerking nodig hebben.",
+    "list": {
+      "multiplayer": {
+        "title": "Multiplayer",
+        "description": "Maak multi-stakeholder samenwerking mogelijk met gedeelde AI-werkruimtes voor kruisfunctionele teams."
+      },
+      "ai_family": {
+        "title": "AI Familie", 
+        "description": "Toegang tot enterprise-grade modellen van toonaangevende providers met uniforme governance en beveiligingscontroles."
+      },
+      "voice_io": {
+        "title": "Spraak In/Uit",
+        "description": "Maak naadloze spraakinteracties mogelijk met enterprise-grade tekst-naar-spraak en spraak-naar-tekst mogelijkheden."
+      },
+      "performance_analytics": {
+        "title": "Prestatie Analytics",
+        "description": "Volg gebruik, efficiëntie en kwaliteitspatronen over alle AI-interacties met gedetailleerde analytics."
+      },
+      "enterprise_security": {
+        "title": "Enterprise Beveiliging", 
+        "description": "Beveilig alle data en gesprekken met end-to-end encryptie, toegangscontroles en uitgebreide auditing."
+      },
+      "lightning_responses": {
+        "title": "Bliksemsnelle Reacties",
+        "description": "Krijg onmiddellijke reacties met geoptimaliseerde latentie en gedistribueerde netwerkarchitectuur voor maximale prestaties."
+      },
+      "domain_specialization": {
+        "title": "Domein Specialisatie",
+        "description": "Fine-tune AI-modellen voor specifieke industrieën met gespecialiseerde kennis en aangepaste gebruikscases."
+      },
+      "smart_workflows": {
+        "title": "Slimme Workflows",
+        "description": "Automatiseer complexe taken met AI-workflows die leren en zich aanpassen aan de processen van uw team."
+      },
+      "api_integration": {
+        "title": "API Integratie",
+        "description": "Verbind naadloos met uw bestaande tools via robuuste API's en uitgebreide ontwikkelaarsdocumentatie."
+      },
+      "scalability": {
+        "title": "Schaalbaarheid",
+        "description": "Schaal van kleine teams naar enterprise organisaties met infrastructuur die automatisch schaalt."
+      }
+    }
+  },
+  "team": {
+    "title": "Ontmoet ons team",
+    "description": "Ontmoet de innovators die de toekomst van mens-AI samenwerking vormgeven.",
+    "members": {
+      "connect": "Verbinden"
+    },
+    "roles": {
+      "ceo_founder": "CEO & Oprichter",
+      "cto_cofounder": "CTO & Medeoprichter", 
+      "head_product": "Hoofd Product",
+      "senior_data_scientist": "Senior Data Scientist",
+      "ux_ui_designer": "UX/UI Designer",
+      "software_engineer": "Software Engineer"
+    }
+  },
+  "signup": {
+    "title": "Begin uw AI-reis", 
+    "description": "Sluit je aan bij duizenden teams die al hun werk transformeren met Divinci AI. Krijg vroege toegang tot ons platform.",
+    "email_placeholder": "Uw email",
+    "button": "Toegang aanvragen",
+    "note": "Geen spam. Op elk moment uitschrijven."
+  },
+  "ai_for_good": {
+    "title": "AI voor het goede",
+    "description": "We zijn toegewijd aan het ontwikkelen van verantwoordelijke AI die de mensheid ten goede komt. Ons platform is ontworpen met sterke ethische principes, transparantie en een focus op het versterken van mensen, niet het vervangen ervan.",
+    "principles": {
+      "safe_development": {
+        "title": "Veilige ontwikkeling",
+        "description": "Rigoureuze veiligheidstesten en beschermende maatregelen."
+      },
+      "fair_ai": {
+        "title": "Eerlijke AI",
+        "description": "Vooringenomenheidsreductie en eerlijkheidsbevordering in alle uitkomsten."
+      },
+      "positive_impact": {
+        "title": "Positieve impact", 
+        "description": "Bijdragen aan oplossingen die wereldwijde uitdagingen aanpakken."
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Versterking van mens-AI samenwerking",
+    "sections": {
+      "product": {
+        "title": "Product",
+        "links": {
+          "features": "Functies",
+          "pricing": "Prijzen", 
+          "roadmap": "Roadmap",
+          "changelog": "Changelog"
+        }
+      },
+      "resources": {
+        "title": "Bronnen",
+        "links": {
+          "documentation": "Documentatie",
+          "blog": "Blog",
+          "tutorials": "Tutorials",
+          "api": "API"
+        }
+      },
+      "company": {
+        "title": "Bedrijf",
+        "links": {
+          "about": "Over Ons",
+          "careers": "Carrières", 
+          "contact": "Contact",
+          "press": "Pers"
+        }
+      },
+      "legal": {
+        "title": "Juridisch",
+        "links": {
+          "terms": "Servicevoorwaarden",
+          "privacy": "Privacybeleid",
+          "ai_safety": "AI Veiligheid & Ethiek",
+          "security": "Beveiliging"
+        }
+      }
+    },
+    "bottom": {
+      "copyright": "© 2023-2025 Divinci AI. Alle rechten voorbehouden.",
+      "links": {
+        "sitemap": "Sitemap",
+        "accessibility": "Toegankelijkheid", 
+        "cookies": "Cookie Beleid"
+      }
+    }
+  },
+  "language_switcher": {
+    "current_language": "Nederlands",
+    "languages": {
+      "en": "English",
+      "es": "Español", 
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands", 
+      "hi": "हिन्दी"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+{%- set current_lang = page.lang | default(value="en") -%}
+
+<!-- Include Header -->
+{% include "partials/header.html" %}
+
+<section class="hero is-medium has-background-white-ter">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title is-1 has-text-primary">{{ page.title }}</h1>
+            {% if page.description %}
+            <p class="subtitle is-4 has-text-grey">{{ page.description }}</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content is-medium">
+                    {{ page.content | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Include Footer -->
+{% include "partials/footer.html" %}
+
+<style>
+/* Page-specific styles */
+.content {
+    line-height: 1.8;
+}
+
+.content h2 {
+    color: #16214c;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.content h3 {
+    color: #254284;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content ul {
+    margin-left: 2rem;
+}
+
+.content li {
+    margin-bottom: 0.5rem;
+}
+
+.content a {
+    color: #16214c;
+    text-decoration: underline;
+}
+
+.content a:hover {
+    color: #254284;
+}
+
+/* Notification box for legal pages */
+.notification.is-info {
+    background-color: rgba(22, 33, 76, 0.1);
+    border-left: 4px solid #16214c;
+}
+
+.notification.is-info strong {
+    color: #16214c;
+}
+</style>
+{% endblock %}

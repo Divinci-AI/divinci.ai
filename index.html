@@ -494,7 +494,7 @@
                     <div class="nav-title">
                         <span class="brand-name">Divinci ™</span>
                         <span class="mobile-hide consumer-view-content">&nbsp;- Create your own custom AI</span>
-                        <span class="mobile-hide company-view-content" style="display: none; opacity: 0;">&nbsp;- Enterprise AI Solutions</span>
+                        <span class="mobile-hide company-view-content">&nbsp;- Enterprise AI Solutions</span>
                     </div>
                 </a>
                 <!-- Toggle switch for customer/company view - JAVASCRIPT REMOVED -->
@@ -521,19 +521,19 @@
                                 <span class="dropdown-icon">▼</span>
                             </div>
                             <div class="language-switcher-dropdown">
-                                <a href="/" class="language-option">
+                                <a href="/" class="language-option" data-lang="en">
                                     <span class="language-name">English</span>
                                     <span class="language-native">English</span>
                                 </a>
-                                <a href="/es/" class="language-option">
+                                <a href="/es/" class="language-option" data-lang="es">
                                     <span class="language-name">Spanish</span>
                                     <span class="language-native">Español</span>
                                 </a>
-                                <a href="/fr/" class="language-option">
+                                <a href="/fr/" class="language-option" data-lang="fr">
                                     <span class="language-name">French</span>
                                     <span class="language-native">Français</span>
                                 </a>
-                                <a href="/ar/" class="language-option">
+                                <a href="/ar/" class="language-option" data-lang="ar">
                                     <span class="language-name">Arabic</span>
                                     <span class="language-native">العربية</span>
                                 </a>
@@ -543,9 +543,6 @@
                 </div>
             </nav>
 
-            <!-- EMERGENCY: DISABLED DYNAMIC SCRIPT LOADING TO STOP INFINITE LOOPS -->
-            <!-- This inline script was causing the infinite loading loops -->
-            <!--
             <script>
                 // Load the language switcher script
                 const script = document.createElement('script');
@@ -569,7 +566,6 @@
                 mobileMenuScript.defer = true;
                 document.body.appendChild(mobileMenuScript);
             </script>
-            -->
         </header>
 
         <main id="main-content" role="main">
@@ -588,7 +584,7 @@
                      </br/>
                      <i style="font-weight: lighter;">with friends!</i>
                 </h1>
-                <h1 class="company-view-content gradient-text-company" style="display: none; opacity: 0;">
+                <h1 class="company-view-content gradient-text-company">
                     Modernize your business in the Age of AI
                     <br/>
                 </h1>
@@ -1292,105 +1288,156 @@
 
         <!-- Footer -->
         <div class="footer-wrapper" style="width: 100%; overflow: hidden; box-sizing: border-box;">
-            <footer class="site-footer">
-                <!-- Sacred Geometry Background Elements -->
-                <div class="footer-sacred-pattern"></div>
-                <div class="sacred-circle sacred-circle-1"></div>
-                <div class="sacred-circle sacred-circle-2"></div>
-                <div class="sacred-circle sacred-circle-3"></div>
+            <!-- Footer with Sacred Geometry Elements -->
+<!-- Load footer styles dynamically -->
+<script>
+    // Create dynamic link element to handle path resolution without document.write
+    (function() {
+        // Load Font Awesome if not already loaded
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        }
 
-                <div class="container">
-                    <div class="footer-content">
-                        <!-- Top Section with Bulma Columns -->
-                        <div class="columns is-footer-links">
-                            <!-- Logo and Company Info -->
-                            <div class="column is-one-quarter">
-                                <div class="footer-brand">
-                                    <div class="footer-logo">
-                                        <div class="heart">🖤</div>
-                                        <span class="footer-brand-name">Divinci AI</span>
-                                    </div>
-                                    <p class="footer-tagline">Empowering human-AI collaboration</p>
-                                    <div class="social-links">
-                                        <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                                        <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
-                                        <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+        // Load Bulma if not already loaded
+        if (!document.querySelector('link[href*="bulma"]')) {
+            const bulma = document.createElement('link');
+            bulma.rel = 'stylesheet';
+            bulma.href = 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+            document.head.appendChild(bulma);
+        }
 
-                            <!-- Navigation Links -->
-                            <div class="column">
-                                <div class="footer-links-column">
-                                    <h3>Product</h3>
-                                    <ul>
-                                        <li><a href="#features">Features</a></li>
-                                        <li><a href="pricing.html">Pricing</a></li>
-                                        <li><a href="roadmap.html">Roadmap</a></li>
-                                        <li><a href="changelog.html">Changelog</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+        // Load footer styles
+        const footerStyles = document.createElement('link');
+        footerStyles.rel = 'stylesheet';
+        footerStyles.href = '/styles-footer.css';
+        document.head.appendChild(footerStyles);
+    })();
+</script>
+<footer class="site-footer">
+    <!-- Sacred Geometry Background Elements -->
+    <div class="footer-sacred-pattern"></div>
+    <div class="sacred-circle sacred-circle-1"></div>
+    <div class="sacred-circle sacred-circle-2"></div>
+    <div class="sacred-circle sacred-circle-3"></div>
 
-                            <div class="column">
-                                <div class="footer-links-column">
-                                    <h3>Resources</h3>
-                                    <ul>
-                                        <li><a href="docs/index.html">Documentation</a></li>
-                                        <li><a href="blog/index.html">Blog</a></li>
-                                        <li><a href="tutorials/">Tutorials</a></li>
-                                        <li><a href="api/">API</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="column">
-                                <div class="footer-links-column">
-                                    <h3>Company</h3>
-                                    <ul>
-                                        <li><a href="about-us.html">About Us</a></li>
-                                        <li><a href="careers.html">Careers</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="press.html">Press</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="column">
-                                <div class="footer-links-column">
-                                    <h3>Legal</h3>
-                                    <ul>
-                                        <li><a href="terms-of-service.html">Terms of Service</a></li>
-                                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                        <li><a href="ai-safety-ethics.html">AI Safety & Ethics</a></li>
-                                        <li><a href="security.html">Security</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+    <div class="container">
+        <div class="footer-content">
+            <!-- Top Section with Bulma Columns -->
+            <div class="columns is-footer-links">
+                <!-- Logo and Company Info -->
+                <div class="column is-one-quarter">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <!-- <img src="/images/divinci_logo_inverted.svg" alt="Divinci AI Logo"
+                                onerror="this.onerror=null; this.src='images/divinci_logo.png';" /> -->
+                            <div class="heart">🖤</div>
+                            <span class="footer-brand-name">Divinci AI</span>
                         </div>
-                    </div>
-
-                    <!-- Footer Bottom with Bulma Level -->
-                    <div class="footer-bottom">
-                        <div class="level is-footer-bottom">
-                            <div class="level-left">
-                                <div class="level-item">
-                                    <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
-                                </div>
-                            </div>
-                            <div class="level-right">
-                                <div class="level-item">
-                                    <div class="footer-bottom-links">
-                                        <a href="sitemap.xml">Sitemap</a>
-                                        <a href="accessibility.html">Accessibility</a>
-                                        <a href="cookies.html">Cookie Policy</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <p class="footer-tagline">Empowering human-AI collaboration</p>
+                        <div class="social-links">
+                            <a href="https://twitter.com/DivinciAI" aria-label="Twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/company/divinci-ai" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/Divinci-AI" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                 </div>
-            </footer>
+
+                <!-- Navigation Links -->
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Product</h3>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="roadmap.html">Roadmap</a></li>
+                            <li><a href="changelog.html">Changelog</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="docs/index.html">Documentation</a></li>
+                            <li><a href="blog/">Blog</a></li>
+                            <li><a href="tutorials/">Tutorials</a></li>
+                            <li><a href="api/">API</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="press.html">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="footer-links-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="ai-safety-ethics.html">AI Safety & Ethics</a></li>
+                            <li><a href="security.html">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom with Bulma Level -->
+        <div class="footer-bottom">
+            <div class="level is-footer-bottom">
+                <div class="level-left">
+                    <div class="level-item">
+                        <p class="copyright">&copy; 2023-2025 Divinci AI. All rights reserved.</p>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <div class="footer-bottom-links">
+                            <a href="sitemap.xml">Sitemap</a>
+                            <a href="accessibility.html">Accessibility</a>
+                            <a href="cookies.html">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const footer = document.querySelector('.site-footer');
+    if (!footer) return;
+
+    const links = footer.querySelectorAll('a');
+    const currentPath = window.location.pathname;
+    const pathSegments = currentPath.split('/').filter(Boolean);
+    let base = '';
+
+    if (pathSegments.length > 1) {
+      base = Array(pathSegments.length -1).fill('..').join('/');
+    }
+    
+    if (!document.querySelector('base')) {
+      const baseTag = document.createElement('base');
+      baseTag.href = base ? base + '/' : './';
+      document.head.insertBefore(baseTag, document.head.firstChild);
+    }
+  });
+</script>
         </div>
 
 
@@ -1428,6 +1475,6 @@
 
         <!-- Infinite reload fix and resource monitoring -->
         <script src="js/infinite-reload-fix.js"></script>
-        <script src="js/resource-loading-debugger.js"></script>
+        <script src="debug-include.js"></script>
 </body>
 </html>
