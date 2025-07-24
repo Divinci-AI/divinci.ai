@@ -14,7 +14,7 @@ test.describe('Full Translation Verification', () => {
     'AI releases',
     'Excellence, every time',
     'Enterprise AI, expertly managed',
-    'Supercharge your workflow with AI',
+    'The Age of AI Management',
     'Meet our team',
     'Start your AI journey',
     'AI for good',

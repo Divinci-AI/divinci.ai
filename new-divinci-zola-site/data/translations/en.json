@@ -49,48 +49,49 @@
     }
   },
   "features": {
-    "title": "Supercharge your workflow with AI",
+    "title": "The Age of AI Management",
     "description": "Discover features designed for enterprise teams that need reliable, scalable AI collaboration.",
+    "journal_title": "Divinci's LLM Quality Codex",
     "list": {
       "multiplayer": {
-        "title": "Multiplayer",
-        "description": "Enable multi-stakeholder collaboration with shared AI workspaces for cross-functional teams."
+        "title": "Collaborative Review",
+        "description": "Enable multi-stakeholder model validation with synchronized review environments for ML engineers, QA teams, and compliance officers."
       },
       "ai_family": {
-        "title": "AI Family", 
-        "description": "Access enterprise-grade models from leading providers with unified governance and security controls."
+        "title": "Model Registry", 
+        "description": "Centralized version control for custom LLMs with automated rollback capabilities, A/B testing frameworks, and comprehensive model lineage tracking."
       },
       "voice_io": {
-        "title": "Voice In/Out",
-        "description": "Enable seamless voice interactions with enterprise-grade text-to-speech and speech-to-text capabilities."
+        "title": "Interactive Testing",
+        "description": "Conduct comprehensive voice-based model evaluation with automated test case generation and performance benchmarking across modalities."
       },
       "performance_analytics": {
-        "title": "Performance Analytics",
-        "description": "Track usage, efficiency, and quality patterns across all AI interactions with detailed analytics."
+        "title": "Quality Metrics",
+        "description": "Monitor inference latency, token efficiency, hallucination rates, and custom accuracy metrics with real-time dashboards and alerting."
       },
       "enterprise_security": {
-        "title": "Enterprise Security", 
-        "description": "Secure all data and conversations with end-to-end encryption, access controls, and comprehensive auditing."
+        "title": "Compliance Suite", 
+        "description": "Automated GDPR, HIPAA, and SOC2 compliance validation with audit trails, data residency controls, and model behavior attestation."
       },
       "lightning_responses": {
-        "title": "Lightning Responses",
-        "description": "Get instant responses with optimized latency and distributed network architecture for maximum performance."
+        "title": "Release Velocity",
+        "description": "Accelerate model deployment cycles with parallel testing pipelines, automated staging environments, and zero-downtime rollouts."
       },
       "domain_specialization": {
-        "title": "Domain Specialization",
-        "description": "Fine-tune AI models for specific industries with specialized knowledge and customized use cases."
+        "title": "Test Scenarios",
+        "description": "Domain-specific test suites for healthcare, finance, and legal LLMs with industry-standard evaluation frameworks and bias detection."
       },
       "smart_workflows": {
-        "title": "Smart Workflows",
-        "description": "Automate complex tasks with AI workflows that learn and adapt to your team's processes."
+        "title": "CI/CD Pipelines",
+        "description": "Automated model training, validation, and deployment workflows with integrated quality gates and progressive rollout strategies."
       },
       "api_integration": {
-        "title": "API Integration",
-        "description": "Connect seamlessly with your existing tools through robust APIs and comprehensive developer documentation."
+        "title": "MLOps Integration",
+        "description": "Native connectors for Weights & Biases, MLflow, Kubeflow, and enterprise model serving platforms with unified observability."
       },
       "scalability": {
-        "title": "Scalability",
-        "description": "Scale from small teams to enterprise organizations with infrastructure that automatically scales."
+        "title": "Enterprise Scale",
+        "description": "Manage thousands of model versions across distributed teams with horizontal scaling, multi-region deployment, and federated governance."
       }
     }
   },
@@ -129,9 +130,46 @@
         "description": "Bias reduction and fairness promotion in all outcomes."
       },
       "positive_impact": {
-        "title": "Positive impact", 
+        "title": "Positive impact",
         "description": "Contributing to solutions that address global challenges."
       }
+    }
+  },
+  "expert_answers": {
+    "title": "Expert answers. Enterprise clarity.",
+    "description": "Find comprehensive insights on our platform's release management and quality assurance for large language models. Explore detailed, professional responses to your most pressing questions.",
+    "faqs": {
+      "model_reliability": {
+        "question": "How do you guarantee model reliability?",
+        "answer": "We implement a multi-layered validation process, combining automated regression, performance, and security testing with expert manual reviews. Each model release is rigorously assessed to ensure it consistently meets enterprise-grade standards for accuracy, stability, and compliance."
+      },
+      "language_models": {
+        "question": "Which language models are compatible?",
+        "answer": "Our platform supports a broad spectrum of large language models, from open-source to proprietary architectures. Flexible integration enables seamless deployment across diverse frameworks and enterprise environments, ensuring adaptability to evolving business needs."
+      },
+      "quality_assurance": {
+        "question": "How is ongoing quality assurance achieved?",
+        "answer": "We maintain quality through continuous monitoring, scheduled audits, and real-time performance tracking. By analyzing user feedback and emerging risks, we proactively refine models and processes to uphold stringent quality benchmarks over time."
+      },
+      "workflow_integration": {
+        "question": "Does the platform fit existing workflows?",
+        "answer": "Our solution is engineered for seamless integration with enterprise systems. Robust APIs and configurable options allow effortless alignment with your current release management and development pipelines, minimizing disruption and maximizing efficiency."
+      }
+    }
+  },
+  "contact": {
+    "title": "Connect with our experts",
+    "subtitle": "Contact us for strategic AI guidance and robust support tailored to your business needs.",
+    "get_in_touch": "GET IN TOUCH",
+    "email_specialists": {
+      "title": "Email our specialists",
+      "description": "Receive detailed, thoughtful responses to your technical and business inquiries.",
+      "email": "hi@divinci.ai"
+    },
+    "speak_consultant": {
+      "title": "Speak with a consultant",
+      "description": "Available Monday-Friday, 8am-5pm EST for in-depth assistance.",
+      "phone": "+1 (555) 000-0000"
     }
   },
   "footer": {

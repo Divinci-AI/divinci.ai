@@ -17,7 +17,7 @@ test.describe('Comprehensive Language Translation Tests', () => {
       expectedTexts: {
         hero: 'AI releases',
         enterprise: 'Enterprise AI, expertly managed',
-        features: 'Supercharge your workflow with AI'
+        features: 'The Age of AI Management'
       }
     },
     {
