@@ -1,12 +1,41 @@
 +++
-title = "AI Safety & Ethics"
-description = "Our commitment to responsible AI development and ethical practices"
-template = "page.html"
+title = "AI Safety, Trust and Ethics Statement"
+description = "Divinci AI's Commitment to Responsible and Trustworthy AI"
+template = "ai-safety.html"
 +++
 
-# AI Safety & Ethics
+At Divinci AI, we prioritize safe, ethical, and transparent AI solutions. Our products, including web and mobile applications, serve diverse use cases in healthcare and other sensitive fields. This document details our commitment to using only licensed data, ensuring rigorous safety measures, and implementing robust human interfaces in our Retrieval-Augmented Generation (RAG) and Fine-Tuned language models.
 
-At Divinci AI, we believe that artificial intelligence should be developed and deployed responsibly, with careful consideration of its impact on society, individuals, and organizations. Our commitment to AI safety and ethics guides every aspect of our work.
+## Licensed Data and Responsible AI Development
+
+We are committed to using only licensed and ethically sourced data in training our AI models. Our data governance practices ensure that every dataset is verified for legitimacy, licensing compliance, and relevance. This approach aligns with guidelines like those set by ANSI for trustworthy AI, emphasizing transparency and ethical sourcing.
+
+## Human-Centered Safety and Moderation
+
+Divinci AI integrates human moderation interfaces across all custom AI solutions to foster responsible use and prevent misuse. These interfaces support:
+
+- **Content Management:** We provide tools for reviewing, editing, and controlling the information our AI models generate, helping to align responses with ethical standards.
+- **Testing and Validation:** Every model goes through rigorous testing to minimize bias, confabulation, and misinformation.
+- **Release Management:** Our models undergo controlled release processes to ensure they are only deployed once they meet our high safety and reliability standards.
+
+## Safety Features in Consumer and Patient-Facing Models
+
+For applications involving consumers or patients, Divinci AI incorporates robust safety features such as:
+
+- **Transparency and Explainability:** We strive for clarity in AI responses, helping users understand how decisions are made and why specific recommendations appear. This commitment reduces over-reliance and ensures user trust.
+- **Moderation for Harmful Content:** We actively moderate against harmful outputs, including any content that may be biased, inappropriate, or potentially misleading. Our systems implement safeguards to monitor and restrict outputs that could negatively impact users.
+
+## Trust, Transparency, and User Accountability
+
+Divinci AI fosters trust by creating transparent AI solutions. We provide clear user guidelines, outlining system capabilities, limitations, and ethical constraints. For healthcare applications, we follow ANSI's standards to align our systems with trusted guidelines on data privacy, bias mitigation, and compliance with relevant regulatory standards.
+
+## AI Governance and Compliance
+
+Our adherence to the AI governance framework aligns with standards like those from NIST and IEEE, focusing on accountability, transparency, and robust performance metrics. Regular audits of our systems ensure that our AI models remain aligned with Divinci AI's ethical standards throughout their lifecycle.
+
+## Acknowledgment
+
+We'd like to thank [The Alan Turing Institute's AI Standards Hub](https://aistandardshub.org/) for providing invaluable AI standards resources that have inspired and informed Divinci AI's AI Safety and Ethics policies.
 
 ## Our principles
 

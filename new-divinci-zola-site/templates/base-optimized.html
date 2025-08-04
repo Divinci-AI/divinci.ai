@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{# Optimized language detection - faster processing #}
+{%- set current_lang = page.lang | default(value="en") -%}
+
+<html lang="{{ current_lang }}" {% if current_lang == "ar" %}dir="rtl"{% endif %}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    {# Critical CSS inline for faster rendering #}
+    <style>
+        body{font-family:'Source Sans 3',sans-serif;margin:0;background:#f8f4f0;color:#2d3c34}
+        .loading{opacity:0;transition:opacity 0.3s ease}
+        .loaded{opacity:1}
+    </style>
+    
+    <title>{% block title %}{{ page.title | default(value="Divinci AI") }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ page.description | default(value="AI releases. Excellence, every time.") }}{% endblock %}">
+    
+    {# Preload critical resources #}
+    <link rel="preload" href="{{ get_url(path="css/optimized.css") }}" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    {# Favicon #}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ get_url(path="images/favicon-32x32.png") }}">
+    
+    {# Load optimized CSS #}
+    <link rel="stylesheet" href="{{ get_url(path="css/variables.css") }}">
+    <link rel="stylesheet" href="{{ get_url(path="css/optimized.css") }}">
+    
+    {# Load fonts with display=swap for better performance #}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap">
+    
+    {# Essential meta tags only #}
+    <meta property="og:title" content="{% block og_title %}{{ page.title | default(value="Divinci AI") }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ page.description | default(value="AI releases. Excellence, every time.") }}{% endblock %}">
+    <meta property="og:image" content="{{ get_url(path="images/social-preview.png") }}">
+    <meta property="og:type" content="website">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="loading">
+    <div id="main-content">
+        {% block content %}{% endblock %}
+    </div>
+    
+    {# Deferred scripts for better performance #}
+    <script>
+        // Mark page as loaded for fade-in effect
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('loaded');
+            document.body.classList.remove('loading');
+        });
+    </script>
+    
+    {# Load optimized scripts after page content #}
+    <script defer src="{{ get_url(path="js/optimized.js") }}"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

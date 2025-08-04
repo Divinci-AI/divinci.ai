@@ -1,0 +1,842 @@
+{% extends "base-optimized.html" %}
+
+{% block content %}
+{%- set current_lang = page.lang | default(value="en") -%}
+
+<!-- Include Header -->
+{% include "partials/header.html" %}
+
+<!-- About Hero Section - matches original structure -->
+<section class="about-hero">
+    <!-- Sacred Geometry Background Elements -->
+    <div class="hero-circle hero-circle-1"></div>
+    <div class="hero-circle hero-circle-2"></div>
+    
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="about-title">About Divinci AI</h1>
+            <p class="about-subtitle">Building the future of human-AI collaboration with artistry, precision, and purpose.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="mission-section">
+    <div class="container">
+        <div class="mission-vision-grid">
+            <div class="mission-card">
+                <div class="card-accent"></div>
+                <h2 class="card-title">Our Mission</h2>
+                <p class="section-content">
+                    To democratize enterprise AI by making sophisticated artificial intelligence accessible, manageable, and trustworthy for organizations of all sizes. We believe that AI should amplify human potential, not replace it.
+                </p>
+            </div>
+            
+            <div class="vision-card">
+                <div class="card-accent"></div>
+                <h2 class="card-title">Our Vision</h2>
+                <p class="section-content">
+                    A world where every organization can harness the transformative power of AI with confidence, knowing their implementations are secure, compliant, and aligned with their values. We envision AI as a collaborative partner in human achievement.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="values-section">
+    <div class="container">
+        <h2 class="section-title">Our Core Values</h2>
+        <p class="section-content">These principles guide everything we do, from product development to customer relationships.</p>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="value-title">Human-Centered AI</h3>
+                <p class="value-description">We design AI systems that enhance human capabilities rather than replace them, ensuring technology serves humanity's best interests.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3 class="value-title">Innovation with Purpose</h3>
+                <p class="value-description">Every feature we build solves a real problem. We innovate not for the sake of technology, but to create meaningful impact.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="value-title">Responsible AI</h3>
+                <p class="value-description">We prioritize ethical AI development, ensuring transparency, fairness, and accountability in every algorithm and decision.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="value-title">Inclusive Design</h3>
+                <p class="value-description">Our platforms are built for everyone, regardless of technical expertise, ensuring AI benefits are accessible to all.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3 class="value-title">Security First</h3>
+                <p class="value-description">Security isn't an afterthought—it's foundational to everything we build, protecting your data and maintaining trust.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3 class="value-title">Customer Partnership</h3>
+                <p class="value-description">We view our customers as partners, working closely together to achieve their AI goals and business objectives.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section">
+    <div class="container">
+        <h2 class="section-title">Meet Our Team</h2>
+        <p class="section-content">Passionate experts combining artistry with advanced AI technology.</p>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="{{ get_url(path="images/team/michael-mooring.jpg") }}" alt="Michael Mooring" class="member-image" onerror="this.src='{{ get_url(path="images/team/placeholder.jpg") }}'">
+                <div class="member-info">
+                    <h3 class="member-name">Michael Mooring</h3>
+                    <p class="member-title">Founder & CEO</p>
+                    <p class="member-bio">Visionary leader with deep expertise in AI systems and enterprise software. Previously built scalable platforms at leading tech companies.</p>
+                    <div class="member-social">
+                        <a href="https://linkedin.com/in/michaelmooring" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/michaelmooring" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <img src="{{ get_url(path="images/team/samuel-tobia.jpg") }}" alt="Samuel Tobia" class="member-image" onerror="this.src='{{ get_url(path="images/team/placeholder.jpg") }}'">
+                <div class="member-info">
+                    <h3 class="member-name">Samuel Tobia</h3>
+                    <p class="member-title">Co-Founder & CTO</p>
+                    <p class="member-bio">AI researcher and systems architect with extensive experience in machine learning infrastructure and scalable AI deployment.</p>
+                    <div class="member-social">
+                        <a href="https://linkedin.com/in/samueltobia" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/samtobia" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <img src="{{ get_url(path="images/team/sierra-hooshiari.jpg") }}" alt="Sierra Hooshiari" class="member-image" onerror="this.src='{{ get_url(path="images/team/placeholder.jpg") }}'">
+                <div class="member-info">
+                    <h3 class="member-name">Sierra Hooshiari</h3>
+                    <p class="member-title">Head of Product</p>
+                    <p class="member-bio">Product strategist focused on user experience and AI ethics. Expert in translating complex AI capabilities into intuitive interfaces.</p>
+                    <div class="member-social">
+                        <a href="https://linkedin.com/in/sierrahooshiari" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Story Timeline Section -->
+<section class="story-section">
+    <div class="container">
+        <h2 class="section-title">Our Story</h2>
+        <p class="section-content">From a vision to reality - the journey of building the future of enterprise AI.</p>
+        
+        <div class="story-timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">The Beginning</h3>
+                    <p class="timeline-description">
+                        Founded with the vision that AI should be accessible to every organization, not just tech giants. We started in a garage with big dreams and bigger ambitions.
+                    </p>
+                </div>
+                <div class="timeline-illustration">
+                    <!-- Leonardo-style sketch SVG -->
+                    <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="75" cy="75" r="60" fill="none" stroke="#16214c" stroke-width="2"/>
+                        <path d="M75 15 L75 135 M15 75 L135 75" stroke="#5ce2e7" stroke-width="1.5"/>
+                        <circle cx="75" cy="75" r="8" fill="#5ce2e7"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">First Prototype</h3>
+                    <p class="timeline-description">
+                        After months of research and development, we built our first working prototype. The da Vinci-inspired interface was born from our belief that technology should be beautiful.
+                    </p>
+                </div>
+                <div class="timeline-illustration">
+                    <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="30" width="90" height="90" fill="none" stroke="#16214c" stroke-width="2"/>
+                        <path d="M30 30 L120 120 M120 30 L30 120" stroke="#5ce2e7" stroke-width="1.5"/>
+                        <circle cx="75" cy="75" r="15" fill="none" stroke="#5ce2e7" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Beta Launch</h3>
+                    <p class="timeline-description">
+                        We launched our beta with select enterprise partners, gathering invaluable feedback that shaped our platform's evolution. The response was overwhelmingly positive.
+                    </p>
+                </div>
+                <div class="timeline-illustration">
+                    <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="75,20 130,60 130,110 75,130 20,110 20,60" fill="none" stroke="#16214c" stroke-width="2"/>
+                        <circle cx="75" cy="75" r="25" fill="none" stroke="#5ce2e7" stroke-width="1.5"/>
+                        <path d="M75 50 L75 100 M50 75 L100 75" stroke="#5ce2e7" stroke-width="1"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Official Launch</h3>
+                    <p class="timeline-description">
+                        Divinci AI officially launched to the public, bringing enterprise-grade AI management to organizations worldwide. The renaissance of AI had begun.
+                    </p>
+                </div>
+                <div class="timeline-illustration">
+                    <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M75 25 L100 50 L85 75 L110 100 L75 125 L40 100 L65 75 L50 50 Z" fill="none" stroke="#16214c" stroke-width="2"/>
+                        <circle cx="75" cy="75" r="20" fill="none" stroke="#5ce2e7" stroke-width="2"/>
+                        <path d="M75 55 L95 75 L75 95 L55 75 Z" fill="#5ce2e7" opacity="0.3"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Growing and Evolving</h3>
+                    <p class="timeline-description">
+                        Today, we continue to innovate and expand, serving enterprises globally while staying true to our core values of human-centered AI development.
+                    </p>
+                </div>
+                <div class="timeline-illustration">
+                    <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="75" cy="75" r="50" fill="none" stroke="#16214c" stroke-width="2"/>
+                        <circle cx="75" cy="75" r="35" fill="none" stroke="#5ce2e7" stroke-width="1.5"/>
+                        <circle cx="75" cy="75" r="20" fill="none" stroke="#5ce2e7" stroke-width="1"/>
+                        <path d="M75 25 L75 125 M25 75 L125 75 M45.7 45.7 L104.3 104.3 M104.3 45.7 L45.7 104.3" stroke="#5ce2e7" stroke-width="0.5"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI for Good Section -->
+<section class="social-good-section">
+    <div class="container">
+        <h2 class="section-title">AI for Good Initiatives</h2>
+        
+        <div class="social-good-content">
+            <div class="social-good-text">
+                <h3 class="social-good-title">AI for Impact: Inside LA's Homelessness Prevention Pilot Program</h3>
+                <p class="social-good-description">
+                    We're proud to partner with Los Angeles County on innovative AI solutions to address homelessness. 
+                    Our platform helps social workers identify at-risk individuals earlier and coordinate more effective interventions.
+                </p>
+                <a href="https://lu.ma/cmuj911s" target="_blank" class="social-good-link">
+                    Learn More About Our Impact <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="social-good-image">
+                <img src="{{ get_url(path="images/ai-for-good.jpg") }}" alt="AI for Good Initiative" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Join Team Section -->
+<section class="join-team-section">
+    <div class="container">
+        <h2 class="join-title">Join Our Team</h2>
+        <p class="join-description">Ready to help shape the future of AI? We're always looking for exceptional talent.</p>
+        <a href="{{ get_url(path="careers.md") }}" class="join-cta-button">
+            <i class="fas fa-rocket"></i>
+            View Open Positions
+        </a>
+    </div>
+</section>
+
+<!-- Include Footer -->
+{% include "partials/footer.html" %}
+
+<style>
+/* About Us Page Styles - Matching Original Static HTML exactly */
+
+/* Hero Section */
+.about-hero {
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    color: white;
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hero-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(92, 226, 231, 0.15);
+    opacity: 0.4;
+    z-index: 0;
+}
+
+.hero-circle-1 {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    right: -50px;
+}
+
+.hero-circle-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -50px;
+    left: -50px;
+    opacity: 0.3;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.about-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, #16214c, #5ce2e7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.about-subtitle {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Mission & Vision Section */
+.mission-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+}
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mission-card, .vision-card {
+    position: relative;
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    color: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.vision-card {
+    position: relative;
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    color: white;
+}
+
+.card-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to bottom, #16214c, #5ce2e7);
+    width: 5px;
+    border-radius: 15px 0 0 15px;
+}
+
+.vision-card .section-content {
+    color: #444 !important; /* Dark text for better readability on white background */
+}
+
+.dark-section .section-content {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.card-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.section-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Values Section */
+.values-section {
+    position: relative;
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    color: white;
+    padding: 5rem 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, #ffffff, #5ce2e7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    width: 100%;
+}
+
+.values-section .section-content {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.value-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #16214c, #5ce2e7);
+    width: 5px;
+}
+
+.value-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(92, 226, 231, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: #16214c;
+    font-size: 1.5rem;
+}
+
+.value-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #16214c;
+    margin-bottom: 1rem;
+}
+
+.value-description {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+/* Team Section */
+.team-section {
+    position: relative;
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    color: white;
+    padding: 5rem 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.team-member {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.member-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 3px solid #5ce2e7;
+}
+
+.member-info {
+    padding: 1.5rem;
+}
+
+.member-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.member-title {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.member-bio {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.member-social {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.member-social a {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.member-social a:hover {
+    background-color: #5ce2e7;
+    color: #16214c;
+}
+
+/* Story Timeline Section */
+.story-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+}
+
+.story-timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 3rem auto 0;
+}
+
+.story-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, #16214c, #5ce2e7);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 0 2.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-item:nth-child(even) {
+    margin-left: 50%;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    right: -0.5rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #5ce2e7;
+    border: 3px solid #16214c;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(even)::before {
+    left: -0.5rem;
+}
+
+.timeline-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.timeline-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #16214c;
+    margin-bottom: 1rem;
+}
+
+.timeline-description {
+    color: #444;
+    line-height: 1.6;
+}
+
+.timeline-illustration {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 1.5rem;
+    right: -3rem;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:nth-child(even) .timeline-illustration {
+    left: -3rem;
+}
+
+.timeline-illustration:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(92, 226, 231, 0.5));
+}
+
+/* Social Good Section */
+.social-good-section {
+    padding: 5rem 0;
+    background: white;
+}
+
+.social-good-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 2rem auto 0;
+}
+
+.social-good-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #16214c;
+    margin-bottom: 1.5rem;
+}
+
+.social-good-description {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.social-good-link {
+    display: inline-flex;
+    align-items: center;
+    color: #16214c;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(92, 226, 231, 0.3);
+    transition: all 0.3s ease;
+}
+
+.social-good-link:hover {
+    color: #5ce2e7;
+    border-bottom-color: #5ce2e7;
+    transform: translateY(-1px);
+}
+
+.social-good-link i {
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.social-good-image img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Join Team Section */
+.join-team-section {
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.join-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #ffffff, #5ce2e7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.join-description {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.join-cta-button {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.join-cta-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.join-cta-button i {
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .about-title {
+        font-size: 2.5rem;
+    }
+    
+    .mission-vision-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .story-timeline::before {
+        left: 2rem;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        margin-left: 0 !important;
+        padding-left: 4rem;
+    }
+    
+    .timeline-item::before {
+        left: 1.5rem !important;
+    }
+    
+    .timeline-illustration {
+        display: none;
+    }
+    
+    .social-good-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hero-circle-1, .hero-circle-2 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .about-title {
+        font-size: 2rem;
+    }
+    
+    .about-hero {
+        padding: 4rem 0;
+    }
+    
+    .value-card, .mission-card, .vision-card {
+        padding: 2rem;
+    }
+}
+</style>
+{% endblock %}

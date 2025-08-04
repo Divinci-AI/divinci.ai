@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block body_class %}feature-page-template{% endblock %}
+
 {% block content %}
 {%- set current_lang = page.extra.lang | default(value="en") -%}
 

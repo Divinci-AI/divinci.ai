@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16214c" />
+      <stop offset="100%" stop-color="#254284" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#5ce2e7" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)" />
+  
+  <!-- Decorative circles -->
+  <circle cx="200" cy="150" r="100" fill="none" stroke="#5ce2e7" stroke-width="2" opacity="0.2" />
+  <circle cx="1000" cy="480" r="150" fill="none" stroke="#5ce2e7" stroke-width="2" opacity="0.2" />
+  <circle cx="600" cy="100" r="50" fill="none" stroke="#5ce2e7" stroke-width="2" opacity="0.1" />
+  <circle cx="400" cy="500" r="80" fill="none" stroke="#5ce2e7" stroke-width="2" opacity="0.1" />
+  
+  <!-- RAG System Visualization -->
+  <!-- Document Database -->
+  <rect x="200" y="200" width="120" height="160" rx="10" fill="#5ce2e7" opacity="0.2" stroke="#5ce2e7" stroke-width="2" />
+  <line x1="220" y1="230" x2="300" y2="230" stroke="#5ce2e7" stroke-width="2" opacity="0.5" />
+  <line x1="220" y1="260" x2="300" y2="260" stroke="#5ce2e7" stroke-width="2" opacity="0.3" />
+  <line x1="220" y1="290" x2="300" y2="290" stroke="#5ce2e7" stroke-width="2" opacity="0.3" />
+  <line x1="220" y1="320" x2="300" y2="320" stroke="#5ce2e7" stroke-width="2" opacity="0.3" />
+  
+  <!-- Retrieval System -->
+  <circle cx="450" cy="280" r="80" fill="#5ce2e7" opacity="0.15" stroke="#5ce2e7" stroke-width="2" />
+  <text x="450" y="290" font-family="Arial, sans-serif" font-size="20" fill="white" text-anchor="middle">Retrieval</text>
+  
+  <!-- Arrow from Documents to Retrieval -->
+  <path d="M330 280 L360 280" stroke="#5ce2e7" stroke-width="2" />
+  <polygon points="370,280 360,275 360,285" fill="#5ce2e7" />
+  
+  <!-- Generation System -->
+  <circle cx="700" cy="280" r="80" fill="#5ce2e7" opacity="0.15" stroke="#5ce2e7" stroke-width="2" />
+  <text x="700" y="290" font-family="Arial, sans-serif" font-size="20" fill="white" text-anchor="middle">Generation</text>
+  
+  <!-- Arrow from Retrieval to Generation -->
+  <path d="M540 280 L610 280" stroke="#5ce2e7" stroke-width="2" />
+  <polygon points="620,280 610,275 610,285" fill="#5ce2e7" />
+  
+  <!-- Output -->
+  <rect x="850" y="230" width="150" height="100" rx="10" fill="#5ce2e7" opacity="0.2" stroke="#5ce2e7" stroke-width="2" />
+  <text x="925" y="290" font-family="Arial, sans-serif" font-size="20" fill="white" text-anchor="middle">Response</text>
+  
+  <!-- Arrow from Generation to Output -->
+  <path d="M790 280 L840 280" stroke="#5ce2e7" stroke-width="2" />
+  <polygon points="850,280 840,275 840,285" fill="#5ce2e7" />
+  
+  <!-- Page title -->
+  <text x="600" y="420" font-family="Sora, Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#textGradient)" text-anchor="middle">The Future of RAG Systems</text>
+  
+  <!-- Tagline -->
+  <text x="600" y="480" font-family="Sora, Arial, sans-serif" font-size="28" fill="white" text-anchor="middle" opacity="0.9">Beyond Simple Document Retrieval</text>
+  
+  <!-- Author -->
+  <text x="600" y="530" font-family="Sora, Arial, sans-serif" font-size="20" fill="white" text-anchor="middle" opacity="0.7">By Michael Mooring</text>
+  
+  <!-- URL -->
+  <text x="600" y="580" font-family="Arial, sans-serif" font-size="20" fill="white" text-anchor="middle" opacity="0.7">divinci.ai/blog</text>
+</svg>

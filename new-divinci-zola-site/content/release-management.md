@@ -30,7 +30,8 @@ feature_category = "development-tools"
     font-size: 3rem;
     color: #1e3a2b;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
 }
 
 .capabilities-grid {
@@ -316,25 +317,14 @@ feature_category = "development-tools"
 }
 </style>
 
-<section class="hero-section section-padding">
-<div class="container">
-<div class="hero-animation-container">
-<iframe src="/divinci-animation.html"
-                    width="100%" 
-                    height="100%" 
-                    frameborder="0" 
-                    scrolling="no" 
-                    allow="autoplay"
-                    aria-label="Divinci AI release management animation showing deployment workflow"
-                    class="desktop-only">
-</iframe>
-</div>
-</div>
-</section>
-
 <section id="feature-overview" class="feature-overview section-padding">
 <div class="container">
-<h2 class="section-heading">What is AI Release Management?</h2>
+<h2 class="section-heading" style="margin-top: 4.44rem; margin-bottom: 2rem;">What is AI Release Management?</h2>
+
+<div class="release-diagram-container" style="text-align: center; margin: 2rem 0;">
+  <img src="/images/release-cycle-diagram.svg" alt="AI Release Cycle Management Diagram" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+</div>
+
 <div class="overview-content">
 <p style="font-size: 1.25rem; margin-bottom: 2rem;">Divinci AI's Release Management platform brings software engineering best practices to AI model deployment. Manage versions, automate deployments, and ensure smooth rollouts with comprehensive testing and rollback capabilities designed specifically for AI systems.</p>
 
@@ -347,7 +337,7 @@ feature_category = "development-tools"
 
 <section id="core-capabilities" class="capabilities section-padding">
 <div class="container">
-<h2 class="section-heading">Core Capabilities</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Core Capabilities</h2>
 
 <div class="capabilities-grid">
 <div class="capability-card">
@@ -396,7 +386,7 @@ feature_category = "development-tools"
 
 <section id="release-pipeline" class="pipeline section-padding">
 <div class="container">
-<h2 class="section-heading">Release Pipeline</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Release Pipeline</h2>
 
 <div class="pipeline-container">
 <h3 style="color: #16214c; margin-bottom: 2rem; text-align: center;">End-to-End AI Deployment Workflow</h3>
@@ -432,7 +422,7 @@ feature_category = "development-tools"
 
 <section id="deployment-strategies" class="strategies section-padding">
 <div class="container">
-<h2 class="section-heading">Deployment Strategies</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Deployment Strategies</h2>
 
 <div class="deployment-strategies">
 <div class="strategy-card">
@@ -493,7 +483,7 @@ feature_category = "development-tools"
 
 <section id="deployment-metrics" class="metrics section-padding">
 <div class="container">
-<h2 class="section-heading">Deployment Metrics Dashboard</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Deployment Metrics Dashboard</h2>
 
 <div class="metrics-dashboard">
 <h3 style="color: #16214c; margin-bottom: 2rem; text-align: center;">Real-Time Deployment Performance</h3>
@@ -553,7 +543,7 @@ feature_category = "development-tools"
 
 <section id="case-studies" class="case-studies section-padding">
 <div class="container">
-<h2 class="section-heading">Success Stories</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>
 
 <div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(92, 226, 231, 0.2); margin-bottom: 3rem;">
 <h3 style="color: #16214c; font-size: 2rem; margin-bottom: 1rem;">Global E-commerce Platform</h3>
@@ -605,7 +595,7 @@ feature_category = "development-tools"
 
 <section id="integration-ecosystem" class="integrations section-padding">
 <div class="container">
-<h2 class="section-heading">Integration Ecosystem</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Integration Ecosystem</h2>
 
 <div style="text-align: center; margin-bottom: 3rem;">
 <p style="font-size: 1.2rem; color: #718096;">Seamlessly integrate with your existing DevOps and cloud infrastructure</p>
@@ -653,7 +643,7 @@ feature_category = "development-tools"
 
 <section id="faq" class="faq-section section-padding">
 <div class="container">
-<h2 class="section-heading">Frequently Asked Questions</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Frequently Asked Questions</h2>
 
 <div class="accordion">
 <div class="accordion-item">

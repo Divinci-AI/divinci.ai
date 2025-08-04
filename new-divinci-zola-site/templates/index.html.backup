@@ -873,7 +873,7 @@
         <div class="team-grid">
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="{{ get_url(path="images/Michael-Mooring.jpeg") }}" alt="Michael Mooring">
+                    <img src="{{ get_url(path="images/Michael-Mooring.png") }}" alt="Michael Mooring">
                 </div>
                 <h3>Michael Mooring</h3>
                 <p class="role">{{ translations.team.roles.ceo_founder | default(value="CEO & Founder") }}</p>

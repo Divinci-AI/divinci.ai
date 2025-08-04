@@ -89,7 +89,7 @@ test.describe('New-Divinci Zola Site', () => {
     
     // Check language options
     await expect(page.locator('.language-switcher-dropdown')).toBeVisible();
-    await expect(page.locator('.language-option')).toHaveCount(4); // en, es, fr, ar
+    await expect(page.locator('.language-option')).toHaveCount(13); // All supported languages
     
     // Test Spanish switch
     await page.locator('a[href="/es/"]').click();

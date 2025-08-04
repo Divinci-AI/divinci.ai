@@ -1,0 +1,30 @@
+{
+  "name": "divinci-ai-site",
+  "compatibility_date": "2025-01-15",
+  "main": "./src/worker.js",
+  "assets": {
+    "directory": "./public/",
+    "not_found_handling": "404-page",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "ENVIRONMENT": "production",
+    "SITE_NAME": "Divinci AI",
+    "CACHE_VERSION": "v1"
+  },
+  "routes": [
+    { "pattern": "divinci.ai/*", "zone_name": "divinci.ai" }
+  ],
+  "workers_dev": true,
+  "preview_urls": true,
+  "placement": {
+    "mode": "smart"
+  },
+  "compatibility_flags": ["nodejs_compat"],
+  "build": {
+    "command": "zola build"
+  },
+  "limits": {
+    "cpu_ms": 50
+  }
+}

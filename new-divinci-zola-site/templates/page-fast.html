@@ -1,0 +1,214 @@
+{% extends "base-optimized.html" %}
+
+{% block content %}
+{%- set current_lang = page.lang | default(value="en") -%}
+
+<!-- Include Header -->
+{% include "partials/header.html" %}
+
+<!-- Optimized Hero Section - Reduced animations -->
+<section class="hero">
+    <!-- Simplified background elements - fewer DOM nodes -->
+    <div class="sacred-geometry-bg">
+        <div class="sacred-circle sacred-circle-1 will-change-transform"></div>
+        <div class="sacred-circle sacred-circle-2 will-change-transform"></div>
+    </div>
+    
+    <div class="container">
+        <div class="hero-content gpu-accelerated">
+            <h1 class="enhanced-page-title">{{ page.title }}</h1>
+            {% if page.description %}
+            <p class="enhanced-page-subtitle">{{ page.description }}</p>
+            {% endif %}
+            
+            <!-- Simplified decorative element - CSS only -->
+            <div class="page-decoration">
+                <div class="decoration-line"></div>
+                <div class="decoration-dot"></div>
+                <div class="decoration-line"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Optimized Content Section -->
+<section class="section section-light">
+    <div class="container">
+        <div class="enhanced-content gpu-accelerated">
+            {{ page.content | safe }}
+        </div>
+    </div>
+</section>
+
+<!-- Include Footer -->
+{% include "partials/footer.html" %}
+
+<style>
+/* Page-specific optimized styles - minimal CSS */
+.enhanced-page-subtitle {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.decoration-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+}
+
+.decoration-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin: 0 15px;
+    box-shadow: 0 0 10px rgba(92, 226, 231, 0.5);
+}
+
+.enhanced-content {
+    background: var(--bg-white);
+    border-radius: var(--border-radius);
+    padding: 3rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(92, 226, 231, 0.1);
+    line-height: 1.8;
+}
+
+/* Optimized content typography */
+.enhanced-content h1 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.enhanced-content h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, var(--accent), var(--primary));
+    border-radius: 2px;
+}
+
+.enhanced-content h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 20px;
+}
+
+.enhanced-content h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 30px;
+    background: linear-gradient(to bottom, var(--accent), var(--primary));
+    border-radius: 2px;
+}
+
+.enhanced-content p {
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.enhanced-content ul li::before {
+    content: '▸';
+    color: var(--accent);
+    font-weight: bold;
+    position: absolute;
+    left: -20px;
+}
+
+.enhanced-content ul li {
+    position: relative;
+    margin-left: 20px;
+    margin-bottom: 0.75rem;
+}
+
+.enhanced-content a {
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 2px solid rgba(92, 226, 231, 0.3);
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.enhanced-content a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.enhanced-content code {
+    background-color: rgba(22, 33, 76, 0.05);
+    color: var(--primary);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.enhanced-content pre {
+    background-color: var(--primary);
+    color: var(--accent);
+    padding: 1.5rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.enhanced-content blockquote {
+    border-left: 4px solid var(--accent);
+    background-color: rgba(92, 226, 231, 0.05);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 10px 10px 0;
+    font-style: italic;
+    color: var(--primary);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .enhanced-content {
+        padding: 2rem;
+        margin: 0 1rem;
+    }
+    
+    .enhanced-content h1 {
+        font-size: 2rem;
+    }
+    
+    .enhanced-content h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .enhanced-content {
+        padding: 1.5rem;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,900 @@
+{% extends "base.html" %}
+
+{% block content %}
+{%- set current_lang = page.lang | default(value="en") -%}
+
+<!-- Include Header -->
+{% include "partials/header.html" %}
+
+<!-- Hero Section - Matching original exactly -->
+<section class="careers-hero">
+    <div class="container">
+        <div class="careers-hero-content">
+            <h1 class="careers-title">Join Our Team</h1>
+            <p class="careers-subtitle">At Divinci AI, we're building the future of human-AI collaboration. Join us on our mission to make AI accessible and valuable for businesses of all sizes.</p>
+            <a href="#open-positions" class="careers-cta">View Open Positions</a>
+        </div>
+    </div>
+</section>
+
+<!-- Culture Section -->
+<section class="careers-section">
+    <div class="sacred-pattern sacred-pattern-1"></div>
+    <div class="container">
+        <h2 class="section-title">Our Culture</h2>
+        <p class="section-content">
+            At Divinci AI, we're building a collaborative, innovative, and inclusive workplace where everyone can thrive. Our culture is defined by our shared values and commitment to creating AI technology that empowers humans rather than replacing them.
+        </p>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3 class="value-title">Innovation</h3>
+                <p class="value-description">
+                    We encourage bold thinking and creative problem-solving. We're not afraid to challenge the status quo and push the boundaries of what's possible with AI.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="value-title">Collaboration</h3>
+                <p class="value-description">
+                    We believe the best work happens when diverse perspectives come together. We foster a collaborative environment where ideas are shared openly and everyone's voice is heard.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h3 class="value-title">Responsibility</h3>
+                <p class="value-description">
+                    We're committed to developing AI responsibly, with strong ethical guidelines and a focus on creating technology that benefits humanity and respects individual privacy and agency.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3 class="value-title">Impact</h3>
+                <p class="value-description">
+                    We're driven by the opportunity to make a meaningful impact on how businesses leverage AI. Every team member plays a crucial role in bringing this vision to life.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="careers-section dark-bg">
+    <div class="sacred-pattern sacred-pattern-2"></div>
+    <div class="container">
+        <h2 class="section-title">Benefits & Perks</h2>
+        <p class="section-content-light">
+            We believe in taking care of our team. Here are some of the benefits and perks we offer to Divinci AI employees:
+        </p>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="benefit-title">Comprehensive Healthcare</h3>
+                <p class="benefit-description">
+                    We offer top-tier medical, dental, and vision coverage for employees and their dependents, with the majority of premiums covered by Divinci AI.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <h3 class="benefit-title">Competitive Compensation</h3>
+                <p class="benefit-description">
+                    We offer competitive salaries, equity options, and a 401(k) plan with employer matching to ensure you share in the company's success.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="benefit-title">Flexible Work</h3>
+                <p class="benefit-description">
+                    We support remote work with the option for in-office collaboration at our Santa Monica headquarters, giving you the flexibility to work where you're most productive.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <h3 class="benefit-title">Generous Time Off</h3>
+                <p class="benefit-description">
+                    We offer unlimited PTO, company holidays, and paid parental leave because we believe in work-life balance and taking time to recharge.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3 class="benefit-title">Learning & Development</h3>
+                <p class="benefit-description">
+                    We provide an annual learning stipend for conferences, courses, and books, plus regular opportunities for professional development.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-users-cog"></i>
+                </div>
+                <h3 class="benefit-title">Team Events</h3>
+                <p class="benefit-description">
+                    Regular team outings, social events, and company retreats help build strong relationships and a cohesive team culture.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Open Positions Section -->
+<section id="open-positions" class="jobs-section">
+    <div class="container">
+        <h2 class="section-title">Open Positions</h2>
+        <p class="section-content">
+            We're looking for talented individuals who are passionate about AI, technology, and making a positive impact. Here are our current openings:
+        </p>
+
+        <div class="jobs-grid">
+            <div class="job-card">
+                <div class="job-header">
+                    <div class="job-department">Engineering</div>
+                    <div class="job-location">Remote / Santa Monica, CA</div>
+                </div>
+                <h3 class="job-title">Senior Machine Learning Engineer</h3>
+                <p class="job-description">
+                    Join our ML team to build and optimize large-scale machine learning systems that power our AI platform. You'll work on cutting-edge algorithms and infrastructure that enable businesses to deploy AI models with confidence.
+                </p>
+                <div class="job-requirements">
+                    <h4>Key Requirements:</h4>
+                    <ul>
+                        <li>5+ years of ML engineering experience</li>
+                        <li>Expertise in PyTorch, TensorFlow, or similar frameworks</li>
+                        <li>Experience with distributed systems and cloud platforms</li>
+                        <li>Strong software engineering fundamentals</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@divinci.ai?subject=Application: Senior ML Engineer" class="job-apply-btn">Apply Now</a>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <div class="job-department">Engineering</div>
+                    <div class="job-location">Remote / Santa Monica, CA</div>
+                </div>
+                <h3 class="job-title">Full Stack Engineer</h3>
+                <p class="job-description">
+                    Help build the frontend and backend systems that make our AI platform intuitive and powerful. You'll work across the entire stack to create seamless user experiences for our enterprise customers.
+                </p>
+                <div class="job-requirements">
+                    <h4>Key Requirements:</h4>
+                    <ul>
+                        <li>3+ years of full-stack development experience</li>
+                        <li>Proficiency in React, Node.js, and modern web technologies</li>
+                        <li>Experience with databases and API design</li>
+                        <li>Understanding of cloud infrastructure</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@divinci.ai?subject=Application: Full Stack Engineer" class="job-apply-btn">Apply Now</a>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <div class="job-department">Product</div>
+                    <div class="job-location">Remote / Santa Monica, CA</div>
+                </div>
+                <h3 class="job-title">Product Manager</h3>
+                <p class="job-description">
+                    Drive product strategy and execution for our AI management platform. You'll work closely with engineering, design, and customers to define and deliver products that solve real business problems.
+                </p>
+                <div class="job-requirements">
+                    <h4>Key Requirements:</h4>
+                    <ul>
+                        <li>3+ years of product management experience</li>
+                        <li>Experience with B2B SaaS products</li>
+                        <li>Strong analytical and communication skills</li>
+                        <li>Background in AI/ML products preferred</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@divinci.ai?subject=Application: Product Manager" class="job-apply-btn">Apply Now</a>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <div class="job-department">Design</div>
+                    <div class="job-location">Remote / Santa Monica, CA</div>
+                </div>
+                <h3 class="job-title">UX/UI Designer</h3>
+                <p class="job-description">
+                    Shape the user experience of our AI platform, making complex technology accessible and delightful. You'll design interfaces that empower users to manage AI systems with confidence.
+                </p>
+                <div class="job-requirements">
+                    <h4>Key Requirements:</h4>
+                    <ul>
+                        <li>3+ years of UX/UI design experience</li>
+                        <li>Portfolio demonstrating B2B product design</li>
+                        <li>Proficiency in Figma, Sketch, or similar tools</li>
+                        <li>Experience with design systems and user research</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@divinci.ai?subject=Application: UX/UI Designer" class="job-apply-btn">Apply Now</a>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <div class="job-department">Customer Success</div>
+                    <div class="job-location">Remote / Santa Monica, CA</div>
+                </div>
+                <h3 class="job-title">Customer Success Manager</h3>
+                <p class="job-description">
+                    Be the trusted advisor to our enterprise customers, helping them achieve success with our AI platform. You'll drive adoption, growth, and long-term satisfaction.
+                </p>
+                <div class="job-requirements">
+                    <h4>Key Requirements:</h4>
+                    <ul>
+                        <li>2+ years of customer success experience</li>
+                        <li>Experience with enterprise B2B customers</li>
+                        <li>Strong communication and problem-solving skills</li>
+                        <li>Technical background preferred</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@divinci.ai?subject=Application: Customer Success Manager" class="job-apply-btn">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Internship Section -->
+<section class="internship-section">
+    <div class="container">
+        <h2 class="section-title">Internships</h2>
+        <p class="section-content">
+            We offer internship opportunities for students and recent graduates who are passionate about AI and want to gain hands-on experience.
+        </p>
+        
+        <div class="internship-card">
+            <h3 class="internship-title">Summer 2025 AI Internship Program</h3>
+            <p class="internship-description">
+                Our 12-week summer internship program offers meaningful projects, mentorship from senior engineers, and the opportunity to contribute to real products used by enterprise customers.
+            </p>
+            <a href="mailto:careers@divinci.ai?subject=Application: Summer 2025 Internship" class="internship-apply-btn">Apply for Internship</a>
+        </div>
+    </div>
+</section>
+
+<!-- Interview Process Section -->
+<section class="process-section">
+    <div class="container">
+        <h2 class="section-title">Our Interview Process</h2>
+        <p class="section-content">
+            We've designed our interview process to be thorough but respectful of your time. Here's what you can expect:
+        </p>
+
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title">Application Review</h3>
+                    <p class="step-description">We review your application and portfolio to understand your background and interests.</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="step-title">Initial Conversation</h3>
+                    <p class="step-description">A brief call with our recruiting team to discuss the role and answer any questions you have.</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="step-title">Technical Assessment</h3>
+                    <p class="step-description">Depending on the role, this may include a coding challenge, design exercise, or case study.</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3 class="step-title">Team Interviews</h3>
+                    <p class="step-description">Meet with team members to discuss technical topics and learn about our culture.</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3 class="step-title">Final Interview</h3>
+                    <p class="step-description">A conversation with leadership about vision, goals, and how you'd contribute to our mission.</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h3 class="step-title">Offer</h3>
+                    <p class="step-description">If it's a mutual fit, we'll extend an offer and help you transition to the team.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-testimonials">
+            <h3 style="font-weight: 600; margin: 3rem 0 2rem; color: #8b7659;">Hear From Our Team</h3>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">
+                        "Working at Divinci AI means being at the forefront of AI innovation while maintaining a strong focus on responsible development. It's challenging and rewarding."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Sarah Chen</strong>
+                        <span>Senior ML Engineer</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">
+                        "The collaborative culture here is incredible. Everyone's ideas are valued, and we're all working toward the same goal of making AI accessible to businesses."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Marcus Johnson</strong>
+                        <span>Product Manager</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Include Footer -->
+{% include "partials/footer.html" %}
+
+<style>
+/* Careers Page Styles - Matching Original exactly */
+
+/* Hero Section */
+.careers-hero {
+    background: linear-gradient(135deg, rgb(248, 244, 240) 0%, rgb(240, 235, 225) 100%);
+    color: #2d2d2d;
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.careers-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 2px solid rgba(139, 118, 89, 0.2);
+    opacity: 0.4;
+    z-index: 0;
+}
+
+.careers-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border: 2px solid rgba(139, 118, 89, 0.15);
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.careers-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.careers-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #2d3c34;
+    display: inline-block;
+}
+
+.careers-subtitle {
+    font-size: 1.3rem;
+    color: rgba(45, 60, 52, 0.8);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.careers-cta {
+    display: inline-flex;
+    align-items: center;
+    background: #cfdcff;
+    color: #2d3c34;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #cfdcff;
+    backdrop-filter: blur(10px);
+}
+
+.careers-cta:hover {
+    background: #b8ccff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    color: #2d3c34;
+    border-color: #b8ccff;
+}
+
+/* General Section Styles */
+.careers-section {
+    padding: 5rem 0;
+    position: relative;
+}
+
+.careers-section.dark-bg {
+    background: linear-gradient(135deg, rgba(139, 118, 89, 0.15) 0%, rgba(139, 118, 89, 0.25) 100%);
+    color: #2d2d2d;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2d3c34;
+}
+
+.careers-section.dark-bg .section-title {
+    color: #2d3c34;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+    display: inline-block;
+    width: 100%;
+}
+
+.section-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #2d3c34;
+}
+
+.section-content-light {
+    color: rgba(45, 45, 45, 0.8);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Sacred Patterns */
+.sacred-pattern {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='100' cy='100' r='80' stroke='%238B7659' stroke-width='1' fill='none' /%3E%3Ccircle cx='100' cy='100' r='60' stroke='%238B7659' stroke-width='1' fill='none' /%3E%3Ccircle cx='100' cy='100' r='40' stroke='%238B7659' stroke-width='1' fill='none' /%3E%3Cline x1='20' y1='100' x2='180' y2='100' stroke='%238B7659' stroke-width='0.5' /%3E%3Cline x1='100' y1='20' x2='100' y2='180' stroke='%238B7659' stroke-width='0.5' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 0;
+}
+
+.sacred-pattern-1 {
+    top: 20%;
+    right: 5%;
+}
+
+.sacred-pattern-2 {
+    bottom: 20%;
+    left: 5%;
+}
+
+/* Values Grid */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.value-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+}
+
+.value-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(139, 118, 89, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: #8b7659;
+    font-size: 1.5rem;
+}
+
+.value-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #8b7659;
+    margin-bottom: 1rem;
+}
+
+.value-description {
+    color: #2d3c34;
+    line-height: 1.6;
+}
+
+/* Benefits Grid */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.benefit-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(139, 118, 89, 0.1);
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(139, 118, 89, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: #8b7659;
+    font-size: 1.5rem;
+}
+
+.benefit-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #8b7659;
+    margin-bottom: 1rem;
+}
+
+.benefit-description {
+    color: #2d3c34;
+    line-height: 1.6;
+}
+
+/* Jobs Section */
+.jobs-section {
+    background: #f8fafc;
+    padding: 5rem 0;
+}
+
+.jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.job-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    border-top: 4px solid #a6946b;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.job-department {
+    background: rgba(139, 118, 89, 0.1);
+    color: #8b7659;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.job-location {
+    color: #2d3c34;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.job-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #8b7659;
+    margin-bottom: 1rem;
+}
+
+.job-description {
+    color: #2d3c34;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.job-requirements h4 {
+    color: #8b7659;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.job-requirements ul {
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+}
+
+.job-requirements li {
+    color: #2d3c34;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.job-apply-btn {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: #2d3c34;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    border: 2px solid #2d3c34;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: none;
+}
+
+.job-apply-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(45, 60, 52, 0.05);
+    color: #2d3c34;
+    border-color: #2d3c34;
+}
+
+/* Internship Section */
+.internship-section {
+    padding: 4rem 0;
+    background: white;
+}
+
+.internship-card {
+    background: linear-gradient(135deg, rgba(139, 118, 89, 0.05), rgba(166, 148, 107, 0.05));
+    border-radius: 15px;
+    padding: 3rem;
+    text-align: center;
+    border: 1px solid rgba(139, 118, 89, 0.2);
+    max-width: 600px;
+    margin: 2rem auto 0;
+}
+
+.internship-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #8b7659;
+    margin-bottom: 1.5rem;
+}
+
+.internship-description {
+    color: #2d3c34;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.internship-apply-btn {
+    display: inline-flex;
+    align-items: center;
+    background: #cfdcff;
+    color: #2d3c34;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: 2px solid #cfdcff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.internship-apply-btn:hover {
+    transform: translateY(-3px);
+    background: #b8ccff;
+    color: #2d3c34;
+    border-color: #b8ccff;
+}
+
+/* Process Section */
+.process-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+}
+
+.process-steps {
+    display: grid;
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b7659, #a6946b);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #8b7659;
+    margin-bottom: 0.5rem;
+}
+
+.step-description {
+    color: #2d3c34;
+    line-height: 1.6;
+}
+
+/* Testimonials */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.testimonial-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #a6946b;
+}
+
+.testimonial-quote {
+    font-style: italic;
+    color: #2d3c34;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-author strong {
+    color: #8b7659;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.testimonial-author span {
+    color: #2d3c34;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .careers-title {
+        font-size: 2.5rem;
+    }
+    
+    .careers-hero {
+        padding: 4rem 0;
+    }
+    
+    .values-grid, .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .jobs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .process-step {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .careers-title {
+        font-size: 2rem;
+    }
+    
+    .value-card, .benefit-card, .job-card {
+        padding: 2rem;
+    }
+    
+    .internship-card {
+        padding: 2rem;
+    }
+}
+</style>
+{% endblock %}

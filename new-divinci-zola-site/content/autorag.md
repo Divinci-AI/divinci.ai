@@ -8,18 +8,6 @@ feature_category = "data-management"
 
 <style>
 /* Feature page specific styles matching original design */
-.hero-animation-container {
-    width: 700px;
-    height: 700px;
-    position: relative;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, rgba(30, 45, 102, 0.05), rgba(92, 226, 231, 0.05));
-    border-radius: 50%;
-    margin-bottom: 3rem;
-}
 
 .section-padding {
     padding: 4rem 0;
@@ -30,7 +18,8 @@ feature_category = "data-management"
     font-size: 3rem;
     color: #1e3a2b;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
 }
 
 .benefits-circle-container {
@@ -53,6 +42,10 @@ feature_category = "data-management"
     border-radius: 50%;
     text-align: center;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .orbital-benefit {
@@ -62,6 +55,8 @@ feature_category = "data-management"
     border-radius: 50%;
     text-align: center;
     transition: all 0.3s ease;
+    top: 50%;
+    left: 50%;
 }
 
 .orbital-benefit:nth-child(2) { transform: translate(-50%, -50%) rotate(0deg) translateY(-400px) rotate(0deg); }
@@ -70,8 +65,13 @@ feature_category = "data-management"
 .orbital-benefit:nth-child(5) { transform: translate(-50%, -50%) rotate(216deg) translateY(-400px) rotate(-216deg); }
 .orbital-benefit:nth-child(6) { transform: translate(-50%, -50%) rotate(288deg) translateY(-400px) rotate(-288deg); }
 
+.orbital-benefit:nth-child(2):hover { transform: translate(-50%, -50%) rotate(0deg) translateY(-400px) rotate(0deg) scale(1.05); }
+.orbital-benefit:nth-child(3):hover { transform: translate(-50%, -50%) rotate(72deg) translateY(-400px) rotate(-72deg) scale(1.05); }
+.orbital-benefit:nth-child(4):hover { transform: translate(-50%, -50%) rotate(144deg) translateY(-400px) rotate(-144deg) scale(1.05); }
+.orbital-benefit:nth-child(5):hover { transform: translate(-50%, -50%) rotate(216deg) translateY(-400px) rotate(-216deg) scale(1.05); }
+.orbital-benefit:nth-child(6):hover { transform: translate(-50%, -50%) rotate(288deg) translateY(-400px) rotate(-288deg) scale(1.05); }
+
 .orbital-benefit:hover {
-    transform: scale(1.05);
     box-shadow: 0 8px 24px rgba(92, 226, 231, 0.3);
 }
 
@@ -249,25 +249,15 @@ feature_category = "data-management"
 }
 </style>
 
-<section class="hero-section section-padding">
-<div class="container">
-<div class="hero-animation-container">
-<iframe src="/divinci-animation.html"
-                    width="100%" 
-                    height="100%" 
-                    frameborder="0" 
-                    scrolling="no" 
-                    allow="autoplay"
-                    aria-label="Divinci AI automated animation showing data processing"
-                    class="desktop-only">
-</iframe>
-</div>
-</div>
-</section>
 
 <section id="feature-overview" class="feature-overview section-padding">
 <div class="container">
-<h2 class="section-heading">What is AutoRAG?</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">What is AutoRAG?</h2>
+
+<div class="autorag-diagram-container" style="text-align: center; margin: 2rem 0;">
+  <img src="/images/autorag-diagram.svg" alt="AutoRAG Knowledge Base Connection Diagram" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;" />
+</div>
+
 <div class="overview-content">
 <p style="font-size: 1.25rem; margin-bottom: 2rem;">AutoRAG is Divinci AI's comprehensive solution for automatically finding the optimal RAG pipeline for your specific data and use cases. Unlike generic RAG implementations, AutoRAG evaluates multiple combinations of retrieval and generation strategies to determine what works best with your unique content.</p>
 
@@ -280,8 +270,9 @@ feature_category = "data-management"
 
 <section id="feature-benefits" class="feature-benefits section-padding">
 <div class="container">
-<h2 class="section-heading" style="margin-bottom: 60px;">Key Benefits</h2>
+<h2 class="section-heading" style="margin-top: 4rem; margin-bottom: 120px;">Key Benefits</h2>
 
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
 <div class="benefits-circle-container">
 <div class="center-benefit" style="width: 365px; height: 365px; padding: 40px;">
 <div class="benefit-icon">
@@ -374,57 +365,128 @@ feature_category = "data-management"
 </div>
 </div>
 </div>
+</div>
 </section>
 
-<section id="feature-details" class="feature-details section-padding">
+<section id="feature-details" class="feature-details section-padding" style="padding-top: 6rem;">
 <div class="container">
-<h2 class="section-heading">How AutoRAG Works</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">How AutoRAG Works</h2>
 
-<div class="feature-grid">
-<div class="feature-item">
+<!-- Tab Interface for Details -->
+<div class="details-tabs" role="tablist" aria-label="AutoRAG capabilities" style="display: flex; justify-content: center; margin-bottom: 3rem; border-bottom: 2px solid rgba(92, 226, 231, 0.2);">
+    <button id="tab1-trigger" class="tab-trigger" role="tab" aria-selected="true" aria-controls="tab1-content" style="background: none; border: none; color: #16214c; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid #5ce2e7; transition: all 0.3s ease;">Data Creation Process</button>
+    <button id="tab2-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab2-content" style="background: none; border: none; color: #718096; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">Retrieval Evaluation</button>
+    <button id="tab3-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab3-content" style="background: none; border: none; color: #718096; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">Generation Optimization</button>
+</div>
+
+<div class="tab-content-container">
+<!-- Tab 1 Content -->
+<div id="tab1-content" role="tabpanel" aria-labelledby="tab1-trigger" class="tab-content active">
+<h3 style="color: #16214c; font-size: 1.5rem; margin-bottom: 1rem;">Smart Document Processing & Data Creation</h3>
+<p style="font-size: 1.125rem; margin-bottom: 2rem; color: #4a5568;">AutoRAG's document processing pipeline transforms your raw content into optimized datasets through a comprehensive four-stage process: document parsing, intelligent chunking, corpus creation, and automated QA dataset generation.</p>
+
+<!-- Document Processing Visualization -->
+<div style="text-align: center; margin: 2rem 0;">
+<object data="/images/autorag-clean-test.svg" type="image/svg+xml" style="width: 100%; max-width: 800px; height: auto;">
+<img src="/images/autorag-clean-test.svg" alt="AutoRAG Data Creation Process" style="width: 100%; max-width: 800px; height: auto;" />
+</object>
+<p style="text-align: center; margin-top: 10px; color: #8C9DB5; font-size: 14px;">AutoRAG's comprehensive data creation process transforms raw documents into optimized corpus and QA datasets</p>
+</div>
+
+<div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-file-alt"></i>
 </div>
 <div>
-<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Smart Document Processing</h3>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Advanced Parsing Modules</h4>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Multiple parsing methods for different document types including PDFMiner, PyPDF, Unstructured, and custom parsers for specialized formats</p>
 </div>
 </div>
 </div>
-
-<div class="feature-item">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-cut"></i>
 </div>
 <div>
-<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Intelligent Chunking</h3>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Intelligent Chunking</h4>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Adaptive chunking strategies that preserve context while optimizing for retrieval accuracy</p>
 </div>
 </div>
 </div>
+</div>
+</div>
 
-<div class="feature-item">
+<!-- Tab 2 Content -->
+<div id="tab2-content" role="tabpanel" aria-labelledby="tab2-trigger" class="tab-content" hidden>
+<h3 style="color: #16214c; font-size: 1.5rem; margin-bottom: 1rem;">Comprehensive Retrieval Evaluation</h3>
+<p style="font-size: 1.125rem; margin-bottom: 2rem; color: #4a5568;">Our AutoRAG system automatically evaluates multiple retrieval strategies to find the optimal approach for your specific data and use case.</p>
+
+<!-- Vector Embedding Visualization -->
+<div style="text-align: center; margin: 2rem 0;">
+<img src="/images/autorag-vector-embedding-adjusted.svg" alt="Vector Embedding Visualization" style="width: 100%; max-width: 600px; height: auto;" />
+</div>
+
+<div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-search"></i>
 </div>
 <div>
-<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Retrieval Optimization</h3>
-<p style="font-size: 14px; line-height: 1.5; margin: 0;">Evaluates multiple retrieval strategies including sparse, dense, and hybrid approaches</p>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Multiple Retrieval Methods</h4>
+<p style="font-size: 14px; line-height: 1.5; margin: 0;">Evaluates various retrieval approaches including BM25, dense retrievers, hybrid search, and reranking strategies</p>
+</div>
+</div>
+</div>
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div style="display: flex; align-items: flex-start;">
+<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<i class="fas fa-database"></i>
+</div>
+<div>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Vector Database Integration</h4>
+<p style="font-size: 14px; line-height: 1.5; margin: 0;">Supports multiple vector databases and embedding models to find the optimal combination</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 
-<div class="feature-item">
+<!-- Tab 3 Content -->
+<div id="tab3-content" role="tabpanel" aria-labelledby="tab3-trigger" class="tab-content" hidden>
+<h3 style="color: #16214c; font-size: 1.5rem; margin-bottom: 1rem;">Generation Optimization & Evaluation</h3>
+<p style="font-size: 1.125rem; margin-bottom: 2rem; color: #4a5568;">AutoRAG's advanced optimization system evaluates multiple generation strategies to find the optimal configuration for your specific data and use case.</p>
+
+<!-- Retrieval Optimization Visualization -->
+<div style="text-align: center; margin: 2rem 0;">
+<img src="/images/autorag-retrieval-optimization-adjusted.svg" alt="Retrieval Optimization Visualization" style="width: 100%; max-width: 600px; height: auto;" />
+</div>
+
+<div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-cogs"></i>
 </div>
 <div>
-<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Generation Optimization</h3>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Generation Optimization</h4>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Automatically optimizes prompts and generation parameters for your specific use case</p>
+</div>
+</div>
+</div>
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div style="display: flex; align-items: flex-start;">
+<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<i class="fas fa-check-circle"></i>
+</div>
+<div>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Comprehensive Metrics</h4>
+<p style="font-size: 14px; line-height: 1.5; margin: 0;">Evaluates performance using precision, recall, F1, MRR, NDCG, and hit rate metrics</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -432,9 +494,199 @@ feature_category = "data-management"
 </div>
 </section>
 
+<script>
+// Tab functionality
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Tab script loaded'); // Debug log
+  
+  // Get all tab components on the page
+  const tabLists = document.querySelectorAll('[role="tablist"]');
+  console.log('Found tab lists:', tabLists.length); // Debug log
+  
+  // Set up each tabbed interface
+  tabLists.forEach(tabList => {
+    const tabs = tabList.querySelectorAll('[role="tab"]');
+    const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+    
+    console.log('Found tabs:', tabs.length, 'panels:', tabPanels.length); // Debug log
+    
+    // Add click event to each tab
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function(e) {
+        console.log('Tab clicked:', e.currentTarget.id); // Debug log
+        changeTabs(e);
+      });
+      
+      // Handle keyboard events for accessibility
+      tab.addEventListener('keydown', handleTabKeydown);
+    });
+    
+    // Set initial state with the first tab active
+    if (tabs.length > 0) {
+      // Show the first panel and hide others initially
+      tabPanels.forEach((panel, index) => {
+        if (index === 0) {
+          panel.hidden = false;
+          panel.style.display = 'block';
+        } else {
+          panel.hidden = true;
+          panel.style.display = 'none';
+        }
+      });
+    }
+  });
+  
+  /**
+   * Change tabs when a tab is clicked
+   */
+  function changeTabs(e) {
+    const target = e.currentTarget;
+    const parent = target.parentNode;
+    const grandparent = parent.parentNode;
+    
+    console.log('Changing tabs, target:', target.id); // Debug log
+    
+    // Get all tabs in this tablist
+    const tabs = parent.querySelectorAll('[role="tab"]');
+    
+    // Hide all tabpanels
+    const tabContainer = grandparent.parentNode;
+    const tabPanels = tabContainer.querySelectorAll('[role="tabpanel"]');
+    
+    tabPanels.forEach(panel => {
+      panel.hidden = true;
+      panel.style.display = 'none';
+      console.log('Hiding panel:', panel.id); // Debug log
+    });
+    
+    // Set all tabs as unselected
+    tabs.forEach(tab => {
+      tab.setAttribute('aria-selected', 'false');
+      tab.style.color = '#718096';
+      tab.style.borderBottomColor = 'transparent';
+    });
+    
+    // Set clicked tab as selected
+    target.setAttribute('aria-selected', 'true');
+    target.style.color = '#16214c';
+    target.style.borderBottomColor = '#5ce2e7';
+    
+    // Show the associated tabpanel
+    const tabpanelID = target.getAttribute('aria-controls');
+    const tabPanel = document.getElementById(tabpanelID);
+    
+    console.log('Showing panel:', tabpanelID, 'found:', !!tabPanel); // Debug log
+    
+    if (tabPanel) {
+      tabPanel.hidden = false;
+      tabPanel.style.display = 'block';
+    }
+  }
+  
+  /**
+   * Handle keyboard navigation for tabs
+   */
+  function handleTabKeydown(e) {
+    const target = e.currentTarget;
+    const parent = target.parentNode;
+    const tabs = Array.from(parent.querySelectorAll('[role="tab"]'));
+    const currentIndex = tabs.indexOf(target);
+    
+    // Define which keys we're handling
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+        e.preventDefault();
+        if (currentIndex < tabs.length - 1) {
+          focusTab(tabs[currentIndex + 1]);
+        } else {
+          focusTab(tabs[0]); // Wrap to first tab
+        }
+        break;
+        
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        e.preventDefault();
+        if (currentIndex > 0) {
+          focusTab(tabs[currentIndex - 1]);
+        } else {
+          focusTab(tabs[tabs.length - 1]); // Wrap to last tab
+        }
+        break;
+        
+      case 'Home':
+        e.preventDefault();
+        focusTab(tabs[0]); // Go to first tab
+        break;
+        
+      case 'End':
+        e.preventDefault();
+        focusTab(tabs[tabs.length - 1]); // Go to last tab
+        break;
+        
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        target.click(); // Activate the tab
+        break;
+    }
+  }
+  
+  /**
+   * Focus and click on a tab
+   */
+  function focusTab(tab) {
+    tab.focus();
+  }
+});
+</script>
+
+<style>
+/* Tab styling */
+.tab-trigger:hover {
+    color: #16214c !important;
+    border-bottom-color: rgba(92, 226, 231, 0.5) !important;
+}
+
+.tab-trigger[aria-selected="true"] {
+    color: #16214c !important;
+    border-bottom-color: #5ce2e7 !important;
+}
+
+.tab-trigger[aria-selected="false"] {
+    color: #718096 !important;
+    border-bottom-color: transparent !important;
+}
+
+.tab-content {
+    padding: 2rem 0;
+}
+
+.tab-content[hidden] {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Responsive tabs */
+@media (max-width: 768px) {
+    .details-tabs {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .tab-trigger {
+        margin: 0.5rem 0 !important;
+        padding: 0.75rem 1.5rem !important;
+    }
+}
+</style>
+
 <section id="feature-implementation" class="feature-implementation section-padding">
 <div class="container">
-<h2 class="section-heading">Implementation Process</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Implementation Process</h2>
 
 <div class="implementation-timeline">
 <div class="timeline-step">
@@ -470,7 +722,7 @@ feature_category = "data-management"
 
 <section id="case-studies" class="case-studies section-padding">
 <div class="container">
-<h2 class="section-heading">Success Stories</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>
 
 <div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(92, 226, 231, 0.2); margin-bottom: 3rem;">
 <h3 style="color: #16214c; font-size: 2rem; margin-bottom: 1rem;">Global Financial Services Firm</h3>
@@ -522,7 +774,7 @@ feature_category = "data-management"
 
 <section id="related-features" class="related-features section-padding">
 <div class="container">
-<h2 class="section-heading">Related Features</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Related Features</h2>
 
 <div class="related-features-grid">
 <div class="related-feature-card">
@@ -570,7 +822,7 @@ feature_category = "data-management"
 
 <section id="faq" class="faq-section section-padding">
 <div class="container">
-<h2 class="section-heading">Frequently Asked Questions</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Frequently Asked Questions</h2>
 
 <div class="accordion">
 <div class="accordion-item">

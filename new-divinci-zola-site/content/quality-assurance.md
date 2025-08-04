@@ -1,6 +1,6 @@
 +++
-title = "LLM Quality Assurance - Enterprise AI Testing & Monitoring"
-description = "Enterprise-grade quality assurance for AI models with automated testing, monitoring, and validation"
+title = "LLM Quality Assurance - Enterprise Testing & Validation"
+description = "Comprehensive quality assurance pipeline for enterprise LLM applications with automated testing, validation, and monitoring"
 template = "feature.html"
 [extra]
 feature_category = "quality-assurance"
@@ -8,18 +8,6 @@ feature_category = "quality-assurance"
 
 <style>
 /* Quality Assurance page specific styles matching original design */
-.hero-animation-container {
-    width: 700px;
-    height: 700px;
-    position: relative;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, rgba(30, 45, 102, 0.05), rgba(92, 226, 231, 0.05));
-    border-radius: 50%;
-    margin-bottom: 3rem;
-}
 
 .section-padding {
     padding: 4rem 0;
@@ -30,41 +18,81 @@ feature_category = "quality-assurance"
     font-size: 3rem;
     color: #1e3a2b;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
 }
 
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.feature-card {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 32px rgba(92, 226, 231, 0.2);
-}
-
-.feature-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
-    background: linear-gradient(135deg, #16214c, #254284);
-    border-radius: 50%;
+.benefits-circle-container {
+    position: relative;
+    width: 900px;
+    height: 900px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+}
+
+.center-benefit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, rgba(30, 45, 102, 0.1), rgba(92, 226, 231, 0.1));
+    border: 2px solid rgba(92, 226, 231, 0.3);
+    border-radius: 50%;
+    text-align: center;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.orbital-benefit {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(92, 226, 231, 0.2);
+    border-radius: 50%;
+    text-align: center;
+    transition: all 0.3s ease;
+    top: 50%;
+    left: 50%;
+}
+
+.orbital-benefit:nth-child(2) { transform: translate(-50%, -50%) rotate(0deg) translateY(-420px) rotate(0deg); }
+.orbital-benefit:nth-child(3) { transform: translate(-50%, -50%) rotate(72deg) translateY(-420px) rotate(-72deg); }
+.orbital-benefit:nth-child(4) { transform: translate(-50%, -50%) rotate(144deg) translateY(-420px) rotate(-144deg); }
+.orbital-benefit:nth-child(5) { transform: translate(-50%, -50%) rotate(216deg) translateY(-420px) rotate(-216deg); }
+.orbital-benefit:nth-child(6) { transform: translate(-50%, -50%) rotate(288deg) translateY(-420px) rotate(-288deg); }
+
+.orbital-benefit:nth-child(2):hover { transform: translate(-50%, -50%) rotate(0deg) translateY(-420px) rotate(0deg) scale(1.05); }
+.orbital-benefit:nth-child(3):hover { transform: translate(-50%, -50%) rotate(72deg) translateY(-420px) rotate(-72deg) scale(1.05); }
+.orbital-benefit:nth-child(4):hover { transform: translate(-50%, -50%) rotate(144deg) translateY(-420px) rotate(-144deg) scale(1.05); }
+.orbital-benefit:nth-child(5):hover { transform: translate(-50%, -50%) rotate(216deg) translateY(-420px) rotate(-216deg) scale(1.05); }
+.orbital-benefit:nth-child(6):hover { transform: translate(-50%, -50%) rotate(288deg) translateY(-420px) rotate(-288deg) scale(1.05); }
+
+.orbital-benefit:hover {
+    box-shadow: 0 8px 24px rgba(92, 226, 231, 0.3);
+}
+
+.benefit-icon svg {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.feature-item {
+    background: rgba(30, 45, 102, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(92, 226, 231, 0.2);
 }
 
 .timeline-step {
@@ -91,42 +119,6 @@ feature_category = "quality-assurance"
     z-index: 1;
 }
 
-.metrics-dashboard {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 3rem;
-    border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
-    margin: 3rem 0;
-}
-
-.metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.metric-item {
-    text-align: center;
-    padding: 1.5rem;
-    background: rgba(107, 70, 193, 0.05);
-    border-radius: 8px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
-}
-
-.metric-value {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #16214c;
-    margin-bottom: 0.5rem;
-}
-
-.metric-label {
-    font-size: 0.9rem;
-    color: #718096;
-}
-
 .case-studies-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -142,28 +134,19 @@ feature_category = "quality-assurance"
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
-.integration-icons {
-    display: flex;
-    justify-content: center;
+.related-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    flex-wrap: wrap;
-    margin: 2rem 0;
+    margin-top: 2rem;
 }
 
-.integration-icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(107, 70, 193, 0.1);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.integration-icon:hover {
-    background: rgba(107, 70, 193, 0.2);
-    transform: scale(1.1);
+.related-feature-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    text-align: center;
 }
 
 .accordion-item {
@@ -194,18 +177,14 @@ feature_category = "quality-assurance"
     background: white;
 }
 
-.testimonial {
-    border-left: 4px solid #16214c;
-    padding-left: 2rem;
-    margin: 2rem 0;
-    font-style: italic;
-}
-
-.testimonial cite {
-    display: block;
-    margin-top: 1rem;
-    font-weight: 600;
-    color: #254284;
+.tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(107, 70, 193, 0.1);
+    color: #16214c;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin: 0.25rem;
 }
 
 .text-link {
@@ -235,221 +214,284 @@ feature_category = "quality-assurance"
     color: white;
 }
 
-.tag {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: rgba(107, 70, 193, 0.1);
-    color: #16214c;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    margin: 0.25rem;
+.metrics-container {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
 }
 
-.use-cases-grid {
+.metric-value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #16214c;
+}
+
+.metric-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #718096;
+    margin-top: 0.5rem;
+}
+
+.testimonial {
+    border-left: 4px solid #16214c;
+    padding-left: 2rem;
+    margin: 2rem 0;
+    font-style: italic;
+}
+
+.testimonial cite {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #254284;
+}
+
+.pipeline-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3rem;
+    border-radius: 12px;
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    margin: 3rem 0;
+}
+
+.pipeline-steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
 
-.use-case-card {
-    background: linear-gradient(135deg, rgba(107, 70, 193, 0.05), rgba(92, 226, 231, 0.05));
+.pipeline-step {
+    text-align: center;
     padding: 2rem;
+    background: rgba(107, 70, 193, 0.05);
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 2px solid rgba(92, 226, 231, 0.2);
+    position: relative;
 }
 
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background: rgba(92, 226, 231, 0.2);
-    border-radius: 4px;
-    overflow: hidden;
-    margin: 1rem 0;
-}
-
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #16214c, #254284);
-    border-radius: 4px;
-    transition: width 2s ease;
+.step-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #16214c, #254284);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 </style>
 
-<section class="hero-section section-padding">
-<div class="container">
-<div class="hero-animation-container">
-<iframe src="/divinci-animation.html"
-                    width="100%" 
-                    height="100%" 
-                    frameborder="0" 
-                    scrolling="no" 
-                    allow="autoplay"
-                    aria-label="Divinci AI quality assurance animation showing testing workflow"
-                    class="desktop-only">
-</iframe>
-</div>
-</div>
-</section>
 
 <section id="feature-overview" class="feature-overview section-padding">
 <div class="container">
-<h2 class="section-heading">What is LLM Quality Assurance?</h2>
+<h2 class="section-heading" style="margin-top: 2rem; margin-bottom: 3rem;">What is LLM Quality Assurance?</h2>
+
+<div class="qa-diagram-container" style="text-align: center; margin: 2rem 0;">
+  <img src="/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+</div>
+
 <div class="overview-content">
-<p style="font-size: 1.25rem; margin-bottom: 2rem;">Divinci AI's LLM Quality Assurance platform provides comprehensive testing, monitoring, and validation for enterprise AI deployments. Our automated QA framework ensures your AI models maintain consistent performance, accuracy, and safety standards across all interactions.</p>
+<p style="font-size: 1.25rem; margin-bottom: 2rem;">Divinci AI's Quality Assurance platform ensures enterprise-grade reliability and safety for your LLM applications. Our comprehensive testing and validation pipeline catches issues before they reach production, maintaining the highest standards of accuracy and compliance.</p>
 
-<p>As organizations deploy AI at scale, ensuring consistent quality becomes critical. Traditional software testing approaches fall short when dealing with the probabilistic nature of language models. Our LLM QA platform bridges this gap with purpose-built tools for testing, monitoring, and improving AI model performance in production environments.</p>
+<p>Traditional quality assurance approaches fall short with AI systems due to their non-deterministic nature and the complexity of evaluating generated content. Our platform addresses these unique challenges with automated testing frameworks, content validation engines, and continuous monitoring systems specifically designed for LLM applications.</p>
 
-<p>With enterprise-grade testing frameworks, real-time monitoring, and intelligent analysis, our platform ensures your AI applications deliver reliable, safe, and compliant responses across all user interactions—reducing risks while maximizing the value of your AI investments.</p>
+<p>With comprehensive test generation, real-time validation, and intelligent monitoring, our platform ensures your AI applications deliver consistent, accurate, and safe responses while maintaining regulatory compliance and building user trust.</p>
 </div>
 </div>
 </section>
 
-<section id="key-features" class="features section-padding">
+<section id="feature-benefits" class="feature-benefits section-padding">
 <div class="container">
-<h2 class="section-heading">Key Features</h2>
+<h2 class="section-heading" style="margin-top: 4rem; margin-bottom: 160px;">Key Benefits</h2>
 
-<div class="features-grid">
-<div class="feature-card">
-<div class="feature-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="white">
-<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+<div class="benefits-circle-container">
+<div class="center-benefit" style="width: 365px; height: 365px; padding: 40px;">
+<div class="benefit-icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80">
+<circle cx="50" cy="50" r="45" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
+<circle cx="50" cy="50" r="35" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.5" />
+<path d="M30,50 L70,50" stroke="#4a7c8a" stroke-width="3" fill="none" />
+<path d="M50,30 L50,70" stroke="#4a7c8a" stroke-width="3" fill="none" />
+<circle cx="50" cy="50" r="15" stroke="#4a7c8a" stroke-width="2" fill="none">
+<animate attributeName="r" values="15;20;15" dur="3s" repeatCount="indefinite" />
+</circle>
 </svg>
 </div>
-<h3>Automated Testing Framework</h3>
-<p>Comprehensive regression testing, performance benchmarking, edge case detection, and multi-model comparison to ensure consistent AI quality.</p>
+<h3>Quality Assurance</h3>
+<p>Comprehensive testing and validation pipeline that ensures enterprise-grade reliability and safety for your LLM applications with automated quality control.</p>
 </div>
 
-<div class="feature-card">
-<div class="feature-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="white">
-<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-<line x1="9" y1="9" x2="15" y2="15"/>
-<line x1="15" y1="9" x2="9" y2="15"/>
+<div class="orbital-benefit" style="width: 350px; height: 350px; padding: 35px;">
+<div class="benefit-icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+<circle cx="50" cy="50" r="40" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
+<path d="M30,50 L70,50" stroke="#4a7c8a" stroke-width="3" fill="none" />
+<path d="M50,30 L50,70" stroke="#4a7c8a" stroke-width="3" fill="none" />
+<circle cx="50" cy="50" r="10" stroke="#4a7c8a" stroke-width="2" fill="none">
+<animate attributeName="r" values="10;15;10" dur="3s" repeatCount="indefinite" />
+</circle>
 </svg>
 </div>
-<h3>Real-Time Monitoring</h3>
-<p>Quality metrics dashboard, anomaly detection, user satisfaction tracking, and cost optimization for production AI systems.</p>
+<h3>Automated Testing</h3>
+<p>Generate comprehensive test scenarios automatically including edge cases, regression tests, and red teaming for thorough validation.</p>
 </div>
 
-<div class="feature-card">
-<div class="feature-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="white">
-<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+<div class="orbital-benefit" style="width: 350px; height: 350px; padding: 35px;">
+<div class="benefit-icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+<circle cx="50" cy="50" r="40" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
+<path d="M30,50 C45,35 55,65 70,50" stroke="#4a7c8a" stroke-width="2" fill="none">
+<animate attributeName="d" values="M30,50 C45,35 55,65 70,50;M30,50 C45,65 55,35 70,50;M30,50 C45,35 55,65 70,50" dur="6s" repeatCount="indefinite" />
+</path>
+<circle cx="30" cy="50" r="4" fill="#4a7c8a" opacity="0.7" />
+<circle cx="70" cy="50" r="4" fill="#4a7c8a" opacity="0.7" />
 </svg>
 </div>
-<h3>Safety & Compliance</h3>
-<p>Content filtering, bias detection, compliance checking, and comprehensive audit trails for regulatory requirements.</p>
+<h3>Content Validation</h3>
+<p>Advanced validation engine with fact checking, bias detection, and toxicity filtering to maintain content quality and safety standards.</p>
 </div>
 
-<div class="feature-card">
-<div class="feature-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="white">
-<circle cx="12" cy="12" r="3"/>
-<path d="m12 1 2.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 1z"/>
+<div class="orbital-benefit" style="width: 350px; height: 350px; padding: 35px;">
+<div class="benefit-icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+<circle cx="50" cy="50" r="40" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
+<path d="M30,70 L70,30" stroke="#4a7c8a" stroke-width="2" fill="none" />
+<circle cx="30" cy="70" r="5" fill="#4a7c8a" opacity="0.7" />
+<circle cx="70" cy="30" r="5" fill="#4a7c8a" opacity="0.7" />
+<path d="M30,30 L70,70" stroke="#4a7c8a" stroke-width="2" fill="none" stroke-dasharray="5,5" />
 </svg>
 </div>
-<h3>Continuous Improvement</h3>
-<p>A/B testing, feedback loop integration, model fine-tuning recommendations, and automatic performance optimization.</p>
-</div>
-</div>
-</div>
-</section>
-
-<section id="how-it-works" class="how-it-works section-padding">
-<div class="container">
-<h2 class="section-heading">How It Works</h2>
-
-<div class="implementation-timeline">
-<div class="timeline-step">
-<div class="step-number">1</div>
-<div class="step-content">
-<h3>Test Suite Creation</h3>
-<p>Define comprehensive test cases covering functional requirements (core capabilities and use cases), non-functional requirements (response time, token usage, cost), safety requirements (content appropriateness, bias prevention), and domain-specific tests for industry or company-specific requirements.</p>
-</div>
-</div>
-
-<div class="timeline-step">
-<div class="step-number">2</div>
-<div class="step-content">
-<h3>Automated Execution</h3>
-<p>Our platform automatically runs tests across multiple model versions, executes tests on schedule or triggered by deployments, distributes testing load for optimal performance, and collects comprehensive metrics and logs.</p>
-</div>
-</div>
-
-<div class="timeline-step">
-<div class="step-number">3</div>
-<div class="step-content">
-<h3>Intelligent Analysis</h3>
-<p>Advanced analytics provide trend analysis to track quality metrics over time, root cause analysis to identify sources of quality issues, predictive insights to anticipate potential problems, and actionable recommendations with specific steps to improve quality.</p>
-</div>
-</div>
-
-<div class="timeline-step">
-<div class="step-number">4</div>
-<div class="step-content">
 <h3>Continuous Monitoring</h3>
-<p>Production monitoring includes real-time quality scoring for every interaction, drift detection to identify when models deviate from expected behavior, user experience metrics to track satisfaction and engagement, and system health monitoring to ensure infrastructure reliability.</p>
+<p>Real-time performance monitoring, anomaly detection, and drift detection to maintain optimal AI performance over time.</p>
+</div>
+
+<div class="orbital-benefit" style="width: 350px; height: 350px; padding: 35px;">
+<div class="benefit-icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+<circle cx="50" cy="50" r="40" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
+<path d="M30,40 L70,40" stroke="#4a7c8a" stroke-width="2" fill="none" />
+<path d="M30,60 L70,60" stroke="#4a7c8a" stroke-width="2" fill="none" />
+<path d="M40,30 L40,70" stroke="#4a7c8a" stroke-width="2" fill="none" />
+<path d="M60,30 L60,70" stroke="#4a7c8a" stroke-width="2" fill="none" />
+</svg>
+</div>
+<h3>Enterprise Compliance</h3>
+<p>Maintain regulatory compliance with comprehensive audit trails, data governance, and industry-specific validation requirements.</p>
+</div>
+
+<div class="orbital-benefit" style="width: 350px; height: 350px; padding: 35px;">
+<div class="benefit-icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+<circle cx="50" cy="50" r="40" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
+<path d="M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30" stroke="#4a7c8a" stroke-width="2" fill="none">
+<animate attributeName="d" values="M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30;M50,30 C75,35 75,65 50,70 C25,65 25,35 50,30;M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30" dur="8s" repeatCount="indefinite" />
+</path>
+<circle cx="50" cy="50" r="5" fill="#4a7c8a" opacity="0.7">
+<animate attributeName="r" values="5;8;5" dur="4s" repeatCount="indefinite" />
+</circle>
+</svg>
+</div>
+<h3>Self-Improving Analytics</h3>
+<p>Continuously learns and optimizes quality assessment patterns based on validation results and user feedback.</p>
 </div>
 </div>
 </div>
 </div>
 </section>
 
-<section id="quality-metrics" class="metrics section-padding">
+<section id="feature-details" class="feature-details section-padding" style="padding-top: 6rem;">
 <div class="container">
-<h2 class="section-heading">Quality Metrics Dashboard</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">How Quality Assurance Works</h2>
 
-<div class="metrics-dashboard">
-<h3 style="color: #16214c; margin-bottom: 2rem; text-align: center;">Real-Time Quality Monitoring</h3>
-
-<div class="metrics-grid">
-<div class="metric-item">
-<span class="metric-value">99.7%</span>
-<span class="metric-label">Accuracy Rate</span>
-<div class="progress-bar">
-<div class="progress-fill" style="width: 99.7%;"></div>
+<div class="feature-grid">
+<div class="feature-item">
+<div style="display: flex; align-items: flex-start;">
+<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<i class="fas fa-vial"></i>
 </div>
+<div>
+<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Automated Test Generation</h3>
+<p style="font-size: 14px; line-height: 1.5; margin: 0;">Generate comprehensive test scenarios including user scenarios, edge cases, regression tests, and red teaming to ensure reliability</p>
 </div>
-
-<div class="metric-item">
-<span class="metric-value">45ms</span>
-<span class="metric-label">Avg Response Time</span>
-<div class="progress-bar">
-<div class="progress-fill" style="width: 85%;"></div>
 </div>
 </div>
 
-<div class="metric-item">
-<span class="metric-value">0.02%</span>
-<span class="metric-label">Error Rate</span>
-<div class="progress-bar">
-<div class="progress-fill" style="width: 2%; background: #dc2626;"></div>
+<div class="feature-item">
+<div style="display: flex; align-items: flex-start;">
+<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<i class="fas fa-shield-alt"></i>
 </div>
+<div>
+<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Content Validation</h3>
+<p style="font-size: 14px; line-height: 1.5; margin: 0;">Advanced validation with fact checking, hallucination detection, bias detection, and toxicity filtering</p>
 </div>
-
-<div class="metric-item">
-<span class="metric-value">98.9%</span>
-<span class="metric-label">Safety Score</span>
-<div class="progress-bar">
-<div class="progress-fill" style="width: 98.9%;"></div>
 </div>
 </div>
 
-<div class="metric-item">
-<span class="metric-value">94.3%</span>
-<span class="metric-label">Compliance Rate</span>
-<div class="progress-bar">
-<div class="progress-fill" style="width: 94.3%;"></div>
+<div class="feature-item">
+<div style="display: flex; align-items: flex-start;">
+<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<i class="fas fa-chart-line"></i>
+</div>
+<div>
+<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Quality Analytics</h3>
+<p style="font-size: 14px; line-height: 1.5; margin: 0;">Evaluate relevance, consistency, completeness, and compliance to ensure enterprise requirements</p>
+</div>
 </div>
 </div>
 
-<div class="metric-item">
-<span class="metric-value">4.8/5</span>
-<span class="metric-label">User Satisfaction</span>
-<div class="progress-bar">
-<div class="progress-fill" style="width: 96%;"></div>
+<div class="feature-item">
+<div style="display: flex; align-items: flex-start;">
+<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<i class="fas fa-eye"></i>
 </div>
+<div>
+<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Continuous Monitoring</h3>
+<p style="font-size: 14px; line-height: 1.5; margin: 0;">Real-time monitoring with performance analytics, anomaly detection, and user feedback collection</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="qa-pipeline" class="pipeline section-padding">
+<div class="container">
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Quality Assurance Pipeline</h2>
+
+<div class="pipeline-container">
+<h3 style="color: #16214c; margin-bottom: 2rem; text-align: center;">End-to-End LLM Quality Validation</h3>
+
+<div class="pipeline-steps">
+<div class="pipeline-step">
+<div class="step-icon">1</div>
+<h4>Automated Testing</h4>
+<p>Generate comprehensive test scenarios including user scenarios, edge cases, regression tests, and red teaming to validate LLM reliability.</p>
+</div>
+
+<div class="pipeline-step">
+<div class="step-icon">2</div>
+<h4>Content Validation</h4>
+<p>Advanced validation engine performs fact checking, hallucination detection, bias detection, and toxicity filtering for content quality.</p>
+</div>
+
+<div class="pipeline-step">
+<div class="step-icon">3</div>
+<h4>Quality Analysis</h4>
+<p>Analytics engine evaluates relevance, consistency, completeness, and compliance to ensure enterprise-grade requirements.</p>
+</div>
+
+<div class="pipeline-step">
+<div class="step-icon">4</div>
+<h4>Continuous Monitoring</h4>
+<p>Real-time performance monitoring, anomaly detection, user feedback collection, and drift detection for ongoing optimization.</p>
 </div>
 </div>
 </div>
@@ -458,164 +500,99 @@ feature_category = "quality-assurance"
 
 <section id="case-studies" class="case-studies section-padding">
 <div class="container">
-<h2 class="section-heading">Success Stories</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>
 
 <div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(92, 226, 231, 0.2); margin-bottom: 3rem;">
-<h3 style="color: #16214c; font-size: 2rem; margin-bottom: 1rem;">Fortune 500 Healthcare Provider</h3>
-<p style="font-size: 1.25rem; color: #254284; margin-bottom: 2rem; font-weight: 600;">Achieved 99.8% accuracy in medical information retrieval while ensuring HIPAA compliance</p>
-<p style="margin-bottom: 2rem;">A leading healthcare provider needed to deploy AI-powered patient support across 200+ hospitals while maintaining strict medical accuracy and HIPAA compliance. Using our LLM QA platform, they automated testing of 50,000+ medical scenarios and reduced dangerous medical advice incidents by 99.2%.</p>
+<h3 style="color: #16214c; font-size: 2rem; margin-bottom: 1rem;">Global Healthcare Provider</h3>
+<p style="font-size: 1.25rem; color: #254284; margin-bottom: 2rem; font-weight: 600;">95% reduction in AI hallucinations while processing 50,000+ medical queries daily</p>
+<p style="margin-bottom: 2rem;">A leading healthcare provider needed to ensure medical AI responses met the highest safety standards. Using our Quality Assurance platform, they implemented comprehensive testing and validation, achieving unprecedented accuracy for patient-facing AI systems while maintaining regulatory compliance.</p>
 
 <blockquote class="testimonial">
-<p>"The LLM QA platform was essential for our healthcare AI deployment. The automated safety testing and real-time monitoring gave us confidence to scale AI across our entire hospital network while maintaining patient safety."</p>
+<p>"Divinci AI's Quality Assurance platform gave us the confidence to deploy AI in critical healthcare scenarios. The comprehensive testing and real-time validation ensure our patients receive accurate, safe information every time."</p>
 <cite>— Dr. Maria Rodriguez, Chief Medical Officer, Healthcare Leader</cite>
 </blockquote>
 
-<div style="display: flex; justify-content: space-around; text-align: center; margin-top: 2rem;">
+<div class="metrics-container" style="margin-top: 2rem;">
+<div class="metric">
+<span class="metric-value">95%</span>
+<span class="metric-label">Hallucination Reduction</span>
+</div>
 <div class="metric">
 <span class="metric-value">99.8%</span>
-<span class="metric-label">Medical Accuracy</span>
+<span class="metric-label">Content Safety Rating</span>
 </div>
 <div class="metric">
-<span class="metric-value">99.2%</span>
-<span class="metric-label">Risk Reduction</span>
-</div>
-<div class="metric">
-<span class="metric-value">200+</span>
-<span class="metric-label">Hospitals Deployed</span>
+<span class="metric-value">50K+</span>
+<span class="metric-label">Daily Queries Validated</span>
 </div>
 </div>
 </div>
 
 <div class="case-studies-grid">
 <div class="case-study-card">
-<h3>Global Banking Institution</h3>
-<p>Reduced regulatory compliance violations by 94% through automated testing of financial advice and investment recommendations across 12 countries.</p>
+<h3>Financial Services Firm</h3>
+<p>Achieved 99.9% compliance rate for regulatory queries with automated bias detection and fact-checking across 25,000+ daily customer interactions.</p>
 <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="text-link" target="_blank">Request Details →</a>
 </div>
 
 <div class="case-study-card">
-<h3>Legal Services Firm</h3>
-<p>Improved legal document accuracy by 89% and reduced liability risks through comprehensive testing of AI-generated legal analysis and recommendations.</p>
+<h3>Legal Technology Platform</h3>
+<p>Reduced manual review time by 85% while maintaining 99.5% accuracy for legal document analysis across 100+ law firms.</p>
 <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="text-link" target="_blank">Request Details →</a>
 </div>
 
 <div class="case-study-card">
-<h3>Customer Service Platform</h3>
-<p>Increased customer satisfaction scores by 76% while reducing escalations by 82% through continuous quality monitoring and optimization.</p>
+<h3>Educational Institution</h3>
+<p>Ensured content safety and accuracy for 500,000+ student interactions with comprehensive toxicity filtering and educational content validation.</p>
 <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="text-link" target="_blank">Request Details →</a>
 </div>
 </div>
 </div>
 </section>
 
-<section id="use-cases" class="use-cases section-padding">
+<section id="related-features" class="related-features section-padding">
 <div class="container">
-<h2 class="section-heading">Industry Use Cases</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Related Features</h2>
 
-<div class="use-cases-grid">
-<div class="use-case-card">
-<h3>🏦 Financial Services</h3>
-<ul style="text-align: left; margin-top: 1rem;">
-<li>Validate compliance with financial regulations</li>
-<li>Test accuracy of financial advice and calculations</li>
-<li>Monitor for potential market manipulation</li>
-<li>Ensure customer data protection</li>
-</ul>
-</div>
-
-<div class="use-case-card">
-<h3>🏥 Healthcare</h3>
-<ul style="text-align: left; margin-top: 1rem;">
-<li>Verify medical information accuracy</li>
-<li>Test HIPAA compliance in responses</li>
-<li>Monitor for dangerous medical advice</li>
-<li>Validate clinical decision support</li>
-</ul>
-</div>
-
-<div class="use-case-card">
-<h3>📞 Customer Service</h3>
-<ul style="text-align: left; margin-top: 1rem;">
-<li>Ensure consistent brand voice</li>
-<li>Test resolution accuracy</li>
-<li>Monitor customer satisfaction</li>
-<li>Optimize response times</li>
-</ul>
-</div>
-
-<div class="use-case-card">
-<h3>⚖️ Legal & Compliance</h3>
-<ul style="text-align: left; margin-top: 1rem;">
-<li>Validate legal information accuracy</li>
-<li>Test for regulatory compliance</li>
-<li>Monitor for liability risks</li>
-<li>Ensure confidentiality standards</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-
-<section id="integrations" class="integrations section-padding">
-<div class="container">
-<h2 class="section-heading">Integration Capabilities</h2>
-
-<div style="text-align: center; margin-bottom: 3rem;">
-<p style="font-size: 1.2rem; color: #718096;">Connect with your existing development and monitoring infrastructure</p>
-</div>
-
-<div class="integration-icons">
-<div class="integration-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
-<path fill="#16214c" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+<div class="related-features-grid">
+<div class="related-feature-card">
+<div style="margin-bottom: 1rem;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
+<circle cx="12" cy="12" r="11" fill="none" stroke="#16214c" stroke-width="1" opacity="0.2"/>
+<path d="M7,12 H17 M7,8 H17 M7,16 H13" stroke="#16214c" stroke-width="2" stroke-linecap="round"/>
+<circle cx="17" cy="16" r="3" fill="none" stroke="#254284" stroke-width="2"/>
+<path d="M17,14 L17,18 M15,16 L19,16" stroke="#254284" stroke-width="2" stroke-linecap="round"/>
 </svg>
 </div>
-<div class="integration-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
-<path fill="#16214c" d="M21 16V8a2 2 0 0 0-1-1.73L12 2 4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73L12 22l8-4.27A2 2 0 0 0 21 16z"/>
-</svg>
-</div>
-<div class="integration-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
-<path fill="#16214c" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-</svg>
-</div>
-<div class="integration-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
-<path fill="#16214c" d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 0 0-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"/>
-</svg>
-</div>
+<h3>AutoRAG Integration</h3>
+<p>Seamlessly integrate quality assurance with your AutoRAG pipeline for comprehensive knowledge base validation.</p>
+<a href="/autorag/" class="text-link">Learn More →</a>
 </div>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
-<div style="text-align: center;">
-<h3>Development Tools</h3>
-<div style="margin-top: 1rem;">
-<span class="tag">CI/CD</span>
-<span class="tag">IDE Plugins</span>
-<span class="tag">Git</span>
-<span class="tag">API Testing</span>
+<div class="related-feature-card">
+<div style="margin-bottom: 1rem;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
+<circle cx="12" cy="12" r="11" fill="none" stroke="#16214c" stroke-width="1" opacity="0.2"/>
+<circle cx="12" cy="12" r="5" fill="none" stroke="#254284" stroke-width="2"/>
+<path d="M12,7 L12,5 M12,19 L12,17 M7,12 L5,12 M19,12 L17,12 M16.5,7.5 L18,6 M7.5,16.5 L6,18 M16.5,16.5 L18,18 M7.5,7.5 L6,6" stroke="#254284" stroke-width="2" stroke-linecap="round"/>
+</svg>
 </div>
-</div>
-
-<div style="text-align: center;">
-<h3>Monitoring Platforms</h3>
-<div style="margin-top: 1rem;">
-<span class="tag">Datadog</span>
-<span class="tag">New Relic</span>
-<span class="tag">PagerDuty</span>
-<span class="tag">Slack</span>
-</div>
+<h3>Release Management</h3>
+<p>Integrate quality gates into your AI deployment pipeline with our comprehensive release management platform.</p>
+<a href="/release-management/" class="text-link">Learn More →</a>
 </div>
 
-<div style="text-align: center;">
-<h3>Model Platforms</h3>
-<div style="margin-top: 1rem;">
-<span class="tag">OpenAI</span>
-<span class="tag">Anthropic</span>
-<span class="tag">Google</span>
-<span class="tag">MLflow</span>
+<div class="related-feature-card">
+<div style="margin-bottom: 1rem;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
+<circle cx="12" cy="12" r="11" fill="none" stroke="#16214c" stroke-width="1" opacity="0.2"/>
+<rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="#4a7c8a" stroke-width="2"/>
+<path d="M9,12 L11,14 L15,10" stroke="#4a7c8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
 </div>
+<h3>Compliance Monitoring</h3>
+<p>Ensure regulatory compliance with continuous monitoring and audit trails for enterprise AI deployments.</p>
+<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="text-link" target="_blank">Learn More →</a>
 </div>
 </div>
 </div>
@@ -623,59 +600,56 @@ feature_category = "quality-assurance"
 
 <section id="faq" class="faq-section section-padding">
 <div class="container">
-<h2 class="section-heading">Frequently Asked Questions</h2>
+<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Frequently Asked Questions</h2>
 
 <div class="accordion">
 <div class="accordion-item">
 <h3>
 <button class="accordion-trigger">
-                        How does LLM QA differ from traditional software testing?
+                        How does AI quality assurance differ from traditional software testing?
 </button>
 </h3>
 <div class="accordion-panel">
-<p>Traditional software testing focuses on deterministic inputs and outputs, while LLM QA addresses the probabilistic nature of AI models. Our platform evaluates semantic correctness, contextual appropriateness, and safety measures that go beyond simple pass/fail criteria.</p>
-<p>We use advanced techniques like semantic similarity scoring, bias detection algorithms, and contextual analysis to ensure AI outputs meet enterprise standards for accuracy, safety, and compliance.</p>
+<p>AI quality assurance addresses unique challenges that traditional testing approaches can't handle. While traditional software testing focuses on deterministic outcomes, AI systems generate variable responses that require content-aware validation, bias detection, and contextual accuracy assessment.</p>
+<p>Our platform evaluates not just functional correctness but also content quality, safety, compliance, and ethical considerations that are critical for enterprise AI deployments.</p>
 </div>
 </div>
 
 <div class="accordion-item">
 <h3>
 <button class="accordion-trigger">
-                        What types of AI models can your QA platform test?
+                        What types of validation does the platform perform?
 </button>
 </h3>
 <div class="accordion-panel">
-<p>Our platform supports all major LLM providers and model types including:</p>
+<p>Our comprehensive validation engine performs multiple types of quality checks:</p>
 <ul>
-<li>OpenAI models (GPT-4, GPT-3.5, and future releases)</li>
-<li>Anthropic models (Claude series)</li>
-<li>Google models (Gemini, PaLM)</li>
-<li>Meta models (Llama series)</li>
-<li>Open source models (Mistral, etc.)</li>
-<li>Custom fine-tuned models</li>
-<li>Multi-modal models with text, image, and audio capabilities</li>
+<li><strong>Fact Checking:</strong> Validates factual accuracy against reliable knowledge sources</li>
+<li><strong>Hallucination Detection:</strong> Identifies when AI generates false or unsupported information</li>
+<li><strong>Bias Detection:</strong> Scans for unfair bias in AI responses across protected categories</li>
+<li><strong>Toxicity Filtering:</strong> Prevents harmful, offensive, or inappropriate content</li>
+<li><strong>Compliance Validation:</strong> Ensures responses meet industry-specific regulatory requirements</li>
+<li><strong>Consistency Checking:</strong> Validates that similar queries receive consistent responses</li>
 </ul>
-<p>The platform automatically adapts testing strategies based on each model's specific capabilities and limitations.</p>
 </div>
 </div>
 
 <div class="accordion-item">
 <h3>
 <button class="accordion-trigger">
-                        How do you ensure data security during testing?
+                        How does continuous monitoring work for deployed AI systems?
 </button>
 </h3>
 <div class="accordion-panel">
-<p>Security is paramount in our design. All testing occurs within your security perimeter with:</p>
+<p>Our continuous monitoring system tracks AI performance in real-time through multiple channels:</p>
 <ul>
-<li>End-to-end encryption for all data in transit and at rest</li>
-<li>On-premises or private cloud deployment options</li>
-<li>Role-based access controls for test data and results</li>
-<li>Comprehensive audit logging for compliance</li>
-<li>Data anonymization capabilities for sensitive content</li>
-<li>Air-gapped deployment for maximum security environments</li>
+<li><strong>Performance Analytics:</strong> Monitor response accuracy, latency, and user satisfaction metrics</li>
+<li><strong>Anomaly Detection:</strong> Automatically identify unusual patterns that may indicate model degradation</li>
+<li><strong>Drift Detection:</strong> Track changes in model behavior over time and alert on significant shifts</li>
+<li><strong>User Feedback Integration:</strong> Collect and analyze user feedback to identify quality issues</li>
+<li><strong>Automated Alerting:</strong> Instant notifications when quality thresholds are breached</li>
 </ul>
-<p>We maintain compliance with GDPR, HIPAA, SOC 2, and other regulatory frameworks.</p>
+<p>The system maintains detailed audit logs and provides dashboards for real-time visibility into AI system health and performance trends.</p>
 </div>
 </div>
 </div>
@@ -684,11 +658,11 @@ feature_category = "quality-assurance"
 
 <section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(92, 226, 231, 0.1)); padding: 4rem 0;">
 <div class="container" style="text-align: center;">
-<h2 style="font-size: 2.5rem; color: #16214c; margin-bottom: 1rem;">Ready to Ensure AI Quality?</h2>
-<p style="font-size: 1.25rem; margin-bottom: 2rem; color: #254284;">Transform your AI quality assurance with enterprise-grade testing and monitoring.</p>
+<h2 style="font-size: 2.5rem; color: #16214c; margin-bottom: 1rem;">Ready to Transform AI Quality?</h2>
+<p style="font-size: 1.25rem; margin-bottom: 2rem; color: #254284;">Ensure enterprise-grade reliability and safety for your LLM applications.</p>
 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
 <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="secondary-button" target="_blank">Request Demo</a>
-<a href="https://docs.divinci.ai/qa" class="text-link" style="padding: 12px 24px; border: 2px solid transparent;">View Documentation</a>
+<a href="https://docs.divinci.ai/quality-assurance" class="text-link" style="padding: 12px 24px; border: 2px solid transparent;">View Documentation</a>
 </div>
 </div>
 </section>

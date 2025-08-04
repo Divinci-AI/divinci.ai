@@ -5,8 +5,10 @@
     <div class="footer-content">
         <div class="footer-section brand-section">
             <div class="footer-logo">
-                <img src="{{ get_url(path="images/divinci_logo_inverted.svg") }}" alt="Divinci AI Logo">
-                <span>Divinci AI</span>
+                <a href="{% if current_lang == 'en' %}/{% else %}/{{ current_lang }}/{% endif %}" class="footer-logo-link">
+                    <img src="{{ get_url(path="images/divinci_logo_inverted.svg") }}" alt="Divinci AI Logo">
+                    <span>Divinci AI</span>
+                </a>
             </div>
             <p class="footer-tagline">
                 {{ translations.footer.tagline | default(value="Empowering human-AI collaboration") }}
@@ -76,7 +78,14 @@
             <div class="footer-bottom-links">
                 <a href="{% if current_lang == 'en' %}/sitemap{% else %}/{{ current_lang }}/sitemap{% endif %}">{{ translations.footer.bottom.links.sitemap | default(value="Sitemap") }}</a>
                 <a href="{% if current_lang == 'en' %}/accessibility{% else %}/{{ current_lang }}/accessibility{% endif %}">{{ translations.footer.bottom.links.accessibility | default(value="Accessibility") }}</a>
-                <a href="{% if current_lang == 'en' %}/cookies{% else %}/{{ current_lang }}/cookies{% endif %}">{{ translations.footer.bottom.links.cookies | default(value="Cookie Policy") }}</a>
+                <div class="privacy-dropdown">
+                    <span class="privacy-settings-link">Privacy Settings</span>
+                    <div class="privacy-dropdown-content">
+                        <a href="{% if current_lang == 'en' %}/cookies{% else %}/{{ current_lang }}/cookies{% endif %}">Cookie Policy</a>
+                        <button onclick="window.gdprCompliance?.showCookieBanner()">Cookie Preferences</button>
+                        <a href="{% if current_lang == 'en' %}/privacy-policy{% else %}/{{ current_lang }}/privacy-policy{% endif %}">Privacy Policy</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

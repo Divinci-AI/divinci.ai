@@ -1,16 +1,22 @@
 # Zola Configuration for New Divinci AI Website
-base_url = "https://new-divinci.ai"
+base_url = "https://divinci-ai-site.divinci-ai.workers.dev"
 
-# Build settings
+# Build settings - Optimized for performance
 compile_sass = true
 minify_html = true
-generate_feeds = true
+generate_feeds = false
 build_search_index = false
-hard_link_static = false
+hard_link_static = true
 
 # Theme and output settings
 output_dir = "public"
 default_language = "en"
+
+# Blog taxonomies
+taxonomies = [
+    {name = "categories", feeds = true},
+    {name = "tags", feeds = false},
+]
 
 
 # Markdown settings

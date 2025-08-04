@@ -9,10 +9,17 @@
             <span>Divinci</span>
         </a>
     </div>
+    
+    <!-- Mobile-first navigation layout -->
+    <div class="header-actions">
+        {% include "language-switcher.html" %}
+        <a href="https://calendly.com/mike-mooring-divinci/30min" class="cta-button mobile-demo-button" target="_blank" rel="noopener">{{ translations.navigation.request_demo | default(value="Request demo") }}</a>
+    </div>
+    
     <nav>
         <ul>
-            <li class="dropdown">
-                <a href="#features">{{ translations.navigation.features | default(value="Features") }}</a>
+            <li class="dropdown mobile-hide">
+                <a href="{% if current_lang == 'en' %}/#features{% else %}/{{ current_lang }}/#features{% endif %}">{{ translations.navigation.features | default(value="Features") }}</a>
                 <span class="dropdown-arrow">▼</span>
                 <div class="dropdown-menu">
                     <a href="{% if current_lang == 'en' %}/autorag/{% else %}/{{ current_lang }}/autorag/{% endif %}">AutoRAG</a>
@@ -20,20 +27,21 @@
                     <a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">Release Management</a>
                 </div>
             </li>
-            <li><a href="#team">{{ translations.navigation.team | default(value="Team") }}</a></li>
-            <li><a href="#signup">{{ translations.navigation.signup | default(value="Sign Up") }}</a></li>
+            <li><a href="{% if current_lang == 'en' %}/#team{% else %}/{{ current_lang }}/#team{% endif %}">{{ translations.navigation.team | default(value="Team") }}</a></li>
+            <li><a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}">{{ translations.navigation.blog | default(value="Blog") }}</a></li>
+            <li class="mobile-hide"><a href="{% if current_lang == 'en' %}/#signup{% else %}/{{ current_lang }}/#signup{% endif %}">{{ translations.navigation.signup | default(value="Sign Up") }}</a></li>
             <li class="dropdown">
-                <a href="#support">{{ translations.navigation.support | default(value="Support") }}</a>
+                <a href="{% if current_lang == 'en' %}/#support{% else %}/{{ current_lang }}/#support{% endif %}">{{ translations.navigation.support | default(value="Support") }}</a>
                 <span class="dropdown-arrow">▼</span>
                 <div class="dropdown-menu">
                     <a href="{% if current_lang == 'en' %}/terms-of-service/{% else %}/{{ current_lang }}/terms-of-service/{% endif %}">Terms of Service</a>
                     <a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}">Privacy Policy</a>
                 </div>
             </li>
+            <!-- Request Demo as navigation item on mobile -->
+            <li class="mobile-only">
+                <a href="https://calendly.com/mike-mooring-divinci/30min" target="_blank" rel="noopener">{{ translations.navigation.request_demo | default(value="Request demo") }}</a>
+            </li>
         </ul>
     </nav>
-    <div class="header-actions">
-        {% include "language-switcher.html" %}
-        <button class="cta-button">{{ translations.navigation.request_demo | default(value="Request demo") }}</button>
-    </div>
 </header>

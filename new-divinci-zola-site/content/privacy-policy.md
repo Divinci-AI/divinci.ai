@@ -1,111 +1,145 @@
 +++
 title = "Privacy Policy"
-description = "How Divinci AI collects, uses, and protects your personal data"
+description = "Divinci AI's commitment to protecting your privacy and personal data in compliance with GDPR and international privacy laws"
 template = "page.html"
-[extra]
-last_updated = "October 31, 2024"
 +++
 
-<div class="notification is-info">
-    <p class="has-text-centered"><i class="fas fa-info-circle"></i> <strong>Important:</strong> Please review our updated Privacy Policy carefully.</p>
+# Privacy Policy
+
+**Last updated:** January 2025
+
+## Our Commitment to Privacy
+
+At Divinci AI, we are committed to protecting your privacy and ensuring the security of your personal data. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our website and services.
+
+## 1. Information We Collect
+
+### 1.1 Information You Provide
+- **Contact Information**: Name, email address, company name when you contact us or request demos
+- **Account Information**: Information provided when creating an account
+- **Communication Data**: Messages, feedback, and support requests
+
+### 1.2 Information Automatically Collected
+- **Website Usage Data**: Pages visited, time spent, click patterns
+- **Technical Data**: IP address, browser type, device information
+- **Performance Data**: Website performance metrics and error logs
+
+### 1.3 Cookies and Tracking Technologies
+We use cookies and similar technologies to:
+- Ensure website functionality
+- Analyze website performance
+- Provide personalized experience (with your consent)
+
+## 2. Legal Basis for Processing (GDPR)
+
+We process your personal data based on:
+- **Consent**: For analytics and marketing cookies
+- **Legitimate Interest**: For website functionality and security
+- **Contract Performance**: When providing our services
+- **Legal Obligation**: When required by law
+
+## 3. How We Use Your Information
+
+### 3.1 Essential Uses
+- Provide and maintain our services
+- Respond to your inquiries
+- Ensure website security and functionality
+
+### 3.2 With Your Consent
+- Analytics to improve our website
+- Marketing communications
+- Personalized content recommendations
+
+## 4. Data Sharing and Disclosure
+
+We do not sell your personal data. We may share data with:
+
+### 4.1 Service Providers
+- Cloud hosting providers (with data processing agreements)
+- Analytics providers (when you consent)
+- Customer support tools
+
+### 4.2 Legal Requirements
+- When required by law or legal process
+- To protect our rights and safety
+- In connection with business transfers
+
+## 5. Your Rights (GDPR & International)
+
+You have the right to:
+
+### 5.1 Access and Portability
+- **Right of Access**: Request information about your personal data
+- **Data Portability**: Receive your data in a structured format
+
+### 5.2 Correction and Deletion
+- **Rectification**: Correct inaccurate personal data
+- **Erasure**: Request deletion of your personal data
+
+### 5.3 Processing Control
+- **Restriction**: Limit how we process your data
+- **Objection**: Object to processing for direct marketing
+- **Withdraw Consent**: Revoke consent at any time
+
+## 6. Your Privacy Controls
+
+<div class="privacy-controls">
+  <button onclick="window.gdprCompliance?.showCookieBanner()" class="privacy-btn">
+    🍪 Cookie Preferences
+  </button>
+  
+  <button onclick="window.gdprCompliance?.exportUserData()" class="privacy-btn">
+    📥 Download My Data
+  </button>
+  
+  <button onclick="window.gdprCompliance?.deleteUserData()" class="privacy-btn privacy-btn-danger">
+    🗑️ Delete My Data
+  </button>
+  
+  <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
+    ❌ Revoke All Consent
+  </button>
 </div>
 
-## 1. Introduction
+<style>
+.privacy-controls {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
 
-Divinci AI, Inc. ("Company," "we," "us," or "our") values your privacy. This Privacy Policy outlines how we collect, use, and protect your personal data when you use our web, mobile, and SMS services (the "Services").
+.privacy-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #cfdcff;
+  background: transparent;
+  color: #2d3c34;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
 
-By using our Services, you consent to the collection and use of information as described in this Privacy Policy. If you do not agree with this policy, please refrain from using our Services.
+.privacy-btn:hover {
+  background: #cfdcff;
+  transform: translateY(-1px);
+}
 
-## 2. Data Collection and Use
+.privacy-btn-danger {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
 
-Divinci AI collects data to enhance the user experience, improve AI model performance, and ensure responsible AI usage. We prioritize data transparency, ethical data use, and user trust. The types of data we collect include:
+.privacy-btn-danger:hover {
+  background: #ff6b6b;
+  color: white;
+}
+</style>
 
-- **Personal Information:** Information like name, email address, and contact details, which are collected when you register or subscribe to our Services.
-- **Usage Data:** Information about how you interact with our Services, including access dates, chat interactions, feature usage, and preferences.
-- **Device Information:** Information such as device type, operating system, and browser type to optimize Service compatibility.
+## Contact Information
 
-We use this information to:
-
-- Improve AI model responses and customize content based on user interactions.
-- Enhance service reliability, including troubleshooting and security monitoring.
-- Send updates, newsletters, or notifications (if opted in).
-
-## 3. Data Security
-
-We implement robust security measures to protect your data from unauthorized access or misuse. Security practices include encryption, access controls, and regular audits. Despite our best efforts, no system can guarantee complete security. In case of any security breaches, we will notify affected users as required by applicable laws.
-
-## 4. User Rights
-
-Divinci AI respects your rights to your personal data. You may:
-
-- **Access:** Request access to the data we hold about you.
-- **Correction:** Request correction of any inaccurate information.
-- **Deletion:** Request deletion of your data, subject to legal retention obligations.
-- **Opt-out:** Choose not to receive marketing communications by following the opt-out instructions in emails or contacting us directly.
-
-## 5. AI and User-Generated Content
-
-The content generated through Divinci AI's language models is based on user prompts and model training data. While we take steps to prevent inappropriate outputs, we encourage users to avoid sharing sensitive or personally identifiable information during interactions with the AI models.
-
-## 6. Data Retention and Deletion
-
-Divinci AI retains personal data only for as long as necessary to fulfill the purposes described in this Privacy Policy, comply with legal obligations, and ensure ongoing AI improvement. Upon user request or account termination, we will delete personal data, subject to any legal retention requirements.
-
-## 7. Sharing of Data
-
-Divinci AI does not sell your personal data. We may share data with trusted third parties solely for purposes such as:
-
-- **Service Improvement:** Collaborating with service providers to enhance our Services, such as data storage or analytics providers.
-- **Legal Compliance:** Sharing data as required by law, or to protect the rights, safety, and property of Divinci AI or others.
-- **Business Transactions:** In the event of a merger, acquisition, or other business restructuring, your data may be transferred as part of the transaction.
-
-## 8. Cookies and Tracking Technologies
-
-We use cookies and similar tracking technologies to enhance your experience on our Services. These technologies help us understand user preferences, analyze traffic, and improve functionality. You can manage cookie preferences through your browser settings, though disabling cookies may affect Service functionality.
-
-## 9. International Data Transfers
-
-Divinci AI operates globally and may transfer your data to servers located outside your country of residence. We ensure that any international data transfers comply with applicable data protection laws and maintain appropriate safeguards to protect your information.
-
-## 10. Children's Privacy
-
-Our Services are not intended for users under the age of 18. We do not knowingly collect personal data from children. If we become aware that a child has provided us with personal information, we will take steps to delete such information from our systems.
-
-## 11. Third-Party Links
-
-Our Services may contain links to third-party websites or services. We are not responsible for the privacy practices of these third parties. We encourage you to review their privacy policies before providing any personal information.
-
-## 12. Changes to This Policy
-
-We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. When we make significant changes, we will notify you through our Services or via email. Your continued use of the Services after any updates constitutes your acceptance of the revised Privacy Policy.
-
-## 13. Contact Us
-
-If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us at:
-
-**Divinci AI, Inc.**  
+**Divinci AI**  
 Email: privacy@divinci.ai  
-Data Protection Officer: dpo@divinci.ai  
-Address: Los Angeles, California, USA
+Data Protection Officer: dpo@divinci.ai
 
-## 14. California Privacy Rights
-
-If you are a California resident, you have specific rights under the California Consumer Privacy Act (CCPA). These include the right to:
-
-- Know what personal information we collect, use, and share
-- Request deletion of your personal information
-- Opt-out of the sale of your personal information (Note: We do not sell personal information)
-- Non-discrimination for exercising your privacy rights
-
-To exercise these rights, please contact us using the information provided above.
-
-## 15. GDPR Compliance
-
-For users in the European Economic Area (EEA), we comply with the General Data Protection Regulation (GDPR). This includes:
-
-- Legal basis for processing your data
-- Data portability rights
-- Right to lodge a complaint with supervisory authorities
-- Detailed information about data processing activities
-
-Our legal basis for processing personal data includes consent, contractual necessity, and legitimate interests in providing and improving our Services.
+For any privacy-related requests or questions, contact us at privacy@divinci.ai with a response time of within 30 days.

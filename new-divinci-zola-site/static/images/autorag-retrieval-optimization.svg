@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" aria-labelledby="title-ret-opt desc-ret-opt">
+  <title id="title-ret-opt">Retrieval Optimization Visualization</title>
+  <desc id="desc-ret-opt">Visualization of how AutoRAG optimizes retrieval based on context and feedback</desc>
+  
+  <defs>
+    <!-- Styles -->
+    <style>
+      /* Base styles using the Divinci color palette */
+      .ret-opt-bg { fill: #F5F7FA; }
+      .ret-opt-container { fill: #F5F7FA; stroke: #485262; stroke-width: 1.5; rx: 5; ry: 5; }
+      .ret-opt-connection { stroke: #2E5BFF; stroke-width: 2; fill: none; }
+      .ret-opt-highlight { stroke: #8C54FF; stroke-width: 2.5; fill: none; }
+      .ret-opt-feedback { stroke: #00D8D8; stroke-width: 1.5; fill: none; stroke-dasharray: 4, 2; }
+      
+      .ret-opt-query { fill: #F0F5FF; stroke: #2E5BFF; stroke-width: 1.5; rx: 4; ry: 4; }
+      .ret-opt-engine { fill: #F5F7FA; stroke: #8C54FF; stroke-width: 2; rx: 5; ry: 5; }
+      .ret-opt-result { fill: #F5F7FA; stroke: #00D8D8; stroke-width: 1.5; rx: 4; ry: 4; }
+      
+      .ret-opt-icon { fill: #2E5BFF; }
+      .ret-opt-icon-2 { fill: #8C54FF; }
+      .ret-opt-icon-3 { fill: #00D8D8; }
+      
+      .ret-opt-text {
+        font-family: 'Inter', sans-serif;
+        fill: #485262;
+        font-size: 10px;
+      }
+      .ret-opt-title { 
+        font-size: 12px; 
+        font-weight: 500;
+      }
+      
+      /* Animation */
+      @keyframes retFlow {
+        from { stroke-dashoffset: 100; }
+        to { stroke-dashoffset: 0; }
+      }
+      
+      .ret-opt-animated {
+        stroke-dasharray: 5, 3;
+        animation: retFlow 6s linear infinite;
+      }
+      
+      @keyframes retPulse {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 1; }
+      }
+      
+      .ret-opt-pulse {
+        animation: retPulse 3s ease-in-out infinite;
+      }
+      
+      /* Relevance gauge animation */
+      @keyframes gaugeAnim {
+        0%, 100% { transform: rotate(-20deg); }
+        50% { transform: rotate(20deg); }
+      }
+      
+      .relevance-needle {
+        transform-origin: center bottom;
+        animation: gaugeAnim 4s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" class="ret-opt-bg"/>
+  
+  <!-- Query Context -->
+  <g transform="translate(20, 35)">
+    <rect width="70" height="40" class="ret-opt-query"/>
+    <text x="35" y="25" class="ret-opt-title" text-anchor="middle">Query</text>
+    <text x="35" y="37" class="ret-opt-text" text-anchor="middle">with Context</text>
+  </g>
+  
+  <!-- Retrieval Engine -->
+  <g transform="translate(110, 20)">
+    <rect width="80" height="70" class="ret-opt-engine ret-opt-pulse"/>
+    <text x="40" y="20" class="ret-opt-title" text-anchor="middle">Retrieval</text>
+    <text x="40" y="34" class="ret-opt-title" text-anchor="middle">Optimizer</text>
+    
+    <!-- Engine internals representation -->
+    <circle cx="30" cy="50" r="4" class="ret-opt-icon-2"/>
+    <circle cx="50" cy="50" r="4" class="ret-opt-icon-2"/>
+    <line x1="30" y1="50" x2="50" y2="50" stroke="#8C54FF" stroke-width="1.5"/>
+    <line x1="34" y1="46" x2="46" y2="46" stroke="#8C54FF" stroke-width="1.5"/>
+    <line x1="34" y1="54" x2="46" y2="54" stroke="#8C54FF" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Vector Database -->
+  <g transform="translate(210, 35)">
+    <rect width="70" height="40" class="ret-opt-container"/>
+    <text x="35" y="25" class="ret-opt-title" text-anchor="middle">Vector</text>
+    <text x="35" y="37" class="ret-opt-text" text-anchor="middle">Database</text>
+  </g>
+  
+  <!-- Optimized Results -->
+  <g transform="translate(110, 120)">
+    <rect width="80" height="60" class="ret-opt-result"/>
+    <text x="40" y="20" class="ret-opt-title" text-anchor="middle">Optimized</text>
+    <text x="40" y="32" class="ret-opt-text" text-anchor="middle">Results</text>
+    
+    <!-- Result quality representation -->
+    <g transform="translate(40, 45)">
+      <!-- Gauge background -->
+      <path d="M-20,0 A20,20 0 0,1 20,0" stroke="#E0E0E0" stroke-width="2" fill="none"/>
+      
+      <!-- Relevance gauge needle -->
+      <line x1="0" y1="0" x2="0" y2="-18" stroke="#00D8D8" stroke-width="2" class="relevance-needle"/>
+      <circle cx="0" cy="0" r="3" fill="#00D8D8"/>
+      
+      <text x="0" y="12" class="ret-opt-text" text-anchor="middle">Relevance</text>
+    </g>
+  </g>
+  
+  <!-- Feedback Analyzer -->
+  <g transform="translate(20, 130)">
+    <rect width="70" height="40" class="ret-opt-container"/>
+    <text x="35" y="25" class="ret-opt-title" text-anchor="middle">Feedback</text>
+    <text x="35" y="37" class="ret-opt-text" text-anchor="middle">Analyzer</text>
+  </g>
+  
+  <!-- Performance Metrics -->
+  <g transform="translate(210, 130)">
+    <rect width="70" height="40" class="ret-opt-container"/>
+    <text x="35" y="25" class="ret-opt-title" text-anchor="middle">Performance</text>
+    <text x="35" y="37" class="ret-opt-text" text-anchor="middle">Metrics</text>
+    
+    <!-- Mini chart -->
+    <path d="M25,50 L35,45 L45,55" stroke="#00D8D8" stroke-width="1.5" fill="none"/>
+  </g>
+  
+  <!-- Connections -->
+  <path d="M90,55 C95,55 105,55 110,55" class="ret-opt-connection ret-opt-animated"/>
+  <path d="M190,55 C195,55 205,55 210,55" class="ret-opt-connection ret-opt-animated"/>
+  <path d="M150,90 C150,95 150,105 150,120" class="ret-opt-highlight ret-opt-animated"/>
+  
+  <!-- Feedback loop -->
+  <path d="M110,150 C95,150 90,150 90,150" class="ret-opt-connection"/>
+  <path d="M190,150 C205,150 210,150 210,150" class="ret-opt-connection"/>
+  
+  <!-- Continuous improvement loop -->
+  <path d="M20,130 C20,90 20,20 110,20" class="ret-opt-feedback ret-opt-animated"/>
+  <path d="M210,130 C260,130 280,90 280,55 C280,20 210,20 190,20" class="ret-opt-feedback ret-opt-animated"/>
+</svg>

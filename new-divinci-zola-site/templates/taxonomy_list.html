@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block content %}
+{%- set current_lang = page.lang | default(value="en") -%}
+
+<!-- Include Header -->
+{% include "partials/header.html" %}
+
+<!-- Taxonomy Hero Section -->
+<section class="taxonomy-hero">
+    <div class="container">
+        <div class="taxonomy-hero-content">
+            <h1 class="taxonomy-title">{{ taxonomy.name | title }}</h1>
+            <p class="taxonomy-subtitle">Browse content organized by {{ taxonomy.name }}.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Taxonomy Content -->
+<section class="taxonomy-section">
+    <div class="container">
+        <div class="taxonomy-grid">
+            {% for term in terms %}
+                <div class="taxonomy-item">
+                    <a href="{{ term.permalink | safe }}" class="taxonomy-link">
+                        <h3 class="taxonomy-item-name">{{ term.name }}</h3>
+                        <p class="taxonomy-item-count">{{ term.pages | length }} 
+                            {% if term.pages | length == 1 %}
+                                post
+                            {% else %}
+                                posts
+                            {% endif %}
+                        </p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Include Footer -->
+{% include "partials/footer.html" %}
+
+<style>
+/* Taxonomy Page Styles */
+
+.taxonomy-hero {
+    background: linear-gradient(135deg, var(--color-neutral-inverse, #2d5a4f) 0%, var(--color-accent-primary, #7ba8d1) 100%);
+    color: white;
+    padding: 6rem 0 4rem;
+    text-align: center;
+}
+
+.taxonomy-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff, #7ba8d1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.taxonomy-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.taxonomy-section {
+    padding: 4rem 0;
+    background-color: var(--color-bg-primary, #f8f4f0);
+}
+
+.taxonomy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.taxonomy-item {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    border-left: 4px solid var(--color-accent-primary, #7ba8d1);
+}
+
+.taxonomy-item:hover {
+    transform: translateY(-5px);
+}
+
+.taxonomy-link {
+    display: block;
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.taxonomy-item-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-neutral-inverse, #2d5a4f);
+    margin-bottom: 0.5rem;
+}
+
+.taxonomy-item-count {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .taxonomy-title {
+        font-size: 2.2rem;
+    }
+    
+    .taxonomy-grid {
+        grid-template-columns: 1fr;
+        margin: 0 1rem;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,342 @@
++++
+title = "Product Roadmap"
+description = "Divinci AI's product roadmap details our upcoming features, enhancements, and strategic direction for our AI collaboration platform."
+template = "roadmap.html"
++++
+
+<style>
+.document-section {
+    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    color: white;
+    padding: 80px 0;
+    min-height: 100vh;
+}
+
+.document-header {
+    text-align: center;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.document-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #fff, #5ce2e7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.last-updated {
+    font-size: 1rem;
+    opacity: 0.8;
+    color: #5ce2e7;
+}
+
+.document-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.document-content > p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.roadmap-timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: linear-gradient(to bottom, rgba(92, 226, 231, 0.8), rgba(92, 226, 231, 0.2));
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 4px;
+    z-index: 0;
+}
+
+.roadmap-quarter {
+    padding: 10px 30px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+}
+
+.roadmap-quarter::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: -12px;
+    background: rgba(92, 226, 231, 0.7);
+    border: 4px solid #16214c;
+    top: 20px;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(92, 226, 231, 0.5);
+}
+
+.left {
+    left: 0;
+    text-align: right;
+}
+
+.right {
+    left: 50%;
+    text-align: left;
+}
+
+.right::after {
+    left: -12px;
+}
+
+.roadmap-card {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    position: relative;
+}
+
+.roadmap-card::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid rgba(92, 226, 231, 0.1);
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.roadmap-quarter-title {
+    font-weight: 600;
+    color: #5ce2e7;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.roadmap-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.status-planned {
+    background-color: rgba(92, 226, 231, 0.1);
+    color: #5ce2e7;
+    border: 1px solid rgba(92, 226, 231, 0.3);
+}
+
+.status-development {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.status-completed {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.roadmap-list {
+    margin-top: 15px;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.right .roadmap-list {
+    padding-left: 20px;
+}
+
+.left .roadmap-list {
+    padding-right: 20px;
+}
+
+.roadmap-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.left .roadmap-list li {
+    justify-content: flex-end;
+}
+
+.roadmap-list li .icon {
+    margin-right: 10px;
+    color: #5ce2e7;
+}
+
+.left .roadmap-list li .icon {
+    order: 2;
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.document-content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #5ce2e7;
+    margin: 3rem 0 1.5rem 0;
+}
+
+.document-content a {
+    color: #5ce2e7;
+    text-decoration: underline;
+}
+
+.document-content a:hover {
+    color: #4ed1d6;
+}
+
+@media screen and (max-width: 768px) {
+    .roadmap-timeline::before {
+        left: 30px;
+    }
+
+    .roadmap-quarter {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding-left: 70px;
+    }
+
+    .roadmap-quarter::after {
+        left: 18px;
+        right: auto;
+    }
+
+    .left .roadmap-list li {
+        justify-content: flex-start;
+    }
+
+    .left .roadmap-list li .icon {
+        order: 0;
+        margin-right: 10px;
+        margin-left: 0;
+    }
+
+    .left .roadmap-list {
+        padding-right: 0;
+    }
+
+    .document-header h1 {
+        font-size: 2rem;
+    }
+
+    .document-section {
+        padding: 60px 0;
+    }
+}
+</style>
+
+<section class="document-section">
+<div class="container">
+<div class="document-header">
+<h1>Product Roadmap</h1>
+<p class="last-updated">Last Updated: May 2, 2025</p>
+</div>
+
+<div class="document-content">
+<p>Our product roadmap shows you what exciting new features are coming to the Divinci AI platform. We're constantly improving based on your feedback to make your AI experience better and more personalized. This roadmap may change as we hear from users like you about what's most important.</p>
+
+<div class="roadmap-timeline">
+<!-- Q2 2025 -->
+<div class="roadmap-quarter right">
+<div class="roadmap-card">
+<h3 class="roadmap-quarter-title">Q2 2025</h3>
+<span class="roadmap-status status-development">In Development</span>
+<ul class="roadmap-list">
+<li><i class="fas fa-code-branch icon"></i> <span>Advanced RAG integration with custom knowledge bases</span></li>
+<li><i class="fas fa-user-shield icon"></i> <span>Enhanced security features for enterprise customers</span></li>
+<li><i class="fas fa-code icon"></i> <span>Code generation and execution features</span></li>
+<li><i class="fas fa-comments icon"></i> <span>Improved multiplayer chat experience</span></li>
+<li><i class="fas fa-plug icon"></i> <span>Expanded API capabilities for developers</span></li>
+</ul>
+</div>
+</div>
+
+<!-- Q3 2025 -->
+<div class="roadmap-quarter left">
+<div class="roadmap-card">
+<h3 class="roadmap-quarter-title">Q3 2025</h3>
+<span class="roadmap-status status-planned">Planned</span>
+<ul class="roadmap-list">
+<li><i class="fas fa-desktop icon"></i> <span>Desktop application for Windows, macOS, and Linux</span></li>
+<li><i class="fas fa-image icon"></i> <span>Advanced image generation capabilities</span></li>
+<li><i class="fas fa-robot icon"></i> <span>Custom AI assistant builder</span></li>
+<li><i class="fas fa-brain icon"></i> <span>Specialized domain-specific LLMs</span></li>
+<li><i class="fas fa-magic icon"></i> <span>UI/UX overhaul with customizable themes</span></li>
+</ul>
+</div>
+</div>
+
+<!-- Q4 2025 -->
+<div class="roadmap-quarter right">
+<div class="roadmap-card">
+<h3 class="roadmap-quarter-title">Q4 2025</h3>
+<span class="roadmap-status status-planned">Planned</span>
+<ul class="roadmap-list">
+<li><i class="fas fa-chart-line icon"></i> <span>Advanced analytics dashboard for enterprises</span></li>
+<li><i class="fas fa-language icon"></i> <span>Multilingual support with real-time translation</span></li>
+<li><i class="fas fa-microchip icon"></i> <span>Custom fine-tuning platform for enterprise clients</span></li>
+<li><i class="fas fa-link icon"></i> <span>Enhanced integration with third-party tools</span></li>
+<li><i class="fas fa-shield-alt icon"></i> <span>Advanced compliance and governance features</span></li>
+</ul>
+</div>
+</div>
+
+<!-- Q1 2026 -->
+<div class="roadmap-quarter left">
+<div class="roadmap-card">
+<h3 class="roadmap-quarter-title">Q1 2026</h3>
+<span class="roadmap-status status-planned">Planned</span>
+<ul class="roadmap-list">
+<li><i class="fas fa-vr-cardboard icon"></i> <span>VR/AR integration for immersive AI experiences</span></li>
+<li><i class="fas fa-video icon"></i> <span>Video generation and editing capabilities</span></li>
+<li><i class="fas fa-sitemap icon"></i> <span>Knowledge graph visualization tools</span></li>
+<li><i class="fas fa-mobile-alt icon"></i> <span>Enhanced mobile experience with offline capabilities</span></li>
+<li><i class="fas fa-network-wired icon"></i> <span>Advanced agent collaboration frameworks</span></li>
+</ul>
+</div>
+</div>
+</div>
+
+<h2>Feedback and Suggestions</h2>
+<p>We value your input! Your feedback helps us prioritize our development efforts and ensure we're building features that truly enhance your experience with Divinci AI.</p>
+<p>To suggest a feature or provide feedback on our roadmap, please contact us at <a href="mailto:feedback@divinci.ai">feedback@divinci.ai</a> or join our <a href="#">community forum</a>.</p>
+</div>
+</div>
+</section>

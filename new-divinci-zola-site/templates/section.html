@@ -146,7 +146,7 @@
                 </div>
             </div>
             <div class="cta-buttons">
-                <button class="primary-button">Request demo</button>
+                <a href="https://calendly.com/mike-mooring-divinci/30min" class="primary-button" target="_blank" rel="noopener">Request demo</a>
                 <button class="secondary-button">Explore platform</button>
             </div>
         </div>
@@ -529,7 +529,7 @@
         <div class="team-grid">
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="{{ get_url(path="images/Michael-Mooring.jpeg") }}" alt="Michael Mooring">
+                    <img src="{{ get_url(path="images/Michael-Mooring.png") }}" alt="Michael Mooring">
                 </div>
                 <h3>Michael Mooring</h3>
                 <p class="role">
@@ -727,41 +727,38 @@
             </h2>
             <p class="signup-intro">
                 {% if section.extra.lang == "es" %}
-                    Únete a miles de equipos que ya están transformando su trabajo con Divinci AI. Obtén acceso temprano a nuestra plataforma.
+                    Únete a miles de equipos que ya están transformando su trabajo con Divinci AI. Vea cómo nuestra plataforma puede revolucionar sus operaciones de IA.
                 {% elif section.extra.lang == "fr" %}
-                    Rejoignez des milliers d'équipes qui transforment déjà leur travail avec Divinci AI. Obtenez un accès anticipé à notre plateforme.
+                    Rejoignez des milliers d'équipes qui transforment déjà leur travail avec Divinci AI. Voyez comment notre plateforme peut révolutionner vos opérations d'IA.
                 {% elif section.extra.lang == "ar" %}
-                    انضم إلى آلاف الفرق التي تحول عملها بالفعل مع ديفينشي للذكاء الاصطناعي. احصل على وصول مبكر إلى منصتنا.
+                    انضم إلى آلاف الفرق التي تحول عملها بالفعل مع ديفينشي للذكاء الاصطناعي. اكتشف كيف يمكن لمنصتنا أن تحدث ثورة في عمليات الذكاء الاصطناعي الخاصة بك.
                 {% else %}
-                    Join thousands of teams already transforming their work with Divinci AI. Get early access to our platform.
+                    Join thousands of teams already transforming their work with Divinci AI. See how our platform can revolutionize your AI operations.
                 {% endif %}
             </p>
             <div class="signup-form">
-                <form action="/signup" method="post">
-                    <div class="form-group">
-                        <input type="email" name="email" required placeholder="{% if section.extra.lang == 'es' %}Tu correo electrónico{% elif lang == 'fr' %}Votre email{% elif lang == 'ar' %}بريدك الإلكتروني{% else %}Your email{% endif %}">
-                        <button type="submit" class="signup-button">
-                            {% if section.extra.lang == "es" %}
-                                Solicitar acceso
-                            {% elif section.extra.lang == "fr" %}
-                                Demander l'accès
-                            {% elif section.extra.lang == "ar" %}
-                                طلب الوصول
-                            {% else %}
-                                Request access
-                            {% endif %}
-                        </button>
-                    </div>
-                </form>
+                <div class="form-group">
+                    <a href="https://calendly.com/mike-mooring-divinci/30min" class="signup-button" target="_blank" rel="noopener">
+                        {% if section.extra.lang == "es" %}
+                            Programar Demo
+                        {% elif section.extra.lang == "fr" %}
+                            Planifier une Démo
+                        {% elif section.extra.lang == "ar" %}
+                            جدولة عرض توضيحي
+                        {% else %}
+                            Schedule Demo
+                        {% endif %}
+                    </a>
+                </div>
                 <p class="signup-note">
                     {% if section.extra.lang == "es" %}
-                        Sin spam. Cancelar suscripción en cualquier momento.
+                        Consulta gratuita de 30 minutos. Vea la plataforma en acción.
                     {% elif section.extra.lang == "fr" %}
-                        Pas de spam. Désabonnez-vous à tout moment.
+                        Consultation gratuite de 30 minutes. Voyez la plateforme en action.
                     {% elif section.extra.lang == "ar" %}
-                        لا رسائل مزعجة. إلغاء الاشتراك في أي وقت.
+                        استشارة مجانية لمدة 30 دقيقة. شاهد المنصة قيد العمل.
                     {% else %}
-                        No spam. Unsubscribe at any time.
+                        Free 30-minute consultation. See the platform in action.
                     {% endif %}
                 </p>
             </div>
@@ -865,7 +862,9 @@
                 </div>
             </div>
             <div class="ai-for-good-image">
-                <img src="{{ get_url(path="images/ai-for-impact-1.avif") }}" alt="AI for Good Impact">
+                <a href="https://lu.ma/cmuj911s" target="_blank" rel="noopener">
+                    <img src="{{ get_url(path="images/ai-for-impact-1.avif") }}" alt="AI for Good Impact">
+                </a>
             </div>
         </div>
     </div>

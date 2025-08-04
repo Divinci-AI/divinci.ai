@@ -1,0 +1,916 @@
+{% extends "base.html" %}
+
+{% block content %}
+{%- set current_lang = page.lang | default(value="en") -%}
+
+<!-- Include Header -->
+{% include "partials/header.html" %}
+
+<!-- Blog Post Hero Section -->
+<section class="blog-post-hero">
+    <!-- Sacred geometry background elements -->
+    <div class="sacred-geometry-bg">
+        <div class="sacred-circle sacred-circle-1"></div>
+        <div class="geometric-pattern pattern-1"></div>
+    </div>
+    
+    <div class="container">
+        <div class="blog-post-hero-content">
+            <nav class="breadcrumb-nav">
+                <a href="{{ get_url(path='blog') }}">Blog</a>
+                <span class="breadcrumb-separator">/</span>
+                {% if page.taxonomies.categories %}
+                    <span class="breadcrumb-category">{{ page.taxonomies.categories | first }}</span>
+                {% endif %}
+            </nav>
+            
+            {% if page.taxonomies.categories %}
+                <span class="post-category">{{ page.taxonomies.categories | first }}</span>
+            {% endif %}
+            
+            <h1 class="post-title">{{ page.title }}</h1>
+            
+            <div class="post-meta">
+                {% if page.extra.author_avatar %}
+                    <img src="{{ get_url(path=page.extra.author_avatar) }}" alt="{{ page.extra.author | default(value='Michael Mooring') }}" class="author-avatar">
+                {% else %}
+                    <img src="{{ get_url(path='images/Michael-Mooring.png') }}" alt="Michael Mooring" class="author-avatar">
+                {% endif %}
+                <div class="post-info">
+                    <div class="author-info">
+                        By <span class="author-name">{{ page.extra.author | default(value="Michael Mooring") }}</span>
+                    </div>
+                    <div class="post-date">{{ page.date | date(format="%B %d, %Y") }} • {{ page.reading_time }} min read</div>
+                </div>
+            </div>
+            
+            {% if page.description %}
+                <p class="post-excerpt">{{ page.description }}</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Blog Post Content -->
+<section class="blog-post-content">
+    <div class="container">
+        <div class="content-wrapper">
+            <article class="blog-content">
+                {% if page.extra.featured_image %}
+                    <img src="{{ get_url(path=page.extra.featured_image) }}" alt="{{ page.title }}" class="featured-image">
+                {% endif %}
+                
+                <div class="content-body">
+                    {{ page.content | safe }}
+                </div>
+                
+                <!-- Call to Action -->
+                <div class="blog-cta">
+                    <h3 class="blog-cta-title">Ready to Build Your Custom AI Solution?</h3>
+                    <p class="blog-cta-description">
+                        Discover how Divinci AI can help you implement RAG systems, automate quality assurance, and streamline your AI development process.
+                    </p>
+                    <a href="{{ get_url(path='contact') }}" class="blog-cta-button">
+                        <i class="fas fa-rocket"></i> Get Started Today
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Blog Navigation -->
+            <nav class="blog-navigation">
+                {% if page.earlier %}
+                    <a href="{{ page.earlier.permalink | safe }}" class="blog-nav-button prev">
+                        <i class="fas fa-chevron-left"></i>
+                        <div>
+                            <div class="nav-label">Previous Article</div>
+                            <div class="nav-title">{{ page.earlier.title }}</div>
+                        </div>
+                    </a>
+                {% endif %}
+                
+                {% if page.later %}
+                    <a href="{{ page.later.permalink | safe }}" class="blog-nav-button next">
+                        <div>
+                            <div class="nav-label">Next Article</div>
+                            <div class="nav-title">{{ page.later.title }}</div>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                {% endif %}
+            </nav>
+            
+            <!-- Social Sharing -->
+            <div class="social-sharing">
+                <h4>Share this article</h4>
+                <div class="social-buttons">
+                    <a href="#" class="social-btn twitter" onclick="shareOnTwitter()">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </a>
+                    <a href="#" class="social-btn linkedin" onclick="shareOnLinkedIn()">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="#" class="social-btn facebook" onclick="shareOnFacebook()">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </a>
+                    <a href="#" class="social-btn copy" onclick="copyLink()">
+                        <i class="fas fa-link"></i> Copy Link
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Related Posts Sidebar -->
+        <aside class="related-posts">
+            <h3>Related Articles</h3>
+            <div class="related-posts-list">
+                <!-- This would be populated with related posts logic -->
+                <div class="related-post">
+                    <img src="{{ get_url(path='images/autorag-diagram.svg') }}" alt="Related Post" class="related-image">
+                    <div class="related-content">
+                        <h4 class="related-title">Building Responsible AI Systems</h4>
+                        <p class="related-date">April 15, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<!-- Include Footer -->
+{% include "partials/footer.html" %}
+
+<style>
+/* Blog Post Styles - Updated for our color scheme */
+
+/* Blog Post Hero Section */
+.blog-post-hero {
+    background: linear-gradient(135deg, rgb(248, 244, 240) 0%, rgb(240, 235, 225) 100%);
+    color: #2d3c34;
+    padding: 6rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sacred Geometry Background */
+.sacred-geometry-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.sacred-circle {
+    position: absolute;
+    border: 1px solid rgba(139, 118, 89, 0.15);
+    border-radius: 50%;
+    animation: float 20s infinite linear;
+}
+
+.sacred-circle-1 {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    right: -50px;
+    animation-delay: 0s;
+}
+
+.geometric-pattern {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    opacity: 0.1;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%238b7659' stroke-width='1'%3E%3Cpath d='M40 0l40 40-40 40L0 40z'/%3E%3Cpath d='M40 20l20 20-20 20-20-20z'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.pattern-1 {
+    top: 20%;
+    right: 10%;
+    animation: pulse 15s infinite;
+}
+
+@keyframes float {
+    0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.05; transform: scale(1); }
+    50% { opacity: 0.15; transform: scale(1.1); }
+}
+
+.blog-post-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.breadcrumb-nav {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.breadcrumb-nav a {
+    color: #2d3c34;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-nav a:hover {
+    color: #8b7659;
+}
+
+.breadcrumb-separator {
+    margin: 0 0.5rem;
+}
+
+.breadcrumb-category {
+    opacity: 0.7;
+}
+
+.post-category {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    background-color: rgba(139, 118, 89, 0.1);
+    color: #2d3c34;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(139, 118, 89, 0.3);
+}
+
+.post-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #2d3c34;
+    line-height: 1.2;
+    display: inline-block;
+}
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+    border: 2px solid rgba(139, 118, 89, 0.3);
+}
+
+.post-info {
+    text-align: left;
+}
+
+.author-info {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.author-name {
+    font-weight: 600;
+    color: #2d3c34;
+}
+
+.post-date {
+    font-size: 0.9rem;
+    color: #2d3c34;
+    opacity: 0.7;
+}
+
+.post-excerpt {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #2d3c34;
+    opacity: 0.8;
+}
+
+/* Blog Post Content */
+.blog-post-content {
+    padding: 4rem 0;
+    background-color: #f8f4f0 !important;
+}
+
+/* Force override all potential dark backgrounds - except hero section and footer */
+*:not(.blog-post-hero):not(.blog-post-hero *):not(.site-footer):not(.site-footer *) {
+    background-color: inherit !important;
+}
+
+/* Specific overrides for main content areas - except hero section and footer */
+body *:not(.blog-post-hero):not(.blog-post-hero *):not(.site-footer):not(.site-footer *) {
+    background-color: transparent !important;
+}
+
+/* Restore white backgrounds for content cards */
+.blog-content,
+.related-posts,
+.social-sharing,
+.blog-nav-button {
+    background-color: white !important;
+}
+
+/* Preserve hero section gradient */
+.blog-post-hero {
+    background: linear-gradient(135deg, rgb(248, 244, 240) 0%, rgb(240, 235, 225) 100%) !important;
+}
+
+body,
+html {
+    background-color: #f8f4f0 !important;
+}
+
+/* Dark mode media query override */
+@media (prefers-color-scheme: dark) {
+    /* Override CSS variable for dark mode */
+    :root {
+        --color-bg-primary: #f8f4f0 !important;
+        --color-bg-secondary: #f8f4f0 !important;
+    }
+    
+    /* Force all dark mode backgrounds to tan - except footer */
+    [data-theme="dark"]:not(.site-footer):not(.site-footer *),
+    .dark-mode:not(.site-footer):not(.site-footer *),
+    .dark:not(.site-footer):not(.site-footer *) {
+        background-color: #f8f4f0 !important;
+    }
+    
+    /* Restore white backgrounds for content cards in dark mode */
+    .blog-content,
+    .related-posts,
+    .social-sharing,
+    .blog-nav-button {
+        background-color: white !important;
+    }
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.blog-content {
+    flex: 3;
+    background-color: white;
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.featured-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.content-body {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #2d3c34;
+}
+
+.content-body h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2d3c34;
+    margin: 2.5rem 0 1.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #a6946b;
+}
+
+.content-body h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2d3c34;
+    margin: 2rem 0 1rem 0;
+}
+
+.content-body h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2d3c34;
+    margin: 1.5rem 0 0.75rem 0;
+}
+
+.content-body p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.content-body ul, .content-body ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.content-body li {
+    color: #2d3c34;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+}
+
+.content-body strong {
+    color: #2d3c34;
+    font-weight: 700;
+}
+
+.content-body img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.content-body blockquote {
+    border-left: 4px solid #a6946b;
+    padding-left: 1.5rem;
+    font-style: italic;
+    color: #2d3c34;
+    opacity: 0.8;
+    margin: 2rem 0;
+    background-color: rgba(139, 118, 89, 0.05);
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.content-body a {
+    color: #2d3c34;
+    text-decoration: underline;
+    text-decoration-color: rgba(139, 118, 89, 0.5);
+    text-underline-offset: 3px;
+    transition: all 0.3s ease;
+}
+
+.content-body a:hover {
+    color: #8b7659;
+    text-decoration-color: #8b7659;
+}
+
+.content-body code {
+    background-color: rgba(139, 118, 89, 0.1);
+    color: #2d3c34;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.content-body pre {
+    background-color: #2d3c34;
+    color: #eeffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.content-body pre code {
+    background-color: transparent;
+    color: #eeffff;
+    padding: 0;
+}
+
+/* Call to Action */
+.blog-cta {
+    background: linear-gradient(to right, rgba(139, 118, 89, 0.1), rgba(139, 118, 89, 0.05));
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+    border: 1px solid rgba(139, 118, 89, 0.2);
+}
+
+.blog-cta-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2d3c34;
+    margin-bottom: 1rem;
+}
+
+.blog-cta-description {
+    color: #2d3c34;
+    opacity: 0.8;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blog-cta-button {
+    display: inline-flex;
+    align-items: center;
+    background: #cfdcff;
+    color: #2d3c34;
+    border: 2px solid #cfdcff;
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.blog-cta-button:hover {
+    transform: translateY(-3px);
+    background: #b8ccff;
+    border-color: #b8ccff;
+    color: #2d3c34;
+}
+
+.blog-cta-button i {
+    margin-right: 0.75rem;
+}
+
+/* Blog Navigation */
+.blog-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    gap: 2rem;
+}
+
+.blog-nav-button {
+    display: flex;
+    align-items: center;
+    color: #2d3c34;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    max-width: 45%;
+}
+
+.blog-nav-button:hover {
+    color: #8b7659;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.blog-nav-button.prev {
+    text-align: left;
+}
+
+.blog-nav-button.next {
+    text-align: right;
+    justify-content: flex-end;
+}
+
+.blog-nav-button i {
+    font-size: 1.2rem;
+}
+
+.blog-nav-button.prev i {
+    margin-right: 1rem;
+}
+
+.blog-nav-button.next i {
+    margin-left: 1rem;
+}
+
+.nav-label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.nav-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* Social Sharing */
+.social-sharing {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.social-sharing h4 {
+    margin-bottom: 1.5rem;
+    color: #2d3c34;
+    font-weight: 600;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid;
+}
+
+.social-btn.twitter {
+    color: #1da1f2;
+    border-color: #1da1f2;
+}
+
+.social-btn.linkedin {
+    color: #0077b5;
+    border-color: #0077b5;
+}
+
+.social-btn.facebook {
+    color: #1877f2;
+    border-color: #1877f2;
+}
+
+.social-btn.copy {
+    color: #2d3c34;
+    border-color: #2d3c34;
+}
+
+.social-btn:hover {
+    background-color: currentColor;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.social-btn i {
+    margin-right: 0.5rem;
+}
+
+/* Related Posts */
+.related-posts {
+    flex: 1;
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    align-self: flex-start;
+    position: sticky;
+    top: 2rem;
+}
+
+.related-posts h3 {
+    color: #2d3c34;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.related-post {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.related-post:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.related-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.related-content {
+    flex: 1;
+}
+
+.related-title {
+    font-weight: 600;
+    color: #2d3c34;
+    line-height: 1.4;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+}
+
+.related-date {
+    font-size: 0.8rem;
+    color: #2d3c34;
+    opacity: 0.6;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1023px) {
+    .content-wrapper {
+        flex-direction: column;
+        margin: 0 1rem;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .related-posts {
+        position: static;
+    }
+
+    .blog-navigation {
+        flex-direction: column;
+    }
+
+    .blog-nav-button {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .nav-title {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .blog-post-hero {
+        padding: 4rem 0 3rem;
+        overflow-x: hidden;
+    }
+
+    .post-title {
+        font-size: 2.2rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        line-height: 1.2;
+    }
+
+    .post-meta {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .author-avatar {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .post-info {
+        text-align: center;
+    }
+
+    .blog-content {
+        padding: 2rem;
+        overflow-x: hidden;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+
+    .content-wrapper {
+        margin: 0 0.5rem;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .content-body {
+        overflow-x: hidden;
+    }
+    
+    .content-body pre {
+        overflow-x: auto;
+        max-width: 100%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-size: 0.9rem;
+    }
+    
+    .content-body img {
+        max-width: 100% !important;
+        height: auto;
+    }
+    
+    .content-body table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        max-width: 100%;
+    }
+
+    .social-buttons {
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .social-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        word-wrap: break-word;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .post-title {
+        font-size: 1.8rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    .blog-content {
+        padding: 1.5rem;
+        margin: 0 0.25rem;
+    }
+
+    .content-body {
+        font-size: 1rem;
+    }
+    
+    .content-body h2 {
+        font-size: 1.5rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .content-body h3 {
+        font-size: 1.2rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .blog-nav-button {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .nav-title {
+        font-size: 0.9rem;
+        line-height: 1.3;
+    }
+}
+</style>
+
+<script>
+// Social sharing functions
+function shareOnTwitter() {
+    const url = window.location.href;
+    const title = document.title;
+    const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+    window.open(twitterUrl, '_blank', 'width=550,height=420');
+}
+
+function shareOnLinkedIn() {
+    const url = window.location.href;
+    const title = document.title;
+    const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+    window.open(linkedinUrl, '_blank', 'width=550,height=420');
+}
+
+function shareOnFacebook() {
+    const url = window.location.href;
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    window.open(facebookUrl, '_blank', 'width=550,height=420');
+}
+
+function copyLink() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(function() {
+        const copyBtn = document.querySelector('.social-btn.copy');
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(function() {
+            copyBtn.innerHTML = originalText;
+        }, 2000);
+    });
+}
+</script>
+{% endblock %}

@@ -43,41 +43,61 @@
     <title>{% block title %}{% if section.lang %}{{ section.title | default(value="Divinci AI") }}{% else %}{{ config.title | default(value="Divinci AI - Excellence, every time") }}{% endif %}{% endblock %}</title>
     <meta name="description" content="{% block description %}{% if section.lang %}{{ section.description | default(value="AI releases. Excellence, every time.") }}{% else %}{{ config.extra.description | default(value="AI releases. Excellence, every time.") }}{% endif %}{% endblock %}">
     
+    <!-- Preconnect to external domains for faster resource loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="{{ get_url(path="css/style.css") }}" as="style">
+    <link rel="preload" href="{{ get_url(path="js/main.js") }}" as="script">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ get_url(path="images/favicon-32x32.png") }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ get_url(path="images/favicon-16x16.png") }}">
     
-    <!-- Fonts -->
+    <!-- Fonts with display=swap for better performance -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Source+Sans+3:wght@400;500&display=swap">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Styles -->
+    <link rel="stylesheet" href="{{ get_url(path="css/variables.css") }}">
     <link rel="stylesheet" href="{{ get_url(path="css/style.css") }}">
+    <link rel="stylesheet" href="{{ get_url(path="css/mobile-fixes.css") }}">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ current_url | default(value=config.base_url) }}">
-    <meta property="og:title" content="{% block og_title %}{{ lang.title | default(value=config.title) | default(value="Divinci AI") }}{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}{{ lang.description | default(value=config.extra.description) }}{% endblock %}">
-    <meta property="og:image" content="{{ get_url(path="images/social-preview.png") | safe }}">
+    <meta property="og:title" content="{% block og_title %}{% if page.title %}{{ page.title }} | Divinci AI{% elif section.title %}{{ section.title }} | Divinci AI{% else %}{{ config.title | default(value="Divinci AI - Excellence, every time") }}{% endif %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.extra.description | default(value="AI releases. Excellence, every time. Leonardo da Vinci-inspired AI management platform for quality assurance and release management.") }}{% endif %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ get_url(path="images/social-preview.png") | safe }}{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Divinci AI - Leonardo da Vinci drawing a robot">
+    <meta property="og:site_name" content="Divinci AI">
+    <meta property="og:locale" content="{{ detected_lang | default(value="en") }}">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ current_url | default(value=config.base_url) }}">
-    <meta property="twitter:title" content="{% block twitter_title %}{{ lang.title | default(value=config.title) | default(value="Divinci AI") }}{% endblock %}">
-    <meta property="twitter:description" content="{% block twitter_description %}{{ lang.description | default(value=config.extra.description) }}{% endblock %}">
-    <meta property="twitter:image" content="{{ get_url(path="images/social-preview.png") | safe }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ current_url | default(value=config.base_url) }}">
+    <meta name="twitter:title" content="{% block twitter_title %}{% if page.title %}{{ page.title }} | Divinci AI{% elif section.title %}{{ section.title }} | Divinci AI{% else %}{{ config.title | default(value="Divinci AI - Excellence, every time") }}{% endif %}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.extra.description | default(value="AI releases. Excellence, every time. Leonardo da Vinci-inspired AI management platform.") }}{% endif %}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ get_url(path="images/social-preview.png") | safe }}{% endblock %}">
+    <meta name="twitter:image:alt" content="Divinci AI - Leonardo da Vinci drawing a robot">
+    <meta name="twitter:site" content="@DivinciAI">
+    <meta name="twitter:creator" content="@DivinciAI">
 
     {% block extra_head %}{% endblock %}
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
     {% block content %}{% endblock %}
     
-    <!-- Scripts -->
-    <script src="{{ get_url(path="js/main.js") }}"></script>
-    <script src="{{ get_url(path="js/language-switcher.js") }}"></script>
+    <!-- Scripts with optimized loading -->
+    <script defer src="{{ get_url(path="js/main.js") }}"></script>
+    <script defer src="{{ get_url(path="js/language-switcher.js") }}"></script>
+    <script defer src="{{ get_url(path="js/gdpr-compliance.js") }}"></script>
     {% block extra_scripts %}{% endblock %}
 </body>
 </html>

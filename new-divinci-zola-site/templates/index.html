@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block body_class %}homepage{% endblock %}
+
 {% block title %}
   {{ translations.meta.title | default(value="Divinci AI - Excellence, every time") }}
 {% endblock %}
@@ -12,11 +14,19 @@
     <div class="hero-content">
         <div class="hero-image">
             <img src="{{ get_url(path="images/Davinci_the_painter_painting_a_robot_in_a_line_art.png") }}" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster">
-            <video id="hero-video" muted loop playsinline preload="metadata" data-lazy-video>
+            <video id="hero-video" muted playsinline preload="metadata" data-lazy-video data-loop-once>
                 <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.webm") }}" type="video/webm">
                 <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.mp4") }}" type="video/mp4">
             </video>
-            <button id="sound-toggle" style="display: none;">Unmute</button>
+            <video id="hero-video-2" muted playsinline preload="none" data-lazy-video>
+                <source src="{{ get_url(path="images/alysha-ai-chat-interface.webm") }}" type="video/webm">
+                <source src="{{ get_url(path="images/alysha-ai_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__5e9e0736-637d-4e05-a391-179c76e9edee_3.mp4") }}" type="video/mp4">
+            </video>
+            <video id="hero-video-3" muted playsinline preload="none" data-lazy-video>
+                <source src="{{ get_url(path="images/ai-robot-chat-interface.webm") }}" type="video/webm">
+                <source src="{{ get_url(path="images/ai-robot_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__dba81638-02b0-4792-92f5-37ef95f8ceb0_0.mp4") }}" type="video/mp4">
+            </video>
+            <button id="sound-toggle">Unmute</button>
         </div>
         <div class="hero-text">
             <h1>
@@ -41,7 +51,7 @@
                 </div>
             </div>
             <div class="cta-buttons">
-                <button class="primary-button">{{ translations.hero.cta.primary | default(value="Request demo") }}</button>
+                <a href="https://calendly.com/mike-mooring-divinci/30min" class="primary-button" target="_blank" rel="noopener">{{ translations.hero.cta.primary | default(value="Request demo") }}</a>
                 <button class="secondary-button">{{ translations.hero.cta.secondary | default(value="Explore platform") }}</button>
             </div>
         </div>
@@ -50,13 +60,23 @@
 
 <section class="enterprise-ai" id="solutions">
     <div class="enterprise-header">
-        <h2>{{ translations.enterprise.title | default(value="Enterprise AI, expertly managed") }}</h2>
+        <h2 class="enterprise-title">
+            <span class="desktop-title">{{ translations.enterprise.title | default(value="Enterprise AI, expertly managed") }}</span>
+            <span class="mobile-title">Enterprise AI,<br>expertly managed</span>
+        </h2>
         <p class="section-intro">{{ translations.enterprise.description | default(value="Unlock robust release management and rigorous quality assurance for large language models. Our platform equips enterprises with advanced tools to streamline deployment, enforce compliance, and ensure consistent, high-quality AI performance at scale.") }}</p>
     </div>
     <div class="video-background-container">
-        <!-- Default background video -->
+        <!-- Default background video (Panel 1) -->
         <video id="background-video-default" class="background-video active" muted loop playsinline preload="metadata" data-lazy-video>
-            <source src="{{ get_url(path="images/background-video.webm") }}" type="video/webm">
+            <source src="{{ get_url(path="images/ai-team.webm") }}" type="video/webm">
+            <source src="{{ get_url(path="images/ai-team_social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_321668ae-ec36-4ade-b0a9-8e5dd026b0de_0.mp4") }}" type="video/mp4">
+        </video>
+        
+        <!-- Panel 1 hover video (ai team) -->
+        <video id="background-video-panel1" class="background-video" muted loop playsinline preload="none" data-lazy-video data-panel="1">
+            <source src="{{ get_url(path="images/ai-team.webm") }}" type="video/webm">
+            <source src="{{ get_url(path="images/ai-team_social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_321668ae-ec36-4ade-b0a9-8e5dd026b0de_0.mp4") }}" type="video/mp4">
         </video>
         
         <!-- Panel 2 hover video (business parody) -->
@@ -307,8 +327,8 @@
             <h2>{{ translations.features.title | default(value="The Age of AI Management") }}</h2>
             <p class="section-intro">{{ translations.features.description | default(value="Discover features designed for enterprise teams that need reliable, scalable AI collaboration.") }}</p>
         </div>
-        <div class="davinci-journal-showcase">
-            <div class="journal-stack">
+        <div class="davinci-journal-showcase" id="journal-showcase">
+            <div class="journal-stack" id="journal-stack">
                 <!-- <h3 class="journal-title">{{ translations.features.journal_title | default(value="Da Vinci's Innovation Codex") }}</h3> -->
                 <div class="journal-pages-container">
                     <div class="journal-page" data-feature="multiplayer" tabindex="0">
@@ -729,10 +749,65 @@
                                     </svg>
                                 </span>
                                 <svg class="davinci-sketch" viewBox="0 0 200 200">
-                                    <rect x="50" y="80" width="30" height="40" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
-                                    <rect x="120" y="80" width="30" height="40" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
-                                    <line x1="80" y1="100" x2="120" y2="100" stroke="#8b7355" stroke-width="1" opacity="0.6" stroke-dasharray="3,3"/>
-                                    <circle cx="100" cy="100" r="5" fill="#8b7355" opacity="0.4"/>
+                                    <!-- MLOps Integration - Da Vinci machine concept -->
+                                    <!-- Central processing hub -->
+                                    <circle cx="100" cy="100" r="25" fill="none" stroke="#8b7355" stroke-width="1.2" opacity="0.7"/>
+                                    <circle cx="100" cy="100" r="15" fill="none" stroke="#8b7355" stroke-width="0.8" opacity="0.6"/>
+                                    <circle cx="100" cy="100" r="5" fill="#8b7355" opacity="0.5"/>
+                                    
+                                    <!-- Mechanical gears and wheels -->
+                                    <circle cx="60" cy="60" r="12" fill="none" stroke="#8b7355" stroke-width="0.8" opacity="0.6"/>
+                                    <path d="M 54 54 L 66 66 M 54 66 L 66 54" stroke="#8b7355" stroke-width="0.4" opacity="0.4"/>
+                                    
+                                    <circle cx="140" cy="60" r="12" fill="none" stroke="#8b7355" stroke-width="0.8" opacity="0.6"/>
+                                    <path d="M 134 54 L 146 66 M 134 66 L 146 54" stroke="#8b7355" stroke-width="0.4" opacity="0.4"/>
+                                    
+                                    <circle cx="60" cy="140" r="12" fill="none" stroke="#8b7355" stroke-width="0.8" opacity="0.6"/>
+                                    <path d="M 54 134 L 66 146 M 54 146 L 66 134" stroke="#8b7355" stroke-width="0.4" opacity="0.4"/>
+                                    
+                                    <circle cx="140" cy="140" r="12" fill="none" stroke="#8b7355" stroke-width="0.8" opacity="0.6"/>
+                                    <path d="M 134 134 L 146 146 M 134 146 L 146 134" stroke="#8b7355" stroke-width="0.4" opacity="0.4"/>
+                                    
+                                    <!-- Connecting mechanisms -->
+                                    <path d="M 72 66 Q 86 83, 90 90" stroke="#8b7355" stroke-width="0.8" opacity="0.5" fill="none"/>
+                                    <path d="M 128 66 Q 114 83, 110 90" stroke="#8b7355" stroke-width="0.8" opacity="0.5" fill="none"/>
+                                    <path d="M 72 134 Q 86 117, 90 110" stroke="#8b7355" stroke-width="0.8" opacity="0.5" fill="none"/>
+                                    <path d="M 128 134 Q 114 117, 110 110" stroke="#8b7355" stroke-width="0.8" opacity="0.5" fill="none"/>
+                                    
+                                    <!-- Data flow arrows -->
+                                    <path d="M 75 85 L 80 90 L 75 95 M 75 90 L 85 90" stroke="#8b7355" stroke-width="0.6" opacity="0.5" fill="none"/>
+                                    <path d="M 125 85 L 120 90 L 125 95 M 125 90 L 115 90" stroke="#8b7355" stroke-width="0.6" opacity="0.5" fill="none"/>
+                                    <path d="M 115 105 L 120 110 L 115 115 M 115 110 L 125 110" stroke="#8b7355" stroke-width="0.6" opacity="0.5" fill="none"/>
+                                    <path d="M 85 105 L 80 110 L 85 115 M 85 110 L 75 110" stroke="#8b7355" stroke-width="0.6" opacity="0.5" fill="none"/>
+                                    
+                                    <!-- Pipeline stages -->
+                                    <rect x="30" y="95" width="15" height="10" fill="none" stroke="#8b7355" stroke-width="0.6" opacity="0.5" rx="2"/>
+                                    <rect x="155" y="95" width="15" height="10" fill="none" stroke="#8b7355" stroke-width="0.6" opacity="0.5" rx="2"/>
+                                    <rect x="95" y="25" width="10" height="15" fill="none" stroke="#8b7355" stroke-width="0.6" opacity="0.5" rx="2"/>
+                                    <rect x="95" y="160" width="10" height="15" fill="none" stroke="#8b7355" stroke-width="0.6" opacity="0.5" rx="2"/>
+                                    
+                                    <!-- Connecting pipes/tubes -->
+                                    <path d="M 45 100 Q 52 100, 60 100" stroke="#8b7355" stroke-width="0.4" opacity="0.4" fill="none"/>
+                                    <path d="M 140 100 Q 147 100, 155 100" stroke="#8b7355" stroke-width="0.4" opacity="0.4" fill="none"/>
+                                    <path d="M 100 40 Q 100 47, 100 55" stroke="#8b7355" stroke-width="0.4" opacity="0.4" fill="none"/>
+                                    <path d="M 100 145 Q 100 152, 100 160" stroke="#8b7355" stroke-width="0.4" opacity="0.4" fill="none"/>
+                                    
+                                    <!-- Annotations -->
+                                    <text x="100" y="15" font-family="Kalam, cursive" font-size="7" fill="#8b7355" opacity="0.5" text-anchor="middle">MLOps Machina</text>
+                                    <text x="15" y="100" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.4">data</text>
+                                    <text x="172" y="100" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.4">model</text>
+                                    <text x="100" y="185" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.4" text-anchor="middle">deploy</text>
+                                    <text x="100" y="20" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.4" text-anchor="middle">train</text>
+                                    
+                                    <!-- Technical notations -->
+                                    <text x="20" y="180" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.4">automaticus</text>
+                                    <text x="130" y="180" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.4">perpetuum</text>
+                                    
+                                    <!-- Flow indicators -->
+                                    <circle cx="37" cy="100" r="1" fill="#8b7355" opacity="0.4"/>
+                                    <circle cx="163" cy="100" r="1" fill="#8b7355" opacity="0.4"/>
+                                    <circle cx="100" cy="32" r="1" fill="#8b7355" opacity="0.4"/>
+                                    <circle cx="100" cy="168" r="1" fill="#8b7355" opacity="0.4"/>
                                 </svg>
                             </div>
                             <div class="mirror-text">noitargetnI</div>
@@ -757,9 +832,34 @@
                                     </svg>
                                 </span>
                                 <svg class="davinci-sketch" viewBox="0 0 200 200">
-                                    <rect x="80" y="120" width="40" height="40" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.6"/>
-                                    <rect x="70" y="100" width="60" height="60" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.5"/>
-                                    <rect x="60" y="80" width="80" height="80" fill="none" stroke="#8b7355" stroke-width="1" opacity="0.4"/>
+                                    <!-- Expanding squares showing scalability -->
+                                    <rect x="80" y="80" width="40" height="40" fill="none" stroke="#8b7355" stroke-width="1.2" opacity="0.8" rx="2"/>
+                                    <rect x="70" y="70" width="60" height="60" fill="none" stroke="#8b7355" stroke-width="1.0" opacity="0.6" rx="3"/>
+                                    <rect x="60" y="60" width="80" height="80" fill="none" stroke="#8b7355" stroke-width="0.8" opacity="0.4" rx="4"/>
+                                    <rect x="50" y="50" width="100" height="100" fill="none" stroke="#8b7355" stroke-width="0.6" opacity="0.3" rx="5"/>
+                                    
+                                    <!-- Central pattern -->
+                                    <circle cx="100" cy="100" r="15" fill="none" stroke="#8b7355" stroke-width="0.8" opacity="0.6"/>
+                                    <circle cx="100" cy="100" r="8" fill="none" stroke="#8b7355" stroke-width="0.6" opacity="0.5"/>
+                                    <circle cx="100" cy="100" r="3" fill="#8b7355" opacity="0.4"/>
+                                    
+                                    <!-- Growth indicators -->
+                                    <path d="M 85 85 L 90 90" stroke="#8b7355" stroke-width="0.6" opacity="0.5" stroke-linecap="round"/>
+                                    <path d="M 115 85 L 110 90" stroke="#8b7355" stroke-width="0.6" opacity="0.5" stroke-linecap="round"/>
+                                    <path d="M 115 115 L 110 110" stroke="#8b7355" stroke-width="0.6" opacity="0.5" stroke-linecap="round"/>
+                                    <path d="M 85 115 L 90 110" stroke="#8b7355" stroke-width="0.6" opacity="0.5" stroke-linecap="round"/>
+                                    
+                                    <!-- Corner expansion marks -->
+                                    <path d="M 55 55 L 60 60" stroke="#8b7355" stroke-width="0.4" opacity="0.4"/>
+                                    <path d="M 145 55 L 140 60" stroke="#8b7355" stroke-width="0.4" opacity="0.4"/>
+                                    <path d="M 145 145 L 140 140" stroke="#8b7355" stroke-width="0.4" opacity="0.4"/>
+                                    <path d="M 55 145 L 60 140" stroke="#8b7355" stroke-width="0.4" opacity="0.4"/>
+                                    
+                                    <!-- Mathematical scaling notation -->
+                                    <text x="100" y="30" font-family="Kalam, cursive" font-size="8" fill="#8b7355" opacity="0.5" text-anchor="middle">Scalabilitas</text>
+                                    <text x="30" y="100" font-family="Kalam, cursive" font-size="6" fill="#8b7355" opacity="0.4" transform="rotate(-90 30 100)">1→∞</text>
+                                    <text x="170" y="100" font-family="Kalam, cursive" font-size="6" fill="#8b7355" opacity="0.4" transform="rotate(90 170 100)">elasticus</text>
+                                    <text x="100" y="175" font-family="Kalam, cursive" font-size="6" fill="#8b7355" opacity="0.4" text-anchor="middle">crescendo</text>
                                 </svg>
                             </div>
                             <div class="mirror-text">ytilibalacsS</div>
@@ -802,7 +902,7 @@
                     </button>
                 </div>
                 <!-- SVG definitions for arrows and other elements -->
-                <svg style="position: absolute; width: 0; height: 0; overflow: hidden;">
+                <svg class="svg-hidden">
                     <defs>
                         <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                             <polygon points="0 0, 10 3.5, 0 7" fill="#8b7355" opacity="0.5"/>
@@ -865,7 +965,7 @@
         <div class="team-grid">
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="{{ get_url(path="images/Michael-Mooring.jpeg") }}" alt="Michael Mooring">
+                    <img src="{{ get_url(path="images/Michael-Mooring.png") }}" alt="Michael Mooring">
                 </div>
                 <h3>Michael Mooring</h3>
                 <p class="role">{{ translations.team.roles.ceo_founder | default(value="CEO & Founder") }}</p>
@@ -955,15 +1055,12 @@
     <div class="signup-container">
         <div class="signup-content">
             <h2>{{ translations.signup.title | default(value="Start your AI journey") }}</h2>
-            <p class="signup-intro">{{ translations.signup.description | default(value="Join thousands of teams already transforming their work with Divinci AI. Get early access to our platform.") }}</p>
+            <p class="signup-intro">{{ translations.signup.description | default(value="Join thousands of teams already transforming their work with Divinci AI. See how our platform can revolutionize your AI operations.") }}</p>
             <div class="signup-form">
-                <form action="/signup" method="post">
-                    <div class="form-group">
-                        <input type="email" name="email" required placeholder="{{ translations.signup.email_placeholder | default(value="Your email") }}">
-                        <button type="submit" class="signup-button">{{ translations.signup.button | default(value="Request access") }}</button>
-                    </div>
-                </form>
-                <p class="signup-note">{{ translations.signup.note | default(value="No spam. Unsubscribe at any time.") }}</p>
+                <div class="form-group">
+                    <a href="https://calendly.com/mike-mooring-divinci/30min" class="signup-button" target="_blank" rel="noopener">{{ translations.signup.button | default(value="Schedule a Demo") }}</a>
+                </div>
+                <p class="signup-note">{{ translations.signup.note | default(value="Free 30-minute consultation. See the platform in action.") }}</p>
             </div>
         </div>
     </div>
@@ -1023,7 +1120,9 @@
                 </div>
             </div>
             <div class="ai-for-good-image">
-                <img src="{{ get_url(path="images/ai-for-impact-1.avif") }}" alt="AI for Good Impact">
+                <a href="https://lu.ma/cmuj911s" target="_blank" rel="noopener">
+                    <img src="{{ get_url(path="images/ai-for-impact-1.avif") }}" alt="AI for Good Impact">
+                </a>
             </div>
         </div>
     </div>
@@ -1081,43 +1180,44 @@
     </div>
 </section>
 
-<!-- Contact Section -->
-<section class="contact-section">
-    <div class="contact-container">
-        <div class="contact-header">
-            <p class="contact-label">{{ translations.contact.get_in_touch | default(value="GET IN TOUCH") }}</p>
-            <h2>{{ translations.contact.title | default(value="Connect with our experts") }}</h2>
-            <p class="contact-subtitle">{{ translations.contact.subtitle | default(value="Contact us for strategic AI guidance and robust support tailored to your business needs.") }}</p>
-        </div>
-
-        <div class="contact-methods">
-            <div class="contact-method">
-                <div class="contact-icon">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <h3>{{ translations.contact.email_specialists.title | default(value="Email our specialists") }}</h3>
-                <p>{{ translations.contact.email_specialists.description | default(value="Receive detailed, thoughtful responses to your technical and business inquiries.") }}</p>
-                <a href="mailto:{{ translations.contact.email_specialists.email | default(value="hi@divinci.ai") }}" class="contact-link">{{ translations.contact.email_specialists.email | default(value="hi@divinci.ai") }}</a>
+<!-- Contact Section with Robot Background -->
+<div class="contact-footer-wrapper">
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-header">
+                <p class="contact-label">{{ translations.contact.get_in_touch | default(value="GET IN TOUCH") }}</p>
+                <h2>{{ translations.contact.title | default(value="Connect with our experts") }}</h2>
+                <p class="contact-subtitle">{{ translations.contact.subtitle | default(value="Contact us for strategic AI guidance and robust support tailored to your business needs.") }}</p>
             </div>
 
-            <div class="contact-method">
-                <div class="contact-icon">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 16.42v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.42z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>{{ translations.contact.email_specialists.title | default(value="Schedule a consultation") }}</h3>
+                    <p>{{ translations.contact.email_specialists.description | default(value="Book a personalized demo and get detailed answers to your technical and business questions.") }}</p>
+                    <a href="https://calendly.com/mike-mooring-divinci/30min" class="contact-link" target="_blank" rel="noopener">{{ translations.contact.email_specialists.email | default(value="Schedule Demo") }}</a>
                 </div>
-                <h3>{{ translations.contact.speak_consultant.title | default(value="Speak with a consultant") }}</h3>
-                <p>{{ translations.contact.speak_consultant.description | default(value="Available Monday-Friday, 8am-5pm EST for in-depth assistance.") }}</p>
-                <a href="tel:{{ translations.contact.speak_consultant.phone | default(value="+1 (555) 000-0000") }}" class="contact-link">{{ translations.contact.speak_consultant.phone | default(value="+1 (555) 000-0000") }}</a>
+
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 16.42v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.42z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>{{ translations.contact.speak_consultant.title | default(value="Book a live demo") }}</h3>
+                    <p>{{ translations.contact.speak_consultant.description | default(value="Available for 30-minute personalized demos to show you how Divinci AI works.") }}</p>
+                    <a href="https://calendly.com/mike-mooring-divinci/30min" class="contact-link" target="_blank" rel="noopener">{{ translations.contact.speak_consultant.phone | default(value="Book Demo") }}</a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<svg style="display: none;">
+<svg class="svg-definitions">
     <defs>
         <filter id="fresco-texture">
             <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise"/>
@@ -1129,16 +1229,21 @@
     </defs>
 </svg>
 
-{% include "partials/footer.html" %}
+    {% include "partials/footer.html" %}
+</div>
 
 <script>
+// Global navigation state variables for journal pages
+let isNavigating = false;
+let navigationTimeout;
+
 // Background sketch interactive opacity and navigation
 document.addEventListener('DOMContentLoaded', function() {
     const journalPages = document.querySelectorAll('.journal-page');
     const sketchLayers = document.querySelectorAll('.sketch-layer');
     const featureContents = document.querySelectorAll('.feature-content');
-    const prevButton = document.querySelector('.nav-prev');
-    const nextButton = document.querySelector('.nav-next');
+    const prevButton = document.querySelector('.nav-button.nav-prev');
+    const nextButton = document.querySelector('.nav-button.nav-next');
     
     let currentPageIndex = 0;
     
@@ -1150,10 +1255,38 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Navigate to a specific page
     function navigateToPage(index) {
-        if (index < 0 || index >= journalPages.length) return;
+        console.log('navigateToPage called with index:', index);
+        console.log('Current journalPages.length:', journalPages.length);
         
-        // Remove active states
-        journalPages.forEach(page => page.classList.remove('active'));
+        // Ensure index is within bounds
+        if (journalPages.length === 0) return;
+        index = Math.max(0, Math.min(index, journalPages.length - 1));
+        
+        // Don't navigate if already on this page
+        if (index === currentPageIndex && journalPages[index].classList.contains('active')) {
+            console.log('Already on page', index);
+            return;
+        }
+        
+        // Set navigation state to pause scroll animation
+        isNavigating = true;
+        console.log('Set isNavigating to true');
+        
+        // Clear any existing navigation timeout
+        if (navigationTimeout) {
+            clearTimeout(navigationTimeout);
+        }
+        
+        // Remove active states and reset animations
+        console.log('Removing active states from all pages');
+        journalPages.forEach((page, i) => {
+            const beforeClasses = page.className;
+            page.classList.remove('active');
+            // Reset animations by forcing reflow
+            restartPageAnimations(page);
+            const afterClasses = page.className;
+            console.log(`Page ${i} classes: ${beforeClasses} -> ${afterClasses}`);
+        });
         featureContents.forEach(content => content.classList.remove('active'));
         sketchLayers.forEach(sketch => sketch.classList.remove('active-sketch'));
         
@@ -1162,7 +1295,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentPage = journalPages[index];
         const feature = currentPage.getAttribute('data-feature');
         
+        console.log('Adding active class to page', index, 'with feature', feature);
+        const beforeClasses = currentPage.className;
         currentPage.classList.add('active');
+        const afterClasses = currentPage.className;
+        console.log(`Target page classes: ${beforeClasses} -> ${afterClasses}`);
+        
+        // Clear any scroll animation transforms and ensure proper positioning
+        clearAllPageTransforms();
+        currentPage.style.zIndex = journalPages.length + 1;
         
         // Update feature content
         const correspondingContent = document.querySelector(`.feature-content[data-feature="${feature}"]`);
@@ -1178,23 +1319,66 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         updateNavButtons();
+        
+        // Resume scroll animation after a short delay to let navigation settle
+        navigationTimeout = setTimeout(() => {
+            isNavigating = false;
+        }, 800); // Give enough time for navigation to complete
+        
+        console.log(`🎨 Activated page ${index} with drawing animations`);
     }
     
-    // Navigation button handlers
+    // Function to restart drawing animations on page switch
+    function restartPageAnimations(page) {
+        // Force CSS animation restart by temporarily removing the active class
+        // and triggering a reflow, then adding it back
+        const wasActive = page.classList.contains('active');
+        if (wasActive) {
+            page.classList.remove('active');
+            // Force reflow by accessing offsetHeight
+            page.offsetHeight;
+            page.classList.add('active');
+        }
+    }
+    
+    // Function to clear all page transforms and ensure clean state
+    function clearAllPageTransforms() {
+        journalPages.forEach((page, index) => {
+            // Remove any inline transforms that might be interfering
+            page.style.removeProperty('transform');
+            page.style.removeProperty('z-index');
+            
+            // Only the active page should have elevated z-index
+            if (page.classList.contains('active')) {
+                page.style.zIndex = journalPages.length + 1;
+            }
+        });
+    }
+    
+    // Make navigateToPage globally accessible for debugging
+    window.navigateToPage = navigateToPage;
+    
+    // Navigation button handlers with proper cycling
     prevButton.addEventListener('click', () => {
-        navigateToPage(currentPageIndex - 1);
+        const newIndex = currentPageIndex <= 0 ? journalPages.length - 1 : currentPageIndex - 1;
+        navigateToPage(newIndex);
     });
     
     nextButton.addEventListener('click', () => {
-        navigateToPage(currentPageIndex + 1);
+        const newIndex = currentPageIndex >= journalPages.length - 1 ? 0 : currentPageIndex + 1;
+        navigateToPage(newIndex);
     });
     
-    // Keyboard navigation
+    // Keyboard navigation with proper cycling
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
-            navigateToPage(currentPageIndex - 1);
+            e.preventDefault();
+            const newIndex = currentPageIndex <= 0 ? journalPages.length - 1 : currentPageIndex - 1;
+            navigateToPage(newIndex);
         } else if (e.key === 'ArrowRight') {
-            navigateToPage(currentPageIndex + 1);
+            e.preventDefault();
+            const newIndex = currentPageIndex >= journalPages.length - 1 ? 0 : currentPageIndex + 1;
+            navigateToPage(newIndex);
         }
     });
     
@@ -1291,5 +1475,16 @@ function randomizeAnnotations() {
         mathContainer.style.setProperty('--math-offset-y', `${offsetY}px`);
     });
 }
+
+// Scroll-based journal pages expansion effect
+document.addEventListener('DOMContentLoaded', function() {
+    const journalShowcase = document.getElementById('journal-showcase');
+    const journalStack = document.getElementById('journal-stack');
+    const journalPages = document.querySelectorAll('.journal-page');
+    
+    // Scroll animation removed - simple journal navigation only
+    
+    console.log('Journal navigation initialized - no scroll effects');
+});
 </script>
 {% endblock %}

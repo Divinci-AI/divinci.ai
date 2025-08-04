@@ -1,0 +1,478 @@
+{% extends "base.html" %}
+
+{% block content %}
+{%- set current_lang = page.lang | default(value="en") -%}
+
+<!-- Include Header -->
+{% include "partials/header.html" %}
+
+<!-- Official Document Section -->
+<main id="ai-trust-ethics">
+    <section class="section">
+        <div class="container">
+            <div class="official-document-wrapper">
+                <div class="document-header">
+                    <img src="{{ get_url(path='images/divinci_logo.svg') }}" alt="Divinci AI Logo" class="document-logo">
+                    <div class="document-divider"></div>
+                    <div class="official-badge">OFFICIAL DOCUMENT</div>
+                </div>
+
+                <header>
+                    <h1 class="document-title">
+                        {{ page.title }}
+                    </h1>
+                    {% if page.description %}
+                    <p class="document-subtitle">
+                        {{ page.description }}
+                    </p>
+                    {% endif %}
+
+                    <div class="has-text-centered">
+                        <div class="certification-badge">
+                            <span class="icon">
+                                <i class="fas fa-certificate"></i>
+                            </span>
+                            <span>
+                                Standards Compliant · NIST Framework Aligned · ISO/IEC Informed
+                            </span>
+                        </div>
+                    </div>
+                </header>
+
+                <article class="content">
+                    {{ page.content | safe }}
+
+                    <!-- Contributors Section -->
+                    <section aria-labelledby="contributors" class="document-section">
+                        <h2 id="contributors">Contributors</h2>
+
+                        <div class="contributor-grid">
+                            <div class="contributor-card" style="width: 300px;">
+                                <div class="contributor-avatar">
+                                    <img src="{{ get_url(path='images/Michael-Mooring.png') }}" alt="Michael Mooring" style="object-position: center -2px;">
+                                </div>
+                                <div class="contributor-info">
+                                    <div class="contributor-name">Michael Mooring</div>
+                                    <div class="contributor-title">Co-founder & CTO</div>
+                                </div>
+                                <div class="contributor-social">
+                                    <a href="https://www.linkedin.com/in/michaelduanemooring/" target="_blank" class="social-link" aria-label="Michael Mooring LinkedIn Profile">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="contributor-card" style="width: 300px;">
+                                <div class="contributor-avatar" style="display: flex; justify-content: center; align-items: center; background-color: #f5f5f5;">
+                                    <img src="{{ get_url(path='images/AI-Standards-Hub-Logo_04-1.png') }}" alt="AI Standards Hub Logo" style="width: 80%; height: auto; object-fit: contain;">
+                                </div>
+                                <div class="contributor-info">
+                                    <div class="contributor-name">AI Standards Hub</div>
+                                    <div class="contributor-title">Best Practice Framework</div>
+                                </div>
+                                <div class="contributor-social">
+                                    <a href="https://aistandardshub.org/" target="_blank" class="social-link" style="background-color: #4a7aff;" aria-label="AI Standards Hub Website">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Document footer with certification -->
+                    <div class="document-footer">
+                        <div class="document-stamp">
+                            <span class="icon"><i class="fas fa-calendar-check"></i></span>
+                            <span>Last Updated: January 20, 2025</span>
+                        </div>
+                        <div class="document-stamp">
+                            <span class="icon"><i class="fas fa-shield-alt"></i></span>
+                            <span>Version: 1.3.0</span>
+                        </div>
+                        <div class="document-stamp">
+                            <span class="icon"><i class="fas fa-check-circle"></i></span>
+                            <span>Document ID: ETHICS-2025-001</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Include Footer -->
+{% include "partials/footer.html" %}
+
+<style>
+/* Official Document Styling */
+.official-document-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin: 2rem 0;
+    padding: 3rem;
+    border: 1px solid #e1e5e9;
+    position: relative;
+    overflow: hidden;
+}
+
+.official-document-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(135deg, #2d5a4f, #7ba8d1);
+}
+
+.document-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.document-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+}
+
+.document-divider {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #7ba8d1, transparent);
+    margin: 1rem 0;
+}
+
+.official-badge {
+    background: linear-gradient(135deg, #2d5a4f, #7ba8d1);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(45, 90, 79, 0.3);
+}
+
+.document-title {
+    color: #2d5a4f;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.document-subtitle {
+    color: #666;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.certification-badge {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(45, 90, 79, 0.1), rgba(123, 168, 209, 0.1));
+    border: 1px solid rgba(45, 90, 79, 0.2);
+    border-radius: 30px;
+    padding: 0.75rem 1.5rem;
+    color: #2d5a4f;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.certification-badge .icon {
+    margin-right: 0.75rem;
+    color: #7ba8d1;
+}
+
+.document-section {
+    margin: 3rem 0;
+}
+
+.document-section h2 {
+    color: #2d5a4f;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(123, 168, 209, 0.3);
+}
+
+.document-section h3 {
+    color: #2d5a4f;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.document-section h4 {
+    color: #2d5a4f;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.document-section p {
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.document-section ul {
+    margin: 1.5rem 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.document-section li {
+    color: #444;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    position: relative;
+    line-height: 1.6;
+}
+
+.document-section li::before {
+    content: '▸';
+    color: #7ba8d1;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.document-section li strong {
+    color: #2d5a4f;
+    font-weight: 600;
+}
+
+.document-section a {
+    color: #2d5a4f;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(45, 90, 79, 0.3);
+    transition: all 0.3s ease;
+}
+
+.document-section a:hover {
+    color: #7ba8d1;
+    border-bottom-color: #7ba8d1;
+}
+
+/* Contributors Section */
+.contributor-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.contributor-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+    width: auto;
+    min-width: 300px;
+    max-width: fit-content;
+    transition: all 0.2s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.contributor-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.contributor-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #7ba8d1;
+    flex-shrink: 0;
+}
+
+.contributor-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contributor-info {
+    margin-left: 1rem;
+    flex-grow: 1;
+}
+
+.contributor-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    color: #2d5a4f;
+}
+
+.contributor-title {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.contributor-social {
+    margin-left: auto;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #2d5a4f;
+    color: white !important;
+    transition: all 0.2s ease;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(45, 90, 79, 0.5);
+    color: white !important;
+}
+
+/* Document Footer */
+.document-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #f0f0f0;
+}
+
+.document-stamp {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(45, 90, 79, 0.05), rgba(123, 168, 209, 0.05));
+    border: 1px solid rgba(45, 90, 79, 0.1);
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: #2d5a4f;
+    font-weight: 500;
+}
+
+.document-stamp .icon {
+    margin-right: 0.5rem;
+    color: #7ba8d1;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .official-document-wrapper {
+        margin: 1rem;
+        padding: 2rem;
+    }
+    
+    .document-title {
+        font-size: 2rem;
+    }
+    
+    .document-subtitle {
+        font-size: 1rem;
+    }
+    
+    .contributor-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contributor-card {
+        min-width: 280px;
+        max-width: 100%;
+    }
+    
+    .document-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .official-document-wrapper {
+        padding: 1.5rem;
+    }
+    
+    .document-title {
+        font-size: 1.8rem;
+    }
+    
+    .contributor-card {
+        min-width: 250px;
+        padding: 0.75rem;
+    }
+    
+    .contributor-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .contributor-name {
+        font-size: 1rem;
+    }
+    
+    .contributor-title {
+        font-size: 0.85rem;
+    }
+}
+
+/* Main content styling to match tan background */
+main#ai-trust-ethics {
+    background-color: #f8f4f0;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+/* Override any dark mode styles */
+body,
+html,
+main {
+    background-color: #f8f4f0 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    body,
+    html,
+    main,
+    main#ai-trust-ethics {
+        background-color: #f8f4f0 !important;
+    }
+    
+    :root {
+        --color-bg-primary: #f8f4f0 !important;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,73 @@
+<!-- Just the key navigation part without scroll animation -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Global navigation state variables for journal pages
+    let isNavigating = false;
+    let navigationTimeout;
+    let currentPageIndex = 0;
+    
+    const journalShowcase = document.getElementById('journal-showcase');
+    const journalStack = document.getElementById('journal-stack');
+    const journalPages = document.querySelectorAll('.journal-page');
+    
+    // Navigate to a specific page
+    function navigateToPage(index) {
+        console.log('navigateToPage called with index:', index);
+        if (index < 0 || index >= journalPages.length) return;
+        
+        // Set navigation state to pause scroll animation
+        isNavigating = true;
+        
+        // Remove active states
+        journalPages.forEach(page => page.classList.remove('active'));
+        // Add active state to current page
+        currentPageIndex = index;
+        const currentPage = journalPages[index];
+        currentPage.classList.add('active');
+        
+        // Clear navigation state after animation
+        clearTimeout(navigationTimeout);
+        navigationTimeout = setTimeout(() => {
+            isNavigating = false;
+        }, 500);
+    }
+    
+    // Initialize first page as active
+    if (journalPages.length > 0) {
+        navigateToPage(0);
+    }
+    
+    // Button navigation
+    const prevButton = document.querySelector('.nav-button.nav-prev');
+    const nextButton = document.querySelector('.nav-button.nav-next');
+    
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            const newIndex = currentPageIndex > 0 ? currentPageIndex - 1 : journalPages.length - 1;
+            navigateToPage(newIndex);
+        });
+    }
+    
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            const newIndex = currentPageIndex < journalPages.length - 1 ? currentPageIndex + 1 : 0;
+            navigateToPage(newIndex);
+        });
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            const newIndex = currentPageIndex > 0 ? currentPageIndex - 1 : journalPages.length - 1;
+            navigateToPage(newIndex);
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            const newIndex = currentPageIndex < journalPages.length - 1 ? currentPageIndex + 1 : 0;
+            navigateToPage(newIndex);
+        }
+    });
+    
+    console.log('Journal navigation initialized - no scroll effects');
+});
+</script>

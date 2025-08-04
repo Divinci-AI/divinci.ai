@@ -1,0 +1,614 @@
+{% extends "base.html" %}
+
+{% block content %}
+{%- set current_lang = page.lang | default(value="en") -%}
+
+<!-- Include Header -->
+{% include "partials/header.html" %}
+
+<!-- Enhanced Hero Section with Sacred Geometry -->
+<section class="roadmap-hero">
+    <!-- Sacred geometry background elements -->
+    <div class="sacred-geometry-bg">
+        <div class="sacred-circle sacred-circle-1"></div>
+        <div class="sacred-circle sacred-circle-2"></div>
+        <div class="sacred-circle sacred-circle-3"></div>
+        <div class="geometric-pattern pattern-1"></div>
+        <div class="geometric-pattern pattern-2"></div>
+    </div>
+    
+    <div class="hero-content-wrapper">
+        <div class="container">
+            <div class="hero-content-enhanced">
+                <h1 class="roadmap-page-title">{{ page.title }}</h1>
+                {% if page.description %}
+                <p class="roadmap-page-subtitle">{{ page.description }}</p>
+                {% endif %}
+                
+                <!-- Page-specific decorative element -->
+                <div class="page-decoration">
+                    <div class="decoration-line"></div>
+                    <div class="decoration-dot"></div>
+                    <div class="decoration-line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Roadmap Timeline Section -->
+<section class="roadmap-section">
+    <div class="container">
+        <div class="roadmap-intro">
+            <h2>Our Vision for the Future</h2>
+            <p>Discover what's coming next for the Divinci AI platform. We're committed to continuous innovation and delivering the features our customers need most.</p>
+        </div>
+        
+        <div class="roadmap-timeline">
+            <!-- Q1 2025 -->
+            <div class="roadmap-quarter left">
+                <div class="roadmap-card">
+                    <div class="roadmap-quarter-title">Q1 2025</div>
+                    <div class="roadmap-status status-development">In Development</div>
+                    <ul class="roadmap-list">
+                        <li>
+                            <i class="fas fa-chart-line icon"></i>
+                            <span><strong>Advanced Analytics Dashboard</strong>: Enhanced reporting and insights</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-cloud icon"></i>
+                            <span><strong>Multi-Cloud Support</strong>: Deploy across AWS, Azure, and GCP</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-shield-alt icon"></i>
+                            <span><strong>Custom Compliance Frameworks</strong>: Industry-specific compliance templates</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Q2 2025 -->
+            <div class="roadmap-quarter right">
+                <div class="roadmap-card">
+                    <div class="roadmap-quarter-title">Q2 2025</div>
+                    <div class="roadmap-status status-planned">Planned</div>
+                    <ul class="roadmap-list">
+                        <li>
+                            <i class="fas fa-gateway icon"></i>
+                            <span><strong>API Gateway Integration</strong>: Native support for API management</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-vial icon"></i>
+                            <span><strong>Advanced Testing Suite</strong>: Comprehensive AI model validation tools</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-users icon"></i>
+                            <span><strong>Collaboration Tools</strong>: Enhanced team workflows and permissions</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Recently Released -->
+            <div class="roadmap-quarter left">
+                <div class="roadmap-card">
+                    <div class="roadmap-quarter-title">Recently Released</div>
+                    <div class="roadmap-status status-completed">Completed</div>
+                    <ul class="roadmap-list">
+                        <li>
+                            <i class="fas fa-rocket icon"></i>
+                            <span><strong>Intelligent Release Orchestration</strong>: Automated deployment pipelines</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-tachometer-alt icon"></i>
+                            <span><strong>Real-time Performance Monitoring</strong>: Live model performance tracking</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-lock icon"></i>
+                            <span><strong>Enhanced Security Features</strong>: Advanced access controls and audit logging</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Future Innovations -->
+            <div class="roadmap-quarter right">
+                <div class="roadmap-card">
+                    <div class="roadmap-quarter-title">Q3-Q4 2025</div>
+                    <div class="roadmap-status status-planned">Future</div>
+                    <ul class="roadmap-list">
+                        <li>
+                            <i class="fas fa-magic icon"></i>
+                            <span><strong>AI-Powered Optimization</strong>: Automatic performance tuning</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-plug icon"></i>
+                            <span><strong>Advanced Integrations</strong>: Support for more AI frameworks and tools</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-mobile-alt icon"></i>
+                            <span><strong>Mobile Management App</strong>: Monitor your AI systems on the go</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Feature Request CTA -->
+        <div class="feature-request-cta">
+            <h3>Request Features</h3>
+            <p>Have a feature request? We'd love to hear from you!</p>
+            <a href="mailto:product@divinci.ai?subject=Feature%20Request" class="cta-button">
+                <i class="fas fa-lightbulb"></i>
+                Submit Your Ideas
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Include Footer -->
+{% include "partials/footer.html" %}
+
+<style>
+/* Roadmap-specific styling inspired by original website */
+
+/* Hero Section */
+.roadmap-hero {
+    background: linear-gradient(135deg, #16214c 0%, #254284 50%, #1a2658 100%);
+    color: white;
+    padding: 6rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sacred Geometry Background */
+.sacred-geometry-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.sacred-circle {
+    position: absolute;
+    border: 1px solid rgba(92, 226, 231, 0.15);
+    border-radius: 50%;
+    animation: float 20s infinite linear;
+}
+
+.sacred-circle-1 {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    right: -50px;
+    animation-delay: 0s;
+}
+
+.sacred-circle-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -100px;
+    left: -50px;
+    animation-delay: -10s;
+}
+
+.sacred-circle-3 {
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: -75px;
+    animation-delay: -5s;
+}
+
+.geometric-pattern {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    opacity: 0.1;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%235CE2E7' stroke-width='1'%3E%3Cpath d='M40 0l40 40-40 40L0 40z'/%3E%3Cpath d='M40 20l20 20-20 20-20-20z'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.pattern-1 {
+    top: 20%;
+    right: 10%;
+    animation: pulse 15s infinite;
+}
+
+.pattern-2 {
+    bottom: 20%;
+    left: 10%;
+    animation: pulse 15s infinite;
+    animation-delay: -7s;
+}
+
+@keyframes float {
+    0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.05; transform: scale(1); }
+    50% { opacity: 0.15; transform: scale(1.1); }
+}
+
+/* Hero Content */
+.hero-content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content-enhanced {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.roadmap-page-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff, #5ce2e7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.roadmap-page-subtitle {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.page-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.decoration-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #5ce2e7, transparent);
+}
+
+.decoration-dot {
+    width: 8px;
+    height: 8px;
+    background: #5ce2e7;
+    border-radius: 50%;
+    margin: 0 15px;
+    box-shadow: 0 0 10px rgba(92, 226, 231, 0.5);
+}
+
+/* Roadmap Section */
+.roadmap-section {
+    background: linear-gradient(to bottom, #f8fafc, #ffffff);
+    padding: 5rem 0;
+    position: relative;
+}
+
+.roadmap-intro {
+    text-align: center;
+    margin-bottom: 4rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.roadmap-intro h2 {
+    font-size: 2.5rem;
+    color: #16214c;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.roadmap-intro p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* Timeline Styling */
+.roadmap-timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: linear-gradient(to bottom, rgba(92, 226, 231, 0.8), rgba(92, 226, 231, 0.2));
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 4px;
+    z-index: 0;
+}
+
+.roadmap-quarter {
+    padding: 10px 30px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+}
+
+.roadmap-quarter::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: -12px;
+    background: rgba(92, 226, 231, 0.7);
+    border: 4px solid #16214c;
+    top: 20px;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(92, 226, 231, 0.5);
+}
+
+.left {
+    left: 0;
+    text-align: right;
+}
+
+.right {
+    left: 50%;
+    text-align: left;
+}
+
+.right::after {
+    left: -12px;
+}
+
+.roadmap-card {
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.roadmap-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.roadmap-card::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid rgba(92, 226, 231, 0.1);
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.roadmap-quarter-title {
+    font-weight: 700;
+    color: #16214c;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.roadmap-status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-planned {
+    background-color: rgba(92, 226, 231, 0.1);
+    color: #0ba0a6;
+    border: 1px solid rgba(92, 226, 231, 0.3);
+}
+
+.status-development {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #f57c00;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.status-completed {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #2e7d32;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.roadmap-list {
+    margin-top: 20px;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.right .roadmap-list {
+    padding-left: 20px;
+}
+
+.left .roadmap-list {
+    padding-right: 20px;
+}
+
+.roadmap-list li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.6;
+}
+
+.left .roadmap-list li {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.roadmap-list li .icon {
+    margin-right: 12px;
+    color: #5ce2e7;
+    font-size: 1.1rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.left .roadmap-list li .icon {
+    order: 2;
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+.roadmap-list li span {
+    color: #444;
+}
+
+.roadmap-list li strong {
+    color: #16214c;
+    font-weight: 600;
+}
+
+/* Feature Request CTA */
+.feature-request-cta {
+    text-align: center;
+    margin-top: 5rem;
+    padding: 3rem;
+    background: rgba(22, 33, 76, 0.02);
+    border-radius: 20px;
+    border: 1px solid rgba(92, 226, 231, 0.1);
+}
+
+.feature-request-cta h3 {
+    font-size: 2rem;
+    color: #16214c;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.feature-request-cta p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #16214c, #254284);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(22, 33, 76, 0.2);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(22, 33, 76, 0.3);
+    color: white;
+}
+
+.cta-button i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .roadmap-timeline::before {
+        left: 30px;
+    }
+
+    .roadmap-quarter {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding-left: 70px;
+        padding-right: 15px;
+    }
+
+    .roadmap-quarter::after {
+        left: 18px;
+        right: auto;
+    }
+
+    .left .roadmap-list {
+        padding-right: 0;
+        padding-left: 20px;
+    }
+
+    .left .roadmap-list li {
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .left .roadmap-list li .icon {
+        order: 1;
+        margin-right: 12px;
+        margin-left: 0;
+    }
+
+    .roadmap-page-title {
+        font-size: 2.5rem;
+    }
+
+    .roadmap-page-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .roadmap-card {
+        padding: 20px;
+    }
+
+    .sacred-circle-1, .sacred-circle-2 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .roadmap-hero {
+        padding: 4rem 0 3rem;
+    }
+    
+    .roadmap-page-title {
+        font-size: 2rem;
+    }
+    
+    .roadmap-quarter {
+        padding-left: 50px;
+    }
+    
+    .feature-request-cta {
+        padding: 2rem;
+        margin: 0 1rem;
+        margin-top: 3rem;
+    }
+}
+</style>
+{% endblock %}

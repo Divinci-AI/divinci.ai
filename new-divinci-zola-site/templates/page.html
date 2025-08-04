@@ -6,24 +6,49 @@
 <!-- Include Header -->
 {% include "partials/header.html" %}
 
-<section class="hero is-medium has-background-white-ter">
-    <div class="hero-body">
-        <div class="container has-text-centered">
-            <h1 class="title is-1 has-text-primary">{{ page.title }}</h1>
-            {% if page.description %}
-            <p class="subtitle is-4 has-text-grey">{{ page.description }}</p>
-            {% endif %}
+<!-- Enhanced Hero Section with Sacred Geometry -->
+<section class="enhanced-hero">
+    <!-- Sacred geometry background elements -->
+    <div class="sacred-geometry-bg">
+        <div class="sacred-circle sacred-circle-1"></div>
+        <div class="sacred-circle sacred-circle-2"></div>
+        <div class="sacred-circle sacred-circle-3"></div>
+        <div class="geometric-pattern pattern-1"></div>
+        <div class="geometric-pattern pattern-2"></div>
+    </div>
+    
+    <div class="hero-content-wrapper">
+        <div class="container">
+            <div class="hero-content-enhanced">
+                <h1 class="enhanced-page-title">{{ page.title }}</h1>
+                {% if page.description %}
+                <p class="enhanced-page-subtitle">{{ page.description }}</p>
+                {% endif %}
+                
+                <!-- Page-specific decorative element -->
+                <div class="page-decoration">
+                    <div class="decoration-line"></div>
+                    <div class="decoration-dot"></div>
+                    <div class="decoration-line"></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="section">
+<!-- Enhanced Content Section -->
+<section class="enhanced-content-section">
     <div class="container">
-        <div class="columns is-centered">
-            <div class="column is-8">
-                <div class="content is-medium">
-                    {{ page.content | safe }}
-                </div>
+        <div class="content-wrapper">
+            <div class="enhanced-content">
+                {{ page.content | safe }}
+            </div>
+            
+            <!-- Floating geometric elements -->
+            <div class="floating-elements">
+                <div class="floating-circle floating-1"></div>
+                <div class="floating-circle floating-2"></div>
+                <div class="floating-hexagon"></div>
             </div>
         </div>
     </div>
@@ -33,49 +58,431 @@
 {% include "partials/footer.html" %}
 
 <style>
-/* Page-specific styles */
-.content {
-    line-height: 1.8;
+/* Enhanced Page Styling inspired by original website */
+
+/* Hero Section Enhancements */
+.enhanced-hero {
+    background: linear-gradient(135deg, #16214c 0%, #254284 50%, #1a2658 100%);
+    color: white;
+    padding: 6rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.content h2 {
+/* Sacred Geometry Background */
+.sacred-geometry-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.sacred-circle {
+    position: absolute;
+    border: 1px solid rgba(92, 226, 231, 0.15);
+    border-radius: 50%;
+    animation: float 20s infinite linear;
+}
+
+.sacred-circle-1 {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    right: -50px;
+    animation-delay: 0s;
+}
+
+.sacred-circle-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -100px;
+    left: -50px;
+    animation-delay: -10s;
+}
+
+.sacred-circle-3 {
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: -75px;
+    animation-delay: -5s;
+}
+
+.geometric-pattern {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    opacity: 0.1;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%235CE2E7' stroke-width='1'%3E%3Cpath d='M40 0l40 40-40 40L0 40z'/%3E%3Cpath d='M40 20l20 20-20 20-20-20z'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.pattern-1 {
+    top: 20%;
+    right: 10%;
+    animation: pulse 15s infinite;
+}
+
+.pattern-2 {
+    bottom: 20%;
+    left: 10%;
+    animation: pulse 15s infinite;
+    animation-delay: -7s;
+}
+
+@keyframes float {
+    0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.05; transform: scale(1); }
+    50% { opacity: 0.15; transform: scale(1.1); }
+}
+
+/* Hero Content */
+.hero-content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content-enhanced {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.enhanced-page-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff, #5ce2e7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.enhanced-page-subtitle {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    text-align: center;
+    text-align: justify;
+    text-align-last: center;
+}
+
+.page-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.decoration-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #5ce2e7, transparent);
+}
+
+.decoration-dot {
+    width: 8px;
+    height: 8px;
+    background: #5ce2e7;
+    border-radius: 50%;
+    margin: 0 15px;
+    box-shadow: 0 0 10px rgba(92, 226, 231, 0.5);
+}
+
+/* Enhanced Content Section */
+.enhanced-content-section {
+    background: linear-gradient(to bottom, #f8fafc, #ffffff);
+    padding: 4rem 0;
+    position: relative;
+    min-height: 500px;
+}
+
+.content-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.enhanced-content {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(92, 226, 231, 0.1);
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+}
+
+/* Enhanced Typography */
+.enhanced-content h1 {
     color: #16214c;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.enhanced-content h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, #5ce2e7, #16214c);
+    border-radius: 2px;
+}
+
+.enhanced-content h2 {
+    color: #16214c;
+    font-size: 2rem;
+    font-weight: 600;
     margin-top: 3rem;
     margin-bottom: 1.5rem;
-    font-weight: 600;
+    position: relative;
+    padding-left: 20px;
 }
 
-.content h3 {
+.enhanced-content h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 30px;
+    background: linear-gradient(to bottom, #5ce2e7, #16214c);
+    border-radius: 2px;
+}
+
+.enhanced-content h3 {
     color: #254284;
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
 
-.content ul {
+.enhanced-content h4 {
+    color: #16214c;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.enhanced-content p {
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.enhanced-content ul, .enhanced-content ol {
     margin-left: 2rem;
+    margin-bottom: 1.5rem;
 }
 
-.content li {
-    margin-bottom: 0.5rem;
+.enhanced-content li {
+    margin-bottom: 0.75rem;
+    color: #444;
+    position: relative;
 }
 
-.content a {
+.enhanced-content ul li::before {
+    content: '▸';
+    color: #5ce2e7;
+    font-weight: bold;
+    position: absolute;
+    left: -20px;
+}
+
+.enhanced-content a {
     color: #16214c;
-    text-decoration: underline;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(92, 226, 231, 0.3);
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
-.content a:hover {
-    color: #254284;
+.enhanced-content a:hover {
+    color: #5ce2e7;
+    border-bottom-color: #5ce2e7;
+    transform: translateY(-1px);
 }
 
-/* Notification box for legal pages */
-.notification.is-info {
-    background-color: rgba(22, 33, 76, 0.1);
+.enhanced-content blockquote {
+    border-left: 4px solid #5ce2e7;
+    background-color: rgba(92, 226, 231, 0.05);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 10px 10px 0;
+    font-style: italic;
+    color: #16214c;
+}
+
+.enhanced-content code {
+    background-color: rgba(22, 33, 76, 0.05);
+    color: #16214c;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.enhanced-content pre {
+    background-color: #16214c;
+    color: #5ce2e7;
+    padding: 1.5rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.enhanced-content pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+
+/* Floating Elements */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-circle {
+    position: absolute;
+    border: 1px solid rgba(92, 226, 231, 0.2);
+    border-radius: 50%;
+    animation: floatSlow 25s infinite linear;
+}
+
+.floating-1 {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    right: 5%;
+    animation-delay: 0s;
+}
+
+.floating-2 {
+    width: 60px;
+    height: 60px;
+    bottom: 20%;
+    left: 8%;
+    animation-delay: -12s;
+}
+
+.floating-hexagon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 60%;
+    right: 15%;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='20,2 35,12 35,28 20,38 5,28 5,12' fill='none' stroke='rgba(92,226,231,0.3)' stroke-width='1'/%3E%3C/svg%3E");
+    animation: spin 30s infinite linear;
+}
+
+@keyframes floatSlow {
+    0% { transform: rotate(0deg) translateX(20px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .enhanced-page-title {
+        font-size: 2.5rem;
+    }
+    
+    .enhanced-page-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .enhanced-content {
+        padding: 2rem;
+        margin: 0 1rem;
+    }
+    
+    .enhanced-content h1 {
+        font-size: 2rem;
+    }
+    
+    .enhanced-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .sacred-circle-1, .sacred-circle-2 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .enhanced-hero {
+        padding: 4rem 0 3rem;
+    }
+    
+    .enhanced-page-title {
+        font-size: 2rem;
+    }
+    
+    .enhanced-content {
+        padding: 1.5rem;
+    }
+}
+
+/* Special styling for notification boxes */
+.enhanced-content .notification {
+    border-radius: 10px;
+    border: none;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.enhanced-content .notification.is-info {
+    background: linear-gradient(135deg, rgba(22, 33, 76, 0.05), rgba(92, 226, 231, 0.05));
     border-left: 4px solid #16214c;
+    color: #16214c;
 }
 
-.notification.is-info strong {
-    color: #16214c;
+.enhanced-content .notification::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='rgba(92,226,231,0.1)' stroke-width='1' fill='none' /%3E%3Ccircle cx='50' cy='50' r='25' stroke='rgba(92,226,231,0.1)' stroke-width='1' fill='none' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.3;
 }
 </style>
 {% endblock %}

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" aria-labelledby="title-data-creation desc-data-creation">
+  <title id="title-data-creation">AutoRAG Data Creation Process</title>
+  <desc id="desc-data-creation">Visualization of the AutoRAG data creation process from raw documents to QA datasets</desc>
+  
+  <defs>
+    <style>
+      /* Base styles using the Divinci color palette */
+      .data-creation-bg { fill: #0c1229; }
+      .data-creation-text { 
+        font-family: 'Sora', 'Inter', sans-serif;
+        fill: #ffffff;
+        font-size: 32px;
+        font-weight: 500;
+      }
+      .data-creation-title {
+        font-family: 'Sora', 'Inter', sans-serif;
+        fill: #ffffff;
+        font-size: 40px;
+        font-weight: 600;
+      }
+      .data-creation-arrow { stroke: #ffffff; stroke-width: 3; fill: none; }
+      .data-creation-box { fill: #2E5BFF; opacity: 0.2; stroke: #5ce2e7; stroke-width: 2; rx: 20; ry: 20; }
+      
+      /* Document icon styles */
+      .doc-blue { fill: #4285F4; }
+      .doc-green { fill: #34A853; }
+      .doc-red { fill: #EA4335; }
+      .doc-yellow { fill: #FBBC05; }
+      .doc-text { fill: #ffffff; }
+      
+      /* Parsing icon styles */
+      .microscope-base { fill: #B0BEC5; }
+      .microscope-lens { fill: #78909C; }
+      .microscope-stage { fill: #546E7A; }
+      .microscope-dot { fill: #EA4335; }
+      
+      /* Chunking icon styles */
+      .scissors-handle { fill: #ffffff; }
+      .scissors-blade { fill: #E0E0E0; }
+      
+      /* QA icon styles */
+      .qa-window { fill: #F5F7FA; stroke: #B0BEC5; stroke-width: 2; }
+      .qa-dot { fill: #FF5252; }
+      .qa-question { fill: #FF9800; }
+      .qa-answer { fill: #4CAF50; }
+      .qa-text { fill: #ffffff; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="600" class="data-creation-bg"/>
+  
+  <!-- Title -->
+  <text x="500" y="60" class="data-creation-title" text-anchor="middle">[ Data Creation Process ]</text>
+  
+  <!-- Raw Documents -->
+  <g transform="translate(150, 250)">
+    <!-- Document stack -->
+    <rect x="-40" y="-20" width="80" height="100" rx="5" ry="5" class="doc-blue" />
+    <rect x="-50" y="-30" width="80" height="100" rx="5" ry="5" class="doc-green" />
+    <rect x="-60" y="-40" width="80" height="100" rx="5" ry="5" class="doc-red" />
+    
+    <!-- Document lines -->
+    <rect x="-30" y="-10" width="50" height="5" class="doc-text" />
+    <rect x="-30" y="0" width="50" height="5" class="doc-text" />
+    <rect x="-30" y="10" width="50" height="5" class="doc-text" />
+    <rect x="-30" y="20" width="50" height="5" class="doc-text" />
+    <rect x="-30" y="30" width="50" height="5" class="doc-text" />
+    <rect x="-30" y="40" width="50" height="5" class="doc-text" />
+    
+    <!-- Label -->
+    <text x="0" y="100" class="data-creation-text" text-anchor="middle">Raw Documents</text>
+  </g>
+  
+  <!-- Parsing -->
+  <g transform="translate(350, 250)">
+    <!-- Microscope -->
+    <rect x="-15" y="20" width="30" height="40" class="microscope-base" />
+    <circle cx="0" cy="0" r="30" class="microscope-lens" />
+    <rect x="-25" y="40" width="50" height="10" class="microscope-stage" />
+    <circle cx="-10" cy="35" r="5" class="microscope-dot" />
+    <circle cx="10" cy="45" r="5" class="microscope-dot" />
+    
+    <!-- Label -->
+    <text x="0" y="100" class="data-creation-text" text-anchor="middle">Parsing</text>
+  </g>
+  
+  <!-- Chunking -->
+  <g transform="translate(550, 250)">
+    <!-- Scissors -->
+    <path d="M-30,30 C-20,0 20,0 30,30" class="scissors-handle" stroke="#ffffff" stroke-width="5" fill="none" />
+    <path d="M-30,-30 L30,30" class="scissors-blade" stroke="#ffffff" stroke-width="8" stroke-linecap="round" />
+    <path d="M30,-30 L-30,30" class="scissors-blade" stroke="#ffffff" stroke-width="8" stroke-linecap="round" />
+    
+    <!-- Label -->
+    <text x="0" y="100" class="data-creation-text" text-anchor="middle">Chunking</text>
+  </g>
+  
+  <!-- QA Creation -->
+  <g transform="translate(750, 250)">
+    <!-- Window -->
+    <rect x="-50" y="-50" width="100" height="100" rx="10" ry="10" class="qa-window" />
+    <rect x="-50" y="-50" width="100" height="20" rx="10" ry="10" fill="#B0BEC5" />
+    <circle cx="40" cy="-40" r="5" class="qa-dot" />
+    
+    <!-- Q&A bubbles -->
+    <rect x="-40" y="-20" width="80" height="20" rx="5" ry="5" class="qa-question" />
+    <rect x="-40" y="10" width="60" height="20" rx="5" ry="5" class="qa-answer" />
+    <text x="-30" y="-5" class="qa-text" font-size="12">Q</text>
+    <text x="-30" y="25" class="qa-text" font-size="12">A</text>
+    
+    <!-- Label -->
+    <text x="0" y="100" class="data-creation-text" text-anchor="middle">QA Creation</text>
+  </g>
+  
+  <!-- Arrows -->
+  <path d="M200,250 L300,250" class="data-creation-arrow" marker-end="url(#arrow)" />
+  <path d="M400,250 L500,250" class="data-creation-arrow" marker-end="url(#arrow)" />
+  <path d="M600,250 L700,250" class="data-creation-arrow" marker-end="url(#arrow)" />
+  
+  <!-- Vertical arrows -->
+  <path d="M550,300 L550,400" class="data-creation-arrow" marker-end="url(#arrow)" />
+  <path d="M750,300 L750,400" class="data-creation-arrow" marker-end="url(#arrow)" />
+  
+  <!-- Output boxes -->
+  <rect x="480" y="400" width="140" height="80" class="data-creation-box" />
+  <text x="550" y="450" class="data-creation-text" text-anchor="middle">Corpus</text>
+  
+  <rect x="680" y="400" width="140" height="80" class="data-creation-box" />
+  <text x="750" y="450" class="data-creation-text" text-anchor="middle">QA Data</text>
+  
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ffffff"/>
+    </marker>
+  </defs>
+</svg>

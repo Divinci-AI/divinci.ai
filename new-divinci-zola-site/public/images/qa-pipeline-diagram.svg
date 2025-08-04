@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550" aria-labelledby="title desc">
+  <title id="title">LLM Quality Assurance Pipeline Visualization</title>
+  <desc id="desc">Visual representation of Divinci AI's comprehensive quality assurance process for enterprise LLM applications</desc>
+
+  <defs>
+    <!-- Styles -->
+    <style>
+      /* Base styles using the Divinci color palette */
+      .background { fill: rgb(248, 244, 240); }
+      .primary-path { stroke: #2E5BFF; stroke-width: 2; fill: none; }
+      .secondary-path { stroke: #00D8D8; stroke-width: 1.5; fill: none; }
+      .tertiary-path { stroke: #8C54FF; stroke-width: 1.5; fill: none; }
+      .monitoring-path { stroke: #FFAB2D; stroke-width: 1.5; fill: none; }
+
+      .pipeline-container { fill: #F5F7FA; stroke: #485262; stroke-width: 1.5; }
+
+      .testing-node { fill: #F5F7FA; stroke: #2E5BFF; stroke-width: 2; }
+      .validation-node { fill: #F5F7FA; stroke: #00D8D8; stroke-width: 2; }
+      .analysis-node { fill: #F5F7FA; stroke: #8C54FF; stroke-width: 2; }
+      .monitoring-node { fill: #F5F7FA; stroke: #FFAB2D; stroke-width: 2; }
+
+      .icon-primary { fill: #2E5BFF; }
+      .icon-secondary { fill: #00D8D8; }
+      .icon-tertiary { fill: #8C54FF; }
+      .icon-monitoring { fill: #FFAB2D; }
+
+      text {
+        font-family: 'Inter', sans-serif;
+        fill: #485262;
+      }
+      .title-text {
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .subtitle-text {
+        font-size: 14px;
+        font-weight: 400;
+      }
+      .detail-text {
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      /* Animation keyframes */
+      @keyframes flowAnimation {
+        from { stroke-dashoffset: 1000; }
+        to { stroke-dashoffset: 0; }
+      }
+
+      .animated-path {
+        stroke-dasharray: 5, 3;
+        animation: flowAnimation 20s linear infinite;
+      }
+
+      /* Diamonds removed to fix black areas */
+      .diamond {
+        fill: none;
+        stroke-width: 0;
+        opacity: 0;
+        display: none;
+        visibility: hidden;
+      }
+
+      .diamond-test, .diamond-validate, .diamond-analyze, .diamond-monitor {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .qa-box {
+        fill: #F5F7FA;
+        stroke-width: 1.5;
+        rx: 4;
+        ry: 4;
+      }
+
+      .qa-box-test { stroke: #2E5BFF; }
+      .qa-box-validate { stroke: #00D8D8; }
+      .qa-box-analyze { stroke: #8C54FF; }
+      .qa-box-monitor { stroke: #FFAB2D; }
+
+      /* Performance indicators */
+      .performance-indicator-good { fill: #00D27A; }
+      .performance-indicator-medium { fill: #FFAB2D; }
+      .performance-indicator-attention { fill: #FF5C5C; }
+
+      /* Metrics box */
+      .metrics-box {
+        fill: #F0F5FF;
+        stroke: #2E5BFF;
+        stroke-width: 1;
+        rx: 4;
+        ry: 4;
+      }
+    </style>
+
+    <!-- Gradients -->
+    <linearGradient id="pipelineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2E5BFF" stop-opacity="0.2"/>
+      <stop offset="33%" stop-color="#00D8D8" stop-opacity="0.2"/>
+      <stop offset="66%" stop-color="#8C54FF" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#FFAB2D" stop-opacity="0.2"/>
+    </linearGradient>
+
+    <!-- Filter for glow effects -->
+    <filter id="qa-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" class="background"/>
+
+  <!-- Pipeline Background - Adjusted height -->
+  <rect x="50" y="100" width="800" height="250" rx="10" ry="10" fill="url(#pipelineGradient)" opacity="0.1"/>
+
+  <!-- Pipeline Container - Adjusted height -->
+  <rect x="50" y="100" width="800" height="250" rx="10" ry="10" class="pipeline-container"/>
+  <text x="450" y="130" class="title-text" text-anchor="middle">LLM Quality Assurance Pipeline</text>
+
+  <!-- Main Process Flow Lines - Direct connections between nodes -->
+  <path d="M155,250 L315,250" class="primary-path animated-path"/>
+  <path d="M385,250 L545,250" class="secondary-path animated-path"/>
+  <path d="M615,250 L775,250" class="tertiary-path animated-path"/>
+  <path d="M845,250 C870,250 870,300 450,300 C30,300 30,250 85,250" class="monitoring-path animated-path" stroke-dasharray="4,2"/>
+
+  <!-- Automated Testing Phase -->
+  <g transform="translate(120, 250)">
+    <circle cx="0" cy="0" r="35" class="testing-node"/>
+    <text x="0" y="-5" class="subtitle-text" text-anchor="middle">Automated</text>
+    <text x="0" y="15" class="subtitle-text" text-anchor="middle">Testing</text>
+
+    <!-- Testing sub-components -->
+    <g transform="translate(-80, -100)">
+      <rect x="0" y="0" width="160" height="70" class="qa-box qa-box-test"/>
+      <text x="80" y="20" class="subtitle-text" text-anchor="middle">Test Generation</text>
+      <line x1="80" y1="30" x2="80" y2="70" stroke="#2E5BFF" stroke-width="1" stroke-dasharray="2,1"/>
+
+      <text x="40" y="45" class="detail-text" text-anchor="middle">User Scenarios</text>
+      <text x="40" y="60" class="detail-text" text-anchor="middle">Edge Cases</text>
+
+      <text x="120" y="45" class="detail-text" text-anchor="middle">Regression Tests</text>
+      <text x="120" y="60" class="detail-text" text-anchor="middle">Red Teaming</text>
+    </g>
+
+    <line x1="0" y1="-35" x2="0" y2="-100" stroke="#2E5BFF" stroke-width="1"/>
+
+    <!-- Removed diamond and Yes/No paths to fix black areas -->
+  </g>
+
+  <!-- Validation Phase -->
+  <g transform="translate(350, 250)">
+    <circle cx="0" cy="0" r="35" class="validation-node"/>
+    <text x="0" y="-5" class="subtitle-text" text-anchor="middle">Content</text>
+    <text x="0" y="15" class="subtitle-text" text-anchor="middle">Validation</text>
+
+    <!-- Validation sub-components -->
+    <g transform="translate(-80, -100)">
+      <rect x="0" y="0" width="160" height="70" class="qa-box qa-box-validate"/>
+      <text x="80" y="20" class="subtitle-text" text-anchor="middle">Validation Engine</text>
+      <line x1="80" y1="30" x2="80" y2="70" stroke="#00D8D8" stroke-width="1" stroke-dasharray="2,1"/>
+
+      <text x="40" y="45" class="detail-text" text-anchor="middle">Fact Checking</text>
+      <text x="40" y="60" class="detail-text" text-anchor="middle">Hallucination</text>
+
+      <text x="120" y="45" class="detail-text" text-anchor="middle">Bias Detection</text>
+      <text x="120" y="60" class="detail-text" text-anchor="middle">Toxicity Filter</text>
+    </g>
+
+    <line x1="0" y1="-35" x2="0" y2="-100" stroke="#00D8D8" stroke-width="1"/>
+
+    <!-- Removed diamond and Yes/No paths to fix black areas -->
+  </g>
+
+  <!-- Analysis Phase -->
+  <g transform="translate(580, 250)">
+    <circle cx="0" cy="0" r="35" class="analysis-node"/>
+    <text x="0" y="-5" class="subtitle-text" text-anchor="middle">Quality</text>
+    <text x="0" y="15" class="subtitle-text" text-anchor="middle">Analysis</text>
+
+    <!-- Analysis sub-components -->
+    <g transform="translate(-80, -100)">
+      <rect x="0" y="0" width="160" height="70" class="qa-box qa-box-analyze"/>
+      <text x="80" y="20" class="subtitle-text" text-anchor="middle">Analytics Engine</text>
+      <line x1="80" y1="30" x2="80" y2="70" stroke="#8C54FF" stroke-width="1" stroke-dasharray="2,1"/>
+
+      <text x="40" y="45" class="detail-text" text-anchor="middle">Relevance</text>
+      <text x="40" y="60" class="detail-text" text-anchor="middle">Consistency</text>
+
+      <text x="120" y="45" class="detail-text" text-anchor="middle">Completeness</text>
+      <text x="120" y="60" class="detail-text" text-anchor="middle">Compliance</text>
+    </g>
+
+    <line x1="0" y1="-35" x2="0" y2="-100" stroke="#8C54FF" stroke-width="1"/>
+
+    <!-- Removed diamond and Yes/No paths to fix black areas -->
+  </g>
+
+  <!-- Monitoring Phase -->
+  <g transform="translate(810, 250)">
+    <circle cx="0" cy="0" r="35" class="monitoring-node"/>
+    <text x="0" y="-5" class="subtitle-text" text-anchor="middle">Continuous</text>
+    <text x="0" y="15" class="subtitle-text" text-anchor="middle">Monitoring</text>
+
+    <!-- Monitoring sub-components -->
+    <g transform="translate(-80, -100)">
+      <rect x="0" y="0" width="160" height="70" class="qa-box qa-box-monitor"/>
+      <text x="80" y="20" class="subtitle-text" text-anchor="middle">Monitoring System</text>
+      <line x1="80" y1="30" x2="80" y2="70" stroke="#FFAB2D" stroke-width="1" stroke-dasharray="2,1"/>
+
+      <text x="40" y="45" class="detail-text" text-anchor="middle">Performance</text>
+      <text x="40" y="60" class="detail-text" text-anchor="middle">Anomalies</text>
+
+      <text x="120" y="45" class="detail-text" text-anchor="middle">User Feedback</text>
+      <text x="120" y="60" class="detail-text" text-anchor="middle">Drift Detection</text>
+    </g>
+
+    <line x1="0" y1="-35" x2="0" y2="-100" stroke="#FFAB2D" stroke-width="1"/>
+  </g>
+
+  <!-- Key Metrics and Results - Moved down to avoid overlap with paths -->
+  <g transform="translate(450, 420)">
+    <rect x="-350" y="0" width="700" height="90" class="metrics-box"/>
+
+    <g transform="translate(-280, 35)">
+      <circle cx="0" cy="0" r="15" class="performance-indicator-good"/>
+      <text x="0" y="5" class="detail-text" text-anchor="middle">✓</text>
+      <text x="0" y="30" class="detail-text" text-anchor="middle">Hallucination</text>
+      <text x="0" y="45" class="detail-text" text-anchor="middle">Reduction</text>
+    </g>
+
+    <g transform="translate(-140, 35)">
+      <circle cx="0" cy="0" r="15" class="performance-indicator-good"/>
+      <text x="0" y="5" class="detail-text" text-anchor="middle">✓</text>
+      <text x="0" y="30" class="detail-text" text-anchor="middle">Testing</text>
+      <text x="0" y="45" class="detail-text" text-anchor="middle">Time Saved</text>
+    </g>
+
+    <g transform="translate(0, 35)">
+      <circle cx="0" cy="0" r="15" class="performance-indicator-good"/>
+      <text x="0" y="5" class="detail-text" text-anchor="middle">✓</text>
+      <text x="0" y="30" class="detail-text" text-anchor="middle">Compliance</text>
+      <text x="0" y="45" class="detail-text" text-anchor="middle">Rate</text>
+    </g>
+
+    <g transform="translate(140, 35)">
+      <circle cx="0" cy="0" r="15" class="performance-indicator-good"/>
+      <text x="0" y="5" class="detail-text" text-anchor="middle">✓</text>
+      <text x="0" y="30" class="detail-text" text-anchor="middle">Escalation</text>
+      <text x="0" y="45" class="detail-text" text-anchor="middle">Reduction</text>
+    </g>
+
+    <g transform="translate(280, 35)">
+      <circle cx="0" cy="0" r="15" class="performance-indicator-good"/>
+      <text x="0" y="5" class="detail-text" text-anchor="middle">✓</text>
+      <text x="0" y="30" class="detail-text" text-anchor="middle">Accuracy</text>
+      <text x="0" y="45" class="detail-text" text-anchor="middle">Rating</text>
+    </g>
+  </g>
+
+  <!-- Version Labels -->
+  <text x="810" y="480" class="detail-text"><!-- v1.0 - 2023-05-01 --></text>
+</svg>
