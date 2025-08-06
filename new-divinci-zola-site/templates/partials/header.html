@@ -13,7 +13,7 @@
     <!-- Mobile-first navigation layout -->
     <div class="header-actions">
         {% include "language-switcher.html" %}
-        <a href="https://calendly.com/mike-mooring-divinci/30min" class="cta-button mobile-demo-button" target="_blank" rel="noopener">{{ translations.navigation.request_demo | default(value="Request demo") }}</a>
+        <a href="https://calendly.com/mike-mooring-divinci/30-minute-meeting" class="cta-button mobile-demo-button" target="_blank" rel="noopener">{{ translations.navigation.request_demo | default(value="Request demo") }}</a>
     </div>
     
     <nav>
@@ -34,13 +34,14 @@
                 <a href="{% if current_lang == 'en' %}/#support{% else %}/{{ current_lang }}/#support{% endif %}">{{ translations.navigation.support | default(value="Support") }}</a>
                 <span class="dropdown-arrow">▼</span>
                 <div class="dropdown-menu">
+                    <a href="/support">{{ translations.navigation.support_center | default(value="Support Center") }}</a>
                     <a href="{% if current_lang == 'en' %}/terms-of-service/{% else %}/{{ current_lang }}/terms-of-service/{% endif %}">Terms of Service</a>
                     <a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}">Privacy Policy</a>
                 </div>
             </li>
             <!-- Request Demo as navigation item on mobile -->
             <li class="mobile-only">
-                <a href="https://calendly.com/mike-mooring-divinci/30min" target="_blank" rel="noopener">{{ translations.navigation.request_demo | default(value="Request demo") }}</a>
+                <a href="https://calendly.com/mike-mooring-divinci/30-minute-meeting" target="_blank" rel="noopener">{{ translations.navigation.request_demo | default(value="Request demo") }}</a>
             </li>
         </ul>
     </nav>

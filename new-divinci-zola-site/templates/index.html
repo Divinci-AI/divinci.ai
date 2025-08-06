@@ -14,7 +14,7 @@
     <div class="hero-content">
         <div class="hero-image">
             <img src="{{ get_url(path="images/Davinci_the_painter_painting_a_robot_in_a_line_art.png") }}" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster">
-            <video id="hero-video" muted playsinline preload="metadata" data-lazy-video data-loop-once>
+            <video id="hero-video" muted playsinline preload="metadata" data-lazy-video data-loop-once webkit-playsinline>
                 <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.webm") }}" type="video/webm">
                 <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.mp4") }}" type="video/mp4">
             </video>
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="cta-buttons">
-                <a href="https://calendly.com/mike-mooring-divinci/30min" class="primary-button" target="_blank" rel="noopener">{{ translations.hero.cta.primary | default(value="Request demo") }}</a>
+                <a href="https://calendly.com/mike-mooring-divinci/30-minute-meeting" class="primary-button" target="_blank" rel="noopener">{{ translations.hero.cta.primary | default(value="Request demo") }}</a>
                 <button class="secondary-button">{{ translations.hero.cta.secondary | default(value="Explore platform") }}</button>
             </div>
         </div>
@@ -68,27 +68,27 @@
     </div>
     <div class="video-background-container">
         <!-- Default background video (Panel 1) -->
-        <video id="background-video-default" class="background-video active" muted loop playsinline preload="metadata" data-lazy-video>
+        <video id="background-video-default" class="background-video active" muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video x-webkit-airplay="allow">
             <source src="{{ get_url(path="images/ai-team.webm") }}" type="video/webm">
             <source src="{{ get_url(path="images/ai-team_social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_321668ae-ec36-4ade-b0a9-8e5dd026b0de_0.mp4") }}" type="video/mp4">
         </video>
         
         <!-- Panel 1 hover video (ai team) -->
-        <video id="background-video-panel1" class="background-video" muted loop playsinline preload="none" data-lazy-video data-panel="1">
+        <video id="background-video-panel1" class="background-video" muted loop playsinline webkit-playsinline preload="none" data-lazy-video data-panel="1" x-webkit-airplay="allow">
             <source src="{{ get_url(path="images/ai-team.webm") }}" type="video/webm">
             <source src="{{ get_url(path="images/ai-team_social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_321668ae-ec36-4ade-b0a9-8e5dd026b0de_0.mp4") }}" type="video/mp4">
         </video>
         
         <!-- Panel 2 hover video (business parody) -->
-        <video id="background-video-panel2" class="background-video" muted loop playsinline preload="none" data-lazy-video data-panel="2">
+        <video id="background-video-panel2" class="background-video" muted loop playsinline webkit-playsinline preload="none" data-lazy-video data-panel="2" x-webkit-airplay="allow">
             <source src="{{ get_url(path="images/business-parody-optimized.webm") }}" type="video/webm">
             <source src="{{ get_url(path="images/business-parody-social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_2ce28274-76c9-4ec1-b4f8-3acc57789616_3.mp4") }}" type="video/mp4">
         </video>
         
         <!-- Panel 3 hover video (rag machine) -->
-        <video id="background-video-panel3" class="background-video" muted loop playsinline preload="none" data-lazy-video data-panel="3">
+        <video id="background-video-panel3" class="background-video" muted loop playsinline webkit-playsinline preload="none" data-lazy-video data-panel="3" x-webkit-airplay="allow">
             <source src="{{ get_url(path="images/rag-machine-optimized.webm") }}" type="video/webm">
-            <source src="{{ get_url(path="images/rag-machine-social_u4943574663_Young_Leonardo_da_Vinci_in_Renaissance_workshop_t_ad808b44-961d-49e8-b0db-06c848541449_1.mp4") }}" type="video/mp4">
+            <source src="{{ get_url(path="images/rag-machine-social_u4943574663_Young_Leonardo_da_Vinci_in_Renaissance_workshop_t_ad808b44-961d-49e8-b0d-06c848541449_1.mp4") }}" type="video/mp4">
         </video>
     </div>
     <div class="enterprise-content">
@@ -324,7 +324,10 @@
     </div>
     <div class="features-container">
         <div class="features-header">
-            <h2>{{ translations.features.title | default(value="The Age of AI Management") }}</h2>
+            <h2>
+                <span class="desktop-title">{{ translations.features.title | default(value="The Age of AI Management") }}</span>
+                <span class="mobile-title">{{ translations.features.title_first_line | default(value="The Age of AI") }}<br>{{ translations.features.title_second_line | default(value="Management") }}</span>
+            </h2>
             <p class="section-intro">{{ translations.features.description | default(value="Discover features designed for enterprise teams that need reliable, scalable AI collaboration.") }}</p>
         </div>
         <div class="davinci-journal-showcase" id="journal-showcase">
@@ -979,10 +982,24 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/sam-tobia.jpg") }}" alt="Samuel Tobia">
+                </div>
+                <h3>Samuel Tobia</h3>
+                <p class="role">{{ translations.team.roles.cto_cofounder | default(value="CTO & Co-Founder") }}</p>
+                <p class="bio">
+                    {{ translations.team.members.samuel_bio | default(value="Product strategist with a track record of delivering user-centric AI solutions for enterprise teams.") }}
+                </p>
+                <a href="https://www.linkedin.com/in/sam-tobia-1aa2762b/" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+{{ translations.team.members.connect | default(value="Connect") }}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
                     <img src="{{ get_url(path="images/duane-mooring.png") }}" alt="Duane Mooring">
                 </div>
                 <h3>Duane Mooring</h3>
-                <p class="role">{{ translations.team.roles.cto_cofounder | default(value="CTO & Co-Founder") }}</p>
+                <p class="role">{{ translations.team.roles.cpo | default(value="CPO - Chief Project Officer") }}</p>
                 <p class="bio">
                     {{ translations.team.members.duane_bio | default(value="Systems architect with expertise in scalable AI infrastructure and natural language processing.") }}
                 </p>
@@ -993,40 +1010,12 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="{{ get_url(path="images/sam-tobia.jpg") }}" alt="Sam Tobia">
-                </div>
-                <h3>Sam Tobia</h3>
-                <p class="role">{{ translations.team.roles.head_product | default(value="Head of Product") }}</p>
-                <p class="bio">
-                    {{ translations.team.members.sam_bio | default(value="Product strategist with a track record of delivering user-centric AI solutions for enterprise teams.") }}
-                </p>
-                <a href="https://linkedin.com/in/samtobia" class="social-link">
-                    <i class="fab fa-linkedin"></i>
-{{ translations.team.members.connect | default(value="Connect") }}
-                </a>
-            </div>
-            <div class="team-member">
-                <div class="team-member-photo">
-                    <img src="{{ get_url(path="images/abdul.jpeg") }}" alt="Abdul Rahman">
-                </div>
-                <h3>Abdul Rahman</h3>
-                <p class="role">{{ translations.team.roles.senior_data_scientist | default(value="Senior Data Scientist") }}</p>
-                <p class="bio">
-                    {{ translations.team.members.abdul_bio | default(value="Machine learning expert specialized in model optimization and performance analysis for AI systems.") }}
-                </p>
-                <a href="https://linkedin.com/in/abdulrahman" class="social-link">
-                    <i class="fab fa-linkedin"></i>
-{{ translations.team.members.connect | default(value="Connect") }}
-                </a>
-            </div>
-            <div class="team-member">
-                <div class="team-member-photo">
                     <img src="{{ get_url(path="images/sierra-hooshiari.jpeg") }}" alt="Sierra Hooshiari">
                 </div>
                 <h3>Sierra Hooshiari</h3>
-                <p class="role">{{ translations.team.roles.ux_ui_designer | default(value="UX/UI Designer") }}</p>
+                <p class="role">{{ translations.team.roles.coo | default(value="COO - Chief Operations Officer") }}</p>
                 <p class="bio">
-                    {{ translations.team.members.sierra_bio | default(value="Creative designer focused on creating intuitive interfaces that make complex AI interactions accessible.") }}
+                    {{ translations.team.members.sierra_bio | default(value="Cornell University graduate with extensive experience in financial services and entrepreneurship. Former M&A Associate and founder of BrainPOP Clean Energy, bringing strategic business development and operations expertise to AI venture scaling.") }}
                 </p>
                 <a href="https://linkedin.com/in/sierrahooshiari" class="social-link">
                     <i class="fab fa-linkedin"></i>
@@ -1038,11 +1027,25 @@
                     <img src="{{ get_url(path="images/sean-fuhrman.jpeg") }}" alt="Sean Fuhrman">
                 </div>
                 <h3>Sean Fuhrman</h3>
-                <p class="role">{{ translations.team.roles.software_engineer | default(value="Software Engineer") }}</p>
+                <p class="role">{{ translations.team.roles.data_scientist | default(value="Data Scientist") }}</p>
                 <p class="bio">
-                    {{ translations.team.members.sean_bio | default(value="Full-stack developer with experience in microservices architecture and distributed systems for AI applications.") }}
+                    {{ translations.team.members.sean_bio | default(value="Data scientist with 10+ years programming experience, specializing in machine learning and Python development.") }}
                 </p>
-                <a href="https://linkedin.com/in/seanfuhrman" class="social-link">
+                <a href="https://www.linkedin.com/in/sean-fuhrman/" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+{{ translations.team.members.connect | default(value="Connect") }}
+                </a>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="{{ get_url(path="images/paul-marie-carfantan.jpeg") }}" alt="Paul-Marie Carfantan">
+                </div>
+                <h3>Paul-Marie Carfantan</h3>
+                <p class="role">{{ translations.team.roles.ai_safety_ethics_advisor | default(value="AI Safety and Ethics Advisor") }}</p>
+                <p class="bio">
+                    {{ translations.team.members.paul_marie_bio | default(value="AI governance leader and independent advisor specializing in vendor management and risk. Founded AI LA Responsible AI Group and brings expertise from Google AI, Deloitte, and CVS Health.") }}
+                </p>
+                <a href="https://www.linkedin.com/in/paul-marie-carfantan/" class="social-link">
                     <i class="fab fa-linkedin"></i>
 {{ translations.team.members.connect | default(value="Connect") }}
                 </a>
@@ -1058,7 +1061,7 @@
             <p class="signup-intro">{{ translations.signup.description | default(value="Join thousands of teams already transforming their work with Divinci AI. See how our platform can revolutionize your AI operations.") }}</p>
             <div class="signup-form">
                 <div class="form-group">
-                    <a href="https://calendly.com/mike-mooring-divinci/30min" class="signup-button" target="_blank" rel="noopener">{{ translations.signup.button | default(value="Schedule a Demo") }}</a>
+                    <a href="https://calendly.com/mike-mooring-divinci/30-minute-meeting" class="signup-button" target="_blank" rel="noopener">{{ translations.signup.button | default(value="Schedule a Demo") }}</a>
                 </div>
                 <p class="signup-note">{{ translations.signup.note | default(value="Free 30-minute consultation. See the platform in action.") }}</p>
             </div>
@@ -1152,7 +1155,15 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>{{ translations.expert_answers.faqs.language_models.answer | default(value="Our platform supports all major language models including GPT-4, Claude, Gemini, and custom fine-tuned models. We provide unified APIs and governance frameworks that work seamlessly across different model providers.") }}</p>
+                        <p>{{ translations.expert_answers.faqs.language_models.answer | default(value="Our platform supports a broad spectrum of large language models, from open-source to proprietary architectures. We support fine-tuning and base models from OpenAI, AWS Bedrock, Google Vertex AI, and Cloudflare Workers AI.") }}</p>
+                        <p style="margin-top: 1rem;">
+                            <a href="/support/#language-model-compatibility" style="color: #6b46c1; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem;">
+                                View complete model compatibility list
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </a>
+                        </p>
                     </div>
                 </div>
 
@@ -1200,7 +1211,7 @@
                     </div>
                     <h3>{{ translations.contact.email_specialists.title | default(value="Schedule a consultation") }}</h3>
                     <p>{{ translations.contact.email_specialists.description | default(value="Book a personalized demo and get detailed answers to your technical and business questions.") }}</p>
-                    <a href="https://calendly.com/mike-mooring-divinci/30min" class="contact-link" target="_blank" rel="noopener">{{ translations.contact.email_specialists.email | default(value="Schedule Demo") }}</a>
+                    <a href="https://calendly.com/mike-mooring-divinci/30-minute-meeting" class="contact-link" target="_blank" rel="noopener">{{ translations.contact.email_specialists.email | default(value="Schedule Demo") }}</a>
                 </div>
 
                 <div class="contact-method">
@@ -1211,7 +1222,7 @@
                     </div>
                     <h3>{{ translations.contact.speak_consultant.title | default(value="Book a live demo") }}</h3>
                     <p>{{ translations.contact.speak_consultant.description | default(value="Available for 30-minute personalized demos to show you how Divinci AI works.") }}</p>
-                    <a href="https://calendly.com/mike-mooring-divinci/30min" class="contact-link" target="_blank" rel="noopener">{{ translations.contact.speak_consultant.phone | default(value="Book Demo") }}</a>
+                    <a href="https://calendly.com/mike-mooring-divinci/30-minute-meeting" class="contact-link" target="_blank" rel="noopener">{{ translations.contact.speak_consultant.phone | default(value="Book Demo") }}</a>
                 </div>
             </div>
         </div>

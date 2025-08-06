@@ -875,7 +875,7 @@ input:checked + .toggle-slider:before {
 <div class="enterprise-card">
 <h2 class="enterprise-title">Enterprise</h2>
 <p class="enterprise-text">Need a custom solution for your large organization? Our Enterprise plan includes custom AI model development, dedicated support, SSO, custom security policies, and more.</p>
-<a href="https://calendly.com/mike-mooring-divinci/30min" class="enterprise-cta" target="_blank" rel="noopener">Schedule Demo</a>
+<a href="https://calendly.com/mike-mooring-divinci/30-minute-meeting" class="enterprise-cta" target="_blank" rel="noopener">Schedule Demo</a>
 </div>
 </div>
 </section>
