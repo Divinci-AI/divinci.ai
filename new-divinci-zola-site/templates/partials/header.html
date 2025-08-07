@@ -34,7 +34,7 @@
                 <a href="{% if current_lang == 'en' %}/#support{% else %}/{{ current_lang }}/#support{% endif %}">{{ translations.navigation.support | default(value="Support") }}</a>
                 <span class="dropdown-arrow">▼</span>
                 <div class="dropdown-menu">
-                    <a href="/support">{{ translations.navigation.support_center | default(value="Support Center") }}</a>
+                    <a href="{% if current_lang == 'en' %}/support{% else %}/{{ current_lang }}/support{% endif %}">{{ translations.navigation.support_center | default(value="Support Center") }}</a>
                     <a href="{% if current_lang == 'en' %}/terms-of-service/{% else %}/{{ current_lang }}/terms-of-service/{% endif %}">Terms of Service</a>
                     <a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}">Privacy Policy</a>
                 </div>

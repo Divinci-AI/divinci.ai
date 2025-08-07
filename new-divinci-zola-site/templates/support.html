@@ -2,6 +2,8 @@
 
 {% block content %}
 {%- set current_lang = page.lang | default(value="en") -%}
+{%- set translation_path = "data/translations/" ~ current_lang ~ ".json" -%}
+{%- set translations = load_data(path=translation_path) -%}
 
 <!-- Include Header -->
 {% include "partials/header.html" %}
@@ -919,44 +921,44 @@
             <button class="sidebar-toggle" id="sidebar-toggle">
                 |&lt;
             </button>
-            <h3 class="sidebar-title">Support Center</h3>
+            <h3 class="sidebar-title">{{ translations.support.sidebar.title | default(value="Support Center") }}</h3>
             <div class="sidebar-content">
             
             <div class="sidebar-section">
-                <div class="sidebar-section-title">Support Resources</div>
+                <div class="sidebar-section-title">{{ translations.support.sidebar.sections.resources | default(value="Support Resources") }}</div>
                 <ul class="sidebar-menu">
-                    <li><a href="#getting-started" class="sidebar-link active">Getting Started</a></li>
-                    <li><a href="#language-model-compatibility" class="sidebar-link">Language Models</a></li>
-                    <li><a href="#contact-section" class="sidebar-link">Account & Billing</a></li>
-                    <li><a href="#contact-section" class="sidebar-link">Technical Support</a></li>
-                    <li><a href="#contact-section" class="sidebar-link">Enterprise Solutions</a></li>
-                    <li><a href="/api" class="sidebar-link">API Documentation</a></li>
+                    <li><a href="#getting-started" class="sidebar-link active">{{ translations.support.sidebar.menu.getting_started | default(value="Getting Started") }}</a></li>
+                    <li><a href="#language-model-compatibility" class="sidebar-link">{{ translations.support.sidebar.menu.language_models | default(value="Language Models") }}</a></li>
+                    <li><a href="#contact-section" class="sidebar-link">{{ translations.support.sidebar.menu.billing | default(value="Account & Billing") }}</a></li>
+                    <li><a href="#contact-section" class="sidebar-link">{{ translations.support.sidebar.menu.technical_support | default(value="Technical Support") }}</a></li>
+                    <li><a href="#contact-section" class="sidebar-link">{{ translations.support.sidebar.menu.enterprise | default(value="Enterprise Solutions") }}</a></li>
+                    <li><a href="{% if current_lang == 'en' %}/api{% else %}/{{ current_lang }}/api{% endif %}" class="sidebar-link">{{ translations.support.sidebar.menu.api_docs | default(value="API Documentation") }}</a></li>
                 </ul>
             </div>
             
             <div class="sidebar-section collapsible collapsed">
-                <div class="sidebar-section-title collapsible collapsed">Self-Service Tools</div>
+                <div class="sidebar-section-title collapsible collapsed">{{ translations.support.sidebar.sections.self_service | default(value="Self-Service Tools") }}</div>
                 <ul class="sidebar-menu">
-                    <li><a href="/tutorials" class="sidebar-link">Tutorial Center</a></li>
-                    <li><a href="#getting-started" class="sidebar-link">Knowledge Base</a></li>
-                    <li><a href="/contact" class="sidebar-link">Community Forums</a></li>
+                    <li><a href="/tutorials" class="sidebar-link">{{ translations.support.sidebar.menu.tutorials | default(value="Tutorial Center") }}</a></li>
+                    <li><a href="#getting-started" class="sidebar-link">{{ translations.support.sidebar.menu.knowledge_base | default(value="Knowledge Base") }}</a></li>
+                    <li><a href="/contact" class="sidebar-link">{{ translations.support.sidebar.menu.community | default(value="Community Forums") }}</a></li>
                 </ul>
             </div>
             
             <div class="sidebar-section">
-                <div class="sidebar-section-title">Contact Support</div>
+                <div class="sidebar-section-title">{{ translations.support.sidebar.sections.contact | default(value="Contact Support") }}</div>
                 <ul class="sidebar-menu">
-                    <li><a href="#contact-section" class="sidebar-link">Contact Form</a></li>
-                    <li><a href="#contact-section" class="sidebar-link">Support Team</a></li>
+                    <li><a href="#contact-section" class="sidebar-link">{{ translations.support.sidebar.menu.contact_form | default(value="Contact Form") }}</a></li>
+                    <li><a href="#contact-section" class="sidebar-link">{{ translations.support.sidebar.menu.support_team | default(value="Support Team") }}</a></li>
                 </ul>
             </div>
             
             <div class="sidebar-cta">
-                <h4>Need urgent help?</h4>
-                <p>Our support team is available Monday-Friday, 9am-5pm PT.</p>
+                <h4>{{ translations.support.sidebar.cta.title | default(value="Need urgent help?") }}</h4>
+                <p>{{ translations.support.sidebar.cta.description | default(value="Our support team is available Monday-Friday, 9am-5pm PT.") }}</p>
                 <a href="mailto:support@divinci.app" class="sidebar-cta-button">
                     <i class="fas fa-envelope"></i>
-                    Email Support
+                    {{ translations.support.sidebar.cta.button | default(value="Email Support") }}
                 </a>
             </div>
             </div> <!-- Close sidebar-content -->
@@ -965,45 +967,43 @@
         <!-- Main Content -->
         <main class="support-main-content">
             <div class="support-header">
-                <h1>{{ page.title }}</h1>
-                {% if page.description %}
-                <p>{{ page.description }}</p>
-                {% endif %}
+                <h1>{{ translations.support.title | default(value=page.title) }}</h1>
+                <p>{{ translations.support.description | default(value=page.description) }}</p>
             </div>
             
             <div class="support-content">
                 <!-- Quick Help Section -->
                 <section class="support-section">
                     <div class="container">
-                        <h2 class="section-title">Quick Help</h2>
-                        <p class="section-subtitle">Get started quickly with these essential guides and resources</p>
+                        <h2 class="section-title">{{ translations.support.quick_help.title | default(value="Quick Help") }}</h2>
+                        <p class="section-subtitle">{{ translations.support.quick_help.description | default(value="Get started quickly with these essential guides and resources") }}</p>
                         
                         <div class="quick-help-grid">
                             <div class="help-card">
                                 <div class="help-card-icon">
                                     <i class="fas fa-user-plus"></i>
                                 </div>
-                                <h3>Create an Account</h3>
-                                <p>Sign up and start building your first custom AI in minutes with our step-by-step setup guide.</p>
-                                <a href="#getting-started" class="help-card-button">Learn How</a>
+                                <h3>{{ translations.support.help_cards.getting_started.title | default(value="Create an Account") }}</h3>
+                                <p>{{ translations.support.help_cards.getting_started.description | default(value="Sign up and start building your first custom AI in minutes with our step-by-step setup guide.") }}</p>
+                                <a href="#getting-started" class="help-card-button">{{ translations.support.help_cards.getting_started.button | default(value="Learn How") }}</a>
                             </div>
                             
                             <div class="help-card">
                                 <div class="help-card-icon">
                                     <i class="fas fa-robot"></i>
                                 </div>
-                                <h3>Train Your AI</h3>
-                                <p>Learn how to effectively train your AI with optimal data preparation and best practices.</p>
-                                <a href="#getting-started" class="help-card-button">View Tutorial</a>
+                                <h3>{{ translations.support.help_cards.train_ai.title | default(value="Train Your AI") }}</h3>
+                                <p>{{ translations.support.help_cards.train_ai.description | default(value="Learn how to effectively train your AI with optimal data preparation and best practices.") }}</p>
+                                <a href="#getting-started" class="help-card-button">{{ translations.support.help_cards.train_ai.button | default(value="View Tutorial") }}</a>
                             </div>
                             
                             <div class="help-card">
                                 <div class="help-card-icon">
                                     <i class="fas fa-credit-card"></i>
                                 </div>
-                                <h3>Manage Billing</h3>
-                                <p>Update payment methods, view invoices, and manage your subscription settings easily.</p>
-                                <a href="#account-billing" class="help-card-button">Billing Help</a>
+                                <h3>{{ translations.support.help_cards.billing.title | default(value="Manage Billing") }}</h3>
+                                <p>{{ translations.support.help_cards.billing.description | default(value="Update payment methods, view invoices, and manage your subscription settings easily.") }}</p>
+                                <a href="#account-billing" class="help-card-button">{{ translations.support.help_cards.billing.button | default(value="Billing Help") }}</a>
                             </div>
                         </div>
                     </div>
@@ -1012,20 +1012,20 @@
                 <!-- Popular Topics Section -->
                 <section class="support-section" style="background-color: #f9f9f9;">
                     <div class="container">
-                        <h2 class="section-title">Popular Topics</h2>
+                        <h2 class="section-title">{{ translations.support.popular_topics.title | default(value="Popular Topics") }}</h2>
                         
                         <div class="support-stats">
                             <div class="stat-item">
-                                <div class="stat-number">20+</div>
-                                <div class="stat-label">Tutorial Videos</div>
+                                <div class="stat-number">{{ translations.support.stats.tutorial_videos.number | default(value="20+") }}</div>
+                                <div class="stat-label">{{ translations.support.stats.tutorial_videos.label | default(value="Tutorial Videos") }}</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number">100+</div>
-                                <div class="stat-label">Knowledge Base Articles</div>
+                                <div class="stat-number">{{ translations.support.stats.knowledge_base.number | default(value="100+") }}</div>
+                                <div class="stat-label">{{ translations.support.stats.knowledge_base.label | default(value="Knowledge Base Articles") }}</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number">5000+</div>
-                                <div class="stat-label">Community Members</div>
+                                <div class="stat-number">{{ translations.support.stats.community.number | default(value="5000+") }}</div>
+                                <div class="stat-label">{{ translations.support.stats.community.label | default(value="Community Members") }}</div>
                             </div>
                         </div>
                         
@@ -1035,9 +1035,9 @@
                                     <i class="fas fa-rocket"></i>
                                 </div>
                                 <div class="topic-content">
-                                    <h3>Getting Started with Divinci AI</h3>
-                                    <p>Learn the basics of creating, training, and deploying your custom AI solutions.</p>
-                                    <a href="#getting-started" class="topic-link">Read more</a>
+                                    <h3>{{ translations.support.topics.getting_started.title | default(value="Getting Started with Divinci AI") }}</h3>
+                                    <p>{{ translations.support.topics.getting_started.description | default(value="Learn the basics of creating, training, and deploying your custom AI solutions.") }}</p>
+                                    <a href="#getting-started" class="topic-link">{{ translations.support.topics.getting_started.link | default(value="Read more") }}</a>
                                 </div>
                             </div>
                             
@@ -1046,9 +1046,9 @@
                                     <i class="fas fa-brain"></i>
                                 </div>
                                 <div class="topic-content">
-                                    <h3>Optimizing AI Training Data</h3>
-                                    <p>Best practices for preparing and structuring your training data for optimal results.</p>
-                                    <a href="#getting-started" class="topic-link">Read more</a>
+                                    <h3>{{ translations.support.topics.training_data.title | default(value="Optimizing AI Training Data") }}</h3>
+                                    <p>{{ translations.support.topics.training_data.description | default(value="Best practices for preparing and structuring your training data for optimal results.") }}</p>
+                                    <a href="#getting-started" class="topic-link">{{ translations.support.topics.training_data.link | default(value="Read more") }}</a>
                                 </div>
                             </div>
                             
@@ -1057,9 +1057,9 @@
                                     <i class="fas fa-code"></i>
                                 </div>
                                 <div class="topic-content">
-                                    <h3>API Integration Guide</h3>
-                                    <p>How to integrate Divinci AI with your applications and existing systems.</p>
-                                    <a href="/api" class="topic-link">Read more</a>
+                                    <h3>{{ translations.support.topics.api_integration.title | default(value="API Integration Guide") }}</h3>
+                                    <p>{{ translations.support.topics.api_integration.description | default(value="How to integrate Divinci AI with your applications and existing systems.") }}</p>
+                                    <a href="/api" class="topic-link">{{ translations.support.topics.api_integration.link | default(value="Read more") }}</a>
                                 </div>
                             </div>
                             
@@ -1068,9 +1068,9 @@
                                     <i class="fas fa-shield-alt"></i>
                                 </div>
                                 <div class="topic-content">
-                                    <h3>Security Best Practices</h3>
-                                    <p>Ensuring your AI implementation follows security guidelines and compliance requirements.</p>
-                                    <a href="#getting-started" class="topic-link">Read more</a>
+                                    <h3>{{ translations.support.topics.security.title | default(value="Security Best Practices") }}</h3>
+                                    <p>{{ translations.support.topics.security.description | default(value="Ensuring your AI implementation follows security guidelines and compliance requirements.") }}</p>
+                                    <a href="#getting-started" class="topic-link">{{ translations.support.topics.security.link | default(value="Read more") }}</a>
                                 </div>
                             </div>
                         </div>
@@ -1080,57 +1080,57 @@
                 <!-- Getting Started Section -->
                 <section id="getting-started" class="support-section">
                     <div class="container">
-                        <h2 class="section-title">Getting Started</h2>
-                        <p class="section-subtitle">Everything you need to know to start building with Divinci AI</p>
+                        <h2 class="section-title">{{ translations.support.getting_started.title | default(value="Getting Started") }}</h2>
+                        <p class="section-subtitle">{{ translations.support.getting_started.description | default(value="Everything you need to know to start building with Divinci AI") }}</p>
                         
                         <div class="steps-container">
                             <div class="step-card">
                                 <div class="step-number">1</div>
-                                <h3>Create Your Account</h3>
-                                <p>Sign up for a Divinci AI account to get started. Choose the subscription plan that fits your needs and begin your AI journey.</p>
+                                <h3>{{ translations.support.steps.create_account.title | default(value="Create Your Account") }}</h3>
+                                <p>{{ translations.support.steps.create_account.description | default(value="Sign up for a Divinci AI account to get started. Choose the subscription plan that fits your needs and begin your AI journey.") }}</p>
                                 <a href="https://calendly.com/mike-mooring-divinci/30-minute-meeting" class="step-button" target="_blank">
                                     <i class="fas fa-user-plus"></i>
-                                    <span>Sign Up Guide</span>
+                                    <span>{{ translations.support.steps.create_account.button | default(value="Sign Up Guide") }}</span>
                                 </a>
                             </div>
                             
                             <div class="step-card">
                                 <div class="step-number">2</div>
-                                <h3>Define Your AI's Purpose</h3>
-                                <p>Clarify the specific role and functionality you want your AI to have. This helps in training and optimization for your use case.</p>
+                                <h3>{{ translations.support.steps.define_purpose.title | default(value="Define Your AI's Purpose") }}</h3>
+                                <p>{{ translations.support.steps.define_purpose.description | default(value="Clarify the specific role and functionality you want your AI to have. This helps in training and optimization for your use case.") }}</p>
                                 <a href="#contact-section" class="step-button">
                                     <i class="fas fa-bullseye"></i>
-                                    <span>Purpose Definition Guide</span>
+                                    <span>{{ translations.support.steps.define_purpose.button | default(value="Purpose Definition Guide") }}</span>
                                 </a>
                             </div>
                             
                             <div class="step-card">
                                 <div class="step-number">3</div>
-                                <h3>Upload Training Materials</h3>
-                                <p>Provide relevant documents, data, and knowledge sources to train your AI's understanding and capabilities.</p>
+                                <h3>{{ translations.support.steps.upload_materials.title | default(value="Upload Training Materials") }}</h3>
+                                <p>{{ translations.support.steps.upload_materials.description | default(value="Provide relevant documents, data, and knowledge sources to train your AI's understanding and capabilities.") }}</p>
                                 <a href="#contact-section" class="step-button">
                                     <i class="fas fa-upload"></i>
-                                    <span>Data Preparation Guide</span>
+                                    <span>{{ translations.support.steps.upload_materials.button | default(value="Data Preparation Guide") }}</span>
                                 </a>
                             </div>
                             
                             <div class="step-card">
                                 <div class="step-number">4</div>
-                                <h3>Train & Test Your AI</h3>
-                                <p>Initiate the training process and test your AI's responses to ensure accuracy and relevance for your specific domain.</p>
+                                <h3>{{ translations.support.steps.train_test.title | default(value="Train & Test Your AI") }}</h3>
+                                <p>{{ translations.support.steps.train_test.description | default(value="Initiate the training process and test your AI's responses to ensure accuracy and relevance for your specific domain.") }}</p>
                                 <a href="#contact-section" class="step-button">
                                     <i class="fas fa-graduation-cap"></i>
-                                    <span>Training Best Practices</span>
+                                    <span>{{ translations.support.steps.train_test.button | default(value="Training Best Practices") }}</span>
                                 </a>
                             </div>
                             
                             <div class="step-card">
                                 <div class="step-number">5</div>
-                                <h3>Deploy Your AI</h3>
-                                <p>Integrate your AI into your website, application, or other platforms using our flexible deployment options.</p>
+                                <h3>{{ translations.support.steps.deploy.title | default(value="Deploy Your AI") }}</h3>
+                                <p>{{ translations.support.steps.deploy.description | default(value="Integrate your AI into your website, application, or other platforms using our flexible deployment options.") }}</p>
                                 <a href="/api" class="step-button">
                                     <i class="fas fa-rocket"></i>
-                                    <span>Deployment Guide</span>
+                                    <span>{{ translations.support.steps.deploy.button | default(value="Deployment Guide") }}</span>
                                 </a>
                             </div>
                         </div>
@@ -1140,23 +1140,23 @@
                 <!-- Language Model Compatibility Section -->
                 <section id="language-model-compatibility" class="support-section" style="background-color: #f9f9f9;">
                     <div class="container">
-                        <h2 class="section-title">Language Model Compatibility</h2>
-                        <p class="section-subtitle">Comprehensive overview of supported language models across all major AI providers</p>
+                        <h2 class="section-title">{{ translations.support.model_compatibility.title | default(value="Language Model Compatibility") }}</h2>
+                        <p class="section-subtitle">{{ translations.support.model_compatibility.description | default(value="Comprehensive overview of supported language models across all major AI providers") }}</p>
                         
                         <div style="background: white; border-radius: 12px; padding: 3rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); margin-bottom: 2rem;">
                             <div style="text-align: center; margin-bottom: 3rem;">
                                 <div class="help-card-icon" style="margin: 0 auto 1.5rem; width: 120px; height: 120px; font-size: 3rem;">
                                     <i class="fas fa-brain"></i>
                                 </div>
-                                <h3 style="color: #2d3c34; font-size: 1.8rem; margin-bottom: 1rem;">Universal Model Support</h3>
-                                <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Our platform provides unified APIs and governance frameworks that work seamlessly across all major AI providers, enabling you to switch between models or use multiple providers simultaneously based on your specific use case requirements.</p>
+                                <h3 style="color: #2d3c34; font-size: 1.8rem; margin-bottom: 1rem;">{{ translations.support.model_compatibility.universal_support.title | default(value="Universal Model Support") }}</h3>
+                                <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">{{ translations.support.model_compatibility.universal_support.description | default(value="Our platform provides unified APIs and governance frameworks that work seamlessly across all major AI providers, enabling you to switch between models or use multiple providers simultaneously based on your specific use case requirements.") }}</p>
                             </div>
                             
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
                                 <div style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.05), rgba(139, 115, 85, 0.1)); padding: 2rem; border-radius: 12px; border-left: 4px solid #8b7355;">
                                     <h4 style="color: #2d3c34; margin-bottom: 1.5rem; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem;">
                                         <i class="fas fa-wrench" style="color: #8b7355;"></i>
-                                        Fine-Tuning Support
+                                        {{ translations.support.model_compatibility.fine_tuning_title | default(value="Fine-Tuning Support") }}
                                     </h4>
                                     
                                     <div style="margin-bottom: 1.5rem;">
@@ -1203,7 +1203,7 @@
                                 <div style="background: linear-gradient(135deg, rgba(212, 196, 160, 0.05), rgba(212, 196, 160, 0.1)); padding: 2rem; border-radius: 12px; border-left: 4px solid #d4c4a0;">
                                     <h4 style="color: #2d3c34; margin-bottom: 1.5rem; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem;">
                                         <i class="fas fa-rocket" style="color: #d4c4a0;"></i>
-                                        Base Models Available
+                                        {{ translations.support.model_compatibility.base_models_title | default(value="Base Models Available") }}
                                     </h4>
                                     
                                     <div style="margin-bottom: 1.5rem;">
@@ -1252,7 +1252,7 @@
                         <div style="text-align: center; margin-top: 2rem;">
                             <a href="/api" class="help-card-button" style="display: inline-flex; align-items: center; gap: 0.5rem;">
                                 <i class="fas fa-code"></i>
-                                <span>View API Documentation</span>
+                                <span>{{ translations.support.model_compatibility.api_docs_button | default(value="View API Documentation") }}</span>
                             </a>
                         </div>
                     </div>
@@ -1261,69 +1261,69 @@
                 <!-- Contact Section -->
                 <section id="contact-section" class="contact-section">
                     <div class="container">
-                        <h2 class="section-title">Contact Our Support Team</h2>
-                        <p class="section-subtitle">Get personalized help from our expert support team</p>
+                        <h2 class="section-title">{{ translations.support.contact_section.title | default(value="Contact Our Support Team") }}</h2>
+                        <p class="section-subtitle">{{ translations.support.contact_section.description | default(value="Get personalized help from our expert support team") }}</p>
                         
                         <div class="contact-grid">
                             <div class="contact-form">
-                                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #2d3c34;">Submit a Support Request</h3>
+                                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #2d3c34;">{{ translations.support.contact_form.title | default(value="Submit a Support Request") }}</h3>
                                 
                                 <form id="support-form">
                                     <div class="form-group">
-                                        <label class="form-label" for="name">Name</label>
-                                        <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
+                                        <label class="form-label" for="name">{{ translations.support.contact_form.name_label | default(value="Name") }}</label>
+                                        <input class="form-input" type="text" id="name" name="name" placeholder="{{ translations.support.contact_form.name_placeholder | default(value="Your name") }}" required>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="form-label" for="email">Email</label>
-                                        <input class="form-input" type="email" id="email" name="email" placeholder="Your email address" required>
+                                        <label class="form-label" for="email">{{ translations.support.contact_form.email_label | default(value="Email") }}</label>
+                                        <input class="form-input" type="email" id="email" name="email" placeholder="{{ translations.support.contact_form.email_placeholder | default(value="Your email address") }}" required>
                                     </div>
                                     
                                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                                         <div class="form-group">
-                                            <label class="form-label" for="subject">Subject</label>
-                                            <input class="form-input" type="text" id="subject" name="subject" placeholder="Support request subject" required>
+                                            <label class="form-label" for="subject">{{ translations.support.contact_form.subject_label | default(value="Subject") }}</label>
+                                            <input class="form-input" type="text" id="subject" name="subject" placeholder="{{ translations.support.contact_form.subject_placeholder | default(value="Support request subject") }}" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-label" for="priority">Priority</label>
+                                            <label class="form-label" for="priority">{{ translations.support.contact_form.priority_label | default(value="Priority") }}</label>
                                             <select class="form-select" id="priority" name="priority" required>
-                                                <option value="">Select priority</option>
-                                                <option value="low">Low - General Question</option>
-                                                <option value="medium">Medium - Issue Affecting Work</option>
-                                                <option value="high">High - Serious Problem</option>
-                                                <option value="urgent">Urgent - System Down</option>
+                                                <option value="">{{ translations.support.contact_form.priority_select | default(value="Select priority") }}</option>
+                                                <option value="low">{{ translations.support.contact_form.priority_low | default(value="Low - General Question") }}</option>
+                                                <option value="medium">{{ translations.support.contact_form.priority_medium | default(value="Medium - Issue Affecting Work") }}</option>
+                                                <option value="high">{{ translations.support.contact_form.priority_high | default(value="High - Serious Problem") }}</option>
+                                                <option value="urgent">{{ translations.support.contact_form.priority_urgent | default(value="Urgent - System Down") }}</option>
                                             </select>
                                         </div>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="form-label" for="category">Issue Category</label>
+                                        <label class="form-label" for="category">{{ translations.support.contact_form.category_label | default(value="Issue Category") }}</label>
                                         <select class="form-select" id="category" name="category" required>
-                                            <option value="">Select category</option>
-                                            <option value="account">Account & Access</option>
-                                            <option value="billing">Billing & Subscription</option>
-                                            <option value="technical">Technical Issue</option>
-                                            <option value="ai-training">AI Training</option>
-                                            <option value="integration">Integration</option>
-                                            <option value="api">API</option>
-                                            <option value="feature">Feature Request</option>
-                                            <option value="other">Other</option>
+                                            <option value="">{{ translations.support.contact_form.category_select | default(value="Select category") }}</option>
+                                            <option value="account">{{ translations.support.contact_form.category_account | default(value="Account & Access") }}</option>
+                                            <option value="billing">{{ translations.support.contact_form.category_billing | default(value="Billing & Subscription") }}</option>
+                                            <option value="technical">{{ translations.support.contact_form.category_technical | default(value="Technical Issue") }}</option>
+                                            <option value="ai-training">{{ translations.support.contact_form.category_training | default(value="AI Training") }}</option>
+                                            <option value="integration">{{ translations.support.contact_form.category_integration | default(value="Integration") }}</option>
+                                            <option value="api">{{ translations.support.contact_form.category_api | default(value="API") }}</option>
+                                            <option value="feature">{{ translations.support.contact_form.category_feature | default(value="Feature Request") }}</option>
+                                            <option value="other">{{ translations.support.contact_form.category_other | default(value="Other") }}</option>
                                         </select>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="form-label" for="message">Message</label>
-                                        <textarea class="form-textarea" id="message" name="message" placeholder="Please describe your issue in detail. Include any error messages, steps to reproduce, and relevant information." required></textarea>
+                                        <label class="form-label" for="message">{{ translations.support.contact_form.message_label | default(value="Message") }}</label>
+                                        <textarea class="form-textarea" id="message" name="message" placeholder="{{ translations.support.contact_form.message_placeholder | default(value="Please describe your issue in detail. Include any error messages, steps to reproduce, and relevant information.") }}" required></textarea>
                                     </div>
                                     
                                     <button type="submit" class="form-button">
-                                        <i class="fas fa-paper-plane"></i> Submit Support Request
+                                        <i class="fas fa-paper-plane"></i> {{ translations.support.contact_form.submit_button | default(value="Submit Support Request") }}
                                     </button>
                                 </form>
                             </div>
                             
                             <div class="contact-info">
-                                <h3>Other Ways to Reach Us</h3>
+                                <h3>{{ translations.support.contact_info.title | default(value="Other Ways to Reach Us") }}</h3>
                                 
                                 <div class="contact-methods">
                                     <div class="contact-method">
@@ -1331,8 +1331,8 @@
                                             <i class="fas fa-envelope"></i>
                                         </div>
                                         <div>
-                                            <h4 style="margin: 0; color: #2d3c34;">Email</h4>
-                                            <p style="margin: 0; color: #666;"><a href="mailto:support@divinci.app">support@divinci.app</a></p>
+                                            <h4 style="margin: 0; color: #2d3c34;">{{ translations.support.contact_info.email.title | default(value="Email") }}</h4>
+                                            <p style="margin: 0; color: #666;"><a href="mailto:support@divinci.app">{{ translations.support.contact_info.email.value | default(value="support@divinci.app") }}</a></p>
                                         </div>
                                     </div>
                                     
@@ -1341,8 +1341,8 @@
                                             <i class="fas fa-comments"></i>
                                         </div>
                                         <div>
-                                            <h4 style="margin: 0; color: #2d3c34;">Live Chat</h4>
-                                            <p style="margin: 0; color: #2d3c34 !important; opacity: 1 !important;">Available 9am-5pm PT<br>Monday-Friday</p>
+                                            <h4 style="margin: 0; color: #2d3c34;">{{ translations.support.contact_info.chat.title | default(value="Live Chat") }}</h4>
+                                            <p style="margin: 0; color: #2d3c34 !important; opacity: 1 !important;">{{ translations.support.contact_info.chat.description | default(value="Available 9am-5pm PT<br>Monday-Friday") | safe }}</p>
                                         </div>
                                     </div>
                                     
@@ -1351,37 +1351,37 @@
                                             <i class="fas fa-users"></i>
                                         </div>
                                         <div>
-                                            <h4 style="margin: 0; color: #2d3c34;">Community</h4>
-                                            <p style="margin: 0; color: #666;"><a href="/contact">Divinci Forum</a></p>
+                                            <h4 style="margin: 0; color: #2d3c34;">{{ translations.support.contact_info.community.title | default(value="Community") }}</h4>
+                                            <p style="margin: 0; color: #666;"><a href="/contact">{{ translations.support.contact_info.community.value | default(value="Divinci Forum") }}</a></p>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="support-hours">
-                                    <h4 style="color: #2d3c34; margin-bottom: 1rem;">Support Hours</h4>
+                                    <h4 style="color: #2d3c34; margin-bottom: 1rem;">{{ translations.support.hours.title | default(value="Support Hours") }}</h4>
                                     <table class="hours-table">
                                         <thead>
                                             <tr>
-                                                <th>Support Tier</th>
-                                                <th>Hours</th>
-                                                <th>Response Time</th>
+                                                <th>{{ translations.support.hours.tier_header | default(value="Support Tier") }}</th>
+                                                <th>{{ translations.support.hours.hours_header | default(value="Hours") }}</th>
+                                                <th>{{ translations.support.hours.response_header | default(value="Response Time") }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Standard Support</td>
-                                                <td>Monday-Friday<br>9am-5pm PT</td>
-                                                <td>24 hours</td>
+                                                <td>{{ translations.support.hours.standard.tier | default(value="Standard Support") }}</td>
+                                                <td>{{ translations.support.hours.standard.hours | default(value="Monday-Friday<br>9am-5pm PT") | safe }}</td>
+                                                <td>{{ translations.support.hours.standard.response | default(value="24 hours") }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Professional Support</td>
-                                                <td>Monday-Friday<br>9am-5pm PT</td>
-                                                <td>8 hours</td>
+                                                <td>{{ translations.support.hours.professional.tier | default(value="Professional Support") }}</td>
+                                                <td>{{ translations.support.hours.professional.hours | default(value="Monday-Friday<br>9am-5pm PT") | safe }}</td>
+                                                <td>{{ translations.support.hours.professional.response | default(value="8 hours") }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Enterprise Support</td>
-                                                <td>24/7/365</td>
-                                                <td>1-4 hours</td>
+                                                <td>{{ translations.support.hours.enterprise.tier | default(value="Enterprise Support") }}</td>
+                                                <td>{{ translations.support.hours.enterprise.hours | default(value="24/7/365") }}</td>
+                                                <td>{{ translations.support.hours.enterprise.response | default(value="1-4 hours") }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -1394,35 +1394,35 @@
                 <!-- FAQ Section -->
                 <section class="faq-section">
                     <div class="container">
-                        <h2 class="section-title">Frequently Asked Questions</h2>
+                        <h2 class="section-title">{{ translations.support.faq.title | default(value="Frequently Asked Questions") }}</h2>
                         
                         <div class="faq-container">
                             <div class="faq-item">
-                                <div class="faq-question">How does Divinci AI differ from other AI platforms?</div>
+                                <div class="faq-question">{{ translations.support.faq.questions.platform_difference.question | default(value="How does Divinci AI differ from other AI platforms?") }}</div>
                                 <div class="faq-answer">
-                                    <p>Divinci AI stands out through its customizable AI creation process, allowing users to build specialized AI models without technical expertise. Our platform focuses on domain-specific knowledge integration, ethical AI development, and seamless multi-platform deployment.</p>
-                                    <p>Unlike general-purpose AI systems, Divinci creates models that are deeply knowledgeable about your specific domain, ensuring more accurate and relevant responses for your use case.</p>
+                                    <p>{{ translations.support.faq.questions.platform_difference.answer.part1 | default(value="Divinci AI stands out through its customizable AI creation process, allowing users to build specialized AI models without technical expertise. Our platform focuses on domain-specific knowledge integration, ethical AI development, and seamless multi-platform deployment.") }}</p>
+                                    <p>{{ translations.support.faq.questions.platform_difference.answer.part2 | default(value="Unlike general-purpose AI systems, Divinci creates models that are deeply knowledgeable about your specific domain, ensuring more accurate and relevant responses for your use case.") }}</p>
                                 </div>
                             </div>
                             
                             <div class="faq-item">
-                                <div class="faq-question">What types of data can I use to train my AI?</div>
+                                <div class="faq-question">{{ translations.support.faq.questions.data_types.question | default(value="What types of data can I use to train my AI?") }}</div>
                                 <div class="faq-answer">
-                                    <p>Divinci AI supports various data types for training, including:</p>
+                                    <p>{{ translations.support.faq.questions.data_types.answer.intro | default(value="Divinci AI supports various data types for training, including:") }}</p>
                                     <ul>
-                                        <li>Text documents (PDF, DOCX, TXT)</li>
-                                        <li>FAQs and knowledge bases</li>
-                                        <li>Product catalogs and specifications</li>
-                                        <li>Process documentation and guidelines</li>
-                                        <li>Structured datasets (CSV, JSON)</li>
-                                        <li>Website content (via crawling)</li>
+                                        <li>{{ translations.support.faq.questions.data_types.answer.list.documents | default(value="Text documents (PDF, DOCX, TXT)") }}</li>
+                                        <li>{{ translations.support.faq.questions.data_types.answer.list.faqs | default(value="FAQs and knowledge bases") }}</li>
+                                        <li>{{ translations.support.faq.questions.data_types.answer.list.catalogs | default(value="Product catalogs and specifications") }}</li>
+                                        <li>{{ translations.support.faq.questions.data_types.answer.list.documentation | default(value="Process documentation and guidelines") }}</li>
+                                        <li>{{ translations.support.faq.questions.data_types.answer.list.datasets | default(value="Structured datasets (CSV, JSON)") }}</li>
+                                        <li>{{ translations.support.faq.questions.data_types.answer.list.website | default(value="Website content (via crawling)") }}</li>
                                     </ul>
-                                    <p>All training data must comply with our content policies and should not include confidential or sensitive personal information unless you're using our secure enterprise option with privacy guarantees.</p>
+                                    <p>{{ translations.support.faq.questions.data_types.answer.compliance | default(value="All training data must comply with our content policies and should not include confidential or sensitive personal information unless you're using our secure enterprise option with privacy guarantees.") }}</p>
                                 </div>
                             </div>
                             
                             <div class="faq-item">
-                                <div class="faq-question">How long does the AI training process take?</div>
+                                <div class="faq-question">{{ translations.support.faq.questions.training_time.question | default(value="How long does the AI training process take?") }}</div>
                                 <div class="faq-answer">
                                     <p>Training duration depends on the volume and complexity of your data:</p>
                                     <ul>
@@ -1436,7 +1436,7 @@
                             </div>
                             
                             <div class="faq-item">
-                                <div class="faq-question">Can I integrate my Divinci AI with existing systems?</div>
+                                <div class="faq-question">{{ translations.support.faq.questions.integration.question | default(value="Can I integrate my Divinci AI with existing systems?") }}</div>
                                 <div class="faq-answer">
                                     <p>Yes, Divinci AI provides multiple integration options:</p>
                                     <ul>
@@ -1451,7 +1451,7 @@
                             </div>
                             
                             <div class="faq-item">
-                                <div class="faq-question">How secure is my data with Divinci AI?</div>
+                                <div class="faq-question">{{ translations.support.faq.questions.security.question | default(value="How secure is my data with Divinci AI?") }}</div>
                                 <div class="faq-answer">
                                     <p>Divinci AI implements robust security measures including:</p>
                                     <ul>
@@ -1466,7 +1466,7 @@
                             </div>
                             
                             <div class="faq-item">
-                                <div class="faq-question">What kind of support do you offer?</div>
+                                <div class="faq-question">{{ translations.support.faq.questions.support_types.question | default(value="What kind of support do you offer?") }}</div>
                                 <div class="faq-answer">
                                     <p>We offer tiered support options to match your needs:</p>
                                     <ul>
@@ -1484,11 +1484,11 @@
                 <!-- CTA Section -->
                 <section class="cta-section">
                     <div class="container">
-                        <h2 style="color: #2d3c34; margin-bottom: 1rem;">Still Need Help?</h2>
-                        <p style="color: #666; margin-bottom: 2rem;">Our support team is ready to assist you with any questions or issues.</p>
+                        <h2 style="color: #2d3c34; margin-bottom: 1rem;">{{ translations.support.cta_section.title | default(value="Still Need Help?") }}</h2>
+                        <p style="color: #666; margin-bottom: 2rem;">{{ translations.support.cta_section.description | default(value="Our support team is ready to assist you with any questions or issues.") }}</p>
                         <a href="#contact-section" class="cta-button">
                             <i class="fas fa-envelope"></i>
-                            <span>Contact Support</span>
+                            <span>{{ translations.support.cta_section.button | default(value="Contact Support") }}</span>
                         </a>
                     </div>
                 </section>
