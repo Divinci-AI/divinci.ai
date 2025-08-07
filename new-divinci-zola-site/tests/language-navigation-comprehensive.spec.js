@@ -31,7 +31,8 @@ test.describe('Comprehensive Language Navigation', () => {
     'quality-assurance', 
     'release-management',
     'terms-of-service',
-    'privacy-policy'
+    'privacy-policy',
+    'support'
   ];
 
   test.beforeEach(async ({ page }) => {

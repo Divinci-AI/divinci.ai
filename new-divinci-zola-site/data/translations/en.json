@@ -10,6 +10,7 @@
     "team": "Team",
     "signup": "Sign Up",
     "support": "Support",
+    "support_center": "Support Center",
     "request_demo": "Request demo"
   },
   "hero": {
@@ -99,15 +100,16 @@
     "title": "Meet our team",
     "description": "Meet the innovators shaping the future of human-AI collaboration.",
     "members": {
-      "connect": "Connect"
+      "connect": "Connect",
+      "sierra_bio": "Cornell University graduate with extensive experience in financial services and entrepreneurship. Former M&A Associate and founder of BrainPOP Clean Energy, bringing strategic business development and operations expertise to AI venture scaling."
     },
     "roles": {
       "ceo_founder": "CEO & Founder",
       "cto_cofounder": "CTO & Co-Founder", 
-      "head_product": "Head of Product",
-      "senior_data_scientist": "Senior Data Scientist",
-      "ux_ui_designer": "UX/UI Designer",
-      "software_engineer": "Software Engineer"
+      "cpo": "CPO - Chief Project Officer",
+      "coo": "COO - Chief Operations Officer",
+      "data_scientist": "Data Scientist",
+      "ai_safety_ethics_advisor": "AI Safety and Ethics Advisor"
     }
   },
   "signup": {
@@ -219,6 +221,126 @@
         "accessibility": "Accessibility", 
         "cookies": "Cookie Policy"
       }
+    }
+  },
+  "support": {
+    "title": "Support Center",
+    "subtitle": "Get help and support for Divinci AI",
+    "description": "Find answers to frequently asked questions, implementation guides, and contact our team of specialists.",
+    "sidebar": {
+      "title": "Support Center",
+      "menu": {
+        "getting_started": "Getting Started",
+        "implementation": "Implementation", 
+        "troubleshooting": "Troubleshooting",
+        "api_docs": "API Documentation",
+        "billing": "Billing",
+        "contact": "Contact"
+      },
+      "cta": {
+        "title": "Need additional help?",
+        "description": "Speak directly with our team of specialists.",
+        "button": "Contact Support"
+      }
+    },
+    "header": {
+      "title": "How can we help you?",
+      "description": "Find quick answers to common questions or connect directly with our team of specialists."
+    },
+    "help_cards": {
+      "getting_started": {
+        "title": "Getting Started",
+        "description": "Set up your account and get started with Divinci AI in minutes.",
+        "button": "View Guide"
+      },
+      "api_integration": {
+        "title": "API Integration",
+        "description": "Seamlessly integrate with your existing systems using our APIs.",
+        "button": "View Docs"
+      },
+      "troubleshooting": {
+        "title": "Troubleshooting",
+        "description": "Find solutions to common technical issues.",
+        "button": "View Solutions"
+      }
+    },
+    "stats": {
+      "response_time": "< 2h",
+      "response_time_label": "Average Response Time",
+      "satisfaction": "99%",
+      "satisfaction_label": "Customer Satisfaction",
+      "resolution": "24h",
+      "resolution_label": "Resolution Time"
+    },
+    "popular_topics": {
+      "title": "Popular Topics",
+      "model_compatibility": {
+        "title": "Model Compatibility",
+        "description": "Learn which language models are compatible with our platform.",
+        "link": "View Full List"
+      },
+      "deployment": {
+        "title": "Deployment Guides",
+        "description": "Step-by-step deployments for different enterprise use cases.",
+        "link": "View Guides"
+      },
+      "performance": {
+        "title": "Performance Optimization",
+        "description": "Best practices for maximizing your models' performance.",
+        "link": "Read More"
+      }
+    },
+    "contact_form": {
+      "title": "Submit a Support Request",
+      "name_label": "Full Name",
+      "email_label": "Email Address",
+      "company_label": "Company",
+      "priority_label": "Priority",
+      "priority_options": {
+        "low": "Low",
+        "normal": "Normal",
+        "high": "High",
+        "urgent": "Urgent"
+      },
+      "category_label": "Category",
+      "category_options": {
+        "technical": "Technical Support",
+        "billing": "Billing",
+        "feature": "Feature Request",
+        "bug": "Bug Report",
+        "other": "Other"
+      },
+      "message_label": "Describe the issue",
+      "submit_button": "Submit Request"
+    },
+    "contact_info": {
+      "title": "Contact Information",
+      "email": {
+        "title": "Email Support",
+        "value": "support@divinci.ai",
+        "description": "For general support inquiries"
+      },
+      "phone": {
+        "title": "Phone Support",
+        "value": "+1 (555) 123-4567",
+        "description": "Mon-Fri 9AM-6PM EST"
+      },
+      "chat": {
+        "title": "Live Chat",
+        "value": "Available 24/7",
+        "description": "For immediate assistance"
+      }
+    },
+    "hours": {
+      "title": "Support Hours",
+      "weekdays": "Monday - Friday: 9:00 AM - 6:00 PM EST",
+      "weekends": "Saturday - Sunday: 10:00 AM - 4:00 PM EST",
+      "holidays": "Holidays: Limited Hours"
+    },
+    "cta_section": {
+      "title": "Still Need Help?",
+      "description": "Our team of specialists is here to help you succeed with Divinci AI.",
+      "button": "Schedule Consultation"
     }
   },
   "language_switcher": {

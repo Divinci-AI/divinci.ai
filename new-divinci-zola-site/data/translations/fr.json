@@ -10,6 +10,7 @@
     "team": "Équipe",
     "signup": "S'inscrire",
     "support": "Support",
+    "support_center": "Centre de Support",
     "request_demo": "Demander une démo"
   },
   "hero": {
@@ -181,6 +182,126 @@
         "accessibility": "Accessibilité",
         "cookies": "Politique des cookies"
       }
+    }
+  },
+  "support": {
+    "title": "Centre de Support",
+    "subtitle": "Obtenez de l'aide et du support pour Divinci AI",
+    "description": "Trouvez des réponses aux questions fréquemment posées, des guides d'implémentation et contactez notre équipe de spécialistes.",
+    "sidebar": {
+      "title": "Centre de Support",
+      "menu": {
+        "getting_started": "Premiers Pas",
+        "implementation": "Implémentation", 
+        "troubleshooting": "Dépannage",
+        "api_docs": "Documentation API",
+        "billing": "Facturation",
+        "contact": "Contact"
+      },
+      "cta": {
+        "title": "Besoin d'aide supplémentaire?",
+        "description": "Parlez directement avec notre équipe de spécialistes.",
+        "button": "Contacter le Support"
+      }
+    },
+    "header": {
+      "title": "Comment pouvons-nous vous aider?",
+      "description": "Trouvez des réponses rapides aux questions courantes ou connectez-vous directement avec notre équipe de spécialistes."
+    },
+    "help_cards": {
+      "getting_started": {
+        "title": "Premiers Pas",
+        "description": "Configurez votre compte et commencez avec Divinci AI en minutes.",
+        "button": "Voir le Guide"
+      },
+      "api_integration": {
+        "title": "Intégration API",
+        "description": "Intégrez parfaitement avec vos systèmes existants en utilisant nos APIs.",
+        "button": "Voir la Documentation"
+      },
+      "troubleshooting": {
+        "title": "Dépannage",
+        "description": "Trouvez des solutions aux problèmes techniques courants.",
+        "button": "Voir les Solutions"
+      }
+    },
+    "stats": {
+      "response_time": "< 2h",
+      "response_time_label": "Temps de Réponse Moyen",
+      "satisfaction": "99%",
+      "satisfaction_label": "Satisfaction Client",
+      "resolution": "24h",
+      "resolution_label": "Temps de Résolution"
+    },
+    "popular_topics": {
+      "title": "Sujets Populaires",
+      "model_compatibility": {
+        "title": "Compatibilité des Modèles",
+        "description": "Apprenez quels modèles de langage sont compatibles avec notre plateforme.",
+        "link": "Voir la Liste Complète"
+      },
+      "deployment": {
+        "title": "Guides de Déploiement",
+        "description": "Déploiements étape par étape pour différents cas d'usage d'entreprise.",
+        "link": "Voir les Guides"
+      },
+      "performance": {
+        "title": "Optimisation des Performances",
+        "description": "Meilleures pratiques pour maximiser les performances de vos modèles.",
+        "link": "Lire Plus"
+      }
+    },
+    "contact_form": {
+      "title": "Soumettre une Demande de Support",
+      "name_label": "Nom Complet",
+      "email_label": "Adresse Email",
+      "company_label": "Entreprise",
+      "priority_label": "Priorité",
+      "priority_options": {
+        "low": "Basse",
+        "normal": "Normale",
+        "high": "Haute",
+        "urgent": "Urgente"
+      },
+      "category_label": "Catégorie",
+      "category_options": {
+        "technical": "Support Technique",
+        "billing": "Facturation",
+        "feature": "Demande de Fonctionnalité",
+        "bug": "Rapport de Bug",
+        "other": "Autre"
+      },
+      "message_label": "Décrire le problème",
+      "submit_button": "Soumettre la Demande"
+    },
+    "contact_info": {
+      "title": "Informations de Contact",
+      "email": {
+        "title": "Support par Email",
+        "value": "support@divinci.ai",
+        "description": "Pour les demandes générales de support"
+      },
+      "phone": {
+        "title": "Support Téléphonique",
+        "value": "+1 (555) 123-4567",
+        "description": "Lun-Ven 9h-18h EST"
+      },
+      "chat": {
+        "title": "Chat en Direct",
+        "value": "Disponible 24/7",
+        "description": "Pour une assistance immédiate"
+      }
+    },
+    "hours": {
+      "title": "Heures de Support",
+      "weekdays": "Lundi - Vendredi: 9h00 - 18h00 EST",
+      "weekends": "Samedi - Dimanche: 10h00 - 16h00 EST",
+      "holidays": "Jours Fériés: Heures Limitées"
+    },
+    "cta_section": {
+      "title": "Toujours Besoin d'Aide?",
+      "description": "Notre équipe de spécialistes est là pour vous aider à réussir avec Divinci AI.",
+      "button": "Programmer une Consultation"
     }
   },
   "language_switcher": {
