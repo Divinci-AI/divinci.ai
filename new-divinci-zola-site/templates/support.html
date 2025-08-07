@@ -9,7 +9,11 @@
 <style>
 /* Support page specific styles with sidebar */
 .support-page-wrapper {
-    background: linear-gradient(to bottom, #f8fafc, #ffffff);
+    background-color: #f8f6f3;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(212, 196, 160, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(45, 60, 52, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(139, 115, 85, 0.01) 0%, transparent 50%);
     min-height: calc(100vh - 200px);
     padding: 2rem 0;
     position: relative;
@@ -36,9 +40,24 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 2rem;
+    display: block;
+}
+
+.support-content {
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.support-main-content {
+    margin-left: 260px;
+    transition: all 0.3s ease;
+}
+
+.support-header {
+    background: linear-gradient(135deg, #2d3c34 0%, #3d5144 100%);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
 }
 
 /* Sidebar Navigation */
@@ -48,15 +67,20 @@
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     height: fit-content;
-    position: sticky;
-    top: 2rem;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    position: fixed;
+    top: 120px;
+    left: calc((100vw - 1200px) / 2 + 1rem);
+    width: 253px;
+    z-index: 10;
     transition: all 0.3s ease;
 }
 
 .sidebar-toggle {
     display: none;
     position: absolute;
-    top: 0.75rem;
+    top: 1rem;
     right: 1rem;
     width: 32px;
     height: 24px;
@@ -117,7 +141,7 @@
     color: #2d3c34;
     margin-bottom: 1.5rem;
     text-align: center;
-    padding-right: 50px;
+    padding: 0.5rem 50px 0.5rem 0;
     position: relative;
 }
 
@@ -140,6 +164,39 @@
     margin-bottom: 0.75rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #eee;
+}
+
+.sidebar-section-title.collapsible {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color 0.2s ease;
+}
+
+.sidebar-section-title.collapsible:hover {
+    color: #2d3c34;
+}
+
+.sidebar-section-title.collapsible::after {
+    content: '▼';
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+.sidebar-section-title.collapsible.collapsed::after {
+    transform: rotate(-90deg);
+}
+
+.sidebar-section.collapsible .sidebar-menu {
+    max-height: 500px;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+
+.sidebar-section.collapsible.collapsed .sidebar-menu {
+    max-height: 0;
+    opacity: 0;
 }
 
 .sidebar-menu li {
@@ -212,20 +269,7 @@
     color: white;
 }
 
-/* Main Content */
-.support-main-content {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-}
-
-.support-header {
-    background: linear-gradient(135deg, #2d3c34 0%, #3d5144 100%);
-    color: white;
-    padding: 3rem 2rem;
-    text-align: center;
-}
+/* Main Content - duplicate removed, styling moved above */
 
 .support-header h1 {
     font-size: 2.5rem;
@@ -240,9 +284,6 @@
     margin: 0;
 }
 
-.support-content {
-    padding: 0;
-}
 
 /* Collapsible sidebar states */
 .support-sidebar.collapsed .sidebar-content {
@@ -261,20 +302,54 @@
 }
 
 /* Show toggle button on mobile */
+@media screen and (max-width: 1200px) {
+    .support-sidebar {
+        position: sticky !important;
+        left: auto !important;
+        width: auto !important;
+        top: 120px;
+    }
+    
+    .support-container {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 2rem;
+    }
+    
+    .support-content {
+        margin-left: 0;
+    }
+    
+    .support-main-content {
+        margin-left: 0;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .sidebar-toggle {
         display: block;
     }
     
     .support-container {
+        display: grid;
         grid-template-columns: 1fr;
         gap: 1rem;
     }
     
     .support-sidebar {
-        position: static;
+        position: static !important;
+        left: auto !important;
+        width: auto !important;
         margin-bottom: 1rem;
         padding-top: 3rem;
+    }
+    
+    .support-content {
+        margin-left: 0;
+    }
+    
+    .support-main-content {
+        margin-left: 0;
     }
     
     .sidebar-content {
@@ -303,11 +378,16 @@
         display: block;
         top: 0.5rem;
         right: 0.5rem;
+        float: right;
     }
     
     .support-sidebar.collapsed {
         width: 60px;
         padding: 1rem 0.5rem;
+    }
+    
+    .support-container:has(.support-sidebar.collapsed) {
+        grid-template-columns: 60px 1fr;
     }
     
     .support-sidebar.collapsed .sidebar-title {
@@ -316,6 +396,15 @@
     
     .support-sidebar.collapsed .sidebar-cta {
         display: none;
+    }
+    
+    /* Adjust content margins when sidebar is collapsed */
+    .support-sidebar.collapsed ~ .support-main-content {
+        margin-left: 80px;
+    }
+    
+    .support-sidebar.collapsed ~ .support-main-content .support-content {
+        margin-left: 0;
     }
 }
 
@@ -685,6 +774,7 @@
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid #eee;
+    color: #2d3c34;
 }
 
 .hours-table th {
@@ -844,8 +934,8 @@
                 </ul>
             </div>
             
-            <div class="sidebar-section">
-                <div class="sidebar-section-title">Self-Service Tools</div>
+            <div class="sidebar-section collapsible collapsed">
+                <div class="sidebar-section-title collapsible collapsed">Self-Service Tools</div>
                 <ul class="sidebar-menu">
                     <li><a href="/tutorials" class="sidebar-link">Tutorial Center</a></li>
                     <li><a href="#getting-started" class="sidebar-link">Knowledge Base</a></li>
@@ -1252,7 +1342,7 @@
                                         </div>
                                         <div>
                                             <h4 style="margin: 0; color: #2d3c34;">Live Chat</h4>
-                                            <p style="margin: 0; color: #666;">Available 9am-5pm PT<br>Monday-Friday</p>
+                                            <p style="margin: 0; color: #2d3c34 !important; opacity: 1 !important;">Available 9am-5pm PT<br>Monday-Friday</p>
                                         </div>
                                     </div>
                                     
@@ -1430,6 +1520,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    // Collapsible sidebar sections
+    const collapsibleTitles = document.querySelectorAll('.sidebar-section-title.collapsible');
+    collapsibleTitles.forEach(title => {
+        title.addEventListener('click', function() {
+            const section = this.closest('.sidebar-section');
+            const isCollapsed = section.classList.contains('collapsed');
+            
+            // Toggle collapsed state
+            section.classList.toggle('collapsed');
+            this.classList.toggle('collapsed');
+        });
+    });
     
     // Handle active states based on scroll position
     function updateActiveLink() {
