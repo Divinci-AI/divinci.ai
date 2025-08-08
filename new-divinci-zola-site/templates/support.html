@@ -42,6 +42,13 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 270px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.support-container.sidebar-sticky {
     display: block;
 }
 
@@ -51,8 +58,12 @@
 }
 
 .support-main-content {
-    margin-left: 260px;
+    margin-left: 0;
     transition: all 0.3s ease;
+}
+
+.support-main-content.sidebar-sticky {
+    margin-left: 280px;
 }
 
 .support-header {
@@ -71,12 +82,17 @@
     height: fit-content;
     max-height: calc(100vh - 140px);
     overflow-y: auto;
-    position: fixed;
-    top: 120px;
-    left: calc((100vw - 1200px) / 2 + 1rem);
+    position: relative;
     width: 253px;
     z-index: 10;
     transition: all 0.3s ease;
+}
+
+.support-sidebar.sticky {
+    position: fixed;
+    top: 20px;
+    left: calc((100vw - 1200px) / 2 + 1rem);
+    max-height: calc(100vh - 40px);
 }
 
 .sidebar-toggle {
@@ -306,16 +322,27 @@
 /* Show toggle button on mobile */
 @media screen and (max-width: 1200px) {
     .support-sidebar {
-        position: sticky !important;
+        position: relative !important;
         left: auto !important;
         width: auto !important;
-        top: 120px;
+        top: auto !important;
+    }
+    
+    .support-sidebar.sticky {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        max-height: none !important;
     }
     
     .support-container {
-        display: grid;
-        grid-template-columns: 250px 1fr;
+        display: grid !important;
+        grid-template-columns: 250px 1fr !important;
         gap: 2rem;
+    }
+    
+    .support-container.sidebar-sticky {
+        display: grid !important;
     }
     
     .support-content {
@@ -323,7 +350,11 @@
     }
     
     .support-main-content {
-        margin-left: 0;
+        margin-left: 0 !important;
+    }
+    
+    .support-main-content.sidebar-sticky {
+        margin-left: 0 !important;
     }
 }
 
@@ -1533,6 +1564,58 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.toggle('collapsed');
         });
     });
+    
+    // Sticky sidebar behavior
+    const sidebar = document.querySelector('.support-sidebar');
+    const container = document.querySelector('.support-container');
+    const mainContent = document.querySelector('.support-main-content');
+    const header = document.querySelector('header') || document.querySelector('.site-header');
+    
+    if (sidebar && container && mainContent) {
+        let sidebarOriginalTop = 0;
+        let headerHeight = 100; // Default fallback
+        
+        // Get header height if header exists
+        if (header) {
+            headerHeight = header.offsetHeight;
+        }
+        
+        // Get the original position of the sidebar
+        function updateSidebarPosition() {
+            if (window.innerWidth >= 1200) {
+                const rect = container.getBoundingClientRect();
+                sidebarOriginalTop = rect.top + window.pageYOffset;
+            }
+        }
+        
+        // Handle scroll events
+        function handleScroll() {
+            if (window.innerWidth >= 1200) {
+                const scrollTop = window.pageYOffset;
+                const triggerPoint = headerHeight + 20; // Trigger when header is mostly out of view
+                
+                if (scrollTop > triggerPoint) {
+                    // Make sidebar sticky
+                    sidebar.classList.add('sticky');
+                    container.classList.add('sidebar-sticky');
+                    mainContent.classList.add('sidebar-sticky');
+                } else {
+                    // Make sidebar normal
+                    sidebar.classList.remove('sticky');
+                    container.classList.remove('sidebar-sticky');
+                    mainContent.classList.remove('sidebar-sticky');
+                }
+            }
+        }
+        
+        // Initialize and add event listeners
+        updateSidebarPosition();
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', updateSidebarPosition);
+        
+        // Initial check
+        handleScroll();
+    }
     
     // Handle active states based on scroll position
     function updateActiveLink() {
