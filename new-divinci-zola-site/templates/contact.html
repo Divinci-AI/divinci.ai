@@ -213,6 +213,7 @@
     z-index: 1;
     max-width: 1200px;
     margin: 0 auto;
+    align-items: flex-start;
 }
 
 .contact-form-container {
@@ -224,6 +225,15 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     border-top: 5px solid #8b7355;
     position: relative;
+}
+
+.contact-form-container h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2d3c34 !important;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    opacity: 1 !important;
 }
 
 .contact-info-container {
@@ -290,13 +300,16 @@
 
 .form-group {
     margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: #333;
+    color: #2d3c34;
+    font-size: 0.95rem;
 }
 
 .form-control {
