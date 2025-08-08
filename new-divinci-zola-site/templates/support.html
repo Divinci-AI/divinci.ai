@@ -1566,12 +1566,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Sticky sidebar behavior
-    const sidebar = document.querySelector('.support-sidebar');
+    const stickySidebar = document.querySelector('.support-sidebar');
     const container = document.querySelector('.support-container');
     const mainContent = document.querySelector('.support-main-content');
     const header = document.querySelector('header') || document.querySelector('.site-header');
     
-    if (sidebar && container && mainContent) {
+    if (stickySidebar && container && mainContent) {
         let sidebarOriginalTop = 0;
         let headerHeight = 100; // Default fallback
         
@@ -1596,12 +1596,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (scrollTop > triggerPoint) {
                     // Make sidebar sticky
-                    sidebar.classList.add('sticky');
+                    stickySidebar.classList.add('sticky');
                     container.classList.add('sidebar-sticky');
                     mainContent.classList.add('sidebar-sticky');
                 } else {
                     // Make sidebar normal
-                    sidebar.classList.remove('sticky');
+                    stickySidebar.classList.remove('sticky');
                     container.classList.remove('sidebar-sticky');
                     mainContent.classList.remove('sidebar-sticky');
                 }
