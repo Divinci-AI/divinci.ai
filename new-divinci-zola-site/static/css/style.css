@@ -211,6 +211,7 @@ nav .dropdown-menu a:last-child {
   aspect-ratio: 17 / 18;
   max-width: 600px;
   margin: auto;
+  border-radius: 1rem;
 }
 
 #hero-video, #hero-video-2, #hero-video-3, .davinci-image {
@@ -1052,6 +1053,11 @@ body:not(.homepage) .site-footer {
       rgba(38, 28, 22, 0.85) 85%,    /* Dark edges */
       rgba(42, 30, 25, 0.90) 100%    /* Darkest corners */
     );
+  
+  /* Fix background sizing and positioning for mobile/iPhone */
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-attachment: scroll, scroll, scroll, scroll;
 }
 
 /* Sacred geometry background layer - horizontally flipped */
@@ -1407,6 +1413,34 @@ body:not(.homepage) .privacy-settings-link:hover {
   z-index: 1000 !important;
 }
 
+/* Desktop layout for journal showcase */
+@media (min-width: 769px) {
+  .davinci-journal-showcase {
+    display: flex;
+    width: 100%;
+    min-height: 700px;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .feature-details {
+    flex: 0 0 60%;
+    padding: 2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 15;
+    height: 700px;
+    transform: translateY(-80px) translateX(-40px);
+  }
+}
+
+/* Mobile and tablet fallback */
 .davinci-journal-showcase {
   display: flex;
   width: 100%;
@@ -1422,7 +1456,7 @@ body:not(.homepage) .privacy-settings-link:hover {
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  padding-top: 50px;
+  padding-top: 0;
   padding-left: 10rem;
   position: relative;
   z-index: 10;
@@ -2261,15 +2295,7 @@ body:not(.homepage) .privacy-settings-link:hover {
   opacity: 0.18 !important;
 }
 
-/* Feature Details Area */
-.feature-details {
-  flex: 0 0 60%;
-  padding: 2rem 4rem;
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 15;
-}
+/* Feature Details Area - moved to desktop media query above */
 
 .feature-content {
   display: none;
@@ -2312,6 +2338,8 @@ body:not(.homepage) .privacy-settings-link:hover {
   display: block;
   opacity: 1;
   transform: translateX(0);
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .feature-content h3 {
@@ -2978,7 +3006,28 @@ body:not(.homepage) .privacy-settings-link:hover {
 
 .faq-answer.active {
   padding: 0 1.5rem 1.5rem 1.5rem;
-  max-height: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(107, 70, 193, 0.3) rgba(107, 70, 193, 0.1);
+}
+
+.faq-answer.active::-webkit-scrollbar {
+  width: 8px;
+}
+
+.faq-answer.active::-webkit-scrollbar-track {
+  background: rgba(107, 70, 193, 0.1);
+  border-radius: 4px;
+}
+
+.faq-answer.active::-webkit-scrollbar-thumb {
+  background: rgba(107, 70, 193, 0.3);
+  border-radius: 4px;
+}
+
+.faq-answer.active::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 70, 193, 0.5);
 }
 
 .faq-answer p {

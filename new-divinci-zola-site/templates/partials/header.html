@@ -31,7 +31,7 @@
             <li><a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}">{{ translations.navigation.blog | default(value="Blog") }}</a></li>
             <li class="mobile-hide"><a href="{% if current_lang == 'en' %}/#signup{% else %}/{{ current_lang }}/#signup{% endif %}">{{ translations.navigation.signup | default(value="Sign Up") }}</a></li>
             <li class="dropdown">
-                <a href="{% if current_lang == 'en' %}/#support{% else %}/{{ current_lang }}/#support{% endif %}">{{ translations.navigation.support | default(value="Support") }}</a>
+                <a href="{% if current_lang == 'en' %}/support{% else %}/{{ current_lang }}/support{% endif %}">{{ translations.navigation.support | default(value="Support") }}</a>
                 <span class="dropdown-arrow">▼</span>
                 <div class="dropdown-menu">
                     <a href="{% if current_lang == 'en' %}/support{% else %}/{{ current_lang }}/support{% endif %}">{{ translations.navigation.support_center | default(value="Support Center") }}</a>
