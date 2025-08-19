@@ -303,44 +303,44 @@ p {
 
 .feature {
   display: grid;
-  grid-template-columns: 2.5rem 1fr;
-  gap: 0.8rem;
+  grid-template-columns: 3rem 1fr;
+  gap: 1rem;
   align-items: start;
 }
 
 .feature-icon {
   display: grid;
   place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  font-size: 1.8rem;
+  width: 3rem;
+  height: 3rem;
+  font-size: 2.2rem;
   line-height: 1;
   position: relative;
   top: 0.1rem;
 }
 
 .feature-icon-star {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   top: 0.05rem;
 }
 
 .feature-icon-rotate {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   top: 0.05rem;
 }
 
 .feature .feature-icon-heart {
-  font-size: 1.6rem !important;
+  font-size: 2rem !important;
   top: 0.15rem !important;
 }
 
 .feature-text {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: #2d3c34;
-  line-height: 1.3;
+  line-height: 1.4;
   align-self: start;
-  padding-top: 0.15rem;
+  padding-top: 0.3rem;
 }
 
 .cta-buttons {
@@ -1069,8 +1069,8 @@ body:not(.homepage) .site-footer::before {
   right: 0;
   bottom: 0;
   background: url('/images/u4943574663_httpss.mj.runclv3aUm6SU0_Flat_sacred_geometry_Rus_f2e3fde5-6320-49e3-9c39-e5bbbf571e50_2.png');
-  background-size: 100% auto; /* Full width, maintain aspect ratio, allow vertical overflow */
-  background-position: center -814px;
+  background-size: cover; /* Cover the area without stretching */
+  background-position: center center;
   background-repeat: no-repeat;
   transform: scaleX(-1); /* Flip horizontally */
   opacity: 0.15; /* Very subtle for text readability */
@@ -1130,71 +1130,31 @@ body:not(.homepage) .footer-content .footer-section:nth-child(1) h3,
 body:not(.homepage) .footer-content .footer-section:nth-child(1) a,
 body:not(.homepage) .footer-content .footer-section:nth-child(1) .footer-logo span,
 body:not(.homepage) .footer-content .footer-section:nth-child(1) .footer-tagline {
-  background: linear-gradient(180deg, 
-    #1a0f0a 0%,        /* Very dark at top */
-    #2d1f19 100%       /* Dark at bottom */
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  opacity: 0.9; /* 10% transparency */
+  color: #f8f4f0;
 }
 
 /* Column 2 (Product) - Medium-dark */
 body:not(.homepage) .footer-content .footer-section:nth-child(2) h3,
 body:not(.homepage) .footer-content .footer-section:nth-child(2) a {
-  background: linear-gradient(180deg, 
-    #2d1f19 0%,        /* Dark at top */
-    #3d2a1e 100%       /* Medium-dark at bottom */
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  opacity: 0.9; /* 10% transparency */
+  color: #f8f4f0;
 }
 
 /* Column 3 (Resources) - Medium */
 body:not(.homepage) .footer-content .footer-section:nth-child(3) h3,
 body:not(.homepage) .footer-content .footer-section:nth-child(3) a {
-  background: linear-gradient(180deg, 
-    #3d2a1e 0%,        /* Medium-dark at top */
-    #5a453a 100%       /* Medium at bottom */
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  opacity: 0.9; /* 10% transparency */
+  color: #f8f4f0;
 }
 
 /* Column 4 (Company) - Keep similar to first columns */
 body:not(.homepage) .footer-content .footer-section:nth-child(4) h3,
 body:not(.homepage) .footer-content .footer-section:nth-child(4) a {
-  background: linear-gradient(180deg, 
-    #3d2a1e 0%,        /* Medium-dark at top */
-    #4a3528 100%       /* Medium at bottom */
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  opacity: 0.9; /* 10% transparency */
+  color: #f8f4f0;
 }
 
 /* Column 5 (Legal) - Darker for better contrast against light background */
 body:not(.homepage) .footer-content .footer-section:nth-child(5) h3,
 body:not(.homepage) .footer-content .footer-section:nth-child(5) a {
-  background: linear-gradient(180deg, 
-    #2d1f19 0%,        /* Dark at top for contrast */
-    #3d2a1e 100%       /* Medium-dark at bottom */
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  opacity: 0.9; /* 10% transparency */
+  color: #f8f4f0;
 }
 
 /* Footer bottom section (spans full width) - Better contrast for readability */
@@ -1209,24 +1169,19 @@ body:not(.homepage) .privacy-settings-link {
 
 /* Hover states for each column */
 body:not(.homepage) .footer-content .footer-section:nth-child(1) a:hover {
-  background: linear-gradient(180deg, #0f0803 0%, #1a0f0a 100%);
-  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 body:not(.homepage) .footer-content .footer-section:nth-child(2) a:hover {
-  background: linear-gradient(180deg, #1a0f0a 0%, #2d1f19 100%);
-  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 body:not(.homepage) .footer-content .footer-section:nth-child(3) a:hover {
-  background: linear-gradient(180deg, #2d1f19 0%, #4a3528 100%);
-  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 body:not(.homepage) .footer-content .footer-section:nth-child(4) a:hover {
-  background: linear-gradient(180deg, #2d1f19 0%, #3d2a1e 100%);
-  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 body:not(.homepage) .footer-content .footer-section:nth-child(5) a:hover {
-  background: linear-gradient(180deg, #1a0f0a 0%, #2d1f19 100%);
-  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 body:not(.homepage) .footer-bottom-links a:hover,
 body:not(.homepage) .privacy-settings-link:hover {
@@ -1480,8 +1435,8 @@ body:not(.homepage) .privacy-settings-link:hover {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-top: -4.44rem;
-  margin-bottom: 4.44rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
   z-index: 15;
 }
 
@@ -2300,8 +2255,8 @@ body:not(.homepage) .privacy-settings-link:hover {
 .feature-content {
   display: none;
   opacity: 0;
-  transform: translateX(20px);
-  transition: all 0.4s ease;
+  transform: translateX(30px);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   z-index: 20;
 }
@@ -2801,14 +2756,196 @@ body:not(.homepage) .privacy-settings-link:hover {
   }
   
   .footer-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    padding: 2rem 1.2rem 1rem 1.2rem;
+  }
+  
+  /* First section (brand) spans both columns and is centered */
+  .footer-section:first-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  /* Left-align the tagline under the brand */
+  .footer-section:first-child .footer-tagline {
+    text-align: left;
+  }
+  
+  .footer-section {
+    margin-bottom: 1rem;
+    padding: 0 0.8rem;
+  }
+  
+  .footer-section h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+  }
+  
+  .footer-section li {
+    margin-bottom: 0.4rem;
+  }
+  
+  .footer-section a {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+  
+  /* Make brand section more compact on mobile */
+  .footer-section:first-child .footer-logo span {
+    font-size: 1.1rem;
+  }
+  
+  .footer-section:first-child .footer-tagline {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-section:first-child .footer-social {
+    gap: 0.8rem;
+  }
+  
+  
+  .footer-section h3 {
+    margin-bottom: 1.5rem;
+    text-shadow: none !important;
+    filter: none !important;
+    text-stroke: transparent !important;
+    -webkit-text-stroke: transparent !important;
+  }
+  
+  /* Nuclear option - override ALL possible text shadow sources on headers */
+  .footer-section h3,
+  body:not(.homepage) .footer-section h3,
+  .site-footer .footer-section h3,
+  body:not(.homepage) .site-footer .footer-section h3,
+  body:not(.homepage) .footer-content .footer-section h3,
+  body:not(.homepage) .footer-content .footer-section:nth-child(1) h3,
+  body:not(.homepage) .footer-content .footer-section:nth-child(2) h3,
+  body:not(.homepage) .footer-content .footer-section:nth-child(3) h3,
+  body:not(.homepage) .footer-content .footer-section:nth-child(4) h3,
+  body:not(.homepage) .footer-content .footer-section:nth-child(5) h3 {
+    text-shadow: none !important;
+    filter: none !important;
+    -webkit-text-shadow: none !important;
+    -moz-text-shadow: none !important;
+    text-stroke: transparent !important;
+    -webkit-text-stroke: transparent !important;
+    background: none !important;
+    background-clip: initial !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    color: #f8f4f0 !important;
+  }
+  
+  /* Remove shadows from all other footer elements */
+  .site-footer *,
+  body:not(.homepage) .site-footer *,
+  .footer-section *,
+  .footer-content *,
+  .footer-section a,
+  .footer-section li,
+  .footer-section li a,
+  .footer-section ul li a,
+  .footer-logo span,
+  .footer-tagline,
+  body:not(.homepage) .footer-content .footer-section a,
+  body:not(.homepage) .footer-content .footer-section li a {
+    text-shadow: none !important;
+    filter: none !important;
+    box-shadow: none !important;
   }
   
   .footer-bottom-content {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+    padding: 0 3rem;
+  }
+  
+  /* Key Benefits Mobile Layout - Convert hexagon to vertical column */
+  .key-benefits {
+    padding: 2rem 1rem;
+  }
+  
+  .benefits-hexagon {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    max-width: 100% !important;
+    padding: 1rem !important;
+    align-items: center !important;
+    margin: 1rem auto !important;
+  }
+  
+  .benefit-node {
+    width: 300px !important;
+    height: auto !important;
+    border-radius: 20px !important;
+    padding: 2rem 1.5rem !important;
+    margin: 0 !important;
+    position: static !important;
+    grid-column: unset !important;
+    grid-row: unset !important;
+  }
+  
+  /* Override specific hexagon positioning for mobile */
+  .benefit-node:nth-child(1),
+  .benefit-node:nth-child(2),
+  .benefit-node:nth-child(3),
+  .benefit-node:nth-child(4),
+  .benefit-node:nth-child(5),
+  .benefit-node:nth-child(6) {
+    grid-column: unset !important;
+    grid-row: unset !important;
+    position: static !important;
+  }
+  
+  /* Ultra-aggressive text shadow removal for footer bottom */
+  .site-footer .footer-bottom,
+  .site-footer .footer-bottom *,
+  .site-footer .footer-bottom-content,
+  .site-footer .footer-bottom-content *,
+  .site-footer .footer-bottom-links,
+  .site-footer .footer-bottom-links *,
+  .site-footer .footer-bottom-links a,
+  .site-footer .copyright,
+  .site-footer .privacy-settings-link,
+  .footer-bottom,
+  .footer-bottom *,
+  .footer-bottom-content,
+  .footer-bottom-content *,
+  .footer-bottom-links,
+  .footer-bottom-links *,
+  .footer-bottom-links a,
+  .copyright,
+  .privacy-settings-link,
+  body:not(.homepage) .site-footer .copyright,
+  body:not(.homepage) .site-footer .footer-bottom-links a,
+  body:not(.homepage) .site-footer .privacy-settings-link,
+  body:not(.homepage) .copyright,
+  body:not(.homepage) .footer-bottom-links a,
+  body:not(.homepage) .privacy-settings-link {
+    text-shadow: none !important;
+    filter: none !important;
+    -webkit-text-shadow: none !important;
+    -moz-text-shadow: none !important;
+    -o-text-shadow: none !important;
+    -ms-text-shadow: none !important;
+    text-stroke: none !important;
+    -webkit-text-stroke: none !important;
+    background: none !important;
+    background-clip: initial !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: #f8f4f0 !important;
+    color: #f8f4f0 !important;
+    opacity: 1 !important;
+    text-decoration: none !important;
   }
   
   .ai-for-good-content {

@@ -715,10 +715,10 @@ html, body {
     top: calc(62% + 0px);
   }
   
-  /* Show 2 panels stacked vertically, full width matching section headers */
+  /* Show all 4 panels stacked vertically, full width matching section headers */
   .panels-container {
     grid-template-columns: 1fr !important;
-    grid-template-rows: auto auto !important;
+    grid-template-rows: repeat(4, auto) !important;
     gap: 1rem !important;
     margin: 0 !important;
     padding-left: 1rem !important; /* Match section container padding */
@@ -730,39 +730,48 @@ html, body {
     box-sizing: border-box !important;
   }
   
-  /* Hide panels 2 and 4 on mobile, show 1 and 3 */
-  .panels-container .panel:nth-child(2),
-  .panels-container .panel:nth-child(4) {
-    display: none !important;
-  }
-  
-  /* Reset panel positioning for mobile */
-  .panels-container .panel:nth-child(1),
-  .panels-container .panel:nth-child(3) {
+  /* Show all 4 panels on mobile in single column */
+  .panels-container .panel {
+    display: block !important;
     margin-top: 0 !important;
     position: static !important;
     z-index: auto !important;
   }
   
   /* Adjust panel styling for mobile - full width matching headers exactly */
-  .panel {
-    padding: 1.5rem !important; /* Internal content padding only */
-    min-height: 200px !important;
+  .panels-container .panel {
+    padding: 1.5rem !important; /* Consistent padding */
+    min-height: fit-content !important; /* Fit to content */
     border-radius: 8px !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    margin: 0 !important;
+    margin: 0 0 1rem 0 !important;
+    display: block !important;
+    overflow: visible !important;
   }
   
-  /* Adjust panel text for mobile */
+  /* Adjust panel text for mobile - larger and more readable */
   .panel h3 {
-    font-size: 1.1rem !important;
-    margin-bottom: 0.5rem !important;
+    font-size: 1.3rem !important;
+    margin-bottom: 0.75rem !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+    hyphens: none !important;
+    word-break: normal !important;
+    -webkit-hyphens: none !important;
+    -moz-hyphens: none !important;
+    -ms-hyphens: none !important;
   }
   
   .panel p {
-    font-size: 0.9rem !important;
-    line-height: 1.4 !important;
+    font-size: 1.1rem !important;
+    line-height: 1.5 !important;
+    hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    -webkit-hyphens: none !important;
+    -moz-hyphens: none !important;
+    -ms-hyphens: none !important;
   }
   
   /* Scale down panel art for mobile */
@@ -771,18 +780,14 @@ html, body {
     height: 60px !important;
   }
   
-  .panels-container .panel:nth-child(1) .panel-art {
+  /* Consistent panel art positioning for all panels on mobile */
+  .panels-container .panel .panel-art {
     top: -5px !important;
     left: -5px !important;
     width: 60px !important;
     height: 60px !important;
-  }
-  
-  .panels-container .panel:nth-child(3) .panel-art {
-    bottom: -5px !important;
-    left: -5px !important;
-    width: 60px !important;
-    height: 60px !important;
+    bottom: auto !important;
+    right: auto !important;
   }
 }
 
@@ -1349,16 +1354,28 @@ html, body {
     line-height: 1.1 !important;
   }
   
-  /* Panel text in enterprise section */
+  /* Panel text in enterprise section - improved mobile readability */
   .panel h3 {
-    font-size: 1rem !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.5rem !important;
+    font-size: 1.3rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 0.75rem !important;
+    font-weight: 600 !important;
+    hyphens: none !important;
+    word-break: normal !important;
+    -webkit-hyphens: none !important;
+    -moz-hyphens: none !important;
+    -ms-hyphens: none !important;
   }
   
   .panel p {
-    font-size: 0.8rem !important;
-    line-height: 1.3 !important;
+    font-size: 1.1rem !important;
+    line-height: 1.5 !important;
+    hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    -webkit-hyphens: none !important;
+    -moz-hyphens: none !important;
+    -ms-hyphens: none !important;
   }
   
   /* Features section title */
@@ -1557,5 +1574,29 @@ html, body {
   nav ul li a {
     font-size: 0.8rem !important;
     padding: 0.25rem 0.4rem !important;
+  }
+}
+
+/* FINAL: Fix overflow and ensure proper padding on mobile panels */
+@media (max-width: 768px) {
+  .enterprise-ai .panels-container .panel {
+    padding: 1.5rem !important; /* Slightly smaller but equal padding */
+    margin-bottom: 1rem !important;
+    min-height: fit-content !important; /* Fit to content */
+    height: auto !important; /* Natural height based on content */
+    display: block !important; /* Use block instead of flex */
+    overflow: visible !important; /* Allow content to show */
+  }
+  
+  .enterprise-ai .panels-container .panel h3 {
+    margin-top: 0 !important;
+    margin-bottom: 0.75rem !important;
+    font-size: 1.2rem !important; /* Slightly smaller for better fit */
+  }
+  
+  .enterprise-ai .panels-container .panel p {
+    margin-bottom: 0 !important;
+    font-size: 1rem !important; /* Slightly smaller for better fit */
+    line-height: 1.4 !important;
   }
 }

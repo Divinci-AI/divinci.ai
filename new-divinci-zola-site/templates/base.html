@@ -65,16 +65,16 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ get_url(path="css/variables.css") }}">
     <link rel="stylesheet" href="{{ get_url(path="css/style.css") }}">
-    <link rel="stylesheet" href="{{ get_url(path="css/mobile-fixes.css") }}">
+    <link rel="stylesheet" href="{{ get_url(path="css/mobile-fixes.css") }}?v={{ now() | date(format="%s") }}">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ current_url | default(value=config.base_url) }}">
     <meta property="og:title" content="{% block og_title %}{% if page.title %}{{ page.title }} | Divinci AI{% elif section.title %}{{ section.title }} | Divinci AI{% else %}{{ config.title | default(value="Divinci AI - Excellence, every time") }}{% endif %}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.extra.description | default(value="AI releases. Excellence, every time. Leonardo da Vinci-inspired AI management platform for quality assurance and release management.") }}{% endif %}{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{{ config.base_url }}/images/still-hero.png{% endblock %}">
-    <meta property="og:image:width" content="3023">
-    <meta property="og:image:height" content="1561">
+    <meta property="og:image" content="{% block og_image %}https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-hero-social-v2.png{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Divinci AI - Leonardo da Vinci drawing a robot">
     <meta property="og:site_name" content="Divinci AI">
     <meta property="og:locale" content="{{ detected_lang | default(value="en") }}">
@@ -84,7 +84,7 @@
     <meta name="twitter:url" content="{{ current_url | default(value=config.base_url) }}">
     <meta name="twitter:title" content="{% block twitter_title %}{% if page.title %}{{ page.title }} | Divinci AI{% elif section.title %}{{ section.title }} | Divinci AI{% else %}{{ config.title | default(value="Divinci AI - Excellence, every time") }}{% endif %}{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_description %}{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.extra.description | default(value="AI releases. Excellence, every time. Leonardo da Vinci-inspired AI management platform.") }}{% endif %}{% endblock %}">
-    <meta name="twitter:image" content="{% block twitter_image %}{{ config.base_url }}/images/still-hero.png{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-hero-social-v2.png{% endblock %}">
     <meta name="twitter:image:alt" content="Divinci AI - Leonardo da Vinci drawing a robot">
     <meta name="twitter:site" content="@DivinciAI">
     <meta name="twitter:creator" content="@DivinciAI">
@@ -97,7 +97,7 @@
     <!-- Scripts with optimized loading -->
     <script defer src="{{ get_url(path="js/main.js") }}"></script>
     <script defer src="{{ get_url(path="js/language-switcher.js") }}"></script>
-    <script defer src="{{ get_url(path="js/gdpr-compliance.js") }}"></script>
+    <script defer src="{{ get_url(path="js/gdpr-compliance.js") }}" onerror="console.warn('GDPR compliance script failed to load')"></script>
     {% block extra_scripts %}{% endblock %}
 </body>
 </html>
