@@ -19,7 +19,7 @@
     "description": "Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance through a structured, end-to-end deployment process.",
     "features": {
       "test_automation": "Intelligent test automation",
-      "compliance_records": "Detailed compliance records", 
+      "compliance_records": "Detailed compliance records",
       "version_recovery": "Instant version recovery"
     },
     "cta": {
@@ -36,7 +36,7 @@
         "description": "Automate and coordinate complex deployment pipelines with precision. Ensure every model release is validated, documented, and seamlessly transitioned to production, minimizing risk and maximizing operational efficiency."
       },
       "model_oversight": {
-        "title": "Proactive model oversight", 
+        "title": "Proactive model oversight",
         "description": "Monitor model performance and compliance in real time. Leverage automated checks and comprehensive analytics to detect issues early, uphold regulatory standards, and maintain optimal model integrity."
       },
       "performance_analytics": {
@@ -59,7 +59,7 @@
         "description": "Enable multi-stakeholder model validation with synchronized review environments for ML engineers, QA teams, and compliance officers."
       },
       "ai_family": {
-        "title": "Model Registry", 
+        "title": "Model Registry",
         "description": "Centralized version control for custom LLMs with automated rollback capabilities, A/B testing frameworks, and comprehensive model lineage tracking."
       },
       "voice_io": {
@@ -71,7 +71,7 @@
         "description": "Monitor inference latency, token efficiency, hallucination rates, and custom accuracy metrics with real-time dashboards and alerting."
       },
       "enterprise_security": {
-        "title": "Compliance Suite", 
+        "title": "Compliance Suite",
         "description": "Automated GDPR, HIPAA, and SOC2 compliance validation with audit trails, data residency controls, and model behavior attestation."
       },
       "lightning_responses": {
@@ -94,7 +94,12 @@
         "title": "Enterprise Scale",
         "description": "Manage thousands of model versions across distributed teams with horizontal scaling, multi-region deployment, and federated governance."
       }
-    }
+    },
+    "autorag": {
+      "title": "AutoRAG"
+    },
+    "qa_title": "Quality Assurance",
+    "release_management": "Release Management"
   },
   "team": {
     "title": "Meet our team",
@@ -105,7 +110,7 @@
     },
     "roles": {
       "ceo_founder": "CEO & Founder",
-      "cto_cofounder": "CTO & Co-Founder", 
+      "cto_cofounder": "CTO & Co-Founder",
       "cpo": "CPO - Chief Project Officer",
       "coo": "COO - Chief Operations Officer",
       "data_scientist": "Data Scientist",
@@ -113,7 +118,7 @@
     }
   },
   "signup": {
-    "title": "Start your AI journey", 
+    "title": "Start your AI journey",
     "description": "Join thousands of teams already transforming their work with Divinci AI. Get early access to our platform.",
     "email_placeholder": "Your email",
     "button": "Request access",
@@ -157,7 +162,8 @@
         "question": "Does the platform fit existing workflows?",
         "answer": "Our solution is engineered for seamless integration with enterprise systems. Robust APIs and configurable options allow effortless alignment with your current release management and development pipelines, minimizing disruption and maximizing efficiency."
       }
-    }
+    },
+    "view_complete_list": "View complete model compatibility list"
   },
   "contact": {
     "title": "Connect with our experts",
@@ -166,13 +172,16 @@
     "email_specialists": {
       "title": "Email our specialists",
       "description": "Receive detailed, thoughtful responses to your technical and business inquiries.",
-      "email": "hi@divinci.ai"
+      "email": "Schedule Demo"
     },
     "speak_consultant": {
-      "title": "Speak with a consultant",
-      "description": "Available Monday-Friday, 8am-5pm EST for in-depth assistance.",
-      "phone": "+1 (555) 000-0000"
-    }
+      "title": "Book a live demo",
+      "description": "Available for 30-minute personalized demos to show you how Divinci AI works.",
+      "phone": "Book Demo"
+    },
+    "schedule_demo": "Schedule Demo",
+    "book_demo": "Book a live demo",
+    "demo_availability": "Available for 30-minute personalized demos to show you how Divinci AI works."
   },
   "footer": {
     "tagline": "Empowering human-AI collaboration",
@@ -181,9 +190,12 @@
         "title": "Product",
         "links": {
           "features": "Features",
-          "pricing": "Pricing", 
+          "pricing": "Pricing",
           "roadmap": "Roadmap",
-          "changelog": "Changelog"
+          "changelog": "Changelog",
+          "autorag": "AutoRAG",
+          "quality_assurance": "Quality Assurance",
+          "release_management": "Release Management"
         }
       },
       "resources": {
@@ -192,14 +204,15 @@
           "documentation": "Documentation",
           "blog": "Blog",
           "tutorials": "Tutorials",
-          "api": "API"
+          "api": "API",
+          "support": "Support"
         }
       },
       "company": {
         "title": "Company",
         "links": {
           "about": "About Us",
-          "careers": "Careers", 
+          "careers": "Careers",
           "contact": "Contact",
           "press": "Press"
         }
@@ -218,10 +231,18 @@
       "copyright": "© 2023-2025 Divinci AI. All rights reserved.",
       "links": {
         "sitemap": "Sitemap",
-        "accessibility": "Accessibility", 
+        "accessibility": "Accessibility",
         "cookies": "Cookie Policy"
-      }
-    }
+      },
+      "privacy_settings": "Privacy Settings",
+      "cookie_policy": "Cookie Policy",
+      "cookie_preferences": "Cookie Preferences"
+    },
+    "api": "API",
+    "support": "Support",
+    "privacy_settings": "Privacy Settings",
+    "cookie_policy": "Cookie Policy",
+    "cookie_preferences": "Cookie Preferences"
   },
   "support": {
     "title": "Support Center",
@@ -231,7 +252,7 @@
       "title": "Support Center",
       "menu": {
         "getting_started": "Getting Started",
-        "implementation": "Implementation", 
+        "implementation": "Implementation",
         "troubleshooting": "Troubleshooting",
         "api_docs": "API Documentation",
         "billing": "Billing",
@@ -347,7 +368,7 @@
     "current_language": "English",
     "languages": {
       "en": "English",
-      "es": "Español", 
+      "es": "Español",
       "fr": "Français",
       "ar": "العربية",
       "ja": "日本語",
@@ -357,8 +378,76 @@
       "de": "Deutsch",
       "pt": "Português",
       "ko": "한국어",
-      "nl": "Nederlands", 
+      "nl": "Nederlands",
       "hi": "हिन्दी"
+    }
+  },
+  "press": {
+    "title": "Press Resources",
+    "subtitle": "Find the latest news, media coverage, and resources about Divinci AI. For press inquiries, please contact our media relations team.",
+    "contact": {
+      "title": "Press Contact",
+      "email": "press@divinci.ai",
+      "phone": "+1 (800) 555-1234",
+      "media_relations": "Sierra Hooshiari, COO - Chief Operations Officer",
+      "description": "Our media relations team is available to assist journalists, industry analysts, and content creators with information, interviews, and resources about Divinci AI and our perspective on the AI industry."
+    },
+    "releases": {
+      "title": "Press Releases",
+      "items": {
+        "platform_launch": {
+          "date": "May 1, 2025",
+          "title": "Divinci AI Launches Platform to Democratize Custom AI Solutions for Businesses",
+          "excerpt": "Divinci AI today announced the general availability of its platform designed to make custom AI solutions accessible to businesses of all sizes, without requiring specialized machine learning expertise."
+        },
+        "autorag_launch": {
+          "date": "April 15, 2025",
+          "title": "Divinci AI Unveils AutoRAG, Making Retrieval-Augmented Generation Accessible to All",
+          "excerpt": "The new AutoRAG feature automates the complex process of implementing Retrieval-Augmented Generation systems, allowing businesses to easily create AI that leverages their proprietary knowledge."
+        },
+        "standards_hub": {
+          "date": "March 10, 2025",
+          "title": "Divinci AI Joins AI Standards Hub to Promote Responsible AI Development",
+          "excerpt": "As part of its commitment to ethical AI, Divinci AI has joined the AI Standards Hub to contribute to the development of standards for secure, responsible, and transparent artificial intelligence."
+        }
+      }
+    },
+    "coverage": {
+      "title": "Media Coverage",
+      "items": {
+        "techcrunch": {
+          "date": "May 3, 2025",
+          "title": "Divinci AI Makes Custom AI Solutions Accessible to SMBs",
+          "excerpt": "TechCrunch reviews Divinci AI's new platform and how it's bringing enterprise-grade AI capabilities to small and medium-sized businesses."
+        },
+        "venturebeat": {
+          "date": "April 18, 2025",
+          "title": "How Divinci AI's AutoRAG Feature Changes the Game for Document-Based AI",
+          "excerpt": "VentureBeat explores how Divinci AI's AutoRAG technology simplifies the complex process of implementing document-aware AI systems."
+        },
+        "forbes": {
+          "date": "March 15, 2025",
+          "title": "10 AI Startups to Watch in 2025: Divinci AI Makes the List",
+          "excerpt": "Forbes includes Divinci AI in its annual list of promising AI startups transforming how businesses implement artificial intelligence solutions."
+        }
+      }
+    },
+    "assets": {
+      "title": "Brand Assets",
+      "description": "Download official Divinci AI logos, product screenshots, and founder photos for media use. All assets are provided in high resolution and are available in multiple formats.",
+      "logos": "Logos",
+      "screenshots": "Product Screenshots",
+      "team_photos": "Team Photos",
+      "press_kit": {
+        "title": "Complete Press Kit",
+        "description": "Download our complete press kit, which includes all logos, screenshots, team photos, product fact sheets, and company backgrounders in a single package.",
+        "button": "Download Press Kit (ZIP, 25MB)"
+      }
+    },
+    "common": {
+      "read_more": "Read more",
+      "read_article": "Read article",
+      "download": "Download"
     }
   }
 }

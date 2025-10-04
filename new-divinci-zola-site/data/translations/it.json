@@ -10,7 +10,8 @@
     "team": "Team",
     "signup": "Registrati",
     "support": "Supporto",
-    "request_demo": "Richiedi demo"
+    "request_demo": "Richiedi demo",
+    "support_center": "Centro di Supporto"
   },
   "hero": {
     "heading": "Rilasci AI.",
@@ -92,7 +93,13 @@
         "title": "Scalabilità",
         "description": "Scala da piccoli team a organizzazioni enterprise con infrastruttura che si scala automaticamente."
       }
-    }
+    },
+    "journal_title": "Diario di Leonardo",
+    "autorag": {
+      "title": "AutoRAG"
+    },
+    "qa_title": "Garanzia Qualità",
+    "release_management": "Gestione Rilasci"
   },
   "team": {
     "title": "Incontra il nostro team",
@@ -106,7 +113,11 @@
       "head_product": "Responsabile Prodotto",
       "senior_data_scientist": "Senior Data Scientist",
       "ux_ui_designer": "Designer UX/UI",
-      "software_engineer": "Ingegnere Software"
+      "software_engineer": "Ingegnere Software",
+      "cpo": "Direttore Prodotto",
+      "coo": "Direttore Operativo",
+      "data_scientist": "Data Scientist",
+      "ai_safety_ethics_advisor": "Consulente Etica e Sicurezza IA"
     }
   },
   "signup": {
@@ -143,7 +154,10 @@
           "features": "Funzionalità",
           "pricing": "Prezzi",
           "roadmap": "Roadmap",
-          "changelog": "Changelog"
+          "changelog": "Changelog",
+          "autorag": "AutoRAG",
+          "quality_assurance": "Garanzia di Qualità",
+          "release_management": "Gestione delle Release"
         }
       },
       "resources": {
@@ -152,7 +166,8 @@
           "documentation": "Documentazione",
           "blog": "Blog",
           "tutorials": "Tutorial",
-          "api": "API"
+          "api": "API",
+          "support": "Supporto"
         }
       },
       "company": {
@@ -180,8 +195,16 @@
         "sitemap": "Mappa del sito",
         "accessibility": "Accessibilità",
         "cookies": "Policy cookie"
-      }
-    }
+      },
+      "privacy_settings": "Impostazioni Privacy",
+      "cookie_policy": "Politica dei Cookie",
+      "cookie_preferences": "Preferenze Cookie"
+    },
+    "api": "API",
+    "support": "Supporto",
+    "privacy_settings": "Impostazioni Privacy",
+    "cookie_preferences": "Preferenze Cookie",
+    "cookie_policy": "Politica sui Cookie"
   },
   "language_switcher": {
     "current_language": "Italiano",
@@ -200,5 +223,51 @@
       "nl": "Nederlands",
       "hi": "हिन्दी"
     }
+  },
+  "contact": {
+    "title": "Contatto",
+    "subtitle": "Contatta il nostro team",
+    "get_in_touch": "METTITI IN CONTATTO",
+    "email_specialists": {
+      "title": "Invia un'email ai nostri specialisti",
+      "description": "Ricevi risposte dettagliate e ponderate alle tue domande tecniche e commerciali.",
+      "email": "Programma Demo"
+    },
+    "schedule_demo": "Programma Demo",
+    "book_demo": "Prenota una demo live",
+    "demo_availability": "Disponibile per demo personalizzate di 30 minuti per mostrarti come funziona Divinci AI.",
+    "speak_consultant": {
+      "title": "Prenota una demo live",
+      "description": "Disponibile per demo personalizzate di 30 minuti per mostrarti come funziona Divinci AI.",
+      "phone": "Prenota Demo"
+    }
+  },
+  "support": {
+    "title": "Centro di Supporto",
+    "subtitle": "Ottieni aiuto e supporto per Divinci AI"
+  },
+  "expert_answers": {
+    "title": "Risposte degli Esperti",
+    "subtitle": "Guida degli specialisti",
+    "description": "Trova approfondimenti completi sulla gestione delle versioni e garanzia qualità della nostra piattaforma per modelli linguistici di grandi dimensioni. Esplora risposte dettagliate e professionali alle tue domande più urgenti.",
+    "faqs": {
+      "model_reliability": {
+        "question": "Come garantite l'affidabilità del modello?",
+        "answer": "Implementiamo un processo di validazione multi-livello, combinando test automatizzati di regressione, prestazioni e sicurezza con revisioni manuali di esperti. Ogni rilascio di modello viene rigorosamente valutato per garantire che soddisfi costantemente gli standard di livello aziendale per accuratezza, stabilità e conformità."
+      },
+      "language_models": {
+        "question": "Quali modelli linguistici sono compatibili?",
+        "answer": "La nostra piattaforma supporta un ampio spettro di modelli linguistici di grandi dimensioni, dalle architetture open source a quelle proprietarie. L'integrazione flessibile consente un deployment senza soluzione di continuità attraverso diversi framework e ambienti aziendali, garantendo adattabilità alle esigenze aziendali in evoluzione."
+      },
+      "quality_assurance": {
+        "question": "Come viene ottenuta la garanzia qualità continua?",
+        "answer": "Manteniamo la qualità attraverso monitoraggio continuo, audit programmati e tracciamento delle prestazioni in tempo reale. Analizzando il feedback degli utenti e i rischi emergenti, raffiniamo proattivamente modelli e processi per mantenere standard qualitativi rigorosi nel tempo."
+      },
+      "workflow_integration": {
+        "question": "La piattaforma si adatta ai flussi di lavoro esistenti?",
+        "answer": "La nostra soluzione è progettata per un'integrazione perfetta con i sistemi aziendali. API robuste e opzioni configurabili consentono un allineamento senza sforzo con le tue attuali pipeline di gestione delle versioni e sviluppo, minimizzando le interruzioni e massimizzando l'efficienza."
+      }
+    },
+    "view_complete_list": "Visualizza elenco completo compatibilità modelli"
   }
 }

@@ -10,7 +10,8 @@
     "team": "Team",
     "signup": "Anmelden",
     "support": "Unterstützung",
-    "request_demo": "Demo anfordern"
+    "request_demo": "Demo anfordern",
+    "support_center": "Support-Center"
   },
   "hero": {
     "heading": "KI-Releases.",
@@ -18,7 +19,7 @@
     "description": "Stärken Sie Ihr Unternehmen mit fortschrittlichem Release-Management und rigoroser Qualitätssicherung für benutzerdefinierte Sprachmodelle. Erreichen Sie operative Zuverlässigkeit, regulatorische Compliance und optimale Leistung durch einen strukturierten, durchgängigen Bereitstellungsprozess.",
     "features": {
       "test_automation": "Intelligente Testautomatisierung",
-      "compliance_records": "Detaillierte Compliance-Aufzeichnungen", 
+      "compliance_records": "Detaillierte Compliance-Aufzeichnungen",
       "version_recovery": "Sofortige Versionserholung"
     },
     "cta": {
@@ -35,7 +36,7 @@
         "description": "Automatisieren und koordinieren Sie komplexe Bereitstellungs-Pipelines mit Präzision. Stellen Sie sicher, dass jeder Modell-Release validiert, dokumentiert und nahtlos in die Produktion überführt wird, minimieren Sie Risiken und maximieren Sie operative Effizienz."
       },
       "model_oversight": {
-        "title": "Proaktive Modellüberwachung", 
+        "title": "Proaktive Modellüberwachung",
         "description": "Überwachen Sie Modellleistung und Compliance in Echtzeit. Nutzen Sie automatisierte Prüfungen und umfassende Analytik, um Probleme frühzeitig zu erkennen, regulatorische Standards aufrechtzuerhalten und optimale Modellintegrität zu bewahren."
       },
       "performance_analytics": {
@@ -57,7 +58,7 @@
         "description": "Ermöglichen Sie Multi-Stakeholder-Zusammenarbeit mit geteilten KI-Arbeitsbereichen für funktionsübergreifende Teams."
       },
       "ai_family": {
-        "title": "KI-Familie", 
+        "title": "KI-Familie",
         "description": "Zugriff auf Enterprise-Grade-Modelle von führenden Anbietern mit vereinheitlichter Governance und Sicherheitskontrollen."
       },
       "voice_io": {
@@ -69,7 +70,7 @@
         "description": "Verfolgen Sie Nutzung, Effizienz und Qualitätsmuster über alle KI-Interaktionen mit detaillierter Analytik."
       },
       "enterprise_security": {
-        "title": "Unternehmenssicherheit", 
+        "title": "Unternehmenssicherheit",
         "description": "Sichern Sie alle Daten und Gespräche mit Ende-zu-Ende-Verschlüsselung, Zugriffskontrollen und umfassendem Auditing."
       },
       "lightning_responses": {
@@ -92,7 +93,13 @@
         "title": "Skalierbarkeit",
         "description": "Skalieren Sie von kleinen Teams zu Unternehmensorganisationen mit Infrastruktur, die automatisch skaliert."
       }
-    }
+    },
+    "journal_title": "Leonardos Tagebuch",
+    "autorag": {
+      "title": "AutoRAG"
+    },
+    "qa_title": "Qualitätssicherung",
+    "release_management": "Release-Management"
   },
   "team": {
     "title": "Lernen Sie unser Team kennen",
@@ -102,15 +109,19 @@
     },
     "roles": {
       "ceo_founder": "CEO & Gründer",
-      "cto_cofounder": "CTO & Mitgründer", 
+      "cto_cofounder": "CTO & Mitgründer",
       "head_product": "Produktleiter",
       "senior_data_scientist": "Senior Data Scientist",
       "ux_ui_designer": "UX/UI Designer",
-      "software_engineer": "Software-Ingenieur"
+      "software_engineer": "Software-Ingenieur",
+      "cpo": "Produktdirektor",
+      "coo": "Betriebsleiter",
+      "data_scientist": "Datenwissenschaftler",
+      "ai_safety_ethics_advisor": "KI-Ethik und Sicherheitsberater"
     }
   },
   "signup": {
-    "title": "Starten Sie Ihre KI-Reise", 
+    "title": "Starten Sie Ihre KI-Reise",
     "description": "Schließen Sie sich Tausenden von Teams an, die bereits ihre Arbeit mit Divinci AI transformieren. Erhalten Sie frühen Zugang zu unserer Plattform.",
     "email_placeholder": "Ihre E-Mail",
     "button": "Zugang anfordern",
@@ -129,7 +140,7 @@
         "description": "Verzerrungsreduzierung und Fairnessförderung in allen Ergebnissen."
       },
       "positive_impact": {
-        "title": "Positive Auswirkung", 
+        "title": "Positive Auswirkung",
         "description": "Beitrag zu Lösungen, die globale Herausforderungen angehen."
       }
     }
@@ -141,9 +152,12 @@
         "title": "Produkt",
         "links": {
           "features": "Features",
-          "pricing": "Preise", 
+          "pricing": "Preise",
           "roadmap": "Roadmap",
-          "changelog": "Changelog"
+          "changelog": "Changelog",
+          "autorag": "AutoRAG",
+          "quality_assurance": "Qualitätssicherung",
+          "release_management": "Release-Management"
         }
       },
       "resources": {
@@ -152,14 +166,15 @@
           "documentation": "Dokumentation",
           "blog": "Blog",
           "tutorials": "Tutorials",
-          "api": "API"
+          "api": "API",
+          "support": "Support"
         }
       },
       "company": {
         "title": "Unternehmen",
         "links": {
           "about": "Über uns",
-          "careers": "Karriere", 
+          "careers": "Karriere",
           "contact": "Kontakt",
           "press": "Presse"
         }
@@ -178,16 +193,24 @@
       "copyright": "© 2023-2025 Divinci AI. Alle Rechte vorbehalten.",
       "links": {
         "sitemap": "Sitemap",
-        "accessibility": "Barrierefreiheit", 
+        "accessibility": "Barrierefreiheit",
         "cookies": "Cookie-Richtlinie"
-      }
-    }
+      },
+      "privacy_settings": "Datenschutz-Einstellungen",
+      "cookie_policy": "Cookie-Richtlinie",
+      "cookie_preferences": "Cookie-Einstellungen"
+    },
+    "api": "API",
+    "support": "Support",
+    "privacy_settings": "Datenschutz-Einstellungen",
+    "cookie_preferences": "Cookie-Einstellungen",
+    "cookie_policy": "Cookie-Richtlinie"
   },
   "language_switcher": {
     "current_language": "Deutsch",
     "languages": {
       "en": "English",
-      "es": "Español", 
+      "es": "Español",
       "fr": "Français",
       "ar": "العربية",
       "ja": "日本語",
@@ -197,8 +220,54 @@
       "de": "Deutsch",
       "pt": "Português",
       "ko": "한국어",
-      "nl": "Nederlands", 
+      "nl": "Nederlands",
       "hi": "हिन्दी"
     }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Kontaktieren Sie unser Team",
+    "get_in_touch": "KONTAKT AUFNEHMEN",
+    "email_specialists": {
+      "title": "Schreiben Sie unseren Spezialisten",
+      "description": "Erhalten Sie detaillierte, durchdachte Antworten auf Ihre technischen und geschäftlichen Anfragen.",
+      "email": "Demo planen"
+    },
+    "schedule_demo": "Demo planen",
+    "book_demo": "Live-Demo buchen",
+    "demo_availability": "Verfügbar für 30-minütige personalisierte Demos, um Ihnen zu zeigen, wie Divinci AI funktioniert.",
+    "speak_consultant": {
+      "title": "Live-Demo buchen",
+      "description": "Verfügbar für 30-minütige personalisierte Demos, um Ihnen zu zeigen, wie Divinci AI funktioniert.",
+      "phone": "Demo buchen"
+    }
+  },
+  "support": {
+    "title": "Support-Center",
+    "subtitle": "Erhalten Sie Hilfe und Support für Divinci AI"
+  },
+  "expert_answers": {
+    "title": "Expertenantworten",
+    "subtitle": "Spezialistenführung",
+    "description": "Finden Sie umfassende Einblicke in das Release-Management und die Qualitätssicherung unserer Plattform für große Sprachmodelle. Erkunden Sie detaillierte, professionelle Antworten auf Ihre dringendsten Fragen.",
+    "faqs": {
+      "model_reliability": {
+        "question": "Wie garantieren Sie die Modellzuverlässigkeit?",
+        "answer": "Wir implementieren einen vielschichtigen Validierungsprozess, der automatisierte Regressions-, Leistungs- und Sicherheitstests mit manuellen Expertenüberprüfungen kombiniert. Jede Modellversion wird rigoros bewertet, um sicherzustellen, dass sie konsistent die Unternehmensstandards für Genauigkeit, Stabilität und Compliance erfüllt."
+      },
+      "language_models": {
+        "question": "Welche Sprachmodelle sind kompatibel?",
+        "answer": "Unsere Plattform unterstützt ein breites Spektrum großer Sprachmodelle, von Open-Source- bis hin zu proprietären Architekturen. Flexible Integration ermöglicht nahtlose Bereitstellung in verschiedenen Frameworks und Unternehmensumgebungen und gewährleistet Anpassungsfähigkeit an sich entwickelnde Geschäftsanforderungen."
+      },
+      "quality_assurance": {
+        "question": "Wie wird kontinuierliche Qualitätssicherung erreicht?",
+        "answer": "Wir erhalten die Qualität durch kontinuierliche Überwachung, geplante Audits und Echtzeit-Leistungsverfolgung. Durch die Analyse von Nutzerfeedback und aufkommenden Risiken verfeinern wir proaktiv Modelle und Prozesse, um strenge Qualitätsmaßstäbe über die Zeit aufrechtzuerhalten."
+      },
+      "workflow_integration": {
+        "question": "Passt die Plattform zu bestehenden Arbeitsabläufen?",
+        "answer": "Unsere Lösung ist für nahtlose Integration mit Unternehmenssystemen entwickelt. Robuste APIs und konfigurierbare Optionen ermöglichen mühelose Ausrichtung mit Ihren aktuellen Release-Management- und Entwicklungs-Pipelines, minimieren Störungen und maximieren Effizienz."
+      }
+    },
+    "view_complete_list": "Vollständige Modellkompatibilitätsliste anzeigen"
   }
 }

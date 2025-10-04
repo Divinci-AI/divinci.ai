@@ -183,7 +183,7 @@ AI safety and ethics is an evolving field. We commit to:
 For questions about our AI safety and ethics practices, or to report concerns:
 
 **Email**: ethics@divinci.ai  
-**Address**: Divinci AI Ethics Team, 123 Innovation Drive, Tech City, TC 12345
+**Address**: Divinci AI Ethics Team, 312 Arivona Ave, Santa Monica, CA 90401
 
 We welcome feedback and are committed to addressing concerns promptly and transparently.
 

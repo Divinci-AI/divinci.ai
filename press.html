@@ -50,6 +50,7 @@
         <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="styles-footer.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="includes/header-styles.css" />
         <link rel="stylesheet" href="includes/section-content-fix.css" />
 
         <!-- Script to include HTML components -->
@@ -57,6 +58,110 @@
         <script src="js/conditional-header.js" defer></script>
 
         <style>
+            /* Language Switcher Styles */
+            .language-switcher {
+                position: relative;
+                display: inline-block;
+                margin-left: 15px;
+            }
+
+            .language-switcher-current {
+                display: flex;
+                align-items: center;
+                padding: 8px 12px;
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                color: white;
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .language-switcher-current:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .language-icon {
+                margin-right: 8px;
+                display: flex;
+                align-items: center;
+            }
+
+            .current-language {
+                margin: 0 8px;
+            }
+
+            .dropdown-icon {
+                font-size: 10px;
+                transition: transform 0.3s ease;
+            }
+
+            .language-switcher.active .dropdown-icon {
+                transform: rotate(180deg);
+            }
+
+            .language-switcher-dropdown {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+                z-index: 1000;
+                min-width: 160px;
+                margin-top: 8px;
+            }
+
+            .language-switcher.active .language-switcher-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .language-option {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 12px;
+                color: #333;
+                text-decoration: none;
+                transition: background-color 0.2s ease;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .language-option:last-child {
+                border-bottom: none;
+            }
+
+            .language-option:hover {
+                background-color: #f8f9fa;
+                color: #2863c2;
+            }
+
+            .language-name {
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .language-native {
+                font-size: 13px;
+                color: #555;
+                font-weight: 400;
+            }
+
+            .language-option:hover .language-native {
+                color: #2863c2;
+            }
+
             /* Press page specific styles */
             .press-hero {
                 background: linear-gradient(135deg, #16214c 0%, #254284 100%);
@@ -100,7 +205,10 @@
                 line-height: 1.6;
             }
 
-            .press-section {
+            .press-contact-section,
+            .press-releases-section,
+            .media-coverage-section,
+            .brand-assets-section {
                 padding: 5rem 0;
                 position: relative;
             }
@@ -422,130 +530,6 @@
                 }
             }
         </style>
-    
-        <style>
-            /* Language Switcher Styles */
-            .language-switcher {
-                position: relative;
-                display: inline-block;
-                margin-left: 15px;
-            }
-
-            .language-switcher-current {
-                display: flex;
-                align-items: center;
-                padding: 8px 12px;
-                background-color: rgba(255, 255, 255, 0.1);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                border-radius: 6px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                color: white;
-                font-size: 14px;
-                font-weight: 500;
-            }
-
-            .language-switcher-current:hover {
-                background-color: rgba(255, 255, 255, 0.15);
-                border-color: rgba(255, 255, 255, 0.3);
-            }
-
-            .language-icon {
-                margin-right: 8px;
-                display: flex;
-                align-items: center;
-            }
-
-            .current-language {
-                margin: 0 8px;
-            }
-
-            .dropdown-icon {
-                font-size: 10px;
-                transition: transform 0.3s ease;
-            }
-
-            .language-switcher.active .dropdown-icon {
-                transform: rotate(180deg);
-            }
-
-            .language-switcher-dropdown {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: white;
-                border: 1px solid #ddd;
-                border-radius: 6px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-10px);
-                transition: all 0.3s ease;
-                z-index: 1000;
-                min-width: 160px;
-            }
-
-            .language-switcher.active .language-switcher-dropdown {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-            }
-
-            .language-option {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 10px 12px;
-                color: #333;
-                text-decoration: none;
-                transition: background-color 0.2s ease;
-                border-bottom: 1px solid #f0f0f0;
-            }
-
-            .language-option:last-child {
-                border-bottom: none;
-            }
-
-            .language-option:hover {
-                background-color: #f8f9fa;
-                color: #2863c2;
-            }
-
-            .language-name {
-                font-size: 14px;
-                font-weight: 500;
-            }
-
-            .language-native {
-                font-size: 13px;
-                color: #555;
-                font-weight: 400;
-            }
-
-            .language-option:hover .language-native {
-                color: #2863c2;
-            }
-
-            /* RTL Support */
-            html[dir="rtl"] .language-switcher-dropdown {
-                left: auto;
-                right: 0;
-            }
-
-            html[dir="rtl"] .language-option {
-                flex-direction: row-reverse;
-            }
-
-            html[dir="rtl"] .language-icon {
-                margin-right: 0;
-                margin-left: 5px;
-            }
-
-            html[dir="rtl"] .current-language {
-                margin: 0 5px;
-            }
-        </style>
     </head>
     <body>
         
@@ -634,7 +618,7 @@
             </script>
 
         <!-- Main content -->
-        <main id="main-content" role="main" tabindex="-1">
+        <main id="main-content" tabindex="-1">
             <!-- Hero Section -->
             <section class="press-hero">
                 <div class="container">
@@ -646,7 +630,7 @@
             </section>
 
             <!-- Press Contact Section -->
-            <section class="press-section">
+            <section class="press-contact-section">
                 <div class="container">
                     <h2 class="section-title">Press Contact</h2>
 
@@ -693,7 +677,7 @@
             </section>
 
             <!-- Press Releases Section -->
-            <section class="press-section">
+            <section class="press-releases-section">
                 <div class="sacred-pattern sacred-pattern-1"></div>
                 <div class="container">
                     <h2 class="section-title">Press Releases</h2>
@@ -739,7 +723,7 @@
             </section>
 
             <!-- Media Coverage Section -->
-            <section class="press-section">
+            <section class="media-coverage-section">
                 <div class="sacred-pattern sacred-pattern-2"></div>
                 <div class="container">
                     <h2 class="section-title">Media Coverage</h2>
@@ -747,7 +731,7 @@
                     <div class="coverage-grid">
                         <div class="coverage-item">
                             <div class="coverage-logo">
-                                <img src="https://via.placeholder.com/300x150.png?text=TechCrunch" alt="TechCrunch Logo">
+                                <img src="images/techcrunch-logo.svg" alt="TechCrunch Logo">
                             </div>
                             <div class="coverage-content">
                                 <div class="coverage-date">May 3, 2025</div>
@@ -761,7 +745,7 @@
 
                         <div class="coverage-item">
                             <div class="coverage-logo">
-                                <img src="https://via.placeholder.com/300x150.png?text=VentureBeat" alt="VentureBeat Logo">
+                                <img src="images/venturebeat-logo.svg" alt="VentureBeat Logo">
                             </div>
                             <div class="coverage-content">
                                 <div class="coverage-date">April 18, 2025</div>
@@ -775,7 +759,7 @@
 
                         <div class="coverage-item">
                             <div class="coverage-logo">
-                                <img src="https://via.placeholder.com/300x150.png?text=Forbes" alt="Forbes Logo">
+                                <img src="images/forbes-logo.svg" alt="Forbes Logo">
                             </div>
                             <div class="coverage-content">
                                 <div class="coverage-date">March 15, 2025</div>
@@ -791,7 +775,7 @@
             </section>
 
             <!-- Brand Assets Section -->
-            <section class="press-section">
+            <section class="brand-assets-section">
                 <div class="container">
                     <h2 class="section-title">Brand Assets</h2>
                     <p>Download official Divinci AI logos, product screenshots, and founder photos for media use. All assets are provided in high resolution and are available in multiple formats.</p>
@@ -873,7 +857,7 @@
                         <div class="assets-grid">
                             <div class="asset-item">
                                 <div class="asset-preview">
-                                    <img src="images/Michael-Mooring.jpeg" alt="Michael Mooring">
+                                    <img src="images/Michael-Mooring.png" alt="Michael Mooring">
                                 </div>
                                 <div class="asset-info">
                                     <div class="asset-name">Michael Mooring, CEO</div>

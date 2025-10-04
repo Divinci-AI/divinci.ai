@@ -73,7 +73,7 @@ We may update this Cookie Policy from time to time. Any changes will be posted o
 
 If you have questions about our use of cookies, please contact us:
 - **Email**: privacy@divinci.ai
-- **Address**: Divinci AI, 123 Innovation Drive, Tech City, TC 12345
+- **Address**: Divinci AI, 312 Arivona Ave, Santa Monica, CA 90401
 
 ---
 

@@ -1,0 +1,13 @@
+name = "divinci-r2-assets"
+main = "r2-assets.js"
+compatibility_date = "2023-05-18"
+
+# R2 bucket binding
+[[r2_buckets]]
+binding = "DIVINCI_STATIC_ASSETS"
+bucket_name = "divinci-static-assets"
+
+# Custom domain for assets
+[env.production.routes]
+pattern = "assets.divinci.ai/*"
+zone_name = "divinci.ai"

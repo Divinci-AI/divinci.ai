@@ -24,12 +24,17 @@ feature_category = "quality-assurance"
 
 .benefits-circle-container {
     position: relative;
-    width: 900px;
-    height: 900px;
+    width: min(900px, 90vw);
+    height: 1111px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Add more padding to the benefits section to accommodate the full circle */
+.feature-benefits {
+    padding: 8rem 0 12rem 0;
 }
 
 .center-benefit {
@@ -108,7 +113,7 @@ feature_category = "quality-assurance"
     top: 5px;
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #16214c, #254284);
+    background: linear-gradient(135deg, #1e3a2b, #2d3c34);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -181,27 +186,27 @@ feature_category = "quality-assurance"
     display: inline-block;
     padding: 0.5rem 1rem;
     background: rgba(107, 70, 193, 0.1);
-    color: #16214c;
+    color: #1e3a2b;
     border-radius: 20px;
     font-size: 0.9rem;
     margin: 0.25rem;
 }
 
 .text-link {
-    color: #16214c;
+    color: #1e3a2b;
     text-decoration: none;
     font-weight: 600;
 }
 
 .text-link:hover {
-    color: #254284;
+    color: #2d3c34;
     text-decoration: underline;
 }
 
 .secondary-button {
     background-color: transparent;
-    color: #16214c;
-    border: 2px solid #16214c;
+    color: #1e3a2b;
+    border: 2px solid #1e3a2b;
     padding: 12px 24px;
     border-radius: 8px;
     text-decoration: none;
@@ -210,7 +215,7 @@ feature_category = "quality-assurance"
 }
 
 .secondary-button:hover {
-    background-color: #16214c;
+    background-color: #1e3a2b;
     color: white;
 }
 
@@ -224,7 +229,7 @@ feature_category = "quality-assurance"
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
-    color: #16214c;
+    color: #1e3a2b;
 }
 
 .metric-label {
@@ -235,7 +240,7 @@ feature_category = "quality-assurance"
 }
 
 .testimonial {
-    border-left: 4px solid #16214c;
+    border-left: 4px solid #1e3a2b;
     padding-left: 2rem;
     margin: 2rem 0;
     font-style: italic;
@@ -245,7 +250,7 @@ feature_category = "quality-assurance"
     display: block;
     margin-top: 1rem;
     font-weight: 600;
-    color: #254284;
+    color: #2d3c34;
 }
 
 .pipeline-container {
@@ -276,7 +281,7 @@ feature_category = "quality-assurance"
     width: 60px;
     height: 60px;
     margin: 0 auto 1rem;
-    background: linear-gradient(135deg, #16214c, #254284);
+    background: linear-gradient(135deg, #1e3a2b, #2d3c34);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -417,7 +422,7 @@ feature_category = "quality-assurance"
 <i class="fas fa-vial"></i>
 </div>
 <div>
-<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Automated Test Generation</h3>
+<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1e3a2b;">Automated Test Generation</h3>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Generate comprehensive test scenarios including user scenarios, edge cases, regression tests, and red teaming to ensure reliability</p>
 </div>
 </div>
@@ -429,7 +434,7 @@ feature_category = "quality-assurance"
 <i class="fas fa-shield-alt"></i>
 </div>
 <div>
-<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Content Validation</h3>
+<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1e3a2b;">Content Validation</h3>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Advanced validation with fact checking, hallucination detection, bias detection, and toxicity filtering</p>
 </div>
 </div>
@@ -441,7 +446,7 @@ feature_category = "quality-assurance"
 <i class="fas fa-chart-line"></i>
 </div>
 <div>
-<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Quality Analytics</h3>
+<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1e3a2b;">Quality Analytics</h3>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Evaluate relevance, consistency, completeness, and compliance to ensure enterprise requirements</p>
 </div>
 </div>
@@ -453,7 +458,7 @@ feature_category = "quality-assurance"
 <i class="fas fa-eye"></i>
 </div>
 <div>
-<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Continuous Monitoring</h3>
+<h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1e3a2b;">Continuous Monitoring</h3>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Real-time monitoring with performance analytics, anomaly detection, and user feedback collection</p>
 </div>
 </div>
@@ -467,7 +472,7 @@ feature_category = "quality-assurance"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Quality Assurance Pipeline</h2>
 
 <div class="pipeline-container">
-<h3 style="color: #16214c; margin-bottom: 2rem; text-align: center;">End-to-End LLM Quality Validation</h3>
+<h3 style="color: #1e3a2b; margin-bottom: 2rem; text-align: center;">End-to-End LLM Quality Validation</h3>
 
 <div class="pipeline-steps">
 <div class="pipeline-step">
@@ -503,8 +508,8 @@ feature_category = "quality-assurance"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>
 
 <div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(92, 226, 231, 0.2); margin-bottom: 3rem;">
-<h3 style="color: #16214c; font-size: 2rem; margin-bottom: 1rem;">Global Healthcare Provider</h3>
-<p style="font-size: 1.25rem; color: #254284; margin-bottom: 2rem; font-weight: 600;">95% reduction in AI hallucinations while processing 50,000+ medical queries daily</p>
+<h3 style="color: #1e3a2b; font-size: 2rem; margin-bottom: 1rem;">Global Healthcare Provider</h3>
+<p style="font-size: 1.25rem; color: #2d3c34; margin-bottom: 2rem; font-weight: 600;">95% reduction in AI hallucinations while processing 50,000+ medical queries daily</p>
 <p style="margin-bottom: 2rem;">A leading healthcare provider needed to ensure medical AI responses met the highest safety standards. Using our Quality Assurance platform, they implemented comprehensive testing and validation, achieving unprecedented accuracy for patient-facing AI systems while maintaining regulatory compliance.</p>
 
 <blockquote class="testimonial">
@@ -558,10 +563,10 @@ feature_category = "quality-assurance"
 <div class="related-feature-card">
 <div style="margin-bottom: 1rem;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
-<circle cx="12" cy="12" r="11" fill="none" stroke="#16214c" stroke-width="1" opacity="0.2"/>
-<path d="M7,12 H17 M7,8 H17 M7,16 H13" stroke="#16214c" stroke-width="2" stroke-linecap="round"/>
-<circle cx="17" cy="16" r="3" fill="none" stroke="#254284" stroke-width="2"/>
-<path d="M17,14 L17,18 M15,16 L19,16" stroke="#254284" stroke-width="2" stroke-linecap="round"/>
+<circle cx="12" cy="12" r="11" fill="none" stroke="#1e3a2b" stroke-width="1" opacity="0.2"/>
+<path d="M7,12 H17 M7,8 H17 M7,16 H13" stroke="#1e3a2b" stroke-width="2" stroke-linecap="round"/>
+<circle cx="17" cy="16" r="3" fill="none" stroke="#2d3c34" stroke-width="2"/>
+<path d="M17,14 L17,18 M15,16 L19,16" stroke="#2d3c34" stroke-width="2" stroke-linecap="round"/>
 </svg>
 </div>
 <h3>AutoRAG Integration</h3>
@@ -572,9 +577,9 @@ feature_category = "quality-assurance"
 <div class="related-feature-card">
 <div style="margin-bottom: 1rem;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
-<circle cx="12" cy="12" r="11" fill="none" stroke="#16214c" stroke-width="1" opacity="0.2"/>
-<circle cx="12" cy="12" r="5" fill="none" stroke="#254284" stroke-width="2"/>
-<path d="M12,7 L12,5 M12,19 L12,17 M7,12 L5,12 M19,12 L17,12 M16.5,7.5 L18,6 M7.5,16.5 L6,18 M16.5,16.5 L18,18 M7.5,7.5 L6,6" stroke="#254284" stroke-width="2" stroke-linecap="round"/>
+<circle cx="12" cy="12" r="11" fill="none" stroke="#1e3a2b" stroke-width="1" opacity="0.2"/>
+<circle cx="12" cy="12" r="5" fill="none" stroke="#2d3c34" stroke-width="2"/>
+<path d="M12,7 L12,5 M12,19 L12,17 M7,12 L5,12 M19,12 L17,12 M16.5,7.5 L18,6 M7.5,16.5 L6,18 M16.5,16.5 L18,18 M7.5,7.5 L6,6" stroke="#2d3c34" stroke-width="2" stroke-linecap="round"/>
 </svg>
 </div>
 <h3>Release Management</h3>
@@ -585,7 +590,7 @@ feature_category = "quality-assurance"
 <div class="related-feature-card">
 <div style="margin-bottom: 1rem;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
-<circle cx="12" cy="12" r="11" fill="none" stroke="#16214c" stroke-width="1" opacity="0.2"/>
+<circle cx="12" cy="12" r="11" fill="none" stroke="#1e3a2b" stroke-width="1" opacity="0.2"/>
 <rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="#4a7c8a" stroke-width="2"/>
 <path d="M9,12 L11,14 L15,10" stroke="#4a7c8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
@@ -658,8 +663,8 @@ feature_category = "quality-assurance"
 
 <section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(92, 226, 231, 0.1)); padding: 4rem 0;">
 <div class="container" style="text-align: center;">
-<h2 style="font-size: 2.5rem; color: #16214c; margin-bottom: 1rem;">Ready to Transform AI Quality?</h2>
-<p style="font-size: 1.25rem; margin-bottom: 2rem; color: #254284;">Ensure enterprise-grade reliability and safety for your LLM applications.</p>
+<h2 style="font-size: 2.5rem; color: #1e3a2b; margin-bottom: 1rem;">Ready to Transform AI Quality?</h2>
+<p style="font-size: 1.25rem; margin-bottom: 2rem; color: #2d3c34;">Ensure enterprise-grade reliability and safety for your LLM applications.</p>
 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
 <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="secondary-button" target="_blank">Request Demo</a>
 <a href="https://docs.divinci.ai/quality-assurance" class="text-link" style="padding: 12px 24px; border: 2px solid transparent;">View Documentation</a>

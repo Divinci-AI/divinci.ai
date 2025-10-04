@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{%- set current_lang = page.lang | default(value="en") -%}
+{# current_lang is inherited from base template #}
 
 <!-- Include Header -->
 {% include "partials/header.html" %}
@@ -17,7 +17,7 @@
                     <div class="official-badge">OFFICIAL DOCUMENT</div>
                 </div>
 
-                <header>
+                <header class="document-main-header">
                     <h1 class="document-title">
                         {{ page.title }}
                     </h1>
@@ -57,6 +57,21 @@
                                 </div>
                                 <div class="contributor-social">
                                     <a href="https://www.linkedin.com/in/michaelduanemooring/" target="_blank" class="social-link" aria-label="Michael Mooring LinkedIn Profile">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="contributor-card" style="width: 300px;">
+                                <div class="contributor-avatar">
+                                    <img src="{{ get_url(path='images/paul-marie-carfantan.jpeg') }}" alt="Paul-Marie Carfantan">
+                                </div>
+                                <div class="contributor-info">
+                                    <div class="contributor-name">Paul-Marie Carfantan</div>
+                                    <div class="contributor-title">AI Safety and Ethics Advisor</div>
+                                </div>
+                                <div class="contributor-social">
+                                    <a href="https://www.linkedin.com/in/paul-marie-carfantan/" target="_blank" class="social-link" aria-label="Paul-Marie Carfantan LinkedIn Profile">
                                         <i class="fab fa-linkedin-in"></i>
                                     </a>
                                 </div>
@@ -181,6 +196,26 @@
     line-height: 1.6;
 }
 
+.document-main-header {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.document-main-header > * {
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.has-text-centered {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .certification-badge {
     display: inline-flex;
     align-items: center;
@@ -292,7 +327,7 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 1rem;
     width: auto;
-    min-width: 300px;
+    min-width: 450px;
     max-width: fit-content;
     transition: all 0.2s ease;
     border: 1px solid #f0f0f0;
@@ -409,7 +444,7 @@
     }
     
     .contributor-card {
-        min-width: 280px;
+        min-width: 380px;
         max-width: 100%;
     }
     
@@ -430,7 +465,7 @@
     }
     
     .contributor-card {
-        min-width: 250px;
+        min-width: 320px;
         padding: 0.75rem;
     }
     

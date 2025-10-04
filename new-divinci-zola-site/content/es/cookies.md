@@ -76,7 +76,7 @@ Podemos actualizar esta Política de Cookies de vez en cuando. Cualquier cambio 
 
 Si tiene preguntas sobre nuestro uso de cookies, contáctenos:
 - **Email**: privacy@divinci.ai
-- **Dirección**: Divinci AI, 123 Innovation Drive, Tech City, TC 12345
+- **Dirección**: Divinci AI, 312 Arivona Ave, Santa Monica, CA 90401
 
 ---
 

@@ -24,12 +24,17 @@ feature_category = "data-management"
 
 .benefits-circle-container {
     position: relative;
-    width: 900px;
-    height: 900px;
+    width: min(900px, 90vw);
+    height: 1111px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Add more padding to the benefits section to accommodate the full circle */
+.feature-benefits {
+    padding: 8rem 0 12rem 0;
 }
 
 .center-benefit {
@@ -108,7 +113,7 @@ feature_category = "data-management"
     top: 5px;
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #16214c, #254284);
+    background: linear-gradient(135deg, #1e3a2b, #2d3c34);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -181,27 +186,27 @@ feature_category = "data-management"
     display: inline-block;
     padding: 0.5rem 1rem;
     background: rgba(107, 70, 193, 0.1);
-    color: #16214c;
+    color: #1e3a2b;
     border-radius: 20px;
     font-size: 0.9rem;
     margin: 0.25rem;
 }
 
 .text-link {
-    color: #16214c;
+    color: #1e3a2b;
     text-decoration: none;
     font-weight: 600;
 }
 
 .text-link:hover {
-    color: #254284;
+    color: #2d3c34;
     text-decoration: underline;
 }
 
 .secondary-button {
     background-color: transparent;
-    color: #16214c;
-    border: 2px solid #16214c;
+    color: #1e3a2b;
+    border: 2px solid #1e3a2b;
     padding: 12px 24px;
     border-radius: 8px;
     text-decoration: none;
@@ -210,7 +215,7 @@ feature_category = "data-management"
 }
 
 .secondary-button:hover {
-    background-color: #16214c;
+    background-color: #1e3a2b;
     color: white;
 }
 
@@ -224,7 +229,7 @@ feature_category = "data-management"
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
-    color: #16214c;
+    color: #1e3a2b;
 }
 
 .metric-label {
@@ -235,7 +240,7 @@ feature_category = "data-management"
 }
 
 .testimonial {
-    border-left: 4px solid #16214c;
+    border-left: 4px solid #1e3a2b;
     padding-left: 2rem;
     margin: 2rem 0;
     font-style: italic;
@@ -245,7 +250,7 @@ feature_category = "data-management"
     display: block;
     margin-top: 1rem;
     font-weight: 600;
-    color: #254284;
+    color: #2d3c34;
 }
 </style>
 
@@ -374,7 +379,7 @@ feature_category = "data-management"
 
 <!-- Tab Interface for Details -->
 <div class="details-tabs" role="tablist" aria-label="AutoRAG capabilities" style="display: flex; justify-content: center; margin-bottom: 3rem; border-bottom: 2px solid rgba(92, 226, 231, 0.2);">
-    <button id="tab1-trigger" class="tab-trigger" role="tab" aria-selected="true" aria-controls="tab1-content" style="background: none; border: none; color: #16214c; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid #5ce2e7; transition: all 0.3s ease;">Data Creation Process</button>
+    <button id="tab1-trigger" class="tab-trigger" role="tab" aria-selected="true" aria-controls="tab1-content" style="background: none; border: none; color: #1e3a2b; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid #5ce2e7; transition: all 0.3s ease;">Data Creation Process</button>
     <button id="tab2-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab2-content" style="background: none; border: none; color: #718096; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">Retrieval Evaluation</button>
     <button id="tab3-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab3-content" style="background: none; border: none; color: #718096; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">Generation Optimization</button>
 </div>
@@ -382,7 +387,7 @@ feature_category = "data-management"
 <div class="tab-content-container">
 <!-- Tab 1 Content -->
 <div id="tab1-content" role="tabpanel" aria-labelledby="tab1-trigger" class="tab-content active">
-<h3 style="color: #16214c; font-size: 1.5rem; margin-bottom: 1rem;">Smart Document Processing & Data Creation</h3>
+<h3 style="color: #1e3a2b; font-size: 1.5rem; margin-bottom: 1rem;">Smart Document Processing & Data Creation</h3>
 <p style="font-size: 1.125rem; margin-bottom: 2rem; color: #4a5568;">AutoRAG's document processing pipeline transforms your raw content into optimized datasets through a comprehensive four-stage process: document parsing, intelligent chunking, corpus creation, and automated QA dataset generation.</p>
 
 <!-- Document Processing Visualization -->
@@ -400,7 +405,7 @@ feature_category = "data-management"
 <i class="fas fa-file-alt"></i>
 </div>
 <div>
-<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Advanced Parsing Modules</h4>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1e3a2b;">Advanced Parsing Modules</h4>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Multiple parsing methods for different document types including PDFMiner, PyPDF, Unstructured, and custom parsers for specialized formats</p>
 </div>
 </div>
@@ -411,7 +416,7 @@ feature_category = "data-management"
 <i class="fas fa-cut"></i>
 </div>
 <div>
-<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Intelligent Chunking</h4>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1e3a2b;">Intelligent Chunking</h4>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Adaptive chunking strategies that preserve context while optimizing for retrieval accuracy</p>
 </div>
 </div>
@@ -421,7 +426,7 @@ feature_category = "data-management"
 
 <!-- Tab 2 Content -->
 <div id="tab2-content" role="tabpanel" aria-labelledby="tab2-trigger" class="tab-content" hidden>
-<h3 style="color: #16214c; font-size: 1.5rem; margin-bottom: 1rem;">Comprehensive Retrieval Evaluation</h3>
+<h3 style="color: #1e3a2b; font-size: 1.5rem; margin-bottom: 1rem;">Comprehensive Retrieval Evaluation</h3>
 <p style="font-size: 1.125rem; margin-bottom: 2rem; color: #4a5568;">Our AutoRAG system automatically evaluates multiple retrieval strategies to find the optimal approach for your specific data and use case.</p>
 
 <!-- Vector Embedding Visualization -->
@@ -436,7 +441,7 @@ feature_category = "data-management"
 <i class="fas fa-search"></i>
 </div>
 <div>
-<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Multiple Retrieval Methods</h4>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1e3a2b;">Multiple Retrieval Methods</h4>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Evaluates various retrieval approaches including BM25, dense retrievers, hybrid search, and reranking strategies</p>
 </div>
 </div>
@@ -447,7 +452,7 @@ feature_category = "data-management"
 <i class="fas fa-database"></i>
 </div>
 <div>
-<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Vector Database Integration</h4>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1e3a2b;">Vector Database Integration</h4>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Supports multiple vector databases and embedding models to find the optimal combination</p>
 </div>
 </div>
@@ -457,7 +462,7 @@ feature_category = "data-management"
 
 <!-- Tab 3 Content -->
 <div id="tab3-content" role="tabpanel" aria-labelledby="tab3-trigger" class="tab-content" hidden>
-<h3 style="color: #16214c; font-size: 1.5rem; margin-bottom: 1rem;">Generation Optimization & Evaluation</h3>
+<h3 style="color: #1e3a2b; font-size: 1.5rem; margin-bottom: 1rem;">Generation Optimization & Evaluation</h3>
 <p style="font-size: 1.125rem; margin-bottom: 2rem; color: #4a5568;">AutoRAG's advanced optimization system evaluates multiple generation strategies to find the optimal configuration for your specific data and use case.</p>
 
 <!-- Retrieval Optimization Visualization -->
@@ -472,7 +477,7 @@ feature_category = "data-management"
 <i class="fas fa-cogs"></i>
 </div>
 <div>
-<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Generation Optimization</h4>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1e3a2b;">Generation Optimization</h4>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Automatically optimizes prompts and generation parameters for your specific use case</p>
 </div>
 </div>
@@ -483,7 +488,7 @@ feature_category = "data-management"
 <i class="fas fa-check-circle"></i>
 </div>
 <div>
-<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #16214c;">Comprehensive Metrics</h4>
+<h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1e3a2b;">Comprehensive Metrics</h4>
 <p style="font-size: 14px; line-height: 1.5; margin: 0;">Evaluates performance using precision, recall, F1, MRR, NDCG, and hit rate metrics</p>
 </div>
 </div>
@@ -568,7 +573,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set clicked tab as selected
     target.setAttribute('aria-selected', 'true');
-    target.style.color = '#16214c';
+    target.style.color = '#1e3a2b';
     target.style.borderBottomColor = '#5ce2e7';
     
     // Show the associated tabpanel
@@ -644,12 +649,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
 /* Tab styling */
 .tab-trigger:hover {
-    color: #16214c !important;
+    color: #1e3a2b !important;
     border-bottom-color: rgba(92, 226, 231, 0.5) !important;
 }
 
 .tab-trigger[aria-selected="true"] {
-    color: #16214c !important;
+    color: #1e3a2b !important;
     border-bottom-color: #5ce2e7 !important;
 }
 
@@ -725,8 +730,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>
 
 <div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(92, 226, 231, 0.2); margin-bottom: 3rem;">
-<h3 style="color: #16214c; font-size: 2rem; margin-bottom: 1rem;">Global Financial Services Firm</h3>
-<p style="font-size: 1.25rem; color: #254284; margin-bottom: 2rem; font-weight: 600;">87% reduction in AI hallucinations while handling 15,000+ client queries daily</p>
+<h3 style="color: #1e3a2b; font-size: 2rem; margin-bottom: 1rem;">Global Financial Services Firm</h3>
+<p style="font-size: 1.25rem; color: #2d3c34; margin-bottom: 2rem; font-weight: 600;">87% reduction in AI hallucinations while handling 15,000+ client queries daily</p>
 <p style="margin-bottom: 2rem;">A leading financial services firm needed to incorporate 200,000+ regulatory documents and internal policies into their client-facing AI assistant. Manual RAG implementation was estimated at 8+ months. Using AutoRAG, they completed the integration in 3 weeks and achieved unprecedented accuracy for regulatory compliance questions.</p>
 
 <blockquote class="testimonial">
@@ -780,10 +785,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="related-feature-card">
 <div style="margin-bottom: 1rem;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
-<circle cx="12" cy="12" r="11" fill="none" stroke="#16214c" stroke-width="1" opacity="0.2"/>
-<path d="M7,12 H17 M7,8 H17 M7,16 H13" stroke="#16214c" stroke-width="2" stroke-linecap="round"/>
-<circle cx="17" cy="16" r="3" fill="none" stroke="#254284" stroke-width="2"/>
-<path d="M17,14 L17,18 M15,16 L19,16" stroke="#254284" stroke-width="2" stroke-linecap="round"/>
+<circle cx="12" cy="12" r="11" fill="none" stroke="#1e3a2b" stroke-width="1" opacity="0.2"/>
+<path d="M7,12 H17 M7,8 H17 M7,16 H13" stroke="#1e3a2b" stroke-width="2" stroke-linecap="round"/>
+<circle cx="17" cy="16" r="3" fill="none" stroke="#2d3c34" stroke-width="2"/>
+<path d="M17,14 L17,18 M15,16 L19,16" stroke="#2d3c34" stroke-width="2" stroke-linecap="round"/>
 </svg>
 </div>
 <h3>Knowledge Base Integration</h3>
@@ -794,7 +799,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="related-feature-card">
 <div style="margin-bottom: 1rem;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
-<circle cx="12" cy="12" r="11" fill="none" stroke="#16214c" stroke-width="1" opacity="0.2"/>
+<circle cx="12" cy="12" r="11" fill="none" stroke="#1e3a2b" stroke-width="1" opacity="0.2"/>
 <rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="#4a7c8a" stroke-width="2"/>
 <path d="M9,12 L11,14 L15,10" stroke="#4a7c8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
@@ -807,9 +812,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="related-feature-card">
 <div style="margin-bottom: 1rem;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
-<circle cx="12" cy="12" r="11" fill="none" stroke="#16214c" stroke-width="1" opacity="0.2"/>
-<circle cx="12" cy="12" r="5" fill="none" stroke="#254284" stroke-width="2"/>
-<path d="M12,7 L12,5 M12,19 L12,17 M7,12 L5,12 M19,12 L17,12 M16.5,7.5 L18,6 M7.5,16.5 L6,18 M16.5,16.5 L18,18 M7.5,7.5 L6,6" stroke="#254284" stroke-width="2" stroke-linecap="round"/>
+<circle cx="12" cy="12" r="11" fill="none" stroke="#1e3a2b" stroke-width="1" opacity="0.2"/>
+<circle cx="12" cy="12" r="5" fill="none" stroke="#2d3c34" stroke-width="2"/>
+<path d="M12,7 L12,5 M12,19 L12,17 M7,12 L5,12 M19,12 L17,12 M16.5,7.5 L18,6 M7.5,16.5 L6,18 M16.5,16.5 L18,18 M7.5,7.5 L6,6" stroke="#2d3c34" stroke-width="2" stroke-linecap="round"/>
 </svg>
 </div>
 <h3>Release Cycle Management</h3>
@@ -891,8 +896,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(92, 226, 231, 0.1)); padding: 4rem 0;">
 <div class="container" style="text-align: center;">
-<h2 style="font-size: 2.5rem; color: #16214c; margin-bottom: 1rem;">Ready to Get Started?</h2>
-<p style="font-size: 1.25rem; margin-bottom: 2rem; color: #254284;">Transform your AI applications with AutoRAG's comprehensive solution.</p>
+<h2 style="font-size: 2.5rem; color: #1e3a2b; margin-bottom: 1rem;">Ready to Get Started?</h2>
+<p style="font-size: 1.25rem; margin-bottom: 2rem; color: #2d3c34;">Transform your AI applications with AutoRAG's comprehensive solution.</p>
 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
 <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="secondary-button" target="_blank">Request Demo</a>
 <a href="https://docs.divinci.ai/autorag" class="text-link" style="padding: 12px 24px; border: 2px solid transparent;">View Documentation</a>

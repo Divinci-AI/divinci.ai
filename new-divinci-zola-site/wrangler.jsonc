@@ -15,6 +15,11 @@
   "routes": [
     { "pattern": "divinci.ai/*", "zone_name": "divinci.ai" }
   ],
+  "send_email": [
+    {
+      "name": "CONTACT_EMAIL"
+    }
+  ],
   "workers_dev": true,
   "preview_urls": true,
   "placement": {

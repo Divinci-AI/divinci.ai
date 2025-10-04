@@ -93,7 +93,13 @@
         "title": "Évolutivité",
         "description": "Évoluez des petites équipes aux organisations d'entreprise avec une infrastructure qui évolue automatiquement."
       }
-    }
+    },
+    "journal_title": "Journal de Léonard",
+    "autorag": {
+      "title": "AutoRAG"
+    },
+    "qa_title": "Assurance Qualité",
+    "release_management": "Gestion des Versions"
   },
   "team": {
     "title": "Rencontrez notre équipe",
@@ -107,7 +113,11 @@
       "head_product": "Directeur Produit",
       "senior_data_scientist": "Scientifique de Données Senior",
       "ux_ui_designer": "Conceptrice UX/UI",
-      "software_engineer": "Ingénieur Logiciel"
+      "software_engineer": "Ingénieur Logiciel",
+      "cpo": "Directeur Produit",
+      "coo": "Directeur des Opérations",
+      "data_scientist": "Data Scientist",
+      "ai_safety_ethics_advisor": "Conseiller en Éthique et Sécurité IA"
     }
   },
   "signup": {
@@ -144,7 +154,10 @@
           "features": "Fonctionnalités",
           "pricing": "Tarification",
           "roadmap": "Feuille de route",
-          "changelog": "Journal des modifications"
+          "changelog": "Journal des modifications",
+          "autorag": "AutoRAG",
+          "quality_assurance": "Assurance Qualité",
+          "release_management": "Gestion des Versions"
         }
       },
       "resources": {
@@ -153,7 +166,8 @@
           "documentation": "Documentation",
           "blog": "Blog",
           "tutorials": "Tutoriels",
-          "api": "API"
+          "api": "API",
+          "support": "Support"
         }
       },
       "company": {
@@ -181,8 +195,16 @@
         "sitemap": "Plan du site",
         "accessibility": "Accessibilité",
         "cookies": "Politique des cookies"
-      }
-    }
+      },
+      "privacy_settings": "Paramètres de Confidentialité",
+      "cookie_policy": "Politique de Cookies",
+      "cookie_preferences": "Préférences de Cookies"
+    },
+    "api": "API",
+    "support": "Support",
+    "privacy_settings": "Paramètres de Confidentialité",
+    "cookie_preferences": "Préférences de Cookies",
+    "cookie_policy": "Politique de Cookies"
   },
   "support": {
     "title": "Centre de Support",
@@ -192,7 +214,7 @@
       "title": "Centre de Support",
       "menu": {
         "getting_started": "Premiers Pas",
-        "implementation": "Implémentation", 
+        "implementation": "Implémentation",
         "troubleshooting": "Dépannage",
         "api_docs": "Documentation API",
         "billing": "Facturation",
@@ -320,6 +342,116 @@
       "ko": "한국어",
       "nl": "Nederlands",
       "hi": "हिन्दी"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Contactez notre équipe",
+    "get_in_touch": "ENTRER EN CONTACT",
+    "email_specialists": {
+      "title": "Envoyez un e-mail à nos spécialistes",
+      "description": "Recevez des réponses détaillées et réfléchies à vos questions techniques et commerciales.",
+      "email": "Planifier une Démo"
+    },
+    "schedule_demo": "Planifier une Démo",
+    "book_demo": "Réserver une démo en direct",
+    "demo_availability": "Disponible pour des démos personnalisées de 30 minutes pour vous montrer comment fonctionne Divinci AI.",
+    "speak_consultant": {
+      "title": "Réserver une démo en direct",
+      "description": "Disponible pour des démos personnalisées de 30 minutes pour vous montrer comment fonctionne Divinci AI.",
+      "phone": "Réserver une Démo"
+    }
+  },
+  "expert_answers": {
+    "title": "Réponses d'Experts",
+    "subtitle": "Conseils de spécialistes",
+    "description": "Trouvez des informations complètes sur la gestion des versions et l'assurance qualité de notre plateforme pour les grands modèles de langage. Explorez des réponses détaillées et professionnelles à vos questions les plus pressantes.",
+    "faqs": {
+      "model_reliability": {
+        "question": "Comment garantissez-vous la fiabilité du modèle ?",
+        "answer": "Nous implémentons un processus de validation multicouche, combinant des tests automatisés de régression, de performance et de sécurité avec des revues manuelles d'experts. Chaque version de modèle est rigoureusement évaluée pour s'assurer qu'elle répond systématiquement aux normes de niveau entreprise pour la précision, la stabilité et la conformité."
+      },
+      "language_models": {
+        "question": "Quels modèles de langage sont compatibles ?",
+        "answer": "Notre plateforme prend en charge un large spectre de grands modèles de langage, des architectures open source aux architectures propriétaires. L'intégration flexible permet un déploiement transparent dans divers cadres et environnements d'entreprise, garantissant l'adaptabilité aux besoins commerciaux en évolution."
+      },
+      "quality_assurance": {
+        "question": "Comment l'assurance qualité continue est-elle obtenue ?",
+        "answer": "Nous maintenons la qualité grâce à une surveillance continue, des audits programmés et un suivi des performances en temps réel. En analysant les retours des utilisateurs et les risques émergents, nous affinons proactivement les modèles et processus pour maintenir des références de qualité strictes dans le temps."
+      },
+      "workflow_integration": {
+        "question": "La plateforme s'adapte-t-elle aux flux de travail existants ?",
+        "answer": "Notre solution est conçue pour une intégration transparente avec les systèmes d'entreprise. Des API robustes et des options configurables permettent un alignement sans effort avec vos pipelines actuels de gestion des versions et de développement, minimisant les perturbations et maximisant l'efficacité."
+      }
+    },
+    "view_complete_list": "Voir la liste complète de compatibilité des modèles"
+  },
+  "press": {
+    "title": "Ressources de Presse",
+    "subtitle": "Trouvez les dernières actualités, la couverture médiatique et les ressources concernant Divinci AI. Pour les demandes de presse, veuillez contacter notre équipe de relations avec les médias.",
+    "contact": {
+      "title": "Contact Presse",
+      "email": "press@divinci.ai",
+      "phone": "+1 (800) 555-1234",
+      "media_relations": "Sierra Hooshiari, COO - Directrice des Opérations",
+      "description": "Notre équipe de relations avec les médias est disponible pour aider les journalistes, analystes de l'industrie et créateurs de contenu avec des informations, interviews et ressources sur Divinci AI et notre perspective sur l'industrie de l'IA."
+    },
+    "releases": {
+      "title": "Communiqués de Presse",
+      "items": {
+        "platform_launch": {
+          "date": "1er mai 2025",
+          "title": "Divinci AI Lance une Plateforme pour Démocratiser les Solutions d'IA Personnalisées pour les Entreprises",
+          "excerpt": "Divinci AI a annoncé aujourd'hui la disponibilité générale de sa plateforme conçue pour rendre les solutions d'IA personnalisées accessibles aux entreprises de toutes tailles, sans nécessiter d'expertise spécialisée en apprentissage automatique."
+        },
+        "autorag_launch": {
+          "date": "15 avril 2025",
+          "title": "Divinci AI Dévoile AutoRAG, Rendant la Génération Augmentée par Récupération Accessible à Tous",
+          "excerpt": "La nouvelle fonctionnalité AutoRAG automatise le processus complexe d'implémentation des systèmes de Génération Augmentée par Récupération, permettant aux entreprises de créer facilement une IA qui exploite leurs connaissances propriétaires."
+        },
+        "standards_hub": {
+          "date": "10 mars 2025",
+          "title": "Divinci AI Rejoint le Hub des Normes d'IA pour Promouvoir le Développement Responsable de l'IA",
+          "excerpt": "Dans le cadre de son engagement envers l'IA éthique, Divinci AI a rejoint le Hub des Normes d'IA pour contribuer au développement de normes pour une intelligence artificielle sécurisée, responsable et transparente."
+        }
+      }
+    },
+    "coverage": {
+      "title": "Couverture Médiatique",
+      "items": {
+        "techcrunch": {
+          "date": "3 mai 2025",
+          "title": "Divinci AI Rend les Solutions d'IA Personnalisées Accessibles aux PME",
+          "excerpt": "TechCrunch examine la nouvelle plateforme de Divinci AI et comment elle apporte des capacités d'IA de niveau entreprise aux petites et moyennes entreprises."
+        },
+        "venturebeat": {
+          "date": "18 avril 2025",
+          "title": "Comment la Fonctionnalité AutoRAG de Divinci AI Change la Donne pour l'IA Basée sur les Documents",
+          "excerpt": "VentureBeat explore comment la technologie AutoRAG de Divinci AI simplifie le processus complexe d'implémentation des systèmes d'IA conscients des documents."
+        },
+        "forbes": {
+          "date": "15 mars 2025",
+          "title": "10 Startups d'IA à Surveiller en 2025 : Divinci AI est sur la Liste",
+          "excerpt": "Forbes inclut Divinci AI dans sa liste annuelle de startups d'IA prometteuses qui transforment la façon dont les entreprises implémentent les solutions d'intelligence artificielle."
+        }
+      }
+    },
+    "assets": {
+      "title": "Ressources de Marque",
+      "description": "Téléchargez les logos officiels de Divinci AI, les captures d'écran de produits et les photos des fondateurs pour usage médiatique. Toutes les ressources sont fournies en haute résolution et sont disponibles en plusieurs formats.",
+      "logos": "Logos",
+      "screenshots": "Captures d'Écran de Produits",
+      "team_photos": "Photos de l'Équipe",
+      "press_kit": {
+        "title": "Kit de Presse Complet",
+        "description": "Téléchargez notre kit de presse complet, qui comprend tous les logos, captures d'écran, photos de l'équipe, fiches techniques des produits et informations sur l'entreprise dans un seul package.",
+        "button": "Télécharger le Kit de Presse (ZIP, 25MB)"
+      }
+    },
+    "common": {
+      "read_more": "Lire la suite",
+      "read_article": "Lire l'article",
+      "download": "Télécharger"
     }
   }
 }

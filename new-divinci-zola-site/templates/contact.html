@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{%- set current_lang = page.lang | default(value="en") -%}
+{# current_lang is inherited from base template #}
 
 <!-- Include Header -->
 {% include "partials/header.html" %}
@@ -12,67 +12,76 @@
         <div class="container">
             <!-- Contact Header -->
             <div class="contact-header">
-                <h1 class="contact-title">Get in Touch</h1>
-                <p class="contact-subtitle">Have questions about our platform or need help getting started? We're here to help. Reach out to us through the form below or using our contact information.</p>
+                <h1 class="contact-title">{{ translations.contact.page_title | default(value="Get in Touch") }}</h1>
+                <p class="contact-subtitle">{{ translations.contact.page_subtitle | default(value="Have questions about our platform or need help getting started? We're here to help. Reach out to us through the form below or using our contact information.") }}</p>
             </div>
 
             <!-- Contact Wrapper -->
             <div class="contact-wrapper">
                 <!-- Contact Form Container -->
                 <div class="contact-form-container">
-                    <h2>Send Us a Message</h2>
+                    <h2>{{ translations.contact.form.title | default(value="Send Us a Message") }}</h2>
                     <div class="sacred-pattern"></div>
 
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <label for="name" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                            <label for="name" class="form-label">{{ translations.contact.form.name_label | default(value="Your Name") }}</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ translations.contact.form.name_placeholder | default(value="Enter your name") }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                            <label for="email" class="form-label">{{ translations.contact.form.email_label | default(value="Email Address") }}</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="{{ translations.contact.form.email_placeholder | default(value="Enter your email") }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="company" class="form-label">Company (Optional)</label>
-                            <input type="text" class="form-control" id="company" name="company" placeholder="Your company name">
+                            <label for="company" class="form-label">{{ translations.contact.form.company_label | default(value="Company (Optional)") }}</label>
+                            <input type="text" class="form-control" id="company" name="company" placeholder="{{ translations.contact.form.company_placeholder | default(value="Your company name") }}">
                         </div>
 
                         <div class="form-group">
-                            <label for="inquiryType" class="form-label">Inquiry Type</label>
+                            <label for="inquiryType" class="form-label">{{ translations.contact.form.inquiry_type_label | default(value="Inquiry Type") }}</label>
                             <select class="form-select" id="inquiryType" name="inquiryType" required>
-                                <option value="" selected disabled>Select an option</option>
-                                <option value="general">General Question</option>
-                                <option value="sales">Sales Inquiry</option>
-                                <option value="demo">Request a Demo</option>
-                                <option value="support">Technical Support</option>
-                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="" selected disabled>{{ translations.contact.form.inquiry_type_placeholder | default(value="Select an option") }}</option>
+                                <option value="general">{{ translations.contact.form.inquiry_options.general | default(value="General Question") }}</option>
+                                <option value="sales">{{ translations.contact.form.inquiry_options.sales | default(value="Sales Inquiry") }}</option>
+                                <option value="demo">{{ translations.contact.form.inquiry_options.demo | default(value="Request a Demo") }}</option>
+                                <option value="support">{{ translations.contact.form.inquiry_options.support | default(value="Technical Support") }}</option>
+                                <option value="partnership">{{ translations.contact.form.inquiry_options.partnership | default(value="Partnership Opportunity") }}</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="message" class="form-label">Your Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                            <label for="message" class="form-label">{{ translations.contact.form.message_label | default(value="Your Message") }}</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="{{ translations.contact.form.message_placeholder | default(value="How can we help you?") }}" required></textarea>
                         </div>
 
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="privacy" name="privacy" required>
                             <label class="form-check-label" for="privacy">
-                                I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a> and consent to the processing of my personal data.
+                                {% if translations.contact.form.privacy_label %}
+                                    {{ translations.contact.form.privacy_label | safe }}
+                                {% else %}
+                                    I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a> and consent to the processing of my personal data.
+                                {% endif %}
                             </label>
                         </div>
 
-                        <button type="submit" class="contact-submit-btn">
-                            <i class="fas fa-paper-plane"></i> Send Message
+                        <!-- Turnstile Anti-Spam Protection -->
+                        <div class="form-group">
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAABrD5FFS3p4pusZl" data-theme="light" data-size="invisible" data-callback="turnstileCallback"></div>
+                        </div>
+
+                        <button type="submit" class="contact-submit-btn" id="submitBtn" disabled>
+                            <i class="fas fa-paper-plane"></i> {{ translations.contact.form.submit_button | default(value="Send Message") }}
                         </button>
 
                         <div class="form-response success" id="formSuccess">
-                            <i class="fas fa-check-circle"></i> Thank you for your message! We'll get back to you as soon as possible.
+                            <i class="fas fa-check-circle"></i> {{ translations.contact.form.success_message | default(value="Thank you for your message! We'll get back to you as soon as possible.") }}
                         </div>
 
                         <div class="form-response error" id="formError">
-                            <i class="fas fa-exclamation-circle"></i> Oops! Something went wrong. Please try again later or contact us directly.
+                            <i class="fas fa-exclamation-circle"></i> {{ translations.contact.form.error_message | default(value="Oops! Something went wrong. Please try again later or contact us directly.") }}
                         </div>
                     </form>
                 </div>
@@ -84,8 +93,8 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-info-content">
-                            <h3>Email Us</h3>
-                            <p><a href="mailto:hello@divinci.ai">hello@divinci.ai</a></p>
+                            <h3>{{ translations.contact.info.email.title | default(value="Email Us") }}</h3>
+                            <p><a href="mailto:hello@divinci.ai">{{ translations.contact.info.email.value | default(value="hello@divinci.ai") }}</a></p>
                         </div>
                     </div>
 
@@ -94,8 +103,8 @@
                             <i class="fas fa-phone-alt"></i>
                         </div>
                         <div class="contact-info-content">
-                            <h3>Call Us</h3>
-                            <p><a href="tel:+18005551234">+1 (800) 555-1234</a></p>
+                            <h3>{{ translations.contact.info.phone.title | default(value="Call Us") }}</h3>
+                            <p><a href="tel:+18005551234">{{ translations.contact.info.phone.value | default(value="+1 (800) 555-1234") }}</a></p>
                         </div>
                     </div>
 
@@ -104,8 +113,8 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="contact-info-content">
-                            <h3>Visit Us</h3>
-                            <p>312 Arizona Ave<br>Santa Monica, California 90401</p>
+                            <h3>{{ translations.contact.info.address.title | default(value="Visit Us") }}</h3>
+                            <p>{{ translations.contact.info.address.value | default(value="312 Arizona Ave<br>Santa Monica, California 90401") | safe }}</p>
                         </div>
                     </div>
 
@@ -114,8 +123,8 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="contact-info-content">
-                            <h3>Business Hours</h3>
-                            <p>Monday-Friday: 9am-6pm PST<br>Weekend: Closed</p>
+                            <h3>{{ translations.contact.info.hours.title | default(value="Business Hours") }}</h3>
+                            <p>{{ translations.contact.info.hours.value | default(value="Monday-Friday: 9am-6pm PST<br>Weekend: Closed") | safe }}</p>
                         </div>
                     </div>
                 </div>
@@ -126,7 +135,7 @@
                 <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=312+Arizona+Ave,+Santa+Monica,+CA+90401&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8" title="Divinci AI Office Location"></iframe>
                 <div class="map-overlay" id="mapOverlay">
                     <div class="map-message">
-                        <i class="fas fa-map-marked-alt"></i> Click to interact with the map
+                        <i class="fas fa-map-marked-alt"></i> {{ translations.contact.map.click_message | default(value="Click to interact with the map") }}
                     </div>
                 </div>
             </div>
@@ -557,38 +566,100 @@
 }
 </style>
 
+<!-- Turnstile Script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <script>
+// Turnstile callback - enables submit button when verified
+let turnstileToken = '';
+function turnstileCallback(token) {
+    turnstileToken = token;
+    document.getElementById('submitBtn').disabled = false;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Form submission
     const contactForm = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
     const formError = document.getElementById('formError');
 
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        // In a real implementation, this would send the form data to a server
-        // For demo purposes, we'll just show the success message
+        // Hide any existing messages
+        formSuccess.style.display = 'none';
+        formError.style.display = 'none';
 
-        // Simulate form submission with a short delay
-        setTimeout(function() {
-            // Hide any existing messages
-            formError.style.display = 'none';
+        // Check if Turnstile token exists
+        if (!turnstileToken) {
+            const errorElement = document.getElementById('formError');
+            errorElement.textContent = 'Please complete the security verification.';
+            errorElement.style.display = 'block';
+            return;
+        }
 
-            // Show success message
-            formSuccess.style.display = 'block';
+        // Get form data
+        const formData = new FormData(contactForm);
+        const submitData = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message'),
+            priority: formData.get('priority'),
+            category: formData.get('category'),
+            'cf-turnstile-response': turnstileToken
+        };
 
-            // Reset form
-            contactForm.reset();
+        // Show loading state
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitButton.disabled = true;
 
-            // Scroll to the success message
-            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        try {
+            // Send to API
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(submitData)
+            });
 
-            // Hide success message after 5 seconds
-            setTimeout(function() {
-                formSuccess.style.display = 'none';
-            }, 5000);
-        }, 1000);
+            const result = await response.json();
+
+            if (result.success) {
+                // Show success message
+                formSuccess.style.display = 'block';
+                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Hide success message after 10 seconds
+                setTimeout(function() {
+                    formSuccess.style.display = 'none';
+                }, 10000);
+            } else {
+                // Show error message
+                const errorElement = document.getElementById('formError');
+                errorElement.textContent = result.error || 'An error occurred. Please try again.';
+                errorElement.style.display = 'block';
+                errorElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            
+            // Show error message
+            const errorElement = document.getElementById('formError');
+            errorElement.textContent = 'Network error. Please check your connection and try again.';
+            errorElement.style.display = 'block';
+            errorElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } finally {
+            // Restore button state
+            submitButton.innerHTML = originalButtonText;
+            submitButton.disabled = false;
+        }
     });
 });
 </script>

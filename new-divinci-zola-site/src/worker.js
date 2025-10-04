@@ -1,7 +1,10 @@
 /**
  * Divinci AI Cloudflare Worker
- * Serves static Zola site with enhanced features
+ * Serves static Zola site with enhanced features and email handling
  */
+
+import { EmailMessage } from 'cloudflare:email';
+import { createMimeMessage } from 'mimetext';
 
 export default {
   async fetch(request, env, ctx) {
@@ -32,6 +35,11 @@ Sitemap: ${url.origin}/sitemap.xml`, {
     // Handle sitemap.xml redirect
     if (url.pathname === '/sitemap.xml') {
       return Response.redirect(`${url.origin}/sitemap/index.html`, 301);
+    }
+
+    // Handle contact form API
+    if (url.pathname === '/api/contact') {
+      return handleContactForm(request, env);
     }
 
     // Language redirect logic - redirect root to /en/ for consistency
@@ -98,3 +106,227 @@ Sitemap: ${url.origin}/sitemap.xml`, {
     }
   }
 };
+
+/**
+ * Handle contact form submissions
+ */
+async function handleContactForm(request, env) {
+  // Handle CORS preflight requests
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Max-Age': '86400',
+      },
+    });
+  }
+
+  // Only handle POST requests
+  if (request.method !== 'POST') {
+    return new Response('Method Not Allowed', { status: 405 });
+  }
+
+  try {
+    // Parse form data
+    const formData = await request.json();
+    
+    // Validate required fields
+    const requiredFields = ['name', 'email', 'subject', 'message'];
+    const missingFields = requiredFields.filter(field => !formData[field] || formData[field].trim() === '');
+    
+    if (missingFields.length > 0) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Missing required fields: ' + missingFields.join(', ') 
+        }),
+        { 
+          status: 400,
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        }
+      );
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Invalid email address' 
+        }),
+        { 
+          status: 400,
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        }
+      );
+    }
+
+    // Get client information
+    const clientIP = request.headers.get('CF-Connecting-IP') || '';
+    const userAgent = request.headers.get('User-Agent') || '';
+
+    // Basic rate limiting (5 submissions per IP per hour)
+    const rateLimitKey = `rate_limit:${clientIP}:${Math.floor(Date.now() / (1000 * 60 * 60))}`;
+    const currentCount = parseInt(await env.KV?.get(rateLimitKey) || '0');
+    if (currentCount >= 5) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Too many requests. Please try again later.' 
+        }),
+        { 
+          status: 429,
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        }
+      );
+    }
+
+    // Verify Turnstile token
+    const turnstileToken = formData['cf-turnstile-response'];
+    if (!turnstileToken) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Security verification required' 
+        }),
+        { 
+          status: 400,
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        }
+      );
+    }
+
+    // Verify the Turnstile token with Cloudflare
+    const turnstileVerifyData = new FormData();
+    turnstileVerifyData.append('secret', env.TURNSTILE_SECRET_KEY);
+    turnstileVerifyData.append('response', turnstileToken);
+    turnstileVerifyData.append('remoteip', clientIP);
+
+    const turnstileResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: turnstileVerifyData,
+    });
+
+    const turnstileResult = await turnstileResponse.json();
+    if (!turnstileResult.success) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Security verification failed. Please try again.' 
+        }),
+        { 
+          status: 400,
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        }
+      );
+    }
+    
+    // Create email content
+    const emailSubject = `Contact Form: ${formData.subject}`;
+    const emailBody = `
+New contact form submission from divinci.ai:
+
+Name: ${formData.name}
+Email: ${formData.email}
+Subject: ${formData.subject}
+Priority: ${formData.priority || 'Not specified'}
+Category: ${formData.category || 'Not specified'}
+
+Message:
+${formData.message}
+
+---
+Technical Details:
+IP: ${clientIP}
+User Agent: ${userAgent}
+Timestamp: ${new Date().toISOString()}
+    `.trim();
+
+    // Create MIME message
+    const msg = createMimeMessage();
+    msg.setSender({ 
+      name: 'Divinci AI Contact Form', 
+      addr: 'contact@divinci.net' 
+    });
+    msg.setRecipient('support@divinci.net');
+    msg.setSubject(emailSubject);
+    // Only set Reply-To if email looks valid (basic check)
+    if (formData.email && formData.email.includes('@') && formData.email.includes('.')) {
+      try {
+        msg.setHeader('Reply-To', formData.email);
+      } catch (e) {
+        console.log('Invalid Reply-To header, skipping:', formData.email);
+      }
+    }
+    msg.addMessage({
+      contentType: 'text/plain',
+      data: emailBody
+    });
+
+    // Create EmailMessage and send
+    const emailMessage = new EmailMessage(
+      'contact@divinci.net',
+      'support@divinci.net', 
+      msg.asRaw()
+    );
+
+    // Send email using Cloudflare Email Routing
+    await env.CONTACT_EMAIL.send(emailMessage);
+
+    // Update rate limit counter after successful submission
+    if (env.KV) {
+      await env.KV.put(rateLimitKey, (currentCount + 1).toString(), { expirationTtl: 3600 });
+    }
+
+    // Return success response
+    return new Response(
+      JSON.stringify({ 
+        success: true, 
+        message: 'Thank you! Your message has been sent successfully. We will get back to you within 24 hours.' 
+      }),
+      {
+        status: 200,
+        headers: { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
+      }
+    );
+
+  } catch (error) {
+    console.error('Email sending error:', error);
+    
+    return new Response(
+      JSON.stringify({ 
+        success: false, 
+        error: 'Failed to send message. Please try again later.' 
+      }),
+      {
+        status: 500,
+        headers: { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
+      }
+    );
+  }
+}

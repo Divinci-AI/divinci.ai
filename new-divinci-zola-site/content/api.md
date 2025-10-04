@@ -7,7 +7,7 @@ template = "feature.html"
 <style>
 /* API Page Styles */
 .api-hero {
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    background: linear-gradient(135deg, #2d3c34 0%, #1e3a2b 100%);
     color: white;
     padding: 6rem 0;
     position: relative;
@@ -22,7 +22,7 @@ template = "feature.html"
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    border: 2px solid rgba(92, 226, 231, 0.15);
+    border: 2px solid rgba(126, 141, 149, 0.15);
     opacity: 0.4;
     z-index: 0;
 }
@@ -35,7 +35,7 @@ template = "feature.html"
     width: 400px;
     height: 400px;
     border-radius: 50%;
-    border: 2px solid rgba(92, 226, 231, 0.15);
+    border: 2px solid rgba(126, 141, 149, 0.15);
     opacity: 0.3;
     z-index: 0;
 }
@@ -49,10 +49,11 @@ template = "feature.html"
 }
 
 .api-title {
+    font-family: 'Fraunces', serif;
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    background: linear-gradient(to right, #ffffff, #5ce2e7);
+    background: linear-gradient(90deg, #ffffff, #7e8d95);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -60,53 +61,11 @@ template = "feature.html"
 }
 
 .api-subtitle {
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 1.3rem;
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 2.5rem;
     line-height: 1.6;
-}
-
-.api-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.api-button {
-    display: inline-flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.api-button.primary {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-}
-
-.api-button.primary:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    color: white;
-}
-
-.api-button.secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.api-button.secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-3px);
-    color: white;
 }
 
 .api-section {
@@ -114,44 +73,23 @@ template = "feature.html"
     position: relative;
 }
 
-.api-section.dark-bg {
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
-    color: white;
-}
-
 .section-title {
+    font-family: 'Fraunces', serif;
     font-size: 2.5rem;
     font-weight: 700;
-    text-align: center;
+    color: #1e3a2b;
     margin-bottom: 2rem;
-    color: #16214c;
-}
-
-.api-section.dark-bg .section-title {
-    background: linear-gradient(to right, #ffffff, #5ce2e7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    display: inline-block;
-    width: 100%;
+    text-align: center;
 }
 
 .section-content {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 3rem;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 1.1rem;
     line-height: 1.7;
-    color: #444;
-}
-
-.section-content-light {
-    color: rgba(255, 255, 255, 0.9);
     text-align: center;
+    color: #2d3c34;
     max-width: 800px;
     margin: 0 auto 3rem;
-    font-size: 1.1rem;
-    line-height: 1.7;
 }
 
 .coming-soon {
@@ -161,18 +99,20 @@ template = "feature.html"
     text-align: center;
     margin-bottom: 4rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(92, 226, 231, 0.1);
+    border: 1px solid rgba(126, 141, 149, 0.1);
 }
 
 .coming-soon-title {
+    font-family: 'Fraunces', serif;
     font-size: 2rem;
     font-weight: 700;
-    color: #16214c;
+    color: #1e3a2b;
     margin-bottom: 1rem;
 }
 
 .coming-soon-message {
-    color: #444;
+    font-family: 'Source Sans 3', sans-serif;
+    color: #2d3c34;
     font-size: 1.1rem;
     line-height: 1.6;
     max-width: 600px;
@@ -180,21 +120,22 @@ template = "feature.html"
 }
 
 .notify-button {
+    font-family: 'Source Sans 3', sans-serif;
     display: inline-flex;
     align-items: center;
-    background: linear-gradient(135deg, #16214c, #254284);
-    color: white;
-    border: none;
-    border-radius: 50px;
     padding: 1rem 2rem;
-    font-weight: 600;
+    background: linear-gradient(135deg, #2d3c34, #1e3a2b);
+    color: white;
+    border-radius: 50px;
     text-decoration: none;
-    transition: all 0.3s ease;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
 }
 
 .notify-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(22, 33, 76, 0.3);
+    box-shadow: 0 10px 25px rgba(45, 60, 52, 0.3);
     color: white;
 }
 
@@ -202,304 +143,40 @@ template = "feature.html"
     margin-right: 0.75rem;
 }
 
-.api-overview {
-    background: white;
-    border-radius: 15px;
-    padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    margin-bottom: 3rem;
-    border: 1px solid rgba(92, 226, 231, 0.1);
-}
-
-.overview-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #16214c;
-    margin-bottom: 1.5rem;
-}
-
-.overview-description {
-    color: #444;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
-}
-
-.api-endpoints {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    margin-bottom: 3rem;
-    overflow: hidden;
-    border: 1px solid rgba(92, 226, 231, 0.1);
-}
-
-.endpoints-header {
-    background: #f8fafc;
-    padding: 1.5rem 2.5rem;
-    border-bottom: 1px solid #eaeaea;
-}
-
-.endpoints-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #16214c;
-    margin: 0;
-}
-
-.endpoints-content {
-    padding: 2rem 2.5rem;
-}
-
-.endpoint-category {
-    padding: 2rem 0;
-    border-bottom: 1px solid #eaeaea;
-}
-
-.endpoint-category:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.category-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #16214c;
-    margin-bottom: 1.5rem;
-}
-
-.endpoints-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.endpoint-item {
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
+/* Coming Soon Overlay for API Content */
+.api-content-wrapper {
     position: relative;
+    min-height: 400px;
+    margin-bottom: 8rem;
+    padding-bottom: 4rem;
 }
 
-.endpoint-item:last-child {
-    margin-bottom: 0;
+/* Position overlay at the top of the section */
+.api-content-wrapper::after {
+    content: "API Documentation Available Q3 2025" !important;
+    position: absolute !important;
+    top: 2rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) rotate(-8deg) !important;
+    width: 90% !important;
+    max-width: 600px !important;
+    padding: 2rem !important;
+    background: rgba(248, 244, 240, 0.92) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #1e3a2b !important;
+    text-align: center !important;
+    z-index: 1 !important; /* Lower z-index so it doesn't cover content */
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+    pointer-events: none !important;
 }
 
-.endpoint-item::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.5rem;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #5ce2e7;
-}
-
-.endpoint-method {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: white;
-    margin-right: 1rem;
-    min-width: 60px;
-    text-align: center;
-}
-
-.method-get { background-color: #4CAF50; }
-.method-post { background-color: #2196F3; }
-.method-put { background-color: #FF9800; }
-.method-delete { background-color: #F44336; }
-
-.endpoint-path {
-    font-family: 'Courier New', monospace;
-    color: #333;
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.endpoint-description {
-    color: #666;
-    font-size: 0.95rem;
-    margin-top: 0.5rem;
-}
-
-.code-example {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    margin-bottom: 3rem;
-    overflow: hidden;
-    border: 1px solid rgba(92, 226, 231, 0.1);
-}
-
-.code-tabs {
-    display: flex;
-    background: #f8fafc;
-    border-bottom: 1px solid #eaeaea;
-}
-
-.code-tab {
-    padding: 1rem 1.5rem;
-    cursor: pointer;
-    color: #666;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-    background: none;
-}
-
-.code-tab.active {
-    color: #16214c;
-    border-bottom: 2px solid #5ce2e7;
-    background: white;
-}
-
-.code-tab:hover {
-    color: #16214c;
-}
-
-.code-content {
-    position: relative;
-}
-
-.code-panel {
-    display: none;
-}
-
-.code-panel.active {
-    display: block;
-}
-
-.code-block {
-    background: #16214c;
-    color: white;
-    font-family: 'Courier New', monospace;
-    padding: 1.5rem;
-    margin: 0;
-    border-radius: 0;
-    line-height: 1.6;
-    overflow-x: auto;
-    white-space: pre;
-    font-size: 0.9rem;
-}
-
-.code-string { color: #5ce2e7; }
-.code-keyword { color: #ff79c6; }
-.code-function { color: #ffb86c; }
-.code-comment { color: #6272a4; }
-.code-property { color: #8be9fd; }
-.code-operator { color: #ff79c6; }
-.code-number { color: #bd93f9; }
-
-.sdk-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.sdk-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sdk-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.sdk-header {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sdk-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(92, 226, 231, 0.2);
-    border-radius: 8px;
-    font-size: 1.3rem;
-    color: #5ce2e7;
-}
-
-.sdk-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: white;
-}
-
-.sdk-content {
-    padding: 1.5rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.sdk-description {
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-    flex-grow: 1;
-}
-
-.sdk-meta {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.85rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.sdk-meta-item {
-    display: flex;
-    align-items: center;
-}
-
-.sdk-meta-item i {
-    margin-right: 0.5rem;
-    color: #5ce2e7;
-}
-
-.sdk-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: auto;
-}
-
-.sdk-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    font-size: 0.9rem;
-}
-
-.sdk-link:hover {
-    color: #5ce2e7;
-}
-
-/* Responsive Design */
+/* Mobile adjustments */
 @media screen and (max-width: 768px) {
     .api-title {
         font-size: 2.5rem;
@@ -513,32 +190,19 @@ template = "feature.html"
         font-size: 2rem;
     }
     
-    .code-tabs {
-        flex-wrap: wrap;
+    .api-content-wrapper {
+        margin-bottom: 4rem;
+        padding-bottom: 2rem;
+        min-height: 300px;
     }
     
-    .api-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .api-button {
-        width: 100%;
-        max-width: 250px;
-        text-align: center;
-        justify-content: center;
-    }
-    
-    .endpoints-content {
-        padding: 1.5rem;
-    }
-    
-    .endpoints-header {
-        padding: 1rem 1.5rem;
-    }
-    
-    .sdk-cards {
-        grid-template-columns: 1fr;
+    .api-content-wrapper::after {
+        font-size: 1.2rem !important;
+        transform: translateX(-50%) rotate(-5deg) !important;
+        width: 85% !important;
+        max-width: 400px !important;
+        padding: 1.5rem !important;
+        top: 1rem !important;
     }
 }
 
@@ -547,38 +211,25 @@ template = "feature.html"
         font-size: 2rem;
     }
     
-    .coming-soon, .api-overview, .api-endpoints, .code-example {
+    .coming-soon {
         margin: 0 1rem 3rem;
+        padding: 2rem;
     }
-}
-
-/* Coming Soon Overlay for API Content */
-.api-content-wrapper {
-    position: relative;
-}
-
-.api-content-wrapper::after {
-    content: "API Documentation Available Q3 2025" !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    background: rgba(248, 244, 240, 0.92) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 1.5rem !important;
-    font-weight: 700 !important;
-    color: #16214c !important;
-    text-align: center !important;
-    transform: rotate(-8deg) !important;
-    z-index: 999 !important;
-    border: none !important;
-    border-radius: 12px !important;
-    margin: 2rem !important;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
-    pointer-events: none !important;
+    
+    .api-content-wrapper {
+        min-height: 250px;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+    }
+    
+    .api-content-wrapper::after {
+        font-size: 1rem !important;
+        padding: 1rem !important;
+        width: 80% !important;
+        max-width: 280px !important;
+        transform: translateX(-50%) rotate(-3deg) !important;
+        bottom: 0.5rem !important;
+    }
 }
 </style>
 
@@ -587,12 +238,6 @@ template = "feature.html"
 <div class="api-hero-content">
 <h1 class="api-title">Complete API Documentation Coming Soon</h1>
 <p class="api-subtitle">Integrate powerful AI capabilities into your applications with our comprehensive API. Build custom AI solutions that leverage RAG systems, vector embeddings, and document processing.</p>
-<!-- API buttons disabled - coming soon
-<div class="api-buttons">
-<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="api-button primary" target="_blank">Get API Keys</a>
-<a href="/docs" class="api-button secondary">View Documentation</a>
-</div>
--->
 </div>
 </div>
 </section>
@@ -611,355 +256,4 @@ template = "feature.html"
     </div>
 </section>
 
-<!-- API Overview Section -->
-<section class="api-section" style="margin-top: 6rem;">
-    <div class="container">
-        <h2 class="section-title">API Overview</h2>
-        <p class="section-content">The Divinci AI API provides REST endpoints for integrating our AI capabilities into your applications. Here's a preview of what's available.</p>
-
-<div class="api-overview">
-<h3 class="overview-title">API Architecture</h3>
-<p class="overview-description">
-The Divinci AI API follows RESTful principles and uses JSON for request and response payloads. All API requests require authentication using API keys, which you can generate from your Divinci AI dashboard.
-</p>
-<p class="overview-description">
-Our API is organized around resources such as AI models, documents, embeddings, and projects. We use standard HTTP methods (GET, POST, PUT, DELETE) and return appropriate HTTP status codes to indicate success or failure.
-</p>
-<p class="overview-description">
-Rate limits apply to all API endpoints, with higher limits available on paid plans. Detailed error messages are provided for troubleshooting, and comprehensive logs are available in your dashboard.
-</p>
-</div>
-    </div>
-</section>
-
-<section class="api-section" style="background-color: #f9f9f9; margin-top: 6rem;">
-<div class="container">
-<div class="api-endpoints">
-<div class="endpoints-header">
-<h3 class="endpoints-title">Core Endpoints</h3>
-</div>
-<div class="endpoints-content">
-<div class="endpoint-category">
-<h4 class="category-title">Authentication</h4>
-<ul class="endpoints-list">
-<li class="endpoint-item">
-<span class="endpoint-method method-post">POST</span>
-<span class="endpoint-path">/v1/auth/token</span>
-<div class="endpoint-description">Generate an authentication token using your API key</div>
-</li>
-<li class="endpoint-item">
-<span class="endpoint-method method-delete">DELETE</span>
-<span class="endpoint-path">/v1/auth/token</span>
-<div class="endpoint-description">Revoke an authentication token</div>
-</li>
-</ul>
-</div>
-
-<div class="endpoint-category">
-<h4 class="category-title">RAG Systems</h4>
-<ul class="endpoints-list">
-<li class="endpoint-item">
-<span class="endpoint-method method-post">POST</span>
-<span class="endpoint-path">/v1/rag/systems</span>
-<div class="endpoint-description">Create a new RAG system</div>
-</li>
-<li class="endpoint-item">
-<span class="endpoint-method method-get">GET</span>
-<span class="endpoint-path">/v1/rag/systems</span>
-<div class="endpoint-description">List all RAG systems</div>
-</li>
-<li class="endpoint-item">
-<span class="endpoint-method method-get">GET</span>
-<span class="endpoint-path">/v1/rag/systems/{system_id}</span>
-<div class="endpoint-description">Get details of a specific RAG system</div>
-</li>
-<li class="endpoint-item">
-<span class="endpoint-method method-put">PUT</span>
-<span class="endpoint-path">/v1/rag/systems/{system_id}</span>
-<div class="endpoint-description">Update a RAG system</div>
-</li>
-<li class="endpoint-item">
-<span class="endpoint-method method-post">POST</span>
-<span class="endpoint-path">/v1/rag/systems/{system_id}/query</span>
-<div class="endpoint-description">Query a RAG system with user input</div>
-</li>
-</ul>
-</div>
-
-<div class="endpoint-category">
-<h4 class="category-title">Documents</h4>
-<ul class="endpoints-list">
-<li class="endpoint-item">
-<span class="endpoint-method method-post">POST</span>
-<span class="endpoint-path">/v1/documents</span>
-<div class="endpoint-description">Upload a document for processing</div>
-</li>
-<li class="endpoint-item">
-<span class="endpoint-method method-get">GET</span>
-<span class="endpoint-path">/v1/documents</span>
-<div class="endpoint-description">List all documents</div>
-</li>
-<li class="endpoint-item">
-<span class="endpoint-method method-get">GET</span>
-<span class="endpoint-path">/v1/documents/{document_id}</span>
-<div class="endpoint-description">Get document details and processing status</div>
-</li>
-<li class="endpoint-item">
-<span class="endpoint-method method-delete">DELETE</span>
-<span class="endpoint-path">/v1/documents/{document_id}</span>
-<div class="endpoint-description">Delete a document</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="api-section" style="margin-top: 6rem;">
-<div class="container">
-<h2 class="section-title">Code Examples</h2>
-<div class="code-example">
-<div class="code-tabs">
-<button class="code-tab active" data-tab="curl">cURL</button>
-<button class="code-tab" data-tab="python">Python</button>
-<button class="code-tab" data-tab="javascript">JavaScript</button>
-<button class="code-tab" data-tab="go">Go</button>
-</div>
-<div class="code-content">
-<div class="code-panel active" data-panel="curl">
-<pre class="code-block"><span class="code-comment"># Query a RAG system</span>
-curl -X POST \
-  https://api.divinci.ai/v1/rag/systems/rag_123456/query \
-  -H <span class="code-string">"Authorization: Bearer YOUR_API_TOKEN"</span> \
-  -H <span class="code-string">"Content-Type: application/json"</span> \
-  -d '{
-    <span class="code-property">"query"</span>: <span class="code-string">"What are the key features of Divinci AI?"</span>,
-    <span class="code-property">"max_results"</span>: <span class="code-number">5</span>,
-    <span class="code-property">"include_sources"</span>: <span class="code-keyword">true</span>
-}'</pre>
-</div>
-<div class="code-panel" data-panel="python">
-<pre class="code-block"><span class="code-keyword">import</span> requests
-
-<span class="code-comment"># Set your API token</span>
-api_token = <span class="code-string">"YOUR_API_TOKEN"</span>
-
-<span class="code-comment"># Query a RAG system</span>
-response = requests.post(
-    <span class="code-string">"https://api.divinci.ai/v1/rag/systems/rag_123456/query"</span>,
-    headers={
-        <span class="code-string">"Authorization"</span>: <span class="code-string">f"Bearer {api_token}"</span>,
-        <span class="code-string">"Content-Type"</span>: <span class="code-string">"application/json"</span>
-    },
-    json={
-        <span class="code-string">"query"</span>: <span class="code-string">"What are the key features of Divinci AI?"</span>,
-        <span class="code-string">"max_results"</span>: <span class="code-number">5</span>,
-        <span class="code-string">"include_sources"</span>: <span class="code-keyword">True</span>
-    }
-)
-
-<span class="code-keyword">print</span>(response.json())</pre>
-</div>
-<div class="code-panel" data-panel="javascript">
-<pre class="code-block"><span class="code-comment">// Set your API token</span>
-<span class="code-keyword">const</span> apiToken = <span class="code-string">'YOUR_API_TOKEN'</span>;
-
-<span class="code-comment">// Query a RAG system</span>
-<span class="code-keyword">async function</span> <span class="code-function">queryRagSystem</span>() {
-  <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> fetch(<span class="code-string">'https://api.divinci.ai/v1/rag/systems/rag_123456/query'</span>, {
-    method: <span class="code-string">'POST'</span>,
-    headers: {
-      <span class="code-string">'Authorization'</span>: <span class="code-string">`Bearer ${apiToken}`</span>,
-      <span class="code-string">'Content-Type'</span>: <span class="code-string">'application/json'</span>
-    },
-    body: JSON.stringify({
-      query: <span class="code-string">'What are the key features of Divinci AI?'</span>,
-      max_results: <span class="code-number">5</span>,
-      include_sources: <span class="code-keyword">true</span>
-    })
-  });
-
-  <span class="code-keyword">const</span> data = <span class="code-keyword">await</span> response.json();
-  console.log(data);
-}
-
-queryRagSystem();</pre>
-</div>
-<div class="code-panel" data-panel="go">
-<pre class="code-block"><span class="code-keyword">package</span> main
-
-<span class="code-keyword">import</span> (
-	<span class="code-string">"bytes"</span>
-	<span class="code-string">"encoding/json"</span>
-	<span class="code-string">"fmt"</span>
-	<span class="code-string">"net/http"</span>
-)
-
-<span class="code-keyword">func</span> <span class="code-function">main</span>() {
-	<span class="code-comment">// Set your API token</span>
-	apiToken := <span class="code-string">"YOUR_API_TOKEN"</span>
-
-	<span class="code-comment">// Query payload</span>
-	queryPayload := <span class="code-keyword">map</span>[<span class="code-keyword">string</span>]<span class="code-keyword">interface</span>{}{
-		<span class="code-string">"query"</span>:          <span class="code-string">"What are the key features of Divinci AI?"</span>,
-		<span class="code-string">"max_results"</span>:    <span class="code-number">5</span>,
-		<span class="code-string">"include_sources"</span>: <span class="code-keyword">true</span>,
-	}
-
-	jsonPayload, _ := json.Marshal(queryPayload)
-
-	<span class="code-comment">// Create request</span>
-	req, _ := http.NewRequest(<span class="code-string">"POST"</span>, <span class="code-string">"https://api.divinci.ai/v1/rag/systems/rag_123456/query"</span>, bytes.NewBuffer(jsonPayload))
-	req.Header.Set(<span class="code-string">"Authorization"</span>, <span class="code-string">"Bearer "</span> + apiToken)
-	req.Header.Set(<span class="code-string">"Content-Type"</span>, <span class="code-string">"application/json"</span>)
-
-	<span class="code-comment">// Send request</span>
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	<span class="code-keyword">if</span> err != <span class="code-keyword">nil</span> {
-		fmt.Println(err)
-		<span class="code-keyword">return</span>
-	}
-	<span class="code-keyword">defer</span> resp.Body.Close()
-
-	<span class="code-comment">// Process response</span>
-	<span class="code-keyword">var</span> result <span class="code-keyword">map</span>[<span class="code-keyword">string</span>]<span class="code-keyword">interface</span>{}
-	json.NewDecoder(resp.Body).Decode(&result)
-	fmt.Println(result)
-}</pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="api-section dark-bg" style="margin-top: 8rem; margin-bottom: 8rem; padding-top: 6rem; padding-bottom: 6rem;">
-<div class="container">
-<h2 class="section-title" style="color: white;">Client Libraries</h2>
-<p class="section-content-light">We provide client libraries in multiple programming languages to make integrating with our API easier.</p>
-
-<div class="sdk-cards">
-<div class="sdk-card">
-<div class="sdk-header">
-<div class="sdk-icon">
-<i class="fab fa-python"></i>
-</div>
-<h3 class="sdk-title">Python SDK</h3>
-</div>
-<div class="sdk-content">
-<p class="sdk-description">
-Our Python SDK provides a convenient interface to the Divinci AI API, making it easy to integrate AI capabilities into your Python applications.
-</p>
-<div class="sdk-meta">
-<div class="sdk-meta-item">
-<i class="fas fa-code-branch"></i> Version 0.9.5
-</div>
-<div class="sdk-meta-item">
-<i class="fas fa-download"></i> 15K+ downloads
-</div>
-</div>
-<div class="sdk-links">
-<a href="#" class="sdk-link">
-<i class="fas fa-book"></i> Documentation
-</a>
-<a href="#" class="sdk-link">
-<i class="fab fa-github"></i> GitHub
-</a>
-</div>
-</div>
-</div>
-
-<div class="sdk-card">
-<div class="sdk-header">
-<div class="sdk-icon">
-<i class="fab fa-js"></i>
-</div>
-<h3 class="sdk-title">JavaScript SDK</h3>
-</div>
-<div class="sdk-content">
-<p class="sdk-description">
-Use our JavaScript SDK to integrate Divinci AI into web applications and Node.js projects with a simple, Promise-based API.
-</p>
-<div class="sdk-meta">
-<div class="sdk-meta-item">
-<i class="fas fa-code-branch"></i> Version 0.9.2
-</div>
-<div class="sdk-meta-item">
-<i class="fas fa-download"></i> 12K+ downloads
-</div>
-</div>
-<div class="sdk-links">
-<a href="#" class="sdk-link">
-<i class="fas fa-book"></i> Documentation
-</a>
-<a href="#" class="sdk-link">
-<i class="fab fa-github"></i> GitHub
-</a>
-</div>
-</div>
-</div>
-
-<div class="sdk-card">
-<div class="sdk-header">
-<div class="sdk-icon">
-<i class="fab fa-java"></i>
-</div>
-<h3 class="sdk-title">Java SDK</h3>
-</div>
-<div class="sdk-content">
-<p class="sdk-description">
-Our Java SDK provides enterprise-grade integration with the Divinci AI platform, designed for performance and reliability.
-</p>
-<div class="sdk-meta">
-<div class="sdk-meta-item">
-<i class="fas fa-code-branch"></i> Version 0.8.5
-</div>
-<div class="sdk-meta-item">
-<i class="fas fa-download"></i> 8K+ downloads
-</div>
-</div>
-<div class="sdk-links">
-<a href="#" class="sdk-link">
-<i class="fas fa-book"></i> Documentation
-</a>
-<a href="#" class="sdk-link">
-<i class="fab fa-github"></i> GitHub
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-</div> <!-- End API Content Wrapper -->
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const codeTabs = document.querySelectorAll('.code-tab');
-    const codePanels = document.querySelectorAll('.code-panel');
-
-    codeTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            // Remove active class from all tabs
-            codeTabs.forEach(t => t.classList.remove('active'));
-
-            // Add active class to clicked tab
-            this.classList.add('active');
-
-            // Get target panel
-            const targetPanel = this.getAttribute('data-tab');
-
-            // Hide all panels
-            codePanels.forEach(panel => panel.classList.remove('active'));
-
-            // Show target panel
-            const targetPanelElement = document.querySelector(`.code-panel[data-panel="${targetPanel}"]`);
-            if (targetPanelElement) {
-                targetPanelElement.classList.add('active');
-            }
-        });
-    });
-});
-</script>
+</div> <!-- End of api-content-wrapper -->

@@ -8,8 +8,16 @@
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
-    "test:visual": "playwright test --config=playwright.config.js --project=Visual-Desktop --project=Visual-Mobile --project=Visual-Tablet",
-    "test:visual:update": "playwright test --config=playwright.config.js --project=Visual-Desktop --project=Visual-Mobile --project=Visual-Tablet --update-snapshots",
+    "test:visual": "playwright test --project=Visual-Desktop-Chrome --project=Visual-Mobile-Chrome tests/new-divinci-visual.spec.js",
+    "test:visual:comprehensive": "node scripts/visual-test-runner.js visual-comprehensive",
+    "test:visual:cross-browser": "node scripts/visual-test-runner.js visual-cross-browser",
+    "test:visual:mobile": "node scripts/visual-test-runner.js visual-mobile",
+    "test:visual:performance": "node scripts/visual-test-runner.js visual-performance",
+    "test:visual:multilingual": "node scripts/visual-test-runner.js visual-multilingual",
+    "test:visual:accessibility": "node scripts/visual-test-runner.js visual-accessibility",
+    "test:visual:responsive": "node scripts/visual-test-runner.js visual-responsive",
+    "test:visual:all": "node scripts/visual-test-runner.js visual-all",
+    "test:visual:update": "playwright test --project=Visual-Desktop-Chrome --project=Visual-Mobile-Chrome tests/new-divinci-visual.spec.js --update-snapshots",
     "test:e2e": "playwright test --config=playwright.config.js --project=Desktop-Chrome --project=Mobile-Chrome",
     "test:report": "playwright show-report",
     "test:debug": "playwright test --debug",
@@ -26,7 +34,7 @@
     "test:compare:report": "playwright test tests-new/e2e/site-comparison.test.js --reporter=html --output-dir=comparison-report",
     "test:comprehensive": "playwright test comprehensive-site-navigation.spec.js form-functionality.spec.js responsive-mobile.spec.js interactive-animations.spec.js performance-assets.spec.js",
     "test:navigation": "playwright test comprehensive-site-navigation.spec.js",
-    "test:forms": "playwright test form-functionality.spec.js", 
+    "test:forms": "playwright test form-functionality.spec.js",
     "test:responsive": "playwright test responsive-mobile.spec.js",
     "test:interactions": "playwright test interactive-animations.spec.js",
     "test:performance": "playwright test performance-assets.spec.js",
@@ -52,16 +60,63 @@
     "test:mobile:navigation": "playwright test mobile-navigation-comprehensive.spec.js",
     "test:mobile:devices": "playwright test --config=playwright.config.js --project=Mobile-Multi-Device",
     "test:mobile:all": "playwright test --config=playwright.config.js --project=Mobile-Chrome --project=Mobile-Safari --project=Visual-Mobile --project=Mobile-Multi-Device",
+    "test:mobile:suite": "playwright test tests/mobile-comprehensive-suite.spec.js --reporter=list",
+    "test:mobile:suite:headed": "playwright test tests/mobile-comprehensive-suite.spec.js --headed",
+    "test:mobile:navigation:comprehensive": "playwright test tests/comprehensive-mobile-navigation.spec.js --reporter=list",
+    "test:mobile:language:comprehensive": "playwright test tests/comprehensive-mobile-language.spec.js --reporter=list",
+    "test:mobile:journeys": "playwright test tests/comprehensive-mobile-journeys.spec.js --reporter=list",
+    "test:mobile:performance:comprehensive": "playwright test tests/comprehensive-mobile-performance.spec.js --reporter=list",
+    "test:mobile:full": "playwright test tests/comprehensive-mobile-*.spec.js --reporter=list",
     "test:unit": "playwright test --config=unit-tests.config.js",
     "test:unit:headed": "playwright test --config=unit-tests.config.js --headed",
     "test:validate": "node tests/unit/test-suite-validator.js",
     "test:health": "npm run test:unit && npm run test:validate",
     "test:all": "npm run test:unit && npm run test:validate && npm run test",
     "pre-deploy": "npm run test:health && npm run test:mobile:comprehensive",
-    "dev": "zola serve --port 1111 --watch"
+    "dev": "zola serve --port 1111 --watch",
+    "test:unit:jest": "jest",
+    "test:unit:jest:watch": "jest --watch",
+    "test:unit:jest:coverage": "jest --coverage",
+    "test:unit:all": "npm run test:unit:jest && npm run test:unit",
+    "style:validate": "node scripts/validate-style-guide.js",
+    "style:test": "playwright test tests/style-guide-validation.spec.js",
+    "style:check": "npm run style:validate && npm run style:test",
+    "test:quick": "playwright test tests/new-divinci-site.spec.js --project=Desktop-Chrome",
+    "test:navigation": "playwright test tests/language-health-check.spec.js --project=Desktop-Chrome",
+    "test:e2e:safe": "echo 'Pre-push validation: Running unit tests and style checks...' && npm run test:unit:jest && npm run style:validate",
+    "test:validate-setup": "node scripts/validate-test-setup.js",
+    "pre-commit": "npm run test:unit:jest && npm run style:validate",
+    "pre-push": "npm run test:e2e:safe && npm run style:check"
   },
-  "dependencies": {},
+  "dependencies": {
+    "mimetext": "^3.0.27"
+  },
   "devDependencies": {
-    "@playwright/test": "^1.52.0"
+    "@playwright/test": "^1.52.0",
+    "@types/jest": "^30.0.0",
+    "glob": "^10.3.10",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
+    "jsdom": "^26.1.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "testMatch": [
+      "**/tests/unit/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "static/js/**/*.js",
+      "!static/js/**/*.min.js",
+      "!**/node_modules/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/unit/setup.js"
+    ]
   }
 }

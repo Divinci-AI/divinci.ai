@@ -17,7 +17,8 @@ test.describe('Comprehensive Language Translation Tests', () => {
       expectedTexts: {
         hero: 'AI releases',
         enterprise: 'Enterprise AI, expertly managed',
-        features: 'The Age of AI Management'
+        features: 'The Age of AI Management',
+        press: 'Press Resources'
       }
     },
     {
@@ -27,7 +28,8 @@ test.describe('Comprehensive Language Translation Tests', () => {
       expectedTexts: {
         hero: 'Lanzamientos de IA',
         enterprise: 'IA empresarial, gestionada por expertos',
-        features: 'Potencia tu flujo de trabajo con IA'
+        features: 'Potencia tu flujo de trabajo con IA',
+        press: 'Recursos de Prensa'
       }
     },
     {
@@ -275,5 +277,35 @@ test.describe('Comprehensive Language Translation Tests', () => {
     }
     
     console.log('✅ Navigation consistency test passed');
+  });
+
+  test('should have properly translated press pages for all languages', async ({ page }) => {
+    const pressTranslations = {
+      'en': { title: 'Press Resources', contact: 'Press Contact' },
+      'es': { title: 'Recursos de Prensa', contact: 'Contacto de Prensa' },
+      'fr': { title: 'Ressources de Presse', contact: 'Contact Presse' }
+    };
+
+    for (const [langCode, translations] of Object.entries(pressTranslations)) {
+      const pressUrl = langCode === 'en' ? '/press/' : `/${langCode}/press/`;
+      
+      await page.goto(`http://127.0.0.1:1025${pressUrl}`);
+      await page.waitForLoadState('networkidle');
+      
+      // Check that press page loads successfully
+      expect(page.url()).toContain('/press/');
+      
+      // Check translated content
+      await expect(page.locator('h1')).toContainText(translations.title);
+      await expect(page.locator('h2').first()).toContainText(translations.contact);
+      
+      // Verify language switcher works on press page
+      const languageSwitcher = page.locator('.language-switcher');
+      await expect(languageSwitcher).toBeVisible();
+      
+      console.log(`✓ ${langCode} press page translations verified`);
+    }
+    
+    console.log('✅ Press page translations test passed');
   });
 });

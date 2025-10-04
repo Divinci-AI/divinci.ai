@@ -1,13 +1,15 @@
-{% extends "base-optimized.html" %}
+{% extends "base.html" %}
 
 {% block content %}
-{%- set current_lang = page.lang | default(value="en") -%}
+{# current_lang is inherited from base template #}
 
 <!-- Include Header -->
 {% include "partials/header.html" %}
 
-<!-- About Hero Section - matches original structure -->
-<section class="about-hero">
+<!-- Main About Content -->
+<main id="main-content" role="main" tabindex="-1">
+    <!-- About Hero Section - matches original structure -->
+    <section class="about-hero">
     <!-- Sacred Geometry Background Elements -->
     <div class="hero-circle hero-circle-1"></div>
     <div class="hero-circle hero-circle-2"></div>
@@ -26,17 +28,17 @@
         <div class="mission-vision-grid">
             <div class="mission-card">
                 <div class="card-accent"></div>
-                <h2 class="card-title">Our Mission</h2>
+                <h2 class="card-title">{{ translations.about.mission_title | default(value="Our Mission") }}</h2>
                 <p class="section-content">
-                    To democratize enterprise AI by making sophisticated artificial intelligence accessible, manageable, and trustworthy for organizations of all sizes. We believe that AI should amplify human potential, not replace it.
+                    {{ translations.about.mission_text | default(value="To democratize enterprise AI by making sophisticated artificial intelligence accessible, manageable, and trustworthy for organizations of all sizes. We believe that AI should amplify human potential, not replace it.") }}
                 </p>
             </div>
             
             <div class="vision-card">
                 <div class="card-accent"></div>
-                <h2 class="card-title">Our Vision</h2>
+                <h2 class="card-title">{{ translations.about.vision_title | default(value="Our Vision") }}</h2>
                 <p class="section-content">
-                    A world where every organization can harness the transformative power of AI with confidence, knowing their implementations are secure, compliant, and aligned with their values. We envision AI as a collaborative partner in human achievement.
+                    {{ translations.about.vision_text | default(value="A world where every organization can harness the transformative power of AI with confidence, knowing their implementations are secure, compliant, and aligned with their values. We envision AI as a collaborative partner in human achievement.") }}
                 </p>
             </div>
         </div>
@@ -275,6 +277,7 @@
         </a>
     </div>
 </section>
+</main>
 
 <!-- Include Footer -->
 {% include "partials/footer.html" %}
@@ -384,7 +387,7 @@
 }
 
 .vision-card .section-content {
-    color: #444 !important; /* Dark text for better readability on white background */
+    color: #ffffffe6 !important; /* Light text for better readability on dark background */
 }
 
 .dark-section .section-content {

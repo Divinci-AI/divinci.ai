@@ -10,7 +10,9 @@
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {},
+    "metadata": {
+      "actualWorkers": 6
+    },
     "preserveOutput": "always",
     "reporter": [
       [
@@ -40,7 +42,9 @@
         "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 6
+        },
         "id": "Desktop-Chrome",
         "name": "Desktop-Chrome",
         "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
@@ -60,7 +64,11 @@
           "**/video-functionality.spec.js",
           "**/layout-alignment.spec.js",
           "**/journal-functionality.spec.js",
-          "**/footer-language-navigation.spec.js"
+          "**/footer-language-navigation.spec.js",
+          "**/accessibility-compliance.spec.js",
+          "**/gdpr-compliance.spec.js",
+          "**/social-media-sharing.spec.js",
+          "**/mobile-navigation-comprehensive.spec.js"
         ],
         "timeout": 30000
       },
@@ -68,7 +76,9 @@
         "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 6
+        },
         "id": "Desktop-Firefox",
         "name": "Desktop-Firefox",
         "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
@@ -88,7 +98,11 @@
           "**/video-functionality.spec.js",
           "**/layout-alignment.spec.js",
           "**/journal-functionality.spec.js",
-          "**/footer-language-navigation.spec.js"
+          "**/footer-language-navigation.spec.js",
+          "**/accessibility-compliance.spec.js",
+          "**/gdpr-compliance.spec.js",
+          "**/social-media-sharing.spec.js",
+          "**/mobile-navigation-comprehensive.spec.js"
         ],
         "timeout": 30000
       },
@@ -96,7 +110,9 @@
         "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 6
+        },
         "id": "Desktop-Safari",
         "name": "Desktop-Safari",
         "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
@@ -116,7 +132,11 @@
           "**/video-functionality.spec.js",
           "**/layout-alignment.spec.js",
           "**/journal-functionality.spec.js",
-          "**/footer-language-navigation.spec.js"
+          "**/footer-language-navigation.spec.js",
+          "**/accessibility-compliance.spec.js",
+          "**/gdpr-compliance.spec.js",
+          "**/social-media-sharing.spec.js",
+          "**/mobile-navigation-comprehensive.spec.js"
         ],
         "timeout": 30000
       },
@@ -124,7 +144,9 @@
         "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 6
+        },
         "id": "Mobile-Chrome",
         "name": "Mobile-Chrome",
         "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
@@ -144,7 +166,11 @@
           "**/video-functionality.spec.js",
           "**/layout-alignment.spec.js",
           "**/journal-functionality.spec.js",
-          "**/footer-language-navigation.spec.js"
+          "**/footer-language-navigation.spec.js",
+          "**/accessibility-compliance.spec.js",
+          "**/gdpr-compliance.spec.js",
+          "**/social-media-sharing.spec.js",
+          "**/mobile-navigation-comprehensive.spec.js"
         ],
         "timeout": 30000
       },
@@ -152,7 +178,9 @@
         "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 6
+        },
         "id": "Mobile-Safari",
         "name": "Mobile-Safari",
         "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
@@ -172,7 +200,11 @@
           "**/video-functionality.spec.js",
           "**/layout-alignment.spec.js",
           "**/journal-functionality.spec.js",
-          "**/footer-language-navigation.spec.js"
+          "**/footer-language-navigation.spec.js",
+          "**/accessibility-compliance.spec.js",
+          "**/gdpr-compliance.spec.js",
+          "**/social-media-sharing.spec.js",
+          "**/mobile-navigation-comprehensive.spec.js"
         ],
         "timeout": 30000
       },
@@ -180,14 +212,18 @@
         "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
-        "id": "Visual-Desktop",
-        "name": "Visual-Desktop",
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "Visual-Desktop-Chrome",
+        "name": "Visual-Desktop-Chrome",
         "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
         "testIgnore": [],
         "testMatch": [
           "**/new-divinci-visual.spec.js",
-          "**/visual-regression.spec.js"
+          "**/visual-regression.spec.js",
+          "**/comprehensive-visual-testing.spec.js",
+          "**/visual-performance-testing.spec.js"
         ],
         "timeout": 30000
       },
@@ -195,14 +231,17 @@
         "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
-        "id": "Visual-Mobile",
-        "name": "Visual-Mobile",
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "Visual-Desktop-Firefox",
+        "name": "Visual-Desktop-Firefox",
         "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
         "testIgnore": [],
         "testMatch": [
           "**/new-divinci-visual.spec.js",
-          "**/visual-regression.spec.js"
+          "**/visual-regression.spec.js",
+          "**/comprehensive-visual-testing.spec.js"
         ],
         "timeout": 30000
       },
@@ -210,14 +249,123 @@
         "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
-        "id": "Visual-Tablet",
-        "name": "Visual-Tablet",
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "Visual-Desktop-Safari",
+        "name": "Visual-Desktop-Safari",
         "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
         "testIgnore": [],
         "testMatch": [
           "**/new-divinci-visual.spec.js",
-          "**/visual-regression.spec.js"
+          "**/visual-regression.spec.js",
+          "**/comprehensive-visual-testing.spec.js"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "Visual-Mobile-Chrome",
+        "name": "Visual-Mobile-Chrome",
+        "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/new-divinci-visual.spec.js",
+          "**/visual-regression.spec.js",
+          "**/comprehensive-mobile-visual.spec.js",
+          "**/comprehensive-visual-testing.spec.js",
+          "**/visual-performance-testing.spec.js"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "Visual-Mobile-Safari",
+        "name": "Visual-Mobile-Safari",
+        "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/new-divinci-visual.spec.js",
+          "**/visual-regression.spec.js",
+          "**/comprehensive-mobile-visual.spec.js",
+          "**/comprehensive-visual-testing.spec.js"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "Visual-Mobile-iPhone13",
+        "name": "Visual-Mobile-iPhone13",
+        "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/comprehensive-visual-testing.spec.js"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "Visual-Tablet-iPad",
+        "name": "Visual-Tablet-iPad",
+        "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/new-divinci-visual.spec.js",
+          "**/visual-regression.spec.js",
+          "**/comprehensive-mobile-visual.spec.js",
+          "**/comprehensive-visual-testing.spec.js"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "Visual-Tablet-Landscape",
+        "name": "Visual-Tablet-Landscape",
+        "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/comprehensive-visual-testing.spec.js"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "Mobile-Multi-Device",
+        "name": "Mobile-Multi-Device",
+        "testDir": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/comprehensive-mobile-visual.spec.js"
         ],
         "timeout": 30000
       }
@@ -237,19 +385,1144 @@
       }
     }
   },
-  "suites": [],
-  "errors": [
+  "suites": [
     {
-      "message": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.",
-      "stack": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments."
+      "title": "new-divinci-site.spec.js",
+      "file": "new-divinci-site.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "New-Divinci Zola Site",
+          "file": "new-divinci-site.spec.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load homepage successfully",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 366,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:08.697Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-6160f--load-homepage-successfully-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-6160f--load-homepage-successfully-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-c4739aad7217644d6d1c",
+              "file": "new-divinci-site.spec.js",
+              "line": 31,
+              "column": 3
+            },
+            {
+              "title": "should display all main sections",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 425,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:08.712Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-d761d-d-display-all-main-sections-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-d761d-d-display-all-main-sections-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-c29d25bdc996c6b399b1",
+              "file": "new-divinci-site.spec.js",
+              "line": 36,
+              "column": 3
+            },
+            {
+              "title": "should have functioning header navigation",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 367,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:08.704Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-bbf60-nctioning-header-navigation-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-bbf60-nctioning-header-navigation-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-b2ef1b5212194d324888",
+              "file": "new-divinci-site.spec.js",
+              "line": 65,
+              "column": 3
+            },
+            {
+              "title": "should have working language switcher",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 361,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:08.713Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-0c67b-e-working-language-switcher-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-0c67b-e-working-language-switcher-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-b92343eede4683b11d58",
+              "file": "new-divinci-site.spec.js",
+              "line": 83,
+              "column": 3
+            },
+            {
+              "title": "should display all 10 features",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 367,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:08.711Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-d5e9e-uld-display-all-10-features-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-d5e9e-uld-display-all-10-features-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-e0f21253be76c1860f8f",
+              "file": "new-divinci-site.spec.js",
+              "line": 100,
+              "column": 3
+            },
+            {
+              "title": "should display all team members",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "failed",
+                      "duration": 368,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:08.707Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-57393-ld-display-all-team-members-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-57393-ld-display-all-team-members-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-eee088aec6c8a8523a93",
+              "file": "new-divinci-site.spec.js",
+              "line": 117,
+              "column": 3
+            },
+            {
+              "title": "should have working signup form",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 5,
+                      "status": "failed",
+                      "duration": 259,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:09.748Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-60ab2-ld-have-working-signup-form-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-60ab2-ld-have-working-signup-form-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-50ab42142fc083b667e7",
+              "file": "new-divinci-site.spec.js",
+              "line": 130,
+              "column": 3
+            },
+            {
+              "title": "should have comprehensive footer",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 257,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:09.754Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-9fc51-d-have-comprehensive-footer-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-9fc51-d-have-comprehensive-footer-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-2b1fb6b09ad5c29dd1bf",
+              "file": "new-divinci-site.spec.js",
+              "line": 146,
+              "column": 3
+            },
+            {
+              "title": "should check for broken images",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 212,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:09.753Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-e2986-uld-check-for-broken-images-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-e2986-uld-check-for-broken-images-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-2a0b2a8f9078c639cba8",
+              "file": "new-divinci-site.spec.js",
+              "line": 164,
+              "column": 3
+            },
+            {
+              "title": "should be responsive on mobile",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 254,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:09.754Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-a4aa9-uld-be-responsive-on-mobile-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-a4aa9-uld-be-responsive-on-mobile-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-eed26ea79d021cb85c62",
+              "file": "new-divinci-site.spec.js",
+              "line": 184,
+              "column": 3
+            },
+            {
+              "title": "should have proper video elements",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 252,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:09.750Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-8c443--have-proper-video-elements-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-8c443--have-proper-video-elements-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-13d70525912cd82e5891",
+              "file": "new-divinci-site.spec.js",
+              "line": 208,
+              "column": 3
+            },
+            {
+              "title": "should have enterprise AI panels",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 259,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:09.781Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-377a4-d-have-enterprise-AI-panels-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-377a4-d-have-enterprise-AI-panels-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-51ee13c264bba2bc7785",
+              "file": "new-divinci-site.spec.js",
+              "line": 218,
+              "column": 3
+            },
+            {
+              "title": "should have AI for Good principles",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 198,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 13
+                        },
+                        "snippet": "  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 13
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/\", waiting until \"load\"\u001b[22m\n\n\n  11 |   test.beforeEach(async ({ page }) => {\n  12 |     // Navigate to homepage\n> 13 |     await page.goto(baseURL);\n     |                ^\n  14 |     \n  15 |     // Wait for page to load\n  16 |     await page.waitForLoadState('networkidle');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:13:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:10.553Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-11343-have-AI-for-Good-principles-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-New-Divin-11343-have-AI-for-Good-principles-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 13
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-43d77325e3e04d8ba8d2",
+              "file": "new-divinci-site.spec.js",
+              "line": 229,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Language-specific pages",
+          "file": "new-divinci-site.spec.js",
+          "line": 239,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load Spanish version",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 196,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/es/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/es/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/es/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/es/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:243:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 243
+                        },
+                        "snippet": "  241 |   \n  242 |   test('should load Spanish version', async ({ page }) => {\n> 243 |     await page.goto(`${baseURL}/es/`);\n      |                ^\n  244 |     await page.waitForLoadState('networkidle');\n  245 |     \n  246 |     await expect(page.locator('h1')).toContainText('Lanzamientos de IA');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 243
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/es/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/es/\", waiting until \"load\"\u001b[22m\n\n\n  241 |   \n  242 |   test('should load Spanish version', async ({ page }) => {\n> 243 |     await page.goto(`${baseURL}/es/`);\n      |                ^\n  244 |     await page.waitForLoadState('networkidle');\n  245 |     \n  246 |     await expect(page.locator('h1')).toContainText('Lanzamientos de IA');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:243:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:10.545Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-Language--5fb07-should-load-Spanish-version-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-Language--5fb07-should-load-Spanish-version-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 243
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-e30db49ec67366862081",
+              "file": "new-divinci-site.spec.js",
+              "line": 242,
+              "column": 3
+            },
+            {
+              "title": "should load French version",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 196,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/fr/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/fr/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/fr/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/fr/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:252:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 252
+                        },
+                        "snippet": "  250 |   \n  251 |   test('should load French version', async ({ page }) => {\n> 252 |     await page.goto(`${baseURL}/fr/`);\n      |                ^\n  253 |     await page.waitForLoadState('networkidle');\n  254 |     \n  255 |     await expect(page.locator('h1')).toContainText('Versions d\\'IA');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 252
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/fr/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/fr/\", waiting until \"load\"\u001b[22m\n\n\n  250 |   \n  251 |   test('should load French version', async ({ page }) => {\n> 252 |     await page.goto(`${baseURL}/fr/`);\n      |                ^\n  253 |     await page.waitForLoadState('networkidle');\n  254 |     \n  255 |     await expect(page.locator('h1')).toContainText('Versions d\\'IA');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:252:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:10.559Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-Language--4ab82--should-load-French-version-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-Language--4ab82--should-load-French-version-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 252
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-f8b52b3c503ecde1f051",
+              "file": "new-divinci-site.spec.js",
+              "line": 251,
+              "column": 3
+            },
+            {
+              "title": "should load Arabic version",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Desktop-Chrome",
+                  "projectName": "Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 5,
+                      "status": "failed",
+                      "duration": 198,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/ar/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/ar/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/ar/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/ar/\", waiting until \"load\"\u001b[22m\n\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:261:16",
+                        "location": {
+                          "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                          "column": 16,
+                          "line": 261
+                        },
+                        "snippet": "  259 |   \n  260 |   test('should load Arabic version', async ({ page }) => {\n> 261 |     await page.goto(`${baseURL}/ar/`);\n      |                ^\n  262 |     await page.waitForLoadState('networkidle');\n  263 |     \n  264 |     await expect(page.locator('h1')).toContainText('إصدارات الذكاء الاصطناعي');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                            "column": 16,
+                            "line": 261
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://localhost:1111/ar/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:1111/ar/\", waiting until \"load\"\u001b[22m\n\n\n  259 |   \n  260 |   test('should load Arabic version', async ({ page }) => {\n> 261 |     await page.goto(`${baseURL}/ar/`);\n      |                ^\n  262 |     await page.waitForLoadState('networkidle');\n  263 |     \n  264 |     await expect(page.locator('h1')).toContainText('إصدارات الذكاء الاصطناعي');\n    at /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js:261:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T00:14:10.543Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-Language--f4d7e--should-load-Arabic-version-Desktop-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/test-results/new-divinci-site-Language--f4d7e--should-load-Arabic-version-Desktop-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site/tests/new-divinci-site.spec.js",
+                        "column": 16,
+                        "line": 261
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e16790fdb6b4aa4c2e5f-a9cf9ca3a6f82cef062c",
+              "file": "new-divinci-site.spec.js",
+              "line": 260,
+              "column": 3
+            }
+          ]
+        }
+      ]
     }
   ],
+  "errors": [],
   "stats": {
-    "startTime": "2025-08-02T10:27:06.070Z",
-    "duration": 23.837000000000046,
+    "startTime": "2025-08-19T00:14:08.250Z",
+    "duration": 2658.9489999999996,
     "expected": 0,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 16,
     "flaky": 0
   }
 }

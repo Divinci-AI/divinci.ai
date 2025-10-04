@@ -6,7 +6,7 @@ template = "roadmap.html"
 
 <style>
 .document-section {
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    background: linear-gradient(135deg, #1e3a2b 0%, #2d3c34 100%);
     color: white;
     padding: 80px 0;
     min-height: 100vh;
@@ -92,7 +92,7 @@ template = "roadmap.html"
     height: 24px;
     right: -12px;
     background: rgba(92, 226, 231, 0.7);
-    border: 4px solid #16214c;
+    border: 4px solid #1e3a2b;
     top: 20px;
     border-radius: 50%;
     z-index: 1;

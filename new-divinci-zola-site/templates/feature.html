@@ -3,7 +3,7 @@
 {% block body_class %}feature-page-template{% endblock %}
 
 {% block content %}
-{%- set current_lang = page.extra.lang | default(value="en") -%}
+{# current_lang is inherited from base template #}
 
 <!-- Include Header -->
 {% include "partials/header.html" %}

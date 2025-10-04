@@ -10,7 +10,8 @@
     "team": "团队",
     "signup": "注册",
     "support": "支持",
-    "request_demo": "申请演示"
+    "request_demo": "申请演示",
+    "support_center": "支持中心"
   },
   "hero": {
     "heading": "AI发布。",
@@ -92,7 +93,13 @@
         "title": "可扩展性",
         "description": "通过自动扩展的基础设施从小团队扩展到企业组织。"
       }
-    }
+    },
+    "journal_title": "列奥纳多日记",
+    "autorag": {
+      "title": "AutoRAG"
+    },
+    "qa_title": "质量保证",
+    "release_management": "发布管理"
   },
   "team": {
     "title": "认识我们的团队",
@@ -106,7 +113,11 @@
       "head_product": "产品负责人",
       "senior_data_scientist": "高级数据科学家",
       "ux_ui_designer": "UX/UI设计师",
-      "software_engineer": "软件工程师"
+      "software_engineer": "软件工程师",
+      "cpo": "产品总监",
+      "coo": "运营总监",
+      "data_scientist": "数据科学家",
+      "ai_safety_ethics_advisor": "AI伦理与安全顾问"
     }
   },
   "signup": {
@@ -143,7 +154,10 @@
           "features": "功能",
           "pricing": "定价",
           "roadmap": "路线图",
-          "changelog": "更新日志"
+          "changelog": "更新日志",
+          "autorag": "AutoRAG",
+          "quality_assurance": "质量保证",
+          "release_management": "发布管理"
         }
       },
       "resources": {
@@ -152,7 +166,8 @@
           "documentation": "文档",
           "blog": "博客",
           "tutorials": "教程",
-          "api": "API"
+          "api": "API",
+          "support": "支持"
         }
       },
       "company": {
@@ -180,8 +195,16 @@
         "sitemap": "网站地图",
         "accessibility": "无障碍访问",
         "cookies": "Cookie政策"
-      }
-    }
+      },
+      "privacy_settings": "隐私设置",
+      "cookie_policy": "Cookie政策",
+      "cookie_preferences": "Cookie偏好"
+    },
+    "api": "API",
+    "support": "支持",
+    "privacy_settings": "隐私设置",
+    "cookie_preferences": "Cookie偏好设置",
+    "cookie_policy": "Cookie政策"
   },
   "language_switcher": {
     "current_language": "中文",
@@ -200,5 +223,51 @@
       "nl": "Nederlands",
       "hi": "हिन्दी"
     }
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "联系我们的团队",
+    "get_in_touch": "联系我们",
+    "email_specialists": {
+      "title": "联系我们的专家",
+      "description": "获得针对您的技术和业务询问的详细、周到的回复。",
+      "email": "安排演示"
+    },
+    "schedule_demo": "安排演示",
+    "book_demo": "预订现场演示",
+    "demo_availability": "提供30分钟个性化演示，向您展示Divinci AI的工作原理。",
+    "speak_consultant": {
+      "title": "预订现场演示",
+      "description": "提供30分钟个性化演示，向您展示Divinci AI的工作原理。",
+      "phone": "预订演示"
+    }
+  },
+  "support": {
+    "title": "支持中心",
+    "subtitle": "获取Divinci AI的帮助和支持"
+  },
+  "expert_answers": {
+    "title": "专家答案",
+    "subtitle": "专家指导",
+    "description": "在我们平台上找到关于大型语言模型发布管理和质量保证的全面见解。探索针对您最紧迫问题的详细专业回答。",
+    "faqs": {
+      "model_reliability": {
+        "question": "您如何保证模型可靠性？",
+        "answer": "我们实施多层验证流程，将自动化回归、性能和安全测试与专家手动审查相结合。每个模型发布都经过严格评估，确保始终满足准确性、稳定性和合规性的企业级标准。"
+      },
+      "language_models": {
+        "question": "支持哪些语言模型？",
+        "answer": "我们的平台支持广泛的大型语言模型，从开源到专有架构。灵活的集成支持跨多种框架和企业环境的无缝部署，确保适应不断发展的业务需求。"
+      },
+      "quality_assurance": {
+        "question": "如何实现持续质量保证？",
+        "answer": "我们通过持续监控、定期审计和实时性能跟踪来维持质量。通过分析用户反馈和新兴风险，我们主动改进模型和流程，以长期维持严格的质量基准。"
+      },
+      "workflow_integration": {
+        "question": "该平台是否适合现有工作流程？",
+        "answer": "我们的解决方案专为与企业系统无缝集成而设计。强大的API和可配置选项允许与您当前的发布管理和开发管道轻松对齐，最大限度地减少中断并最大化效率。"
+      }
+    },
+    "view_complete_list": "查看完整模型兼容性列表"
   }
 }

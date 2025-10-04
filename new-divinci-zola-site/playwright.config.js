@@ -164,34 +164,107 @@ module.exports = defineConfig({
       ],
     },
 
-    // Visual Testing - Desktop
+    // Enhanced Visual Testing - Desktop
     {
-      name: 'Visual-Desktop',
+      name: 'Visual-Desktop-Chrome',
       use: { 
         ...devices['Desktop Chrome'],
         viewport: { width: 1920, height: 1080 },
       },
-      testMatch: ['**/new-divinci-visual.spec.js', '**/visual-regression.spec.js'],
+      testMatch: [
+        '**/new-divinci-visual.spec.js', 
+        '**/visual-regression.spec.js',
+        '**/comprehensive-visual-testing.spec.js',
+        '**/visual-performance-testing.spec.js'
+      ],
+    },
+    {
+      name: 'Visual-Desktop-Firefox',
+      use: { 
+        ...devices['Desktop Firefox'],
+        viewport: { width: 1920, height: 1080 },
+      },
+      testMatch: [
+        '**/new-divinci-visual.spec.js', 
+        '**/visual-regression.spec.js',
+        '**/comprehensive-visual-testing.spec.js'
+      ],
+    },
+    {
+      name: 'Visual-Desktop-Safari',
+      use: { 
+        ...devices['Desktop Safari'],
+        viewport: { width: 1920, height: 1080 },
+      },
+      testMatch: [
+        '**/new-divinci-visual.spec.js', 
+        '**/visual-regression.spec.js',
+        '**/comprehensive-visual-testing.spec.js'
+      ],
     },
 
-    // Visual Testing - Mobile
+    // Enhanced Visual Testing - Mobile
     {
-      name: 'Visual-Mobile',
+      name: 'Visual-Mobile-Chrome',
+      use: { 
+        ...devices['Pixel 5'],
+        viewport: { width: 393, height: 851 },
+      },
+      testMatch: [
+        '**/new-divinci-visual.spec.js', 
+        '**/visual-regression.spec.js', 
+        '**/comprehensive-mobile-visual.spec.js',
+        '**/comprehensive-visual-testing.spec.js',
+        '**/visual-performance-testing.spec.js'
+      ],
+    },
+    {
+      name: 'Visual-Mobile-Safari',
       use: { 
         ...devices['iPhone 12'],
-        viewport: { width: 375, height: 667 },
+        viewport: { width: 390, height: 844 },
       },
-      testMatch: ['**/new-divinci-visual.spec.js', '**/visual-regression.spec.js', '**/comprehensive-mobile-visual.spec.js'],
+      testMatch: [
+        '**/new-divinci-visual.spec.js', 
+        '**/visual-regression.spec.js', 
+        '**/comprehensive-mobile-visual.spec.js',
+        '**/comprehensive-visual-testing.spec.js'
+      ],
+    },
+    {
+      name: 'Visual-Mobile-iPhone13',
+      use: { 
+        ...devices['iPhone 13'],
+        viewport: { width: 390, height: 844 },
+      },
+      testMatch: [
+        '**/comprehensive-visual-testing.spec.js'
+      ],
     },
 
-    // Visual Testing - Tablet
+    // Enhanced Visual Testing - Tablet
     {
-      name: 'Visual-Tablet',
+      name: 'Visual-Tablet-iPad',
       use: { 
         ...devices['iPad Pro'],
         viewport: { width: 1024, height: 1366 },
       },
-      testMatch: ['**/new-divinci-visual.spec.js', '**/visual-regression.spec.js', '**/comprehensive-mobile-visual.spec.js'],
+      testMatch: [
+        '**/new-divinci-visual.spec.js', 
+        '**/visual-regression.spec.js', 
+        '**/comprehensive-mobile-visual.spec.js',
+        '**/comprehensive-visual-testing.spec.js'
+      ],
+    },
+    {
+      name: 'Visual-Tablet-Landscape',
+      use: { 
+        ...devices['iPad Pro landscape'],
+        viewport: { width: 1366, height: 1024 },
+      },
+      testMatch: [
+        '**/comprehensive-visual-testing.spec.js'
+      ],
     },
 
     // Comprehensive Mobile Testing - Multiple Devices
@@ -207,14 +280,20 @@ module.exports = defineConfig({
 
   // Global test configuration
   expect: {
-    timeout: 10000,
-    // Visual comparison threshold
-    threshold: 0.3,
+    timeout: 15000,
+    // Enhanced visual comparison settings
+    threshold: 0.2,
     toHaveScreenshot: {
-      threshold: 0.3,
-      maxDiffPixels: 1000,
+      threshold: 0.2,
+      maxDiffPixels: 1500,
       animations: 'disabled',
       mode: 'rgb',
+      // Better handling of flaky visual tests
+      clip: null, // Allow full element clipping
+    },
+    toMatchSnapshot: {
+      threshold: 0.2,
+      maxDiffPixels: 1500,
     },
   },
 

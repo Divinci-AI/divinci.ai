@@ -1,7 +1,7 @@
-{% extends "base-optimized.html" %}
+{% extends "base.html" %}
 
 {% block content %}
-{%- set current_lang = page.lang | default(value="en") -%}
+{# current_lang is inherited from base template #}
 
 <!-- Include Header -->
 {% include "partials/header.html" %}
@@ -12,8 +12,8 @@
     <section class="press-hero">
         <div class="container">
             <div class="press-hero-content">
-                <h1 class="press-title">Press Resources</h1>
-                <p class="press-subtitle">Find the latest news, media coverage, and resources about Divinci AI. For press inquiries, please contact our media relations team.</p>
+                <h1 class="press-title">{{ translations.press.title | default(value="Press Resources") }}</h1>
+                <p class="press-subtitle">{{ translations.press.subtitle | default(value="Find the latest news, media coverage, and resources about Divinci AI. For press inquiries, please contact our media relations team.") }}</p>
             </div>
         </div>
     </section>
@@ -21,7 +21,7 @@
     <!-- Press Contact Section -->
     <section class="press-section">
         <div class="container">
-            <h2 class="section-title">Press Contact</h2>
+            <h2 class="section-title">{{ translations.press.contact.title | default(value="Press Contact") }}</h2>
 
             <div class="contact-card">
                 <div class="contact-info">
@@ -31,7 +31,7 @@
                     <div class="contact-details">
                         <div class="contact-label">Email</div>
                         <div class="contact-value">
-                            <a href="mailto:press@divinci.ai">press@divinci.ai</a>
+                            <a href="mailto:{{ translations.press.contact.email | default(value="press@divinci.ai") }}">{{ translations.press.contact.email | default(value="press@divinci.ai") }}</a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="contact-details">
                         <div class="contact-label">Phone</div>
                         <div class="contact-value">
-                            <a href="tel:+18005551234">+1 (800) 555-1234</a>
+                            <a href="tel:+18005551234">{{ translations.press.contact.phone | default(value="+1 (800) 555-1234") }}</a>
                         </div>
                     </div>
                 </div>
@@ -55,12 +55,12 @@
                     <div class="contact-details">
                         <div class="contact-label">Media Relations</div>
                         <div class="contact-value">
-                            Sierra Hooshiari, VP of Communications
+                            {{ translations.press.contact.media_relations | default(value="Sierra Hooshiari, COO - Chief Operations Officer") }}
                         </div>
                     </div>
                 </div>
 
-                <p style="margin-top: 1rem;">Our media relations team is available to assist journalists, industry analysts, and content creators with information, interviews, and resources about Divinci AI and our perspective on the AI industry.</p>
+                <p style="margin-top: 1rem;">{{ translations.press.contact.description | default(value="Our media relations team is available to assist journalists, industry analysts, and content creators with information, interviews, and resources about Divinci AI and our perspective on the AI industry.") }}</p>
             </div>
         </div>
     </section>
@@ -69,42 +69,42 @@
     <section class="press-section">
         <div class="sacred-pattern sacred-pattern-1"></div>
         <div class="container">
-            <h2 class="section-title">Press Releases</h2>
+            <h2 class="section-title">{{ translations.press.releases.title | default(value="Press Releases") }}</h2>
 
             <div class="news-grid">
                 <div class="news-item">
                     <img src="{{ get_url(path="images/still-hero.png") }}" alt="Divinci AI Platform Launch" class="news-image">
                     <div class="news-content">
-                        <div class="news-date">May 1, 2025</div>
-                        <h3 class="news-title">Divinci AI Launches Platform to Democratize Custom AI Solutions for Businesses</h3>
+                        <div class="news-date">{{ translations.press.releases.items.platform_launch.date | default(value="May 1, 2025") }}</div>
+                        <h3 class="news-title">{{ translations.press.releases.items.platform_launch.title | default(value="Divinci AI Launches Platform to Democratize Custom AI Solutions for Businesses") }}</h3>
                         <p class="news-excerpt">
-                            Divinci AI today announced the general availability of its platform designed to make custom AI solutions accessible to businesses of all sizes, without requiring specialized machine learning expertise.
+                            {{ translations.press.releases.items.platform_launch.excerpt | default(value="Divinci AI today announced the general availability of its platform designed to make custom AI solutions accessible to businesses of all sizes, without requiring specialized machine learning expertise.") }}
                         </p>
-                        <a href="#" class="news-link">Read more <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="news-link">{{ translations.press.common.read_more | default(value="Read more") }} <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
                 <div class="news-item">
                     <img src="{{ get_url(path="images/autorag-still.png") }}" alt="AutoRAG Feature Release" class="news-image">
                     <div class="news-content">
-                        <div class="news-date">April 15, 2025</div>
-                        <h3 class="news-title">Divinci AI Unveils AutoRAG, Making Retrieval-Augmented Generation Accessible to All</h3>
+                        <div class="news-date">{{ translations.press.releases.items.autorag_launch.date | default(value="April 15, 2025") }}</div>
+                        <h3 class="news-title">{{ translations.press.releases.items.autorag_launch.title | default(value="Divinci AI Unveils AutoRAG, Making Retrieval-Augmented Generation Accessible to All") }}</h3>
                         <p class="news-excerpt">
-                            The new AutoRAG feature automates the complex process of implementing Retrieval-Augmented Generation systems, allowing businesses to easily create AI that leverages their proprietary knowledge.
+                            {{ translations.press.releases.items.autorag_launch.excerpt | default(value="The new AutoRAG feature automates the complex process of implementing Retrieval-Augmented Generation systems, allowing businesses to easily create AI that leverages their proprietary knowledge.") }}
                         </p>
-                        <a href="#" class="news-link">Read more <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="news-link">{{ translations.press.common.read_more | default(value="Read more") }} <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
                 <div class="news-item">
                     <img src="{{ get_url(path="images/AI-Standards-Hub-Logo_04-1.png") }}" alt="AI Standards Hub Partnership" class="news-image">
                     <div class="news-content">
-                        <div class="news-date">March 10, 2025</div>
-                        <h3 class="news-title">Divinci AI Joins AI Standards Hub to Promote Responsible AI Development</h3>
+                        <div class="news-date">{{ translations.press.releases.items.standards_hub.date | default(value="March 10, 2025") }}</div>
+                        <h3 class="news-title">{{ translations.press.releases.items.standards_hub.title | default(value="Divinci AI Joins AI Standards Hub to Promote Responsible AI Development") }}</h3>
                         <p class="news-excerpt">
-                            As part of its commitment to ethical AI, Divinci AI has joined the AI Standards Hub to contribute to the development of standards for secure, responsible, and transparent artificial intelligence.
+                            {{ translations.press.releases.items.standards_hub.excerpt | default(value="As part of its commitment to ethical AI, Divinci AI has joined the AI Standards Hub to contribute to the development of standards for secure, responsible, and transparent artificial intelligence.") }}
                         </p>
-                        <a href="#" class="news-link">Read more <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="news-link">{{ translations.press.common.read_more | default(value="Read more") }} <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -115,48 +115,48 @@
     <section class="press-section">
         <div class="sacred-pattern sacred-pattern-2"></div>
         <div class="container">
-            <h2 class="section-title">Media Coverage</h2>
+            <h2 class="section-title">{{ translations.press.coverage.title | default(value="Media Coverage") }}</h2>
 
             <div class="coverage-grid">
                 <div class="coverage-item">
                     <div class="coverage-logo">
-                        <img src="https://via.placeholder.com/300x150.png?text=TechCrunch" alt="TechCrunch Logo">
+                        <img src="{{ get_url(path="images/techcrunch-logo.svg") }}" alt="TechCrunch Logo">
                     </div>
                     <div class="coverage-content">
-                        <div class="coverage-date">May 3, 2025</div>
-                        <h3 class="coverage-title">Divinci AI Makes Custom AI Solutions Accessible to SMBs</h3>
+                        <div class="coverage-date">{{ translations.press.coverage.items.techcrunch.date | default(value="May 3, 2025") }}</div>
+                        <h3 class="coverage-title">{{ translations.press.coverage.items.techcrunch.title | default(value="Divinci AI Makes Custom AI Solutions Accessible to SMBs") }}</h3>
                         <p class="coverage-excerpt">
-                            TechCrunch reviews Divinci AI's new platform and how it's bringing enterprise-grade AI capabilities to small and medium-sized businesses.
+                            {{ translations.press.coverage.items.techcrunch.excerpt | default(value="TechCrunch reviews Divinci AI's new platform and how it's bringing enterprise-grade AI capabilities to small and medium-sized businesses.") }}
                         </p>
-                        <a href="#" class="coverage-link">Read article <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="coverage-link">{{ translations.press.common.read_article | default(value="Read article") }} <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
                 <div class="coverage-item">
                     <div class="coverage-logo">
-                        <img src="https://via.placeholder.com/300x150.png?text=VentureBeat" alt="VentureBeat Logo">
+                        <img src="{{ get_url(path="images/venturebeat-logo.svg") }}" alt="VentureBeat Logo">
                     </div>
                     <div class="coverage-content">
-                        <div class="coverage-date">April 18, 2025</div>
-                        <h3 class="coverage-title">How Divinci AI's AutoRAG Feature Changes the Game for Document-Based AI</h3>
+                        <div class="coverage-date">{{ translations.press.coverage.items.venturebeat.date | default(value="April 18, 2025") }}</div>
+                        <h3 class="coverage-title">{{ translations.press.coverage.items.venturebeat.title | default(value="How Divinci AI's AutoRAG Feature Changes the Game for Document-Based AI") }}</h3>
                         <p class="coverage-excerpt">
-                            VentureBeat explores how Divinci AI's AutoRAG technology simplifies the complex process of implementing document-aware AI systems.
+                            {{ translations.press.coverage.items.venturebeat.excerpt | default(value="VentureBeat explores how Divinci AI's AutoRAG technology simplifies the complex process of implementing document-aware AI systems.") }}
                         </p>
-                        <a href="#" class="coverage-link">Read article <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="coverage-link">{{ translations.press.common.read_article | default(value="Read article") }} <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
                 <div class="coverage-item">
                     <div class="coverage-logo">
-                        <img src="https://via.placeholder.com/300x150.png?text=Forbes" alt="Forbes Logo">
+                        <img src="{{ get_url(path="images/forbes-logo.svg") }}" alt="Forbes Logo">
                     </div>
                     <div class="coverage-content">
-                        <div class="coverage-date">March 15, 2025</div>
-                        <h3 class="coverage-title">10 AI Startups to Watch in 2025: Divinci AI Makes the List</h3>
+                        <div class="coverage-date">{{ translations.press.coverage.items.forbes.date | default(value="March 15, 2025") }}</div>
+                        <h3 class="coverage-title">{{ translations.press.coverage.items.forbes.title | default(value="10 AI Startups to Watch in 2025: Divinci AI Makes the List") }}</h3>
                         <p class="coverage-excerpt">
-                            Forbes includes Divinci AI in its annual list of promising AI startups transforming how businesses implement artificial intelligence solutions.
+                            {{ translations.press.coverage.items.forbes.excerpt | default(value="Forbes includes Divinci AI in its annual list of promising AI startups transforming how businesses implement artificial intelligence solutions.") }}
                         </p>
-                        <a href="#" class="coverage-link">Read article <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="coverage-link">{{ translations.press.common.read_article | default(value="Read article") }} <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -166,11 +166,11 @@
     <!-- Brand Assets Section -->
     <section class="press-section">
         <div class="container">
-            <h2 class="section-title">Brand Assets</h2>
-            <p>Download official Divinci AI logos, product screenshots, and founder photos for media use. All assets are provided in high resolution and are available in multiple formats.</p>
+            <h2 class="section-title">{{ translations.press.assets.title | default(value="Brand Assets") }}</h2>
+            <p>{{ translations.press.assets.description | default(value="Download official Divinci AI logos, product screenshots, and founder photos for media use. All assets are provided in high resolution and are available in multiple formats.") }}</p>
 
             <div class="brand-assets">
-                <h3 style="font-weight: 600; margin-bottom: 1rem; color: #16214c;">Logos</h3>
+                <h3 style="font-weight: 600; margin-bottom: 1rem; color: #16214c;">{{ translations.press.assets.logos | default(value="Logos") }}</h3>
                 <div class="assets-grid">
                     <div class="asset-item">
                         <div class="asset-preview">
@@ -179,7 +179,7 @@
                         <div class="asset-info">
                             <div class="asset-name">Primary Logo</div>
                             <div class="asset-format">SVG, PNG, JPG</div>
-                            <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                            <a href="#" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -190,7 +190,7 @@
                         <div class="asset-info">
                             <div class="asset-name">Inverted Logo</div>
                             <div class="asset-format">SVG, PNG, JPG</div>
-                            <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                            <a href="#" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -201,12 +201,12 @@
                         <div class="asset-info">
                             <div class="asset-name">Animated Logo</div>
                             <div class="asset-format">SVG, GIF</div>
-                            <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                            <a href="#" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
                 </div>
 
-                <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: #16214c;">Product Screenshots</h3>
+                <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: #16214c;">{{ translations.press.assets.screenshots | default(value="Product Screenshots") }}</h3>
                 <div class="assets-grid">
                     <div class="asset-item">
                         <div class="asset-preview">
@@ -215,7 +215,7 @@
                         <div class="asset-info">
                             <div class="asset-name">AutoRAG Dashboard</div>
                             <div class="asset-format">PNG, JPG</div>
-                            <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                            <a href="#" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -226,7 +226,7 @@
                         <div class="asset-info">
                             <div class="asset-name">QA Pipeline</div>
                             <div class="asset-format">PNG, JPG</div>
-                            <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                            <a href="#" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -237,12 +237,12 @@
                         <div class="asset-info">
                             <div class="asset-name">Release Cycle Manager</div>
                             <div class="asset-format">PNG, JPG</div>
-                            <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                            <a href="#" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
                 </div>
 
-                <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: #16214c;">Team Photos</h3>
+                <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: #16214c;">{{ translations.press.assets.team_photos | default(value="Team Photos") }}</h3>
                 <div class="assets-grid">
                     <div class="asset-item">
                         <div class="asset-preview">
@@ -251,7 +251,7 @@
                         <div class="asset-info">
                             <div class="asset-name">Michael Mooring, CEO</div>
                             <div class="asset-format">JPG, PNG</div>
-                            <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                            <a href="#" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -262,7 +262,7 @@
                         <div class="asset-info">
                             <div class="asset-name">Samuel Tobia, CTO</div>
                             <div class="asset-format">JPG, PNG</div>
-                            <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                            <a href="#" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -271,19 +271,19 @@
                             <img src="{{ get_url(path="images/sierra-hooshiari.jpeg") }}" alt="Sierra Hooshiari">
                         </div>
                         <div class="asset-info">
-                            <div class="asset-name">Sierra Hooshiari, VP of Communications</div>
+                            <div class="asset-name">Sierra Hooshiari, COO</div>
                             <div class="asset-format">JPG, PNG</div>
-                            <a href="#" class="asset-download"><i class="fas fa-download"></i> Download</a>
+                            <a href="#" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="press-kit-section">
-                <h3 class="press-kit-title">Complete Press Kit</h3>
-                <p class="press-kit-description">Download our complete press kit, which includes all logos, screenshots, team photos, product fact sheets, and company backgrounders in a single package.</p>
+                <h3 class="press-kit-title">{{ translations.press.assets.press_kit.title | default(value="Complete Press Kit") }}</h3>
+                <p class="press-kit-description">{{ translations.press.assets.press_kit.description | default(value="Download our complete press kit, which includes all logos, screenshots, team photos, product fact sheets, and company backgrounders in a single package.") }}</p>
                 <a href="#" class="press-kit-button">
-                    <i class="fas fa-file-archive"></i> Download Press Kit (ZIP, 25MB)
+                    <i class="fas fa-file-archive"></i> {{ translations.press.assets.press_kit.button | default(value="Download Press Kit (ZIP, 25MB)") }}
                 </a>
             </div>
         </div>
@@ -294,7 +294,7 @@
 {% include "partials/footer.html" %}
 
 <style>
-/* Press Page Styles - Matching Original exactly */
+/* Press Page Specific Styles */
 
 /* Press Hero */
 .press-hero {

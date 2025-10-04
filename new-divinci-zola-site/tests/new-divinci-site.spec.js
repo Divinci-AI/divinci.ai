@@ -120,11 +120,11 @@ test.describe('New-Divinci Zola Site', () => {
     
     // Check team member names
     await expect(page.locator('.team-member').nth(0)).toContainText('Michael Mooring');
-    await expect(page.locator('.team-member').nth(1)).toContainText('Duane Mooring');
-    await expect(page.locator('.team-member').nth(2)).toContainText('Sam Tobia');
-    await expect(page.locator('.team-member').nth(3)).toContainText('Abdul Rahman');
-    await expect(page.locator('.team-member').nth(4)).toContainText('Sierra Hooshiari');
-    await expect(page.locator('.team-member').nth(5)).toContainText('Sean Fuhrman');
+    await expect(page.locator('.team-member').nth(1)).toContainText('Samuel Tobia');
+    await expect(page.locator('.team-member').nth(2)).toContainText('Duane Mooring');
+    await expect(page.locator('.team-member').nth(3)).toContainText('Sierra Hooshiari');
+    await expect(page.locator('.team-member').nth(4)).toContainText('Sean Fuhrman');
+    await expect(page.locator('.team-member').nth(5)).toContainText('Paul-Marie Carfantan');
   });
 
   test('should have working signup form', async ({ page }) => {

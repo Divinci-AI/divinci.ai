@@ -10,7 +10,8 @@
     "team": "Team",
     "signup": "Aanmelden",
     "support": "Ondersteuning",
-    "request_demo": "Demo aanvragen"
+    "request_demo": "Demo aanvragen",
+    "support_center": "Ondersteuningscentrum"
   },
   "hero": {
     "heading": "AI releases.",
@@ -18,7 +19,7 @@
     "description": "Versterk uw bedrijf met geavanceerd release management en rigoureuze kwaliteitsborging voor aangepaste taalmodellen. Bereik operationele betrouwbaarheid, regulatoire compliance en optimale prestaties door een gestructureerd, end-to-end implementatieproces.",
     "features": {
       "test_automation": "Intelligente testautomatisering",
-      "compliance_records": "Gedetailleerde compliance records", 
+      "compliance_records": "Gedetailleerde compliance records",
       "version_recovery": "Onmiddellijk versie herstel"
     },
     "cta": {
@@ -35,7 +36,7 @@
         "description": "Automatiseer en coördineer complexe implementatiepipelines met precisie. Zorg ervoor dat elke modelrelease wordt gevalideerd, gedocumenteerd en naadloos wordt overgezet naar productie, risico's minimaliserend en operationele efficiëntie maximaliserend."
       },
       "model_oversight": {
-        "title": "Proactief model toezicht", 
+        "title": "Proactief model toezicht",
         "description": "Monitor modelprestaties en compliance in realtime. Benut geautomatiseerde controles en uitgebreide analytics om problemen vroeg te detecteren, regulatoire standaarden te handhaven en optimale modelintegriteit te behouden."
       },
       "performance_analytics": {
@@ -57,7 +58,7 @@
         "description": "Maak multi-stakeholder samenwerking mogelijk met gedeelde AI-werkruimtes voor kruisfunctionele teams."
       },
       "ai_family": {
-        "title": "AI Familie", 
+        "title": "AI Familie",
         "description": "Toegang tot enterprise-grade modellen van toonaangevende providers met uniforme governance en beveiligingscontroles."
       },
       "voice_io": {
@@ -69,7 +70,7 @@
         "description": "Volg gebruik, efficiëntie en kwaliteitspatronen over alle AI-interacties met gedetailleerde analytics."
       },
       "enterprise_security": {
-        "title": "Enterprise Beveiliging", 
+        "title": "Enterprise Beveiliging",
         "description": "Beveilig alle data en gesprekken met end-to-end encryptie, toegangscontroles en uitgebreide auditing."
       },
       "lightning_responses": {
@@ -92,7 +93,13 @@
         "title": "Schaalbaarheid",
         "description": "Schaal van kleine teams naar enterprise organisaties met infrastructuur die automatisch schaalt."
       }
-    }
+    },
+    "journal_title": "Leonardo's Dagboek",
+    "autorag": {
+      "title": "AutoRAG"
+    },
+    "qa_title": "Kwaliteitsborging",
+    "release_management": "Release Management"
   },
   "team": {
     "title": "Ontmoet ons team",
@@ -102,15 +109,19 @@
     },
     "roles": {
       "ceo_founder": "CEO & Oprichter",
-      "cto_cofounder": "CTO & Medeoprichter", 
+      "cto_cofounder": "CTO & Medeoprichter",
       "head_product": "Hoofd Product",
       "senior_data_scientist": "Senior Data Scientist",
       "ux_ui_designer": "UX/UI Designer",
-      "software_engineer": "Software Engineer"
+      "software_engineer": "Software Engineer",
+      "cpo": "Productdirecteur",
+      "coo": "Operationeel Directeur",
+      "data_scientist": "Data Scientist",
+      "ai_safety_ethics_advisor": "AI Ethiek en Veiligheidsadviseur"
     }
   },
   "signup": {
-    "title": "Begin uw AI-reis", 
+    "title": "Begin uw AI-reis",
     "description": "Sluit je aan bij duizenden teams die al hun werk transformeren met Divinci AI. Krijg vroege toegang tot ons platform.",
     "email_placeholder": "Uw email",
     "button": "Toegang aanvragen",
@@ -129,7 +140,7 @@
         "description": "Vooringenomenheidsreductie en eerlijkheidsbevordering in alle uitkomsten."
       },
       "positive_impact": {
-        "title": "Positieve impact", 
+        "title": "Positieve impact",
         "description": "Bijdragen aan oplossingen die wereldwijde uitdagingen aanpakken."
       }
     }
@@ -141,9 +152,12 @@
         "title": "Product",
         "links": {
           "features": "Functies",
-          "pricing": "Prijzen", 
+          "pricing": "Prijzen",
           "roadmap": "Roadmap",
-          "changelog": "Changelog"
+          "changelog": "Changelog",
+          "autorag": "AutoRAG",
+          "quality_assurance": "Kwaliteitsborging",
+          "release_management": "Release Management"
         }
       },
       "resources": {
@@ -152,14 +166,15 @@
           "documentation": "Documentatie",
           "blog": "Blog",
           "tutorials": "Tutorials",
-          "api": "API"
+          "api": "API",
+          "support": "Ondersteuning"
         }
       },
       "company": {
         "title": "Bedrijf",
         "links": {
           "about": "Over Ons",
-          "careers": "Carrières", 
+          "careers": "Carrières",
           "contact": "Contact",
           "press": "Pers"
         }
@@ -178,16 +193,24 @@
       "copyright": "© 2023-2025 Divinci AI. Alle rechten voorbehouden.",
       "links": {
         "sitemap": "Sitemap",
-        "accessibility": "Toegankelijkheid", 
+        "accessibility": "Toegankelijkheid",
         "cookies": "Cookie Beleid"
-      }
-    }
+      },
+      "privacy_settings": "Privacy-instellingen",
+      "cookie_policy": "Cookiebeleid",
+      "cookie_preferences": "Cookie-voorkeuren"
+    },
+    "api": "API",
+    "support": "Ondersteuning",
+    "privacy_settings": "Privacy-instellingen",
+    "cookie_preferences": "Cookie-voorkeuren",
+    "cookie_policy": "Cookiebeleid"
   },
   "language_switcher": {
     "current_language": "Nederlands",
     "languages": {
       "en": "English",
-      "es": "Español", 
+      "es": "Español",
       "fr": "Français",
       "ar": "العربية",
       "ja": "日本語",
@@ -197,8 +220,54 @@
       "de": "Deutsch",
       "pt": "Português",
       "ko": "한국어",
-      "nl": "Nederlands", 
+      "nl": "Nederlands",
       "hi": "हिन्दी"
     }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Neem contact op met ons team",
+    "get_in_touch": "NEEM CONTACT OP",
+    "email_specialists": {
+      "title": "E-mail onze specialisten",
+      "description": "Ontvang gedetailleerde, doordachte reacties op uw technische en zakelijke vragen.",
+      "email": "Demo inplannen"
+    },
+    "schedule_demo": "Demo inplannen",
+    "book_demo": "Boek een live demo",
+    "demo_availability": "Beschikbaar voor gepersonaliseerde 30-minuten demo's om te laten zien hoe Divinci AI werkt.",
+    "speak_consultant": {
+      "title": "Boek een live demo",
+      "description": "Beschikbaar voor gepersonaliseerde 30-minuten demo's om te laten zien hoe Divinci AI werkt.",
+      "phone": "Demo boeken"
+    }
+  },
+  "support": {
+    "title": "Ondersteuningscentrum",
+    "subtitle": "Krijg hulp en ondersteuning voor Divinci AI"
+  },
+  "expert_answers": {
+    "title": "Expert Antwoorden",
+    "subtitle": "Specialistenbegeleiding",
+    "description": "Vind uitgebreide inzichten over release management en kwaliteitsborging van ons platform voor grote taalmodellen. Ontdek gedetailleerde, professionele reacties op uw meest urgente vragen.",
+    "faqs": {
+      "model_reliability": {
+        "question": "Hoe garandeert u de betrouwbaarheid van het model?",
+        "answer": "We implementeren een meerlagig validatieproces, dat geautomatiseerde regressie-, prestatie- en beveiligingstests combineert met handmatige expertrecensies. Elke modelrelease wordt rigoureus beoordeeld om ervoor te zorgen dat deze consistent voldoet aan bedrijfsnormen voor nauwkeurigheid, stabiliteit en compliance."
+      },
+      "language_models": {
+        "question": "Welke taalmodellen zijn compatibel?",
+        "answer": "Ons platform ondersteunt een breed spectrum van grote taalmodellen, van open-source tot eigendomsarchitecturen. Flexibele integratie maakt naadloze implementatie mogelijk in diverse frameworks en bedrijfsomgevingen, wat aanpasbaarheid aan evoluerende zakelijke behoeften garandeert."
+      },
+      "quality_assurance": {
+        "question": "Hoe wordt continue kwaliteitsborging bereikt?",
+        "answer": "We behouden kwaliteit door continue monitoring, geplande audits en realtime prestatietracking. Door gebruikersfeedback en opkomende risico's te analyseren, verfijnen we proactief modellen en processen om strenge kwaliteitsnormen in de tijd te handhaven."
+      },
+      "workflow_integration": {
+        "question": "Past het platform bij bestaande workflows?",
+        "answer": "Onze oplossing is ontworpen voor naadloze integratie met bedrijfssystemen. Robuuste API's en configureerbare opties maken moeiteloze afstemming mogelijk met uw huidige release management en ontwikkelingspijplijnen, waardoor verstoring wordt geminimaliseerd en efficiëntie wordt gemaximaliseerd."
+      }
+    },
+    "view_complete_list": "Bekijk volledige modelcompatibiliteitslijst"
   }
 }

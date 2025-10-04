@@ -23,7 +23,7 @@
       "version_recovery": "Recuperación instantánea de versiones"
     },
     "cta": {
-      "primary": "Solicitar demo", 
+      "primary": "Solicitar demo",
       "secondary": "Explorar plataforma"
     }
   },
@@ -93,7 +93,13 @@
         "title": "Escalabilidad",
         "description": "Crece desde equipos pequeños hasta organizaciones empresariales con infraestructura que escala automáticamente."
       }
-    }
+    },
+    "journal_title": "Cuaderno de Leonardo",
+    "autorag": {
+      "title": "AutoRAG"
+    },
+    "qa_title": "Aseguramiento de Calidad",
+    "release_management": "Gestión de Lanzamientos"
   },
   "team": {
     "title": "Conoce a nuestro equipo",
@@ -107,7 +113,11 @@
       "head_product": "Jefe de Producto",
       "senior_data_scientist": "Científico de Datos Senior",
       "ux_ui_designer": "Diseñadora UX/UI",
-      "software_engineer": "Ingeniero de Software"
+      "software_engineer": "Ingeniero de Software",
+      "cpo": "Director de Producto",
+      "coo": "Director de Operaciones",
+      "data_scientist": "Científico de Datos",
+      "ai_safety_ethics_advisor": "Asesor de Ética y Seguridad de IA"
     }
   },
   "signup": {
@@ -144,7 +154,10 @@
           "features": "Características",
           "pricing": "Precios",
           "roadmap": "Hoja de ruta",
-          "changelog": "Registro de cambios"
+          "changelog": "Registro de cambios",
+          "autorag": "AutoRAG",
+          "quality_assurance": "Garantía de Calidad",
+          "release_management": "Gestión de Lanzamientos"
         }
       },
       "resources": {
@@ -153,7 +166,8 @@
           "documentation": "Documentación",
           "blog": "Blog",
           "tutorials": "Tutoriales",
-          "api": "API"
+          "api": "API",
+          "support": "Soporte"
         }
       },
       "company": {
@@ -181,8 +195,16 @@
         "sitemap": "Mapa del sitio",
         "accessibility": "Accesibilidad",
         "cookies": "Política de cookies"
-      }
-    }
+      },
+      "privacy_settings": "Configuración de Privacidad",
+      "cookie_policy": "Política de Cookies",
+      "cookie_preferences": "Preferencias de Cookies"
+    },
+    "api": "API",
+    "support": "Soporte",
+    "privacy_settings": "Configuración de Privacidad",
+    "cookie_preferences": "Preferencias de Cookies",
+    "cookie_policy": "Política de Cookies"
   },
   "support": {
     "title": "Centro de Soporte",
@@ -192,7 +214,7 @@
       "title": "Centro de Soporte",
       "menu": {
         "getting_started": "Primeros Pasos",
-        "implementation": "Implementación", 
+        "implementation": "Implementación",
         "troubleshooting": "Solución de Problemas",
         "api_docs": "Documentación API",
         "billing": "Facturación",
@@ -309,7 +331,7 @@
     "languages": {
       "en": "English",
       "es": "Español",
-      "fr": "Français", 
+      "fr": "Français",
       "ar": "العربية",
       "ja": "日本語",
       "zh": "中文",
@@ -320,6 +342,169 @@
       "ko": "한국어",
       "nl": "Nederlands",
       "hi": "हिन्दी"
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Póngase en contacto con nuestro equipo",
+    "get_in_touch": "Ponerse en Contacto",
+    "page_title": "Contacte con nosotros",
+    "page_subtitle": "¿Tiene preguntas sobre nuestra plataforma o necesita ayuda para comenzar? Estamos aquí para ayudar. Contáctenos a través del formulario a continuación o utilizando nuestra información de contacto.",
+    "form": {
+      "title": "Envíenos un mensaje",
+      "name_label": "Su nombre",
+      "name_placeholder": "Ingrese su nombre",
+      "email_label": "Dirección de correo electrónico",
+      "email_placeholder": "Ingrese su correo electrónico",
+      "company_label": "Empresa (Opcional)",
+      "company_placeholder": "El nombre de su empresa",
+      "inquiry_type_label": "Tipo de consulta",
+      "inquiry_type_placeholder": "Seleccione una opción",
+      "inquiry_options": {
+        "general": "Pregunta general",
+        "sales": "Consulta de ventas",
+        "demo": "Solicitar una demostración",
+        "support": "Soporte técnico",
+        "partnership": "Oportunidad de asociación"
+      },
+      "message_label": "Su mensaje",
+      "message_placeholder": "¿Cómo podemos ayudarle?",
+      "privacy_label": "Acepto la <a href=\"privacy-policy.html\" target=\"_blank\">Política de Privacidad</a> y consiento el procesamiento de mis datos personales.",
+      "submit_button": "Enviar mensaje",
+      "success_message": "¡Gracias por su mensaje! Nos pondremos en contacto con usted lo antes posible.",
+      "error_message": "¡Vaya! Algo salió mal. Inténtelo de nuevo más tarde o contáctenos directamente."
+    },
+    "info": {
+      "email": {
+        "title": "Envíenos un correo",
+        "value": "hello@divinci.ai"
+      },
+      "phone": {
+        "title": "Llámenos",
+        "value": "+1 (800) 555-1234"
+      },
+      "address": {
+        "title": "Visítenos",
+        "value": "312 Arizona Ave<br>Santa Monica, California 90401"
+      },
+      "hours": {
+        "title": "Horario comercial",
+        "value": "Lunes-Viernes: 9am-6pm PST<br>Fin de semana: Cerrado"
+      }
+    },
+    "map": {
+      "click_message": "Haga clic para interactuar con el mapa"
+    },
+    "email_specialists": {
+      "title": "Envíe un correo a nuestros especialistas",
+      "description": "Reciba respuestas detalladas y reflexivas a sus consultas técnicas y comerciales.",
+      "email": "Programar Demo"
+    },
+    "schedule_demo": "Programar Demo",
+    "book_demo": "Reservar una demostración en vivo",
+    "demo_availability": "Disponible para demostraciones personalizadas de 30 minutos para mostrarle cómo funciona Divinci AI.",
+    "speak_consultant": {
+      "title": "Reservar una demostración en vivo",
+      "description": "Disponible para demostraciones personalizadas de 30 minutos para mostrarle cómo funciona Divinci AI.",
+      "phone": "Reservar Demo"
+    }
+  },
+  "expert_answers": {
+    "title": "Respuestas de Expertos",
+    "subtitle": "Orientación de especialistas",
+    "description": "Encuentre información completa sobre la gestión de lanzamientos y aseguramiento de calidad de nuestra plataforma para modelos de lenguaje grandes. Explore respuestas detalladas y profesionales a sus preguntas más urgentes.",
+    "faqs": {
+      "model_reliability": {
+        "question": "¿Cómo garantizan la confiabilidad del modelo?",
+        "answer": "Implementamos un proceso de validación de múltiples capas, combinando pruebas automatizadas de regresión, rendimiento y seguridad con revisiones manuales de expertos. Cada lanzamiento de modelo se evalúa rigurosamente para asegurar que cumpla consistentemente con los estándares de nivel empresarial de precisión, estabilidad y cumplimiento."
+      },
+      "language_models": {
+        "question": "¿Qué modelos de lenguaje son compatibles?",
+        "answer": "Nuestra plataforma admite un amplio espectro de modelos de lenguaje grandes, desde arquitecturas de código abierto hasta propietarias. La integración flexible permite un despliegue perfecto en diversos marcos y entornos empresariales, asegurando adaptabilidad a las necesidades comerciales en evolución."
+      },
+      "quality_assurance": {
+        "question": "¿Cómo se logra el aseguramiento de calidad continuo?",
+        "answer": "Mantenemos la calidad a través de monitoreo continuo, auditorías programadas y seguimiento de rendimiento en tiempo real. Al analizar los comentarios de los usuarios y los riesgos emergentes, refinamos proactivamente los modelos y procesos para mantener estándares de calidad rigurosos a lo largo del tiempo."
+      },
+      "workflow_integration": {
+        "question": "¿Se adapta la plataforma a los flujos de trabajo existentes?",
+        "answer": "Nuestra solución está diseñada para una integración perfecta con los sistemas empresariales. Las API robustas y las opciones configurables permiten una alineación sin esfuerzo con sus pipelines actuales de gestión de lanzamientos y desarrollo, minimizando la interrupción y maximizando la eficiencia."
+      }
+    },
+    "view_complete_list": "Ver lista completa de compatibilidad de modelos"
+  },
+  "press": {
+    "title": "Recursos de Prensa",
+    "subtitle": "Encuentra las últimas noticias, cobertura mediática y recursos sobre Divinci AI. Para consultas de prensa, por favor contacta a nuestro equipo de relaciones con los medios.",
+    "contact": {
+      "title": "Contacto de Prensa",
+      "email": "press@divinci.ai",
+      "phone": "+1 (800) 555-1234",
+      "media_relations": "Sierra Hooshiari, COO - Directora de Operaciones",
+      "description": "Nuestro equipo de relaciones con los medios está disponible para ayudar a periodistas, analistas de la industria y creadores de contenido con información, entrevistas y recursos sobre Divinci AI y nuestra perspectiva sobre la industria de IA."
+    },
+    "releases": {
+      "title": "Comunicados de Prensa",
+      "items": {
+        "platform_launch": {
+          "date": "1 de mayo, 2025",
+          "title": "Divinci AI Lanza Plataforma para Democratizar Soluciones de IA Personalizadas para Empresas",
+          "excerpt": "Divinci AI anunció hoy la disponibilidad general de su plataforma diseñada para hacer accesibles las soluciones de IA personalizadas a empresas de todos los tamaños, sin requerir experiencia especializada en aprendizaje automático."
+        },
+        "autorag_launch": {
+          "date": "15 de abril, 2025",
+          "title": "Divinci AI Presenta AutoRAG, Haciendo la Generación Aumentada por Recuperación Accesible para Todos",
+          "excerpt": "La nueva función AutoRAG automatiza el proceso complejo de implementar sistemas de Generación Aumentada por Recuperación, permitiendo a las empresas crear fácilmente IA que aprovecha su conocimiento propietario."
+        },
+        "standards_hub": {
+          "date": "10 de marzo, 2025",
+          "title": "Divinci AI se Une al Hub de Estándares de IA para Promover el Desarrollo Responsable de IA",
+          "excerpt": "Como parte de su compromiso con la IA ética, Divinci AI se ha unido al Hub de Estándares de IA para contribuir al desarrollo de estándares para inteligencia artificial segura, responsable y transparente."
+        }
+      }
+    },
+    "coverage": {
+      "title": "Cobertura Mediática",
+      "items": {
+        "techcrunch": {
+          "date": "3 de mayo, 2025",
+          "title": "Divinci AI Hace Accesibles las Soluciones de IA Personalizadas para PYMEs",
+          "excerpt": "TechCrunch revisa la nueva plataforma de Divinci AI y cómo está llevando capacidades de IA de nivel empresarial a pequeñas y medianas empresas."
+        },
+        "venturebeat": {
+          "date": "18 de abril, 2025",
+          "title": "Cómo la Función AutoRAG de Divinci AI Cambia el Juego para la IA Basada en Documentos",
+          "excerpt": "VentureBeat explora cómo la tecnología AutoRAG de Divinci AI simplifica el proceso complejo de implementar sistemas de IA conscientes de documentos."
+        },
+        "forbes": {
+          "date": "15 de marzo, 2025",
+          "title": "10 Startups de IA a Seguir en 2025: Divinci AI Está en la Lista",
+          "excerpt": "Forbes incluye a Divinci AI en su lista anual de startups de IA prometedoras que están transformando cómo las empresas implementan soluciones de inteligencia artificial."
+        }
+      }
+    },
+    "assets": {
+      "title": "Recursos de Marca",
+      "description": "Descarga logos oficiales de Divinci AI, capturas de pantalla de productos y fotos de fundadores para uso mediático. Todos los recursos se proporcionan en alta resolución y están disponibles en múltiples formatos.",
+      "logos": "Logos",
+      "screenshots": "Capturas de Pantalla de Productos",
+      "team_photos": "Fotos del Equipo",
+      "press_kit": {
+        "title": "Kit de Prensa Completo",
+        "description": "Descarga nuestro kit de prensa completo, que incluye todos los logos, capturas de pantalla, fotos del equipo, hojas informativas de productos y antecedentes de la empresa en un solo paquete.",
+        "button": "Descargar Kit de Prensa (ZIP, 25MB)"
+      }
+    },
+    "about": {
+      "mission_title": "Nuestra Misión",
+      "mission_text": "Democratizar la IA empresarial haciendo que la inteligencia artificial sofisticada sea accesible, manejable y confiable para organizaciones de todos los tamaños. Creemos que la IA debe amplificar el potencial humano, no reemplazarlo.",
+      "vision_title": "Nuestra Visión", 
+      "vision_text": "Un mundo donde cada organización pueda aprovechar el poder transformador de la IA con confianza, sabiendo que sus implementaciones son seguras, conformes y alineadas con sus valores. Visualizamos la IA como un socio colaborativo en el logro humano."
+    },
+    "common": {
+      "read_more": "Leer más",
+      "read_article": "Leer artículo",
+      "download": "Descargar"
     }
   }
 }

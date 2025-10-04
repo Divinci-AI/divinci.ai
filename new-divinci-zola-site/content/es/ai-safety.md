@@ -157,7 +157,7 @@ La seguridad y ética de la IA es un campo en evolución. Nos comprometemos a:
 Para preguntas sobre nuestras prácticas de seguridad y ética de IA, o para reportar preocupaciones:
 
 **Email**: ethics@divinci.ai  
-**Dirección**: Equipo de Ética de Divinci AI, 123 Innovation Drive, Tech City, TC 12345
+**Dirección**: Equipo de Ética de Divinci AI, 312 Arivona Ave, Santa Monica, CA 90401
 
 Agradecemos la retroalimentación y estamos comprometidos a abordar las preocupaciones de manera rápida y transparente.
 

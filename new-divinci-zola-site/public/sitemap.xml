@@ -23,6 +23,9 @@
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/ar/autorag/</loc>
     </url>
     <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ar/press/</loc>
+    </url>
+    <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/ar/privacy-policy/</loc>
     </url>
     <url>
@@ -99,10 +102,16 @@
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/de/</loc>
     </url>
     <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/de/press/</loc>
+    </url>
+    <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/docs/</loc>
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/</loc>
+    </url>
+    <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/about/</loc>
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/accessibility/</loc>
@@ -128,10 +137,25 @@
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/blog/page/1/</loc>
     </url>
     <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/careers/</loc>
+    </url>
+    <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/changelog/</loc>
+    </url>
+    <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/contact/</loc>
+    </url>
+    <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/cookies/</loc>
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/docs/</loc>
+    </url>
+    <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/press/</loc>
+    </url>
+    <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/pricing/</loc>
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/privacy-policy/</loc>
@@ -143,10 +167,16 @@
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/release-management/</loc>
     </url>
     <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/roadmap/</loc>
+    </url>
+    <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/security/</loc>
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/sitemap/</loc>
+    </url>
+    <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/support/</loc>
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/terms-of-service/</loc>
@@ -174,6 +204,9 @@
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/docs/</loc>
     </url>
     <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/press/</loc>
+    </url>
+    <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/privacy-policy/</loc>
     </url>
     <url>
@@ -181,6 +214,9 @@
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/release-management/</loc>
+    </url>
+    <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/support/</loc>
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/terms-of-service/</loc>
@@ -195,7 +231,13 @@
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/it/</loc>
     </url>
     <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/it/press/</loc>
+    </url>
+    <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/ja/</loc>
+    </url>
+    <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ja/press/</loc>
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/ko/</loc>
@@ -214,6 +256,9 @@
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/pt/</loc>
+    </url>
+    <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/pt/press/</loc>
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/quality-assurance/</loc>
@@ -340,5 +385,8 @@
     </url>
     <url>
         <loc>https://divinci-ai-site.divinci-ai.workers.dev/zh/</loc>
+    </url>
+    <url>
+        <loc>https://divinci-ai-site.divinci-ai.workers.dev/zh/press/</loc>
     </url>
 </urlset>

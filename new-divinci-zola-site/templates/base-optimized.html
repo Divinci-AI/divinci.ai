@@ -1,8 +1,43 @@
 <!DOCTYPE html>
-{# Optimized language detection - faster processing #}
-{%- set current_lang = page.lang | default(value="en") -%}
+{# Language detection logic - same as base.html #}
+{%- if page.extra.lang -%}
+  {%- set detected_lang = page.extra.lang -%}
+{%- elif section.extra.lang -%}
+  {%- set detected_lang = section.extra.lang -%}
+{%- elif current_url and "/ar/" in current_url -%}
+  {%- set detected_lang = "ar" -%}
+{%- elif current_url and "/es/" in current_url -%}
+  {%- set detected_lang = "es" -%}
+{%- elif current_url and "/fr/" in current_url -%}
+  {%- set detected_lang = "fr" -%}
+{%- elif current_url and "/de/" in current_url -%}
+  {%- set detected_lang = "de" -%}
+{%- elif current_url and "/it/" in current_url -%}
+  {%- set detected_lang = "it" -%}
+{%- elif current_url and "/ru/" in current_url -%}
+  {%- set detected_lang = "ru" -%}
+{%- elif current_url and "/ja/" in current_url -%}
+  {%- set detected_lang = "ja" -%}
+{%- elif current_url and "/zh/" in current_url -%}
+  {%- set detected_lang = "zh" -%}
+{%- elif current_url and "/pt/" in current_url -%}
+  {%- set detected_lang = "pt" -%}
+{%- elif current_url and "/ko/" in current_url -%}
+  {%- set detected_lang = "ko" -%}
+{%- elif current_url and "/nl/" in current_url -%}
+  {%- set detected_lang = "nl" -%}
+{%- elif current_url and "/hi/" in current_url -%}
+  {%- set detected_lang = "hi" -%}
+{%- else -%}
+  {%- set detected_lang = "en" -%}
+{%- endif -%}
 
-<html lang="{{ current_lang }}" {% if current_lang == "ar" %}dir="rtl"{% endif %}>
+{# Set global variables for language and translations #}
+{%- set current_lang = detected_lang -%}
+{%- set translation_path = "data/translations/" ~ current_lang ~ ".json" -%}
+{%- set translations = load_data(path=translation_path) -%}
+
+<html lang="{{ detected_lang }}" {% if detected_lang == "ar" %}dir="rtl"{% endif %}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">

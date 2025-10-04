@@ -6,7 +6,7 @@ template = "roadmap.html"
 
 <style>
 .document-section {
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    background: linear-gradient(135deg, #1e3a2b 0%, #2d3c34 100%);
     color: white;
     padding: 80px 0;
     min-height: 100vh;
@@ -59,7 +59,7 @@ template = "roadmap.html"
 }
 
 .version-tag.major {
-    background: linear-gradient(135deg, #16214c, #254284);
+    background: linear-gradient(135deg, #1e3a2b, #2d3c34);
 }
 
 .version-tag.minor {

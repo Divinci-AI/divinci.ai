@@ -91,7 +91,7 @@ Agradecemos los comentarios sobre la accesibilidad de nuestro sitio web. Si encu
 
 **Email**: accessibility@divinci.ai  
 **Teléfono**: +1 (555) 123-4567  
-**Correo**: Equipo de Accesibilidad de Divinci AI, 123 Innovation Drive, Tech City, TC 12345
+**Correo**: Equipo de Accesibilidad de Divinci AI, 312 Arivona Ave, Santa Monica, CA 90401
 
 ### Al contactarnos, incluya por favor:
 

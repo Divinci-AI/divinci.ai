@@ -2,7 +2,7 @@
   "meta": {
     "title": "Divinci AI - 常に優秀",
     "description": "カスタム言語モデルの高度なリリース管理と厳格な品質保証でビジネスを強化。運用信頼性、規制遵守、最適なパフォーマンスを実現します。",
-    "og_title": "Divinci AI - 常に優秀", 
+    "og_title": "Divinci AI - 常に優秀",
     "og_description": "AIリリース。常に優秀。"
   },
   "navigation": {
@@ -10,7 +10,8 @@
     "team": "チーム",
     "signup": "サインアップ",
     "support": "サポート",
-    "request_demo": "デモをリクエスト"
+    "request_demo": "デモをリクエスト",
+    "support_center": "サポートセンター"
   },
   "hero": {
     "heading": "AIリリース。",
@@ -92,7 +93,13 @@
         "title": "スケーラビリティ",
         "description": "自動スケールするインフラストラクチャで小規模チームから企業組織まで拡張。"
       }
-    }
+    },
+    "journal_title": "レオナルドの手帳",
+    "autorag": {
+      "title": "AutoRAG"
+    },
+    "qa_title": "品質保証",
+    "release_management": "リリース管理"
   },
   "team": {
     "title": "チームメンバー紹介",
@@ -112,7 +119,11 @@
       "head_product": "プロダクト責任者",
       "senior_data_scientist": "シニアデータサイエンティスト",
       "ux_ui_designer": "UX/UIデザイナー",
-      "software_engineer": "ソフトウェアエンジニア"
+      "software_engineer": "ソフトウェアエンジニア",
+      "cpo": "プロダクト責任者",
+      "coo": "運営責任者",
+      "data_scientist": "データサイエンティスト",
+      "ai_safety_ethics_advisor": "AI倫理・安全アドバイザー"
     }
   },
   "signup": {
@@ -149,7 +160,10 @@
           "features": "機能",
           "pricing": "価格",
           "roadmap": "ロードマップ",
-          "changelog": "変更履歴"
+          "changelog": "変更履歴",
+          "autorag": "AutoRAG",
+          "quality_assurance": "品質保証",
+          "release_management": "リリース管理"
         }
       },
       "resources": {
@@ -158,7 +172,8 @@
           "documentation": "ドキュメンテーション",
           "blog": "ブログ",
           "tutorials": "チュートリアル",
-          "api": "API"
+          "api": "API",
+          "support": "サポート"
         }
       },
       "company": {
@@ -186,8 +201,16 @@
         "sitemap": "サイトマップ",
         "accessibility": "アクセシビリティ",
         "cookies": "クッキーポリシー"
-      }
-    }
+      },
+      "privacy_settings": "プライバシー設定",
+      "cookie_policy": "Cookieポリシー",
+      "cookie_preferences": "Cookie設定"
+    },
+    "api": "API",
+    "support": "サポート",
+    "privacy_settings": "プライバシー設定",
+    "cookie_preferences": "Cookieの設定",
+    "cookie_policy": "Cookieポリシー"
   },
   "language_switcher": {
     "current_language": "日本語",
@@ -206,5 +229,51 @@
       "nl": "Nederlands",
       "hi": "हिन्दी"
     }
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "私たちのチームにご連絡ください",
+    "get_in_touch": "お問い合わせ",
+    "email_specialists": {
+      "title": "専門家にメールする",
+      "description": "技術的およびビジネス上のお問い合わせに対する詳細で思慮深い回答を受け取ります。",
+      "email": "デモをスケジュール"
+    },
+    "schedule_demo": "デモをスケジュール",
+    "book_demo": "ライブデモを予約",
+    "demo_availability": "Divinci AIの動作方法をお見せする30分間のパーソナライズされたデモをご利用いただけます。",
+    "speak_consultant": {
+      "title": "ライブデモを予約",
+      "description": "Divinci AIの動作方法をお見せする30分間のパーソナライズされたデモをご利用いただけます。",
+      "phone": "デモを予約"
+    }
+  },
+  "support": {
+    "title": "サポートセンター",
+    "subtitle": "Divinci AIのヘルプとサポートを取得"
+  },
+  "expert_answers": {
+    "title": "専門家の回答",
+    "subtitle": "スペシャリストからの指導",
+    "description": "大規模言語モデルのリリース管理と品質保証に関するプラットフォームの包括的な洞察を見つけてください。最も差し迫った質問に対する詳細で専門的な回答を探索してください。",
+    "faqs": {
+      "model_reliability": {
+        "question": "モデルの信頼性をどのように保証しますか？",
+        "answer": "私たちは、自動化された回帰テスト、パフォーマンステスト、セキュリティテストと専門家による手動レビューを組み合わせた多層検証プロセスを実装しています。各モデルリリースは、精度、安定性、コンプライアンスに関する企業グレードの基準を一貫して満たすよう厳格に評価されます。"
+      },
+      "language_models": {
+        "question": "どの言語モデルが対応していますか？",
+        "answer": "当社のプラットフォームは、オープンソースから独自アーキテクチャまで、幅広い大規模言語モデルをサポートします。柔軟な統合により、多様なフレームワークと企業環境でのシームレスなデプロイメントが可能で、進化するビジネスニーズへの適応性を保証します。"
+      },
+      "quality_assurance": {
+        "question": "継続的な品質保証はどのように実現されますか？",
+        "answer": "継続的な監視、定期的な監査、リアルタイムでのパフォーマンス追跡により品質を維持しています。ユーザーフィードバックと新たなリスクを分析することで、長期にわたって厳格な品質基準を維持するため、モデルとプロセスを積極的に改善しています。"
+      },
+      "workflow_integration": {
+        "question": "プラットフォームは既存のワークフローに適合しますか？",
+        "answer": "当社のソリューションは、企業システムとのシームレスな統合のために設計されています。堅牢なAPIと構成可能なオプションにより、現在のリリース管理および開発パイプラインとの簡単な連携が可能で、中断を最小化し効率性を最大化します。"
+      }
+    },
+    "view_complete_list": "完全なモデル互換性リストを表示"
   }
 }
