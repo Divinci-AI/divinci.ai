@@ -100,7 +100,10 @@ Humans should maintain meaningful control over AI systems:
 
 ## Implementing Responsible AI Across the Development Lifecycle
 
-![Responsible AI Framework](images/AI-Standards-Hub-Logo_04-1.png)
+<picture>
+  <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/AI-Standards-Hub-Logo_04-1.webp" type="image/webp">
+  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/AI-Standards-Hub-Logo_04-1.jpg" alt="Responsible AI Framework" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;">
+</picture>
 *A comprehensive framework for implementing responsible AI practices*
 
 ### Planning and Design

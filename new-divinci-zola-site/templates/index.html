@@ -13,18 +13,21 @@
 <section class="hero">
     <div class="hero-content">
         <div class="hero-image">
-            <img src="{{ get_url(path="images/Davinci_the_painter_painting_a_robot_in_a_line_art.png") }}" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster">
+            <picture>
+                <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Davinci_the_painter_painting_a_robot_in_a_line_art.webp" type="image/webp">
+                <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Davinci_the_painter_painting_a_robot_in_a_line_art.jpg" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster">
+            </picture>
             <video id="hero-video" muted playsinline preload="metadata" data-lazy-video data-loop-once webkit-playsinline>
-                <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.webm") }}" type="video/webm">
-                <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.mp4") }}" type="video/mp4">
+                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready.webm" type="video/webm">
+                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready.mp4" type="video/mp4">
             </video>
             <video id="hero-video-2" muted playsinline preload="none" data-lazy-video>
-                <source src="{{ get_url(path="images/alysha-ai-chat-interface.webm") }}" type="video/webm">
-                <source src="{{ get_url(path="images/alysha-ai_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__5e9e0736-637d-4e05-a391-179c76e9edee_3.mp4") }}" type="video/mp4">
+                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/alysha-ai-chat-interface.webm" type="video/webm">
+                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/alysha-ai_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__5e9e0736-637d-4e05-a391-179c76e9edee_3.mp4" type="video/mp4">
             </video>
             <video id="hero-video-3" muted playsinline preload="none" data-lazy-video>
-                <source src="{{ get_url(path="images/ai-robot-chat-interface.webm") }}" type="video/webm">
-                <source src="{{ get_url(path="images/ai-robot_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__dba81638-02b0-4792-92f5-37ef95f8ceb0_0.mp4") }}" type="video/mp4">
+                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-robot-chat-interface.webm" type="video/webm">
+                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-robot_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__dba81638-02b0-4792-92f5-37ef95f8ceb0_0.mp4" type="video/mp4">
             </video>
             <button id="sound-toggle">Unmute</button>
         </div>
@@ -52,7 +55,7 @@
             </div>
             <div class="cta-buttons">
                 <a href="https://calendly.com/mike-mooring-divinci/30-minute-meeting" class="primary-button" target="_blank" rel="noopener">{{ translations.hero.cta.primary | default(value="Request demo") }}</a>
-                <button class="secondary-button">{{ translations.hero.cta.secondary | default(value="Explore platform") }}</button>
+                <a href="#features" class="secondary-button">{{ translations.hero.cta.secondary | default(value="Explore platform") }}</a>
             </div>
         </div>
     </div>
@@ -69,26 +72,26 @@
     <div class="video-background-container">
         <!-- Default background video (Panel 1) -->
         <video id="background-video-default" class="background-video active" muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video x-webkit-airplay="allow">
-            <source src="{{ get_url(path="images/ai-team.webm") }}" type="video/webm">
-            <source src="{{ get_url(path="images/ai-team_social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_321668ae-ec36-4ade-b0a9-8e5dd026b0de_0.mp4") }}" type="video/mp4">
+            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-team.webm" type="video/webm">
+            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-team_social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_321668ae-ec36-4ade-b0a9-8e5dd026b0de_0.mp4" type="video/mp4">
         </video>
-        
+
         <!-- Panel 1 hover video (ai team) -->
         <video id="background-video-panel1" class="background-video" muted loop playsinline webkit-playsinline preload="none" data-lazy-video data-panel="1" x-webkit-airplay="allow">
-            <source src="{{ get_url(path="images/ai-team.webm") }}" type="video/webm">
-            <source src="{{ get_url(path="images/ai-team_social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_321668ae-ec36-4ade-b0a9-8e5dd026b0de_0.mp4") }}" type="video/mp4">
+            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-team.webm" type="video/webm">
+            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-team_social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_321668ae-ec36-4ade-b0a9-8e5dd026b0de_0.mp4" type="video/mp4">
         </video>
-        
+
         <!-- Panel 2 hover video (business parody) -->
         <video id="background-video-panel2" class="background-video" muted loop playsinline webkit-playsinline preload="none" data-lazy-video data-panel="2" x-webkit-airplay="allow">
-            <source src="{{ get_url(path="images/business-parody-optimized.webm") }}" type="video/webm">
-            <source src="{{ get_url(path="images/business-parody-social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_2ce28274-76c9-4ec1-b4f8-3acc57789616_3.mp4") }}" type="video/mp4">
+            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/business-parody-optimized.webm" type="video/webm">
+            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/business-parody-social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_2ce28274-76c9-4ec1-b4f8-3acc57789616_3.mp4" type="video/mp4">
         </video>
-        
+
         <!-- Panel 3 hover video (rag machine) -->
         <video id="background-video-panel3" class="background-video" muted loop playsinline webkit-playsinline preload="none" data-lazy-video data-panel="3" x-webkit-airplay="allow">
-            <source src="{{ get_url(path="images/rag-machine-optimized.webm") }}" type="video/webm">
-            <source src="{{ get_url(path="images/rag-machine-social_u4943574663_Young_Leonardo_da_Vinci_in_Renaissance_workshop_t_ad808b44-961d-49e8-b0d-06c848541449_1.mp4") }}" type="video/mp4">
+            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-machine-optimized.webm" type="video/webm">
+            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-machine-social_u4943574663_Young_Leonardo_da_Vinci_in_Renaissance_workshop_t_ad808b44-961d-49e8-b0d-06c848541449_1.mp4" type="video/mp4">
         </video>
     </div>
     <div class="enterprise-content">
@@ -1220,7 +1223,10 @@
         <div class="team-grid">
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="{{ get_url(path="images/Michael-Mooring.png") }}" alt="Michael Mooring">
+                    <picture>
+                        <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring.webp" type="image/webp">
+                        <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring.jpg" alt="Michael Mooring">
+                    </picture>
                 </div>
                 <h3>Michael Mooring</h3>
                 <p class="role">{{ translations.team.roles.ceo_founder | default(value="CEO & Founder") }}</p>
@@ -1321,63 +1327,48 @@
     </div>
 </section>
 
-<section class="ai-for-good-section">
-    <div class="ai-for-good-container">
-        <div class="ai-for-good-content">
-            <div class="ai-for-good-text">
-                <h2>{{ translations.ai_for_good.title | default(value="AI for good") }}</h2>
-                <p>{{ translations.ai_for_good.description | default(value="We're committed to developing responsible AI that benefits humanity. Our platform is designed with strong ethical principles, transparency, and a focus on empowering people, not replacing them.") }}</p>
-                <div class="ai-for-good-principles">
-                    <div class="principle">
-                        <span class="principle-icon">
-                            <svg class="sacred-icon safe-dev-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M50 15 L70 25 L70 50 Q70 75, 50 85 Q30 75, 30 50 L30 25 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <path d="M40 45 L45 50 L60 35" fill="none" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                        </span>
-                        <div class="principle-text">
-                            <h3>{{ translations.ai_for_good.principles.safe_development.title | default(value="Safe development") }}</h3>
-                            <p>{{ translations.ai_for_good.principles.safe_development.description | default(value="Rigorous safety testing and protective measures.") }}</p>
+<section class="news-section">
+    <div class="news-container">
+        <div class="news-carousel">
+            <div class="news-carousel-track">
+                <!-- Cloudflare Workers Launchpad Announcement -->
+                <div class="news-card active">
+                    <a href="{{ get_url(path="blog/cloudflare-workers-launchpad-cohort-6") }}" class="news-card-link">
+                        <div class="news-card-image">
+                            <video muted loop playsinline webkit-playsinline preload="none" data-lazy-video>
+                                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-cloudflare-workers-launchpad-cohort-6.webm" type="video/webm">
+                                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-cloudflare-workers-launchpad-cohort-6.mp4" type="video/mp4">
+                            </video>
                         </div>
-                    </div>
-                    <div class="principle">
-                        <span class="principle-icon">
-                            <svg class="sacred-icon fair-ai-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <line x1="50" y1="20" x2="50" y2="70" stroke="currentColor" stroke-width="2"/>
-                                <line x1="30" y1="30" x2="70" y2="30" stroke="currentColor" stroke-width="2"/>
-                                <path d="M20 30 L30 30 L25 50 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <path d="M70 30 L80 30 L75 50 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="50" cy="20" r="3" fill="currentColor"/>
-                            </svg>
-                        </span>
-                        <div class="principle-text">
-                            <h3>{{ translations.ai_for_good.principles.fair_ai.title | default(value="Fair AI") }}</h3>
-                            <p>{{ translations.ai_for_good.principles.fair_ai.description | default(value="Bias reduction and fairness promotion in all outcomes.") }}</p>
+                        <div class="news-card-content">
+                            <span class="news-date">January 15, 2025</span>
+                            <h3>Divinci AI Joins Cloudflare's Workers Launchpad Cohort #6</h3>
+                            <p>We're excited to announce our acceptance into Cloudflare's prestigious Workers Launchpad accelerator program. Learn how we're leveraging Cloudflare's edge computing platform to build sophisticated RAG pipelines.</p>
+                            <span class="read-more">Read more →</span>
                         </div>
-                    </div>
-                    <div class="principle">
-                        <span class="principle-icon">
-                            <svg class="sacred-icon impact-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="50" cy="35" r="15" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-                                <circle cx="50" cy="65" r="15" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-                                <circle cx="37" cy="42.5" r="15" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-                                <circle cx="63" cy="42.5" r="15" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-                                <circle cx="37" cy="57.5" r="15" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-                                <circle cx="63" cy="57.5" r="15" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-                            </svg>
-                        </span>
-                        <div class="principle-text">
-                            <h3>{{ translations.ai_for_good.principles.positive_impact.title | default(value="Positive impact") }}</h3>
-                            <p>{{ translations.ai_for_good.principles.positive_impact.description | default(value="Contributing to solutions that address global challenges.") }}</p>
+                    </a>
+                </div>
+
+                <!-- AI for Good (preserved as second news item) -->
+                <div class="news-card">
+                    <a href="https://lu.ma/cmuj911s" target="_blank" rel="noopener" class="news-card-link">
+                        <div class="news-card-image">
+                            <img src="{{ get_url(path="images/ai-for-impact-1.avif") }}" alt="AI for Good Impact">
                         </div>
-                    </div>
+                        <div class="news-card-content">
+                            <span class="news-date">AI for Good</span>
+                            <h3>{{ translations.ai_for_good.title | default(value="Building Responsible AI") }}</h3>
+                            <p>{{ translations.ai_for_good.description | default(value="We're committed to developing responsible AI that benefits humanity. Our platform is designed with strong ethical principles, transparency, and a focus on empowering people, not replacing them.") }}</p>
+                            <span class="read-more">Learn more →</span>
+                        </div>
+                    </a>
                 </div>
             </div>
-            <div class="ai-for-good-image">
-                <a href="https://lu.ma/cmuj911s" target="_blank" rel="noopener">
-                    <img src="{{ get_url(path="images/ai-for-impact-1.avif") }}" alt="AI for Good Impact">
-                </a>
+
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button class="indicator active" aria-label="News item 1"></button>
+                <button class="indicator" aria-label="News item 2"></button>
             </div>
         </div>
     </div>
