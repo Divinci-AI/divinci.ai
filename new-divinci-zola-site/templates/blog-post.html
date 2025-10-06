@@ -7,13 +7,23 @@
 {% include "partials/header.html" %}
 
 <!-- Blog Post Hero Section -->
-<section class="blog-post-hero">
+<section class="blog-post-hero" {% if page.extra.hero_background and not page.extra.hero_video %}style="background-image: linear-gradient(135deg, rgba(248, 244, 240, 0.95) 0%, rgba(240, 235, 225, 0.95) 100%), url('{{ get_url(path=page.extra.hero_background) }}'); background-size: cover; background-position: center;"{% endif %}>
+    <!-- Video Background (if specified) -->
+    {% if page.extra.hero_video %}
+    <div class="hero-video-background">
+        <video autoplay muted loop playsinline webkit-playsinline preload="metadata" class="hero-bg-video">
+            <source src="{{ page.extra.hero_video }}" type="video/webm">
+        </video>
+        <div class="hero-video-overlay"></div>
+    </div>
+    {% endif %}
+
     <!-- Sacred geometry background elements -->
     <div class="sacred-geometry-bg">
         <div class="sacred-circle sacred-circle-1"></div>
         <div class="geometric-pattern pattern-1"></div>
     </div>
-    
+
     <div class="container">
         <div class="blog-post-hero-content">
             <nav class="breadcrumb-nav">
@@ -54,10 +64,29 @@
 <!-- Blog Post Content -->
 <section class="blog-post-content">
     <div class="container">
+        <!-- Table of Contents - Fixed Left Sidebar -->
+        <nav class="table-of-contents" id="toc">
+            <ul class="toc-list" id="toc-list">
+                <!-- Generated dynamically by JavaScript -->
+            </ul>
+        </nav>
+
         <div class="content-wrapper">
             <article class="blog-content">
                 {% if page.extra.featured_image %}
-                    <img src="{{ get_url(path=page.extra.featured_image) }}" alt="{{ page.title }}" class="featured-image">
+                    {% if page.extra.featured_image is ending_with(".mp4") or page.extra.featured_image is ending_with(".webm") %}
+                        <video class="featured-image" muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video>
+                            {% if page.extra.featured_image is ending_with(".mp4") %}
+                                <source src="{{ page.extra.featured_image | replace(from=".mp4", to=".webm") }}" type="video/webm">
+                                <source src="{{ page.extra.featured_image }}" type="video/mp4">
+                            {% else %}
+                                <source src="{{ page.extra.featured_image }}" type="video/webm">
+                                <source src="{{ page.extra.featured_image | replace(from=".webm", to=".mp4") }}" type="video/mp4">
+                            {% endif %}
+                        </video>
+                    {% else %}
+                        <img src="{{ get_url(path=page.extra.featured_image) }}" alt="{{ page.title }}" class="featured-image">
+                    {% endif %}
                 {% endif %}
                 
                 <div class="content-body">
@@ -75,64 +104,119 @@
                     </a>
                 </div>
             </article>
-            
-            <!-- Blog Navigation -->
-            <nav class="blog-navigation">
-                {% if page.earlier %}
-                    <a href="{{ page.earlier.permalink | safe }}" class="blog-nav-button prev">
-                        <i class="fas fa-chevron-left"></i>
-                        <div>
-                            <div class="nav-label">Previous Article</div>
-                            <div class="nav-title">{{ page.earlier.title }}</div>
-                        </div>
+
+            <!-- Social Sharing - Fixed Sidebar -->
+            <div class="social-sharing-fixed">
+                <div class="social-buttons-vertical">
+                    <a href="#" class="social-btn-icon back-to-top" onclick="scrollToTop()" title="Back to Top">
+                        <i class="fas fa-arrow-up"></i>
+                        <span class="btn-label">Back to Top</span>
                     </a>
-                {% endif %}
-                
-                {% if page.later %}
-                    <a href="{{ page.later.permalink | safe }}" class="blog-nav-button next">
-                        <div>
-                            <div class="nav-label">Next Article</div>
-                            <div class="nav-title">{{ page.later.title }}</div>
-                        </div>
-                        <i class="fas fa-chevron-right"></i>
+                    <a href="#" class="social-btn-icon twitter" onclick="shareOnTwitter()" title="Share on Twitter">
+                        <i class="fab fa-twitter"></i>
+                        <span class="btn-label">Twitter</span>
                     </a>
-                {% endif %}
-            </nav>
-            
-            <!-- Social Sharing -->
-            <div class="social-sharing">
-                <h4>Share this article</h4>
-                <div class="social-buttons">
-                    <a href="#" class="social-btn twitter" onclick="shareOnTwitter()">
-                        <i class="fab fa-twitter"></i> Twitter
+                    <a href="#" class="social-btn-icon linkedin" onclick="shareOnLinkedIn()" title="Share on LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                        <span class="btn-label">LinkedIn</span>
                     </a>
-                    <a href="#" class="social-btn linkedin" onclick="shareOnLinkedIn()">
-                        <i class="fab fa-linkedin"></i> LinkedIn
+                    <a href="#" class="social-btn-icon facebook" onclick="shareOnFacebook()" title="Share on Facebook">
+                        <i class="fab fa-facebook"></i>
+                        <span class="btn-label">Facebook</span>
                     </a>
-                    <a href="#" class="social-btn facebook" onclick="shareOnFacebook()">
-                        <i class="fab fa-facebook"></i> Facebook
+                    <a href="#" class="social-btn-icon copy" onclick="copyLink()" title="Copy Link">
+                        <i class="fas fa-link"></i>
+                        <span class="btn-label">Copy Link</span>
                     </a>
-                    <a href="#" class="social-btn copy" onclick="copyLink()">
-                        <i class="fas fa-link"></i> Copy Link
-                    </a>
+                    <button class="social-btn-icon focus-mode-toggle" id="focus-mode-toggle" title="Toggle Focus Mode (F)">
+                        <i class="fas fa-eye"></i>
+                        <span class="btn-label">Focus Mode</span>
+                    </button>
+                    <button class="social-btn-icon export-toggle-btn" id="export-toggle" title="Export Options">
+                        <i class="fas fa-download"></i>
+                        <span class="btn-label">Export</span>
+                    </button>
+                </div>
+                <!-- Export Dropdown -->
+                <div class="export-dropdown" id="export-dropdown">
+                    <button class="export-option" onclick="copyAsMarkdown()" title="Copy article as Markdown">
+                        <i class="fab fa-markdown"></i>
+                        <span>Copy as Markdown</span>
+                    </button>
+                    <button class="export-option" onclick="downloadAsMarkdown()" title="Download article as Markdown file">
+                        <i class="fas fa-file-download"></i>
+                        <span>Download Markdown</span>
+                    </button>
+                    <button class="export-option" onclick="copyAsPlainText()" title="Copy article as plain text">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Copy as Text</span>
+                    </button>
+                    <button class="export-option" onclick="downloadAsPlainText()" title="Download article as text file">
+                        <i class="fas fa-file-download"></i>
+                        <span>Download Text</span>
+                    </button>
                 </div>
             </div>
         </div>
-        
-        <!-- Related Posts Sidebar -->
-        <aside class="related-posts">
-            <h3>Related Articles</h3>
-            <div class="related-posts-list">
-                <!-- This would be populated with related posts logic -->
-                <div class="related-post">
-                    <img src="{{ get_url(path='images/autorag-diagram.svg') }}" alt="Related Post" class="related-image">
-                    <div class="related-content">
-                        <h4 class="related-title">Building Responsible AI Systems</h4>
-                        <p class="related-date">April 15, 2025</p>
+
+        <!-- Two Column Layout: Related Posts and Share Section -->
+        <div class="bottom-section-wrapper">
+            <!-- Related Posts Column -->
+            <aside class="related-posts">
+                <h3>Related Articles</h3>
+                <div class="related-posts-list">
+                    {% set blog_section = get_section(path="blog/_index.md") %}
+                    {% set articles_count = 0 %}
+                    {% for post in blog_section.pages %}
+                        {% if post.permalink != page.permalink and articles_count < 5 %}
+                        <a href="{{ post.permalink }}" class="related-post">
+                            {% if post.extra.featured_image %}
+                                {% if post.extra.featured_image is starting_with("http") %}
+                                    <img src="{{ post.extra.featured_image }}" alt="{{ post.title }}" class="related-image">
+                                {% else %}
+                                    <img src="{{ get_url(path=post.extra.featured_image) }}" alt="{{ post.title }}" class="related-image">
+                                {% endif %}
+                            {% endif %}
+                            <div class="related-content">
+                                <h4 class="related-title">{{ post.title }}</h4>
+                                <p class="related-date">{{ post.date | date(format="%B %d, %Y") }}</p>
+                            </div>
+                        </a>
+                        {% set_global articles_count = articles_count + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </aside>
+
+            <!-- Share with Friends Column -->
+            <aside class="share-with-friends">
+                <h3>Share with Friends</h3>
+                <div class="share-video-container">
+                    <div class="share-video">
+                        <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 8px;">
+                            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-scholars-study.webm" type="video/webm">
+                        </video>
+                    </div>
+                    <div class="share-text-overlay">
+                        <p>If you find these topics interesting, please share with your friends and colleagues who too might find them interesting.</p>
+                    </div>
+                    <div class="share-buttons-overlay">
+                        <a href="#" class="share-btn-overlay twitter" onclick="shareOnTwitter()" title="Share on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="share-btn-overlay linkedin" onclick="shareOnLinkedIn()" title="Share on LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="share-btn-overlay facebook" onclick="shareOnFacebook()" title="Share on Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="share-btn-overlay copy" onclick="copyLink()" title="Copy Link">
+                            <i class="fas fa-link"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
-        </aside>
+            </aside>
+        </div>
     </div>
 </section>
 
@@ -207,9 +291,42 @@
     50% { opacity: 0.15; transform: scale(1.1); }
 }
 
+/* Hero Video Background */
+.hero-video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.hero-bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f8f4f0eb 0%, #f0ebe187 90%);
+    z-index: 1;
+}
+
 .blog-post-hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
@@ -254,16 +371,29 @@
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    color: #2d3c34;
-    line-height: 1.2;
+    color: #1a2820;
+    line-height: 1.3;
     display: inline-block;
+    padding: 2.5rem 3.5rem;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .post-meta {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin: auto auto 2em;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-radius: 11px;
+    padding: 11px;
+    width: fit-content;
 }
 
 .author-avatar {
@@ -301,24 +431,19 @@
     max-width: 700px;
     margin: 0 auto;
     color: #2d3c34;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-radius: 11px;
+    padding: 11px;
     opacity: 0.8;
 }
 
 /* Blog Post Content */
 .blog-post-content {
-    padding: 4rem 0;
+    padding: 4rem 0 8rem 0;
     background-color: #f8f4f0 !important;
 }
 
-/* Force override all potential dark backgrounds - except hero section and footer */
-*:not(.blog-post-hero):not(.blog-post-hero *):not(.site-footer):not(.site-footer *) {
-    background-color: inherit !important;
-}
-
-/* Specific overrides for main content areas - except hero section and footer */
-body *:not(.blog-post-hero):not(.blog-post-hero *):not(.site-footer):not(.site-footer *) {
-    background-color: transparent !important;
-}
 
 /* Restore white backgrounds for content cards */
 .blog-content,
@@ -366,7 +491,8 @@ html {
     display: flex;
     gap: 3rem;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 45px auto;
+    position: relative;
 }
 
 .blog-content {
@@ -375,6 +501,8 @@ html {
     border-radius: 12px;
     padding: 3rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin: 0 auto;
+    max-width: 1000px;
 }
 
 .featured-image {
@@ -476,8 +604,6 @@ html {
 }
 
 .content-body pre {
-    background-color: #2d3c34;
-    color: #eeffff;
     padding: 1.5rem;
     border-radius: 8px;
     overflow-x: auto;
@@ -486,7 +612,6 @@ html {
 
 .content-body pre code {
     background-color: transparent;
-    color: #eeffff;
     padding: 0;
 }
 
@@ -543,10 +668,7 @@ html {
 
 /* Blog Navigation */
 .blog-navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 3rem;
-    gap: 2rem;
+    display: none;
 }
 
 .blog-nav-button {
@@ -605,69 +727,563 @@ html {
     line-height: 1.3;
 }
 
-/* Social Sharing */
-.social-sharing {
-    margin-top: 3rem;
-    padding: 2rem;
-    background-color: white;
+/* Focus Mode Active State */
+body.focus-mode .table-of-contents,
+body.focus-mode .social-sharing-fixed {
+    display: none !important;
+}
+
+body.focus-mode .blog-content {
+    max-width: 1000px;
+    font-size: 1.2rem;
+    line-height: 1.9;
+}
+
+body.focus-mode .blog-content h2 {
+    font-size: 2.5rem;
+}
+
+body.focus-mode .blog-content h3 {
+    font-size: 2rem;
+}
+
+body.focus-mode .blog-content h4 {
+    font-size: 1.5rem;
+}
+
+body.focus-mode .blog-content p,
+body.focus-mode .blog-content li {
+    font-size: 1.2rem;
+}
+
+body.focus-mode .focus-mode-toggle {
+    background: #cfdcff;
+}
+
+body.focus-mode .focus-mode-toggle .btn-label::after {
+    content: ' (On)';
+    opacity: 0.7;
+}
+
+/* Export Toolbar - Fixed */
+.export-dropdown {
+    position: fixed;
+    right: 4.5rem;
+    top: 50%;
+    transform: translateY(calc(-50% + 100px));
+    background: white;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.export-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.export-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #2d3c34;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.export-option:hover {
+    background-color: #f8f4f0;
+}
+
+.export-option i {
+    font-size: 16px;
+    width: 20px;
     text-align: center;
 }
 
-.social-sharing h4 {
-    margin-bottom: 1.5rem;
-    color: #2d3c34;
-    font-weight: 600;
+/* Social Sharing - Fixed Vertical Sidebar */
+.social-sharing-fixed {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.social-buttons {
+@media (min-width: 1200px) {
+    .social-sharing-fixed {
+        display: block;
+    }
+}
+
+.social-buttons-vertical {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-end;
 }
 
-.social-btn {
-    display: inline-flex;
+.social-btn-icon {
+    display: flex;
     align-items: center;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    justify-content: flex-start;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    border-radius: 50px;
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 18px;
     transition: all 0.3s ease;
-    border: 2px solid;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    gap: 0;
+    padding: 0;
+    position: relative;
 }
 
-.social-btn.twitter {
+.social-btn-icon i {
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.social-btn-icon .btn-label {
+    padding-right: 1rem;
+    padding-left: 0.5rem;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.social-btn-icon:hover {
+    width: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.social-btn-icon:hover .btn-label {
+    visibility: visible;
+    opacity: 1;
+    width: auto;
+}
+
+.social-btn-icon.twitter {
+    color: #1da1f2;
+}
+
+.social-btn-icon.twitter:hover {
+    background-color: #1da1f2;
+    color: white;
+}
+
+.social-btn-icon.linkedin {
+    color: #0077b5;
+}
+
+.social-btn-icon.linkedin:hover {
+    background-color: #0077b5;
+    color: white;
+}
+
+.social-btn-icon.facebook {
+    color: #1877f2;
+}
+
+.social-btn-icon.facebook:hover {
+    background-color: #1877f2;
+    color: white;
+}
+
+.social-btn-icon.copy {
+    color: #2d3c34;
+}
+
+.social-btn-icon.copy:hover {
+    background-color: #2d3c34;
+    color: white;
+}
+
+.social-btn-icon.back-to-top {
+    color: #8b7659;
+}
+
+.social-btn-icon.back-to-top:hover {
+    background-color: #8b7659;
+    color: white;
+}
+
+.social-btn-icon.export-toggle-btn {
+    background-color: #cfdcff;
+    color: #2d3c34;
+}
+
+.social-btn-icon.export-toggle-btn:hover {
+    background-color: #b8c9ff;
+}
+
+.social-btn-icon.focus-mode-toggle {
+    color: #2d3c34;
+}
+
+/* Bottom Section Two-Column Wrapper */
+.bottom-section-wrapper {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 50px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: flex-start;
+}
+
+/* Share with Friends Section */
+.share-with-friends {
+    flex: 1;
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.share-with-friends h3 {
+    color: #2d3c34;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.share-video-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.share-video {
+}
+
+.share-video video {
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: scale(0.8);
+    transform-origin: center;
+    margin: -10% 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.share-text-overlay {
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9;
+    text-align: center;
+    /* background-color: #ffffffeb; */
+    border-radius: 12px;
+    width: 78%;
+    padding: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -232%);
+    backdrop-filter: blur(8px);
+}
+
+.share-text-overlay p {
+    font-size: 0.95rem;
+    color: #c7cbcf;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
+}
+
+.share-buttons-overlay {
+    position: absolute;
+    bottom: 5.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 39px;
+    z-index: 10;
+}
+
+.share-btn-overlay {
+    -webkit-backdrop-filter: blur(4px);
+    /* background-color: #fffffff2; */
+    border: 2px solid;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all .3s;
+    display: flex;
+    backdrop-filter: blur(8px);
+}
+
+.share-btn-overlay:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.share-btn-overlay.twitter {
     color: #1da1f2;
     border-color: #1da1f2;
 }
 
-.social-btn.linkedin {
+.share-btn-overlay.twitter:hover {
+    background-color: #1da1f2;
+    color: white;
+}
+
+.share-btn-overlay.linkedin {
     color: #0077b5;
     border-color: #0077b5;
 }
 
-.social-btn.facebook {
+.share-btn-overlay.linkedin:hover {
+    background-color: #0077b5;
+    color: white;
+}
+
+.share-btn-overlay.facebook {
     color: #1877f2;
     border-color: #1877f2;
 }
 
-.social-btn.copy {
+/* Table of Contents - Fixed Left Sidebar */
+.table-of-contents {
+    position: fixed;
+    left: 2rem;
+    top: 120px;
+    width: 224px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 12px;
+    padding: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(139, 118, 89, 0.2);
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.toc-list li {
+    margin-bottom: 0.75rem;
+    width: 100%;
+}
+
+.toc-list a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #2d3c34;
+    text-decoration: none;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.toc-icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+
+.toc-text {
+    flex: 1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.toc-list a:hover {
+    background-color: rgba(139, 118, 89, 0.15);
+    border-left-color: #8b7659;
+}
+
+.toc-list a:hover .toc-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.toc-list a.active {
+    background: linear-gradient(135deg, rgba(207, 220, 255, 0.5), rgba(207, 220, 255, 0.3));
+    border-left-color: #2196f3;
+    font-weight: 700;
+    color: #0d1f3c;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.15);
+}
+
+.toc-list a.active .toc-icon {
+    opacity: 1;
+    color: #2196f3;
+}
+
+/* Nested TOC items (h3, h4) */
+.toc-list li.toc-h3 {
+    margin-left: 1.25rem;
+}
+
+.toc-list li.toc-h3 a {
+    font-size: 0.88rem;
+    opacity: 0.95;
+    padding: 0.65rem 0.85rem;
+}
+
+.toc-list li.toc-h4 {
+    margin-left: 2.5rem;
+}
+
+.toc-list li.toc-h4 a {
+    font-size: 0.82rem;
+    opacity: 0.9;
+    padding: 0.6rem 0.75rem;
+}
+
+/* Custom scrollbar for TOC */
+.table-of-contents::-webkit-scrollbar {
+    width: 6px;
+}
+
+.table-of-contents::-webkit-scrollbar-track {
+    background: rgba(139, 118, 89, 0.1);
+    border-radius: 3px;
+}
+
+.table-of-contents::-webkit-scrollbar-thumb {
+    background: rgba(139, 118, 89, 0.3);
+    border-radius: 3px;
+}
+
+.table-of-contents::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 118, 89, 0.5);
+}
+
+/* Responsive - Hide on tablets and mobile */
+@media (max-width: 1400px) {
+    .table-of-contents {
+        left: 1rem;
+        width: 240px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .table-of-contents {
+        display: none;
+    }
+}
+
+.share-btn-overlay.facebook:hover {
+    background-color: #1877f2;
+    color: white;
+}
+
+.share-btn-overlay.copy {
     color: #2d3c34;
     border-color: #2d3c34;
 }
 
-.social-btn:hover {
-    background-color: currentColor;
-    color: white !important;
-    transform: translateY(-2px);
+.share-btn-overlay.copy:hover {
+    background-color: #2d3c34;
+    color: white;
 }
 
-.social-btn i {
-    margin-right: 0.5rem;
+/* Responsive styles for bottom section */
+@media (max-width: 1023px) {
+    .bottom-section-wrapper {
+        flex-direction: column;
+    }
+
+    .related-posts,
+    .share-with-friends {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .share-with-friends,
+    .related-posts {
+        padding: 1.5rem;
+    }
+
+    .share-video video {
+        transform: scale(1);
+        margin: 0;
+    }
+
+    .share-text-overlay {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        margin-bottom: 1rem;
+        padding: 1rem;
+    }
+
+    .share-text-overlay p {
+        font-size: 0.85rem;
+        color: #0e2f50;
+    }
+
+    .share-buttons-overlay {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        justify-content: center;
+        margin-top: 1rem;
+        gap: 1rem;
+    }
+
+    .share-btn-overlay {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
 }
 
 /* Related Posts */
@@ -696,6 +1312,17 @@ html {
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid #f5f5f5;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.related-post:hover {
+    transform: translateX(5px);
+}
+
+.related-post:hover .related-title {
+    color: #8b7659;
 }
 
 .related-post:last-child {
@@ -912,5 +1539,504 @@ function copyLink() {
         }, 2000);
     });
 }
+
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+    return false;
+}
+
+// Table of Contents Generation and Active State
+document.addEventListener('DOMContentLoaded', function() {
+    const tocList = document.getElementById('toc-list');
+    const articleContent = document.querySelector('.content-body');
+
+    if (!tocList || !articleContent) return;
+
+    // Find all headings in the article
+    const headings = articleContent.querySelectorAll('h2, h3');
+
+    if (headings.length === 0) {
+        // Hide TOC if no headings found
+        document.querySelector('.table-of-contents').style.display = 'none';
+        return;
+    }
+
+    // Icon mapping based on keywords
+    function getIconForSection(text) {
+        const lowerText = text.toLowerCase();
+
+        // Technology & Innovation
+        if (lowerText.includes('fusion') || lowerText.includes('energy')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v6m0 6v6M1 12h6m6 0h6"/></svg>';
+        }
+        if (lowerText.includes('ai') || lowerText.includes('artificial intelligence')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M9 15h6"/></svg>';
+        }
+        if (lowerText.includes('robot') || lowerText.includes('automation')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="6" rx="2"/><rect x="7" y="13" width="10" height="9" rx="2"/><path d="M9 13V8m6 5V8M9 19v2m6-2v2"/></svg>';
+        }
+
+        // Finance & Economics
+        if (lowerText.includes('bitcoin') || lowerText.includes('crypto')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.5 9.5l5 5m0-5l-5 5M8 12h8"/></svg>';
+        }
+        if (lowerText.includes('financial') || lowerText.includes('money') || lowerText.includes('dollar')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12m-2-7h4a2 2 0 110 4H10"/></svg>';
+        }
+        if (lowerText.includes('government') || lowerText.includes('policy')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>';
+        }
+        if (lowerText.includes('defense') || lowerText.includes('military')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>';
+        }
+
+        // Math & Analysis
+        if (lowerText.includes('math') || lowerText.includes('calculation')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+        }
+        if (lowerText.includes('timeline') || lowerText.includes('roadmap')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg>';
+        }
+
+        // Social & Impact
+        if (lowerText.includes('people') || lowerText.includes('social') || lowerText.includes('human')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/></svg>';
+        }
+        if (lowerText.includes('poverty') || lowerText.includes('inequality')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M12 14v7"/></svg>';
+        }
+
+        // Business & Growth
+        if (lowerText.includes('growth') || lowerText.includes('economic')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>';
+        }
+        if (lowerText.includes('entrepreneur') || lowerText.includes('business')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>';
+        }
+
+        // Questions & Concerns
+        if (lowerText.includes('inflation') || lowerText.includes('concern')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+        }
+        if (lowerText.includes('skeptic') || lowerText.includes('objection')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3m.08 4h.01"/></svg>';
+        }
+
+        // Future & Vision
+        if (lowerText.includes('future') || lowerText.includes('vision') || lowerText.includes('2035')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+        }
+        if (lowerText.includes('conclusion') || lowerText.includes('summary')) {
+            return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+        }
+
+        // Default icon (document/article)
+        return '<svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+    }
+
+    // Generate TOC items
+    headings.forEach((heading, index) => {
+        const level = heading.tagName.toLowerCase();
+        const text = heading.textContent;
+        const id = heading.id || `heading-${index}`;
+
+        // Add ID to heading if it doesn't have one
+        if (!heading.id) {
+            heading.id = id;
+        }
+
+        // Make headings clickable anchor links
+        heading.style.cursor = 'pointer';
+        heading.style.position = 'relative';
+        heading.addEventListener('click', function() {
+            const url = new URL(window.location);
+            url.hash = id;
+            history.pushState(null, null, url);
+
+            // Copy link to clipboard
+            navigator.clipboard.writeText(url.toString()).then(() => {
+                // Show feedback
+                const feedback = document.createElement('span');
+                feedback.textContent = '🔗 Link copied!';
+                feedback.style.cssText = 'position: absolute; left: -120px; top: 50%; transform: translateY(-50%); background: #cfdcff; color: #2d3c34; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; opacity: 0; transition: opacity 0.3s ease;';
+                this.style.position = 'relative';
+                this.appendChild(feedback);
+                setTimeout(() => feedback.style.opacity = '1', 10);
+                setTimeout(() => {
+                    feedback.style.opacity = '0';
+                    setTimeout(() => feedback.remove(), 300);
+                }, 2000);
+            });
+        });
+
+        // Create TOC item
+        const li = document.createElement('li');
+        li.className = `toc-${level}`;
+
+        const a = document.createElement('a');
+        a.href = `#${id}`;
+        a.dataset.target = id;
+
+        // Add icon and text
+        const icon = getIconForSection(text);
+        const textSpan = document.createElement('span');
+        textSpan.className = 'toc-text';
+        textSpan.textContent = text;
+
+        a.innerHTML = icon;
+        a.appendChild(textSpan);
+
+        li.appendChild(a);
+        tocList.appendChild(li);
+    });
+
+    // Smooth scroll to section
+    tocList.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.dataset.target;
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                // Update URL hash
+                history.pushState(null, null, `#${targetId}`);
+
+                // Smooth scroll
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // Update active state
+                updateActiveLink(targetId);
+            }
+        });
+    });
+
+    // Update active link based on scroll position
+    function updateActiveLink(targetId = null) {
+        const links = tocList.querySelectorAll('a');
+        let activeLink = null;
+
+        if (targetId) {
+            // Direct update from click
+            links.forEach(link => {
+                if (link.dataset.target === targetId) {
+                    link.classList.add('active');
+                    activeLink = link;
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        } else {
+            // Update based on scroll position
+            let current = '';
+
+            headings.forEach(heading => {
+                const rect = heading.getBoundingClientRect();
+                if (rect.top <= 200) {
+                    current = heading.id;
+                }
+            });
+
+            links.forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.target === current) {
+                    link.classList.add('active');
+                    activeLink = link;
+                }
+            });
+        }
+
+        // Scroll active link into view in TOC
+        if (activeLink) {
+            const tocContainer = document.querySelector('.table-of-contents');
+            if (tocContainer) {
+                const linkRect = activeLink.getBoundingClientRect();
+                const tocRect = tocContainer.getBoundingClientRect();
+
+                // Check if link is out of view in the TOC
+                if (linkRect.top < tocRect.top || linkRect.bottom > tocRect.bottom) {
+                    activeLink.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            }
+        }
+    }
+
+    // Update active state on scroll
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateActiveLink();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // Handle initial hash in URL
+    if (window.location.hash) {
+        const targetId = window.location.hash.substring(1);
+        setTimeout(() => {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+                updateActiveLink(targetId);
+            }
+        }, 100);
+    } else {
+        // Set first item as active initially
+        updateActiveLink();
+    }
+});
+
+// Focus Mode Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const focusToggle = document.getElementById('focus-mode-toggle');
+
+    if (focusToggle) {
+        // Load saved preference
+        const isFocusMode = localStorage.getItem('focusMode') === 'true';
+        if (isFocusMode) {
+            document.body.classList.add('focus-mode');
+        }
+
+        // Toggle on click
+        focusToggle.addEventListener('click', function() {
+            document.body.classList.toggle('focus-mode');
+            const isActive = document.body.classList.contains('focus-mode');
+            localStorage.setItem('focusMode', isActive);
+        });
+
+        // Keyboard shortcut: 'F' key
+        document.addEventListener('keydown', function(e) {
+            // Only activate if not in an input field
+            if (e.key === 'f' && !e.ctrlKey && !e.metaKey && !e.altKey &&
+                !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+                e.preventDefault();
+                focusToggle.click();
+            }
+        });
+    }
+});
+
+// Export toolbar toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const exportToggle = document.getElementById('export-toggle');
+    const exportDropdown = document.getElementById('export-dropdown');
+
+    if (exportToggle && exportDropdown) {
+        exportToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            exportDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!exportToggle.contains(e.target) && !exportDropdown.contains(e.target)) {
+                exportDropdown.classList.remove('active');
+            }
+        });
+    }
+});
+
+// Export/Copy functions
+function getArticleContent() {
+    const article = document.querySelector('.blog-content');
+    if (!article) return null;
+
+    const clone = article.cloneNode(true);
+
+    // Remove elements that shouldn't be exported
+    clone.querySelectorAll('.blog-cta').forEach(el => el.remove());
+    clone.querySelectorAll('script').forEach(el => el.remove());
+    clone.querySelectorAll('style').forEach(el => el.remove());
+
+    return clone;
+}
+
+function copyAsMarkdown() {
+    const content = getArticleContent();
+    if (!content) return;
+
+    const title = document.querySelector('.post-title')?.textContent || 'Article';
+    let markdown = `# ${title}\n\n`;
+
+    // Convert HTML to basic Markdown
+    content.querySelectorAll('h2, h3, h4, p, ul, ol, blockquote, img').forEach(el => {
+        if (el.tagName === 'H2') markdown += `## ${el.textContent.trim()}\n\n`;
+        else if (el.tagName === 'H3') markdown += `### ${el.textContent.trim()}\n\n`;
+        else if (el.tagName === 'H4') markdown += `#### ${el.textContent.trim()}\n\n`;
+        else if (el.tagName === 'P') markdown += `${el.textContent.trim()}\n\n`;
+        else if (el.tagName === 'BLOCKQUOTE') markdown += `> ${el.textContent.trim()}\n\n`;
+        else if (el.tagName === 'IMG') markdown += `![${el.alt}](${el.src})\n\n`;
+        else if (el.tagName === 'UL') {
+            el.querySelectorAll('li').forEach(li => markdown += `- ${li.textContent.trim()}\n`);
+            markdown += '\n';
+        }
+        else if (el.tagName === 'OL') {
+            el.querySelectorAll('li').forEach((li, i) => markdown += `${i+1}. ${li.textContent.trim()}\n`);
+            markdown += '\n';
+        }
+    });
+
+    navigator.clipboard.writeText(markdown).then(() => {
+        showFeedback('Copied as Markdown!');
+        document.getElementById('export-dropdown').classList.remove('active');
+    });
+}
+
+function downloadAsMarkdown() {
+    const content = getArticleContent();
+    if (!content) return;
+
+    const title = document.querySelector('.post-title')?.textContent || 'Article';
+    let markdown = `# ${title}\n\n`;
+
+    content.querySelectorAll('h2, h3, h4, p, ul, ol, blockquote, img').forEach(el => {
+        if (el.tagName === 'H2') markdown += `## ${el.textContent.trim()}\n\n`;
+        else if (el.tagName === 'H3') markdown += `### ${el.textContent.trim()}\n\n`;
+        else if (el.tagName === 'H4') markdown += `#### ${el.textContent.trim()}\n\n`;
+        else if (el.tagName === 'P') markdown += `${el.textContent.trim()}\n\n`;
+        else if (el.tagName === 'BLOCKQUOTE') markdown += `> ${el.textContent.trim()}\n\n`;
+        else if (el.tagName === 'IMG') markdown += `![${el.alt}](${el.src})\n\n`;
+        else if (el.tagName === 'UL') {
+            el.querySelectorAll('li').forEach(li => markdown += `- ${li.textContent.trim()}\n`);
+            markdown += '\n';
+        }
+        else if (el.tagName === 'OL') {
+            el.querySelectorAll('li').forEach((li, i) => markdown += `${i+1}. ${li.textContent.trim()}\n`);
+            markdown += '\n';
+        }
+    });
+
+    const blob = new Blob([markdown], { type: 'text/markdown' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${title.toLowerCase().replace(/\s+/g, '-')}.md`;
+    a.click();
+    URL.revokeObjectURL(url);
+
+    showFeedback('Downloaded as Markdown!');
+    document.getElementById('export-dropdown').classList.remove('active');
+}
+
+function copyAsPlainText() {
+    const content = getArticleContent();
+    if (!content) return;
+
+    const title = document.querySelector('.post-title')?.textContent || '';
+    const text = title + '\n\n' + content.textContent.trim();
+
+    navigator.clipboard.writeText(text).then(() => {
+        showFeedback('Copied as Text!');
+        document.getElementById('export-dropdown').classList.remove('active');
+    });
+}
+
+function downloadAsPlainText() {
+    const content = getArticleContent();
+    if (!content) return;
+
+    const title = document.querySelector('.post-title')?.textContent || 'Article';
+    const text = title + '\n\n' + content.textContent.trim();
+
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${title.toLowerCase().replace(/\s+/g, '-')}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+
+    showFeedback('Downloaded as Text!');
+    document.getElementById('export-dropdown').classList.remove('active');
+}
+
+function showFeedback(message) {
+    const feedback = document.createElement('div');
+    feedback.textContent = message;
+    feedback.style.cssText = 'position: fixed; top: 2rem; right: 2rem; background: #cfdcff; color: #2d3c34; padding: 1rem 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 9999; font-weight: 600; opacity: 0; transition: opacity 0.3s ease;';
+    document.body.appendChild(feedback);
+    setTimeout(() => feedback.style.opacity = '1', 10);
+    setTimeout(() => {
+        feedback.style.opacity = '0';
+        setTimeout(() => feedback.remove(), 300);
+    }, 2500);
+}
+
+// Fade in/out fixed social sharing icons and TOC based on scroll position
+window.addEventListener('scroll', function() {
+    const fixedSidebar = document.querySelector('.social-sharing-fixed');
+    const tocSidebar = document.querySelector('.table-of-contents');
+    const heroSection = document.querySelector('.blog-post-hero');
+    const shareSection = document.querySelector('.share-with-friends');
+    const relatedPosts = document.querySelector('.related-posts');
+    const scrollY = window.scrollY;
+
+    // Fade IN after scrolling past hero section
+    if (heroSection) {
+        const heroHeight = heroSection.offsetHeight;
+        const fadeInStart = heroHeight - 200; // Start fading in 200px before hero ends
+        const fadeInEnd = heroHeight + 100;   // Fully visible 100px after hero
+
+        let heroOpacity = 0;
+        if (scrollY > fadeInStart && scrollY < fadeInEnd) {
+            // Calculate opacity (0 to 1)
+            heroOpacity = (scrollY - fadeInStart) / (fadeInEnd - fadeInStart);
+            heroOpacity = Math.max(0, Math.min(1, heroOpacity));
+        } else if (scrollY >= fadeInEnd) {
+            heroOpacity = 1;
+        }
+
+        // Apply hero-based opacity to all elements
+        if (fixedSidebar) fixedSidebar.style.opacity = heroOpacity;
+        if (tocSidebar) tocSidebar.style.opacity = heroOpacity;
+    }
+
+    // Fade OUT when reaching bottom sections (override hero fade-in)
+    if (fixedSidebar && shareSection) {
+        const shareSectionTop = shareSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        // Start fading out when share section is 200px from entering viewport
+        const fadeStart = windowHeight + 200;
+        const fadeEnd = windowHeight - 100;
+
+        if (shareSectionTop < fadeStart && shareSectionTop > fadeEnd) {
+            // Calculate opacity (1 to 0)
+            const opacity = (shareSectionTop - fadeEnd) / (fadeStart - fadeEnd);
+            if (fixedSidebar) fixedSidebar.style.opacity = Math.max(0, Math.min(1, opacity));
+        } else if (shareSectionTop <= fadeEnd) {
+            if (fixedSidebar) fixedSidebar.style.opacity = '0';
+        }
+    }
+
+    // Fade out TOC when scrolling to related posts section
+    if (tocSidebar && relatedPosts) {
+        const relatedPostsTop = relatedPosts.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        // Start fading out when related posts section is 300px from entering viewport
+        const tocFadeStart = windowHeight + 300;
+        const tocFadeEnd = windowHeight - 100;
+
+        if (relatedPostsTop < tocFadeStart && relatedPostsTop > tocFadeEnd) {
+            // Calculate opacity (1 to 0)
+            const tocOpacity = (relatedPostsTop - tocFadeEnd) / (tocFadeStart - tocFadeEnd);
+            tocSidebar.style.opacity = Math.max(0, Math.min(1, tocOpacity));
+        } else if (relatedPostsTop <= tocFadeEnd) {
+            tocSidebar.style.opacity = '0';
+        }
+    }
+});
 </script>
 {% endblock %}
