@@ -732,23 +732,9 @@ $$
 
 **Solving the Equation for 2035:**
 
+*Note: All funding sources are calculated in billions per year, then divided by population and 12 months for the monthly UBI amount.*
+
 **Conservative Scenario:**
-
-<div style="overflow-x: auto; margin: 2rem 0;">
-$
-\begin{aligned}
-UBI_{monthly} &= \frac{(300 + 400 + 500) \cdot 1.3 + 2,250 + (1,000 \cdot 0.15) + (300 \cdot 0.5) + 200 + (2.48 \cdot 3,120)}{260 \cdot (1.03 - 0.05)} \cdot (1 - 0.40) \\\\
-&= \frac{1,560 + 2,250 + 150 + 150 + 200 + 7,738}{254.8} \cdot 0.60 \\\\
-&= \frac{12,048}{254.8} \cdot 0.60 \\\\
-&= 47.3 \cdot 0.60 = \$28.4 \text{ billion/month} \\\\
-&= \$28,400M \div 260M \text{ adults} = \mathbf{\$109/month}
-\end{aligned}
-$
-</div>
-
-Wait—that's far too low! Let me recalculate with proper units (all values in billions annually, then divided by 12 for monthly):
-
-**Corrected Conservative Scenario (Annual → Monthly):**
 
 <div style="overflow-x: auto; margin: 2rem 0;">
 $
