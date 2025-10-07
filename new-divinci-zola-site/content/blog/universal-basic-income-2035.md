@@ -733,45 +733,57 @@ $$
 **Solving the Equation for 2035:**
 
 **Conservative Scenario:**
-$$
+
+<div style="overflow-x: auto; margin: 2rem 0;">
+$
 \begin{aligned}
-UBI_{monthly} &= \frac{(300 + 400 + 500) \cdot 1.3 + 2,250 + (1,000 \cdot 0.15) + (300 \cdot 0.5) + 200 + (2.48 \cdot 3,120)}{260 \cdot (1.03 - 0.05)} \cdot (1 - 0.40) \\
-&= \frac{1,560 + 2,250 + 150 + 150 + 200 + 7,738}{254.8} \cdot 0.60 \\
-&= \frac{12,048}{254.8} \cdot 0.60 \\
-&= 47.3 \cdot 0.60 = \$28.4 \text{ billion/month} \\
+UBI_{monthly} &= \frac{(300 + 400 + 500) \cdot 1.3 + 2,250 + (1,000 \cdot 0.15) + (300 \cdot 0.5) + 200 + (2.48 \cdot 3,120)}{260 \cdot (1.03 - 0.05)} \cdot (1 - 0.40) \\\\
+&= \frac{1,560 + 2,250 + 150 + 150 + 200 + 7,738}{254.8} \cdot 0.60 \\\\
+&= \frac{12,048}{254.8} \cdot 0.60 \\\\
+&= 47.3 \cdot 0.60 = \$28.4 \text{ billion/month} \\\\
 &= \$28,400M \div 260M \text{ adults} = \mathbf{\$109/month}
 \end{aligned}
-$$
+$
+</div>
 
 Wait—that's far too low! Let me recalculate with proper units (all values in billions annually, then divided by 12 for monthly):
 
 **Corrected Conservative Scenario (Annual → Monthly):**
-$$
+
+<div style="overflow-x: auto; margin: 2rem 0;">
+$
 \begin{aligned}
-UBI_{annual} &= (1,560 + 2,250 + 150 + 150 + 200 + 400) \cdot (1 - 0.40) \\
-&= 4,710 \cdot 0.60 = \$2,826B \text{ per year} \\
-UBI_{monthly} &= \frac{2,826B}{260M \text{ adults}} \div 12 \\
+UBI_{annual} &= (1,560 + 2,250 + 150 + 150 + 200 + 400) \cdot (1 - 0.40) \\\\
+&= 4,710 \cdot 0.60 = \$2,826B \text{ per year} \\\\
+UBI_{monthly} &= \frac{2,826B}{260M \text{ adults}} \div 12 \\\\
 &= \$10,869/\text{year} \div 12 = \mathbf{\$906/month}
 \end{aligned}
-$$
+$
+</div>
 
 **Moderate Scenario:**
-$$
+
+<div style="overflow-x: auto; margin: 2rem 0;">
+$
 \begin{aligned}
-UBI_{annual} &= (2,000 + 2,250 + 500 + 300 + 350 + 600) \cdot (1 - 0.25) \\
-&= 6,000 \cdot 0.75 = \$4,500B \text{ per year} \\
+UBI_{annual} &= (2,000 + 2,250 + 500 + 300 + 350 + 600) \cdot (1 - 0.25) \\\\
+&= 6,000 \cdot 0.75 = \$4,500B \text{ per year} \\\\
 UBI_{monthly} &= \frac{4,500B}{260M} \div 12 = \mathbf{\$1,442/month}
 \end{aligned}
-$$
+$
+</div>
 
 **Progressive Scenario:**
-$$
+
+<div style="overflow-x: auto; margin: 2rem 0;">
+$
 \begin{aligned}
-UBI_{annual} &= (2,400 + 2,250 + 1,000 + 500 + 500 + 800) \cdot (1 - 0.15) \\
-&= 7,450 \cdot 0.85 = \$6,333B \text{ per year} \\
+UBI_{annual} &= (2,400 + 2,250 + 1,000 + 500 + 500 + 800) \cdot (1 - 0.15) \\\\
+&= 7,450 \cdot 0.85 = \$6,333B \text{ per year} \\\\
 UBI_{monthly} &= \frac{6,333B}{260M} \div 12 = \mathbf{\$2,031/month}
 \end{aligned}
-$$
+$
+</div>
 
 **What This Equation Reveals:**
 
