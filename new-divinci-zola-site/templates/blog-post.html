@@ -1313,11 +1313,20 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 
 @media (max-width: 1200px) {
     .table-of-contents {
-        display: none;
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
     }
 
     .blog-content {
         margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .table-of-contents {
+        display: none !important;
+        visibility: hidden !important;
     }
 }
 
