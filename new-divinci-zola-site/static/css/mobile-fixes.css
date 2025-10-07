@@ -882,9 +882,13 @@ html, body {
   .mobile-only {
     display: none !important;
   }
-  
+
   .mobile-hide {
-    display: block !important;
+    display: revert !important;
+  }
+
+  nav ul li.mobile-hide {
+    display: revert !important;
   }
   
   /* Restore proper desktop header layout */
@@ -988,7 +992,7 @@ html, body {
   
   /* Ensure first video shows poster frame on mobile */
   #hero-video {
-    poster: url('/images/Davinci_the_painter_painting_a_robot_in_a_line_art.png');
+    poster: url('/images/Davinci_the_painter_painting_a_robot_in_a_line_art.webp');
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
@@ -1404,8 +1408,7 @@ html, body {
   
   /* Improve touch targets */
   button, a, [role="button"] {
-    min-height: 44px !important;
-    min-width: 44px !important;
+    min-height: 32px !important;
   }
   
   /* Footer adjustments */

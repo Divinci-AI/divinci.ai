@@ -86,6 +86,11 @@ nav a {
   font-size: 1.1rem;
 }
 
+/* Hide mobile-only items by default */
+.mobile-only {
+  display: none;
+}
+
 .dropdown {
   display: flex;
   align-items: center;
@@ -2964,18 +2969,61 @@ body:not(.homepage) .privacy-settings-link:hover {
     flex-direction: column;
     gap: 2rem;
   }
-  
+
   header {
     flex-direction: column;
     gap: 1.5rem;
   }
-  
-  nav ul {
-    gap: 1.5rem;
+
+  /* Hide desktop demo button on mobile */
+  .mobile-demo-button {
+    display: none !important;
   }
-  
+
+  /* Show mobile-only nav items */
+  .mobile-only {
+    display: block !important;
+  }
+
+  .mobile-hide {
+    display: none !important;
+  }
+
+  nav ul {
+    gap: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  li.dropdown {
+    align-items: center !important;
+    gap: 0.25rem !important;
+  }
+
+  li.dropdown > a {
+    line-height: 1.2;
+  }
+
+  li.dropdown .dropdown-arrow {
+    font-size: 0.65rem !important;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: baseline;
+    transform: translateY(0);
+    margin-top: 0;
+    padding-top: 0;
+  }
+
   h1 {
     font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  button, a, [role="button"] {
+    min-height: 32px !important;
   }
   .features {
     flex-direction: column;
