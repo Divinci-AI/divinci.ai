@@ -11,7 +11,8 @@
     <!-- Video Background (if specified) -->
     {% if page.extra.hero_video %}
     <div class="hero-video-background">
-        <video autoplay muted loop playsinline webkit-playsinline preload="metadata" class="hero-bg-video">
+        {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
+        <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ get_url(path='images/' ~ video_name ~ '-poster.webp') }}" class="hero-bg-video">
             <source src="{{ page.extra.hero_video }}" type="video/webm">
         </video>
         <div class="hero-video-overlay"></div>
