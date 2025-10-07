@@ -202,7 +202,7 @@ Effective governance structures are essential for maintaining responsible AI pra
 
 **Incident Response**: Establish clear procedures for addressing AI-related issues.
 
-![Model Explainability Diagram](images/qa-pipeline-diagram.svg)
+![Model Explainability Diagram](/images/qa-pipeline-diagram.svg)
 *Implementing explainability and monitoring throughout the AI pipeline*
 
 ## Balancing Innovation with Responsibility

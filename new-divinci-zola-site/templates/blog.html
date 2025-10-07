@@ -90,7 +90,11 @@
                     <!-- Featured Post -->
                     <article class="featured-post">
                         <a href="{{ featured_post.permalink | safe }}" class="featured-image-link">
-                        {% if featured_post.extra.featured_image %}
+                        {% if featured_post.extra.featured_video %}
+                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" class="featured-image" style="object-fit: cover;">
+                                <source src="{{ featured_post.extra.featured_video }}" type="video/webm">
+                            </video>
+                        {% elif featured_post.extra.featured_image %}
                             {% if featured_post.extra.featured_image is ending_with(".webm") or featured_post.extra.featured_image is ending_with(".mp4") %}
                                 {% if featured_post.extra.featured_image is starting_with("http") %}
                                     <video muted loop autoplay playsinline webkit-playsinline preload="metadata" class="featured-image" style="object-fit: cover;">
@@ -121,14 +125,16 @@
                             {% else %}
                                 <span class="featured-tag">Artificial Intelligence</span>
                             {% endif %}
-                            <h2 class="featured-title">{{ featured_post.title }}</h2>
+                            <a href="{{ featured_post.permalink | safe }}" style="text-decoration: none; color: inherit;">
+                                <h2 class="featured-title">{{ featured_post.title }}</h2>
+                            </a>
                             <div class="post-meta">
                                 {% if featured_post.extra.author_avatar %}
                                     <img src="{{ get_url(path=featured_post.extra.author_avatar) }}" alt="{{ featured_post.extra.author | default(value='Michael Mooring') }}" class="author-avatar">
                                 {% else %}
                                     <picture>
-                                        <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring.webp" type="image/webp">
-                                        <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring.jpg" alt="Michael Mooring" class="author-avatar">
+                                        <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.webp" type="image/webp">
+                                        <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.jpg" alt="Michael Mooring" class="author-avatar">
                                     </picture>
                                 {% endif %}
                                 <div class="post-info">
@@ -151,9 +157,13 @@
                         <div class="posts-grid">
                             {% for post in paginator.pages %}
                                 {% if not loop.first %}
-                                    <article class="post-card">
+                                    <article class="post-card" data-href="{{ post.permalink | safe }}">
                                         <a href="{{ post.permalink | safe }}" class="post-image-link">
-                                        {% if post.extra.featured_image %}
+                                        {% if post.extra.featured_video %}
+                                            <video muted loop playsinline webkit-playsinline preload="metadata" class="post-image video-thumbnail" style="object-fit: cover;">
+                                                <source src="{{ post.extra.featured_video }}" type="video/webm">
+                                            </video>
+                                        {% elif post.extra.featured_image %}
                                             {% if post.extra.featured_image is starting_with("http") %}
                                                 <img src="{{ post.extra.featured_image }}" alt="{{ post.title }}" class="post-image">
                                             {% else %}
@@ -191,8 +201,8 @@
                                     <h3 class="post-title" style="font-size: 1.2rem; margin-bottom: 0.75rem;">Share with Friends</h3>
                                     <p style="font-size: 0.9rem; color: #2d3c34; opacity: 0.8; margin-bottom: 1rem; line-height: 1.5;">If you find these topics interesting, please share with your friends and colleagues.</p>
                                     <div class="share-buttons-grid">
-                                        <a href="#" class="share-btn-small twitter" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent('Check out the Divinci AI Blog'), '_blank', 'width=550,height=420'); return false;" title="Share on Twitter">
-                                            <i class="fab fa-twitter"></i>
+                                        <a href="#" class="share-btn-small twitter" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent('Check out the Divinci AI Blog'), '_blank', 'width=550,height=420'); return false;" title="Share on X">
+                                            <i class="fa-brands fa-x-twitter"></i>
                                         </a>
                                         <a href="#" class="share-btn-small linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(window.location.href), '_blank', 'width=550,height=420'); return false;" title="Share on LinkedIn">
                                             <i class="fab fa-linkedin"></i>
@@ -987,4 +997,46 @@ html {
     }
 }
 </style>
+
+<script>
+// Video thumbnail hover-to-play functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const videoThumbnails = document.querySelectorAll('.video-thumbnail');
+
+    videoThumbnails.forEach(video => {
+        // Get parent post-card element (entire card)
+        const postCard = video.closest('.post-card');
+
+        if (postCard) {
+            postCard.addEventListener('mouseenter', function() {
+                video.play().catch(e => console.log('Video play failed:', e));
+            });
+
+            postCard.addEventListener('mouseleave', function() {
+                video.pause();
+                video.currentTime = 0; // Reset to beginning
+            });
+        }
+    });
+
+    // Make entire post card clickable
+    const postCards = document.querySelectorAll('.post-card[data-href]');
+
+    postCards.forEach(card => {
+        card.style.cursor = 'pointer';
+
+        card.addEventListener('click', function(e) {
+            // Don't trigger if clicking on an actual link
+            if (e.target.tagName === 'A' || e.target.closest('a')) {
+                return;
+            }
+
+            const url = card.getAttribute('data-href');
+            if (url) {
+                window.location.href = url;
+            }
+        });
+    });
+});
+</script>
 {% endblock %}

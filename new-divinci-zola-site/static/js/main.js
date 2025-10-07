@@ -305,18 +305,6 @@ document.addEventListener("DOMContentLoaded", function() {
     };
   }
 
-  // Fallback timer to ensure video rotation starts even if ended event doesn't fire (desktop only)
-  if (!isMobile) {
-    setTimeout(() => {
-      if (currentVideoIndex === 0 && isFirstPlaythrough && heroVideo) {
-        console.log('Fallback: Starting video rotation after 30 seconds');
-        isFirstPlaythrough = false;
-        heroVideo.loop = false;
-        setTimeout(() => switchToNextVideo(), 2000);
-      }
-    }, 30000); // 30 seconds fallback
-  }
-
   // Enhanced background video intersection observer for iOS compatibility
   const backgroundVideoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -523,8 +511,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const heroVideos = [heroVideo, heroVideo2, heroVideo3];
     let currentActiveHeroVideo = heroVideo;
     let isFirstPlaythrough = true;
-    let isTransitioning = false; // Prevent duplicate transitions  
+    let isTransitioning = false; // Prevent duplicate transitions
     let video1MuteState = true; // Track Video 1's mute state (default muted)
+
+    // Fallback timer to ensure video rotation starts even if ended event doesn't fire
+    setTimeout(() => {
+      if (currentVideoIndex === 0 && isFirstPlaythrough && heroVideo) {
+        console.log('Fallback: Starting video rotation after 30 seconds');
+        isFirstPlaythrough = false;
+        heroVideo.loop = false;
+        setTimeout(() => switchToNextVideo(), 2000);
+      }
+    }, 30000); // 30 seconds fallback
 
   function switchToNextVideo() {
     if (isTransitioning) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" aria-labelledby="title-vec-emb desc-vec-emb">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" aria-labelledby="title-vec-emb desc-vec-emb">
   <title id="title-vec-emb">Vector Embedding Visualization</title>
   <desc id="desc-vec-emb">Visualization of how text is converted to vector embeddings and stored in a vector database</desc>
   

@@ -44,7 +44,10 @@
                 {% if page.extra.author_avatar %}
                     <img src="{{ get_url(path=page.extra.author_avatar) }}" alt="{{ page.extra.author | default(value='Michael Mooring') }}" class="author-avatar">
                 {% else %}
-                    <img src="{{ get_url(path='images/Michael-Mooring.png') }}" alt="Michael Mooring" class="author-avatar">
+                    <picture>
+                        <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.webp" type="image/webp">
+                        <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.jpg" alt="Michael Mooring" class="author-avatar">
+                    </picture>
                 {% endif %}
                 <div class="post-info">
                     <div class="author-info">
@@ -112,9 +115,9 @@
                         <i class="fas fa-arrow-up"></i>
                         <span class="btn-label">Back to Top</span>
                     </a>
-                    <a href="#" class="social-btn-icon twitter" onclick="shareOnTwitter()" title="Share on Twitter">
-                        <i class="fab fa-twitter"></i>
-                        <span class="btn-label">Twitter</span>
+                    <a href="#" class="social-btn-icon twitter" onclick="shareOnTwitter()" title="Share on X">
+                        <i class="fa-brands fa-x-twitter"></i>
+                        <span class="btn-label">X</span>
                     </a>
                     <a href="#" class="social-btn-icon linkedin" onclick="shareOnLinkedIn()" title="Share on LinkedIn">
                         <i class="fab fa-linkedin"></i>
@@ -139,6 +142,17 @@
                 </div>
                 <!-- Export Dropdown -->
                 <div class="export-dropdown" id="export-dropdown">
+                    {% if page.slug == "universal-basic-income-2035" %}
+                    <a href="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/UBI-White-Paper-2035-v2-Enhanced.html" target="_blank" class="export-option" title="Download full 50-page white paper">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Full White Paper (50 pages)</span>
+                    </a>
+                    <a href="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/UBI-2035-One-Pager.html" target="_blank" class="export-option" title="Download 1-page summary">
+                        <i class="fas fa-file"></i>
+                        <span>Quick Summary (1-page)</span>
+                    </a>
+                    <div class="export-divider"></div>
+                    {% endif %}
                     <button class="export-option" onclick="copyAsMarkdown()" title="Copy article as Markdown">
                         <i class="fab fa-markdown"></i>
                         <span>Copy as Markdown</span>
@@ -201,8 +215,8 @@
                         <p>If you find these topics interesting, please share with your friends and colleagues who too might find them interesting.</p>
                     </div>
                     <div class="share-buttons-overlay">
-                        <a href="#" class="share-btn-overlay twitter" onclick="shareOnTwitter()" title="Share on Twitter">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" class="share-btn-overlay twitter" onclick="shareOnTwitter()" title="Share on X">
+                            <i class="fa-brands fa-x-twitter"></i>
                         </a>
                         <a href="#" class="share-btn-overlay linkedin" onclick="shareOnLinkedIn()" title="Share on LinkedIn">
                             <i class="fab fa-linkedin"></i>
@@ -490,7 +504,7 @@ html {
 .content-wrapper {
     display: flex;
     gap: 3rem;
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto 45px auto;
     position: relative;
 }
@@ -502,7 +516,7 @@ html {
     padding: 3rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     margin: 0 auto;
-    max-width: 1000px;
+    max-width: 1280px;
 }
 
 .featured-image {
@@ -612,6 +626,7 @@ html {
 
 .content-body pre code {
     background-color: transparent;
+    color: inherit;
     padding: 0;
 }
 
@@ -728,15 +743,19 @@ html {
 }
 
 /* Focus Mode Active State */
-body.focus-mode .table-of-contents,
-body.focus-mode .social-sharing-fixed {
+body.focus-mode .table-of-contents {
+    display: none !important;
+}
+
+body.focus-mode .social-sharing-fixed .social-btn-icon:not(.focus-mode-toggle) {
     display: none !important;
 }
 
 body.focus-mode .blog-content {
-    max-width: 1000px;
+    max-width: 1400px;
     font-size: 1.2rem;
     line-height: 1.9;
+    margin: 0 auto;
 }
 
 body.focus-mode .blog-content h2 {
@@ -780,6 +799,16 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 100;
+    border: 2px solid #cfdcff;
+}
+
+/* Show dropdown on hover of export button OR when hovering the dropdown itself */
+.social-btn-icon.export-toggle-btn:hover + .social-sharing-fixed ~ .export-dropdown,
+.export-toggle-btn:hover ~ #export-dropdown,
+#export-toggle:hover ~ #export-dropdown,
+.export-dropdown:hover {
+    opacity: 1;
+    visibility: visible;
 }
 
 .export-dropdown.active {
@@ -801,6 +830,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     color: #2d3c34;
     text-align: left;
     transition: all 0.2s ease;
+    text-decoration: none;
 }
 
 .export-option:hover {
@@ -811,6 +841,12 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     font-size: 16px;
     width: 20px;
     text-align: center;
+}
+
+.export-divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 0.5rem 0;
 }
 
 /* Social Sharing - Fixed Vertical Sidebar */
@@ -892,11 +928,11 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 }
 
 .social-btn-icon.twitter {
-    color: #1da1f2;
+    color: #000000;
 }
 
 .social-btn-icon.twitter:hover {
-    background-color: #1da1f2;
+    background-color: #000000;
     color: white;
 }
 
@@ -937,12 +973,12 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 }
 
 .social-btn-icon.export-toggle-btn {
-    background-color: #cfdcff;
+    background-color: white;
     color: #2d3c34;
 }
 
 .social-btn-icon.export-toggle-btn:hover {
-    background-color: #b8c9ff;
+    background-color: #f8f4f0;
 }
 
 .social-btn-icon.focus-mode-toggle {
@@ -1052,12 +1088,12 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 }
 
 .share-btn-overlay.twitter {
-    color: #1da1f2;
-    border-color: #1da1f2;
+    color: #000000;
+    border-color: #000000;
 }
 
 .share-btn-overlay.twitter:hover {
-    background-color: #1da1f2;
+    background-color: #000000;
     color: white;
 }
 
@@ -1079,20 +1115,42 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 /* Table of Contents - Fixed Left Sidebar */
 .table-of-contents {
     position: fixed;
-    left: 2rem;
+    left: 5px;
     top: 120px;
-    width: 224px;
+    width: 60px;
     max-height: calc(100vh - 160px);
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: visible;
     background: rgba(255, 255, 255, 0.98);
     border-radius: 12px;
-    padding: 0;
+    padding: 1rem 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(139, 118, 89, 0.2);
     z-index: 100;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    display: none !important;
+    transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+.table-of-contents:hover {
+    width: 280px;
+    overflow-x: hidden;
+}
+
+/* Connecting line through icons */
+.toc-list::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    width: 2px;
+    background: linear-gradient(to bottom,
+        rgba(139, 118, 89, 0.2) 0%,
+        rgba(139, 118, 89, 0.4) 50%,
+        rgba(139, 118, 89, 0.2) 100%
+    );
+    z-index: 0;
 }
 
 .toc-list {
@@ -1101,11 +1159,14 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     margin: 0;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .toc-list li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .toc-list a {
@@ -1116,12 +1177,20 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     text-decoration: none;
     font-size: 0.95rem;
     line-height: 1.6;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem;
     border-radius: 8px;
     transition: all 0.2s ease;
     border-left: 4px solid transparent;
     width: 100%;
     box-sizing: border-box;
+    justify-content: center;
+    position: relative;
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.table-of-contents:hover .toc-list a {
+    justify-content: flex-start;
+    padding: 0.75rem 1rem;
 }
 
 .toc-icon {
@@ -1136,6 +1205,18 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     flex: 1;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.table-of-contents:hover .toc-text {
+    opacity: 1;
+    visibility: visible;
+    width: auto;
     white-space: normal;
 }
 
@@ -1164,22 +1245,38 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 
 /* Nested TOC items (h3, h4) */
 .toc-list li.toc-h3 {
+    margin-left: 0;
+}
+
+.table-of-contents:hover .toc-list li.toc-h3 {
     margin-left: 1.25rem;
 }
 
 .toc-list li.toc-h3 a {
     font-size: 0.88rem;
     opacity: 0.95;
+    padding: 0.5rem;
+}
+
+.table-of-contents:hover .toc-list li.toc-h3 a {
     padding: 0.65rem 0.85rem;
 }
 
 .toc-list li.toc-h4 {
+    margin-left: 0;
+}
+
+.table-of-contents:hover .toc-list li.toc-h4 {
     margin-left: 2.5rem;
 }
 
 .toc-list li.toc-h4 a {
     font-size: 0.82rem;
     opacity: 0.9;
+    padding: 0.5rem;
+}
+
+.table-of-contents:hover .toc-list li.toc-h4 a {
     padding: 0.6rem 0.75rem;
 }
 
@@ -1208,11 +1305,19 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
         left: 1rem;
         width: 240px;
     }
+
+    .blog-content {
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 1200px) {
     .table-of-contents {
         display: none;
+    }
+
+    .blog-content {
+        margin: 0 auto;
     }
 }
 
@@ -1502,6 +1607,144 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     .nav-title {
         font-size: 0.9rem;
         line-height: 1.3;
+    }
+}
+
+/* Custom Tooltip Styles */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted #8b7659;
+    cursor: help;
+    color: #2d3c34;
+    font-weight: 600;
+}
+
+.tooltip .tooltip-content {
+    visibility: hidden;
+    opacity: 0;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.98);
+    color: #2d3c34;
+    text-align: left;
+    border-radius: 8px;
+    padding: 1rem;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -150px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 2px solid #cfdcff;
+    transition: opacity 0.3s, visibility 0.3s;
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.tooltip .tooltip-content::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #cfdcff transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-content {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip .tooltip-title {
+    font-weight: 700;
+    color: #8b7659;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .tooltip .tooltip-content {
+        width: 250px;
+        margin-left: -125px;
+    }
+}
+
+/* Footnote Tooltips */
+.footnote-tooltip {
+    position: relative;
+    display: inline;
+}
+
+.footnote-tooltip a {
+    color: #8b7659;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: help;
+    border-bottom: 1px dotted #8b7659;
+    transition: all 0.3s ease;
+}
+
+.footnote-tooltip a:hover {
+    color: #2d3c34;
+    border-bottom-color: #2d3c34;
+}
+
+.footnote-tooltip-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.98);
+    color: #2d3c34;
+    text-align: left;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 400px;
+    max-width: 90vw;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 2px solid #cfdcff;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.footnote-tooltip-content::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #cfdcff transparent transparent transparent;
+}
+
+.footnote-tooltip:hover .footnote-tooltip-content {
+    visibility: visible;
+    opacity: 1;
+}
+
+.footnote-tooltip-content p {
+    margin: 0 0 0.5rem 0;
+}
+
+.footnote-tooltip-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .footnote-tooltip-content {
+        width: 300px;
+        font-size: 0.85rem;
     }
 }
 </style>
@@ -1806,6 +2049,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const isFocusMode = localStorage.getItem('focusMode') === 'true';
         if (isFocusMode) {
             document.body.classList.add('focus-mode');
+            // Ensure TOC is hidden when focus mode is loaded from localStorage
+            const tocSidebar = document.querySelector('.table-of-contents');
+            if (tocSidebar) {
+                tocSidebar.style.setProperty('display', 'none', 'important');
+            }
         }
 
         // Toggle on click
@@ -1813,6 +2061,21 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.toggle('focus-mode');
             const isActive = document.body.classList.contains('focus-mode');
             localStorage.setItem('focusMode', isActive);
+
+            // Explicitly hide/show TOC when toggling focus mode
+            const tocSidebar = document.querySelector('.table-of-contents');
+            if (tocSidebar) {
+                if (isActive) {
+                    tocSidebar.style.setProperty('display', 'none', 'important');
+                } else {
+                    // Let the scroll handler manage visibility
+                    const scrollY = window.scrollY;
+                    const fadeInStart = window.innerHeight * 0.3;
+                    if (scrollY > fadeInStart) {
+                        tocSidebar.style.setProperty('display', 'block', 'important');
+                    }
+                }
+            }
         });
 
         // Keyboard shortcut: 'F' key
@@ -1827,22 +2090,37 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Export toolbar toggle
+// Export toolbar toggle - Show on hover
 document.addEventListener('DOMContentLoaded', function() {
     const exportToggle = document.getElementById('export-toggle');
     const exportDropdown = document.getElementById('export-dropdown');
+    let hideTimeout;
 
     if (exportToggle && exportDropdown) {
-        exportToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            exportDropdown.classList.toggle('active');
+        // Show dropdown on hover
+        exportToggle.addEventListener('mouseenter', function() {
+            clearTimeout(hideTimeout);
+            exportDropdown.classList.add('active');
         });
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!exportToggle.contains(e.target) && !exportDropdown.contains(e.target)) {
+        // Keep dropdown open when hovering over it
+        exportDropdown.addEventListener('mouseenter', function() {
+            clearTimeout(hideTimeout);
+            exportDropdown.classList.add('active');
+        });
+
+        // Hide dropdown when leaving button (with delay)
+        exportToggle.addEventListener('mouseleave', function() {
+            hideTimeout = setTimeout(function() {
                 exportDropdown.classList.remove('active');
-            }
+            }, 200);
+        });
+
+        // Hide dropdown when leaving dropdown menu
+        exportDropdown.addEventListener('mouseleave', function() {
+            hideTimeout = setTimeout(function() {
+                exportDropdown.classList.remove('active');
+            }, 200);
         });
     }
 });
@@ -1997,9 +2275,16 @@ window.addEventListener('scroll', function() {
             heroOpacity = 1;
         }
 
-        // Apply hero-based opacity to all elements
+        // Apply hero-based opacity to all elements and show TOC when fading in
         if (fixedSidebar) fixedSidebar.style.opacity = heroOpacity;
-        if (tocSidebar) tocSidebar.style.opacity = heroOpacity;
+        if (tocSidebar && !document.body.classList.contains('focus-mode')) {
+            if (scrollY > fadeInStart) {
+                tocSidebar.style.setProperty('display', 'block', 'important');
+            } else {
+                tocSidebar.style.setProperty('display', 'none', 'important');
+            }
+            tocSidebar.style.opacity = heroOpacity;
+        }
     }
 
     // Fade OUT when reaching bottom sections (override hero fade-in)
@@ -2021,7 +2306,7 @@ window.addEventListener('scroll', function() {
     }
 
     // Fade out TOC when scrolling to related posts section
-    if (tocSidebar && relatedPosts) {
+    if (tocSidebar && relatedPosts && !document.body.classList.contains('focus-mode')) {
         const relatedPostsTop = relatedPosts.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
 
@@ -2037,6 +2322,81 @@ window.addEventListener('scroll', function() {
             tocSidebar.style.opacity = '0';
         }
     }
+});
+
+// Convert footnote references to inline tooltips
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Footnote tooltip script loaded');
+
+    // Find all footnote references - Zola uses sup elements with anchors
+    let footnoteRefs = document.querySelectorAll('.blog-content sup a');
+
+    console.log('Found footnote references:', footnoteRefs.length);
+
+    // Get all footnote definitions - Zola uses div.footnote-definition
+    const footnotes = {};
+    let footnoteItems = document.querySelectorAll('.footnote-definition');
+
+    console.log('Found footnote items:', footnoteItems.length);
+
+    footnoteItems.forEach(item => {
+        // Extract ID - it's directly on the div
+        let id = item.id;
+        console.log('Found footnote with ID:', id);
+
+        // Clone the content and remove back reference
+        const clone = item.cloneNode(true);
+        const backRef = clone.querySelector('a[href*="zola-continue-reading"]');
+        if (backRef) backRef.remove();
+
+        // Get the paragraph content
+        const content = clone.querySelector('p');
+        if (content) {
+            footnotes[id] = content.innerHTML.trim();
+            console.log('Stored footnote:', id, 'with content');
+        }
+    });
+
+    // Convert each footnote reference to a tooltip
+    footnoteRefs.forEach((ref, index) => {
+        let href = ref.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+
+        console.log('Processing ref:', href);
+
+        // Extract footnote ID - just the number after #
+        let footnoteId = href.replace(/^#/, '');
+
+        const footnoteText = footnotes[footnoteId];
+        console.log('Looking for footnote ID:', footnoteId, 'Found:', !!footnoteText);
+
+        if (footnoteText) {
+            // Get the parent sup element if it exists
+            const supElement = ref.closest('sup');
+            const targetElement = supElement || ref;
+
+            // Create wrapper span for tooltip
+            const wrapper = document.createElement('span');
+            wrapper.className = 'footnote-tooltip';
+
+            // Create tooltip content
+            const tooltipContent = document.createElement('span');
+            tooltipContent.className = 'footnote-tooltip-content';
+            tooltipContent.innerHTML = footnoteText;
+
+            // Replace the element with the tooltip
+            targetElement.parentNode.insertBefore(wrapper, targetElement);
+            wrapper.appendChild(targetElement);
+            wrapper.appendChild(tooltipContent);
+
+            // Prevent default link behavior
+            ref.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+
+            console.log('Created tooltip for:', footnoteId);
+        }
+    });
 });
 </script>
 {% endblock %}

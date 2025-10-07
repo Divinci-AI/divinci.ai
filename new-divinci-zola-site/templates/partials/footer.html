@@ -14,14 +14,17 @@
                 {{ translations.footer.tagline | default(value="Empowering human-AI collaboration") }}
             </p>
             <div class="footer-social">
-                <a href="{{ config.extra.twitter }}" target="_blank" rel="noopener">
-                    <i class="fab fa-twitter"></i>
+                <a href="{{ config.extra.twitter }}" target="_blank" rel="noopener" title="X">
+                    <i class="fa-brands fa-x-twitter"></i>
                 </a>
-                <a href="{{ config.extra.linkedin }}" target="_blank" rel="noopener">
+                <a href="{{ config.extra.linkedin }}" target="_blank" rel="noopener" title="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="{{ config.extra.github }}" target="_blank" rel="noopener">
+                <a href="{{ config.extra.github }}" target="_blank" rel="noopener" title="GitHub">
                     <i class="fab fa-github"></i>
+                </a>
+                <a href="{{ config.extra.discord }}" target="_blank" rel="noopener" title="Discord Community">
+                    <i class="fab fa-discord"></i>
                 </a>
             </div>
         </div>

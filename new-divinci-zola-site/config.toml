@@ -1,5 +1,5 @@
 # Zola Configuration for New Divinci AI Website
-base_url = "https://divinci-ai-site.divinci-ai.workers.dev"
+base_url = "https://divinci.ai"
 
 # Build settings - Optimized for performance
 compile_sass = true
@@ -21,7 +21,7 @@ taxonomies = [
 
 # Markdown settings
 [markdown]
-highlight_code = false
+highlight_code = true
 highlight_theme = "base16-ocean-dark"
 render_emoji = true
 external_links_target_blank = true
@@ -92,6 +92,7 @@ email = "support@divinci.ai"
 twitter = "@DivinciAI"
 linkedin = "company/divinci-ai"
 github = "Divinci-AI"
+discord = "https://discord.gg/5MJPyZ4u"
 description = "AI releases. Excellence, every time."
 
 # SEO settings
