@@ -141,7 +141,7 @@
   <!-- Bottom: Market Impact -->
   <rect x="50" y="450" width="1100" height="320" rx="10" fill="#EBF5FB" stroke="#2C3E50" stroke-width="2" filter="url(#shadow)"/>
   <text x="600" y="480" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#2C3E50">
-    Stablecoin Market Impact & UBI Implications
+    Stablecoin Market Impact &amp; UBI Implications
   </text>
 
   <!-- Left column: Market Stats -->
