@@ -1,0 +1,238 @@
+<svg viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Arrow markers for vectors -->
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3, 0 6" fill="#27AE60" />
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3, 0 6" fill="#3498DB" />
+    </marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3, 0 6" fill="#9B59B6" />
+    </marker>
+    <marker id="arrowGold" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3, 0 6" fill="#F39C12" />
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3, 0 6" fill="#E74C3C" />
+    </marker>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="700" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#2C3E50">
+    The Economic Physics of Universal Basic Income
+  </text>
+  <text x="700" y="70" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#7F8C8D">
+    Force Vector Analysis: Technology, Government, Cryptocurrency, and Political Resistance
+  </text>
+
+  <!-- Center equilibrium point -->
+  <circle cx="700" cy="450" r="60" fill="#34495E" opacity="0.9" filter="url(#shadow)"/>
+  <text x="700" y="445" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+    UBI
+  </text>
+  <text x="700" y="465" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">
+    Equilibrium
+  </text>
+
+  <!-- Technology Forces (Green vectors - pointing right/up) -->
+  <g id="tech-forces">
+    <!-- Fusion Energy -->
+    <line x1="700" y1="450" x2="1000" y2="350" stroke="#27AE60" stroke-width="8" marker-end="url(#arrowGreen)" opacity="0.8"/>
+    <text x="850" y="390" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#27AE60">
+      T_fusion ($300-600B)
+    </text>
+    <text x="850" y="408" font-family="Arial, sans-serif" font-size="12" fill="#27AE60">
+      Fusion Energy Deflation
+    </text>
+
+    <!-- Automation -->
+    <line x1="700" y1="450" x2="1050" y2="450" stroke="#27AE60" stroke-width="7" marker-end="url(#arrowGreen)" opacity="0.8"/>
+    <text x="880" y="435" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#27AE60">
+      T_auto ($400-800B)
+    </text>
+    <text x="880" y="453" font-family="Arial, sans-serif" font-size="12" fill="#27AE60">
+      Automation Productivity
+    </text>
+
+    <!-- AI -->
+    <line x1="700" y1="450" x2="1000" y2="550" stroke="#27AE60" stroke-width="7" marker-end="url(#arrowGreen)" opacity="0.8"/>
+    <text x="850" y="510" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#27AE60">
+      T_AI ($500B-1T)
+    </text>
+    <text x="850" y="528" font-family="Arial, sans-serif" font-size="12" fill="#27AE60">
+      AI Efficiency Gains
+    </text>
+  </g>
+
+  <!-- Government Restructuring (Blue vector - pointing up) -->
+  <g id="gov-forces">
+    <line x1="700" y1="450" x2="700" y2="150" stroke="#3498DB" stroke-width="10" marker-end="url(#arrowBlue)" opacity="0.8"/>
+    <text x="730" y="290" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#3498DB">
+      G_restructure
+    </text>
+    <text x="730" y="310" font-family="Arial, sans-serif" font-size="14" fill="#3498DB">
+      $2.25T
+    </text>
+    <text x="730" y="328" font-family="Arial, sans-serif" font-size="12" fill="#3498DB">
+      Defense + Bureaucracy
+    </text>
+  </g>
+
+  <!-- Cryptocurrency Forces (Purple vectors - pointing right) -->
+  <g id="crypto-forces">
+    <!-- Bitcoin -->
+    <line x1="700" y1="450" x2="950" y2="250" stroke="#9B59B6" stroke-width="6" marker-end="url(#arrowPurple)" opacity="0.8"/>
+    <text x="840" y="335" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#9B59B6">
+      C_bitcoin × A_appreciation
+    </text>
+    <text x="840" y="352" font-family="Arial, sans-serif" font-size="11" fill="#9B59B6">
+      $500B-2T (15-30% growth)
+    </text>
+
+    <!-- Stablecoins -->
+    <line x1="700" y1="450" x2="920" y2="620" stroke="#9B59B6" stroke-width="5" marker-end="url(#arrowPurple)" opacity="0.8"/>
+    <text x="820" y="545" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#9B59B6">
+      S_stable × τ_public
+    </text>
+    <text x="820" y="562" font-family="Arial, sans-serif" font-size="11" fill="#9B59B6">
+      $10-20B seigniorage
+    </text>
+
+    <!-- Proof-of-Useful-Work -->
+    <line x1="700" y1="450" x2="950" y2="680" stroke="#9B59B6" stroke-width="5" marker-end="url(#arrowPurple)" opacity="0.8"/>
+    <text x="840" y="575" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#9B59B6">
+      P_useful × N_compute
+    </text>
+    <text x="840" y="592" font-family="Arial, sans-serif" font-size="11" fill="#9B59B6">
+      $200-500B distributed compute
+    </text>
+  </g>
+
+  <!-- Economic Multiplier (Gold circular arrow) -->
+  <g id="multiplier">
+    <path d="M 760 450 A 80 80 0 1 1 640 450" stroke="#F39C12" stroke-width="6" fill="none" marker-end="url(#arrowGold)" opacity="0.7"/>
+    <text x="700" y="540" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#F39C12">
+      E_multiplier = 2.48x
+    </text>
+    <text x="700" y="558" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#F39C12">
+      Positive Feedback Loop
+    </text>
+  </g>
+
+  <!-- Political Resistance (Red vector - opposing force) -->
+  <g id="resistance">
+    <line x1="700" y1="450" x2="350" y2="450" stroke="#E74C3C" stroke-width="9" marker-end="url(#arrowRed)" opacity="0.8" stroke-dasharray="10,5"/>
+    <text x="510" y="435" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#E74C3C">
+      R_political
+    </text>
+    <text x="510" y="453" font-family="Arial, sans-serif" font-size="13" fill="#E74C3C">
+      (Friction: 0.15-0.40)
+    </text>
+    <text x="510" y="470" font-family="Arial, sans-serif" font-size="11" fill="#E74C3C">
+      Defense lobby, tax avoidance
+    </text>
+  </g>
+
+  <!-- Net Result Vector (thick composite arrow) -->
+  <g id="net-result">
+    <line x1="700" y1="450" x2="1150" y2="200" stroke="#16A085" stroke-width="12" marker-end="url(#arrowGreen)" opacity="0.9" filter="url(#glow)"/>
+    <text x="960" y="310" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#16A085">
+      NET FORCE
+    </text>
+    <text x="960" y="333" font-family="Arial, sans-serif" font-size="14" fill="#16A085">
+      $906 → $2,031/month
+    </text>
+    <text x="960" y="351" font-family="Arial, sans-serif" font-size="12" fill="#16A085">
+      (depending on R_political)
+    </text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="50" y="650" width="300" height="220" rx="8" fill="#ECF0F1" stroke="#2C3E50" stroke-width="2" opacity="0.95"/>
+    <text x="200" y="680" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2C3E50">
+      Force Components
+    </text>
+
+    <line x1="70" y1="705" x2="120" y2="705" stroke="#27AE60" stroke-width="5"/>
+    <text x="130" y="710" font-family="Arial, sans-serif" font-size="12" fill="#2C3E50">
+      Technology Forces (deflationary)
+    </text>
+
+    <line x1="70" y1="730" x2="120" y2="730" stroke="#3498DB" stroke-width="5"/>
+    <text x="130" y="735" font-family="Arial, sans-serif" font-size="12" fill="#2C3E50">
+      Government Restructuring (capital release)
+    </text>
+
+    <line x1="70" y1="755" x2="120" y2="755" stroke="#9B59B6" stroke-width="5"/>
+    <text x="130" y="760" font-family="Arial, sans-serif" font-size="12" fill="#2C3E50">
+      Cryptocurrency (value creation)
+    </text>
+
+    <path d="M 75 775 A 20 20 0 1 1 115 775" stroke="#F39C12" stroke-width="4" fill="none" marker-end="url(#arrowGold)"/>
+    <text x="130" y="785" font-family="Arial, sans-serif" font-size="12" fill="#2C3E50">
+      Economic Multiplier (feedback)
+    </text>
+
+    <line x1="70" y1="805" x2="120" y2="805" stroke="#E74C3C" stroke-width="5" stroke-dasharray="8,4"/>
+    <text x="130" y="810" font-family="Arial, sans-serif" font-size="12" fill="#2C3E50">
+      Political Resistance (friction)
+    </text>
+
+    <line x1="70" y1="835" x2="120" y2="835" stroke="#16A085" stroke-width="6"/>
+    <text x="130" y="840" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2C3E50">
+      Net Result Vector (UBI feasibility)
+    </text>
+  </g>
+
+  <!-- Mathematical insight box -->
+  <g id="insight-box">
+    <rect x="1050" y="650" width="300" height="220" rx="8" fill="#FEF5E7" stroke="#F39C12" stroke-width="2" opacity="0.95"/>
+    <text x="1200" y="680" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#2C3E50">
+      💡 Key Insight
+    </text>
+
+    <text x="1070" y="710" font-family="Arial, sans-serif" font-size="11" fill="#34495E">
+      Technology deflation (δ) > Inflation (π)
+    </text>
+    <text x="1070" y="728" font-family="Arial, sans-serif" font-size="11" fill="#34495E">
+      creates purchasing power gains
+    </text>
+
+    <text x="1070" y="755" font-family="Arial, sans-serif" font-size="11" fill="#34495E">
+      Network effects (M_tech) multiply
+    </text>
+    <text x="1070" y="773" font-family="Arial, sans-serif" font-size="11" fill="#34495E">
+      technology forces exponentially
+    </text>
+
+    <text x="1070" y="800" font-family="Arial, sans-serif" font-size="11" fill="#34495E">
+      Cryptocurrency adds dual value:
+    </text>
+    <text x="1070" y="818" font-family="Arial, sans-serif" font-size="11" fill="#34495E">
+      • Capital appreciation (Bitcoin)
+    </text>
+    <text x="1070" y="836" font-family="Arial, sans-serif" font-size="11" fill="#34495E">
+      • Seigniorage capture (stablecoins)
+    </text>
+    <text x="1070" y="854" font-family="Arial, sans-serif" font-size="11" fill="#34495E">
+      • Distributed value (proof-of-work)
+    </text>
+  </g>
+
+  <!-- Footer equation reference -->
+  <text x="700" y="890" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#7F8C8D" font-style="italic">
+    Vector magnitudes derived from UBI Feasibility Equation—see article for full mathematical treatment
+  </text>
+</svg>
