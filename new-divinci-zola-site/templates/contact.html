@@ -35,20 +35,20 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="company" class="form-label">{{ translations.contact.form.company_label | default(value="Company (Optional)") }}</label>
-                            <input type="text" class="form-control" id="company" name="company" placeholder="{{ translations.contact.form.company_placeholder | default(value="Your company name") }}">
+                            <label for="subject" class="form-label">{{ translations.contact.form.subject_label | default(value="Subject") }}</label>
+                            <select class="form-select" id="subject" name="subject" required>
+                                <option value="" selected disabled>{{ translations.contact.form.subject_placeholder | default(value="Select a subject") }}</option>
+                                <option value="General Question">{{ translations.contact.form.inquiry_options.general | default(value="General Question") }}</option>
+                                <option value="Sales Inquiry">{{ translations.contact.form.inquiry_options.sales | default(value="Sales Inquiry") }}</option>
+                                <option value="Request a Demo">{{ translations.contact.form.inquiry_options.demo | default(value="Request a Demo") }}</option>
+                                <option value="Technical Support">{{ translations.contact.form.inquiry_options.support | default(value="Technical Support") }}</option>
+                                <option value="Partnership Opportunity">{{ translations.contact.form.inquiry_options.partnership | default(value="Partnership Opportunity") }}</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="inquiryType" class="form-label">{{ translations.contact.form.inquiry_type_label | default(value="Inquiry Type") }}</label>
-                            <select class="form-select" id="inquiryType" name="inquiryType" required>
-                                <option value="" selected disabled>{{ translations.contact.form.inquiry_type_placeholder | default(value="Select an option") }}</option>
-                                <option value="general">{{ translations.contact.form.inquiry_options.general | default(value="General Question") }}</option>
-                                <option value="sales">{{ translations.contact.form.inquiry_options.sales | default(value="Sales Inquiry") }}</option>
-                                <option value="demo">{{ translations.contact.form.inquiry_options.demo | default(value="Request a Demo") }}</option>
-                                <option value="support">{{ translations.contact.form.inquiry_options.support | default(value="Technical Support") }}</option>
-                                <option value="partnership">{{ translations.contact.form.inquiry_options.partnership | default(value="Partnership Opportunity") }}</option>
-                            </select>
+                            <label for="company" class="form-label">{{ translations.contact.form.company_label | default(value="Company (Optional)") }}</label>
+                            <input type="text" class="form-control" id="company" name="company" placeholder="{{ translations.contact.form.company_placeholder | default(value="Your company name") }}">
                         </div>
 
                         <div class="form-group">
@@ -605,8 +605,7 @@ document.addEventListener('DOMContentLoaded', function() {
             email: formData.get('email'),
             subject: formData.get('subject'),
             message: formData.get('message'),
-            priority: formData.get('priority'),
-            category: formData.get('category'),
+            company: formData.get('company') || '',
             'cf-turnstile-response': turnstileToken
         };
 

@@ -194,50 +194,52 @@ async function handleContactForm(request, env) {
       );
     }
 
-    // Verify Turnstile token
+    // Verify Turnstile token (if secret key is configured)
     const turnstileToken = formData['cf-turnstile-response'];
-    if (!turnstileToken) {
-      return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: 'Security verification required' 
-        }),
-        { 
-          status: 400,
-          headers: { 
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+    if (env.TURNSTILE_SECRET_KEY) {
+      if (!turnstileToken) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: 'Security verification required'
+          }),
+          {
+            status: 400,
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*'
+            }
           }
-        }
-      );
-    }
+        );
+      }
 
-    // Verify the Turnstile token with Cloudflare
-    const turnstileVerifyData = new FormData();
-    turnstileVerifyData.append('secret', env.TURNSTILE_SECRET_KEY);
-    turnstileVerifyData.append('response', turnstileToken);
-    turnstileVerifyData.append('remoteip', clientIP);
+      // Verify the Turnstile token with Cloudflare
+      const turnstileVerifyData = new FormData();
+      turnstileVerifyData.append('secret', env.TURNSTILE_SECRET_KEY);
+      turnstileVerifyData.append('response', turnstileToken);
+      turnstileVerifyData.append('remoteip', clientIP);
 
-    const turnstileResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      body: turnstileVerifyData,
-    });
+      const turnstileResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        body: turnstileVerifyData,
+      });
 
-    const turnstileResult = await turnstileResponse.json();
-    if (!turnstileResult.success) {
-      return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: 'Security verification failed. Please try again.' 
-        }),
-        { 
-          status: 400,
-          headers: { 
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+      const turnstileResult = await turnstileResponse.json();
+      if (!turnstileResult.success) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: 'Security verification failed. Please try again.'
+          }),
+          {
+            status: 400,
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*'
+            }
           }
-        }
-      );
+        );
+      }
     }
     
     // Create email content
@@ -247,9 +249,8 @@ New contact form submission from divinci.ai:
 
 Name: ${formData.name}
 Email: ${formData.email}
+Company: ${formData.company || 'Not specified'}
 Subject: ${formData.subject}
-Priority: ${formData.priority || 'Not specified'}
-Category: ${formData.category || 'Not specified'}
 
 Message:
 ${formData.message}
