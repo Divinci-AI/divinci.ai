@@ -1019,12 +1019,12 @@ html[dir="rtl"] .language-icon {
 
 /* Footer Styles */
 .contact-footer-wrapper {
-  background: linear-gradient(rgba(30, 58, 43, 0.75), rgba(30, 58, 43, 0.85)), 
-              url('../images/leonardo-with-his-robot_u4943574663_httpss.mj.run8ThJxQrJV2Q_Young_Leonardo_da_Vinci__5164e288-3884-4f03-a261-12389cd0999f_2.png');
+  background: linear-gradient(rgba(30, 58, 43, 0.75), rgba(30, 58, 43, 0.85)),
+              url('../images/leonardo-with-his-robot.webp');
   background-size: cover;
   background-position: center 15%;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* Removed background-attachment: fixed for better performance */
   position: relative;
   margin-top: 4rem;
   overflow: hidden;
