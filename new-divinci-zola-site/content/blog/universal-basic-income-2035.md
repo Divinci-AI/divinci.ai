@@ -1419,15 +1419,16 @@ Beyond cash transfers, UBI enables something more profound: **personal independe
 
 ### The Robotic Homestead Revolution
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/dyson-strawberry.webp" alt="Robotic strawberry harvesting at Dyson Farming's automated glasshouse facility" style="float: right; max-width: 45%; height: auto; margin: 0 0 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<div style="float: right; max-width: 45%; margin: 0 0 1rem 1.5rem;">
+  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/dyson-strawberry.webp" alt="Robotic strawberry harvesting at Dyson Farming's automated glasshouse facility" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #666; font-style: italic; text-align: left;">Photo: Dyson Farming</p>
+</div>
 
 **Dyson's strawberry farming operation** demonstrates what's possible when manufacturing principles meet agriculture. Their 26-acre UK glasshouse employs 1,225,000 strawberry plants on giant rotating wheels, harvested by robot arms that plucked 200,000 strawberries in a single month. UV-emitting robots prevent mold, distributor bots release beneficial insects to control pests, and the entire operation runs on renewable energy from an onsite anaerobic digester.
 
 James Dyson articulates the vision: *"Growing things is like making things. How can we make it more efficient? What technology can we bring in that will improve quality, the taste of the food, use the land better?"*
 
 <div style="clear: both;"></div>
-
-*Photo: Dyson Farming - Automated strawberry harvesting at their 26-acre UK facility producing 200,000+ strawberries per month.*
 
 This isn't just industrial-scale farming—it's a preview of **personal-scale independence**.
 
