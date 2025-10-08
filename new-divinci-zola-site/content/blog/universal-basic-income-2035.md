@@ -1422,7 +1422,7 @@ Beyond cash transfers, UBI enables something more profound: **personal independe
 **Dyson's strawberry farming operation** demonstrates what's possible when manufacturing principles meet agriculture. Their 26-acre UK glasshouse employs 1,225,000 strawberry plants on giant rotating wheels, harvested by robot arms that plucked 200,000 strawberries in a single month. UV-emitting robots prevent mold, distributor bots release beneficial insects to control pests, and the entire operation runs on renewable energy from an onsite anaerobic digester.
 
 <figure style="margin: 2rem 0; text-align: center;">
-  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/dyson-strawberry.webp" alt="Robotic strawberry harvesting at Dyson Farming's automated glasshouse facility" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/dyson-strawberry.webp" alt="Robotic strawberry harvesting at Dyson Farming's automated glasshouse facility" style="max-width: 80%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
   <figcaption style="margin-top: 1rem; font-size: 0.9rem; color: #666; font-style: italic;">Automated strawberry harvesting at Dyson Farming's 26-acre UK facility producing 200,000+ strawberries per month. Photo: Dyson Farming</figcaption>
 </figure>
 
