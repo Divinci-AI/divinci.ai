@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block og_image %}{% if page.extra.featured_image %}{{ get_url(path=page.extra.featured_image) }}{% elif page.extra.featured_video %}{% set video_name = page.extra.featured_video | split(pat="/") | last | replace(from=".webm", to="") | replace(from=".mp4", to="") %}{{ get_url(path="images/" ~ video_name ~ "-poster.webp") }}{% else %}https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-hero-social-v2.png{% endif %}{% endblock %}
+
+{% block twitter_image %}{% if page.extra.featured_image %}{{ get_url(path=page.extra.featured_image) }}{% elif page.extra.featured_video %}{% set video_name = page.extra.featured_video | split(pat="/") | last | replace(from=".webm", to="") | replace(from=".mp4", to="") %}{{ get_url(path="images/" ~ video_name ~ "-poster.webp") }}{% else %}https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-hero-social-v2.png{% endif %}{% endblock %}
+
 {% block extra_head %}
 <!-- MathJax for rendering LaTeX equations -->
 <script>
