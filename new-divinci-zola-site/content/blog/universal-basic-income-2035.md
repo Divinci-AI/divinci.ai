@@ -242,29 +242,48 @@ European nations used their peace dividend even more effectively, strengthening 
 Today's technology enables a "quality over quantity" approach that actually enhances security while reducing costs:
 
 **Strategic reductions without compromising security:**
-- **Eliminate redundant weapons programs**: $400B saved
-  - Multiple overlapping fighter jet programs
-  - Outdated weapons systems designed for Cold War conflicts
-  - Focus on cyber, space, and AI-based defense
 
-- **Consolidate overseas bases**: $150B saved
-  - Current footprint: 750+ bases in 80+ countries
-  - Modern reality: Drone technology, satellite surveillance, and rapid deployment reduce need for permanent presence
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
 
-- **Streamline contractor relationships**: $350B saved
-  - End cost-plus contracts that incentivize waste
-  - Competitive bidding for all major programs
-  - Eliminate revolving door between Pentagon and defense contractors
+<div style="background: linear-gradient(135deg, rgba(63, 81, 181, 0.08), rgba(63, 81, 181, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3F51B5;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">✈️ Eliminate Redundant Weapons</h4>
+<p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>$400B saved</strong></p>
+<p style="margin: 0.5rem 0; font-size: 0.85rem;">• Multiple overlapping fighter programs<br/>• Outdated Cold War systems<br/>• Focus on cyber, space, AI defense</p>
+</div>
 
-- **Technology-first defense (autonomous systems, AI)**: $500B saved
-  - Autonomous systems require no salaries, healthcare, or pensions
-  - AI-powered intelligence analysis replacing thousands of analysts
-  - Drone warfare reducing need for expensive manned aircraft
+<div style="background: linear-gradient(135deg, rgba(0, 150, 136, 0.08), rgba(0, 150, 136, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #009688;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">🌍 Consolidate Overseas Bases</h4>
+<p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>$150B saved</strong></p>
+<p style="margin: 0.5rem 0; font-size: 0.85rem;">• Current: 750+ bases in 80+ countries<br/>• Drones, satellites reduce need for permanent presence</p>
+</div>
 
-- **Reduce standing military to strategic rapid-response force**: $300B saved
-  - Shift from occupation-ready to response-capable
-  - Smaller, more elite force multiplied by technology
-  - Reserve system for surge capacity
+<div style="background: linear-gradient(135deg, rgba(63, 81, 181, 0.08), rgba(63, 81, 181, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3F51B5;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">📋 Streamline Contractors</h4>
+<p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>$350B saved</strong></p>
+<p style="margin: 0.5rem 0; font-size: 0.85rem;">• End cost-plus waste incentives<br/>• Competitive bidding<br/>• Eliminate revolving door</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(0, 150, 136, 0.08), rgba(0, 150, 136, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #009688;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">🤖 Technology-First Defense</h4>
+<p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>$500B saved</strong></p>
+<p style="margin: 0.5rem 0; font-size: 0.85rem;">• Autonomous systems (no salaries/pensions)<br/>• AI intelligence analysis<br/>• Drone warfare vs. manned aircraft</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(63, 81, 181, 0.08), rgba(63, 81, 181, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3F51B5;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">⚡ Rapid-Response Force</h4>
+<p style="margin: 0.5rem 0; font-size: 0.95rem;"><strong>$300B saved</strong></p>
+<p style="margin: 0.5rem 0; font-size: 0.85rem;">• Response-capable vs. occupation-ready<br/>• Smaller elite force + technology<br/>• Reserve system for surge capacity</p>
+</div>
+
+</div>
+
+<style>
+@media (max-width: 768px) {
+  div[style*="repeat(auto-fit, minmax(280px, 1fr))"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
 
 **New budget:** $400B (maintaining cutting-edge technology, special operations, strategic deterrence, and cyber defense)
 
