@@ -92,12 +92,31 @@ Fusion energy isn't just another power source—it's an economic earthquake wait
 
 Multiple fusion companies are racing toward commercial viability. Commonwealth Fusion Systems aims to bring their ARC power plant online in the early 2030s in Virginia, with a 400-megawatt capacity serving about 300,000 homes[^1]. Their demonstration reactor SPARC is over 65% complete and targeted to demonstrate net power by 2027. While ITER, the international tokamak backed by over 30 nations, won't come online until 2035, private companies like CFS are leveraging breakthrough high-temperature superconducting magnets to achieve faster timelines.
 
-- **Direct energy savings**: $300-400 per person monthly (equivalent value)
-- **Manufacturing transformation**: Energy-intensive products become dramatically cheaper
-- **Transportation revolution**: Energy costs for logistics plummet
-- **Food production**: Vertical farming and automated agriculture become economically viable at scale
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
 
-Conservative estimates suggest fusion energy alone could provide the equivalent of $300-600 monthly in reduced living costs—effectively delivering UBI benefits without direct cash transfers.
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">⚡ Direct Energy Savings</h4>
+<p style="margin: 0.5rem 0;"><strong>$300-400 per person monthly</strong> in equivalent value from near-zero marginal cost electricity</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(45, 60, 52, 0.08), rgba(45, 60, 52, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2d3c34;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🏭 Manufacturing Transformation</h4>
+<p style="margin: 0.5rem 0;">Energy-intensive products become dramatically cheaper with abundant fusion power</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🚚 Transportation Revolution</h4>
+<p style="margin: 0.5rem 0;">Energy costs for logistics plummet, reducing prices across the entire economy</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(45, 60, 52, 0.08), rgba(45, 60, 52, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2d3c34;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🌾 Food Production</h4>
+<p style="margin: 0.5rem 0;">Vertical farming and automated agriculture become economically viable at scale</p>
+</div>
+
+</div>
+
+Conservative estimates suggest fusion energy alone could provide the equivalent of **$300-600 monthly in reduced living costs**—effectively delivering UBI benefits without direct cash transfers.
 
 <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/fusion-energy-cascade.svg" alt="Fusion Energy Cascading Cost Reductions" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
 
@@ -118,10 +137,29 @@ While often portrayed as a threat to employment, strategic deployment of robotic
 
 The key to funding UBI isn't fighting automation—it's capturing its productivity gains for public benefit:
 
-- **Government cost reduction**: Automated infrastructure maintenance, reducing public sector costs by 30-40%
-- **Essential services**: Robotics-assisted healthcare reducing costs while improving access and outcomes
-- **Manufacturing revolution**: Productivity explosion generating massive economic surplus that can be redistributed
-- **24/7 operation**: Unlike human workers, automated systems can operate continuously, multiplying output without overtime costs
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.08), rgba(33, 150, 243, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2196F3;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🏛️ Government Cost Reduction</h4>
+<p style="margin: 0.5rem 0;">Automated infrastructure maintenance reduces public sector costs by <strong>30-40%</strong></p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">⚕️ Essential Services</h4>
+<p style="margin: 0.5rem 0;">Robotics-assisted healthcare reducing costs while improving access and outcomes</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.08), rgba(33, 150, 243, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2196F3;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🏭 Manufacturing Revolution</h4>
+<p style="margin: 0.5rem 0;">Productivity explosion generating massive economic surplus that can be redistributed</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🔄 24/7 Operation</h4>
+<p style="margin: 0.5rem 0;">Automated systems operate continuously, multiplying output without overtime costs</p>
+</div>
+
+</div>
 
 **Job Transition Reality Check:**
 
@@ -153,10 +191,29 @@ This creates the perfect scenario for UBI: automation generates the wealth, whil
 
 AI represents the amplification layer that makes everything else work. McKinsey Global Institute projects that AI has the potential to deliver additional global economic activity of around $13 trillion by 2030, or about 16% higher cumulative GDP compared with today[^2]. By 2030, activities that account for up to 30% of hours currently worked across the US economy could be automated[^3].
 
-- **Government efficiency**: Streamlined bureaucracy saving $500B+ annually
-- **Fraud detection**: AI-powered systems reducing waste by $200B+ yearly
-- **Resource optimization**: Intelligent allocation of government services
-- **Economic modeling**: Real-time adjustment of UBI parameters based on economic conditions
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(156, 39, 176, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🏢 Government Efficiency</h4>
+<p style="margin: 0.5rem 0;">Streamlined bureaucracy saving <strong>$500B+ annually</strong></p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🔍 Fraud Detection</h4>
+<p style="margin: 0.5rem 0;">AI-powered systems reducing waste by <strong>$200B+ yearly</strong></p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(156, 39, 176, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🎯 Resource Optimization</h4>
+<p style="margin: 0.5rem 0;">Intelligent allocation of government services for maximum impact</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">📊 Economic Modeling</h4>
+<p style="margin: 0.5rem 0;">Real-time adjustment of UBI parameters based on economic conditions</p>
+</div>
+
+</div>
 
 While this automation will displace some jobs—McKinsey estimates at least 14% of employees globally could need to change careers due to digitization, robotics, and AI advancements by 2030[^4]—demand for STEM professionals, healthcare workers, and other skilled positions is projected to grow by 17-30% between 2022 and 2030.
 
