@@ -632,7 +632,7 @@ This connects to a broader pattern in the digital economy: **platform monopolies
 
 Consider cloud computing giants like AWS, Azure, and Google Cloud. They offer "free credits" to startups—essentially **corporate scrip** reminiscent of 19th-century company stores. Once you build on AWS, switching costs create lock-in. You're trapped in their ecosystem, generating profits for shareholders[^89].
 
-Similarly, Cloudflare (market cap $75 billion) creates value through **network effects**—their global edge network becomes more valuable as more developers use it[^90]. About 70% of tech equity value comes from firms that rely on network effects[^91]. These companies "print value" by controlling platforms, then capture all the upside.
+Many technology companies create value through **network effects**—platforms become more valuable as more users join. About 70% of tech equity value comes from firms that rely on network effects[^91]. These companies "print value" by controlling platforms, then capture all the upside.
 
 **The pattern:**
 - **Private platforms create monopolies** (stablecoins, cloud providers, social networks)
@@ -1436,29 +1436,49 @@ This isn't just industrial-scale farming—it's a preview of **personal-scale in
 
 **By 2035, consumer robotics will enable:**
 
-**Food Production:**
-- **Backyard vertical farms**: AI-managed hydroponic systems producing vegetables year-round
-- **Robotic greenhouse assistants**: Automated planting, watering, pest control, and harvesting
-- **Precision agriculture at home**: Soil monitoring, nutrient optimization, and climate control
-- **Affordable efficiency**: Systems that once cost $100,000+ dropping to $5,000-15,000
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
 
-**Home Maintenance:**
-- **Robotic repair assistants**: Diagnosing and fixing plumbing, electrical, HVAC issues
-- **AI-guided home improvement**: Step-by-step instructions with robotic tool assistance
-- **Automated landscaping**: Lawn care, gardening, and outdoor maintenance
-- **Predictive maintenance**: AI detecting problems before they become expensive failures
+<div style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.08), rgba(139, 115, 85, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7355;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">🌱 Food Production</h4>
+<p style="margin: 0.5rem 0;"><strong>Backyard vertical farms:</strong> AI-managed hydroponic systems producing vegetables year-round</p>
+<p style="margin: 0.5rem 0;"><strong>Robotic greenhouse assistants:</strong> Automated planting, watering, pest control, and harvesting</p>
+<p style="margin: 0.5rem 0;"><strong>Precision agriculture at home:</strong> Soil monitoring, nutrient optimization, and climate control</p>
+<p style="margin: 0.5rem 0;"><strong>Affordable efficiency:</strong> Systems that once cost $100,000+ dropping to $5,000-15,000</p>
+</div>
 
-**Vehicle Independence:**
-- **AI diagnostic systems**: Identifying car problems with 95%+ accuracy
-- **Robotic repair assistance**: Guidance and physical help for repairs
-- **Electric vehicle simplicity**: Far fewer parts to maintain than internal combustion
-- **3D-printed replacement parts**: On-demand manufacturing of components at home
+<div style="background: linear-gradient(135deg, rgba(45, 60, 52, 0.08), rgba(45, 60, 52, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2d3c34;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">🏠 Home Maintenance</h4>
+<p style="margin: 0.5rem 0;"><strong>Robotic repair assistants:</strong> Diagnosing and fixing plumbing, electrical, HVAC issues</p>
+<p style="margin: 0.5rem 0;"><strong>AI-guided home improvement:</strong> Step-by-step instructions with robotic tool assistance</p>
+<p style="margin: 0.5rem 0;"><strong>Automated landscaping:</strong> Lawn care, gardening, and outdoor maintenance</p>
+<p style="margin: 0.5rem 0;"><strong>Predictive maintenance:</strong> AI detecting problems before they become expensive failures</p>
+</div>
 
-**Energy Independence:**
-- **Solar + battery systems**: Affordable home energy generation and storage
-- **AI energy optimization**: Smart systems reducing consumption by 40-60%
-- **Grid independence**: Ability to disconnect from centralized utilities entirely
-- **Peer-to-peer energy trading**: Selling excess generation back to the community
+<div style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.08), rgba(139, 115, 85, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7355;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">🚗 Vehicle Independence</h4>
+<p style="margin: 0.5rem 0;"><strong>AI diagnostic systems:</strong> Identifying car problems with 95%+ accuracy</p>
+<p style="margin: 0.5rem 0;"><strong>Robotic repair assistance:</strong> Guidance and physical help for repairs</p>
+<p style="margin: 0.5rem 0;"><strong>Electric vehicle simplicity:</strong> Far fewer parts to maintain than internal combustion</p>
+<p style="margin: 0.5rem 0;"><strong>3D-printed replacement parts:</strong> On-demand manufacturing of components at home</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(45, 60, 52, 0.08), rgba(45, 60, 52, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2d3c34;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">⚡ Energy Independence</h4>
+<p style="margin: 0.5rem 0;"><strong>Solar + battery systems:</strong> Affordable home energy generation and storage</p>
+<p style="margin: 0.5rem 0;"><strong>AI energy optimization:</strong> Smart systems reducing consumption by 40-60%</p>
+<p style="margin: 0.5rem 0;"><strong>Grid independence:</strong> Ability to disconnect from centralized utilities entirely</p>
+<p style="margin: 0.5rem 0;"><strong>Peer-to-peer energy trading:</strong> Selling excess generation back to the community</p>
+</div>
+
+</div>
+
+<style>
+@media (max-width: 768px) {
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
 
 ### The Economic Liberation Effect
 
