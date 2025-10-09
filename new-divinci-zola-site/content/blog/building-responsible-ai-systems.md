@@ -39,16 +39,16 @@ AI systems should treat all individuals and groups equitably, avoiding discrimin
 
 - **Bias auditing** throughout the development lifecycle
 - **Diverse dataset** representation
-- **Fairness metrics** evaluation across demographic groups<sup><a href="#ref1" style="text-decoration: none;">[1]</a></sup>
+- **Fairness metrics** evaluation across demographic groups<sup><a href="#ref1" style="text-decoration: none;" title="Mehrabi, N., Morstatter, F., Saxena, N., Lerman, K., & Galstyan, A. (2021). 'A Survey on Bias and Fairness in Machine Learning.' ACM Computing Surveys, 54(6), 1-35.">[1]</a></sup>
 - **Ongoing monitoring** for discriminatory outcomes
 
-Organizations like Google, Microsoft, and IBM have published comprehensive frameworks for evaluating algorithmic fairness, emphasizing that different contexts may require different fairness definitions (demographic parity, equalized odds, or individual fairness).<sup><a href="#ref2" style="text-decoration: none;">[2]</a></sup>
+Organizations like Google, Microsoft, and IBM have published comprehensive frameworks for evaluating algorithmic fairness, emphasizing that different contexts may require different fairness definitions (demographic parity, equalized odds, or individual fairness).<sup><a href="#ref2" style="text-decoration: none;" title="Mitchell, M., Wu, S., Zaldivar, A., et al. (2019). 'Model Cards for Model Reporting.' Proceedings of the Conference on Fairness, Accountability, and Transparency (FAT*). ACM.">[2]</a></sup>
 
 ### Transparency and Explainability
 
 Users and stakeholders should be able to understand how AI systems make decisions, especially for high-stakes applications:
 
-- **Model interpretability** techniques (SHAP, LIME, attention visualization)<sup><a href="#ref4" style="text-decoration: none;">[4]</a></sup>
+- **Model interpretability** techniques (SHAP, LIME, attention visualization)<sup><a href="#ref4" style="text-decoration: none;" title="Lundberg, S. M., & Lee, S. I. (2017). 'A Unified Approach to Interpreting Model Predictions.' Advances in Neural Information Processing Systems, 30.">[4]</a></sup>
 - **Decision pathway documentation**
 - **Clear communication** about AI system capabilities and limitations
 - **Audit trails** for critical decisions
@@ -57,10 +57,10 @@ Users and stakeholders should be able to understand how AI systems make decision
 
 AI systems must protect user data and maintain security throughout the data lifecycle:
 
-- **Data minimization** principles aligned with GDPR and privacy regulations<sup><a href="#ref5" style="text-decoration: none;">[5]</a></sup>
+- **Data minimization** principles aligned with GDPR and privacy regulations<sup><a href="#ref5" style="text-decoration: none;" title="European Commission. (2018). 'General Data Protection Regulation (GDPR).' Official Journal of the European Union.">[5]</a></sup>
 - **Encryption** and secure storage
 - **Access controls** and authentication
-- **Privacy-preserving** techniques like differential privacy and federated learning<sup><a href="#ref6" style="text-decoration: none;">[6]</a></sup>
+- **Privacy-preserving** techniques like differential privacy and federated learning<sup><a href="#ref6" style="text-decoration: none;" title="McMahan, B., Moore, E., Ramage, D., Hampson, S., & y Arcas, B. A. (2017). 'Communication-Efficient Learning of Deep Networks from Decentralized Data.' Proceedings of the 20th International Conference on Artificial Intelligence and Statistics (AISTATS).">[6]</a></sup>
 
 ### Safety and Reliability
 
@@ -98,7 +98,7 @@ Humans should maintain meaningful control over AI systems:
 
 ### Data Collection and Preparation
 
-**Bias Auditing**: Systematically evaluate datasets for representation gaps and historical biases. Research from MIT and Stanford has demonstrated that unrepresentative training data is one of the primary sources of algorithmic bias.<sup><a href="#ref3" style="text-decoration: none;">[3]</a></sup>
+**Bias Auditing**: Systematically evaluate datasets for representation gaps and historical biases. Research from MIT and Stanford has demonstrated that unrepresentative training data is one of the primary sources of algorithmic bias.<sup><a href="#ref3" style="text-decoration: none;" title="Buolamwini, J., & Gebru, T. (2018). 'Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification.' Conference on Fairness, Accountability and Transparency, 77-91.">[3]</a></sup>
 
 **Data Quality**: Implement comprehensive data validation and quality assurance processes.
 
