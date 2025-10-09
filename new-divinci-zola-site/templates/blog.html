@@ -85,8 +85,17 @@
         <div class="blog-main-full">
             <div class="blog-container-full">
                 {% if paginator.pages %}
-                    {% set featured_post = paginator.pages | first %}
-                    
+                    {# Filter out hidden posts #}
+                    {% set_global visible_posts = [] %}
+                    {% for post in paginator.pages %}
+                        {% if not post.extra.hidden %}
+                            {% set_global visible_posts = visible_posts | concat(with=post) %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if visible_posts %}
+                    {% set featured_post = visible_posts | first %}
+
                     <!-- Featured Post -->
                     <article class="featured-post">
                         <a href="{{ featured_post.permalink | safe }}" class="featured-image-link">
@@ -152,11 +161,11 @@
                     </article>
 
                     <!-- Recent Articles -->
-                    {% if paginator.pages | length > 1 %}
+                    {% if visible_posts | length > 1 %}
                         <h2 style="font-size: 1.8rem; font-weight: 700; color: #2d3c34; margin-bottom: 2rem;">Recent Articles</h2>
 
                         <div class="posts-grid">
-                            {% for post in paginator.pages %}
+                            {% for post in visible_posts %}
                                 {% if not loop.first %}
                                     <article class="post-card" data-href="{{ post.permalink | safe }}">
                                         <a href="{{ post.permalink | safe }}" class="post-image-link">
@@ -220,6 +229,7 @@
                             </article>
                         </div>
                     {% endif %}
+                    {% endif %} {# close visible_posts check #}
                 {% else %}
                     <!-- Coming Soon Section -->
                     <div class="coming-soon">

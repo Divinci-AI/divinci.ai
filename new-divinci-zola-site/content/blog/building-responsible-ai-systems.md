@@ -3,7 +3,6 @@ title = "Building Responsible AI Systems: A Practical Guide"
 description = "Learn practical approaches to building responsible AI systems with ethical considerations, safety measures, and governance frameworks to ensure your AI solutions are fair, transparent, and accountable."
 date = 2025-04-15T10:00:00+00:00
 template = "blog-post.html"
-draft = true
 
 [taxonomies]
 categories = ["AI Ethics"]
@@ -15,6 +14,7 @@ author_avatar = "images/paul-marie-carfantan.jpeg"
 featured_image = "images/AI-Standards-Hub-Logo_04-1.png"
 reading_time = 12
 summary = "As AI systems become more prevalent in critical decision-making processes, building responsible AI is no longer optional—it's essential. This comprehensive guide provides practical frameworks and implementation strategies for ensuring your AI systems are ethical, fair, and accountable."
+hidden = true
 +++
 
 As artificial intelligence becomes increasingly integrated into critical business processes and decision-making systems, the importance of building responsible AI cannot be overstated. Organizations deploying AI systems are facing growing scrutiny from regulators, customers, and stakeholders who expect these systems to be fair, transparent, and accountable.
