@@ -3,6 +3,7 @@ title = "Building Responsible AI Systems: A Practical Guide"
 description = "Learn practical approaches to building responsible AI systems with ethical considerations, safety measures, and governance frameworks to ensure your AI solutions are fair, transparent, and accountable."
 date = 2025-04-15T10:00:00+00:00
 template = "blog-post.html"
+draft = true
 
 [taxonomies]
 categories = ["AI Ethics"]
