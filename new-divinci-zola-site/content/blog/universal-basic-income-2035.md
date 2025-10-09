@@ -574,24 +574,51 @@ The current regulatory framework **explicitly prohibits government-issued stable
 
 Consider the alternative scenarios:
 
-**Option A: Tax Stablecoin Seigniorage**
-- Implement a 50% seigniorage tax on private stablecoin interest earnings
-- At current scale: **$5 billion annually for UBI**
-- Projected 2030 scale (stablecoins may replace China/Japan as top Treasury holders): **$20+ billion annually**[^86]
-- Companies still profit handsomely, but public shares the benefit
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
 
-**Option B: Government-Backed UBI Stablecoin**
-- Repeal the prohibition on government stablecoins
-- Treasury Department issues "UBI Coin" backed 1:1 by Treasury securities
-- **All seigniorage funds UBI directly**: $10-20 billion annually at current/projected scale
-- Citizens can hold interest-bearing stablecoin or convert to cash UBI
-- Creates structural demand for US debt while funding social programs
+<div style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.08), rgba(139, 115, 85, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7355;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">📊 Option A: Tax Stablecoin Seigniorage</h4>
+<p style="margin: 0.5rem 0;">• Implement 50% seigniorage tax on private stablecoin interest earnings</p>
+<p style="margin: 0.5rem 0;"><strong>Current scale:</strong> $5 billion annually for UBI</p>
+<p style="margin: 0.5rem 0;"><strong>2030 projection:</strong> $20+ billion annually (may replace China/Japan as top Treasury holders)<sup style="font-size: 0.7em;">[86]</sup></p>
+<p style="margin: 0.5rem 0;">• Companies still profit handsomely, public shares the benefit</p>
+</div>
 
-**Option C: Hybrid Model**
-- Allow private stablecoins to compete with government-issued alternative
-- Tax private seigniorage at modest rate (25-30%)
-- Government stablecoin returns 100% of interest to UBI pool
-- Market competition drives innovation while ensuring public benefit
+<div style="background: linear-gradient(135deg, rgba(45, 60, 52, 0.08), rgba(45, 60, 52, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2d3c34;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">🏛️ Option B: Government-Backed UBI Stablecoin</h4>
+<p style="margin: 0.5rem 0;">• Repeal prohibition on government stablecoins</p>
+<p style="margin: 0.5rem 0;">• Treasury issues "UBI Coin" backed 1:1 by Treasury securities</p>
+<p style="margin: 0.5rem 0;"><strong>All seigniorage funds UBI directly:</strong> $10-20 billion annually</p>
+<p style="margin: 0.5rem 0;">• Citizens can hold interest-bearing stablecoin or convert to cash</p>
+<p style="margin: 0.5rem 0;">• Creates structural demand for US debt while funding social programs</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.08), rgba(139, 115, 85, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7355; grid-column: 1 / -1;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">🔄 Option C: Hybrid Model (Best of Both)</h4>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+<div>
+<p style="margin: 0.5rem 0;">• Allow private stablecoins to compete with government alternative</p>
+<p style="margin: 0.5rem 0;">• Tax private seigniorage at modest rate (25-30%)</p>
+</div>
+<div>
+<p style="margin: 0.5rem 0;">• Government stablecoin returns 100% of interest to UBI pool</p>
+<p style="margin: 0.5rem 0;">• Market competition drives innovation while ensuring public benefit</p>
+</div>
+</div>
+</div>
+
+</div>
+
+<style>
+@media (max-width: 768px) {
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  div[style*="grid-column: 1 / -1"] > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
 
 **The Strategic Treasury Demand Argument:**
 
@@ -618,23 +645,41 @@ If Circle can create $60 billion in USDC, earn $3 billion annually in Treasury i
 
 A pragmatic approach to stablecoin-funded UBI:
 
-**Phase 1 (2025-2027): Seigniorage Tax**
-- Implement graduated tax on private stablecoin interest earnings: 25% initially
-- Revenue: $2.5-5 billion annually
-- Minimal disruption to existing market
-- Proves concept and builds political support
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
 
-**Phase 2 (2027-2030): Government Stablecoin Pilot**
-- Treasury launches "T-Coin" or "UBI Dollar" backed by Treasury securities
-- Pilot program: 10 million participants
-- All interest returns to UBI pool
-- Interoperable with private stablecoins (ERC-20 standard)
+<div style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.08), rgba(139, 115, 85, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7355;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">📈 Phase 1 (2025-2027)<br/>Seigniorage Tax</h4>
+<p style="margin: 0.5rem 0;">• Implement graduated tax on private stablecoin interest: 25% initially</p>
+<p style="margin: 0.5rem 0;"><strong>Revenue:</strong> $2.5-5B annually</p>
+<p style="margin: 0.5rem 0;">• Minimal market disruption</p>
+<p style="margin: 0.5rem 0;">• Proves concept, builds political support</p>
+</div>
 
-**Phase 3 (2030-2035): Scale and Integration**
-- Expand to all UBI recipients (260 million adults)
-- Scale to $200-300 billion market cap
-- Generate $10-15 billion annually for UBI at 5% rates
-- Private stablecoins continue to exist and compete
+<div style="background: linear-gradient(135deg, rgba(45, 60, 52, 0.08), rgba(45, 60, 52, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2d3c34;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🧪 Phase 2 (2027-2030)<br/>Government Stablecoin Pilot</h4>
+<p style="margin: 0.5rem 0;">• Treasury launches "T-Coin" or "UBI Dollar" backed by Treasury securities</p>
+<p style="margin: 0.5rem 0;"><strong>Pilot:</strong> 10M participants</p>
+<p style="margin: 0.5rem 0;">• All interest → UBI pool</p>
+<p style="margin: 0.5rem 0;">• Interoperable with private stablecoins (ERC-20)</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.08), rgba(139, 115, 85, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7355;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🚀 Phase 3 (2030-2035)<br/>Scale & Integration</h4>
+<p style="margin: 0.5rem 0;">• Expand to all UBI recipients (260M adults)</p>
+<p style="margin: 0.5rem 0;"><strong>Scale:</strong> $200-300B market cap</p>
+<p style="margin: 0.5rem 0;"><strong>Generate:</strong> $10-15B annually for UBI at 5% rates</p>
+<p style="margin: 0.5rem 0;">• Private stablecoins continue to compete</p>
+</div>
+
+</div>
+
+<style>
+@media (max-width: 968px) {
+  div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
 
 **Addressing the Obvious Question: Why Was This Prohibited?**
 
