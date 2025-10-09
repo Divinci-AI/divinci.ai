@@ -346,16 +346,32 @@ After 2140, Bitcoin's security model transforms completely:
 
 This transition is both Bitcoin's greatest challenge and strongest validation:
 
-**The Bear Case (Security Concerns):**
-- Historical transaction fees have not shown trends rising enough to compensate for declining block subsidies[^68]
-- Critics argue fee-only revenue may be insufficient to maintain network security
-- If fees don't scale, mining profitability could collapse, reducing network hash rate and security
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
 
-**The Bull Case (Scarcity Premium):**
-- Bitcoin's adoption growth demonstrates a strong fee market is possible[^69]
-- Rising asset value (currently ~$100K/coin) increases transaction value, supporting higher fee economics
-- Network effects: As Bitcoin becomes more valuable, security budget naturally increases
-- Institutional adoption (59% of institutional portfolios as of August 2025)[^70] provides deep liquidity and transaction volume
+<div style="background: linear-gradient(135deg, rgba(229, 57, 53, 0.08), rgba(229, 57, 53, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #e53935;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">🐻 The Bear Case: Security Concerns</h4>
+<p style="margin: 0.5rem 0;">• Historical transaction fees have not shown trends rising enough to compensate for declining block subsidies<sup style="font-size: 0.7em;">[68]</sup></p>
+<p style="margin: 0.5rem 0;">• Critics argue fee-only revenue may be insufficient to maintain network security</p>
+<p style="margin: 0.5rem 0;">• If fees don't scale, mining profitability could collapse, reducing network hash rate and security</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(67, 160, 71, 0.08), rgba(67, 160, 71, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #43a047;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">🐂 The Bull Case: Scarcity Premium</h4>
+<p style="margin: 0.5rem 0;">• Bitcoin's adoption growth demonstrates a strong fee market is possible<sup style="font-size: 0.7em;">[69]</sup></p>
+<p style="margin: 0.5rem 0;">• Rising asset value (currently ~$100K/coin) increases transaction value, supporting higher fee economics</p>
+<p style="margin: 0.5rem 0;">• Network effects: As Bitcoin becomes more valuable, security budget naturally increases</p>
+<p style="margin: 0.5rem 0;">• Institutional adoption (59% of institutional portfolios as of August 2025)<sup style="font-size: 0.7em;">[70]</sup> provides deep liquidity and transaction volume</p>
+</div>
+
+</div>
+
+<style>
+@media (max-width: 768px) {
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
 
 **Store of Value vs. Medium of Exchange: The Critical Debate**
 
