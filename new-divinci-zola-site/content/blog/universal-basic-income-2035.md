@@ -383,15 +383,31 @@ The proposal calls for establishing a Strategic Bitcoin Reserve (SBR) similar to
 
 Congressional legislation has advanced this concept further. Senator Cynthia Lummis introduced the BITCOIN Act in 2024 and again in 2025 (co-sponsored by 5 senators), proposing the purchase of 1 million BTC over five years with a mandatory 20-year holding period[^10]. The U.S. government currently holds more than 207,000 Bitcoin, worth approximately $17 billion as of March 2025.
 
-**Implementation:**
-- US Government acquires 1-2 million Bitcoin over 5-10 years
-- Current price: ~$100K per coin
-- Total investment: $100-200 billion (0.4% of GDP)
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
 
-**Potential returns by 2035:**
-- Conservative estimate: $500K per coin = $500B-1T reserve
-- Moderate estimate: $1M per coin = $1-2T reserve
-- Bull case: $2M+ per coin = $2-4T reserve
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">📥 Implementation</h4>
+<p style="margin: 0.5rem 0;"><strong>US Government acquires 1-2 million Bitcoin over 5-10 years</strong></p>
+<p style="margin: 0.5rem 0;">• Current price: ~$100K per coin</p>
+<p style="margin: 0.5rem 0;">• Total investment: $100-200 billion (0.4% of GDP)</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">📈 Potential Returns by 2035</h4>
+<p style="margin: 0.5rem 0;"><strong>Conservative:</strong> $500K per coin = $500B-1T reserve</p>
+<p style="margin: 0.5rem 0;"><strong>Moderate:</strong> $1M per coin = $1-2T reserve</p>
+<p style="margin: 0.5rem 0;"><strong>Bull case:</strong> $2M+ per coin = $2-4T reserve</p>
+</div>
+
+</div>
+
+<style>
+@media (max-width: 768px) {
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
 
 This isn't speculation—it's strategic positioning in the emerging digital economy. Every major nation will eventually need cryptocurrency reserves. The US can lead or follow.
 
@@ -454,96 +470,231 @@ This transition is both Bitcoin's greatest challenge and strongest validation:
 Bitcoin's role in UBI funding depends on resolving its identity crisis:
 
 **Current Reality (2025):**
+
 Bitcoin is primarily used as a speculative investment rather than a medium of exchange[^71]. Despite Satoshi's vision of peer-to-peer electronic cash, market behavior shows:
-- **Volatility limits currency utility**: High price swings make it "almost impossible" to function as stable money[^72]
-- **"Digital gold" narrative dominates**: Institutional investors treat Bitcoin as inflation hedge and store of value
-- **HODL culture prevails**: Austrian economics enthusiasts prioritize store of value over active circulation[^73]
+
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">📊 Volatility Limits Utility</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">High price swings make it "almost impossible" to function as stable money<sup style="font-size: 0.7em;">[72]</sup></p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">🏆 "Digital Gold" Dominates</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Institutional investors treat Bitcoin as inflation hedge and store of value</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(156, 39, 176, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">💎 HODL Culture Prevails</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Austrian economics enthusiasts prioritize store of value over active circulation<sup style="font-size: 0.7em;">[73]</sup></p>
+</div>
+
+</div>
+
+<style>
+@media (max-width: 968px) {
+  div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
 
 **Long-Term Evolution (2035-2140):**
 
 As Bitcoin matures, three potential paths emerge:
 
-1. **Reserve Asset Trajectory** (Most Likely for UBI):
-   - Governments hold Bitcoin as strategic reserve, similar to gold
-   - Appreciation funds UBI without needing active circulation
-   - U.S. already holds 198,000+ BTC (largest sovereign holder)[^74]
-   - Value derives from scarcity and institutional confidence, not transaction volume
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
 
-2. **Hybrid Model** (Medium Probability):
-   - Bitcoin serves dual role: settlement layer for large transactions + store of value
-   - Lightning Network and layer-2 solutions enable daily transactions
-   - Base layer fees remain high but sustainable for high-value transfers
-   - Strategic reserves appreciate while ecosystem generates transaction fee revenue
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🏆 Reserve Asset Trajectory</h4>
+<p style="margin: 0.5rem 0; font-size: 0.85rem; font-weight: 600; color: #4CAF50;">(Most Likely for UBI)</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Governments hold Bitcoin as strategic reserve, similar to gold</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Appreciation funds UBI without needing active circulation</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• U.S. already holds 198,000+ BTC (largest sovereign holder)<sup style="font-size: 0.7em;">[74]</sup></p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Value from scarcity and institutional confidence, not transaction volume</p>
+</div>
 
-3. **Pure Currency Model** (Lower Probability):
-   - Volatility decreases as market cap approaches gold parity ($10-15 trillion)
-   - Widespread adoption for daily transactions generates robust fee market
-   - Post-2140 fee economics successfully replace block rewards
-   - Strategic reserves provide liquidity for UBI distributions
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">⚖️ Hybrid Model</h4>
+<p style="margin: 0.5rem 0; font-size: 0.85rem; font-weight: 600; color: #ff9800;">(Medium Probability)</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Dual role: settlement layer for large transactions + store of value</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Lightning Network and layer-2 solutions enable daily transactions</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Base layer fees remain high but sustainable for high-value transfers</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Strategic reserves appreciate while ecosystem generates transaction fee revenue</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.08), rgba(33, 150, 243, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2196F3;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">💱 Pure Currency Model</h4>
+<p style="margin: 0.5rem 0; font-size: 0.85rem; font-weight: 600; color: #2196F3;">(Lower Probability)</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Volatility decreases as market cap approaches gold parity ($10-15T)</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Widespread adoption for daily transactions generates robust fee market</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Post-2140 fee economics successfully replace block rewards</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Strategic reserves provide liquidity for UBI distributions</p>
+</div>
+
+</div>
 
 **UBI Implications: Why the Reserve Model Works Best**
 
 For UBI funding through 2140 and beyond, the reserve asset model offers the most sustainable path:
 
-**Short-Term (2025-2040):**
-- Government acquires 1-2 million BTC at current prices ($100K-200K range)
-- Block rewards continue, ensuring network security
-- Asset appreciation provides funding: $500B-2T by 2035 (conservative estimates)
-- Strategic reserve doesn't depend on Bitcoin's transaction utility
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
 
-**Medium-Term (2040-2100):**
-- Bitcoin's scarcity intensifies (99%+ mined by 2040)
-- Institutional adoption stabilizes price volatility
-- Reserve asset status becomes primary function
-- Government doesn't need to sell holdings—can borrow against BTC collateral at low rates
-- Transaction fees irrelevant to strategic reserve value
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">📅 Short-Term (2025-2040)</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Government acquires 1-2M BTC at current prices ($100K-200K range)</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Block rewards continue, ensuring network security</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Asset appreciation provides funding: $500B-2T by 2035 (conservative)</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Strategic reserve doesn't depend on Bitcoin's transaction utility</p>
+</div>
 
-**Long-Term (2100-2140+):**
-- Fee market has 75+ years to mature and stabilize
-- If fees prove insufficient, Bitcoin's value shifts entirely to store-of-value
-- Government holdings appreciate as deflationary asset
-- UBI funding comes from reserve appreciation, not transaction economics
-- Post-2140 transition becomes irrelevant to strategic reserve thesis
+<div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.08), rgba(33, 150, 243, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2196F3;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">📆 Medium-Term (2040-2100)</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Bitcoin's scarcity intensifies (99%+ mined by 2040)</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Institutional adoption stabilizes price volatility</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Reserve asset status becomes primary function</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Government can borrow against BTC collateral at low rates</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Transaction fees irrelevant to strategic reserve value</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(156, 39, 176, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">📜 Long-Term (2100-2140+)</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Fee market has 75+ years to mature and stabilize</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• If fees prove insufficient, Bitcoin's value shifts entirely to store-of-value</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Government holdings appreciate as deflationary asset</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• UBI funding from reserve appreciation, not transaction economics</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Post-2140 transition irrelevant to strategic reserve thesis</p>
+</div>
+
+</div>
 
 **The Scarcity Premium Accelerator:**
 
 Bitcoin's hard cap of 21 million creates mathematical scarcity unmatched by any fiat currency:
 
-- **Supply shock dynamics**: With demand increasing (institutional adoption) and supply decreasing (halvings), basic economics suggests sustained appreciation[^75]
-- **Inflation hedge positioning**: Bitcoin's capped supply contrasts with infinite fiat creation, driving "digital gold" narrative[^76]
-- **Deflationary pressure**: Over 94% mined means remaining supply shrinks rapidly, amplifying scarcity premium
-- **Lost coins**: Estimated 3-4 million BTC permanently lost, effectively reducing supply to ~17-18 million
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">📊 Supply Shock Dynamics</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">With demand increasing (institutional adoption) and supply decreasing (halvings), basic economics suggests sustained appreciation<sup style="font-size: 0.7em;">[75]</sup></p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🛡️ Inflation Hedge Positioning</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Bitcoin's capped supply contrasts with infinite fiat creation, driving "digital gold" narrative<sup style="font-size: 0.7em;">[76]</sup></p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(156, 39, 176, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">📉 Deflationary Pressure</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Over 94% mined means remaining supply shrinks rapidly, amplifying scarcity premium</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🔒 Lost Coins</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Estimated 3-4 million BTC permanently lost, effectively reducing supply to ~17-18 million</p>
+</div>
+
+</div>
 
 **Risk Mitigation for UBI Strategy:**
 
 The post-2140 transition presents minimal risk to UBI funding because:
 
-1. **Time horizon advantage**: 115 years allows fee market to develop naturally
-2. **Diversified funding**: Bitcoin reserve is only one of multiple UBI revenue sources (see Three Scenarios)
-3. **No dependency on circulation**: Reserve value doesn't require Bitcoin to function as daily currency
-4. **Collateralization option**: Government can borrow against BTC holdings rather than selling
-5. **Historical precedent**: Gold reserves maintain value despite limited transactional use
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">⏰ Time Horizon Advantage</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">115 years allows fee market to develop naturally</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.08), rgba(33, 150, 243, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2196F3;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">🎯 Diversified Funding</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Bitcoin reserve is only one of multiple UBI revenue sources (see Three Scenarios)</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(156, 39, 176, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">🔓 No Dependency on Circulation</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Reserve value doesn't require Bitcoin to function as daily currency</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">💰 Collateralization Option</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Government can borrow against BTC holdings rather than selling</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">🏛️ Historical Precedent</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Gold reserves maintain value despite limited transactional use</p>
+</div>
+
+</div>
 
 **The Strategic Insight:**
 
 Bitcoin's post-mining economics paradoxically strengthen the UBI case rather than weaken it. **The 2140 transition is a feature, not a bug**:
 
-- Fixed supply cap ensures government holdings can't be diluted by inflation
-- Declining new supply accelerates scarcity premium
-- Fee market has over a century to mature—no immediate risk
-- Reserve asset model doesn't depend on Bitcoin's role as currency
-- Strategic positioning today (2025-2030) captures maximum appreciation before halvings reduce availability
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">🔒 Fixed Supply Cap</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Government holdings can't be diluted by inflation</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">📉 Declining Supply</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Scarcity premium accelerates with halvings</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.08), rgba(33, 150, 243, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2196F3;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">⏳ Century to Mature</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Fee market has over 100 years—no immediate risk</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(156, 39, 176, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">🏛️ Reserve Asset Model</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Doesn't depend on Bitcoin's role as currency</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">🎯 Strategic Timing</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">2025-2030 captures maximum appreciation before halvings reduce availability</p>
+</div>
+
+</div>
 
 **Conclusion: Bitcoin as UBI Foundation**
 
 Whether Bitcoin thrives post-2140 as a transaction network or purely as a reserve asset, the strategic reserve approach to UBI funding remains robust. The government simply needs to:
 
-1. Acquire Bitcoin during current accumulation window (2025-2035)
-2. Hold through multiple halving cycles to capture scarcity premium
-3. Use appreciation to fund UBI through 2035-2100+
-4. Let the fee market resolve itself over the next century
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
 
-The beauty of this strategy: **UBI funding works regardless of Bitcoin's ultimate role** as currency or pure store of value. It's a bet on scarcity and institutional confidence, not transaction utility.
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">1️⃣ Acquire (2025-2035)</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Accumulate Bitcoin during current window before scarcity intensifies</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.08), rgba(33, 150, 243, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2196F3;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">2️⃣ Hold Through Halvings</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Capture scarcity premium as supply decreases every 4 years</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(156, 39, 176, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">3️⃣ Use Appreciation (2035-2100+)</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Fund UBI from asset appreciation, not transaction economics</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">4️⃣ Let Fee Market Mature</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Transaction economics have century to resolve—irrelevant to reserve value</p>
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(45, 60, 52, 0.08), rgba(45, 60, 52, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2d3c34; margin: 0 0 2rem 0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">💡 The Beauty of This Strategy</h4>
+<p style="margin: 0.5rem 0; font-size: 1rem;"><strong>UBI funding works regardless of Bitcoin's ultimate role</strong> as currency or pure store of value. It's a bet on scarcity and institutional confidence, not transaction utility.</p>
+</div>
 
 ### The Revolutionary Concept: Proof-of-Useful-Work
 
@@ -828,102 +979,296 @@ $$
 
 **Where each variable represents measurable economic forces:**
 
-**Technology Forces (Deflationary Accelerators):**
-- $T_{fusion}$ = Fusion energy cost reduction value ($300-600B/year equivalent by 2035)
-- $T_{auto}$ = Automation productivity gains ($400-800B/year)
-- $T_{AI}$ = AI-driven efficiency improvements ($500B-1T/year from McKinsey $13T global projection)
-- $M_{tech}$ = Technology multiplier effect (1.3-1.8x as technologies compound)
+### Technology Forces (Deflationary Accelerators)
 
-**Government Restructuring (Capital Release):**
-- $G_{restructure}$ = Total government savings ($2.25T annually)
-  - Defense transformation: $1.7T
-  - Bureaucracy reduction: $550B
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
 
-**Cryptocurrency Value Creation:**
-- $C_{bitcoin}$ = Strategic Bitcoin Reserve holdings (1-2M BTC)
-- $A_{appreciation}$ = Annual appreciation rate (conservative: 15-30%)
-  - Yields: $500B-2T by 2035
-- $S_{stable}$ = Total stablecoin market cap ($300B current, $500B+ projected 2030)
-- $\tau_{public}$ = Public seigniorage capture rate (0.5-1.0 if government-issued or taxed)
-  - Yields: $10-20B annually at 5% Treasury rates
-- $P_{useful}$ = Proof-of-useful-work computational value ($/FLOP for scientific research)
-- $N_{compute}$ = Network of participating devices (250M potential participants × $200-500/month)
-  - Yields: $200-500B annually
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">⚡ $T_{fusion}$ — Fusion Energy</h4>
+<p style="margin: 0.5rem 0;"><strong>Cost reduction value:</strong> $300-600B/year equivalent by 2035</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Near-zero marginal cost electricity creates cascading savings across entire economy</p>
+</div>
 
-**Economic Multiplier (Positive Feedback Loop):**
-- $E_{multiplier}$ = Roosevelt Institute finding: every $1 UBI generates $2.48 in economic activity
-- $UBI_{base}$ = Initial UBI distribution creating demand-driven growth
-  - Yields: $400-800B in additional economic activity
+<div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.08), rgba(33, 150, 243, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2196F3;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🤖 $T_{auto}$ — Automation</h4>
+<p style="margin: 0.5rem 0;"><strong>Productivity gains:</strong> $400-800B/year</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Robotics deployment reducing costs while improving quality</p>
+</div>
 
-**Population & Inflation Adjustments:**
-- $P_{population}$ = 260 million American adults (2035 projection)
-- $\pi_{inflation}$ = Inflation pressure from monetary expansion (typically 2-4%)
-- $\delta_{deflation}$ = Technology-driven deflation (fusion, automation pushing prices down 3-8%)
-  - **Net effect:** Technology deflation > monetary inflation = real purchasing power gains
+<div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(156, 39, 176, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🧠 $T_{AI}$ — Artificial Intelligence</h4>
+<p style="margin: 0.5rem 0;"><strong>Efficiency improvements:</strong> $500B-1T/year</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">From McKinsey $13T global projection — streamlining government and business</p>
+</div>
 
-**Political Resistance (Friction Coefficient):**
-- $R_{political}$ = Political implementation friction (0.15-0.40 depending on scenario)
-  - Conservative path: 0.40 (high resistance to defense cuts)
-  - Moderate path: 0.25 (compromise on restructuring)
-  - Progressive path: 0.15 (broad political will for transformation)
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">📈 $M_{tech}$ — Tech Multiplier</h4>
+<p style="margin: 0.5rem 0;"><strong>Compound effect:</strong> 1.3-1.8x multiplier</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Technologies compound exponentially — fusion enables automation enables vertical farming</p>
+</div>
+
+</div>
+
+### Government Restructuring (Capital Release)
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, rgba(63, 81, 181, 0.08), rgba(63, 81, 181, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3F51B5;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🛡️ Defense Transformation</h4>
+<p style="margin: 0.5rem 0;"><strong>Annual savings:</strong> $1.7T</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Technology-first defense, eliminate redundant weapons, consolidate overseas bases</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(0, 150, 136, 0.08), rgba(0, 150, 136, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #009688;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">📋 Bureaucracy Reduction</h4>
+<p style="margin: 0.5rem 0;"><strong>Annual savings:</strong> $550B</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">AI automation replacing 50% admin positions, consolidate overlapping agencies</p>
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.08), rgba(139, 115, 85, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7355; margin: 0 0 2rem 0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">💰 $G_{restructure}$ — Total Government Savings</h4>
+<p style="margin: 0.5rem 0;"><strong>Combined annual release:</strong> $2.25T</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Capital trapped in inefficient systems redirected to UBI — not reducing effectiveness, using 21st-century tools</p>
+</div>
+
+### Cryptocurrency Value Creation
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">₿ Strategic Bitcoin Reserve</h4>
+<p style="margin: 0.5rem 0;"><strong>$C_{bitcoin}$:</strong> 1-2M BTC holdings</p>
+<p style="margin: 0.5rem 0;"><strong>$A_{appreciation}$:</strong> 15-30% annual growth (conservative)</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;"><strong>Yields:</strong> $500B-2T by 2035</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.08), rgba(33, 150, 243, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2196F3;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">💵 Stablecoin Seigniorage</h4>
+<p style="margin: 0.5rem 0;"><strong>$S_{stable}$:</strong> $300B current → $500B+ by 2030</p>
+<p style="margin: 0.5rem 0;"><strong>$\tau_{public}$:</strong> 0.5-1.0 public capture rate</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;"><strong>Yields:</strong> $10-20B annually at 5% Treasury rates</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(156, 39, 176, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🔬 Proof-of-Useful-Work</h4>
+<p style="margin: 0.5rem 0;"><strong>$P_{useful}$:</strong> Computational value ($/FLOP for research)</p>
+<p style="margin: 0.5rem 0;"><strong>$N_{compute}$:</strong> 250M participants × $200-500/month</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;"><strong>Yields:</strong> $200-500B annually in scientific computing</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🌐 Network Effects</h4>
+<p style="margin: 0.5rem 0;"><strong>Dual value creation:</strong> Capital growth + seigniorage</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Bitcoin appreciation (asset growth) AND proof-of-useful-work (computational value) — exponential not linear</p>
+</div>
+
+</div>
+
+### Economic Multiplier (Positive Feedback Loop)
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🔄 $E_{multiplier}$ — Roosevelt Effect</h4>
+<p style="margin: 0.5rem 0;"><strong>Multiplier coefficient:</strong> 2.48x economic activity</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Every $1 UBI generates $2.48 in total economic activity — Roosevelt Institute finding</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">💸 $UBI_{base}$ — Demand Creation</h4>
+<p style="margin: 0.5rem 0;"><strong>Initial distribution:</strong> Creates demand-driven growth</p>
+<p style="margin: 0.5rem 0;"><strong>Yields:</strong> $400-800B in additional economic activity</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Self-sustaining feedback loop — UBI spending generates tax revenue funding more UBI</p>
+</div>
+
+</div>
+
+### Population & Inflation Adjustments
+
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.08), rgba(139, 115, 85, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7355;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">👥 $P_{population}$</h4>
+<p style="margin: 0.5rem 0;"><strong>260 million</strong> American adults (2035 projection)</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">📈 $\pi_{inflation}$</h4>
+<p style="margin: 0.5rem 0;"><strong>2-4%</strong> typical monetary expansion pressure</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">📉 $\delta_{deflation}$</h4>
+<p style="margin: 0.5rem 0;"><strong>3-8%</strong> technology-driven cost reduction (fusion, automation)</p>
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(45, 60, 52, 0.08), rgba(45, 60, 52, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2d3c34; margin: 0 0 2rem 0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.3rem;">⚖️ Net Effect: Technology Deflation > Monetary Inflation</h4>
+<p style="margin: 0.5rem 0; font-size: 1rem;">When $\delta_{deflation} > \pi_{inflation}$, the denominator decreases, <strong>amplifying UBI's real purchasing power</strong></p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">This is the opposite of traditional inflation concerns — technology creates abundance faster than monetary expansion</p>
+</div>
+
+### Political Resistance (Friction Coefficient)
+
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🐌 Conservative Path</h4>
+<p style="margin: 0.5rem 0;"><strong>$R_{political}$ = 0.40</strong></p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">High resistance to defense cuts and restructuring</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Still yields:</strong> $906/month</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">⚡ Moderate Path</h4>
+<p style="margin: 0.5rem 0;"><strong>$R_{political}$ = 0.25</strong></p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Compromise on defense and bureaucracy transformation</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Yields:</strong> $1,442/month</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🚀 Progressive Path</h4>
+<p style="margin: 0.5rem 0;"><strong>$R_{political}$ = 0.15</strong></p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Broad political will for comprehensive transformation</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Yields:</strong> $2,031/month</p>
+</div>
+
+</div>
+
+<style>
+@media (max-width: 968px) {
+  div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 768px) {
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
 
 **Solving the Equation for 2035:**
 
 *Note: All funding sources are calculated in billions per year, then divided by population and 12 months for the monthly UBI amount.*
 
-**Conservative Scenario:**
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
 
-<div style="overflow-x: auto; margin: 2rem 0;">
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🐌 Conservative Scenario</h4>
+<p style="margin: 0.5rem 0; font-size: 0.85rem;"><strong>Political resistance:</strong> $R_{political}$ = 0.40</p>
+<div style="overflow-x: auto; margin: 1rem 0;">
 $
 \begin{aligned}
-UBI_{annual} &= (1,560 + 2,250 + 150 + 150 + 200 + 400) \cdot (1 - 0.40) \\\\
-&= 4,710 \cdot 0.60 = \$2,826B \text{ per year} \\\\
-UBI_{monthly} &= \frac{2,826B}{260M \text{ adults}} \div 12 \\\\
-&= \$10,869/\text{year} \div 12 = \mathbf{\$906/month}
+&(1,560 + 2,250 + 150 \\\\
+&+ 150 + 200 + 400) \\\\
+&\cdot (1 - 0.40) \\\\
+&= 4,710 \cdot 0.60 \\\\
+&= \$2,826B/\text{year}
 \end{aligned}
 $
 </div>
+<div style="background: rgba(244, 67, 54, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+<p style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #F44336;">$906/month</p>
+<p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; opacity: 0.8;">$10,869/year per adult</p>
+</div>
+</div>
 
-**Moderate Scenario:**
-
-<div style="overflow-x: auto; margin: 2rem 0;">
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">⚡ Moderate Scenario</h4>
+<p style="margin: 0.5rem 0; font-size: 0.85rem;"><strong>Political resistance:</strong> $R_{political}$ = 0.25</p>
+<div style="overflow-x: auto; margin: 1rem 0;">
 $
 \begin{aligned}
-UBI_{annual} &= (2,000 + 2,250 + 500 + 300 + 350 + 600) \cdot (1 - 0.25) \\\\
-&= 6,000 \cdot 0.75 = \$4,500B \text{ per year} \\\\
-UBI_{monthly} &= \frac{4,500B}{260M} \div 12 = \mathbf{\$1,442/month}
+&(2,000 + 2,250 + 500 \\\\
+&+ 300 + 350 + 600) \\\\
+&\cdot (1 - 0.25) \\\\
+&= 6,000 \cdot 0.75 \\\\
+&= \$4,500B/\text{year}
 \end{aligned}
 $
 </div>
+<div style="background: rgba(255, 152, 0, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+<p style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #ff9800;">$1,442/month</p>
+<p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; opacity: 0.8;">$17,304/year per adult</p>
+</div>
+</div>
 
-**Progressive Scenario:**
-
-<div style="overflow-x: auto; margin: 2rem 0;">
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🚀 Progressive Scenario</h4>
+<p style="margin: 0.5rem 0; font-size: 0.85rem;"><strong>Political resistance:</strong> $R_{political}$ = 0.15</p>
+<div style="overflow-x: auto; margin: 1rem 0;">
 $
 \begin{aligned}
-UBI_{annual} &= (2,400 + 2,250 + 1,000 + 500 + 500 + 800) \cdot (1 - 0.15) \\\\
-&= 7,450 \cdot 0.85 = \$6,333B \text{ per year} \\\\
-UBI_{monthly} &= \frac{6,333B}{260M} \div 12 = \mathbf{\$2,031/month}
+&(2,400 + 2,250 + 1,000 \\\\
+&+ 500 + 500 + 800) \\\\
+&\cdot (1 - 0.15) \\\\
+&= 7,450 \cdot 0.85 \\\\
+&= \$6,333B/\text{year}
 \end{aligned}
 $
 </div>
+<div style="background: rgba(76, 175, 80, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+<p style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #4CAF50;">$2,031/month</p>
+<p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; opacity: 0.8;">$24,372/year per adult</p>
+</div>
+</div>
+
+</div>
+
+<style>
+@media (max-width: 968px) {
+  div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
 
 **What This Equation Reveals:**
 
-**1. Technology as Deflationary Force:**
-The $(1 + \pi_{inflation} - \delta_{deflation})$ term is crucial. Fusion energy alone creates 3-5% annual deflation in energy-intensive goods. When $\delta_{deflation} > \pi_{inflation}$, the denominator decreases, amplifying UBI's real purchasing power. This is the **opposite** of traditional inflation concerns.
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
 
-**2. Network Effects as Multipliers:**
-The $M_{tech}$ multiplier (1.3-1.8x) represents how technologies compound—fusion enables cheap automation, which enables vertical farming, which reduces food costs. These aren't linear additions; they're exponential force multipliers.
+<div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4CAF50;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">1️⃣ Technology as Deflationary Force</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">The $(1 + \pi_{inflation} - \delta_{deflation})$ term is crucial. Fusion energy alone creates 3-5% annual deflation in energy-intensive goods.</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>When $\delta_{deflation} > \pi_{inflation}$:</strong> The denominator decreases, amplifying UBI's real purchasing power.</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; font-style: italic; color: #4CAF50;">This is the opposite of traditional inflation concerns.</p>
+</div>
 
-**3. Cryptocurrency as Dual Force:**
-Bitcoin provides both appreciation (capital growth) AND seigniorage capture (stablecoins). Unlike traditional assets, cryptocurrency generates value through network effects ($N_{compute}$ for proof-of-useful-work) while simultaneously providing monetary system profits ($S_{stable} \cdot \tau_{public}$).
+<div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.08), rgba(33, 150, 243, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2196F3;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">2️⃣ Network Effects as Multipliers</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">The $M_{tech}$ multiplier (1.3-1.8x) represents how technologies compound:</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Fusion → cheap automation → vertical farming → reduced food costs</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; font-style: italic; color: #2196F3;">These aren't linear additions; they're exponential force multipliers.</p>
+</div>
 
-**4. Political Friction as System Damper:**
-The $(1 - R_{political})$ term acts like friction in physics—it doesn't prevent motion, but reduces efficiency. Even with 40% political resistance (conservative scenario), the equation yields $906/month. This shows UBI's feasibility isn't binary—it's a spectrum based on political will.
+<div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(156, 39, 176, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #9C27B0;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">3️⃣ Cryptocurrency as Dual Force</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Bitcoin provides both appreciation (capital growth) AND seigniorage capture (stablecoins).</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Network effects: $N_{compute}$ (proof-of-useful-work)</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">• Monetary profits: $S_{stable} \cdot \tau_{public}$</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; font-style: italic; color: #9C27B0;">Unlike traditional assets—dual value generation.</p>
+</div>
 
-**5. The Multiplier Effect as Positive Feedback:**
-$E_{multiplier} \cdot UBI_{base}$ creates a feedback loop. Every dollar of UBI generates $2.48 in economic activity, which increases tax revenue, which funds more UBI. This is similar to regenerative braking in electric vehicles—the system captures its own output as input.
+<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">4️⃣ Political Friction as System Damper</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">The $(1 - R_{political})$ term acts like friction in physics—it doesn't prevent motion, just reduces efficiency.</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Even with 40% resistance:</strong> Equation yields $906/month</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; font-style: italic; color: #ff9800;">UBI feasibility isn't binary—it's a spectrum based on political will.</p>
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">
+<h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">5️⃣ Multiplier Effect as Positive Feedback</h4>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">$E_{multiplier} \cdot UBI_{base}$ creates a feedback loop:</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem;">Every $1 UBI → $2.48 economic activity → tax revenue → more UBI</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; font-style: italic; color: #F44336;">Like regenerative braking—the system captures its own output as input.</p>
+</div>
+
+</div>
 
 **The Physics Analogy:**
 

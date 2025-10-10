@@ -36,41 +36,32 @@
     Force Vector Analysis: Technology, Government, Cryptocurrency, and Political Resistance
   </text>
 
-  <!-- Center equilibrium point -->
-  <circle cx="700" cy="450" r="60" fill="#34495E" opacity="0.9" filter="url(#shadow)"/>
-  <text x="700" y="445" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
-    UBI
-  </text>
-  <text x="700" y="465" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">
-    Equilibrium
-  </text>
-
   <!-- Technology Forces (Green vectors - pointing right/up) -->
   <g id="tech-forces">
     <!-- Fusion Energy -->
     <line x1="700" y1="450" x2="1000" y2="350" stroke="#27AE60" stroke-width="8" marker-end="url(#arrowGreen)" opacity="0.8"/>
-    <text x="850" y="390" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#27AE60">
+    <text x="1010" y="340" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#27AE60">
       T_fusion ($300-600B)
     </text>
-    <text x="850" y="408" font-family="Arial, sans-serif" font-size="12" fill="#27AE60">
+    <text x="1010" y="354" font-family="Arial, sans-serif" font-size="10" fill="#27AE60">
       Fusion Energy Deflation
     </text>
 
     <!-- Automation -->
     <line x1="700" y1="450" x2="1050" y2="450" stroke="#27AE60" stroke-width="7" marker-end="url(#arrowGreen)" opacity="0.8"/>
-    <text x="880" y="435" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#27AE60">
+    <text x="1060" y="445" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#27AE60">
       T_auto ($400-800B)
     </text>
-    <text x="880" y="453" font-family="Arial, sans-serif" font-size="12" fill="#27AE60">
+    <text x="1060" y="459" font-family="Arial, sans-serif" font-size="10" fill="#27AE60">
       Automation Productivity
     </text>
 
     <!-- AI -->
     <line x1="700" y1="450" x2="1000" y2="550" stroke="#27AE60" stroke-width="7" marker-end="url(#arrowGreen)" opacity="0.8"/>
-    <text x="850" y="510" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#27AE60">
+    <text x="1010" y="560" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#27AE60">
       T_AI ($500B-1T)
     </text>
-    <text x="850" y="528" font-family="Arial, sans-serif" font-size="12" fill="#27AE60">
+    <text x="1010" y="574" font-family="Arial, sans-serif" font-size="10" fill="#27AE60">
       AI Efficiency Gains
     </text>
   </g>
@@ -78,13 +69,13 @@
   <!-- Government Restructuring (Blue vector - pointing up) -->
   <g id="gov-forces">
     <line x1="700" y1="450" x2="700" y2="150" stroke="#3498DB" stroke-width="10" marker-end="url(#arrowBlue)" opacity="0.8"/>
-    <text x="730" y="290" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#3498DB">
+    <text x="720" y="190" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#3498DB">
       G_restructure
     </text>
-    <text x="730" y="310" font-family="Arial, sans-serif" font-size="14" fill="#3498DB">
+    <text x="720" y="206" font-family="Arial, sans-serif" font-size="11" fill="#3498DB">
       $2.25T
     </text>
-    <text x="730" y="328" font-family="Arial, sans-serif" font-size="12" fill="#3498DB">
+    <text x="720" y="220" font-family="Arial, sans-serif" font-size="9" fill="#3498DB">
       Defense + Bureaucracy
     </text>
   </g>
@@ -93,28 +84,28 @@
   <g id="crypto-forces">
     <!-- Bitcoin -->
     <line x1="700" y1="450" x2="950" y2="250" stroke="#9B59B6" stroke-width="6" marker-end="url(#arrowPurple)" opacity="0.8"/>
-    <text x="840" y="335" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#9B59B6">
+    <text x="960" y="235" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#9B59B6">
       C_bitcoin × A_appreciation
     </text>
-    <text x="840" y="352" font-family="Arial, sans-serif" font-size="11" fill="#9B59B6">
+    <text x="960" y="248" font-family="Arial, sans-serif" font-size="9" fill="#9B59B6">
       $500B-2T (15-30% growth)
     </text>
 
     <!-- Stablecoins -->
     <line x1="700" y1="450" x2="920" y2="620" stroke="#9B59B6" stroke-width="5" marker-end="url(#arrowPurple)" opacity="0.8"/>
-    <text x="820" y="545" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#9B59B6">
+    <text x="930" y="610" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#9B59B6">
       S_stable × τ_public
     </text>
-    <text x="820" y="562" font-family="Arial, sans-serif" font-size="11" fill="#9B59B6">
+    <text x="930" y="623" font-family="Arial, sans-serif" font-size="9" fill="#9B59B6">
       $10-20B seigniorage
     </text>
 
     <!-- Proof-of-Useful-Work -->
     <line x1="700" y1="450" x2="950" y2="680" stroke="#9B59B6" stroke-width="5" marker-end="url(#arrowPurple)" opacity="0.8"/>
-    <text x="840" y="575" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#9B59B6">
+    <text x="960" y="690" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#9B59B6">
       P_useful × N_compute
     </text>
-    <text x="840" y="592" font-family="Arial, sans-serif" font-size="11" fill="#9B59B6">
+    <text x="960" y="703" font-family="Arial, sans-serif" font-size="9" fill="#9B59B6">
       $200-500B distributed compute
     </text>
   </g>
@@ -122,10 +113,10 @@
   <!-- Economic Multiplier (Gold circular arrow) -->
   <g id="multiplier">
     <path d="M 760 450 A 80 80 0 1 1 640 450" stroke="#F39C12" stroke-width="6" fill="none" marker-end="url(#arrowGold)" opacity="0.7"/>
-    <text x="700" y="540" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#F39C12">
+    <text x="480" y="600" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#F39C12">
       E_multiplier = 2.48x
     </text>
-    <text x="700" y="558" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#F39C12">
+    <text x="480" y="614" font-family="Arial, sans-serif" font-size="10" fill="#F39C12">
       Positive Feedback Loop
     </text>
   </g>
@@ -133,13 +124,13 @@
   <!-- Political Resistance (Red vector - opposing force) -->
   <g id="resistance">
     <line x1="700" y1="450" x2="350" y2="450" stroke="#E74C3C" stroke-width="9" marker-end="url(#arrowRed)" opacity="0.8" stroke-dasharray="10,5"/>
-    <text x="510" y="435" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#E74C3C">
+    <text x="120" y="480" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#E74C3C">
       R_political
     </text>
-    <text x="510" y="453" font-family="Arial, sans-serif" font-size="13" fill="#E74C3C">
+    <text x="120" y="496" font-family="Arial, sans-serif" font-size="11" fill="#E74C3C">
       (Friction: 0.15-0.40)
     </text>
-    <text x="510" y="470" font-family="Arial, sans-serif" font-size="11" fill="#E74C3C">
+    <text x="120" y="510" font-family="Arial, sans-serif" font-size="9" fill="#E74C3C">
       Defense lobby, tax avoidance
     </text>
   </g>
@@ -147,16 +138,25 @@
   <!-- Net Result Vector (thick composite arrow) -->
   <g id="net-result">
     <line x1="700" y1="450" x2="1150" y2="200" stroke="#16A085" stroke-width="12" marker-end="url(#arrowGreen)" opacity="0.9" filter="url(#glow)"/>
-    <text x="960" y="310" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#16A085">
+    <text x="1160" y="185" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#16A085">
       NET FORCE
     </text>
-    <text x="960" y="333" font-family="Arial, sans-serif" font-size="14" fill="#16A085">
+    <text x="1160" y="203" font-family="Arial, sans-serif" font-size="12" fill="#16A085">
       $906 → $2,031/month
     </text>
-    <text x="960" y="351" font-family="Arial, sans-serif" font-size="12" fill="#16A085">
+    <text x="1160" y="217" font-family="Arial, sans-serif" font-size="10" fill="#16A085">
       (depending on R_political)
     </text>
   </g>
+
+  <!-- Center equilibrium point (drawn on top of all arrows) -->
+  <circle cx="700" cy="450" r="60" fill="#34495E" opacity="0.9" filter="url(#shadow)"/>
+  <text x="700" y="445" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+    UBI
+  </text>
+  <text x="700" y="465" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">
+    Equilibrium
+  </text>
 
   <!-- Legend -->
   <g id="legend">
