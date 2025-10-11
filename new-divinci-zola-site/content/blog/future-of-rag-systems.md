@@ -72,7 +72,7 @@ decomposed_queries = [
 
 ### Recursive Retrieval and Reasoning
 
-<img src="/images/autorag-retrieval-optimization.svg" alt="Recursive Retrieval Process" style="width: 70%; display: block; margin: 2rem auto;">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-retrieval-optimization.svg" alt="Recursive Retrieval Process" style="width: 70%; display: block; margin: 2rem auto;">
 *Recursive retrieval enables deeper exploration of information networks*
 
 Advanced RAG systems can recursively explore information networks, following leads and connections to build comprehensive understanding[^6]. This approach mimics how human researchers naturally work—starting with initial sources and following relevant connections. RAPTOR (Recursive Abstractive Processing for Tree-Organized Retrieval), presented at ICLR 2024, represents one of the key recursive retrieval methods that has demonstrated significant improvements in multi-hop reasoning[^7].

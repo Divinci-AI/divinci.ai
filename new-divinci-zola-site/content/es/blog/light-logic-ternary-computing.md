@@ -59,7 +59,7 @@ Por ejemplo, una puerta AND fotónica funciona así:
 
 La belleza de combinar ambos enfoques, como lo demuestra el chip Taichi, es que la difracción maneja operaciones fijas (como la codificación de datos) mientras que la interferencia maneja lógica reconfigurable—dándonos lo mejor de ambos mundos.
 
-<img src="/images/photonic-logic-gate.svg" alt="Animación de Puerta Lógica Fotónica" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/photonic-logic-gate.svg" alt="Animación de Puerta Lógica Fotónica" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Lógica Ternaria: Tres es el Número Mágico
 
@@ -98,7 +98,7 @@ El reciente chip ternario de 7nm de Huawei demuestra:
 
 El avance clave: transistores con **dos niveles de umbral** en lugar de uno, permitiendo una clara diferenciación entre tres estados distintos: -1, 0 y +1.
 
-<img src="/images/ternary-logic-comparison.svg" alt="Comparación de Lógica Binaria vs Ternaria" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ternary-logic-comparison.svg" alt="Comparación de Lógica Binaria vs Ternaria" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 **Lectura Adicional**: Para una inmersión profunda en la computación ternaria y la computadora Setun soviética, mira [este excelente video explicativo](https://www.youtube.com/watch?v=3aewaff1494).
 
@@ -148,7 +148,7 @@ Para el aprendizaje automático, esto proporciona:
 
 La naturaleza fotónica de los sistemas Light Logic hace que la generación de números aleatorios cuánticos sea esencialmente "gratuita"—es un subproducto natural del proceso de medición óptica, sin requerir hardware adicional.
 
-<img src="/images/quantum-randomness.svg" alt="Generación de Números Aleatorios Cuánticos" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/quantum-randomness.svg" alt="Generación de Números Aleatorios Cuánticos" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="5"/><path d="M12 1v6m0 6v6M1 12h6m6 0h6"/></svg> Baterías de Gravedad: Energía Sostenible para Computación Sostenible
 
@@ -201,7 +201,7 @@ Las baterías de gravedad complementan hermosamente los sistemas Light Logic:
 
 **Balanceo de Carga**: Los sistemas Light Logic tienen un consumo de energía en reposo extremadamente bajo (los circuitos fotónicos no pierden corriente como los electrónicos). Las baterías de gravedad pueden "cargarse por goteo" desde energía solar/eólica, luego proporcionar energía en ráfaga para computación cuando sea necesario.
 
-<img src="/images/gravity-battery.svg" alt="Sistema de Almacenamiento de Energía de Batería de Gravedad" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/gravity-battery.svg" alt="Sistema de Almacenamiento de Energía de Batería de Gravedad" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/></svg> Computación Artesanal: El Enfoque Artesano
 

@@ -928,7 +928,7 @@ template = "careers.html"
                     Working at Divinci AI has been an incredible journey. I love the collaborative culture and the opportunity to solve complex technical challenges alongside talented colleagues who are passionate about making AI accessible to everyone.
                 </p>
                 <div class="quote-author">
-                    <img src="/images/sam-tobia.jpg" alt="Samuel Tobia" class="author-image">
+                    <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sam-tobia.jpg" alt="Samuel Tobia" class="author-image">
                     <div class="author-info">
                         <div class="author-name">Samuel Tobia</div>
                         <div class="author-title">CTO</div>
@@ -941,7 +941,7 @@ template = "careers.html"
                     What I appreciate most about Divinci AI is how much autonomy and trust we're given. We have the freedom to explore new ideas and approaches, while still maintaining a strong sense of collective purpose. It's the perfect balance of independence and teamwork.
                 </p>
                 <div class="quote-author">
-                    <img src="/images/sierra-hooshiari.jpeg" alt="Sierra Hooshiari" class="author-image">
+                    <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sierra-hooshiari.jpeg" alt="Sierra Hooshiari" class="author-image">
                     <div class="author-info">
                         <div class="author-name">Sierra Hooshiari</div>
                         <div class="author-title">VP of Customer Success</div>

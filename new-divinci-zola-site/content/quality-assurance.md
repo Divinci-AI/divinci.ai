@@ -298,7 +298,7 @@ feature_category = "quality-assurance"
 <h2 class="section-heading" style="margin-top: 2rem; margin-bottom: 3rem;">What is LLM Quality Assurance?</h2>
 
 <div class="qa-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
 </div>
 
 <div class="overview-content">

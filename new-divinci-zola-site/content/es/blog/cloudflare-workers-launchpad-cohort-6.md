@@ -34,7 +34,7 @@ La columna vertebral de nuestra plataforma, Cloudflare Workers impulsa nuestra c
 ### **D1 para Almacenamiento de Fragmentos RAG**
 Aprovechamos **Cloudflare D1**, su base de datos SQL distribuida, para almacenar y consultar nuestros fragmentos RAG eficientemente. La arquitectura basada en edge de D1 asegura que los fragmentos de documentos se almacenen cerca de nuestros usuarios, reduciendo dramáticamente la latencia de recuperación y mejorando la calidad de nuestras respuestas de IA.
 
-<img src="/images/d1-rag-storage.svg" alt="Arquitectura de Base de Datos Distribuida D1" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/d1-rag-storage.svg" alt="Arquitectura de Base de Datos Distribuida D1" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ### **Vectorize para Búsqueda Semántica**
 **Cloudflare Vectorize** sirve como una de nuestras opciones de base de datos vectorial, permitiendo búsqueda semántica ultrarrápida a través de millones de embeddings de documentos. Esto permite que nuestros sistemas de IA encuentren el contexto más relevante para cualquier consulta, independientemente de cómo esté formulada.
@@ -42,7 +42,7 @@ Aprovechamos **Cloudflare D1**, su base de datos SQL distribuida, para almacenar
 ### **Workers AI para Modelos de Código Abierto**
 Integramos **Cloudflare Workers AI** para proporcionar acceso a modelos de lenguaje de código abierto de vanguardia de Hugging Face, incluyendo **Llama 3**, **Mistral** y otros modelos de última generación. Esto brinda a nuestros clientes empresariales flexibilidad para elegir el modelo adecuado para sus casos de uso específicos mientras mantienen privacidad y control de datos.
 
-<img src="/images/workers-ai-models.svg" alt="Modelos de Código Abierto de Workers AI" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/workers-ai-models.svg" alt="Modelos de Código Abierto de Workers AI" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ### **R2 para Almacenamiento de Medios**
 **Cloudflare R2** maneja todo nuestro procesamiento de audio, video y almacenamiento de carga de archivos de usuarios. Con cero tarifas de salida y APIs compatibles con S3, R2 proporciona almacenamiento de objetos de nivel empresarial que escala sin problemas con nuestra creciente base de clientes.

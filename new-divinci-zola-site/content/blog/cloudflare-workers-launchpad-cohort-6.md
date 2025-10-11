@@ -99,7 +99,7 @@ Each step executes at the edge, minimizing latency and maximizing throughput.
 
 We use **Cloudflare D1** to store structured RAG metadata and chunk references. D1's edge-based architecture ensures document chunks are geographically close to users, reducing retrieval latency by 60-80% compared to regional databases.
 
-<img src="/images/d1-rag-storage.svg" alt="D1 Distributed Database Architecture" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/d1-rag-storage.svg" alt="D1 Distributed Database Architecture" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: D1 distributed SQL database architecture showing global replication and edge-based query execution for RAG chunk storage.*
 
@@ -123,7 +123,7 @@ We integrate **Cloudflare Workers AI** to provide access to open-source models i
 
 This gives enterprise customers **sovereignty over their AI stack**—no vendor lock-in to proprietary models.
 
-<img src="/images/workers-ai-models.svg" alt="Workers AI Open Source Models" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/workers-ai-models.svg" alt="Workers AI Open Source Models" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Workers AI model catalog showing open-source LLMs available for edge inference.*
 

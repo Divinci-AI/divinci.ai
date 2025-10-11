@@ -1020,7 +1020,7 @@ html[dir="rtl"] .language-icon {
 /* Footer Styles */
 .contact-footer-wrapper {
   background: linear-gradient(rgba(30, 58, 43, 0.75), rgba(30, 58, 43, 0.85)),
-              url('../images/leonardo-with-his-robot.webp');
+              url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/leonardo-with-his-robot.webp');
   background-size: cover;
   background-position: center 15%;
   background-repeat: no-repeat;
@@ -1073,7 +1073,7 @@ body:not(.homepage) .site-footer::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('/images/u4943574663_httpss.mj.runclv3aUm6SU0_Flat_sacred_geometry_Rus_f2e3fde5-6320-49e3-9c39-e5bbbf571e50_2.png');
+  background: url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/u4943574663_httpss.mj.runclv3aUm6SU0_Flat_sacred_geometry_Rus_f2e3fde5-6320-49e3-9c39-e5bbbf571e50_2.png');
   background-size: cover; /* Cover the area without stretching */
   background-position: center center;
   background-repeat: no-repeat;

@@ -51,7 +51,7 @@
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    background-image: url('/images/robot-group-mobile.webp') !important;
+    background-image: url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/robot-group-mobile.webp') !important;
     background-size: cover !important;
     background-position: center top !important;
     background-repeat: no-repeat !important;
@@ -992,7 +992,7 @@ html, body {
   
   /* Ensure first video shows poster frame on mobile */
   #hero-video {
-    poster: url('/images/Davinci_the_painter_painting_a_robot_in_a_line_art.webp');
+    poster: url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Davinci_the_painter_painting_a_robot_in_a_line_art.webp');
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
@@ -1150,10 +1150,10 @@ html, body {
   right: 0;
   bottom: 0;
   /* Modern browsers with WebP support */
-  background-image: url('/images/robot-group-mobile.webp');
+  background-image: url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/robot-group-mobile.webp');
   background-image: image-set(
-    url('/images/robot-group-mobile.webp') type('image/webp'),
-    url('/images/robot-group-mobile.png') type('image/png')
+    url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/robot-group-mobile.webp') type('image/webp'),
+    url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/robot-group-mobile.png') type('image/png')
   );
   background-size: cover;
   background-position: center;

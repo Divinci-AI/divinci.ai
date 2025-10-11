@@ -59,7 +59,7 @@ For example, a photonic AND gate works like this:
 
 The beauty of combining both approaches, as demonstrated by the Taichi chip, is that diffraction handles fixed operations (like encoding data) while interference handles reconfigurable logic—giving us the best of both worlds.
 
-<img src="/images/photonic-logic-gate.svg" alt="Photonic Logic Gate Animation" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/photonic-logic-gate.svg" alt="Photonic Logic Gate Animation" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Photonic logic gate operation showing wave interference and diffraction patterns. Based on Tsinghua University's Taichi chip architecture and photonic computing principles from MIT's integrated photonics research.*
 
@@ -100,7 +100,7 @@ Huawei's recent 7nm ternary chip demonstrates:
 
 The key breakthrough: transistors with **two threshold levels** instead of one, allowing clear differentiation between three distinct states: -1, 0, and +1.
 
-<img src="/images/ternary-logic-comparison.svg" alt="Binary vs Ternary Logic Comparison" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ternary-logic-comparison.svg" alt="Binary vs Ternary Logic Comparison" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Binary vs ternary logic comparison showing efficiency gains and information density improvements. Based on historical Setun computer design by Nikolay Brusentsov and modern ternary computing research from KAIST and Stanford University.*
 
@@ -152,7 +152,7 @@ For machine learning, this provides:
 
 The photonic nature of Light Logic systems makes quantum random number generation essentially "free"—it's a natural byproduct of the optical measurement process, requiring no additional hardware.
 
-<img src="/images/quantum-randomness.svg" alt="Quantum Random Number Generation" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/quantum-randomness.svg" alt="Quantum Random Number Generation" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Quantum random number generation process using photonic shot noise. Based on quantum optics principles and implementations from ID Quantique and Quintessence Labs commercial quantum RNG systems.*
 
@@ -207,7 +207,7 @@ Gravity batteries complement Light Logic systems beautifully:
 
 **Load Balancing**: Light Logic systems have extremely low idle power consumption (photonic circuits don't leak current like electronic ones). Gravity batteries can "trickle charge" from solar/wind, then provide burst power for computation when needed.
 
-<img src="/images/gravity-battery.svg" alt="Gravity Battery Energy Storage System" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/gravity-battery.svg" alt="Gravity Battery Energy Storage System" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Gravity battery energy storage system showing mechanical energy storage and retrieval. Based on Energy Vault's gravity-based storage design and pumped hydroelectric storage principles adapted for modular deployment.*
 

@@ -375,7 +375,7 @@ feature_category = "data-management"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">¿Qué es AutoRAG?</h2>
 
 <div class="autorag-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/autorag-diagram.svg" alt="Diagrama de Conexión de Base de Conocimiento AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;" />
+  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-diagram.svg" alt="Diagrama de Conexión de Base de Conocimiento AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;" />
 </div>
 
 <div class="overview-content">
@@ -507,7 +507,7 @@ feature_category = "data-management"
 <!-- Document Processing Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
 <object data="/images/autorag-clean-test.svg" type="image/svg+xml" style="width: 100%; max-width: 800px; height: auto;">
-<img src="/images/autorag-clean-test.svg" alt="Proceso de Creación de Datos AutoRAG" style="width: 100%; max-width: 800px; height: auto;" />
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-clean-test.svg" alt="Proceso de Creación de Datos AutoRAG" style="width: 100%; max-width: 800px; height: auto;" />
 </object>
 <p style="text-align: center; margin-top: 10px; color: #8C9DB5; font-size: 14px;">El proceso integral de creación de datos de AutoRAG transforma documentos en bruto en corpus optimizado y conjuntos de datos de QA</p>
 </div>
@@ -545,7 +545,7 @@ feature_category = "data-management"
 
 <!-- Vector Embedding Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-vector-embedding-adjusted.svg" alt="Visualización de Embeddings Vectoriales" style="width: 100%; max-width: 600px; height: auto;" />
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-vector-embedding-adjusted.svg" alt="Visualización de Embeddings Vectoriales" style="width: 100%; max-width: 600px; height: auto;" />
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
@@ -581,7 +581,7 @@ feature_category = "data-management"
 
 <!-- Retrieval Optimization Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-retrieval-optimization-adjusted.svg" alt="Visualización de Optimización de Recuperación" style="width: 100%; max-width: 600px; height: auto;" />
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-retrieval-optimization-adjusted.svg" alt="Visualización de Optimización de Recuperación" style="width: 100%; max-width: 600px; height: auto;" />
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
