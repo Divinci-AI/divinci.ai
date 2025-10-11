@@ -382,4 +382,4 @@ Are we ready to build the future, one hand-crafted photonic circuit at a time?
 
 ---
 
-*Interested in contributing to Light Logic development? Divinci AI is collaborating with research institutions and community workshops to prototype these systems. [Contact us](https://calendly.com/mike-mooring-divinci/30-minute-meeting) to learn more about getting involved.*
+*Interested in contributing to Light Logic development? Divinci AI is collaborating with research institutions and community workshops to prototype these systems. [Contact us](https://meetings.hubspot.com/michael-mooring/divinci-ai) to learn more about getting involved.*

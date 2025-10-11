@@ -305,18 +305,6 @@ document.addEventListener("DOMContentLoaded", function() {
     };
   }
 
-  // Fallback timer to ensure video rotation starts even if ended event doesn't fire (desktop only)
-  if (!isMobile) {
-    setTimeout(() => {
-      if (currentVideoIndex === 0 && isFirstPlaythrough && heroVideo) {
-        console.log('Fallback: Starting video rotation after 30 seconds');
-        isFirstPlaythrough = false;
-        heroVideo.loop = false;
-        setTimeout(() => switchToNextVideo(), 2000);
-      }
-    }, 30000); // 30 seconds fallback
-  }
-
   // Enhanced background video intersection observer for iOS compatibility
   const backgroundVideoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -523,8 +511,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const heroVideos = [heroVideo, heroVideo2, heroVideo3];
     let currentActiveHeroVideo = heroVideo;
     let isFirstPlaythrough = true;
-    let isTransitioning = false; // Prevent duplicate transitions  
+    let isTransitioning = false; // Prevent duplicate transitions
     let video1MuteState = true; // Track Video 1's mute state (default muted)
+
+    // Fallback timer to ensure video rotation starts even if ended event doesn't fire
+    setTimeout(() => {
+      if (currentVideoIndex === 0 && isFirstPlaythrough && heroVideo) {
+        console.log('Fallback: Starting video rotation after 30 seconds');
+        isFirstPlaythrough = false;
+        heroVideo.loop = false;
+        setTimeout(() => switchToNextVideo(), 2000);
+      }
+    }, 30000); // 30 seconds fallback
 
   function switchToNextVideo() {
     if (isTransitioning) {
@@ -1092,3 +1090,39 @@ function initializePlayingCards() {
 }
 
 // All lighting functions removed
+
+// Video Memory Management - Clean up videos when leaving page or hiding tab
+(function() {
+  function cleanupVideos() {
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach(video => {
+      // Pause video
+      video.pause();
+
+      // Remove source to release memory
+      video.removeAttribute('src');
+      video.load(); // This releases the memory
+    });
+  }
+
+  function pauseAllVideos() {
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach(video => {
+      video.pause();
+    });
+  }
+
+  // Handle tab visibility changes (switching tabs)
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      pauseAllVideos();
+    }
+  });
+
+  // Handle page unload (navigation away, closing tab/window)
+  window.addEventListener('pagehide', cleanupVideos);
+  window.addEventListener('beforeunload', cleanupVideos);
+
+  // Also handle back/forward cache (bfcache) on Safari/Firefox
+  window.addEventListener('freeze', cleanupVideos);
+})();

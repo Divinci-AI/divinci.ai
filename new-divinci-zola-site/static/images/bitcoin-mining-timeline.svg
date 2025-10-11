@@ -1,0 +1,123 @@
+<svg viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .timeline-title { font-family: 'Georgia', serif; font-size: 32px; font-weight: bold; fill: #2d3c34; }
+      .timeline-subtitle { font-family: 'Georgia', serif; font-size: 16px; fill: #5a6b5f; font-style: italic; }
+      .year-label { font-family: 'Arial', sans-serif; font-size: 18px; font-weight: 700; fill: #2d3c34; }
+      .event-label { font-family: 'Arial', sans-serif; font-size: 14px; fill: #4a5a4f; }
+      .reward-value { font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold; fill: #f7931a; }
+      .phase-label { font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 600; fill: #666; }
+      .annotation { font-family: 'Arial', sans-serif; font-size: 12px; fill: #666; font-style: italic; }
+    </style>
+    <linearGradient id="btc-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f7931a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff6b00;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="fee-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4a90e2;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#4a90e2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="700" y="40" text-anchor="middle" class="timeline-title">Bitcoin Mining Timeline: 2009-2140</text>
+  <text x="700" y="65" text-anchor="middle" class="timeline-subtitle">Halving schedule and transition to fee-based economics</text>
+
+  <!-- Timeline axis -->
+  <line x1="100" y1="400" x2="1300" y2="400" stroke="#8b7659" stroke-width="3"/>
+
+  <!-- Year markers and halvings -->
+
+  <!-- 2009 - Genesis -->
+  <circle cx="100" cy="400" r="8" fill="#f7931a"/>
+  <text x="100" y="440" text-anchor="middle" class="year-label">2009</text>
+  <text x="100" y="460" text-anchor="middle" class="event-label">Genesis</text>
+  <text x="100" y="250" text-anchor="middle" class="reward-value">50 BTC</text>
+  <text x="100" y="270" text-anchor="middle" class="phase-label">Block Reward</text>
+  <rect x="75" y="280" width="50" height="110" fill="url(#btc-gradient)" opacity="0.9"/>
+
+  <!-- 2012 - First Halving -->
+  <circle cx="250" cy="400" r="8" fill="#f7931a"/>
+  <text x="250" y="440" text-anchor="middle" class="year-label">2012</text>
+  <text x="250" y="460" text-anchor="middle" class="event-label">1st Halving</text>
+  <text x="250" y="310" text-anchor="middle" class="reward-value">25 BTC</text>
+  <rect x="225" y="330" width="50" height="60" fill="url(#btc-gradient)" opacity="0.9"/>
+
+  <!-- 2016 - Second Halving -->
+  <circle cx="400" cy="400" r="8" fill="#f7931a"/>
+  <text x="400" y="440" text-anchor="middle" class="year-label">2016</text>
+  <text x="400" y="460" text-anchor="middle" class="event-label">2nd Halving</text>
+  <text x="400" y="340" text-anchor="middle" class="reward-value">12.5 BTC</text>
+  <rect x="375" y="355" width="50" height="35" fill="url(#btc-gradient)" opacity="0.9"/>
+
+  <!-- 2020 - Third Halving -->
+  <circle cx="550" cy="400" r="8" fill="#f7931a"/>
+  <text x="550" y="440" text-anchor="middle" class="year-label">2020</text>
+  <text x="550" y="460" text-anchor="middle" class="event-label">3rd Halving</text>
+  <text x="550" y="360" text-anchor="middle" class="reward-value">6.25 BTC</text>
+  <rect x="525" y="372" width="50" height="18" fill="url(#btc-gradient)" opacity="0.9"/>
+
+  <!-- 2024 - Fourth Halving -->
+  <circle cx="700" cy="400" r="10" fill="#f7931a" stroke="#2d3c34" stroke-width="2"/>
+  <text x="700" y="440" text-anchor="middle" class="year-label" style="fill: #f7931a;">2024</text>
+  <text x="700" y="460" text-anchor="middle" class="event-label" style="font-weight: 600;">4th Halving</text>
+  <text x="700" y="368" text-anchor="middle" class="reward-value">3.125 BTC</text>
+  <rect x="675" y="378" width="50" height="12" fill="url(#btc-gradient)" opacity="0.9"/>
+  <text x="700" y="150" text-anchor="middle" class="annotation">← We are here (2025)</text>
+  <line x1="700" y1="160" x2="700" y2="360" stroke="#f7931a" stroke-width="2" stroke-dasharray="5,5"/>
+
+  <!-- 2028 - Fifth Halving -->
+  <circle cx="820" cy="400" r="8" fill="#f7931a"/>
+  <text x="820" y="440" text-anchor="middle" class="year-label">2028</text>
+  <text x="820" y="460" text-anchor="middle" class="event-label">5th Halving</text>
+  <text x="820" y="374" text-anchor="middle" class="reward-value">1.5625</text>
+  <rect x="795" y="383" width="50" height="7" fill="url(#btc-gradient)" opacity="0.9"/>
+
+  <!-- 2040 - Representing multiple halvings -->
+  <circle cx="970" cy="400" r="8" fill="#f7931a"/>
+  <text x="970" y="440" text-anchor="middle" class="year-label">~2040</text>
+  <text x="970" y="460" text-anchor="middle" class="event-label">10th Halving</text>
+  <text x="970" y="378" text-anchor="middle" class="reward-value">0.0488</text>
+  <rect x="945" y="385" width="50" height="5" fill="url(#btc-gradient)" opacity="0.9"/>
+  <text x="970" y="510" text-anchor="middle" class="annotation">99%+ mined</text>
+
+  <!-- 2100 - Near completion -->
+  <circle cx="1120" cy="400" r="8" fill="#f7931a"/>
+  <text x="1120" y="440" text-anchor="middle" class="year-label">~2100</text>
+  <text x="1120" y="460" text-anchor="middle" class="event-label">25th Halving</text>
+  <text x="1120" y="382" text-anchor="middle" class="reward-value">0.000003</text>
+  <rect x="1095" y="387" width="50" height="3" fill="url(#btc-gradient)" opacity="0.9"/>
+
+  <!-- 2140 - Final -->
+  <circle cx="1300" cy="400" r="10" fill="#4a90e2" stroke="#2d3c34" stroke-width="2"/>
+  <text x="1300" y="440" text-anchor="middle" class="year-label" style="fill: #4a90e2;">~2140</text>
+  <text x="1300" y="460" text-anchor="middle" class="event-label" style="font-weight: 600;">33rd Halving</text>
+  <text x="1300" y="365" text-anchor="middle" class="reward-value" style="fill: #4a90e2;">0.00000000</text>
+  <text x="1300" y="320" text-anchor="middle" class="phase-label" style="fill: #4a90e2;">Transaction Fees Only</text>
+
+  <!-- Total supply indicator -->
+  <rect x="100" y="550" width="1200" height="40" rx="8" fill="#f0f0f0" stroke="#8b7659" stroke-width="2"/>
+  <rect x="100" y="550" width="1128" height="40" rx="8" fill="url(#btc-gradient)" opacity="0.3"/>
+  <text x="700" y="575" text-anchor="middle" class="year-label">Total Supply: 20,999,999.9769 BTC (94% already mined as of 2025)</text>
+
+  <!-- Transaction fee transition zone -->
+  <path d="M 700 410 Q 1000 410, 1300 330" fill="none" stroke="#4a90e2" stroke-width="3" stroke-dasharray="8,4"/>
+  <text x="1000" y="365" text-anchor="middle" class="phase-label" style="fill: #4a90e2;">Fee Market Transition →</text>
+
+  <!-- Block reward decline curve -->
+  <path d="M 100 280 L 250 330 L 400 355 L 550 372 L 700 378 L 820 383 L 970 385 L 1120 387 L 1300 390"
+        fill="none" stroke="#f7931a" stroke-width="2" opacity="0.6"/>
+
+  <!-- Annotations -->
+  <g id="key-insights">
+    <rect x="100" y="610" width="580" height="70" rx="8" fill="#fff9e6" stroke="#f7931a" stroke-width="2"/>
+    <text x="120" y="635" class="phase-label" style="fill: #2d3c34;">Mining Reward Era (2009-2140)</text>
+    <text x="120" y="655" class="annotation">• Predictable 4-year halving cycle</text>
+    <text x="120" y="670" class="annotation">• Declining new supply creates scarcity premium</text>
+
+    <rect x="720" y="610" width="580" height="70" rx="8" fill="#e6f3ff" stroke="#4a90e2" stroke-width="2"/>
+    <text x="740" y="635" class="phase-label" style="fill: #2d3c34;">Fee-Only Era (2140+)</text>
+    <text x="740" y="655" class="annotation">• Network security relies on transaction fees</text>
+    <text x="740" y="670" class="annotation">• 115+ years for fee market to mature and stabilize</text>
+  </g>
+</svg>

@@ -1090,3 +1090,39 @@ function initializePlayingCards() {
 }
 
 // All lighting functions removed
+
+// Video Memory Management - Clean up videos when leaving page or hiding tab
+(function() {
+  function cleanupVideos() {
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach(video => {
+      // Pause video
+      video.pause();
+
+      // Remove source to release memory
+      video.removeAttribute('src');
+      video.load(); // This releases the memory
+    });
+  }
+
+  function pauseAllVideos() {
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach(video => {
+      video.pause();
+    });
+  }
+
+  // Handle tab visibility changes (switching tabs)
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      pauseAllVideos();
+    }
+  });
+
+  // Handle page unload (navigation away, closing tab/window)
+  window.addEventListener('pagehide', cleanupVideos);
+  window.addEventListener('beforeunload', cleanupVideos);
+
+  // Also handle back/forward cache (bfcache) on Safari/Firefox
+  window.addEventListener('freeze', cleanupVideos);
+})();

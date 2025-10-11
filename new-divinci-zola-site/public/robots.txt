@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://divinci-ai-site.divinci-ai.workers.dev/sitemap.xml
+Sitemap: https://divinci.ai/sitemap.xml

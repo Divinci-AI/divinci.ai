@@ -260,6 +260,8 @@ class GDPRCompliance {
         bottom: 0;
         background: rgba(45, 60, 52, 0.98);
         padding: 2rem;
+        max-height: 80vh;
+        overflow-y: auto;
       }
       
       .gdpr-preferences.hidden {

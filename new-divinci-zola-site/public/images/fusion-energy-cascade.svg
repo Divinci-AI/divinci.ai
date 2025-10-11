@@ -1,0 +1,146 @@
+<svg viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .fusion-title { font-family: 'Georgia', serif; font-size: 32px; font-weight: bold; fill: #2d3c34; }
+      .fusion-subtitle { font-family: 'Georgia', serif; font-size: 15px; fill: #5a6b5f; font-style: italic; }
+      .level-title { font-family: 'Arial', sans-serif; font-size: 16px; font-weight: 700; fill: white; }
+      .box-title { font-family: 'Arial', sans-serif; font-size: 15px; font-weight: 700; fill: white; }
+      .detail-text { font-family: 'Arial', sans-serif; font-size: 12px; fill: white; }
+      .savings-text { font-family: 'Arial', sans-serif; font-size: 14px; fill: white; font-weight: 700; }
+      .total-text { font-family: 'Arial', sans-serif; font-size: 13px; fill: #27ae60; font-weight: 700; }
+    </style>
+    
+    <radialGradient id="fusion-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f7931e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e67e22;stop-opacity:0.9" />
+    </radialGradient>
+    
+    <linearGradient id="level1-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="level2-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="level3-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#229954;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="700" y="40" text-anchor="middle" class="fusion-title">Fusion Energy: Cascading Cost Reductions</text>
+  <text x="700" y="70" text-anchor="middle" class="fusion-subtitle">How cheap, abundant energy transforms the entire economy</text>
+
+  <!-- Central Fusion Core -->
+  <circle cx="700" cy="250" r="100" fill="url(#fusion-core)"/>
+  <text x="700" y="235" text-anchor="middle" class="level-title" style="font-size: 22px; fill: white;">FUSION</text>
+  <text x="700" y="260" text-anchor="middle" class="level-title" style="font-size: 22px; fill: white;">ENERGY</text>
+  <text x="700" y="285" text-anchor="middle" class="detail-text" style="font-size: 13px;">Near-zero marginal cost</text>
+
+  <!-- LEVEL 1: Direct Effects (Red) -->
+  <g id="level1">
+    <!-- Direct Energy -->
+    <rect x="80" y="130" width="240" height="90" rx="10" fill="url(#level1-grad)"/>
+    <text x="200" y="160" text-anchor="middle" class="box-title">Direct Energy</text>
+    <text x="200" y="185" text-anchor="middle" class="savings-text">$300-600/month</text>
+    <line x1="320" y1="175" x2="600" y2="230" stroke="#e74c3c" stroke-width="3"/>
+
+    <!-- Home Heating -->
+    <rect x="1080" y="130" width="240" height="90" rx="10" fill="url(#level1-grad)"/>
+    <text x="1200" y="160" text-anchor="middle" class="box-title">Home Heating</text>
+    <text x="1200" y="180" text-anchor="middle" class="detail-text">-70% costs</text>
+    <line x1="1080" y1="175" x2="800" y2="230" stroke="#e74c3c" stroke-width="3"/>
+  </g>
+
+  <!-- LEVEL 2: Secondary Effects (Blue) -->
+  <g id="level2">
+    <!-- Manufacturing -->
+    <rect x="80" y="380" width="240" height="100" rx="10" fill="url(#level2-grad)"/>
+    <text x="200" y="410" text-anchor="middle" class="box-title">Manufacturing</text>
+    <text x="200" y="435" text-anchor="middle" class="detail-text">• Aluminum -50%</text>
+    <text x="200" y="455" text-anchor="middle" class="detail-text">• Steel -40%</text>
+    <line x1="200" y1="380" x2="650" y2="320" stroke="#3498db" stroke-width="3"/>
+
+    <!-- Transportation -->
+    <rect x="360" y="380" width="240" height="100" rx="10" fill="url(#level2-grad)"/>
+    <text x="480" y="410" text-anchor="middle" class="box-title">Transportation</text>
+    <text x="480" y="435" text-anchor="middle" class="detail-text">• EV charging -80%</text>
+    <text x="480" y="455" text-anchor="middle" class="detail-text">• Logistics -60%</text>
+    <line x1="480" y1="380" x2="680" y2="320" stroke="#3498db" stroke-width="3"/>
+
+    <!-- Desalination -->
+    <rect x="640" y="380" width="240" height="100" rx="10" fill="url(#level2-grad)"/>
+    <text x="760" y="410" text-anchor="middle" class="box-title">Desalination</text>
+    <text x="760" y="435" text-anchor="middle" class="detail-text">• Water -90% cost</text>
+    <text x="760" y="455" text-anchor="middle" class="detail-text">• Agriculture boom</text>
+    <line x1="760" y1="380" x2="710" y2="320" stroke="#3498db" stroke-width="3"/>
+
+    <!-- Vertical Farming -->
+    <rect x="920" y="380" width="240" height="100" rx="10" fill="url(#level2-grad)"/>
+    <text x="1040" y="410" text-anchor="middle" class="box-title">Vertical Farming</text>
+    <text x="1040" y="435" text-anchor="middle" class="detail-text">• LED lighting cheap</text>
+    <text x="1040" y="455" text-anchor="middle" class="detail-text">• Climate control</text>
+    <line x1="1040" y1="380" x2="740" y2="320" stroke="#3498db" stroke-width="3"/>
+  </g>
+
+  <!-- LEVEL 3: Consumer Impact (Green) -->
+  <g id="level3">
+    <!-- Food Prices -->
+    <rect x="80" y="540" width="280" height="110" rx="10" fill="url(#level3-grad)"/>
+    <text x="220" y="570" text-anchor="middle" class="box-title">Food Prices</text>
+    <text x="220" y="595" text-anchor="middle" class="detail-text">• Production -40%</text>
+    <text x="220" y="615" text-anchor="middle" class="detail-text">• Transport -60%</text>
+    <text x="220" y="640" text-anchor="middle" class="total-text" style="fill: white;">-30% total</text>
+    <line x1="220" y1="540" x2="200" y2="480" stroke="#27ae60" stroke-width="3"/>
+
+    <!-- Housing Costs -->
+    <rect x="400" y="540" width="280" height="110" rx="10" fill="url(#level3-grad)"/>
+    <text x="540" y="570" text-anchor="middle" class="box-title">Housing Costs</text>
+    <text x="540" y="595" text-anchor="middle" class="detail-text">• Construction -25%</text>
+    <text x="540" y="615" text-anchor="middle" class="detail-text">• Heating/cooling -70%</text>
+    <text x="540" y="640" text-anchor="middle" class="total-text" style="fill: white;">-20% total</text>
+    <line x1="540" y1="540" x2="480" y2="480" stroke="#27ae60" stroke-width="3"/>
+
+    <!-- Transportation -->
+    <rect x="720" y="540" width="280" height="110" rx="10" fill="url(#level3-grad)"/>
+    <text x="860" y="570" text-anchor="middle" class="box-title">Transportation</text>
+    <text x="860" y="595" text-anchor="middle" class="detail-text">• EV operation -80%</text>
+    <text x="860" y="615" text-anchor="middle" class="detail-text">• Public transit -50%</text>
+    <text x="860" y="640" text-anchor="middle" class="total-text" style="fill: white;">-60% total</text>
+    <line x1="860" y1="540" x2="760" y2="480" stroke="#27ae60" stroke-width="3"/>
+
+    <!-- Consumer Goods -->
+    <rect x="1040" y="540" width="280" height="110" rx="10" fill="url(#level3-grad)"/>
+    <text x="1180" y="570" text-anchor="middle" class="box-title">Consumer Goods</text>
+    <text x="1180" y="595" text-anchor="middle" class="detail-text">• Manufacturing -30%</text>
+    <text x="1180" y="615" text-anchor="middle" class="detail-text">• Shipping -50%</text>
+    <text x="1180" y="640" text-anchor="middle" class="total-text" style="fill: white;">-25% total</text>
+    <line x1="1180" y1="540" x2="1040" y2="480" stroke="#27ae60" stroke-width="3"/>
+  </g>
+
+  <!-- Total Impact Summary -->
+  <rect x="250" y="720" width="900" height="140" rx="12" fill="#229954" stroke="#2d3c34" stroke-width="3"/>
+  <text x="700" y="760" text-anchor="middle" class="fusion-title" style="fill: white; font-size: 24px;">TOTAL MONTHLY SAVINGS PER HOUSEHOLD</text>
+  <text x="700" y="810" text-anchor="middle" class="fusion-title" style="fill: white; font-size: 48px;">$400-900</text>
+  <text x="700" y="845" text-anchor="middle" class="detail-text" style="font-size: 14px; opacity: 0.9;">Equivalent value from energy cost reductions across all sectors</text>
+
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="50" y="720" width="160" height="140" rx="8" fill="#f9f9f9" stroke="#2d3c34" stroke-width="2"/>
+    <text x="130" y="750" text-anchor="middle" class="box-title" style="fill: #2d3c34; font-size: 14px;">Impact Levels</text>
+    
+    <rect x="70" y="765" width="15" height="15" fill="url(#level1-grad)"/>
+    <text x="95" y="777" class="detail-text" style="fill: #2d3c34; font-size: 11px;">Level 1: Direct</text>
+    
+    <rect x="70" y="790" width="15" height="15" fill="url(#level2-grad)"/>
+    <text x="95" y="802" class="detail-text" style="fill: #2d3c34; font-size: 11px;">Level 2: Industrial</text>
+    
+    <rect x="70" y="815" width="15" height="15" fill="url(#level3-grad)"/>
+    <text x="95" y="827" class="detail-text" style="fill: #2d3c34; font-size: 11px;">Level 3: Consumer</text>
+  </g>
+</svg>

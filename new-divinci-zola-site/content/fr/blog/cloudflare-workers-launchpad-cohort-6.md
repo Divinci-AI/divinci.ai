@@ -74,7 +74,7 @@ Nous sommes incroyablement enthousiastes à propos de ce partenariat et des oppo
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Innovation à travers les âges : Construire l'avenir avec des principes intemporels</p>
 
-Vous voulez en savoir plus sur la façon dont Divinci AI peut transformer le flux de travail IA de votre équipe ? [Demandez une démo](https://calendly.com/mike-mooring-divinci/30-minute-meeting) pour voir notre plateforme en action.
+Vous voulez en savoir plus sur la façon dont Divinci AI peut transformer le flux de travail IA de votre équipe ? [Demandez une démo](https://meetings.hubspot.com/michael-mooring/divinci-ai) pour voir notre plateforme en action.
 
 ---
 

@@ -74,7 +74,7 @@ featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Divinci-Wo
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">الابتكار عبر العصور: بناء المستقبل بمبادئ خالدة</p>
 
-هل تريد معرفة المزيد عن كيفية تحويل Divinci AI لسير عمل الذكاء الاصطناعي لفريقك؟ [احجز عرضًا توضيحيًا](https://calendly.com/mike-mooring-divinci/30-minute-meeting) لرؤية منصتنا قيد العمل.
+هل تريد معرفة المزيد عن كيفية تحويل Divinci AI لسير عمل الذكاء الاصطناعي لفريقك؟ [احجز عرضًا توضيحيًا](https://meetings.hubspot.com/michael-mooring/divinci-ai) لرؤية منصتنا قيد العمل.
 
 ---
 

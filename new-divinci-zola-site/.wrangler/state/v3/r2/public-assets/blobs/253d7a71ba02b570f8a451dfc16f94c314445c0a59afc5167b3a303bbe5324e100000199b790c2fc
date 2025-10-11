@@ -1,0 +1,119 @@
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .def-title { font-family: 'Georgia', serif; font-size: 24px; font-weight: bold; fill: #2d3c34; }
+      .def-label { font-family: 'Arial', sans-serif; font-size: 13px; fill: #2d3c34; }
+      .def-value { font-family: 'Arial', sans-serif; font-size: 15px; font-weight: bold; fill: #2d3c34; }
+      .def-small { font-family: 'Arial', sans-serif; font-size: 11px; fill: #2d3c34; }
+      .def-box { transition: transform 0.3s ease, opacity 0.3s ease; }
+      .def-box:hover { transform: scale(1.02); opacity: 0.9; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" class="def-title">Defense Spending Transformation: $1.7T in Savings</text>
+  <text x="450" y="60" text-anchor="middle" class="def-small" style="font-size: 12px; opacity: 0.7;">From Cold War overhead to 21st-century smart defense</text>
+
+  <!-- BEFORE: Current Spending -->
+  <g>
+    <text x="225" y="100" text-anchor="middle" class="def-label" style="font-weight: bold; font-size: 18px;">BEFORE: Current DoD Budget</text>
+    <text x="225" y="125" text-anchor="middle" class="def-value" style="font-size: 28px; fill: #d32f2f;">$2.1 Trillion</text>
+    <text x="225" y="145" text-anchor="middle" class="def-small" style="opacity: 0.7;">(including veterans affairs & black budget)</text>
+
+    <!-- Wasteful spending breakdown -->
+    <g class="def-box">
+      <rect x="50" y="170" width="350" height="60" fill="#ffb8b8" stroke="#2d3c34" stroke-width="2" rx="8"/>
+      <text x="65" y="195" class="def-label" style="font-weight: bold;">Redundant Weapons Programs</text>
+      <text x="65" y="215" class="def-small">Overlapping fighter jets, Cold War systems</text>
+      <text x="385" y="205" text-anchor="end" class="def-value" style="font-size: 18px; fill: #d32f2f;">$400B</text>
+    </g>
+
+    <g class="def-box">
+      <rect x="50" y="240" width="350" height="60" fill="#ffccb8" stroke="#2d3c34" stroke-width="2" rx="8"/>
+      <text x="65" y="265" class="def-label" style="font-weight: bold;">Wasteful Contractor Relationships</text>
+      <text x="65" y="285" class="def-small">Cost-plus contracts, no competitive bidding</text>
+      <text x="385" y="275" text-anchor="end" class="def-value" style="font-size: 18px; fill: #d32f2f;">$350B</text>
+    </g>
+
+    <g class="def-box">
+      <rect x="50" y="310" width="350" height="60" fill="#ffd8b8" stroke="#2d3c34" stroke-width="2" rx="8"/>
+      <text x="65" y="335" class="def-label" style="font-weight: bold;">Overseas Bases (750+ bases in 80 countries)</text>
+      <text x="65" y="355" class="def-small">Permanent presence now unnecessary</text>
+      <text x="385" y="345" text-anchor="end" class="def-value" style="font-size: 18px; fill: #d32f2f;">$150B</text>
+    </g>
+
+    <g class="def-box">
+      <rect x="50" y="380" width="350" height="60" fill="#ffe8b8" stroke="#2d3c34" stroke-width="2" rx="8"/>
+      <text x="65" y="405" class="def-label" style="font-weight: bold;">Legacy Military Structure</text>
+      <text x="65" y="425" class="def-small">Large standing army vs rapid response</text>
+      <text x="385" y="415" text-anchor="end" class="def-value" style="font-size: 18px; fill: #d32f2f;">$300B</text>
+    </g>
+
+    <g class="def-box">
+      <rect x="50" y="450" width="350" height="60" fill="#fff3b8" stroke="#2d3c34" stroke-width="2" rx="8"/>
+      <text x="65" y="475" class="def-label" style="font-weight: bold;">Manual/Inefficient Operations</text>
+      <text x="65" y="495" class="def-small">Tasks that AI/automation can handle</text>
+      <text x="385" y="485" text-anchor="end" class="def-value" style="font-size: 18px; fill: #d32f2f;">$500B</text>
+    </g>
+
+    <!-- Total waste highlight -->
+    <rect x="50" y="525" width="350" height="45" fill="#d32f2f" stroke="#2d3c34" stroke-width="2" rx="8"/>
+    <text x="65" y="552" class="def-label" style="font-weight: bold; fill: white;">TOTAL WASTE / INEFFICIENCY</text>
+    <text x="385" y="552" text-anchor="end" class="def-value" style="font-size: 20px; fill: white;">$1.7T</text>
+  </g>
+
+  <!-- Arrow showing transformation -->
+  <g>
+    <path d="M 420 350 L 480 350" fill="none" stroke="#8b7659" stroke-width="4"/>
+    <polygon points="480 340, 500 350, 480 360" fill="#8b7659"/>
+    <text x="460" y="340" text-anchor="middle" class="def-small" style="fill: #8b7659; font-weight: bold;">Smart</text>
+    <text x="460" y="355" text-anchor="middle" class="def-small" style="fill: #8b7659; font-weight: bold;">Defense</text>
+  </g>
+
+  <!-- AFTER: Efficient Spending -->
+  <g>
+    <text x="675" y="100" text-anchor="middle" class="def-label" style="font-weight: bold; font-size: 18px;">AFTER: Smart Defense Budget</text>
+    <text x="675" y="125" text-anchor="middle" class="def-value" style="font-size: 28px; fill: #2e7d32;">$400 Billion</text>
+    <text x="675" y="145" text-anchor="middle" class="def-small" style="opacity: 0.7;">(stronger security, lower cost)</text>
+
+    <!-- Efficient spending -->
+    <g class="def-box">
+      <rect x="500" y="170" width="350" height="80" fill="#b8e6b8" stroke="#2d3c34" stroke-width="2" rx="8"/>
+      <text x="515" y="195" class="def-label" style="font-weight: bold;">Technology-First Defense</text>
+      <text x="515" y="215" class="def-small">• AI-powered intelligence & analysis</text>
+      <text x="515" y="232" class="def-small">• Autonomous systems & drones</text>
+      <text x="515" y="249" class="def-small">• Cyber warfare & space defense</text>
+    </g>
+
+    <g class="def-box">
+      <rect x="500" y="260" width="350" height="80" fill="#cfdcff" stroke="#2d3c34" stroke-width="2" rx="8"/>
+      <text x="515" y="285" class="def-label" style="font-weight: bold;">Elite Rapid-Response Force</text>
+      <text x="515" y="305" class="def-small">• Smaller, highly skilled personnel</text>
+      <text x="515" y="322" class="def-small">• Special operations & strategic units</text>
+      <text x="515" y="339" class="def-small">• Reserve system for surge capacity</text>
+    </g>
+
+    <g class="def-box">
+      <rect x="500" y="350" width="350" height="80" fill="#e6b8ff" stroke="#2d3c34" stroke-width="2" rx="8"/>
+      <text x="515" y="375" class="def-label" style="font-weight: bold;">Strategic Deterrence</text>
+      <text x="515" y="395" class="def-small">• Nuclear modernization (essential)</text>
+      <text x="515" y="412" class="def-small">• Satellite & missile defense</text>
+      <text x="515" y="429" class="def-small">• Critical R&D programs</text>
+    </g>
+
+    <g class="def-box">
+      <rect x="500" y="440" width="350" height="60" fill="#f9d689" stroke="#2d3c34" stroke-width="2" rx="8"/>
+      <text x="515" y="465" class="def-label" style="font-weight: bold;">Efficient Operations</text>
+      <text x="515" y="485" class="def-small">Competitive contracts, lean logistics, smart bases</text>
+    </g>
+
+    <!-- Better security note -->
+    <rect x="500" y="515" width="350" height="55" fill="#2e7d32" stroke="#2d3c34" stroke-width="2" rx="8"/>
+    <text x="675" y="538" text-anchor="middle" class="def-label" style="fill: white; font-weight: bold;">STRONGER SECURITY</text>
+    <text x="675" y="558" text-anchor="middle" class="def-small" style="fill: white; opacity: 0.9;">Quality over quantity (Israel, Singapore model)</text>
+  </g>
+
+  <!-- Historical precedent note -->
+  <rect x="50" y="580" width="800" height="15" fill="none"/>
+  <text x="450" y="592" text-anchor="middle" class="def-small" style="font-size: 10px; opacity: 0.6;">Historical precedent: Post-Cold War "peace dividend" reduced US defense from 6% to 3% of GDP while strengthening economy</text>
+</svg>

@@ -374,4 +374,4 @@ Sommes-nous prêts à construire l'avenir, un circuit photonique artisanal à la
 
 ---
 
-*Intéressé à contribuer au développement de Light Logic ? Divinci AI collabore avec des institutions de recherche et des ateliers communautaires pour prototyper ces systèmes. [Contactez-nous](https://calendly.com/mike-mooring-divinci/30-minute-meeting) pour en savoir plus sur comment vous impliquer.*
+*Intéressé à contribuer au développement de Light Logic ? Divinci AI collabore avec des institutions de recherche et des ateliers communautaires pour prototyper ces systèmes. [Contactez-nous](https://meetings.hubspot.com/michael-mooring/divinci-ai) pour en savoir plus sur comment vous impliquer.*

@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="background-color: #f8f4f0;">
+  <defs>
+    <!-- Gradient for light beams -->
+    <linearGradient id="lightBeam1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0" />
+      <stop offset="50%" style="stop-color:#667eea;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:0" />
+    </linearGradient>
+
+    <linearGradient id="lightBeam2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#764ba2;stop-opacity:0" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0" />
+    </linearGradient>
+
+    <radialGradient id="photonGlow">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#667eea;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Filter for glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="30" font-family="Fraunces, serif" font-size="20" font-weight="600" fill="#2d3c34" text-anchor="middle">
+    Photonic Logic Gate: Light Interference
+  </text>
+
+  <!-- Input A label -->
+  <text x="50" y="120" font-family="Source Sans 3, sans-serif" font-size="14" fill="#2d3c34">Input A</text>
+
+  <!-- Input B label -->
+  <text x="50" y="280" font-family="Source Sans 3, sans-serif" font-size="14" fill="#2d3c34">Input B</text>
+
+  <!-- Light beam A (top) -->
+  <rect x="120" y="100" width="200" height="8" fill="url(#lightBeam1)" opacity="0.6">
+    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Photons traveling along beam A -->
+  <circle r="4" fill="#667eea" filter="url(#glow)">
+    <animateMotion dur="2s" repeatCount="indefinite">
+      <mpath href="#beamAPath"/>
+    </animateMotion>
+  </circle>
+
+  <path id="beamAPath" d="M 120,104 L 320,104" fill="none" stroke="none"/>
+
+  <!-- Light beam B (bottom) -->
+  <rect x="120" y="260" width="200" height="8" fill="url(#lightBeam2)" opacity="0.6">
+    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Photons traveling along beam B -->
+  <circle r="4" fill="#764ba2" filter="url(#glow)">
+    <animateMotion dur="2s" repeatCount="indefinite" begin="0.5s">
+      <mpath href="#beamBPath"/>
+    </animateMotion>
+  </circle>
+
+  <path id="beamBPath" d="M 120,264 L 320,264" fill="none" stroke="none"/>
+
+  <!-- Beam splitter / combiner (optical element) -->
+  <g transform="translate(340, 180)">
+    <!-- Diamond shape representing optical element -->
+    <path d="M 0,-80 L 40,-40 L 0,0 L -40,-40 Z" fill="none" stroke="#8b7659" stroke-width="3" opacity="0.8"/>
+    <path d="M 0,-80 L 40,-40 L 0,0 L -40,-40 Z" fill="#8b7659" opacity="0.1"/>
+
+    <!-- Rotating effect to show active processing -->
+    <circle cx="0" cy="-40" r="25" fill="none" stroke="#667eea" stroke-width="1.5" opacity="0.4">
+      <animate attributeName="r" values="20;30;20" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Interference pattern visualization -->
+  <g transform="translate(380, 180)">
+    <ellipse cx="0" cy="-40" rx="30" ry="15" fill="none" stroke="#667eea" stroke-width="1" opacity="0.3">
+      <animate attributeName="rx" values="25;35;25" dur="1.5s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="0" cy="-40" rx="40" ry="20" fill="none" stroke="#764ba2" stroke-width="1" opacity="0.3">
+      <animate attributeName="rx" values="35;45;35" dur="1.5s" begin="0.3s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+
+  <!-- Output beam -->
+  <rect x="420" y="140" width="320" height="8" fill="url(#lightBeam1)" opacity="0.8">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Output photons (combined) -->
+  <circle r="5" fill="#ffd700" filter="url(#glow)">
+    <animateMotion dur="2s" repeatCount="indefinite">
+      <mpath href="#outputPath"/>
+    </animateMotion>
+  </circle>
+
+  <path id="outputPath" d="M 420,144 L 740,144" fill="none" stroke="none"/>
+
+  <!-- Output label -->
+  <text x="760" y="150" font-family="Source Sans 3, sans-serif" font-size="14" fill="#2d3c34">Output</text>
+
+  <!-- Annotation: Constructive Interference -->
+  <text x="400" y="320" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8b7659" text-anchor="middle" font-style="italic">
+    Constructive interference when both inputs are "on"
+  </text>
+
+  <!-- Processing happens at light speed indicator -->
+  <g transform="translate(340, 240)">
+    <text x="0" y="0" font-family="Source Sans 3, sans-serif" font-size="11" fill="#667eea" text-anchor="middle">
+      ⚡ Femtosecond processing
+    </text>
+  </g>
+
+  <!-- Decorative wave pattern to show light nature -->
+  <path d="M 120,60 Q 140,50 160,60 T 200,60 T 240,60 T 280,60 T 320,60"
+        fill="none" stroke="#667eea" stroke-width="1" opacity="0.3">
+    <animate attributeName="d"
+             values="M 120,60 Q 140,50 160,60 T 200,60 T 240,60 T 280,60 T 320,60;
+                     M 120,60 Q 140,70 160,60 T 200,60 T 240,60 T 280,60 T 320,60;
+                     M 120,60 Q 140,50 160,60 T 200,60 T 240,60 T 280,60 T 320,60"
+             dur="1.5s" repeatCount="indefinite"/>
+  </path>
+
+  <path d="M 120,300 Q 140,290 160,300 T 200,300 T 240,300 T 280,300 T 320,300"
+        fill="none" stroke="#764ba2" stroke-width="1" opacity="0.3">
+    <animate attributeName="d"
+             values="M 120,300 Q 140,290 160,300 T 200,300 T 240,300 T 280,300 T 320,300;
+                     M 120,300 Q 140,310 160,300 T 200,300 T 240,300 T 280,300 T 320,300;
+                     M 120,300 Q 140,290 160,300 T 200,300 T 240,300 T 280,300 T 320,300"
+             dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+  </path>
+</svg>

@@ -236,7 +236,7 @@ We're incredibly excited about this partnership and the opportunities ahead. As 
 
 **Want to see it in action?**
 
-- [Request a demo](https://calendly.com/mike-mooring-divinci/30-minute-meeting) to explore Divinci AI's platform
+- [Request a demo](https://meetings.hubspot.com/michael-mooring/divinci-ai) to explore Divinci AI's platform
 - [Follow our blog](/blog) for technical deep-dives and updates
 - [Join our community](https://discord.gg/divinci) to discuss edge AI architecture
 

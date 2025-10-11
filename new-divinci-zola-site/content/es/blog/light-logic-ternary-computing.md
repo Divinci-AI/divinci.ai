@@ -374,4 +374,4 @@ La luz está lista. Las matemáticas están listas. La energía está lista.
 
 ---
 
-*¿Interesado en contribuir al desarrollo de Light Logic? Divinci AI está colaborando con instituciones de investigación y talleres comunitarios para prototipar estos sistemas. [Contáctanos](https://calendly.com/mike-mooring-divinci/30-minute-meeting) para aprender más sobre cómo involucrarte.*
+*¿Interesado en contribuir al desarrollo de Light Logic? Divinci AI está colaborando con instituciones de investigación y talleres comunitarios para prototipar estos sistemas. [Contáctanos](https://meetings.hubspot.com/michael-mooring/divinci-ai) para aprender más sobre cómo involucrarte.*

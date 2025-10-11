@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="background-color: #f8f4f0;">
+  <defs>
+    <linearGradient id="binaryGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:0.05" />
+    </linearGradient>
+
+    <linearGradient id="ternaryGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b7659;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#8b7659;stop-opacity:0.05" />
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="30" font-family="Fraunces, serif" font-size="20" font-weight="600" fill="#2d3c34" text-anchor="middle">
+    Binary vs Ternary Logic: Information Density
+  </text>
+
+  <!-- Binary Section (Left) -->
+  <g transform="translate(150, 80)">
+    <rect x="-80" y="0" width="160" height="360" fill="url(#binaryGrad)" rx="8"/>
+
+    <text x="0" y="25" font-family="Fraunces, serif" font-size="16" font-weight="600" fill="#2d3c34" text-anchor="middle">
+      Binary (Base-2)
+    </text>
+
+    <!-- Binary states visualization -->
+    <g transform="translate(0, 60)">
+      <text x="0" y="0" font-family="Source Sans 3, sans-serif" font-size="14" fill="#2d3c34" text-anchor="middle">
+        2 States
+      </text>
+
+      <!-- State 0 -->
+      <circle cx="-30" cy="35" r="18" fill="none" stroke="#667eea" stroke-width="2"/>
+      <text x="-30" y="41" font-family="Source Sans 3, sans-serif" font-size="14" font-weight="600" fill="#667eea" text-anchor="middle">0</text>
+
+      <!-- State 1 -->
+      <circle cx="30" cy="35" r="18" fill="#667eea" stroke="#667eea" stroke-width="2">
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="30" y="41" font-family="Source Sans 3, sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">1</text>
+    </g>
+
+    <!-- 6 bits example -->
+    <g transform="translate(0, 160)">
+      <text x="0" y="0" font-family="Source Sans 3, sans-serif" font-size="12" fill="#2d3c34" text-anchor="middle">
+        6 bits = 64 values
+      </text>
+
+      <g transform="translate(-60, 20)">
+        <rect x="0" y="0" width="16" height="24" fill="none" stroke="#667eea" stroke-width="1.5" rx="2"/>
+        <rect x="20" y="0" width="16" height="24" fill="#667eea" stroke="#667eea" stroke-width="1.5" rx="2"/>
+        <rect x="40" y="0" width="16" height="24" fill="none" stroke="#667eea" stroke-width="1.5" rx="2"/>
+        <rect x="60" y="0" width="16" height="24" fill="none" stroke="#667eea" stroke-width="1.5" rx="2"/>
+        <rect x="80" y="0" width="16" height="24" fill="#667eea" stroke="#667eea" stroke-width="1.5" rx="2"/>
+        <rect x="100" y="0" width="16" height="24" fill="none" stroke="#667eea" stroke-width="1.5" rx="2"/>
+
+        <text x="8" y="16" font-family="Courier New, monospace" font-size="11" fill="#667eea" text-anchor="middle">0</text>
+        <text x="28" y="16" font-family="Courier New, monospace" font-size="11" fill="white" text-anchor="middle">1</text>
+        <text x="48" y="16" font-family="Courier New, monospace" font-size="11" fill="#667eea" text-anchor="middle">0</text>
+        <text x="68" y="16" font-family="Courier New, monospace" font-size="11" fill="#667eea" text-anchor="middle">0</text>
+        <text x="88" y="16" font-family="Courier New, monospace" font-size="11" fill="white" text-anchor="middle">1</text>
+        <text x="108" y="16" font-family="Courier New, monospace" font-size="11" fill="#667eea" text-anchor="middle">0</text>
+      </g>
+
+      <text x="0" y="60" font-family="Source Sans 3, sans-serif" font-size="11" fill="#667eea" text-anchor="middle">
+        2^6 = 64
+      </text>
+    </g>
+
+    <!-- Components needed -->
+    <g transform="translate(0, 260)">
+      <text x="0" y="0" font-family="Source Sans 3, sans-serif" font-size="12" fill="#2d3c34" text-anchor="middle">
+        Components
+      </text>
+      <rect x="-50" y="10" width="100" height="30" fill="#667eea" opacity="0.3" rx="4"/>
+      <text x="0" y="30" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="600" fill="#2d3c34" text-anchor="middle">
+        100%
+      </text>
+    </g>
+  </g>
+
+  <!-- Ternary Section (Right) -->
+  <g transform="translate(550, 80)">
+    <rect x="-80" y="0" width="160" height="360" fill="url(#ternaryGrad)" rx="8"/>
+
+    <text x="0" y="25" font-family="Fraunces, serif" font-size="16" font-weight="600" fill="#2d3c34" text-anchor="middle">
+      Ternary (Base-3)
+    </text>
+
+    <!-- Ternary states visualization -->
+    <g transform="translate(0, 60)">
+      <text x="0" y="0" font-family="Source Sans 3, sans-serif" font-size="14" fill="#2d3c34" text-anchor="middle">
+        3 States
+      </text>
+
+      <!-- State -1 -->
+      <circle cx="-40" cy="35" r="18" fill="#c44569" stroke="#c44569" stroke-width="2">
+        <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <text x="-40" y="40" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="600" fill="white" text-anchor="middle">-1</text>
+
+      <!-- State 0 -->
+      <circle cx="0" cy="35" r="18" fill="none" stroke="#8b7659" stroke-width="2"/>
+      <text x="0" y="41" font-family="Source Sans 3, sans-serif" font-size="14" font-weight="600" fill="#8b7659" text-anchor="middle">0</text>
+
+      <!-- State +1 -->
+      <circle cx="40" cy="35" r="18" fill="#8b7659" stroke="#8b7659" stroke-width="2">
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" begin="1s" repeatCount="indefinite"/>
+      </circle>
+      <text x="40" y="40" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="600" fill="white" text-anchor="middle">+1</text>
+    </g>
+
+    <!-- 6 trits example -->
+    <g transform="translate(0, 160)">
+      <text x="0" y="0" font-family="Source Sans 3, sans-serif" font-size="12" fill="#2d3c34" text-anchor="middle">
+        6 trits = 729 values
+      </text>
+
+      <g transform="translate(-60, 20)">
+        <rect x="0" y="0" width="16" height="24" fill="#c44569" stroke="#c44569" stroke-width="1.5" rx="2"/>
+        <rect x="20" y="0" width="16" height="24" fill="none" stroke="#8b7659" stroke-width="1.5" rx="2"/>
+        <rect x="40" y="0" width="16" height="24" fill="#8b7659" stroke="#8b7659" stroke-width="1.5" rx="2"/>
+        <rect x="60" y="0" width="16" height="24" fill="#c44569" stroke="#c44569" stroke-width="1.5" rx="2"/>
+        <rect x="80" y="0" width="16" height="24" fill="none" stroke="#8b7659" stroke-width="1.5" rx="2"/>
+        <rect x="100" y="0" width="16" height="24" fill="#8b7659" stroke="#8b7659" stroke-width="1.5" rx="2"/>
+
+        <text x="8" y="15" font-family="Courier New, monospace" font-size="9" fill="white" text-anchor="middle">-1</text>
+        <text x="28" y="16" font-family="Courier New, monospace" font-size="11" fill="#8b7659" text-anchor="middle">0</text>
+        <text x="48" y="15" font-family="Courier New, monospace" font-size="9" fill="white" text-anchor="middle">+1</text>
+        <text x="68" y="15" font-family="Courier New, monospace" font-size="9" fill="white" text-anchor="middle">-1</text>
+        <text x="88" y="16" font-family="Courier New, monospace" font-size="11" fill="#8b7659" text-anchor="middle">0</text>
+        <text x="108" y="15" font-family="Courier New, monospace" font-size="9" fill="white" text-anchor="middle">+1</text>
+      </g>
+
+      <text x="0" y="60" font-family="Source Sans 3, sans-serif" font-size="11" fill="#8b7659" text-anchor="middle">
+        3^6 = 729
+      </text>
+    </g>
+
+    <!-- Components needed -->
+    <g transform="translate(0, 260)">
+      <text x="0" y="0" font-family="Source Sans 3, sans-serif" font-size="12" fill="#2d3c34" text-anchor="middle">
+        Components
+      </text>
+      <rect x="-50" y="10" width="60" height="30" fill="#8b7659" opacity="0.3" rx="4"/>
+      <text x="-20" y="30" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="600" fill="#2d3c34" text-anchor="middle">
+        60%
+      </text>
+      <text x="0" y="55" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8b7659" font-style="italic" text-anchor="middle">
+        40% fewer
+      </text>
+    </g>
+  </g>
+
+  <!-- Comparison arrow -->
+  <g transform="translate(350, 250)">
+    <path d="M -50,0 L 50,0" stroke="#2d3c34" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.5"/>
+    <text x="0" y="-10" font-family="Source Sans 3, sans-serif" font-size="11" fill="#2d3c34" text-anchor="middle">
+      11x more values
+    </text>
+  </g>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2d3c34" opacity="0.5"/>
+    </marker>
+  </defs>
+
+  <!-- Bottom annotation -->
+  <text x="400" y="470" font-family="Source Sans 3, sans-serif" font-size="12" fill="#8b7659" text-anchor="middle" font-style="italic">
+    Balanced ternary (-1, 0, +1) provides natural negative numbers and simpler arithmetic
+  </text>
+</svg>

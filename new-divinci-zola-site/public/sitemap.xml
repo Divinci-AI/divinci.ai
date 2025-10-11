@@ -1,392 +1,521 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/</loc>
+        <loc>https://divinci.ai/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/about/</loc>
+        <loc>https://divinci.ai/about/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/accessibility/</loc>
+        <loc>https://divinci.ai/accessibility/</loc>
         <lastmod>2025-01-20</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ai-safety/</loc>
+        <loc>https://divinci.ai/ai-safety/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/api/</loc>
+        <loc>https://divinci.ai/api/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ar/</loc>
+        <loc>https://divinci.ai/ar/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ar/autorag/</loc>
+        <loc>https://divinci.ai/ar/autorag/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ar/press/</loc>
+        <loc>https://divinci.ai/ar/blog/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ar/privacy-policy/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ar/quality-assurance/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ar/release-management/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ar/terms-of-service/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/autorag/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/blog/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/blog/building-responsible-ai-systems/</loc>
+        <loc>https://divinci.ai/ar/blog/building-responsible-ai-systems/</loc>
         <lastmod>2025-04-15T10:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/blog/fintech-customer-support-case-study/</loc>
-        <lastmod>2025-03-25T11:00:00+00:00</lastmod>
+        <loc>https://divinci.ai/ar/blog/cloudflare-workers-launchpad-cohort-6/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/blog/future-of-rag-systems/</loc>
+        <loc>https://divinci.ai/ar/blog/future-of-rag-systems/</loc>
         <lastmod>2025-05-01T09:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/blog/optimizing-vector-embeddings/</loc>
+        <loc>https://divinci.ai/ar/blog/light-logic-ternary-computing/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://divinci.ai/ar/blog/optimizing-vector-embeddings/</loc>
         <lastmod>2025-04-08T14:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/blog/page/1/</loc>
+        <loc>https://divinci.ai/ar/blog/page/1/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/careers/</loc>
+        <loc>https://divinci.ai/ar/blog/universal-basic-income-2035/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/categories/</loc>
+        <loc>https://divinci.ai/ar/press/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/categories/ai-ethics/</loc>
+        <loc>https://divinci.ai/ar/privacy-policy/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/categories/artificial-intelligence/</loc>
+        <loc>https://divinci.ai/ar/quality-assurance/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/categories/case-studies/</loc>
+        <loc>https://divinci.ai/ar/release-management/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/categories/casos-de-estudio/</loc>
+        <loc>https://divinci.ai/ar/terms-of-service/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/categories/ethique-ia/</loc>
+        <loc>https://divinci.ai/autorag/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/categories/etica-de-ia/</loc>
+        <loc>https://divinci.ai/blog/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/categories/technical-guides/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/changelog/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/contact/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/cookies/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/de/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/de/press/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/docs/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/about/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/accessibility/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/ai-safety/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/autorag/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/blog/</loc>
-    </url>
-    <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/blog/building-responsible-ai-systems/</loc>
+        <loc>https://divinci.ai/blog/building-responsible-ai-systems/</loc>
         <lastmod>2025-04-15T10:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/blog/fintech-customer-support-case-study/</loc>
+        <loc>https://divinci.ai/blog/cloudflare-workers-launchpad-cohort-6/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://divinci.ai/blog/future-of-rag-systems/</loc>
+        <lastmod>2025-05-01T09:00:00+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://divinci.ai/blog/light-logic-ternary-computing/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://divinci.ai/blog/optimizing-vector-embeddings/</loc>
+        <lastmod>2025-04-08T14:00:00+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://divinci.ai/blog/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/blog/universal-basic-income-2035/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://divinci.ai/careers/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/categories/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/categories/ai-ethics/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/categories/artificial-intelligence/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/categories/casos-de-estudio/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/categories/company-news/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/categories/ethique-ia/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/categories/etica-de-ia/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/categories/policy/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/categories/technical-guides/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/categories/vision/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/changelog/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/contact/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/cookies/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/de/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/de/press/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/docs/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/es/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/es/about/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/es/accessibility/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/es/ai-safety/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/es/autorag/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/es/blog/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/es/blog/building-responsible-ai-systems/</loc>
+        <lastmod>2025-04-15T10:00:00+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://divinci.ai/es/blog/cloudflare-workers-launchpad-cohort-6/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://divinci.ai/es/blog/fintech-customer-support-case-study/</loc>
         <lastmod>2025-03-25T11:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/blog/page/1/</loc>
+        <loc>https://divinci.ai/es/blog/future-of-rag-systems/</loc>
+        <lastmod>2025-05-01T09:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/careers/</loc>
+        <loc>https://divinci.ai/es/blog/light-logic-ternary-computing/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/changelog/</loc>
+        <loc>https://divinci.ai/es/blog/optimizing-vector-embeddings/</loc>
+        <lastmod>2025-04-08T14:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/contact/</loc>
+        <loc>https://divinci.ai/es/blog/page/1/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/cookies/</loc>
+        <loc>https://divinci.ai/es/blog/universal-basic-income-2035/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/docs/</loc>
+        <loc>https://divinci.ai/es/careers/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/press/</loc>
+        <loc>https://divinci.ai/es/changelog/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/pricing/</loc>
+        <loc>https://divinci.ai/es/contact/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/privacy-policy/</loc>
+        <loc>https://divinci.ai/es/cookies/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/quality-assurance/</loc>
+        <loc>https://divinci.ai/es/docs/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/release-management/</loc>
+        <loc>https://divinci.ai/es/press/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/roadmap/</loc>
+        <loc>https://divinci.ai/es/pricing/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/security/</loc>
+        <loc>https://divinci.ai/es/privacy-policy/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/sitemap/</loc>
+        <loc>https://divinci.ai/es/quality-assurance/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/support/</loc>
+        <loc>https://divinci.ai/es/release-management/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/terms-of-service/</loc>
+        <loc>https://divinci.ai/es/roadmap/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/es/tutorials/</loc>
+        <loc>https://divinci.ai/es/security/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/</loc>
+        <loc>https://divinci.ai/es/sitemap/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/autorag/</loc>
+        <loc>https://divinci.ai/es/support/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/blog/</loc>
+        <loc>https://divinci.ai/es/terms-of-service/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/blog/building-responsible-ai-systems/</loc>
+        <loc>https://divinci.ai/es/tutorials/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/fr/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/fr/autorag/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/fr/blog/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/fr/blog/building-responsible-ai-systems/</loc>
         <lastmod>2025-04-15T10:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/blog/page/1/</loc>
+        <loc>https://divinci.ai/fr/blog/cloudflare-workers-launchpad-cohort-6/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/docs/</loc>
+        <loc>https://divinci.ai/fr/blog/future-of-rag-systems/</loc>
+        <lastmod>2025-05-01T09:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/press/</loc>
+        <loc>https://divinci.ai/fr/blog/light-logic-ternary-computing/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/privacy-policy/</loc>
+        <loc>https://divinci.ai/fr/blog/optimizing-vector-embeddings/</loc>
+        <lastmod>2025-04-08T14:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/quality-assurance/</loc>
+        <loc>https://divinci.ai/fr/blog/page/1/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/release-management/</loc>
+        <loc>https://divinci.ai/fr/blog/universal-basic-income-2035/</loc>
+        <lastmod>2025-10-05T10:00:00+00:00</lastmod>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/support/</loc>
+        <loc>https://divinci.ai/fr/docs/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/terms-of-service/</loc>
+        <loc>https://divinci.ai/fr/press/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/fr/tutorials/</loc>
+        <loc>https://divinci.ai/fr/privacy-policy/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/hi/</loc>
+        <loc>https://divinci.ai/fr/quality-assurance/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/it/</loc>
+        <loc>https://divinci.ai/fr/release-management/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/it/press/</loc>
+        <loc>https://divinci.ai/fr/support/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ja/</loc>
+        <loc>https://divinci.ai/fr/terms-of-service/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ja/press/</loc>
+        <loc>https://divinci.ai/fr/tutorials/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ko/</loc>
+        <loc>https://divinci.ai/hi/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/nl/</loc>
+        <loc>https://divinci.ai/it/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/press/</loc>
+        <loc>https://divinci.ai/it/press/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/pricing/</loc>
+        <loc>https://divinci.ai/ja/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/privacy-policy/</loc>
+        <loc>https://divinci.ai/ja/press/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/pt/</loc>
+        <loc>https://divinci.ai/ko/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/pt/press/</loc>
+        <loc>https://divinci.ai/nl/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/quality-assurance/</loc>
+        <loc>https://divinci.ai/press/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/release-management/</loc>
+        <loc>https://divinci.ai/pricing/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/roadmap/</loc>
+        <loc>https://divinci.ai/privacy-policy/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/ru/</loc>
+        <loc>https://divinci.ai/pt/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/security/</loc>
+        <loc>https://divinci.ai/pt/press/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/sitemap/</loc>
+        <loc>https://divinci.ai/quality-assurance/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/support/</loc>
+        <loc>https://divinci.ai/release-management/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/</loc>
+        <loc>https://divinci.ai/roadmap/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/ai-architecture/</loc>
+        <loc>https://divinci.ai/ru/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/ai-ethics/</loc>
+        <loc>https://divinci.ai/security/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/ai-governance/</loc>
+        <loc>https://divinci.ai/sitemap/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/ai-solutions/</loc>
+        <loc>https://divinci.ai/support/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/case-study/</loc>
+        <loc>https://divinci.ai/tags/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/caso-de-estudio/</loc>
+        <loc>https://divinci.ai/tags/ai-architecture/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/customer-support/</loc>
+        <loc>https://divinci.ai/tags/ai-ethics/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/document-retrieval/</loc>
+        <loc>https://divinci.ai/tags/ai-governance/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/equidad/</loc>
+        <loc>https://divinci.ai/tags/ai/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/equite/</loc>
+        <loc>https://divinci.ai/tags/bitcoin/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/ethique-ia/</loc>
+        <loc>https://divinci.ai/tags/caso-de-estudio/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/etica-de-ia/</loc>
+        <loc>https://divinci.ai/tags/cloudflare/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/explainability/</loc>
+        <loc>https://divinci.ai/tags/company-news/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/explicabilidad/</loc>
+        <loc>https://divinci.ai/tags/cryptocurrency/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/explicabilite/</loc>
+        <loc>https://divinci.ai/tags/document-retrieval/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/fairness/</loc>
+        <loc>https://divinci.ai/tags/edge-computing/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/fintech/</loc>
+        <loc>https://divinci.ai/tags/equidad/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/gobierno-de-ia/</loc>
+        <loc>https://divinci.ai/tags/equite/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/gouvernance-ia/</loc>
+        <loc>https://divinci.ai/tags/ethique-ia/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/ia-responsable/</loc>
+        <loc>https://divinci.ai/tags/etica-de-ia/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/implementacion-rag/</loc>
+        <loc>https://divinci.ai/tags/explainability/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/llms/</loc>
+        <loc>https://divinci.ai/tags/explicabilidad/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/neural-information-retrieval/</loc>
+        <loc>https://divinci.ai/tags/explicabilite/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/rag-implementation/</loc>
+        <loc>https://divinci.ai/tags/fairness/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/rag-systems/</loc>
+        <loc>https://divinci.ai/tags/fintech/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/responsible-ai/</loc>
+        <loc>https://divinci.ai/tags/fusion-energy/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/search-optimization/</loc>
+        <loc>https://divinci.ai/tags/gobierno-de-ia/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/semantic-search/</loc>
+        <loc>https://divinci.ai/tags/gouvernance-ia/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/soluciones-de-ia/</loc>
+        <loc>https://divinci.ai/tags/government-reform/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/soporte-al-cliente/</loc>
+        <loc>https://divinci.ai/tags/gravity-batteries/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tags/vector-embeddings/</loc>
+        <loc>https://divinci.ai/tags/green-computing/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/terms-of-service/</loc>
+        <loc>https://divinci.ai/tags/ia-responsable/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/tutorials/</loc>
+        <loc>https://divinci.ai/tags/implementacion-rag/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/zh/</loc>
+        <loc>https://divinci.ai/tags/infrastructure/</loc>
     </url>
     <url>
-        <loc>https://divinci-ai-site.divinci-ai.workers.dev/zh/press/</loc>
+        <loc>https://divinci.ai/tags/llms/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/neural-information-retrieval/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/photonic-computing/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/quantum-computing/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/rag-systems/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/rag/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/responsible-ai/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/search-optimization/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/semantic-search/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/soluciones-de-ia/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/soporte-al-cliente/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/sustainable-technology/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/ternary-logic/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/ubi/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/universal-basic-income/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/vector-embeddings/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tags/workers-launchpad/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/terms-of-service/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/tutorials/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/zh/</loc>
+    </url>
+    <url>
+        <loc>https://divinci.ai/zh/press/</loc>
     </url>
 </urlset>

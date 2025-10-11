@@ -11,7 +11,7 @@
 <section class="hero">
     <div class="hero-content">
         <div class="hero-image">
-            <img src="{{ get_url(path="images/Davinci_the_painter_painting_a_robot_in_a_line_art.png") }}" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster">
+            <img src="{{ get_url(path="images/Davinci_the_painter_painting_a_robot_in_a_line_art.webp") }}" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster">
             <video id="hero-video" muted loop playsinline preload="metadata" data-lazy-video>
                 <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.webm") }}" type="video/webm">
                 <source src="{{ get_url(path="images/Video_of_Robot_Creation_Ready.mp4") }}" type="video/mp4">

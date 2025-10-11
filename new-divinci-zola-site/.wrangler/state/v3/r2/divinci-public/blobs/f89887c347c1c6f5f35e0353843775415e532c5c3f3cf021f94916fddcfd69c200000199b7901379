@@ -1,0 +1,81 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .timeline-title { font-family: 'Georgia', serif; font-size: 24px; font-weight: bold; fill: #2d3c34; }
+      .timeline-label { font-family: 'Arial', sans-serif; font-size: 13px; fill: #2d3c34; }
+      .timeline-year { font-family: 'Arial', sans-serif; font-size: 16px; font-weight: bold; fill: #2d3c34; }
+      .timeline-phase { font-family: 'Arial', sans-serif; font-size: 14px; font-weight: bold; fill: #2d3c34; }
+      .milestone { transition: transform 0.3s ease; }
+      .milestone:hover { transform: scale(1.1); }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" class="timeline-title">UBI Implementation Timeline (2025-2035)</text>
+
+  <!-- Timeline Line -->
+  <line x1="100" y1="200" x2="800" y2="200" stroke="#8b7659" stroke-width="4"/>
+
+  <!-- 2025-2027: Foundation -->
+  <g class="milestone">
+    <circle cx="150" cy="200" r="12" fill="#cfdcff" stroke="#2d3c34" stroke-width="2"/>
+    <text x="150" y="170" text-anchor="middle" class="timeline-year">2025-27</text>
+    <text x="150" y="155" text-anchor="middle" class="timeline-phase">Foundation</text>
+    <rect x="100" y="220" width="100" height="120" fill="#cfdcff" fill-opacity="0.3" stroke="#2d3c34" stroke-width="1" rx="5"/>
+    <text x="150" y="240" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• Bitcoin Reserve</text>
+    <text x="150" y="260" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• Gov Restructuring</text>
+    <text x="150" y="280" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• PoUW Pilot</text>
+  </g>
+
+  <!-- 2028-2030: Technology Deployment -->
+  <g class="milestone">
+    <circle cx="325" cy="200" r="12" fill="#b8e6b8" stroke="#2d3c34" stroke-width="2"/>
+    <text x="325" y="170" text-anchor="middle" class="timeline-year">2028-30</text>
+    <text x="325" y="155" text-anchor="middle" class="timeline-phase">Tech Deploy</text>
+    <rect x="255" y="220" width="140" height="120" fill="#b8e6b8" fill-opacity="0.3" stroke="#2d3c34" stroke-width="1" rx="5"/>
+    <text x="325" y="240" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• Fusion Online</text>
+    <text x="325" y="260" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• AI Gov Efficiency</text>
+    <text x="325" y="280" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• Robotics Scale</text>
+    <text x="325" y="300" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• 10 exaFLOPS</text>
+  </g>
+
+  <!-- 2031-2033: Scaling -->
+  <g class="milestone">
+    <circle cx="550" cy="200" r="12" fill="#f9d689" stroke="#2d3c34" stroke-width="2"/>
+    <text x="550" y="170" text-anchor="middle" class="timeline-year">2031-33</text>
+    <text x="550" y="155" text-anchor="middle" class="timeline-phase">Scaling</text>
+    <rect x="480" y="220" width="140" height="120" fill="#f9d689" fill-opacity="0.3" stroke="#2d3c34" stroke-width="1" rx="5"/>
+    <text x="550" y="240" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• UBI Pilots</text>
+    <text x="550" y="260" text-anchor="middle" class="timeline-label" style="font-size: 11px;">$500/mo → 10M</text>
+    <text x="550" y="280" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• Fusion @ Parity</text>
+    <text x="550" y="300" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• BTC Appreciation</text>
+  </g>
+
+  <!-- 2034-2035: Full Implementation -->
+  <g class="milestone">
+    <circle cx="750" cy="200" r="15" fill="#e6b8ff" stroke="#2d3c34" stroke-width="3"/>
+    <text x="750" y="170" text-anchor="middle" class="timeline-year">2034-35</text>
+    <text x="750" y="155" text-anchor="middle" class="timeline-phase" style="font-size: 16px;">Full UBI</text>
+    <rect x="670" y="220" width="160" height="120" fill="#e6b8ff" fill-opacity="0.3" stroke="#2d3c34" stroke-width="2" rx="5"/>
+    <text x="750" y="240" text-anchor="middle" class="timeline-label" style="font-size: 11px; font-weight: bold;">Universal Rollout</text>
+    <text x="750" y="260" text-anchor="middle" class="timeline-label" style="font-size: 12px; font-weight: bold;">$1,000-2,000/mo</text>
+    <text x="750" y="280" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• All Adults</text>
+    <text x="750" y="300" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• $400+/mo savings</text>
+    <text x="750" y="320" text-anchor="middle" class="timeline-label" style="font-size: 11px;">• $300B+ research</text>
+  </g>
+
+  <!-- Progress Arrows -->
+  <path d="M 162 200 L 310 200" stroke="#8b7659" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 337 200 L 535 200" stroke="#8b7659" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 562 200 L 732 200" stroke="#8b7659" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#8b7659"/>
+    </marker>
+  </defs>
+
+  <!-- Bottom note -->
+  <text x="450" y="375" text-anchor="middle" class="timeline-label" style="font-size: 12px; opacity: 0.7;">Phased implementation reduces risk while technologies mature and prove viability</text>
+</svg>

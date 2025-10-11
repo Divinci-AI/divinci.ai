@@ -1,0 +1,220 @@
+<svg viewBox="0 0 1200 1100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bureau-title { font-family: 'Georgia', serif; font-size: 30px; font-weight: bold; fill: #2d3c34; }
+      .bureau-subtitle { font-family: 'Georgia', serif; font-size: 14px; fill: #5a6b5f; font-style: italic; }
+      .dept-label { font-family: 'Arial', sans-serif; font-size: 14px; font-weight: 600; fill: #2d3c34; }
+      .detail-text { font-family: 'Arial', sans-serif; font-size: 11px; fill: #2d3c34; }
+      .savings-text { font-family: 'Arial', sans-serif; font-size: 13px; fill: #27ae60; font-weight: 700; }
+      .automation-level { font-family: 'Arial', sans-serif; font-size: 10px; fill: #666; font-style: italic; }
+    </style>
+    <linearGradient id="high-auto" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#27ae60;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:0.8" />
+    </linearGradient>
+    <linearGradient id="medium-auto" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#f39c12;stop-opacity:0.8" />
+    </linearGradient>
+    <linearGradient id="low-auto" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#e74c3c;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" class="bureau-title">AI Automation: Transforming Government Bureaucracy</text>
+  <text x="600" y="65" text-anchor="middle" class="bureau-subtitle">How intelligent automation can reduce costs 40-50% while improving service quality</text>
+
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="50" y="90" width="1100" height="50" rx="8" fill="#f9f9f9" stroke="#ddd" stroke-width="1"/>
+
+    <rect x="70" y="105" width="20" height="20" fill="url(#high-auto)" stroke="#27ae60" stroke-width="1"/>
+    <text x="100" y="120" class="detail-text">High Automation (60-80%): Routine tasks, data processing</text>
+
+    <rect x="460" y="105" width="20" height="20" fill="url(#medium-auto)" stroke="#f39c12" stroke-width="1"/>
+    <text x="490" y="120" class="detail-text">Medium Automation (40-60%): Complex tasks with human oversight</text>
+
+    <rect x="900" y="105" width="20" height="20" fill="url(#low-auto)" stroke="#e74c3c" stroke-width="1"/>
+    <text x="930" y="120" class="detail-text">Low Automation (20-40%): Strategic/policy work</text>
+  </g>
+
+  <!-- Department 1: IRS / Tax Collection -->
+  <g id="irs">
+    <rect x="50" y="170" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="60" y="180" width="430" height="50" rx="6" fill="url(#high-auto)"/>
+
+    <text x="75" y="202" class="dept-label">💰 IRS / Tax Collection</text>
+    <text x="75" y="218" class="detail-text">AI processing: Returns, audits, fraud detection</text>
+    <text x="505" y="205" text-anchor="end" class="automation-level">75% automation potential</text>
+    <text x="570" y="210" text-anchor="end" class="savings-text">$45B saved</text>
+  </g>
+
+  <!-- Department 2: Social Security Administration -->
+  <g id="ssa">
+    <rect x="50" y="250" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="60" y="260" width="400" height="50" rx="6" fill="url(#high-auto)"/>
+
+    <text x="75" y="282" class="dept-label">👴 Social Security Administration</text>
+    <text x="75" y="298" class="detail-text">AI claims processing, eligibility verification, payments</text>
+    <text x="475" y="285" text-anchor="end" class="automation-level">70% automation potential</text>
+    <text x="570" y="290" text-anchor="end" class="savings-text">$42B saved</text>
+  </g>
+
+  <!-- Department 3: Medicare/Medicaid -->
+  <g id="medicare">
+    <rect x="50" y="330" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="60" y="340" width="380" height="50" rx="6" fill="url(#medium-auto)"/>
+
+    <text x="75" y="362" class="dept-label">🏥 Medicare &amp; Medicaid Administration</text>
+    <text x="75" y="378" class="detail-text">AI fraud detection, claims processing, prior authorizations</text>
+    <text x="455" y="365" text-anchor="end" class="automation-level">65% automation potential</text>
+    <text x="570" y="370" text-anchor="end" class="savings-text">$95B saved</text>
+  </g>
+
+  <!-- Department 4: Veterans Affairs -->
+  <g id="va">
+    <rect x="50" y="410" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="60" y="420" width="350" height="50" rx="6" fill="url(#medium-auto)"/>
+
+    <text x="75" y="442" class="dept-label">🎖️ Veterans Affairs (benefits admin)</text>
+    <text x="75" y="458" class="detail-text">AI benefits processing, health record management</text>
+    <text x="425" y="445" text-anchor="end" class="automation-level">60% automation potential</text>
+    <text x="570" y="450" text-anchor="end" class="savings-text">$48B saved</text>
+  </g>
+
+  <!-- Department 5: Department of Education -->
+  <g id="education">
+    <rect x="50" y="490" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="60" y="500" width="320" height="50" rx="6" fill="url(#medium-auto)"/>
+
+    <text x="75" y="522" class="dept-label">🎓 Department of Education</text>
+    <text x="75" y="538" class="detail-text">AI student loan processing, grant administration</text>
+    <text x="395" y="525" text-anchor="end" class="automation-level">55% automation potential</text>
+    <text x="570" y="530" text-anchor="end" class="savings-text">$38B saved</text>
+  </g>
+
+  <!-- Department 6: Homeland Security -->
+  <g id="dhs">
+    <rect x="50" y="570" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="60" y="580" width="290" height="50" rx="6" fill="url(#medium-auto)"/>
+
+    <text x="75" y="602" class="dept-label">🛡️ Homeland Security (admin)</text>
+    <text x="75" y="618" class="detail-text">AI background checks, immigration processing, logistics</text>
+    <text x="365" y="605" text-anchor="end" class="automation-level">50% automation potential</text>
+    <text x="570" y="610" text-anchor="end" class="savings-text">$42B saved</text>
+  </g>
+
+  <!-- RIGHT COLUMN -->
+
+  <!-- Department 7: Housing &amp; Urban Development -->
+  <g id="hud">
+    <rect x="610" y="170" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="620" y="180" width="320" height="50" rx="6" fill="url(#medium-auto)"/>
+
+    <text x="635" y="202" class="dept-label">🏘️ Housing &amp; Urban Development</text>
+    <text x="635" y="218" class="detail-text">AI housing voucher processing, compliance monitoring</text>
+    <text x="955" y="205" text-anchor="end" class="automation-level">55% automation potential</text>
+    <text x="1130" y="210" text-anchor="end" class="savings-text">$26B saved</text>
+  </g>
+
+  <!-- Department 8: Agriculture -->
+  <g id="agriculture">
+    <rect x="610" y="250" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="620" y="260" width="290" height="50" rx="6" fill="url(#medium-auto)"/>
+
+    <text x="635" y="282" class="dept-label">🌾 Department of Agriculture</text>
+    <text x="635" y="298" class="detail-text">AI crop insurance, subsidy distribution, inspections</text>
+    <text x="925" y="285" text-anchor="end" class="automation-level">50% automation potential</text>
+    <text x="1130" y="290" text-anchor="end" class="savings-text">$28B saved</text>
+  </g>
+
+  <!-- Department 9: Transportation -->
+  <g id="dot">
+    <rect x="610" y="330" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="620" y="340" width="260" height="50" rx="6" fill="url(#medium-auto)"/>
+
+    <text x="635" y="362" class="dept-label">🚗 Department of Transportation</text>
+    <text x="635" y="378" class="detail-text">AI permitting, safety monitoring, route optimization</text>
+    <text x="895" y="365" text-anchor="end" class="automation-level">45% automation potential</text>
+    <text x="1130" y="370" text-anchor="end" class="savings-text">$22B saved</text>
+  </g>
+
+  <!-- Department 10: Treasury (non-IRS) -->
+  <g id="treasury">
+    <rect x="610" y="410" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="620" y="420" width="260" height="50" rx="6" fill="url(#medium-auto)"/>
+
+    <text x="635" y="442" class="dept-label">🏦 Treasury (non-IRS operations)</text>
+    <text x="635" y="458" class="detail-text">AI financial reporting, debt management</text>
+    <text x="895" y="445" text-anchor="end" class="automation-level">45% automation potential</text>
+    <text x="1130" y="450" text-anchor="end" class="savings-text">$18B saved</text>
+  </g>
+
+  <!-- Department 11: EPA -->
+  <g id="epa">
+    <rect x="610" y="490" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="620" y="500" width="230" height="50" rx="6" fill="url(#low-auto)"/>
+
+    <text x="635" y="522" class="dept-label">🌍 EPA (Environmental Protection)</text>
+    <text x="635" y="538" class="detail-text">AI compliance monitoring, data analysis</text>
+    <text x="865" y="525" text-anchor="end" class="automation-level">40% automation potential</text>
+    <text x="1130" y="530" text-anchor="end" class="savings-text">$12B saved</text>
+  </g>
+
+  <!-- Department 12: Justice (admin) -->
+  <g id="doj">
+    <rect x="610" y="570" width="540" height="70" rx="8" fill="#fff" stroke="#ddd" stroke-width="2"/>
+    <rect x="620" y="580" width="200" height="50" rx="6" fill="url(#low-auto)"/>
+
+    <text x="635" y="602" class="dept-label">⚖️ Department of Justice (admin)</text>
+    <text x="635" y="618" class="detail-text">AI case management, legal research</text>
+    <text x="835" y="605" text-anchor="end" class="automation-level">35% automation potential</text>
+    <text x="1130" y="610" text-anchor="end" class="savings-text">$24B saved</text>
+  </g>
+
+  <!-- Key Benefits Box -->
+  <g id="benefits-box">
+    <rect x="50" y="670" width="540" height="200" rx="10" fill="#f0f9f4" stroke="#27ae60" stroke-width="3"/>
+    <text x="320" y="705" text-anchor="middle" class="dept-label" style="fill: #27ae60; font-size: 18px;">AI Automation Benefits</text>
+
+    <text x="70" y="735" class="detail-text" style="font-weight: 600;">✅ Faster Service Delivery</text>
+    <text x="85" y="755" class="detail-text">Claims processed in hours, not months</text>
+
+    <text x="70" y="780" class="detail-text" style="font-weight: 600;">✅ 24/7 Availability</text>
+    <text x="85" y="800" class="detail-text">No waiting for office hours or callbacks</text>
+
+    <text x="70" y="825" class="detail-text" style="font-weight: 600;">✅ Reduced Errors</text>
+    <text x="85" y="845" class="detail-text">AI consistency beats human fatigue</text>
+  </g>
+
+  <!-- Implementation Timeline -->
+  <g id="timeline-box">
+    <rect x="610" y="670" width="540" height="200" rx="10" fill="#fff9e6" stroke="#f39c12" stroke-width="3"/>
+    <text x="880" y="705" text-anchor="middle" class="dept-label" style="fill: #e67e22; font-size: 18px;">Implementation Timeline</text>
+
+    <text x="630" y="735" class="detail-text" style="font-weight: 600;">📅 2025-2027: Foundation</text>
+    <text x="645" y="755" class="detail-text">Deploy AI for high-volume tasks (IRS, SSA)</text>
+
+    <text x="630" y="780" class="detail-text" style="font-weight: 600;">📅 2028-2030: Expansion</text>
+    <text x="645" y="800" class="detail-text">Scale to medium-automation departments</text>
+
+    <text x="630" y="825" class="detail-text" style="font-weight: 600;">📅 2031-2035: Optimization</text>
+    <text x="645" y="845" class="detail-text">Full integration, continuous improvement</text>
+  </g>
+
+  <!-- Total Savings Summary -->
+  <g id="total-savings">
+    <rect x="50" y="900" width="1100" height="150" rx="12" fill="#27ae60"/>
+
+    <text x="600" y="945" text-anchor="middle" class="bureau-title" style="fill: white; font-size: 28px;">TOTAL ANNUAL SAVINGS</text>
+    <text x="600" y="995" text-anchor="middle" class="bureau-title" style="fill: white; font-size: 48px;">$440 Billion</text>
+    <text x="600" y="1030" text-anchor="middle" class="bureau-subtitle" style="fill: white; font-size: 16px; opacity: 0.9;">From current $980B in government administration costs (45% reduction)</text>
+  </g>
+
+  <!-- Bottom Notes -->
+  <text x="600" y="1080" text-anchor="middle" class="detail-text" style="font-size: 10px; opacity: 0.6;">
+    Savings estimates based on OECD studies showing AI can automate 40-60% of government administrative tasks. Does not include defense spending reductions.
+  </text>
+</svg>

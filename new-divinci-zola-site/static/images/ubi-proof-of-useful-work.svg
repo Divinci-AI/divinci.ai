@@ -1,0 +1,93 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .pouw-title { font-family: 'Georgia', serif; font-size: 24px; font-weight: bold; fill: #2d3c34; }
+      .pouw-label { font-family: 'Arial', sans-serif; font-size: 13px; fill: #2d3c34; }
+      .pouw-value { font-family: 'Arial', sans-serif; font-size: 15px; font-weight: bold; fill: #2d3c34; }
+      .pouw-small { font-family: 'Arial', sans-serif; font-size: 11px; fill: #2d3c34; opacity: 0.8; }
+      .pouw-arrow { fill: none; stroke: #8b7659; stroke-width: 3; }
+      .pouw-box { transition: transform 0.3s ease, opacity 0.3s ease; }
+      .pouw-box:hover { transform: scale(1.05); opacity: 0.9; }
+    </style>
+
+    <!-- Arrow marker -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#8b7659" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="pouw-title">Proof-of-Useful-Work: Turning Computing Into Value</text>
+  <text x="400" y="55" text-anchor="middle" class="pouw-small" style="font-size: 12px;">From Wasted Energy to Scientific Breakthroughs + Income</text>
+
+  <!-- Central concept circle -->
+  <circle cx="400" cy="300" r="80" fill="#fff3e0" stroke="#8b7659" stroke-width="3" opacity="0.3"/>
+  <text x="400" y="295" text-anchor="middle" class="pouw-label" style="font-weight: bold; font-size: 14px;">UBI</text>
+  <text x="400" y="315" text-anchor="middle" class="pouw-label" style="font-weight: bold; font-size: 14px;">Participant</text>
+
+  <!-- 1. Idle Computer (top left) -->
+  <g class="pouw-box">
+    <rect x="80" y="100" width="160" height="90" fill="#cfdcff" stroke="#2d3c34" stroke-width="2" rx="8"/>
+    <text x="160" y="130" text-anchor="middle" class="pouw-label" style="font-weight: bold;">💻 Idle Computer</text>
+    <text x="160" y="150" text-anchor="middle" class="pouw-small">Your device while</text>
+    <text x="160" y="165" text-anchor="middle" class="pouw-small">you sleep or work</text>
+    <text x="160" y="180" text-anchor="middle" class="pouw-value" style="font-size: 12px; color: #8b7659;">Opt-in contribution</text>
+  </g>
+
+  <!-- Arrow 1: Computer to Research -->
+  <path d="M 240 145 Q 320 145 350 220" class="pouw-arrow" marker-end="url(#arrowhead)"/>
+  <text x="280" y="140" class="pouw-small" style="font-size: 10px; fill: #8b7659;">Contributes</text>
+
+  <!-- 2. Scientific Research (top right) -->
+  <g class="pouw-box">
+    <rect x="480" y="100" width="240" height="140" fill="#b8e6b8" stroke="#2d3c34" stroke-width="2" rx="8"/>
+    <text x="600" y="125" text-anchor="middle" class="pouw-label" style="font-weight: bold;">🔬 Scientific Computing</text>
+
+    <!-- Research types -->
+    <text x="490" y="150" class="pouw-small">• Protein folding (cancer/COVID)</text>
+    <text x="490" y="168" class="pouw-small">• Climate modeling</text>
+    <text x="490" y="186" class="pouw-small">• AI safety research</text>
+    <text x="490" y="204" class="pouw-small">• Materials science (fusion)</text>
+    <text x="490" y="222" class="pouw-small">• Genomics &amp; medicine</text>
+  </g>
+
+  <!-- Arrow 2: Research to Value -->
+  <path d="M 680 240 Q 680 300 480 300" class="pouw-arrow" marker-end="url(#arrowhead)"/>
+  <text x="650" y="270" class="pouw-small" style="font-size: 10px; fill: #8b7659;">Creates</text>
+
+  <!-- 3. Economic Value (right) -->
+  <g class="pouw-box">
+    <rect x="480" y="350" width="240" height="100" fill="#f9d689" stroke="#2d3c34" stroke-width="2" rx="8"/>
+    <text x="600" y="380" text-anchor="middle" class="pouw-label" style="font-weight: bold;">💰 Economic Value</text>
+    <text x="600" y="405" text-anchor="middle" class="pouw-value" style="font-size: 18px; fill: #8b7659;">$500B-1T Annually</text>
+    <text x="600" y="425" text-anchor="middle" class="pouw-small">Real scientific research value</text>
+    <text x="600" y="440" text-anchor="middle" class="pouw-small">100+ exaFLOPS potential</text>
+  </g>
+
+  <!-- Arrow 3: Value to Rewards -->
+  <path d="M 480 400 Q 400 400 350 360" class="pouw-arrow" marker-end="url(#arrowhead)"/>
+  <text x="410" y="430" class="pouw-small" style="font-size: 10px; fill: #8b7659;">Distributes</text>
+
+  <!-- 4. Individual Income (bottom) -->
+  <g class="pouw-box">
+    <rect x="80" y="350" width="160" height="120" fill="#e6b8ff" stroke="#2d3c34" stroke-width="2" rx="8"/>
+    <text x="160" y="380" text-anchor="middle" class="pouw-label" style="font-weight: bold;">💵 Your Income</text>
+    <text x="160" y="405" text-anchor="middle" class="pouw-value" style="font-size: 16px;">Base UBI</text>
+    <text x="160" y="425" text-anchor="middle" class="pouw-value" style="font-size: 14px; fill: #2d3c34;">$1,000-2,000/mo</text>
+    <text x="160" y="445" text-anchor="middle" class="pouw-label" style="font-size: 12px; fill: #8b7659;">+ Computing rewards</text>
+    <text x="160" y="462" text-anchor="middle" class="pouw-value" style="font-size: 14px; color: #8b7659;">$200-500/mo</text>
+  </g>
+
+  <!-- Arrow 4: Income back to participant -->
+  <path d="M 160 350 Q 160 300 320 300" class="pouw-arrow" marker-end="url(#arrowhead)"/>
+  <text x="200" y="320" class="pouw-small" style="font-size: 10px; fill: #8b7659;">Enables</text>
+
+  <!-- Key Benefits Box -->
+  <rect x="50" y="500" width="700" height="80" fill="#fff3e0" stroke="#8b7659" stroke-width="2" stroke-dasharray="5,5" rx="8"/>
+  <text x="400" y="525" text-anchor="middle" class="pouw-label" style="font-weight: bold;">Why This Changes Everything</text>
+  <text x="60" y="550" class="pouw-small">✓ Not just redistribution—creates real value</text>
+  <text x="320" y="550" class="pouw-small">✓ Accelerates scientific breakthroughs</text>
+  <text x="580" y="550" class="pouw-small">✓ Replaces Bitcoin's waste</text>
+  <text x="60" y="570" class="pouw-small">✓ Everyone can participate (even without traditional work)</text>
+  <text x="400" y="570" class="pouw-small">✓ Open-source results benefit humanity</text>
+</svg>

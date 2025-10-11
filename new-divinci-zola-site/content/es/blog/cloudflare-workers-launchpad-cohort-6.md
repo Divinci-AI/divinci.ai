@@ -74,7 +74,7 @@ Estamos increíblemente emocionados por esta asociación y las oportunidades que
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Innovación a través de las eras: Construyendo el futuro con principios atemporales</p>
 
-¿Quieres aprender más sobre cómo Divinci AI puede transformar el flujo de trabajo de IA de tu equipo? [Solicita una demo](https://calendly.com/mike-mooring-divinci/30-minute-meeting) para ver nuestra plataforma en acción.
+¿Quieres aprender más sobre cómo Divinci AI puede transformar el flujo de trabajo de IA de tu equipo? [Solicita una demo](https://meetings.hubspot.com/michael-mooring/divinci-ai) para ver nuestra plataforma en acción.
 
 ---
 
