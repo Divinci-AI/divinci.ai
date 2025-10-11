@@ -1,2 +1,15 @@
 node_modules
 .DS_Store
+
+# Large video files (stored in Cloudflare R2)
+*.mp4
+*.webm
+*.mov
+*.avi
+
+# Wrangler state directory with R2 blobs
+.wrangler/
+**/.wrangler/
+
+# Build artifacts
+new-divinci-zola-site/public/
