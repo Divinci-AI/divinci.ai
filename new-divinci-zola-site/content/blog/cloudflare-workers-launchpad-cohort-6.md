@@ -15,6 +15,10 @@ hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/cloudflare-ren
 featured_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-cloudflare-workers-launchpad-cohort-6.webm"
 reading_time = 12
 summary = "Divinci AI joins Cloudflare Workers Launchpad Cohort #6, bringing enterprise AI collaboration to the edge. Learn how we're leveraging Cloudflare's global network to deliver RAG-powered intelligence with unprecedented speed, security, and scale."
+x_post = "https://x.com/DivinciAi/status/1977450693100536167"
+linkedin_post = "https://www.linkedin.com/feed/update/urn:li:activity:7383211765217751040/"
+discord_post = "https://discord.com/channels/1425017107871039572/1425017109074808934/1427021907387088926"
+instagram_post = "https://www.instagram.com/reel/DPuI8XLEl9G/?utm_source=ig_web_copy_link&igsh=MXN0M29uOGQzZWE0Nw=="
 +++
 
 <video muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">

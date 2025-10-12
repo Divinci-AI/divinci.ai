@@ -192,6 +192,47 @@ window.MathJax = {
                         <i class="fas fa-rocket"></i> Get Started Today
                     </a>
                 </div>
+
+                <!-- Join the Conversation Section -->
+                {% if page.extra.social_links or page.extra.x_post or page.extra.linkedin_post or page.extra.discord_post or page.extra.instagram_post %}
+                <div class="join-conversation">
+                    <h3 class="join-conversation-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.75rem;">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Join the Conversation
+                    </h3>
+                    <p class="join-conversation-description">
+                        We'd love to hear your thoughts on this topic. Join the discussion on your favorite platform:
+                    </p>
+                    <div class="conversation-links">
+                        {% if page.extra.x_post %}
+                        <a href="{{ page.extra.x_post }}" target="_blank" rel="noopener noreferrer" class="conversation-link x-link">
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <span>Discuss on X</span>
+                        </a>
+                        {% endif %}
+                        {% if page.extra.linkedin_post %}
+                        <a href="{{ page.extra.linkedin_post }}" target="_blank" rel="noopener noreferrer" class="conversation-link linkedin-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span>Comment on LinkedIn</span>
+                        </a>
+                        {% endif %}
+                        {% if page.extra.discord_post %}
+                        <a href="{{ page.extra.discord_post }}" target="_blank" rel="noopener noreferrer" class="conversation-link discord-link">
+                            <i class="fab fa-discord"></i>
+                            <span>Chat on Discord</span>
+                        </a>
+                        {% endif %}
+                        {% if page.extra.instagram_post %}
+                        <a href="{{ page.extra.instagram_post }}" target="_blank" rel="noopener noreferrer" class="conversation-link instagram-link">
+                            <i class="fab fa-instagram"></i>
+                            <span>View on Instagram</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
             </article>
 
             <!-- Social Sharing - Fixed Sidebar -->
@@ -765,6 +806,144 @@ html {
 
 .blog-cta-button i {
     margin-right: 0.75rem;
+}
+
+/* Join the Conversation Section */
+.join-conversation {
+    background: linear-gradient(135deg, rgba(207, 220, 255, 0.15), rgba(207, 220, 255, 0.08));
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-top: 3rem;
+    text-align: center;
+    border: 2px solid rgba(207, 220, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.08);
+}
+
+.join-conversation-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d3c34;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.join-conversation-title svg {
+    color: #2196f3;
+}
+
+.join-conversation-description {
+    color: #2d3c34;
+    opacity: 0.85;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.05rem;
+}
+
+.conversation-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.conversation-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 2px solid;
+    background-color: white;
+}
+
+.conversation-link i {
+    font-size: 1.3rem;
+}
+
+.conversation-link span {
+    font-size: 0.95rem;
+}
+
+.conversation-link.x-link {
+    color: #000000;
+    border-color: #000000;
+}
+
+.conversation-link.x-link:hover {
+    background-color: #000000;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.conversation-link.linkedin-link {
+    color: #0077b5;
+    border-color: #0077b5;
+}
+
+.conversation-link.linkedin-link:hover {
+    background-color: #0077b5;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 119, 181, 0.3);
+}
+
+.conversation-link.discord-link {
+    color: #5865F2;
+    border-color: #5865F2;
+}
+
+.conversation-link.discord-link:hover {
+    background-color: #5865F2;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(88, 101, 242, 0.3);
+}
+
+.conversation-link.instagram-link {
+    color: #E4405F;
+    border-color: #E4405F;
+}
+
+.conversation-link.instagram-link:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border-color: #E4405F;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(228, 64, 95, 0.3);
+}
+
+/* Responsive design for conversation links */
+@media screen and (max-width: 768px) {
+    .conversation-links {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .join-conversation {
+        padding: 2rem 1.5rem;
+    }
+
+    .join-conversation-title {
+        font-size: 1.3rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .conversation-link {
+        padding: 0.875rem 1.25rem;
+    }
 }
 
 /* Blog Navigation */
