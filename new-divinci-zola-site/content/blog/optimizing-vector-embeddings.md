@@ -33,7 +33,7 @@ Before diving into optimization techniques, it's important to understand the com
 Each stage presents optimization opportunities that can significantly improve overall system performance.
 
 <div style="width: 100%; overflow-x: auto; margin: 2rem 0;">
-  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-vector-embedding-adjusted.svg" alt="Vector Embedding Visualization" style="width: 100%; height: auto; display: block;">
+  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-vector-embedding-adjusted.svg" alt="Vector Embedding Visualization" style="width: 100%; height: auto; display: block;">
 </div>
 *The vector embedding pipeline showing optimization points at each stage*
 
