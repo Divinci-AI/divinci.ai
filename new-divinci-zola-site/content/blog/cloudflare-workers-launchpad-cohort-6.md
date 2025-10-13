@@ -21,7 +21,7 @@ discord_post = "https://discord.com/channels/1425017107871039572/142501710907480
 instagram_post = "https://www.instagram.com/reel/DPuI8XLEl9G/?utm_source=ig_web_copy_link&igsh=MXN0M29uOGQzZWE0Nw=="
 +++
 
-<video muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+<video muted loop playsinline webkit-playsinline preload="metadata" poster="{{ get_url(path='images/divinci-cloudflare-workers-launchpad-cohort-6-poster.webp') }}" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-cloudflare-workers-launchpad-cohort-6.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Building AI at the speed of light on Cloudflare's global edge network</p>
