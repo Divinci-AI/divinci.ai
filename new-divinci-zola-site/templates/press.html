@@ -3,8 +3,6 @@
 {% block content %}
 {# current_lang is inherited from base template #}
 
-<!-- Include Header -->
-{% include "partials/header.html" %}
 
 <!-- Main Press Content - Matching original exactly -->
 <main id="main-content" role="main" tabindex="-1">
@@ -290,8 +288,6 @@
     </section>
 </main>
 
-<!-- Include Footer -->
-{% include "partials/footer.html" %}
 
 <style>
 /* Press Page Specific Styles */
@@ -427,7 +423,7 @@
 }
 
 .news-item:hover, .coverage-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 
@@ -518,7 +514,7 @@
 }
 
 .asset-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
 }
 
 .asset-preview {

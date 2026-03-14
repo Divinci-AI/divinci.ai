@@ -88,8 +88,6 @@ window.MathJax = {
 {% block content %}
 {# current_lang is inherited from base template #}
 
-<!-- Include Header -->
-{% include "partials/header.html" %}
 
 <!-- Blog Post Hero Section -->
 <section class="blog-post-hero" {% if page.extra.hero_background and not page.extra.hero_video %}style="background-image: linear-gradient(135deg, rgba(248, 244, 240, 0.95) 0%, rgba(240, 235, 225, 0.95) 100%), url('{{ get_url(path=page.extra.hero_background) }}'); background-size: cover; background-position: center;"{% endif %}>
@@ -361,8 +359,6 @@ window.MathJax = {
     </div>
 </section>
 
-<!-- Include Footer -->
-{% include "partials/footer.html" %}
 
 <style>
 /* Blog Post Styles - Updated for our color scheme */
@@ -787,9 +783,9 @@ html {
 .blog-cta-button {
     display: inline-flex;
     align-items: center;
-    background: #cfdcff;
+    background: #e8ddc7;
     color: #2d3c34;
-    border: 2px solid #cfdcff;
+    border: 2px solid #e8ddc7;
     border-radius: 50px;
     padding: 0.75rem 1.5rem;
     font-weight: 700;
@@ -799,8 +795,8 @@ html {
 
 .blog-cta-button:hover {
     transform: translateY(-3px);
-    background: #b8ccff;
-    border-color: #b8ccff;
+    background: #e8ddc7;
+    border-color: #e8ddc7;
     color: #2d3c34;
 }
 
@@ -810,13 +806,13 @@ html {
 
 /* Join the Conversation Section */
 .join-conversation {
-    background: linear-gradient(135deg, rgba(207, 220, 255, 0.15), rgba(207, 220, 255, 0.08));
+    background: linear-gradient(135deg, rgba(232, 221, 199, 0.15), rgba(232, 221, 199, 0.08));
     border-radius: 12px;
     padding: 2.5rem;
     margin-top: 3rem;
     text-align: center;
-    border: 2px solid rgba(207, 220, 255, 0.4);
-    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.08);
+    border: 2px solid rgba(212, 196, 160, 0.4);
+    box-shadow: 0 4px 15px rgba(139, 115, 85, 0.08);
 }
 
 .join-conversation-title {
@@ -830,7 +826,7 @@ html {
 }
 
 .join-conversation-title svg {
-    color: #2196f3;
+    color: #8b7355;
 }
 
 .join-conversation-description {
@@ -1041,7 +1037,7 @@ body.focus-mode .blog-content li {
 }
 
 body.focus-mode .focus-mode-toggle {
-    background: #cfdcff;
+    background: #e8ddc7;
 }
 
 body.focus-mode .focus-mode-toggle .btn-label::after {
@@ -1064,7 +1060,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 100;
-    border: 2px solid #cfdcff;
+    border: 2px solid #e8ddc7;
 }
 
 /* Show dropdown on hover of export button OR when hovering the dropdown itself */
@@ -1496,16 +1492,16 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 }
 
 .toc-list a.active {
-    background: linear-gradient(135deg, rgba(207, 220, 255, 0.5), rgba(207, 220, 255, 0.3));
-    border-left-color: #2196f3;
+    background: linear-gradient(135deg, rgba(232, 221, 199, 0.5), rgba(232, 221, 199, 0.3));
+    border-left-color: #8b7355;
     font-weight: 700;
-    color: #0d1f3c;
-    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.15);
+    color: #2d3c34;
+    box-shadow: 0 2px 8px rgba(139, 115, 85, 0.15);
 }
 
 .toc-list a.active .toc-icon {
     opacity: 1;
-    color: #2196f3;
+    color: #8b7355;
 }
 
 /* Nested TOC items (h3, h4) */
@@ -1908,7 +1904,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     left: 50%;
     margin-left: -150px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border: 2px solid #cfdcff;
+    border: 2px solid #e8ddc7;
     transition: opacity 0.3s, visibility 0.3s;
     font-weight: 400;
     font-size: 0.95rem;
@@ -1923,7 +1919,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     margin-left: -8px;
     border-width: 8px;
     border-style: solid;
-    border-color: #cfdcff transparent transparent transparent;
+    border-color: #e8ddc7 transparent transparent transparent;
 }
 
 .tooltip:hover .tooltip-content {
@@ -1981,7 +1977,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     width: 400px;
     max-width: 90vw;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border: 2px solid #cfdcff;
+    border: 2px solid #e8ddc7;
     transition: opacity 0.3s, visibility 0.3s;
     z-index: 1000;
     font-size: 0.9rem;
@@ -1997,7 +1993,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     margin-left: -8px;
     border-width: 8px;
     border-style: solid;
-    border-color: #cfdcff transparent transparent transparent;
+    border-color: #e8ddc7 transparent transparent transparent;
 }
 
 .footnote-tooltip:hover .footnote-tooltip-content {
@@ -2177,7 +2173,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Show feedback
                 const feedback = document.createElement('span');
                 feedback.textContent = '🔗 Link copied!';
-                feedback.style.cssText = 'position: absolute; left: -120px; top: 50%; transform: translateY(-50%); background: #cfdcff; color: #2d3c34; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; opacity: 0; transition: opacity 0.3s ease;';
+                feedback.style.cssText = 'position: absolute; left: -120px; top: 50%; transform: translateY(-50%); background: #e8ddc7; color: #2d3c34; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; opacity: 0; transition: opacity 0.3s ease;';
                 this.style.position = 'relative';
                 this.appendChild(feedback);
                 setTimeout(() => feedback.style.opacity = '1', 10);
@@ -2515,7 +2511,7 @@ function downloadAsPlainText() {
 function showFeedback(message) {
     const feedback = document.createElement('div');
     feedback.textContent = message;
-    feedback.style.cssText = 'position: fixed; top: 2rem; right: 2rem; background: #cfdcff; color: #2d3c34; padding: 1rem 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 9999; font-weight: 600; opacity: 0; transition: opacity 0.3s ease;';
+    feedback.style.cssText = 'position: fixed; top: 2rem; right: 2rem; background: #e8ddc7; color: #2d3c34; padding: 1rem 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 9999; font-weight: 600; opacity: 0; transition: opacity 0.3s ease;';
     document.body.appendChild(feedback);
     setTimeout(() => feedback.style.opacity = '1', 10);
     setTimeout(() => {
@@ -2599,23 +2595,16 @@ window.addEventListener('scroll', function() {
 
 // Convert footnote references to inline tooltips
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Footnote tooltip script loaded');
-
     // Find all footnote references - Zola uses sup elements with anchors
     let footnoteRefs = document.querySelectorAll('.blog-content sup a');
-
-    console.log('Found footnote references:', footnoteRefs.length);
 
     // Get all footnote definitions - Zola uses div.footnote-definition
     const footnotes = {};
     let footnoteItems = document.querySelectorAll('.footnote-definition');
 
-    console.log('Found footnote items:', footnoteItems.length);
-
     footnoteItems.forEach(item => {
         // Extract ID - it's directly on the div
         let id = item.id;
-        console.log('Found footnote with ID:', id);
 
         // Clone the content and remove back reference
         const clone = item.cloneNode(true);
@@ -2626,7 +2615,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const content = clone.querySelector('p');
         if (content) {
             footnotes[id] = content.innerHTML.trim();
-            console.log('Stored footnote:', id, 'with content');
         }
     });
 
@@ -2635,13 +2623,10 @@ document.addEventListener('DOMContentLoaded', function() {
         let href = ref.getAttribute('href');
         if (!href || !href.startsWith('#')) return;
 
-        console.log('Processing ref:', href);
-
         // Extract footnote ID - just the number after #
         let footnoteId = href.replace(/^#/, '');
 
         const footnoteText = footnotes[footnoteId];
-        console.log('Looking for footnote ID:', footnoteId, 'Found:', !!footnoteText);
 
         if (footnoteText) {
             // Get the parent sup element if it exists
@@ -2667,7 +2652,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
             });
 
-            console.log('Created tooltip for:', footnoteId);
         }
     });
 });

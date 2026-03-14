@@ -3,8 +3,6 @@
 {% block content %}
 {# current_lang is inherited from base template #}
 
-<!-- Include Header -->
-{% include "partials/header.html" %}
 
 <!-- Main About Content -->
 <main id="main-content" role="main" tabindex="-1">
@@ -279,8 +277,6 @@
 </section>
 </main>
 
-<!-- Include Footer -->
-{% include "partials/footer.html" %}
 
 <style>
 /* About Us Page Styles - Matching Original Static HTML exactly */
@@ -456,7 +452,7 @@
 }
 
 .value-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
 }
 
 .value-card::before {
@@ -523,7 +519,7 @@
 }
 
 .team-member:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     background-color: rgba(255, 255, 255, 0.15);
 }

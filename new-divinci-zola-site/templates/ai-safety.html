@@ -3,8 +3,6 @@
 {% block content %}
 {# current_lang is inherited from base template #}
 
-<!-- Include Header -->
-{% include "partials/header.html" %}
 
 <!-- Official Document Section -->
 <main id="ai-trust-ethics">
@@ -47,7 +45,7 @@
                         <h2 id="contributors">Contributors</h2>
 
                         <div class="contributor-grid">
-                            <div class="contributor-card" style="width: 300px;">
+                            <div class="contributor-card contributor-card-fixed">
                                 <div class="contributor-avatar">
                                     <img src="{{ get_url(path='images/Michael-Mooring.png') }}" alt="Michael Mooring" style="object-position: center -2px;">
                                 </div>
@@ -62,7 +60,7 @@
                                 </div>
                             </div>
 
-                            <div class="contributor-card" style="width: 300px;">
+                            <div class="contributor-card contributor-card-fixed">
                                 <div class="contributor-avatar">
                                     <img src="{{ get_url(path='images/paul-marie-carfantan.jpeg') }}" alt="Paul-Marie Carfantan">
                                 </div>
@@ -77,16 +75,16 @@
                                 </div>
                             </div>
 
-                            <div class="contributor-card" style="width: 300px;">
-                                <div class="contributor-avatar" style="display: flex; justify-content: center; align-items: center; background-color: #f5f5f5;">
-                                    <img src="{{ get_url(path='images/AI-Standards-Hub-Logo_04-1.png') }}" alt="AI Standards Hub Logo" style="width: 80%; height: auto; object-fit: contain;">
+                            <div class="contributor-card contributor-card-fixed">
+                                <div class="contributor-avatar logo-avatar">
+                                    <img src="{{ get_url(path='images/AI-Standards-Hub-Logo_04-1.png') }}" alt="AI Standards Hub Logo">
                                 </div>
                                 <div class="contributor-info">
                                     <div class="contributor-name">AI Standards Hub</div>
                                     <div class="contributor-title">Best Practice Framework</div>
                                 </div>
                                 <div class="contributor-social">
-                                    <a href="https://aistandardshub.org/" target="_blank" class="social-link" style="background-color: #4a7aff;" aria-label="AI Standards Hub Website">
+                                    <a href="https://aistandardshub.org/" target="_blank" class="social-link social-link-blue" aria-label="AI Standards Hub Website">
                                         <i class="fas fa-external-link-alt"></i>
                                     </a>
                                 </div>
@@ -115,8 +113,6 @@
     </section>
 </main>
 
-<!-- Include Footer -->
-{% include "partials/footer.html" %}
 
 <style>
 /* Official Document Styling */
@@ -138,7 +134,7 @@
     left: 0;
     right: 0;
     height: 6px;
-    background: linear-gradient(135deg, #2d5a4f, #7ba8d1);
+    background: linear-gradient(135deg, #2d5a4f, #b8a080);
 }
 
 .document-header {
@@ -160,12 +156,12 @@
 .document-divider {
     width: 100px;
     height: 2px;
-    background: linear-gradient(to right, transparent, #7ba8d1, transparent);
+    background: linear-gradient(to right, transparent, #b8a080, transparent);
     margin: 1rem 0;
 }
 
 .official-badge {
-    background: linear-gradient(135deg, #2d5a4f, #7ba8d1);
+    background: linear-gradient(135deg, #2d5a4f, #b8a080);
     color: white;
     padding: 0.5rem 1.5rem;
     border-radius: 25px;
@@ -231,7 +227,7 @@
 
 .certification-badge .icon {
     margin-right: 0.75rem;
-    color: #7ba8d1;
+    color: #b8a080;
 }
 
 .document-section {
@@ -286,7 +282,7 @@
 
 .document-section li::before {
     content: '▸';
-    color: #7ba8d1;
+    color: #b8a080;
     font-weight: bold;
     position: absolute;
     left: 0;
@@ -306,8 +302,8 @@
 }
 
 .document-section a:hover {
-    color: #7ba8d1;
-    border-bottom-color: #7ba8d1;
+    color: #b8a080;
+    border-bottom-color: #b8a080;
 }
 
 /* Contributors Section */
@@ -343,7 +339,7 @@
     height: 70px;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid #7ba8d1;
+    border: 2px solid #b8a080;
     flex-shrink: 0;
 }
 
@@ -420,7 +416,7 @@
 
 .document-stamp .icon {
     margin-right: 0.5rem;
-    color: #7ba8d1;
+    color: #b8a080;
 }
 
 /* Responsive Design */
@@ -490,24 +486,5 @@ main#ai-trust-ethics {
     padding: 2rem 0;
 }
 
-/* Override any dark mode styles */
-body,
-html,
-main {
-    background-color: #f8f4f0 !important;
-}
-
-@media (prefers-color-scheme: dark) {
-    body,
-    html,
-    main,
-    main#ai-trust-ethics {
-        background-color: #f8f4f0 !important;
-    }
-    
-    :root {
-        --color-bg-primary: #f8f4f0 !important;
-    }
-}
 </style>
 {% endblock %}

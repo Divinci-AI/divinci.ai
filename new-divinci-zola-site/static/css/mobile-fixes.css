@@ -3,60 +3,63 @@
 /* CRITICAL: Mobile Performance - Prevent video loading on mobile devices */
 @media (max-width: 768px) {
   /* Hide all videos on mobile to force static images */
+  /* Keep !important: JS may set inline display/opacity on these */
   #hero-video,
   #hero-video-2,
   #hero-video-3,
   .background-video {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
   }
-  
+
   /* Show hero poster image instead */
+  /* Keep !important on display/visibility: JS may toggle these */
   #hero-poster {
     display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
-  
+
   /* Hide sound toggle on mobile */
+  /* Keep !important on display: style.css has .hero-image:hover #sound-toggle with display */
   #sound-toggle {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
+    visibility: hidden;
+    opacity: 0;
   }
-  
+
   /* Force enterprise section static background */
   .enterprise-ai {
-    background: linear-gradient(135deg, rgba(248, 244, 240, 0.95) 0%, rgba(232, 221, 212, 0.95) 100%) !important;
-    min-height: 600px !important;
-    position: relative !important;
+    background: linear-gradient(135deg, rgba(248, 244, 240, 0.95) 0%, rgba(232, 221, 212, 0.95) 100%);
+    min-height: 600px;
+    position: relative;
   }
-  
+
   /* Center team member role subtitle on mobile */
   .team-member .role {
-    text-align: center !important;
+    text-align: center;
   }
-  
+
   .enterprise-ai::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    background-image: url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/robot-group-mobile.webp') !important;
-    background-size: cover !important;
-    background-position: center top !important;
-    background-repeat: no-repeat !important;
-    opacity: 0.15 !important;
-    z-index: -1 !important;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/robot-group-mobile.webp');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: -1;
   }
 }
 
@@ -90,6 +93,7 @@ html, body {
 /* Footer text contrast fixes for Android Firefox */
 @media (max-width: 768px) {
   /* Simplify footer text for better mobile compatibility */
+  /* These need !important to override style.css body:not(.homepage) selectors which have higher specificity */
   body:not(.homepage) .footer-content .footer-section h3,
   body:not(.homepage) .footer-content .footer-section a {
     background: none !important;
@@ -97,30 +101,31 @@ html, body {
     -webkit-background-clip: initial !important;
     -webkit-text-fill-color: white !important;
     color: white !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9) !important;
-    opacity: 1 !important;
-    font-weight: 500 !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    opacity: 1;
+    font-weight: 500;
   }
-  
+
   body:not(.homepage) .footer-content .footer-section a:hover {
     background: none !important;
     background-clip: initial !important;
     -webkit-background-clip: initial !important;
-    -webkit-text-fill-color: #cfdcff !important;
-    color: #cfdcff !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9) !important;
+    -webkit-text-fill-color: #d4c4a0 !important;
+    color: #d4c4a0 !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
   }
 
   /* Footer bottom links enhanced contrast */
+  /* These need !important: style.css has body:not(.homepage) rules with !important */
   body:not(.homepage) .copyright,
   body:not(.homepage) .footer-bottom-links a,
   body:not(.homepage) .privacy-settings-link {
     color: white !important;
     background: none !important;
     -webkit-text-fill-color: white !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9) !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
     opacity: 1 !important;
-    font-weight: 500 !important;
+    font-weight: 500;
   }
 }
 
@@ -131,16 +136,16 @@ html, body {
     max-width: 100vw;
     overflow-x: hidden;
   }
-  
+
   .hero-text {
     max-width: 100%;
   }
-  
+
   .hero-visual {
     margin: 0 auto;
     max-width: 300px;
   }
-  
+
   .hero h1 {
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -160,7 +165,7 @@ html, body {
     align-items: flex-start;
     position: relative;
   }
-  
+
   .journal-page {
     position: relative !important;
     width: 32px;
@@ -173,16 +178,16 @@ html, body {
     display: inline-block;
     flex-shrink: 0;
   }
-  
+
   /* Create bookshelf effect - show pages as book spines */
   .journal-page:first-child {
     border-radius: 3px 0 0 3px;
   }
-  
+
   .journal-page:last-child {
     border-radius: 0 3px 3px 0;
   }
-  
+
   /* Center the entire journal section */
   .davinci-journal-showcase {
     display: flex;
@@ -191,31 +196,31 @@ html, body {
     gap: 0;
     flex: 0;
   }
-  
+
   /* Better journal navigation layout on mobile */
   .journal-navigation {
-    margin-bottom: 1.5rem !important;
-    margin-top: 1.5rem !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 1rem !important;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
   }
-  
+
   .journal-nav-button {
-    background: rgba(45, 60, 52, 0.1) !important;
-    border: 1px solid rgba(45, 60, 52, 0.2) !important;
-    border-radius: 4px !important;
-    padding: 8px 12px !important;
-    font-size: 14px !important;
-    color: #2d3c34 !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
+    background: rgba(45, 60, 52, 0.1);
+    border: 1px solid rgba(45, 60, 52, 0.2);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #2d3c34;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
-  
+
   .journal-nav-button:hover {
-    background: rgba(45, 60, 52, 0.2) !important;
-    transform: translateY(-1px) !important;
+    background: rgba(45, 60, 52, 0.2);
+    transform: translateY(-1px);
   }
 }
 
@@ -227,7 +232,7 @@ html, body {
     height: 350px;
     transform: initial;
   }
-  
+
   .journal-pages-container {
     position: relative;
     width: 100%;
@@ -246,7 +251,7 @@ html, body {
     overflow-wrap: break-word;
     hyphens: auto;
   }
-  
+
   /* Force text wrapping in navigation */
   nav a, .nav-button {
     word-wrap: break-word;
@@ -261,23 +266,23 @@ html, body {
     margin: 0 0.5rem;
     overflow-x: hidden;
   }
-  
+
   .content-body {
     overflow-x: hidden;
   }
-  
+
   .content-body pre {
     overflow-x: auto;
     max-width: 100%;
     white-space: pre-wrap;
     word-wrap: break-word;
   }
-  
+
   .content-body img {
     max-width: 100% !important;
     height: auto;
   }
-  
+
   .content-body table {
     display: block;
     overflow-x: auto;
@@ -288,9 +293,9 @@ html, body {
 /* Fix absolute positioned elements on mobile */
 @media (max-width: 768px) {
   .hero-visual {
-    position: relative !important;
+    position: relative;
   }
-  
+
   /* Ensure no elements extend beyond viewport */
   .panel-art,
   .background-sketches,
@@ -306,12 +311,12 @@ html, body {
     font-size: 2rem !important;
     line-height: 1.1;
   }
-  
+
   .hero-description {
     font-size: 1rem;
     line-height: 1.5;
   }
-  
+
   .post-title {
     font-size: 1.6rem !important;
     line-height: 1.2;
@@ -321,6 +326,7 @@ html, body {
 /* Fix mobile section title and subtitle layout - Match hero sizing */
 @media (max-width: 768px) {
   /* All section titles match hero h1 sizing and alignment */
+  /* Keep !important: overriding style.css rules at various specificity levels */
   .features-section h2,
   .section-title,
   .enterprise-ai h2,
@@ -331,16 +337,16 @@ html, body {
   .expert-answers-content h2,
   h2 {
     font-size: 2.5rem !important;
-    line-height: 1.2 !important;
-    margin-bottom: 1rem !important;
-    margin-top: 2rem !important;
-    text-align: left !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    hyphens: auto !important;
-    padding: 0 !important; /* Let parent section handle padding */
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    padding: 0; /* Let parent section handle padding */
   }
-  
+
   /* Ensure all section containers match hero margins */
   .features-section,
   .enterprise-ai,
@@ -350,51 +356,52 @@ html, body {
   .contact-header,
   .expert-answers-content,
   section {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
-  
+
   /* Force line break for Enterprise AI title on mobile */
   .features-section h2 {
-    white-space: normal !important;
+    white-space: normal;
   }
-  
+
   /* Control desktop vs mobile title display */
+  /* Keep !important: fighting style.css display rules */
   .enterprise-title .desktop-title {
     display: none !important;
   }
-  
+
   .enterprise-title .mobile-title {
     display: block !important;
-    font-size: 2.5rem !important;
-    line-height: 1.2 !important;
-    text-align: left !important;
-    margin: 2rem 0 1rem 0 !important;
-    padding: 0 !important; /* Let parent section handle padding */
+    font-size: 2.5rem;
+    line-height: 1.2;
+    text-align: left;
+    margin: 2rem 0 1rem 0;
+    padding: 0; /* Let parent section handle padding */
   }
-  
+
   .enterprise-title .mobile-title br {
-    display: block !important;
+    display: block;
   }
-  
+
   /* Features section title mobile control */
   .features-header h2 .desktop-title {
     display: none !important;
   }
-  
+
   .features-header h2 .mobile-title {
     display: block !important;
-    font-size: 2.5rem !important;
-    line-height: 1.2 !important;
-    text-align: left !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    text-align: left;
+    margin: 0;
+    padding: 0;
   }
-  
+
   .features-header h2 .mobile-title br {
-    display: block !important;
+    display: block;
   }
-  
+
   /* All subtitle/description text match hero subtitle sizing and alignment */
   .features-section p,
   .section-description,
@@ -408,74 +415,74 @@ html, body {
   .expert-answers-content p,
   .hero-section + section p:first-of-type,
   .features-section .section-description {
-    font-size: 1.2rem !important;
-    line-height: 1.5 !important;
-    margin-bottom: 2rem !important;
-    margin-top: 0 !important;
-    text-align: left !important;
-    padding: 0 !important; /* Same as headers - no extra padding */
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    margin-top: 0;
+    text-align: left;
+    padding: 0; /* Same as headers - no extra padding */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
-  
+
   /* Ensure subtitles have no extra margin/padding differences from headers */
   .enterprise-ai .section-intro,
   .features-section .section-description {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
-  
+
   /* Adjust spacing between sections on mobile */
   .enterprise-ai {
-    margin-top: 1.5rem !important; /* Reduced space from hero */
+    margin-top: 1.5rem; /* Reduced space from hero */
   }
-  
+
   /* Move enterprise header (title and subtitle) up to overlap video */
   .enterprise-header {
-    position: relative !important;
-    z-index: 10 !important;
-    margin-bottom: -100px !important; /* Pull panels up over video */
+    position: relative;
+    z-index: 10;
+    margin-bottom: -100px; /* Pull panels up over video */
     margin: 0 2em;
   }
-  
+
   /* Adjust panels container to overlap video background */
   .circular-panels-wrapper {
-    position: relative !important;
-    z-index: 10 !important;
-    margin-top: 150px !important; /* Position panels properly on mobile */
+    position: relative;
+    z-index: 10;
+    margin-top: 150px; /* Position panels properly on mobile */
   }
-  
+
   .features-section {
-    /* padding-top: 0.5rem !important; */
-    clear: both !important;
-    position: relative !important;
-    z-index: 2 !important;
+    /* padding-top: 0.5rem; */
+    clear: both;
+    position: relative;
+    z-index: 2;
   }
-  
+
   .hero + section {
-    margin-top: 1.5rem !important; /* Reduced space from hero */
-    padding-top: 0.5rem !important;
-    clear: both !important;
-    position: relative !important;
-    z-index: 2 !important;
+    margin-top: 1.5rem; /* Reduced space from hero */
+    padding-top: 0.5rem;
+    clear: both;
+    position: relative;
+    z-index: 2;
   }
-  
+
   /* Fix any overlapping with video strips */
   .video-strip,
   .background-videos {
-    margin-bottom: 2rem !important;
-    position: relative !important;
-    z-index: 1 !important;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
   }
-  
+
   /* Reduce section spacing */
   .section-spacing {
-    padding-bottom: 1rem !important;
+    padding-bottom: 1rem;
   }
 }
 
@@ -493,10 +500,10 @@ html, body {
   .enterprise-title .mobile-title,
   h2 {
     font-size: 2rem !important;
-    line-height: 1.1 !important;
-    margin-bottom: 1rem !important;
+    line-height: 1.1;
+    margin-bottom: 1rem;
   }
-  
+
   /* All subtitles match hero description on small screens */
   .features-section p,
   .section-description,
@@ -508,8 +515,8 @@ html, body {
   .ai-for-good-text p,
   .contact-header p,
   .expert-answers-content p {
-    font-size: 1rem !important;
-    line-height: 1.5 !important;
+    font-size: 1rem;
+    line-height: 1.5;
   }
 }
 
@@ -517,14 +524,14 @@ html, body {
 @media (max-width: 768px) {
   .language-switcher-dropdown {
     position: fixed;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    left: 50%;
+    transform: translateX(-50%);
     max-width: 90vw;
   }
-  
+
   .privacy-dropdown-content {
-    left: 0 !important;
-    transform: none !important;
+    left: 0;
+    transform: none;
     min-width: 140px;
     max-width: 90vw;
   }
@@ -535,16 +542,16 @@ html, body {
   /* Remove complex backdrop filters that may not work on Android Firefox */
   .glass-effect,
   .backdrop-blur {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
-  
+
   /* Simplify transparency effects */
   .language-switcher-dropdown {
-    background-color: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: none !important;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: none;
   }
-  
+
   /* Ensure proper contrast for transparent elements */
   .overlay-text {
     background-color: rgba(255, 255, 255, 0.9);
@@ -559,7 +566,7 @@ html, body {
     padding-left: max(1rem, env(safe-area-inset-left));
     padding-right: max(1rem, env(safe-area-inset-right));
   }
-  
+
   header {
     padding-left: max(2rem, env(safe-area-inset-left));
     padding-right: max(2rem, env(safe-area-inset-right));
@@ -572,51 +579,51 @@ html, body {
   @media (max-width: 768px) {
     /* Fix footer background stretching on iOS */
     body:not(.homepage) .site-footer {
-      background-size: cover, cover, cover, 100% 100% !important;
-      background-attachment: local, local, local, local !important;
-      -webkit-background-size: cover, cover, cover, 100% 100% !important;
-      will-change: auto !important;
-      transform: translateZ(0) !important;
+      background-size: cover, cover, cover, 100% 100%;
+      background-attachment: local, local, local, local;
+      -webkit-background-size: cover, cover, cover, 100% 100%;
+      will-change: auto;
+      transform: translateZ(0);
     }
-    
+
     /* Prevent background blur on iOS */
     body:not(.homepage) .site-footer::before {
-      -webkit-backface-visibility: hidden !important;
-      backface-visibility: hidden !important;
-      transform: translateZ(0) !important;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
     }
-    
+
     /* Ensure video controls work properly on iOS */
     #hero-video {
-      -webkit-playsinline: true !important;
-      playsinline: true !important;
-      -webkit-appearance: none !important;
+      -webkit-playsinline: true;
+      playsinline: true;
+      -webkit-appearance: none;
     }
-    
+
     /* Fix background videos on iOS */
     .background-video {
-      -webkit-playsinline: true !important;
-      playsinline: true !important;
-      -webkit-appearance: none !important;
-      -webkit-transform: translateZ(0) !important;
-      transform: translateZ(0) !important;
+      -webkit-playsinline: true;
+      playsinline: true;
+      -webkit-appearance: none;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
-    
+
     /* Ensure video container doesn't cause issues on iOS */
     .video-background-container {
-      -webkit-transform: translateZ(0) !important;
-      transform: translateZ(0) !important;
-      -webkit-backface-visibility: hidden !important;
-      backface-visibility: hidden !important;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
     }
-    
+
     /* iOS video control styling */
     #sound-toggle {
-      -webkit-appearance: none !important;
-      appearance: none !important;
-      -webkit-touch-callout: none !important;
-      -webkit-user-select: none !important;
-      touch-action: manipulation !important;
+      -webkit-appearance: none;
+      appearance: none;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
     }
   }
 }
@@ -634,33 +641,35 @@ html, body {
 /* Contact panels text color improvements */
 @media (max-width: 768px) {
   /* Make contact panel text more readable with white color */
+  /* Keep !important: overriding style.css .contact-method h3 color */
   .contact-method h3 {
     color: #f8f4f0 !important;
   }
-  
+
   .contact-method p {
     color: #f8f4f0 !important;
-    opacity: 0.9 !important;
+    opacity: 0.9;
   }
-  
+
   .contact-link {
     color: #f8f4f0 !important;
   }
-  
+
   .contact-link:hover {
-    color: #cfdcff !important;
-    border-bottom-color: #cfdcff !important;
+    color: #d4c4a0 !important;
+    border-bottom-color: #d4c4a0;
   }
 }
 
 /* Apply contact text color improvements to all screen sizes */
+/* Keep !important: overriding style.css .contact-method h3 { color: #1e3a2b } */
 .contact-method h3 {
   color: #f8f4f0 !important;
 }
 
 .contact-method p {
   color: #f8f4f0 !important;
-  opacity: 0.9 !important;
+  opacity: 0.9;
 }
 
 .contact-link {
@@ -668,8 +677,8 @@ html, body {
 }
 
 .contact-link:hover {
-  color: #cfdcff !important;
-  border-bottom-color: #cfdcff !important;
+  color: #d4c4a0 !important;
+  border-bottom-color: #d4c4a0;
 }
 
 .features-section {
@@ -679,27 +688,27 @@ html, body {
 
 /* Desktop-specific spacing adjustments */
 @media (min-width: 769px) {
-  
+
   /* Add more space after hero and create proper section spacing */
   .enterprise-ai {
-    margin-top: 4rem !important; /* Much more space from hero */
-    padding-top: 2rem !important;
+    margin-top: 4rem; /* Much more space from hero */
+    padding-top: 2rem;
   }
-  
+
   .enterprise-header {
-    position: relative !important;
-    z-index: 10 !important;
-    margin-bottom: -100px !important; /* Pull panels up over video on desktop */
+    position: relative;
+    z-index: 10;
+    margin-bottom: -100px; /* Pull panels up over video on desktop */
   }
-  
+
   .circular-panels-wrapper {
-    margin: 150px auto 0 auto !important;
-    position: relative !important;
-    z-index: 10 !important;
+    margin: 150px auto 0 auto;
+    position: relative;
+    z-index: 10;
   }
-  
+
   .video-background-container {
-    top: calc(56% + 0px) !important;
+    top: calc(56% + 0px);
   }
 }
 
@@ -707,87 +716,87 @@ html, body {
 @media (max-width: 768px) {
   /* Remove horizontal padding from circular panels wrapper on mobile */
   .circular-panels-wrapper {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .enterprise-ai .video-background-container {
     top: calc(62% + 0px);
   }
-  
+
   /* Show all 4 panels stacked vertically, full width matching section headers */
   .panels-container {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: repeat(4, auto) !important;
-    gap: 1rem !important;
-    margin: 0 !important;
-    padding-left: 1rem !important; /* Match section container padding */
-    padding-right: 1rem !important; /* Match section container padding */
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    min-height: auto !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 1rem;
+    margin: 0;
+    padding-left: 1rem; /* Match section container padding */
+    padding-right: 1rem; /* Match section container padding */
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: auto;
+    width: 100%;
+    box-sizing: border-box;
   }
-  
+
   /* Show all 4 panels on mobile in single column */
   .panels-container .panel {
-    display: block !important;
-    margin-top: 0 !important;
-    position: static !important;
-    z-index: auto !important;
+    display: block;
+    margin-top: 0;
+    position: static;
+    z-index: auto;
   }
-  
+
   /* Adjust panel styling for mobile - full width matching headers exactly */
   .panels-container .panel {
-    padding: 1.5rem !important; /* Consistent padding */
-    min-height: fit-content !important; /* Fit to content */
-    border-radius: 8px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin: 0 0 1rem 0 !important;
-    display: block !important;
-    overflow: visible !important;
+    padding: 1.5rem; /* Consistent padding */
+    min-height: fit-content; /* Fit to content */
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 0 1rem 0;
+    display: block;
+    overflow: visible;
   }
-  
+
   /* Adjust panel text for mobile - larger and more readable */
   .panel h3 {
-    font-size: 1.3rem !important;
-    margin-bottom: 0.75rem !important;
-    font-weight: 600 !important;
-    line-height: 1.3 !important;
-    hyphens: none !important;
-    word-break: normal !important;
-    -webkit-hyphens: none !important;
-    -moz-hyphens: none !important;
-    -ms-hyphens: none !important;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+    hyphens: none;
+    word-break: normal;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
   }
-  
+
   .panel p {
-    font-size: 1.1rem !important;
-    line-height: 1.5 !important;
-    hyphens: none !important;
-    word-break: normal !important;
-    overflow-wrap: break-word !important;
-    -webkit-hyphens: none !important;
-    -moz-hyphens: none !important;
-    -ms-hyphens: none !important;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    hyphens: none;
+    word-break: normal;
+    overflow-wrap: break-word;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
   }
-  
+
   /* Scale down panel art for mobile */
   .panel-art {
-    width: 60px !important;
-    height: 60px !important;
+    width: 60px;
+    height: 60px;
   }
-  
+
   /* Consistent panel art positioning for all panels on mobile */
   .panels-container .panel .panel-art {
-    top: -5px !important;
-    left: -5px !important;
-    width: 60px !important;
-    height: 60px !important;
-    bottom: auto !important;
-    right: auto !important;
+    top: -5px;
+    left: -5px;
+    width: 60px;
+    height: 60px;
+    bottom: auto;
+    right: auto;
   }
 }
 
@@ -802,12 +811,12 @@ html, body {
     flex-wrap: wrap;
     gap: 1rem;
   }
-  
+
   /* Logo stays on left */
   .logo {
     flex: 0 0 auto;
   }
-  
+
   /* Position language switcher absolute in top right */
   .header-actions {
     position: absolute;
@@ -815,23 +824,24 @@ html, body {
     right: 1rem;
     z-index: 10002;
   }
-  
+
   .language-switcher {
     position: relative;
   }
-  
+
   /* Hide header demo button - use navigation one instead */
+  /* Keep !important: style.css has .mobile-demo-button with !important */
   .mobile-demo-button {
     display: none !important;
   }
-  
+
   /* Navigation takes full width below logo */
   nav {
     flex: 1 1 100%;
     order: 2;
     margin-top: 0.5rem;
   }
-  
+
   nav ul {
     display: flex;
     flex-wrap: wrap;
@@ -841,27 +851,29 @@ html, body {
     margin: 0;
     padding: 0;
   }
-  
+
   nav ul li {
     margin: 0;
     list-style: none;
   }
-  
+
   /* Hide specific items on mobile */
+  /* Keep !important: style.css has these with !important */
   .mobile-hide {
     display: none !important;
   }
-  
+
   /* Show mobile-only items */
+  /* Keep !important: style.css has .mobile-only { display: none } */
   .mobile-only {
     display: inline-block !important;
   }
-  
+
   /* Style mobile demo button as regular nav item */
   .mobile-only a {
-    background: #cfdcff;
+    background: #d4c4a0;
     color: #2d3c34;
-    border: 2px solid #cfdcff;
+    border: 2px solid #d4c4a0;
     border-radius: 20px;
     padding: 0.5rem 1rem;
     font-weight: 600;
@@ -869,16 +881,91 @@ html, body {
     transition: all 0.3s ease;
     white-space: nowrap;
   }
-  
+
   .mobile-only a:hover {
-    background: #b8ccff;
-    border-color: #b8ccff;
+    background: #e8ddc7;
+    border-color: #e8ddc7;
     transform: translateY(-1px);
+  }
+}
+
+/* ===== Hamburger Menu ===== */
+
+/* Hide hamburger on desktop */
+.hamburger-menu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hamburger button */
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 10003;
+    order: 1;
+    flex-shrink: 0;
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #2d3c34;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Animate to X when active */
+  .hamburger-menu.is-active .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburger-menu.is-active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.is-active .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Hide nav links by default on mobile */
+  /* Keep !important: JS toggles .nav-open class */
+  nav ul#main-nav-links {
+    display: none !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  /* Show nav when toggled open */
+  nav ul#main-nav-links.nav-open {
+    display: flex !important;
+  }
+
+  /* When hamburger menu is open, show all items including mobile-hide ones */
+  nav ul#main-nav-links.nav-open li.mobile-hide {
+    display: list-item !important;
+  }
+
+  /* Nav takes full width below header row */
+  nav {
+    flex: 1 1 100%;
+    order: 3;
   }
 }
 
 /* Desktop Header Layout - Fix positioning */
 @media (min-width: 769px) {
+  /* Keep !important: fighting mobile-first rules and style.css !important rules */
   .mobile-only {
     display: none !important;
   }
@@ -890,64 +977,71 @@ html, body {
   nav ul li.mobile-hide {
     display: revert !important;
   }
-  
+
+  /* Ensure hamburger stays hidden on desktop */
+  .hamburger-menu {
+    display: none !important;
+  }
+
   /* Restore proper desktop header layout */
   header {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    flex-wrap: nowrap !important;
-    padding: 2rem 4rem !important;
-    gap: 0 !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 2rem 4rem;
+    gap: 0;
   }
-  
+
   .logo {
-    flex: 0 0 auto !important;
-    order: 1 !important;
+    flex: 0 0 auto;
+    order: 1;
   }
-  
+
   nav {
-    flex: 1 1 auto !important;
-    order: 2 !important;
-    margin: 0 !important;
-    display: flex !important;
-    justify-content: center !important;
+    flex: 1 1 auto;
+    order: 2;
+    margin: 0;
+    display: flex;
+    justify-content: center;
   }
-  
+
   .header-actions {
-    flex: 0 0 auto !important;
-    order: 3 !important;
-    position: static !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 1rem !important;
-    top: auto !important;
-    right: auto !important;
+    flex: 0 0 auto;
+    order: 3;
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    top: auto;
+    right: auto;
   }
-  
+
   .language-switcher {
-    position: static !important;
+    position: static;
   }
-  
+
   /* Show desktop demo button, hide mobile one */
+  /* Keep !important: fighting style.css .mobile-demo-button { display: none !important } */
   .mobile-demo-button {
     display: inline-block !important;
   }
-  
+
   /* Desktop title display */
+  /* Keep !important: fighting mobile rules */
   .enterprise-title .desktop-title {
     display: block !important;
   }
-  
+
   .enterprise-title .mobile-title {
     display: none !important;
   }
-  
+
   /* Features section desktop title display */
   .features-header h2 .desktop-title {
     display: block !important;
   }
-  
+
   .features-header h2 .mobile-title {
     display: none !important;
   }
@@ -961,175 +1055,176 @@ html, body {
     opacity: 0;
     pointer-events: none;
   }
-  
+
   #hero-video {
     opacity: 1;
   }
-  
+
   /* Reduce space between header and hero section on mobile */
   .hero {
-    padding-top: 1rem !important;
-    margin-top: 0 !important;
+    padding-top: 1rem;
+    margin-top: 0;
   }
-  
+
   .hero-content {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    gap: 1rem !important;
+    margin-top: 0;
+    padding-top: 0;
+    gap: 1rem;
   }
-  
+
   /* Fix hero-image container sizing on mobile */
   .hero-image {
-    flex: none !important;
-    width: 100% !important;
-    max-width: 400px !important;
-    height: 300px !important;
-    aspect-ratio: 4/3 !important;
-    margin: 1rem auto !important; /* Reduced from 2rem to 1rem */
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    aspect-ratio: 4/3;
+    margin: 1rem auto; /* Reduced from 2rem to 1rem */
     position: relative;
     overflow: hidden;
   }
-  
+
   /* Ensure first video shows poster frame on mobile */
   #hero-video {
     poster: url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Davinci_the_painter_painting_a_robot_in_a_line_art.webp');
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
   }
-  
+
   /* Also fix the poster image */
   .davinci-image {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
   }
-  
+
   .hero-video {
     max-width: 100%;
     height: auto;
   }
-  
+
   /* Disable complex video cycling on mobile for better performance */
   .background-video {
     display: none;
   }
-  
+
   /* Show only the default background video on mobile */
   #background-video-default {
     display: block;
   }
-  
+
   /* Fix mobile features section layout */
   .features-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 2rem !important;
-    align-items: center !important;
-    text-align: center !important;
-    padding: 0 1rem !important;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
   }
-  
+
   .feature-item {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-    max-width: 280px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 280px;
   }
-  
+
   .feature-item h3 {
-    margin-top: 1rem !important;
-    margin-bottom: 0.5rem !important;
-    font-size: 1.3rem !important;
-    line-height: 1.2 !important;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    line-height: 1.2;
   }
-  
+
   .feature-item p {
-    margin-top: 0.5rem !important;
-    line-height: 1.4 !important;
-    font-size: 0.95rem !important;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+    font-size: 0.95rem;
   }
-  
+
   /* Center CTA buttons better on mobile - side by side */
   .cta-buttons {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0.5rem !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin: 0.3rem auto 0 auto !important;
-    padding: 0 1rem !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    margin: 0.3rem auto 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+    box-sizing: border-box;
   }
-  
+
   /* Only target CTA buttons in the hero section */
   .hero .cta-button,
   .hero .primary-button,
   .hero .secondary-button {
-    width: 300px !important;
-    max-width: 85% !important;
-    text-align: center !important;
-    justify-content: center !important;
-    align-items: center !important;
-    display: flex !important;
-    white-space: nowrap !important;
-    margin: 0 auto !important;
+    width: 300px;
+    max-width: 85%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    white-space: nowrap;
+    margin: 0 auto;
   }
-  
+
   /* Extra specific override for Request demo button centering */
   .hero .cta-buttons .primary-button {
-    text-align: center !important;
-    justify-content: center !important;
-    align-items: center !important;
-    display: flex !important;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
   }
-  
+
   /* Keep header Request demo button normal size */
   .mobile-demo-button,
   header .cta-button {
-    width: auto !important;
-    max-width: none !important;
-    margin: 0 !important;
-    min-width: 120px !important;
-    font-size: 0.85rem !important;
-    padding: 0.5rem 1rem !important;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    min-width: 120px;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
   }
-  
+
   /* Ensure sound toggle button is visible and functional on mobile */
+  /* Keep !important on display: earlier rule in this file hides it */
   #sound-toggle {
     display: block !important;
-    position: absolute !important;
-    bottom: 10px !important;
-    right: 10px !important;
-    z-index: 1000 !important;
-    background: rgba(45, 60, 52, 0.8) !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 4px !important;
-    padding: 8px 16px !important;
-    font-size: 12px !important;
-    font-weight: 600 !important;
-    cursor: pointer !important;
-    opacity: 0.9 !important;
-    transition: all 0.3s ease !important;
-    pointer-events: auto !important;
-    user-select: none !important;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+    background: rgba(45, 60, 52, 0.8);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    user-select: none;
   }
-  
+
   #sound-toggle:hover,
   #sound-toggle:focus,
   #sound-toggle:active {
-    opacity: 1 !important;
-    background: rgba(45, 60, 52, 0.95) !important;
-    transform: translateY(-1px) !important;
+    opacity: 1;
+    background: rgba(45, 60, 52, 0.95);
+    transform: translateY(-1px);
   }
 }
 
@@ -1170,7 +1265,7 @@ html, body {
     opacity: 0.1;
     background-repeat: no-repeat;
   }
-  
+
   .enterprise-ai.static-images-mode {
     min-height: 400px;
     background: linear-gradient(135deg, rgba(248, 244, 240, 0.95) 0%, rgba(232, 221, 212, 0.95) 100%);
@@ -1181,253 +1276,254 @@ html, body {
 @media (max-width: 400px) {
   /* Header positioning fixes */
   .header-actions {
-    right: 0.5rem !important;
-    top: 0.8rem !important;
-    z-index: 1000 !important;
+    right: 0.5rem;
+    top: 0.8rem;
+    z-index: 1000;
   }
-  
+
   .language-switcher-current {
-    font-size: 0.75rem !important;
-    padding: 0.25rem 0.5rem !important;
-    white-space: nowrap !important;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
   }
-  
+
   /* Logo positioning on very small screens */
   .logo {
-    margin-left: 0.5rem !important;
+    margin-left: 0.5rem;
   }
-  
+
   .logo img {
-    max-height: 35px !important;
-    width: auto !important;
+    max-height: 35px;
+    width: auto;
   }
-  
+
   .logo span {
-    font-size: 1.1rem !important;
+    font-size: 1.1rem;
   }
-  
+
   /* Navigation fixes for iPhone 12 Pro */
   nav ul {
-    padding-right: 0.5rem !important;
-    margin: 0 !important;
+    padding-right: 0.5rem;
+    margin: 0;
   }
-  
+
   nav ul li {
-    margin: 0 0.3rem !important;
+    margin: 0 0.3rem;
   }
-  
+
   nav ul li a {
-    font-size: 0.85rem !important;
-    padding: 0.3rem 0.5rem !important;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.5rem;
   }
-  
+
   /* Hero section adjustments */
   .hero-content {
-    padding: 0.5rem !important;
-    gap: 0.8rem !important;
+    padding: 0.5rem;
+    gap: 0.8rem;
   }
-  
+
   .hero-text h1 {
-    font-size: 1.6rem !important;
-    line-height: 1.1 !important;
-    margin-bottom: 0.8rem !important;
+    font-size: 1.6rem;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
   }
-  
+
   .hero-text p {
-    font-size: 0.9rem !important;
-    line-height: 1.4 !important;
-    margin-bottom: 1rem !important;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
   }
-  
+
   /* Feature list in hero - better spacing */
   .hero .features {
-    gap: 0.5rem !important;
-    margin: 1rem 0 !important;
+    gap: 0.5rem;
+    margin: 1rem 0;
   }
-  
+
   .hero .feature {
-    font-size: 0.8rem !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    text-align: left !important;
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 0.3rem !important;
+    font-size: 0.8rem;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
   }
-  
+
   .hero .feature-icon {
-    font-size: 1.5rem !important;
-    min-width: 1.5rem !important;
-    max-width: 1.5rem !important;
-    height: 1.5rem !important;
-    margin-right: 0 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-shrink: 0 !important;
+    font-size: 1.5rem;
+    min-width: 1.5rem;
+    max-width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
-  
+
   /* Make heart icon specifically smaller */
   .hero .feature-icon-heart {
     font-size: 0.75rem !important;
   }
-  
+
   /* Disable hyphenation for hero feature text - better mobile readability */
   .hero .feature-text {
-    hyphens: none !important;
-    word-break: keep-all !important;
-    overflow-wrap: break-word !important;
-    line-height: 1.3 !important;
+    hyphens: none;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    line-height: 1.3;
   }
-  
+
   /* Ensure feature containers can wrap naturally */
   .hero .feature {
-    flex-wrap: wrap !important;
-    max-width: 100% !important;
-    margin-bottom: 0.2rem !important;
-    padding: 0.1rem 0 !important;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-bottom: 0.2rem;
+    padding: 0.1rem 0;
   }
-  
+
   /* Mobile layout for hero features - allow third item to wrap */
   .hero .features {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: flex-start !important;
-    gap: 0.1rem !important;
-    margin: 0.3rem auto 0.4rem auto !important;
-    max-width: 300px !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.1rem;
+    margin: 0.3rem auto 0.4rem auto;
+    max-width: 300px;
   }
-  
+
   /* First two features on same row, third on new line */
   .hero .feature:nth-child(1),
   .hero .feature:nth-child(2) {
-    flex: 1 1 calc(50% - 0.5rem) !important;
-    min-width: 0 !important;
+    flex: 1 1 calc(50% - 0.5rem);
+    min-width: 0;
   }
-  
+
   .hero .feature:nth-child(3) {
-    flex: 1 1 100% !important;
-    justify-self: flex-start !important;
+    flex: 1 1 100%;
+    justify-self: flex-start;
   }
 }
 
 /* Force mobile hero layout on all mobile devices */
 @media (max-width: 480px) {
   .hero .features {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: flex-start !important;
-    gap: 0.1rem !important;
-    margin: 0.3rem auto 0.4rem auto !important;
-    max-width: 300px !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.1rem;
+    margin: 0.3rem auto 0.4rem auto;
+    max-width: 300px;
   }
-  
+
   .hero .feature:nth-child(1),
   .hero .feature:nth-child(2) {
-    flex: 1 1 calc(50% - 0.5rem) !important;
-    min-width: 0 !important;
-    margin-bottom: 0.2rem !important;
-    padding: 0.1rem 0 !important;
+    flex: 1 1 calc(50% - 0.5rem);
+    min-width: 0;
+    margin-bottom: 0.2rem;
+    padding: 0.1rem 0;
   }
-  
+
   .hero .feature:nth-child(3) {
-    flex: 1 1 100% !important;
-    justify-self: flex-start !important;
-    margin-bottom: 0.2rem !important;
-    padding: 0.1rem 0 !important;
+    flex: 1 1 100%;
+    justify-self: flex-start;
+    margin-bottom: 0.2rem;
+    padding: 0.1rem 0;
   }
-  
+
   /* CTA buttons - more touch-friendly */
   .cta-buttons {
-    flex-direction: column !important;
-    gap: 0.5rem !important;
-    align-items: stretch !important;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
   }
-  
+
   .primary-button,
   .secondary-button {
-    min-height: 44px !important;
-    font-size: 0.9rem !important;
-    padding: 0.7rem 1.2rem !important;
-    border-radius: 8px !important;
+    min-height: 44px;
+    font-size: 0.9rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
   }
-  
+
   /* Enterprise section title */
   .enterprise-title .mobile-title {
-    font-size: 1.6rem !important;
-    line-height: 1.1 !important;
+    font-size: 1.6rem;
+    line-height: 1.1;
   }
-  
+
   /* Panel text in enterprise section - improved mobile readability */
   .panel h3 {
-    font-size: 1.3rem !important;
-    line-height: 1.3 !important;
-    margin-bottom: 0.75rem !important;
-    font-weight: 600 !important;
-    hyphens: none !important;
-    word-break: normal !important;
-    -webkit-hyphens: none !important;
-    -moz-hyphens: none !important;
-    -ms-hyphens: none !important;
+    font-size: 1.3rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    hyphens: none;
+    word-break: normal;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
   }
-  
+
   .panel p {
-    font-size: 1.1rem !important;
-    line-height: 1.5 !important;
-    hyphens: none !important;
-    word-break: normal !important;
-    overflow-wrap: break-word !important;
-    -webkit-hyphens: none !important;
-    -moz-hyphens: none !important;
-    -ms-hyphens: none !important;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    hyphens: none;
+    word-break: normal;
+    overflow-wrap: break-word;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
   }
-  
+
   /* Features section title */
   .features-header h2 .mobile-title {
-    font-size: 1.6rem !important;
-    line-height: 1.1 !important;
+    font-size: 1.6rem;
+    line-height: 1.1;
   }
-  
+
   /* Journal pages - ensure they fit */
   .journal-pages-container {
-    padding: 0 0.5rem !important;
-    overflow-x: visible !important;
+    padding: 0 0.5rem;
+    overflow-x: visible;
   }
-  
+
   .journal-page {
-    min-width: 28px !important;
-    width: 28px !important;
-    margin: 0 0.5px !important;
+    min-width: 28px;
+    width: 28px;
+    margin: 0 0.5px;
   }
-  
+
   /* Prevent text overflow on small screens */
   * {
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
-  
+
   /* Improve touch targets */
+  /* Keep !important: style.css has same rule with !important */
   button, a, [role="button"] {
     min-height: 32px !important;
   }
-  
+
   /* Footer adjustments */
   .footer-content {
-    padding: 1rem 0.5rem !important;
+    padding: 1rem 0.5rem;
   }
-  
+
   .footer-section {
-    margin-bottom: 1rem !important;
+    margin-bottom: 1rem;
   }
-  
+
   .footer-section h3 {
-    font-size: 1rem !important;
-    margin-bottom: 0.5rem !important;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
   }
-  
+
   .footer-section a {
-    font-size: 0.85rem !important;
-    line-height: 1.4 !important;
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 }
 
@@ -1453,153 +1549,170 @@ html, body {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .mobile-nav-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
   }
-  
+
   .mobile-nav-items {
     display: flex;
     gap: 1rem;
     align-items: center;
   }
-}\n\n/* Additional iPhone 12 Pro fixes for specific viewport issues */
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Additional iPhone 12 Pro fixes for specific viewport issues */
 @media (max-width: 390px) {
   /* Ensure no horizontal scrolling on exact iPhone 12 Pro width */
   html {
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
-  
+
   body {
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
-    position: relative !important;
+    overflow-x: hidden;
+    max-width: 100vw;
+    position: relative;
   }
-  
+
   /* Fix hero image container that might overflow */
   .hero-image {
-    max-width: 350px !important;
-    margin: 0.5rem auto !important;
+    max-width: 350px;
+    margin: 0.5rem auto;
   }
-  
+
   /* Constrain wide SVG elements */
   .background-sketches,
   .feature-bg-sketch {
-    max-width: 100vw !important;
-    overflow: hidden !important;
+    max-width: 100vw;
+    overflow: hidden;
   }
-  
+
   /* Fix enterprise panels container */
   .circular-panels-wrapper {
-    max-width: 100% !important;
-    overflow: hidden !important;
-    padding: 0 0.5rem !important;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0 0.5rem;
   }
-  
+
   .panels-container {
-    max-width: 100% !important;
-    gap: 0.5rem !important;
+    max-width: 100%;
+    gap: 0.5rem;
   }
-  
+
   /* Journal showcase container */
   .davinci-journal-showcase {
-    max-width: 100% !important;
-    overflow: hidden !important;
-    padding: 0 0.25rem !important;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0 0.25rem;
   }
-  
+
   /* Language switcher dropdown positioning */
   .language-switcher-dropdown {
-    right: 0 !important;
-    left: auto !important;
-    min-width: 200px !important;
-    max-width: 280px !important;
+    right: 0;
+    left: auto;
+    min-width: 200px;
+    max-width: 280px;
   }
-  
+
   /* Fix any potentially wide flex containers */
   .features-container,
   .enterprise-content,
   .hero-content {
-    max-width: 100vw !important;
-    box-sizing: border-box !important;
+    max-width: 100vw;
+    box-sizing: border-box;
   }
-  
+
   /* Fix potential horizontal scroll from sections */
   section {
-    max-width: 100vw !important;
-    overflow-x: hidden !important;
-    box-sizing: border-box !important;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
-  
+
   /* Improve team section on iPhone 12 Pro */
   .team-grid {
-    grid-template-columns: 1fr !important;
-    gap: 1rem !important;
-    padding: 0 0.5rem !important;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 0.5rem;
   }
-  
+
   /* Fix footer width issues */
   .site-footer {
-    max-width: 100vw !important;
-    overflow-x: hidden !important;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
-  
+
   .footer-content {
-    max-width: 100% !important;
-    padding: 1rem 0.5rem !important;
+    max-width: 100%;
+    padding: 1rem 0.5rem;
   }
 }
 
 /* Extra fixes for very narrow screens (iPhone SE and smaller) */
 @media (max-width: 375px) {
   .hero-text h1 {
-    font-size: 1.4rem !important;
+    font-size: 1.4rem;
   }
-  
+
   .enterprise-title .mobile-title,
   .features-header h2 .mobile-title {
-    font-size: 1.4rem !important;
+    font-size: 1.4rem;
   }
-  
+
   .journal-page {
-    min-width: 24px !important;
-    width: 24px !important;
+    min-width: 24px;
+    width: 24px;
   }
-  
+
   .logo span {
-    font-size: 1rem !important;
+    font-size: 1rem;
   }
-  
+
   nav ul li a {
-    font-size: 0.8rem !important;
-    padding: 0.25rem 0.4rem !important;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.4rem;
   }
 }
 
 /* FINAL: Fix overflow and ensure proper padding on mobile panels */
 @media (max-width: 768px) {
   .enterprise-ai .panels-container .panel {
-    padding: 1.5rem !important; /* Slightly smaller but equal padding */
-    margin-bottom: 1rem !important;
-    min-height: fit-content !important; /* Fit to content */
-    height: auto !important; /* Natural height based on content */
-    display: block !important; /* Use block instead of flex */
-    overflow: visible !important; /* Allow content to show */
+    padding: 1.5rem; /* Slightly smaller but equal padding */
+    margin-bottom: 1rem;
+    min-height: fit-content; /* Fit to content */
+    height: auto; /* Natural height based on content */
+    display: block; /* Use block instead of flex */
+    overflow: visible; /* Allow content to show */
   }
-  
+
   .enterprise-ai .panels-container .panel h3 {
-    margin-top: 0 !important;
-    margin-bottom: 0.75rem !important;
-    font-size: 1.2rem !important; /* Slightly smaller for better fit */
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem; /* Slightly smaller for better fit */
   }
-  
+
   .enterprise-ai .panels-container .panel p {
-    margin-bottom: 0 !important;
-    font-size: 1rem !important; /* Slightly smaller for better fit */
-    line-height: 1.4 !important;
+    margin-bottom: 0;
+    font-size: 1rem; /* Slightly smaller for better fit */
+    line-height: 1.4;
   }
 }

@@ -5,8 +5,6 @@
 {%- set translation_path = "data/translations/" ~ current_lang ~ ".json" -%}
 {%- set translations = load_data(path=translation_path) -%}
 
-<!-- Include Header -->
-{% include "partials/header.html" %}
 
 <style>
 /* Support page specific styles with sidebar */
@@ -817,7 +815,7 @@
 }
 
 .help-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
 }
 
 .help-card-icon {
@@ -1356,7 +1354,7 @@
                 </section>
 
                 <!-- Popular Topics Section -->
-                <section class="support-section" style="background-color: #f9f9f9;">
+                <section class="support-section bg-light">
                     <div class="container">
                         <h2 class="section-title">{{ translations.support.popular_topics.title | default(value="Popular Topics") }}</h2>
                         
@@ -1484,119 +1482,119 @@
                 </section>
 
                 <!-- Language Model Compatibility Section -->
-                <section id="language-model-compatibility" class="support-section" style="background-color: #f9f9f9;">
+                <section id="language-model-compatibility" class="support-section bg-light">
                     <div class="container">
                         <h2 class="section-title">{{ translations.support.model_compatibility.title | default(value="Language Model Compatibility") }}</h2>
                         <p class="section-subtitle">{{ translations.support.model_compatibility.description | default(value="Comprehensive overview of supported language models across all major AI providers") }}</p>
                         
-                        <div style="background: white; border-radius: 12px; padding: 3rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); margin-bottom: 2rem;">
-                            <div style="text-align: center; margin-bottom: 3rem;">
-                                <div class="help-card-icon" style="margin: 0 auto 1.5rem; width: 120px; height: 120px; font-size: 3rem;">
+                        <div class="model-card">
+                            <div class="model-card-header">
+                                <div class="help-card-icon">
                                     <i class="fas fa-brain"></i>
                                 </div>
-                                <h3 style="color: #2d3c34; font-size: 1.8rem; margin-bottom: 1rem;">{{ translations.support.model_compatibility.universal_support.title | default(value="Universal Model Support") }}</h3>
-                                <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">{{ translations.support.model_compatibility.universal_support.description | default(value="Our platform provides unified APIs and governance frameworks that work seamlessly across all major AI providers, enabling you to switch between models or use multiple providers simultaneously based on your specific use case requirements.") }}</p>
+                                <h3 class="model-card-title">{{ translations.support.model_compatibility.universal_support.title | default(value="Universal Model Support") }}</h3>
+                                <p class="model-card-description">{{ translations.support.model_compatibility.universal_support.description | default(value="Our platform provides unified APIs and governance frameworks that work seamlessly across all major AI providers, enabling you to switch between models or use multiple providers simultaneously based on your specific use case requirements.") }}</p>
                             </div>
                             
-                            <div class="model-compatibility-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
-                                <div style="background: linear-gradient(135deg, rgba(139, 115, 85, 0.05), rgba(139, 115, 85, 0.1)); padding: 2rem; border-radius: 12px; border-left: 4px solid #8b7355;">
-                                    <h4 style="color: #2d3c34; margin-bottom: 1.5rem; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem;">
-                                        <i class="fas fa-wrench" style="color: #8b7355;"></i>
+                            <div class="model-compat-grid">
+                                <div class="provider-category-card fine-tuning">
+                                    <h4 class="provider-category-title">
+                                        <i class="fas fa-wrench icon-fine-tuning"></i>
                                         {{ translations.support.model_compatibility.fine_tuning_title | default(value="Fine-Tuning Support") }}
                                     </h4>
                                     
-                                    <div style="margin-bottom: 1.5rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-                                            <i class="fas fa-circle" style="color: #2d3c34; font-size: 0.5rem;"></i>
-                                            <strong style="color: #2d3c34;">OpenAI:</strong>
+                                    <div class="provider-item">
+                                        <div class="provider-label">
+                                            <i class="fas fa-circle provider-bullet"></i>
+                                            <strong class="provider-name">OpenAI:</strong>
                                         </div>
-                                        <div style="margin-left: 1rem; color: #4a5568; font-size: 0.95rem; margin-bottom: 1rem;">
+                                        <div class="provider-models">
                                             GPT-4o • GPT-4o mini • GPT-3.5 Turbo
                                         </div>
                                     </div>
-                                    
-                                    <div style="margin-bottom: 1.5rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-                                            <i class="fas fa-circle" style="color: #2d3c34; font-size: 0.5rem;"></i>
-                                            <strong style="color: #2d3c34;">AWS Bedrock:</strong>
+
+                                    <div class="provider-item">
+                                        <div class="provider-label">
+                                            <i class="fas fa-circle provider-bullet"></i>
+                                            <strong class="provider-name">AWS Bedrock:</strong>
                                         </div>
-                                        <div style="margin-left: 1rem; color: #4a5568; font-size: 0.95rem; margin-bottom: 1rem;">
+                                        <div class="provider-models">
                                             Claude 3 Haiku • Llama 3.2 series • Amazon Titan • Nova
                                         </div>
                                     </div>
-                                    
-                                    <div style="margin-bottom: 1.5rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-                                            <i class="fas fa-circle" style="color: #2d3c34; font-size: 0.5rem;"></i>
-                                            <strong style="color: #2d3c34;">Google Vertex AI:</strong>
+
+                                    <div class="provider-item">
+                                        <div class="provider-label">
+                                            <i class="fas fa-circle provider-bullet"></i>
+                                            <strong class="provider-name">Google Vertex AI:</strong>
                                         </div>
-                                        <div style="margin-left: 1rem; color: #4a5568; font-size: 0.95rem; margin-bottom: 1rem;">
+                                        <div class="provider-models">
                                             Gemini 2.0 Flash • Gemini 2.5 models (multimodal)
                                         </div>
                                     </div>
-                                    
-                                    <div style="margin-bottom: 1.5rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-                                            <i class="fas fa-circle" style="color: #2d3c34; font-size: 0.5rem;"></i>
-                                            <strong style="color: #2d3c34;">Cloudflare Workers AI:</strong>
+
+                                    <div class="provider-item">
+                                        <div class="provider-label">
+                                            <i class="fas fa-circle provider-bullet"></i>
+                                            <strong class="provider-name">Cloudflare Workers AI:</strong>
                                         </div>
-                                        <div style="margin-left: 1rem; color: #4a5568; font-size: 0.95rem;">
+                                        <div class="provider-models no-mb">
                                             Mistral • Llama • Gemma models (via LoRA)
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div style="background: linear-gradient(135deg, rgba(212, 196, 160, 0.05), rgba(212, 196, 160, 0.1)); padding: 2rem; border-radius: 12px; border-left: 4px solid #d4c4a0;">
-                                    <h4 style="color: #2d3c34; margin-bottom: 1.5rem; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem;">
-                                        <i class="fas fa-rocket" style="color: #d4c4a0;"></i>
+
+                                <div class="provider-category-card base-models">
+                                    <h4 class="provider-category-title">
+                                        <i class="fas fa-rocket icon-base-models"></i>
                                         {{ translations.support.model_compatibility.base_models_title | default(value="Base Models Available") }}
                                     </h4>
-                                    
-                                    <div style="margin-bottom: 1.5rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-                                            <i class="fas fa-circle" style="color: #2d3c34; font-size: 0.5rem;"></i>
-                                            <strong style="color: #2d3c34;">OpenAI:</strong>
+
+                                    <div class="provider-item">
+                                        <div class="provider-label">
+                                            <i class="fas fa-circle provider-bullet"></i>
+                                            <strong class="provider-name">OpenAI:</strong>
                                         </div>
-                                        <div style="margin-left: 1rem; color: #4a5568; font-size: 0.95rem; margin-bottom: 1rem;">
+                                        <div class="provider-models">
                                             GPT-4o series • o3/o3-pro reasoning • DALL-E 3 • Sora
                                         </div>
                                     </div>
-                                    
-                                    <div style="margin-bottom: 1.5rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-                                            <i class="fas fa-circle" style="color: #2d3c34; font-size: 0.5rem;"></i>
-                                            <strong style="color: #2d3c34;">AWS Bedrock:</strong>
+
+                                    <div class="provider-item">
+                                        <div class="provider-label">
+                                            <i class="fas fa-circle provider-bullet"></i>
+                                            <strong class="provider-name">AWS Bedrock:</strong>
                                         </div>
-                                        <div style="margin-left: 1rem; color: #4a5568; font-size: 0.95rem; margin-bottom: 1rem;">
+                                        <div class="provider-models">
                                             100+ models: Claude 3.7 • Llama 4 • Jamba 1.5
                                         </div>
                                     </div>
-                                    
-                                    <div style="margin-bottom: 1.5rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-                                            <i class="fas fa-circle" style="color: #2d3c34; font-size: 0.5rem;"></i>
-                                            <strong style="color: #2d3c34;">Google Vertex AI:</strong>
+
+                                    <div class="provider-item">
+                                        <div class="provider-label">
+                                            <i class="fas fa-circle provider-bullet"></i>
+                                            <strong class="provider-name">Google Vertex AI:</strong>
                                         </div>
-                                        <div style="margin-left: 1rem; color: #4a5568; font-size: 0.95rem; margin-bottom: 1rem;">
+                                        <div class="provider-models">
                                             200+ models: Gemini 2.5 • Imagen 4 • Veo
                                         </div>
                                     </div>
-                                    
-                                    <div style="margin-bottom: 1.5rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-                                            <i class="fas fa-circle" style="color: #2d3c34; font-size: 0.5rem;"></i>
-                                            <strong style="color: #2d3c34;">Cloudflare Workers AI:</strong>
+
+                                    <div class="provider-item">
+                                        <div class="provider-label">
+                                            <i class="fas fa-circle provider-bullet"></i>
+                                            <strong class="provider-name">Cloudflare Workers AI:</strong>
                                         </div>
-                                        <div style="margin-left: 1rem; color: #4a5568; font-size: 0.95rem;">
+                                        <div class="provider-models no-mb">
                                             Llama 4 Scout • DeepSeek R1 • Qwen • Mistral
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div style="text-align: center; margin-top: 2rem;">
-                            <a href="/api" class="help-card-button" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+
+                        <div class="text-center mt-3">
+                            <a href="/api" class="help-card-button d-inline-flex align-items-center gap-05">
                                 <i class="fas fa-code"></i>
                                 <span>{{ translations.support.model_compatibility.api_docs_button | default(value="View API Documentation") }}</span>
                             </a>
@@ -1612,7 +1610,7 @@
                         
                         <div class="contact-grid">
                             <div class="contact-form">
-                                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #2d3c34;">{{ translations.support.contact_form.title | default(value="Submit a Support Request") }}</h3>
+                                <h3 class="contact-form-title">{{ translations.support.contact_form.title | default(value="Submit a Support Request") }}</h3>
                                 
                                 <form id="support-form">
                                     <div class="form-group">
@@ -1625,7 +1623,7 @@
                                         <input class="form-input" type="email" id="email" name="email" placeholder="{{ translations.support.contact_form.email_placeholder | default(value="Your email address") }}" required>
                                     </div>
                                     
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div class="form-row-2col">
                                         <div class="form-group">
                                             <label class="form-label" for="subject">{{ translations.support.contact_form.subject_label | default(value="Subject") }}</label>
                                             <input class="form-input" type="text" id="subject" name="subject" placeholder="{{ translations.support.contact_form.subject_placeholder | default(value="Support request subject") }}" required>
@@ -1677,8 +1675,8 @@
                                             <i class="fas fa-envelope"></i>
                                         </div>
                                         <div>
-                                            <h4 style="margin: 0; color: #2d3c34;">{{ translations.support.contact_info.email.title | default(value="Email") }}</h4>
-                                            <p style="margin: 0; color: #666;"><a href="mailto:support@divinci.app">{{ translations.support.contact_info.email.value | default(value="support@divinci.app") }}</a></p>
+                                            <h4>{{ translations.support.contact_info.email.title | default(value="Email") }}</h4>
+                                            <p><a href="mailto:support@divinci.app">{{ translations.support.contact_info.email.value | default(value="support@divinci.app") }}</a></p>
                                         </div>
                                     </div>
                                     
@@ -1687,8 +1685,8 @@
                                             <i class="fas fa-comments"></i>
                                         </div>
                                         <div>
-                                            <h4 style="margin: 0; color: #2d3c34;">{{ translations.support.contact_info.chat.title | default(value="Live Chat") }}</h4>
-                                            <p style="margin: 0; color: #2d3c34 !important; opacity: 1 !important;">{{ translations.support.contact_info.chat.description | default(value="Available 9am-5pm PT<br>Monday-Friday") | safe }}</p>
+                                            <h4>{{ translations.support.contact_info.chat.title | default(value="Live Chat") }}</h4>
+                                            <p>{{ translations.support.contact_info.chat.description | default(value="Available 9am-5pm PT<br>Monday-Friday") | safe }}</p>
                                         </div>
                                     </div>
                                     
@@ -1697,14 +1695,14 @@
                                             <i class="fas fa-users"></i>
                                         </div>
                                         <div>
-                                            <h4 style="margin: 0; color: #2d3c34;">{{ translations.support.contact_info.community.title | default(value="Community") }}</h4>
-                                            <p style="margin: 0; color: #666;"><a href="/contact">{{ translations.support.contact_info.community.value | default(value="Divinci Forum") }}</a></p>
+                                            <h4>{{ translations.support.contact_info.community.title | default(value="Community") }}</h4>
+                                            <p><a href="/contact">{{ translations.support.contact_info.community.value | default(value="Divinci Forum") }}</a></p>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="support-hours">
-                                    <h4 style="color: #2d3c34; margin-bottom: 1rem;">{{ translations.support.hours.title | default(value="Support Hours") }}</h4>
+                                    <h4>{{ translations.support.hours.title | default(value="Support Hours") }}</h4>
                                     <table class="hours-table">
                                         <thead>
                                             <tr>
@@ -1830,8 +1828,8 @@
                 <!-- CTA Section -->
                 <section class="cta-section">
                     <div class="container">
-                        <h2 style="color: #2d3c34; margin-bottom: 1rem;">{{ translations.support.cta_section.title | default(value="Still Need Help?") }}</h2>
-                        <p style="color: #666; margin-bottom: 2rem;">{{ translations.support.cta_section.description | default(value="Our support team is ready to assist you with any questions or issues.") }}</p>
+                        <h2>{{ translations.support.cta_section.title | default(value="Still Need Help?") }}</h2>
+                        <p>{{ translations.support.cta_section.description | default(value="Our support team is ready to assist you with any questions or issues.") }}</p>
                         <a href="#contact-section" class="cta-button">
                             <i class="fas fa-envelope"></i>
                             <span>{{ translations.support.cta_section.button | default(value="Contact Support") }}</span>
@@ -1843,8 +1841,6 @@
     </div>
 </div>
 
-<!-- Include Footer -->
-{% include "partials/footer.html" %}
 
 <script>
 // Sidebar navigation functionality

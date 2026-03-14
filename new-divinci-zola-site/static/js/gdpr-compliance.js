@@ -39,12 +39,10 @@ class GDPRCompliance {
       } else {
         // For non-EU users, silently enable essential cookies only
         this.saveConsent({ analytics: false, marketing: false }, false);
-        console.log('GDPR: Non-EU user detected - essential cookies only');
       }
     } catch (error) {
-      console.warn('GDPR: Location detection failed, assuming non-EU', error);
-      // Conservative: assume non-EU if detection fails
-      this.saveConsent({ analytics: false, marketing: false }, false);
+      // GDPR-compliant: show banner when location is unknown
+      this.showCookieBanner();
     }
   }
 
@@ -61,13 +59,11 @@ class GDPRCompliance {
     
     if (euTimezones.some(tz => timezone.includes(tz))) {
       this.isEUUser = true;
-      console.log('GDPR: EU timezone detected');
       return;
     }
 
     // If not EU timezone, assume non-EU (most websites do this)
     this.isEUUser = false;
-    console.log('GDPR: Non-EU timezone detected');
   }
 
   loadSavedConsent() {
@@ -79,10 +75,9 @@ class GDPRCompliance {
         this.analyticsEnabled = consentData.analytics || false;
         this.marketingEnabled = consentData.marketing || false;
         
-        console.log('GDPR: Loaded existing consent preferences');
       }
     } catch (error) {
-      console.warn('GDPR: Error loading consent preferences', error);
+      // Consent loading failed, will show banner
     }
   }
 
@@ -102,9 +97,8 @@ class GDPRCompliance {
       this.analyticsEnabled = preferences.analytics;
       this.marketingEnabled = preferences.marketing;
       
-      console.log('GDPR: Consent preferences saved');
     } catch (error) {
-      console.warn('GDPR: Error saving consent preferences', error);
+      // Consent saving failed silently
     }
   }
 
@@ -380,7 +374,7 @@ class GDPRCompliance {
   initializeAnalytics() {
     if (this.analyticsEnabled) {
       // Initialize analytics only if consent given
-      console.log('GDPR: Analytics enabled - initializing tracking');
+      // Analytics enabled - initializing tracking
       
       // Example: Initialize Google Analytics
       // gtag('config', 'GA_MEASUREMENT_ID');
@@ -388,7 +382,7 @@ class GDPRCompliance {
       // Track page view
       this.trackPageView();
     } else {
-      console.log('GDPR: Analytics disabled by user preference');
+      // Analytics disabled by user preference
     }
   }
 
@@ -396,7 +390,7 @@ class GDPRCompliance {
     if (!this.analyticsEnabled) return;
     
     // Example analytics tracking
-    console.log('GDPR: Tracking page view (analytics enabled)');
+    // Track page view
     
     // You would implement actual analytics here
     // gtag('event', 'page_view', { page_location: window.location.href });
@@ -405,7 +399,7 @@ class GDPRCompliance {
   trackEvent(eventName, parameters = {}) {
     if (!this.analyticsEnabled) return;
     
-    console.log('GDPR: Tracking event:', eventName, parameters);
+    // Track event
     
     // Example event tracking
     // gtag('event', eventName, parameters);
@@ -418,7 +412,7 @@ class GDPRCompliance {
     this.analyticsEnabled = false;
     this.marketingEnabled = false;
     
-    console.log('GDPR: Consent revoked');
+    // Consent revoked
     
     // Show banner again
     this.showCookieBanner();
@@ -457,7 +451,7 @@ class GDPRCompliance {
     link.download = 'divinci-user-data.json';
     link.click();
     
-    console.log('GDPR: User data exported');
+    // User data exported
   }
 
   deleteUserData() {
@@ -468,7 +462,7 @@ class GDPRCompliance {
       // You would implement actual data deletion here
       
       alert('Your data has been deleted.');
-      console.log('GDPR: User data deleted');
+      // User data deleted
       
       // Reload page to reset state
       window.location.reload();

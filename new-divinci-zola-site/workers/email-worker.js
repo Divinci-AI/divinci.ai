@@ -7,12 +7,16 @@ import { createMimeMessage } from 'mimetext';
  */
 export default {
   async fetch(request, env, ctx) {
+    const allowedOrigins = ['https://divinci.ai', 'https://dev.divinci.ai', 'https://staging.divinci.ai'];
+    const requestOrigin = request.headers.get('Origin') || '';
+    const corsOrigin = allowedOrigins.includes(requestOrigin) ? requestOrigin : 'https://divinci.ai';
+
     // Handle CORS preflight requests
     if (request.method === 'OPTIONS') {
       return new Response(null, {
         status: 200,
         headers: {
-          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Origin': corsOrigin,
           'Access-Control-Allow-Methods': 'POST, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type',
           'Access-Control-Max-Age': '86400',
@@ -43,7 +47,7 @@ export default {
             status: 400,
             headers: { 
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*'
+              'Access-Control-Allow-Origin': corsOrigin
             }
           }
         );
@@ -61,7 +65,7 @@ export default {
             status: 400,
             headers: { 
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*'
+              'Access-Control-Allow-Origin': corsOrigin
             }
           }
         );
@@ -71,14 +75,19 @@ export default {
       const userAgent = request.headers.get('User-Agent') || '';
       const clientIP = request.headers.get('CF-Connecting-IP') || '';
       
+      // Sanitize fields to prevent header injection
+      const sanitize = (str) => str.replace(/[\r\n]/g, ' ').trim();
+      const safeName = sanitize(formData.name);
+      const safeSubject = sanitize(formData.subject);
+
       // Create email content
-      const emailSubject = `Contact Form: ${formData.subject}`;
+      const emailSubject = `Contact Form: ${safeSubject}`;
       const emailBody = `
 New contact form submission from divinci.ai:
 
-Name: ${formData.name}
+Name: ${safeName}
 Email: ${formData.email}
-Subject: ${formData.subject}
+Subject: ${safeSubject}
 Priority: ${formData.priority || 'Not specified'}
 Category: ${formData.category || 'Not specified'}
 
@@ -100,7 +109,14 @@ Timestamp: ${new Date().toISOString()}
       });
       msg.setRecipient('support@divinci.net');
       msg.setSubject(emailSubject);
-      msg.setHeader('Reply-To', formData.email);
+      const strictEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (formData.email && strictEmailRegex.test(formData.email) && !formData.email.includes('\r') && !formData.email.includes('\n')) {
+          try {
+              msg.setHeader('Reply-To', formData.email);
+          } catch (e) {
+              console.log('Invalid Reply-To header, skipping:', formData.email);
+          }
+      }
       msg.addMessage({
         contentType: 'text/plain',
         data: emailBody
@@ -126,7 +142,7 @@ Timestamp: ${new Date().toISOString()}
           status: 200,
           headers: { 
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': corsOrigin
           }
         }
       );
@@ -143,7 +159,7 @@ Timestamp: ${new Date().toISOString()}
           status: 500,
           headers: { 
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': corsOrigin
           }
         }
       );

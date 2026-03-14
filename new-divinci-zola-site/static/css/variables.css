@@ -5,25 +5,34 @@
  */
 
 :root {
+  /* Force light mode only — no dark mode support */
+  color-scheme: light only;
+
   /* === CORE COLORS === */
   
-  /* Primary Colors (from style guide) */
-  --color-accent-primary: #7ba8d1;        /* Light blue - Accent Primary */
-  --color-accent-primary-hover: #a8c5a0;  /* Light green - Hover state */
-  --color-accent-secondary: #6590b8;      /* Medium blue - Secondary accent */
-  --color-accent-tertiary: #90b08a;       /* Medium green - Tertiary accent */
+  /* Primary Colors - Renaissance Warm Palette */
+  --color-accent-primary: #b8a080;        /* Warm gold - Accent Primary */
+  --color-accent-primary-hover: #a6946b;  /* Deeper gold - Hover state */
+  --color-accent-secondary: #8b7659;      /* Warm brown - Secondary accent */
+  --color-accent-tertiary: #3d6b4f;       /* Forest green - Tertiary accent */
+
+  /* Blue Highlights (footer, CTAs, emphasis) */
+  --color-highlight-blue: #cfdcff;        /* Light blue - highlights & CTAs */
+  --color-highlight-blue-hover: #b8c9f0;  /* Darker blue - hover state */
+  --color-highlight-blue-10: rgba(207, 220, 255, 0.1); /* Blue at 10% opacity */
   
   /* Neutral Colors */
   --color-neutral-primary: #2d3c34;       /* Dark green-gray - Primary text */
   --color-neutral-secondary: #7e8d95;     /* Medium gray - Secondary text */
   --color-neutral-tertiary: #666;         /* Medium gray - Tertiary text */
   --color-neutral-inverse: #2d5a4f;       /* Dark forest green - Inverse/dark mode */
+  --color-neutral-dark: #1e3a2b;          /* Darkest green - footer & dark UI */
   
   /* Background Colors */
   --color-bg-primary: #f8f4f0;            /* Main tan background */
   --color-bg-secondary: #f5f8f6;          /* Light neutral background */
   --color-bg-tertiary: #e8f2f5;           /* Light blue-gray background */
-  --color-bg-accent: #cfdcff;             /* Light blue accent background */
+  --color-bg-accent: #e8ddc7;             /* Warm parchment accent background */
   --color-bg-warm: #f7f7f7;               /* Warm light gray */
   
   /* Surface Colors */
@@ -34,8 +43,8 @@
   /* Border Colors */
   --color-border-light: #e5e5e5;          /* Light border */
   --color-border-medium: #e0e0e0;         /* Medium border */
-  --color-border-accent: rgba(123, 168, 209, 0.1); /* Accent border with opacity */
-  --color-border-dark: #d4c4a0;           /* Darker border */
+  --color-border-accent: rgba(184, 160, 128, 0.2); /* Warm accent border */
+  --color-border-dark: #d4c4a0;           /* Warm gold border */
   
   /* === SEMANTIC COLORS === */
   
@@ -107,23 +116,34 @@
   --radius-full: 50%;
   
   /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-medium: 0.3s ease;
-  --transition-slow: 0.4s ease;
+  --transition-fast: 0.2s ease-out;
+  --transition-medium: 0.3s ease-out;
+  --transition-slow: 0.4s ease-out;
+
+  /* Easing Curves */
+  --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+
+  /* Spacing Scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --section-spacing: clamp(4rem, 6vw, 6rem);
+
+  /* Typography Scale */
+  --text-h1: clamp(2.5rem, 4vw, 3.5rem);
+  --text-h2: clamp(2rem, 3vw, 2.75rem);
+  --text-h3: clamp(1.25rem, 2vw, 1.5rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-xs: 0.75rem;
 }
 
-/* === DARK MODE OVERRIDES === */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg-primary: #1a1a1a;
-    --color-bg-secondary: #2d2d2d;
-    --color-surface-light: #333333;
-    --color-text-primary: #f0f0f0;
-    --color-text-secondary: #cccccc;
-    --color-border-light: #444444;
-    --color-border-medium: #555555;
-  }
-}
+/* Dark mode is intentionally not supported — this site uses a fixed light Renaissance palette */
 
 /* === UTILITY CLASSES === */
 

@@ -3,8 +3,6 @@
 {% block content %}
 {%- set current_lang = section.lang | default(value="en") -%}
 
-<!-- Include Header -->
-{% include "partials/header.html" %}
 
 <!-- Blog Hero Section -->
 <section class="blog-hero">
@@ -80,7 +78,7 @@
 </section>
 
 <!-- Blog Content Section -->
-<section class="blog-section" style="background-color: #f8f4f0 !important;">
+<section class="blog-section">
     <div class="container">
         <div class="blog-main-full">
             <div class="blog-container-full">
@@ -101,17 +99,17 @@
                         <a href="{{ featured_post.permalink | safe }}" class="featured-image-link">
                         {% if featured_post.extra.featured_video %}
                             {% set video_name = featured_post.extra.featured_video | split(pat="/") | last | replace(from=".webm", to="") | replace(from=".mp4", to="") %}
-                            <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ get_url(path='images/' ~ video_name ~ '-poster.webp') }}" class="featured-image" style="object-fit: cover;">
+                            <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ get_url(path='images/' ~ video_name ~ '-poster.webp') }}" class="featured-image object-cover">
                                 <source src="{{ featured_post.extra.featured_video }}" type="video/webm">
                             </video>
                         {% elif featured_post.extra.featured_image %}
                             {% if featured_post.extra.featured_image is ending_with(".webm") or featured_post.extra.featured_image is ending_with(".mp4") %}
                                 {% if featured_post.extra.featured_image is starting_with("http") %}
-                                    <video muted loop autoplay playsinline webkit-playsinline preload="none" class="featured-image" style="object-fit: cover;">
+                                    <video muted loop autoplay playsinline webkit-playsinline preload="none" class="featured-image object-cover">
                                         <source src="{{ featured_post.extra.featured_image }}" type="video/{% if featured_post.extra.featured_image is ending_with('.webm') %}webm{% else %}mp4{% endif %}">
                                     </video>
                                 {% else %}
-                                    <video muted loop autoplay playsinline webkit-playsinline preload="none" class="featured-image" style="object-fit: cover;">
+                                    <video muted loop autoplay playsinline webkit-playsinline preload="none" class="featured-image object-cover">
                                         <source src="{{ get_url(path=featured_post.extra.featured_image) }}" type="video/{% if featured_post.extra.featured_image is ending_with('.webm') %}webm{% else %}mp4{% endif %}">
                                     </video>
                                 {% endif %}
@@ -135,7 +133,7 @@
                             {% else %}
                                 <span class="featured-tag">Artificial Intelligence</span>
                             {% endif %}
-                            <a href="{{ featured_post.permalink | safe }}" style="text-decoration: none; color: inherit;">
+                            <a href="{{ featured_post.permalink | safe }}" class="link-reset">
                                 <h2 class="featured-title">{{ featured_post.title }}</h2>
                             </a>
                             <div class="post-meta">
@@ -162,7 +160,7 @@
 
                     <!-- Recent Articles -->
                     {% if visible_posts | length > 1 %}
-                        <h2 style="font-size: 1.8rem; font-weight: 700; color: #2d3c34; margin-bottom: 2rem;">Recent Articles</h2>
+                        <h2 class="recent-articles-heading">Recent Articles</h2>
 
                         <div class="posts-grid">
                             {% for post in visible_posts %}
@@ -171,7 +169,7 @@
                                         <a href="{{ post.permalink | safe }}" class="post-image-link">
                                         {% if post.extra.featured_video %}
                                             {% set video_name = post.extra.featured_video | split(pat="/") | last | replace(from=".webm", to="") | replace(from=".mp4", to="") %}
-                                            <video muted loop playsinline webkit-playsinline preload="none" poster="{{ get_url(path='images/' ~ video_name ~ '-poster.webp') }}" class="post-image video-thumbnail" style="object-fit: cover;">
+                                            <video muted loop playsinline webkit-playsinline preload="none" poster="{{ get_url(path='images/' ~ video_name ~ '-poster.webp') }}" class="post-image video-thumbnail object-cover">
                                                 <source src="{{ post.extra.featured_video }}" type="video/webm">
                                             </video>
                                         {% elif post.extra.featured_image %}
@@ -203,14 +201,14 @@
                             <!-- Share with Friends Card (integrated into grid) -->
                             <article class="post-card share-card">
                                 <div class="share-card-video">
-                                    <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ get_url(path='images/renaissance-scholars-study-poster.webp') }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px 12px 0 0;">
+                                    <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ get_url(path='images/renaissance-scholars-study-poster.webp') }}">
                                         <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-scholars-study.webm" type="video/webm">
                                     </video>
                                 </div>
                                 <div class="post-content">
                                     <span class="post-tag">Share</span>
-                                    <h3 class="post-title" style="font-size: 1.2rem; margin-bottom: 0.75rem;">Share with Friends</h3>
-                                    <p style="font-size: 0.9rem; color: #2d3c34; opacity: 0.8; margin-bottom: 1rem; line-height: 1.5;">If you find these topics interesting, please share with your friends and colleagues.</p>
+                                    <h3 class="post-title share-card-title">Share with Friends</h3>
+                                    <p class="share-card-description">If you find these topics interesting, please share with your friends and colleagues.</p>
                                     <div class="share-buttons-grid">
                                         <a href="#" class="share-btn-small twitter" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent('Check out the Divinci AI Blog'), '_blank', 'width=550,height=420'); return false;" title="Share on X">
                                             <i class="fa-brands fa-x-twitter"></i>
@@ -244,8 +242,6 @@
     </div>
 </section>
 
-<!-- Include Footer -->
-{% include "partials/footer.html" %}
 
 <style>
 /* Blog Styles - Updated for our color scheme */
@@ -396,60 +392,15 @@
 /* Blog Content Section */
 .blog-section {
     padding: 4rem 0;
-    background-color: #f8f4f0 !important;
+    background-color: #f8f4f0;
 }
 
-/* Override dark mode for blog page - comprehensive background fix */
-body,
-html,
-main {
-    background-color: #f8f4f0 !important;
-}
-
-/* Only apply tan background to non-hero containers */
-.container:not(.blog-hero .container),
-.blog-main {
-    background-color: #f8f4f0 !important;
-}
-
-/* Force override all potential dark backgrounds - except hero section and footer */
-*:not(.blog-hero):not(.blog-hero *):not(.site-footer):not(.site-footer *) {
-    background-color: inherit !important;
-}
-
-/* Specific overrides for main content areas - except hero section and footer */
-body *:not(.blog-hero):not(.blog-hero *):not(.site-footer):not(.site-footer *) {
-    background-color: transparent !important;
-}
-
-body,
-html {
-    background-color: #f8f4f0 !important;
-}
-
-/* Dark mode media query override */
-@media (prefers-color-scheme: dark) {
-    body,
-    html,
-    main,
-    .blog-section,
-    .container,
-    .blog-main {
-        background-color: #f8f4f0 !important;
-    }
-    
-    /* Override CSS variable for dark mode */
-    :root {
-        --color-bg-primary: #f8f4f0 !important;
-        --color-bg-secondary: #f8f4f0 !important;
-    }
-    
-    /* Force all dark mode backgrounds to tan - except footer */
-    [data-theme="dark"]:not(.site-footer):not(.site-footer *),
-    .dark-mode:not(.site-footer):not(.site-footer *),
-    .dark:not(.site-footer):not(.site-footer *) {
-        background-color: #f8f4f0 !important;
-    }
+/* Scoped background for blog content areas */
+.blog-section,
+.blog-section .container,
+.blog-section .blog-main-full,
+.blog-section .blog-container-full {
+    background-color: #f8f4f0;
 }
 
 .blog-main {
@@ -569,10 +520,10 @@ html {
     display: inline-flex;
     align-items: center;
     padding: 0.75rem 1.5rem;
-    background: #cfdcff;
+    background: #e8ddc7;
     color: #2d3c34;
     border-radius: 50px;
-    border: 2px solid #cfdcff;
+    border: 2px solid #e8ddc7;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -580,8 +531,8 @@ html {
 
 .read-more:hover {
     transform: translateY(-3px);
-    background: #b8ccff;
-    border-color: #b8ccff;
+    background: #e8ddc7;
+    border-color: #e8ddc7;
     color: #2d3c34;
 }
 
@@ -615,7 +566,7 @@ html {
 }
 
 .post-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
 }
 
 .post-image-link {
@@ -856,9 +807,9 @@ html {
 .notify-button {
     display: inline-flex;
     align-items: center;
-    background: #cfdcff;
+    background: #e8ddc7;
     color: #2d3c34;
-    border: 2px solid #cfdcff;
+    border: 2px solid #e8ddc7;
     border-radius: 50px;
     padding: 0.8rem 2rem;
     font-weight: 600;
@@ -868,8 +819,8 @@ html {
 
 .notify-button:hover {
     transform: translateY(-3px);
-    background: #b8ccff;
-    border-color: #b8ccff;
+    background: #e8ddc7;
+    border-color: #e8ddc7;
     color: #2d3c34;
 }
 
@@ -1006,6 +957,21 @@ html {
 
     .featured-content {
         padding: 1.5rem;
+    }
+}
+
+/* Accessibility: Reduced Motion - disable sketch-layer animations */
+@media (prefers-reduced-motion: reduce) {
+    .sketch-layer {
+        animation: none !important;
+    }
+
+    .sacred-circle {
+        animation: none !important;
+    }
+
+    .geometric-pattern {
+        animation: none !important;
     }
 }
 </style>
