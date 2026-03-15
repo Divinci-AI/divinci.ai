@@ -3329,7 +3329,11 @@ body:not(.homepage) .privacy-settings-link:hover {
 }
 
 .contact-method {
+  display: block;
   text-align: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
   padding: 2rem;
   background-color: rgb(255 255 255 / 25%);
   border-radius: 12px;

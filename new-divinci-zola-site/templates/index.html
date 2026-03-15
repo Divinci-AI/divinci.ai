@@ -8,8 +8,6 @@
 
 {% block content %}
 
-{% include "partials/header.html" %}
-
 <section class="hero">
     <div class="hero-content">
         <div class="hero-image">
@@ -1445,7 +1443,7 @@
             </div>
 
             <div class="contact-methods">
-                <div class="contact-method">
+                <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="contact-method" target="_blank" rel="noopener">
                     <div class="contact-icon">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1454,10 +1452,10 @@
                     </div>
                     <h3>{{ translations.contact.email_specialists.title | default(value="Schedule a consultation") }}</h3>
                     <p>{{ translations.contact.email_specialists.description | default(value="Book a personalized demo and get detailed answers to your technical and business questions.") }}</p>
-                    <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="contact-link" target="_blank" rel="noopener">{{ translations.contact.email_specialists.email | default(value="Schedule Demo") }}</a>
-                </div>
+                    <span class="contact-link">{{ translations.contact.email_specialists.email | default(value="Schedule Demo") }}</span>
+                </a>
 
-                <div class="contact-method">
+                <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="contact-method" target="_blank" rel="noopener">
                     <div class="contact-icon">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 16.42v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.42z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1465,8 +1463,8 @@
                     </div>
                     <h3>{{ translations.contact.speak_consultant.title | default(value="Book a live demo") }}</h3>
                     <p>{{ translations.contact.speak_consultant.description | default(value="Available for 30-minute personalized demos to show you how Divinci AI works.") }}</p>
-                    <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="contact-link" target="_blank" rel="noopener">{{ translations.contact.speak_consultant.phone | default(value="Book Demo") }}</a>
-                </div>
+                    <span class="contact-link">{{ translations.contact.speak_consultant.phone | default(value="Book Demo") }}</span>
+                </a>
             </div>
         </div>
     </section>
@@ -1509,37 +1507,27 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Navigate to a specific page
     function navigateToPage(index) {
-        console.log('navigateToPage called with index:', index);
-        console.log('Current journalPages.length:', journalPages.length);
-        
         // Ensure index is within bounds
         if (journalPages.length === 0) return;
         index = Math.max(0, Math.min(index, journalPages.length - 1));
         
         // Don't navigate if already on this page
         if (index === currentPageIndex && journalPages[index].classList.contains('active')) {
-            console.log('Already on page', index);
             return;
         }
         
         // Set navigation state to pause scroll animation
         isNavigating = true;
-        console.log('Set isNavigating to true');
-        
         // Clear any existing navigation timeout
         if (navigationTimeout) {
             clearTimeout(navigationTimeout);
         }
         
         // Remove active states and reset animations
-        console.log('Removing active states from all pages');
         journalPages.forEach((page, i) => {
-            const beforeClasses = page.className;
             page.classList.remove('active');
             // Reset animations by forcing reflow
             restartPageAnimations(page);
-            const afterClasses = page.className;
-            console.log(`Page ${i} classes: ${beforeClasses} -> ${afterClasses}`);
         });
         featureContents.forEach(content => content.classList.remove('active'));
         sketchLayers.forEach(sketch => sketch.classList.remove('active-sketch'));
@@ -1549,11 +1537,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentPage = journalPages[index];
         const feature = currentPage.getAttribute('data-feature');
         
-        console.log('Adding active class to page', index, 'with feature', feature);
-        const beforeClasses = currentPage.className;
         currentPage.classList.add('active');
-        const afterClasses = currentPage.className;
-        console.log(`Target page classes: ${beforeClasses} -> ${afterClasses}`);
         
         // Clear any scroll animation transforms and ensure proper positioning
         clearAllPageTransforms();
@@ -1564,8 +1548,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (correspondingContent) {
             correspondingContent.classList.add('active');
         }
-        console.log('Navigated to:', feature, 'Index:', index, 'Content found:', !!correspondingContent);
-        
         // Update background sketch
         const correspondingSketch = document.querySelector(`.sketch-layer[data-feature="${feature}"]`);
         if (correspondingSketch) {
@@ -1579,7 +1561,6 @@ document.addEventListener('DOMContentLoaded', function() {
             isNavigating = false;
         }, 800); // Give enough time for navigation to complete
         
-        console.log(`🎨 Activated page ${index} with drawing animations`);
     }
     
     // Function to restart drawing animations on page switch
@@ -1737,8 +1718,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const journalPages = document.querySelectorAll('.journal-page');
     
     // Scroll animation removed - simple journal navigation only
-    
-    console.log('Journal navigation initialized - no scroll effects');
 });
 </script>
 {% endblock %}
+
+{% block footer %}{% endblock %}
