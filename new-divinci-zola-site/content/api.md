@@ -1,6 +1,6 @@
 +++
-title = "API Reference | Divinci AI"
-description = "Divinci AI API documentation provides comprehensive guides and reference material for integrating custom AI solutions into your applications."
+title = "Developer Tools & API | Divinci AI"
+description = "Comprehensive developer documentation for Divinci AI — CLI, Server SDK, Client SDK, MCP SDK, Embed Client, and REST API reference."
 template = "feature.html"
 +++
 
@@ -14,255 +14,630 @@ template = "feature.html"
     opacity: 1 !important;
 }
 
-/* API Page Styles */
-.api-hero {
-    background: linear-gradient(135deg, #2d3c34 0%, #1e3a2b 100%);
-    color: white;
-    padding: 6rem 0;
-    position: relative;
-    overflow: hidden;
+/* Center all content sections within feature-page */
+.feature-page .docs-hero,
+.feature-page .sdk-chooser,
+.feature-page .docs-section {
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
-.api-hero::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    right: -100px;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    border: 2px solid rgba(126, 141, 149, 0.15);
-    opacity: 0.4;
-    z-index: 0;
-}
-
-.api-hero::after {
-    content: '';
-    position: absolute;
-    bottom: -150px;
-    left: -150px;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    border: 2px solid rgba(126, 141, 149, 0.15);
-    opacity: 0.3;
-    z-index: 0;
-}
-
-.api-hero-content {
-    position: relative;
-    z-index: 1;
+/* Docs page hero */
+.docs-hero {
     text-align: center;
-    max-width: 800px;
+    padding: 5rem 2rem 3rem;
+    max-width: 900px;
     margin: 0 auto;
 }
 
-.api-title {
+.docs-hero h1 {
     font-family: 'Fraunces', serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    background: linear-gradient(90deg, #ffffff, #7e8d95);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    display: inline-block;
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
+    color: var(--color-neutral-primary);
+    margin-bottom: 1rem;
+    line-height: 1.15;
 }
 
-.api-subtitle {
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.8);
+.docs-hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--color-neutral-secondary);
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+}
+
+.docs-hero .hero-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.docs-hero .hero-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.docs-hero .link-primary {
+    background: var(--color-neutral-inverse);
+    color: white !important;
+}
+
+.docs-hero .link-primary:hover {
+    background: var(--color-btn-primary-hover);
+    transform: translateY(-1px);
+}
+
+.docs-hero .link-secondary {
+    background: transparent;
+    color: var(--color-neutral-primary) !important;
+    border: 1.5px solid var(--color-border-medium);
+}
+
+.docs-hero .link-secondary:hover {
+    border-color: var(--color-neutral-inverse);
+    background: rgba(45, 90, 79, 0.05);
+}
+
+/* SDK chooser section */
+.sdk-chooser {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem var(--section-spacing);
+}
+
+.sdk-chooser h2 {
+    font-family: 'Fraunces', serif;
+    font-size: var(--text-h2);
+    color: var(--color-neutral-primary);
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+.sdk-chooser .section-sub {
+    text-align: center;
+    color: var(--color-neutral-secondary);
+    font-size: 1.05rem;
     margin-bottom: 2.5rem;
-    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.api-section {
-    padding: 5rem 0;
+/* Tool cards grid */
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.tool-card {
+    background: var(--color-surface-light);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-medium);
+    padding: 2rem;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.tool-card:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.tool-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.tool-card-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(61, 107, 79, 0.08);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-tertiary);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.tool-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    color: var(--color-neutral-primary);
+    margin: 0;
+}
+
+.tool-card .pkg-name {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.8rem;
+    color: var(--color-accent-tertiary);
+    background: rgba(61, 107, 79, 0.06);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+}
+
+.tool-card p {
+    color: var(--color-neutral-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.tool-card .install-cmd {
+    background: var(--color-neutral-dark, #1e3a2b);
+    color: rgba(255,255,255,0.9);
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.82rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+
+.tool-card .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-neutral-inverse);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-top: auto;
+}
+
+.tool-card .card-link:hover {
+    text-decoration: underline;
+}
+
+/* Code example sections */
+.docs-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--section-spacing) 2rem;
+}
+
+.docs-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: var(--text-h2);
+    color: var(--color-neutral-primary);
+    margin-bottom: 0.75rem;
+}
+
+.docs-section .section-sub {
+    color: var(--color-neutral-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+}
+
+.code-block {
+    background: var(--color-neutral-dark, #1e3a2b);
+    border-radius: var(--radius-medium);
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
     position: relative;
 }
 
-.section-title {
-    font-family: 'Fraunces', serif;
-    font-size: 2.5rem;
+.code-block .code-label {
+    position: absolute;
+    top: 0.6rem;
+    right: 1rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 600;
+}
+
+.code-block pre {
+    margin: 0;
+    color: rgba(255,255,255,0.9);
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    white-space: pre;
+}
+
+.code-block .comment { color: rgba(255,255,255,0.4); }
+.code-block .keyword { color: #b8d4a0; }
+.code-block .string { color: #e8c88a; }
+.code-block .func { color: #8cc4d4; }
+
+/* Comparison table */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.9rem;
+}
+
+.comparison-table th {
+    background: var(--color-bg-accent);
+    padding: 0.75rem 1rem;
+    text-align: left;
     font-weight: 700;
-    color: #1e3a2b;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.section-content {
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    text-align: center;
-    color: #2d3c34;
-    max-width: 800px;
-    margin: 0 auto 3rem;
-}
-
-.coming-soon {
-    background: white;
-    border-radius: 15px;
-    padding: 3rem;
-    text-align: center;
-    margin-bottom: 4rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(126, 141, 149, 0.1);
-}
-
-.coming-soon-title {
+    color: var(--color-neutral-primary);
+    border-bottom: 2px solid var(--color-border-medium);
     font-family: 'Fraunces', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1e3a2b;
+}
+
+.comparison-table td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--color-border-light);
+    color: var(--color-neutral-primary);
+}
+
+.comparison-table tr:hover {
+    background: rgba(232, 221, 199, 0.15);
+}
+
+.check { color: var(--color-accent-tertiary); font-weight: 700; }
+.dash { color: var(--color-neutral-secondary); }
+
+/* Auth section */
+.auth-methods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.auth-card {
+    background: var(--color-surface-light);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-medium);
+    padding: 1.5rem;
+}
+
+.auth-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    color: var(--color-neutral-primary);
+    margin-bottom: 0.5rem;
+}
+
+.auth-card p {
+    color: var(--color-neutral-secondary);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+/* API reference section */
+.endpoint-card {
+    background: var(--color-surface-light);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-medium);
+    padding: 1.5rem 2rem;
     margin-bottom: 1rem;
 }
 
-.coming-soon-message {
-    font-family: 'Source Sans 3', sans-serif;
-    color: #2d3c34;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto 2rem;
+.endpoint-card .method {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-right: 0.5rem;
 }
 
-.notify-button {
-    font-family: 'Source Sans 3', sans-serif;
-    display: inline-flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, #2d3c34, #1e3a2b);
-    color: white;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-    border: none;
+.method-get { background: rgba(61, 107, 79, 0.1); color: var(--color-accent-tertiary); }
+.method-post { background: rgba(184, 160, 128, 0.15); color: var(--color-accent-secondary); }
+.method-put { background: rgba(45, 90, 79, 0.1); color: var(--color-neutral-inverse); }
+.method-del { background: rgba(180, 80, 80, 0.1); color: #b45050; }
+
+.endpoint-card .path {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.9rem;
+    color: var(--color-neutral-primary);
 }
 
-.notify-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(45, 60, 52, 0.3);
-    color: white;
+.endpoint-card .desc {
+    color: var(--color-neutral-secondary);
+    font-size: 0.88rem;
+    margin-top: 0.5rem;
 }
 
-.notify-button i {
-    margin-right: 0.75rem;
+/* Responsive */
+@media (max-width: 768px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .auth-methods { grid-template-columns: 1fr; }
 }
 
-/* Coming Soon Overlay for API Content */
-.api-content-wrapper {
-    position: relative;
-    min-height: 400px;
-    margin-bottom: 8rem;
-    padding-bottom: 4rem;
-}
-
-/* Position overlay at the top of the section */
-.api-content-wrapper::after {
-    content: "API Documentation Available Q3 2025" !important;
-    position: absolute !important;
-    top: 2rem !important;
-    left: 50% !important;
-    transform: translateX(-50%) rotate(-8deg) !important;
-    width: 90% !important;
-    max-width: 600px !important;
-    padding: 2rem !important;
-    background: rgba(248, 244, 240, 0.92) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 1.5rem !important;
-    font-weight: 700 !important;
-    color: #1e3a2b !important;
-    text-align: center !important;
-    z-index: 1 !important; /* Lower z-index so it doesn't cover content */
-    border: none !important;
-    border-radius: 12px !important;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
-    pointer-events: none !important;
-}
-
-/* Mobile adjustments */
-@media screen and (max-width: 768px) {
-    .api-title {
-        font-size: 2.5rem;
-    }
-    
-    .api-hero {
-        padding: 4rem 0;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .api-content-wrapper {
-        margin-bottom: 4rem;
-        padding-bottom: 2rem;
-        min-height: 300px;
-    }
-    
-    .api-content-wrapper::after {
-        font-size: 1.2rem !important;
-        transform: translateX(-50%) rotate(-5deg) !important;
-        width: 85% !important;
-        max-width: 400px !important;
-        padding: 1.5rem !important;
-        top: 1rem !important;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .api-title {
-        font-size: 2rem;
-    }
-    
-    .coming-soon {
-        margin: 0 1rem 3rem;
-        padding: 2rem;
-    }
-    
-    .api-content-wrapper {
-        min-height: 250px;
-        margin-bottom: 3rem;
-        padding-bottom: 1rem;
-    }
-    
-    .api-content-wrapper::after {
-        font-size: 1rem !important;
-        padding: 1rem !important;
-        width: 80% !important;
-        max-width: 280px !important;
-        transform: translateX(-50%) rotate(-3deg) !important;
-        bottom: 0.5rem !important;
-    }
+@media (max-width: 1024px) {
+    .tool-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 
-<section class="api-hero" style="padding-top: 6rem; padding-bottom: 6rem;">
-<div class="container">
-<div class="api-hero-content">
-<h1 class="api-title">Complete API Documentation Coming Soon</h1>
-<p class="api-subtitle">Integrate powerful AI capabilities into your applications with our comprehensive API. Build custom AI solutions that leverage RAG systems, vector embeddings, and document processing.</p>
+<!-- Hero -->
+<div class="docs-hero">
+<h1>Developer Tools & API</h1>
+<p class="subtitle">Everything you need to integrate Divinci AI into your applications. SDKs for every platform, a powerful CLI, and comprehensive REST API access.</p>
+<div class="hero-links">
+<a href="https://sdk.divinci.app" class="link-primary" target="_blank">SDK Documentation</a>
+<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="link-secondary" target="_blank">Get API Keys</a>
+</div>
+</div>
+
+<!-- SDK Chooser -->
+<section class="sdk-chooser">
+<h2>Choose Your Tool</h2>
+<p class="section-sub">Pick the right integration for your use case — from terminal workflows to browser chat widgets.</p>
+
+<div class="tool-grid">
+
+<div class="tool-card" id="cli-reference">
+<div class="tool-card-header">
+<div class="tool-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+<h3>Divinci CLI</h3>
+</div>
+<div class="pkg-name">@divinci-ai/cli</div>
+<p>Manage workspaces, chat with AI, search knowledge bases, and control releases from your terminal. Supports profiles, scripting, and CI/CD.</p>
+<div class="install-cmd">npm install -g @divinci-ai/cli</div>
+<a href="#cli-reference" class="card-link">View reference &rarr;</a>
+</div>
+
+<div class="tool-card" id="server-sdk">
+<div class="tool-card-header">
+<div class="tool-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+<h3>Server SDK</h3>
+</div>
+<div class="pkg-name">@divinci-ai/server</div>
+<p>Full Node.js platform access — workspaces, releases, RAG operations, API key management, and x402 blockchain payments.</p>
+<div class="install-cmd">npm install @divinci-ai/server</div>
+<a href="#server-sdk" class="card-link">View reference &rarr;</a>
+</div>
+
+<div class="tool-card" id="client-sdk">
+<div class="tool-card-header">
+<div class="tool-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+<h3>Client SDK</h3>
+</div>
+<div class="pkg-name">@divinci-ai/client</div>
+<p>Browser SDK for headless chat integration. Streaming responses, RAG context bubbles, thread management, and external user auth.</p>
+<div class="install-cmd">npm install @divinci-ai/client</div>
+<a href="#client-sdk" class="card-link">View reference &rarr;</a>
+</div>
+
+<div class="tool-card" id="mcp-sdk">
+<div class="tool-card-header">
+<div class="tool-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+<h3>MCP SDK</h3>
+</div>
+<div class="pkg-name">@divinci-ai/mcp</div>
+<p>Model Context Protocol integration for Claude Desktop, Cursor, and other AI assistants. SSE transport, tool invocation, and x402 payments.</p>
+<div class="install-cmd">npm install @divinci-ai/mcp</div>
+<a href="#mcp-sdk" class="card-link">View reference &rarr;</a>
+</div>
+
+<div class="tool-card" id="embed-client">
+<div class="tool-card-header">
+<div class="tool-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div>
+<h3>Embed Client</h3>
+</div>
+<div class="pkg-name">embed-script.js</div>
+<p>Drop-in chat widget for any website. White-label customization, conversation starters, RAG context display, and product recommendations.</p>
+<div class="install-cmd">&lt;script src="https://assets.divinci.app/embed-script.js"&gt;&lt;/script&gt;</div>
+<a href="#embed-client" class="card-link">View reference &rarr;</a>
+</div>
+
+<div class="tool-card">
+<div class="tool-card-header">
+<div class="tool-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+<h3>REST API</h3>
+</div>
+<div class="pkg-name">api.divinci.ai/api/v1</div>
+<p>Direct HTTP access to the Divinci platform. Manage workspaces, releases, RAG collections, API keys, and analytics via REST endpoints.</p>
+<div class="install-cmd">curl -H "x-api-key: YOUR_KEY" https://api.divinci.ai/api/v1/</div>
+<a href="#rest-api" class="card-link">View reference &rarr;</a>
+</div>
+
+</div>
+</section>
+
+<!-- Quick Start -->
+<section class="docs-section">
+<h2>Quick Start</h2>
+<p class="section-sub">Get up and running in minutes with these examples.</p>
+
+<div class="code-block">
+<span class="code-label">Terminal — CLI</span>
+<pre><span class="comment"># Install and authenticate</span>
+<span class="keyword">npm install</span> -g @divinci-ai/cli
+<span class="keyword">divinci</span> auth login
+
+<span class="comment"># Start chatting</span>
+<span class="keyword">divinci</span> workspace list
+<span class="keyword">divinci</span> workspace use ws_abc123
+<span class="keyword">divinci</span> chat</pre>
+</div>
+
+<div class="code-block">
+<span class="code-label">TypeScript — Server SDK</span>
+<pre><span class="keyword">import</span> { DivinciServer } <span class="keyword">from</span> <span class="string">"@divinci-ai/server"</span>;
+
+<span class="keyword">const</span> divinci = <span class="keyword">new</span> <span class="func">DivinciServer</span>({
+  apiKey: process.env.DIVINCI_API_KEY,
+});
+
+<span class="comment">// Upload documents to RAG</span>
+<span class="keyword">await</span> divinci.rag.<span class="func">uploadDocument</span>({
+  workspaceId: <span class="string">"ws_abc123"</span>,
+  ragVectorId: <span class="string">"rag_xyz"</span>,
+  file: fs.<span class="func">createReadStream</span>(<span class="string">"./knowledge.pdf"</span>),
+});
+
+<span class="comment">// Search the knowledge base</span>
+<span class="keyword">const</span> results = <span class="keyword">await</span> divinci.rag.<span class="func">search</span>({
+  workspaceId: <span class="string">"ws_abc123"</span>,
+  query: <span class="string">"return policy"</span>,
+});</pre>
+</div>
+
+<div class="code-block">
+<span class="code-label">TypeScript — Client SDK</span>
+<pre><span class="keyword">import</span> { DivinciClient } <span class="keyword">from</span> <span class="string">"@divinci-ai/client"</span>;
+
+<span class="keyword">const</span> client = <span class="keyword">new</span> <span class="func">DivinciClient</span>({
+  releaseId: <span class="string">"rel_abc123"</span>,
+  apiKey: <span class="string">"divinci_key_..."</span>,
+});
+
+<span class="comment">// Stream a response</span>
+<span class="keyword">for await</span> (<span class="keyword">const</span> chunk <span class="keyword">of</span> client.chat.<span class="func">stream</span>(<span class="string">"Tell me about your products"</span>)) {
+  process.stdout.<span class="func">write</span>(chunk.content);
+}</pre>
+</div>
+
+<div class="code-block">
+<span class="code-label">TypeScript — MCP SDK</span>
+<pre><span class="keyword">import</span> { McpClient } <span class="keyword">from</span> <span class="string">"@divinci-ai/mcp"</span>;
+
+<span class="keyword">const</span> client = <span class="keyword">new</span> <span class="func">McpClient</span>({
+  serverUrl: <span class="string">"https://mcp.divinci.app"</span>,
+  apiKey: <span class="string">"divinci_key_..."</span>,
+});
+
+<span class="keyword">await</span> client.<span class="func">connect</span>();
+<span class="keyword">const</span> tools = <span class="keyword">await</span> client.<span class="func">listTools</span>();
+<span class="keyword">const</span> result = <span class="keyword">await</span> client.<span class="func">callTool</span>(<span class="string">"search_knowledge"</span>, { query: <span class="string">"return policy"</span> });</pre>
+</div>
+</section>
+
+<!-- SDK Comparison -->
+<section class="docs-section">
+<h2>SDK Comparison</h2>
+<p class="section-sub">Each SDK serves different use cases. Use this table to find the right fit.</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>Feature</th><th>CLI</th><th>Client</th><th>Server</th><th>MCP</th></tr>
+</thead>
+<tbody>
+<tr><td>Environment</td><td>Terminal</td><td>Browser</td><td>Node.js</td><td>Both</td></tr>
+<tr><td>Chat Messages</td><td><span class="check">Yes</span></td><td><span class="check">Yes</span></td><td><span class="dash">—</span></td><td><span class="check">Yes</span></td></tr>
+<tr><td>Streaming</td><td><span class="check">Yes</span></td><td><span class="check">Yes</span></td><td><span class="check">Yes</span></td><td><span class="dash">—</span></td></tr>
+<tr><td>Workspace Management</td><td><span class="check">Yes</span></td><td><span class="dash">—</span></td><td><span class="check">Yes</span></td><td><span class="dash">—</span></td></tr>
+<tr><td>Release Management</td><td><span class="check">Yes</span></td><td><span class="dash">—</span></td><td><span class="check">Yes</span></td><td><span class="dash">—</span></td></tr>
+<tr><td>RAG Operations</td><td><span class="check">Yes</span></td><td><span class="dash">—</span></td><td><span class="check">Yes</span></td><td><span class="check">Yes</span></td></tr>
+<tr><td>API Key Management</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">Yes</span></td><td><span class="dash">—</span></td></tr>
+<tr><td>x402 Payments</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">Yes</span></td><td><span class="check">Yes</span></td></tr>
+<tr><td>Auth0 PKCE</td><td><span class="dash">—</span></td><td><span class="check">Yes</span></td><td><span class="dash">—</span></td><td><span class="check">Yes</span></td></tr>
+<tr><td>MCP Protocol</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="check">Yes</span></td></tr>
+<tr><td>Raw API Access</td><td><span class="check">Yes</span></td><td><span class="dash">—</span></td><td><span class="check">Yes</span></td><td><span class="dash">—</span></td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- Authentication -->
+<section class="docs-section">
+<h2>Authentication</h2>
+<p class="section-sub">Three authentication methods to fit your architecture.</p>
+
+<div class="auth-methods">
+<div class="auth-card">
+<h4>API Key (Server)</h4>
+<p>Best for backend services and CI/CD. Pass your key via environment variable or constructor.</p>
+<div class="code-block" style="margin-bottom: 0;">
+<pre><span class="keyword">const</span> divinci = <span class="keyword">new</span> <span class="func">DivinciServer</span>({
+  apiKey: process.env.DIVINCI_API_KEY,
+});</pre>
+</div>
+</div>
+
+<div class="auth-card">
+<h4>API Key + External User</h4>
+<p>Best for embed clients that identify end users for personalized experiences.</p>
+<div class="code-block" style="margin-bottom: 0;">
+<pre><span class="keyword">const</span> client = <span class="keyword">new</span> <span class="func">DivinciClient</span>({
+  releaseId: <span class="string">"rel_abc123"</span>,
+  apiKey: <span class="string">"divinci_key_..."</span>,
+  externalUser: { id: <span class="string">"user_123"</span> },
+});</pre>
+</div>
+</div>
+
+<div class="auth-card">
+<h4>JWT Token (Browser)</h4>
+<p>Best for browser apps with your own backend handling token exchange.</p>
+<div class="code-block" style="margin-bottom: 0;">
+<pre><span class="keyword">const</span> client = <span class="keyword">new</span> <span class="func">DivinciClient</span>({
+  releaseId: <span class="string">"rel_abc123"</span>,
+  getToken: <span class="keyword">async</span> () => {
+    <span class="keyword">return</span> <span class="func">fetch</span>(<span class="string">"/api/token"</span>);
+  },
+});</pre>
+</div>
 </div>
 </div>
 </section>
 
-<!-- API Content with Coming Soon Overlay -->
-<div class="api-content-wrapper">
+<!-- REST API Reference -->
+<section class="docs-section" id="rest-api">
+<h2>REST API Reference</h2>
+<p class="section-sub">Base URL: <code>https://api.divinci.ai/api/v1</code> — Authenticate with <code>x-api-key</code> header or Bearer token.</p>
 
-<!-- Coming Soon Section -->
-<section class="api-section" style="margin-top: 6rem;">
-    <div class="container">
-        <div class="coming-soon">
-            <h2 class="coming-soon-title">Complete API Documentation Coming Soon</h2>
-            <p class="coming-soon-message">We're currently building comprehensive API documentation including reference guides, code examples, and SDK documentation. Check back soon for updates or subscribe to be notified when our API documentation is available.</p>
-            <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="notify-button" target="_blank" style="color: white !important;"><i class="fas fa-bell"></i> Notify me of updates</a>
-        </div>
-    </div>
+<div class="endpoint-card">
+<span class="method method-get">GET</span><span class="path">/</span>
+<p class="desc">Get API version information and available endpoints.</p>
+</div>
+
+<div class="endpoint-card">
+<span class="method method-get">GET</span><span class="path">/whitelabel/{id}/workspace-api-keys</span>
+<p class="desc">List all API keys for a workspace.</p>
+</div>
+
+<div class="endpoint-card">
+<span class="method method-post">POST</span><span class="path">/whitelabel/{id}/workspace-api-keys</span>
+<p class="desc">Create a new API key with permissions and rate limits.</p>
+</div>
+
+<div class="endpoint-card">
+<span class="method method-get">GET</span><span class="path">/ai-chat/search</span>
+<p class="desc">Search chat transcripts. Supports query, date range, sorting, and pagination.</p>
+</div>
+
+<div class="endpoint-card">
+<span class="method method-put">PUT</span><span class="path">/whitelabel/{id}/workspace-api-keys/{keyId}</span>
+<p class="desc">Update API key settings, permissions, or rate limits.</p>
+</div>
+
+<div class="endpoint-card">
+<span class="method method-del">DEL</span><span class="path">/whitelabel/{id}/workspace-api-keys/{keyId}</span>
+<p class="desc">Revoke an API key. This action is irreversible.</p>
+</div>
+
+<p style="text-align: center; margin-top: 2rem; color: var(--color-neutral-secondary);">
+Full OpenAPI 3.0 specification available — <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" style="color: var(--color-neutral-inverse); font-weight: 600;">request access</a>
+</p>
 </section>
 
-</div> <!-- End of api-content-wrapper -->
+<!-- CTA -->
+<div class="arena-cta-wrapper">
+<section class="arena-cta">
+<h2>Start building with Divinci AI</h2>
+<p>Get your API key and integrate AI capabilities into your application in minutes.</p>
+<div class="hero-ctas">
+<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="cta-primary" target="_blank">Get API keys</a>
+<a href="https://sdk.divinci.app" class="cta-secondary" target="_blank">Full SDK docs</a>
+</div>
+</section>
+</div>
