@@ -246,19 +246,38 @@ template = "feature.html"
     font-weight: 600;
 }
 
-.code-block pre {
+.code-block pre,
+.code-block pre *,
+.code-block code,
+.code-block code * {
     margin: 0;
-    color: rgba(255,255,255,0.9);
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.88rem;
+    color: rgba(255,255,255,0.88) !important;
+    font-family: 'Source Code Pro', 'Courier New', monospace !important;
+    font-size: 0.88rem !important;
     line-height: 1.6;
     white-space: pre;
+    text-shadow: none !important;
+    background: none !important;
+    -webkit-text-fill-color: rgba(255,255,255,0.88) !important;
 }
 
-.code-block .comment { color: rgba(255,255,255,0.4); }
-.code-block .keyword { color: #b8d4a0; }
-.code-block .string { color: #e8c88a; }
-.code-block .func { color: #8cc4d4; }
+/* Also override on the code-block div itself for bare text */
+.code-block {
+    color: rgba(255,255,255,0.88) !important;
+    -webkit-text-fill-color: rgba(255,255,255,0.88) !important;
+}
+
+.code-block .comment { color: rgba(255,255,255,0.4) !important; }
+.code-block .keyword { color: #b8d4a0 !important; }
+.code-block .string { color: #e8c88a !important; }
+.code-block .func { color: #8cc4d4 !important; }
+
+/* Auth card code blocks */
+.auth-card .code-block pre,
+.auth-card .code-block pre span {
+    color: rgba(255,255,255,0.88) !important;
+    text-shadow: none !important;
+}
 
 /* Comparison table */
 .comparison-table {
