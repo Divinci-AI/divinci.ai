@@ -1,0 +1,492 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1800" viewBox="0 0 1400 1800">
+  <defs>
+    <style>
+      .sketch { stroke: #b8a080; fill: none; }
+      .sketch-light { stroke: #b8a080; fill: none; opacity: 0.5; }
+      .sketch-fill { fill: #b8a080; stroke: none; }
+      .label { font-family: 'Fraunces', 'Georgia', serif; fill: #b8a080; font-size: 11px; font-style: italic; }
+      .label-sm { font-family: 'Fraunces', 'Georgia', serif; fill: #b8a080; font-size: 8px; font-style: italic; }
+      .annotation { font-family: 'Source Sans 3', sans-serif; fill: #b8a080; font-size: 7px; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <!-- ═══ TOP LEFT: Hourglass (detailed Da Vinci study) ═══ -->
+
+  <g transform="translate(80, 50)" class="sketch" stroke-width="0.6" opacity="0.32">
+    <!-- Top frame -->
+    <rect x="20" y="0" width="120" height="8" rx="2" />
+    <!-- Bottom frame -->
+    <rect x="20" y="182" width="120" height="8" rx="2" />
+    <!-- Glass bulbs -->
+    <!-- Top bulb -->
+    <path d="M30,8 Q30,50 50,70 Q65,80 80,90" stroke-width="0.5" />
+    <path d="M130,8 Q130,50 110,70 Q95,80 80,90" stroke-width="0.5" />
+    <!-- Neck -->
+    <path d="M72,90 L72,100" stroke-width="0.3" />
+    <path d="M88,90 L88,100" stroke-width="0.3" />
+    <!-- Bottom bulb -->
+    <path d="M30,182 Q30,140 50,120 Q65,110 80,100" stroke-width="0.5" />
+    <path d="M130,182 Q130,140 110,120 Q95,110 80,100" stroke-width="0.5" />
+    <!-- Sand in top (partial) -->
+    <path d="M42,30 Q80,30 118,30" stroke-width="0.3" stroke-dasharray="1 2" />
+    <!-- Sand stream -->
+    <line x1="80" y1="90" x2="80" y2="100" stroke-width="0.3" stroke-dasharray="1 1" />
+    <!-- Sand pile in bottom -->
+    <path d="M55,165 Q80,150 105,165" stroke-width="0.3" />
+    <path d="M50,170 Q80,155 110,170" stroke-width="0.3" stroke-dasharray="1 2" />
+    <!-- Support pillars -->
+    <line x1="25" y1="8" x2="25" y2="182" stroke-width="0.3" />
+    <line x1="135" y1="8" x2="135" y2="182" stroke-width="0.3" />
+    <!-- Decorative feet -->
+    <path d="M15,190 Q25,195 35,190" stroke-width="0.3" />
+    <path d="M125,190 Q135,195 145,190" stroke-width="0.3" />
+    <!-- Time measurement marks -->
+    <line x1="140" y1="50" x2="150" y2="50" stroke-width="0.2" />
+    <line x1="140" y1="95" x2="150" y2="95" stroke-width="0.2" />
+    <line x1="140" y1="140" x2="150" y2="140" stroke-width="0.2" />
+    <text class="annotation" x="152" y="53">I</text>
+    <text class="annotation" x="152" y="98">II</text>
+    <text class="annotation" x="152" y="143">III</text>
+    <text class="label" x="25" y="215">horologium arenarium — tempus</text>
+  </g>
+
+  <!-- ═══ TOP RIGHT: Seed of Life ═══ -->
+
+  <g transform="translate(520, 30)" class="sketch" stroke-width="0.35" opacity="0.18">
+    <circle cx="40" cy="40" r="25" />
+    <circle cx="40" cy="15" r="25" />
+    <circle cx="40" cy="65" r="25" />
+    <circle cx="18.35" cy="27.5" r="25" />
+    <circle cx="61.65" cy="27.5" r="25" />
+    <circle cx="18.35" cy="52.5" r="25" />
+    <circle cx="61.65" cy="52.5" r="25" />
+    <circle cx="40" cy="40" r="50" stroke-dasharray="2 3" />
+    <circle cx="40" cy="40" r="2" class="sketch-fill" opacity="0.12" />
+    <text class="label-sm" x="10" y="100">semen vitae</text>
+  </g>
+
+  <!-- ═══ RIGHT SIDE: Chronicle scroll ═══ -->
+
+  <g transform="translate(900, 60)" class="sketch" stroke-width="0.5" opacity="0.3">
+    <!-- Top roll -->
+    <ellipse cx="80" cy="12" rx="75" ry="12" />
+    <!-- Scroll body -->
+    <line x1="5" y1="12" x2="5" y2="200" stroke-width="0.4" />
+    <line x1="155" y1="12" x2="155" y2="200" stroke-width="0.4" />
+    <!-- Bottom roll (partially rolled) -->
+    <ellipse cx="80" cy="200" rx="75" ry="12" />
+    <ellipse cx="80" cy="200" rx="75" ry="8" stroke-dasharray="2 3" stroke-width="0.3" />
+    <!-- Roll decorations -->
+    <circle cx="0" cy="12" r="5" stroke-width="0.3" />
+    <circle cx="160" cy="12" r="5" stroke-width="0.3" />
+    <!-- Timeline entries on scroll -->
+    <text class="annotation" x="15" y="40">ANNO DOMINI MMXXV</text>
+    <line x1="15" y1="44" x2="140" y2="44" stroke-width="0.3" />
+    <!-- Entry 1 -->
+    <circle cx="20" cy="60" r="3" class="sketch-fill" opacity="0.1" />
+    <line x1="28" y1="57" x2="140" y2="57" stroke-width="0.2" />
+    <line x1="28" y1="64" x2="130" y2="64" stroke-width="0.2" />
+    <!-- Entry 2 -->
+    <circle cx="20" cy="82" r="3" class="sketch-fill" opacity="0.1" />
+    <line x1="28" y1="79" x2="140" y2="79" stroke-width="0.2" />
+    <line x1="28" y1="86" x2="125" y2="86" stroke-width="0.2" />
+    <!-- Entry 3 -->
+    <circle cx="20" cy="104" r="3" class="sketch-fill" opacity="0.1" />
+    <line x1="28" y1="101" x2="140" y2="101" stroke-width="0.2" />
+    <line x1="28" y1="108" x2="135" y2="108" stroke-width="0.2" />
+    <!-- Entry 4 -->
+    <circle cx="20" cy="126" r="3" class="sketch-fill" opacity="0.1" />
+    <line x1="28" y1="123" x2="140" y2="123" stroke-width="0.2" />
+    <line x1="28" y1="130" x2="120" y2="130" stroke-width="0.2" />
+    <!-- Entry 5 -->
+    <circle cx="20" cy="148" r="3" class="sketch-fill" opacity="0.1" />
+    <line x1="28" y1="145" x2="140" y2="145" stroke-width="0.2" />
+    <line x1="28" y1="152" x2="132" y2="152" stroke-width="0.2" />
+    <!-- Vertical timeline line -->
+    <line x1="20" y1="48" x2="20" y2="170" stroke-width="0.3" stroke-dasharray="1 3" />
+    <text class="label" x="25" y="230">chronica rerum gestarum</text>
+  </g>
+
+  <!-- ═══ TOP FAR RIGHT: Metatron's Cube ═══ -->
+
+  <g transform="translate(1180, 60)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <circle cx="60" cy="60" r="8" />
+    <circle cx="60" cy="35" r="8" />
+    <circle cx="81.65" cy="47.5" r="8" />
+    <circle cx="81.65" cy="72.5" r="8" />
+    <circle cx="60" cy="85" r="8" />
+    <circle cx="38.35" cy="72.5" r="8" />
+    <circle cx="38.35" cy="47.5" r="8" />
+    <circle cx="60" cy="10" r="8" stroke-dasharray="1 2" />
+    <circle cx="103.3" cy="35" r="8" stroke-dasharray="1 2" />
+    <circle cx="103.3" cy="85" r="8" stroke-dasharray="1 2" />
+    <circle cx="60" cy="110" r="8" stroke-dasharray="1 2" />
+    <circle cx="16.7" cy="85" r="8" stroke-dasharray="1 2" />
+    <circle cx="16.7" cy="35" r="8" stroke-dasharray="1 2" />
+    <line x1="60" y1="10" x2="103.3" y2="85" stroke-width="0.2" />
+    <line x1="60" y1="10" x2="16.7" y2="85" stroke-width="0.2" />
+    <line x1="103.3" y1="35" x2="16.7" y2="85" stroke-width="0.2" />
+    <line x1="103.3" y1="35" x2="60" y2="110" stroke-width="0.2" />
+    <line x1="103.3" y1="85" x2="16.7" y2="35" stroke-width="0.2" />
+    <line x1="16.7" y1="35" x2="60" y2="110" stroke-width="0.2" />
+    <line x1="60" y1="10" x2="60" y2="110" stroke-width="0.2" />
+    <line x1="16.7" y1="35" x2="103.3" y2="35" stroke-width="0.2" />
+    <line x1="16.7" y1="85" x2="103.3" y2="85" stroke-width="0.2" />
+    <circle cx="60" cy="60" r="58" stroke-dasharray="3 4" stroke-width="0.25" />
+    <text class="label-sm" x="15" y="130">cubus Metatronis</text>
+  </g>
+
+  <!-- ═══ LEFT CENTER: Quill with ink and parchment ═══ -->
+
+  <g transform="translate(100, 380)" class="sketch" stroke-width="0.5" opacity="0.28">
+    <!-- Parchment/paper -->
+    <path d="M0,0 Q5,-3 120,0 L120,140 Q60,145 0,140 Z" stroke-width="0.5" />
+    <!-- Parchment curl -->
+    <path d="M120,0 Q125,-5 128,5 Q125,12 120,10" stroke-width="0.3" />
+    <!-- Written lines (representing log entries) -->
+    <line x1="10" y1="15" x2="110" y2="15" stroke-width="0.3" />
+    <line x1="10" y1="28" x2="105" y2="28" stroke-width="0.2" />
+    <line x1="10" y1="38" x2="108" y2="38" stroke-width="0.2" />
+    <line x1="10" y1="48" x2="95" y2="48" stroke-width="0.2" />
+    <line x1="10" y1="63" x2="110" y2="63" stroke-width="0.3" />
+    <line x1="10" y1="76" x2="100" y2="76" stroke-width="0.2" />
+    <line x1="10" y1="86" x2="108" y2="86" stroke-width="0.2" />
+    <line x1="10" y1="96" x2="90" y2="96" stroke-width="0.2" />
+    <line x1="10" y1="111" x2="110" y2="111" stroke-width="0.3" />
+    <line x1="10" y1="124" x2="102" y2="124" stroke-width="0.2" />
+    <!-- Date markers in margin -->
+    <text class="annotation" x="2" y="14">I.</text>
+    <text class="annotation" x="2" y="62">II.</text>
+    <text class="annotation" x="2" y="110">III.</text>
+    <!-- Quill resting on paper -->
+    <path d="M100,130 Q115,110 130,85 Q140,65 145,50" stroke-width="0.4" />
+    <path d="M130,85 Q125,80 120,85" stroke-width="0.3" />
+    <path d="M135,75 Q130,72 127,76" stroke-width="0.3" />
+    <path d="M140,65 Q136,62 134,66" stroke-width="0.3" />
+    <!-- Nib -->
+    <path d="M100,130 L97,136 L100,133 L103,136 Z" stroke-width="0.3" />
+    <text class="label" x="15" y="165">manuscriptum et calamus</text>
+  </g>
+
+  <!-- ═══ CENTER RIGHT: Da Vinci calendar wheel ═══ -->
+
+  <g transform="translate(870, 360)" class="sketch" stroke-width="0.5" opacity="0.25">
+    <!-- Outer ring -->
+    <circle cx="90" cy="90" r="85" />
+    <circle cx="90" cy="90" r="80" stroke-dasharray="2 3" stroke-width="0.3" />
+    <!-- Inner ring -->
+    <circle cx="90" cy="90" r="60" stroke-width="0.3" />
+    <!-- Center -->
+    <circle cx="90" cy="90" r="8" />
+    <circle cx="90" cy="90" r="3" class="sketch-fill" opacity="0.1" />
+    <!-- Month divisions (12 segments) -->
+    <line x1="90" y1="5" x2="90" y2="30" stroke-width="0.3" />
+    <line x1="132.5" y1="8.5" x2="120" y2="30" stroke-width="0.3" />
+    <line x1="165" y1="32.5" x2="142" y2="52" stroke-width="0.3" />
+    <line x1="175" y1="90" x2="150" y2="90" stroke-width="0.3" />
+    <line x1="165" y1="147.5" x2="142" y2="128" stroke-width="0.3" />
+    <line x1="132.5" y1="171.5" x2="120" y2="150" stroke-width="0.3" />
+    <line x1="90" y1="175" x2="90" y2="150" stroke-width="0.3" />
+    <line x1="47.5" y1="171.5" x2="60" y2="150" stroke-width="0.3" />
+    <line x1="15" y1="147.5" x2="38" y2="128" stroke-width="0.3" />
+    <line x1="5" y1="90" x2="30" y2="90" stroke-width="0.3" />
+    <line x1="15" y1="32.5" x2="38" y2="52" stroke-width="0.3" />
+    <line x1="47.5" y1="8.5" x2="60" y2="30" stroke-width="0.3" />
+    <!-- Month numerals (abbreviated) -->
+    <text class="annotation" x="85" y="22">I</text>
+    <text class="annotation" x="118" y="28">II</text>
+    <text class="annotation" x="145" y="52">III</text>
+    <text class="annotation" x="155" y="88">IV</text>
+    <text class="annotation" x="143" y="132">V</text>
+    <text class="annotation" x="118" y="160">VI</text>
+    <text class="annotation" x="85" y="168">VII</text>
+    <text class="annotation" x="50" y="160">VIII</text>
+    <text class="annotation" x="22" y="132">IX</text>
+    <text class="annotation" x="12" y="88">X</text>
+    <text class="annotation" x="22" y="52">XI</text>
+    <text class="annotation" x="50" y="28">XII</text>
+    <!-- Pointer -->
+    <line x1="90" y1="82" x2="90" y2="35" stroke-width="0.4" />
+    <polygon points="90,35 87,42 93,42" class="sketch-fill" opacity="0.15" />
+    <text class="label" x="25" y="200">calendarium perpetuum</text>
+  </g>
+
+  <!-- ═══ CENTER: Flower of Life ═══ -->
+
+  <g transform="translate(480, 780)" class="sketch-light" stroke-width="0.35" opacity="0.16">
+    <circle cx="120" cy="120" r="40" />
+    <circle cx="120" cy="80" r="40" />
+    <circle cx="120" cy="160" r="40" />
+    <circle cx="85.36" cy="100" r="40" />
+    <circle cx="154.64" cy="100" r="40" />
+    <circle cx="85.36" cy="140" r="40" />
+    <circle cx="154.64" cy="140" r="40" />
+    <circle cx="120" cy="40" r="40" />
+    <circle cx="120" cy="200" r="40" />
+    <circle cx="50.72" cy="80" r="40" />
+    <circle cx="189.28" cy="80" r="40" />
+    <circle cx="50.72" cy="160" r="40" />
+    <circle cx="189.28" cy="160" r="40" />
+    <circle cx="85.36" cy="60" r="40" />
+    <circle cx="154.64" cy="60" r="40" />
+    <circle cx="85.36" cy="180" r="40" />
+    <circle cx="154.64" cy="180" r="40" />
+    <circle cx="50.72" cy="120" r="40" />
+    <circle cx="189.28" cy="120" r="40" />
+    <circle cx="120" cy="120" r="120" stroke-dasharray="4 4" stroke-width="0.3" />
+    <circle cx="120" cy="120" r="125" stroke-dasharray="1 8" stroke-width="0.2" />
+    <circle cx="120" cy="120" r="2.5" class="sketch-fill" opacity="0.12" />
+    <line x1="120" y1="-5" x2="120" y2="245" stroke-width="0.15" stroke-dasharray="6 8" />
+    <line x1="-5" y1="120" x2="245" y2="120" stroke-width="0.15" stroke-dasharray="6 8" />
+    <text class="label" x="50" y="265">flos vitae universalis</text>
+  </g>
+
+  <!-- ═══ LEFT LOWER: Clockwork mechanism ═══ -->
+
+  <g transform="translate(60, 620)" class="sketch" stroke-width="0.4" opacity="0.22">
+    <!-- Main wheel -->
+    <circle cx="70" cy="70" r="55" />
+    <circle cx="70" cy="70" r="48" stroke-dasharray="4 3" />
+    <circle cx="70" cy="70" r="18" />
+    <!-- Gear teeth -->
+    <line x1="70" y1="15" x2="70" y2="8" />
+    <line x1="70" y1="125" x2="70" y2="132" />
+    <line x1="15" y1="70" x2="8" y2="70" />
+    <line x1="125" y1="70" x2="132" y2="70" />
+    <line x1="31" y1="31" x2="26" y2="26" />
+    <line x1="109" y1="31" x2="114" y2="26" />
+    <line x1="31" y1="109" x2="26" y2="114" />
+    <line x1="109" y1="109" x2="114" y2="114" />
+    <!-- Clock hands -->
+    <line x1="70" y1="70" x2="70" y2="30" stroke-width="0.5" />
+    <line x1="70" y1="70" x2="100" y2="55" stroke-width="0.4" />
+    <!-- Center axis -->
+    <circle cx="70" cy="70" r="4" class="sketch-fill" opacity="0.1" />
+    <!-- Small escapement wheel -->
+    <circle cx="145" cy="40" r="20" stroke-width="0.3" />
+    <circle cx="145" cy="40" r="15" stroke-dasharray="2 2" stroke-width="0.25" />
+    <circle cx="145" cy="40" r="5" stroke-width="0.25" />
+    <!-- Connection -->
+    <line x1="125" y1="55" x2="130" y2="48" stroke-width="0.25" stroke-dasharray="2 3" />
+    <text class="label-sm" x="20" y="155">horologium mechanicum</text>
+  </g>
+
+  <!-- ═══ RIGHT: Tree of Life / Sephirot ═══ -->
+
+  <g transform="translate(980, 680)" class="sketch" stroke-width="0.4" opacity="0.17">
+    <circle cx="70" cy="0" r="12" />
+    <circle cx="30" cy="45" r="10" />
+    <circle cx="110" cy="45" r="10" />
+    <circle cx="70" cy="70" r="8" stroke-dasharray="2 2" />
+    <circle cx="30" cy="105" r="10" />
+    <circle cx="110" cy="105" r="10" />
+    <circle cx="70" cy="130" r="12" />
+    <circle cx="30" cy="175" r="10" />
+    <circle cx="110" cy="175" r="10" />
+    <circle cx="70" cy="210" r="10" />
+    <circle cx="70" cy="260" r="12" />
+    <line x1="30" y1="55" x2="30" y2="95" stroke-width="0.3" />
+    <line x1="30" y1="115" x2="30" y2="165" stroke-width="0.3" />
+    <line x1="110" y1="55" x2="110" y2="95" stroke-width="0.3" />
+    <line x1="110" y1="115" x2="110" y2="165" stroke-width="0.3" />
+    <line x1="70" y1="12" x2="70" y2="62" stroke-width="0.3" />
+    <line x1="70" y1="78" x2="70" y2="118" stroke-width="0.3" />
+    <line x1="70" y1="142" x2="70" y2="200" stroke-width="0.3" />
+    <line x1="70" y1="220" x2="70" y2="248" stroke-width="0.3" />
+    <line x1="70" y1="12" x2="30" y2="35" stroke-width="0.25" />
+    <line x1="70" y1="12" x2="110" y2="35" stroke-width="0.25" />
+    <line x1="30" y1="55" x2="110" y2="95" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="110" y1="55" x2="30" y2="95" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="30" y1="185" x2="70" y2="200" stroke-width="0.25" />
+    <line x1="110" y1="185" x2="70" y2="200" stroke-width="0.25" />
+    <ellipse cx="70" cy="130" rx="65" ry="145" stroke-dasharray="4 6" stroke-width="0.2" />
+    <text class="label-sm" x="15" y="290">arbor vitae — sephirot</text>
+  </g>
+
+  <!-- ═══ LOWER LEFT: Version timeline / branching ═══ -->
+
+  <g transform="translate(80, 1080)" class="sketch" stroke-width="0.5" opacity="0.25">
+    <!-- Main timeline trunk -->
+    <line x1="30" y1="0" x2="30" y2="180" stroke-width="0.6" />
+    <!-- Version nodes -->
+    <circle cx="30" cy="15" r="5" />
+    <text class="annotation" x="42" y="18">v1.0</text>
+    <line x1="42" y1="12" x2="120" y2="12" stroke-width="0.2" />
+
+    <circle cx="30" cy="50" r="5" />
+    <text class="annotation" x="42" y="53">v1.1</text>
+    <line x1="42" y1="47" x2="110" y2="47" stroke-width="0.2" />
+
+    <!-- Branch -->
+    <path d="M30,50 Q50,55 60,70 Q70,85 70,100" stroke-width="0.4" stroke-dasharray="2 3" />
+    <circle cx="70" cy="100" r="4" stroke-dasharray="1 2" stroke-width="0.3" />
+    <text class="annotation" x="80" y="103">exp.</text>
+
+    <circle cx="30" cy="90" r="5" />
+    <text class="annotation" x="42" y="93">v1.2</text>
+    <line x1="42" y1="87" x2="115" y2="87" stroke-width="0.2" />
+
+    <!-- Merge line -->
+    <path d="M70,100 Q55,115 30,120" stroke-width="0.3" stroke-dasharray="2 3" />
+
+    <circle cx="30" cy="125" r="6" />
+    <text class="annotation" x="42" y="128">v2.0</text>
+    <line x1="42" y1="122" x2="125" y2="122" stroke-width="0.2" />
+    <line x1="42" y1="130" x2="100" y2="130" stroke-width="0.2" />
+
+    <circle cx="30" cy="160" r="5" />
+    <text class="annotation" x="42" y="163">v2.1</text>
+    <line x1="42" y1="157" x2="118" y2="157" stroke-width="0.2" />
+
+    <text class="label" x="10" y="200">historia versionum</text>
+  </g>
+
+  <!-- ═══ CENTER LOWER: Sundial ═══ -->
+
+  <g transform="translate(400, 1180)" class="sketch" stroke-width="0.4" opacity="0.22">
+    <!-- Dial face (ellipse for perspective) -->
+    <ellipse cx="90" cy="60" rx="85" ry="55" />
+    <ellipse cx="90" cy="60" rx="80" ry="50" stroke-dasharray="2 3" stroke-width="0.3" />
+    <!-- Hour lines -->
+    <line x1="90" y1="10" x2="90" y2="20" stroke-width="0.3" />
+    <line x1="140" y1="20" x2="132" y2="28" stroke-width="0.3" />
+    <line x1="168" y1="45" x2="158" y2="48" stroke-width="0.3" />
+    <line x1="175" y1="60" x2="160" y2="60" stroke-width="0.3" />
+    <line x1="168" y1="78" x2="158" y2="74" stroke-width="0.3" />
+    <line x1="140" y1="98" x2="132" y2="90" stroke-width="0.3" />
+    <line x1="90" y1="110" x2="90" y2="100" stroke-width="0.3" />
+    <line x1="40" y1="98" x2="48" y2="90" stroke-width="0.3" />
+    <line x1="12" y1="78" x2="22" y2="74" stroke-width="0.3" />
+    <line x1="5" y1="60" x2="20" y2="60" stroke-width="0.3" />
+    <line x1="12" y1="45" x2="22" y2="48" stroke-width="0.3" />
+    <line x1="40" y1="20" x2="48" y2="28" stroke-width="0.3" />
+    <!-- Gnomon (shadow caster) -->
+    <line x1="90" y1="60" x2="90" y2="15" stroke-width="0.5" />
+    <path d="M90,60 L95,58 L90,15" stroke-width="0.3" />
+    <!-- Shadow -->
+    <line x1="90" y1="60" x2="140" y2="90" stroke-width="0.3" stroke-dasharray="3 3" />
+    <!-- Roman numerals -->
+    <text class="annotation" x="85" y="8">XII</text>
+    <text class="annotation" x="168" y="63">III</text>
+    <text class="annotation" x="85" y="118">VI</text>
+    <text class="annotation" x="0" y="63">IX</text>
+    <text class="label-sm" x="30" y="135">horologium solarium</text>
+  </g>
+
+  <!-- ═══ RIGHT LOWER: Inkwell with date stamps ═══ -->
+
+  <g transform="translate(920, 1100)" class="sketch" stroke-width="0.4" opacity="0.2">
+    <!-- Inkwell body -->
+    <ellipse cx="50" cy="70" rx="40" ry="12" />
+    <path d="M10,70 Q10,90 50,90 Q90,90 90,70" stroke-width="0.4" />
+    <!-- Ink surface -->
+    <ellipse cx="50" cy="60" rx="25" ry="8" class="sketch-fill" opacity="0.06" />
+    <!-- Inkwell rim -->
+    <ellipse cx="50" cy="58" rx="30" ry="10" />
+    <!-- Pen rest -->
+    <line x1="92" y1="55" x2="92" y2="75" stroke-width="0.3" />
+    <line x1="88" y1="55" x2="96" y2="55" stroke-width="0.3" />
+    <!-- Date stamps (scattered) -->
+    <rect x="120" y="20" width="50" height="25" rx="2" stroke-width="0.4" />
+    <text class="annotation" x="127" y="36">MMXXV.III</text>
+    <rect x="130" y="55" width="50" height="25" rx="2" stroke-width="0.3" stroke-dasharray="2 2" />
+    <text class="annotation" x="137" y="71">MMXXV.II</text>
+    <rect x="120" y="85" width="50" height="25" rx="2" stroke-width="0.3" stroke-dasharray="2 2" />
+    <text class="annotation" x="127" y="101">MMXXV.I</text>
+    <text class="label-sm" x="30" y="115">atramentum et notae temporis</text>
+  </g>
+
+  <!-- ═══ BOTTOM LEFT: Vesica Piscis ═══ -->
+
+  <g transform="translate(250, 1380)" class="sketch" stroke-width="0.35" opacity="0.16">
+    <circle cx="40" cy="50" r="45" />
+    <circle cx="80" cy="50" r="45" />
+    <path d="M60,7.3 Q40,50 60,92.7 Q80,50 60,7.3" stroke-width="0.5" stroke-dasharray="2 2" />
+    <line x1="60" y1="0" x2="60" y2="100" stroke-width="0.15" stroke-dasharray="3 5" />
+    <line x1="-5" y1="50" x2="125" y2="50" stroke-width="0.15" stroke-dasharray="3 5" />
+    <circle cx="60" cy="50" r="2" class="sketch-fill" opacity="0.12" />
+    <text class="label-sm" x="15" y="115">vesica piscis</text>
+    <text class="label-sm" x="15" y="128">√3 : 1</text>
+  </g>
+
+  <!-- ═══ BOTTOM CENTER: Golden spiral ═══ -->
+
+  <g transform="translate(700, 1400)" class="sketch" stroke-width="0.5" opacity="0.2">
+    <rect x="0" y="0" width="200" height="123.6" />
+    <rect x="0" y="0" width="123.6" height="123.6" />
+    <rect x="123.6" y="0" width="76.4" height="76.4" />
+    <rect x="123.6" y="76.4" width="47.2" height="47.2" />
+    <rect x="170.8" y="76.4" width="29.2" height="29.2" />
+    <path d="M123.6,123.6 Q123.6,0 0,0" stroke-width="0.6" />
+    <path d="M123.6,0 Q200,0 200,76.4" stroke-width="0.6" />
+    <path d="M200,76.4 Q200,123.6 170.8,123.6" stroke-width="0.5" />
+    <path d="M170.8,123.6 Q123.6,123.6 123.6,105.6" stroke-width="0.5" />
+    <text class="label" x="50" y="145">φ = 1.618</text>
+    <text class="label-sm" x="130" y="115">proportio divina</text>
+  </g>
+
+  <!-- ═══ BOTTOM RIGHT: Sri Yantra ═══ -->
+
+  <g transform="translate(1050, 1500)" class="sketch" stroke-width="0.3" opacity="0.14">
+    <circle cx="70" cy="65" r="65" />
+    <circle cx="70" cy="65" r="60" stroke-dasharray="2 3" />
+    <polygon points="70,5 130,110 10,110" stroke-width="0.35" />
+    <polygon points="70,20 118,100 22,100" stroke-width="0.25" stroke-dasharray="2 2" />
+    <polygon points="70,125 10,20 130,20" stroke-width="0.35" />
+    <polygon points="70,110 22,30 118,30" stroke-width="0.25" stroke-dasharray="2 2" />
+    <circle cx="70" cy="65" r="3" class="sketch-fill" opacity="0.15" />
+    <rect x="0" y="0" width="140" height="130" rx="3" stroke-width="0.2" stroke-dasharray="4 4" />
+    <text class="label-sm" x="25" y="150">yantra sacrum</text>
+  </g>
+
+  <!-- ═══ SCATTERED: Construction marks ═══ -->
+
+  <g transform="translate(1200, 250)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <circle cx="30" cy="30" r="25" />
+    <circle cx="30" cy="30" r="18" stroke-dasharray="2 3" />
+    <line x1="30" y1="5" x2="30" y2="55" />
+    <line x1="5" y1="30" x2="55" y2="30" />
+    <path d="M30,5 L33,15 L27,15 Z" class="sketch-fill" opacity="0.2" />
+  </g>
+
+  <!-- Scattered tiny construction marks / grid points -->
+  <g class="sketch-fill" opacity="0.06">
+    <circle cx="350" cy="300" r="2" />
+    <circle cx="700" cy="450" r="2" />
+    <circle cx="1100" cy="650" r="2" />
+    <circle cx="200" cy="1000" r="2" />
+    <circle cx="850" cy="1050" r="2" />
+    <circle cx="1250" cy="900" r="2" />
+    <circle cx="500" cy="1500" r="2" />
+    <circle cx="1000" cy="1400" r="2" />
+    <circle cx="150" cy="480" r="1.5" />
+    <circle cx="750" cy="680" r="1.5" />
+    <circle cx="400" cy="920" r="1.5" />
+    <circle cx="1300" cy="550" r="1.5" />
+    <circle cx="600" cy="1200" r="1.5" />
+    <circle cx="300" cy="1450" r="1.5" />
+    <circle cx="900" cy="1550" r="1.5" />
+    <circle cx="1200" cy="1100" r="1.5" />
+  </g>
+
+  <!-- Faint construction grid lines (Da Vinci notebook ruled lines) -->
+  <g class="sketch" stroke-width="0.15" opacity="0.04">
+    <line x1="0" y1="300" x2="1400" y2="300" />
+    <line x1="0" y1="600" x2="1400" y2="600" />
+    <line x1="0" y1="900" x2="1400" y2="900" />
+    <line x1="0" y1="1200" x2="1400" y2="1200" />
+    <line x1="0" y1="1500" x2="1400" y2="1500" />
+    <line x1="350" y1="0" x2="350" y2="1800" />
+    <line x1="700" y1="0" x2="700" y2="1800" />
+    <line x1="1050" y1="0" x2="1050" y2="1800" />
+  </g>
+
+  <!-- Faint mirror writing hint (reversed text like Da Vinci) -->
+  <g opacity="0.06">
+    <text class="label" x="1100" y="1150" transform="scale(-1,1) translate(-2200,0)">notae secretae</text>
+    <text class="label-sm" x="200" y="1550" transform="scale(-1,1) translate(-400,0)">tempus fugit memor esto</text>
+    <text class="label-sm" x="800" y="700" transform="scale(-1,1) translate(-1600,0)">historia magistra vitae</text>
+    <text class="label-sm" x="600" y="1400" transform="scale(-1,1) translate(-1200,0)">omnia mutantur</text>
+  </g>
+
+</svg>

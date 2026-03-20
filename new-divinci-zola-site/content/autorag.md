@@ -7,6 +7,15 @@ feature_category = "data-management"
 +++
 
 <style>
+/* Page-specific Leonardo journal background */
+.feature-page.leonardo-bg::before {
+    background-image: url('/images/bg-autorag.svg') !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% auto !important;
+    background-position: top center !important;
+    opacity: 1 !important;
+}
+
 /* Feature page specific styles matching original design */
 
 .section-padding {
@@ -894,13 +903,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 </section>
 
-<section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(92, 226, 231, 0.1)); padding: 4rem 0;">
-<div class="container" style="text-align: center;">
-<h2 style="font-size: 2.5rem; color: #1e3a2b; margin-bottom: 1rem;">Ready to Get Started?</h2>
-<p style="font-size: 1.25rem; margin-bottom: 2rem; color: #2d3c34;">Transform your AI applications with AutoRAG's comprehensive solution.</p>
-<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="secondary-button" target="_blank">Request Demo</a>
-<a href="https://docs.divinci.ai/autorag" class="text-link" style="padding: 12px 24px; border: 2px solid transparent;">View Documentation</a>
-</div>
+<div class="arena-cta-wrapper">
+<section class="arena-cta">
+<h2>Ready to get started?</h2>
+<p>Transform your AI applications with AutoRAG's comprehensive solution for finding the optimal retrieval pipeline.</p>
+<div class="hero-ctas">
+<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="cta-primary" target="_blank">Request demo</a>
+<a href="/quality-assurance/" class="cta-secondary">Explore Quality Assurance</a>
 </div>
 </section>
+</div>

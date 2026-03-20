@@ -1,0 +1,583 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1800" viewBox="0 0 1400 1800">
+  <defs>
+    <style>
+      .sketch { stroke: #b8a080; fill: none; }
+      .sketch-light { stroke: #b8a080; fill: none; opacity: 0.5; }
+      .sketch-fill { fill: #b8a080; stroke: none; }
+      .label { font-family: 'Fraunces', 'Georgia', serif; fill: #b8a080; font-size: 11px; font-style: italic; }
+      .label-sm { font-family: 'Fraunces', 'Georgia', serif; fill: #b8a080; font-size: 8px; font-style: italic; }
+      .annotation { font-family: 'Source Sans 3', sans-serif; fill: #b8a080; font-size: 7px; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <!-- ═══ TOP SECTION: Ship launching mechanism (Da Vinci naval sketch) ═══ -->
+
+  <g transform="translate(80, 50)" class="sketch" stroke-width="0.6" opacity="0.35">
+    <!-- Hull of vessel -->
+    <path d="M0,130 Q10,128 60,125 Q120,118 180,110 Q240,105 280,110 Q300,115 310,130" />
+    <path d="M0,130 Q50,145 155,150 Q260,148 310,130" />
+    <!-- Keel line -->
+    <path d="M30,140 Q155,158 280,140" stroke-dasharray="3 4" stroke-width="0.4" />
+    <!-- Mast -->
+    <line x1="155" y1="20" x2="155" y2="125" stroke-width="0.8" />
+    <!-- Yard arm -->
+    <line x1="100" y1="35" x2="210" y2="35" stroke-width="0.5" />
+    <!-- Sail (furled) -->
+    <path d="M105,35 Q130,55 155,60 Q180,55 205,35" stroke-width="0.4" stroke-dasharray="2 3" />
+    <!-- Rigging lines -->
+    <line x1="155" y1="20" x2="80" y2="120" stroke-width="0.25" />
+    <line x1="155" y1="20" x2="230" y2="120" stroke-width="0.25" />
+    <line x1="100" y1="35" x2="60" y2="120" stroke-width="0.2" stroke-dasharray="2 4" />
+    <line x1="210" y1="35" x2="250" y2="120" stroke-width="0.2" stroke-dasharray="2 4" />
+    <!-- Flag at top -->
+    <path d="M155,20 L175,12 L175,28 L155,20" stroke-width="0.4" />
+    <!-- Launch ramp beneath -->
+    <line x1="-20" y1="155" x2="330" y2="155" stroke-width="0.3" />
+    <line x1="-10" y1="165" x2="320" y2="165" stroke-width="0.3" />
+    <!-- Rolling logs under hull -->
+    <circle cx="80" cy="148" r="5" stroke-width="0.3" />
+    <circle cx="155" cy="152" r="5" stroke-width="0.3" />
+    <circle cx="230" cy="148" r="5" stroke-width="0.3" />
+    <!-- Launch direction arrow -->
+    <line x1="320" y1="140" x2="370" y2="130" stroke-width="0.5" />
+    <polygon points="368,126 378,128 370,134" class="sketch-fill" opacity="0.25" />
+    <!-- Water waves at destination -->
+    <path d="M340,155 Q350,150 360,155 Q370,160 380,155" stroke-width="0.3" />
+    <path d="M350,165 Q360,160 370,165 Q380,170 390,165" stroke-width="0.3" />
+    <!-- Annotation marks -->
+    <line x1="155" y1="15" x2="155" y2="5" stroke-width="0.25" />
+    <text class="annotation" x="140" y="3">h = 120</text>
+    <line x1="-20" y1="170" x2="330" y2="170" stroke-width="0.15" stroke-dasharray="1 3" />
+    <text class="label" x="100" y="195">navis emissa</text>
+    <text class="annotation" x="100" y="207">v1.0 — release vessel</text>
+  </g>
+
+  <!-- ═══ TOP RIGHT: Seed of Life (compact, 7 circles) ═══ -->
+
+  <g transform="translate(520, 30)" class="sketch" stroke-width="0.35" opacity="0.18">
+    <circle cx="40" cy="40" r="25" />
+    <circle cx="40" cy="15" r="25" />
+    <circle cx="40" cy="65" r="25" />
+    <circle cx="18.35" cy="27.5" r="25" />
+    <circle cx="61.65" cy="27.5" r="25" />
+    <circle cx="18.35" cy="52.5" r="25" />
+    <circle cx="61.65" cy="52.5" r="25" />
+    <!-- Outer enclosing circle -->
+    <circle cx="40" cy="40" r="50" stroke-dasharray="2 3" />
+    <circle cx="40" cy="40" r="2" class="sketch-fill" opacity="0.12" />
+    <text class="label-sm" x="10" y="100">semen vitae</text>
+  </g>
+
+  <!-- ═══ LEFT SIDE: Version branching tree (Da Vinci botanical / git branches) ═══ -->
+
+  <g transform="translate(60, 300)" class="sketch" stroke-width="0.5" opacity="0.28">
+    <!-- Main trunk (main branch) -->
+    <line x1="50" y1="0" x2="50" y2="280" stroke-width="0.8" />
+    <!-- Root system -->
+    <path d="M50,280 Q40,295 25,300" stroke-width="0.3" />
+    <path d="M50,280 Q55,290 65,298" stroke-width="0.3" />
+    <path d="M50,280 Q50,295 50,305" stroke-width="0.3" />
+    <!-- Commit nodes on main -->
+    <circle cx="50" cy="20" r="4" />
+    <circle cx="50" cy="60" r="4" />
+    <circle cx="50" cy="110" r="4" />
+    <circle cx="50" cy="160" r="4" />
+    <circle cx="50" cy="210" r="4" />
+    <circle cx="50" cy="260" r="4" />
+    <!-- Version tags -->
+    <text class="annotation" x="60" y="23">v3.0</text>
+    <text class="annotation" x="60" y="63">v2.2</text>
+    <text class="annotation" x="60" y="113">v2.1</text>
+    <text class="annotation" x="60" y="163">v2.0</text>
+    <text class="annotation" x="60" y="213">v1.1</text>
+    <text class="annotation" x="60" y="263">v1.0</text>
+    <!-- Feature branch 1 (right) -->
+    <path d="M50,210 Q80,200 110,180 Q130,168 140,155" stroke-width="0.4" />
+    <circle cx="90" cy="193" r="3" stroke-width="0.3" />
+    <circle cx="120" cy="172" r="3" stroke-width="0.3" />
+    <circle cx="140" cy="155" r="3" stroke-width="0.3" />
+    <!-- Merge back -->
+    <path d="M140,155 Q130,140 110,125 Q80,108 50,110" stroke-width="0.35" stroke-dasharray="2 3" />
+    <text class="annotation" x="115" y="148">feat/deploy</text>
+    <!-- Feature branch 2 (right, shorter) -->
+    <path d="M50,110 Q75,100 100,90 Q115,82 120,72" stroke-width="0.4" />
+    <circle cx="85" cy="95" r="3" stroke-width="0.3" />
+    <circle cx="120" cy="72" r="3" stroke-width="0.3" />
+    <!-- Merge back -->
+    <path d="M120,72 Q100,65 50,60" stroke-width="0.35" stroke-dasharray="2 3" />
+    <text class="annotation" x="100" y="68">fix/rollback</text>
+    <!-- Hotfix branch (left) -->
+    <path d="M50,160 Q30,150 15,130 Q8,118 10,105" stroke-width="0.4" />
+    <circle cx="22" cy="140" r="3" stroke-width="0.3" />
+    <circle cx="10" cy="105" r="3" stroke-width="0.3" />
+    <!-- Merge back -->
+    <path d="M10,105 Q15,95 50,110" stroke-width="0.35" stroke-dasharray="2 3" />
+    <text class="annotation" x="-25" y="120">hotfix</text>
+    <!-- Leaves / small botanical details -->
+    <path d="M50,20 Q40,10 35,5" stroke-width="0.3" />
+    <path d="M35,5 Q38,2 42,5 Q40,8 35,5" stroke-width="0.25" />
+    <path d="M50,20 Q58,8 62,3" stroke-width="0.3" />
+    <path d="M62,3 Q65,0 68,4 Q66,8 62,3" stroke-width="0.25" />
+    <text class="label" x="15" y="325">arbor versionum</text>
+  </g>
+
+  <!-- ═══ CENTER: Deployment pipeline flow diagram ═══ -->
+
+  <g transform="translate(350, 500)" class="sketch" stroke-width="0.6" opacity="0.25">
+    <!-- Build stage -->
+    <rect x="0" y="20" width="70" height="32" rx="4" />
+    <text class="annotation" x="16" y="40">BUILD</text>
+    <!-- Arrow -->
+    <line x1="70" y1="36" x2="105" y2="36" />
+    <polygon points="103,32 111,36 103,40" class="sketch-fill" opacity="0.25" />
+    <!-- Stage -->
+    <rect x="115" y="20" width="70" height="32" rx="4" />
+    <text class="annotation" x="130" y="40">STAGE</text>
+    <!-- Arrow -->
+    <line x1="185" y1="36" x2="220" y2="36" />
+    <polygon points="218,32 226,36 218,40" class="sketch-fill" opacity="0.25" />
+    <!-- Test (diamond shape) -->
+    <path d="M265,36 L295,14 L325,36 L295,58 Z" />
+    <text class="annotation" x="280" y="39">TEST</text>
+    <!-- Pass arrow (right) -->
+    <line x1="325" y1="36" x2="360" y2="36" />
+    <polygon points="358,32 366,36 358,40" class="sketch-fill" opacity="0.25" />
+    <!-- Fail arrow (down) -->
+    <line x1="295" y1="58" x2="295" y2="85" />
+    <polygon points="291,83 295,91 299,83" class="sketch-fill" opacity="0.15" />
+    <text class="annotation" x="300" y="80">fail</text>
+    <text class="annotation" x="278" y="100">rollback</text>
+    <!-- Deploy -->
+    <rect x="370" y="20" width="75" height="32" rx="4" stroke-width="0.8" />
+    <text class="annotation" x="385" y="40">DEPLOY</text>
+    <!-- Arrow -->
+    <line x1="445" y1="36" x2="480" y2="36" />
+    <polygon points="478,32 486,36 478,40" class="sketch-fill" opacity="0.25" />
+    <!-- Monitor -->
+    <rect x="490" y="20" width="80" height="32" rx="4" />
+    <text class="annotation" x="503" y="40">MONITOR</text>
+    <!-- Monitor feedback loop (curved arrow back) -->
+    <path d="M530,52 Q530,75 400,75 Q270,75 270,58" stroke-width="0.3" stroke-dasharray="3 3" />
+    <polygon points="266,62 270,54 274,62" class="sketch-fill" opacity="0.15" />
+    <!-- Pipeline progress indicators -->
+    <circle cx="35" cy="10" r="3" class="sketch-fill" opacity="0.12" />
+    <circle cx="150" cy="10" r="3" class="sketch-fill" opacity="0.10" />
+    <circle cx="295" cy="4" r="3" class="sketch-fill" opacity="0.08" />
+    <circle cx="407" cy="10" r="3" class="sketch-fill" opacity="0.12" />
+    <circle cx="530" cy="10" r="3" class="sketch-fill" opacity="0.06" />
+    <!-- Connecting dots -->
+    <line x1="38" y1="10" x2="147" y2="10" stroke-width="0.2" stroke-dasharray="2 4" />
+    <line x1="153" y1="10" x2="292" y2="4" stroke-width="0.2" stroke-dasharray="2 4" />
+    <line x1="298" y1="4" x2="404" y2="10" stroke-width="0.2" stroke-dasharray="2 4" />
+    <line x1="410" y1="10" x2="527" y2="10" stroke-width="0.2" stroke-dasharray="2 4" />
+    <text class="label-sm" x="200" y="118">cursus fabricandi — pipeline</text>
+  </g>
+
+  <!-- ═══ RIGHT SIDE: Clockwork gears meshing (deployment automation) ═══ -->
+
+  <g transform="translate(1020, 280)" class="sketch" stroke-width="0.4" opacity="0.22">
+    <!-- Large gear -->
+    <circle cx="70" cy="70" r="55" />
+    <circle cx="70" cy="70" r="46" stroke-dasharray="4 3" />
+    <circle cx="70" cy="70" r="16" />
+    <circle cx="70" cy="70" r="4" class="sketch-fill" opacity="0.12" />
+    <!-- Gear teeth on large gear (12 teeth) -->
+    <line x1="70" y1="15" x2="70" y2="6" />
+    <line x1="70" y1="125" x2="70" y2="134" />
+    <line x1="15" y1="70" x2="6" y2="70" />
+    <line x1="125" y1="70" x2="134" y2="70" />
+    <line x1="31" y1="31" x2="25" y2="25" />
+    <line x1="109" y1="31" x2="115" y2="25" />
+    <line x1="31" y1="109" x2="25" y2="115" />
+    <line x1="109" y1="109" x2="115" y2="115" />
+    <line x1="47" y1="18" x2="44" y2="10" />
+    <line x1="93" y1="18" x2="96" y2="10" />
+    <line x1="47" y1="122" x2="44" y2="130" />
+    <line x1="93" y1="122" x2="96" y2="130" />
+    <!-- Medium gear (meshing) -->
+    <circle cx="160" cy="115" r="35" />
+    <circle cx="160" cy="115" r="28" stroke-dasharray="3 2" />
+    <circle cx="160" cy="115" r="10" />
+    <circle cx="160" cy="115" r="3" class="sketch-fill" opacity="0.12" />
+    <!-- Teeth on medium gear -->
+    <line x1="160" y1="80" x2="160" y2="73" />
+    <line x1="160" y1="150" x2="160" y2="157" />
+    <line x1="125" y1="115" x2="118" y2="115" />
+    <line x1="195" y1="115" x2="202" y2="115" />
+    <line x1="135" y1="90" x2="130" y2="85" />
+    <line x1="185" y1="90" x2="190" y2="85" />
+    <line x1="135" y1="140" x2="130" y2="145" />
+    <line x1="185" y1="140" x2="190" y2="145" />
+    <!-- Small gear -->
+    <circle cx="195" cy="60" r="22" />
+    <circle cx="195" cy="60" r="16" stroke-dasharray="2 2" />
+    <circle cx="195" cy="60" r="6" />
+    <circle cx="195" cy="60" r="2" class="sketch-fill" opacity="0.12" />
+    <!-- Small gear teeth -->
+    <line x1="195" y1="38" x2="195" y2="33" />
+    <line x1="195" y1="82" x2="195" y2="87" />
+    <line x1="173" y1="60" x2="168" y2="60" />
+    <line x1="217" y1="60" x2="222" y2="60" />
+    <!-- Rotation arrow on large gear -->
+    <path d="M45,18 Q35,20 30,30" stroke-width="0.3" />
+    <polygon points="28,28 26,34 33,30" class="sketch-fill" opacity="0.15" />
+    <text class="label-sm" x="40" y="160">machina automata</text>
+    <text class="annotation" x="40" y="172">CI/CD gearing</text>
+  </g>
+
+  <!-- ═══ CENTER-LEFT: Dodecahedron wireframe ═══ -->
+
+  <g transform="translate(250, 700)" class="sketch" stroke-width="0.35" opacity="0.16">
+    <!-- Outer pentagon -->
+    <polygon points="75,0 143,49 117,128 33,128 7,49" />
+    <!-- Inner pentagon (rotated, smaller — back face) -->
+    <polygon points="75,30 118,58 102,108 48,108 32,58" stroke-dasharray="2 3" />
+    <!-- Connecting edges between front and back pentagons -->
+    <line x1="75" y1="0" x2="75" y2="30" stroke-width="0.3" />
+    <line x1="143" y1="49" x2="118" y2="58" stroke-width="0.3" />
+    <line x1="117" y1="128" x2="102" y2="108" stroke-width="0.3" />
+    <line x1="33" y1="128" x2="48" y2="108" stroke-width="0.3" />
+    <line x1="7" y1="49" x2="32" y2="58" stroke-width="0.3" />
+    <!-- Center point -->
+    <circle cx="75" cy="64" r="2" class="sketch-fill" opacity="0.1" />
+    <!-- Construction circle -->
+    <circle cx="75" cy="64" r="72" stroke-dasharray="4 6" stroke-width="0.2" />
+    <text class="label-sm" x="30" y="155">dodecahedron regularis</text>
+  </g>
+
+  <!-- ═══ CENTER: Full Flower of Life (19+ overlapping circles with enclosing ring) ═══ -->
+
+  <g transform="translate(480, 800)" class="sketch-light" stroke-width="0.35" opacity="0.16">
+    <!-- Seed of Life — inner 7 circles -->
+    <circle cx="120" cy="120" r="40" />
+    <circle cx="120" cy="80" r="40" />
+    <circle cx="120" cy="160" r="40" />
+    <circle cx="85.36" cy="100" r="40" />
+    <circle cx="154.64" cy="100" r="40" />
+    <circle cx="85.36" cy="140" r="40" />
+    <circle cx="154.64" cy="140" r="40" />
+    <!-- Second ring — 12 petals -->
+    <circle cx="120" cy="40" r="40" />
+    <circle cx="120" cy="200" r="40" />
+    <circle cx="50.72" cy="80" r="40" />
+    <circle cx="189.28" cy="80" r="40" />
+    <circle cx="50.72" cy="160" r="40" />
+    <circle cx="189.28" cy="160" r="40" />
+    <circle cx="85.36" cy="60" r="40" />
+    <circle cx="154.64" cy="60" r="40" />
+    <circle cx="85.36" cy="180" r="40" />
+    <circle cx="154.64" cy="180" r="40" />
+    <circle cx="50.72" cy="120" r="40" />
+    <circle cx="189.28" cy="120" r="40" />
+    <!-- Enclosing circle with construction marks -->
+    <circle cx="120" cy="120" r="120" stroke-dasharray="4 4" stroke-width="0.3" />
+    <circle cx="120" cy="120" r="125" stroke-dasharray="1 8" stroke-width="0.2" />
+    <!-- Center seed dot -->
+    <circle cx="120" cy="120" r="2.5" class="sketch-fill" opacity="0.12" />
+    <!-- Construction crosshairs -->
+    <line x1="120" y1="-5" x2="120" y2="245" stroke-width="0.15" stroke-dasharray="6 8" />
+    <line x1="-5" y1="120" x2="245" y2="120" stroke-width="0.15" stroke-dasharray="6 8" />
+    <text class="label" x="50" y="265">flos vitae universalis</text>
+  </g>
+
+  <!-- ═══ RIGHT CENTER: Tree of Life / Sephirot ═══ -->
+
+  <g transform="translate(980, 680)" class="sketch" stroke-width="0.4" opacity="0.17">
+    <!-- 10 Sephirot (nodes) — classical layout -->
+    <!-- Crown (Kether) -->
+    <circle cx="70" cy="0" r="12" />
+    <!-- Wisdom & Understanding -->
+    <circle cx="30" cy="45" r="10" />
+    <circle cx="110" cy="45" r="10" />
+    <!-- Knowledge (Da'at) - hidden, dashed -->
+    <circle cx="70" cy="70" r="8" stroke-dasharray="2 2" />
+    <!-- Mercy & Severity -->
+    <circle cx="30" cy="105" r="10" />
+    <circle cx="110" cy="105" r="10" />
+    <!-- Beauty (Tiferet) - center -->
+    <circle cx="70" cy="130" r="12" />
+    <!-- Victory & Splendor -->
+    <circle cx="30" cy="175" r="10" />
+    <circle cx="110" cy="175" r="10" />
+    <!-- Foundation -->
+    <circle cx="70" cy="210" r="10" />
+    <!-- Kingdom (Malkuth) -->
+    <circle cx="70" cy="260" r="12" />
+
+    <!-- Paths (22 connecting lines) — The Three Pillars -->
+    <!-- Left pillar -->
+    <line x1="30" y1="55" x2="30" y2="95" stroke-width="0.3" />
+    <line x1="30" y1="115" x2="30" y2="165" stroke-width="0.3" />
+    <!-- Right pillar -->
+    <line x1="110" y1="55" x2="110" y2="95" stroke-width="0.3" />
+    <line x1="110" y1="115" x2="110" y2="165" stroke-width="0.3" />
+    <!-- Middle pillar -->
+    <line x1="70" y1="12" x2="70" y2="62" stroke-width="0.3" />
+    <line x1="70" y1="78" x2="70" y2="118" stroke-width="0.3" />
+    <line x1="70" y1="142" x2="70" y2="200" stroke-width="0.3" />
+    <line x1="70" y1="220" x2="70" y2="248" stroke-width="0.3" />
+    <!-- Cross paths -->
+    <line x1="70" y1="12" x2="30" y2="35" stroke-width="0.25" />
+    <line x1="70" y1="12" x2="110" y2="35" stroke-width="0.25" />
+    <line x1="30" y1="55" x2="110" y2="95" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="110" y1="55" x2="30" y2="95" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="30" y1="55" x2="70" y2="118" stroke-width="0.2" />
+    <line x1="110" y1="55" x2="70" y2="118" stroke-width="0.2" />
+    <line x1="30" y1="115" x2="70" y2="142" stroke-width="0.2" />
+    <line x1="110" y1="115" x2="70" y2="142" stroke-width="0.2" />
+    <line x1="30" y1="185" x2="70" y2="200" stroke-width="0.25" />
+    <line x1="110" y1="185" x2="70" y2="200" stroke-width="0.25" />
+    <line x1="30" y1="185" x2="70" y2="248" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="110" y1="185" x2="70" y2="248" stroke-width="0.2" stroke-dasharray="2 3" />
+
+    <!-- Enclosing oval -->
+    <ellipse cx="70" cy="130" rx="65" ry="145" stroke-dasharray="4 6" stroke-width="0.2" />
+    <text class="label-sm" x="15" y="290">arbor vitae — sephirot</text>
+  </g>
+
+  <!-- ═══ LOWER LEFT: Pulley/lever rollback mechanism ═══ -->
+
+  <g transform="translate(60, 1100)" class="sketch" stroke-width="0.5" opacity="0.25">
+    <!-- Support frame (A-frame) -->
+    <line x1="70" y1="0" x2="30" y2="140" stroke-width="0.7" />
+    <line x1="70" y1="0" x2="110" y2="140" stroke-width="0.7" />
+    <line x1="45" y1="80" x2="95" y2="80" stroke-width="0.4" />
+    <!-- Top pulley wheel -->
+    <circle cx="70" cy="12" r="10" />
+    <circle cx="70" cy="12" r="4" stroke-dasharray="1 2" />
+    <circle cx="70" cy="12" r="1.5" class="sketch-fill" opacity="0.15" />
+    <!-- Rope over pulley, left side goes down with weight -->
+    <line x1="60" y1="12" x2="60" y2="120" stroke-width="0.4" />
+    <!-- Weight (release package) -->
+    <rect x="45" y="120" width="30" height="25" rx="2" stroke-width="0.4" />
+    <text class="annotation" x="49" y="136">v2.1</text>
+    <!-- Rope right side goes to lever -->
+    <line x1="80" y1="12" x2="80" y2="55" stroke-width="0.4" />
+    <line x1="80" y1="55" x2="160" y2="55" stroke-width="0.4" />
+    <!-- Lower pulley (direction change) -->
+    <circle cx="80" cy="55" r="6" stroke-width="0.3" />
+    <!-- Lever mechanism -->
+    <line x1="140" y1="30" x2="200" y2="80" stroke-width="0.6" />
+    <!-- Fulcrum triangle -->
+    <polygon points="165,55 160,65 170,65" stroke-width="0.4" />
+    <!-- Hand pulling lever -->
+    <path d="M200,80 Q205,82 208,78 Q212,74 210,70" stroke-width="0.35" />
+    <!-- Upward arrow showing rollback motion -->
+    <line x1="55" y1="115" x2="55" y2="90" stroke-width="0.3" stroke-dasharray="2 3" />
+    <polygon points="51,93 55,85 59,93" class="sketch-fill" opacity="0.15" />
+    <text class="annotation" x="30" y="85">rollback</text>
+    <!-- Ground line -->
+    <line x1="10" y1="150" x2="220" y2="150" stroke-width="0.3" />
+    <line x1="10" y1="150" x2="20" y2="160" stroke-width="0.2" />
+    <line x1="30" y1="150" x2="40" y2="160" stroke-width="0.2" />
+    <line x1="50" y1="150" x2="60" y2="160" stroke-width="0.2" />
+    <line x1="70" y1="150" x2="80" y2="160" stroke-width="0.2" />
+    <line x1="90" y1="150" x2="100" y2="160" stroke-width="0.2" />
+    <text class="label" x="40" y="185">machina reversandi</text>
+  </g>
+
+  <!-- ═══ LOWER CENTER: Metatron's Cube ═══ -->
+
+  <g transform="translate(450, 1150)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <!-- 13 circles of Metatron's Cube -->
+    <circle cx="60" cy="60" r="8" />
+    <!-- Inner ring of 6 -->
+    <circle cx="60" cy="35" r="8" />
+    <circle cx="81.65" cy="47.5" r="8" />
+    <circle cx="81.65" cy="72.5" r="8" />
+    <circle cx="60" cy="85" r="8" />
+    <circle cx="38.35" cy="72.5" r="8" />
+    <circle cx="38.35" cy="47.5" r="8" />
+    <!-- Outer ring of 6 -->
+    <circle cx="60" cy="10" r="8" stroke-dasharray="1 2" />
+    <circle cx="103.3" cy="35" r="8" stroke-dasharray="1 2" />
+    <circle cx="103.3" cy="85" r="8" stroke-dasharray="1 2" />
+    <circle cx="60" cy="110" r="8" stroke-dasharray="1 2" />
+    <circle cx="16.7" cy="85" r="8" stroke-dasharray="1 2" />
+    <circle cx="16.7" cy="35" r="8" stroke-dasharray="1 2" />
+    <!-- Connecting lines through all 13 centers -->
+    <line x1="60" y1="10" x2="103.3" y2="85" stroke-width="0.2" />
+    <line x1="60" y1="10" x2="16.7" y2="85" stroke-width="0.2" />
+    <line x1="103.3" y1="35" x2="16.7" y2="85" stroke-width="0.2" />
+    <line x1="103.3" y1="35" x2="60" y2="110" stroke-width="0.2" />
+    <line x1="103.3" y1="85" x2="16.7" y2="35" stroke-width="0.2" />
+    <line x1="16.7" y1="35" x2="60" y2="110" stroke-width="0.2" />
+    <line x1="60" y1="10" x2="60" y2="110" stroke-width="0.2" />
+    <line x1="16.7" y1="35" x2="103.3" y2="35" stroke-width="0.2" />
+    <line x1="16.7" y1="85" x2="103.3" y2="85" stroke-width="0.2" />
+    <!-- Enclosing circle -->
+    <circle cx="60" cy="60" r="58" stroke-dasharray="3 4" stroke-width="0.25" />
+    <text class="label-sm" x="15" y="130">cubus Metatronis</text>
+  </g>
+
+  <!-- ═══ LOWER RIGHT: Golden spiral with phi annotation ═══ -->
+
+  <g transform="translate(850, 1200)" class="sketch" stroke-width="0.5" opacity="0.2">
+    <rect x="0" y="0" width="200" height="123.6" />
+    <rect x="0" y="0" width="123.6" height="123.6" />
+    <rect x="123.6" y="0" width="76.4" height="76.4" />
+    <rect x="123.6" y="76.4" width="47.2" height="47.2" />
+    <rect x="170.8" y="76.4" width="29.2" height="29.2" />
+    <!-- Spiral curves -->
+    <path d="M123.6,123.6 Q123.6,0 0,0" stroke-width="0.6" />
+    <path d="M123.6,0 Q200,0 200,76.4" stroke-width="0.6" />
+    <path d="M200,76.4 Q200,123.6 170.8,123.6" stroke-width="0.5" />
+    <path d="M170.8,123.6 Q123.6,123.6 123.6,105.6" stroke-width="0.5" />
+    <!-- Phi annotation -->
+    <text class="label" x="50" y="145">φ = 1.618</text>
+    <text class="label-sm" x="130" y="115">proportio divina</text>
+  </g>
+
+  <!-- ═══ BOTTOM: Sri Yantra nested triangles ═══ -->
+
+  <g transform="translate(500, 1500)" class="sketch" stroke-width="0.3" opacity="0.14">
+    <!-- Outer circle -->
+    <circle cx="70" cy="65" r="65" />
+    <circle cx="70" cy="65" r="60" stroke-dasharray="2 3" />
+    <!-- Upward triangles (Shiva) -->
+    <polygon points="70,5 130,110 10,110" stroke-width="0.35" />
+    <polygon points="70,20 118,100 22,100" stroke-width="0.25" stroke-dasharray="2 2" />
+    <!-- Downward triangles (Shakti) -->
+    <polygon points="70,125 10,20 130,20" stroke-width="0.35" />
+    <polygon points="70,110 22,30 118,30" stroke-width="0.25" stroke-dasharray="2 2" />
+    <!-- Bindu (center point) -->
+    <circle cx="70" cy="65" r="3" class="sketch-fill" opacity="0.15" />
+    <!-- Gate squares (bhupura) -->
+    <rect x="0" y="0" width="140" height="130" rx="3" stroke-width="0.2" stroke-dasharray="4 4" />
+    <text class="label-sm" x="25" y="150">yantra sacrum</text>
+  </g>
+
+  <!-- ═══ TOP FAR RIGHT: Version comparison / changelog tablet ═══ -->
+
+  <g transform="translate(1150, 50)" class="sketch" stroke-width="0.5" opacity="0.25">
+    <!-- Tablet / stone slab -->
+    <path d="M10,0 Q0,0 0,12 L0,140 Q0,150 10,150 L100,150 Q110,150 110,140 L110,12 Q110,0 100,0 Z" />
+    <!-- Top ornament -->
+    <path d="M30,0 Q55,-8 80,0" stroke-width="0.3" />
+    <!-- Changelog lines -->
+    <text class="annotation" x="12" y="20">CHANGELOG</text>
+    <line x1="12" y1="25" x2="98" y2="25" stroke-width="0.3" />
+    <circle cx="18" cy="38" r="2" class="sketch-fill" opacity="0.15" />
+    <line x1="25" y1="38" x2="90" y2="38" stroke-width="0.25" />
+    <circle cx="18" cy="52" r="2" class="sketch-fill" opacity="0.15" />
+    <line x1="25" y1="52" x2="82" y2="52" stroke-width="0.25" />
+    <circle cx="18" cy="66" r="2" class="sketch-fill" opacity="0.15" />
+    <line x1="25" y1="66" x2="88" y2="66" stroke-width="0.25" />
+    <line x1="12" y1="78" x2="98" y2="78" stroke-width="0.2" stroke-dasharray="1 2" />
+    <circle cx="18" cy="90" r="2" class="sketch-fill" opacity="0.10" />
+    <line x1="25" y1="90" x2="75" y2="90" stroke-width="0.25" />
+    <circle cx="18" cy="104" r="2" class="sketch-fill" opacity="0.10" />
+    <line x1="25" y1="104" x2="85" y2="104" stroke-width="0.25" />
+    <!-- Seal/stamp at bottom -->
+    <circle cx="55" cy="130" r="10" stroke-dasharray="2 2" stroke-width="0.3" />
+    <text class="annotation" x="48" y="133">v3</text>
+    <text class="label-sm" x="12" y="168">tabulae mutationum</text>
+  </g>
+
+  <!-- ═══ UPPER LEFT: Compass rose / navigation (deployment targets) ═══ -->
+
+  <g transform="translate(1200, 220)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <circle cx="35" cy="35" r="30" />
+    <circle cx="35" cy="35" r="22" stroke-dasharray="2 3" />
+    <!-- Cardinal lines -->
+    <line x1="35" y1="5" x2="35" y2="65" stroke-width="0.25" />
+    <line x1="5" y1="35" x2="65" y2="35" stroke-width="0.25" />
+    <!-- North arrow -->
+    <path d="M35,5 L38,15 L32,15 Z" class="sketch-fill" opacity="0.2" />
+    <!-- Ordinal lines -->
+    <line x1="14" y1="14" x2="56" y2="56" stroke-width="0.15" />
+    <line x1="56" y1="14" x2="14" y2="56" stroke-width="0.15" />
+    <!-- Labels -->
+    <text class="annotation" x="31" y="2">N</text>
+    <text class="annotation" x="68" y="38">E</text>
+    <text class="annotation" x="31" y="78">S</text>
+    <text class="annotation" x="-5" y="38">W</text>
+    <text class="label-sm" x="5" y="85">cursus navigandi</text>
+  </g>
+
+  <!-- ═══ CENTER-RIGHT: Canary/blue-green deployment diagram ═══ -->
+
+  <g transform="translate(880, 500)" class="sketch" stroke-width="0.45" opacity="0.22">
+    <!-- Two server racks side by side -->
+    <!-- Blue (current) -->
+    <rect x="0" y="10" width="40" height="70" rx="2" />
+    <line x1="5" y1="25" x2="35" y2="25" stroke-width="0.25" />
+    <line x1="5" y1="40" x2="35" y2="40" stroke-width="0.25" />
+    <line x1="5" y1="55" x2="35" y2="55" stroke-width="0.25" />
+    <circle cx="32" cy="18" r="2" stroke-width="0.3" />
+    <circle cx="32" cy="33" r="2" stroke-width="0.3" />
+    <circle cx="32" cy="48" r="2" stroke-width="0.3" />
+    <text class="annotation" x="10" y="68">v2.0</text>
+    <!-- Green (new) -->
+    <rect x="80" y="10" width="40" height="70" rx="2" />
+    <line x1="85" y1="25" x2="115" y2="25" stroke-width="0.25" />
+    <line x1="85" y1="40" x2="115" y2="40" stroke-width="0.25" />
+    <line x1="85" y1="55" x2="115" y2="55" stroke-width="0.25" />
+    <circle cx="112" cy="18" r="2" stroke-width="0.3" />
+    <circle cx="112" cy="33" r="2" stroke-width="0.3" />
+    <circle cx="112" cy="48" r="2" stroke-width="0.3" />
+    <text class="annotation" x="90" y="68">v2.1</text>
+    <!-- Traffic switch arrow -->
+    <path d="M20,5 Q60,-10 100,5" stroke-width="0.4" />
+    <polygon points="97,2 104,4 98,8" class="sketch-fill" opacity="0.2" />
+    <!-- Percentage annotations -->
+    <text class="annotation" x="5" y="90">90%</text>
+    <text class="annotation" x="85" y="90">10%</text>
+    <!-- Load balancer symbol above -->
+    <path d="M55,-15 L65,-5 L55,5 L45,-5 Z" stroke-width="0.35" />
+    <text class="annotation" x="48" y="0">LB</text>
+    <text class="label-sm" x="15" y="105">emissio canaria</text>
+  </g>
+
+  <!-- ═══ SCATTERED: Small measurement/construction marks ═══ -->
+
+  <g transform="translate(1250, 450)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <circle cx="30" cy="30" r="25" />
+    <circle cx="30" cy="30" r="18" stroke-dasharray="2 3" />
+    <line x1="30" y1="5" x2="30" y2="55" />
+    <line x1="5" y1="30" x2="55" y2="30" />
+    <path d="M30,5 L33,15 L27,15 Z" class="sketch-fill" opacity="0.2" />
+  </g>
+
+  <!-- Scattered tiny construction marks / grid points -->
+  <g class="sketch-fill" opacity="0.06">
+    <circle cx="350" cy="300" r="2" />
+    <circle cx="700" cy="450" r="2" />
+    <circle cx="1100" cy="650" r="2" />
+    <circle cx="200" cy="1000" r="2" />
+    <circle cx="850" cy="1050" r="2" />
+    <circle cx="1250" cy="900" r="2" />
+    <circle cx="500" cy="1500" r="2" />
+    <circle cx="1000" cy="1400" r="2" />
+    <!-- Additional grid intersections -->
+    <circle cx="150" cy="480" r="1.5" />
+    <circle cx="750" cy="680" r="1.5" />
+    <circle cx="400" cy="920" r="1.5" />
+    <circle cx="1300" cy="550" r="1.5" />
+    <circle cx="600" cy="1200" r="1.5" />
+    <circle cx="300" cy="1450" r="1.5" />
+    <circle cx="900" cy="1550" r="1.5" />
+    <circle cx="1200" cy="1100" r="1.5" />
+  </g>
+
+  <!-- Faint construction grid lines (Da Vinci notebook ruled lines) -->
+  <g class="sketch" stroke-width="0.15" opacity="0.04">
+    <line x1="0" y1="300" x2="1400" y2="300" />
+    <line x1="0" y1="600" x2="1400" y2="600" />
+    <line x1="0" y1="900" x2="1400" y2="900" />
+    <line x1="0" y1="1200" x2="1400" y2="1200" />
+    <line x1="0" y1="1500" x2="1400" y2="1500" />
+    <line x1="350" y1="0" x2="350" y2="1800" />
+    <line x1="700" y1="0" x2="700" y2="1800" />
+    <line x1="1050" y1="0" x2="1050" y2="1800" />
+  </g>
+
+  <!-- Faint mirror writing hint (reversed text like Da Vinci) -->
+  <g opacity="0.06">
+    <text class="label" x="1100" y="1050" transform="scale(-1,1) translate(-2200,0)">notae secretae</text>
+    <text class="label-sm" x="200" y="1550" transform="scale(-1,1) translate(-400,0)">emissio perpetua</text>
+    <text class="label-sm" x="800" y="700" transform="scale(-1,1) translate(-1600,0)">machina fabricandi</text>
+    <text class="label-sm" x="600" y="1400" transform="scale(-1,1) translate(-1200,0)">versio nova semper</text>
+  </g>
+
+</svg>

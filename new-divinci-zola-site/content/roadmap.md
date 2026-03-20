@@ -5,6 +5,15 @@ template = "roadmap.html"
 +++
 
 <style>
+/* Page-specific Leonardo journal background */
+.leonardo-bg::before {
+    background-image: url('/images/bg-roadmap.svg') !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% auto !important;
+    background-position: top center !important;
+    opacity: 1 !important;
+}
+
 .document-section {
     background: linear-gradient(135deg, #1e3a2b 0%, #2d3c34 100%);
     color: white;

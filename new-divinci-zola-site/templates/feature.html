@@ -5,16 +5,12 @@
 {% block content %}
 {# current_lang is inherited from base template #}
 
-<!-- Include Header -->
-{% include "partials/header.html" %}
 
 <!-- Full-width content without restrictions for feature pages -->
-<main class="feature-page">
+<main class="feature-page leonardo-bg">
     {{ page.content | safe }}
 </main>
 
-<!-- Include Footer -->
-{% include "partials/footer.html" %}
 
 <style>
 /* Feature page specific styles - full width, no content restrictions */
@@ -51,12 +47,12 @@
 }
 
 .feature-page a {
-    color: #16214c;
+    color: var(--color-neutral-inverse);
     text-decoration: none;
 }
 
 .feature-page a:hover {
-    color: #254284;
+    color: var(--color-accent-tertiary);
     text-decoration: underline;
 }
 

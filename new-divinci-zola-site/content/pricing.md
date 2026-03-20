@@ -5,6 +5,15 @@ template = "feature.html"
 +++
 
 <style>
+/* Page-specific Leonardo journal background */
+.feature-page.leonardo-bg::before {
+    background-image: url('/images/bg-pricing.svg') !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% auto !important;
+    background-position: top center !important;
+    opacity: 1 !important;
+}
+
 /* Variables are loaded via base template, no need to import here */
 
 /* Pricing-specific styles - Force tan background */

@@ -7,6 +7,15 @@ feature_category = "development-tools"
 +++
 
 <style>
+/* Page-specific Leonardo journal background */
+.feature-page.leonardo-bg::before {
+    background-image: url('/images/bg-release.svg') !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% auto !important;
+    background-position: top center !important;
+    opacity: 1 !important;
+}
+
 /* Release Management page specific styles matching original design */
 .hero-animation-container {
     width: 700px;
@@ -698,13 +707,13 @@ feature_category = "development-tools"
 </div>
 </section>
 
-<section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(92, 226, 231, 0.1)); padding: 4rem 0;">
-<div class="container" style="text-align: center;">
-<h2 style="font-size: 2.5rem; color: #1e3a2b; margin-bottom: 1rem;">Ready to Transform AI Deployment?</h2>
-<p style="font-size: 1.25rem; margin-bottom: 2rem; color: #2d3c34;">Deploy with confidence, roll back instantly, and maintain the highest standards of reliability.</p>
-<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="secondary-button" target="_blank">Request Demo</a>
-<a href="https://docs.divinci.ai/release" class="text-link" style="padding: 12px 24px; border: 2px solid transparent;">View Documentation</a>
-</div>
+<div class="arena-cta-wrapper">
+<section class="arena-cta">
+<h2>Ready to transform AI deployment?</h2>
+<p>Deploy with confidence, roll back instantly, and maintain the highest standards of reliability.</p>
+<div class="hero-ctas">
+<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="cta-primary" target="_blank">Request demo</a>
+<a href="/rag-arena/" class="cta-secondary">Explore RAG Arena</a>
 </div>
 </section>
+</div>

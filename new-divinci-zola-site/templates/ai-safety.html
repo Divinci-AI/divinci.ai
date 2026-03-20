@@ -5,7 +5,7 @@
 
 
 <!-- Official Document Section -->
-<main id="ai-trust-ethics">
+<main id="ai-trust-ethics" class="leonardo-bg">
     <section class="section">
         <div class="container">
             <div class="official-document-wrapper">
@@ -115,6 +115,15 @@
 
 
 <style>
+/* Page-specific Leonardo journal background */
+#ai-trust-ethics.leonardo-bg::before {
+    background-image: url('{{ get_url(path="images/bg-ai-safety.svg") }}') !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% auto !important;
+    background-position: top center !important;
+    opacity: 1 !important;
+}
+
 /* Official Document Styling */
 .official-document-wrapper {
     background: #fff;

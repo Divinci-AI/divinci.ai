@@ -5,7 +5,7 @@
 
 
 <!-- Main Press Content - Matching original exactly -->
-<main id="main-content" role="main" tabindex="-1">
+<main id="main-content" class="leonardo-bg" role="main" tabindex="-1">
     <!-- Hero Section -->
     <section class="press-hero">
         <div class="container">
@@ -168,7 +168,7 @@
             <p>{{ translations.press.assets.description | default(value="Download official Divinci AI logos, product screenshots, and founder photos for media use. All assets are provided in high resolution and are available in multiple formats.") }}</p>
 
             <div class="brand-assets">
-                <h3 style="font-weight: 600; margin-bottom: 1rem; color: #16214c;">{{ translations.press.assets.logos | default(value="Logos") }}</h3>
+                <h3 style="font-weight: 600; margin-bottom: 1rem; color: var(--color-neutral-primary);">{{ translations.press.assets.logos | default(value="Logos") }}</h3>
                 <div class="assets-grid">
                     <div class="asset-item">
                         <div class="asset-preview">
@@ -204,7 +204,7 @@
                     </div>
                 </div>
 
-                <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: #16214c;">{{ translations.press.assets.screenshots | default(value="Product Screenshots") }}</h3>
+                <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: var(--color-neutral-primary);">{{ translations.press.assets.screenshots | default(value="Product Screenshots") }}</h3>
                 <div class="assets-grid">
                     <div class="asset-item">
                         <div class="asset-preview">
@@ -240,7 +240,7 @@
                     </div>
                 </div>
 
-                <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: #16214c;">{{ translations.press.assets.team_photos | default(value="Team Photos") }}</h3>
+                <h3 style="font-weight: 600; margin: 2rem 0 1rem; color: var(--color-neutral-primary);">{{ translations.press.assets.team_photos | default(value="Team Photos") }}</h3>
                 <div class="assets-grid">
                     <div class="asset-item">
                         <div class="asset-preview">
@@ -290,11 +290,20 @@
 
 
 <style>
+/* Page-specific Leonardo journal background */
+#main-content.leonardo-bg::before {
+    background-image: url('{{ get_url(path="images/bg-press.svg") }}') !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% auto !important;
+    background-position: top center !important;
+    opacity: 1 !important;
+}
+
 /* Press Page Specific Styles */
 
 /* Press Hero */
 .press-hero {
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    background: var(--color-neutral-dark);
     color: white;
     padding: 5rem 0;
     position: relative;
@@ -309,7 +318,7 @@
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    border: 2px solid rgba(92, 226, 231, 0.15);
+    border: 2px solid rgba(var(--color-accent-primary-rgb, 181, 101, 29), 0.15);
     opacity: 0.4;
     z-index: 0;
 }
@@ -344,10 +353,7 @@
     font-size: 2.2rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    background: linear-gradient(to right, #16214c, #5ce2e7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-neutral-primary);
     display: inline-block;
 }
 
@@ -357,7 +363,7 @@
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 3rem;
-    border-top: 5px solid #5ce2e7;
+    border-top: 5px solid var(--color-accent-primary);
 }
 
 .contact-info {
@@ -370,12 +376,12 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: rgba(92, 226, 231, 0.1);
+    background-color: color-mix(in srgb, var(--color-accent-primary) 10%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 1.5rem;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     font-size: 1.5rem;
 }
 
@@ -385,7 +391,7 @@
 
 .contact-label {
     font-weight: 600;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 0.25rem;
 }
 
@@ -394,13 +400,13 @@
 }
 
 .contact-value a {
-    color: #16214c;
+    color: var(--color-neutral-primary);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .contact-value a:hover {
-    color: #5ce2e7;
+    color: var(--color-accent-tertiary);
     text-decoration: underline;
 }
 
@@ -431,7 +437,7 @@
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-bottom: 3px solid #5ce2e7;
+    border-bottom: 3px solid var(--color-accent-primary);
 }
 
 .coverage-logo {
@@ -457,7 +463,7 @@
 .news-title, .coverage-title {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 1rem;
     line-height: 1.4;
 }
@@ -472,7 +478,7 @@
 
 .news-link, .coverage-link {
     font-weight: 600;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -481,7 +487,7 @@
 }
 
 .news-link:hover, .coverage-link:hover {
-    color: #5ce2e7;
+    color: var(--color-accent-tertiary);
 }
 
 .news-link i, .coverage-link i {
@@ -540,7 +546,7 @@
 
 .asset-name {
     font-weight: 600;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 0.5rem;
     font-size: 0.95rem;
 }
@@ -554,13 +560,13 @@
 .asset-download {
     display: inline-block;
     font-size: 0.9rem;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .asset-download:hover {
-    color: #5ce2e7;
+    color: var(--color-accent-tertiary);
 }
 
 .asset-download i {
@@ -579,7 +585,7 @@
 .press-kit-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 1.5rem;
 }
 
@@ -594,7 +600,7 @@
 .press-kit-button {
     display: inline-flex;
     align-items: center;
-    background: linear-gradient(135deg, #16214c, #254284);
+    background: var(--color-neutral-inverse);
     color: white;
     border: none;
     border-radius: 50px;
@@ -619,7 +625,7 @@
     width: 200px;
     height: 200px;
     opacity: 0.07;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='30' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='20' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%235CE2E7' stroke-width='0.3' /%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%235CE2E7' stroke-width='0.3' /%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23B5651D' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='30' stroke='%23B5651D' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='20' stroke='%23B5651D' stroke-width='0.5' fill='none' /%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%23B5651D' stroke-width='0.3' /%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%23B5651D' stroke-width='0.3' /%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

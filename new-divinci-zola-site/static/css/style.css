@@ -9,6 +9,292 @@ body {
   background-color: var(--color-bg-primary);
   color: var(--color-neutral-primary);
   line-height: 1.5;
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Leonardo Notebook Background Pattern
+   A subtle sacred geometry grid inspired by Da Vinci's notebooks.
+   Multi-layered: fine grid, medium grid, major divisions,
+   diamond connectors, and sacred geometry overlays.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Base notebook grid — multi-scale like a drafting table */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    /* Finest grid — 20px, barely visible */
+    linear-gradient(rgba(184, 160, 128, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 160, 128, 0.03) 1px, transparent 1px),
+    /* Medium grid — 60px */
+    linear-gradient(rgba(184, 160, 128, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 160, 128, 0.05) 1px, transparent 1px),
+    /* Major grid — 240px, most visible */
+    linear-gradient(rgba(184, 160, 128, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 160, 128, 0.09) 1px, transparent 1px);
+  background-size:
+    20px 20px,
+    20px 20px,
+    60px 60px,
+    60px 60px,
+    240px 240px,
+    240px 240px;
+  background-position: center center;
+}
+
+/* Diamond connectors at major grid intersections */
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%23b8a080'%3E%3C!-- Diamond connector at intersection --%3E%3Cpath d='M120,115 L125,120 L120,125 L115,120 Z' stroke-width='0.6' opacity='0.3' fill='%23b8a080' fill-opacity='0.15'/%3E%3C!-- Corner diamonds --%3E%3Cpath d='M0,237 L3,240 L0,240 Z' stroke-width='0.5' opacity='0.2' fill='%23b8a080' fill-opacity='0.1'/%3E%3Cpath d='M240,237 L237,240 L240,240 Z' stroke-width='0.5' opacity='0.2' fill='%23b8a080' fill-opacity='0.1'/%3E%3Cpath d='M0,3 L3,0 L0,0 Z' stroke-width='0.5' opacity='0.2' fill='%23b8a080' fill-opacity='0.1'/%3E%3Cpath d='M240,3 L237,0 L240,0 Z' stroke-width='0.5' opacity='0.2' fill='%23b8a080' fill-opacity='0.1'/%3E%3C!-- Midpoint tick marks --%3E%3Cline x1='120' y1='0' x2='120' y2='3' stroke-width='0.4' opacity='0.06'/%3E%3Cline x1='120' y1='237' x2='120' y2='240' stroke-width='0.4' opacity='0.06'/%3E%3Cline x1='0' y1='120' x2='3' y2='120' stroke-width='0.4' opacity='0.06'/%3E%3Cline x1='237' y1='120' x2='240' y2='120' stroke-width='0.4' opacity='0.06'/%3E%3C!-- Small dots at 60px sub-intersections --%3E%3Ccircle cx='60' cy='60' r='1' fill='%23b8a080' fill-opacity='0.04' stroke='none'/%3E%3Ccircle cx='180' cy='60' r='1' fill='%23b8a080' fill-opacity='0.04' stroke='none'/%3E%3Ccircle cx='60' cy='180' r='1' fill='%23b8a080' fill-opacity='0.04' stroke='none'/%3E%3Ccircle cx='180' cy='180' r='1' fill='%23b8a080' fill-opacity='0.04' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 240px 240px;
+  background-position: center center;
+}
+
+/* Ensure all page content stays above the grid */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Sacred geometry overlay — golden spirals, Flower of Life, construction arcs */
+.leonardo-bg {
+  position: relative;
+}
+
+.leonardo-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='720' height='720' viewBox='0 0 720 720'%3E%3Cg fill='none' stroke='%23b8a080'%3E%3C!-- Large golden ratio circles --%3E%3Ccircle cx='360' cy='360' r='300' stroke-width='0.8'/%3E%3Ccircle cx='360' cy='360' r='185.4' stroke-width='0.6'/%3E%3Ccircle cx='360' cy='360' r='114.6' stroke-width='0.6'/%3E%3Ccircle cx='360' cy='360' r='70.8' stroke-width='0.5'/%3E%3Ccircle cx='360' cy='360' r='43.8' stroke-width='0.5'/%3E%3C!-- Flower of Life — 7 interlocking circles --%3E%3Ccircle cx='360' cy='360' r='120' stroke-width='0.5' stroke-dasharray='3 6'/%3E%3Ccircle cx='360' cy='240' r='120' stroke-width='0.4' stroke-dasharray='3 6'/%3E%3Ccircle cx='360' cy='480' r='120' stroke-width='0.4' stroke-dasharray='3 6'/%3E%3Ccircle cx='256' cy='300' r='120' stroke-width='0.4' stroke-dasharray='3 6'/%3E%3Ccircle cx='464' cy='300' r='120' stroke-width='0.4' stroke-dasharray='3 6'/%3E%3Ccircle cx='256' cy='420' r='120' stroke-width='0.4' stroke-dasharray='3 6'/%3E%3Ccircle cx='464' cy='420' r='120' stroke-width='0.4' stroke-dasharray='3 6'/%3E%3C!-- Golden spiral arc approximation --%3E%3Cpath d='M360,360 Q360,175 545,175' stroke-width='0.6' stroke-dasharray='5 8'/%3E%3Cpath d='M360,360 Q360,545 175,545' stroke-width='0.6' stroke-dasharray='5 8'/%3E%3C!-- Construction cross --%3E%3Cline x1='60' y1='360' x2='660' y2='360' stroke-width='0.4' stroke-dasharray='2 8'/%3E%3Cline x1='360' y1='60' x2='360' y2='660' stroke-width='0.4' stroke-dasharray='2 8'/%3E%3C!-- Diagonal construction --%3E%3Cline x1='60' y1='60' x2='660' y2='660' stroke-width='0.3' stroke-dasharray='4 16'/%3E%3Cline x1='660' y1='60' x2='60' y2='660' stroke-width='0.3' stroke-dasharray='4 16'/%3E%3C!-- Phi rectangle --%3E%3Crect x='137.7' y='180' width='444.6' height='360' rx='2' stroke-width='0.4' stroke-dasharray='6 10'/%3E%3C!-- Vesica piscis --%3E%3Cellipse cx='300' cy='360' rx='100' ry='173' stroke-width='0.3' stroke-dasharray='2 6'/%3E%3Cellipse cx='420' cy='360' rx='100' ry='173' stroke-width='0.3' stroke-dasharray='2 6'/%3E%3C!-- Center mark --%3E%3Ccircle cx='360' cy='360' r='4' fill='%23b8a080' fill-opacity='0.12' stroke='none'/%3E%3C!-- Cardinal marks --%3E%3Ccircle cx='360' cy='60' r='2.5' fill='%23b8a080' fill-opacity='0.1' stroke='none'/%3E%3Ccircle cx='360' cy='660' r='2.5' fill='%23b8a080' fill-opacity='0.1' stroke='none'/%3E%3Ccircle cx='60' cy='360' r='2.5' fill='%23b8a080' fill-opacity='0.1' stroke='none'/%3E%3Ccircle cx='660' cy='360' r='2.5' fill='%23b8a080' fill-opacity='0.1' stroke='none'/%3E%3C!-- Corner brackets --%3E%3Cpath d='M60,60 L85,60 M60,60 L60,85' stroke-width='0.8'/%3E%3Cpath d='M660,60 L635,60 M660,60 L660,85' stroke-width='0.8'/%3E%3Cpath d='M60,660 L85,660 M60,660 L60,635' stroke-width='0.8'/%3E%3Cpath d='M660,660 L635,660 M660,660 L660,635' stroke-width='0.8'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 720px 720px;
+  background-position: center;
+}
+
+.leonardo-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Parchment Paper Texture
+   Subtle aged paper noise applied to sections and cards.
+   Gives that tactile, Renaissance manuscript feel.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* SVG noise filter for paper texture — tiny random dots */
+.parchment-bg,
+.feature-page section,
+.feature-page .arena-demo,
+.roadmap-card,
+.coming-soon,
+.api-overview,
+.api-endpoints,
+.code-example,
+.sdk-card {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.15' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Paper texture for all white/light card surfaces */
+.step-card,
+.feature-card,
+.routing-node,
+.provider-badge,
+.arena-card,
+.arena-demo,
+.arena-hero-card,
+[class*="card"],
+[class*="Card"] {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.12' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23g)' opacity='0.08'/%3E%3C/svg%3E") !important;
+  background-repeat: repeat;
+}
+
+/* ═══ Shared CTA Card Styles for Feature Pages ═══ */
+.feature-page .arena-cta-wrapper {
+  position: relative;
+  padding: var(--section-spacing) 2rem !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  overflow: visible;
+  background: transparent !important;
+}
+
+.feature-page .arena-cta {
+  text-align: center !important;
+  padding: 4rem 3.5rem !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-neutral-inverse, #2d5a4f) !important;
+  border-radius: var(--radius-large, 16px) !important;
+  box-shadow: 0 4px 24px rgba(30, 58, 43, 0.12), 0 12px 48px rgba(30, 58, 43, 0.06) !important;
+}
+
+.feature-page .arena-cta-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  border: 1px solid rgba(184, 160, 128, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.feature-page .arena-cta-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(30deg);
+  width: 480px;
+  height: 480px;
+  border: 1px solid rgba(184, 160, 128, 0.07);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.feature-page .arena-cta h2 {
+  font-family: 'Fraunces', serif;
+  font-size: var(--text-h2);
+  color: var(--color-surface-light, #faf8f5) !important;
+  margin-bottom: 1rem;
+  text-shadow: none !important;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-page .arena-cta p {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  text-shadow: none !important;
+  max-width: 550px;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-page .arena-cta .hero-ctas {
+  display: flex !important;
+  gap: 1rem !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-page .arena-cta .cta-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0.875rem 2rem !important;
+  background: var(--color-surface-light, #faf8f5) !important;
+  color: var(--color-neutral-primary, #2d3c34) !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.feature-page .arena-cta .cta-primary:hover {
+  background: white !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.feature-page .arena-cta .cta-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0.875rem 2rem !important;
+  background: transparent !important;
+  border: 1.5px solid rgba(255,255,255,0.3) !important;
+  color: var(--color-surface-light, #faf8f5) !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.feature-page .arena-cta .cta-secondary:hover {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.5) !important;
+}
+
+/* Text legibility — subtle background highlight for text on patterned backgrounds */
+.leonardo-bg h1,
+.leonardo-bg h2,
+.leonardo-bg h3,
+.leonardo-bg .section-subtitle,
+.leonardo-bg .subtitle,
+.arena-section > h2,
+.arena-section > p {
+  text-shadow:
+    0 0 20px rgba(248, 244, 240, 0.9),
+    0 0 40px rgba(248, 244, 240, 0.7),
+    0 0 60px rgba(248, 244, 240, 0.4);
+}
+
+/* Override warm glow on dark backgrounds — use dark green shadow instead */
+.support-header h1, .support-header p,
+.roadmap-hero h1, .roadmap-hero p,
+.api-hero h1, .api-hero p,
+.careers-hero h1, .careers-hero p,
+.press-hero h1, .press-hero p,
+.about-hero h1, .about-hero p,
+.arena-cta h2, .arena-cta p,
+[style*="background"][style*="#2d3c34"] h1,
+[style*="background"][style*="#2d3c34"] h2,
+[style*="background"][style*="#1e3a2b"] h1,
+[style*="background"][style*="#1e3a2b"] h2 {
+  text-shadow: 0 2px 8px rgba(20, 40, 30, 0.5) !important;
+}
+
+/* Accent sections get a slightly warmer, more visible texture */
+.routing-section,
+.parchment-accent {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E") !important;
+  background-repeat: repeat;
+}
+
+/* Reduced motion — simplify background */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    opacity: 0.5;
+  }
 }
 
 /* Global focus indicator for keyboard navigation */

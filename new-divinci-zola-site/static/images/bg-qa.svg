@@ -1,0 +1,564 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1800" viewBox="0 0 1400 1800">
+  <defs>
+    <style>
+      .sketch { stroke: #b8a080; fill: none; }
+      .sketch-light { stroke: #b8a080; fill: none; opacity: 0.5; }
+      .sketch-fill { fill: #b8a080; stroke: none; }
+      .label { font-family: 'Fraunces', 'Georgia', serif; fill: #b8a080; font-size: 11px; font-style: italic; }
+      .label-sm { font-family: 'Fraunces', 'Georgia', serif; fill: #b8a080; font-size: 8px; font-style: italic; }
+      .annotation { font-family: 'Source Sans 3', sans-serif; fill: #b8a080; font-size: 7px; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <!-- ═══ TOP SECTION: Magnifying glass examining a document/scroll ═══ -->
+
+  <g transform="translate(80, 50)" class="sketch" stroke-width="0.6" opacity="0.35">
+    <!-- Scroll / document -->
+    <path d="M0,20 Q-5,20 -5,30 L-5,170 Q-5,180 5,180 L130,180 Q140,180 140,170 L140,30 Q140,20 135,20 Z" stroke-width="0.5" />
+    <!-- Scroll curl top -->
+    <ellipse cx="67" cy="20" rx="72" ry="8" stroke-width="0.4" />
+    <!-- Scroll curl bottom -->
+    <path d="M0,180 Q-8,185 -5,190 Q0,195 10,190" stroke-width="0.4" />
+    <!-- Text lines on scroll -->
+    <line x1="15" y1="42" x2="120" y2="42" stroke-width="0.25" />
+    <line x1="15" y1="52" x2="110" y2="52" stroke-width="0.25" />
+    <line x1="15" y1="62" x2="115" y2="62" stroke-width="0.25" />
+    <line x1="15" y1="72" x2="95" y2="72" stroke-width="0.25" />
+    <line x1="15" y1="87" x2="120" y2="87" stroke-width="0.25" />
+    <line x1="15" y1="97" x2="100" y2="97" stroke-width="0.25" />
+    <line x1="15" y1="107" x2="118" y2="107" stroke-width="0.25" />
+    <line x1="15" y1="122" x2="105" y2="122" stroke-width="0.25" />
+    <line x1="15" y1="132" x2="120" y2="132" stroke-width="0.25" />
+    <line x1="15" y1="142" x2="90" y2="142" stroke-width="0.25" />
+    <!-- Check marks next to lines -->
+    <path d="M125,39 L128,43 L134,36" stroke-width="0.5" />
+    <path d="M125,49 L128,53 L134,46" stroke-width="0.5" />
+    <path d="M125,59 L128,63 L134,56" stroke-width="0.5" />
+    <!-- X mark (failed check) -->
+    <line x1="125" y1="85" x2="133" y2="93" stroke-width="0.5" />
+    <line x1="133" y1="85" x2="125" y2="93" stroke-width="0.5" />
+    <!-- Check marks continued -->
+    <path d="M125,119 L128,123 L134,116" stroke-width="0.5" />
+    <path d="M125,129 L128,133 L134,126" stroke-width="0.5" />
+    <!-- Magnifying glass overlapping document -->
+    <circle cx="185" cy="90" r="50" stroke-width="0.7" />
+    <circle cx="185" cy="90" r="45" stroke-width="0.3" stroke-dasharray="2 3" />
+    <!-- Glass handle -->
+    <line x1="220" y1="125" x2="260" y2="165" stroke-width="2" />
+    <line x1="258" y1="163" x2="265" y2="170" stroke-width="3" />
+    <!-- Magnified text inside lens -->
+    <line x1="155" y1="78" x2="210" y2="78" stroke-width="0.4" />
+    <line x1="155" y1="88" x2="205" y2="88" stroke-width="0.4" />
+    <line x1="155" y1="98" x2="215" y2="98" stroke-width="0.4" />
+    <!-- Small crosshair in lens center -->
+    <line x1="180" y1="85" x2="190" y2="85" stroke-width="0.2" />
+    <line x1="185" y1="80" x2="185" y2="95" stroke-width="0.2" />
+    <text class="label" x="60" y="210">examen qualitatis</text>
+  </g>
+
+  <!-- ═══ TOP RIGHT: Metatron's Cube (13 circles with connecting lines) ═══ -->
+
+  <g transform="translate(1150, 50)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <!-- Center circle -->
+    <circle cx="70" cy="70" r="9" />
+    <!-- Inner ring of 6 -->
+    <circle cx="70" cy="40" r="9" />
+    <circle cx="96" cy="55" r="9" />
+    <circle cx="96" cy="85" r="9" />
+    <circle cx="70" cy="100" r="9" />
+    <circle cx="44" cy="85" r="9" />
+    <circle cx="44" cy="55" r="9" />
+    <!-- Outer ring of 6 -->
+    <circle cx="70" cy="10" r="9" stroke-dasharray="1 2" />
+    <circle cx="122" cy="40" r="9" stroke-dasharray="1 2" />
+    <circle cx="122" cy="100" r="9" stroke-dasharray="1 2" />
+    <circle cx="70" cy="130" r="9" stroke-dasharray="1 2" />
+    <circle cx="18" cy="100" r="9" stroke-dasharray="1 2" />
+    <circle cx="18" cy="40" r="9" stroke-dasharray="1 2" />
+    <!-- Connecting lines through all 13 centers -->
+    <line x1="70" y1="10" x2="122" y2="100" stroke-width="0.2" />
+    <line x1="70" y1="10" x2="18" y2="100" stroke-width="0.2" />
+    <line x1="122" y1="40" x2="18" y2="100" stroke-width="0.2" />
+    <line x1="122" y1="40" x2="70" y2="130" stroke-width="0.2" />
+    <line x1="122" y1="100" x2="18" y2="40" stroke-width="0.2" />
+    <line x1="18" y1="40" x2="70" y2="130" stroke-width="0.2" />
+    <line x1="70" y1="10" x2="70" y2="130" stroke-width="0.2" />
+    <line x1="18" y1="40" x2="122" y2="40" stroke-width="0.2" />
+    <line x1="18" y1="100" x2="122" y2="100" stroke-width="0.2" />
+    <!-- Hexagonal lines -->
+    <line x1="70" y1="40" x2="96" y2="85" stroke-width="0.15" />
+    <line x1="96" y1="55" x2="44" y2="85" stroke-width="0.15" />
+    <line x1="96" y1="85" x2="44" y2="55" stroke-width="0.15" />
+    <line x1="70" y1="100" x2="44" y2="55" stroke-width="0.15" />
+    <line x1="44" y1="85" x2="70" y2="40" stroke-width="0.15" />
+    <line x1="44" y1="55" x2="96" y2="55" stroke-width="0.15" />
+    <!-- Enclosing circle -->
+    <circle cx="70" cy="70" r="68" stroke-dasharray="3 4" stroke-width="0.25" />
+    <text class="label-sm" x="20" y="155">cubus Metatronis</text>
+  </g>
+
+  <!-- ═══ LEFT SIDE: Balance scale / precision measurement instruments ═══ -->
+
+  <g transform="translate(80, 340)" class="sketch" stroke-width="0.5" opacity="0.28">
+    <!-- Central pillar -->
+    <line x1="90" y1="0" x2="90" y2="90" />
+    <!-- Base with ornamental feet -->
+    <line x1="55" y1="90" x2="125" y2="90" />
+    <path d="M55,90 Q50,95 55,97" stroke-width="0.4" />
+    <path d="M125,90 Q130,95 125,97" stroke-width="0.4" />
+    <!-- Pivot point at top -->
+    <circle cx="90" cy="0" r="4" stroke-width="0.4" />
+    <circle cx="90" cy="0" r="1.5" class="sketch-fill" opacity="0.15" />
+    <!-- Beam (slightly tilted to show weighing) -->
+    <line x1="15" y1="8" x2="165" y2="3" stroke-width="0.7" />
+    <!-- Left pan chains -->
+    <line x1="15" y1="8" x2="5" y2="35" stroke-width="0.4" />
+    <line x1="15" y1="8" x2="25" y2="35" stroke-width="0.4" />
+    <!-- Left pan -->
+    <path d="M0,35 Q15,48 30,35" stroke-width="0.5" />
+    <path d="M-2,33 L32,33" stroke-width="0.3" stroke-dasharray="1 2" />
+    <!-- Items in left pan (test cases) -->
+    <rect x="5" y="26" width="8" height="5" rx="1" stroke-width="0.3" />
+    <rect x="14" y="24" width="8" height="7" rx="1" stroke-width="0.3" />
+    <text class="annotation" x="3" y="50">PASS</text>
+    <!-- Right pan chains -->
+    <line x1="165" y1="3" x2="155" y2="28" stroke-width="0.4" />
+    <line x1="165" y1="3" x2="175" y2="28" stroke-width="0.4" />
+    <!-- Right pan -->
+    <path d="M150,28 Q165,40 180,28" stroke-width="0.5" />
+    <path d="M148,26 L182,26" stroke-width="0.3" stroke-dasharray="1 2" />
+    <!-- Items in right pan (standards) -->
+    <circle cx="165" cy="22" r="5" stroke-width="0.3" />
+    <text class="annotation" x="152" y="42">FAIL</text>
+    <!-- Small plumb line from center -->
+    <line x1="90" y1="4" x2="90" y2="18" stroke-width="0.3" stroke-dasharray="1 2" />
+    <circle cx="90" cy="20" r="2" class="sketch-fill" opacity="0.1" />
+    <!-- Caliper tool beneath -->
+    <g transform="translate(30, 100)">
+      <line x1="0" y1="0" x2="120" y2="0" stroke-width="0.4" />
+      <line x1="0" y1="-8" x2="0" y2="8" stroke-width="0.4" />
+      <line x1="120" y1="-8" x2="120" y2="8" stroke-width="0.4" />
+      <line x1="40" y1="-5" x2="40" y2="5" stroke-width="0.3" />
+      <line x1="80" y1="-5" x2="80" y2="5" stroke-width="0.3" />
+      <!-- Tick marks -->
+      <line x1="20" y1="-3" x2="20" y2="3" stroke-width="0.2" />
+      <line x1="60" y1="-3" x2="60" y2="3" stroke-width="0.2" />
+      <line x1="100" y1="-3" x2="100" y2="3" stroke-width="0.2" />
+      <text class="annotation" x="35" y="18">mensura praecisa</text>
+    </g>
+    <text class="label" x="35" y="140">libra examinationis</text>
+  </g>
+
+  <!-- ═══ CENTER: QA Pipeline flow diagram ═══ -->
+
+  <g transform="translate(350, 500)" class="sketch" stroke-width="0.6" opacity="0.25">
+    <!-- Input box -->
+    <rect x="0" y="18" width="70" height="32" rx="4" />
+    <text class="annotation" x="14" y="38">INPUT</text>
+    <!-- Arrow -->
+    <line x1="70" y1="34" x2="105" y2="34" />
+    <polygon points="103,30 111,34 103,38" class="sketch-fill" opacity="0.25" />
+    <!-- Test diamond -->
+    <path d="M145,34 L175,12 L205,34 L175,56 Z" />
+    <text class="annotation" x="160" y="37">TEST</text>
+    <!-- Arrow -->
+    <line x1="205" y1="34" x2="240" y2="34" />
+    <polygon points="238,30 246,34 238,38" class="sketch-fill" opacity="0.25" />
+    <!-- Validate box -->
+    <rect x="248" y="18" width="80" height="32" rx="4" />
+    <text class="annotation" x="258" y="38">VALIDATE</text>
+    <!-- Arrow -->
+    <line x1="328" y1="34" x2="363" y2="34" />
+    <polygon points="361,30 369,34 361,38" class="sketch-fill" opacity="0.25" />
+    <!-- Score box -->
+    <rect x="371" y="18" width="65" height="32" rx="4" />
+    <text class="annotation" x="386" y="38">SCORE</text>
+    <!-- Branch arrows to Pass/Fail -->
+    <line x1="436" y1="28" x2="475" y2="12" />
+    <line x1="436" y1="40" x2="475" y2="56" />
+    <!-- Pass box (top) -->
+    <rect x="478" y="0" width="55" height="25" rx="3" />
+    <text class="annotation" x="491" y="16">PASS</text>
+    <path d="M490,18 L493,22 L500,14" stroke-width="0.5" />
+    <!-- Fail box (bottom) -->
+    <rect x="478" y="44" width="55" height="25" rx="3" />
+    <text class="annotation" x="494" y="60">FAIL</text>
+    <line x1="500" y1="52" x2="508" y2="60" stroke-width="0.5" />
+    <line x1="508" y1="52" x2="500" y2="60" stroke-width="0.5" />
+    <!-- Feedback loop from Fail back to Test -->
+    <path d="M505,69 L505,85 Q505,90 500,90 L175,90 Q165,90 165,80 L165,56" stroke-dasharray="3 3" stroke-width="0.4" />
+    <polygon points="161,58 165,50 169,58" class="sketch-fill" opacity="0.2" />
+    <text class="annotation" x="280" y="98">iteratio</text>
+    <!-- Score annotations -->
+    <text class="annotation" x="462" y="10">≥ 0.95</text>
+    <text class="annotation" x="462" y="74">< 0.95</text>
+    <text class="label-sm" x="180" y="115">schema examinis qualitatis</text>
+  </g>
+
+  <!-- ═══ RIGHT SIDE: Armillary sphere / astrolabe ═══ -->
+
+  <g transform="translate(1020, 300)" class="sketch" stroke-width="0.4" opacity="0.22">
+    <!-- Outer meridian ring -->
+    <ellipse cx="80" cy="80" r="75" ry="75" />
+    <!-- Ecliptic ring (tilted) -->
+    <ellipse cx="80" cy="80" rx="70" ry="35" transform="rotate(-23.5, 80, 80)" stroke-dasharray="3 2" />
+    <!-- Equatorial ring -->
+    <ellipse cx="80" cy="80" rx="65" ry="25" />
+    <!-- Second meridian (perpendicular) -->
+    <ellipse cx="80" cy="80" rx="25" ry="70" stroke-dasharray="2 3" />
+    <!-- Polar axis -->
+    <line x1="80" y1="5" x2="80" y2="155" stroke-width="0.3" />
+    <!-- Center earth sphere -->
+    <circle cx="80" cy="80" r="12" stroke-width="0.5" />
+    <circle cx="80" cy="80" r="3" class="sketch-fill" opacity="0.12" />
+    <!-- Degree markings on outer ring -->
+    <line x1="80" y1="5" x2="80" y2="0" stroke-width="0.3" />
+    <line x1="155" y1="80" x2="160" y2="80" stroke-width="0.3" />
+    <line x1="80" y1="155" x2="80" y2="160" stroke-width="0.3" />
+    <line x1="5" y1="80" x2="0" y2="80" stroke-width="0.3" />
+    <!-- 45-degree marks -->
+    <line x1="133" y1="27" x2="136" y2="24" stroke-width="0.25" />
+    <line x1="133" y1="133" x2="136" y2="136" stroke-width="0.25" />
+    <line x1="27" y1="133" x2="24" y2="136" stroke-width="0.25" />
+    <line x1="27" y1="27" x2="24" y2="24" stroke-width="0.25" />
+    <!-- Stand / mount -->
+    <line x1="80" y1="155" x2="80" y2="185" stroke-width="0.5" />
+    <line x1="50" y1="185" x2="110" y2="185" stroke-width="0.5" />
+    <path d="M50,185 Q45,190 50,192" stroke-width="0.3" />
+    <path d="M110,185 Q115,190 110,192" stroke-width="0.3" />
+    <!-- Zodiac-like symbols (small marks around ecliptic) -->
+    <circle cx="148" cy="68" r="2" stroke-width="0.2" />
+    <circle cx="140" cy="105" r="2" stroke-width="0.2" />
+    <circle cx="20" cy="68" r="2" stroke-width="0.2" />
+    <circle cx="28" cy="105" r="2" stroke-width="0.2" />
+    <text class="label" x="30" y="210">sphaera armillaris</text>
+    <text class="label-sm" x="30" y="222">custos veritatis</text>
+  </g>
+
+  <!-- ═══ CENTER-LEFT: Tesseract / Hypercube ═══ -->
+
+  <g transform="translate(50, 620)" class="sketch" stroke-width="0.35" opacity="0.18">
+    <!-- Outer cube -->
+    <rect x="0" y="0" width="110" height="110" />
+    <!-- Inner cube (shifted for perspective) -->
+    <rect x="28" y="28" width="65" height="65" stroke-dasharray="2 2" />
+    <!-- Connecting corners (outer to inner = 4D edges) -->
+    <line x1="0" y1="0" x2="28" y2="28" stroke-width="0.3" />
+    <line x1="110" y1="0" x2="93" y2="28" stroke-width="0.3" />
+    <line x1="110" y1="110" x2="93" y2="93" stroke-width="0.3" />
+    <line x1="0" y1="110" x2="28" y2="93" stroke-width="0.3" />
+    <!-- Diagonals through center for depth illusion -->
+    <line x1="0" y1="0" x2="93" y2="93" stroke-width="0.15" stroke-dasharray="3 5" />
+    <line x1="110" y1="0" x2="28" y2="93" stroke-width="0.15" stroke-dasharray="3 5" />
+    <!-- Center point -->
+    <circle cx="55" cy="55" r="2" class="sketch-fill" opacity="0.1" />
+    <text class="label-sm" x="12" y="130">hypercubus</text>
+    <text class="label-sm" x="12" y="142">dimensio IV</text>
+  </g>
+
+  <!-- ═══ CENTER: Full Flower of Life (19+ overlapping circles) ═══ -->
+
+  <g transform="translate(440, 780)" class="sketch-light" stroke-width="0.35" opacity="0.16">
+    <!-- Seed of Life — inner 7 circles -->
+    <circle cx="130" cy="130" r="42" />
+    <circle cx="130" cy="88" r="42" />
+    <circle cx="130" cy="172" r="42" />
+    <circle cx="93.64" cy="109" r="42" />
+    <circle cx="166.36" cy="109" r="42" />
+    <circle cx="93.64" cy="151" r="42" />
+    <circle cx="166.36" cy="151" r="42" />
+    <!-- Second ring — 12 petals -->
+    <circle cx="130" cy="46" r="42" />
+    <circle cx="130" cy="214" r="42" />
+    <circle cx="57.28" cy="88" r="42" />
+    <circle cx="202.72" cy="88" r="42" />
+    <circle cx="57.28" cy="172" r="42" />
+    <circle cx="202.72" cy="172" r="42" />
+    <circle cx="93.64" cy="67" r="42" />
+    <circle cx="166.36" cy="67" r="42" />
+    <circle cx="93.64" cy="193" r="42" />
+    <circle cx="166.36" cy="193" r="42" />
+    <circle cx="57.28" cy="130" r="42" />
+    <circle cx="202.72" cy="130" r="42" />
+    <!-- Enclosing circle with construction marks -->
+    <circle cx="130" cy="130" r="130" stroke-dasharray="4 4" stroke-width="0.3" />
+    <circle cx="130" cy="130" r="135" stroke-dasharray="1 8" stroke-width="0.2" />
+    <!-- Center seed dot -->
+    <circle cx="130" cy="130" r="2.5" class="sketch-fill" opacity="0.12" />
+    <!-- Construction crosshairs -->
+    <line x1="130" y1="-5" x2="130" y2="265" stroke-width="0.15" stroke-dasharray="6 8" />
+    <line x1="-5" y1="130" x2="265" y2="130" stroke-width="0.15" stroke-dasharray="6 8" />
+    <text class="label" x="55" y="285">flos vitae universalis</text>
+  </g>
+
+  <!-- ═══ RIGHT CENTER: Tree of Life / Sephirot diagram ═══ -->
+
+  <g transform="translate(980, 700)" class="sketch" stroke-width="0.4" opacity="0.17">
+    <!-- 10 Sephirot (nodes) — classical layout -->
+    <!-- Crown (Kether) -->
+    <circle cx="70" cy="0" r="12" />
+    <text class="annotation" x="60" y="3">I</text>
+    <!-- Wisdom & Understanding -->
+    <circle cx="30" cy="50" r="10" />
+    <circle cx="110" cy="50" r="10" />
+    <!-- Knowledge (Da'at) - hidden, dashed -->
+    <circle cx="70" cy="75" r="8" stroke-dasharray="2 2" />
+    <!-- Mercy & Severity -->
+    <circle cx="30" cy="110" r="10" />
+    <circle cx="110" cy="110" r="10" />
+    <!-- Beauty (Tiferet) - center -->
+    <circle cx="70" cy="140" r="12" />
+    <!-- Victory & Splendor -->
+    <circle cx="30" cy="185" r="10" />
+    <circle cx="110" cy="185" r="10" />
+    <!-- Foundation -->
+    <circle cx="70" cy="220" r="10" />
+    <!-- Kingdom (Malkuth) -->
+    <circle cx="70" cy="270" r="12" />
+
+    <!-- Paths (connecting lines) — The Three Pillars -->
+    <!-- Left pillar -->
+    <line x1="30" y1="60" x2="30" y2="100" stroke-width="0.3" />
+    <line x1="30" y1="120" x2="30" y2="175" stroke-width="0.3" />
+    <!-- Right pillar -->
+    <line x1="110" y1="60" x2="110" y2="100" stroke-width="0.3" />
+    <line x1="110" y1="120" x2="110" y2="175" stroke-width="0.3" />
+    <!-- Middle pillar -->
+    <line x1="70" y1="12" x2="70" y2="67" stroke-width="0.3" />
+    <line x1="70" y1="83" x2="70" y2="128" stroke-width="0.3" />
+    <line x1="70" y1="152" x2="70" y2="210" stroke-width="0.3" />
+    <line x1="70" y1="230" x2="70" y2="258" stroke-width="0.3" />
+    <!-- Cross paths -->
+    <line x1="70" y1="12" x2="30" y2="40" stroke-width="0.25" />
+    <line x1="70" y1="12" x2="110" y2="40" stroke-width="0.25" />
+    <line x1="30" y1="60" x2="110" y2="100" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="110" y1="60" x2="30" y2="100" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="30" y1="60" x2="70" y2="128" stroke-width="0.2" />
+    <line x1="110" y1="60" x2="70" y2="128" stroke-width="0.2" />
+    <line x1="30" y1="120" x2="70" y2="152" stroke-width="0.2" />
+    <line x1="110" y1="120" x2="70" y2="152" stroke-width="0.2" />
+    <line x1="30" y1="195" x2="70" y2="210" stroke-width="0.25" />
+    <line x1="110" y1="195" x2="70" y2="210" stroke-width="0.25" />
+    <line x1="30" y1="195" x2="70" y2="258" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="110" y1="195" x2="70" y2="258" stroke-width="0.2" stroke-dasharray="2 3" />
+
+    <!-- Enclosing oval -->
+    <ellipse cx="70" cy="135" rx="65" ry="150" stroke-dasharray="4 6" stroke-width="0.2" />
+    <text class="label-sm" x="15" y="300">arbor vitae — sephirot</text>
+  </g>
+
+  <!-- ═══ LOWER LEFT: Thermometer / gauge with quality thresholds ═══ -->
+
+  <g transform="translate(80, 1100)" class="sketch" stroke-width="0.5" opacity="0.25">
+    <!-- Thermometer body -->
+    <rect x="30" y="0" width="20" height="160" rx="10" />
+    <!-- Bulb at bottom -->
+    <circle cx="40" cy="165" r="18" />
+    <circle cx="40" cy="165" r="10" class="sketch-fill" opacity="0.08" />
+    <!-- Mercury column (partial fill represented by dashed line) -->
+    <line x1="40" y1="148" x2="40" y2="50" stroke-width="2" stroke-dasharray="1 1" opacity="0.15" />
+    <!-- Threshold markings on right side -->
+    <line x1="52" y1="20" x2="70" y2="20" stroke-width="0.3" />
+    <text class="annotation" x="73" y="23">1.00</text>
+    <line x1="52" y1="50" x2="70" y2="50" stroke-width="0.3" />
+    <text class="annotation" x="73" y="53">0.95</text>
+    <line x1="52" y1="80" x2="65" y2="80" stroke-width="0.2" />
+    <text class="annotation" x="68" y="83">0.85</text>
+    <line x1="52" y1="110" x2="65" y2="110" stroke-width="0.2" />
+    <text class="annotation" x="68" y="113">0.70</text>
+    <line x1="52" y1="140" x2="65" y2="140" stroke-width="0.2" />
+    <text class="annotation" x="68" y="143">0.50</text>
+    <!-- Quality zone labels -->
+    <text class="annotation" x="95" y="35" opacity="0.7">OPTIMA</text>
+    <text class="annotation" x="95" y="65" opacity="0.7">BONA</text>
+    <text class="annotation" x="95" y="95" opacity="0.5">MEDIA</text>
+    <text class="annotation" x="95" y="130" opacity="0.3">INFIMA</text>
+    <!-- Small tick marks -->
+    <line x1="52" y1="35" x2="58" y2="35" stroke-width="0.15" />
+    <line x1="52" y1="65" x2="58" y2="65" stroke-width="0.15" />
+    <line x1="52" y1="95" x2="58" y2="95" stroke-width="0.15" />
+    <line x1="52" y1="125" x2="58" y2="125" stroke-width="0.15" />
+    <!-- Threshold indicator arrow -->
+    <polygon points="22,50 14,46 14,54" class="sketch-fill" opacity="0.2" />
+    <line x1="14" y1="50" x2="2" y2="50" stroke-width="0.3" stroke-dasharray="2 2" />
+    <text class="annotation" x="-20" y="46">limen</text>
+    <text class="label" x="10" y="205">gradus qualitatis</text>
+  </g>
+
+  <!-- ═══ LOWER CENTER: Vesica Piscis construction ═══ -->
+
+  <g transform="translate(350, 1280)" class="sketch" stroke-width="0.35" opacity="0.16">
+    <!-- Two overlapping circles -->
+    <circle cx="45" cy="55" r="50" />
+    <circle cx="90" cy="55" r="50" />
+    <!-- Vesica highlight (the almond shape where they overlap) -->
+    <path d="M67.5,8 Q45,55 67.5,102 Q90,55 67.5,8" stroke-width="0.5" stroke-dasharray="2 2" />
+    <!-- Center line and construction -->
+    <line x1="67.5" y1="0" x2="67.5" y2="110" stroke-width="0.15" stroke-dasharray="3 5" />
+    <line x1="-10" y1="55" x2="145" y2="55" stroke-width="0.15" stroke-dasharray="3 5" />
+    <circle cx="67.5" cy="55" r="2" class="sketch-fill" opacity="0.12" />
+    <!-- Ratio annotation -->
+    <text class="label-sm" x="20" y="125">vesica piscis</text>
+    <text class="label-sm" x="20" y="138">√3 : 1</text>
+  </g>
+
+  <!-- ═══ LOWER RIGHT: Golden spiral with phi annotation ═══ -->
+
+  <g transform="translate(700, 1350)" class="sketch" stroke-width="0.5" opacity="0.2">
+    <!-- Golden rectangle subdivisions -->
+    <rect x="0" y="0" width="210" height="129.8" />
+    <rect x="0" y="0" width="129.8" height="129.8" />
+    <rect x="129.8" y="0" width="80.2" height="80.2" />
+    <rect x="129.8" y="80.2" width="49.6" height="49.6" />
+    <rect x="179.4" y="80.2" width="30.6" height="30.6" />
+    <rect x="179.4" y="110.8" width="18.9" height="18.9" />
+    <!-- Spiral arcs -->
+    <path d="M129.8,129.8 Q129.8,0 0,0" stroke-width="0.6" />
+    <path d="M129.8,0 Q210,0 210,80.2" stroke-width="0.6" />
+    <path d="M210,80.2 Q210,129.8 179.4,129.8" stroke-width="0.5" />
+    <path d="M179.4,129.8 Q129.8,129.8 129.8,110.8" stroke-width="0.5" />
+    <path d="M129.8,110.8 Q129.8,80.2 148.7,80.2" stroke-width="0.4" />
+    <!-- Phi annotation -->
+    <text class="label" x="55" y="150">φ = 1.618033...</text>
+    <text class="label-sm" x="135" y="120">proportio divina</text>
+    <!-- Construction marks -->
+    <circle cx="155" cy="100" r="1.5" class="sketch-fill" opacity="0.1" />
+  </g>
+
+  <!-- ═══ BOTTOM: Icosahedron wireframe ═══ -->
+
+  <g transform="translate(550, 1550)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <!-- Top vertex -->
+    <circle cx="75" cy="0" r="2" class="sketch-fill" opacity="0.15" />
+    <!-- Upper pentagon ring -->
+    <circle cx="75" cy="32" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="110" cy="48" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="100" cy="88" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="50" cy="88" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="40" cy="48" r="1.5" class="sketch-fill" opacity="0.1" />
+    <!-- Lower pentagon ring (rotated) -->
+    <circle cx="92" cy="62" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="106" cy="98" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="75" cy="116" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="44" cy="98" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="58" cy="62" r="1.5" class="sketch-fill" opacity="0.1" />
+    <!-- Bottom vertex -->
+    <circle cx="75" cy="140" r="2" class="sketch-fill" opacity="0.15" />
+    <!-- Upper cap edges -->
+    <line x1="75" y1="0" x2="75" y2="32" />
+    <line x1="75" y1="0" x2="110" y2="48" />
+    <line x1="75" y1="0" x2="40" y2="48" />
+    <line x1="75" y1="0" x2="100" y2="88" stroke-dasharray="2 3" />
+    <line x1="75" y1="0" x2="50" y2="88" stroke-dasharray="2 3" />
+    <!-- Upper ring -->
+    <line x1="75" y1="32" x2="110" y2="48" />
+    <line x1="110" y1="48" x2="100" y2="88" />
+    <line x1="100" y1="88" x2="50" y2="88" />
+    <line x1="50" y1="88" x2="40" y2="48" />
+    <line x1="40" y1="48" x2="75" y2="32" />
+    <!-- Equatorial connections -->
+    <line x1="75" y1="32" x2="92" y2="62" stroke-width="0.25" />
+    <line x1="75" y1="32" x2="58" y2="62" stroke-width="0.25" />
+    <line x1="110" y1="48" x2="92" y2="62" stroke-width="0.25" />
+    <line x1="110" y1="48" x2="106" y2="98" stroke-width="0.25" />
+    <line x1="100" y1="88" x2="106" y2="98" stroke-width="0.25" />
+    <line x1="100" y1="88" x2="75" y2="116" stroke-width="0.25" />
+    <line x1="50" y1="88" x2="75" y2="116" stroke-width="0.25" />
+    <line x1="50" y1="88" x2="44" y2="98" stroke-width="0.25" />
+    <line x1="40" y1="48" x2="44" y2="98" stroke-width="0.25" />
+    <line x1="40" y1="48" x2="58" y2="62" stroke-width="0.25" />
+    <!-- Lower ring -->
+    <line x1="92" y1="62" x2="106" y2="98" stroke-width="0.25" />
+    <line x1="106" y1="98" x2="75" y2="116" stroke-width="0.25" />
+    <line x1="75" y1="116" x2="44" y2="98" stroke-width="0.25" />
+    <line x1="44" y1="98" x2="58" y2="62" stroke-width="0.25" />
+    <line x1="58" y1="62" x2="92" y2="62" stroke-width="0.25" />
+    <!-- Lower cap edges -->
+    <line x1="75" y1="140" x2="92" y2="62" stroke-dasharray="2 3" />
+    <line x1="75" y1="140" x2="106" y2="98" />
+    <line x1="75" y1="140" x2="75" y2="116" />
+    <line x1="75" y1="140" x2="44" y2="98" />
+    <line x1="75" y1="140" x2="58" y2="62" stroke-dasharray="2 3" />
+    <!-- Circumscribed sphere hint -->
+    <circle cx="75" cy="70" r="75" stroke-dasharray="3 6" stroke-width="0.2" />
+    <text class="label-sm" x="25" y="165">icosahedron — facies XX</text>
+  </g>
+
+  <!-- ═══ SCATTERED: Grid dots, small construction marks ═══ -->
+
+  <!-- Small compass rose (upper center) -->
+  <g transform="translate(680, 120)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <circle cx="25" cy="25" r="20" />
+    <circle cx="25" cy="25" r="14" stroke-dasharray="2 3" />
+    <line x1="25" y1="5" x2="25" y2="45" />
+    <line x1="5" y1="25" x2="45" y2="25" />
+    <path d="M25,5 L28,15 L22,15 Z" class="sketch-fill" opacity="0.2" />
+    <text class="annotation" x="22" y="2">N</text>
+  </g>
+
+  <!-- Small protractor / angle measurement -->
+  <g transform="translate(1250, 550)" class="sketch" stroke-width="0.3" opacity="0.12">
+    <path d="M0,40 A40,40 0 0,1 40,0" />
+    <line x1="0" y1="40" x2="45" y2="40" stroke-width="0.2" />
+    <line x1="0" y1="40" x2="28" y2="12" stroke-width="0.2" />
+    <line x1="0" y1="40" x2="40" y2="0" stroke-width="0.2" stroke-dasharray="1 2" />
+    <text class="annotation" x="15" y="30">90°</text>
+  </g>
+
+  <!-- Small test tube / flask (right side, mid) -->
+  <g transform="translate(1200, 850)" class="sketch" stroke-width="0.35" opacity="0.18">
+    <path d="M15,0 L15,50 Q15,70 0,70 Q-5,70 -5,60 L-5,50 Z" stroke-width="0.4" />
+    <path d="M35,0 L35,50 Q35,70 50,70 Q55,70 55,60 L55,50 Z" stroke-width="0.4" />
+    <line x1="12" y1="0" x2="38" y2="0" stroke-width="0.3" />
+    <!-- Liquid level lines -->
+    <line x1="17" y1="35" x2="33" y2="35" stroke-width="0.2" />
+    <line x1="17" y1="42" x2="33" y2="42" stroke-width="0.2" />
+    <!-- Bubbles -->
+    <circle cx="22" cy="48" r="2" stroke-width="0.2" />
+    <circle cx="28" cy="52" r="1.5" stroke-width="0.2" />
+    <text class="label-sm" x="5" y="85">probatio</text>
+  </g>
+
+  <!-- Scattered tiny construction marks / grid points -->
+  <g class="sketch-fill" opacity="0.06">
+    <circle cx="320" cy="280" r="2" />
+    <circle cx="680" cy="420" r="2" />
+    <circle cx="1100" cy="620" r="2" />
+    <circle cx="220" cy="950" r="2" />
+    <circle cx="820" cy="1050" r="2" />
+    <circle cx="1280" cy="780" r="2" />
+    <circle cx="480" cy="1480" r="2" />
+    <circle cx="950" cy="1400" r="2" />
+    <!-- Additional grid intersections -->
+    <circle cx="160" cy="500" r="1.5" />
+    <circle cx="720" cy="660" r="1.5" />
+    <circle cx="380" cy="900" r="1.5" />
+    <circle cx="1320" cy="420" r="1.5" />
+    <circle cx="580" cy="1180" r="1.5" />
+    <circle cx="280" cy="1420" r="1.5" />
+    <circle cx="900" cy="1580" r="1.5" />
+    <circle cx="1180" cy="1050" r="1.5" />
+  </g>
+
+  <!-- Faint construction grid lines (Da Vinci notebook ruled lines) -->
+  <g class="sketch" stroke-width="0.15" opacity="0.04">
+    <line x1="0" y1="300" x2="1400" y2="300" />
+    <line x1="0" y1="600" x2="1400" y2="600" />
+    <line x1="0" y1="900" x2="1400" y2="900" />
+    <line x1="0" y1="1200" x2="1400" y2="1200" />
+    <line x1="0" y1="1500" x2="1400" y2="1500" />
+    <line x1="350" y1="0" x2="350" y2="1800" />
+    <line x1="700" y1="0" x2="700" y2="1800" />
+    <line x1="1050" y1="0" x2="1050" y2="1800" />
+  </g>
+
+  <!-- Faint mirror writing hint (reversed text like Da Vinci) -->
+  <g opacity="0.06">
+    <text class="label" x="1050" y="1150" transform="scale(-1,1) translate(-2100,0)">veritas per examen</text>
+    <text class="label-sm" x="180" y="1550" transform="scale(-1,1) translate(-360,0)">qualitas est regina</text>
+    <text class="label-sm" x="780" y="680" transform="scale(-1,1) translate(-1560,0)">geometria sacra</text>
+    <text class="label-sm" x="620" y="1450" transform="scale(-1,1) translate(-1240,0)">ordo ab chao</text>
+    <text class="label-sm" x="300" y="850" transform="scale(-1,1) translate(-600,0)">fides in numeris</text>
+  </g>
+
+</svg>

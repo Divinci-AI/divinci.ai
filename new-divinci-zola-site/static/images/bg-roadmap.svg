@@ -1,0 +1,533 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1800" viewBox="0 0 1400 1800">
+  <defs>
+    <style>
+      .sketch { stroke: #b8a080; fill: none; }
+      .sketch-light { stroke: #b8a080; fill: none; opacity: 0.5; }
+      .sketch-fill { fill: #b8a080; stroke: none; }
+      .label { font-family: 'Fraunces', 'Georgia', serif; fill: #b8a080; font-size: 11px; font-style: italic; }
+      .label-sm { font-family: 'Fraunces', 'Georgia', serif; fill: #b8a080; font-size: 8px; font-style: italic; }
+      .annotation { font-family: 'Source Sans 3', sans-serif; fill: #b8a080; font-size: 7px; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <!-- ═══ TOP: Da Vinci cartography / map sketch with compass rose ═══ -->
+
+  <g transform="translate(80, 50)" class="sketch" stroke-width="0.6" opacity="0.32">
+    <!-- Coastline contours -->
+    <path d="M0,80 Q15,75 40,82 Q70,90 100,78 Q130,65 160,72 Q190,80 220,68 Q250,55 280,62 Q310,70 340,60" stroke-width="0.5" />
+    <path d="M0,95 Q20,90 50,97 Q80,105 110,93 Q140,80 170,88 Q200,96 230,84 Q260,72 290,78 Q320,85 350,75" stroke-width="0.4" stroke-dasharray="3 4" />
+    <path d="M10,110 Q40,105 70,112 Q100,120 130,108 Q160,96 190,103 Q220,110 250,100 Q280,90 310,95" stroke-width="0.3" stroke-dasharray="2 5" />
+    <!-- Mountain range sketches -->
+    <path d="M40,70 L55,45 L70,68" stroke-width="0.4" />
+    <path d="M60,66 L80,38 L100,64" stroke-width="0.4" />
+    <path d="M90,62 L105,42 L120,60" stroke-width="0.35" />
+    <!-- Wave lines (ocean) -->
+    <path d="M150,115 Q160,110 170,115 Q180,120 190,115" stroke-width="0.25" />
+    <path d="M180,125 Q190,120 200,125 Q210,130 220,125" stroke-width="0.25" />
+    <path d="M210,118 Q220,113 230,118 Q240,123 250,118" stroke-width="0.25" />
+    <!-- Path markings on the map (dotted trail) -->
+    <path d="M50,90 Q80,75 120,80 Q160,85 200,70 Q240,55 280,65 Q320,75 350,60" stroke-width="0.6" stroke-dasharray="4 3" />
+    <circle cx="50" cy="90" r="3" class="sketch-fill" opacity="0.2" />
+    <circle cx="120" cy="80" r="2.5" class="sketch-fill" opacity="0.15" />
+    <circle cx="200" cy="70" r="2.5" class="sketch-fill" opacity="0.15" />
+    <circle cx="280" cy="65" r="2.5" class="sketch-fill" opacity="0.15" />
+    <circle cx="350" cy="60" r="3" class="sketch-fill" opacity="0.2" />
+    <!-- Compass rose -->
+    <g transform="translate(300, 120)">
+      <circle cx="0" cy="0" r="30" stroke-width="0.4" />
+      <circle cx="0" cy="0" r="22" stroke-dasharray="2 3" stroke-width="0.3" />
+      <circle cx="0" cy="0" r="5" stroke-width="0.3" />
+      <!-- Cardinal points -->
+      <line x1="0" y1="-30" x2="0" y2="-5" stroke-width="0.5" />
+      <line x1="0" y1="5" x2="0" y2="30" stroke-width="0.5" />
+      <line x1="-30" y1="0" x2="-5" y2="0" stroke-width="0.5" />
+      <line x1="5" y1="0" x2="30" y2="0" stroke-width="0.5" />
+      <!-- North arrow -->
+      <polygon points="0,-30 -4,-18 4,-18" class="sketch-fill" opacity="0.25" />
+      <!-- Intercardinal lines -->
+      <line x1="-21" y1="-21" x2="-4" y2="-4" stroke-width="0.3" />
+      <line x1="21" y1="-21" x2="4" y2="-4" stroke-width="0.3" />
+      <line x1="-21" y1="21" x2="-4" y2="4" stroke-width="0.3" />
+      <line x1="21" y1="21" x2="4" y2="4" stroke-width="0.3" />
+      <!-- Direction letters -->
+      <text class="annotation" x="-2" y="-34">N</text>
+      <text class="annotation" x="-2" y="40">S</text>
+      <text class="annotation" x="-40" y="3">O</text>
+      <text class="annotation" x="33" y="3">E</text>
+      <!-- Decorative ring ticks -->
+      <line x1="0" y1="-22" x2="0" y2="-25" stroke-width="0.2" />
+      <line x1="0" y1="22" x2="0" y2="25" stroke-width="0.2" />
+      <line x1="-22" y1="0" x2="-25" y2="0" stroke-width="0.2" />
+      <line x1="22" y1="0" x2="25" y2="0" stroke-width="0.2" />
+      <line x1="-15.5" y1="-15.5" x2="-17.5" y2="-17.5" stroke-width="0.2" />
+      <line x1="15.5" y1="-15.5" x2="17.5" y2="-17.5" stroke-width="0.2" />
+      <line x1="-15.5" y1="15.5" x2="-17.5" y2="17.5" stroke-width="0.2" />
+      <line x1="15.5" y1="15.5" x2="17.5" y2="17.5" stroke-width="0.2" />
+    </g>
+    <!-- Star (stella polaris) -->
+    <g transform="translate(270, 25)">
+      <polygon points="0,-12 3,-4 12,-4 5,2 7,12 0,6 -7,12 -5,2 -12,-4 -3,-4" stroke-width="0.3" />
+      <circle cx="0" cy="0" r="15" stroke-dasharray="2 3" stroke-width="0.2" />
+    </g>
+    <text class="label-sm" x="255" y="50">stella polaris</text>
+    <text class="label" x="100" y="150">cursus navigandi</text>
+  </g>
+
+  <!-- ═══ TOP RIGHT: Metatron's Cube ═══ -->
+
+  <g transform="translate(1140, 40)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <!-- 13 circles of Metatron's Cube -->
+    <circle cx="70" cy="70" r="10" />
+    <!-- Inner ring of 6 -->
+    <circle cx="70" cy="40" r="10" />
+    <circle cx="96" cy="55" r="10" />
+    <circle cx="96" cy="85" r="10" />
+    <circle cx="70" cy="100" r="10" />
+    <circle cx="44" cy="85" r="10" />
+    <circle cx="44" cy="55" r="10" />
+    <!-- Outer ring of 6 -->
+    <circle cx="70" cy="10" r="10" stroke-dasharray="1 2" />
+    <circle cx="122" cy="40" r="10" stroke-dasharray="1 2" />
+    <circle cx="122" cy="100" r="10" stroke-dasharray="1 2" />
+    <circle cx="70" cy="130" r="10" stroke-dasharray="1 2" />
+    <circle cx="18" cy="100" r="10" stroke-dasharray="1 2" />
+    <circle cx="18" cy="40" r="10" stroke-dasharray="1 2" />
+    <!-- Connecting lines through all 13 centers -->
+    <line x1="70" y1="10" x2="122" y2="100" stroke-width="0.2" />
+    <line x1="70" y1="10" x2="18" y2="100" stroke-width="0.2" />
+    <line x1="122" y1="40" x2="18" y2="100" stroke-width="0.2" />
+    <line x1="122" y1="40" x2="70" y2="130" stroke-width="0.2" />
+    <line x1="122" y1="100" x2="18" y2="40" stroke-width="0.2" />
+    <line x1="18" y1="40" x2="70" y2="130" stroke-width="0.2" />
+    <line x1="70" y1="10" x2="70" y2="130" stroke-width="0.2" />
+    <line x1="18" y1="40" x2="122" y2="40" stroke-width="0.2" />
+    <line x1="18" y1="100" x2="122" y2="100" stroke-width="0.2" />
+    <!-- Enclosing circle -->
+    <circle cx="70" cy="70" r="68" stroke-dasharray="3 4" stroke-width="0.25" />
+    <text class="label-sm" x="20" y="155">cubus Metatronis</text>
+  </g>
+
+  <!-- ═══ LEFT: Milestone pillar/column with Roman numerals ═══ -->
+
+  <g transform="translate(60, 280)" class="sketch" stroke-width="0.5" opacity="0.3">
+    <!-- Column base -->
+    <rect x="25" y="260" width="60" height="12" rx="2" />
+    <rect x="30" y="250" width="50" height="12" rx="1" />
+    <!-- Column shaft -->
+    <line x1="35" y1="250" x2="35" y2="50" stroke-width="0.6" />
+    <line x1="75" y1="250" x2="75" y2="50" stroke-width="0.6" />
+    <!-- Fluting lines -->
+    <line x1="45" y1="248" x2="45" y2="52" stroke-width="0.2" stroke-dasharray="3 5" />
+    <line x1="55" y1="248" x2="55" y2="52" stroke-width="0.2" stroke-dasharray="3 5" />
+    <line x1="65" y1="248" x2="65" y2="52" stroke-width="0.2" stroke-dasharray="3 5" />
+    <!-- Column capital -->
+    <rect x="28" y="40" width="54" height="12" rx="2" />
+    <path d="M28,42 Q25,35 30,30 Q40,22 55,20 Q70,22 80,30 Q85,35 82,42" stroke-width="0.4" />
+    <!-- Milestone markers along the column -->
+    <g transform="translate(0, 0)">
+      <rect x="37" y="60" width="36" height="25" rx="2" stroke-dasharray="2 2" stroke-width="0.3" />
+      <text class="annotation" x="49" y="76">IV</text>
+    </g>
+    <g transform="translate(0, 0)">
+      <rect x="37" y="105" width="36" height="25" rx="2" stroke-dasharray="2 2" stroke-width="0.3" />
+      <text class="annotation" x="49" y="121">III</text>
+    </g>
+    <g transform="translate(0, 0)">
+      <rect x="37" y="155" width="36" height="25" rx="2" stroke-dasharray="2 2" stroke-width="0.3" />
+      <text class="annotation" x="50" y="171">II</text>
+    </g>
+    <g transform="translate(0, 0)">
+      <rect x="37" y="205" width="36" height="25" rx="2" stroke-dasharray="2 2" stroke-width="0.3" />
+      <text class="annotation" x="52" y="221">I</text>
+    </g>
+    <text class="label" x="10" y="290">lapis miliarius</text>
+  </g>
+
+  <!-- ═══ CENTER: Winding path/road from bottom to top with milestone markers ═══ -->
+
+  <g transform="translate(350, 200)" class="sketch" stroke-width="0.7" opacity="0.25">
+    <!-- The winding road path -->
+    <path d="M350,1350 Q380,1300 320,1250 Q260,1200 330,1150 Q400,1100 340,1050 Q280,1000 350,950 Q420,900 350,850 Q280,800 340,750 Q400,700 330,650 Q260,600 340,550 Q420,500 350,450 Q280,400 340,350 Q400,300 350,250 Q300,200 340,150 Q380,100 350,50" stroke-width="0.8" />
+    <!-- Road edges (parallel path for width) -->
+    <path d="M365,1350 Q395,1300 335,1250 Q275,1200 345,1150 Q415,1100 355,1050 Q295,1000 365,950 Q435,900 365,850 Q295,800 355,750 Q415,700 345,650 Q275,600 355,550 Q435,500 365,450 Q295,400 355,350 Q415,300 365,250 Q315,200 355,150 Q395,100 365,50" stroke-width="0.4" stroke-dasharray="3 5" />
+    <!-- Milestone markers along the path -->
+    <!-- Milestone 1 (bottom) -->
+    <circle cx="345" cy="1300" r="8" stroke-width="0.5" />
+    <circle cx="345" cy="1300" r="3" class="sketch-fill" opacity="0.15" />
+    <text class="annotation" x="358" y="1303">I</text>
+    <!-- Milestone 2 -->
+    <circle cx="335" cy="1050" r="8" stroke-width="0.5" />
+    <circle cx="335" cy="1050" r="3" class="sketch-fill" opacity="0.15" />
+    <text class="annotation" x="348" y="1053">II</text>
+    <!-- Milestone 3 -->
+    <circle cx="355" cy="800" r="8" stroke-width="0.5" />
+    <circle cx="355" cy="800" r="3" class="sketch-fill" opacity="0.15" />
+    <text class="annotation" x="368" y="803">III</text>
+    <!-- Milestone 4 -->
+    <circle cx="340" cy="550" r="8" stroke-width="0.5" />
+    <circle cx="340" cy="550" r="3" class="sketch-fill" opacity="0.15" />
+    <text class="annotation" x="353" y="553">IV</text>
+    <!-- Milestone 5 (top — destination star) -->
+    <polygon points="350,40 353,48 362,48 355,53 357,62 350,57 343,62 345,53 338,48 347,48" stroke-width="0.4" />
+    <circle cx="350" cy="50" r="15" stroke-dasharray="2 3" stroke-width="0.3" />
+    <text class="annotation" x="338" y="30">FINIS</text>
+    <!-- Direction arrows along path -->
+    <polygon points="345,1200 342,1208 348,1208" class="sketch-fill" opacity="0.15" />
+    <polygon points="350,950 347,958 353,958" class="sketch-fill" opacity="0.15" />
+    <polygon points="345,700 342,708 348,708" class="sketch-fill" opacity="0.15" />
+    <polygon points="350,450 347,458 353,458" class="sketch-fill" opacity="0.15" />
+    <polygon points="348,200 345,208 351,208" class="sketch-fill" opacity="0.15" />
+    <text class="label-sm" x="290" y="1380">iter futurum</text>
+  </g>
+
+  <!-- ═══ RIGHT: Astrolabe / navigation instrument ═══ -->
+
+  <g transform="translate(1000, 300)" class="sketch" stroke-width="0.4" opacity="0.25">
+    <!-- Main body (mater) -->
+    <circle cx="100" cy="100" r="90" />
+    <circle cx="100" cy="100" r="82" stroke-dasharray="2 3" stroke-width="0.3" />
+    <circle cx="100" cy="100" r="70" stroke-width="0.3" />
+    <circle cx="100" cy="100" r="55" stroke-dasharray="3 4" stroke-width="0.25" />
+    <circle cx="100" cy="100" r="15" stroke-width="0.3" />
+    <!-- Degree markings around the rim -->
+    <line x1="100" y1="10" x2="100" y2="18" stroke-width="0.3" />
+    <line x1="100" y1="182" x2="100" y2="190" stroke-width="0.3" />
+    <line x1="10" y1="100" x2="18" y2="100" stroke-width="0.3" />
+    <line x1="182" y1="100" x2="190" y2="100" stroke-width="0.3" />
+    <!-- 30-degree marks -->
+    <line x1="145" y1="22" x2="141" y2="29" stroke-width="0.2" />
+    <line x1="178" y1="55" x2="171" y2="59" stroke-width="0.2" />
+    <line x1="178" y1="145" x2="171" y2="141" stroke-width="0.2" />
+    <line x1="145" y1="178" x2="141" y2="171" stroke-width="0.2" />
+    <line x1="55" y1="178" x2="59" y2="171" stroke-width="0.2" />
+    <line x1="22" y1="145" x2="29" y2="141" stroke-width="0.2" />
+    <line x1="22" y1="55" x2="29" y2="59" stroke-width="0.2" />
+    <line x1="55" y1="22" x2="59" y2="29" stroke-width="0.2" />
+    <!-- Rete (star pointer overlay) -->
+    <path d="M100,30 L108,85 L100,100 L92,85 Z" stroke-width="0.35" />
+    <path d="M170,100 L115,92 L100,100 L115,108 Z" stroke-width="0.35" />
+    <path d="M100,170 L92,115 L100,100 L108,115 Z" stroke-width="0.35" stroke-dasharray="2 2" />
+    <path d="M30,100 L85,108 L100,100 L85,92 Z" stroke-width="0.35" stroke-dasharray="2 2" />
+    <!-- Altitude circles on tympan -->
+    <ellipse cx="100" cy="85" rx="50" ry="35" stroke-width="0.2" stroke-dasharray="3 5" />
+    <ellipse cx="100" cy="75" rx="35" ry="22" stroke-width="0.2" stroke-dasharray="2 4" />
+    <!-- Alidade (rule/pointer) -->
+    <line x1="15" y1="100" x2="185" y2="100" stroke-width="0.5" />
+    <!-- Center pin -->
+    <circle cx="100" cy="100" r="4" class="sketch-fill" opacity="0.15" />
+    <!-- Throne (suspension ring at top) -->
+    <circle cx="100" cy="2" r="8" stroke-width="0.35" />
+    <circle cx="100" cy="2" r="4" stroke-width="0.25" />
+    <line x1="96" y1="10" x2="96" y2="14" stroke-width="0.3" />
+    <line x1="104" y1="10" x2="104" y2="14" stroke-width="0.3" />
+    <text class="label" x="55" y="215">astrolabium navigantis</text>
+  </g>
+
+  <!-- ═══ CENTER-LEFT: Dodecahedron wireframe ═══ -->
+
+  <g transform="translate(180, 700)" class="sketch" stroke-width="0.35" opacity="0.16">
+    <!-- Outer pentagon -->
+    <polygon points="75,0 143,49 117,128 33,128 7,49" />
+    <!-- Inner pentagon (rotated, smaller — back face) -->
+    <polygon points="75,30 118,58 102,108 48,108 32,58" stroke-dasharray="2 3" />
+    <!-- Connecting edges between front and back pentagons -->
+    <line x1="75" y1="0" x2="75" y2="30" stroke-width="0.3" />
+    <line x1="143" y1="49" x2="118" y2="58" stroke-width="0.3" />
+    <line x1="117" y1="128" x2="102" y2="108" stroke-width="0.3" />
+    <line x1="33" y1="128" x2="48" y2="108" stroke-width="0.3" />
+    <line x1="7" y1="49" x2="32" y2="58" stroke-width="0.3" />
+    <!-- Center point -->
+    <circle cx="75" cy="64" r="2" class="sketch-fill" opacity="0.1" />
+    <!-- Construction circle -->
+    <circle cx="75" cy="64" r="72" stroke-dasharray="4 6" stroke-width="0.2" />
+    <text class="label-sm" x="25" y="155">dodecahedron regularis</text>
+  </g>
+
+  <!-- ═══ CENTER: Full Flower of Life (19+ circles) ═══ -->
+
+  <g transform="translate(480, 780)" class="sketch-light" stroke-width="0.35" opacity="0.16">
+    <!-- Seed of Life — inner 7 circles -->
+    <circle cx="120" cy="120" r="40" />
+    <circle cx="120" cy="80" r="40" />
+    <circle cx="120" cy="160" r="40" />
+    <circle cx="85.36" cy="100" r="40" />
+    <circle cx="154.64" cy="100" r="40" />
+    <circle cx="85.36" cy="140" r="40" />
+    <circle cx="154.64" cy="140" r="40" />
+    <!-- Second ring — 12 petals -->
+    <circle cx="120" cy="40" r="40" />
+    <circle cx="120" cy="200" r="40" />
+    <circle cx="50.72" cy="80" r="40" />
+    <circle cx="189.28" cy="80" r="40" />
+    <circle cx="50.72" cy="160" r="40" />
+    <circle cx="189.28" cy="160" r="40" />
+    <circle cx="85.36" cy="60" r="40" />
+    <circle cx="154.64" cy="60" r="40" />
+    <circle cx="85.36" cy="180" r="40" />
+    <circle cx="154.64" cy="180" r="40" />
+    <circle cx="50.72" cy="120" r="40" />
+    <circle cx="189.28" cy="120" r="40" />
+    <!-- Enclosing circle with construction marks -->
+    <circle cx="120" cy="120" r="120" stroke-dasharray="4 4" stroke-width="0.3" />
+    <circle cx="120" cy="120" r="125" stroke-dasharray="1 8" stroke-width="0.2" />
+    <!-- Center seed dot -->
+    <circle cx="120" cy="120" r="2.5" class="sketch-fill" opacity="0.12" />
+    <!-- Construction crosshairs -->
+    <line x1="120" y1="-5" x2="120" y2="245" stroke-width="0.15" stroke-dasharray="6 8" />
+    <line x1="-5" y1="120" x2="245" y2="120" stroke-width="0.15" stroke-dasharray="6 8" />
+    <text class="label" x="50" y="265">flos vitae universalis</text>
+  </g>
+
+  <!-- ═══ RIGHT CENTER: Tree of Life / Kabbalah Sephirot ═══ -->
+
+  <g transform="translate(980, 680)" class="sketch" stroke-width="0.4" opacity="0.17">
+    <!-- 10 Sephirot (nodes) — classical layout -->
+    <!-- Crown (Kether) -->
+    <circle cx="70" cy="0" r="12" />
+    <!-- Wisdom & Understanding -->
+    <circle cx="30" cy="45" r="10" />
+    <circle cx="110" cy="45" r="10" />
+    <!-- Knowledge (Da'at) - hidden, dashed -->
+    <circle cx="70" cy="70" r="8" stroke-dasharray="2 2" />
+    <!-- Mercy & Severity -->
+    <circle cx="30" cy="105" r="10" />
+    <circle cx="110" cy="105" r="10" />
+    <!-- Beauty (Tiferet) - center -->
+    <circle cx="70" cy="130" r="12" />
+    <!-- Victory & Splendor -->
+    <circle cx="30" cy="175" r="10" />
+    <circle cx="110" cy="175" r="10" />
+    <!-- Foundation -->
+    <circle cx="70" cy="210" r="10" />
+    <!-- Kingdom (Malkuth) -->
+    <circle cx="70" cy="260" r="12" />
+
+    <!-- Paths (22 connecting lines) — The Three Pillars -->
+    <!-- Left pillar -->
+    <line x1="30" y1="55" x2="30" y2="95" stroke-width="0.3" />
+    <line x1="30" y1="115" x2="30" y2="165" stroke-width="0.3" />
+    <!-- Right pillar -->
+    <line x1="110" y1="55" x2="110" y2="95" stroke-width="0.3" />
+    <line x1="110" y1="115" x2="110" y2="165" stroke-width="0.3" />
+    <!-- Middle pillar -->
+    <line x1="70" y1="12" x2="70" y2="62" stroke-width="0.3" />
+    <line x1="70" y1="78" x2="70" y2="118" stroke-width="0.3" />
+    <line x1="70" y1="142" x2="70" y2="200" stroke-width="0.3" />
+    <line x1="70" y1="220" x2="70" y2="248" stroke-width="0.3" />
+    <!-- Cross paths -->
+    <line x1="70" y1="12" x2="30" y2="35" stroke-width="0.25" />
+    <line x1="70" y1="12" x2="110" y2="35" stroke-width="0.25" />
+    <line x1="30" y1="55" x2="110" y2="95" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="110" y1="55" x2="30" y2="95" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="30" y1="55" x2="70" y2="118" stroke-width="0.2" />
+    <line x1="110" y1="55" x2="70" y2="118" stroke-width="0.2" />
+    <line x1="30" y1="115" x2="70" y2="142" stroke-width="0.2" />
+    <line x1="110" y1="115" x2="70" y2="142" stroke-width="0.2" />
+    <line x1="30" y1="185" x2="70" y2="200" stroke-width="0.25" />
+    <line x1="110" y1="185" x2="70" y2="200" stroke-width="0.25" />
+    <line x1="30" y1="185" x2="70" y2="248" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="110" y1="185" x2="70" y2="248" stroke-width="0.2" stroke-dasharray="2 3" />
+
+    <!-- Enclosing oval -->
+    <ellipse cx="70" cy="130" rx="65" ry="145" stroke-dasharray="4 6" stroke-width="0.2" />
+    <text class="label-sm" x="15" y="290">arbor vitae — sephirot</text>
+  </g>
+
+  <!-- ═══ LOWER LEFT: Telescope / spyglass (looking to the future) ═══ -->
+
+  <g transform="translate(60, 1150)" class="sketch" stroke-width="0.5" opacity="0.28">
+    <!-- Telescope body — main tube -->
+    <path d="M0,60 L180,20" stroke-width="0.6" />
+    <path d="M0,75 L180,35" stroke-width="0.6" />
+    <!-- Eyepiece (narrow end) -->
+    <ellipse cx="0" cy="67.5" rx="4" ry="9" stroke-width="0.4" />
+    <!-- Objective lens (wide end) -->
+    <ellipse cx="185" cy="27.5" rx="6" ry="12" stroke-width="0.4" />
+    <!-- Lens rings -->
+    <path d="M45,52 L45,67" stroke-width="0.3" />
+    <path d="M90,42 L90,57" stroke-width="0.3" />
+    <path d="M135,32 L135,47" stroke-width="0.3" />
+    <!-- Extension tube lines -->
+    <path d="M40,54 L50,51" stroke-width="0.25" stroke-dasharray="1 2" />
+    <path d="M85,44 L95,41" stroke-width="0.25" stroke-dasharray="1 2" />
+    <path d="M130,34 L140,31" stroke-width="0.25" stroke-dasharray="1 2" />
+    <!-- Tripod stand -->
+    <line x1="90" y1="50" x2="70" y2="110" stroke-width="0.4" />
+    <line x1="90" y1="50" x2="110" y2="110" stroke-width="0.4" />
+    <line x1="90" y1="50" x2="90" y2="115" stroke-width="0.4" />
+    <!-- Tripod base dots -->
+    <circle cx="70" cy="110" r="2" class="sketch-fill" opacity="0.15" />
+    <circle cx="110" cy="110" r="2" class="sketch-fill" opacity="0.15" />
+    <circle cx="90" cy="115" r="2" class="sketch-fill" opacity="0.15" />
+    <!-- Light rays from objective -->
+    <line x1="191" y1="22" x2="230" y2="10" stroke-width="0.2" stroke-dasharray="3 4" />
+    <line x1="191" y1="27" x2="240" y2="20" stroke-width="0.2" stroke-dasharray="3 4" />
+    <line x1="191" y1="32" x2="235" y2="30" stroke-width="0.2" stroke-dasharray="3 4" />
+    <!-- Small star being observed -->
+    <polygon points="240,12 242,17 247,17 243,20 244,25 240,22 236,25 237,20 233,17 238,17" stroke-width="0.3" />
+    <text class="label" x="30" y="135">perspicillum futuri</text>
+  </g>
+
+  <!-- ═══ LOWER CENTER: Vesica Piscis ═══ -->
+
+  <g transform="translate(500, 1350)" class="sketch" stroke-width="0.35" opacity="0.16">
+    <!-- Two overlapping circles -->
+    <circle cx="40" cy="50" r="45" />
+    <circle cx="80" cy="50" r="45" />
+    <!-- Vesica highlight (the almond shape where they overlap) -->
+    <path d="M60,7.3 Q40,50 60,92.7 Q80,50 60,7.3" stroke-width="0.5" stroke-dasharray="2 2" />
+    <!-- Center line and construction -->
+    <line x1="60" y1="0" x2="60" y2="100" stroke-width="0.15" stroke-dasharray="3 5" />
+    <line x1="-5" y1="50" x2="125" y2="50" stroke-width="0.15" stroke-dasharray="3 5" />
+    <circle cx="60" cy="50" r="2" class="sketch-fill" opacity="0.12" />
+    <!-- Ratio annotation -->
+    <text class="label-sm" x="20" y="115">vesica piscis</text>
+    <text class="label-sm" x="20" y="128">√3 : 1</text>
+  </g>
+
+  <!-- ═══ LOWER RIGHT: Golden spiral with phi ═══ -->
+
+  <g transform="translate(850, 1320)" class="sketch" stroke-width="0.5" opacity="0.2">
+    <rect x="0" y="0" width="200" height="123.6" />
+    <rect x="0" y="0" width="123.6" height="123.6" />
+    <rect x="123.6" y="0" width="76.4" height="76.4" />
+    <rect x="123.6" y="76.4" width="47.2" height="47.2" />
+    <rect x="170.8" y="76.4" width="29.2" height="29.2" />
+    <path d="M123.6,123.6 Q123.6,0 0,0" stroke-width="0.6" />
+    <path d="M123.6,0 Q200,0 200,76.4" stroke-width="0.6" />
+    <path d="M200,76.4 Q200,123.6 170.8,123.6" stroke-width="0.5" />
+    <path d="M170.8,123.6 Q123.6,123.6 123.6,105.6" stroke-width="0.5" />
+    <text class="label" x="50" y="145">φ = 1.618</text>
+    <text class="label-sm" x="130" y="115">proportio divina</text>
+  </g>
+
+  <!-- ═══ BOTTOM: Icosahedron wireframe ═══ -->
+
+  <g transform="translate(550, 1550)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <!-- Top vertex -->
+    <circle cx="70" cy="0" r="2" class="sketch-fill" opacity="0.15" />
+    <!-- Upper pentagon ring -->
+    <circle cx="70" cy="30" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="103" cy="45" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="93" cy="82" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="47" cy="82" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="37" cy="45" r="1.5" class="sketch-fill" opacity="0.1" />
+    <!-- Lower pentagon ring (rotated) -->
+    <circle cx="87" cy="58" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="100" cy="92" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="70" cy="110" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="40" cy="92" r="1.5" class="sketch-fill" opacity="0.1" />
+    <circle cx="53" cy="58" r="1.5" class="sketch-fill" opacity="0.1" />
+    <!-- Bottom vertex -->
+    <circle cx="70" cy="130" r="2" class="sketch-fill" opacity="0.15" />
+    <!-- Upper cap edges -->
+    <line x1="70" y1="0" x2="70" y2="30" />
+    <line x1="70" y1="0" x2="103" y2="45" />
+    <line x1="70" y1="0" x2="37" y2="45" />
+    <line x1="70" y1="0" x2="93" y2="82" stroke-dasharray="2 3" />
+    <line x1="70" y1="0" x2="47" y2="82" stroke-dasharray="2 3" />
+    <!-- Upper ring -->
+    <line x1="70" y1="30" x2="103" y2="45" />
+    <line x1="103" y1="45" x2="93" y2="82" />
+    <line x1="93" y1="82" x2="47" y2="82" />
+    <line x1="47" y1="82" x2="37" y2="45" />
+    <line x1="37" y1="45" x2="70" y2="30" />
+    <!-- Equatorial connections -->
+    <line x1="70" y1="30" x2="87" y2="58" stroke-width="0.25" />
+    <line x1="70" y1="30" x2="53" y2="58" stroke-width="0.25" />
+    <line x1="103" y1="45" x2="87" y2="58" stroke-width="0.25" />
+    <line x1="103" y1="45" x2="100" y2="92" stroke-width="0.25" />
+    <line x1="93" y1="82" x2="100" y2="92" stroke-width="0.25" />
+    <line x1="93" y1="82" x2="70" y2="110" stroke-width="0.25" />
+    <line x1="47" y1="82" x2="70" y2="110" stroke-width="0.25" />
+    <line x1="47" y1="82" x2="40" y2="92" stroke-width="0.25" />
+    <line x1="37" y1="45" x2="40" y2="92" stroke-width="0.25" />
+    <line x1="37" y1="45" x2="53" y2="58" stroke-width="0.25" />
+    <!-- Lower cap edges -->
+    <line x1="70" y1="130" x2="87" y2="58" stroke-dasharray="2 3" />
+    <line x1="70" y1="130" x2="100" y2="92" />
+    <line x1="70" y1="130" x2="70" y2="110" />
+    <line x1="70" y1="130" x2="40" y2="92" />
+    <line x1="70" y1="130" x2="53" y2="58" stroke-dasharray="2 3" />
+    <!-- Circumscribed sphere hint -->
+    <circle cx="70" cy="65" r="70" stroke-dasharray="3 6" stroke-width="0.2" />
+    <text class="label-sm" x="20" y="155">icosahedron — facies XX</text>
+  </g>
+
+  <!-- ═══ SCATTERED: Small measurement/construction marks ═══ -->
+
+  <!-- Small compass/divider tool sketch (upper left area) -->
+  <g transform="translate(500, 280)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <circle cx="30" cy="30" r="25" />
+    <circle cx="30" cy="30" r="18" stroke-dasharray="2 3" />
+    <line x1="30" y1="5" x2="30" y2="55" />
+    <line x1="5" y1="30" x2="55" y2="30" />
+    <path d="M30,5 L33,15 L27,15 Z" class="sketch-fill" opacity="0.2" />
+  </g>
+
+  <!-- Small hourglass (time/progress) -->
+  <g transform="translate(1250, 550)" class="sketch" stroke-width="0.35" opacity="0.18">
+    <line x1="0" y1="0" x2="40" y2="0" stroke-width="0.4" />
+    <line x1="0" y1="60" x2="40" y2="60" stroke-width="0.4" />
+    <path d="M5,0 Q5,20 20,30 Q35,20 35,0" stroke-width="0.35" />
+    <path d="M5,60 Q5,40 20,30 Q35,40 35,60" stroke-width="0.35" />
+    <circle cx="20" cy="30" r="2" class="sketch-fill" opacity="0.12" />
+    <!-- Sand particles -->
+    <circle cx="20" cy="42" r="0.8" class="sketch-fill" opacity="0.1" />
+    <circle cx="18" cy="46" r="0.8" class="sketch-fill" opacity="0.1" />
+    <circle cx="22" cy="48" r="0.8" class="sketch-fill" opacity="0.1" />
+    <circle cx="20" cy="52" r="0.8" class="sketch-fill" opacity="0.1" />
+    <text class="label-sm" x="0" y="75">tempus fugit</text>
+  </g>
+
+  <!-- Small flag/banner (milestone marker) -->
+  <g transform="translate(1200, 850)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <line x1="10" y1="0" x2="10" y2="50" stroke-width="0.4" />
+    <path d="M10,0 L40,8 L10,16" stroke-width="0.35" />
+    <circle cx="10" cy="50" r="3" class="sketch-fill" opacity="0.1" />
+    <text class="label-sm" x="0" y="65">signum viae</text>
+  </g>
+
+  <!-- Scattered tiny construction marks / grid points -->
+  <g class="sketch-fill" opacity="0.06">
+    <circle cx="350" cy="300" r="2" />
+    <circle cx="700" cy="450" r="2" />
+    <circle cx="1100" cy="650" r="2" />
+    <circle cx="200" cy="1000" r="2" />
+    <circle cx="850" cy="1050" r="2" />
+    <circle cx="1250" cy="900" r="2" />
+    <circle cx="500" cy="1500" r="2" />
+    <circle cx="1000" cy="1400" r="2" />
+    <!-- Additional grid intersections -->
+    <circle cx="150" cy="480" r="1.5" />
+    <circle cx="750" cy="680" r="1.5" />
+    <circle cx="400" cy="920" r="1.5" />
+    <circle cx="1300" cy="550" r="1.5" />
+    <circle cx="600" cy="1200" r="1.5" />
+    <circle cx="300" cy="1450" r="1.5" />
+    <circle cx="900" cy="1550" r="1.5" />
+    <circle cx="1200" cy="1100" r="1.5" />
+  </g>
+
+  <!-- Faint construction grid lines (Da Vinci notebook ruled lines) -->
+  <g class="sketch" stroke-width="0.15" opacity="0.04">
+    <line x1="0" y1="300" x2="1400" y2="300" />
+    <line x1="0" y1="600" x2="1400" y2="600" />
+    <line x1="0" y1="900" x2="1400" y2="900" />
+    <line x1="0" y1="1200" x2="1400" y2="1200" />
+    <line x1="0" y1="1500" x2="1400" y2="1500" />
+    <line x1="350" y1="0" x2="350" y2="1800" />
+    <line x1="700" y1="0" x2="700" y2="1800" />
+    <line x1="1050" y1="0" x2="1050" y2="1800" />
+  </g>
+
+  <!-- Faint mirror writing hint (reversed text like Da Vinci) -->
+  <g opacity="0.06">
+    <text class="label" x="1100" y="1150" transform="scale(-1,1) translate(-2200,0)">iter futurum</text>
+    <text class="label-sm" x="200" y="1550" transform="scale(-1,1) translate(-400,0)">lapis miliarius</text>
+    <text class="label-sm" x="800" y="700" transform="scale(-1,1) translate(-1600,0)">stella polaris</text>
+    <text class="label-sm" x="600" y="1250" transform="scale(-1,1) translate(-1200,0)">cursus navigandi</text>
+    <text class="label-sm" x="350" y="480" transform="scale(-1,1) translate(-700,0)">via futura</text>
+  </g>
+
+</svg>

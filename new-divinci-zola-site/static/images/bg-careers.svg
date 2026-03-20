@@ -1,0 +1,425 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1800" viewBox="0 0 1400 1800">
+  <defs>
+    <style>
+      .sketch { stroke: #b8a080; fill: none; }
+      .sketch-light { stroke: #b8a080; fill: none; opacity: 0.5; }
+      .sketch-fill { fill: #b8a080; stroke: none; }
+      .label { font-family: 'Fraunces', 'Georgia', serif; fill: #b8a080; font-size: 11px; font-style: italic; }
+      .label-sm { font-family: 'Fraunces', 'Georgia', serif; fill: #b8a080; font-size: 8px; font-style: italic; }
+      .annotation { font-family: 'Source Sans 3', sans-serif; fill: #b8a080; font-size: 7px; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <!-- ═══ TOP LEFT: Da Vinci anatomical hand sketch ═══ -->
+
+  <g transform="translate(80, 60)" class="sketch" stroke-width="0.6" opacity="0.32">
+    <!-- Palm -->
+    <path d="M40,120 Q35,100 38,80 Q40,65 50,55 Q55,50 60,55 Q65,60 65,75" />
+    <path d="M65,75 Q65,60 70,50 Q75,42 80,45 Q85,48 83,65" />
+    <path d="M83,65 Q83,48 88,40 Q93,34 98,38 Q103,42 100,60" />
+    <path d="M100,60 Q100,45 105,40 Q110,36 114,40 Q118,44 115,62" />
+    <path d="M115,62 Q118,55 122,52 Q126,50 128,54 Q130,58 125,72 Q120,85 115,95" />
+    <!-- Palm base -->
+    <path d="M40,120 Q45,130 60,135 Q80,138 100,132 Q115,125 115,95" />
+    <!-- Wrist -->
+    <path d="M40,120 Q38,135 40,150 Q42,160 55,165" />
+    <path d="M100,132 Q105,145 100,155 Q95,162 85,165" />
+    <!-- Tendons (construction lines) -->
+    <line x1="55" y1="165" x2="50" y2="55" stroke-dasharray="2 4" stroke-width="0.3" />
+    <line x1="65" y1="165" x2="70" y2="50" stroke-dasharray="2 4" stroke-width="0.3" />
+    <line x1="75" y1="165" x2="93" y2="38" stroke-dasharray="2 4" stroke-width="0.3" />
+    <line x1="85" y1="165" x2="114" y2="40" stroke-dasharray="2 4" stroke-width="0.3" />
+    <!-- Joint circles -->
+    <circle cx="55" cy="65" r="3" stroke-dasharray="1 2" stroke-width="0.3" />
+    <circle cx="75" cy="52" r="3" stroke-dasharray="1 2" stroke-width="0.3" />
+    <circle cx="95" cy="45" r="3" stroke-dasharray="1 2" stroke-width="0.3" />
+    <circle cx="112" cy="50" r="3" stroke-dasharray="1 2" stroke-width="0.3" />
+    <!-- Measurement lines -->
+    <line x1="30" y1="40" x2="30" y2="165" stroke-width="0.25" stroke-dasharray="1 3" />
+    <line x1="28" y1="40" x2="32" y2="40" stroke-width="0.3" />
+    <line x1="28" y1="165" x2="32" y2="165" stroke-width="0.3" />
+    <text class="label" x="40" y="185">manus humana — anatomia</text>
+  </g>
+
+  <!-- ═══ TOP RIGHT: Seed of Life (construction-style) ═══ -->
+
+  <g transform="translate(520, 30)" class="sketch" stroke-width="0.35" opacity="0.18">
+    <circle cx="40" cy="40" r="25" />
+    <circle cx="40" cy="15" r="25" />
+    <circle cx="40" cy="65" r="25" />
+    <circle cx="18.35" cy="27.5" r="25" />
+    <circle cx="61.65" cy="27.5" r="25" />
+    <circle cx="18.35" cy="52.5" r="25" />
+    <circle cx="61.65" cy="52.5" r="25" />
+    <circle cx="40" cy="40" r="50" stroke-dasharray="2 3" />
+    <circle cx="40" cy="40" r="2" class="sketch-fill" opacity="0.12" />
+    <text class="label-sm" x="10" y="100">semen vitae</text>
+  </g>
+
+  <!-- ═══ RIGHT SIDE: Rising steps / ladder of growth ═══ -->
+
+  <g transform="translate(920, 80)" class="sketch" stroke-width="0.5" opacity="0.28">
+    <!-- Steps ascending -->
+    <line x1="0" y1="140" x2="40" y2="140" />
+    <line x1="40" y1="140" x2="40" y2="120" />
+    <line x1="40" y1="120" x2="80" y2="120" />
+    <line x1="80" y1="120" x2="80" y2="100" />
+    <line x1="80" y1="100" x2="120" y2="100" />
+    <line x1="120" y1="100" x2="120" y2="80" />
+    <line x1="120" y1="80" x2="160" y2="80" />
+    <line x1="160" y1="80" x2="160" y2="60" />
+    <line x1="160" y1="60" x2="200" y2="60" />
+    <line x1="200" y1="60" x2="200" y2="40" />
+    <line x1="200" y1="40" x2="240" y2="40" />
+    <!-- Growth arrow -->
+    <line x1="0" y1="150" x2="240" y2="30" stroke-dasharray="3 4" stroke-width="0.4" />
+    <polygon points="236,32 244,28 238,38" class="sketch-fill" opacity="0.25" />
+    <!-- Figure at top -->
+    <circle cx="220" cy="28" r="8" stroke-width="0.4" />
+    <line x1="220" y1="36" x2="220" y2="40" stroke-width="0.4" />
+    <!-- Star/achievement at peak -->
+    <path d="M220,12 L222,18 L228,18 L223,22 L225,28 L220,24 L215,28 L217,22 L212,18 L218,18 Z" stroke-width="0.3" />
+    <text class="label-sm" x="60" y="165">gradus ascensionis</text>
+  </g>
+
+  <!-- ═══ TOP FAR RIGHT: Metatron's Cube ═══ -->
+
+  <g transform="translate(1180, 60)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <circle cx="60" cy="60" r="8" />
+    <circle cx="60" cy="35" r="8" />
+    <circle cx="81.65" cy="47.5" r="8" />
+    <circle cx="81.65" cy="72.5" r="8" />
+    <circle cx="60" cy="85" r="8" />
+    <circle cx="38.35" cy="72.5" r="8" />
+    <circle cx="38.35" cy="47.5" r="8" />
+    <circle cx="60" cy="10" r="8" stroke-dasharray="1 2" />
+    <circle cx="103.3" cy="35" r="8" stroke-dasharray="1 2" />
+    <circle cx="103.3" cy="85" r="8" stroke-dasharray="1 2" />
+    <circle cx="60" cy="110" r="8" stroke-dasharray="1 2" />
+    <circle cx="16.7" cy="85" r="8" stroke-dasharray="1 2" />
+    <circle cx="16.7" cy="35" r="8" stroke-dasharray="1 2" />
+    <line x1="60" y1="10" x2="103.3" y2="85" stroke-width="0.2" />
+    <line x1="60" y1="10" x2="16.7" y2="85" stroke-width="0.2" />
+    <line x1="103.3" y1="35" x2="16.7" y2="85" stroke-width="0.2" />
+    <line x1="103.3" y1="35" x2="60" y2="110" stroke-width="0.2" />
+    <line x1="103.3" y1="85" x2="16.7" y2="35" stroke-width="0.2" />
+    <line x1="16.7" y1="35" x2="60" y2="110" stroke-width="0.2" />
+    <line x1="60" y1="10" x2="60" y2="110" stroke-width="0.2" />
+    <line x1="16.7" y1="35" x2="103.3" y2="35" stroke-width="0.2" />
+    <line x1="16.7" y1="85" x2="103.3" y2="85" stroke-width="0.2" />
+    <circle cx="60" cy="60" r="58" stroke-dasharray="3 4" stroke-width="0.25" />
+    <text class="label-sm" x="15" y="130">cubus Metatronis</text>
+  </g>
+
+  <!-- ═══ LEFT CENTER: Laurel wreath ═══ -->
+
+  <g transform="translate(100, 350)" class="sketch" stroke-width="0.5" opacity="0.28">
+    <!-- Left branch -->
+    <path d="M60,100 Q50,85 55,70 Q58,58 60,50 Q62,40 60,30 Q58,20 60,10" stroke-width="0.5" />
+    <path d="M55,90 Q42,85 40,78 Q38,70 48,72" stroke-width="0.4" />
+    <path d="M55,75 Q40,70 38,62 Q36,54 46,57" stroke-width="0.4" />
+    <path d="M57,60 Q44,54 42,46 Q40,38 50,42" stroke-width="0.4" />
+    <path d="M58,45 Q48,38 47,30 Q46,22 55,28" stroke-width="0.4" />
+    <path d="M59,30 Q52,22 52,15 Q52,8 58,14" stroke-width="0.4" />
+    <!-- Right branch -->
+    <path d="M80,100 Q90,85 85,70 Q82,58 80,50 Q78,40 80,30 Q82,20 80,10" stroke-width="0.5" />
+    <path d="M85,90 Q98,85 100,78 Q102,70 92,72" stroke-width="0.4" />
+    <path d="M85,75 Q100,70 102,62 Q104,54 94,57" stroke-width="0.4" />
+    <path d="M83,60 Q96,54 98,46 Q100,38 90,42" stroke-width="0.4" />
+    <path d="M82,45 Q92,38 93,30 Q94,22 85,28" stroke-width="0.4" />
+    <path d="M81,30 Q88,22 88,15 Q88,8 82,14" stroke-width="0.4" />
+    <!-- Ribbon at base -->
+    <path d="M55,100 Q70,108 85,100" stroke-width="0.4" />
+    <path d="M55,100 Q50,110 45,120" stroke-width="0.3" />
+    <path d="M85,100 Q90,110 95,120" stroke-width="0.3" />
+    <text class="label" x="25" y="135">corona laureata — victoria</text>
+  </g>
+
+  <!-- ═══ CENTER RIGHT: Construction compass ═══ -->
+
+  <g transform="translate(900, 350)" class="sketch" stroke-width="0.5" opacity="0.25">
+    <!-- Compass hinge -->
+    <circle cx="80" cy="10" r="5" />
+    <!-- Left leg (pencil) -->
+    <line x1="80" y1="15" x2="30" y2="140" stroke-width="0.6" />
+    <line x1="28" y1="135" x2="32" y2="145" stroke-width="0.5" />
+    <!-- Right leg (point) -->
+    <line x1="80" y1="15" x2="130" y2="140" stroke-width="0.6" />
+    <circle cx="130" cy="142" r="1.5" class="sketch-fill" opacity="0.2" />
+    <!-- Hinge mechanism -->
+    <path d="M75,20 Q80,25 85,20" stroke-width="0.4" />
+    <line x1="70" y1="40" x2="90" y2="40" stroke-width="0.3" stroke-dasharray="1 2" />
+    <!-- Arc being drawn -->
+    <path d="M30,140 Q10,80 80,50 Q150,80 130,140" stroke-dasharray="3 4" stroke-width="0.4" />
+    <!-- Measurement marks on arc -->
+    <circle cx="80" cy="142" r="50" stroke-dasharray="1 6" stroke-width="0.2" />
+    <text class="label" x="30" y="170">circinus architecti</text>
+  </g>
+
+  <!-- ═══ CENTER: Flower of Life (expanded) ═══ -->
+
+  <g transform="translate(480, 750)" class="sketch-light" stroke-width="0.35" opacity="0.16">
+    <circle cx="120" cy="120" r="40" />
+    <circle cx="120" cy="80" r="40" />
+    <circle cx="120" cy="160" r="40" />
+    <circle cx="85.36" cy="100" r="40" />
+    <circle cx="154.64" cy="100" r="40" />
+    <circle cx="85.36" cy="140" r="40" />
+    <circle cx="154.64" cy="140" r="40" />
+    <circle cx="120" cy="40" r="40" />
+    <circle cx="120" cy="200" r="40" />
+    <circle cx="50.72" cy="80" r="40" />
+    <circle cx="189.28" cy="80" r="40" />
+    <circle cx="50.72" cy="160" r="40" />
+    <circle cx="189.28" cy="160" r="40" />
+    <circle cx="85.36" cy="60" r="40" />
+    <circle cx="154.64" cy="60" r="40" />
+    <circle cx="85.36" cy="180" r="40" />
+    <circle cx="154.64" cy="180" r="40" />
+    <circle cx="50.72" cy="120" r="40" />
+    <circle cx="189.28" cy="120" r="40" />
+    <circle cx="120" cy="120" r="120" stroke-dasharray="4 4" stroke-width="0.3" />
+    <circle cx="120" cy="120" r="125" stroke-dasharray="1 8" stroke-width="0.2" />
+    <circle cx="120" cy="120" r="2.5" class="sketch-fill" opacity="0.12" />
+    <line x1="120" y1="-5" x2="120" y2="245" stroke-width="0.15" stroke-dasharray="6 8" />
+    <line x1="-5" y1="120" x2="245" y2="120" stroke-width="0.15" stroke-dasharray="6 8" />
+    <text class="label" x="50" y="265">flos vitae universalis</text>
+  </g>
+
+  <!-- ═══ LEFT: Growing tree / roots and branches ═══ -->
+
+  <g transform="translate(60, 550)" class="sketch" stroke-width="0.5" opacity="0.25">
+    <!-- Trunk -->
+    <path d="M50,140 Q48,120 50,100 Q52,80 50,60 Q48,40 50,20" stroke-width="0.7" />
+    <path d="M58,140 Q60,120 58,100 Q56,80 58,60 Q60,40 58,20" stroke-width="0.7" />
+    <!-- Branches -->
+    <path d="M50,60 Q30,40 15,25" stroke-width="0.5" />
+    <path d="M58,60 Q78,40 95,25" stroke-width="0.5" />
+    <path d="M50,40 Q35,25 25,10" stroke-width="0.4" />
+    <path d="M58,40 Q73,25 85,10" stroke-width="0.4" />
+    <path d="M50,80 Q25,65 10,55" stroke-width="0.4" />
+    <path d="M58,80 Q83,65 100,55" stroke-width="0.4" />
+    <!-- Leaves (small ovals) -->
+    <ellipse cx="15" cy="22" rx="6" ry="3" transform="rotate(-30 15 22)" stroke-width="0.3" />
+    <ellipse cx="95" cy="22" rx="6" ry="3" transform="rotate(30 95 22)" stroke-width="0.3" />
+    <ellipse cx="25" cy="7" rx="5" ry="3" transform="rotate(-20 25 7)" stroke-width="0.3" />
+    <ellipse cx="85" cy="7" rx="5" ry="3" transform="rotate(20 85 7)" stroke-width="0.3" />
+    <!-- Roots -->
+    <path d="M48,140 Q35,155 20,170" stroke-width="0.4" />
+    <path d="M60,140 Q75,155 90,170" stroke-width="0.4" />
+    <path d="M54,140 Q54,160 54,175" stroke-width="0.4" />
+    <text class="label-sm" x="10" y="190">arbor crescens</text>
+  </g>
+
+  <!-- ═══ RIGHT CENTER: Vitruvian figure (simplified) ═══ -->
+
+  <g transform="translate(1050, 500)" class="sketch" stroke-width="0.4" opacity="0.22">
+    <!-- Circle -->
+    <circle cx="60" cy="65" r="60" stroke-dasharray="3 4" />
+    <!-- Square -->
+    <rect x="10" y="15" width="100" height="110" stroke-dasharray="2 3" stroke-width="0.3" />
+    <!-- Figure -->
+    <circle cx="60" cy="28" r="10" />
+    <line x1="60" y1="38" x2="60" y2="90" stroke-width="0.5" />
+    <line x1="60" y1="52" x2="25" y2="70" stroke-width="0.4" />
+    <line x1="60" y1="52" x2="95" y2="70" stroke-width="0.4" />
+    <line x1="60" y1="90" x2="35" y2="120" stroke-width="0.4" />
+    <line x1="60" y1="90" x2="85" y2="120" stroke-width="0.4" />
+    <!-- Extended arms -->
+    <line x1="60" y1="52" x2="10" y2="45" stroke-width="0.3" stroke-dasharray="2 3" />
+    <line x1="60" y1="52" x2="110" y2="45" stroke-width="0.3" stroke-dasharray="2 3" />
+    <text class="label-sm" x="15" y="145">homo potentialis</text>
+  </g>
+
+  <!-- ═══ RIGHT: Tree of Life / Sephirot ═══ -->
+
+  <g transform="translate(980, 720)" class="sketch" stroke-width="0.4" opacity="0.17">
+    <circle cx="70" cy="0" r="12" />
+    <circle cx="30" cy="45" r="10" />
+    <circle cx="110" cy="45" r="10" />
+    <circle cx="70" cy="70" r="8" stroke-dasharray="2 2" />
+    <circle cx="30" cy="105" r="10" />
+    <circle cx="110" cy="105" r="10" />
+    <circle cx="70" cy="130" r="12" />
+    <circle cx="30" cy="175" r="10" />
+    <circle cx="110" cy="175" r="10" />
+    <circle cx="70" cy="210" r="10" />
+    <circle cx="70" cy="260" r="12" />
+    <line x1="30" y1="55" x2="30" y2="95" stroke-width="0.3" />
+    <line x1="30" y1="115" x2="30" y2="165" stroke-width="0.3" />
+    <line x1="110" y1="55" x2="110" y2="95" stroke-width="0.3" />
+    <line x1="110" y1="115" x2="110" y2="165" stroke-width="0.3" />
+    <line x1="70" y1="12" x2="70" y2="62" stroke-width="0.3" />
+    <line x1="70" y1="78" x2="70" y2="118" stroke-width="0.3" />
+    <line x1="70" y1="142" x2="70" y2="200" stroke-width="0.3" />
+    <line x1="70" y1="220" x2="70" y2="248" stroke-width="0.3" />
+    <line x1="70" y1="12" x2="30" y2="35" stroke-width="0.25" />
+    <line x1="70" y1="12" x2="110" y2="35" stroke-width="0.25" />
+    <line x1="30" y1="55" x2="110" y2="95" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="110" y1="55" x2="30" y2="95" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="30" y1="185" x2="70" y2="200" stroke-width="0.25" />
+    <line x1="110" y1="185" x2="70" y2="200" stroke-width="0.25" />
+    <ellipse cx="70" cy="130" rx="65" ry="145" stroke-dasharray="4 6" stroke-width="0.2" />
+    <text class="label-sm" x="15" y="290">arbor vitae — sephirot</text>
+  </g>
+
+  <!-- ═══ LOWER LEFT: Open doorway / portal of opportunity ═══ -->
+
+  <g transform="translate(80, 1100)" class="sketch" stroke-width="0.5" opacity="0.25">
+    <!-- Door frame -->
+    <line x1="20" y1="0" x2="20" y2="140" />
+    <line x1="120" y1="0" x2="120" y2="140" />
+    <path d="M20,0 Q70,-20 120,0" />
+    <!-- Arch keystone -->
+    <path d="M65,-12 L70,-18 L75,-12" stroke-width="0.4" />
+    <!-- Door panels (open) -->
+    <path d="M20,0 Q30,5 35,140" stroke-width="0.4" stroke-dasharray="2 3" />
+    <path d="M120,0 Q110,5 105,140" stroke-width="0.4" stroke-dasharray="2 3" />
+    <!-- Steps leading in -->
+    <line x1="10" y1="140" x2="130" y2="140" />
+    <line x1="5" y1="148" x2="135" y2="148" />
+    <line x1="0" y1="156" x2="140" y2="156" />
+    <!-- Light rays through door -->
+    <line x1="70" y1="10" x2="50" y2="100" stroke-width="0.2" stroke-dasharray="3 5" />
+    <line x1="70" y1="10" x2="70" y2="100" stroke-width="0.2" stroke-dasharray="3 5" />
+    <line x1="70" y1="10" x2="90" y2="100" stroke-width="0.2" stroke-dasharray="3 5" />
+    <text class="label" x="25" y="180">porta opportunitatis</text>
+  </g>
+
+  <!-- ═══ CENTER LOWER: Gear mechanism / teamwork ═══ -->
+
+  <g transform="translate(400, 1150)" class="sketch" stroke-width="0.4" opacity="0.22">
+    <!-- Large gear -->
+    <circle cx="60" cy="60" r="50" />
+    <circle cx="60" cy="60" r="42" stroke-dasharray="4 3" />
+    <circle cx="60" cy="60" r="15" />
+    <!-- Gear teeth (simplified) -->
+    <line x1="60" y1="10" x2="60" y2="3" />
+    <line x1="60" y1="110" x2="60" y2="117" />
+    <line x1="10" y1="60" x2="3" y2="60" />
+    <line x1="110" y1="60" x2="117" y2="60" />
+    <line x1="25" y1="25" x2="20" y2="20" />
+    <line x1="95" y1="25" x2="100" y2="20" />
+    <line x1="25" y1="95" x2="20" y2="100" />
+    <line x1="95" y1="95" x2="100" y2="100" />
+    <!-- Meshing smaller gear -->
+    <circle cx="135" cy="95" r="28" />
+    <circle cx="135" cy="95" r="22" stroke-dasharray="3 2" />
+    <circle cx="135" cy="95" r="8" />
+    <text class="label-sm" x="25" y="140">machina cooperativa</text>
+  </g>
+
+  <!-- ═══ RIGHT LOWER: Golden spiral ═══ -->
+
+  <g transform="translate(700, 1350)" class="sketch" stroke-width="0.5" opacity="0.2">
+    <rect x="0" y="0" width="200" height="123.6" />
+    <rect x="0" y="0" width="123.6" height="123.6" />
+    <rect x="123.6" y="0" width="76.4" height="76.4" />
+    <rect x="123.6" y="76.4" width="47.2" height="47.2" />
+    <rect x="170.8" y="76.4" width="29.2" height="29.2" />
+    <path d="M123.6,123.6 Q123.6,0 0,0" stroke-width="0.6" />
+    <path d="M123.6,0 Q200,0 200,76.4" stroke-width="0.6" />
+    <path d="M200,76.4 Q200,123.6 170.8,123.6" stroke-width="0.5" />
+    <path d="M170.8,123.6 Q123.6,123.6 123.6,105.6" stroke-width="0.5" />
+    <text class="label" x="50" y="145">φ = 1.618</text>
+    <text class="label-sm" x="130" y="115">proportio divina</text>
+  </g>
+
+  <!-- ═══ LOWER LEFT: Seedling / growth stages ═══ -->
+
+  <g transform="translate(250, 1350)" class="sketch" stroke-width="0.4" opacity="0.22">
+    <!-- Soil line -->
+    <line x1="0" y1="80" x2="160" y2="80" stroke-width="0.3" />
+    <!-- Seed -->
+    <ellipse cx="20" cy="90" rx="8" ry="5" stroke-width="0.4" />
+    <!-- Sprout -->
+    <path d="M55,80 Q55,65 55,55" stroke-width="0.4" />
+    <path d="M55,60 Q45,55 50,50 Q55,55 55,60" stroke-width="0.3" />
+    <!-- Young plant -->
+    <path d="M90,80 Q90,55 90,40" stroke-width="0.5" />
+    <path d="M90,55 Q75,45 80,38 Q90,48 90,55" stroke-width="0.3" />
+    <path d="M90,45 Q105,38 100,30 Q90,40 90,45" stroke-width="0.3" />
+    <!-- Full growth -->
+    <path d="M130,80 Q130,45 130,20" stroke-width="0.5" />
+    <path d="M130,50 Q110,38 118,28 Q130,42 130,50" stroke-width="0.3" />
+    <path d="M130,35 Q150,25 142,15 Q130,28 130,35" stroke-width="0.3" />
+    <path d="M130,22 Q120,12 125,5 Q132,15 130,22" stroke-width="0.3" />
+    <!-- Roots below -->
+    <path d="M130,80 Q120,95 110,105" stroke-width="0.3" stroke-dasharray="1 2" />
+    <path d="M130,80 Q140,95 150,105" stroke-width="0.3" stroke-dasharray="1 2" />
+    <text class="label-sm" x="30" y="120">incrementum — semina ad arborem</text>
+  </g>
+
+  <!-- ═══ BOTTOM RIGHT: Compass rose / direction ═══ -->
+
+  <g transform="translate(1050, 1450)" class="sketch" stroke-width="0.3" opacity="0.16">
+    <circle cx="70" cy="65" r="60" />
+    <circle cx="70" cy="65" r="55" stroke-dasharray="2 3" />
+    <circle cx="70" cy="65" r="8" />
+    <!-- Cardinal points -->
+    <polygon points="70,8 75,55 70,50 65,55" class="sketch-fill" opacity="0.15" />
+    <line x1="70" y1="65" x2="70" y2="125" stroke-width="0.4" />
+    <polygon points="130,65 80,60 78,65 80,70" class="sketch-fill" opacity="0.1" />
+    <line x1="70" y1="65" x2="10" y2="65" stroke-width="0.4" />
+    <!-- Intercardinal lines -->
+    <line x1="28" y1="23" x2="112" y2="107" stroke-width="0.2" stroke-dasharray="2 3" />
+    <line x1="112" y1="23" x2="28" y2="107" stroke-width="0.2" stroke-dasharray="2 3" />
+    <!-- Direction labels -->
+    <text class="annotation" x="66" y="5">N</text>
+    <text class="annotation" x="134" y="68">E</text>
+    <text class="annotation" x="66" y="132">S</text>
+    <text class="annotation" x="2" y="68">W</text>
+    <text class="label-sm" x="25" y="150">rosa ventorum — via futura</text>
+  </g>
+
+  <!-- ═══ SCATTERED: Small measurement/construction marks ═══ -->
+
+  <g transform="translate(1200, 200)" class="sketch" stroke-width="0.3" opacity="0.15">
+    <circle cx="30" cy="30" r="25" />
+    <circle cx="30" cy="30" r="18" stroke-dasharray="2 3" />
+    <line x1="30" y1="5" x2="30" y2="55" />
+    <line x1="5" y1="30" x2="55" y2="30" />
+    <path d="M30,5 L33,15 L27,15 Z" class="sketch-fill" opacity="0.2" />
+  </g>
+
+  <!-- Scattered tiny construction marks / grid points -->
+  <g class="sketch-fill" opacity="0.06">
+    <circle cx="350" cy="300" r="2" />
+    <circle cx="700" cy="450" r="2" />
+    <circle cx="1100" cy="650" r="2" />
+    <circle cx="200" cy="1000" r="2" />
+    <circle cx="850" cy="1050" r="2" />
+    <circle cx="1250" cy="900" r="2" />
+    <circle cx="500" cy="1500" r="2" />
+    <circle cx="1000" cy="1400" r="2" />
+    <circle cx="150" cy="480" r="1.5" />
+    <circle cx="750" cy="680" r="1.5" />
+    <circle cx="400" cy="920" r="1.5" />
+    <circle cx="1300" cy="550" r="1.5" />
+    <circle cx="600" cy="1200" r="1.5" />
+    <circle cx="300" cy="1450" r="1.5" />
+    <circle cx="900" cy="1550" r="1.5" />
+    <circle cx="1200" cy="1100" r="1.5" />
+  </g>
+
+  <!-- Faint construction grid lines (Da Vinci notebook ruled lines) -->
+  <g class="sketch" stroke-width="0.15" opacity="0.04">
+    <line x1="0" y1="300" x2="1400" y2="300" />
+    <line x1="0" y1="600" x2="1400" y2="600" />
+    <line x1="0" y1="900" x2="1400" y2="900" />
+    <line x1="0" y1="1200" x2="1400" y2="1200" />
+    <line x1="0" y1="1500" x2="1400" y2="1500" />
+    <line x1="350" y1="0" x2="350" y2="1800" />
+    <line x1="700" y1="0" x2="700" y2="1800" />
+    <line x1="1050" y1="0" x2="1050" y2="1800" />
+  </g>
+
+  <!-- Faint mirror writing hint (reversed text like Da Vinci) -->
+  <g opacity="0.06">
+    <text class="label" x="1100" y="1150" transform="scale(-1,1) translate(-2200,0)">notae secretae</text>
+    <text class="label-sm" x="200" y="1550" transform="scale(-1,1) translate(-400,0)">crescere est vivere</text>
+    <text class="label-sm" x="800" y="700" transform="scale(-1,1) translate(-1600,0)">potentia humana</text>
+    <text class="label-sm" x="600" y="1400" transform="scale(-1,1) translate(-1200,0)">labor omnia vincit</text>
+  </g>
+
+</svg>

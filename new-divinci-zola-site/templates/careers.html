@@ -3,7 +3,7 @@
 {% block content %}
 {# current_lang is inherited from base template #}
 
-
+<div class="leonardo-bg">
 <!-- Hero Section - Matching original exactly -->
 <section class="careers-hero">
     <div class="container">
@@ -363,6 +363,15 @@
 
 
 <style>
+/* Page-specific Leonardo journal background */
+.leonardo-bg::before {
+    background-image: url('{{ get_url(path="images/bg-careers.svg") }}') !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% auto !important;
+    background-position: top center !important;
+    opacity: 1 !important;
+}
+
 /* Careers Page Styles - Matching Original exactly */
 
 /* Hero Section */
@@ -893,4 +902,5 @@
     }
 }
 </style>
+</div><!-- .leonardo-bg -->
 {% endblock %}

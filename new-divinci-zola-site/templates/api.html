@@ -6,6 +6,7 @@
 <!-- Include Header -->
 {% include "partials/header.html" %}
 
+<div class="leonardo-bg">
 <!-- Hero Section -->
 <section class="api-hero">
     <div class="container">
@@ -363,8 +364,8 @@ queryRagSystem();</pre>
 <style>
 /* API Page Styles */
 .api-hero {
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
-    color: white;
+    background: var(--gradient-warm);
+    color: var(--color-neutral-primary);
     padding: 6rem 0;
     position: relative;
     overflow: hidden;
@@ -378,7 +379,7 @@ queryRagSystem();</pre>
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    border: 2px solid rgba(92, 226, 231, 0.15);
+    border: 2px solid rgba(184, 160, 128, 0.15);
     opacity: 0.4;
     z-index: 0;
 }
@@ -391,7 +392,7 @@ queryRagSystem();</pre>
     width: 400px;
     height: 400px;
     border-radius: 50%;
-    border: 2px solid rgba(92, 226, 231, 0.15);
+    border: 2px solid rgba(184, 160, 128, 0.15);
     opacity: 0.3;
     z-index: 0;
 }
@@ -408,16 +409,13 @@ queryRagSystem();</pre>
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    background: linear-gradient(to right, #ffffff, #5ce2e7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-neutral-primary);
     display: inline-block;
 }
 
 .api-subtitle {
     font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-neutral-secondary);
     margin-bottom: 2.5rem;
     line-height: 1.6;
 }
@@ -440,27 +438,26 @@ queryRagSystem();</pre>
 }
 
 .api-button.primary {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-neutral-inverse);
     color: white;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    border: none;
 }
 
 .api-button.primary:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--color-neutral-dark);
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 25px rgba(45, 90, 79, 0.3);
     color: white;
 }
 
 .api-button.secondary {
     background: transparent;
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-neutral-primary);
+    border: 2px solid var(--color-neutral-inverse);
 }
 
 .api-button.secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-neutral-inverse);
     transform: translateY(-3px);
     color: white;
 }
@@ -471,7 +468,7 @@ queryRagSystem();</pre>
 }
 
 .api-section.dark-bg {
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    background: var(--color-neutral-dark);
     color: white;
 }
 
@@ -480,14 +477,11 @@ queryRagSystem();</pre>
     font-weight: 700;
     text-align: center;
     margin-bottom: 2rem;
-    color: #16214c;
+    color: var(--color-neutral-primary);
 }
 
 .api-section.dark-bg .section-title {
-    background: linear-gradient(to right, #ffffff, #5ce2e7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-surface-light);
     display: inline-block;
     width: 100%;
 }
@@ -517,13 +511,13 @@ queryRagSystem();</pre>
     text-align: center;
     margin-bottom: 4rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(92, 226, 231, 0.1);
+    border: 1px solid var(--color-border-light);
 }
 
 .coming-soon-title {
     font-size: 2rem;
     font-weight: 700;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 1rem;
 }
 
@@ -538,7 +532,7 @@ queryRagSystem();</pre>
 .notify-button {
     display: inline-flex;
     align-items: center;
-    background: linear-gradient(135deg, #16214c, #254284);
+    background: var(--color-neutral-inverse);
     color: white;
     border: none;
     border-radius: 50px;
@@ -550,7 +544,7 @@ queryRagSystem();</pre>
 
 .notify-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(22, 33, 76, 0.3);
+    box-shadow: 0 10px 25px rgba(45, 90, 79, 0.3);
     color: white;
 }
 
@@ -564,13 +558,13 @@ queryRagSystem();</pre>
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 3rem;
-    border: 1px solid rgba(92, 226, 231, 0.1);
+    border: 1px solid var(--color-border-light);
 }
 
 .overview-title {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 1.5rem;
 }
 
@@ -587,7 +581,7 @@ queryRagSystem();</pre>
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 3rem;
     overflow: hidden;
-    border: 1px solid rgba(92, 226, 231, 0.1);
+    border: 1px solid var(--color-border-light);
 }
 
 .endpoints-header {
@@ -599,7 +593,7 @@ queryRagSystem();</pre>
 .endpoints-title {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin: 0;
 }
 
@@ -620,7 +614,7 @@ queryRagSystem();</pre>
 .category-title {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 1.5rem;
 }
 
@@ -648,7 +642,7 @@ queryRagSystem();</pre>
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background-color: #5ce2e7;
+    background-color: var(--color-accent-tertiary);
 }
 
 .endpoint-method {
@@ -687,7 +681,7 @@ queryRagSystem();</pre>
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 3rem;
     overflow: hidden;
-    border: 1px solid rgba(92, 226, 231, 0.1);
+    border: 1px solid var(--color-border-light);
 }
 
 .code-tabs {
@@ -707,13 +701,13 @@ queryRagSystem();</pre>
 }
 
 .code-tab.active {
-    color: #16214c;
-    border-bottom: 2px solid #5ce2e7;
+    color: var(--color-neutral-primary);
+    border-bottom: 2px solid var(--color-accent-tertiary);
     background: white;
 }
 
 .code-tab:hover {
-    color: #16214c;
+    color: var(--color-neutral-primary);
 }
 
 .code-content {
@@ -729,7 +723,7 @@ queryRagSystem();</pre>
 }
 
 .code-block {
-    background: #16214c;
+    background: var(--color-neutral-dark);
     color: white;
     font-family: 'Courier New', monospace;
     padding: 1.5rem;
@@ -741,7 +735,7 @@ queryRagSystem();</pre>
     font-size: 0.9rem;
 }
 
-.code-string { color: #5ce2e7; }
+.code-string { color: #8ecfad; }
 .code-keyword { color: #ff79c6; }
 .code-function { color: #ffb86c; }
 .code-comment { color: #6272a4; }
@@ -789,10 +783,10 @@ queryRagSystem();</pre>
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(92, 226, 231, 0.2);
+    background: rgba(61, 107, 79, 0.2);
     border-radius: 8px;
     font-size: 1.3rem;
-    color: #5ce2e7;
+    color: var(--color-accent-tertiary);
 }
 
 .sdk-title {
@@ -831,7 +825,7 @@ queryRagSystem();</pre>
 
 .sdk-meta-item i {
     margin-right: 0.5rem;
-    color: #5ce2e7;
+    color: var(--color-accent-primary);
 }
 
 .sdk-links {
@@ -852,7 +846,7 @@ queryRagSystem();</pre>
 }
 
 .sdk-link:hover {
-    color: #5ce2e7;
+    color: var(--color-accent-primary);
 }
 
 /* Responsive Design */
@@ -860,39 +854,39 @@ queryRagSystem();</pre>
     .api-title {
         font-size: 2.5rem;
     }
-    
+
     .api-hero {
         padding: 4rem 0;
     }
-    
+
     .section-title {
         font-size: 2rem;
     }
-    
+
     .code-tabs {
         flex-wrap: wrap;
     }
-    
+
     .api-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .api-button {
         width: 100%;
         max-width: 250px;
         text-align: center;
         justify-content: center;
     }
-    
+
     .endpoints-content {
         padding: 1.5rem;
     }
-    
+
     .endpoints-header {
         padding: 1rem 1.5rem;
     }
-    
+
     .sdk-cards {
         grid-template-columns: 1fr;
     }
@@ -902,7 +896,7 @@ queryRagSystem();</pre>
     .api-title {
         font-size: 2rem;
     }
-    
+
     .coming-soon, .api-overview, .api-endpoints, .code-example {
         margin: 0 1rem 3rem;
     }
@@ -937,4 +931,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+</div><!-- .leonardo-bg -->
 {% endblock %}

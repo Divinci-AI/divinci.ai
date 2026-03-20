@@ -5,13 +5,13 @@
 
 
 <!-- Main About Content -->
-<main id="main-content" role="main" tabindex="-1">
+<main id="main-content" class="leonardo-bg" role="main" tabindex="-1">
     <!-- About Hero Section - matches original structure -->
     <section class="about-hero">
     <!-- Sacred Geometry Background Elements -->
     <div class="hero-circle hero-circle-1"></div>
     <div class="hero-circle hero-circle-2"></div>
-    
+
     <div class="container">
         <div class="hero-content">
             <h1 class="about-title">About Divinci AI</h1>
@@ -31,7 +31,7 @@
                     {{ translations.about.mission_text | default(value="To democratize enterprise AI by making sophisticated artificial intelligence accessible, manageable, and trustworthy for organizations of all sizes. We believe that AI should amplify human potential, not replace it.") }}
                 </p>
             </div>
-            
+
             <div class="vision-card">
                 <div class="card-accent"></div>
                 <h2 class="card-title">{{ translations.about.vision_title | default(value="Our Vision") }}</h2>
@@ -48,7 +48,7 @@
     <div class="container">
         <h2 class="section-title">Our Core Values</h2>
         <p class="section-content">These principles guide everything we do, from product development to customer relationships.</p>
-        
+
         <div class="values-grid">
             <div class="value-card">
                 <div class="value-icon">
@@ -57,7 +57,7 @@
                 <h3 class="value-title">Human-Centered AI</h3>
                 <p class="value-description">We design AI systems that enhance human capabilities rather than replace them, ensuring technology serves humanity's best interests.</p>
             </div>
-            
+
             <div class="value-card">
                 <div class="value-icon">
                     <i class="fas fa-lightbulb"></i>
@@ -65,7 +65,7 @@
                 <h3 class="value-title">Innovation with Purpose</h3>
                 <p class="value-description">Every feature we build solves a real problem. We innovate not for the sake of technology, but to create meaningful impact.</p>
             </div>
-            
+
             <div class="value-card">
                 <div class="value-icon">
                     <i class="fas fa-shield-alt"></i>
@@ -73,7 +73,7 @@
                 <h3 class="value-title">Responsible AI</h3>
                 <p class="value-description">We prioritize ethical AI development, ensuring transparency, fairness, and accountability in every algorithm and decision.</p>
             </div>
-            
+
             <div class="value-card">
                 <div class="value-icon">
                     <i class="fas fa-heart"></i>
@@ -81,7 +81,7 @@
                 <h3 class="value-title">Inclusive Design</h3>
                 <p class="value-description">Our platforms are built for everyone, regardless of technical expertise, ensuring AI benefits are accessible to all.</p>
             </div>
-            
+
             <div class="value-card">
                 <div class="value-icon">
                     <i class="fas fa-lock"></i>
@@ -89,7 +89,7 @@
                 <h3 class="value-title">Security First</h3>
                 <p class="value-description">Security isn't an afterthought—it's foundational to everything we build, protecting your data and maintaining trust.</p>
             </div>
-            
+
             <div class="value-card">
                 <div class="value-icon">
                     <i class="fas fa-handshake"></i>
@@ -106,7 +106,7 @@
     <div class="container">
         <h2 class="section-title">Meet Our Team</h2>
         <p class="section-content">Passionate experts combining artistry with advanced AI technology.</p>
-        
+
         <div class="team-grid">
             <div class="team-member">
                 <img src="{{ get_url(path="images/team/michael-mooring.jpg") }}" alt="Michael Mooring" class="member-image" onerror="this.src='{{ get_url(path="images/team/placeholder.jpg") }}'">
@@ -120,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="team-member">
                 <img src="{{ get_url(path="images/team/samuel-tobia.jpg") }}" alt="Samuel Tobia" class="member-image" onerror="this.src='{{ get_url(path="images/team/placeholder.jpg") }}'">
                 <div class="member-info">
@@ -133,7 +133,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="team-member">
                 <img src="{{ get_url(path="images/team/sierra-hooshiari.jpg") }}" alt="Sierra Hooshiari" class="member-image" onerror="this.src='{{ get_url(path="images/team/placeholder.jpg") }}'">
                 <div class="member-info">
@@ -154,7 +154,7 @@
     <div class="container">
         <h2 class="section-title">Our Story</h2>
         <p class="section-content">From a vision to reality - the journey of building the future of enterprise AI.</p>
-        
+
         <div class="story-timeline">
             <div class="timeline-item">
                 <div class="timeline-content">
@@ -166,13 +166,13 @@
                 <div class="timeline-illustration">
                     <!-- Leonardo-style sketch SVG -->
                     <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="75" cy="75" r="60" fill="none" stroke="#16214c" stroke-width="2"/>
-                        <path d="M75 15 L75 135 M15 75 L135 75" stroke="#5ce2e7" stroke-width="1.5"/>
-                        <circle cx="75" cy="75" r="8" fill="#5ce2e7"/>
+                        <circle cx="75" cy="75" r="60" fill="none" stroke="#2d3c34" stroke-width="2"/>
+                        <path d="M75 15 L75 135 M15 75 L135 75" stroke="#b8a080" stroke-width="1.5"/>
+                        <circle cx="75" cy="75" r="8" fill="#b8a080"/>
                     </svg>
                 </div>
             </div>
-            
+
             <div class="timeline-item">
                 <div class="timeline-content">
                     <h3 class="timeline-title">First Prototype</h3>
@@ -182,13 +182,13 @@
                 </div>
                 <div class="timeline-illustration">
                     <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="30" y="30" width="90" height="90" fill="none" stroke="#16214c" stroke-width="2"/>
-                        <path d="M30 30 L120 120 M120 30 L30 120" stroke="#5ce2e7" stroke-width="1.5"/>
-                        <circle cx="75" cy="75" r="15" fill="none" stroke="#5ce2e7" stroke-width="2"/>
+                        <rect x="30" y="30" width="90" height="90" fill="none" stroke="#2d3c34" stroke-width="2"/>
+                        <path d="M30 30 L120 120 M120 30 L30 120" stroke="#b8a080" stroke-width="1.5"/>
+                        <circle cx="75" cy="75" r="15" fill="none" stroke="#b8a080" stroke-width="2"/>
                     </svg>
                 </div>
             </div>
-            
+
             <div class="timeline-item">
                 <div class="timeline-content">
                     <h3 class="timeline-title">Beta Launch</h3>
@@ -198,13 +198,13 @@
                 </div>
                 <div class="timeline-illustration">
                     <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="75,20 130,60 130,110 75,130 20,110 20,60" fill="none" stroke="#16214c" stroke-width="2"/>
-                        <circle cx="75" cy="75" r="25" fill="none" stroke="#5ce2e7" stroke-width="1.5"/>
-                        <path d="M75 50 L75 100 M50 75 L100 75" stroke="#5ce2e7" stroke-width="1"/>
+                        <polygon points="75,20 130,60 130,110 75,130 20,110 20,60" fill="none" stroke="#2d3c34" stroke-width="2"/>
+                        <circle cx="75" cy="75" r="25" fill="none" stroke="#b8a080" stroke-width="1.5"/>
+                        <path d="M75 50 L75 100 M50 75 L100 75" stroke="#b8a080" stroke-width="1"/>
                     </svg>
                 </div>
             </div>
-            
+
             <div class="timeline-item">
                 <div class="timeline-content">
                     <h3 class="timeline-title">Official Launch</h3>
@@ -214,13 +214,13 @@
                 </div>
                 <div class="timeline-illustration">
                     <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M75 25 L100 50 L85 75 L110 100 L75 125 L40 100 L65 75 L50 50 Z" fill="none" stroke="#16214c" stroke-width="2"/>
-                        <circle cx="75" cy="75" r="20" fill="none" stroke="#5ce2e7" stroke-width="2"/>
-                        <path d="M75 55 L95 75 L75 95 L55 75 Z" fill="#5ce2e7" opacity="0.3"/>
+                        <path d="M75 25 L100 50 L85 75 L110 100 L75 125 L40 100 L65 75 L50 50 Z" fill="none" stroke="#2d3c34" stroke-width="2"/>
+                        <circle cx="75" cy="75" r="20" fill="none" stroke="#b8a080" stroke-width="2"/>
+                        <path d="M75 55 L95 75 L75 95 L55 75 Z" fill="#b8a080" opacity="0.3"/>
                     </svg>
                 </div>
             </div>
-            
+
             <div class="timeline-item">
                 <div class="timeline-content">
                     <h3 class="timeline-title">Growing and Evolving</h3>
@@ -230,10 +230,10 @@
                 </div>
                 <div class="timeline-illustration">
                     <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="75" cy="75" r="50" fill="none" stroke="#16214c" stroke-width="2"/>
-                        <circle cx="75" cy="75" r="35" fill="none" stroke="#5ce2e7" stroke-width="1.5"/>
-                        <circle cx="75" cy="75" r="20" fill="none" stroke="#5ce2e7" stroke-width="1"/>
-                        <path d="M75 25 L75 125 M25 75 L125 75 M45.7 45.7 L104.3 104.3 M104.3 45.7 L45.7 104.3" stroke="#5ce2e7" stroke-width="0.5"/>
+                        <circle cx="75" cy="75" r="50" fill="none" stroke="#2d3c34" stroke-width="2"/>
+                        <circle cx="75" cy="75" r="35" fill="none" stroke="#b8a080" stroke-width="1.5"/>
+                        <circle cx="75" cy="75" r="20" fill="none" stroke="#b8a080" stroke-width="1"/>
+                        <path d="M75 25 L75 125 M25 75 L125 75 M45.7 45.7 L104.3 104.3 M104.3 45.7 L45.7 104.3" stroke="#b8a080" stroke-width="0.5"/>
                     </svg>
                 </div>
             </div>
@@ -245,12 +245,12 @@
 <section class="social-good-section">
     <div class="container">
         <h2 class="section-title">AI for Good Initiatives</h2>
-        
+
         <div class="social-good-content">
             <div class="social-good-text">
                 <h3 class="social-good-title">AI for Impact: Inside LA's Homelessness Prevention Pilot Program</h3>
                 <p class="social-good-description">
-                    We're proud to partner with Los Angeles County on innovative AI solutions to address homelessness. 
+                    We're proud to partner with Los Angeles County on innovative AI solutions to address homelessness.
                     Our platform helps social workers identify at-risk individuals earlier and coordinate more effective interventions.
                 </p>
                 <a href="https://lu.ma/cmuj911s" target="_blank" class="social-good-link">
@@ -279,11 +279,20 @@
 
 
 <style>
-/* About Us Page Styles - Matching Original Static HTML exactly */
+/* Page-specific Leonardo journal background */
+#main-content.leonardo-bg::before {
+    background-image: url('/images/bg-about.svg') !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% auto !important;
+    background-position: top center !important;
+    opacity: 1 !important;
+}
+
+/* About Us Page Styles - Warm Renaissance Palette */
 
 /* Hero Section */
 .about-hero {
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    background: var(--color-neutral-dark);
     color: white;
     padding: 6rem 0;
     position: relative;
@@ -294,7 +303,7 @@
 .hero-circle {
     position: absolute;
     border-radius: 50%;
-    border: 2px solid rgba(92, 226, 231, 0.15);
+    border: 2px solid rgba(184, 160, 128, 0.15);
     opacity: 0.4;
     z-index: 0;
 }
@@ -327,10 +336,11 @@
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    background: linear-gradient(to right, #16214c, #5ce2e7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-surface-light);
+    -webkit-text-fill-color: unset;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
     display: inline-block;
     text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
 }
@@ -358,7 +368,7 @@
 
 .mission-card, .vision-card {
     position: relative;
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    background: var(--color-neutral-dark);
     color: white;
     padding: 3rem;
     border-radius: 15px;
@@ -367,7 +377,7 @@
 
 .vision-card {
     position: relative;
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    background: var(--color-neutral-dark);
     color: white;
 }
 
@@ -377,7 +387,7 @@
     left: 0;
     right: 0;
     height: 100%;
-    background: linear-gradient(to bottom, #16214c, #5ce2e7);
+    background: linear-gradient(to bottom, var(--color-neutral-primary), var(--color-accent-primary));
     width: 5px;
     border-radius: 15px 0 0 15px;
 }
@@ -406,7 +416,7 @@
 /* Values Section */
 .values-section {
     position: relative;
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    background: var(--color-neutral-dark);
     color: white;
     padding: 5rem 0;
 }
@@ -416,10 +426,11 @@
     font-weight: 700;
     text-align: center;
     margin-bottom: 2rem;
-    background: linear-gradient(to right, #ffffff, #5ce2e7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-surface-light);
+    -webkit-text-fill-color: unset;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
     display: inline-block;
     width: 100%;
 }
@@ -462,7 +473,7 @@
     right: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, #16214c, #5ce2e7);
+    background: linear-gradient(to bottom, var(--color-neutral-primary), var(--color-accent-primary));
     width: 5px;
 }
 
@@ -470,19 +481,19 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: rgba(92, 226, 231, 0.1);
+    background-color: rgba(184, 160, 128, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     font-size: 1.5rem;
 }
 
 .value-title {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 1rem;
 }
 
@@ -496,7 +507,7 @@
 /* Team Section */
 .team-section {
     position: relative;
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    background: var(--color-neutral-dark);
     color: white;
     padding: 5rem 0;
 }
@@ -528,7 +539,7 @@
     width: 100%;
     height: 250px;
     object-fit: cover;
-    border-bottom: 3px solid #5ce2e7;
+    border-bottom: 3px solid var(--color-accent-primary);
 }
 
 .member-info {
@@ -573,8 +584,8 @@
 }
 
 .member-social a:hover {
-    background-color: #5ce2e7;
-    color: #16214c;
+    background-color: var(--color-accent-primary);
+    color: var(--color-neutral-primary);
 }
 
 /* Story Timeline Section */
@@ -596,7 +607,7 @@
     left: 50%;
     width: 2px;
     height: 100%;
-    background: linear-gradient(to bottom, #16214c, #5ce2e7);
+    background: linear-gradient(to bottom, var(--color-neutral-primary), var(--color-accent-primary));
     transform: translateX(-50%);
 }
 
@@ -620,8 +631,8 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #5ce2e7;
-    border: 3px solid #16214c;
+    background: var(--color-accent-primary);
+    border: 3px solid var(--color-neutral-primary);
     z-index: 1;
 }
 
@@ -640,7 +651,7 @@
 .timeline-title {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 1rem;
 }
 
@@ -664,7 +675,7 @@
 
 .timeline-illustration:hover {
     transform: scale(1.1);
-    filter: drop-shadow(0 0 8px rgba(92, 226, 231, 0.5));
+    filter: drop-shadow(0 0 8px rgba(184, 160, 128, 0.5));
 }
 
 /* Social Good Section */
@@ -685,7 +696,7 @@
 .social-good-title {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 1.5rem;
 }
 
@@ -699,16 +710,16 @@
 .social-good-link {
     display: inline-flex;
     align-items: center;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     font-weight: 600;
     text-decoration: none;
-    border-bottom: 2px solid rgba(92, 226, 231, 0.3);
+    border-bottom: 2px solid rgba(184, 160, 128, 0.3);
     transition: all 0.3s ease;
 }
 
 .social-good-link:hover {
-    color: #5ce2e7;
-    border-bottom-color: #5ce2e7;
+    color: var(--color-accent-primary);
+    border-bottom-color: var(--color-accent-primary);
     transform: translateY(-1px);
 }
 
@@ -725,7 +736,7 @@
 
 /* Join Team Section */
 .join-team-section {
-    background: linear-gradient(135deg, #16214c 0%, #254284 100%);
+    background: var(--color-neutral-dark);
     color: white;
     padding: 4rem 0;
     text-align: center;
@@ -735,10 +746,11 @@
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    background: linear-gradient(to right, #ffffff, #5ce2e7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-surface-light);
+    -webkit-text-fill-color: unset;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
     display: inline-block;
 }
 
@@ -782,43 +794,43 @@
     .about-title {
         font-size: 2.5rem;
     }
-    
+
     .mission-vision-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .values-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .team-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .story-timeline::before {
         left: 2rem;
     }
-    
+
     .timeline-item {
         width: 100%;
         margin-left: 0 !important;
         padding-left: 4rem;
     }
-    
+
     .timeline-item::before {
         left: 1.5rem !important;
     }
-    
+
     .timeline-illustration {
         display: none;
     }
-    
+
     .social-good-content {
         grid-template-columns: 1fr;
         text-align: center;
     }
-    
+
     .hero-circle-1, .hero-circle-2 {
         display: none;
     }
@@ -828,11 +840,11 @@
     .about-title {
         font-size: 2rem;
     }
-    
+
     .about-hero {
         padding: 4rem 0;
     }
-    
+
     .value-card, .mission-card, .vision-card {
         padding: 2rem;
     }

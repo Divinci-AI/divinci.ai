@@ -3,7 +3,7 @@
 {% block content %}
 {# current_lang is inherited from base template #}
 
-
+<div class="leonardo-bg">
 <!-- Enhanced Hero Section with Sacred Geometry -->
 <section class="roadmap-hero">
     <!-- Sacred geometry background elements -->
@@ -150,8 +150,8 @@
 
 /* Hero Section */
 .roadmap-hero {
-    background: linear-gradient(135deg, #16214c 0%, #254284 50%, #1a2658 100%);
-    color: white;
+    background: var(--gradient-warm);
+    color: var(--color-neutral-primary);
     padding: 6rem 0 4rem;
     position: relative;
     overflow: hidden;
@@ -174,7 +174,7 @@
 
 .sacred-circle {
     position: absolute;
-    border: 1px solid rgba(92, 226, 231, 0.15);
+    border: 1px solid rgba(184, 160, 128, 0.15);
     border-radius: 50%;
     animation: float 20s infinite linear;
 }
@@ -208,7 +208,7 @@
     width: 80px;
     height: 80px;
     opacity: 0.1;
-    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%235CE2E7' stroke-width='1'%3E%3Cpath d='M40 0l40 40-40 40L0 40z'/%3E%3Cpath d='M40 20l20 20-20 20-20-20z'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23b8a080' stroke-width='1'%3E%3Cpath d='M40 0l40 40-40 40L0 40z'/%3E%3Cpath d='M40 20l20 20-20 20-20-20z'/%3E%3C/g%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -252,16 +252,13 @@
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, #ffffff, #5ce2e7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-neutral-primary);
     line-height: 1.2;
 }
 
 .roadmap-page-subtitle {
     font-size: 1.4rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-neutral-secondary);
     margin-bottom: 2rem;
     line-height: 1.6;
 }
@@ -276,21 +273,21 @@
 .decoration-line {
     width: 60px;
     height: 2px;
-    background: linear-gradient(to right, transparent, #5ce2e7, transparent);
+    background: linear-gradient(to right, transparent, var(--color-accent-primary), transparent);
 }
 
 .decoration-dot {
     width: 8px;
     height: 8px;
-    background: #5ce2e7;
+    background: var(--color-accent-primary);
     border-radius: 50%;
     margin: 0 15px;
-    box-shadow: 0 0 10px rgba(92, 226, 231, 0.5);
+    box-shadow: 0 0 10px rgba(184, 160, 128, 0.5);
 }
 
 /* Roadmap Section */
 .roadmap-section {
-    background: linear-gradient(to bottom, #f8fafc, #ffffff);
+    background: var(--color-bg-primary);
     padding: 5rem 0;
     position: relative;
 }
@@ -305,7 +302,7 @@
 
 .roadmap-intro h2 {
     font-size: 2.5rem;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 1.5rem;
     font-weight: 700;
 }
@@ -328,7 +325,7 @@
     content: '';
     position: absolute;
     width: 4px;
-    background: linear-gradient(to bottom, rgba(92, 226, 231, 0.8), rgba(92, 226, 231, 0.2));
+    background: linear-gradient(to bottom, rgba(61, 107, 79, 0.6), rgba(61, 107, 79, 0.15));
     top: 0;
     bottom: 0;
     left: 50%;
@@ -351,12 +348,12 @@
     width: 24px;
     height: 24px;
     right: -12px;
-    background: rgba(92, 226, 231, 0.7);
-    border: 4px solid #16214c;
+    background: var(--color-accent-primary);
+    border: 4px solid var(--color-bg-primary);
     top: 20px;
     border-radius: 50%;
     z-index: 1;
-    box-shadow: 0 0 10px rgba(92, 226, 231, 0.5);
+    box-shadow: 0 0 10px rgba(184, 160, 128, 0.5);
 }
 
 .left {
@@ -377,7 +374,7 @@
     padding: 25px;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid var(--color-border-light);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     position: relative;
@@ -397,14 +394,14 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 1px solid rgba(92, 226, 231, 0.1);
+    border: 1px solid var(--color-border-accent);
     opacity: 0.3;
     z-index: 0;
 }
 
 .roadmap-quarter-title {
     font-weight: 700;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     font-size: 1.5rem;
     margin-bottom: 15px;
 }
@@ -421,9 +418,9 @@
 }
 
 .status-planned {
-    background-color: rgba(92, 226, 231, 0.1);
-    color: #0ba0a6;
-    border: 1px solid rgba(92, 226, 231, 0.3);
+    background-color: rgba(61, 107, 79, 0.1);
+    color: var(--color-accent-tertiary);
+    border: 1px solid rgba(61, 107, 79, 0.3);
 }
 
 .status-development {
@@ -466,7 +463,7 @@
 
 .roadmap-list li .icon {
     margin-right: 12px;
-    color: #5ce2e7;
+    color: var(--color-accent-tertiary);
     font-size: 1.1rem;
     margin-top: 2px;
     flex-shrink: 0;
@@ -483,7 +480,7 @@
 }
 
 .roadmap-list li strong {
-    color: #16214c;
+    color: var(--color-neutral-primary);
     font-weight: 600;
 }
 
@@ -492,14 +489,14 @@
     text-align: center;
     margin-top: 5rem;
     padding: 3rem;
-    background: rgba(22, 33, 76, 0.02);
+    background: var(--color-bg-accent);
     border-radius: 20px;
-    border: 1px solid rgba(92, 226, 231, 0.1);
+    border: 1px solid var(--color-border-accent);
 }
 
 .feature-request-cta h3 {
     font-size: 2rem;
-    color: #16214c;
+    color: var(--color-neutral-primary);
     margin-bottom: 1rem;
     font-weight: 700;
 }
@@ -513,7 +510,7 @@
 .cta-button {
     display: inline-flex;
     align-items: center;
-    background: linear-gradient(135deg, #16214c, #254284);
+    background: var(--color-neutral-inverse);
     color: white;
     padding: 15px 30px;
     border-radius: 50px;
@@ -521,12 +518,12 @@
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(22, 33, 76, 0.2);
+    box-shadow: 0 5px 15px rgba(45, 90, 79, 0.2);
 }
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(22, 33, 76, 0.3);
+    box-shadow: 0 10px 25px rgba(45, 90, 79, 0.3);
     color: white;
 }
 
@@ -607,4 +604,5 @@
     }
 }
 </style>
+</div><!-- .leonardo-bg -->
 {% endblock %}

@@ -5,6 +5,15 @@ template = "feature.html"
 +++
 
 <style>
+/* Page-specific Leonardo journal background */
+.feature-page.leonardo-bg::before {
+    background-image: url('/images/bg-api.svg') !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% auto !important;
+    background-position: top center !important;
+    opacity: 1 !important;
+}
+
 /* API Page Styles */
 .api-hero {
     background: linear-gradient(135deg, #2d3c34 0%, #1e3a2b 100%);
