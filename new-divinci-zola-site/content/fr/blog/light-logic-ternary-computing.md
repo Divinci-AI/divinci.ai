@@ -59,7 +59,7 @@ Par exemple, une porte AND photonique fonctionne ainsi :
 
 La beauté de combiner les deux approches, comme le démontre la puce Taichi, est que la diffraction gère les opérations fixes (comme l'encodage de données) tandis que l'interférence gère la logique reconfigurable - nous donnant le meilleur des deux mondes.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/photonic-logic-gate.svg" alt="Animation de porte logique photonique" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/photonic-logic-gate.svg" alt="Animation de porte logique photonique" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Logique ternaire : Trois est le nombre magique
 
@@ -98,7 +98,7 @@ La récente puce ternaire 7nm de Huawei démontre :
 
 La percée clé : des transistors avec **deux niveaux de seuil** au lieu d'un, permettant une différenciation claire entre trois états distincts : -1, 0 et +1.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ternary-logic-comparison.svg" alt="Comparaison logique binaire vs ternaire" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ternary-logic-comparison.svg" alt="Comparaison logique binaire vs ternaire" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 **Lecture complémentaire** : Pour une plongée profonde dans l'informatique ternaire et l'ordinateur soviétique Setun, regardez [cette excellente explication vidéo](https://www.youtube.com/watch?v=3aewaff1494).
 
@@ -148,7 +148,7 @@ Pour l'apprentissage automatique, cela fournit :
 
 La nature photonique des systèmes Light Logic rend la génération de nombres aléatoires quantiques essentiellement "gratuite" - c'est un sous-produit naturel du processus de mesure optique, ne nécessitant aucun matériel supplémentaire.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/quantum-randomness.svg" alt="Génération de nombres aléatoires quantiques" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/quantum-randomness.svg" alt="Génération de nombres aléatoires quantiques" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="5"/><path d="M12 1v6m0 6v6M1 12h6m6 0h6"/></svg> Batteries gravitaires : Énergie durable pour une informatique durable
 
@@ -201,7 +201,7 @@ Les batteries gravitaires complètent magnifiquement les systèmes Light Logic :
 
 **Équilibrage de charge** : Les systèmes Light Logic ont une consommation d'énergie au ralenti extrêmement faible (les circuits photoniques ne fuient pas de courant comme les électroniques). Les batteries gravitaires peuvent "charger lentement" depuis le solaire/éolien, puis fournir une puissance en rafale pour le calcul lorsque nécessaire.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/gravity-battery.svg" alt="Système de stockage d'énergie par batterie gravitaire" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/gravity-battery.svg" alt="Système de stockage d'énergie par batterie gravitaire" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/></svg> Informatique artisanale : L'approche artisanale
 

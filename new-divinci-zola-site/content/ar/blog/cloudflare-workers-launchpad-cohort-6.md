@@ -34,7 +34,7 @@ featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Divinci-Wo
 ### **D1 لتخزين أجزاء RAG**
 نستفيد من **Cloudflare D1**، قاعدة البيانات SQL الموزعة، لتخزين والاستعلام عن أجزاء RAG بكفاءة. تضمن هندسة D1 القائمة على الحافة تخزين أجزاء المستندات بالقرب من مستخدمينا، مما يقلل بشكل كبير من زمن استرجاع ويحسن جودة استجابات الذكاء الاصطناعي لدينا.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/d1-rag-storage.svg" alt="هندسة قاعدة بيانات D1 الموزعة" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/d1-rag-storage.svg" alt="هندسة قاعدة بيانات D1 الموزعة" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ### **Vectorize للبحث الدلالي**
 تعمل **Cloudflare Vectorize** كأحد خيارات قاعدة بيانات المتجهات لدينا، مما يتيح بحثًا دلاليًا سريعًا للغاية عبر ملايين تضمينات المستندات. يسمح هذا لأنظمة الذكاء الاصطناعي لدينا بالعثور على السياق الأكثر صلة لأي استعلام، بغض النظر عن كيفية صياغته.
@@ -42,7 +42,7 @@ featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Divinci-Wo
 ### **Workers AI للنماذج مفتوحة المصدر**
 ندمج **Cloudflare Workers AI** لتوفير الوصول إلى نماذج لغة مفتوحة المصدر متطورة من Hugging Face، بما في ذلك **Llama 3** و **Mistral** ونماذج أخرى حديثة. يمنح هذا عملاءنا من المؤسسات المرونة في اختيار النموذج المناسب لحالات الاستخدام المحددة مع الحفاظ على خصوصية البيانات والتحكم.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/workers-ai-models.svg" alt="نماذج Workers AI مفتوحة المصدر" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/workers-ai-models.svg" alt="نماذج Workers AI مفتوحة المصدر" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ### **R2 لتخزين الوسائط**
 يتعامل **Cloudflare R2** مع جميع احتياجات تخزين الصوت ومعالجة الفيديو وتحميل ملفات المستخدمين. مع عدم وجود رسوم خروج وواجهات برمجة تطبيقات متوافقة مع S3، يوفر R2 تخزين كائنات على مستوى المؤسسات يتوسع بسلاسة مع قاعدة عملائنا المتنامية.

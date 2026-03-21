@@ -261,7 +261,7 @@ lang = "fr"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Qu'est-ce qu'AutoRAG ?</h2>
 
 <div class="autorag-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-diagram.svg" alt="Diagramme de connexion de base de connaissances AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;" />
+  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-diagram.svg" alt="Diagramme de connexion de base de connaissances AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;" />
 </div>
 
 <div class="overview-content">
@@ -394,7 +394,7 @@ lang = "fr"
 <!-- Document Processing Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
 <object data="/images/autorag-clean-test.svg" type="image/svg+xml" style="width: 100%; max-width: 800px; height: auto;">
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-clean-test.svg" alt="Processus de création de données AutoRAG" style="width: 100%; max-width: 800px; height: auto;" />
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-clean-test.svg" alt="Processus de création de données AutoRAG" style="width: 100%; max-width: 800px; height: auto;" />
 </object>
 <p style="text-align: center; margin-top: 10px; color: #8C9DB5; font-size: 14px;">Le processus complet de création de données d'AutoRAG transforme les documents bruts en corpus optimisé et ensembles de données QA</p>
 </div>
@@ -432,7 +432,7 @@ lang = "fr"
 
 <!-- Vector Embedding Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-vector-embedding-adjusted.svg" alt="Visualisation d'embedding vectoriel" style="width: 100%; max-width: 600px; height: auto;" />
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-vector-embedding.svg" alt="Visualisation d'embedding vectoriel" style="width: 100%; max-width: 600px; height: auto;" />
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
@@ -468,7 +468,7 @@ lang = "fr"
 
 <!-- Retrieval Optimization Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-retrieval-optimization-adjusted.svg" alt="Visualisation d'optimisation de récupération" style="width: 100%; max-width: 600px; height: auto;" />
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-retrieval-optimization.svg" alt="Visualisation d'optimisation de récupération" style="width: 100%; max-width: 600px; height: auto;" />
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
