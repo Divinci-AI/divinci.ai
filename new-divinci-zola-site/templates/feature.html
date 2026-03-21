@@ -93,9 +93,10 @@
 (function waitForRedoc() {
   if (typeof Redoc !== 'undefined' && document.getElementById('redoc-container')) {
     Redoc.init('/openapi.yaml', {
-      scrollYOffset: 80,
+      scrollYOffset: 90,
       hideDownloadButton: false,
       expandResponses: '200',
+      nativeScrollbars: true,
       theme: {
         colors: { primary: { main: '#2d5a4f' } },
         typography: {

@@ -11,13 +11,23 @@ template = "feature.html"
 }
 
 #redoc-container {
-    margin: -2rem -2rem 0;
+    margin: 0 -2rem;
     min-height: 80vh;
+    padding-top: 2rem;
 }
 
 /* Hide any feature-page padding for clean Redoc */
 .feature-page {
     padding: 0 !important;
+}
+
+/* Widen the Redoc sidebar search bar */
+.redoc-wrap .menu-content input[type="search"],
+.redoc-wrap .search-input,
+.redoc-wrap [role="search"] input {
+    width: 100% !important;
+    min-width: 200px !important;
+    box-sizing: border-box !important;
 }
 </style>
 
