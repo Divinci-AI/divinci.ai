@@ -85,3 +85,33 @@
 }
 </style>
 {% endblock %}
+
+{% block extra_scripts %}
+{% if page.path is containing("api") %}
+<script src="{{ get_url(path="js/redoc.standalone.js") }}"></script>
+<script>
+(function waitForRedoc() {
+  if (typeof Redoc !== 'undefined' && document.getElementById('redoc-container')) {
+    Redoc.init('/openapi.yaml', {
+      scrollYOffset: 80,
+      hideDownloadButton: false,
+      expandResponses: '200',
+      theme: {
+        colors: { primary: { main: '#2d5a4f' } },
+        typography: {
+          fontSize: '15px',
+          fontFamily: 'Source Sans 3, sans-serif',
+          headings: { fontFamily: 'Fraunces, serif', fontWeight: '400' },
+          code: { fontSize: '13px', fontFamily: 'monospace' }
+        },
+        sidebar: { backgroundColor: '#f8f4f0', textColor: '#2d3c34' },
+        rightPanel: { backgroundColor: '#1e3a2b' }
+      }
+    }, document.getElementById('redoc-container'));
+  } else {
+    setTimeout(waitForRedoc, 100);
+  }
+})();
+</script>
+{% endif %}
+{% endblock %}

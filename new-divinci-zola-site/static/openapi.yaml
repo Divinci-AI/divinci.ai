@@ -1,0 +1,2645 @@
+openapi: 3.0.3
+
+info:
+  title: Divinci AI API
+  version: 1.0.0
+  description: >
+    RESTful API for managing AI releases, RAG knowledge bases, fine-tuning,
+    transcripts, and more. Authenticate with an API key via the `X-Api-Key`
+    header or a Bearer token.
+  contact:
+    email: support@divinci.ai
+  termsOfService: https://divinci.ai/terms-of-service
+
+servers:
+  - url: https://api.divinci.ai/api/v1
+    description: Production
+
+tags:
+  - name: Root
+    description: API discovery and health
+  - name: Authentication
+    description: API key validation
+  - name: Transcripts
+    description: Manage conversation transcripts
+  - name: RAG
+    description: Knowledge base file management, indexing, and search
+  - name: Releases
+    description: Release lifecycle management
+  - name: Fine-Tuning
+    description: Custom AI model training jobs
+  - name: Configuration
+    description: Whitelabel configuration
+  - name: Audio Transcripts
+    description: Audio file transcription and RAG generation
+  - name: Connectors
+    description: Third-party data source connections
+  - name: HTML Pages
+    description: Crawled web page management
+  - name: Notifications
+    description: In-app notification management
+  - name: Threads
+    description: Chat thread access
+  - name: Voiceprints
+    description: Speaker voiceprint management
+  - name: Export
+    description: Configuration import and export
+  - name: TTS
+    description: Text-to-speech generation and settings
+
+security:
+  - ApiKeyHeader: []
+  - BearerAuth: []
+
+paths:
+  /:
+    get:
+      operationId: getApiInfo
+      summary: API info and endpoint listing
+      description: Returns API version information and a directory of available endpoints. No authentication required.
+      tags:
+        - Root
+      security: []
+      responses:
+        '200':
+          description: API information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Divinci AI API
+                  version:
+                    type: string
+                    example: 1.0.0
+                  endpoints:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        method:
+                          type: string
+                        path:
+                          type: string
+                        description:
+                          type: string
+
+  # ── Authentication ──────────────────────────────────────────────────
+
+  /auth/validate-key:
+    post:
+      operationId: validateApiKey
+      summary: Validate API key
+      description: Validates the provided API key and returns the permissions associated with it.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - apiKey
+              properties:
+                apiKey:
+                  type: string
+                  description: The API key to validate
+      responses:
+        '200':
+          description: Key is valid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - transcript:read
+                      - transcript:write
+                      - rag:read
+                  expiresAt:
+                    type: string
+                    format: date-time
+                    nullable: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  # ── Transcripts ─────────────────────────────────────────────────────
+
+  /transcripts:
+    get:
+      operationId: listTranscripts
+      summary: List transcripts
+      description: Returns a paginated list of transcripts. Requires `transcript:read` permission.
+      tags:
+        - Transcripts
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: Paginated transcript list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Transcript'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      operationId: createTranscript
+      summary: Create transcript
+      description: Creates a new transcript. Requires `transcript:write` permission.
+      tags:
+        - Transcripts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+              properties:
+                title:
+                  type: string
+                  description: Human-readable title for the transcript
+                metadata:
+                  type: object
+                  additionalProperties: true
+                  description: Arbitrary metadata to attach
+      responses:
+        '201':
+          description: Transcript created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transcript'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /transcripts/{transcriptId}:
+    parameters:
+      - $ref: '#/components/parameters/TranscriptId'
+
+    get:
+      operationId: getTranscript
+      summary: Get transcript
+      description: Retrieves a single transcript by ID. Requires `transcript:read` permission.
+      tags:
+        - Transcripts
+      responses:
+        '200':
+          description: Transcript details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transcript'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      operationId: deleteTranscript
+      summary: Delete transcript
+      description: Permanently deletes a transcript and all its messages. Requires `transcript:write` permission.
+      tags:
+        - Transcripts
+      responses:
+        '204':
+          description: Transcript deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /transcripts/{transcriptId}/messages:
+    parameters:
+      - $ref: '#/components/parameters/TranscriptId'
+
+    post:
+      operationId: addTranscriptMessage
+      summary: Add message to transcript
+      description: Appends a message to an existing transcript. Requires `transcript:write` permission.
+      tags:
+        - Transcripts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - role
+                - content
+              properties:
+                role:
+                  type: string
+                  enum:
+                    - user
+                    - assistant
+                    - system
+                content:
+                  type: string
+                metadata:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '201':
+          description: Message added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  # ── RAG ─────────────────────────────────────────────────────────────
+
+  /rag/files:
+    get:
+      operationId: listRagFiles
+      summary: List RAG files
+      description: Returns all files in the knowledge base. Requires `rag:read` permission.
+      tags:
+        - RAG
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: File list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RagFile'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      operationId: uploadRagFile
+      summary: Upload file for RAG indexing
+      description: >
+        Uploads a file and queues it for chunking and vector indexing into the
+        knowledge base. Requires `rag:write` permission.
+      tags:
+        - RAG
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The file to upload (PDF, TXT, MD, DOCX, etc.)
+                targetId:
+                  type: string
+                  description: Optional vector index target ID
+      responses:
+        '201':
+          description: File uploaded and queued for indexing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RagFile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /rag/presigned:
+    post:
+      operationId: getPresignedUploadUrls
+      summary: Get presigned R2 upload URLs
+      description: >
+        Returns presigned URLs for direct-to-R2 uploads. Use this for large
+        files to avoid request size limits. Requires `rag:write` permission.
+      tags:
+        - RAG
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required:
+                  - byteSize
+                  - filename
+                properties:
+                  byteSize:
+                    type: integer
+                    description: File size in bytes
+                  filename:
+                    type: string
+                    description: Original filename including extension
+              example:
+                - byteSize: 1048576
+                  filename: training-data.pdf
+      responses:
+        '200':
+          description: Presigned upload URLs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    uploadUrl:
+                      type: string
+                      format: uri
+                    fileKey:
+                      type: string
+                    expiresAt:
+                      type: string
+                      format: date-time
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /rag/files/audio:
+    post:
+      operationId: uploadRagAudio
+      summary: Upload audio from URL
+      description: >
+        Fetches audio from the provided URL, transcribes it, and indexes the
+        transcript into the knowledge base. Requires `rag:write` permission.
+      tags:
+        - RAG
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - url
+              properties:
+                url:
+                  type: string
+                  format: uri
+                  description: Public URL of the audio file
+                language:
+                  type: string
+                  description: BCP-47 language code hint (e.g. en-US)
+      responses:
+        '202':
+          description: Audio accepted for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RagFile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /rag/files/audio-from-presigned:
+    post:
+      operationId: finalizePresignedAudio
+      summary: Finalize presigned audio upload
+      description: >
+        Completes processing for an audio file previously uploaded via a
+        presigned URL. Requires `rag:write` permission.
+      tags:
+        - RAG
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - fileKey
+              properties:
+                fileKey:
+                  type: string
+                  description: The fileKey returned from the presigned upload endpoint
+                language:
+                  type: string
+                  description: BCP-47 language code hint
+      responses:
+        '202':
+          description: Audio accepted for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RagFile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /rag/files/{fileId}:
+    parameters:
+      - $ref: '#/components/parameters/FileId'
+
+    get:
+      operationId: getRagFile
+      summary: Get RAG file
+      description: Retrieves metadata and indexing status for a single file. Requires `rag:read` permission.
+      tags:
+        - RAG
+      responses:
+        '200':
+          description: File details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RagFile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      operationId: deleteRagFile
+      summary: Delete RAG file
+      description: >
+        Removes the file and its vector embeddings from the knowledge base.
+        Requires `rag:write` permission.
+      tags:
+        - RAG
+      responses:
+        '204':
+          description: File deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /rag/files/{fileId}/reindex:
+    parameters:
+      - $ref: '#/components/parameters/FileId'
+
+    post:
+      operationId: reindexRagFile
+      summary: Re-index RAG file
+      description: >
+        Re-chunks and re-indexes an existing file. Useful after embedding model
+        upgrades or configuration changes. Requires `rag:write` permission.
+      tags:
+        - RAG
+      responses:
+        '202':
+          description: Re-indexing started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RagFile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /rag/targets:
+    get:
+      operationId: listRagTargets
+      summary: List RAG vector indexes
+      description: Returns all configured vector index targets. Requires `rag:read` permission.
+      tags:
+        - RAG
+      responses:
+        '200':
+          description: Vector index targets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RagTarget'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /rag/search:
+    get:
+      operationId: searchRag
+      summary: Search knowledge base
+      description: >
+        Performs a semantic search across the indexed knowledge base and returns
+        the most relevant chunks. Requires `rag:read` permission.
+      tags:
+        - RAG
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Natural-language search query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of results (default 10)
+          schema:
+            type: integer
+            default: 10
+        - name: targetId
+          in: query
+          required: false
+          description: Restrict search to a specific vector index
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        fileId:
+                          type: string
+                        filename:
+                          type: string
+                        chunk:
+                          type: string
+                          description: Matched text chunk
+                        score:
+                          type: number
+                          format: float
+                          description: Relevance score (0-1)
+                        metadata:
+                          type: object
+                          additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  # ── Releases ────────────────────────────────────────────────────────
+
+  /releases:
+    get:
+      operationId: listReleases
+      summary: List releases
+      description: Returns all releases ordered by creation date. Requires `release:read` permission.
+      tags:
+        - Releases
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - draft
+              - published
+              - archived
+      responses:
+        '200':
+          description: Release list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Release'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      operationId: createRelease
+      summary: Create release draft
+      description: Creates a new release in draft status. Requires `release:write` permission.
+      tags:
+        - Releases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                modelId:
+                  type: string
+                  description: Base model identifier
+                ragTargetId:
+                  type: string
+                  description: Knowledge base target to attach
+                systemPrompt:
+                  type: string
+                configuration:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '201':
+          description: Draft release created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /releases/{releaseId}:
+    parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+
+    get:
+      operationId: getRelease
+      summary: Get release
+      description: Retrieves a single release by ID. Requires `release:read` permission.
+      tags:
+        - Releases
+      responses:
+        '200':
+          description: Release details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    patch:
+      operationId: updateRelease
+      summary: Update release draft
+      description: >
+        Updates fields on a draft release. Published releases cannot be
+        modified. Requires `release:write` permission.
+      tags:
+        - Releases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                modelId:
+                  type: string
+                ragTargetId:
+                  type: string
+                systemPrompt:
+                  type: string
+                configuration:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Release updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Release is already published and cannot be modified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+    delete:
+      operationId: deleteRelease
+      summary: Delete release draft
+      description: >
+        Permanently deletes a draft release. Published releases cannot be
+        deleted. Requires `release:write` permission.
+      tags:
+        - Releases
+      responses:
+        '204':
+          description: Release deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Release is already published and cannot be deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /releases/{releaseId}/publish:
+    parameters:
+      - $ref: '#/components/parameters/ReleaseId'
+
+    post:
+      operationId: publishRelease
+      summary: Publish release
+      description: >
+        Transitions a draft release to published status, making it live.
+        This action is irreversible. Requires `release:write` permission.
+      tags:
+        - Releases
+      responses:
+        '200':
+          description: Release published
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Release is already published
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Fine-Tuning ────────────────────────────────────────────────────
+
+  /fine-tune/jobs:
+    get:
+      operationId: listFineTuneJobs
+      summary: List custom AI models
+      description: Returns all fine-tuning jobs and their statuses. Requires `finetune:read` permission.
+      tags:
+        - Fine-Tuning
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: Fine-tune job list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FineTuneJob'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      operationId: createFineTuneJob
+      summary: Create custom AI model
+      description: >
+        Creates a new fine-tuning job definition. Training does not start until
+        you call the start endpoint. Requires `finetune:write` permission.
+      tags:
+        - Fine-Tuning
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - baseModel
+              properties:
+                name:
+                  type: string
+                  description: Human-readable model name
+                baseModel:
+                  type: string
+                  description: Identifier of the base model to fine-tune
+                trainingFileIds:
+                  type: array
+                  items:
+                    type: string
+                  description: RAG file IDs to use as training data
+                hyperparameters:
+                  type: object
+                  properties:
+                    epochs:
+                      type: integer
+                    learningRate:
+                      type: number
+                      format: float
+                    batchSize:
+                      type: integer
+      responses:
+        '201':
+          description: Fine-tune job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FineTuneJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /fine-tune/jobs/{customAiId}:
+    parameters:
+      - $ref: '#/components/parameters/CustomAiId'
+
+    get:
+      operationId: getFineTuneJob
+      summary: Get custom AI model
+      description: Retrieves details for a fine-tuning job. Requires `finetune:read` permission.
+      tags:
+        - Fine-Tuning
+      responses:
+        '200':
+          description: Fine-tune job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FineTuneJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      operationId: deleteFineTuneJob
+      summary: Delete custom AI model
+      description: >
+        Deletes a fine-tuning job and its associated model artifacts.
+        Running jobs are cancelled first. Requires `finetune:write` permission.
+      tags:
+        - Fine-Tuning
+      responses:
+        '204':
+          description: Model deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /fine-tune/jobs/{customAiId}/start:
+    parameters:
+      - $ref: '#/components/parameters/CustomAiId'
+
+    post:
+      operationId: startFineTuning
+      summary: Start fine-tuning
+      description: Begins the fine-tuning training process. Requires `finetune:write` permission.
+      tags:
+        - Fine-Tuning
+      responses:
+        '202':
+          description: Training started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FineTuneJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Job is already running or completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /fine-tune/jobs/{customAiId}/status:
+    parameters:
+      - $ref: '#/components/parameters/CustomAiId'
+
+    get:
+      operationId: getFineTuneStatus
+      summary: Get fine-tune status
+      description: Returns current training progress and metrics. Requires `finetune:read` permission.
+      tags:
+        - Fine-Tuning
+      responses:
+        '200':
+          description: Training status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                      - pending
+                      - running
+                      - completed
+                      - failed
+                      - cancelled
+                  progress:
+                    type: number
+                    format: float
+                    description: Completion percentage (0-100)
+                  currentEpoch:
+                    type: integer
+                  totalEpochs:
+                    type: integer
+                  trainingLoss:
+                    type: number
+                    format: float
+                    nullable: true
+                  startedAt:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  completedAt:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  errorMessage:
+                    type: string
+                    nullable: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /fine-tune/jobs/{customAiId}/cancel:
+    parameters:
+      - $ref: '#/components/parameters/CustomAiId'
+
+    post:
+      operationId: cancelFineTuning
+      summary: Cancel fine-tuning
+      description: Cancels a running fine-tuning job. Requires `finetune:write` permission.
+      tags:
+        - Fine-Tuning
+      responses:
+        '200':
+          description: Training cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FineTuneJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Job is not currently running
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Configuration ──────────────────────────────────────────────────
+
+  /config:
+    get:
+      operationId: getConfig
+      summary: Get whitelabel configuration
+      description: Returns the current whitelabel configuration. Requires `whitelabel:read` permission.
+      tags:
+        - Configuration
+      responses:
+        '200':
+          description: Current configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelabelConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /config/title:
+    patch:
+      operationId: updateConfigTitle
+      summary: Update title
+      description: Updates the whitelabel title. Requires `whitelabel:write` permission.
+      tags:
+        - Configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+              properties:
+                title:
+                  type: string
+      responses:
+        '200':
+          description: Title updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelabelConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /config/description:
+    patch:
+      operationId: updateConfigDescription
+      summary: Update description
+      description: Updates the whitelabel description. Requires `whitelabel:write` permission.
+      tags:
+        - Configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - description
+              properties:
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Description updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelabelConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  # ── Audio Transcripts ──────────────────────────────────────────────
+
+  /audio-transcripts:
+    get:
+      operationId: listAudioTranscripts
+      summary: List audio transcripts
+      description: Returns all audio transcripts. Requires `rag:read` permission.
+      tags:
+        - Audio Transcripts
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: Audio transcript list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AudioTranscript'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /audio-transcripts/url:
+    post:
+      operationId: uploadAudioFromUrl
+      summary: Upload audio from URL
+      description: >
+        Fetches audio from the provided URL and transcribes it.
+        Requires `rag:write` permission.
+      tags:
+        - Audio Transcripts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - url
+              properties:
+                url:
+                  type: string
+                  format: uri
+                  description: Public URL of the audio file
+                language:
+                  type: string
+                  description: BCP-47 language code hint
+      responses:
+        '202':
+          description: Audio accepted for transcription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioTranscript'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /audio-transcripts/{audioId}:
+    parameters:
+      - $ref: '#/components/parameters/AudioId'
+
+    get:
+      operationId: getAudioTranscript
+      summary: Get audio transcript
+      description: Retrieves a single audio transcript by ID. Requires `rag:read` permission.
+      tags:
+        - Audio Transcripts
+      responses:
+        '200':
+          description: Audio transcript details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioTranscript'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      operationId: deleteAudioTranscript
+      summary: Delete audio transcript
+      description: Permanently deletes an audio transcript. Requires `rag:write` permission.
+      tags:
+        - Audio Transcripts
+      responses:
+        '204':
+          description: Audio transcript deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /audio-transcripts/{audioId}/generate-rag:
+    parameters:
+      - $ref: '#/components/parameters/AudioId'
+
+    post:
+      operationId: generateRagFromAudio
+      summary: Generate RAG from audio transcript
+      description: >
+        Indexes the audio transcript into the RAG knowledge base for semantic
+        search. Requires `rag:write` permission.
+      tags:
+        - Audio Transcripts
+      responses:
+        '202':
+          description: RAG generation started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioTranscript'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # ── Connectors ─────────────────────────────────────────────────────
+
+  /connectors:
+    get:
+      operationId: listConnectors
+      summary: List all connections
+      description: >
+        Returns all configured data source connections with their file counts.
+        Requires `connector:read` permission.
+      tags:
+        - Connectors
+      responses:
+        '200':
+          description: Connector list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Connector'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /connectors/{provider}:
+    parameters:
+      - $ref: '#/components/parameters/Provider'
+
+    get:
+      operationId: getConnectorStatus
+      summary: Get connection status
+      description: Returns the connection status for a specific provider. Requires `connector:read` permission.
+      tags:
+        - Connectors
+      responses:
+        '200':
+          description: Connector status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connector'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /connectors/{provider}/auth:
+    parameters:
+      - $ref: '#/components/parameters/Provider'
+
+    post:
+      operationId: initiateConnectorAuth
+      summary: Initiate OAuth or validate credentials
+      description: >
+        Starts the OAuth flow for OAuth-based providers or validates API
+        credentials for key-based providers. Requires `connector:write`
+        permission.
+      tags:
+        - Connectors
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                credentials:
+                  type: object
+                  additionalProperties: true
+                  description: Provider-specific credentials (for key-based auth)
+                accountInfo:
+                  type: object
+                  additionalProperties: true
+                  description: Additional account information
+                syncConfig:
+                  type: object
+                  additionalProperties: true
+                  description: Synchronization configuration
+                returnUrl:
+                  type: string
+                  format: uri
+                  description: OAuth callback redirect URL
+      responses:
+        '200':
+          description: Authentication initiated or credentials validated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  connected:
+                    type: boolean
+                  authUrl:
+                    type: string
+                    format: uri
+                    description: OAuth authorization URL (for OAuth providers)
+                    nullable: true
+                  message:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /connectors/{provider}/disconnect:
+    parameters:
+      - $ref: '#/components/parameters/Provider'
+
+    post:
+      operationId: disconnectConnector
+      summary: Revoke connection
+      description: >
+        Disconnects and revokes credentials for the specified provider.
+        Requires `connector:write` permission.
+      tags:
+        - Connectors
+      responses:
+        '200':
+          description: Connection revoked
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  disconnected:
+                    type: boolean
+                  message:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # ── HTML Pages ─────────────────────────────────────────────────────
+
+  /html-pages:
+    get:
+      operationId: listHtmlPages
+      summary: List crawled HTML pages
+      description: Returns crawled HTML pages, optionally filtered by host. Requires `rag:read` permission.
+      tags:
+        - HTML Pages
+      parameters:
+        - name: urlHost
+          in: query
+          required: false
+          description: Filter pages by URL host
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: Page list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HtmlPage'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /html-pages/count:
+    get:
+      operationId: getHtmlPageCount
+      summary: Get total page count
+      description: Returns the total number of crawled pages. Requires `rag:read` permission.
+      tags:
+        - HTML Pages
+      responses:
+        '200':
+          description: Page count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /html-pages/by-url:
+    get:
+      operationId: getHtmlPageByUrl
+      summary: Get page by URL
+      description: Looks up a crawled page by its original URL. Requires `rag:read` permission.
+      tags:
+        - HTML Pages
+      parameters:
+        - name: url
+          in: query
+          required: true
+          description: The full URL of the page
+          schema:
+            type: string
+            format: uri
+      responses:
+        '200':
+          description: Page details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /html-pages/hosts:
+    get:
+      operationId: listHtmlPageHosts
+      summary: List unique hosts
+      description: Returns all unique URL hosts from crawled pages. Requires `rag:read` permission.
+      tags:
+        - HTML Pages
+      responses:
+        '200':
+          description: Host list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        host:
+                          type: string
+                        pageCount:
+                          type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /html-pages/hosts/history:
+    get:
+      operationId: listCrawlHistory
+      summary: List crawl history
+      description: Returns the crawl history across all hosts. Requires `rag:read` permission.
+      tags:
+        - HTML Pages
+      responses:
+        '200':
+          description: Crawl history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CrawlHistoryEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /html-pages/hosts/{urlHost}/history:
+    parameters:
+      - name: urlHost
+        in: path
+        required: true
+        description: The URL host to get crawl history for
+        schema:
+          type: string
+
+    get:
+      operationId: getHostCrawlHistory
+      summary: Crawl history for host
+      description: Returns crawl history for a specific host. Requires `rag:read` permission.
+      tags:
+        - HTML Pages
+      responses:
+        '200':
+          description: Host crawl history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CrawlHistoryEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /html-pages/{pageId}:
+    parameters:
+      - name: pageId
+        in: path
+        required: true
+        description: Unique page identifier
+        schema:
+          type: string
+
+    get:
+      operationId: getHtmlPage
+      summary: Get specific page
+      description: Retrieves a single crawled page by ID. Requires `rag:read` permission.
+      tags:
+        - HTML Pages
+      responses:
+        '200':
+          description: Page details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # ── Notifications ──────────────────────────────────────────────────
+
+  /notifications:
+    get:
+      operationId: listNotifications
+      summary: List notifications
+      description: Returns a filtered, paginated list of notifications. Requires `notification:read` permission.
+      tags:
+        - Notifications
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: isRead
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: tags
+          in: query
+          required: false
+          description: Comma-separated tag filter
+          schema:
+            type: string
+        - name: notificationType
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: title
+          in: query
+          required: false
+          description: Search by title (partial match)
+          schema:
+            type: string
+        - name: createdAfter
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: createdBefore
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Notification list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Notification'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /notifications/counts:
+    get:
+      operationId: getNotificationCounts
+      summary: Get notification counts
+      description: Returns total and unread notification counts. Requires `notification:read` permission.
+      tags:
+        - Notifications
+      responses:
+        '200':
+          description: Notification counts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  unread:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /notifications/{notificationId}/read:
+    parameters:
+      - name: notificationId
+        in: path
+        required: true
+        description: Unique notification identifier
+        schema:
+          type: string
+
+    patch:
+      operationId: markNotificationRead
+      summary: Mark notification read or unread
+      description: Updates the read status of a notification. Requires `notification:write` permission.
+      tags:
+        - Notifications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - isRead
+              properties:
+                isRead:
+                  type: boolean
+      responses:
+        '200':
+          description: Read status updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # ── Threads ────────────────────────────────────────────────────────
+
+  /threads:
+    get:
+      operationId: listThreads
+      summary: List threads
+      description: Returns all chat threads. Requires `transcript:read` permission.
+      tags:
+        - Threads
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: Thread list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Thread'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /threads/{chatId}:
+    parameters:
+      - name: chatId
+        in: path
+        required: true
+        description: Unique thread identifier
+        schema:
+          type: string
+
+    get:
+      operationId: getThread
+      summary: Get thread
+      description: Retrieves a single chat thread with its messages. Requires `transcript:read` permission.
+      tags:
+        - Threads
+      responses:
+        '200':
+          description: Thread details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thread'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # ── Voiceprints ────────────────────────────────────────────────────
+
+  /voiceprints:
+    get:
+      operationId: listVoiceprints
+      summary: List voiceprints
+      description: Returns all stored speaker voiceprints. Requires `rag:read` permission.
+      tags:
+        - Voiceprints
+      responses:
+        '200':
+          description: Voiceprint list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Voiceprint'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  # ── Export ─────────────────────────────────────────────────────────
+
+  /export:
+    get:
+      operationId: exportConfig
+      summary: Export configuration
+      description: >
+        Exports the full platform configuration as JSON or YAML. Useful for
+        backup and migration. Requires `whitelabel:read` permission.
+      tags:
+        - Export
+      parameters:
+        - name: format
+          in: query
+          required: false
+          description: Output format
+          schema:
+            type: string
+            enum:
+              - json
+              - yaml
+            default: json
+      responses:
+        '200':
+          description: Exported configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+            application/x-yaml:
+              schema:
+                type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      operationId: importConfig
+      summary: Import configuration
+      description: >
+        Imports a previously exported configuration. This overwrites current
+        settings. Requires `whitelabel:write` permission.
+      tags:
+        - Export
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              description: The full configuration object from a previous export
+      responses:
+        '200':
+          description: Configuration imported
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imported:
+                    type: boolean
+                  message:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  # ── TTS ────────────────────────────────────────────────────────────
+
+  /tts/generate:
+    post:
+      operationId: generateTts
+      summary: Generate TTS audio
+      description: >
+        Generates speech audio from text using the configured TTS engine.
+        Requires `whitelabel:write` permission.
+      tags:
+        - TTS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+                  description: The text to synthesize
+                voice:
+                  type: string
+                  description: Voice identifier override
+                speed:
+                  type: number
+                  format: float
+                  description: Playback speed multiplier (default 1.0)
+                format:
+                  type: string
+                  enum:
+                    - mp3
+                    - wav
+                    - ogg
+                  default: mp3
+      responses:
+        '200':
+          description: Generated audio
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+            audio/wav:
+              schema:
+                type: string
+                format: binary
+            audio/ogg:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /tts/settings:
+    get:
+      operationId: getTtsSettings
+      summary: Get TTS settings
+      description: Returns the current text-to-speech configuration. Requires `whitelabel:read` permission.
+      tags:
+        - TTS
+      responses:
+        '200':
+          description: TTS settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TtsSettings'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    patch:
+      operationId: updateTtsSettings
+      summary: Update TTS settings
+      description: Updates text-to-speech configuration. Requires `whitelabel:write` permission.
+      tags:
+        - TTS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TtsSettings'
+      responses:
+        '200':
+          description: Settings updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TtsSettings'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+# ════════════════════════════════════════════════════════════════════════
+# Components
+# ════════════════════════════════════════════════════════════════════════
+
+components:
+
+  # ── Security Schemes ───────────────────────────────────────────────
+
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+      description: API key issued from the Divinci AI dashboard
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token (JWT) obtained through authentication
+
+  # ── Reusable Parameters ────────────────────────────────────────────
+
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      required: false
+      description: Page number (1-based)
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+
+    LimitParam:
+      name: limit
+      in: query
+      required: false
+      description: Items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+    TranscriptId:
+      name: transcriptId
+      in: path
+      required: true
+      description: Unique transcript identifier
+      schema:
+        type: string
+
+    FileId:
+      name: fileId
+      in: path
+      required: true
+      description: Unique RAG file identifier
+      schema:
+        type: string
+
+    ReleaseId:
+      name: releaseId
+      in: path
+      required: true
+      description: Unique release identifier
+      schema:
+        type: string
+
+    CustomAiId:
+      name: customAiId
+      in: path
+      required: true
+      description: Unique custom AI model identifier
+      schema:
+        type: string
+
+    AudioId:
+      name: audioId
+      in: path
+      required: true
+      description: Unique audio transcript identifier
+      schema:
+        type: string
+
+    Provider:
+      name: provider
+      in: path
+      required: true
+      description: Connector provider key (e.g. google-drive, notion, confluence)
+      schema:
+        type: string
+
+  # ── Reusable Responses ─────────────────────────────────────────────
+
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNAUTHORIZED
+              message: Invalid or missing API key
+              documentation: https://docs.divinci.ai/errors/unauthorized
+
+    Forbidden:
+      description: Authenticated but insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: FORBIDDEN
+              message: Your API key does not have the required permission
+              documentation: https://docs.divinci.ai/errors/forbidden
+
+    NotFound:
+      description: The requested resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: NOT_FOUND
+              message: Resource not found
+              documentation: https://docs.divinci.ai/errors/not-found
+
+    ValidationError:
+      description: Request body failed validation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: VALIDATION_ERROR
+              message: "Field 'title' is required"
+              documentation: https://docs.divinci.ai/errors/validation
+
+  # ── Schemas ────────────────────────────────────────────────────────
+
+  schemas:
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - code
+            - message
+            - documentation
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+            message:
+              type: string
+              description: Human-readable error description
+            documentation:
+              type: string
+              format: uri
+              description: Link to relevant documentation
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
+
+    Transcript:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        messageCount:
+          type: integer
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+        transcriptId:
+          type: string
+        role:
+          type: string
+          enum:
+            - user
+            - assistant
+            - system
+        content:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+
+    RagFile:
+      type: object
+      properties:
+        id:
+          type: string
+        filename:
+          type: string
+        mimeType:
+          type: string
+        byteSize:
+          type: integer
+        status:
+          type: string
+          enum:
+            - pending
+            - indexing
+            - indexed
+            - failed
+        chunkCount:
+          type: integer
+          nullable: true
+        targetId:
+          type: string
+          nullable: true
+        errorMessage:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    RagTarget:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        embeddingModel:
+          type: string
+        dimensions:
+          type: integer
+        fileCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+
+    Release:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+            - draft
+            - published
+            - archived
+        modelId:
+          type: string
+          nullable: true
+        ragTargetId:
+          type: string
+          nullable: true
+        systemPrompt:
+          type: string
+          nullable: true
+        configuration:
+          type: object
+          additionalProperties: true
+        publishedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    FineTuneJob:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        baseModel:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending
+            - running
+            - completed
+            - failed
+            - cancelled
+        trainingFileIds:
+          type: array
+          items:
+            type: string
+        hyperparameters:
+          type: object
+          properties:
+            epochs:
+              type: integer
+            learningRate:
+              type: number
+              format: float
+            batchSize:
+              type: integer
+        resultModelId:
+          type: string
+          nullable: true
+          description: The ID of the resulting fine-tuned model (available after completion)
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    WhitelabelConfig:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        logoUrl:
+          type: string
+          format: uri
+          nullable: true
+        faviconUrl:
+          type: string
+          format: uri
+          nullable: true
+        primaryColor:
+          type: string
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+
+    AudioTranscript:
+      type: object
+      properties:
+        id:
+          type: string
+        filename:
+          type: string
+        sourceUrl:
+          type: string
+          format: uri
+          nullable: true
+        duration:
+          type: number
+          format: float
+          description: Duration in seconds
+          nullable: true
+        status:
+          type: string
+          enum:
+            - pending
+            - transcribing
+            - completed
+            - failed
+        transcript:
+          type: string
+          nullable: true
+          description: The transcribed text (available after completion)
+        ragGenerated:
+          type: boolean
+          description: Whether RAG indexing has been generated
+        language:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Connector:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Provider key (e.g. google-drive, notion)
+        displayName:
+          type: string
+        connected:
+          type: boolean
+        fileCount:
+          type: integer
+        lastSyncAt:
+          type: string
+          format: date-time
+          nullable: true
+        accountInfo:
+          type: object
+          additionalProperties: true
+          nullable: true
+
+    HtmlPage:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+        urlHost:
+          type: string
+        title:
+          type: string
+          nullable: true
+        contentLength:
+          type: integer
+          description: Content length in bytes
+        status:
+          type: string
+          enum:
+            - indexed
+            - pending
+            - failed
+        crawledAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+
+    CrawlHistoryEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        urlHost:
+          type: string
+        pagesDiscovered:
+          type: integer
+        pagesIndexed:
+          type: integer
+        pagesFailed:
+          type: integer
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          enum:
+            - running
+            - completed
+            - failed
+
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        body:
+          type: string
+        notificationType:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        isRead:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+
+    Thread:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+          nullable: true
+        messageCount:
+          type: integer
+        lastMessageAt:
+          type: string
+          format: date-time
+          nullable: true
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+          description: Included when fetching a single thread
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Voiceprint:
+      type: object
+      properties:
+        id:
+          type: string
+        speakerName:
+          type: string
+        sampleCount:
+          type: integer
+          description: Number of audio samples used to build the voiceprint
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    TtsSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        defaultVoice:
+          type: string
+        defaultSpeed:
+          type: number
+          format: float
+        defaultFormat:
+          type: string
+          enum:
+            - mp3
+            - wav
+            - ogg
+        availableVoices:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              language:
+                type: string
+              preview:
+                type: boolean

@@ -609,44 +609,9 @@ template = "feature.html"
 </div>
 </section>
 
-<!-- REST API Reference -->
-<section class="docs-section" id="rest-api">
-<h2>REST API Reference</h2>
-<p class="section-sub">Base URL: <code>https://api.divinci.ai/api/v1</code> — Authenticate with <code>x-api-key</code> header or Bearer token.</p>
-
-<div class="endpoint-card">
-<span class="method method-get">GET</span><span class="path">/</span>
-<p class="desc">Get API version information and available endpoints.</p>
-</div>
-
-<div class="endpoint-card">
-<span class="method method-get">GET</span><span class="path">/whitelabel/{id}/workspace-api-keys</span>
-<p class="desc">List all API keys for a workspace.</p>
-</div>
-
-<div class="endpoint-card">
-<span class="method method-post">POST</span><span class="path">/whitelabel/{id}/workspace-api-keys</span>
-<p class="desc">Create a new API key with permissions and rate limits.</p>
-</div>
-
-<div class="endpoint-card">
-<span class="method method-get">GET</span><span class="path">/ai-chat/search</span>
-<p class="desc">Search chat transcripts. Supports query, date range, sorting, and pagination.</p>
-</div>
-
-<div class="endpoint-card">
-<span class="method method-put">PUT</span><span class="path">/whitelabel/{id}/workspace-api-keys/{keyId}</span>
-<p class="desc">Update API key settings, permissions, or rate limits.</p>
-</div>
-
-<div class="endpoint-card">
-<span class="method method-del">DEL</span><span class="path">/whitelabel/{id}/workspace-api-keys/{keyId}</span>
-<p class="desc">Revoke an API key. This action is irreversible.</p>
-</div>
-
-<p style="text-align: center; margin-top: 2rem; color: var(--color-neutral-secondary);">
-Full OpenAPI 3.0 specification available — <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" style="color: var(--color-neutral-inverse); font-weight: 600;">request access</a>
-</p>
+<!-- REST API Reference — rendered by Redoc via template -->
+<section class="docs-section" id="rest-api" style="max-width: 100%; padding: 0;">
+<div id="redoc-container" style="min-height: 600px;"></div>
 </section>
 
 <!-- CTA -->
