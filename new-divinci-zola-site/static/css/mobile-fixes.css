@@ -37,7 +37,7 @@
 
   /* Force enterprise section static background */
   .enterprise-ai {
-    background: linear-gradient(135deg, rgba(248, 244, 240, 0.95) 0%, rgba(232, 221, 212, 0.95) 100%);
+    background: linear-gradient(135deg, rgba(248, 244, 240, 0.85) 0%, rgba(232, 221, 212, 0.7) 100%);
     min-height: 600px;
     position: relative;
   }

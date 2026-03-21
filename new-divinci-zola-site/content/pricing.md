@@ -267,31 +267,29 @@ input:checked + .toggle-slider:before {
 
 /* Section-wide coming soon overlay - high specificity */
 .pricing-section .pricing-cards::after {
-    content: "À La Carte Pricing Available Q3 2025" !important;
+    content: "À La Carte Pricing — Contact Us for Details" !important;
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
-    right: 0 !important; /* Cover all three tiers, Enterprise is separate */
+    right: 0 !important;
     bottom: 0 !important;
-    background: rgba(248, 244, 240, 0.92) !important;
+    background: rgba(248, 244, 240, 0.97) !important;
+    backdrop-filter: blur(8px) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    font-size: 1.3rem !important;
-    font-weight: 700 !important;
+    font-family: 'Fraunces', serif !important;
+    font-size: 1.5rem !important;
+    font-weight: 400 !important;
     color: var(--color-neutral-inverse, #2d5a4f) !important;
     text-align: center !important;
-    transform: rotate(-8deg) !important;
     z-index: 999 !important;
-    border: none !important;
     border-radius: 12px !important;
-    margin: 2rem !important;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
     pointer-events: none !important;
 }
 
 .pricing-card.coming-soon {
-    opacity: 0.8;
+    opacity: 0;
 }
 
 .pricing-card:hover {

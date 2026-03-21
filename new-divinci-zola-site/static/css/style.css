@@ -104,7 +104,7 @@ body > * {
    Gives that tactile, Renaissance manuscript feel.
    ═══════════════════════════════════════════════════════════════ */
 
-/* SVG noise filter for paper texture — tiny random dots */
+/* SVG noise filter for paper texture — fine grain, subtle */
 .parchment-bg,
 .feature-page section,
 .feature-page .arena-demo,
@@ -115,12 +115,11 @@ body > * {
 .code-example,
 .sdk-card {
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.15' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.06'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
   background-repeat: repeat;
 }
 
-/* Paper texture for all white/light card surfaces */
+/* Paper texture for card surfaces — applied once, not inherited by children */
 .step-card,
 .feature-card,
 .routing-node,
@@ -131,9 +130,18 @@ body > * {
 [class*="card"],
 [class*="Card"] {
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.12' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23g)' opacity='0.08'/%3E%3C/svg%3E") !important;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E") !important;
   background-repeat: repeat;
+}
+
+/* Prevent double texture — children of textured cards should not inherit texture */
+[class*="card"] [class*="card"],
+[class*="Card"] [class*="Card"],
+[class*="card"] .parchment-bg,
+[class*="card"] .principle,
+[class*="card"] > div,
+.ai-for-good-principles .principle {
+  background-image: none !important;
 }
 
 /* ═══ Shared Hero Styles for Feature Pages ═══ */
@@ -394,7 +402,7 @@ body > * {
 /* Accent sections get a slightly warmer, more visible texture */
 .routing-section,
 .parchment-accent {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E") !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E") !important;
   background-repeat: repeat;
 }
 
@@ -461,6 +469,7 @@ header {
   margin: 0 auto;
   position: relative;
   z-index: 10000;
+  background-color: rgba(248, 244, 240, 0.97);
 }
 
 .header-actions {
@@ -631,6 +640,29 @@ nav .dropdown-menu a:last-child {
   max-width: 1400px;
   margin: 3rem auto 1rem auto;
   padding: 0 4rem;
+  position: relative;
+}
+
+/* Horizontal gradient mask — fades top/bottom so notebook grid shows only in the middle */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-primary) 0%,
+    rgba(248, 244, 240, 0.15) 30%,
+    rgba(248, 244, 240, 0.05) 50%,
+    rgba(248, 244, 240, 0.15) 70%,
+    var(--color-bg-primary) 100%
+  );
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content {
@@ -825,7 +857,14 @@ p {
 /* Enterprise AI section styles */
 .enterprise-ai {
   padding: 6rem 4rem 0 4rem;
-  background-color: var(--color-bg-primary);
+  background: linear-gradient(
+    to bottom,
+    rgba(248, 244, 240, 0.92) 0%,
+    rgba(248, 244, 240, 0.4) 20%,
+    rgba(248, 244, 240, 0.3) 50%,
+    rgba(248, 244, 240, 0.4) 80%,
+    rgba(248, 244, 240, 0.92) 100%
+  );
   position: relative;
   overflow: visible;
 }
@@ -1463,15 +1502,41 @@ html[dir="rtl"] .language-icon {
 
 /* Footer Styles */
 .contact-footer-wrapper {
-  background: linear-gradient(rgba(30, 58, 43, 0.75), rgba(30, 58, 43, 0.85)),
+  background: linear-gradient(rgba(30, 58, 43, 0.7), rgba(30, 58, 43, 0.8)),
               url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/leonardo-with-his-robot.webp');
   background-size: cover;
   background-position: center 15%;
   background-repeat: no-repeat;
-  /* Removed background-attachment: fixed for better performance */
   position: relative;
   margin-top: 4rem;
   overflow: hidden;
+}
+
+/* Grid overlay on footer — lets notebook pattern show through subtly */
+.contact-footer-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    /* Medium grid */
+    linear-gradient(rgba(184, 160, 128, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 160, 128, 0.06) 1px, transparent 1px),
+    /* Major grid */
+    linear-gradient(rgba(184, 160, 128, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 160, 128, 0.1) 1px, transparent 1px);
+  background-size:
+    60px 60px,
+    60px 60px,
+    240px 240px,
+    240px 240px;
+  background-position: center center;
+}
+
+.contact-footer-wrapper > * {
+  position: relative;
+  z-index: 2;
 }
 
 /* Removed parchment texture background art */
@@ -1745,7 +1810,14 @@ body:not(.homepage) .privacy-settings-link:hover {
 /* Features Section Styles */
 .features-section {
   padding: 0;
-  background-color: rgba(248, 244, 240, 0.85);
+  background: linear-gradient(
+    to bottom,
+    rgba(248, 244, 240, 0.92) 0%,
+    rgba(248, 244, 240, 0.4) 25%,
+    rgba(248, 244, 240, 0.3) 50%,
+    rgba(248, 244, 240, 0.4) 75%,
+    rgba(248, 244, 240, 0.92) 100%
+  );
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -1753,7 +1825,6 @@ body:not(.homepage) .privacy-settings-link:hover {
   /* transform: translateY(-6rem); - removed to fix stacking context */
   z-index: 1000 !important;
   isolation: isolate;
-  backdrop-filter: blur(0.5px);
 }
 
 /* Light beam window effect removed */
@@ -2913,7 +2984,14 @@ body:not(.homepage) .privacy-settings-link:hover {
 /* Team Section Styles */
 .team-section {
   padding: 4rem 0;
-  background: rgba(255, 255, 255, 0.85);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.45) 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.45) 70%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
   position: relative;
 }
 
@@ -3011,7 +3089,14 @@ body:not(.homepage) .privacy-settings-link:hover {
 /* Signup Section Styles */
 .signup-section {
   padding: 4rem 0;
-  background: rgba(207, 220, 255, 0.85);
+  background: linear-gradient(
+    to bottom,
+    rgba(207, 220, 255, 0.88) 0%,
+    rgba(207, 220, 255, 0.5) 30%,
+    rgba(207, 220, 255, 0.4) 50%,
+    rgba(207, 220, 255, 0.5) 70%,
+    rgba(207, 220, 255, 0.88) 100%
+  );
   position: relative;
 }
 
@@ -3105,7 +3190,14 @@ body:not(.homepage) .privacy-settings-link:hover {
 /* AI for Good Section Styles */
 .ai-for-good-section {
   padding: 4rem 0;
-  background: rgba(248, 244, 240, 0.85);
+  background: linear-gradient(
+    to bottom,
+    rgba(248, 244, 240, 0.92) 0%,
+    rgba(248, 244, 240, 0.45) 30%,
+    rgba(248, 244, 240, 0.35) 50%,
+    rgba(248, 244, 240, 0.45) 70%,
+    rgba(248, 244, 240, 0.92) 100%
+  );
   position: relative;
 }
 
@@ -3551,7 +3643,14 @@ body:not(.homepage) .privacy-settings-link:hover {
 /* Expert Answers Section */
 .expert-answers-section {
   padding: 5rem 0;
-  background-color: #f5f5f5;
+  background: linear-gradient(
+    to bottom,
+    rgba(245, 245, 245, 0.92) 0%,
+    rgba(245, 245, 245, 0.45) 25%,
+    rgba(245, 245, 245, 0.35) 50%,
+    rgba(245, 245, 245, 0.45) 75%,
+    rgba(245, 245, 245, 0.92) 100%
+  );
   position: relative;
 }
 
@@ -3981,7 +4080,14 @@ body:not(.homepage) .privacy-settings-link:hover {
 .news-section {
   padding: 6rem 0;
   min-height: 70vh;
-  background: rgba(248, 244, 240, 0.85);
+  background: linear-gradient(
+    to bottom,
+    rgba(248, 244, 240, 0.92) 0%,
+    rgba(248, 244, 240, 0.45) 25%,
+    rgba(248, 244, 240, 0.35) 50%,
+    rgba(248, 244, 240, 0.45) 75%,
+    rgba(248, 244, 240, 0.92) 100%
+  );
   position: relative;
   overflow: hidden;
   display: flex;
@@ -4362,9 +4468,16 @@ body:not(.homepage) .privacy-settings-link:hover {
     margin-bottom: 2rem;
 }
 
-/* Section with light gray background */
+/* Section with light gray background — transparent gradient to show grid */
 .bg-light {
-    background-color: #f9f9f9;
+    background: linear-gradient(
+        to bottom,
+        rgba(249, 249, 249, 0.92) 0%,
+        rgba(249, 249, 249, 0.45) 25%,
+        rgba(249, 249, 249, 0.35) 50%,
+        rgba(249, 249, 249, 0.45) 75%,
+        rgba(249, 249, 249, 0.92) 100%
+    );
 }
 
 /* ========================================
@@ -4402,9 +4515,16 @@ body:not(.homepage) .privacy-settings-link:hover {
     line-height: 1.5;
 }
 
-/* Blog section forced background */
+/* Blog section — transparent gradient to show grid */
 .blog-section {
-    background-color: #f8f4f0 !important;
+    background: linear-gradient(
+        to bottom,
+        rgba(248, 244, 240, 0.92) 0%,
+        rgba(248, 244, 240, 0.45) 25%,
+        rgba(248, 244, 240, 0.35) 50%,
+        rgba(248, 244, 240, 0.45) 75%,
+        rgba(248, 244, 240, 0.92) 100%
+    ) !important;
 }
 
 /* Link reset (no decoration, inherit color) */
