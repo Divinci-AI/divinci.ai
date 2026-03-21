@@ -43,8 +43,8 @@ lang = "fr"
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, rgba(30, 45, 102, 0.1), rgba(92, 226, 231, 0.1));
-    border: 2px solid rgba(92, 226, 231, 0.3);
+    background: linear-gradient(135deg, rgba(30, 45, 102, 0.1), rgba(184, 160, 128, 0.1));
+    border: 2px solid rgba(184, 160, 128, 0.3);
     border-radius: 50%;
     text-align: center;
     z-index: 2;
@@ -57,7 +57,7 @@ lang = "fr"
 .orbital-benefit {
     position: absolute;
     background: rgba(255, 255, 255, 0.9);
-    border: 2px solid rgba(92, 226, 231, 0.2);
+    border: 2px solid rgba(184, 160, 128, 0.2);
     border-radius: 50%;
     text-align: center;
     transition: all 0.3s ease;
@@ -78,7 +78,7 @@ lang = "fr"
 .orbital-benefit:nth-child(6):hover { transform: translate(-50%, -50%) rotate(288deg) translateY(-400px) rotate(-288deg) scale(1.05); }
 
 .orbital-benefit:hover {
-    box-shadow: 0 8px 24px rgba(92, 226, 231, 0.3);
+    box-shadow: 0 8px 24px rgba(184, 160, 128, 0.3);
 }
 
 .benefit-icon svg {
@@ -98,7 +98,7 @@ lang = "fr"
     background: rgba(30, 45, 102, 0.1);
     border-radius: 10px;
     padding: 20px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
 }
 
 .timeline-step {
@@ -136,7 +136,7 @@ lang = "fr"
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
@@ -151,12 +151,12 @@ lang = "fr"
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     text-align: center;
 }
 
 .accordion-item {
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     border-radius: 8px;
     margin-bottom: 1rem;
     overflow: hidden;
@@ -379,8 +379,8 @@ lang = "fr"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Comment Fonctionne AutoRAG</h2>
 
 <!-- Tab Interface for Details -->
-<div class="details-tabs" role="tablist" aria-label="Capacités AutoRAG" style="display: flex; justify-content: center; margin-bottom: 3rem; border-bottom: 2px solid rgba(92, 226, 231, 0.2);">
-    <button id="tab1-trigger" class="tab-trigger" role="tab" aria-selected="true" aria-controls="tab1-content" style="background: none; border: none; color: #1e3a2b; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid #5ce2e7; transition: all 0.3s ease;">Processus de Création de Données</button>
+<div class="details-tabs" role="tablist" aria-label="Capacités AutoRAG" style="display: flex; justify-content: center; margin-bottom: 3rem; border-bottom: 2px solid rgba(184, 160, 128, 0.2);">
+    <button id="tab1-trigger" class="tab-trigger" role="tab" aria-selected="true" aria-controls="tab1-content" style="background: none; border: none; color: #1e3a2b; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid var(--color-accent-primary, #b8a080); transition: all 0.3s ease;">Processus de Création de Données</button>
     <button id="tab2-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab2-content" style="background: none; border: none; color: #718096; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">Évaluation de Récupération</button>
     <button id="tab3-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab3-content" style="background: none; border: none; color: #718096; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">Optimisation de Génération</button>
 </div>
@@ -400,7 +400,7 @@ lang = "fr"
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-file-alt"></i>
@@ -411,7 +411,7 @@ lang = "fr"
 </div>
 </div>
 </div>
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-cut"></i>
@@ -436,7 +436,7 @@ lang = "fr"
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-search"></i>
@@ -447,7 +447,7 @@ lang = "fr"
 </div>
 </div>
 </div>
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-database"></i>
@@ -472,7 +472,7 @@ lang = "fr"
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-cogs"></i>
@@ -483,7 +483,7 @@ lang = "fr"
 </div>
 </div>
 </div>
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-check-circle"></i>
@@ -575,7 +575,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set clicked tab as selected
     target.setAttribute('aria-selected', 'true');
     target.style.color = '#1e3a2b';
-    target.style.borderBottomColor = '#5ce2e7';
+    target.style.borderBottomColor = 'var(--color-accent-primary, #b8a080)';
     
     // Show the associated tabpanel
     const tabpanelID = target.getAttribute('aria-controls');
@@ -651,12 +651,12 @@ document.addEventListener('DOMContentLoaded', function() {
 /* Tab styling */
 .tab-trigger:hover {
     color: #1e3a2b !important;
-    border-bottom-color: rgba(92, 226, 231, 0.5) !important;
+    border-bottom-color: rgba(184, 160, 128, 0.5) !important;
 }
 
 .tab-trigger[aria-selected="true"] {
     color: #1e3a2b !important;
-    border-bottom-color: #5ce2e7 !important;
+    border-bottom-color: var(--color-accent-primary, #b8a080) !important;
 }
 
 .tab-trigger[aria-selected="false"] {
@@ -730,7 +730,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Histoires de Succès</h2>
 
-<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(92, 226, 231, 0.2); margin-bottom: 3rem;">
+<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
 <h3 style="color: #1e3a2b; font-size: 2rem; margin-bottom: 1rem;">Société de Services Financiers Mondiale</h3>
 <p style="font-size: 1.25rem; color: #2d3c34; margin-bottom: 2rem; font-weight: 600;">87% de réduction des hallucinations de l'IA tout en traitant plus de 15 000 requêtes clients par jour</p>
 <p style="margin-bottom: 2rem;">Une société de services financiers leader avait besoin d'incorporer plus de 200 000 documents réglementaires et politiques internes dans leur assistant IA client. L'implémentation manuelle de RAG était estimée à plus de 8 mois. En utilisant AutoRAG, ils ont complété l'intégration en 3 semaines et atteint une précision sans précédent pour les questions de conformité réglementaire.</p>
@@ -895,7 +895,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 </section>
 
-<section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(92, 226, 231, 0.1)); padding: 4rem 0;">
+<section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(184, 160, 128, 0.1)); padding: 4rem 0;">
 <div class="container" style="text-align: center;">
 <h2 style="font-size: 2.5rem; color: #1e3a2b; margin-bottom: 1rem;">Prêt à Commencer ?</h2>
 <p style="font-size: 1.25rem; margin-bottom: 2rem; color: #2d3c34;">Transformez vos applications IA avec la solution complète d'AutoRAG.</p>

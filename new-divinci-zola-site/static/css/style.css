@@ -210,6 +210,41 @@ body > * {
   flex-wrap: wrap;
 }
 
+.feature-hero .cta-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0.875rem 2rem !important;
+  background: var(--color-neutral-inverse, #2d5a4f) !important;
+  color: white !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.feature-hero .cta-primary:hover {
+  background: var(--color-btn-primary-hover, #1e3a2b) !important;
+  transform: translateY(-1px);
+}
+
+.feature-hero .cta-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0.875rem 2rem !important;
+  background: transparent !important;
+  color: var(--color-neutral-primary, #2d3c34) !important;
+  border: 1.5px solid var(--color-border-medium, #c5bfb3) !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.feature-hero .cta-secondary:hover {
+  border-color: var(--color-neutral-inverse, #2d5a4f) !important;
+  background: rgba(45, 90, 79, 0.05) !important;
+}
+
 /* ═══ Shared CTA Card Styles for Feature Pages ═══ */
 .feature-page .arena-cta-wrapper {
   position: relative;

@@ -35,7 +35,7 @@ template = "roadmap.html"
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 15px;
-    background: linear-gradient(to right, #fff, #5ce2e7);
+    background: linear-gradient(to right, #fff, var(--color-accent-primary, #b8a080));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -48,7 +48,7 @@ template = "roadmap.html"
 .last-updated {
     font-size: 1rem;
     opacity: 0.8;
-    color: #5ce2e7;
+    color: var(--color-accent-primary, #b8a080);
 }
 
 .document-content {
@@ -72,7 +72,7 @@ template = "roadmap.html"
 }
 
 .version-tag.minor {
-    background: linear-gradient(135deg, #5ce2e7, #2fd6c2);
+    background: linear-gradient(135deg, var(--color-accent-primary, #b8a080), #2fd6c2);
 }
 
 .version-tag.patch {
@@ -80,7 +80,7 @@ template = "roadmap.html"
 }
 
 .changelog-item {
-    border-left: 3px solid rgba(92, 226, 231, 0.3);
+    border-left: 3px solid rgba(184, 160, 128, 0.3);
     padding-left: 20px;
     margin-bottom: 30px;
     position: relative;
@@ -94,8 +94,8 @@ template = "roadmap.html"
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: #5ce2e7;
-    box-shadow: 0 0 8px rgba(92, 226, 231, 0.6);
+    background: var(--color-accent-primary, #b8a080);
+    box-shadow: 0 0 8px rgba(184, 160, 128, 0.6);
 }
 
 .release-date {
@@ -127,9 +127,9 @@ template = "roadmap.html"
 }
 
 .category-new {
-    background-color: rgba(92, 226, 231, 0.15);
-    color: #5ce2e7;
-    border: 1px solid rgba(92, 226, 231, 0.3);
+    background-color: rgba(184, 160, 128, 0.15);
+    color: var(--color-accent-primary, #b8a080);
+    border: 1px solid rgba(184, 160, 128, 0.3);
 }
 
 .category-improvement {
@@ -166,7 +166,7 @@ template = "roadmap.html"
     content: '•';
     position: absolute;
     left: 0;
-    color: #5ce2e7;
+    color: var(--color-accent-primary, #b8a080);
     font-weight: bold;
 }
 
@@ -195,9 +195,9 @@ template = "roadmap.html"
 }
 
 .filter-button:hover, .filter-button.active {
-    background-color: rgba(92, 226, 231, 0.2);
-    border-color: rgba(92, 226, 231, 0.4);
-    color: #5ce2e7;
+    background-color: rgba(184, 160, 128, 0.2);
+    border-color: rgba(184, 160, 128, 0.4);
+    color: var(--color-accent-primary, #b8a080);
 }
 
 /* Sacred geometry decoration for changelog */

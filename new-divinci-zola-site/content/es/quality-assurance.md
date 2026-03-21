@@ -16,7 +16,7 @@ feature_category = "quality-assurance"
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(30, 45, 102, 0.05), rgba(92, 226, 231, 0.05));
+    background: linear-gradient(135deg, rgba(30, 45, 102, 0.05), rgba(184, 160, 128, 0.05));
     border-radius: 50%;
     margin-bottom: 3rem;
 }
@@ -79,8 +79,8 @@ feature_category = "quality-assurance"
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, rgba(30, 45, 102, 0.1), rgba(92, 226, 231, 0.1));
-    border: 2px solid rgba(92, 226, 231, 0.3);
+    background: linear-gradient(135deg, rgba(30, 45, 102, 0.1), rgba(184, 160, 128, 0.1));
+    border: 2px solid rgba(184, 160, 128, 0.3);
     border-radius: 50%;
     text-align: center;
     z-index: 2;
@@ -93,7 +93,7 @@ feature_category = "quality-assurance"
 .orbital-benefit {
     position: absolute;
     background: rgba(255, 255, 255, 0.9);
-    border: 2px solid rgba(92, 226, 231, 0.2);
+    border: 2px solid rgba(184, 160, 128, 0.2);
     border-radius: 50%;
     text-align: center;
     transition: all 0.3s ease;
@@ -114,7 +114,7 @@ feature_category = "quality-assurance"
 .orbital-benefit:nth-child(6):hover { transform: translate(-50%, -50%) rotate(288deg) translateY(-420px) rotate(-288deg) scale(1.05); }
 
 .orbital-benefit:hover {
-    box-shadow: 0 8px 24px rgba(92, 226, 231, 0.3);
+    box-shadow: 0 8px 24px rgba(184, 160, 128, 0.3);
 }
 
 .benefit-icon svg {
@@ -134,7 +134,7 @@ feature_category = "quality-assurance"
     background: rgba(30, 45, 102, 0.1);
     border-radius: 10px;
     padding: 20px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
 }
 
 .case-studies-grid {
@@ -148,7 +148,7 @@ feature_category = "quality-assurance"
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
@@ -163,12 +163,12 @@ feature_category = "quality-assurance"
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     text-align: center;
 }
 
 .accordion-item {
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     border-radius: 8px;
     margin-bottom: 1rem;
     overflow: hidden;
@@ -243,7 +243,7 @@ feature_category = "quality-assurance"
     background: rgba(255, 255, 255, 0.9);
     padding: 3rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     margin: 3rem 0;
 }
 
@@ -259,7 +259,7 @@ feature_category = "quality-assurance"
     padding: 2rem;
     background: rgba(107, 70, 193, 0.05);
     border-radius: 12px;
-    border: 2px solid rgba(92, 226, 231, 0.2);
+    border: 2px solid rgba(184, 160, 128, 0.2);
     position: relative;
 }
 
@@ -503,7 +503,7 @@ feature_category = "quality-assurance"
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Historias de Éxito</h2>
 
-<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(92, 226, 231, 0.2); margin-bottom: 3rem;">
+<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
 <h3 style="color: #1e3a2b; font-size: 2rem; margin-bottom: 1rem;">Proveedor Global de Salud</h3>
 <p style="font-size: 1.25rem; color: #2d3c34; margin-bottom: 2rem; font-weight: 600;">95% de reducción en alucinaciones de IA mientras procesa más de 50,000 consultas médicas diariamente</p>
 <p style="margin-bottom: 2rem;">Un proveedor de salud líder necesitaba asegurar que las respuestas de IA médica cumplieran con los más altos estándares de seguridad. Usando nuestra plataforma de Aseguramiento de Calidad, implementaron pruebas y validación integrales, logrando una precisión sin precedentes para sistemas de IA orientados al paciente mientras mantenían el cumplimiento regulatorio.</p>
@@ -657,7 +657,7 @@ feature_category = "quality-assurance"
 </div>
 </section>
 
-<section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(92, 226, 231, 0.1)); padding: 4rem 0;">
+<section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(184, 160, 128, 0.1)); padding: 4rem 0;">
 <div class="container" style="text-align: center;">
 <h2 style="font-size: 2.5rem; color: #1e3a2b; margin-bottom: 1rem;">¿Listo para Asegurar la Calidad de IA?</h2>
 <p style="font-size: 1.25rem; margin-bottom: 2rem; color: #2d3c34;">Transforma tu aseguramiento de calidad de IA con pruebas y monitoreo de nivel empresarial.</p>

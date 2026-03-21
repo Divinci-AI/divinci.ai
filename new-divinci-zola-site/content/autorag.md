@@ -51,8 +51,8 @@ feature_category = "data-management"
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, rgba(30, 45, 102, 0.1), rgba(92, 226, 231, 0.1));
-    border: 2px solid rgba(92, 226, 231, 0.3);
+    background: linear-gradient(135deg, rgba(30, 45, 102, 0.1), rgba(184, 160, 128, 0.1));
+    border: 2px solid rgba(184, 160, 128, 0.3);
     border-radius: 50%;
     text-align: center;
     z-index: 2;
@@ -65,7 +65,7 @@ feature_category = "data-management"
 .orbital-benefit {
     position: absolute;
     background: rgba(255, 255, 255, 0.9);
-    border: 2px solid rgba(92, 226, 231, 0.2);
+    border: 2px solid rgba(184, 160, 128, 0.2);
     border-radius: 50%;
     text-align: center;
     transition: all 0.3s ease;
@@ -86,7 +86,7 @@ feature_category = "data-management"
 .orbital-benefit:nth-child(6):hover { transform: translate(-50%, -50%) rotate(288deg) translateY(-400px) rotate(-288deg) scale(1.05); }
 
 .orbital-benefit:hover {
-    box-shadow: 0 8px 24px rgba(92, 226, 231, 0.3);
+    box-shadow: 0 8px 24px rgba(184, 160, 128, 0.3);
 }
 
 .benefit-icon svg {
@@ -106,7 +106,7 @@ feature_category = "data-management"
     background: rgba(30, 45, 102, 0.1);
     border-radius: 10px;
     padding: 20px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
 }
 
 .timeline-step {
@@ -144,7 +144,7 @@ feature_category = "data-management"
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
@@ -159,12 +159,12 @@ feature_category = "data-management"
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     text-align: center;
 }
 
 .accordion-item {
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     border-radius: 8px;
     margin-bottom: 1rem;
     overflow: hidden;
@@ -476,8 +476,8 @@ feature_category = "data-management"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">How AutoRAG Works</h2>
 
 <!-- Tab Interface for Details -->
-<div class="details-tabs" role="tablist" aria-label="AutoRAG capabilities" style="display: flex; justify-content: center; margin-bottom: 3rem; border-bottom: 2px solid rgba(92, 226, 231, 0.2);">
-    <button id="tab1-trigger" class="tab-trigger" role="tab" aria-selected="true" aria-controls="tab1-content" style="background: none; border: none; color: #1e3a2b; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid #5ce2e7; transition: all 0.3s ease;">Data Creation Process</button>
+<div class="details-tabs" role="tablist" aria-label="AutoRAG capabilities" style="display: flex; justify-content: center; margin-bottom: 3rem; border-bottom: 2px solid rgba(184, 160, 128, 0.2);">
+    <button id="tab1-trigger" class="tab-trigger" role="tab" aria-selected="true" aria-controls="tab1-content" style="background: none; border: none; color: #1e3a2b; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid var(--color-accent-primary, #b8a080); transition: all 0.3s ease;">Data Creation Process</button>
     <button id="tab2-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab2-content" style="background: none; border: none; color: #718096; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">Retrieval Evaluation</button>
     <button id="tab3-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab3-content" style="background: none; border: none; color: #718096; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">Generation Optimization</button>
 </div>
@@ -497,7 +497,7 @@ feature_category = "data-management"
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-file-alt"></i>
@@ -508,7 +508,7 @@ feature_category = "data-management"
 </div>
 </div>
 </div>
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-cut"></i>
@@ -533,7 +533,7 @@ feature_category = "data-management"
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-search"></i>
@@ -544,7 +544,7 @@ feature_category = "data-management"
 </div>
 </div>
 </div>
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-database"></i>
@@ -569,7 +569,7 @@ feature_category = "data-management"
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-cogs"></i>
@@ -580,7 +580,7 @@ feature_category = "data-management"
 </div>
 </div>
 </div>
-<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(92, 226, 231, 0.2);">
+<div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
 <div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
 <i class="fas fa-check-circle"></i>
@@ -672,7 +672,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set clicked tab as selected
     target.setAttribute('aria-selected', 'true');
     target.style.color = '#1e3a2b';
-    target.style.borderBottomColor = '#5ce2e7';
+    target.style.borderBottomColor = 'var(--color-accent-primary, #b8a080)';
     
     // Show the associated tabpanel
     const tabpanelID = target.getAttribute('aria-controls');
@@ -748,12 +748,12 @@ document.addEventListener('DOMContentLoaded', function() {
 /* Tab styling */
 .tab-trigger:hover {
     color: #1e3a2b !important;
-    border-bottom-color: rgba(92, 226, 231, 0.5) !important;
+    border-bottom-color: rgba(184, 160, 128, 0.5) !important;
 }
 
 .tab-trigger[aria-selected="true"] {
     color: #1e3a2b !important;
-    border-bottom-color: #5ce2e7 !important;
+    border-bottom-color: var(--color-accent-primary, #b8a080) !important;
 }
 
 .tab-trigger[aria-selected="false"] {
@@ -827,7 +827,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>
 
-<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(92, 226, 231, 0.2); margin-bottom: 3rem;">
+<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
 <h3 style="color: #1e3a2b; font-size: 2rem; margin-bottom: 1rem;">Global Financial Services Firm</h3>
 <p style="font-size: 1.25rem; color: #2d3c34; margin-bottom: 2rem; font-weight: 600;">87% reduction in AI hallucinations while handling 15,000+ client queries daily</p>
 <p style="margin-bottom: 2rem;">A leading financial services firm needed to incorporate 200,000+ regulatory documents and internal policies into their client-facing AI assistant. Manual RAG implementation was estimated at 8+ months. Using AutoRAG, they completed the integration in 3 weeks and achieved unprecedented accuracy for regulatory compliance questions.</p>

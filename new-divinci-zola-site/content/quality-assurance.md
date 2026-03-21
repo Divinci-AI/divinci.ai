@@ -51,8 +51,8 @@ feature_category = "quality-assurance"
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, rgba(30, 45, 102, 0.1), rgba(92, 226, 231, 0.1));
-    border: 2px solid rgba(92, 226, 231, 0.3);
+    background: linear-gradient(135deg, rgba(30, 45, 102, 0.1), rgba(184, 160, 128, 0.1));
+    border: 2px solid rgba(184, 160, 128, 0.3);
     border-radius: 50%;
     text-align: center;
     z-index: 2;
@@ -65,7 +65,7 @@ feature_category = "quality-assurance"
 .orbital-benefit {
     position: absolute;
     background: rgba(255, 255, 255, 0.9);
-    border: 2px solid rgba(92, 226, 231, 0.2);
+    border: 2px solid rgba(184, 160, 128, 0.2);
     border-radius: 50%;
     text-align: center;
     transition: all 0.3s ease;
@@ -86,7 +86,7 @@ feature_category = "quality-assurance"
 .orbital-benefit:nth-child(6):hover { transform: translate(-50%, -50%) rotate(288deg) translateY(-420px) rotate(-288deg) scale(1.05); }
 
 .orbital-benefit:hover {
-    box-shadow: 0 8px 24px rgba(92, 226, 231, 0.3);
+    box-shadow: 0 8px 24px rgba(184, 160, 128, 0.3);
 }
 
 .benefit-icon svg {
@@ -106,7 +106,7 @@ feature_category = "quality-assurance"
     background: rgba(30, 45, 102, 0.1);
     border-radius: 10px;
     padding: 20px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
 }
 
 .timeline-step {
@@ -144,7 +144,7 @@ feature_category = "quality-assurance"
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
@@ -159,12 +159,12 @@ feature_category = "quality-assurance"
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     text-align: center;
 }
 
 .accordion-item {
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     border-radius: 8px;
     margin-bottom: 1rem;
     overflow: hidden;
@@ -266,7 +266,7 @@ feature_category = "quality-assurance"
     background: rgba(255, 255, 255, 0.9);
     padding: 3rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     margin: 3rem 0;
 }
 
@@ -282,7 +282,7 @@ feature_category = "quality-assurance"
     padding: 2rem;
     background: rgba(107, 70, 193, 0.05);
     border-radius: 12px;
-    border: 2px solid rgba(92, 226, 231, 0.2);
+    border: 2px solid rgba(184, 160, 128, 0.2);
     position: relative;
 }
 
@@ -304,7 +304,7 @@ feature_category = "quality-assurance"
 <!-- Hero Section -->
 <div class="feature-hero">
 <div class="feature-hero-bg">
-<img src="/images/hero-qa.webp" alt="LLM Quality Assurance">
+<img src="/images/hero-qa.webp" alt="LLM Quality Assurance" style="object-position: center 25%;">
 </div>
 <div class="feature-hero-inner">
 <div class="feature-hero-card">
@@ -532,7 +532,7 @@ feature_category = "quality-assurance"
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>
 
-<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(92, 226, 231, 0.2); margin-bottom: 3rem;">
+<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
 <h3 style="color: #1e3a2b; font-size: 2rem; margin-bottom: 1rem;">Global Healthcare Provider</h3>
 <p style="font-size: 1.25rem; color: #2d3c34; margin-bottom: 2rem; font-weight: 600;">95% reduction in AI hallucinations while processing 50,000+ medical queries daily</p>
 <p style="margin-bottom: 2rem;">A leading healthcare provider needed to ensure medical AI responses met the highest safety standards. Using our Quality Assurance platform, they implemented comprehensive testing and validation, achieving unprecedented accuracy for patient-facing AI systems while maintaining regulatory compliance.</p>

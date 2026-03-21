@@ -34,7 +34,7 @@ template = "roadmap.html"
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 15px;
-    background: linear-gradient(to right, #fff, #5ce2e7);
+    background: linear-gradient(to right, #fff, var(--color-accent-primary, #b8a080));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -47,7 +47,7 @@ template = "roadmap.html"
 .last-updated {
     font-size: 1rem;
     opacity: 0.8;
-    color: #5ce2e7;
+    color: var(--color-accent-primary, #b8a080);
 }
 
 .document-content {
@@ -77,7 +77,7 @@ template = "roadmap.html"
     content: '';
     position: absolute;
     width: 4px;
-    background: linear-gradient(to bottom, rgba(92, 226, 231, 0.8), rgba(92, 226, 231, 0.2));
+    background: linear-gradient(to bottom, rgba(184, 160, 128, 0.8), rgba(184, 160, 128, 0.2));
     top: 0;
     bottom: 0;
     left: 50%;
@@ -100,12 +100,12 @@ template = "roadmap.html"
     width: 24px;
     height: 24px;
     right: -12px;
-    background: rgba(92, 226, 231, 0.7);
+    background: rgba(184, 160, 128, 0.7);
     border: 4px solid #1e3a2b;
     top: 20px;
     border-radius: 50%;
     z-index: 1;
-    box-shadow: 0 0 10px rgba(92, 226, 231, 0.5);
+    box-shadow: 0 0 10px rgba(184, 160, 128, 0.5);
 }
 
 .left {
@@ -126,7 +126,7 @@ template = "roadmap.html"
     padding: 20px;
     background: rgba(255, 255, 255, 0.03);
     border-radius: 10px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     position: relative;
@@ -140,14 +140,14 @@ template = "roadmap.html"
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 1px solid rgba(92, 226, 231, 0.1);
+    border: 1px solid rgba(184, 160, 128, 0.1);
     opacity: 0.1;
     z-index: 0;
 }
 
 .roadmap-quarter-title {
     font-weight: 600;
-    color: #5ce2e7;
+    color: var(--color-accent-primary, #b8a080);
     font-size: 1.4rem;
     margin-bottom: 15px;
 }
@@ -162,9 +162,9 @@ template = "roadmap.html"
 }
 
 .status-planned {
-    background-color: rgba(92, 226, 231, 0.1);
-    color: #5ce2e7;
-    border: 1px solid rgba(92, 226, 231, 0.3);
+    background-color: rgba(184, 160, 128, 0.1);
+    color: var(--color-accent-primary, #b8a080);
+    border: 1px solid rgba(184, 160, 128, 0.3);
 }
 
 .status-development {
@@ -205,7 +205,7 @@ template = "roadmap.html"
 
 .roadmap-list li .icon {
     margin-right: 10px;
-    color: #5ce2e7;
+    color: var(--color-accent-primary, #b8a080);
 }
 
 .left .roadmap-list li .icon {
@@ -217,12 +217,12 @@ template = "roadmap.html"
 .document-content h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: #5ce2e7;
+    color: var(--color-accent-primary, #b8a080);
     margin: 3rem 0 1.5rem 0;
 }
 
 .document-content a {
-    color: #5ce2e7;
+    color: var(--color-accent-primary, #b8a080);
     text-decoration: underline;
 }
 

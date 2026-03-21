@@ -16,7 +16,7 @@ feature_category = "development-tools"
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(30, 45, 102, 0.05), rgba(92, 226, 231, 0.05));
+    background: linear-gradient(135deg, rgba(30, 45, 102, 0.05), rgba(184, 160, 128, 0.05));
     border-radius: 50%;
     margin-bottom: 3rem;
 }
@@ -71,14 +71,14 @@ feature_category = "development-tools"
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
 }
 
 .capability-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 32px rgba(92, 226, 231, 0.2);
+    box-shadow: 0 8px 32px rgba(184, 160, 128, 0.2);
 }
 
 .capability-icon {
@@ -97,7 +97,7 @@ feature_category = "development-tools"
     background: rgba(255, 255, 255, 0.9);
     padding: 3rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     margin: 3rem 0;
 }
 
@@ -113,7 +113,7 @@ feature_category = "development-tools"
     padding: 2rem;
     background: rgba(107, 70, 193, 0.05);
     border-radius: 12px;
-    border: 2px solid rgba(92, 226, 231, 0.2);
+    border: 2px solid rgba(184, 160, 128, 0.2);
     position: relative;
 }
 
@@ -139,10 +139,10 @@ feature_category = "development-tools"
 }
 
 .strategy-card {
-    background: linear-gradient(135deg, rgba(107, 70, 193, 0.05), rgba(92, 226, 231, 0.05));
+    background: linear-gradient(135deg, rgba(107, 70, 193, 0.05), rgba(184, 160, 128, 0.05));
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     position: relative;
     overflow: hidden;
 }
@@ -161,7 +161,7 @@ feature_category = "development-tools"
     background: rgba(255, 255, 255, 0.9);
     padding: 3rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     margin: 3rem 0;
 }
 
@@ -177,7 +177,7 @@ feature_category = "development-tools"
     padding: 1.5rem;
     background: rgba(107, 70, 193, 0.05);
     border-radius: 8px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
 }
 
 .metric-value {
@@ -204,7 +204,7 @@ feature_category = "development-tools"
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
@@ -220,11 +220,11 @@ feature_category = "development-tools"
     padding: 2rem;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
 }
 
 .accordion-item {
-    border: 1px solid rgba(92, 226, 231, 0.2);
+    border: 1px solid rgba(184, 160, 128, 0.2);
     border-radius: 8px;
     margin-bottom: 1rem;
     overflow: hidden;
@@ -278,7 +278,7 @@ feature_category = "development-tools"
 .progress-bar {
     width: 100%;
     height: 8px;
-    background: rgba(92, 226, 231, 0.2);
+    background: rgba(184, 160, 128, 0.2);
     border-radius: 4px;
     overflow: hidden;
     margin: 1rem 0;
@@ -306,7 +306,7 @@ feature_category = "development-tools"
     text-align: center;
     flex: 1;
     margin: 0 0.5rem;
-    border: 2px solid rgba(92, 226, 231, 0.2);
+    border: 2px solid rgba(184, 160, 128, 0.2);
 }
 
 .flow-arrow {
@@ -559,7 +559,7 @@ feature_category = "development-tools"
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Histoires de Succès</h2>
 
-<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(92, 226, 231, 0.2); margin-bottom: 3rem;">
+<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
 <h3 style="color: #16214c; font-size: 2rem; margin-bottom: 1rem;">Plateforme E-commerce Mondiale</h3>
 <p style="font-size: 1.25rem; color: #254284; margin-bottom: 2rem; font-weight: 600;">Réduction du temps de déploiement de 90% tout en augmentant la fréquence des versions de 400%</p>
 <p style="margin-bottom: 2rem;">Une plateforme e-commerce majeure devait déployer des modèles IA pour des moteurs de recommandation dans 15 pays avec zéro temps d'arrêt. En utilisant notre plateforme de Gestion des Versions, ils ont implémenté des déploiements bleu-vert et ont réalisé des mises à jour de modèles transparentes affectant plus de 100M d'utilisateurs quotidiens tout en maintenant 99,99% de disponibilité.</p>
@@ -712,7 +712,7 @@ feature_category = "development-tools"
 </div>
 </section>
 
-<section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(92, 226, 231, 0.1)); padding: 4rem 0;">
+<section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(184, 160, 128, 0.1)); padding: 4rem 0;">
 <div class="container" style="text-align: center;">
 <h2 style="font-size: 2.5rem; color: #16214c; margin-bottom: 1rem;">Prêt à Transformer le Déploiement IA ?</h2>
 <p style="font-size: 1.25rem; margin-bottom: 2rem; color: #254284;">Déployez avec confiance, effectuez un rollback instantané et maintenez les plus hauts standards de fiabilité.</p>
