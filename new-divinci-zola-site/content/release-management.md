@@ -326,9 +326,26 @@ feature_category = "development-tools"
 }
 </style>
 
+<!-- Hero Section -->
+<div class="feature-hero">
+<div class="feature-hero-bg">
+<img src="/images/hero-release.webp" alt="AI Release Management">
+</div>
+<div class="feature-hero-inner">
+<div class="feature-hero-card">
+<h1>AI Release Management</h1>
+<p class="subtitle">Enterprise DevOps for AI systems. Version control, rollback capabilities, deployment automation, and continuous monitoring.</p>
+<div class="hero-ctas">
+<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="cta-primary" target="_blank">Request demo</a>
+<a href="/quality-assurance/" class="cta-secondary">Explore Quality Assurance</a>
+</div>
+</div>
+</div>
+</div>
+
 <section id="feature-overview" class="feature-overview section-padding">
 <div class="container">
-<h2 class="section-heading" style="margin-top: 4.44rem; margin-bottom: 2rem;">What is AI Release Management?</h2>
+<h2 class="section-heading" style="margin-top: 3rem; margin-bottom: 2rem;">What is AI Release Management?</h2>
 
 <div class="release-diagram-container" style="text-align: center; margin: 2rem 0;">
   <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/release-cycle-diagram.svg" alt="AI Release Cycle Management Diagram" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />

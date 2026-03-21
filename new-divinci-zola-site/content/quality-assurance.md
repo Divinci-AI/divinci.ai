@@ -301,10 +301,26 @@ feature_category = "quality-assurance"
 }
 </style>
 
+<!-- Hero Section -->
+<div class="feature-hero">
+<div class="feature-hero-bg">
+<img src="/images/hero-qa.webp" alt="LLM Quality Assurance">
+</div>
+<div class="feature-hero-inner">
+<div class="feature-hero-card">
+<h1>LLM Quality Assurance</h1>
+<p class="subtitle">Enterprise testing and validation for AI applications. Automated hallucination detection, bias monitoring, and continuous quality scoring.</p>
+<div class="hero-ctas">
+<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="cta-primary" target="_blank">Request demo</a>
+<a href="/autorag/" class="cta-secondary">Explore AutoRAG</a>
+</div>
+</div>
+</div>
+</div>
 
 <section id="feature-overview" class="feature-overview section-padding">
 <div class="container">
-<h2 class="section-heading" style="margin-top: 2rem; margin-bottom: 3rem;">What is LLM Quality Assurance?</h2>
+<h2 class="section-heading" style="margin-top: 3rem; margin-bottom: 3rem;">What is LLM Quality Assurance?</h2>
 
 <div class="qa-diagram-container" style="text-align: center; margin: 2rem 0;">
   <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />

@@ -261,12 +261,101 @@ feature_category = "data-management"
     font-weight: 600;
     color: #2d3c34;
 }
+/* Hero section */
+.feature-hero {
+    position: relative;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    overflow: hidden;
+}
+
+.feature-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.feature-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.feature-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(248,244,240,0.15) 0%, rgba(248,244,240,0.5) 40%, rgba(248,244,240,0.95) 100%);
+}
+
+.feature-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.feature-hero-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: var(--radius-large, 16px);
+    padding: 3rem 3.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.feature-hero h1 {
+    font-family: 'Fraunces', serif !important;
+    font-size: clamp(2rem, 4vw, 3rem) !important;
+    color: var(--color-neutral-primary) !important;
+    margin-bottom: 1rem !important;
+    line-height: 1.15 !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: var(--color-neutral-primary) !important;
+}
+
+.feature-hero .subtitle {
+    font-size: 1.05rem;
+    color: var(--color-neutral-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    text-shadow: none !important;
+}
+
+.feature-hero .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 </style>
 
+<!-- Hero Section -->
+<div class="feature-hero">
+<div class="feature-hero-bg">
+<img src="/images/hero-autorag.webp" alt="AutoRAG - Automated Retrieval Augmented Generation">
+</div>
+<div class="feature-hero-inner">
+<div class="feature-hero-card">
+<h1>AutoRAG</h1>
+<p class="subtitle">Automatically find the optimal RAG pipeline for your data. Evaluate multiple retrieval and generation strategies to maximize accuracy and minimize hallucinations.</p>
+<div class="hero-ctas">
+<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="cta-primary" target="_blank">Request demo</a>
+<a href="/rag-arena/" class="cta-secondary">Explore RAG Arena</a>
+</div>
+</div>
+</div>
+</div>
 
 <section id="feature-overview" class="feature-overview section-padding">
 <div class="container">
-<h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">What is AutoRAG?</h2>
+<h2 class="section-heading" style="margin-top: 3rem; margin-bottom: 3rem;">What is AutoRAG?</h2>
 
 <div class="autorag-diagram-container" style="text-align: center; margin: 2rem 0;">
   <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-diagram.svg" alt="AutoRAG Knowledge Base Connection Diagram" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;" />
