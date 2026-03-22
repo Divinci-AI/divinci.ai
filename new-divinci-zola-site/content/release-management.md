@@ -65,16 +65,12 @@ feature_category = "development-tools"
 }
 
 .capability-icon {
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    height: 120px;
     margin: 0 auto 1.5rem;
-    background: linear-gradient(135deg, #1e3a2b, #2d3c34);
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    padding: 18px;
 }
 
 .capability-icon svg {
@@ -396,15 +392,20 @@ feature_category = "development-tools"
 <div class="capabilities-grid">
 <div class="capability-card">
 <div class="capability-icon">
-<svg viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-<circle cx="24" cy="12" r="6"/>
-<line x1="24" y1="18" x2="24" y2="28"/>
-<circle cx="14" cy="34" r="5"/>
-<circle cx="34" cy="34" r="5"/>
-<line x1="24" y1="28" x2="14" y2="29"/>
-<line x1="24" y1="28" x2="34" y2="29"/>
-<line x1="14" y1="39" x2="14" y2="44" stroke-dasharray="2 2"/>
-<line x1="34" y1="39" x2="34" y2="44" stroke-dasharray="2 2"/>
+<svg viewBox="0 0 200 100" fill="none" stroke-linecap="round">
+<circle cx="100" cy="20" r="10" stroke="#2d5a4f" stroke-width="2" fill="rgba(45,90,79,0.08)"/>
+<text x="96" y="24" font-size="10" fill="#2d5a4f" font-family="serif">v3</text>
+<line x1="100" y1="30" x2="100" y2="50" stroke="#b8a080" stroke-width="1.5"/>
+<line x1="100" y1="50" x2="60" y2="65" stroke="#b8a080" stroke-width="1.5"/>
+<line x1="100" y1="50" x2="140" y2="65" stroke="#b8a080" stroke-width="1.5"/>
+<circle cx="60" cy="70" r="8" stroke="#3d6b4f" stroke-width="1.5" fill="rgba(61,107,79,0.08)"/>
+<text x="54" y="74" font-size="8" fill="#3d6b4f" font-family="serif">dev</text>
+<circle cx="140" cy="70" r="8" stroke="#8b7659" stroke-width="1.5" fill="rgba(184,160,128,0.08)"/>
+<text x="131" y="74" font-size="8" fill="#8b7659" font-family="serif">prod</text>
+<line x1="60" y1="78" x2="60" y2="92" stroke="#3d6b4f" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="60" cy="95" r="4" stroke="#3d6b4f" stroke-width="1" fill="rgba(61,107,79,0.15)"/>
+<line x1="140" y1="78" x2="140" y2="92" stroke="#8b7659" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="140" cy="95" r="4" stroke="#8b7659" stroke-width="1" fill="rgba(184,160,128,0.15)"/>
 </svg>
 </div>
 <h3>Version Control for AI</h3>
@@ -413,15 +414,20 @@ feature_category = "development-tools"
 
 <div class="capability-card">
 <div class="capability-icon">
-<svg viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-<rect x="6" y="8" width="14" height="10" rx="2"/>
-<line x1="20" y1="13" x2="28" y2="13"/>
-<rect x="28" y="8" width="14" height="10" rx="2"/>
-<line x1="35" y1="18" x2="35" y2="24"/>
-<polyline points="31 22 35 26 39 22"/>
-<rect x="17" y="28" width="14" height="10" rx="2"/>
-<circle cx="24" cy="33" r="2" fill="white" stroke="none"/>
-<line x1="24" y1="38" x2="24" y2="44" stroke-dasharray="3 2"/>
+<svg viewBox="0 0 200 100" fill="none" stroke-linecap="round">
+<rect x="10" y="20" width="50" height="30" rx="5" stroke="#b8a080" stroke-width="1.5" fill="rgba(184,160,128,0.06)"/>
+<text x="20" y="39" font-size="9" fill="#8b7659" font-family="sans-serif">Build</text>
+<line x1="60" y1="35" x2="75" y2="35" stroke="#b8a080" stroke-width="1.5"/>
+<polygon points="73,31 80,35 73,39" fill="#b8a080"/>
+<rect x="80" y="20" width="50" height="30" rx="5" stroke="#3d6b4f" stroke-width="1.5" fill="rgba(61,107,79,0.06)"/>
+<text x="92" y="39" font-size="9" fill="#3d6b4f" font-family="sans-serif">Test</text>
+<line x1="130" y1="35" x2="145" y2="35" stroke="#3d6b4f" stroke-width="1.5"/>
+<polygon points="143,31 150,35 143,39" fill="#3d6b4f"/>
+<rect x="150" y="20" width="50" height="30" rx="5" stroke="#2d5a4f" stroke-width="2" fill="rgba(45,90,79,0.08)"/>
+<text x="155" y="39" font-size="9" fill="#2d5a4f" font-family="sans-serif">Deploy</text>
+<polyline points="175,50 175,70 100,70 100,80" stroke="#b8a080" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="100" cy="84" r="5" stroke="#2d5a4f" stroke-width="1.5" fill="rgba(45,90,79,0.1)"/>
+<polyline points="97,84 100,87 104,82" stroke="#2d5a4f" stroke-width="1.5"/>
 </svg>
 </div>
 <h3>Automated Deployment</h3>
@@ -430,19 +436,21 @@ feature_category = "development-tools"
 
 <div class="capability-card">
 <div class="capability-icon">
-<svg viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-<rect x="4" y="14" width="18" height="22" rx="3"/>
-<rect x="26" y="14" width="18" height="22" rx="3" stroke-dasharray="3 2"/>
-<line x1="10" y1="22" x2="16" y2="22"/>
-<line x1="10" y1="28" x2="14" y2="28"/>
-<line x1="32" y1="22" x2="38" y2="22"/>
-<line x1="32" y1="28" x2="36" y2="28"/>
-<path d="M13 6 L24 10 L35 6" stroke-width="1.2"/>
-<circle cx="24" cy="10" r="2" fill="white" stroke="none"/>
-<line x1="13" y1="40" x2="13" y2="44"/>
-<line x1="35" y1="40" x2="35" y2="44"/>
-<path d="M8 44 L18 44" stroke-width="2"/>
-<path d="M30 44 L40 44" stroke-dasharray="3 2"/>
+<svg viewBox="0 0 200 100" fill="none" stroke-linecap="round">
+<text x="10" y="15" font-size="7" fill="#8b7659" font-family="sans-serif">TRAFFIC SPLIT</text>
+<rect x="10" y="25" width="180" height="12" rx="6" stroke="#e5e5e5" stroke-width="1" fill="rgba(229,229,229,0.3)"/>
+<rect x="10" y="25" width="18" height="12" rx="6" fill="rgba(45,90,79,0.3)"/>
+<text x="14" y="34" font-size="7" fill="#2d5a4f" font-family="sans-serif">5%</text>
+<rect x="10" y="45" width="180" height="12" rx="6" stroke="#e5e5e5" stroke-width="1" fill="rgba(229,229,229,0.3)"/>
+<rect x="10" y="45" width="54" height="12" rx="6" fill="rgba(45,90,79,0.4)"/>
+<text x="22" y="54" font-size="7" fill="#2d5a4f" font-family="sans-serif">25%</text>
+<rect x="10" y="65" width="180" height="12" rx="6" stroke="#e5e5e5" stroke-width="1" fill="rgba(229,229,229,0.3)"/>
+<rect x="10" y="65" width="108" height="12" rx="6" fill="rgba(45,90,79,0.5)"/>
+<text x="45" y="74" font-size="7" fill="#fff" font-family="sans-serif">50%</text>
+<rect x="10" y="85" width="180" height="12" rx="6" stroke="#2d5a4f" stroke-width="1.5" fill="rgba(45,90,79,0.6)"/>
+<text x="80" y="94" font-size="7" fill="#fff" font-family="sans-serif">100%</text>
+<polyline points="195,31 195,51 195,71 195,91" stroke="#b8a080" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="172" y="12" font-size="7" fill="#3d6b4f" font-family="sans-serif">canary</text>
 </svg>
 </div>
 <h3>Intelligent Rollout Strategies</h3>
@@ -451,12 +459,13 @@ feature_category = "development-tools"
 
 <div class="capability-card">
 <div class="capability-icon">
-<svg viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-<path d="M24 4 L24 18"/>
-<path d="M24 18 C24 18 8 24 8 34 C8 40 15 44 24 44 C33 44 40 40 40 34 C40 24 24 18 24 18Z"/>
-<polyline points="20 14 24 18 28 14"/>
-<circle cx="24" cy="32" r="4"/>
-<polyline points="22 32 24 34 27 30" stroke-width="1.8"/>
+<svg viewBox="0 0 200 100" fill="none" stroke-linecap="round">
+<path d="M100 5 L100 25" stroke="#b8a080" stroke-width="1.5"/>
+<path d="M100 25 C100 25 50 40 50 65 C50 82 72 95 100 95 C128 95 150 82 150 65 C150 40 100 25 100 25Z" stroke="#2d5a4f" stroke-width="2" fill="rgba(45,90,79,0.05)"/>
+<polyline points="92,20 100,28 108,20" stroke="#b8a080" stroke-width="1.5"/>
+<circle cx="100" cy="62" r="12" stroke="#3d6b4f" stroke-width="1.5" fill="rgba(61,107,79,0.08)"/>
+<polyline points="94,62 99,68 108,56" stroke="#2d5a4f" stroke-width="2.5"/>
+<text x="72" y="88" font-size="8" fill="#8b7659" font-family="sans-serif">rollback ready</text>
 </svg>
 </div>
 <h3>Safety & Rollback</h3>
