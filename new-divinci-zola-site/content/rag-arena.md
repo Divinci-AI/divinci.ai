@@ -299,6 +299,127 @@ feature_category = "data-management"
     background: var(--color-btn-primary-hover);
 }
 
+/* Arena loading spinner */
+.arena-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    gap: 1rem;
+}
+
+.arena-spinner .spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid var(--color-border-light);
+    border-top-color: var(--color-accent-primary);
+    border-radius: 50%;
+    animation: arena-spin 0.8s linear infinite;
+}
+
+@keyframes arena-spin {
+    to { transform: rotate(360deg); }
+}
+
+.arena-spinner .spinner-label {
+    font-size: 0.82rem;
+    color: var(--color-neutral-secondary);
+    font-style: italic;
+}
+
+/* Arena card states */
+.arena-card.is-loading .arena-card-body,
+.arena-card.is-loading .arena-card-footer {
+    display: none;
+}
+
+.arena-card.is-loading .arena-spinner {
+    display: flex;
+}
+
+.arena-card:not(.is-loading) .arena-spinner {
+    display: none;
+}
+
+/* Typewriter reveal */
+.arena-card .arena-card-body {
+    overflow: hidden;
+}
+
+.arena-card.is-revealing .arena-card-body {
+    animation: arena-fadeIn 0.4s ease-out;
+}
+
+@keyframes arena-fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.arena-card.is-revealing .arena-card-footer {
+    animation: arena-fadeIn 0.3s ease-out 0.2s both;
+}
+
+/* Response time badge */
+.arena-response-time {
+    font-size: 0.8rem;
+    color: var(--color-accent-secondary);
+    background: rgba(184, 160, 128, 0.12);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Chosen / dimmed states */
+.arena-card.is-chosen {
+    border-color: #b8860b !important;
+    box-shadow: 0 0 0 2px rgba(184, 134, 11, 0.25), var(--shadow-medium) !important;
+    background: rgba(184, 134, 11, 0.04);
+}
+
+.arena-card.is-chosen .arena-choose-btn {
+    background: #b8860b;
+    pointer-events: none;
+}
+
+.arena-card.is-chosen .arena-card-label {
+    color: #b8860b;
+}
+
+.arena-card.is-dimmed {
+    opacity: 0.45;
+    pointer-events: none;
+    filter: grayscale(0.3);
+    transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.arena-card.is-dimmed .arena-choose-btn {
+    background: #999;
+}
+
+/* Reset button */
+.arena-reset-btn {
+    display: none;
+    margin: 1rem auto 0;
+    padding: 0.4rem 1rem;
+    background: transparent;
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-small);
+    color: var(--color-neutral-secondary);
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.arena-reset-btn:hover {
+    border-color: var(--color-neutral-inverse);
+    color: var(--color-neutral-primary);
+}
+
+.arena-demo.has-chosen .arena-reset-btn {
+    display: block;
+}
+
 /* How It Works */
 .how-it-works {
     display: grid;
@@ -655,12 +776,13 @@ feature_category = "data-management"
 <div class="arena-demo-header">
 <div class="question">"What are the recommended dosing guidelines for this medication?"</div>
 </div>
-<div class="arena-cards">
-<div class="arena-card">
+<div class="arena-cards" id="arena-cards">
+<div class="arena-card is-loading" data-variant="a" data-time="1.2">
 <div class="arena-card-header">
 <span class="arena-card-label">Variant A</span>
 <span class="arena-card-rag"><svg class="provider-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>Qdrant</span>
 </div>
+<div class="arena-spinner"><div class="spinner"></div><span class="spinner-label">Retrieving context...</span></div>
 <div class="arena-card-body">
 Based on the clinical documentation, the recommended starting dose is 10mg daily, with titration up to 40mg based on patient response. Key monitoring parameters include...
 </div>
@@ -668,15 +790,17 @@ Based on the clinical documentation, the recommended starting dose is 10mg daily
 <div class="arena-card-score">
 <span>Relevance: 0.94</span>
 <span>Hallucination: 0.02</span>
+<span class="arena-response-time">1.2s</span>
 </div>
-<button class="arena-choose-btn">Choose</button>
+<button class="arena-choose-btn" onclick="arenaChoose(this)">Choose</button>
 </div>
 </div>
-<div class="arena-card">
+<div class="arena-card is-loading" data-variant="b" data-time="2.1">
 <div class="arena-card-header">
 <span class="arena-card-label">Variant B</span>
 <span class="arena-card-rag"><svg class="provider-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 11.6c-.1-.5-.6-.9-1.1-.8l-8.5.6c-.1 0-.2.1-.2.1s-.1.1-.1.2c0 .1 0 .2.1.2.1.1.1.1.2.1l8.5-.6c.7 0 1.3-.5 1.5-1.2.2-.7.5-1.7.5-1.7 0-.1 0-.1 0-.2C16.6 5.2 13.8 3 10.5 3 7.8 3 5.4 4.5 4.4 6.8c-.5-.4-1.1-.6-1.8-.5C1.4 6.5.5 7.6.5 8.8v.3c-0 0 0 0 0 0C.5 9.1.3 12 2.6 12h13.3c.1 0 .3-.1.4-.1.1-.1.2-.2.2-.3z"/></svg>Cloudflare Vectorize</span>
 </div>
+<div class="arena-spinner"><div class="spinner"></div><span class="spinner-label">Retrieving context...</span></div>
 <div class="arena-card-body">
 Dosing should begin at the lowest effective dose. The product label indicates 10-20mg as the typical range. Patients should be monitored for adverse effects during the first two weeks...
 </div>
@@ -684,12 +808,73 @@ Dosing should begin at the lowest effective dose. The product label indicates 10
 <div class="arena-card-score">
 <span>Relevance: 0.87</span>
 <span>Hallucination: 0.05</span>
+<span class="arena-response-time">2.1s</span>
 </div>
-<button class="arena-choose-btn">Choose</button>
+<button class="arena-choose-btn" onclick="arenaChoose(this)">Choose</button>
 </div>
 </div>
 </div>
+<button class="arena-reset-btn" onclick="arenaReset()">Try again</button>
 </div>
+
+<script>
+// Arena demo — loading animation + choose interaction
+(function() {
+  var triggered = false;
+
+  function revealCard(card, delay) {
+    setTimeout(function() {
+      card.classList.remove('is-loading');
+      card.classList.add('is-revealing');
+      setTimeout(function() { card.classList.remove('is-revealing'); }, 800);
+    }, delay);
+  }
+
+  function onVisible() {
+    if (triggered) return;
+    var demo = document.getElementById('arena-cards');
+    if (!demo) return;
+    var rect = demo.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+      triggered = true;
+      var cards = demo.querySelectorAll('.arena-card');
+      // Variant A arrives after 1.2s, Variant B after 2.1s
+      if (cards[0]) revealCard(cards[0], 1200);
+      if (cards[1]) revealCard(cards[1], 2100);
+      window.removeEventListener('scroll', onVisible);
+    }
+  }
+
+  window.addEventListener('scroll', onVisible, { passive: true });
+  // Check on load in case already in view
+  setTimeout(onVisible, 500);
+})();
+
+function arenaChoose(btn) {
+  var chosen = btn.closest('.arena-card');
+  var demo = chosen.closest('.arena-demo');
+  var cards = demo.querySelectorAll('.arena-card');
+  demo.classList.add('has-chosen');
+  cards.forEach(function(c) {
+    if (c === chosen) {
+      c.classList.add('is-chosen');
+      c.querySelector('.arena-choose-btn').textContent = 'Winner';
+    } else {
+      c.classList.add('is-dimmed');
+    }
+  });
+}
+
+function arenaReset() {
+  var demo = document.querySelector('.arena-demo');
+  var cards = demo.querySelectorAll('.arena-card');
+  demo.classList.remove('has-chosen');
+  cards.forEach(function(c) {
+    c.classList.remove('is-chosen', 'is-dimmed', 'is-loading', 'is-revealing');
+    c.querySelector('.arena-choose-btn').textContent = 'Choose';
+  });
+}
+</script>
 </section>
 
 <!-- How It Works -->
