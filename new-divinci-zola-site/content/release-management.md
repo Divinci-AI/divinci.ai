@@ -74,6 +74,12 @@ feature_category = "development-tools"
     align-items: center;
     justify-content: center;
     font-size: 2rem;
+    padding: 18px;
+}
+
+.capability-icon svg {
+    width: 100%;
+    height: 100%;
 }
 
 .pipeline-container {
@@ -112,6 +118,12 @@ feature_category = "development-tools"
     color: white;
     font-size: 1.5rem;
     font-weight: 700;
+    padding: 14px;
+}
+
+.step-icon svg {
+    width: 100%;
+    height: 100%;
 }
 
 .deployment-strategies {
@@ -675,36 +687,36 @@ feature_category = "development-tools"
 <div class="integration-category">
 <h3>Development Tools</h3>
 <div style="margin-top: 1rem;">
-<span class="tag"><svg viewBox="0 0 16 16" fill="#24292f"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#FC6D26"><path d="M8 14.93L1.25 9.95l1.17-3.61L4.68.39h2.72L8 2.58 8.6.39h2.72l2.26 5.95 1.17 3.61L8 14.93z"/></svg>GitLab</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#D33833"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 2.5c.69 0 1.25.56 1.25 1.25S8.69 6 8 6s-1.25-.56-1.25-1.25S7.31 3.5 8 3.5zM6 7h4v1H6V7zm0 2h4v4H6V9z"/></svg>Jenkins</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#343434"><circle cx="8" cy="8" r="6" fill="none" stroke="#343434" stroke-width="1.5"/><circle cx="8" cy="8" r="2.5" fill="#343434"/></svg>CircleCI</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#2496ED"><path d="M9.2 8.5H7.8v-1h1.4v1zm1.6 0h-1.4v-1h1.4v1zm1.6 0h-1.4v-1h1.4v1zm-4.8 0H6.2v-1h1.4v1zm0-1.7H6.2v-1h1.4v1zm1.6 0H7.8v-1h1.4v1zm1.6 0H9.4v-1h1.4v1zM14 8.8c-.3-.2-.9-.3-1.4-.2-.1-1-.8-1.8-1.5-2.1l-.3-.2-.2.3c-.3.4-.4 1-.3 1.5.1.4.2.7.5 1-.5.3-1.3.3-1.6.4H2.2c-.2 1.2.1 2.7.9 3.8.8 1 2 1.6 3.6 1.6 3.4 0 5.9-1.6 7.1-4.4.5 0 1.5 0 2-.9l.1-.2-.3-.2c-.3-.2-.9-.3-1.6-.4z"/></svg>Docker</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#7B42BC"><path d="M2.5 0L0 4.5 2.5 9h3.3L8 5l2.2 4h3.3L16 4.5 13.5 0H2.5zm1.8 2h7.4l1.5 2.5-1.5 2.5H4.3L2.8 4.5 4.3 2z"/></svg>Terraform</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/github/24292f" alt="GitHub">GitHub</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/gitlab/FC6D26" alt="GitLab">GitLab</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/jenkins/D24939" alt="Jenkins">Jenkins</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/circleci/343434" alt="CircleCI">CircleCI</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker">Docker</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform">Terraform</span>
 </div>
 </div>
 
 <div class="integration-category">
 <h3>Monitoring Platforms</h3>
 <div style="margin-top: 1rem;">
-<span class="tag"><svg viewBox="0 0 16 16" fill="#632CA6"><path d="M8 1L1 5v6l7 4 7-4V5L8 1zm0 2l4.5 2.5L8 8 3.5 5.5 8 3z"/></svg>Datadog</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#1CE783"><circle cx="8" cy="8" r="6"/></svg>New Relic</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#E6522C"><path d="M8 1l2 3.5L14 6l-3 3 1 4-4-2-4 2 1-4-3-3 4-1.5z"/></svg>Prometheus</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#F46800"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 2c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5z"/></svg>Grafana</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#06AC38"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3a4 4 0 110 8 4 4 0 010-8z"/></svg>PagerDuty</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="none"><path d="M5.5 2C3 2 1 4 1 6.2c0 1.5 1 2.8 2.4 3.4L8 14l4.6-4.4C14 8.9 15 7.7 15 6.2 15 4 13 2 10.5 2c-1.1 0-2 .5-2.5 1.2C7.5 2.5 6.6 2 5.5 2z" fill="#E01E5A"/></svg>Slack</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/datadog/632CA6" alt="Datadog">Datadog</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/newrelic/1CE783" alt="New Relic">New Relic</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus">Prometheus</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana">Grafana</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/pagerduty/06AC38" alt="PagerDuty">PagerDuty</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/slack/4A154B" alt="Slack">Slack</span>
 </div>
 </div>
 
 <div class="integration-category">
 <h3>Cloud Providers</h3>
 <div style="margin-top: 1rem;">
-<span class="tag"><svg viewBox="0 0 16 16" fill="#FF9900"><path d="M5 10.5c0 .3.2.5.5.5h5c.3 0 .5-.2.5-.5V8H5v2.5zM4 6.5C4 6.2 4.2 6 4.5 6h7c.3 0 .5.2.5.5V7H4v-.5zM3 4.5C3 4.2 3.2 4 3.5 4h9c.3 0 .5.2.5.5V5H3v-.5z"/></svg>AWS</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#0078D4"><path d="M7.5 2H2v5.5L7.5 2zm1 0L14 7.5V2H8.5zM2 8.5V14h5.5L2 8.5zm6.5 5.5H14V8.5L8.5 14z"/></svg>Azure</span>
-<span class="tag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Google_Favicon_2025.svg.png" alt="Google">Google Cloud</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#326CE5"><circle cx="8" cy="8" r="2.5"/><path d="M8 2v2M8 12v2M2 8h2M12 8h2M4 4l1.5 1.5M10.5 10.5L12 12M4 12l1.5-1.5M10.5 5.5L12 4" stroke="#326CE5" stroke-width="1.2" fill="none"/></svg>Kubernetes</span>
-<span class="tag"><svg viewBox="0 0 16 16" fill="#FF9900"><rect x="3" y="4" width="10" height="8" rx="2" fill="none" stroke="#FF9900" stroke-width="1.2"/><path d="M6 7h4M6 9h3" stroke="#FF9900" stroke-width="1"/></svg>SageMaker</span>
-<span class="tag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Google_Favicon_2025.svg.png" alt="Google">Vertex AI</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS">AWS</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="Azure">Azure</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud">Google Cloud</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes">Kubernetes</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="SageMaker">SageMaker</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Vertex AI">Vertex AI</span>
 </div>
 </div>
 </div>
