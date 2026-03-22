@@ -276,13 +276,29 @@ feature_category = "development-tools"
 }
 
 .tag {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     padding: 0.5rem 1rem;
-    background: rgba(107, 70, 193, 0.1);
+    background: rgba(61, 107, 79, 0.06);
     color: #1e3a2b;
     border-radius: 20px;
     font-size: 0.9rem;
     margin: 0.25rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.tag:hover {
+    border-color: var(--color-accent-primary);
+    background: rgba(61, 107, 79, 0.1);
+    transform: translateY(-1px);
+}
+
+.tag img, .tag svg {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
 }
 
 .progress-bar {
@@ -368,8 +384,15 @@ feature_category = "development-tools"
 <div class="capabilities-grid">
 <div class="capability-card">
 <div class="capability-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="white">
-<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+<svg viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+<circle cx="24" cy="12" r="6"/>
+<line x1="24" y1="18" x2="24" y2="28"/>
+<circle cx="14" cy="34" r="5"/>
+<circle cx="34" cy="34" r="5"/>
+<line x1="24" y1="28" x2="14" y2="29"/>
+<line x1="24" y1="28" x2="34" y2="29"/>
+<line x1="14" y1="39" x2="14" y2="44" stroke-dasharray="2 2"/>
+<line x1="34" y1="39" x2="34" y2="44" stroke-dasharray="2 2"/>
 </svg>
 </div>
 <h3>Version Control for AI</h3>
@@ -378,8 +401,15 @@ feature_category = "development-tools"
 
 <div class="capability-card">
 <div class="capability-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="white">
-<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+<svg viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+<rect x="6" y="8" width="14" height="10" rx="2"/>
+<line x1="20" y1="13" x2="28" y2="13"/>
+<rect x="28" y="8" width="14" height="10" rx="2"/>
+<line x1="35" y1="18" x2="35" y2="24"/>
+<polyline points="31 22 35 26 39 22"/>
+<rect x="17" y="28" width="14" height="10" rx="2"/>
+<circle cx="24" cy="33" r="2" fill="white" stroke="none"/>
+<line x1="24" y1="38" x2="24" y2="44" stroke-dasharray="3 2"/>
 </svg>
 </div>
 <h3>Automated Deployment</h3>
@@ -388,9 +418,19 @@ feature_category = "development-tools"
 
 <div class="capability-card">
 <div class="capability-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="white">
-<circle cx="12" cy="12" r="3"/>
-<path d="m12 1 2.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 1z"/>
+<svg viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+<rect x="4" y="14" width="18" height="22" rx="3"/>
+<rect x="26" y="14" width="18" height="22" rx="3" stroke-dasharray="3 2"/>
+<line x1="10" y1="22" x2="16" y2="22"/>
+<line x1="10" y1="28" x2="14" y2="28"/>
+<line x1="32" y1="22" x2="38" y2="22"/>
+<line x1="32" y1="28" x2="36" y2="28"/>
+<path d="M13 6 L24 10 L35 6" stroke-width="1.2"/>
+<circle cx="24" cy="10" r="2" fill="white" stroke="none"/>
+<line x1="13" y1="40" x2="13" y2="44"/>
+<line x1="35" y1="40" x2="35" y2="44"/>
+<path d="M8 44 L18 44" stroke-width="2"/>
+<path d="M30 44 L40 44" stroke-dasharray="3 2"/>
 </svg>
 </div>
 <h3>Intelligent Rollout Strategies</h3>
@@ -399,8 +439,12 @@ feature_category = "development-tools"
 
 <div class="capability-card">
 <div class="capability-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="white">
-<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+<svg viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+<path d="M24 4 L24 18"/>
+<path d="M24 18 C24 18 8 24 8 34 C8 40 15 44 24 44 C33 44 40 40 40 34 C40 24 24 18 24 18Z"/>
+<polyline points="20 14 24 18 28 14"/>
+<circle cx="24" cy="32" r="4"/>
+<polyline points="22 32 24 34 27 30" stroke-width="1.8"/>
 </svg>
 </div>
 <h3>Safety & Rollback</h3>
@@ -419,25 +463,25 @@ feature_category = "development-tools"
 
 <div class="pipeline-steps">
 <div class="pipeline-step">
-<div class="step-icon">1</div>
+<div class="step-icon"><svg viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><rect x="8" y="6" width="24" height="28" rx="3"/><line x1="14" y1="14" x2="26" y2="14"/><line x1="14" y1="20" x2="22" y2="20"/><line x1="14" y1="26" x2="24" y2="26"/><circle cx="30" cy="6" r="4" fill="rgba(184,160,128,0.5)" stroke="white"/><text x="28" y="9" font-size="6" fill="white" font-family="sans-serif">+</text></svg></div>
 <h4>Model Preparation</h4>
 <p>Version registration, validation suite, training metrics attachment, and deployment requirement definition for new model releases.</p>
 </div>
 
 <div class="pipeline-step">
-<div class="step-icon">2</div>
+<div class="step-icon"><svg viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="10" width="14" height="10" rx="2"/><rect x="22" y="10" width="14" height="10" rx="2"/><line x1="18" y1="15" x2="22" y2="15"/><polyline points="20 12 22 15 20 18"/><rect x="13" y="24" width="14" height="10" rx="2"/><line x1="20" y1="20" x2="20" y2="24"/><polyline points="10 25 10 20" stroke-dasharray="2 2"/><polyline points="30 25 30 20" stroke-dasharray="2 2"/><polyline points="17 32 20 28 23 32" stroke-width="1.2"/></svg></div>
 <h4>Pre-Production Testing</h4>
 <p>Staging deployment, integration tests, API compatibility validation, and performance testing at production scale.</p>
 </div>
 
 <div class="pipeline-step">
-<div class="step-icon">3</div>
+<div class="step-icon"><svg viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><circle cx="20" cy="20" r="12"/><path d="M20 8 L20 20 L28 20"/><circle cx="20" cy="20" r="3" fill="rgba(184,160,128,0.4)" stroke="white"/><polyline points="32 14 36 14 36 26 32 26" stroke-dasharray="2 2"/><line x1="8" y1="20" x2="4" y2="20" stroke-width="2"/></svg></div>
 <h4>Production Deployment</h4>
 <p>Rollout execution with chosen strategy, real-time monitoring, traffic management, and comprehensive audit logging.</p>
 </div>
 
 <div class="pipeline-step">
-<div class="step-icon">4</div>
+<div class="step-icon"><svg viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><polyline points="6 28 12 18 18 24 24 12 30 16 36 8"/><line x1="6" y1="34" x2="36" y2="34"/><line x1="6" y1="8" x2="6" y2="34"/><circle cx="36" cy="8" r="2.5" fill="rgba(184,160,128,0.5)" stroke="white"/><line x1="12" y1="34" x2="12" y2="36" stroke-width="1"/><line x1="18" y1="34" x2="18" y2="36" stroke-width="1"/><line x1="24" y1="34" x2="24" y2="36" stroke-width="1"/><line x1="30" y1="34" x2="30" y2="36" stroke-width="1"/></svg></div>
 <h4>Post-Deployment</h4>
 <p>Continuous monitoring, performance optimization, resource scaling, and cost analysis for ongoing AI operations.</p>
 </div>
@@ -631,36 +675,36 @@ feature_category = "development-tools"
 <div class="integration-category">
 <h3>Development Tools</h3>
 <div style="margin-top: 1rem;">
-<span class="tag">GitHub</span>
-<span class="tag">GitLab</span>
-<span class="tag">Jenkins</span>
-<span class="tag">CircleCI</span>
-<span class="tag">Docker</span>
-<span class="tag">Terraform</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#24292f"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#FC6D26"><path d="M8 14.93L1.25 9.95l1.17-3.61L4.68.39h2.72L8 2.58 8.6.39h2.72l2.26 5.95 1.17 3.61L8 14.93z"/></svg>GitLab</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#D33833"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 2.5c.69 0 1.25.56 1.25 1.25S8.69 6 8 6s-1.25-.56-1.25-1.25S7.31 3.5 8 3.5zM6 7h4v1H6V7zm0 2h4v4H6V9z"/></svg>Jenkins</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#343434"><circle cx="8" cy="8" r="6" fill="none" stroke="#343434" stroke-width="1.5"/><circle cx="8" cy="8" r="2.5" fill="#343434"/></svg>CircleCI</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#2496ED"><path d="M9.2 8.5H7.8v-1h1.4v1zm1.6 0h-1.4v-1h1.4v1zm1.6 0h-1.4v-1h1.4v1zm-4.8 0H6.2v-1h1.4v1zm0-1.7H6.2v-1h1.4v1zm1.6 0H7.8v-1h1.4v1zm1.6 0H9.4v-1h1.4v1zM14 8.8c-.3-.2-.9-.3-1.4-.2-.1-1-.8-1.8-1.5-2.1l-.3-.2-.2.3c-.3.4-.4 1-.3 1.5.1.4.2.7.5 1-.5.3-1.3.3-1.6.4H2.2c-.2 1.2.1 2.7.9 3.8.8 1 2 1.6 3.6 1.6 3.4 0 5.9-1.6 7.1-4.4.5 0 1.5 0 2-.9l.1-.2-.3-.2c-.3-.2-.9-.3-1.6-.4z"/></svg>Docker</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#7B42BC"><path d="M2.5 0L0 4.5 2.5 9h3.3L8 5l2.2 4h3.3L16 4.5 13.5 0H2.5zm1.8 2h7.4l1.5 2.5-1.5 2.5H4.3L2.8 4.5 4.3 2z"/></svg>Terraform</span>
 </div>
 </div>
 
 <div class="integration-category">
 <h3>Monitoring Platforms</h3>
 <div style="margin-top: 1rem;">
-<span class="tag">Datadog</span>
-<span class="tag">New Relic</span>
-<span class="tag">Prometheus</span>
-<span class="tag">Grafana</span>
-<span class="tag">PagerDuty</span>
-<span class="tag">Slack</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#632CA6"><path d="M8 1L1 5v6l7 4 7-4V5L8 1zm0 2l4.5 2.5L8 8 3.5 5.5 8 3z"/></svg>Datadog</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#1CE783"><circle cx="8" cy="8" r="6"/></svg>New Relic</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#E6522C"><path d="M8 1l2 3.5L14 6l-3 3 1 4-4-2-4 2 1-4-3-3 4-1.5z"/></svg>Prometheus</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#F46800"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 2c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5z"/></svg>Grafana</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#06AC38"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3a4 4 0 110 8 4 4 0 010-8z"/></svg>PagerDuty</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="none"><path d="M5.5 2C3 2 1 4 1 6.2c0 1.5 1 2.8 2.4 3.4L8 14l4.6-4.4C14 8.9 15 7.7 15 6.2 15 4 13 2 10.5 2c-1.1 0-2 .5-2.5 1.2C7.5 2.5 6.6 2 5.5 2z" fill="#E01E5A"/></svg>Slack</span>
 </div>
 </div>
 
 <div class="integration-category">
 <h3>Cloud Providers</h3>
 <div style="margin-top: 1rem;">
-<span class="tag">AWS</span>
-<span class="tag">Azure</span>
-<span class="tag">Google Cloud</span>
-<span class="tag">Kubernetes</span>
-<span class="tag">SageMaker</span>
-<span class="tag">Vertex AI</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#FF9900"><path d="M5 10.5c0 .3.2.5.5.5h5c.3 0 .5-.2.5-.5V8H5v2.5zM4 6.5C4 6.2 4.2 6 4.5 6h7c.3 0 .5.2.5.5V7H4v-.5zM3 4.5C3 4.2 3.2 4 3.5 4h9c.3 0 .5.2.5.5V5H3v-.5z"/></svg>AWS</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#0078D4"><path d="M7.5 2H2v5.5L7.5 2zm1 0L14 7.5V2H8.5zM2 8.5V14h5.5L2 8.5zm6.5 5.5H14V8.5L8.5 14z"/></svg>Azure</span>
+<span class="tag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Google_Favicon_2025.svg.png" alt="Google">Google Cloud</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#326CE5"><circle cx="8" cy="8" r="2.5"/><path d="M8 2v2M8 12v2M2 8h2M12 8h2M4 4l1.5 1.5M10.5 10.5L12 12M4 12l1.5-1.5M10.5 5.5L12 4" stroke="#326CE5" stroke-width="1.2" fill="none"/></svg>Kubernetes</span>
+<span class="tag"><svg viewBox="0 0 16 16" fill="#FF9900"><rect x="3" y="4" width="10" height="8" rx="2" fill="none" stroke="#FF9900" stroke-width="1.2"/><path d="M6 7h4M6 9h3" stroke="#FF9900" stroke-width="1"/></svg>SageMaker</span>
+<span class="tag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Google_Favicon_2025.svg.png" alt="Google">Vertex AI</span>
 </div>
 </div>
 </div>
