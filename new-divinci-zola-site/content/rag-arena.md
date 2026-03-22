@@ -671,6 +671,64 @@ feature_category = "data-management"
     object-fit: contain;
 }
 
+/* RAG Architecture Cards */
+.architectures-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.arch-card {
+    background: var(--color-surface-light);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-medium);
+    padding: 1.5rem;
+    transition: var(--transition-medium);
+    opacity: 0;
+    transform: translateY(16px);
+}
+
+.arch-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.arch-card:hover {
+    border-color: var(--color-accent-primary);
+    box-shadow: var(--shadow-medium);
+}
+
+.arch-diagram {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+}
+
+.arch-diagram svg {
+    width: 100%;
+    height: auto;
+}
+
+.arch-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    color: var(--color-neutral-primary);
+    margin-bottom: 0.5rem;
+}
+
+.arch-card p {
+    font-size: 0.88rem;
+    color: var(--color-neutral-secondary);
+    line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+    .architectures-grid { grid-template-columns: 1fr; }
+}
+
 /* CTA Section — refined card on warm parchment */
 .feature-page .arena-cta-wrapper {
     position: relative;
@@ -981,6 +1039,27 @@ function arenaReset() {
   window.addEventListener('scroll', checkRouting, { passive: true });
   setTimeout(checkRouting, 600);
 })();
+
+// Architecture cards — staggered scroll reveal
+(function() {
+  var archTriggered = false;
+  function checkArch() {
+    if (archTriggered) return;
+    var grid = document.getElementById('arch-grid');
+    if (!grid) return;
+    var rect = grid.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) {
+      archTriggered = true;
+      var cards = grid.querySelectorAll('.arch-card');
+      cards.forEach(function(card, i) {
+        setTimeout(function() { card.classList.add('is-visible'); }, i * 200);
+      });
+      window.removeEventListener('scroll', checkArch);
+    }
+  }
+  window.addEventListener('scroll', checkArch, { passive: true });
+  setTimeout(checkArch, 600);
+})();
 </script>
 </section>
 
@@ -1105,8 +1184,124 @@ function arenaReset() {
 <div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/qdrant-logomark.svg" alt="Qdrant">Qdrant</div>
 <div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Cloudflare-logo.svg" alt="Cloudflare">Cloudflare Vectorize</div>
 <div class="provider-badge"><img src="https://pub-67b9e94061a04db7a525d7b025776d27.r2.dev/couchbase-icon.svg" alt="Couchbase">Couchbase</div>
-<div class="provider-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4"/><path d="M12 12v5"/></svg>MongoDB Atlas</div>
-<div class="provider-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Custom Providers</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Google_Favicon_2025.svg.png" alt="Google">Vertex AI Vector Search</div>
+<div class="provider-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="#00684A" stroke="none"><path d="M12.1 2c-.2 0-.4.1-.5.2L4.3 6.6c-.2.1-.3.3-.3.5v8.5c0 .2.1.4.3.5l7.3 4.4c.2.1.4.1.5 0l7.3-4.4c.2-.1.3-.3.3-.5V7.1c0-.2-.1-.4-.3-.5L12.6 2.2c-.1-.1-.3-.2-.5-.2zm-.1 3.5L16.5 8v5L12 15.5 7.5 13V8l4.5-2.5z"/></svg>MongoDB Atlas</div>
+<div class="provider-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="#DC382D" stroke="none"><path d="M12 2L2 7v5c0 5.5 4.3 10.7 10 12 5.7-1.3 10-6.5 10-12V7l-10-5zm0 3l7 3.5v4.3c0 4.3-3.1 8.3-7 9.5-3.9-1.2-7-5.2-7-9.5V8.5L12 5z"/></svg>Redis</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/pageindex-logo.png" alt="PageIndex">PageIndex</div>
+</div>
+</section>
+
+<!-- RAG Architectures -->
+<section class="arena-section">
+<h2>RAG Retrieval Architectures</h2>
+<p class="section-subtitle">Route queries to different retrieval strategies based on question type. Each architecture optimizes for different use cases.</p>
+<div class="architectures-grid" id="arch-grid">
+
+<div class="arch-card">
+<div class="arch-diagram">
+<svg viewBox="0 0 200 80" fill="none" stroke-linecap="round">
+<text x="10" y="12" font-size="8" fill="#8b7659" font-family="sans-serif">VECTOR SEARCH</text>
+<circle cx="30" cy="40" r="12" stroke="#b8a080" stroke-width="1.5"/>
+<text x="26" y="44" font-size="10" fill="#2d3c34" font-family="serif">Q</text>
+<line x1="42" y1="40" x2="70" y2="40" stroke="#b8a080" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="70" y="28" width="60" height="24" rx="4" stroke="#3d6b4f" stroke-width="1.5" fill="rgba(61,107,79,0.06)"/>
+<text x="82" y="44" font-size="9" fill="#2d3c34" font-family="sans-serif">Embed</text>
+<line x1="130" y1="40" x2="155" y2="30" stroke="#b8a080" stroke-width="1"/>
+<line x1="130" y1="40" x2="155" y2="40" stroke="#b8a080" stroke-width="1"/>
+<line x1="130" y1="40" x2="155" y2="50" stroke="#b8a080" stroke-width="1"/>
+<circle cx="162" cy="30" r="5" stroke="#3d6b4f" stroke-width="1" fill="rgba(61,107,79,0.1)"/>
+<circle cx="162" cy="40" r="5" stroke="#3d6b4f" stroke-width="1" fill="rgba(61,107,79,0.1)"/>
+<circle cx="162" cy="50" r="5" stroke="#3d6b4f" stroke-width="1" fill="rgba(61,107,79,0.1)"/>
+<line x1="167" y1="30" x2="185" y2="40" stroke="#b8a080" stroke-width="1"/>
+<line x1="167" y1="40" x2="185" y2="40" stroke="#b8a080" stroke-width="1"/>
+<line x1="167" y1="50" x2="185" y2="40" stroke="#b8a080" stroke-width="1"/>
+<circle cx="190" cy="40" r="6" stroke="#2d5a4f" stroke-width="1.5" fill="rgba(45,90,79,0.1)"/>
+<text x="186" y="43" font-size="8" fill="#2d5a4f" font-family="serif">R</text>
+</svg>
+</div>
+<h3>Vector Search</h3>
+<p>Semantic similarity matching via dense embeddings. Best for natural language questions and conceptual lookups.</p>
+</div>
+
+<div class="arch-card">
+<div class="arch-diagram">
+<svg viewBox="0 0 200 80" fill="none" stroke-linecap="round">
+<text x="10" y="12" font-size="8" fill="#8b7659" font-family="sans-serif">HYBRID SEARCH</text>
+<circle cx="30" cy="40" r="12" stroke="#b8a080" stroke-width="1.5"/>
+<text x="26" y="44" font-size="10" fill="#2d3c34" font-family="serif">Q</text>
+<line x1="42" y1="35" x2="70" y2="25" stroke="#b8a080" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="42" y1="45" x2="70" y2="55" stroke="#b8a080" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="70" y="15" width="50" height="20" rx="3" stroke="#3d6b4f" stroke-width="1.2" fill="rgba(61,107,79,0.06)"/>
+<text x="78" y="29" font-size="8" fill="#2d3c34" font-family="sans-serif">Vector</text>
+<rect x="70" y="45" width="50" height="20" rx="3" stroke="#8b7659" stroke-width="1.2" fill="rgba(184,160,128,0.08)"/>
+<text x="80" y="59" font-size="8" fill="#2d3c34" font-family="sans-serif">BM25</text>
+<line x1="120" y1="25" x2="145" y2="40" stroke="#b8a080" stroke-width="1"/>
+<line x1="120" y1="55" x2="145" y2="40" stroke="#b8a080" stroke-width="1"/>
+<rect x="145" y="28" width="30" height="24" rx="4" stroke="#2d5a4f" stroke-width="1.5" fill="rgba(45,90,79,0.08)"/>
+<text x="150" y="44" font-size="7" fill="#2d5a4f" font-family="sans-serif">RRF</text>
+<line x1="175" y1="40" x2="190" y2="40" stroke="#2d5a4f" stroke-width="1.5"/>
+<circle cx="193" cy="40" r="4" fill="#2d5a4f" opacity="0.2"/>
+</svg>
+</div>
+<h3>Hybrid (BM25 + Vector)</h3>
+<p>Combines keyword matching with semantic search using Reciprocal Rank Fusion. Best for precise technical queries.</p>
+</div>
+
+<div class="arch-card">
+<div class="arch-diagram">
+<svg viewBox="0 0 200 80" fill="none" stroke-linecap="round">
+<text x="10" y="12" font-size="8" fill="#8b7659" font-family="sans-serif">RERANKING</text>
+<circle cx="20" cy="40" r="10" stroke="#b8a080" stroke-width="1.5"/>
+<text x="17" y="44" font-size="9" fill="#2d3c34" font-family="serif">Q</text>
+<line x1="30" y1="40" x2="50" y2="40" stroke="#b8a080" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="50" y="25" width="40" height="30" rx="3" stroke="#3d6b4f" stroke-width="1.2" fill="rgba(61,107,79,0.06)"/>
+<text x="55" y="44" font-size="7" fill="#2d3c34" font-family="sans-serif">Retrieve</text>
+<line x1="90" y1="32" x2="115" y2="28" stroke="#b8a080" stroke-width="1"/>
+<line x1="90" y1="37" x2="115" y2="37" stroke="#b8a080" stroke-width="1"/>
+<line x1="90" y1="42" x2="115" y2="42" stroke="#b8a080" stroke-width="1"/>
+<line x1="90" y1="47" x2="115" y2="47" stroke="#b8a080" stroke-width="1"/>
+<line x1="90" y1="52" x2="115" y2="52" stroke="#b8a080" stroke-width="1"/>
+<rect x="115" y="20" width="45" height="40" rx="3" stroke="#8b7659" stroke-width="1.5" fill="rgba(184,160,128,0.06)"/>
+<text x="118" y="35" font-size="7" fill="#2d3c34" font-family="sans-serif">Cross-</text>
+<text x="118" y="45" font-size="7" fill="#2d3c34" font-family="sans-serif">encoder</text>
+<text x="118" y="55" font-size="7" fill="#8b7659" font-family="sans-serif">rerank</text>
+<line x1="160" y1="40" x2="178" y2="40" stroke="#2d5a4f" stroke-width="1.5"/>
+<rect x="178" y="32" width="16" height="16" rx="2" stroke="#2d5a4f" stroke-width="1.5" fill="rgba(45,90,79,0.1)"/>
+<text x="182" y="43" font-size="7" fill="#2d5a4f" font-family="sans-serif">3</text>
+</svg>
+</div>
+<h3>Reranking</h3>
+<p>Initial retrieval followed by cross-encoder reranking for precision. Best for high-stakes answers requiring accuracy.</p>
+</div>
+
+<div class="arch-card">
+<div class="arch-diagram">
+<svg viewBox="0 0 200 80" fill="none" stroke-linecap="round">
+<text x="10" y="12" font-size="8" fill="#8b7659" font-family="sans-serif">AGENTIC RAG</text>
+<circle cx="20" cy="45" r="10" stroke="#b8a080" stroke-width="1.5"/>
+<text x="17" y="49" font-size="9" fill="#2d3c34" font-family="serif">Q</text>
+<line x1="30" y1="45" x2="50" y2="45" stroke="#b8a080" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="50" y="30" width="40" height="30" rx="4" stroke="#2d5a4f" stroke-width="1.5" fill="rgba(45,90,79,0.08)"/>
+<text x="55" y="43" font-size="7" fill="#2d3c34" font-family="sans-serif">Agent</text>
+<text x="55" y="53" font-size="7" fill="#3d6b4f" font-family="sans-serif">Router</text>
+<path d="M90 38 L110 25" stroke="#3d6b4f" stroke-width="1"/>
+<path d="M90 45 L110 45" stroke="#3d6b4f" stroke-width="1"/>
+<path d="M90 52 L110 65" stroke="#3d6b4f" stroke-width="1"/>
+<rect x="110" y="17" width="35" height="16" rx="2" stroke="#b8a080" stroke-width="1" fill="rgba(184,160,128,0.06)"/>
+<text x="115" y="28" font-size="7" fill="#2d3c34" font-family="sans-serif">KB 1</text>
+<rect x="110" y="37" width="35" height="16" rx="2" stroke="#b8a080" stroke-width="1" fill="rgba(184,160,128,0.06)"/>
+<text x="115" y="48" font-size="7" fill="#2d3c34" font-family="sans-serif">KB 2</text>
+<rect x="110" y="57" width="35" height="16" rx="2" stroke="#b8a080" stroke-width="1" fill="rgba(184,160,128,0.06)"/>
+<text x="115" y="68" font-size="7" fill="#2d3c34" font-family="sans-serif">Tools</text>
+<path d="M145 25 L165 40 M145 45 L165 40 M145 65 L165 40" stroke="#b8a080" stroke-width="1"/>
+<rect x="165" y="30" width="28" height="20" rx="3" stroke="#2d5a4f" stroke-width="1.5" fill="rgba(45,90,79,0.1)"/>
+<text x="170" y="44" font-size="7" fill="#2d5a4f" font-family="sans-serif">Syn</text>
+</svg>
+</div>
+<h3>Agentic RAG</h3>
+<p>LLM-driven routing across multiple knowledge bases and tools. Best for complex multi-step questions requiring synthesis.</p>
+</div>
+
 </div>
 </section>
 
