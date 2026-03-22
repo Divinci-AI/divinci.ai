@@ -252,6 +252,7 @@ feature_category = "data-management"
     width: 16px;
     height: 16px;
     flex-shrink: 0;
+    object-fit: contain;
 }
 
 .arena-card-body {
@@ -435,6 +436,26 @@ feature_category = "data-management"
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-medium);
     position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.step-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.step-card .step-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    color: var(--color-accent-primary);
+}
+
+.step-card .step-icon svg {
+    width: 100%;
+    height: 100%;
 }
 
 .step-number {
@@ -584,6 +605,37 @@ feature_category = "data-management"
     font-weight: 700;
 }
 
+/* Routing flow animation */
+.routing-node, .routing-arrow {
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.routing-flow.is-animated .routing-node,
+.routing-flow.is-animated .routing-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.routing-flow.is-animated .routing-node:nth-child(1) { transition-delay: 0s; }
+.routing-flow.is-animated .routing-arrow:nth-child(2) { transition-delay: 0.3s; }
+.routing-flow.is-animated .routing-node:nth-child(3) { transition-delay: 0.6s; }
+.routing-flow.is-animated .routing-arrow:nth-child(4) { transition-delay: 0.9s; }
+.routing-flow.is-animated .routing-node:nth-child(5) { transition-delay: 1.2s; }
+.routing-flow.is-animated .routing-arrow:nth-child(6) { transition-delay: 1.5s; }
+.routing-flow.is-animated .routing-node:nth-child(7) { transition-delay: 1.8s; }
+
+/* Pulse on the winner node after animation */
+.routing-flow.is-animated .routing-node.winner {
+    animation: winner-pulse 2s ease-in-out 2.2s infinite;
+}
+
+@keyframes winner-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(61, 107, 79, 0.2); }
+    50% { box-shadow: 0 0 0 8px rgba(61, 107, 79, 0); }
+}
+
 /* Providers */
 .providers-grid {
     display: flex;
@@ -597,10 +649,26 @@ feature_category = "data-management"
     background: var(--color-surface-light);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-small);
-    padding: 0.625rem 1.25rem;
+    padding: 0.75rem 1.5rem;
     font-size: 0.9rem;
     color: var(--color-neutral-primary);
     font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: var(--transition-medium);
+}
+
+.provider-badge:hover {
+    border-color: var(--color-accent-primary);
+    box-shadow: var(--shadow-small);
+    transform: translateY(-2px);
+}
+
+.provider-badge img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
 }
 
 /* CTA Section — refined card on warm parchment */
@@ -780,7 +848,7 @@ feature_category = "data-management"
 <div class="arena-card is-loading" data-variant="a" data-time="1.2">
 <div class="arena-card-header">
 <span class="arena-card-label">Variant A</span>
-<span class="arena-card-rag"><svg class="provider-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>Qdrant</span>
+<span class="arena-card-rag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/qdrant-logomark.svg" alt="Qdrant" class="provider-icon" width="16" height="16">Qdrant</span>
 </div>
 <div class="arena-spinner"><div class="spinner"></div><span class="spinner-label">Retrieving context...</span></div>
 <div class="arena-card-body">
@@ -798,7 +866,7 @@ Based on the clinical documentation, the recommended starting dose is 10mg daily
 <div class="arena-card is-loading" data-variant="b" data-time="2.1">
 <div class="arena-card-header">
 <span class="arena-card-label">Variant B</span>
-<span class="arena-card-rag"><svg class="provider-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 11.6c-.1-.5-.6-.9-1.1-.8l-8.5.6c-.1 0-.2.1-.2.1s-.1.1-.1.2c0 .1 0 .2.1.2.1.1.1.1.2.1l8.5-.6c.7 0 1.3-.5 1.5-1.2.2-.7.5-1.7.5-1.7 0-.1 0-.1 0-.2C16.6 5.2 13.8 3 10.5 3 7.8 3 5.4 4.5 4.4 6.8c-.5-.4-1.1-.6-1.8-.5C1.4 6.5.5 7.6.5 8.8v.3c-0 0 0 0 0 0C.5 9.1.3 12 2.6 12h13.3c.1 0 .3-.1.4-.1.1-.1.2-.2.2-.3z"/></svg>Cloudflare Vectorize</span>
+<span class="arena-card-rag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Cloudflare-logo.svg" alt="Cloudflare" class="provider-icon" width="16" height="16">Cloudflare Vectorize</span>
 </div>
 <div class="arena-spinner"><div class="spinner"></div><span class="spinner-label">Retrieving context...</span></div>
 <div class="arena-card-body">
@@ -874,6 +942,45 @@ function arenaReset() {
     c.querySelector('.arena-choose-btn').textContent = 'Choose';
   });
 }
+
+// Step cards — staggered scroll reveal
+(function() {
+  var stepsTriggered = false;
+  function checkSteps() {
+    if (stepsTriggered) return;
+    var container = document.getElementById('how-it-works');
+    if (!container) return;
+    var rect = container.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) {
+      stepsTriggered = true;
+      var cards = container.querySelectorAll('.step-card');
+      cards.forEach(function(card, i) {
+        setTimeout(function() { card.classList.add('is-visible'); }, i * 200);
+      });
+      window.removeEventListener('scroll', checkSteps);
+    }
+  }
+  window.addEventListener('scroll', checkSteps, { passive: true });
+  setTimeout(checkSteps, 600);
+})();
+
+// Routing flow — sequential reveal
+(function() {
+  var routingTriggered = false;
+  function checkRouting() {
+    if (routingTriggered) return;
+    var flow = document.querySelector('.routing-flow');
+    if (!flow) return;
+    var rect = flow.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) {
+      routingTriggered = true;
+      flow.classList.add('is-animated');
+      window.removeEventListener('scroll', checkRouting);
+    }
+  }
+  window.addEventListener('scroll', checkRouting, { passive: true });
+  setTimeout(checkRouting, 600);
+})();
 </script>
 </section>
 
@@ -881,23 +988,27 @@ function arenaReset() {
 <section class="arena-section">
 <h2>How RAG Arena Works</h2>
 <p class="section-subtitle">A structured process for finding the best knowledge base configuration for every question type.</p>
-<div class="how-it-works">
+<div class="how-it-works" id="how-it-works">
 <div class="step-card">
+<div class="step-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="8" y="12" width="20" height="28" rx="3"/><rect x="36" y="12" width="20" height="28" rx="3"/><line x1="14" y1="20" x2="22" y2="20"/><line x1="14" y1="26" x2="22" y2="26"/><line x1="42" y1="20" x2="50" y2="20"/><line x1="42" y1="26" x2="50" y2="26"/><path d="M18 44 L18 50 L46 50 L46 44" stroke-dasharray="3 3"/><circle cx="32" cy="54" r="4" fill="none"/></svg></div>
 <div class="step-number">1</div>
 <h3>Configure Variants</h3>
 <p>Set up 2-8 arena variants, each pointing to a different RAG vector or knowledge base.</p>
 </div>
 <div class="step-card">
+<div class="step-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="32" cy="14" r="6"/><path d="M32 20 L12 36"/><path d="M32 20 L32 36"/><path d="M32 20 L52 36"/><rect x="4" y="36" width="16" height="12" rx="2"/><rect x="24" y="36" width="16" height="12" rx="2"/><rect x="44" y="36" width="16" height="12" rx="2"/><line x1="8" y1="42" x2="16" y2="42"/><line x1="28" y1="42" x2="36" y2="42"/><line x1="48" y1="42" x2="56" y2="42"/></svg></div>
 <div class="step-number">2</div>
 <h3>Run in Parallel</h3>
 <p>Send questions to all variants simultaneously. Each retrieves context from its own knowledge base.</p>
 </div>
 <div class="step-card">
+<div class="step-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="6" y="14" width="24" height="36" rx="3"/><rect x="34" y="14" width="24" height="36" rx="3"/><line x1="12" y1="22" x2="24" y2="22"/><line x1="12" y1="28" x2="24" y2="28"/><line x1="40" y1="22" x2="52" y2="22"/><line x1="40" y1="28" x2="52" y2="28"/><path d="M12 38 L24 38" stroke="rgba(61,107,79,0.6)"/><circle cx="14" cy="44" r="2" fill="currentColor" opacity="0.3"/><circle cx="20" cy="44" r="2" fill="currentColor" opacity="0.3"/><circle cx="26" cy="44" r="0.5" fill="currentColor" opacity="0.15"/><path d="M40 38 L48 38" stroke="rgba(184,160,128,0.6)"/><circle cx="42" cy="44" r="2" fill="currentColor" opacity="0.2"/><circle cx="48" cy="44" r="2" fill="currentColor" opacity="0.2"/></svg></div>
 <div class="step-number">3</div>
 <h3>Compare & Score</h3>
 <p>View responses side-by-side with inline quality scores for relevance, hallucination, and completeness.</p>
 </div>
 <div class="step-card">
+<div class="step-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="32" cy="20" r="10" stroke-dasharray="4 3"/><path d="M32 30 L32 42"/><path d="M26 48 L32 42 L38 48"/><path d="M22 54 L32 48 L42 54" stroke-dasharray="3 3"/><circle cx="22" cy="56" r="3"/><circle cx="42" cy="56" r="3"/><polyline points="28 18 31 22 38 14" stroke-width="2"/></svg></div>
 <div class="step-number">4</div>
 <h3>Learn & Route</h3>
 <p>The system learns which knowledge base wins for each question type and routes future queries automatically.</p>
@@ -991,11 +1102,11 @@ function arenaReset() {
 <h2>Supported Vector Providers</h2>
 <p class="section-subtitle">Run arena experiments across any combination of vector databases.</p>
 <div class="providers-grid">
-<div class="provider-badge">Qdrant</div>
-<div class="provider-badge">Cloudflare Vectorize</div>
-<div class="provider-badge">Couchbase</div>
-<div class="provider-badge">MongoDB Atlas</div>
-<div class="provider-badge">Custom Providers</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/qdrant-logomark.svg" alt="Qdrant">Qdrant</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Cloudflare-logo.svg" alt="Cloudflare">Cloudflare Vectorize</div>
+<div class="provider-badge"><img src="https://pub-67b9e94061a04db7a525d7b025776d27.r2.dev/couchbase-icon.svg" alt="Couchbase">Couchbase</div>
+<div class="provider-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4"/><path d="M12 12v5"/></svg>MongoDB Atlas</div>
+<div class="provider-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Custom Providers</div>
 </div>
 </section>
 
