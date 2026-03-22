@@ -173,7 +173,7 @@ body > * {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(to bottom, rgba(248,244,240,0.15) 0%, rgba(248,244,240,0.5) 40%, rgba(248,244,240,0.95) 100%);
+  background: linear-gradient(to bottom, rgba(248,244,240,0.1) 0%, rgba(248,244,240,0.35) 40%, rgba(248,244,240,0.9) 100%);
 }
 
 .feature-hero-inner {
@@ -183,13 +183,14 @@ body > * {
 }
 
 .feature-hero-card {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.45);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-radius: var(--radius-large, 16px);
+  border-radius: 20px;
   padding: 3rem 3.5rem;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .feature-hero h1 {
@@ -198,7 +199,7 @@ body > * {
   color: var(--color-neutral-primary) !important;
   margin-bottom: 1rem !important;
   line-height: 1.15 !important;
-  text-shadow: none !important;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.7) !important;
   -webkit-text-fill-color: var(--color-neutral-primary) !important;
 }
 
@@ -208,7 +209,7 @@ body > * {
   line-height: 1.7;
   max-width: 600px;
   margin: 0 auto 2rem;
-  text-shadow: none !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5) !important;
 }
 
 .feature-hero .hero-ctas {
@@ -239,10 +240,12 @@ body > * {
   display: inline-flex !important;
   align-items: center !important;
   padding: 0.875rem 2rem !important;
-  background: transparent !important;
+  background: rgba(255, 255, 255, 0.35) !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   color: var(--color-neutral-primary, #2d3c34) !important;
-  border: 1.5px solid var(--color-border-medium, #c5bfb3) !important;
-  border-radius: 6px !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 8px !important;
   font-weight: 600 !important;
   text-decoration: none !important;
   transition: all 0.2s ease !important;
