@@ -555,7 +555,7 @@ input:checked + .toggle-slider:before {
 }
 
 .faq-section {
-    padding: 3rem 0 6rem;
+    padding: 3rem 0 10rem;
     background: #f8f4f0 !important; /* Match tan background */
     position: relative;
 }
@@ -571,6 +571,7 @@ input:checked + .toggle-slider:before {
 .faq-container {
     max-width: 800px;
     margin: 0 auto;
+    padding-bottom: 6rem;
 }
 
 .faq-item {

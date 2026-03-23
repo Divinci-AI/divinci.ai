@@ -1967,7 +1967,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const scrollTop = window.pageYOffset;
                 const triggerPoint = headerHeight + 20; // Trigger when header is mostly out of view
                 
-                if (scrollTop > triggerPoint) {
+                // Check if footer is in view — stop sticky before overlapping
+                var footer = document.querySelector('footer, .site-footer');
+                var sidebarHeight = stickySidebar.offsetHeight;
+                var footerTop = footer ? footer.getBoundingClientRect().top : Infinity;
+                var shouldStopSticky = footerTop < sidebarHeight + 40;
+
+                if (scrollTop > triggerPoint && !shouldStopSticky) {
                     // Make sidebar sticky
                     stickySidebar.classList.add('sticky');
                     container.classList.add('sidebar-sticky');
