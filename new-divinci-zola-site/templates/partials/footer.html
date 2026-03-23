@@ -14,17 +14,17 @@
                 {{ translations.footer.tagline | default(value="Empowering human-AI collaboration") }}
             </p>
             <div class="footer-social">
-                <a href="{{ config.extra.twitter }}" target="_blank" rel="noopener" title="X">
-                    <i class="fa-brands fa-x-twitter"></i>
+                <a href="{{ config.extra.twitter }}" target="_blank" rel="noopener" title="X" aria-label="Follow us on X (Twitter)">
+                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
                 </a>
-                <a href="{{ config.extra.linkedin }}" target="_blank" rel="noopener" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
+                <a href="{{ config.extra.linkedin }}" target="_blank" rel="noopener" title="LinkedIn" aria-label="Connect on LinkedIn">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
                 </a>
-                <a href="{{ config.extra.github }}" target="_blank" rel="noopener" title="GitHub">
-                    <i class="fab fa-github"></i>
+                <a href="{{ config.extra.github }}" target="_blank" rel="noopener" title="GitHub" aria-label="View our GitHub">
+                    <i class="fab fa-github" aria-hidden="true"></i>
                 </a>
-                <a href="{{ config.extra.discord }}" target="_blank" rel="noopener" title="Discord Community">
-                    <i class="fab fa-discord"></i>
+                <a href="{{ config.extra.discord }}" target="_blank" rel="noopener" title="Discord Community" aria-label="Join our Discord community">
+                    <i class="fab fa-discord" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
@@ -34,6 +34,7 @@
             <ul>
                 <li><a href="#features">{{ translations.footer.sections.product.links.features | default(value="Features") }}</a></li>
                 <li><a href="{% if current_lang == 'en' %}/autorag/{% else %}/{{ current_lang }}/autorag/{% endif %}">{{ translations.footer.sections.product.links.autorag | default(value="AutoRAG") }}</a></li>
+                <li><a href="{% if current_lang == 'en' %}/rag-arena/{% else %}/{{ current_lang }}/rag-arena/{% endif %}">RAG Arena</a></li>
                 <li><a href="{% if current_lang == 'en' %}/quality-assurance/{% else %}/{{ current_lang }}/quality-assurance/{% endif %}">{{ translations.footer.sections.product.links.quality_assurance | default(value="Quality Assurance") }}</a></li>
                 <li><a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">{{ translations.footer.sections.product.links.release_management | default(value="Release Management") }}</a></li>
                 <li><a href="{% if current_lang == 'en' %}/pricing{% else %}/{{ current_lang }}/pricing{% endif %}">{{ translations.footer.sections.product.links.pricing | default(value="Pricing") }}</a></li>
@@ -77,14 +78,14 @@
     <div class="footer-bottom">
         <div class="footer-bottom-content">
             <p class="copyright">
-                {{ translations.footer.bottom.copyright | default(value="© 2023-2025 Divinci AI. All rights reserved.") }}
+                © 2023-{{ now() | date(format="%Y") }} Divinci AI. All rights reserved.
             </p>
             <div class="footer-bottom-links">
                 <a href="{% if current_lang == 'en' %}/sitemap{% else %}/{{ current_lang }}/sitemap{% endif %}">{{ translations.footer.bottom.links.sitemap | default(value="Sitemap") }}</a>
                 <a href="{% if current_lang == 'en' %}/accessibility{% else %}/{{ current_lang }}/accessibility{% endif %}">{{ translations.footer.bottom.links.accessibility | default(value="Accessibility") }}</a>
                 <div class="privacy-dropdown">
-                    <span class="privacy-settings-link">{{ translations.footer.bottom.privacy_settings | default(value="Privacy Settings") }}</span>
-                    <div class="privacy-dropdown-content">
+                    <button class="privacy-settings-link" aria-expanded="false" aria-haspopup="true">{{ translations.footer.bottom.privacy_settings | default(value="Privacy Settings") }}</button>
+                    <div class="privacy-dropdown-content" role="menu">
                         <a href="{% if current_lang == 'en' %}/cookies{% else %}/{{ current_lang }}/cookies{% endif %}">{{ translations.footer.bottom.cookie_policy | default(value="Cookie Policy") }}</a>
                         <button onclick="window.gdprCompliance?.showCookieBanner()">{{ translations.footer.bottom.cookie_preferences | default(value="Cookie Preferences") }}</button>
                         <a href="{% if current_lang == 'en' %}/privacy-policy{% else %}/{{ current_lang }}/privacy-policy{% endif %}">Privacy Policy</a>

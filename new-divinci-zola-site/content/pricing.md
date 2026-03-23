@@ -260,36 +260,9 @@ input:checked + .toggle-slider:before {
     border: 1px solid var(--color-border-light);
 }
 
-/* Section-wide coming soon overlay */
+/* Pricing cards container */
 .pricing-cards {
     position: relative;
-}
-
-/* Section-wide coming soon overlay - high specificity */
-.pricing-section .pricing-cards::after {
-    content: "À La Carte Pricing — Contact Us for Details" !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    background: rgba(248, 244, 240, 0.97) !important;
-    backdrop-filter: blur(8px) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-family: 'Fraunces', serif !important;
-    font-size: 1.5rem !important;
-    font-weight: 400 !important;
-    color: var(--color-neutral-inverse, #2d5a4f) !important;
-    text-align: center !important;
-    z-index: 999 !important;
-    border-radius: 12px !important;
-    pointer-events: none !important;
-}
-
-.pricing-card.coming-soon {
-    opacity: 0;
 }
 
 .pricing-card:hover {
@@ -582,7 +555,7 @@ input:checked + .toggle-slider:before {
 }
 
 .faq-section {
-    padding: 5rem 0;
+    padding: 3rem 0 6rem;
     background: #f8f4f0 !important; /* Match tan background */
     position: relative;
 }
@@ -715,15 +688,15 @@ input:checked + .toggle-slider:before {
 
 <div class="pricing-amount monthly active">
 <div class="pricing-price">
-<span class="currency">$</span>--<span class="period">/mo</span>
+<span class="currency">$</span>20<span class="period">/mo</span>
 </div>
 </div>
 
 <div class="pricing-amount annual">
 <div class="pricing-price">
-<span class="currency">$</span>--<span class="period">/mo</span>
+<span class="currency">$</span>16<span class="period">/mo</span>
 </div>
-<div class="pricing-billed">Billed annually ($---)</div>
+<div class="pricing-billed">Billed annually ($192)</div>
 </div>
 
 <ul class="pricing-features">
@@ -770,15 +743,15 @@ input:checked + .toggle-slider:before {
 
 <div class="pricing-amount monthly active">
 <div class="pricing-price">
-<span class="currency">$</span>--<span class="period">/mo</span>
+<span class="currency">$</span>100<span class="period">/mo</span>
 </div>
 </div>
 
 <div class="pricing-amount annual">
 <div class="pricing-price">
-<span class="currency">$</span>--<span class="period">/mo</span>
+<span class="currency">$</span>80<span class="period">/mo</span>
 </div>
-<div class="pricing-billed">Billed annually ($---)</div>
+<div class="pricing-billed">Billed annually ($960)</div>
 </div>
 
 <ul class="pricing-features">
@@ -826,15 +799,15 @@ input:checked + .toggle-slider:before {
 
 <div class="pricing-amount monthly active">
 <div class="pricing-price">
-<span class="currency">$</span>--<span class="period">/mo</span>
+<span class="currency">$</span>200<span class="period">/mo</span>
 </div>
 </div>
 
 <div class="pricing-amount annual">
 <div class="pricing-price">
-<span class="currency">$</span>--<span class="period">/mo</span>
+<span class="currency">$</span>160<span class="period">/mo</span>
 </div>
-<div class="pricing-billed">Billed annually ($---)</div>
+<div class="pricing-billed">Billed annually ($1,920)</div>
 </div>
 
 <ul class="pricing-features">
@@ -887,7 +860,7 @@ input:checked + .toggle-slider:before {
 </div>
 </section>
 
-<section class="faq-section" style="margin-top: 6rem; background-color: #f8f4f0 !important;">
+<section class="faq-section" style="margin-top: 2rem; background-color: #f8f4f0 !important;">
 <div class="container">
 <h2 class="faq-title">Frequently Asked Questions</h2>
 <div class="faq-container">

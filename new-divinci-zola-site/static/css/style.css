@@ -162,7 +162,8 @@ body > * {
   z-index: 0;
 }
 
-.feature-hero-bg img {
+.feature-hero-bg img,
+.feature-hero-bg video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -402,6 +403,19 @@ body > * {
   text-shadow: 0 2px 8px rgba(20, 40, 30, 0.5) !important;
 }
 
+/* Remove warm text glow inside white card containers where it washes out text */
+.pricing-card h1, .pricing-card h2, .pricing-card h3, .pricing-card p,
+.sdk-card h1, .sdk-card h2, .sdk-card h3, .sdk-card p,
+.code-example h1, .code-example h2, .code-example h3,
+.api-endpoints h1, .api-endpoints h2, .api-endpoints h3,
+.capability-card h1, .capability-card h2, .capability-card h3,
+.panel h1, .panel h2, .panel h3,
+.faq-question,
+[style*="background: white"] h1, [style*="background: white"] h2, [style*="background: white"] h3,
+[style*="background-color: white"] h1, [style*="background-color: white"] h2, [style*="background-color: white"] h3 {
+  text-shadow: none !important;
+}
+
 /* Accent sections get a slightly warmer, more visible texture */
 .routing-section,
 .parchment-accent {
@@ -409,11 +423,26 @@ body > * {
   background-repeat: repeat;
 }
 
-/* Reduced motion — simplify background */
+/* Reduced motion — disable animations and transitions */
 @media (prefers-reduced-motion: reduce) {
   body::before,
   body::after {
     opacity: 0.5;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  video[autoplay] {
+    display: none;
+  }
+
+  .background-video {
+    display: none;
   }
 }
 
@@ -908,7 +937,7 @@ p {
 
 .enterprise-ai .video-background-container {
   position: absolute;
-  top: calc(47% + 0px);
+  top: calc(53% + 34px);
   left: 0;
   width: 100%;
   height: 505px;
@@ -3094,11 +3123,11 @@ body:not(.homepage) .privacy-settings-link:hover {
   padding: 4rem 0;
   background: linear-gradient(
     to bottom,
-    rgba(207, 220, 255, 0.88) 0%,
-    rgba(207, 220, 255, 0.5) 30%,
-    rgba(207, 220, 255, 0.4) 50%,
-    rgba(207, 220, 255, 0.5) 70%,
-    rgba(207, 220, 255, 0.88) 100%
+    rgba(232, 221, 199, 0.6) 0%,
+    rgba(232, 221, 199, 0.3) 30%,
+    rgba(232, 221, 199, 0.2) 50%,
+    rgba(232, 221, 199, 0.3) 70%,
+    rgba(232, 221, 199, 0.6) 100%
   );
   position: relative;
 }
@@ -3994,6 +4023,8 @@ body:not(.homepage) .privacy-settings-link:hover {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
+  background: none;
+  border: none;
 }
 
 .privacy-settings-link:hover {

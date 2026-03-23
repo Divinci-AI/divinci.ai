@@ -35,8 +35,8 @@ feature_category = "development-tools"
 
 .secondary-button {
     background-color: transparent;
-    color: #16214c;
-    border: 2px solid #16214c;
+    color: var(--color-neutral-dark, #1e3a2b);
+    border: 2px solid var(--color-neutral-dark, #1e3a2b);
     padding: 12px 24px;
     border-radius: 8px;
     text-decoration: none;
@@ -45,18 +45,18 @@ feature_category = "development-tools"
 }
 
 .secondary-button:hover {
-    background-color: #16214c;
+    background-color: var(--color-neutral-dark, #1e3a2b);
     color: white;
 }
 
 .text-link {
-    color: #16214c;
+    color: var(--color-neutral-dark, #1e3a2b);
     text-decoration: none;
     font-weight: 600;
 }
 
 .text-link:hover {
-    color: #254284;
+    color: var(--color-neutral-inverse, #2d5a4f);
     text-decoration: underline;
 }
 
@@ -85,7 +85,7 @@ feature_category = "development-tools"
     width: 80px;
     height: 80px;
     margin: 0 auto 1.5rem;
-    background: linear-gradient(135deg, #16214c, #254284);
+    background: linear-gradient(135deg, var(--color-neutral-dark, #1e3a2b), var(--color-neutral-inverse, #2d5a4f));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -121,7 +121,7 @@ feature_category = "development-tools"
     width: 60px;
     height: 60px;
     margin: 0 auto 1rem;
-    background: linear-gradient(135deg, #16214c, #254284);
+    background: linear-gradient(135deg, var(--color-neutral-dark, #1e3a2b), var(--color-neutral-inverse, #2d5a4f));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -154,7 +154,7 @@ feature_category = "development-tools"
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(135deg, #16214c, #254284);
+    background: linear-gradient(135deg, var(--color-neutral-dark, #1e3a2b), var(--color-neutral-inverse, #2d5a4f));
 }
 
 .metrics-dashboard {
@@ -184,7 +184,7 @@ feature_category = "development-tools"
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
-    color: #16214c;
+    color: var(--color-neutral-dark, #1e3a2b);
     margin-bottom: 0.5rem;
 }
 
@@ -252,7 +252,7 @@ feature_category = "development-tools"
 }
 
 .testimonial {
-    border-left: 4px solid #16214c;
+    border-left: 4px solid var(--color-neutral-dark, #1e3a2b);
     padding-left: 2rem;
     margin: 2rem 0;
     font-style: italic;
@@ -262,14 +262,14 @@ feature_category = "development-tools"
     display: block;
     margin-top: 1rem;
     font-weight: 600;
-    color: #254284;
+    color: var(--color-neutral-inverse, #2d5a4f);
 }
 
 .tag {
     display: inline-block;
     padding: 0.5rem 1rem;
     background: rgba(107, 70, 193, 0.1);
-    color: #16214c;
+    color: var(--color-neutral-dark, #1e3a2b);
     border-radius: 20px;
     font-size: 0.9rem;
     margin: 0.25rem;
@@ -286,7 +286,7 @@ feature_category = "development-tools"
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #16214c, #254284);
+    background: linear-gradient(90deg, var(--color-neutral-dark, #1e3a2b), var(--color-neutral-inverse, #2d5a4f));
     border-radius: 4px;
     transition: width 2s ease;
 }
@@ -310,7 +310,7 @@ feature_category = "development-tools"
 }
 
 .flow-arrow {
-    color: #16214c;
+    color: var(--color-neutral-dark, #1e3a2b);
     font-size: 1.5rem;
     margin: 0 0.5rem;
 }
@@ -403,7 +403,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Pipeline de Livraison</h2>
 
 <div class="pipeline-container">
-<h3 style="color: #16214c; margin-bottom: 2rem; text-align: center;">Flux de Déploiement IA de Bout en Bout</h3>
+<h3 style="color: var(--color-neutral-dark, #1e3a2b); margin-bottom: 2rem; text-align: center;">Flux de Déploiement IA de Bout en Bout</h3>
 
 <div class="pipeline-steps">
 <div class="pipeline-step">
@@ -467,11 +467,11 @@ feature_category = "development-tools"
 <p>Comparer les versions de modèles en production en divisant le trafic entre les versions, suivre les métriques de performance, effectuer des tests de signification statistique et permettre la sélection automatique du gagnant.</p>
 <div class="metrics-grid" style="margin-top: 1rem;">
 <div style="text-align: center;">
-<div style="font-weight: bold; color: #16214c;">Modèle A</div>
+<div style="font-weight: bold; color: var(--color-neutral-dark, #1e3a2b);">Modèle A</div>
 <div>50% Trafic</div>
 </div>
 <div style="text-align: center;">
-<div style="font-weight: bold; color: #254284;">Modèle B</div>
+<div style="font-weight: bold; color: var(--color-neutral-inverse, #2d5a4f);">Modèle B</div>
 <div>50% Trafic</div>
 </div>
 </div>
@@ -500,7 +500,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Tableau de Bord des Métriques de Déploiement</h2>
 
 <div class="metrics-dashboard">
-<h3 style="color: #16214c; margin-bottom: 2rem; text-align: center;">Performance de Déploiement en Temps Réel</h3>
+<h3 style="color: var(--color-neutral-dark, #1e3a2b); margin-bottom: 2rem; text-align: center;">Performance de Déploiement en Temps Réel</h3>
 
 <div class="metrics-grid">
 <div class="metric-item">
@@ -560,8 +560,8 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Histoires de Succès</h2>
 
 <div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
-<h3 style="color: #16214c; font-size: 2rem; margin-bottom: 1rem;">Plateforme E-commerce Mondiale</h3>
-<p style="font-size: 1.25rem; color: #254284; margin-bottom: 2rem; font-weight: 600;">Réduction du temps de déploiement de 90% tout en augmentant la fréquence des versions de 400%</p>
+<h3 style="color: var(--color-neutral-dark, #1e3a2b); font-size: 2rem; margin-bottom: 1rem;">Plateforme E-commerce Mondiale</h3>
+<p style="font-size: 1.25rem; color: var(--color-neutral-inverse, #2d5a4f); margin-bottom: 2rem; font-weight: 600;">Réduction du temps de déploiement de 90% tout en augmentant la fréquence des versions de 400%</p>
 <p style="margin-bottom: 2rem;">Une plateforme e-commerce majeure devait déployer des modèles IA pour des moteurs de recommandation dans 15 pays avec zéro temps d'arrêt. En utilisant notre plateforme de Gestion des Versions, ils ont implémenté des déploiements bleu-vert et ont réalisé des mises à jour de modèles transparentes affectant plus de 100M d'utilisateurs quotidiens tout en maintenant 99,99% de disponibilité.</p>
 
 <blockquote class="testimonial">
@@ -714,8 +714,8 @@ feature_category = "development-tools"
 
 <section style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(184, 160, 128, 0.1)); padding: 4rem 0;">
 <div class="container" style="text-align: center;">
-<h2 style="font-size: 2.5rem; color: #16214c; margin-bottom: 1rem;">Prêt à Transformer le Déploiement IA ?</h2>
-<p style="font-size: 1.25rem; margin-bottom: 2rem; color: #254284;">Déployez avec confiance, effectuez un rollback instantané et maintenez les plus hauts standards de fiabilité.</p>
+<h2 style="font-size: 2.5rem; color: var(--color-neutral-dark, #1e3a2b); margin-bottom: 1rem;">Prêt à Transformer le Déploiement IA ?</h2>
+<p style="font-size: 1.25rem; margin-bottom: 2rem; color: var(--color-neutral-inverse, #2d5a4f);">Déployez avec confiance, effectuez un rollback instantané et maintenez les plus hauts standards de fiabilité.</p>
 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
 <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="secondary-button" target="_blank">Demander une Démo</a>
 <a href="https://docs.divinci.ai/release" class="text-link" style="padding: 12px 24px; border: 2px solid transparent;">Voir Documentation</a>

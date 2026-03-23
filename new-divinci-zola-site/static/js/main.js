@@ -1,23 +1,11 @@
 // Execute immediately to catch mobile detection early
-console.log('DEBUG: Script loading, checking mobile detection early...');
-console.log('DEBUG: Initial window width:', window.innerWidth);
 
 document.addEventListener("DOMContentLoaded", function() {
-  console.log('DEBUG: DOM loaded, starting mobile optimization...');
-  
   const heroVideo = document.getElementById('hero-video');
   const heroVideo2 = document.getElementById('hero-video-2');
   const heroVideo3 = document.getElementById('hero-video-3');
   const heroPoster = document.getElementById('hero-poster');
   const soundToggle = document.getElementById('sound-toggle');
-  
-  console.log('DEBUG: Elements found:', {
-    heroVideo: !!heroVideo,
-    heroVideo2: !!heroVideo2,
-    heroVideo3: !!heroVideo3,
-    heroPoster: !!heroPoster,
-    soundToggle: !!soundToggle
-  });
   
   // Performance optimization: Check for reduced motion preferences
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -28,10 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let shouldLoadVideos = false;
   let connectionQuality = 'unknown';
   let currentVideoIndex = 0;
-  
-  console.log('DEBUG: Mobile detection:', isMobile, 'Window width:', window.innerWidth);
-  console.log('DEBUG: User agent:', navigator.userAgent);
-  
+
   // Connection speed and data saver detection
   const detectConnectionQuality = () => {
     // Check for explicit data saver preference
@@ -41,15 +26,12 @@ document.addEventListener("DOMContentLoaded", function() {
       if (connection) {
         if (connection.saveData) {
           connectionQuality = 'slow';
-          console.log('Data saver mode detected - using static images');
           return;
         }
         
         const effectiveType = connection.effectiveType;
         const downlink = connection.downlink;
-        
-        console.log(`Connection type: ${effectiveType}, downlink: ${downlink} Mbps`);
-        
+
         // Determine connection quality
         if (effectiveType === '4g' && downlink > 5) {
           connectionQuality = 'fast';
@@ -64,16 +46,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fallback: Check memory constraints
     if ('deviceMemory' in navigator && navigator.deviceMemory < 4) {
       connectionQuality = 'slow';
-      console.log('Low device memory detected - optimizing for performance');
     }
-    
-    console.log(`Final connection quality: ${connectionQuality}`);
   };
   
   // Apply static image fallback for hero and enterprise videos
   const applyStaticImageFallback = () => {
-    console.log('Applying static image fallback - hiding videos and showing static images');
-    
     // Hide all hero videos and show poster image
     const heroVideos = [heroVideo, heroVideo2, heroVideo3];
     heroVideos.forEach(video => {
@@ -108,41 +85,31 @@ document.addEventListener("DOMContentLoaded", function() {
       soundToggle.style.visibility = 'hidden';
       soundToggle.style.opacity = '0';
     }
-    
-    console.log('Static image fallback applied successfully');
   };
   
   // Determine if we should load videos
   const shouldLoadVideoContent = () => {
-    console.log('DEBUG: shouldLoadVideoContent called, isMobile:', isMobile);
     detectConnectionQuality();
-    
+
     // On mobile, always use static images for better performance
     if (isMobile) {
-      console.log('Mobile detected - using static images only');
       return false;
     }
-    
+
     // On desktop, check connection quality
     if (connectionQuality === 'slow') {
-      console.log('Slow connection detected - using static images');
       return false;
     }
-    
+
     // Good connection on desktop - load videos
-    console.log('Good connection on desktop - loading videos');
     return true;
   };
   
   shouldLoadVideos = shouldLoadVideoContent();
-  console.log('DEBUG: shouldLoadVideos result:', shouldLoadVideos);
-  
+
   // Apply static image fallback if videos shouldn't load
   if (!shouldLoadVideos) {
-    console.log('DEBUG: Applying static image fallback');
     applyStaticImageFallback();
-  } else {
-    console.log('DEBUG: Loading videos normally');
   }
   
   // Add viewport change listener for dynamic mobile/desktop switching
@@ -152,7 +119,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const newMode = newIsMobile ? 'mobile' : 'desktop';
     
     if (currentViewportMode !== newMode) {
-      console.log(`Viewport changed from ${currentViewportMode} to ${newMode}`);
       currentViewportMode = newMode;
       
       // If switching TO mobile, hide videos 2&3 but keep them in DOM
@@ -168,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function() {
           heroVideo3.style.pointerEvents = 'none';
         }
         window.isMobileVideoMode = true;
-        console.log('Switched to mobile: videos 2&3 hidden');
       }
       // If switching TO desktop, show videos 2&3 and allow cycling
       else if (newMode === 'desktop') {
@@ -185,33 +150,28 @@ document.addEventListener("DOMContentLoaded", function() {
           heroVideo3.style.pointerEvents = 'auto';
         }
         window.isMobileVideoMode = false;
-        console.log('Switched to desktop: videos 2&3 available for cycling');
       }
     }
   });
   
   // On mobile, disable video cycling but keep all videos available
   if (isMobile) {
-    console.log('Mobile detected - keeping all videos but disabling cycling logic');
     shouldOptimizeForBattery = true;
-    
+
     // Don't remove videos, just ensure they're hidden initially
     if (heroVideo2) {
       heroVideo2.style.opacity = '0';
       heroVideo2.style.display = 'block'; // Keep in DOM
-      console.log('Mobile: heroVideo2 hidden but available');
     }
     if (heroVideo3) {
       heroVideo3.style.opacity = '0';
       heroVideo3.style.display = 'block'; // Keep in DOM
-      console.log('Mobile: heroVideo3 hidden but available');
     }
-    
+
     // Keep first video visible and playing
     if (heroVideo) {
       heroVideo.style.opacity = '1';
       heroVideo.style.display = 'block';
-      console.log('Mobile: heroVideo1 visible and ready');
     }
     
     // Prevent video cycling logic from running
@@ -223,33 +183,10 @@ document.addEventListener("DOMContentLoaded", function() {
     navigator.getBattery().then(function(battery) {
       // If very low battery, force static images even on desktop with good connection
       if (battery.level < 0.2 && !battery.charging && shouldLoadVideos) {
-        console.log('Critical battery level detected - overriding video loading');
         applyStaticImageFallback();
       }
-    }).catch(() => {
-      console.log('Battery API not supported - using device-based optimization');
-    });
+    }).catch(() => {});
   }
-  
-  // Debug function for testing static image mode
-  window.debugStaticMode = function() {
-    console.log('Manual static image mode triggered');
-    applyStaticImageFallback();
-  };
-  
-  window.debugConnectionInfo = function() {
-    console.log('Connection Debug Info:');
-    console.log('- Is Mobile:', isMobile);
-    console.log('- Connection Quality:', connectionQuality);
-    console.log('- Should Load Videos:', shouldLoadVideos);
-    console.log('- Window Width:', window.innerWidth);
-    if ('connection' in navigator) {
-      const conn = navigator.connection;
-      console.log('- Effective Type:', conn.effectiveType);
-      console.log('- Downlink:', conn.downlink);
-      console.log('- Save Data:', conn.saveData);
-    }
-  };
   
   // Time-based lighting system removed
   
@@ -265,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const video = entry.target;
       if (entry.isIntersecting) {
         // Video is in view - start playing
-        video.play().catch(e => console.log('Video play failed:', e));
+        video.play().catch(() => {});
       } else {
         // Video is out of view - pause
         video.pause();
@@ -285,61 +222,44 @@ document.addEventListener("DOMContentLoaded", function() {
     // Check if hero is initially in view and start first video
     const heroRect = heroVideo.getBoundingClientRect();
     if (heroRect.top < window.innerHeight && heroRect.bottom > 0) {
-      console.log('Starting initial hero video playback');
-      heroVideo.play().catch(e => console.log('Initial hero video play failed:', e));
-      
+      heroVideo.play().catch(() => {});
+
       // Show sound toggle for first video
       if (soundToggle) {
         soundToggle.style.display = 'block';
         soundToggle.textContent = heroVideo.muted ? 'Unmute' : 'Mute';
-        console.log('Sound toggle shown for initial video, muted:', heroVideo.muted);
       }
     }
-  }
-
-  // Debug function to manually test video switching (desktop only)
-  if (!isMobile) {
-    window.testVideoSwitch = function() {
-      console.log('Manual video switch triggered');
-      switchToNextVideo();
-    };
   }
 
   // Enhanced background video intersection observer for iOS compatibility
   const backgroundVideoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        console.log('Background video container in view');
-        
         // iOS-specific video loading approach
         if (isMobile && /iPhone|iPad/.test(navigator.userAgent)) {
           // On real iOS devices, be more aggressive with video loading
           backgroundVideos.forEach(video => {
             if (video.readyState < 2) { // HAVE_CURRENT_DATA
-              console.log('iOS: Loading background video metadata');
               video.load(); // Force load on iOS
             }
           });
-          
+
           // Try to start the currently active video with multiple attempts
           if (currentActiveVideo) {
             const tryPlayVideo = (attempts = 0) => {
               if (attempts > 3) {
-                console.log('iOS: Max play attempts reached for background video');
                 return;
               }
-              
+
               currentActiveVideo.play()
-                .then(() => {
-                  console.log('iOS: Background video started successfully');
-                })
-                .catch(e => {
-                  console.log(`iOS: Background video play attempt ${attempts + 1} failed:`, e);
+                .then(() => {})
+                .catch(() => {
                   // Retry after a short delay
                   setTimeout(() => tryPlayVideo(attempts + 1), 500);
                 });
             };
-            
+
             if (currentActiveVideo.paused) {
               tryPlayVideo();
             }
@@ -347,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
           // Standard approach for other devices
           if (currentActiveVideo && currentActiveVideo.paused) {
-            currentActiveVideo.play().catch(e => console.log('Background video play failed:', e));
+            currentActiveVideo.play().catch(() => {});
           }
         }
       } else {
@@ -368,35 +288,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // iOS-specific background video initialization after user interaction
   if (isMobile && /iPhone|iPad/.test(navigator.userAgent)) {
-    console.log('iOS: Setting up background video initialization after user interaction');
-    
     let iosVideoInitialized = false;
-    
+
     const initializeIOSBackgroundVideos = () => {
       if (iosVideoInitialized) return;
       iosVideoInitialized = true;
-      
-      console.log('iOS: Initializing background videos after user interaction');
-      
-      backgroundVideos.forEach((video, index) => {
+
+      backgroundVideos.forEach((video) => {
         // Force load each video
         video.load();
-        
-        // Set up event listeners for successful loading
-        video.addEventListener('loadedmetadata', () => {
-          console.log(`iOS: Background video ${index} metadata loaded`);
-        });
-        
+
         video.addEventListener('canplay', () => {
-          console.log(`iOS: Background video ${index} can play`);
-          
           // If this is the default/active video and it's in view, try to play it
           if (video === currentActiveVideo) {
             const container = document.querySelector('.video-background-container');
             if (container) {
               const rect = container.getBoundingClientRect();
               if (rect.top < window.innerHeight && rect.bottom > 0) {
-                video.play().catch(e => console.log('iOS: Auto-play after canplay failed:', e));
+                video.play().catch(() => {});
               }
             }
           }
@@ -440,8 +349,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   
   function handleParallaxScroll() {
-    // Disable parallax effect on mobile devices
-    if (isMobile) {
+    // Disable parallax effect on mobile devices or reduced motion
+    if (isMobile || prefersReducedMotion) {
       bottomPanels.forEach(panel => {
         panel.style.transform = '';
       });
@@ -514,19 +423,17 @@ document.addEventListener("DOMContentLoaded", function() {
     let isTransitioning = false; // Prevent duplicate transitions
     let video1MuteState = true; // Track Video 1's mute state (default muted)
 
-    // Fallback timer to ensure video rotation starts even if ended event doesn't fire
-    setTimeout(() => {
-      if (currentVideoIndex === 0 && isFirstPlaythrough && heroVideo) {
-        console.log('Fallback: Starting video rotation after 30 seconds');
+    // Fallback: if the ended event doesn't fire for some reason, check periodically
+    const fallbackCheck = setInterval(() => {
+      if (heroVideo && heroVideo.duration > 0 && heroVideo.currentTime >= heroVideo.duration - 0.5 && !isTransitioning && currentVideoIndex === 0) {
+        clearInterval(fallbackCheck);
         isFirstPlaythrough = false;
-        heroVideo.loop = false;
-        setTimeout(() => switchToNextVideo(), 2000);
+        switchToNextVideo();
       }
-    }, 30000); // 30 seconds fallback
+    }, 1000);
 
   function switchToNextVideo() {
     if (isTransitioning) {
-      console.log('Transition already in progress, skipping');
       return;
     }
     
@@ -534,8 +441,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const currentVideo = heroVideos[currentVideoIndex];
     const nextIndex = (currentVideoIndex + 1) % heroVideos.length;
     const nextVideo = heroVideos[nextIndex];
-
-    console.log(`Switching from video ${currentVideoIndex + 1} to video ${nextIndex + 1}`);
 
     if (!nextVideo) {
       console.error(`Next video at index ${nextIndex} not found!`);
@@ -547,7 +452,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (currentVideo) {
       currentVideo.loop = false;
       currentVideo.pause(); // Ensure current video stops
-      console.log(`Disabled loop and paused video ${currentVideoIndex + 1}`);
     }
 
     // Immediately hide Video 1 if we're transitioning to Video 3 (prevents first-time flash)
@@ -555,12 +459,10 @@ document.addEventListener("DOMContentLoaded", function() {
       heroVideo.style.opacity = '0';
       heroVideo.style.display = 'none';
       heroVideo.pause();
-      console.log('Pre-emptively hiding Video 1 for Video 3 transition');
     }
 
     // Special handling for cycling back to video 1
     if (nextIndex === 0) {
-      console.log('Cycling back to video 1 - resetting properties');
       nextVideo.currentTime = 0; // Reset to beginning
       nextVideo.loop = false; // Don't loop when cycling back
       nextVideo.removeAttribute('loop'); // Ensure loop attribute is removed
@@ -571,7 +473,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Lazy load the next video
     nextVideo.preload = 'metadata';
     nextVideo.load();
-    console.log(`Loading video ${nextIndex + 1}`);
 
     // Add error handler for video loading
     nextVideo.addEventListener('error', function(e) {
@@ -579,8 +480,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }, { once: true });
 
     const loadHandler = function() {
-      console.log(`Video ${nextIndex + 1} loaded successfully`);
-      
       // Hide current video immediately and ensure all other videos are hidden
       heroVideos.forEach((video, index) => {
         if (video && index !== nextIndex) {
@@ -597,7 +496,6 @@ document.addEventListener("DOMContentLoaded", function() {
       setTimeout(() => {
         nextVideo.style.opacity = '1';
         nextVideo.play().then(() => {
-          console.log(`Video ${nextIndex + 1} started playing`);
           currentActiveHeroVideo = nextVideo;
           currentVideoIndex = nextIndex;
           isTransitioning = false; // Allow next transition
@@ -610,22 +508,18 @@ document.addEventListener("DOMContentLoaded", function() {
               nextVideo.muted = true;
               video1MuteState = true; // Reset to muted state
               soundToggle.textContent = 'Unmute';
-              console.log(`Video 1 cycling back - reset to muted state`);
             } else {
               soundToggle.style.display = 'none';
               // Auto-mute Videos 2 & 3
               nextVideo.muted = true;
-              console.log(`Auto-muted video ${nextIndex + 1}`);
             }
           }
           
           // Special handling: if we've cycled back to video 1, it should play once then continue cycle
           if (nextIndex === 0 && !isFirstPlaythrough) {
-            console.log('Video 1 restarted in cycle - setting up for next transition');
             // Add a safety timeout in case the ended event doesn't fire
             setTimeout(() => {
               if (currentVideoIndex === 0 && !isTransitioning) {
-                console.log('Safety timeout: forcing Video 1 transition');
                 switchToNextVideo();
               }
             }, (nextVideo.duration + 0.5) * 1000); // Video duration + 0.5s buffer
@@ -639,7 +533,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Check if video is already loaded
     if (nextVideo.readyState >= 2) { // HAVE_CURRENT_DATA or better
-      console.log(`Video ${nextIndex + 1} already loaded`);
       loadHandler();
     } else {
       nextVideo.addEventListener('loadeddata', loadHandler, { once: true });
@@ -653,22 +546,20 @@ document.addEventListener("DOMContentLoaded", function() {
       if (soundToggle) {
         soundToggle.style.display = 'block'; // Always show for video 1 initially
       }
-      
-      // Start with loop enabled for initial playback
-      heroVideo.loop = true;
+
+      // Don't set loop - let the video end naturally so the 'ended' event fires
+      // and triggers the transition to the next video
+      heroVideo.loop = false;
     });
 
     // Set up individual video ended handlers
     if (heroVideo) {
       heroVideo.addEventListener('ended', function() {
-        console.log('Video 1 ended, isFirstPlaythrough:', isFirstPlaythrough);
         if (isFirstPlaythrough) {
-          console.log('First playthrough complete, starting cycle');
           isFirstPlaythrough = false;
           heroVideo.loop = false;
           switchToNextVideo();
         } else {
-          console.log('Video 1 ended in cycle, continuing to next video');
           switchToNextVideo();
         }
       });
@@ -676,46 +567,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (heroVideo2) {
       heroVideo2.addEventListener('ended', function() {
-        console.log('Video 2 ended');
         switchToNextVideo();
       });
     }
 
     if (heroVideo3) {
       heroVideo3.addEventListener('ended', function() {
-        console.log('Video 3 ended, switching back to video 1');
         switchToNextVideo();
       });
-      
-      // Add additional debugging for video 3
-      heroVideo3.addEventListener('loadedmetadata', function() {
-        console.log('Video 3 metadata loaded, duration:', heroVideo3.duration);
-      });
-      
+
       heroVideo3.addEventListener('timeupdate', function() {
-        // Only log periodically, not every frame
-        if (heroVideo3.currentTime > 0 && Math.floor(heroVideo3.currentTime * 4) % 4 === 0) {
-          console.log(`Video 3 time: ${heroVideo3.currentTime.toFixed(2)}/${heroVideo3.duration.toFixed(2)}`);
-        }
-        
         // Fallback: if video is very close to end but hasn't fired ended event
         if (heroVideo3.duration > 0 && (heroVideo3.currentTime >= heroVideo3.duration - 0.1) && !isTransitioning) {
-          console.log('Video 3 near end, triggering manual switch');
           setTimeout(() => {
             if (currentVideoIndex === 2 && !isTransitioning) { // Still on video 3 and not transitioning
-              console.log('Manual switch triggered for video 3');
               switchToNextVideo();
             }
           }, 100);
         }
-      });
-      
-      heroVideo3.addEventListener('stalled', function() {
-        console.log('Video 3 stalled!');
-      });
-      
-      heroVideo3.addEventListener('waiting', function() {
-        console.log('Video 3 waiting for data...');
       });
     }
   }
@@ -727,9 +596,6 @@ document.addEventListener("DOMContentLoaded", function() {
       
       if (isMobile || window.isMobileVideoMode) {
         // iOS-specific video mute handling
-        console.log('Mobile: Sound toggle clicked, current mute state:', heroVideo.muted);
-        
-        // Force a direct interaction with the video element first
         const currentMuteState = heroVideo.muted;
         
         try {
@@ -738,27 +604,16 @@ document.addEventListener("DOMContentLoaded", function() {
             heroVideo.muted = false;
             heroVideo.volume = 1.0;
             soundToggle.textContent = 'Mute';
-            console.log('Mobile: Video unmuted directly');
           } else {
             heroVideo.muted = true;
             soundToggle.textContent = 'Unmute';
-            console.log('Mobile: Video muted directly');
           }
           
           // Force video to start playing if it's not already (iOS requirement)
           if (heroVideo.paused) {
-            heroVideo.play().catch(e => {
-              console.log('Mobile: Play after mute toggle failed:', e);
-            });
+            heroVideo.play().catch(() => {});
           }
-          
-          console.log('Mobile: Final video state - muted:', heroVideo.muted, 'volume:', heroVideo.volume, 'paused:', heroVideo.paused);
-          
-          // iOS sometimes needs a delay to register the change
-          setTimeout(() => {
-            console.log('Mobile: Delayed check - muted:', heroVideo.muted, 'volume:', heroVideo.volume);
-          }, 100);
-          
+
         } catch (error) {
           console.error('Mobile: Direct mute toggle failed:', error);
           // Fallback - try the play-then-mute approach
@@ -766,7 +621,7 @@ document.addEventListener("DOMContentLoaded", function() {
             heroVideo.muted = !currentMuteState;
             heroVideo.volume = currentMuteState ? 1.0 : 0;
             soundToggle.textContent = currentMuteState ? 'Mute' : 'Unmute';
-          }).catch(e => console.log('Mobile: Fallback failed:', e));
+          }).catch(() => {});
         }
       } else {
         // Desktop video cycling behavior
@@ -780,8 +635,6 @@ document.addEventListener("DOMContentLoaded", function() {
             video1MuteState = true; // Save user preference
             soundToggle.textContent = 'Unmute';
           }
-          console.log('Video 1 mute state changed to:', video1MuteState);
-          
           // Ensure video continues to cycle regardless of mute state
           // Don't re-enable loop when unmuting - let the cycle continue
           if (!isFirstPlaythrough) {
@@ -796,8 +649,6 @@ document.addEventListener("DOMContentLoaded", function() {
   
   // Mobile-specific video handling
   if (isMobile && heroVideo) {
-    console.log('Mobile: Setting up simple video loop');
-    
     // Ensure first video is visible and plays on mobile
     heroVideo.style.opacity = '1';
     heroVideo.style.display = 'block';
@@ -806,16 +657,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const mobileVideoObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !prefersReducedMotion) {
-          console.log('Mobile: Hero video in view, starting playback');
-          heroVideo.play().catch(e => console.log('Mobile video play failed:', e));
-          
+          heroVideo.play().catch(() => {});
+
           // Show sound toggle for mobile video
           if (soundToggle) {
             soundToggle.style.display = 'block';
             soundToggle.style.visibility = 'visible';
             soundToggle.style.pointerEvents = 'auto';
             soundToggle.textContent = heroVideo.muted ? 'Unmute' : 'Mute';
-            console.log('Mobile: Sound toggle shown and enabled');
           }
         } else {
           heroVideo.pause();
@@ -849,7 +698,7 @@ document.addEventListener("DOMContentLoaded", function() {
       // Wait for fade out, then switch and fade in
       setTimeout(() => {
         // Start playing the new video and make it active
-        targetVideo.play().catch(e => console.log('Video play failed:', e));
+        targetVideo.play().catch(() => {});
         targetVideo.classList.add('active');
         currentActiveVideo = targetVideo;
       }, 400); // Half of the 0.8s transition time for smooth crossfade
@@ -859,22 +708,10 @@ document.addEventListener("DOMContentLoaded", function() {
   panels.forEach((panel, index) => {
     panel.addEventListener('mouseenter', () => {
       enterpriseAiSection.classList.add(`hover-panel-${index + 1}`);
-      
-      // Switch to panel-specific video for panels 2 and 3
-      if (index === 1) { // Panel 2 (0-based index)
-        switchBackgroundVideo('background-video-panel2');
-      } else if (index === 2) { // Panel 3 (0-based index)
-        switchBackgroundVideo('background-video-panel3');
-      }
     });
 
     panel.addEventListener('mouseleave', () => {
       enterpriseAiSection.classList.remove(`hover-panel-${index + 1}`);
-      
-      // Return to default video when leaving panels 2 or 3
-      if (index === 1 || index === 2) {
-        switchBackgroundVideo('background-video-default');
-      }
     });
   });
 
@@ -899,6 +736,7 @@ function initializeFAQAccordion() {
       faqQuestions.forEach(otherQuestion => {
         if (otherQuestion !== this) {
           otherQuestion.classList.remove('active');
+          otherQuestion.setAttribute('aria-expanded', 'false');
           const otherAnswer = otherQuestion.parentElement.querySelector('.faq-answer');
           if (otherAnswer) {
             otherAnswer.classList.remove('active');
@@ -909,9 +747,11 @@ function initializeFAQAccordion() {
       // Toggle current FAQ item
       if (isActive) {
         this.classList.remove('active');
+        this.setAttribute('aria-expanded', 'false');
         faqAnswer.classList.remove('active');
       } else {
         this.classList.add('active');
+        this.setAttribute('aria-expanded', 'true');
         faqAnswer.classList.add('active');
       }
     });

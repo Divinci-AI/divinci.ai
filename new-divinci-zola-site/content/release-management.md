@@ -353,7 +353,10 @@ feature_category = "development-tools"
 <!-- Hero Section -->
 <div class="feature-hero">
 <div class="feature-hero-bg">
-<img src="/images/hero-release.webp" alt="AI Release Management">
+<video autoplay muted loop playsinline poster="/images/hero-release.webp">
+<source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-release-video.webm" type="video/webm">
+<source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-release-video.mp4" type="video/mp4">
+</video>
 </div>
 <div class="feature-hero-inner">
 <div class="feature-hero-card">
@@ -392,20 +395,20 @@ feature_category = "development-tools"
 <div class="capabilities-grid">
 <div class="capability-card">
 <div class="capability-icon">
-<svg viewBox="0 0 200 100" fill="none" stroke-linecap="round">
-<circle cx="100" cy="20" r="10" stroke="#2d5a4f" stroke-width="2" fill="rgba(45,90,79,0.08)"/>
-<text x="96" y="24" font-size="10" fill="#2d5a4f" font-family="serif">v3</text>
-<line x1="100" y1="30" x2="100" y2="50" stroke="#b8a080" stroke-width="1.5"/>
-<line x1="100" y1="50" x2="60" y2="65" stroke="#b8a080" stroke-width="1.5"/>
-<line x1="100" y1="50" x2="140" y2="65" stroke="#b8a080" stroke-width="1.5"/>
-<circle cx="60" cy="70" r="8" stroke="#3d6b4f" stroke-width="1.5" fill="rgba(61,107,79,0.08)"/>
-<text x="54" y="74" font-size="8" fill="#3d6b4f" font-family="serif">dev</text>
-<circle cx="140" cy="70" r="8" stroke="#8b7659" stroke-width="1.5" fill="rgba(184,160,128,0.08)"/>
-<text x="131" y="74" font-size="8" fill="#8b7659" font-family="serif">prod</text>
-<line x1="60" y1="78" x2="60" y2="92" stroke="#3d6b4f" stroke-width="1" stroke-dasharray="4 3"/>
-<circle cx="60" cy="95" r="4" stroke="#3d6b4f" stroke-width="1" fill="rgba(61,107,79,0.15)"/>
-<line x1="140" y1="78" x2="140" y2="92" stroke="#8b7659" stroke-width="1" stroke-dasharray="4 3"/>
-<circle cx="140" cy="95" r="4" stroke="#8b7659" stroke-width="1" fill="rgba(184,160,128,0.15)"/>
+<svg viewBox="0 0 200 110" fill="none" stroke-linecap="round">
+<circle cx="100" cy="18" r="15" stroke="#2d5a4f" stroke-width="2" fill="rgba(45,90,79,0.08)"/>
+<text x="93" y="23" font-size="12" fill="#2d5a4f" font-family="serif">v3</text>
+<line x1="100" y1="33" x2="100" y2="48" stroke="#b8a080" stroke-width="1.5"/>
+<line x1="100" y1="48" x2="55" y2="62" stroke="#b8a080" stroke-width="1.5"/>
+<line x1="100" y1="48" x2="145" y2="62" stroke="#b8a080" stroke-width="1.5"/>
+<circle cx="55" cy="68" r="13" stroke="#3d6b4f" stroke-width="1.5" fill="rgba(61,107,79,0.08)"/>
+<text x="45" y="73" font-size="10" fill="#3d6b4f" font-family="serif">dev</text>
+<circle cx="145" cy="68" r="13" stroke="#8b7659" stroke-width="1.5" fill="rgba(184,160,128,0.08)"/>
+<text x="132" y="73" font-size="10" fill="#8b7659" font-family="serif">prod</text>
+<line x1="55" y1="81" x2="55" y2="93" stroke="#3d6b4f" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="55" cy="99" r="6" stroke="#3d6b4f" stroke-width="1" fill="rgba(61,107,79,0.15)"/>
+<line x1="145" y1="81" x2="145" y2="93" stroke="#8b7659" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="145" cy="99" r="6" stroke="#8b7659" stroke-width="1" fill="rgba(184,160,128,0.15)"/>
 </svg>
 </div>
 <h3>Version Control for AI</h3>
@@ -425,9 +428,9 @@ feature_category = "development-tools"
 <polygon points="143,31 150,35 143,39" fill="#3d6b4f"/>
 <rect x="150" y="20" width="50" height="30" rx="5" stroke="#2d5a4f" stroke-width="2" fill="rgba(45,90,79,0.08)"/>
 <text x="155" y="39" font-size="9" fill="#2d5a4f" font-family="sans-serif">Deploy</text>
-<polyline points="175,50 175,70 100,70 100,80" stroke="#b8a080" stroke-width="1" stroke-dasharray="4 3"/>
-<circle cx="100" cy="84" r="5" stroke="#2d5a4f" stroke-width="1.5" fill="rgba(45,90,79,0.1)"/>
-<polyline points="97,84 100,87 104,82" stroke="#2d5a4f" stroke-width="1.5"/>
+<polyline points="175,50 175,70 100,70 100,77" stroke="#b8a080" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="100" cy="86" r="9" stroke="#2d5a4f" stroke-width="1.5" fill="rgba(45,90,79,0.1)"/>
+<polyline points="95,86 99,90 106,82" stroke="#2d5a4f" stroke-width="2"/>
 </svg>
 </div>
 <h3>Automated Deployment</h3>
@@ -460,12 +463,19 @@ feature_category = "development-tools"
 <div class="capability-card">
 <div class="capability-icon">
 <svg viewBox="0 0 200 100" fill="none" stroke-linecap="round">
-<path d="M100 5 L100 25" stroke="#b8a080" stroke-width="1.5"/>
-<path d="M100 25 C100 25 50 40 50 65 C50 82 72 95 100 95 C128 95 150 82 150 65 C150 40 100 25 100 25Z" stroke="#2d5a4f" stroke-width="2" fill="rgba(45,90,79,0.05)"/>
-<polyline points="92,20 100,28 108,20" stroke="#b8a080" stroke-width="1.5"/>
-<circle cx="100" cy="62" r="12" stroke="#3d6b4f" stroke-width="1.5" fill="rgba(61,107,79,0.08)"/>
-<polyline points="94,62 99,68 108,56" stroke="#2d5a4f" stroke-width="2.5"/>
-<text x="72" y="88" font-size="8" fill="#8b7659" font-family="sans-serif">rollback ready</text>
+<!-- Shield shape - larger -->
+<path d="M100 2 L155 20 L155 55 C155 78 130 92 100 100 C70 92 45 78 45 55 L45 20 Z" stroke="#2d5a4f" stroke-width="2" fill="rgba(45,90,79,0.05)"/>
+<!-- Inner shield highlight -->
+<path d="M100 12 L146 27 L146 53 C146 73 125 85 100 92 C75 85 54 73 54 53 L54 27 Z" stroke="#3d6b4f" stroke-width="1" fill="rgba(61,107,79,0.04)" stroke-dasharray="4 3"/>
+<!-- Circular rollback arrow -->
+<path d="M85 42 A20 20 0 1 1 85 62" stroke="#2d5a4f" stroke-width="2.5" fill="none"/>
+<polygon points="80,41 85,33 90,41" fill="#2d5a4f"/>
+<!-- Checkmark in center -->
+<polyline points="93,52 99,59 110,45" stroke="#3d6b4f" stroke-width="3"/>
+<!-- Status indicators -->
+<circle cx="75" cy="78" r="3.5" fill="rgba(61,107,79,0.4)"/>
+<circle cx="100" cy="82" r="3.5" fill="rgba(61,107,79,0.4)"/>
+<circle cx="125" cy="78" r="3.5" fill="rgba(61,107,79,0.4)"/>
 </svg>
 </div>
 <h3>Safety & Rollback</h3>

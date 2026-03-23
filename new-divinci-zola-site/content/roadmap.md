@@ -168,15 +168,15 @@ template = "roadmap.html"
 }
 
 .status-development {
-    background-color: rgba(255, 193, 7, 0.1);
-    color: #ffc107;
-    border: 1px solid rgba(255, 193, 7, 0.3);
+    background-color: rgba(184, 160, 128, 0.12);
+    color: #8b7659;
+    border: 1px solid rgba(184, 160, 128, 0.3);
 }
 
 .status-completed {
-    background-color: rgba(40, 167, 69, 0.1);
-    color: #28a745;
-    border: 1px solid rgba(40, 167, 69, 0.3);
+    background-color: rgba(61, 107, 79, 0.1);
+    color: #3d6b4f;
+    border: 1px solid rgba(61, 107, 79, 0.3);
 }
 
 .roadmap-list {
@@ -227,7 +227,7 @@ template = "roadmap.html"
 }
 
 .document-content a:hover {
-    color: #4ed1d6;
+    color: var(--color-accent-tertiary, #3d6b4f);
 }
 
 @media screen and (max-width: 768px) {
@@ -345,7 +345,7 @@ template = "roadmap.html"
 
 <h2>Feedback and Suggestions</h2>
 <p>We value your input! Your feedback helps us prioritize our development efforts and ensure we're building features that truly enhance your experience with Divinci AI.</p>
-<p>To suggest a feature or provide feedback on our roadmap, please contact us at <a href="mailto:feedback@divinci.ai">feedback@divinci.ai</a> or join our <a href="#">community forum</a>.</p>
+<p>To suggest a feature or provide feedback on our roadmap, please contact us at <a href="mailto:feedback@divinci.ai">feedback@divinci.ai</a> or join our <a href="https://discord.gg/divinci" target="_blank" rel="noopener">Discord community</a>.</p>
 </div>
 </div>
 </section>

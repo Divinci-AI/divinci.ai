@@ -93,7 +93,7 @@
 (function waitForRedoc() {
   if (typeof Redoc !== 'undefined' && document.getElementById('redoc-container')) {
     Redoc.init('/openapi.yaml', {
-      scrollYOffset: 90,
+      scrollYOffset: 0,
       hideDownloadButton: false,
       expandResponses: '200',
       nativeScrollbars: true,
@@ -106,9 +106,44 @@
           code: { fontSize: '13px', fontFamily: 'monospace' }
         },
         sidebar: { backgroundColor: '#f8f4f0', textColor: '#2d3c34' },
-        rightPanel: { backgroundColor: '#1e3a2b' }
+        rightPanel: { backgroundColor: '#1e3a2b' },
+        menu: { backgroundColor: '#f8f4f0' }
       }
     }, document.getElementById('redoc-container'));
+
+    // Make sidebar sticky after Redoc renders
+    function fixRedocSidebar() {
+      var wrap = document.querySelector('.redoc-wrap');
+      if (!wrap) { setTimeout(fixRedocSidebar, 500); return; }
+
+      var sidebar = wrap.children[0];
+      if (!sidebar || sidebar.offsetWidth > 400) { setTimeout(fixRedocSidebar, 500); return; }
+
+      // Key: align-items must be flex-start so sidebar doesn't stretch to full height
+      wrap.style.alignItems = 'flex-start';
+
+      sidebar.style.position = 'sticky';
+      sidebar.style.top = '50px';
+      sidebar.style.height = 'calc(100vh - 50px)';
+      sidebar.style.overflowY = 'auto';
+      sidebar.style.overflowX = 'hidden';
+      sidebar.style.flexShrink = '0';
+
+      console.log('Redoc sidebar fixed:', sidebar.offsetWidth + 'px wide');
+    }
+    setTimeout(fixRedocSidebar, 1500);
+
+    // Compact header on scroll
+    var header = document.querySelector('header');
+    if (header) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          header.classList.add('compact');
+        } else {
+          header.classList.remove('compact');
+        }
+      }, { passive: true });
+    }
   } else {
     setTimeout(waitForRedoc, 100);
   }

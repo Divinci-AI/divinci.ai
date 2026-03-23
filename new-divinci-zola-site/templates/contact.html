@@ -74,12 +74,12 @@
                             <i class="fas fa-paper-plane"></i> {{ translations.contact.form.submit_button | default(value="Send Message") }}
                         </button>
 
-                        <div class="form-response success" id="formSuccess">
-                            <i class="fas fa-check-circle"></i> {{ translations.contact.form.success_message | default(value="Thank you for your message! We'll get back to you as soon as possible.") }}
+                        <div class="form-response success" id="formSuccess" role="alert" aria-live="polite">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i> {{ translations.contact.form.success_message | default(value="Thank you for your message! We'll get back to you as soon as possible.") }}
                         </div>
 
-                        <div class="form-response error" id="formError">
-                            <i class="fas fa-exclamation-circle"></i> {{ translations.contact.form.error_message | default(value="Oops! Something went wrong. Please try again later or contact us directly.") }}
+                        <div class="form-response error" id="formError" role="alert" aria-live="assertive">
+                            <i class="fas fa-exclamation-circle" aria-hidden="true"></i> {{ translations.contact.form.error_message | default(value="Oops! Something went wrong. Please try again later or contact us directly.") }}
                         </div>
                     </form>
                 </div>

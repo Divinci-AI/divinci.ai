@@ -94,7 +94,7 @@ Multiple fusion companies are racing toward commercial viability. Commonwealth F
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">⚡ Direct Energy Savings</h4>
 <p style="margin: 0.5rem 0;"><strong>$300-400 per person monthly</strong> in equivalent value from near-zero marginal cost electricity</p>
 </div>
@@ -104,7 +104,7 @@ Multiple fusion companies are racing toward commercial viability. Commonwealth F
 <p style="margin: 0.5rem 0;">Energy-intensive products become dramatically cheaper with abundant fusion power</p>
 </div>
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🚚 Transportation Revolution</h4>
 <p style="margin: 0.5rem 0;">Energy costs for logistics plummet, reducing prices across the entire economy</p>
 </div>
@@ -480,7 +480,7 @@ Bitcoin is primarily used as a speculative investment rather than a medium of ex
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">High price swings make it "almost impossible" to function as stable money<sup style="font-size: 0.7em;">[72]</sup></p>
 </div>
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">🏆 "Digital Gold" Dominates</h4>
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">Institutional investors treat Bitcoin as inflation hedge and store of value</p>
 </div>
@@ -515,9 +515,9 @@ As Bitcoin matures, three potential paths emerge:
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">• Value from scarcity and institutional confidence, not transaction volume</p>
 </div>
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">⚖️ Hybrid Model</h4>
-<p style="margin: 0.5rem 0; font-size: 0.85rem; font-weight: 600; color: #ff9800;">(Medium Probability)</p>
+<p style="margin: 0.5rem 0; font-size: 0.85rem; font-weight: 600; color: #8b7659;">(Medium Probability)</p>
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">• Dual role: settlement layer for large transactions + store of value</p>
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">• Lightning Network and layer-2 solutions enable daily transactions</p>
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">• Base layer fees remain high but sustainable for high-value transfers</p>
@@ -580,7 +580,7 @@ Bitcoin's hard cap of 21 million creates mathematical scarcity unmatched by any 
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">With demand increasing (institutional adoption) and supply decreasing (halvings), basic economics suggests sustained appreciation<sup style="font-size: 0.7em;">[75]</sup></p>
 </div>
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🛡️ Inflation Hedge Positioning</h4>
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">Bitcoin's capped supply contrasts with infinite fiat creation, driving "digital gold" narrative<sup style="font-size: 0.7em;">[76]</sup></p>
 </div>
@@ -618,7 +618,7 @@ The post-2140 transition presents minimal risk to UBI funding because:
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">Reserve value doesn't require Bitcoin to function as daily currency</p>
 </div>
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">💰 Collateralization Option</h4>
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">Government can borrow against BTC holdings rather than selling</p>
 </div>
@@ -656,7 +656,7 @@ Bitcoin's post-mining economics paradoxically strengthen the UBI case rather tha
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">Doesn't depend on Bitcoin's role as currency</p>
 </div>
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.1rem;">🎯 Strategic Timing</h4>
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">2025-2030 captures maximum appreciation before halvings reduce availability</p>
 </div>
@@ -684,7 +684,7 @@ Whether Bitcoin thrives post-2140 as a transaction network or purely as a reserv
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">Fund UBI from asset appreciation, not transaction economics</p>
 </div>
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">4️⃣ Let Fee Market Mature</h4>
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">Transaction economics have century to resolve—irrelevant to reserve value</p>
 </div>
@@ -983,7 +983,7 @@ $$
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">⚡ $T_{fusion}$ — Fusion Energy</h4>
 <p style="margin: 0.5rem 0;"><strong>Cost reduction value:</strong> $300-600B/year equivalent by 2035</p>
 <p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Near-zero marginal cost electricity creates cascading savings across entire economy</p>
@@ -1070,7 +1070,7 @@ $$
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">🔄 $E_{multiplier}$ — Roosevelt Effect</h4>
 <p style="margin: 0.5rem 0;"><strong>Multiplier coefficient:</strong> 2.48x economic activity</p>
 <p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Every $1 UBI generates $2.48 in total economic activity — Roosevelt Institute finding</p>
@@ -1123,7 +1123,7 @@ $$
 <p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Still yields:</strong> $906/month</p>
 </div>
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">⚡ Moderate Path</h4>
 <p style="margin: 0.5rem 0;"><strong>$R_{political}$ = 0.25</strong></p>
 <p style="margin: 0.5rem 0; font-size: 0.9rem; opacity: 0.9;">Compromise on defense and bureaucracy transformation</p>
@@ -1178,7 +1178,7 @@ $
 </div>
 </div>
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">⚡ Moderate Scenario</h4>
 <p style="margin: 0.5rem 0; font-size: 0.85rem;"><strong>Political resistance:</strong> $R_{political}$ = 0.25</p>
 <div style="overflow-x: auto; margin: 1rem 0;">
@@ -1192,8 +1192,8 @@ $
 \end{aligned}
 $
 </div>
-<div style="background: rgba(255, 152, 0, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
-<p style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #ff9800;">$1,442/month</p>
+<div style="background: rgba(139, 118, 89, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+<p style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #8b7659;">$1,442/month</p>
 <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; opacity: 0.8;">$17,304/year per adult</p>
 </div>
 </div>
@@ -1254,11 +1254,11 @@ $
 <p style="margin: 0.5rem 0; font-size: 0.9rem; font-style: italic; color: #9C27B0;">Unlike traditional assets—dual value generation.</p>
 </div>
 
-<div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.08), rgba(255, 152, 0, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800;">
+<div style="background: linear-gradient(135deg, rgba(139, 118, 89, 0.08), rgba(139, 118, 89, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b7659;">
 <h4 style="color: #2d3c34; margin-top: 0; font-size: 1.2rem;">4️⃣ Political Friction as System Damper</h4>
 <p style="margin: 0.5rem 0; font-size: 0.9rem;">The $(1 - R_{political})$ term acts like friction in physics—it doesn't prevent motion, just reduces efficiency.</p>
 <p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Even with 40% resistance:</strong> Equation yields $906/month</p>
-<p style="margin: 0.5rem 0; font-size: 0.9rem; font-style: italic; color: #ff9800;">UBI feasibility isn't binary—it's a spectrum based on political will.</p>
+<p style="margin: 0.5rem 0; font-size: 0.9rem; font-style: italic; color: #8b7659;">UBI feasibility isn't binary—it's a spectrum based on political will.</p>
 </div>
 
 <div style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.08), rgba(244, 67, 54, 0.03)); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F44336;">

@@ -304,7 +304,10 @@ feature_category = "quality-assurance"
 <!-- Hero Section -->
 <div class="feature-hero">
 <div class="feature-hero-bg">
-<img src="/images/hero-qa.webp" alt="LLM Quality Assurance" style="object-position: center 25%;">
+<video autoplay muted loop playsinline poster="/images/hero-qa.webp">
+<source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-qa-video.webm" type="video/webm">
+<source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-qa-video.mp4" type="video/mp4">
+</video>
 </div>
 <div class="feature-hero-inner">
 <div class="feature-hero-card">

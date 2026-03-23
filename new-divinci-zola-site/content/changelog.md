@@ -72,11 +72,11 @@ template = "roadmap.html"
 }
 
 .version-tag.minor {
-    background: linear-gradient(135deg, var(--color-accent-primary, #b8a080), #2fd6c2);
+    background: linear-gradient(135deg, var(--color-accent-primary, #b8a080), #8b7659);
 }
 
 .version-tag.patch {
-    background: linear-gradient(135deg, #7f9ef3, #5f7be0);
+    background: linear-gradient(135deg, #3d6b4f, #2d5a4f);
 }
 
 .changelog-item {
@@ -133,21 +133,21 @@ template = "roadmap.html"
 }
 
 .category-improvement {
-    background-color: rgba(127, 158, 243, 0.15);
-    color: #7f9ef3;
-    border: 1px solid rgba(127, 158, 243, 0.3);
+    background-color: rgba(61, 107, 79, 0.15);
+    color: #3d6b4f;
+    border: 1px solid rgba(61, 107, 79, 0.3);
 }
 
 .category-fix {
-    background-color: rgba(255, 152, 0, 0.15);
-    color: #ff9800;
-    border: 1px solid rgba(255, 152, 0, 0.3);
+    background-color: rgba(139, 118, 89, 0.12);
+    color: #8b7659;
+    border: 1px solid rgba(139, 118, 89, 0.3);
 }
 
 .category-security {
-    background-color: rgba(233, 30, 99, 0.15);
-    color: #e91e63;
-    border: 1px solid rgba(233, 30, 99, 0.3);
+    background-color: rgba(184, 160, 128, 0.12);
+    color: #b8a080;
+    border: 1px solid rgba(184, 160, 128, 0.3);
 }
 
 .changelog-details ul {
@@ -208,7 +208,7 @@ template = "roadmap.html"
     width: 150px;
     height: 150px;
     opacity: 0.07;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='30' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='20' stroke='%235CE2E7' stroke-width='0.5' fill='none' /%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%235CE2E7' stroke-width='0.3' /%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%235CE2E7' stroke-width='0.3' /%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23b8a080' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='30' stroke='%23b8a080' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='50' cy='50' r='20' stroke='%23b8a080' stroke-width='0.5' fill='none' /%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%23b8a080' stroke-width='0.3' /%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%23b8a080' stroke-width='0.3' /%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

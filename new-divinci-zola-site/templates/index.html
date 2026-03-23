@@ -68,28 +68,10 @@
         <p class="section-intro">{{ translations.enterprise.description | default(value="Unlock robust release management and rigorous quality assurance for large language models. Our platform equips enterprises with advanced tools to streamline deployment, enforce compliance, and ensure consistent, high-quality AI performance at scale.") }}</p>
     </div>
     <div class="video-background-container">
-        <!-- Default background video (Panel 1) -->
-        <video id="background-video-default" class="background-video active" muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video x-webkit-airplay="allow">
+        <!-- Background video -->
+        <video id="background-video-default" class="background-video active" autoplay muted loop playsinline webkit-playsinline preload="auto" x-webkit-airplay="allow">
             <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-team.webm" type="video/webm">
             <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-team_social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_321668ae-ec36-4ade-b0a9-8e5dd026b0de_0.mp4" type="video/mp4">
-        </video>
-
-        <!-- Panel 1 hover video (ai team) -->
-        <video id="background-video-panel1" class="background-video" muted loop playsinline webkit-playsinline preload="none" data-lazy-video data-panel="1" x-webkit-airplay="allow">
-            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-team.webm" type="video/webm">
-            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-team_social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_321668ae-ec36-4ade-b0a9-8e5dd026b0de_0.mp4" type="video/mp4">
-        </video>
-
-        <!-- Panel 2 hover video (business parody) -->
-        <video id="background-video-panel2" class="background-video" muted loop playsinline webkit-playsinline preload="none" data-lazy-video data-panel="2" x-webkit-airplay="allow">
-            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/business-parody-optimized.webm" type="video/webm">
-            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/business-parody-social_u4943574663_Renaissance_fresco._Almost_parody_hybrid_scene_of_2ce28274-76c9-4ec1-b4f8-3acc57789616_3.mp4" type="video/mp4">
-        </video>
-
-        <!-- Panel 3 hover video (rag machine) -->
-        <video id="background-video-panel3" class="background-video" muted loop playsinline webkit-playsinline preload="none" data-lazy-video data-panel="3" x-webkit-airplay="allow">
-            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-machine-optimized.webm" type="video/webm">
-            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-machine-social_u4943574663_Young_Leonardo_da_Vinci_in_Renaissance_workshop_t_ad808b44-961d-49e8-b0d-06c848541449_1.mp4" type="video/mp4">
         </video>
     </div>
     <div class="enterprise-content">
@@ -1227,7 +1209,7 @@
                     </picture>
                 </div>
                 <h3>Michael Mooring</h3>
-                <p class="role">{{ translations.team.roles.ceo_founder | default(value="CEO & Founder") }}</p>
+                <p class="role">{{ translations.team.roles.ceo_founder | default(value="Co-Founder & CEO") }}</p>
                 <p class="bio">
                     {{ translations.team.members.michael_bio | default(value="Visionary with 15+ years in enterprise technology, leading the conversational AI revolution.") }}
                 </p>
@@ -1241,7 +1223,7 @@
                     <img src="{{ get_url(path="images/sam-tobia.jpg") }}" alt="Samuel Tobia">
                 </div>
                 <h3>Samuel Tobia</h3>
-                <p class="role">{{ translations.team.roles.cto_cofounder | default(value="CTO & Co-Founder") }}</p>
+                <p class="role">{{ translations.team.roles.cto_cofounder | default(value="Co-Founder & CTO") }}</p>
                 <p class="bio">
                     {{ translations.team.members.samuel_bio | default(value="Product strategist with a track record of delivering user-centric AI solutions for enterprise teams.") }}
                 </p>
@@ -1269,7 +1251,7 @@
                     <img src="{{ get_url(path="images/sierra-hooshiari.jpeg") }}" alt="Sierra Hooshiari">
                 </div>
                 <h3>Sierra Hooshiari</h3>
-                <p class="role">{{ translations.team.roles.coo | default(value="COO - Chief Operations Officer") }}</p>
+                <p class="role">{{ translations.team.roles.coo | default(value="Co-Founder & CMO") }}</p>
                 <p class="bio">
                     {{ translations.team.members.sierra_bio | default(value="Cornell University graduate with extensive experience in financial services and entrepreneurship. Former M&A Associate and founder of BrainPOP Clean Energy, bringing strategic business development and operations expertise to AI venture scaling.") }}
                 </p>
@@ -1381,7 +1363,7 @@
 
             <div class="faq-accordion">
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false">
                         {{ translations.expert_answers.faqs.model_reliability.question | default(value="How do you guarantee model reliability?") }}
                         <span class="faq-icon">+</span>
                     </button>
@@ -1391,7 +1373,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false">
                         {{ translations.expert_answers.faqs.language_models.question | default(value="Which language models are compatible?") }}
                         <span class="faq-icon">+</span>
                     </button>
@@ -1409,7 +1391,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false">
                         {{ translations.expert_answers.faqs.quality_assurance.question | default(value="How is ongoing quality assurance achieved?") }}
                         <span class="faq-icon">+</span>
                     </button>
@@ -1419,7 +1401,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question">
+                    <button class="faq-question" aria-expanded="false">
                         {{ translations.expert_answers.faqs.workflow_integration.question | default(value="Does the platform fit existing workflows?") }}
                         <span class="faq-icon">+</span>
                     </button>
