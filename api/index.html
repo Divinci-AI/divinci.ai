@@ -585,36 +585,26 @@
                 </div>
             </section>
 
-            <!-- Coming Soon Section -->
+            <!-- API Reference Section -->
             <section class="api-section">
                 <div class="container">
-                    <div class="coming-soon">
-                        <h2 class="coming-soon-title">Complete API Documentation Coming Soon</h2>
-                        <p class="coming-soon-message">We're currently building comprehensive API documentation including reference guides, code examples, and SDK documentation. Check back soon for updates or subscribe to be notified when our API documentation is available.</p>
-                        <a href="#" class="notify-button"><i class="fas fa-bell"></i> Notify me of updates</a>
-                    </div>
-
-                    <!-- Preview Content -->
-                    <div style="margin-top: 4rem;">
-                        <h2 class="section-title">API Overview</h2>
-                        <p class="section-description">The Divinci AI API provides REST endpoints for integrating our AI capabilities into your applications. Here's a preview of what's available.</p>
+                    <div style="margin-top: 1rem;">
+                        <h2 class="section-title">API Reference</h2>
+                        <p class="section-description">The Divinci AI API provides REST endpoints for managing workspaces, knowledge bases, releases, and more. All requests require authentication via API key or OAuth.</p>
 
                         <div class="api-overview">
-                            <h3 class="overview-title">API Architecture</h3>
+                            <h3 class="overview-title">Getting Started</h3>
                             <p class="overview-description">
-                                The Divinci AI API follows RESTful principles and uses JSON for request and response payloads. All API requests require authentication using API keys, which you can generate from your Divinci AI dashboard.
+                                Base URL: <code>https://api.divinci.app/api/v1</code>. Authenticate with your API key using the <code>Authorization: Bearer divinci_your_key</code> header or <code>x-api-key</code> header. Generate API keys from your workspace dashboard.
                             </p>
                             <p class="overview-description">
-                                Our API is organized around resources such as AI models, documents, embeddings, and projects. We use standard HTTP methods (GET, POST, PUT, DELETE) and return appropriate HTTP status codes to indicate success or failure.
-                            </p>
-                            <p class="overview-description">
-                                Rate limits apply to all API endpoints, with higher limits available on paid plans. Detailed error messages are provided for troubleshooting, and comprehensive logs are available in your dashboard.
+                                Install the CLI for quick access: <code>npm install -g @divinci-ai/cli</code>, or use the Server SDK: <code>npm install @divinci-ai/server</code>.
                             </p>
                         </div>
 
                         <div class="api-endpoints">
                             <div class="endpoints-header">
-                                <h3 class="endpoints-title">Core Endpoints</h3>
+                                <h3 class="endpoints-title">API v1 Endpoints</h3>
                             </div>
                             <div class="endpoints-content">
                                 <div class="endpoint-category">
@@ -622,70 +612,205 @@
                                     <ul class="endpoints-list">
                                         <li class="endpoint-item">
                                             <span class="endpoint-method method-post">POST</span>
-                                            <span class="endpoint-path">/v1/auth/token</span>
-                                            <div class="endpoint-description">Generate an authentication token using your API key</div>
-                                        </li>
-                                        <li class="endpoint-item">
-                                            <span class="endpoint-method method-delete">DELETE</span>
-                                            <span class="endpoint-path">/v1/auth/token</span>
-                                            <div class="endpoint-description">Revoke an authentication token</div>
+                                            <span class="endpoint-path">/api/v1/auth/validate-key</span>
+                                            <div class="endpoint-description">Validate an API key and return its permissions, workspace ID, and billing model</div>
                                         </li>
                                     </ul>
                                 </div>
 
                                 <div class="endpoint-category">
-                                    <h4 class="category-title">RAG Systems</h4>
+                                    <h4 class="category-title">Workspaces</h4>
                                     <ul class="endpoints-list">
                                         <li class="endpoint-item">
                                             <span class="endpoint-method method-post">POST</span>
-                                            <span class="endpoint-path">/v1/rag/systems</span>
-                                            <div class="endpoint-description">Create a new RAG system</div>
+                                            <span class="endpoint-path">/api/v1/workspaces</span>
+                                            <div class="endpoint-description">Create a new workspace (requires OAuth login)</div>
                                         </li>
                                         <li class="endpoint-item">
                                             <span class="endpoint-method method-get">GET</span>
-                                            <span class="endpoint-path">/v1/rag/systems</span>
-                                            <div class="endpoint-description">List all RAG systems</div>
+                                            <span class="endpoint-path">/api/v1/workspaces</span>
+                                            <div class="endpoint-description">List your workspaces</div>
                                         </li>
                                         <li class="endpoint-item">
                                             <span class="endpoint-method method-get">GET</span>
-                                            <span class="endpoint-path">/v1/rag/systems/{system_id}</span>
-                                            <div class="endpoint-description">Get details of a specific RAG system</div>
+                                            <span class="endpoint-path">/api/v1/workspaces/{id}</span>
+                                            <div class="endpoint-description">Get workspace details</div>
                                         </li>
                                         <li class="endpoint-item">
-                                            <span class="endpoint-method method-put">PUT</span>
-                                            <span class="endpoint-path">/v1/rag/systems/{system_id}</span>
-                                            <div class="endpoint-description">Update a RAG system</div>
+                                            <span class="endpoint-method method-put">PATCH</span>
+                                            <span class="endpoint-path">/api/v1/workspaces/{id}</span>
+                                            <div class="endpoint-description">Update workspace title or description</div>
                                         </li>
                                         <li class="endpoint-item">
-                                            <span class="endpoint-method method-post">POST</span>
-                                            <span class="endpoint-path">/v1/rag/systems/{system_id}/query</span>
-                                            <div class="endpoint-description">Query a RAG system with user input</div>
+                                            <span class="endpoint-method method-delete">DELETE</span>
+                                            <span class="endpoint-path">/api/v1/workspaces/{id}</span>
+                                            <div class="endpoint-description">Delete a workspace and all associated resources</div>
                                         </li>
                                     </ul>
                                 </div>
 
                                 <div class="endpoint-category">
-                                    <h4 class="category-title">Documents</h4>
+                                    <h4 class="category-title">Releases</h4>
                                     <ul class="endpoints-list">
                                         <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/releases</span>
+                                            <div class="endpoint-description">List all releases for your workspace</div>
+                                        </li>
+                                        <li class="endpoint-item">
                                             <span class="endpoint-method method-post">POST</span>
-                                            <span class="endpoint-path">/v1/documents</span>
-                                            <div class="endpoint-description">Upload a document for processing</div>
+                                            <span class="endpoint-path">/api/v1/releases</span>
+                                            <div class="endpoint-description">Create a new release draft with model, RAG, and MCP configuration</div>
                                         </li>
                                         <li class="endpoint-item">
                                             <span class="endpoint-method method-get">GET</span>
-                                            <span class="endpoint-path">/v1/documents</span>
-                                            <div class="endpoint-description">List all documents</div>
+                                            <span class="endpoint-path">/api/v1/releases/{id}</span>
+                                            <div class="endpoint-description">Get release details</div>
                                         </li>
                                         <li class="endpoint-item">
-                                            <span class="endpoint-method method-get">GET</span>
-                                            <span class="endpoint-path">/v1/documents/{document_id}</span>
-                                            <div class="endpoint-description">Get document details and processing status</div>
+                                            <span class="endpoint-method method-put">PATCH</span>
+                                            <span class="endpoint-path">/api/v1/releases/{id}</span>
+                                            <div class="endpoint-description">Update a release draft (model, tools, RAG index, MCP config)</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/api/v1/releases/{id}/publish</span>
+                                            <div class="endpoint-description">Publish a release draft to make it available</div>
                                         </li>
                                         <li class="endpoint-item">
                                             <span class="endpoint-method method-delete">DELETE</span>
-                                            <span class="endpoint-path">/v1/documents/{document_id}</span>
-                                            <div class="endpoint-description">Delete a document</div>
+                                            <span class="endpoint-path">/api/v1/releases/{id}</span>
+                                            <div class="endpoint-description">Delete a release draft</div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="endpoint-category">
+                                    <h4 class="category-title">RAG (Knowledge Base)</h4>
+                                    <ul class="endpoints-list">
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/api/v1/rag/search</span>
+                                            <div class="endpoint-description">Search your knowledge base with semantic + hybrid search</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/rag/files</span>
+                                            <div class="endpoint-description">List RAG files and their processing status</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/api/v1/rag/upload</span>
+                                            <div class="endpoint-description">Upload a document to your knowledge base</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/rag/targets</span>
+                                            <div class="endpoint-description">List available RAG vector indexes</div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="endpoint-category">
+                                    <h4 class="category-title">User Groups</h4>
+                                    <ul class="endpoints-list">
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/api/v1/groups</span>
+                                            <div class="endpoint-description">Create a user group for team access management</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/groups</span>
+                                            <div class="endpoint-description">List your groups</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/api/v1/groups/{id}/invite</span>
+                                            <div class="endpoint-description">Invite a user to a group by email</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-delete">DELETE</span>
+                                            <span class="endpoint-path">/api/v1/groups/{id}/members</span>
+                                            <div class="endpoint-description">Remove a member from a group</div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="endpoint-category">
+                                    <h4 class="category-title">Permissions</h4>
+                                    <ul class="endpoints-list">
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/permissions</span>
+                                            <div class="endpoint-description">Get permission configuration for your workspace</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/permissions/mine</span>
+                                            <div class="endpoint-description">Get your own effective permissions</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/api/v1/permissions/users</span>
+                                            <div class="endpoint-description">Grant permissions to a user</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/api/v1/permissions/groups</span>
+                                            <div class="endpoint-description">Grant permissions to a user group</div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="endpoint-category">
+                                    <h4 class="category-title">Transcripts &amp; Chat</h4>
+                                    <ul class="endpoints-list">
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/transcripts</span>
+                                            <div class="endpoint-description">List chat transcripts</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/threads</span>
+                                            <div class="endpoint-description">List chat threads</div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="endpoint-category">
+                                    <h4 class="category-title">Additional Endpoints</h4>
+                                    <ul class="endpoints-list">
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/config</span>
+                                            <div class="endpoint-description">Get workspace configuration</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/audio-transcripts</span>
+                                            <div class="endpoint-description">List audio transcripts</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/connectors</span>
+                                            <div class="endpoint-description">List data connectors (Google Drive, Dropbox, S3, etc.)</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/fine-tune</span>
+                                            <div class="endpoint-description">List fine-tuning jobs</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-post">POST</span>
+                                            <span class="endpoint-path">/api/v1/tts</span>
+                                            <div class="endpoint-description">Generate speech from text</div>
+                                        </li>
+                                        <li class="endpoint-item">
+                                            <span class="endpoint-method method-get">GET</span>
+                                            <span class="endpoint-path">/api/v1/export</span>
+                                            <div class="endpoint-description">Export workspace data</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -695,144 +820,123 @@
                         <div class="code-example">
                             <div class="code-tabs">
                                 <div class="code-tab active" data-tab="curl">cURL</div>
-                                <div class="code-tab" data-tab="python">Python</div>
-                                <div class="code-tab" data-tab="javascript">JavaScript</div>
-                                <div class="code-tab" data-tab="go">Go</div>
+                                <div class="code-tab" data-tab="cli">CLI</div>
+                                <div class="code-tab" data-tab="javascript">TypeScript SDK</div>
                             </div>
                             <div class="code-content">
                                 <div class="code-panel active" data-panel="curl">
-<pre class="code-block"><span class="code-comment"># Query a RAG system</span>
-curl -X POST \
-  https://api.divinci.ai/v1/rag/systems/rag_123456/query \
-  -H <span class="code-string">"Authorization: Bearer YOUR_API_TOKEN"</span> \
+<pre class="code-block"><span class="code-comment"># Validate your API key</span>
+curl -X POST https://api.divinci.app/api/v1/auth/validate-key \
+  -H <span class="code-string">"Authorization: Bearer divinci_your_api_key"</span>
+
+<span class="code-comment"># List releases</span>
+curl https://api.divinci.app/api/v1/releases \
+  -H <span class="code-string">"Authorization: Bearer divinci_your_api_key"</span>
+
+<span class="code-comment"># Search your knowledge base</span>
+curl -X POST https://api.divinci.app/api/v1/rag/search \
+  -H <span class="code-string">"Authorization: Bearer divinci_your_api_key"</span> \
   -H <span class="code-string">"Content-Type: application/json"</span> \
   -d '{
-    <span class="code-property">"query"</span>: <span class="code-string">"What are the key features of Divinci AI?"</span>,
-    <span class="code-property">"max_results"</span>: <span class="code-number">5</span>,
-    <span class="code-property">"include_sources"</span>: <span class="code-keyword">true</span>
+    <span class="code-property">"query"</span>: <span class="code-string">"What is the return policy?"</span>,
+    <span class="code-property">"limit"</span>: <span class="code-number">5</span>
+}'
+
+<span class="code-comment"># Grant permissions to a team member</span>
+curl -X POST https://api.divinci.app/api/v1/permissions/users \
+  -H <span class="code-string">"Authorization: Bearer divinci_your_api_key"</span> \
+  -H <span class="code-string">"Content-Type: application/json"</span> \
+  -d '{
+    <span class="code-property">"email"</span>: <span class="code-string">"teammate@example.com"</span>,
+    <span class="code-property">"permissions"</span>: [<span class="code-string">"whitelabel:rag"</span>, <span class="code-string">"whitelabel:config"</span>]
 }'</pre>
                                 </div>
-                                <div class="code-panel" data-panel="python">
-<pre class="code-block"><span class="code-keyword">import</span> requests
+                                <div class="code-panel" data-panel="cli">
+<pre class="code-block"><span class="code-comment"># Install the Divinci CLI</span>
+npm install -g @divinci-ai/cli
 
-<span class="code-comment"># Set your API token</span>
-api_token = <span class="code-string">"YOUR_API_TOKEN"</span>
+<span class="code-comment"># Login with OAuth</span>
+divinci auth login
 
-<span class="code-comment"># Query a RAG system</span>
-response = requests.post(
-    <span class="code-string">"https://api.divinci.ai/v1/rag/systems/rag_123456/query"</span>,
-    headers={
-        <span class="code-string">"Authorization"</span>: <span class="code-string">f"Bearer {api_token}"</span>,
-        <span class="code-string">"Content-Type"</span>: <span class="code-string">"application/json"</span>
-    },
-    json={
-        <span class="code-string">"query"</span>: <span class="code-string">"What are the key features of Divinci AI?"</span>,
-        <span class="code-string">"max_results"</span>: <span class="code-number">5</span>,
-        <span class="code-string">"include_sources"</span>: <span class="code-keyword">True</span>
-    }
-)
+<span class="code-comment"># Create a workspace</span>
+divinci workspace create --title <span class="code-string">"My AI App"</span> --description <span class="code-string">"Custom AI assistant"</span>
 
-<span class="code-keyword">print</span>(response.json())</pre>
+<span class="code-comment"># Set your active workspace</span>
+divinci workspace use &lt;workspace-id&gt;
+
+<span class="code-comment"># Create a release from an MCP server</span>
+divinci release create-from-mcp \
+  --url <span class="code-string">"https://your-mcp-server.com/api/v1/mcp"</span> \
+  --name <span class="code-string">"My AI Release"</span>
+
+<span class="code-comment"># Manage team access</span>
+divinci group create --name <span class="code-string">"Engineering"</span> --slug <span class="code-string">"engineering"</span>
+divinci group invite &lt;group-id&gt; --email <span class="code-string">"dev@example.com"</span>
+divinci permissions grant --group engineering \
+  --permissions <span class="code-string">"whitelabel:rag,whitelabel:config"</span></pre>
                                 </div>
                                 <div class="code-panel" data-panel="javascript">
-<pre class="code-block"><span class="code-comment">// Set your API token</span>
-<span class="code-keyword">const</span> apiToken = <span class="code-string">'YOUR_API_TOKEN'</span>;
+<pre class="code-block"><span class="code-keyword">import</span> { DivinciServer } <span class="code-keyword">from</span> <span class="code-string">"@divinci-ai/server"</span>;
 
-<span class="code-comment">// Query a RAG system</span>
-<span class="code-keyword">async function</span> <span class="code-function">queryRagSystem</span>() {
-  <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> fetch(<span class="code-string">'https://api.divinci.ai/v1/rag/systems/rag_123456/query'</span>, {
-    method: <span class="code-string">'POST'</span>,
-    headers: {
-      <span class="code-string">'Authorization'</span>: <span class="code-string">`Bearer ${apiToken}`</span>,
-      <span class="code-string">'Content-Type'</span>: <span class="code-string">'application/json'</span>
-    },
-    body: JSON.stringify({
-      query: <span class="code-string">'What are the key features of Divinci AI?'</span>,
-      max_results: <span class="code-number">5</span>,
-      include_sources: <span class="code-keyword">true</span>
-    })
-  });
+<span class="code-keyword">const</span> divinci = <span class="code-keyword">new</span> DivinciServer({
+  apiKey: process.env.DIVINCI_API_KEY,
+  defaultWorkspaceId: process.env.DIVINCI_WORKSPACE_ID,
+});
 
-  <span class="code-keyword">const</span> data = <span class="code-keyword">await</span> response.json();
-  console.log(data);
-}
+<span class="code-comment">// List releases</span>
+<span class="code-keyword">const</span> releases = <span class="code-keyword">await</span> divinci.releases.list({
+  workspaceId: <span class="code-string">"your-workspace-id"</span>
+});
 
-queryRagSystem();</pre>
-                                </div>
-                                <div class="code-panel" data-panel="go">
-<pre class="code-block"><span class="code-keyword">package</span> main
+<span class="code-comment">// Search knowledge base</span>
+<span class="code-keyword">const</span> results = <span class="code-keyword">await</span> divinci.rag.search(
+  <span class="code-string">"workspace-id"</span>,
+  <span class="code-string">"collection-id"</span>,
+  <span class="code-string">"What is the return policy?"</span>
+);
 
-<span class="code-keyword">import</span> (
-	<span class="code-string">"bytes"</span>
-	<span class="code-string">"encoding/json"</span>
-	<span class="code-string">"fmt"</span>
-	<span class="code-string">"net/http"</span>
-)
-
-<span class="code-keyword">func</span> <span class="code-function">main</span>() {
-	<span class="code-comment">// Set your API token</span>
-	apiToken := <span class="code-string">"YOUR_API_TOKEN"</span>
-
-	<span class="code-comment">// Query payload</span>
-	queryPayload := <span class="code-keyword">map</span>[<span class="code-keyword">string</span>]<span class="code-keyword">interface</span>{}{
-		<span class="code-string">"query"</span>:          <span class="code-string">"What are the key features of Divinci AI?"</span>,
-		<span class="code-string">"max_results"</span>:    <span class="code-number">5</span>,
-		<span class="code-string">"include_sources"</span>: <span class="code-keyword">true</span>,
-	}
-
-	jsonPayload, _ := json.Marshal(queryPayload)
-
-	<span class="code-comment">// Create request</span>
-	req, _ := http.NewRequest(<span class="code-string">"POST"</span>, <span class="code-string">"https://api.divinci.ai/v1/rag/systems/rag_123456/query"</span>, bytes.NewBuffer(jsonPayload))
-	req.Header.Set(<span class="code-string">"Authorization"</span>, <span class="code-string">"Bearer "</span> + apiToken)
-	req.Header.Set(<span class="code-string">"Content-Type"</span>, <span class="code-string">"application/json"</span>)
-
-	<span class="code-comment">// Send request</span>
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	<span class="code-keyword">if</span> err != <span class="code-keyword">nil</span> {
-		fmt.Println(err)
-		<span class="code-keyword">return</span>
-	}
-	<span class="code-keyword">defer</span> resp.Body.Close()
-
-	<span class="code-comment">// Process response</span>
-	<span class="code-keyword">var</span> result <span class="code-keyword">map</span>[<span class="code-keyword">string</span>]<span class="code-keyword">interface</span>{}
-	json.NewDecoder(resp.Body).Decode(&result)
-	fmt.Println(result)
-}</pre>
+<span class="code-comment">// Manage groups and permissions</span>
+<span class="code-keyword">const</span> { group } = <span class="code-keyword">await</span> divinci.groups.create({
+  name: <span class="code-string">"Engineering"</span>,
+  slug: <span class="code-string">"engineering"</span>
+});
+<span class="code-keyword">await</span> divinci.groups.invite(group._id, <span class="code-string">"dev@example.com"</span>);
+<span class="code-keyword">await</span> divinci.permissions.grantToGroup(
+  <span class="code-string">"engineering"</span>,
+  [<span class="code-string">"whitelabel:rag"</span>, <span class="code-string">"whitelabel:config"</span>]
+);</pre>
                                 </div>
                             </div>
                         </div>
 
-                        <h2 class="section-title">Client Libraries</h2>
-                        <p class="section-description">We provide client libraries in multiple programming languages to make integrating with our API easier.</p>
+                        <h2 class="section-title">SDK &amp; CLI</h2>
+                        <p class="section-description">Install our official packages from npm to integrate Divinci AI into your applications.</p>
 
                         <div class="sdk-cards">
                             <div class="sdk-card">
                                 <div class="sdk-header">
                                     <div class="sdk-icon">
-                                        <i class="fab fa-python"></i>
+                                        <i class="fas fa-terminal"></i>
                                     </div>
-                                    <h3 class="sdk-title">Python SDK</h3>
+                                    <h3 class="sdk-title">CLI</h3>
                                 </div>
                                 <div class="sdk-content">
                                     <p class="sdk-description">
-                                        Our Python SDK provides a convenient interface to the Divinci AI API, making it easy to integrate AI capabilities into your Python applications.
+                                        Manage workspaces, releases, RAG, groups, and permissions from the terminal. Supports OAuth login and API key auth.
                                     </p>
                                     <div class="sdk-meta">
                                         <div class="sdk-meta-item">
-                                            <i class="fas fa-code-branch"></i> Version 0.9.5
+                                            <i class="fas fa-code-branch"></i> @divinci-ai/cli
                                         </div>
                                         <div class="sdk-meta-item">
-                                            <i class="fas fa-download"></i> 15K+ downloads
+                                            <i class="fas fa-download"></i> npm install -g @divinci-ai/cli
                                         </div>
                                     </div>
                                     <div class="sdk-links">
-                                        <a href="#" class="sdk-link">
-                                            <i class="fas fa-book"></i> Documentation
+                                        <a href="https://www.npmjs.com/package/@divinci-ai/cli" class="sdk-link" target="_blank">
+                                            <i class="fab fa-npm"></i> npm
                                         </a>
-                                        <a href="#" class="sdk-link">
+                                        <a href="https://github.com/Divinci-AI/server" class="sdk-link" target="_blank">
                                             <i class="fab fa-github"></i> GitHub
                                         </a>
                                     </div>
@@ -844,25 +948,25 @@ queryRagSystem();</pre>
                                     <div class="sdk-icon">
                                         <i class="fab fa-js"></i>
                                     </div>
-                                    <h3 class="sdk-title">JavaScript SDK</h3>
+                                    <h3 class="sdk-title">Server SDK</h3>
                                 </div>
                                 <div class="sdk-content">
                                     <p class="sdk-description">
-                                        Use our JavaScript SDK to integrate Divinci AI into web applications and Node.js projects with a simple, Promise-based API.
+                                        TypeScript-first server SDK for Node.js. Manage releases, RAG search, groups, permissions, and more with full type safety.
                                     </p>
                                     <div class="sdk-meta">
                                         <div class="sdk-meta-item">
-                                            <i class="fas fa-code-branch"></i> Version 0.9.2
+                                            <i class="fas fa-code-branch"></i> @divinci-ai/server
                                         </div>
                                         <div class="sdk-meta-item">
-                                            <i class="fas fa-download"></i> 12K+ downloads
+                                            <i class="fas fa-download"></i> npm install @divinci-ai/server
                                         </div>
                                     </div>
                                     <div class="sdk-links">
-                                        <a href="#" class="sdk-link">
-                                            <i class="fas fa-book"></i> Documentation
+                                        <a href="https://www.npmjs.com/package/@divinci-ai/server" class="sdk-link" target="_blank">
+                                            <i class="fab fa-npm"></i> npm
                                         </a>
-                                        <a href="#" class="sdk-link">
+                                        <a href="https://github.com/Divinci-AI/server" class="sdk-link" target="_blank">
                                             <i class="fab fa-github"></i> GitHub
                                         </a>
                                     </div>
@@ -872,27 +976,27 @@ queryRagSystem();</pre>
                             <div class="sdk-card">
                                 <div class="sdk-header">
                                     <div class="sdk-icon">
-                                        <i class="fab fa-java"></i>
+                                        <i class="fas fa-plug"></i>
                                     </div>
-                                    <h3 class="sdk-title">Java SDK</h3>
+                                    <h3 class="sdk-title">MCP Server</h3>
                                 </div>
                                 <div class="sdk-content">
                                     <p class="sdk-description">
-                                        Our Java SDK provides enterprise-grade integration with the Divinci AI platform, designed for performance and reliability.
+                                        Connect Divinci to Claude, Cursor, or any MCP-compatible AI assistant. Exposes RAG search, chat, releases, and more as MCP tools.
                                     </p>
                                     <div class="sdk-meta">
                                         <div class="sdk-meta-item">
-                                            <i class="fas fa-code-branch"></i> Version 0.8.5
+                                            <i class="fas fa-code-branch"></i> MCP Protocol
                                         </div>
                                         <div class="sdk-meta-item">
-                                            <i class="fas fa-download"></i> 8K+ downloads
+                                            <i class="fas fa-globe"></i> mcp.divinci.app
                                         </div>
                                     </div>
                                     <div class="sdk-links">
-                                        <a href="#" class="sdk-link">
+                                        <a href="../docs/" class="sdk-link">
                                             <i class="fas fa-book"></i> Documentation
                                         </a>
-                                        <a href="#" class="sdk-link">
+                                        <a href="https://github.com/Divinci-AI/server" class="sdk-link" target="_blank">
                                             <i class="fab fa-github"></i> GitHub
                                         </a>
                                     </div>
