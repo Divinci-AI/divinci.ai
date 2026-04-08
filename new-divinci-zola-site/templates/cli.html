@@ -1,0 +1,590 @@
+{% extends "base-optimized.html" %}
+
+{% block extra_head %}
+<script>
+/* Tag the html element via a data-attribute (FontAwesome auto-init replaces
+   `document.documentElement.className`, so a class would be clobbered).
+   This applies before paint so the CSS dark-mode override below takes effect
+   on the first render (no FOUC). base-optimized.html does not expose a
+   body_class block, so the body gets tagged on DOMContentLoaded as well. */
+document.documentElement.setAttribute("data-cli-docs", "true");
+document.addEventListener("DOMContentLoaded", function() {
+    document.body.setAttribute("data-cli-docs", "true");
+});
+</script>
+<style>
+/* ===============================================================
+   Divinci CLI — Redoc-style docs template
+   Mirrors the colors, typography, and three-column layout used by
+   the /api Redoc page (see templates/feature.html) so visitors get
+   a consistent reference experience.
+
+   NOTE: base-optimized.html hardcodes the body class and exposes no
+   body_class block, so we tag the html element via a data attribute
+   in the extra_head script above and target it via [data-cli-docs]
+   selectors throughout this file.
+   =============================================================== */
+
+:root {
+    --cli-primary: #2d5a4f;
+    --cli-sidebar-bg: #f8f4f0;
+    --cli-sidebar-fg: #2d3c34;
+    --cli-right-bg: #1e3a2b;
+    --cli-right-fg: #eaf1ec;
+    --cli-main-bg: #ffffff;
+    --cli-border: #e4ddd3;
+    --cli-muted: #6c7a74;
+    --cli-code-bg: #f4ede4;
+    --cli-font-body: "Source Sans 3", system-ui, sans-serif;
+    --cli-font-headings: "Fraunces", Georgia, serif;
+    --cli-font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+/* Reset feature-page chrome for full-bleed layout.
+   Force the light theme even when the OS prefers dark — the CLI reference is
+   designed as a docs surface and the cream/white palette is the canonical look.
+   (See optimized.css's `prefers-color-scheme: dark` override for context.)
+   Targets the html data-attribute (set inline in <head> before paint, can't
+   be clobbered by FontAwesome auto-init the way classes can be). */
+html[data-cli-docs],
+html[data-cli-docs] body {
+    background: var(--cli-main-bg) !important;
+    color: #2d3c34 !important;
+}
+html[data-cli-docs] .leonardo-bg::before { display: none !important; }
+
+/* Main three-column wrap */
+.cli-docs-wrap {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--cli-main-bg);
+    font-family: var(--cli-font-body);
+    font-size: 15px;
+    color: #2d3c34;
+}
+
+/* ---------- Sidebar ---------- */
+.cli-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 280px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--cli-sidebar-bg);
+    color: var(--cli-sidebar-fg);
+    border-right: 1px solid var(--cli-border);
+    padding: 1.5rem 0;
+}
+.cli-sidebar-header {
+    padding: 0 1.5rem 1rem;
+    border-bottom: 1px solid var(--cli-border);
+    margin-bottom: 0.75rem;
+}
+.cli-sidebar-header h2 {
+    font-family: var(--cli-font-headings);
+    font-weight: 400;
+    font-size: 1.4rem;
+    margin: 0 0 0.25rem;
+    color: var(--cli-primary);
+}
+.cli-sidebar-header .cli-version {
+    font-size: 0.8rem;
+    color: var(--cli-muted);
+    font-family: var(--cli-font-mono);
+}
+.cli-sidebar-header .cli-tagline {
+    font-size: 0.85rem;
+    color: var(--cli-muted);
+    margin: 0.35rem 0 0;
+    line-height: 1.4;
+}
+.cli-sidebar-search {
+    padding: 0 1.5rem 1rem;
+}
+.cli-sidebar-search input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem 0.75rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    border: 1px solid var(--cli-border);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--cli-sidebar-fg);
+}
+.cli-sidebar-search input:focus {
+    outline: none;
+    border-color: var(--cli-primary);
+    box-shadow: 0 0 0 2px rgba(45, 90, 79, 0.15);
+}
+.cli-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.cli-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.cli-nav-top {
+    padding: 0.4rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.cli-nav-top a {
+    color: var(--cli-sidebar-fg);
+    text-decoration: none;
+    display: block;
+}
+.cli-nav-top a:hover { color: var(--cli-primary); }
+.cli-nav-group-header {
+    padding: 0.65rem 1.5rem 0.35rem;
+    font-family: var(--cli-font-headings);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--cli-primary);
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    margin-top: 0.35rem;
+}
+.cli-nav-group-header a {
+    color: inherit;
+    text-decoration: none;
+}
+.cli-nav-group-header:first-of-type { border-top: none; margin-top: 0; }
+.cli-nav-command {
+    padding: 0.3rem 1.5rem 0.3rem 2rem;
+    font-size: 0.85rem;
+    font-family: var(--cli-font-mono);
+}
+.cli-nav-command a {
+    color: var(--cli-sidebar-fg);
+    text-decoration: none;
+    display: block;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    transition: background 0.1s;
+}
+.cli-nav-command a:hover {
+    background: rgba(45, 90, 79, 0.08);
+    color: var(--cli-primary);
+}
+
+/* ---------- Main content column ---------- */
+.cli-main {
+    flex: 1;
+    min-width: 0;
+    padding: 2rem 0 4rem;
+}
+.cli-section {
+    padding: 1.5rem 2.5rem;
+    border-bottom: 1px solid var(--cli-border);
+}
+.cli-section h1,
+.cli-section h2,
+.cli-section h3 {
+    font-family: var(--cli-font-headings);
+    font-weight: 400;
+    color: var(--cli-primary);
+    text-shadow: none;
+}
+.cli-section h1 { font-size: 2rem; margin: 0 0 0.75rem; }
+.cli-section h2 { font-size: 1.5rem; margin: 0 0 0.75rem; }
+.cli-section h3 { font-size: 1.15rem; margin: 0 0 0.4rem; }
+.cli-section p {
+    color: #2d3c34;
+    line-height: 1.65;
+    margin: 0 0 0.75rem;
+}
+.cli-section code {
+    font-family: var(--cli-font-mono);
+    font-size: 0.85em;
+    background: var(--cli-code-bg);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    color: #3a2a1a;
+}
+.cli-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0 1rem;
+    font-size: 0.9rem;
+}
+.cli-section th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    background: var(--cli-sidebar-bg);
+    border-bottom: 2px solid var(--cli-border);
+    font-family: var(--cli-font-headings);
+    font-weight: 400;
+    color: var(--cli-primary);
+}
+.cli-section td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--cli-border);
+    vertical-align: top;
+}
+.cli-section td code { white-space: nowrap; }
+
+/* ---------- Command card (two-column: doc + examples) ---------- */
+.cli-command {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 2rem;
+    padding: 1.75rem 2.5rem;
+    border-bottom: 1px solid var(--cli-border);
+    scroll-margin-top: 1rem;
+}
+.cli-command-doc { min-width: 0; }
+.cli-command-doc h3 {
+    font-family: var(--cli-font-headings);
+    font-weight: 400;
+    color: var(--cli-primary);
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+}
+.cli-command-doc h3 code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-family: var(--cli-font-mono);
+    font-size: 0.95em;
+}
+.cli-command-doc h4 {
+    font-family: var(--cli-font-body);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--cli-muted);
+    margin: 1.25rem 0 0.4rem;
+}
+.cli-command-doc .cli-command-desc {
+    color: #2d3c34;
+    line-height: 1.6;
+    margin: 0 0 0.5rem;
+}
+.cli-command-doc .cli-command-aliases {
+    font-size: 0.85rem;
+    color: var(--cli-muted);
+    margin: 0.25rem 0;
+}
+.cli-required-badge {
+    display: inline-block;
+    background: #b85d1f;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* ---------- Right panel: examples ---------- */
+.cli-command-examples {
+    background: var(--cli-right-bg);
+    color: var(--cli-right-fg);
+    border-radius: 6px;
+    padding: 1rem 1.1rem;
+    font-family: var(--cli-font-mono);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    align-self: flex-start;
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+}
+.cli-command-examples .cli-example-label {
+    font-family: var(--cli-font-body);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(234, 241, 236, 0.55);
+    margin: 0.5rem 0 0.3rem;
+    font-weight: 600;
+}
+.cli-command-examples .cli-example-label:first-child { margin-top: 0; }
+.cli-command-examples pre {
+    margin: 0 0 0.5rem;
+    padding: 0.55rem 0.7rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: #b4e0c4;
+    font-family: inherit;
+    font-size: inherit;
+}
+.cli-command-examples pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+}
+
+/* ---------- Mobile: stack everything ---------- */
+@media (max-width: 1024px) {
+    .cli-command {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1.5rem;
+    }
+    .cli-command-examples {
+        position: static;
+        max-height: none;
+    }
+}
+@media (max-width: 768px) {
+    .cli-docs-wrap { flex-direction: column; }
+    .cli-sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        max-height: 40vh;
+        border-right: none;
+        border-bottom: 1px solid var(--cli-border);
+    }
+    .cli-section, .cli-command { padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+{# current_lang is inherited from base template #}
+{% include "partials/header.html" %}
+
+{%- set cli = load_data(path="static/cli-commands.json") -%}
+
+<div class="cli-docs-wrap">
+    <!-- ================== Sidebar ================== -->
+    <aside class="cli-sidebar" aria-label="CLI command navigation">
+        <div class="cli-sidebar-header">
+            <h2>Divinci CLI</h2>
+            <span class="cli-version">v{{ cli.version }}</span>
+            <p class="cli-tagline">{{ cli.description }}</p>
+        </div>
+
+        <div class="cli-sidebar-search">
+            <input type="search" id="cli-search" placeholder="Filter commands..." aria-label="Filter commands" />
+        </div>
+
+        <nav class="cli-nav">
+            <ul>
+                <li class="cli-nav-top"><a href="#introduction">Introduction</a></li>
+                <li class="cli-nav-top"><a href="#installation">Installation</a></li>
+                <li class="cli-nav-top"><a href="#authentication">Authentication</a></li>
+                <li class="cli-nav-top"><a href="#global-options">Global Options</a></li>
+
+                {% for group in cli.groups %}
+                <li class="cli-nav-group-header">
+                    <a href="#group-{{ group.name }}">{{ group.name }}</a>
+                </li>
+                {% for cmd in group.commands %}
+                <li class="cli-nav-command" data-cmd-name="{{ group.name }} {{ cmd.name }}">
+                    <a href="#cmd-{{ group.name }}-{{ cmd.name }}">{{ cmd.name }}</a>
+                </li>
+                {% endfor %}
+                {% endfor %}
+
+                {% if cli.standaloneCommands and cli.standaloneCommands | length > 0 %}
+                <li class="cli-nav-group-header">
+                    <a href="#group-standalone">other</a>
+                </li>
+                {% for cmd in cli.standaloneCommands %}
+                <li class="cli-nav-command" data-cmd-name="{{ cmd.name }}">
+                    <a href="#cmd-standalone-{{ cmd.name }}">{{ cmd.name }}</a>
+                </li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- ================== Main content ================== -->
+    <main class="cli-main">
+        <section id="introduction" class="cli-section">
+            <h1>Divinci CLI</h1>
+            <p>
+                The official command-line interface for Divinci AI. Manage workspaces, chat
+                sessions, knowledge bases, releases, and more — directly from your terminal
+                or CI/CD pipeline.
+            </p>
+            <p>
+                <strong>Package:</strong> <code>@divinci-ai/cli</code> &nbsp;·&nbsp;
+                <strong>Version:</strong> <code>{{ cli.version }}</code> &nbsp;·&nbsp;
+                <strong>Requires:</strong> Node.js ≥ 22.14.0
+            </p>
+            <p>
+                This reference is generated automatically from the CLI source — every command,
+                flag, and argument you see below is guaranteed to match the shipped binary.
+            </p>
+        </section>
+
+        <section id="installation" class="cli-section">
+            <h2>Installation</h2>
+            <p>Install globally so the <code>divinci</code> command is available anywhere:</p>
+            <table>
+                <tr><th>Package manager</th><th>Command</th></tr>
+                <tr><td>npm</td><td><code>npm install -g @divinci-ai/cli</code></td></tr>
+                <tr><td>pnpm</td><td><code>pnpm add -g @divinci-ai/cli</code></td></tr>
+                <tr><td>yarn</td><td><code>yarn global add @divinci-ai/cli</code></td></tr>
+            </table>
+            <p>Or run a one-off command without installing:</p>
+            <p><code>npx @divinci-ai/cli auth login</code></p>
+        </section>
+
+        <section id="authentication" class="cli-section">
+            <h2>Authentication</h2>
+            <p>
+                Credentials are stored at <code>~/.config/divinci/credentials.json</code> with
+                <code>0600</code> permissions (readable only by your user). Named profiles let
+                you stay authenticated against multiple environments simultaneously.
+            </p>
+            <p>
+                In CI/CD environments, set <code>DIVINCI_API_KEY</code> instead of running
+                <code>divinci auth login</code>.
+            </p>
+        </section>
+
+        <section id="global-options" class="cli-section">
+            <h2>Global Options</h2>
+            <p>These flags are available on every command:</p>
+            <table>
+                <thead>
+                    <tr><th>Flag</th><th>Description</th><th>Default</th></tr>
+                </thead>
+                <tbody>
+                    {% for opt in cli.globalOptions %}
+                    <tr>
+                        <td><code>{{ opt.flags }}</code></td>
+                        <td>{{ opt.description }}</td>
+                        <td>{% if opt.defaultValue %}<code>{{ opt.defaultValue }}</code>{% else %}—{% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ================== Command groups ================== -->
+        {% for group in cli.groups %}
+        <section id="group-{{ group.name }}" class="cli-section">
+            <h2>{{ group.name }}</h2>
+            <p>{{ group.description }}</p>
+            {% if group.aliases and group.aliases | length > 0 %}
+            <p class="cli-command-aliases">Aliases: {% for a in group.aliases %}<code>{{ a }}</code>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+            {% endif %}
+        </section>
+
+        {% for cmd in group.commands %}
+        <article id="cmd-{{ group.name }}-{{ cmd.name }}" class="cli-command" data-cmd-name="{{ group.name }} {{ cmd.name }}">
+            <div class="cli-command-doc">
+                <h3><code>divinci {{ group.name }} {{ cmd.name }}</code></h3>
+                <p class="cli-command-desc">{{ cmd.description }}</p>
+
+                {% if cmd.aliases and cmd.aliases | length > 0 %}
+                <p class="cli-command-aliases">Aliases: {% for a in cmd.aliases %}<code>{{ a }}</code>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+                {% endif %}
+
+                {% if cmd.arguments and cmd.arguments | length > 0 %}
+                <h4>Arguments</h4>
+                <table>
+                    <thead><tr><th>Name</th><th>Required</th><th>Description</th></tr></thead>
+                    <tbody>
+                    {% for arg in cmd.arguments %}
+                        <tr>
+                            <td><code>{{ arg.name }}{% if arg.variadic %}...{% endif %}</code></td>
+                            <td>{% if arg.required %}Yes{% else %}No{% endif %}</td>
+                            <td>{{ arg.description | default(value="—") }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+
+                {% if cmd.options and cmd.options | length > 0 %}
+                <h4>Options</h4>
+                <table>
+                    <thead><tr><th>Flag</th><th>Value</th><th>Description</th><th>Default</th></tr></thead>
+                    <tbody>
+                    {% for opt in cmd.options %}
+                        <tr>
+                            <td>
+                                <code>{{ opt.flags }}</code>
+                                {% if opt.mandatory %}<span class="cli-required-badge">required</span>{% endif %}
+                            </td>
+                            <td>
+                                {% if opt.valueMode == "required" %}value{% elif opt.valueMode == "optional" %}optional{% else %}—{% endif %}
+                            </td>
+                            <td>{{ opt.description | default(value="—") }}</td>
+                            <td>{% if opt.defaultValue %}<code>{{ opt.defaultValue }}</code>{% else %}—{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+
+            <aside class="cli-command-examples">
+                <div class="cli-example-label">Usage</div>
+                <pre><code>{{ cmd.usage }}</code></pre>
+
+                <div class="cli-example-label">Examples</div>
+                {% for ex in cmd.examples %}
+                <pre><code>{{ ex }}</code></pre>
+                {% endfor %}
+            </aside>
+        </article>
+        {% endfor %}
+        {% endfor %}
+
+        {% if cli.standaloneCommands and cli.standaloneCommands | length > 0 %}
+        <section id="group-standalone" class="cli-section">
+            <h2>Other commands</h2>
+            <p>Top-level commands that don't belong to a group.</p>
+        </section>
+        {% for cmd in cli.standaloneCommands %}
+        <article id="cmd-standalone-{{ cmd.name }}" class="cli-command" data-cmd-name="{{ cmd.name }}">
+            <div class="cli-command-doc">
+                <h3><code>divinci {{ cmd.name }}</code></h3>
+                <p class="cli-command-desc">{{ cmd.description }}</p>
+            </div>
+            <aside class="cli-command-examples">
+                <div class="cli-example-label">Usage</div>
+                <pre><code>{{ cmd.usage }}</code></pre>
+            </aside>
+        </article>
+        {% endfor %}
+        {% endif %}
+    </main>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function() {
+    // Sidebar filter
+    var search = document.getElementById("cli-search");
+    if (search) {
+        search.addEventListener("input", function(e) {
+            var q = e.target.value.trim().toLowerCase();
+            var items = document.querySelectorAll(".cli-nav-command");
+            items.forEach(function(item) {
+                var name = (item.getAttribute("data-cmd-name") || "").toLowerCase();
+                item.style.display = (q === "" || name.indexOf(q) !== -1) ? "" : "none";
+            });
+        });
+    }
+
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,2866 @@
+{
+  "generatedAt": "2026-04-08T08:40:47.967Z",
+  "version": "0.1.0",
+  "binary": "divinci",
+  "description": "Official Divinci AI CLI",
+  "globalOptions": [
+    {
+      "flags": "-V, --version",
+      "short": "-V",
+      "long": "--version",
+      "description": "output the version number",
+      "mandatory": false,
+      "valueMode": "none",
+      "negate": false,
+      "defaultValue": null,
+      "choices": null
+    },
+    {
+      "flags": "--api-key <key>",
+      "short": null,
+      "long": "--api-key",
+      "description": "Override API key",
+      "mandatory": false,
+      "valueMode": "required",
+      "negate": false,
+      "defaultValue": null,
+      "choices": null
+    },
+    {
+      "flags": "--workspace <id>",
+      "short": null,
+      "long": "--workspace",
+      "description": "Override workspace ID",
+      "mandatory": false,
+      "valueMode": "required",
+      "negate": false,
+      "defaultValue": null,
+      "choices": null
+    },
+    {
+      "flags": "--json",
+      "short": null,
+      "long": "--json",
+      "description": "Output as JSON (for scripting)",
+      "mandatory": false,
+      "valueMode": "none",
+      "negate": false,
+      "defaultValue": null,
+      "choices": null
+    },
+    {
+      "flags": "--no-color",
+      "short": null,
+      "long": "--no-color",
+      "description": "Disable colored output",
+      "mandatory": false,
+      "valueMode": "none",
+      "negate": true,
+      "defaultValue": null,
+      "choices": null
+    },
+    {
+      "flags": "--quiet",
+      "short": null,
+      "long": "--quiet",
+      "description": "Minimal output",
+      "mandatory": false,
+      "valueMode": "none",
+      "negate": false,
+      "defaultValue": null,
+      "choices": null
+    },
+    {
+      "flags": "--verbose",
+      "short": null,
+      "long": "--verbose",
+      "description": "Debug output",
+      "mandatory": false,
+      "valueMode": "none",
+      "negate": false,
+      "defaultValue": null,
+      "choices": null
+    },
+    {
+      "flags": "--profile <name>",
+      "short": null,
+      "long": "--profile",
+      "description": "Named profile",
+      "mandatory": false,
+      "valueMode": "required",
+      "negate": false,
+      "defaultValue": "default",
+      "choices": null
+    },
+    {
+      "flags": "--api-url <url>",
+      "short": null,
+      "long": "--api-url",
+      "description": "Override API base URL",
+      "mandatory": false,
+      "valueMode": "required",
+      "negate": false,
+      "defaultValue": null,
+      "choices": null
+    }
+  ],
+  "groups": [
+    {
+      "name": "auth",
+      "description": "Authentication management",
+      "aliases": [],
+      "commands": [
+        {
+          "path": [
+            "auth",
+            "login"
+          ],
+          "name": "login",
+          "aliases": [],
+          "description": "Authenticate with your Divinci account",
+          "summary": "Authenticate with your Divinci account",
+          "usage": "divinci auth login [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--profile <name>",
+              "short": null,
+              "long": "--profile",
+              "description": "Profile name to store credentials under",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "default",
+              "choices": null
+            },
+            {
+              "flags": "--api-key",
+              "short": null,
+              "long": "--api-key",
+              "description": "Use API key authentication instead of browser login",
+              "mandatory": false,
+              "valueMode": "none",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--no-browser",
+              "short": null,
+              "long": "--no-browser",
+              "description": "Print login URL instead of opening browser (for SSH/headless)",
+              "mandatory": false,
+              "valueMode": "none",
+              "negate": true,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--api-url <url>",
+              "short": null,
+              "long": "--api-url",
+              "description": "API URL (determines Auth0 environment)",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci auth login",
+            "divinci auth login --profile <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "auth",
+            "logout"
+          ],
+          "name": "logout",
+          "aliases": [],
+          "description": "Remove stored credentials",
+          "summary": "Remove stored credentials",
+          "usage": "divinci auth logout [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--profile <name>",
+              "short": null,
+              "long": "--profile",
+              "description": "Profile to remove",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "default",
+              "choices": null
+            },
+            {
+              "flags": "-y, --yes",
+              "short": "-y",
+              "long": "--yes",
+              "description": "Skip confirmation",
+              "mandatory": false,
+              "valueMode": "none",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci auth logout",
+            "divinci auth logout --profile <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "auth",
+            "status"
+          ],
+          "name": "status",
+          "aliases": [],
+          "description": "Show current authentication status",
+          "summary": "Show current authentication status",
+          "usage": "divinci auth status",
+          "arguments": [],
+          "options": [],
+          "examples": [
+            "divinci auth status"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "auth",
+            "whoami"
+          ],
+          "name": "whoami",
+          "aliases": [],
+          "description": "Alias for `auth status`",
+          "summary": "Alias for `auth status`",
+          "usage": "divinci auth whoami",
+          "arguments": [],
+          "options": [],
+          "examples": [
+            "divinci auth whoami"
+          ],
+          "subcommands": []
+        }
+      ]
+    },
+    {
+      "name": "chat",
+      "description": "Interactive AI chat or manage conversations",
+      "aliases": [],
+      "commands": [
+        {
+          "path": [
+            "chat",
+            "list"
+          ],
+          "name": "list",
+          "aliases": [
+            "ls"
+          ],
+          "description": "List conversations",
+          "summary": "List conversations",
+          "usage": "divinci chat list [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--limit <number>",
+              "short": null,
+              "long": "--limit",
+              "description": "Maximum results",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "20",
+              "choices": null
+            },
+            {
+              "flags": "--offset <number>",
+              "short": null,
+              "long": "--offset",
+              "description": "Offset for pagination",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "0",
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci chat list",
+            "divinci chat list --limit <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "chat",
+            "history"
+          ],
+          "name": "history",
+          "aliases": [],
+          "description": "Get conversation history",
+          "summary": "Get conversation history",
+          "usage": "divinci chat history <transcriptId> [options]",
+          "arguments": [
+            {
+              "name": "transcriptId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [
+            {
+              "flags": "--limit <number>",
+              "short": null,
+              "long": "--limit",
+              "description": "Maximum messages to return",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "50",
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci chat history <transcriptId>",
+            "divinci chat history <transcriptId> --limit <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "chat",
+            "send"
+          ],
+          "name": "send",
+          "aliases": [],
+          "description": "Send a message to a conversation",
+          "summary": "Send a message to a conversation",
+          "usage": "divinci chat send <transcriptId> <message> [options]",
+          "arguments": [
+            {
+              "name": "transcriptId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            },
+            {
+              "name": "message",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [
+            {
+              "flags": "--stream",
+              "short": null,
+              "long": "--stream",
+              "description": "Stream the response token-by-token",
+              "mandatory": false,
+              "valueMode": "none",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci chat send <transcriptId> <message>"
+          ],
+          "subcommands": []
+        }
+      ]
+    },
+    {
+      "name": "rag",
+      "description": "Knowledge base and RAG operations",
+      "aliases": [],
+      "commands": [
+        {
+          "path": [
+            "rag",
+            "search"
+          ],
+          "name": "search",
+          "aliases": [],
+          "description": "Search your knowledge base",
+          "summary": "Search your knowledge base",
+          "usage": "divinci rag search <query> [options]",
+          "arguments": [
+            {
+              "name": "query",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [
+            {
+              "flags": "--limit <number>",
+              "short": null,
+              "long": "--limit",
+              "description": "Maximum results",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "5",
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci rag search <query>",
+            "divinci rag search <query> --limit <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "rag",
+            "files"
+          ],
+          "name": "files",
+          "aliases": [
+            "ls"
+          ],
+          "description": "List indexed files",
+          "summary": "List indexed files",
+          "usage": "divinci rag files [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--page <number>",
+              "short": null,
+              "long": "--page",
+              "description": "Page number",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "1",
+              "choices": null
+            },
+            {
+              "flags": "--limit <number>",
+              "short": null,
+              "long": "--limit",
+              "description": "Results per page",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "20",
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci rag files",
+            "divinci rag files --page <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "rag",
+            "status"
+          ],
+          "name": "status",
+          "aliases": [],
+          "description": "Get file processing status",
+          "summary": "Get file processing status",
+          "usage": "divinci rag status <fileId>",
+          "arguments": [
+            {
+              "name": "fileId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci rag status <fileId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "rag",
+            "upload"
+          ],
+          "name": "upload",
+          "aliases": [],
+          "description": "Upload a file to the knowledge base for RAG indexing",
+          "summary": "Upload a file to the knowledge base for RAG indexing",
+          "usage": "divinci rag upload <file> [options]",
+          "arguments": [
+            {
+              "name": "file",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [
+            {
+              "flags": "--targets <ids>",
+              "short": null,
+              "long": "--targets",
+              "description": "Comma-separated RAG vector target IDs",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--title <title>",
+              "short": null,
+              "long": "--title",
+              "description": "Document title",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--description <desc>",
+              "short": null,
+              "long": "--description",
+              "description": "Document description",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--language <lang>",
+              "short": null,
+              "long": "--language",
+              "description": "Language hint for audio transcription (e.g. en, es, fr)",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--chapter-aware",
+              "short": null,
+              "long": "--chapter-aware",
+              "description": "Prepend section headings to each chunk for structured documents (books, manuals)",
+              "mandatory": false,
+              "valueMode": "none",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--wait",
+              "short": null,
+              "long": "--wait",
+              "description": "Wait for processing to complete",
+              "mandatory": false,
+              "valueMode": "none",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--poll-interval <seconds>",
+              "short": null,
+              "long": "--poll-interval",
+              "description": "Polling interval when --wait is used",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "10",
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci rag upload <file>",
+            "divinci rag upload <file> --targets <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "rag",
+            "targets"
+          ],
+          "name": "targets",
+          "aliases": [],
+          "description": "Manage RAG vector indexes (upload targets)",
+          "summary": "Manage RAG vector indexes (upload targets)",
+          "usage": "divinci rag targets",
+          "arguments": [],
+          "options": [],
+          "examples": [
+            "divinci rag targets"
+          ],
+          "subcommands": [
+            {
+              "path": [
+                "rag",
+                "targets",
+                "list"
+              ],
+              "name": "list",
+              "aliases": [],
+              "description": "List RAG vector indexes",
+              "summary": "List RAG vector indexes",
+              "usage": "divinci rag targets list",
+              "arguments": [],
+              "options": [],
+              "examples": [
+                "divinci rag targets list"
+              ],
+              "subcommands": []
+            },
+            {
+              "path": [
+                "rag",
+                "targets",
+                "get"
+              ],
+              "name": "get",
+              "aliases": [],
+              "description": "Get details of a specific vector index",
+              "summary": "Get details of a specific vector index",
+              "usage": "divinci rag targets get <collectionId>",
+              "arguments": [
+                {
+                  "name": "collectionId",
+                  "required": true,
+                  "variadic": false,
+                  "description": "",
+                  "defaultValue": null
+                }
+              ],
+              "options": [],
+              "examples": [
+                "divinci rag targets get <collectionId>"
+              ],
+              "subcommands": []
+            },
+            {
+              "path": [
+                "rag",
+                "targets",
+                "create"
+              ],
+              "name": "create",
+              "aliases": [],
+              "description": "Create a new RAG vector index",
+              "summary": "Create a new RAG vector index",
+              "usage": "divinci rag targets create [options]",
+              "arguments": [],
+              "options": [
+                {
+                  "flags": "--title <name>",
+                  "short": null,
+                  "long": "--title",
+                  "description": "Index title",
+                  "mandatory": true,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--tool <type>",
+                  "short": null,
+                  "long": "--tool",
+                  "description": "Vector tool: vectorize | qdrant | vertex-ai | vertex-ai-v2 | pageindex | divinci-pageindex | mongodb-atlas",
+                  "mandatory": true,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--embedding-model <model>",
+                  "short": null,
+                  "long": "--embedding-model",
+                  "description": "Embedding model (e.g. @cf/baai/bge-base-en-v1.5, gemini-embedding-001@1536)",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--chunking-tool <tool>",
+                  "short": null,
+                  "long": "--chunking-tool",
+                  "description": "Chunking tool: langextract | openparse",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": "langextract",
+                  "choices": null
+                },
+                {
+                  "flags": "--context-per-message <n>",
+                  "short": null,
+                  "long": "--context-per-message",
+                  "description": "Max chunks per query",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": "5",
+                  "choices": null
+                },
+                {
+                  "flags": "--min-similarity <n>",
+                  "short": null,
+                  "long": "--min-similarity",
+                  "description": "Score threshold 0–1",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": "0.62",
+                  "choices": null
+                },
+                {
+                  "flags": "--similarity-metric <type>",
+                  "short": null,
+                  "long": "--similarity-metric",
+                  "description": "COSINE | DOT | L2_SQUARED",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": "COSINE",
+                  "choices": null
+                },
+                {
+                  "flags": "--description <text>",
+                  "short": null,
+                  "long": "--description",
+                  "description": "Index description",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--purpose <type>",
+                  "short": null,
+                  "long": "--purpose",
+                  "description": "general | product-catalog | canvas | knowledge-base",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--compression <strategy>",
+                  "short": null,
+                  "long": "--compression",
+                  "description": "Context compression strategy: none | llmlingua2",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--compression-ratio <n>",
+                  "short": null,
+                  "long": "--compression-ratio",
+                  "description": "Target compression ratio (2–20). 4 = keep 25% of tokens. Default: 4.",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                }
+              ],
+              "examples": [
+                "divinci rag targets create",
+                "divinci rag targets create --title <value>"
+              ],
+              "subcommands": []
+            },
+            {
+              "path": [
+                "rag",
+                "targets",
+                "migrate"
+              ],
+              "name": "migrate",
+              "aliases": [],
+              "description": "Clone a vector index with new config and re-index all files.\nUse this to change embedding model/dimension (e.g. 768d → 1536d).\nSource index is left untouched.\n\nExample:\n  divinci rag targets migrate <id> \\\n    --embedding-model gemini-embedding-001@1536 \\\n    --title \"Vectorize 1536d\"",
+              "summary": "Clone a vector index with new config and re-index all files",
+              "usage": "divinci rag targets migrate <collectionId> [options]",
+              "arguments": [
+                {
+                  "name": "collectionId",
+                  "required": true,
+                  "variadic": false,
+                  "description": "",
+                  "defaultValue": null
+                }
+              ],
+              "options": [
+                {
+                  "flags": "--title <name>",
+                  "short": null,
+                  "long": "--title",
+                  "description": "Title for the new index (default: '<source> (migrated)')",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--embedding-model <model>",
+                  "short": null,
+                  "long": "--embedding-model",
+                  "description": "New embedding model (key param for dimension change)",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--chunking-tool <tool>",
+                  "short": null,
+                  "long": "--chunking-tool",
+                  "description": "Override chunking tool: langextract | openparse",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--context-per-message <n>",
+                  "short": null,
+                  "long": "--context-per-message",
+                  "description": "Max chunks per query",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--min-similarity <n>",
+                  "short": null,
+                  "long": "--min-similarity",
+                  "description": "Score threshold 0–1",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--similarity-metric <type>",
+                  "short": null,
+                  "long": "--similarity-metric",
+                  "description": "COSINE | DOT | L2_SQUARED",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--description <text>",
+                  "short": null,
+                  "long": "--description",
+                  "description": "Description for the new index",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                }
+              ],
+              "examples": [
+                "divinci rag targets migrate <collectionId>",
+                "divinci rag targets migrate <collectionId> --title <value>"
+              ],
+              "subcommands": []
+            },
+            {
+              "path": [
+                "rag",
+                "targets",
+                "reindex"
+              ],
+              "name": "reindex",
+              "aliases": [],
+              "description": "Re-queue all files in a vector index for reprocessing (in-place)",
+              "summary": "Re-queue all files in a vector index for reprocessing (in-place)",
+              "usage": "divinci rag targets reindex <collectionId> [options]",
+              "arguments": [
+                {
+                  "name": "collectionId",
+                  "required": true,
+                  "variadic": false,
+                  "description": "",
+                  "defaultValue": null
+                }
+              ],
+              "options": [
+                {
+                  "flags": "--chunking-tool <tool>",
+                  "short": null,
+                  "long": "--chunking-tool",
+                  "description": "Override chunking tool for all files",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--file-ids <ids>",
+                  "short": null,
+                  "long": "--file-ids",
+                  "description": "Comma-separated file IDs to reindex (default: all)",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--yes",
+                  "short": null,
+                  "long": "--yes",
+                  "description": "Skip confirmation prompt",
+                  "mandatory": false,
+                  "valueMode": "none",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                }
+              ],
+              "examples": [
+                "divinci rag targets reindex <collectionId>",
+                "divinci rag targets reindex <collectionId> --chunking-tool <value>"
+              ],
+              "subcommands": []
+            },
+            {
+              "path": [
+                "rag",
+                "targets",
+                "config"
+              ],
+              "name": "config",
+              "aliases": [],
+              "description": "Update retrieval settings without re-indexing files",
+              "summary": "Update retrieval settings without re-indexing files",
+              "usage": "divinci rag targets config <collectionId> [options]",
+              "arguments": [
+                {
+                  "name": "collectionId",
+                  "required": true,
+                  "variadic": false,
+                  "description": "",
+                  "defaultValue": null
+                }
+              ],
+              "options": [
+                {
+                  "flags": "--context-per-message <n>",
+                  "short": null,
+                  "long": "--context-per-message",
+                  "description": "Max chunks returned per query",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--min-similarity <n>",
+                  "short": null,
+                  "long": "--min-similarity",
+                  "description": "Score threshold 0–1",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--embedding-model <model>",
+                  "short": null,
+                  "long": "--embedding-model",
+                  "description": "Update model reference (note: does not re-index; use migrate for full reindex)",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--tool <type>",
+                  "short": null,
+                  "long": "--tool",
+                  "description": "Switch between pageindex variants only: pageindex | divinci-pageindex (no re-indexing needed)",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--tree-model <model>",
+                  "short": null,
+                  "long": "--tree-model",
+                  "description": "LLM model for PageIndex tree generation (e.g. vertex_ai/gemini-3.1-flash-lite). Applies on next reindex.",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--compression <strategy>",
+                  "short": null,
+                  "long": "--compression",
+                  "description": "Context compression strategy: none | llmlingua2",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--compression-ratio <n>",
+                  "short": null,
+                  "long": "--compression-ratio",
+                  "description": "Target compression ratio (2–20). 4 = keep 25% of tokens. Default: 4.",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                }
+              ],
+              "examples": [
+                "divinci rag targets config <collectionId>",
+                "divinci rag targets config <collectionId> --context-per-message <value>"
+              ],
+              "subcommands": []
+            },
+            {
+              "path": [
+                "rag",
+                "targets",
+                "prune-refs"
+              ],
+              "name": "prune-refs",
+              "aliases": [],
+              "description": "Remove ghost file refs from a vector index's files[], failedFiles[], pendingFiles[] arrays",
+              "summary": "Remove ghost file refs from a vector index's files[], failedFiles[], pendingFiles[] arrays",
+              "usage": "divinci rag targets prune-refs <collectionId>",
+              "arguments": [
+                {
+                  "name": "collectionId",
+                  "required": true,
+                  "variadic": false,
+                  "description": "",
+                  "defaultValue": null
+                }
+              ],
+              "options": [],
+              "examples": [
+                "divinci rag targets prune-refs <collectionId>"
+              ],
+              "subcommands": []
+            },
+            {
+              "path": [
+                "rag",
+                "targets",
+                "delete"
+              ],
+              "name": "delete",
+              "aliases": [],
+              "description": "Delete a RAG vector index and all its associated resources",
+              "summary": "Delete a RAG vector index and all its associated resources",
+              "usage": "divinci rag targets delete <collectionId> [options]",
+              "arguments": [
+                {
+                  "name": "collectionId",
+                  "required": true,
+                  "variadic": false,
+                  "description": "",
+                  "defaultValue": null
+                }
+              ],
+              "options": [
+                {
+                  "flags": "--force",
+                  "short": null,
+                  "long": "--force",
+                  "description": "Skip confirmation prompt",
+                  "mandatory": false,
+                  "valueMode": "none",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                }
+              ],
+              "examples": [
+                "divinci rag targets delete <collectionId>"
+              ],
+              "subcommands": []
+            }
+          ]
+        },
+        {
+          "path": [
+            "rag",
+            "reindex"
+          ],
+          "name": "reindex",
+          "aliases": [],
+          "description": "Re-process a file through the chunking + embedding pipeline",
+          "summary": "Re-process a file through the chunking + embedding pipeline",
+          "usage": "divinci rag reindex <fileId> [options]",
+          "arguments": [
+            {
+              "name": "fileId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [
+            {
+              "flags": "--targets <ids>",
+              "short": null,
+              "long": "--targets",
+              "description": "Comma-separated RAG vector IDs to index into (defaults to file's existing targets)",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--chapter-aware",
+              "short": null,
+              "long": "--chapter-aware",
+              "description": "Prepend section headings to each chunk for structured documents (books, manuals)",
+              "mandatory": false,
+              "valueMode": "none",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--wait",
+              "short": null,
+              "long": "--wait",
+              "description": "Wait for processing to complete",
+              "mandatory": false,
+              "valueMode": "none",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--poll-interval <seconds>",
+              "short": null,
+              "long": "--poll-interval",
+              "description": "Polling interval when --wait is used",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "10",
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci rag reindex <fileId>",
+            "divinci rag reindex <fileId> --targets <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "rag",
+            "config"
+          ],
+          "name": "config",
+          "aliases": [],
+          "description": "Update retrieval settings for a RAG vector index",
+          "summary": "Update retrieval settings for a RAG vector index",
+          "usage": "divinci rag config <collectionId> [options]",
+          "arguments": [
+            {
+              "name": "collectionId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [
+            {
+              "flags": "--min-score <number>",
+              "short": null,
+              "long": "--min-score",
+              "description": "Minimum similarity score threshold for vector search (0-1, default 0.62)",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--context-per-message <number>",
+              "short": null,
+              "long": "--context-per-message",
+              "description": "Max content chunks returned per query (default 5)",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--embedding-model <model>",
+              "short": null,
+              "long": "--embedding-model",
+              "description": "Embedding model used for indexing and querying",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci rag config <collectionId>",
+            "divinci rag config <collectionId> --min-score <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "rag",
+            "groups"
+          ],
+          "name": "groups",
+          "aliases": [],
+          "description": "Manage RAG vector groups (merged multi-index retrieval)",
+          "summary": "Manage RAG vector groups (merged multi-index retrieval)",
+          "usage": "divinci rag groups",
+          "arguments": [],
+          "options": [],
+          "examples": [
+            "divinci rag groups"
+          ],
+          "subcommands": [
+            {
+              "path": [
+                "rag",
+                "groups",
+                "ls"
+              ],
+              "name": "ls",
+              "aliases": [],
+              "description": "List all RAG vector groups",
+              "summary": "List all RAG vector groups",
+              "usage": "divinci rag groups ls",
+              "arguments": [],
+              "options": [],
+              "examples": [
+                "divinci rag groups ls"
+              ],
+              "subcommands": []
+            },
+            {
+              "path": [
+                "rag",
+                "groups",
+                "get"
+              ],
+              "name": "get",
+              "aliases": [],
+              "description": "Get details of a specific group",
+              "summary": "Get details of a specific group",
+              "usage": "divinci rag groups get <groupId>",
+              "arguments": [
+                {
+                  "name": "groupId",
+                  "required": true,
+                  "variadic": false,
+                  "description": "",
+                  "defaultValue": null
+                }
+              ],
+              "options": [],
+              "examples": [
+                "divinci rag groups get <groupId>"
+              ],
+              "subcommands": []
+            },
+            {
+              "path": [
+                "rag",
+                "groups",
+                "create"
+              ],
+              "name": "create",
+              "aliases": [],
+              "description": "Create a new RAG vector group",
+              "summary": "Create a new RAG vector group",
+              "usage": "divinci rag groups create <name> [options]",
+              "arguments": [
+                {
+                  "name": "name",
+                  "required": true,
+                  "variadic": false,
+                  "description": "",
+                  "defaultValue": null
+                }
+              ],
+              "options": [
+                {
+                  "flags": "--vectors <ids>",
+                  "short": null,
+                  "long": "--vectors",
+                  "description": "Comma-separated list of at least 2 vector IDs",
+                  "mandatory": true,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--description <text>",
+                  "short": null,
+                  "long": "--description",
+                  "description": "Group description",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--strategy <type>",
+                  "short": null,
+                  "long": "--strategy",
+                  "description": "Merge strategy: interleave | concatenate",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": "interleave",
+                  "choices": null
+                },
+                {
+                  "flags": "--chunks-per-vector <n>",
+                  "short": null,
+                  "long": "--chunks-per-vector",
+                  "description": "Max chunks per vector (1-10)",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": "3",
+                  "choices": null
+                }
+              ],
+              "examples": [
+                "divinci rag groups create <name>",
+                "divinci rag groups create <name> --vectors <value>"
+              ],
+              "subcommands": []
+            },
+            {
+              "path": [
+                "rag",
+                "groups",
+                "update"
+              ],
+              "name": "update",
+              "aliases": [],
+              "description": "Update a group — name, description, merge strategy, or vectors",
+              "summary": "Update a group — name, description, merge strategy, or vectors",
+              "usage": "divinci rag groups update <groupId> [options]",
+              "arguments": [
+                {
+                  "name": "groupId",
+                  "required": true,
+                  "variadic": false,
+                  "description": "",
+                  "defaultValue": null
+                }
+              ],
+              "options": [
+                {
+                  "flags": "--name <name>",
+                  "short": null,
+                  "long": "--name",
+                  "description": "New group name",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--description <text>",
+                  "short": null,
+                  "long": "--description",
+                  "description": "New description",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--strategy <type>",
+                  "short": null,
+                  "long": "--strategy",
+                  "description": "Merge strategy: interleave | concatenate",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--chunks-per-vector <n>",
+                  "short": null,
+                  "long": "--chunks-per-vector",
+                  "description": "Max chunks per vector (1-10)",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                },
+                {
+                  "flags": "--add-vector <id>",
+                  "short": null,
+                  "long": "--add-vector",
+                  "description": "Add a vector ID to the group (repeatable)",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": [],
+                  "choices": null
+                },
+                {
+                  "flags": "--remove-vector <id>",
+                  "short": null,
+                  "long": "--remove-vector",
+                  "description": "Remove a vector ID from the group (repeatable)",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": [],
+                  "choices": null
+                },
+                {
+                  "flags": "--vectors <ids>",
+                  "short": null,
+                  "long": "--vectors",
+                  "description": "Replace entire vector list (comma-separated, ≥2 IDs)",
+                  "mandatory": false,
+                  "valueMode": "required",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                }
+              ],
+              "examples": [
+                "divinci rag groups update <groupId>",
+                "divinci rag groups update <groupId> --name <value>"
+              ],
+              "subcommands": []
+            },
+            {
+              "path": [
+                "rag",
+                "groups",
+                "delete"
+              ],
+              "name": "delete",
+              "aliases": [],
+              "description": "Archive (soft-delete) a group",
+              "summary": "Archive (soft-delete) a group",
+              "usage": "divinci rag groups delete <groupId> [options]",
+              "arguments": [
+                {
+                  "name": "groupId",
+                  "required": true,
+                  "variadic": false,
+                  "description": "",
+                  "defaultValue": null
+                }
+              ],
+              "options": [
+                {
+                  "flags": "--yes",
+                  "short": null,
+                  "long": "--yes",
+                  "description": "Skip confirmation prompt",
+                  "mandatory": false,
+                  "valueMode": "none",
+                  "negate": false,
+                  "defaultValue": null,
+                  "choices": null
+                }
+              ],
+              "examples": [
+                "divinci rag groups delete <groupId>"
+              ],
+              "subcommands": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "release",
+      "description": "Release management",
+      "aliases": [],
+      "commands": [
+        {
+          "path": [
+            "release",
+            "list"
+          ],
+          "name": "list",
+          "aliases": [
+            "ls"
+          ],
+          "description": "List releases",
+          "summary": "List releases",
+          "usage": "divinci release list [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--status <status>",
+              "short": null,
+              "long": "--status",
+              "description": "Filter by status (draft, published, archived)",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--limit <number>",
+              "short": null,
+              "long": "--limit",
+              "description": "Maximum results",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "20",
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci release list",
+            "divinci release list --status <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "release",
+            "get"
+          ],
+          "name": "get",
+          "aliases": [],
+          "description": "Get release details",
+          "summary": "Get release details",
+          "usage": "divinci release get <releaseId>",
+          "arguments": [
+            {
+              "name": "releaseId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci release get <releaseId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "release",
+            "create"
+          ],
+          "name": "create",
+          "aliases": [],
+          "description": "Create a new release",
+          "summary": "Create a new release",
+          "usage": "divinci release create [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--name <name>",
+              "short": null,
+              "long": "--name",
+              "description": "Name for the release",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci release create",
+            "divinci release create --name <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "release",
+            "update"
+          ],
+          "name": "update",
+          "aliases": [],
+          "description": "Update a release",
+          "summary": "Update a release",
+          "usage": "divinci release update <releaseId> [options]",
+          "arguments": [
+            {
+              "name": "releaseId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [
+            {
+              "flags": "--name <name>",
+              "short": null,
+              "long": "--name",
+              "description": "New release name",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--status <status>",
+              "short": null,
+              "long": "--status",
+              "description": "New release status",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci release update <releaseId>",
+            "divinci release update <releaseId> --name <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "release",
+            "delete"
+          ],
+          "name": "delete",
+          "aliases": [
+            "rm"
+          ],
+          "description": "Delete a release",
+          "summary": "Delete a release",
+          "usage": "divinci release delete <releaseId>",
+          "arguments": [
+            {
+              "name": "releaseId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci release delete <releaseId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "release",
+            "publish"
+          ],
+          "name": "publish",
+          "aliases": [],
+          "description": "Publish (activate) a release",
+          "summary": "Publish (activate) a release",
+          "usage": "divinci release publish <releaseId>",
+          "arguments": [
+            {
+              "name": "releaseId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci release publish <releaseId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "release",
+            "create-from-mcp"
+          ],
+          "name": "create-from-mcp",
+          "aliases": [],
+          "description": "Create a release pre-configured with tools from an MCP server",
+          "summary": "Create a release pre-configured with tools from an MCP server",
+          "usage": "divinci release create-from-mcp [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--url <url>",
+              "short": null,
+              "long": "--url",
+              "description": "MCP server URL to discover tools from",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--name <name>",
+              "short": null,
+              "long": "--name",
+              "description": "Name for the release",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--description <description>",
+              "short": null,
+              "long": "--description",
+              "description": "Release description",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci release create-from-mcp",
+            "divinci release create-from-mcp --url <value>"
+          ],
+          "subcommands": []
+        }
+      ]
+    },
+    {
+      "name": "audio",
+      "description": "Audio transcript management",
+      "aliases": [],
+      "commands": [
+        {
+          "path": [
+            "audio",
+            "list"
+          ],
+          "name": "list",
+          "aliases": [
+            "ls"
+          ],
+          "description": "List audio transcripts",
+          "summary": "List audio transcripts",
+          "usage": "divinci audio list [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--limit <number>",
+              "short": null,
+              "long": "--limit",
+              "description": "Maximum results",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "20",
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci audio list",
+            "divinci audio list --limit <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "audio",
+            "get"
+          ],
+          "name": "get",
+          "aliases": [],
+          "description": "Get audio transcript details",
+          "summary": "Get audio transcript details",
+          "usage": "divinci audio get <audioId>",
+          "arguments": [
+            {
+              "name": "audioId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci audio get <audioId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "audio",
+            "upload-url"
+          ],
+          "name": "upload-url",
+          "aliases": [],
+          "description": "Upload audio from a URL",
+          "summary": "Upload audio from a URL",
+          "usage": "divinci audio upload-url <url>",
+          "arguments": [
+            {
+              "name": "url",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci audio upload-url <url>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "audio",
+            "delete"
+          ],
+          "name": "delete",
+          "aliases": [
+            "rm"
+          ],
+          "description": "Delete an audio transcript",
+          "summary": "Delete an audio transcript",
+          "usage": "divinci audio delete <audioId>",
+          "arguments": [
+            {
+              "name": "audioId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci audio delete <audioId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "audio",
+            "generate-rag"
+          ],
+          "name": "generate-rag",
+          "aliases": [],
+          "description": "Generate RAG content from an audio transcript",
+          "summary": "Generate RAG content from an audio transcript",
+          "usage": "divinci audio generate-rag <audioId>",
+          "arguments": [
+            {
+              "name": "audioId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci audio generate-rag <audioId>"
+          ],
+          "subcommands": []
+        }
+      ]
+    },
+    {
+      "name": "fine-tune",
+      "description": "Fine-tuning management",
+      "aliases": [],
+      "commands": [
+        {
+          "path": [
+            "fine-tune",
+            "list"
+          ],
+          "name": "list",
+          "aliases": [
+            "ls"
+          ],
+          "description": "List fine-tuning jobs",
+          "summary": "List fine-tuning jobs",
+          "usage": "divinci fine-tune list [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--limit <number>",
+              "short": null,
+              "long": "--limit",
+              "description": "Maximum results",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "20",
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci fine-tune list",
+            "divinci fine-tune list --limit <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "fine-tune",
+            "get"
+          ],
+          "name": "get",
+          "aliases": [],
+          "description": "Get fine-tuning job details",
+          "summary": "Get fine-tuning job details",
+          "usage": "divinci fine-tune get <jobId>",
+          "arguments": [
+            {
+              "name": "jobId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci fine-tune get <jobId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "fine-tune",
+            "create"
+          ],
+          "name": "create",
+          "aliases": [],
+          "description": "Create a new fine-tuning job",
+          "summary": "Create a new fine-tuning job",
+          "usage": "divinci fine-tune create [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--name <name>",
+              "short": null,
+              "long": "--name",
+              "description": "Name for the fine-tuning job",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--base-model <model>",
+              "short": null,
+              "long": "--base-model",
+              "description": "Base model to fine-tune",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci fine-tune create",
+            "divinci fine-tune create --name <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "fine-tune",
+            "delete"
+          ],
+          "name": "delete",
+          "aliases": [
+            "rm"
+          ],
+          "description": "Delete a fine-tuning job",
+          "summary": "Delete a fine-tuning job",
+          "usage": "divinci fine-tune delete <jobId>",
+          "arguments": [
+            {
+              "name": "jobId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci fine-tune delete <jobId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "fine-tune",
+            "start"
+          ],
+          "name": "start",
+          "aliases": [],
+          "description": "Start a fine-tuning job",
+          "summary": "Start a fine-tuning job",
+          "usage": "divinci fine-tune start <jobId>",
+          "arguments": [
+            {
+              "name": "jobId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci fine-tune start <jobId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "fine-tune",
+            "status"
+          ],
+          "name": "status",
+          "aliases": [],
+          "description": "Check fine-tuning job status",
+          "summary": "Check fine-tuning job status",
+          "usage": "divinci fine-tune status <jobId>",
+          "arguments": [
+            {
+              "name": "jobId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci fine-tune status <jobId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "fine-tune",
+            "cancel"
+          ],
+          "name": "cancel",
+          "aliases": [],
+          "description": "Cancel a running fine-tuning job",
+          "summary": "Cancel a running fine-tuning job",
+          "usage": "divinci fine-tune cancel <jobId>",
+          "arguments": [
+            {
+              "name": "jobId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci fine-tune cancel <jobId>"
+          ],
+          "subcommands": []
+        }
+      ]
+    },
+    {
+      "name": "config",
+      "description": "Workspace configuration",
+      "aliases": [],
+      "commands": [
+        {
+          "path": [
+            "config",
+            "get"
+          ],
+          "name": "get",
+          "aliases": [],
+          "description": "Get workspace configuration",
+          "summary": "Get workspace configuration",
+          "usage": "divinci config get",
+          "arguments": [],
+          "options": [],
+          "examples": [
+            "divinci config get"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "config",
+            "set-title"
+          ],
+          "name": "set-title",
+          "aliases": [],
+          "description": "Set workspace title",
+          "summary": "Set workspace title",
+          "usage": "divinci config set-title <title>",
+          "arguments": [
+            {
+              "name": "title",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci config set-title <title>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "config",
+            "set-description"
+          ],
+          "name": "set-description",
+          "aliases": [],
+          "description": "Set workspace description",
+          "summary": "Set workspace description",
+          "usage": "divinci config set-description <description>",
+          "arguments": [
+            {
+              "name": "description",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci config set-description <description>"
+          ],
+          "subcommands": []
+        }
+      ]
+    },
+    {
+      "name": "workspace",
+      "description": "Workspace management",
+      "aliases": [
+        "ws"
+      ],
+      "commands": [
+        {
+          "path": [
+            "workspace",
+            "list"
+          ],
+          "name": "list",
+          "aliases": [
+            "ls"
+          ],
+          "description": "List your workspaces",
+          "summary": "List your workspaces",
+          "usage": "divinci workspace list [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--limit <number>",
+              "short": null,
+              "long": "--limit",
+              "description": "Maximum results",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": "20",
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci workspace list",
+            "divinci workspace list --limit <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "workspace",
+            "get"
+          ],
+          "name": "get",
+          "aliases": [],
+          "description": "Get workspace details",
+          "summary": "Get workspace details",
+          "usage": "divinci workspace get <workspaceId>",
+          "arguments": [
+            {
+              "name": "workspaceId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci workspace get <workspaceId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "workspace",
+            "use"
+          ],
+          "name": "use",
+          "aliases": [],
+          "description": "Set default workspace for future commands",
+          "summary": "Set default workspace for future commands",
+          "usage": "divinci workspace use <workspaceId>",
+          "arguments": [
+            {
+              "name": "workspaceId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci workspace use <workspaceId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "workspace",
+            "create"
+          ],
+          "name": "create",
+          "aliases": [],
+          "description": "Create a new workspace",
+          "summary": "Create a new workspace",
+          "usage": "divinci workspace create [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--title <title>",
+              "short": null,
+              "long": "--title",
+              "description": "Workspace title",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--description <description>",
+              "short": null,
+              "long": "--description",
+              "description": "Workspace description",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci workspace create",
+            "divinci workspace create --title <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "workspace",
+            "update"
+          ],
+          "name": "update",
+          "aliases": [],
+          "description": "Update the active workspace",
+          "summary": "Update the active workspace",
+          "usage": "divinci workspace update [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--title <title>",
+              "short": null,
+              "long": "--title",
+              "description": "New workspace title",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--description <description>",
+              "short": null,
+              "long": "--description",
+              "description": "New workspace description",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci workspace update",
+            "divinci workspace update --title <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "workspace",
+            "delete"
+          ],
+          "name": "delete",
+          "aliases": [],
+          "description": "Delete the active workspace",
+          "summary": "Delete the active workspace",
+          "usage": "divinci workspace delete [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--force",
+              "short": null,
+              "long": "--force",
+              "description": "Skip confirmation prompt",
+              "mandatory": false,
+              "valueMode": "none",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci workspace delete"
+          ],
+          "subcommands": []
+        }
+      ]
+    },
+    {
+      "name": "group",
+      "description": "User group management",
+      "aliases": [],
+      "commands": [
+        {
+          "path": [
+            "group",
+            "create"
+          ],
+          "name": "create",
+          "aliases": [],
+          "description": "Create a new user group",
+          "summary": "Create a new user group",
+          "usage": "divinci group create [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--name <name>",
+              "short": null,
+              "long": "--name",
+              "description": "Group name",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--slug <slug>",
+              "short": null,
+              "long": "--slug",
+              "description": "URL-safe group slug",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci group create",
+            "divinci group create --name <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "group",
+            "list"
+          ],
+          "name": "list",
+          "aliases": [
+            "ls"
+          ],
+          "description": "List your groups",
+          "summary": "List your groups",
+          "usage": "divinci group list",
+          "arguments": [],
+          "options": [],
+          "examples": [
+            "divinci group list"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "group",
+            "get"
+          ],
+          "name": "get",
+          "aliases": [],
+          "description": "Get group details",
+          "summary": "Get group details",
+          "usage": "divinci group get <groupId>",
+          "arguments": [
+            {
+              "name": "groupId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci group get <groupId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "group",
+            "update"
+          ],
+          "name": "update",
+          "aliases": [],
+          "description": "Update a group",
+          "summary": "Update a group",
+          "usage": "divinci group update <groupId> [options]",
+          "arguments": [
+            {
+              "name": "groupId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [
+            {
+              "flags": "--name <name>",
+              "short": null,
+              "long": "--name",
+              "description": "New group name",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci group update <groupId>",
+            "divinci group update <groupId> --name <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "group",
+            "delete"
+          ],
+          "name": "delete",
+          "aliases": [],
+          "description": "Delete a group",
+          "summary": "Delete a group",
+          "usage": "divinci group delete <groupId>",
+          "arguments": [
+            {
+              "name": "groupId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [],
+          "examples": [
+            "divinci group delete <groupId>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "group",
+            "invite"
+          ],
+          "name": "invite",
+          "aliases": [],
+          "description": "Invite a user to a group",
+          "summary": "Invite a user to a group",
+          "usage": "divinci group invite <groupId> [options]",
+          "arguments": [
+            {
+              "name": "groupId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [
+            {
+              "flags": "--email <email>",
+              "short": null,
+              "long": "--email",
+              "description": "Email address to invite",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci group invite <groupId>",
+            "divinci group invite <groupId> --email <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "group",
+            "remove-user"
+          ],
+          "name": "remove-user",
+          "aliases": [],
+          "description": "Remove a user from a group",
+          "summary": "Remove a user from a group",
+          "usage": "divinci group remove-user <groupId> [options]",
+          "arguments": [
+            {
+              "name": "groupId",
+              "required": true,
+              "variadic": false,
+              "description": "",
+              "defaultValue": null
+            }
+          ],
+          "options": [
+            {
+              "flags": "--user-id <userId>",
+              "short": null,
+              "long": "--user-id",
+              "description": "User ID to remove",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci group remove-user <groupId>",
+            "divinci group remove-user <groupId> --user-id <value>"
+          ],
+          "subcommands": []
+        }
+      ]
+    },
+    {
+      "name": "permissions",
+      "description": "Permission management",
+      "aliases": [],
+      "commands": [
+        {
+          "path": [
+            "permissions",
+            "list"
+          ],
+          "name": "list",
+          "aliases": [
+            "ls"
+          ],
+          "description": "List permissions for the active workspace",
+          "summary": "List permissions for the active workspace",
+          "usage": "divinci permissions list",
+          "arguments": [],
+          "options": [],
+          "examples": [
+            "divinci permissions list"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "permissions",
+            "mine"
+          ],
+          "name": "mine",
+          "aliases": [],
+          "description": "Show your permissions on the active workspace",
+          "summary": "Show your permissions on the active workspace",
+          "usage": "divinci permissions mine",
+          "arguments": [],
+          "options": [],
+          "examples": [
+            "divinci permissions mine"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "permissions",
+            "grant"
+          ],
+          "name": "grant",
+          "aliases": [],
+          "description": "Grant permissions to a user or group",
+          "summary": "Grant permissions to a user or group",
+          "usage": "divinci permissions grant [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--user <email>",
+              "short": null,
+              "long": "--user",
+              "description": "User email to grant permissions to",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--group <slug>",
+              "short": null,
+              "long": "--group",
+              "description": "Group slug to grant permissions to",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--permissions <permissions>",
+              "short": null,
+              "long": "--permissions",
+              "description": "Comma-separated permission list (e.g. rag,config,permission)",
+              "mandatory": true,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci permissions grant",
+            "divinci permissions grant --user <value>"
+          ],
+          "subcommands": []
+        },
+        {
+          "path": [
+            "permissions",
+            "revoke"
+          ],
+          "name": "revoke",
+          "aliases": [],
+          "description": "Revoke permissions from a user or group",
+          "summary": "Revoke permissions from a user or group",
+          "usage": "divinci permissions revoke [options]",
+          "arguments": [],
+          "options": [
+            {
+              "flags": "--user <email>",
+              "short": null,
+              "long": "--user",
+              "description": "User email to revoke permissions from",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--user-id <userId>",
+              "short": null,
+              "long": "--user-id",
+              "description": "User ID to revoke permissions from",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            },
+            {
+              "flags": "--group <slug>",
+              "short": null,
+              "long": "--group",
+              "description": "Group slug to revoke permissions from",
+              "mandatory": false,
+              "valueMode": "required",
+              "negate": false,
+              "defaultValue": null,
+              "choices": null
+            }
+          ],
+          "examples": [
+            "divinci permissions revoke",
+            "divinci permissions revoke --user <value>"
+          ],
+          "subcommands": []
+        }
+      ]
+    }
+  ],
+  "standaloneCommands": [
+    {
+      "path": [
+        "api"
+      ],
+      "name": "api",
+      "aliases": [],
+      "description": "Make a raw API request",
+      "summary": "Make a raw API request",
+      "usage": "divinci api <method> <path> [options]",
+      "arguments": [
+        {
+          "name": "method",
+          "required": true,
+          "variadic": false,
+          "description": "",
+          "defaultValue": null
+        },
+        {
+          "name": "path",
+          "required": true,
+          "variadic": false,
+          "description": "",
+          "defaultValue": null
+        }
+      ],
+      "options": [
+        {
+          "flags": "--body <json>",
+          "short": null,
+          "long": "--body",
+          "description": "Request body (JSON string)",
+          "mandatory": false,
+          "valueMode": "required",
+          "negate": false,
+          "defaultValue": null,
+          "choices": null
+        },
+        {
+          "flags": "--param <key=value...>",
+          "short": null,
+          "long": "--param",
+          "description": "Query parameters",
+          "mandatory": false,
+          "valueMode": "required",
+          "negate": false,
+          "defaultValue": null,
+          "choices": null
+        }
+      ],
+      "examples": [
+        "divinci api <method> <path>",
+        "divinci api <method> <path> --body <value>"
+      ],
+      "subcommands": []
+    }
+  ]
+}
