@@ -1,0 +1,4734 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Divinci Public/Customer API",
+    "version": "1.0.0",
+    "description": "Public API for managing whitelabels, RAG knowledge bases, releases, fine-tuning, transcripts, and more. This spec is auto-generated from the Express route definitions in workspace/servers/public-api/src/api/v1 — every path and method is guaranteed to match the shipped server.",
+    "contact": {
+      "name": "Divinci Support",
+      "url": "https://divinci.ai/support"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.divinci.ai",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.divinci.app",
+      "description": "Staging"
+    },
+    {
+      "url": "https://api.dev.divinci.app",
+      "description": "Develop"
+    }
+  ],
+  "tags": [
+    {
+      "name": "audio-transcripts"
+    },
+    {
+      "name": "auth"
+    },
+    {
+      "name": "chat"
+    },
+    {
+      "name": "config"
+    },
+    {
+      "name": "connectors"
+    },
+    {
+      "name": "copilot"
+    },
+    {
+      "name": "divinci-agent"
+    },
+    {
+      "name": "export"
+    },
+    {
+      "name": "fine-tune"
+    },
+    {
+      "name": "groups"
+    },
+    {
+      "name": "html-pages"
+    },
+    {
+      "name": "mcp-config"
+    },
+    {
+      "name": "notifications"
+    },
+    {
+      "name": "permissions"
+    },
+    {
+      "name": "rag"
+    },
+    {
+      "name": "releases"
+    },
+    {
+      "name": "threads"
+    },
+    {
+      "name": "transcripts"
+    },
+    {
+      "name": "tts"
+    },
+    {
+      "name": "voiceprints"
+    },
+    {
+      "name": "workspaces"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "API key with format `dv_key_...`. Permissions are attached to each key."
+      },
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Auth0 JWT token for workspace CRUD operations."
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Validation or request format error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Authentication required or API key invalid",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Insufficient permissions",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "RateLimitExceeded": {
+        "description": "Rate limit exceeded for this API key + feature",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "VALIDATION_ERROR"
+              },
+              "message": {
+                "type": "string"
+              },
+              "documentation": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/v1/auth/validate-key": {
+      "post": {
+        "operationId": "validateKey",
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/validate-key Validates an API key and returns user context Protected by IP rate limiting + account lockout to prevent brute-force attacks",
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/api/v1/copilot": {
+      "post": {
+        "operationId": "copilotHandler",
+        "tags": [
+          "copilot"
+        ],
+        "summary": "CopilotKit runtime endpoint - handles streaming AI responses",
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/api/v1/copilot/health": {
+      "get": {
+        "operationId": "<unknown>",
+        "tags": [
+          "copilot"
+        ],
+        "summary": "Health check for copilot runtime - includes API key status",
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/api/v1/divinci-agent/health": {
+      "get": {
+        "operationId": "healthCheck",
+        "tags": [
+          "divinci-agent"
+        ],
+        "summary": "Health check - no auth required",
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/api/v1/divinci-agent/transcript": {
+      "post": {
+        "operationId": "createOrGetTranscript",
+        "tags": [
+          "divinci-agent"
+        ],
+        "summary": "Create or get transcript for a session POST /api/v1/divinci-agent/transcript",
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/divinci-agent/transcript/{transcriptId}/sync": {
+      "post": {
+        "operationId": "syncMessages",
+        "tags": [
+          "divinci-agent"
+        ],
+        "summary": "Sync messages to MongoDB POST /api/v1/divinci-agent/transcript/:transcriptId/sync",
+        "security": [],
+        "parameters": [
+          {
+            "name": "transcriptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/divinci-agent/transcript/{transcriptId}/messages": {
+      "get": {
+        "operationId": "getMessages",
+        "tags": [
+          "divinci-agent"
+        ],
+        "summary": "Get messages for session restoration GET /api/v1/divinci-agent/transcript/:transcriptId/messages",
+        "security": [],
+        "parameters": [
+          {
+            "name": "transcriptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/api/v1/mcp-config/{whitelabelId}": {
+      "get": {
+        "operationId": "getMcpConfig",
+        "tags": [
+          "mcp-config"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "name": "whitelabelId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/api/v1/transcripts": {
+      "get": {
+        "operationId": "getWhitelabelTranscripts",
+        "tags": [
+          "transcripts"
+        ],
+        "summary": "GET /api/v1/transcripts — List transcripts",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "transcript:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "transcript:read"
+        ],
+        "x-rate-limit-feature": "transcripts"
+      },
+      "post": {
+        "operationId": "createWhitelabelTranscript",
+        "tags": [
+          "transcripts"
+        ],
+        "summary": "POST /api/v1/transcripts — Create transcript",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "transcript:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "transcript:write"
+        ],
+        "x-rate-limit-feature": "transcripts",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/transcripts/{transcriptId}": {
+      "get": {
+        "operationId": "getWhiteLabelTranscript",
+        "tags": [
+          "transcripts"
+        ],
+        "summary": "GET /api/v1/transcripts/:transcriptId — Get single transcript",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "transcript:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "transcriptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "transcript:read"
+        ],
+        "x-rate-limit-feature": "transcripts"
+      },
+      "delete": {
+        "operationId": "deleteWhiteLabelTranscript",
+        "tags": [
+          "transcripts"
+        ],
+        "summary": "DELETE /api/v1/transcripts/:transcriptId — Delete transcript",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "transcript:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "transcriptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "transcript:write"
+        ],
+        "x-rate-limit-feature": "transcripts"
+      }
+    },
+    "/api/v1/transcripts/{transcriptId}/messages": {
+      "post": {
+        "operationId": "addMessageToTranscript",
+        "tags": [
+          "transcripts"
+        ],
+        "summary": "POST /api/v1/transcripts/:transcriptId/messages — Add message",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "transcript:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "transcriptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "transcript:write"
+        ],
+        "x-rate-limit-feature": "transcripts",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/files": {
+      "get": {
+        "operationId": "getRagVectorFiles",
+        "tags": [
+          "rag"
+        ],
+        "summary": "GET /api/v1/rag/files — List RAG vector files",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "rag"
+      },
+      "post": {
+        "operationId": "directCreateRagVectorFile",
+        "tags": [
+          "rag"
+        ],
+        "summary": "POST /api/v1/rag/files — Upload a new file for RAG indexing",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "CastedBusBoy",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "chunkingTool": {
+                    "type": "string"
+                  },
+                  "chunkingAuthId": {
+                    "type": "string"
+                  },
+                  "chunkingToolConfig": {
+                    "type": "string"
+                  },
+                  "cleaners": {
+                    "type": "string"
+                  },
+                  "ragVectorId": {
+                    "type": "string"
+                  },
+                  "ragVectorIds": {
+                    "type": "string"
+                  },
+                  "sourceUrl": {
+                    "type": "string"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "title",
+                  "description",
+                  "chunkingTool",
+                  "file"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/presigned": {
+      "post": {
+        "operationId": "presignedPrepare",
+        "tags": [
+          "rag"
+        ],
+        "summary": "POST /api/v1/rag/presigned — Get presigned R2 upload URLs Body: array of { byteSize: number, filename: string } Returns: array of presigned results with upload URLs",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/files/audio": {
+      "post": {
+        "operationId": "directCreateAudioRagFileFromUrl",
+        "tags": [
+          "rag"
+        ],
+        "summary": "POST /api/v1/rag/files/audio — Upload audio from URL for transcription + RAG indexing Must be before /files/:fileId to avoid \"audio\" matching as a fileId",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/files/audio-from-presigned": {
+      "post": {
+        "operationId": "directCreateAudioRagFileFromPresigned",
+        "tags": [
+          "rag"
+        ],
+        "summary": "POST /api/v1/rag/files/audio-from-presigned — Finalize presigned audio upload",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/files/{fileId}": {
+      "get": {
+        "operationId": "getRagVectorFile",
+        "tags": [
+          "rag"
+        ],
+        "summary": "GET /api/v1/rag/files/:fileId — Get a specific file",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "fileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "rag"
+      },
+      "delete": {
+        "operationId": "deleteRagVectorFile",
+        "tags": [
+          "rag"
+        ],
+        "summary": "DELETE /api/v1/rag/files/:fileId — Delete a file",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "fileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag"
+      },
+      "patch": {
+        "operationId": "patchRagVectorFile",
+        "tags": [
+          "rag"
+        ],
+        "summary": "PATCH /api/v1/rag/files/:fileId — Update file properties (rawFileKey, status, title, etc.)",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "fileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "zod",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rawFileKey": {
+                    "type": "string"
+                  },
+                  "fileKey": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/files/{fileId}/chunks": {
+      "get": {
+        "operationId": "listRagFileChunks",
+        "tags": [
+          "rag"
+        ],
+        "summary": "GET /api/v1/rag/files/:fileId/chunks — List paginated chunks for a file Query params: offset (default 0), limit (default 25, max 100)",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "fileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "rag"
+      }
+    },
+    "/api/v1/rag/files/{fileId}/reindex": {
+      "post": {
+        "operationId": "restartRagVectorFileQueue",
+        "tags": [
+          "rag"
+        ],
+        "summary": "POST /api/v1/rag/files/:fileId/reindex — Re-index a single file",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "fileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/targets": {
+      "get": {
+        "operationId": "listRagTargets",
+        "tags": [
+          "rag"
+        ],
+        "summary": "GET /api/v1/rag/targets — List RAG vector indexes (upload targets)",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "rag"
+      },
+      "post": {
+        "operationId": "createRagTarget",
+        "tags": [
+          "rag"
+        ],
+        "summary": "POST /api/v1/rag/targets — Create a new RAG vector index Body: { title, vectorIndexTool, embeddingModel?, chunkingTool?, contextPerMessage?, minimumSimilarity?, ... }",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/targets/{collectionId}": {
+      "patch": {
+        "operationId": "patchRagTarget",
+        "tags": [
+          "rag"
+        ],
+        "summary": "PATCH /api/v1/rag/targets/:collectionId — Update retrieval settings (minimumSimilarity, contextPerMessage, embeddingModel)",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteCustomRag",
+        "tags": [
+          "rag"
+        ],
+        "summary": "DELETE /api/v1/rag/targets/:collectionId — Delete a RAG vector index and all its resources",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag"
+      }
+    },
+    "/api/v1/rag/targets/{collectionId}/migrate": {
+      "post": {
+        "operationId": "migrateRagTarget",
+        "tags": [
+          "rag"
+        ],
+        "summary": "POST /api/v1/rag/targets/:collectionId/migrate — Clone index with new config + bulk reindex all files Body: { embeddingModel?, chunkingTool?, title?, contextPerMessage?, minimumSimilarity?, ... }",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/targets/{collectionId}/bulk-reindex": {
+      "post": {
+        "operationId": "bulkReindexRagTarget",
+        "tags": [
+          "rag"
+        ],
+        "summary": "POST /api/v1/rag/targets/:collectionId/bulk-reindex — Re-queue all files in this index Body: { chunkingTool?, fileIds? }",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/targets/{collectionId}/prune-ghost-refs": {
+      "post": {
+        "operationId": "pruneGhostRefs",
+        "tags": [
+          "rag"
+        ],
+        "summary": "POST /api/v1/rag/targets/:collectionId/prune-ghost-refs — Remove ghost file refs",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag"
+      }
+    },
+    "/api/v1/rag/search": {
+      "get": {
+        "operationId": "searchRagKnowledgeBase",
+        "tags": [
+          "rag"
+        ],
+        "summary": "GET /api/v1/rag/search — Search knowledge base using D1 full-text search Query params: q (required), limit/topK (default 10, max 100), fileId (optional filter), collectionId (optional filter)",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "rag"
+      }
+    },
+    "/api/v1/rag/context": {
+      "post": {
+        "operationId": "getRagContext",
+        "tags": [
+          "rag"
+        ],
+        "summary": "POST /api/v1/rag/context — Semantic vector similarity retrieval Body: { query, collectionId | groupId, topK? }",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/groups": {
+      "get": {
+        "operationId": "listRagGroups",
+        "tags": [
+          "rag"
+        ],
+        "summary": "GET /api/v1/rag/groups — List RAG vector groups",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "rag"
+      },
+      "post": {
+        "operationId": "createRagGroup",
+        "tags": [
+          "rag"
+        ],
+        "summary": "POST /api/v1/rag/groups — Create a new group",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rag/groups/{groupId}": {
+      "get": {
+        "operationId": "getRagGroup",
+        "tags": [
+          "rag"
+        ],
+        "summary": "GET /api/v1/rag/groups/:groupId — Get a specific group",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "rag"
+      },
+      "patch": {
+        "operationId": "patchRagGroup",
+        "tags": [
+          "rag"
+        ],
+        "summary": "PATCH /api/v1/rag/groups/:groupId — Update group (name, vectors, settings) Supports addVectorIds / removeVectorIds for incremental changes",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "archiveRagGroup",
+        "tags": [
+          "rag"
+        ],
+        "summary": "DELETE /api/v1/rag/groups/:groupId — Archive (soft-delete) a group",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "rag"
+      }
+    },
+    "/api/v1/releases": {
+      "get": {
+        "operationId": "listAllRelease",
+        "tags": [
+          "releases"
+        ],
+        "summary": "GET /api/v1/releases — List all releases",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "release:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "release:read"
+        ],
+        "x-rate-limit-feature": "releases"
+      },
+      "post": {
+        "operationId": "createReleaseDraft",
+        "tags": [
+          "releases"
+        ],
+        "summary": "POST /api/v1/releases — Create a new release draft",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "release:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "release:write"
+        ],
+        "x-rate-limit-feature": "releases",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/releases/{releaseId}": {
+      "get": {
+        "operationId": "getReleaseById",
+        "tags": [
+          "releases"
+        ],
+        "summary": "GET /api/v1/releases/:releaseId — Get release by ID",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "release:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "releaseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "release:read"
+        ],
+        "x-rate-limit-feature": "releases"
+      },
+      "patch": {
+        "operationId": "updateReleaseDraft",
+        "tags": [
+          "releases"
+        ],
+        "summary": "PATCH /api/v1/releases/:releaseId — Update a release draft",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "release:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "releaseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "release:write"
+        ],
+        "x-rate-limit-feature": "releases",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteDraft",
+        "tags": [
+          "releases"
+        ],
+        "summary": "DELETE /api/v1/releases/:releaseId — Delete a release draft",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "release:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "releaseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "release:write"
+        ],
+        "x-rate-limit-feature": "releases"
+      }
+    },
+    "/api/v1/releases/{releaseId}/publish": {
+      "post": {
+        "operationId": "releaseReleaseDraft",
+        "tags": [
+          "releases"
+        ],
+        "summary": "POST /api/v1/releases/:releaseId/publish — Publish a release draft",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "release:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "releaseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "release:write"
+        ],
+        "x-rate-limit-feature": "releases",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/config": {
+      "get": {
+        "operationId": "getWhitelabel",
+        "tags": [
+          "config"
+        ],
+        "summary": "GET /api/v1/config — Get whitelabel configuration",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "whitelabel:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "whitelabel:read"
+        ],
+        "x-rate-limit-feature": "config"
+      }
+    },
+    "/api/v1/config/title": {
+      "patch": {
+        "operationId": "setWhiteLabelTitle",
+        "tags": [
+          "config"
+        ],
+        "summary": "PATCH /api/v1/config/title — Update whitelabel title",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "whitelabel:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "whitelabel:write"
+        ],
+        "x-rate-limit-feature": "config",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "CastedBusBoy",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "picture": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "picture"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/config/description": {
+      "patch": {
+        "operationId": "setWhiteLabelDescription",
+        "tags": [
+          "config"
+        ],
+        "summary": "PATCH /api/v1/config/description — Update whitelabel description",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "whitelabel:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "whitelabel:write"
+        ],
+        "x-rate-limit-feature": "config",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "CastedBusBoy",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "picture": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "picture"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/fine-tune/jobs": {
+      "get": {
+        "operationId": "listCustomAI",
+        "tags": [
+          "fine-tune"
+        ],
+        "summary": "--- Custom AI Models --- GET /api/v1/fine-tune/jobs — List custom AI models",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "finetune:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "finetune:read"
+        ],
+        "x-rate-limit-feature": "fine-tune"
+      },
+      "post": {
+        "operationId": "createCustomAI",
+        "tags": [
+          "fine-tune"
+        ],
+        "summary": "POST /api/v1/fine-tune/jobs — Create a new custom AI model",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "finetune:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "finetune:write"
+        ],
+        "x-rate-limit-feature": "fine-tune",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/fine-tune/jobs/{customAiId}": {
+      "get": {
+        "operationId": "getCustomAI",
+        "tags": [
+          "fine-tune"
+        ],
+        "summary": "GET /api/v1/fine-tune/jobs/:jobId — Get a custom AI model",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "finetune:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "customAiId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "finetune:read"
+        ],
+        "x-rate-limit-feature": "fine-tune"
+      },
+      "delete": {
+        "operationId": "deleteCustomAI",
+        "tags": [
+          "fine-tune"
+        ],
+        "summary": "DELETE /api/v1/fine-tune/jobs/:jobId — Delete a custom AI model",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "finetune:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "customAiId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "finetune:write"
+        ],
+        "x-rate-limit-feature": "fine-tune"
+      }
+    },
+    "/api/v1/fine-tune/jobs/{customAiId}/start": {
+      "post": {
+        "operationId": "startFineTune",
+        "tags": [
+          "fine-tune"
+        ],
+        "summary": "--- Fine-Tune Operations --- POST /api/v1/fine-tune/jobs/:jobId/start — Start fine-tuning",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "finetune:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "customAiId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "finetune:write"
+        ],
+        "x-rate-limit-feature": "fine-tune",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/fine-tune/jobs/{customAiId}/status": {
+      "get": {
+        "operationId": "getFineTune",
+        "tags": [
+          "fine-tune"
+        ],
+        "summary": "GET /api/v1/fine-tune/jobs/:jobId/status — Get fine-tune status",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "finetune:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "customAiId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "finetune:read"
+        ],
+        "x-rate-limit-feature": "fine-tune"
+      }
+    },
+    "/api/v1/fine-tune/jobs/{customAiId}/cancel": {
+      "post": {
+        "operationId": "cancelFineTune",
+        "tags": [
+          "fine-tune"
+        ],
+        "summary": "POST /api/v1/fine-tune/jobs/:jobId/cancel — Cancel fine-tuning",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "finetune:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "customAiId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "finetune:write"
+        ],
+        "x-rate-limit-feature": "fine-tune"
+      }
+    },
+    "/api/v1/audio-transcripts": {
+      "get": {
+        "operationId": "listAudioTranscripts",
+        "tags": [
+          "audio-transcripts"
+        ],
+        "summary": "GET /api/v1/audio-transcripts — List audio transcripts",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "audio-transcripts"
+      }
+    },
+    "/api/v1/audio-transcripts/url": {
+      "post": {
+        "operationId": "createAudioTranscriptFromURL",
+        "tags": [
+          "audio-transcripts"
+        ],
+        "summary": "POST /api/v1/audio-transcripts/url — Upload audio from URL",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "audio-transcripts",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/audio-transcripts/{audioId}/generate-rag": {
+      "post": {
+        "operationId": "generateRagFile",
+        "tags": [
+          "audio-transcripts"
+        ],
+        "summary": "POST /api/v1/audio-transcripts/:audioId/generate-rag — Generate RAG from completed transcript",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "audioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "audio-transcripts",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "zod",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "speakers": {
+                    "type": "string"
+                  },
+                  "chunkingTool": {
+                    "type": "string"
+                  },
+                  "cleaners": {
+                    "type": "string"
+                  },
+                  "ragVectors": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "speakers",
+                  "chunkingTool",
+                  "cleaners",
+                  "ragVectors"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/audio-transcripts/{audioId}": {
+      "get": {
+        "operationId": "getAudioTranscript",
+        "tags": [
+          "audio-transcripts"
+        ],
+        "summary": "GET /api/v1/audio-transcripts/:audioId — Get a specific transcript",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "audioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "audio-transcripts"
+      },
+      "delete": {
+        "operationId": "deleteAudioTranscript",
+        "tags": [
+          "audio-transcripts"
+        ],
+        "summary": "DELETE /api/v1/audio-transcripts/:audioId — Delete a transcript",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "audioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:write"
+        ],
+        "x-rate-limit-feature": "audio-transcripts"
+      }
+    },
+    "/api/v1/connectors": {
+      "get": {
+        "operationId": "<unknown>",
+        "tags": [
+          "connectors"
+        ],
+        "summary": "GET /api/v1/connectors — List all connections",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "connector:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "connector:read"
+        ],
+        "x-rate-limit-feature": "connectors"
+      }
+    },
+    "/api/v1/connectors/{provider}": {
+      "get": {
+        "operationId": "<unknown>",
+        "tags": [
+          "connectors"
+        ],
+        "summary": "GET /api/v1/connectors/:provider — Get connection status for a specific provider",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "connector:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "connector:read"
+        ],
+        "x-rate-limit-feature": "connectors"
+      }
+    },
+    "/api/v1/connectors/{provider}/auth": {
+      "post": {
+        "operationId": "<unknown>",
+        "tags": [
+          "connectors"
+        ],
+        "summary": "POST /api/v1/connectors/:provider/auth — Initiate OAuth or validate credentials",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "connector:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "connector:write"
+        ],
+        "x-rate-limit-feature": "connectors"
+      }
+    },
+    "/api/v1/connectors/{provider}/disconnect": {
+      "post": {
+        "operationId": "<unknown>",
+        "tags": [
+          "connectors"
+        ],
+        "summary": "POST /api/v1/connectors/:provider/disconnect — Revoke connection",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "connector:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "connector:write"
+        ],
+        "x-rate-limit-feature": "connectors"
+      }
+    },
+    "/api/v1/html-pages": {
+      "get": {
+        "operationId": "listPages",
+        "tags": [
+          "html-pages"
+        ],
+        "summary": "GET /api/v1/html-pages — List HTML pages (supports ?urlHost= filter)",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "html-pages"
+      }
+    },
+    "/api/v1/html-pages/count": {
+      "get": {
+        "operationId": "getHTMLPageCount",
+        "tags": [
+          "html-pages"
+        ],
+        "summary": "GET /api/v1/html-pages/count — Get total page count",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "html-pages"
+      }
+    },
+    "/api/v1/html-pages/by-url": {
+      "get": {
+        "operationId": "getPageByURL",
+        "tags": [
+          "html-pages"
+        ],
+        "summary": "GET /api/v1/html-pages/by-url — Get page by URL (?url=...)",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "html-pages"
+      }
+    },
+    "/api/v1/html-pages/hosts": {
+      "get": {
+        "operationId": "getUniqueHosts",
+        "tags": [
+          "html-pages"
+        ],
+        "summary": "GET /api/v1/html-pages/hosts — List unique hosts",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "html-pages"
+      }
+    },
+    "/api/v1/html-pages/hosts/history": {
+      "get": {
+        "operationId": "getHostCrawlHistoryList",
+        "tags": [
+          "html-pages"
+        ],
+        "summary": "GET /api/v1/html-pages/hosts/history — List crawl history for all hosts",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "html-pages"
+      }
+    },
+    "/api/v1/html-pages/hosts/{urlHost}/history": {
+      "get": {
+        "operationId": "getHostCrawlHistoryItem",
+        "tags": [
+          "html-pages"
+        ],
+        "summary": "GET /api/v1/html-pages/hosts/:urlHost/history — Get crawl history for a specific host",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "urlHost",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "html-pages"
+      }
+    },
+    "/api/v1/html-pages/{pageId}": {
+      "get": {
+        "operationId": "getPage",
+        "tags": [
+          "html-pages"
+        ],
+        "summary": "GET /api/v1/html-pages/:pageId — Get a specific page",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "pageId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "html-pages"
+      }
+    },
+    "/api/v1/notifications": {
+      "get": {
+        "operationId": "<unknown>",
+        "tags": [
+          "notifications"
+        ],
+        "summary": "GET /api/v1/notifications — List notifications Supports query params: page, limit, isRead, tags, notificationType, title, createdAfter, createdBefore",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "notification:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "notification:read"
+        ],
+        "x-rate-limit-feature": "notifications"
+      }
+    },
+    "/api/v1/notifications/counts": {
+      "get": {
+        "operationId": "<unknown>",
+        "tags": [
+          "notifications"
+        ],
+        "summary": "GET /api/v1/notifications/counts — Get notification counts (total + unread)",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "notification:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "notification:read"
+        ],
+        "x-rate-limit-feature": "notifications"
+      }
+    },
+    "/api/v1/notifications/{notificationId}/read": {
+      "patch": {
+        "operationId": "<unknown>",
+        "tags": [
+          "notifications"
+        ],
+        "summary": "PATCH /api/v1/notifications/:notificationId/read — Mark notification as read/unread",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "notification:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "notification:write"
+        ],
+        "x-rate-limit-feature": "notifications"
+      }
+    },
+    "/api/v1/threads": {
+      "get": {
+        "operationId": "getThreadListUsingWhiteLabel",
+        "tags": [
+          "threads"
+        ],
+        "summary": "GET /api/v1/threads — List all threads for the whitelabel",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "transcript:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "transcript:read"
+        ],
+        "x-rate-limit-feature": "threads"
+      }
+    },
+    "/api/v1/threads/{chatId}": {
+      "get": {
+        "operationId": "getThreadItemUsingWhiteLabel",
+        "tags": [
+          "threads"
+        ],
+        "summary": "GET /api/v1/threads/:chatId — Get a specific thread with transcript",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "transcript:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "chatId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "transcript:read"
+        ],
+        "x-rate-limit-feature": "threads"
+      }
+    },
+    "/api/v1/voiceprints": {
+      "get": {
+        "operationId": "listVoiceprints",
+        "tags": [
+          "voiceprints"
+        ],
+        "summary": "GET /api/v1/voiceprints — List voiceprints for the whitelabel",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "voiceprints"
+      }
+    },
+    "/api/v1/export": {
+      "get": {
+        "operationId": "exportWhitelabel",
+        "tags": [
+          "export"
+        ],
+        "summary": "GET /api/v1/export — Export whitelabel configuration (JSON or YAML)",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "whitelabel:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "whitelabel:read"
+        ],
+        "x-rate-limit-feature": "export"
+      },
+      "post": {
+        "operationId": "importWhitelabel",
+        "tags": [
+          "export"
+        ],
+        "summary": "POST /api/v1/export — Import whitelabel configuration (JSON or YAML)",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "whitelabel:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "whitelabel:write"
+        ],
+        "x-rate-limit-feature": "export",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tts/generate": {
+      "post": {
+        "operationId": "generateTTS",
+        "tags": [
+          "tts"
+        ],
+        "summary": "POST /api/v1/tts/generate — Generate TTS audio from text",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "whitelabel:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "whitelabel:write"
+        ],
+        "x-rate-limit-feature": "tts",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tts/settings": {
+      "get": {
+        "operationId": "getTTSSettings",
+        "tags": [
+          "tts"
+        ],
+        "summary": "GET /api/v1/tts/settings — Get TTS settings",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "whitelabel:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "whitelabel:read"
+        ],
+        "x-rate-limit-feature": "tts"
+      },
+      "patch": {
+        "operationId": "updateTTSSettings",
+        "tags": [
+          "tts"
+        ],
+        "summary": "PATCH /api/v1/tts/settings — Update TTS settings",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "whitelabel:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "whitelabel:write"
+        ],
+        "x-rate-limit-feature": "tts",
+        "requestBody": {
+          "required": true,
+          "x-schema-source": "jsonBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/chat/completions": {
+      "post": {
+        "operationId": "<unknown>",
+        "tags": [
+          "chat"
+        ],
+        "summary": "POST /api/v1/chat/completions OpenAI-compatible chat completions endpoint. Sends a message and returns the AI response synchronously. Body: { messages: [{ role: \"user\", content: \"Hello\" }],  // Required — last message is sent transcriptId?: string,  // Optional — reuse existing transcript for context stream?: boolean,       // Reserved for future streaming support (currently ignored) } Response: { id: string, object: \"chat.completion\", choices: [{ index: 0, message: { role: \"assistant\", content: \"...\" }, finish_reason: \"stop\" }], usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 }, }",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "transcript:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "transcript:write"
+        ],
+        "x-rate-limit-feature": "chat"
+      }
+    },
+    "/api/v1/groups": {
+      "post": {
+        "operationId": "createGroup",
+        "tags": [
+          "groups"
+        ],
+        "summary": "Mount routes",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "group:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "group:write"
+        ],
+        "x-rate-limit-feature": "groups"
+      },
+      "get": {
+        "operationId": "listGroups",
+        "tags": [
+          "groups"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "group:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "group:read"
+        ],
+        "x-rate-limit-feature": "groups"
+      }
+    },
+    "/api/v1/groups/{groupId}": {
+      "get": {
+        "operationId": "getGroup",
+        "tags": [
+          "groups"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "group:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "group:read"
+        ],
+        "x-rate-limit-feature": "groups"
+      },
+      "patch": {
+        "operationId": "updateGroup",
+        "tags": [
+          "groups"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "group:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "group:write"
+        ],
+        "x-rate-limit-feature": "groups"
+      },
+      "delete": {
+        "operationId": "deleteGroup",
+        "tags": [
+          "groups"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "group:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "group:write"
+        ],
+        "x-rate-limit-feature": "groups"
+      }
+    },
+    "/api/v1/groups/{groupId}/invite": {
+      "post": {
+        "operationId": "inviteUser",
+        "tags": [
+          "groups"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "group:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "group:write"
+        ],
+        "x-rate-limit-feature": "groups"
+      },
+      "delete": {
+        "operationId": "removeInvite",
+        "tags": [
+          "groups"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "group:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "group:write"
+        ],
+        "x-rate-limit-feature": "groups"
+      }
+    },
+    "/api/v1/groups/{groupId}/members": {
+      "delete": {
+        "operationId": "removeMember",
+        "tags": [
+          "groups"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "group:write"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "group:write"
+        ],
+        "x-rate-limit-feature": "groups"
+      }
+    },
+    "/api/v1/permissions": {
+      "get": {
+        "operationId": "getPermissions",
+        "tags": [
+          "permissions"
+        ],
+        "summary": "Mount routes",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "permission:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "permission:read"
+        ],
+        "x-rate-limit-feature": "permissions"
+      }
+    },
+    "/api/v1/permissions/mine": {
+      "get": {
+        "operationId": "getOwnPermissions",
+        "tags": [
+          "permissions"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "permission:read"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "permission:read"
+        ],
+        "x-rate-limit-feature": "permissions"
+      }
+    },
+    "/api/v1/permissions/users": {
+      "post": {
+        "operationId": "grantUserPermissions",
+        "tags": [
+          "permissions"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "permission:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "permission:write"
+        ],
+        "x-rate-limit-feature": "permissions"
+      },
+      "delete": {
+        "operationId": "revokeUserPermissions",
+        "tags": [
+          "permissions"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "permission:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "permission:write"
+        ],
+        "x-rate-limit-feature": "permissions"
+      }
+    },
+    "/api/v1/permissions/groups": {
+      "post": {
+        "operationId": "grantGroupPermissions",
+        "tags": [
+          "permissions"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "permission:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "permission:write"
+        ],
+        "x-rate-limit-feature": "permissions"
+      },
+      "delete": {
+        "operationId": "revokeGroupPermissions",
+        "tags": [
+          "permissions"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "permission:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "permission:write"
+        ],
+        "x-rate-limit-feature": "permissions"
+      }
+    },
+    "/api/v1/permissions/logged-in": {
+      "post": {
+        "operationId": "setLoggedInPermissions",
+        "tags": [
+          "permissions"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "permission:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "permission:write"
+        ],
+        "x-rate-limit-feature": "permissions"
+      }
+    },
+    "/api/v1/permissions/anonymous": {
+      "post": {
+        "operationId": "setAnonymousPermissions",
+        "tags": [
+          "permissions"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "permission:write"
+            ]
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "permission:write"
+        ],
+        "x-rate-limit-feature": "permissions"
+      }
+    },
+    "/api/v1/workspaces": {
+      "post": {
+        "operationId": "createWorkspace",
+        "tags": [
+          "workspaces"
+        ],
+        "summary": "Mount routes",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      },
+      "get": {
+        "operationId": "listWorkspaces",
+        "tags": [
+          "workspaces"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspaceId}": {
+      "get": {
+        "operationId": "getWorkspace",
+        "tags": [
+          "workspaces"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateWorkspace",
+        "tags": [
+          "workspaces"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteWorkspace",
+        "tags": [
+          "workspaces"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        }
+      }
+    }
+  }
+}

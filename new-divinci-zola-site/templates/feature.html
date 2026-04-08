@@ -92,7 +92,12 @@
 <script>
 (function waitForRedoc() {
   if (typeof Redoc !== 'undefined' && document.getElementById('redoc-container')) {
-    Redoc.init('/openapi.yaml', {
+    // openapi-v1.json is auto-generated from the Express route definitions by
+    // workspace/servers/public-api/scripts/generate-openapi.ts in the server
+    // repo — every path + method is guaranteed to match the shipped API.
+    // The legacy hand-maintained openapi.yaml is still served at /openapi.yaml
+    // for reference but no longer drives the render.
+    Redoc.init('/openapi-v1.json', {
       scrollYOffset: 0,
       hideDownloadButton: false,
       expandResponses: '200',
