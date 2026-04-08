@@ -700,8 +700,8 @@
                                         </li>
                                         <li class="endpoint-item">
                                             <span class="endpoint-method method-post">POST</span>
-                                            <span class="endpoint-path">/api/v1/rag/upload</span>
-                                            <div class="endpoint-description">Upload a document to your knowledge base</div>
+                                            <span class="endpoint-path">/api/v1/rag/files</span>
+                                            <div class="endpoint-description">Upload a document to your knowledge base (multipart/form-data — do not use application/json)</div>
                                         </li>
                                         <li class="endpoint-item">
                                             <span class="endpoint-method method-get">GET</span>
@@ -833,6 +833,13 @@ curl -X POST https://api.divinci.app/api/v1/auth/validate-key \
 curl https://api.divinci.app/api/v1/releases \
   -H <span class="code-string">"Authorization: Bearer divinci_your_api_key"</span>
 
+<span class="code-comment"># Upload a file to your knowledge base (multipart/form-data — do NOT set Content-Type manually)</span>
+curl -X POST https://api.divinci.app/api/v1/rag/files \
+  -H <span class="code-string">"Authorization: Bearer divinci_your_api_key"</span> \
+  -F <span class="code-string">"file=@/path/to/document.txt;type=text/plain"</span> \
+  -F <span class="code-string">"ragVectorId=your-rag-vector-id"</span> \
+  -F <span class="code-string">"title=My Document"</span>
+
 <span class="code-comment"># Search your knowledge base</span>
 curl -X POST https://api.divinci.app/api/v1/rag/search \
   -H <span class="code-string">"Authorization: Bearer divinci_your_api_key"</span> \
@@ -869,6 +876,9 @@ divinci release create-from-mcp \
   --url <span class="code-string">"https://your-mcp-server.com/api/v1/mcp"</span> \
   --name <span class="code-string">"My AI Release"</span>
 
+<span class="code-comment"># Upload a file to your knowledge base</span>
+divinci rag upload --file /path/to/document.txt --rag-vector-id &lt;rag-vector-id&gt; --title <span class="code-string">"My Document"</span>
+
 <span class="code-comment"># Manage team access</span>
 divinci group create --name <span class="code-string">"Engineering"</span> --slug <span class="code-string">"engineering"</span>
 divinci group invite &lt;group-id&gt; --email <span class="code-string">"dev@example.com"</span>
@@ -886,6 +896,18 @@ divinci permissions grant --group engineering \
 <span class="code-comment">// List releases</span>
 <span class="code-keyword">const</span> releases = <span class="code-keyword">await</span> divinci.releases.list({
   workspaceId: <span class="code-string">"your-workspace-id"</span>
+});
+
+<span class="code-comment">// Upload a file to your knowledge base (multipart/form-data — do not send application/json)</span>
+<span class="code-keyword">const</span> formData = <span class="code-keyword">new</span> FormData();
+formData.append(<span class="code-string">"file"</span>, <span class="code-keyword">new</span> Blob([textContent], { type: <span class="code-string">"text/plain"</span> }), <span class="code-string">"document.txt"</span>);
+formData.append(<span class="code-string">"ragVectorId"</span>, <span class="code-string">"your-rag-vector-id"</span>);
+formData.append(<span class="code-string">"title"</span>, <span class="code-string">"My Document"</span>);
+<span class="code-keyword">await</span> fetch(<span class="code-string">`https://api.divinci.app/api/v1/rag/files`</span>, {
+  method: <span class="code-string">"POST"</span>,
+  headers: { Authorization: <span class="code-string">`Bearer ${process.env.DIVINCI_API_KEY}`</span> },
+  <span class="code-comment">// Do NOT set Content-Type — let fetch set it automatically with the multipart boundary</span>
+  body: formData,
 });
 
 <span class="code-comment">// Search knowledge base</span>
