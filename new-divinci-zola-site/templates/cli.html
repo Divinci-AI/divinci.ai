@@ -1,28 +1,14 @@
-{% extends "base-optimized.html" %}
+{% extends "base.html" %}
+
+{% block body_class %}cli-docs{% endblock %}
 
 {% block extra_head %}
-<script>
-/* Tag the html element via a data-attribute (FontAwesome auto-init replaces
-   `document.documentElement.className`, so a class would be clobbered).
-   This applies before paint so the CSS dark-mode override below takes effect
-   on the first render (no FOUC). base-optimized.html does not expose a
-   body_class block, so the body gets tagged on DOMContentLoaded as well. */
-document.documentElement.setAttribute("data-cli-docs", "true");
-document.addEventListener("DOMContentLoaded", function() {
-    document.body.setAttribute("data-cli-docs", "true");
-});
-</script>
 <style>
 /* ===============================================================
    Divinci CLI — Redoc-style docs template
    Mirrors the colors, typography, and three-column layout used by
    the /api Redoc page (see templates/feature.html) so visitors get
    a consistent reference experience.
-
-   NOTE: base-optimized.html hardcodes the body class and exposes no
-   body_class block, so we tag the html element via a data attribute
-   in the extra_head script above and target it via [data-cli-docs]
-   selectors throughout this file.
    =============================================================== */
 
 :root {
@@ -40,18 +26,15 @@ document.addEventListener("DOMContentLoaded", function() {
     --cli-font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
-/* Reset feature-page chrome for full-bleed layout.
-   Force the light theme even when the OS prefers dark — the CLI reference is
-   designed as a docs surface and the cream/white palette is the canonical look.
-   (See optimized.css's `prefers-color-scheme: dark` override for context.)
-   Targets the html data-attribute (set inline in <head> before paint, can't
-   be clobbered by FontAwesome auto-init the way classes can be). */
-html[data-cli-docs],
-html[data-cli-docs] body {
+/* Force the light cream/white palette on the CLI reference page —
+   it's a docs surface and the warm palette is the canonical look. */
+body.cli-docs {
     background: var(--cli-main-bg) !important;
     color: #2d3c34 !important;
 }
-html[data-cli-docs] .leonardo-bg::before { display: none !important; }
+body.cli-docs .leonardo-bg::before { display: none !important; }
+/* The CLI sidebar manages its own scrolling; let the wrap go full-bleed. */
+body.cli-docs main#main-content { padding: 0; margin: 0; }
 
 /* Main three-column wrap */
 .cli-docs-wrap {
@@ -360,8 +343,7 @@ html[data-cli-docs] .leonardo-bg::before { display: none !important; }
 {% endblock %}
 
 {% block content %}
-{# current_lang is inherited from base template #}
-{% include "partials/header.html" %}
+{# current_lang is inherited from base template; header is provided by base.html #}
 
 {%- set cli = load_data(path="static/cli-commands.json") -%}
 
