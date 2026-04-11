@@ -27,14 +27,23 @@
 }
 
 /* Force the light cream/white palette on the CLI reference page —
-   it's a docs surface and the warm palette is the canonical look. */
+   it's a docs surface and the warm palette is the canonical look.
+   Body bg is cream so the centered 1400px header has no white gutters
+   on either side; .cli-docs-wrap paints its own white surface below. */
 body.cli-docs {
-    background: var(--cli-main-bg) !important;
+    background: var(--color-bg-primary, #f8f4f0) !important;
     color: #2d3c34 !important;
 }
 body.cli-docs .leonardo-bg::before { display: none !important; }
 /* The CLI sidebar manages its own scrolling; let the wrap go full-bleed. */
 body.cli-docs main#main-content { padding: 0; margin: 0; }
+/* Override the global `nav ul { display: flex }` rule from style.css —
+   the CLI sidebar nav is a vertical TOC, not a horizontal menu. */
+.cli-nav,
+.cli-nav ul {
+    display: block !important;
+    gap: 0 !important;
+}
 
 /* Main three-column wrap */
 .cli-docs-wrap {
@@ -239,6 +248,19 @@ body.cli-docs main#main-content { padding: 0; margin: 0; }
     font-family: var(--cli-font-mono);
     font-size: 0.95em;
 }
+.cli-command-doc h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+.cli-command-doc h3 a:hover { color: var(--cli-primary); }
+.cli-command-doc h3 a::before {
+    content: "#";
+    color: var(--cli-border);
+    margin-right: 0.4rem;
+    font-weight: 400;
+    transition: color 0.15s;
+}
+.cli-command-doc h3 a:hover::before { color: var(--cli-primary); }
 .cli-command-doc h4 {
     font-family: var(--cli-font-body);
     font-weight: 600;
@@ -470,7 +492,7 @@ body.cli-docs main#main-content { padding: 0; margin: 0; }
         {% for cmd in group.commands %}
         <article id="cmd-{{ group.name }}-{{ cmd.name }}" class="cli-command" data-cmd-name="{{ group.name }} {{ cmd.name }}">
             <div class="cli-command-doc">
-                <h3><code>divinci {{ group.name }} {{ cmd.name }}</code></h3>
+                <h3><a href="#cmd-{{ group.name }}-{{ cmd.name }}"><code>divinci {{ group.name }} {{ cmd.name }}</code></a></h3>
                 <p class="cli-command-desc">{{ cmd.description }}</p>
 
                 {% if cmd.aliases and cmd.aliases | length > 0 %}
@@ -537,7 +559,7 @@ body.cli-docs main#main-content { padding: 0; margin: 0; }
         {% for cmd in cli.standaloneCommands %}
         <article id="cmd-standalone-{{ cmd.name }}" class="cli-command" data-cmd-name="{{ cmd.name }}">
             <div class="cli-command-doc">
-                <h3><code>divinci {{ cmd.name }}</code></h3>
+                <h3><a href="#cmd-standalone-{{ cmd.name }}"><code>divinci {{ cmd.name }}</code></a></h3>
                 <p class="cli-command-desc">{{ cmd.description }}</p>
             </div>
             <aside class="cli-command-examples">
