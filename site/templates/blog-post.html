@@ -96,7 +96,7 @@ window.MathJax = {
     <div class="hero-video-background">
         {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
         {% if page.extra.hero_video_poster %}{% set poster_url = page.extra.hero_video_poster %}{% else %}{% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}{% endif %}
-        <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ poster_url }}" class="hero-bg-video">
+        <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ poster_url }}" class="hero-bg-video"{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
             <source src="{{ page.extra.hero_video }}" type="video/webm">
         </video>
         <div class="hero-video-overlay"></div>
@@ -315,11 +315,11 @@ window.MathJax = {
                             {% if post.extra.hero_video %}
                                 {# Prefer hero_video — renders as hoverable video thumbnail #}
                                 {% if post.extra.hero_video is starting_with("http") %}
-                                    <video muted loop playsinline webkit-playsinline preload="metadata" class="related-image related-video" style="object-fit:cover;"{% if post.extra.hero_video_poster %} poster="{{ post.extra.hero_video_poster }}"{% endif %}>
+                                    <video muted loop playsinline webkit-playsinline preload="none" class="related-image related-video" style="object-fit:cover;{% if post.extra.hero_video_filter %}filter:{{ post.extra.hero_video_filter }};{% endif %}"{% if post.extra.hero_video_poster %} poster="{{ post.extra.hero_video_poster }}"{% endif %}>
                                         <source src="{{ post.extra.hero_video }}" type="video/webm">
                                     </video>
                                 {% else %}
-                                    <video muted loop playsinline webkit-playsinline preload="metadata" class="related-image related-video" style="object-fit:cover;"{% if post.extra.hero_video_poster %} poster="{{ post.extra.hero_video_poster }}"{% endif %}>
+                                    <video muted loop playsinline webkit-playsinline preload="none" class="related-image related-video" style="object-fit:cover;{% if post.extra.hero_video_filter %}filter:{{ post.extra.hero_video_filter }};{% endif %}"{% if post.extra.hero_video_poster %} poster="{{ post.extra.hero_video_poster }}"{% endif %}>
                                         <source src="{{ get_url(path=post.extra.hero_video) }}" type="video/webm">
                                     </video>
                                 {% endif %}
