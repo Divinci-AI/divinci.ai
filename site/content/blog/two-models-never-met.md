@@ -1,5 +1,5 @@
 +++
-title = "99.2% — Two Models That Never Met, Measured at the Same Depth"
+title = "99.2% — The Two Models That Never Met. Both Measured at the Same Depth."
 description = "Gemma4 and Qwen3 were trained by different organizations on different data with different architectures. Their internal representations are 99.2% similar at matched depth. Neither model knew the other existed."
 date = 2026-05-01T09:00:00+00:00
 template = "blog-post.html"
@@ -13,6 +13,7 @@ author = "Mike Mooring"
 author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_poster.webp"
+title_display = "99.2%<br>The Two Models That Never Met.<br>Both Measured at the Same Depth."
 reading_time = 8
 summary = "I measured the representational similarity between Gemma4 and Qwen3-8B — two models trained by different organizations on different datasets with different architectures — using Centered Kernel Alignment at matched normalized depth. At the entity layer (~55% depth), similarity reaches 99.2%. Neither model had seen the other during training."
 +++
