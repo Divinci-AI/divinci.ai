@@ -95,7 +95,8 @@ window.MathJax = {
     {% if page.extra.hero_video %}
     <div class="hero-video-background">
         {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
-        <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ get_url(path='images/' ~ video_name ~ '-poster.webp') }}" class="hero-bg-video">
+        {% if page.extra.hero_video_poster %}{% set poster_url = page.extra.hero_video_poster %}{% else %}{% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}{% endif %}
+        <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ poster_url }}" class="hero-bg-video">
             <source src="{{ page.extra.hero_video }}" type="video/webm">
         </video>
         <div class="hero-video-overlay"></div>
@@ -111,7 +112,7 @@ window.MathJax = {
     <div class="container">
         <div class="blog-post-hero-content">
             <nav class="breadcrumb-nav">
-                <a href="{{ get_url(path='blog') }}">Blog</a>
+                <a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}">{{ translations.navigation.blog | default(value="Blog") }}</a>
                 <span class="breadcrumb-separator">/</span>
                 {% if page.taxonomies.categories %}
                     <span class="breadcrumb-category">{{ page.taxonomies.categories | first }}</span>
@@ -135,9 +136,9 @@ window.MathJax = {
                 {% endif %}
                 <div class="post-info">
                     <div class="author-info">
-                        By <span class="author-name">{{ page.extra.author | default(value="Michael Mooring") }}</span>
+                        {{ translations.blog_post.by | default(value="By") }} <span class="author-name">{{ page.extra.author | default(value="Michael Mooring") }}</span>
                     </div>
-                    <div class="post-date">{{ page.date | date(format="%B %d, %Y") }} • {{ page.reading_time }} min read</div>
+                    <div class="post-date">{{ page.date | date(format="%B %d, %Y") }} • {{ page.reading_time }} {{ translations.blog_post.min_read | default(value="min read") }}</div>
                 </div>
             </div>
             
@@ -160,7 +161,8 @@ window.MathJax = {
 
         <div class="content-wrapper">
             <article class="blog-content">
-                {% if page.extra.featured_image %}
+                {# Skip in-body featured image when a hero_video is already shown above — avoids duplicating the same visual #}
+                {% if page.extra.featured_image and not page.extra.hero_video %}
                     {% if page.extra.featured_image is ending_with(".mp4") or page.extra.featured_image is ending_with(".webm") %}
                         <video class="featured-image" muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video>
                             {% if page.extra.featured_image is ending_with(".mp4") %}
@@ -182,12 +184,12 @@ window.MathJax = {
                 
                 <!-- Call to Action -->
                 <div class="blog-cta">
-                    <h3 class="blog-cta-title">Ready to Build Your Custom AI Solution?</h3>
+                    <h3 class="blog-cta-title">{{ translations.blog_post.cta_title | default(value="Ready to Build Your Custom AI Solution?") }}</h3>
                     <p class="blog-cta-description">
-                        Discover how Divinci AI can help you implement RAG systems, automate quality assurance, and streamline your AI development process.
+                        {{ translations.blog_post.cta_desc | default(value="Discover how Divinci AI can help you implement RAG systems, automate quality assurance, and streamline your AI development process.") }}
                     </p>
                     <a href="{{ get_url(path='contact') }}" class="blog-cta-button">
-                        <i class="fas fa-rocket"></i> Get Started Today
+                        <i class="fas fa-rocket"></i> {{ translations.blog_post.cta_button | default(value="Get Started Today") }}
                     </a>
                 </div>
 
@@ -198,34 +200,34 @@ window.MathJax = {
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.75rem;">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg>
-                        Join the Conversation
+                        {{ translations.blog_post.join_conversation | default(value="Join the Conversation") }}
                     </h3>
                     <p class="join-conversation-description">
-                        We'd love to hear your thoughts on this topic. Join the discussion on your favorite platform:
+                        {{ translations.blog_post.join_conversation_desc | default(value="We'd love to hear your thoughts on this topic. Join the discussion on your favorite platform:") | safe }}
                     </p>
                     <div class="conversation-links">
                         {% if page.extra.x_post %}
                         <a href="{{ page.extra.x_post }}" target="_blank" rel="noopener noreferrer" class="conversation-link x-link">
                             <i class="fa-brands fa-x-twitter"></i>
-                            <span>Discuss on X</span>
+                            <span>{{ translations.blog_post.discuss_on_x | default(value="Discuss on X") }}</span>
                         </a>
                         {% endif %}
                         {% if page.extra.linkedin_post %}
                         <a href="{{ page.extra.linkedin_post }}" target="_blank" rel="noopener noreferrer" class="conversation-link linkedin-link">
                             <i class="fab fa-linkedin"></i>
-                            <span>Comment on LinkedIn</span>
+                            <span>{{ translations.blog_post.comment_on_linkedin | default(value="Comment on LinkedIn") }}</span>
                         </a>
                         {% endif %}
                         {% if page.extra.discord_post %}
                         <a href="{{ page.extra.discord_post }}" target="_blank" rel="noopener noreferrer" class="conversation-link discord-link">
                             <i class="fab fa-discord"></i>
-                            <span>Chat on Discord</span>
+                            <span>{{ translations.blog_post.chat_on_discord | default(value="Chat on Discord") }}</span>
                         </a>
                         {% endif %}
                         {% if page.extra.instagram_post %}
                         <a href="{{ page.extra.instagram_post }}" target="_blank" rel="noopener noreferrer" class="conversation-link instagram-link">
                             <i class="fab fa-instagram"></i>
-                            <span>View on Instagram</span>
+                            <span>{{ translations.blog_post.view_on_instagram | default(value="View on Instagram") }}</span>
                         </a>
                         {% endif %}
                     </div>
@@ -238,7 +240,7 @@ window.MathJax = {
                 <div class="social-buttons-vertical">
                     <a href="#" class="social-btn-icon back-to-top" onclick="scrollToTop()" title="Back to Top">
                         <i class="fas fa-arrow-up"></i>
-                        <span class="btn-label">Back to Top</span>
+                        <span class="btn-label">{{ translations.blog_post.back_to_top | default(value="Back to Top") }}</span>
                     </a>
                     <a href="#" class="social-btn-icon twitter" onclick="shareOnTwitter()" title="Share on X">
                         <i class="fa-brands fa-x-twitter"></i>
@@ -254,15 +256,15 @@ window.MathJax = {
                     </a>
                     <a href="#" class="social-btn-icon copy" onclick="copyLink()" title="Copy Link">
                         <i class="fas fa-link"></i>
-                        <span class="btn-label">Copy Link</span>
+                        <span class="btn-label">{{ translations.blog_post.copy_link | default(value="Copy Link") }}</span>
                     </a>
                     <button class="social-btn-icon focus-mode-toggle" id="focus-mode-toggle" title="Toggle Focus Mode (F)">
                         <i class="fas fa-eye"></i>
-                        <span class="btn-label">Focus Mode</span>
+                        <span class="btn-label">{{ translations.blog_post.focus_mode | default(value="Focus Mode") }}</span>
                     </button>
                     <button class="social-btn-icon export-toggle-btn" id="export-toggle" title="Export Options">
                         <i class="fas fa-download"></i>
-                        <span class="btn-label">Export</span>
+                        <span class="btn-label">{{ translations.blog_post.export | default(value="Export") }}</span>
                     </button>
                 </div>
                 <!-- Export Dropdown -->
@@ -270,51 +272,66 @@ window.MathJax = {
                     {% if page.slug == "universal-basic-income-2035" %}
                     <a href="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/UBI-White-Paper-2035-v2-Enhanced.html" target="_blank" class="export-option" title="Download full 50-page white paper">
                         <i class="fas fa-file-alt"></i>
-                        <span>Full White Paper (50 pages)</span>
+                        <span>{{ translations.blog_post.full_white_paper | default(value="Full White Paper (50 pages)") }}</span>
                     </a>
                     <a href="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/UBI-2035-One-Pager.html" target="_blank" class="export-option" title="Download 1-page summary">
                         <i class="fas fa-file"></i>
-                        <span>Quick Summary (1-page)</span>
+                        <span>{{ translations.blog_post.quick_summary | default(value="Quick Summary (1-page)") }}</span>
                     </a>
                     <div class="export-divider"></div>
                     {% endif %}
                     <button class="export-option" onclick="copyAsMarkdown()" title="Copy article as Markdown">
                         <i class="fab fa-markdown"></i>
-                        <span>Copy as Markdown</span>
+                        <span>{{ translations.blog_post.copy_as_markdown | default(value="Copy as Markdown") }}</span>
                     </button>
                     <button class="export-option" onclick="downloadAsMarkdown()" title="Download article as Markdown file">
                         <i class="fas fa-file-download"></i>
-                        <span>Download Markdown</span>
+                        <span>{{ translations.blog_post.download_markdown | default(value="Download Markdown") }}</span>
                     </button>
                     <button class="export-option" onclick="copyAsPlainText()" title="Copy article as plain text">
                         <i class="fas fa-file-alt"></i>
-                        <span>Copy as Text</span>
+                        <span>{{ translations.blog_post.copy_as_text | default(value="Copy as Text") }}</span>
                     </button>
                     <button class="export-option" onclick="downloadAsPlainText()" title="Download article as text file">
                         <i class="fas fa-file-download"></i>
-                        <span>Download Text</span>
+                        <span>{{ translations.blog_post.download_text | default(value="Download Text") }}</span>
                     </button>
                 </div>
             </div>
         </div>
 
         <!-- Two Column Layout: Related Posts and Share Section -->
+        <div style="max-width:1280px;margin:3rem auto 50px;padding:0;">
         <div class="bottom-section-wrapper">
             <!-- Related Posts Column -->
             <aside class="related-posts">
-                <h3>Related Articles</h3>
+                <h3>{{ translations.blog_post.related_articles | default(value="Related Articles") }}</h3>
                 <div class="related-posts-list">
                     {% set blog_section = get_section(path="blog/_index.md") %}
                     {% set articles_count = 0 %}
                     {% for post in blog_section.pages %}
-                        {% if post.permalink != page.permalink and articles_count < 5 %}
+                        {% if post.permalink != page.permalink and articles_count < 4 %}
                         <a href="{{ post.permalink }}" class="related-post">
-                            {% if post.extra.featured_image %}
+                            {% if post.extra.hero_video %}
+                                {# Prefer hero_video — renders as hoverable video thumbnail #}
+                                {% if post.extra.hero_video is starting_with("http") %}
+                                    <video muted loop playsinline webkit-playsinline preload="metadata" class="related-image related-video" style="object-fit:cover;"{% if post.extra.hero_video_poster %} poster="{{ post.extra.hero_video_poster }}"{% endif %}>
+                                        <source src="{{ post.extra.hero_video }}" type="video/webm">
+                                    </video>
+                                {% else %}
+                                    <video muted loop playsinline webkit-playsinline preload="metadata" class="related-image related-video" style="object-fit:cover;"{% if post.extra.hero_video_poster %} poster="{{ post.extra.hero_video_poster }}"{% endif %}>
+                                        <source src="{{ get_url(path=post.extra.hero_video) }}" type="video/webm">
+                                    </video>
+                                {% endif %}
+                            {% elif post.extra.featured_image %}
                                 {% if post.extra.featured_image is starting_with("http") %}
                                     <img src="{{ post.extra.featured_image }}" alt="{{ post.title }}" class="related-image">
                                 {% else %}
                                     <img src="{{ get_url(path=post.extra.featured_image) }}" alt="{{ post.title }}" class="related-image">
                                 {% endif %}
+                            {% else %}
+                                {# fallback so list items align uniformly even when a post lacks a thumbnail #}
+                                <img src="{{ get_url(path='images/divinci_logo.svg') }}" alt="{{ post.title }}" class="related-image related-image-fallback">
                             {% endif %}
                             <div class="related-content">
                                 <h4 class="related-title">{{ post.title }}</h4>
@@ -329,7 +346,7 @@ window.MathJax = {
 
             <!-- Share with Friends Column -->
             <aside class="share-with-friends">
-                <h3>Share with Friends</h3>
+                <h3>{{ translations.blog_post.share_with_friends | default(value="Share with Friends") }}</h3>
                 <div class="share-video-container">
                     <div class="share-video">
                         <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 8px;">
@@ -337,7 +354,7 @@ window.MathJax = {
                         </video>
                     </div>
                     <div class="share-text-overlay">
-                        <p>If you find these topics interesting, please share with your friends and colleagues who too might find them interesting.</p>
+                        <p>{{ translations.blog_post.share_desc | default(value="If you find these topics interesting, please share with your friends and colleagues who too might find them interesting.") }}</p>
                     </div>
                     <div class="share-buttons-overlay" role="group" aria-label="Share this article">
                         <button class="share-btn-overlay twitter" onclick="shareOnTwitter()" title="Share on X" aria-label="Share on X">
@@ -355,6 +372,7 @@ window.MathJax = {
                     </div>
                 </div>
             </aside>
+        </div>
         </div>
     </div>
 </section>
@@ -589,12 +607,10 @@ window.MathJax = {
 }
 
 
-/* Restore white backgrounds for content cards */
+/* Restore warm cream backgrounds for content cards */
 .blog-content,
-.related-posts,
-.social-sharing,
-.blog-nav-button {
-    background-color: white !important;
+.social-sharing {
+    background-color: var(--color-bg-primary, #f8f4f0) !important;
 }
 
 /* Preserve hero section gradient */
@@ -617,12 +633,10 @@ window.MathJax = {
         background-color: #f8f4f0 !important;
     }
     
-    /* Restore white backgrounds for content cards in dark mode */
+    /* Restore warm cream backgrounds for content cards in dark mode */
     .blog-content,
-    .related-posts,
-    .social-sharing,
-    .blog-nav-button {
-        background-color: white !important;
+    .social-sharing {
+        background-color: var(--color-bg-primary, #f8f4f0) !important;
     }
 }
 
@@ -636,7 +650,7 @@ window.MathJax = {
 
 .blog-content {
     flex: 3;
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 3rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -862,7 +876,7 @@ window.MathJax = {
     font-size: 1rem;
     transition: all 0.3s ease;
     border: 2px solid;
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
 }
 
 .conversation-link i {
@@ -957,7 +971,7 @@ window.MathJax = {
     font-weight: 600;
     transition: all 0.3s ease;
     padding: 1rem;
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     flex: 1;
@@ -1053,7 +1067,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     right: 4.5rem;
     top: 50%;
     transform: translateY(calc(-50% + 100px));
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     padding: 0.5rem;
@@ -1108,7 +1122,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 
 .export-divider {
     height: 1px;
-    background: #e0e0e0;
+    background: var(--color-border-light, #d4c4a0);
     margin: 0.5rem 0;
 }
 
@@ -1148,7 +1162,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     text-decoration: none;
     font-size: 18px;
     transition: all 0.3s ease;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-bg-accent, #e8ddc7);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border: none;
     cursor: pointer;
@@ -1236,7 +1250,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 }
 
 .social-btn-icon.export-toggle-btn {
-    background-color: white;
+    background-color: var(--color-bg-accent, #e8ddc7);
     color: #2d3c34;
 }
 
@@ -1248,22 +1262,20 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     color: #2d3c34;
 }
 
-/* Bottom Section Two-Column Wrapper */
+/* Bottom Section Two-Column Wrapper
+   Sibling to .blog-content inside .container. The outer div is constrained to
+   max-width:1280px + margin:auto to match blog-content's rendered width exactly. */
 .bottom-section-wrapper {
     display: flex;
     gap: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 50px;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    align-items: flex-start;
+    align-items: stretch;
+    width: 100%;
 }
 
 /* Share with Friends Section */
 .share-with-friends {
     flex: 1;
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -1274,7 +1286,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     font-weight: 700;
     margin-bottom: 0.75rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--color-border-light, #d4c4a0);
 }
 
 .share-video-container {
@@ -1350,7 +1362,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 
 .share-btn-overlay:hover {
     transform: scale(1.1);
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(248, 244, 240, 1);
 }
 
 .share-btn-overlay.twitter {
@@ -1387,7 +1399,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     max-height: calc(100vh - 160px);
     overflow-y: auto;
     overflow-x: visible;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(248, 244, 240, 0.98);
     border-radius: 12px;
     padding: 1rem 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -1451,7 +1463,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     box-sizing: border-box;
     justify-content: center;
     position: relative;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(248, 244, 240, 0.98);
 }
 
 .table-of-contents:hover .toc-list a {
@@ -1668,13 +1680,28 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 /* Related Posts */
 .related-posts {
     flex: 1;
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    align-self: flex-start;
-    position: sticky;
-    top: 2rem;
+    /* Stretch to match the share-with-friends column height. */
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+}
+
+.related-posts .related-posts-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Subtle desaturation for the fallback logo so posts without a hero image
+   read as "no image yet" instead of "this post is about Divinci". */
+.related-image-fallback {
+    opacity: 0.55;
+    background: rgba(212, 196, 160, 0.18);
+    padding: 0.5rem;
+    object-fit: contain !important;
 }
 
 .related-posts h3 {
@@ -1682,7 +1709,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     font-weight: 700;
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--color-border-light, #d4c4a0);
 }
 
 .related-post {
@@ -1690,7 +1717,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     align-items: center;
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid #f5f5f5;
+    border-bottom: 1px solid #d4c4a0;
     text-decoration: none;
     color: inherit;
     transition: all 0.3s ease;
@@ -1898,7 +1925,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     visibility: hidden;
     opacity: 0;
     width: 300px;
-    background-color: rgba(255, 255, 255, 0.98);
+    background-color: rgba(248, 244, 240, 0.98);
     color: #2d3c34;
     text-align: left;
     border-radius: 8px;
@@ -1974,7 +2001,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     bottom: 125%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(255, 255, 255, 0.98);
+    background-color: rgba(248, 244, 240, 0.98);
     color: #2d3c34;
     text-align: left;
     border-radius: 8px;
@@ -2658,6 +2685,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
         }
+    });
+});
+
+// Related-post video thumbnails: play on hover, pause on leave
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.related-video').forEach(function(video) {
+        var link = video.closest('.related-post');
+        if (!link) return;
+        link.addEventListener('mouseenter', function() {
+            video.play().catch(function() {});
+        });
+        link.addEventListener('mouseleave', function() {
+            video.pause();
+            video.currentTime = 0;
+        });
     });
 });
 </script>
