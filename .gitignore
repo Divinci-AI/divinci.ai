@@ -12,4 +12,4 @@ node_modules
 **/.wrangler/
 
 # Build artifacts
-new-divinci-zola-site/public/
+site/public/
