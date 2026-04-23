@@ -179,4 +179,8 @@ print(t.decode(out[0]))
 
 *Next: [When the Circuit Dissolves](/blog/when-the-circuit-dissolves/) — what happens when you train a model to 1-bit and the four-stage structure that makes Gate-3 work disappears entirely.*
 
+---
+
+*April 23, 2026 — The Kimi-K2 vindex is in development at [huggingface.co/Divinci-AI/kimi-k2-vindex](https://huggingface.co/Divinci-AI/kimi-k2-vindex). Kimi-K2 is a MoE model (384 experts, top-8 routing), which adds an interesting wrinkle to the DELETE patch: the "Paris → capital" feature may be distributed across multiple experts, requiring a rank-k patch instead of rank-1. Experiment coming in a follow-up post.*
+
 *Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). Vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*

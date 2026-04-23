@@ -2,6 +2,7 @@
 title = "When the Circuit Dissolves"
 description = "Two natively-trained 1-bit language models, from two different organizations, converge on the same anomaly: the four-stage circuit that organizes every fp16 transformer simply isn't there. Both models still answer correctly. The structure is gone, but the behavior survived."
 date = 2026-04-27T09:00:00+00:00
+updated = 2026-04-23T21:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -126,5 +127,16 @@ If the third model breaks the pattern, then dissolution is probably training-rec
 ---
 
 *Next: [99.2% — Two Models That Never Met, Measured at the Same Depth](/blog/two-models-never-met/)*
+
+---
+
+**April 23, 2026 update** — Kimi-K2 (Moonshot AI, 1T-param MoE, fp8/bf16-equivalent) is now in the comparison set. It's the first non-1-bit MoE to go through this analysis. Prediction: var@64 ≈ 0.80–0.90 (power-law, same as all other fp16/bf16 models) and C5 = 4–5 (circuit intact). The MoE architecture shouldn't change this — the per-expert weight matrices are still bf16-equivalent. Measurements running; this table will update when they land.
+
+| Model | var@64 | C5 | Structure |
+|-------|--------|-----|-----------|
+| Gemma4-E2B-it (bf16) | 0.85 | 4 | Power-law ✓ |
+| Bonsai 8B (1-bit) | 0.093 | 1 | Near-random ✗ |
+| BitNet b1.58-2B-4T (1.58-bit) | 0.111 | pending | Near-random ✗ |
+| **Kimi-K2-Instruct (fp8 MoE)** | **running** | **running** | **(expected: Power-law ✓)** |
 
 *Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). LarQL vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI). BitNet rerun script: [bitnet_vindex_builder.py](https://github.com/Divinci-AI/server/blob/preview/notebooks/bitnet_vindex_builder.py).*
