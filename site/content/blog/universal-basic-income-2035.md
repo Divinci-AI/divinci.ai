@@ -13,6 +13,7 @@ author = "Divinci AI Research Team"
 author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-family-dinner.webm"
 featured_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-family-dinner.webm"
+hero_video_poster = "/images/ubi-family-dinner-poster.webp"
 reading_time = 22
 summary = "A comprehensive analysis revealing how fusion energy, AI, robotics, government restructuring, and cryptocurrency innovation could make Universal Basic Income economically feasible by 2035—providing $1,000-2,000 monthly plus cost reductions equivalent to $2,600-2,900 total monthly value."
 +++
@@ -36,7 +37,7 @@ But what if we've been looking at the problem the wrong way?
 
 These aren't distant possibilities—they're current realities reshaping the economic landscape.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-funding-sources.svg" alt="Three Pathways to UBI: Government Savings, Technology Gains, and Cryptocurrency" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-funding-sources.svg" alt="Three Pathways to UBI: Government Savings, Technology Gains, and Cryptocurrency" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: The three converging pathways that make Universal Basic Income financially viable by 2035—government efficiency gains, technology-driven economic growth, and cryptocurrency integration.*
 
@@ -70,7 +71,7 @@ The question isn't whether we can afford UBI. The question is whether we can aff
     <a href="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/UBI-White-Paper-2035-v2-styled.html" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #cfdcff; color: #2d3c34; border: 2px solid #cfdcff; border-radius: 50px; padding: 0.75rem 2rem; font-weight: 700; text-decoration: none; transition: all 0.3s ease;">
       <i class="fas fa-download"></i> Full White Paper (50 pages)
     </a>
-    <a href="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/UBI-2035-One-Pager.html" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #27ae60; color: white; border: 2px solid #27ae60; border-radius: 50px; padding: 0.75rem 2rem; font-weight: 700; text-decoration: none; transition: all 0.3s ease;">
+    <a href="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/UBI-2035-One-Pager.html" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #2d5a4f; color: white; border: 2px solid #2d5a4f; border-radius: 50px; padding: 0.75rem 2rem; font-weight: 700; text-decoration: none; transition: all 0.3s ease;">
       <i class="fas fa-file-alt"></i> Quick Summary (1-page)
     </a>
   </div>
@@ -118,7 +119,7 @@ Multiple fusion companies are racing toward commercial viability. Commonwealth F
 
 Conservative estimates suggest fusion energy alone could provide the equivalent of **$300-600 monthly in reduced living costs**—effectively delivering UBI benefits without direct cash transfers.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/fusion-energy-cascade.svg" alt="Fusion Energy Cascading Cost Reductions" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/fusion-energy-cascade.svg" alt="Fusion Energy Cascading Cost Reductions" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Fusion energy's cascading economic impact across three levels—direct energy savings, manufacturing/production cost reductions, and consumer price impacts. The visualization shows how near-zero marginal cost energy creates $400-900/month in total savings per person through ripple effects across the entire economy.*
 
@@ -172,7 +173,7 @@ The employment landscape is shifting, not disappearing. While 40% of employers e
 
 This creates the perfect scenario for UBI: automation generates the wealth, while humans transition to higher-value work with a safety net to support the transition.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-automation-job-flow.svg" alt="AI Automation Job Displacement vs Creation" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ai-automation-job-flow.svg" alt="AI Automation Job Displacement vs Creation" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: AI automation impact on employment by 2030, showing 92 million jobs displaced versus 170 million new jobs created—a net gain of 78 million jobs. The visualization demonstrates that automation is an economic transformation, not job destruction, with UBI providing the critical safety net during the transition period. Data from World Economic Forum and McKinsey Global Institute projections.*
 
@@ -183,7 +184,7 @@ This creates the perfect scenario for UBI: automation generates the wealth, whil
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Human-robot collaboration: automation creating wealth while humans focus on higher-value work</figcaption>
 </figure>
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-job-transition.svg" alt="Job Displacement vs Creation Flow" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-job-transition.svg" alt="Job Displacement vs Creation Flow" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Job transition flows showing automation displacement and new job creation. Data synthesized from World Economic Forum and McKinsey Global Institute projections cited above.*
 
@@ -289,7 +290,7 @@ Today's technology enables a "quality over quantity" approach that actually enha
 
 This isn't weakness—it's strategic evolution. Israel, Singapore, and other nations demonstrate that smart defense spending focused on technology and intelligence can provide superior security at a fraction of the cost.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-defense-spending.svg" alt="Defense Spending Transformation" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-defense-spending.svg" alt="Defense Spending Transformation" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Defense spending restructuring showing transformation from $2.1T to $400B budget. Based on historical peace dividend data and current DoD budget breakdown.*
 
@@ -326,7 +327,7 @@ In fiscal year 2023, the federal government committed about $759 billion on cont
 
 This isn't about reducing government effectiveness—it's about using 21st-century tools to deliver 21st-century governance.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/bureaucracy-reduction-ai.svg" alt="AI Automation: Transforming Government Bureaucracy" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/bureaucracy-reduction-ai.svg" alt="AI Automation: Transforming Government Bureaucracy" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Department-by-department analysis of AI automation potential showing how intelligent systems can reduce government administration costs by 40-50% ($440 billion annually) while improving service quality. High-automation departments like the IRS (75%), Social Security (70%), and Medicare/Medicaid (65%) offer the greatest savings opportunities. Implementation timeline spans 2025-2035 with benefits including 24/7 availability, faster service delivery, and reduced errors.*
 
@@ -425,7 +426,7 @@ Bitcoin's programmed scarcity follows a precise schedule:
 
 Over 19.8 million BTC (94%+) has already been mined as of 2025, leaving less than 1.2 million to be created over the next 115 years[^66]. This accelerating scarcity creates deflationary pressure that fundamentally differs from inflationary fiat currencies.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/bitcoin-mining-timeline.svg" alt="Bitcoin Mining Timeline and Halving Schedule" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/bitcoin-mining-timeline.svg" alt="Bitcoin Mining Timeline and Halving Schedule" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Bitcoin's complete mining timeline from 2009 genesis to 2140 final halving, showing block reward decline and transition to fee-based economics. The visualization demonstrates how 94% of all Bitcoin has already been mined, with the remaining 6% to be distributed over 115 years through predictable 4-year halving cycles.*
 
@@ -759,7 +760,7 @@ Someone could be sleeping, and their computer is simultaneously:
 
 It's not just income redistribution—it's democratizing access to the knowledge economy while accelerating human scientific progress.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/proof-of-useful-work-network.svg" alt="Proof-of-Useful-Work: Distributed Computation Network" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/proof-of-useful-work-network.svg" alt="Proof-of-Useful-Work: Distributed Computation Network" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Comprehensive view of the proof-of-useful-work distributed computation network showing how home computers, gaming PCs, mobile devices, and enterprise servers contribute idle computing cycles to scientific research. Tasks include protein folding, climate modeling, material science, and AI training—generating $300B+ annual research value. The network coordinates 250M participants, each earning $200-500/month in cryptocurrency rewards proportional to their computational contributions. Real-world precedent: Folding@Home achieved 2.4 exaFLOPS with 4.6M volunteers during COVID-19 research.*
 
@@ -791,7 +792,7 @@ Here's where it gets interesting for UBI funding. Under the GENIUS Act signed in
 
 This is **seigniorage**—the profit from creating money—historically captured by governments through central banks. When the Federal Reserve creates money, profits return to the US Treasury and ultimately taxpayers (historically ~$100 billion annually). But with stablecoins, **private companies like Circle and Tether keep all the profits**.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/stablecoin-seigniorage-flow.svg" alt="Stablecoin Seigniorage Flow: Private vs Public Money Creation" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/stablecoin-seigniorage-flow.svg" alt="Stablecoin Seigniorage Flow: Private vs Public Money Creation" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Comparison of traditional Federal Reserve seigniorage (profits return to taxpayers) versus private stablecoin seigniorage (profits captured by Circle, Tether shareholders). Shows how $200B+ in stablecoin reserves earning 5% interest generates $10B+ annual private profit while paying 0% to token holders—seigniorage that would historically fund public services.*
 
@@ -1297,19 +1298,19 @@ It's "Can we harness the deflationary power of fusion energy, the productivity g
 
 The equation says: **Yes. The forces are sufficient. The question is political will ($R_{political}$), not economic feasibility.**
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-economic-forces.svg" alt="Economic Forces Acting on UBI Feasibility" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-economic-forces.svg" alt="Economic Forces Acting on UBI Feasibility" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Vector representation of economic forces in the UBI equation—technology forces (green accelerators), government restructuring (blue capital release), cryptocurrency value (purple growth vectors), and political resistance (red friction). The net force vector determines UBI feasibility and monthly payment amount.*
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"/><path d="M12 6v12m-2-7h4a2 2 0 110 4H10"/></svg> The Financial Roadmap
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-ecosystem-flow.svg" alt="Universal Basic Income Ecosystem Flow" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-ecosystem-flow.svg" alt="Universal Basic Income Ecosystem Flow" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: The UBI ecosystem showing how government savings, technology gains, and cryptocurrency flow into the UBI distribution system, creating a circular economy of economic growth, investment, innovation, consumption, and tax revenue that feeds back into the system.*
 
 Putting it all together, here's how the math works by 2035:
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-funding-sources.svg" alt="UBI Funding Sources Breakdown" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-funding-sources.svg" alt="UBI Funding Sources Breakdown" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: UBI funding sources totaling $3.95-6.15 trillion annually, with technology cost reductions providing additional $500-800/month equivalent value. Figures synthesized from government budget data, Bitcoin market projections, and technology cost reduction estimates cited throughout this article.*
 
@@ -1337,7 +1338,7 @@ The most common objection to UBI is political feasibility—particularly around 
 
 Each scenario integrates emerging research on <span class="tooltip">**solarpunk sustainability**<span class="tooltip-content"><span class="tooltip-title">Solarpunk</span>A movement envisioning a future where renewable energy, sustainable technology, and ecological harmony create abundance for all. Combines high-tech solutions with environmental stewardship—think solar panels, vertical farms, and community resilience instead of dystopian scarcity.</span></span>, **robotic automation**, and <span class="tooltip">**closed-loop living systems**<span class="tooltip-content"><span class="tooltip-title">Closed-Loop Living</span>Systems where waste from one process becomes input for another (e.g., greywater irrigates gardens, solar powers homes, composted waste feeds plants). Creates self-sufficient households with minimal external resource needs.</span></span> that dramatically reduce cost of living while improving quality of life.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-three-scenarios.svg" alt="Three UBI Funding Scenarios" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-three-scenarios.svg" alt="Three UBI Funding Scenarios" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Three pathways to UBI implementation showing conservative, moderate, and progressive funding scenarios with different defense budget assumptions and technology adoption rates.*
 
@@ -1380,7 +1381,7 @@ Recent studies reveal significant cost reduction potential through sustainable a
 - Greywater recycling systems reduce water bills by 40-60%
 - Composting toilets eliminate sewage costs while generating garden fertilizer
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/closed-loop-home-systems.svg" alt="Closed-Loop Sustainable Home: Integrated Systems" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/closed-loop-home-systems.svg" alt="Closed-Loop Sustainable Home: Integrated Systems" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Integrated view of closed-loop home systems showing how solar panels, battery storage, greywater recycling, and vertical farming create a self-sufficient household. Each system's output becomes another system's input—solar powers grow lights, greywater irrigates gardens, organic waste feeds composting, and AI optimization maximizes efficiency. Total savings: $500-800/month with 70% reduction in carbon footprint.*
 
@@ -1391,7 +1392,7 @@ Recent studies reveal significant cost reduction potential through sustainable a
 - At-cost housing in robot-built communities reduces typical housing costs from $1,800/month to $600-900/month
 - Reduced maintenance costs through AI predictive systems and robotic repair assistance
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/robot-construction-flow.svg" alt="Robotic Construction Process Flow: From Factory to Home in 72 Hours" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/robot-construction-flow.svg" alt="Robotic Construction Process Flow: From Factory to Home in 72 Hours" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Step-by-step process showing how robotic prefabrication and assembly reduces housing construction from 6-12 months to just 72 hours. The 30-40% cost reduction comes from labor automation (35% savings), material efficiency (18% savings), and time/financing savings (12% savings). Real-world examples include Mighty Buildings, Icon 3D printing, and Blokable modular construction.*
 
@@ -1545,7 +1546,7 @@ The beauty of this framework: **UBI can start with Scenario A and scale to B or 
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><line x1="3" y1="12" x2="21" y2="12"/><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg> The Timeline to 2035
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-timeline.svg" alt="UBI Implementation Timeline 2025-2035" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-timeline.svg" alt="UBI Implementation Timeline 2025-2035" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Phased UBI implementation roadmap from 2025-2035 showing pilot programs, scaling phases, and technology integration milestones. Timeline synthesized from historical policy implementation studies and technology development projections.*
 
@@ -1582,7 +1583,7 @@ No, because:
 
 Research from the Roosevelt Institute's 2017 macroeconomic modeling study found that a $1,000 monthly UBI could expand the economy by 12.56% over eight years[^12]. The model predicted increases in output, employment, labor force participation, prices, and wages. Even in tax-financed UBI scenarios, the economy would grow because an extra dollar going to a poorer household is more likely to be spent rather than saved, creating economic stimulus.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-multiplier-effect.svg" alt="The UBI Multiplier Effect: How $1 Becomes $2.50" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-multiplier-effect.svg" alt="The UBI Multiplier Effect: How $1 Becomes $2.50" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Visual representation of the UBI multiplier effect showing how initial payments ($1,500) ripple through the economy. Stage 1: Direct UBI payment to individuals. Stage 2: Consumer spending at local businesses, groceries, housing, transportation. Stage 3: Business spending on wages, suppliers, investment, and services. Each dollar circulates multiple times, creating $3,750 in total economic impact (2.5x multiplier). Based on Roosevelt Institute's 2017 macroeconomic modeling study showing low-income households' high marginal propensity to consume drives economic growth.*
 
@@ -1650,7 +1651,7 @@ The evidence reveals what economists have long known but politicians often ignor
 
 The real question isn't "won't people stop working?" It's "why would we want people trapped in jobs they hate, doing work that will be automated, instead of pursuing education, entrepreneurship, or caring for family?"
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-pilot-results.svg" alt="UBI Pilot Program Results" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-pilot-results.svg" alt="UBI Pilot Program Results" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Results from major UBI pilot programs showing employment rates, entrepreneurship activity, education enrollment, and health improvements. Data compiled from studies cited in footnotes 26-27 (Finland, Kenya, Stockton) and additional pilot programs worldwide.*
 
@@ -1902,7 +1903,7 @@ Beyond cash transfers, UBI enables something more profound: **personal independe
 ### The Robotic Homestead Revolution
 
 <div style="float: right; max-width: 45%; margin: 0 0 1rem 1.5rem;">
-  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/dyson-strawberry.webp" alt="Robotic strawberry harvesting at Dyson Farming's automated glasshouse facility" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <img src="/images/dyson-strawberry.webp" alt="Robotic strawberry harvesting at Dyson Farming's automated glasshouse facility" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
   <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #666; font-style: italic; text-align: left;">Photo: Dyson Farming</p>
 </div>
 
@@ -1978,7 +1979,7 @@ This technology-enabled independence compounds with UBI to create **genuine econ
 - Personal production and maintenance: $650-1,050/month
 - **Effective monthly value: $2,100-3,950**
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/solarpunk-household-costs.svg" alt="Monthly Household Costs: Traditional vs Solarpunk Living" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/solarpunk-household-costs.svg" alt="Monthly Household Costs: Traditional vs Solarpunk Living" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Side-by-side comparison of traditional household costs ($4,100/month) versus solarpunk living enabled by technology ($1,895/month). The 54% cost reduction comes from robot-built housing, solar energy, robotic vertical farming, electric vehicles with cheap fusion energy, and AI-assisted maintenance. Combined with UBI cash payments, this creates $3,095-3,895 total monthly value in the moderate scenario.*
 

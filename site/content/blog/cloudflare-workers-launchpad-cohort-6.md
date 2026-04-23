@@ -13,6 +13,7 @@ author = "Divinci AI Team"
 author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/cloudflare-renaissance-blueprint.webm"
 featured_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-cloudflare-workers-launchpad-cohort-6.webm"
+hero_video_poster = "/images/divinci-cloudflare-workers-launchpad-cohort-6-poster.webp"
 reading_time = 12
 summary = "Divinci AI joins Cloudflare Workers Launchpad Cohort #6, bringing enterprise AI collaboration to the edge. Learn how we're leveraging Cloudflare's global network to deliver RAG-powered intelligence with unprecedented speed, security, and scale."
 x_post = "https://x.com/DivinciAi/status/1977450693100536167"
@@ -103,7 +104,7 @@ Each step executes at the edge, minimizing latency and maximizing throughput.
 
 We use **Cloudflare D1** to store structured RAG metadata and chunk references. D1's edge-based architecture ensures document chunks are geographically close to users, reducing retrieval latency by 60-80% compared to regional databases.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/d1-rag-storage.svg" alt="D1 Distributed Database Architecture" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/d1-rag-storage.svg" alt="D1 Distributed Database Architecture" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: D1 distributed SQL database architecture showing global replication and edge-based query execution for RAG chunk storage.*
 
@@ -127,7 +128,7 @@ We integrate **Cloudflare Workers AI** to provide access to open-source models i
 
 This gives enterprise customers **sovereignty over their AI stack**—no vendor lock-in to proprietary models.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/workers-ai-models.svg" alt="Workers AI Open Source Models" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/workers-ai-models.svg" alt="Workers AI Open Source Models" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 *Diagram: Workers AI model catalog showing open-source LLMs available for edge inference.*
 
