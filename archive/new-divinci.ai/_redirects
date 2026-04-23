@@ -1,2 +1,0 @@
-# Redirect default Netlify subdomain to primary domain
-https://divinci-ai.pages.dev/* https://divinci-ai.com/:splat 301!
