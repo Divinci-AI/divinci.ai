@@ -1,5 +1,5 @@
 +++
-title = "99.2% — The Two Models That Never Met. Both Measured at the Same Depth."
+title = "The Two Models That Never Met. Both Measured at the Same Depth."
 description = "Gemma4 and Qwen3 were trained by different organizations on different data with different architectures. Their internal representations are 99.2% similar at matched depth. Neither model knew the other existed."
 date = 2026-05-01T09:00:00+00:00
 template = "blog-post.html"
