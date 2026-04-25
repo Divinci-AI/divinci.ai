@@ -5272,6 +5272,8 @@ body:not(.homepage) .privacy-settings-link:hover {
 }
 
 .site-research-banner a {
+  display: inline-flex;
+  align-items: center;
   color: #a8d8f5;
   text-decoration: none;
   font-weight: 600;
@@ -5319,8 +5321,8 @@ body:not(.homepage) .privacy-settings-link:hover {
     flex-wrap: nowrap;
     white-space: nowrap;
   }
-  .site-research-banner-sep,
-  .site-research-banner-secondary {
+  .site-research-banner .site-research-banner-sep,
+  .site-research-banner a.site-research-banner-secondary {
     display: none;
   }
 }
