@@ -121,7 +121,7 @@ Esto crea el escenario perfecto para el UBI: la automatización genera la riquez
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Colaboración humano-robot: automatización creando riqueza mientras los humanos se enfocan en trabajo de mayor valor</figcaption>
 </figure>
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-job-transition.svg" alt="Flujo de Desplazamiento vs Creación de Empleos" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-job-transition.svg" alt="Flujo de Desplazamiento vs Creación de Empleos" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 ### <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24" style="display: inline-block; vertical-align: middle; margin-right: 0.4rem;"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M9 15h6"/></svg> Inteligencia Artificial
 
@@ -194,7 +194,7 @@ La tecnología actual permite un enfoque de "calidad sobre cantidad" que realmen
 
 Esto no es debilidad—es evolución estratégica. Israel, Singapur y otras naciones demuestran que el gasto de defensa inteligente enfocado en tecnología e inteligencia puede proporcionar seguridad superior a una fracción del costo.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-defense-spending.svg" alt="Transformación del Gasto de Defensa" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-defense-spending.svg" alt="Transformación del Gasto de Defensa" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 ### Eliminación de Burocracia: $550 Mil Millones en Ahorros
 
@@ -297,7 +297,7 @@ Alguien podría estar durmiendo, y su computadora está simultáneamente:
 
 No es solo redistribución de ingresos—es democratizar el acceso a la economía del conocimiento mientras se acelera el progreso científico humano.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-proof-of-useful-work.svg" alt="Flujo del Sistema de Prueba de Trabajo Útil" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-proof-of-useful-work.svg" alt="Flujo del Sistema de Prueba de Trabajo Útil" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"/><path d="M12 6v12m-2-7h4a2 2 0 110 4H10"/></svg> La Hoja de Ruta Financiera
 
@@ -305,7 +305,7 @@ Juntando todo, así es como funciona la matemática para 2035:
 
 <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-diagram.png" alt="Visión General del Sistema de Ingreso Básico Universal" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-funding-sources.svg" alt="Desglose de Fuentes de Financiamiento UBI" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-funding-sources.svg" alt="Desglose de Fuentes de Financiamiento UBI" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 ### Fuentes de Ingresos:
 1. **Ahorros de reestructuración gubernamental**: $2.25T anuales
@@ -327,7 +327,7 @@ Juntando todo, así es como funciona la matemática para 2035:
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><line x1="3" y1="12" x2="21" y2="12"/><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg> El Cronograma Hacia 2035
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-timeline.svg" alt="Cronograma de Implementación UBI 2025-2035" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-timeline.svg" alt="Cronograma de Implementación UBI 2025-2035" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 **2025-2027: Fundación**
 - Establecer Reserva Estratégica de Bitcoin
@@ -426,7 +426,7 @@ La evidencia revela lo que los economistas han sabido durante mucho tiempo pero 
 
 La pregunta real no es "¿no dejará la gente de trabajar?" Es "¿por qué querríamos que la gente esté atrapada en empleos que odia, haciendo trabajo que será automatizado, en lugar de buscar educación, emprendimiento o cuidado familiar?"
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-pilot-results.svg" alt="Resultados del Programa Piloto UBI" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-pilot-results.svg" alt="Resultados del Programa Piloto UBI" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 **La Opinión Pública Apoya el UBI:**
 

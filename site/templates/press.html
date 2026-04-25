@@ -27,21 +27,9 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="contact-details">
-                        <div class="contact-label">Email</div>
+                        <div class="contact-label">{{ translations.press.contact.email_label | default(value="Email") }}</div>
                         <div class="contact-value">
                             <a href="mailto:{{ translations.press.contact.email | default(value="press@divinci.ai") }}">{{ translations.press.contact.email | default(value="press@divinci.ai") }}</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-info">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <div class="contact-details">
-                        <div class="contact-label">Phone</div>
-                        <div class="contact-value">
-                            <a href="tel:+18005551234">{{ translations.press.contact.phone | default(value="+1 (800) 555-1234") }}</a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +39,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="contact-details">
-                        <div class="contact-label">Media Relations</div>
+                        <div class="contact-label">{{ translations.press.contact.media_label | default(value="Media Relations") }}</div>
                         <div class="contact-value">
                             {{ translations.press.contact.media_relations | default(value="Sierra Hooshiari, COO - Chief Operations Officer") }}
                         </div>
@@ -68,7 +56,7 @@
         <div class="sacred-pattern sacred-pattern-1"></div>
         <div class="container">
             <h2 class="section-title">{{ translations.press.releases.title | default(value="Press Releases") }}</h2>
-            <p style="text-align: center; color: var(--color-neutral-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem;">Press releases will be published here as they become available. For media inquiries, please contact our press team.</p>
+            <p style="text-align: center; color: var(--color-neutral-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem;">{{ translations.press.releases.empty_state | default(value="Press releases will be published here as they become available. For media inquiries, please contact our press team.") }}</p>
         </div>
     </section>
 
@@ -86,9 +74,9 @@
                             <img src="{{ get_url(path="images/divinci_logo.svg") }}" alt="Divinci AI Logo">
                         </div>
                         <div class="asset-info">
-                            <div class="asset-name">Primary Logo</div>
+                            <div class="asset-name">{{ translations.press.assets.logo_primary | default(value="Primary Logo") }}</div>
                             <div class="asset-format">SVG, PNG, JPG</div>
-                            <a href="javascript:void(0)" class="asset-download" aria-disabled="true" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
+                            <a href="{{ get_url(path="images/divinci_logo.svg") }}" download="divinci-ai-logo.svg" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -97,9 +85,9 @@
                             <img src="{{ get_url(path="images/divinci_logo_inverted.svg") }}" alt="Divinci AI Logo Inverted">
                         </div>
                         <div class="asset-info">
-                            <div class="asset-name">Inverted Logo</div>
+                            <div class="asset-name">{{ translations.press.assets.logo_inverted | default(value="Inverted Logo") }}</div>
                             <div class="asset-format">SVG, PNG, JPG</div>
-                            <a href="javascript:void(0)" class="asset-download" aria-disabled="true" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
+                            <a href="{{ get_url(path="images/divinci_logo_inverted.svg") }}" download="divinci-ai-logo-inverted.svg" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -108,9 +96,9 @@
                             <img src="{{ get_url(path="images/divinci_logo_animated.svg") }}" alt="Divinci AI Animated Logo">
                         </div>
                         <div class="asset-info">
-                            <div class="asset-name">Animated Logo</div>
+                            <div class="asset-name">{{ translations.press.assets.logo_animated | default(value="Animated Logo") }}</div>
                             <div class="asset-format">SVG, GIF</div>
-                            <a href="javascript:void(0)" class="asset-download" aria-disabled="true" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
+                            <a href="{{ get_url(path="images/divinci_logo_animated.svg") }}" download="divinci-ai-logo-animated.svg" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
                 </div>
@@ -122,9 +110,9 @@
                             <img src="{{ get_url(path="images/autorag-still.png") }}" alt="AutoRAG Feature Screenshot">
                         </div>
                         <div class="asset-info">
-                            <div class="asset-name">AutoRAG Dashboard</div>
+                            <div class="asset-name">{{ translations.press.assets.autorag_dashboard | default(value="AutoRAG Dashboard") }}</div>
                             <div class="asset-format">PNG, JPG</div>
-                            <a href="javascript:void(0)" class="asset-download" aria-disabled="true" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
+                            <a href="{{ get_url(path="images/autorag-still.png") }}" download="autorag-dashboard.png" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -133,9 +121,9 @@
                             <img src="{{ get_url(path="images/qa-pipeline-diagram.svg") }}" alt="QA Pipeline Screenshot">
                         </div>
                         <div class="asset-info">
-                            <div class="asset-name">QA Pipeline</div>
+                            <div class="asset-name">{{ translations.press.assets.qa_pipeline | default(value="QA Pipeline") }}</div>
                             <div class="asset-format">PNG, JPG</div>
-                            <a href="javascript:void(0)" class="asset-download" aria-disabled="true" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
+                            <a href="{{ get_url(path="images/qa-pipeline-diagram.svg") }}" download="qa-pipeline-diagram.svg" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -144,9 +132,9 @@
                             <img src="{{ get_url(path="images/release-cycle-diagram.svg") }}" alt="Release Cycle Screenshot">
                         </div>
                         <div class="asset-info">
-                            <div class="asset-name">Release Cycle Manager</div>
+                            <div class="asset-name">{{ translations.press.assets.release_cycle | default(value="Release Cycle Manager") }}</div>
                             <div class="asset-format">PNG, JPG</div>
-                            <a href="javascript:void(0)" class="asset-download" aria-disabled="true" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
+                            <a href="{{ get_url(path="images/release-cycle-diagram.svg") }}" download="release-cycle-diagram.svg" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
                 </div>
@@ -158,9 +146,9 @@
                             <img src="{{ get_url(path="images/Michael-Mooring.png") }}" alt="Michael Mooring">
                         </div>
                         <div class="asset-info">
-                            <div class="asset-name">Michael Mooring, CEO</div>
+                            <div class="asset-name">{{ translations.press.assets.michael_mooring | default(value="Michael Mooring, CEO") }}</div>
                             <div class="asset-format">JPG, PNG</div>
-                            <a href="javascript:void(0)" class="asset-download" aria-disabled="true" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
+                            <a href="{{ get_url(path="images/Michael-Mooring.png") }}" download="michael-mooring-ceo.png" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -169,9 +157,9 @@
                             <img src="{{ get_url(path="images/sam-tobia.jpg") }}" alt="Samuel Tobia">
                         </div>
                         <div class="asset-info">
-                            <div class="asset-name">Samuel Tobia, CTO</div>
+                            <div class="asset-name">{{ translations.press.assets.samuel_tobia | default(value="Samuel Tobia, CTO") }}</div>
                             <div class="asset-format">JPG, PNG</div>
-                            <a href="javascript:void(0)" class="asset-download" aria-disabled="true" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
+                            <a href="{{ get_url(path="images/sam-tobia.jpg") }}" download="samuel-tobia-cto.jpg" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
 
@@ -180,9 +168,9 @@
                             <img src="{{ get_url(path="images/sierra-hooshiari.jpeg") }}" alt="Sierra Hooshiari">
                         </div>
                         <div class="asset-info">
-                            <div class="asset-name">Sierra Hooshiari, COO</div>
+                            <div class="asset-name">{{ translations.press.assets.sierra_hooshiari | default(value="Sierra Hooshiari, COO") }}</div>
                             <div class="asset-format">JPG, PNG</div>
-                            <a href="javascript:void(0)" class="asset-download" aria-disabled="true" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
+                            <a href="{{ get_url(path="images/sierra-hooshiari.jpeg") }}" download="sierra-hooshiari-coo.jpeg" class="asset-download"><i class="fas fa-download"></i> {{ translations.press.common.download | default(value="Download") }}</a>
                         </div>
                     </div>
                 </div>
@@ -269,7 +257,7 @@
 }
 
 .contact-card {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -329,7 +317,7 @@
 }
 
 .news-item, .coverage-item {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -355,7 +343,7 @@
     height: 120px;
     object-fit: contain;
     padding: 1.5rem;
-    background-color: #f9f9f9;
+    background-color: var(--color-bg-accent, #e8ddc7);
 }
 
 .news-content, .coverage-content {
@@ -423,7 +411,7 @@
 }
 
 .asset-item {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -441,7 +429,7 @@
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-    background-color: #f9f9f9;
+    background-color: var(--color-bg-accent, #e8ddc7);
 }
 
 .asset-preview img {
@@ -452,7 +440,7 @@
 
 .asset-info {
     padding: 1rem;
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid var(--color-border-light, #d4c4a0);
 }
 
 .asset-name {
@@ -485,7 +473,7 @@
 }
 
 .press-kit-section {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);

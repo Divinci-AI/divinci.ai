@@ -11,7 +11,7 @@ tags = ["Caso de Estudio", "FinTech", "Soporte al Cliente", "Implementación RAG
 [extra]
 author = "Sierra Hooshiari"
 author_avatar = "images/sierra-hooshiari.jpeg"
-featured_image = "images/qa-pipeline-diagram.svg"
+featured_image = "/images/qa-pipeline-diagram.svg"
 reading_time = 10
 summary = "FastFinance, una plataforma bancaria digital en crecimiento, transformó sus operaciones de soporte al cliente usando el sistema RAG personalizado de Divinci AI, logrando mejoras dramáticas en tiempos de respuesta y satisfacción del cliente mientras mantenía el cumplimiento regulatorio."
 +++
@@ -74,7 +74,7 @@ Los agentes de soporte al cliente necesitaban entendimiento profundo de:
 4. **Mantener supervisión humana** para decisiones financieras complejas
 5. **Asegurar cumplimiento regulatorio** en todas las respuestas generadas por IA
 
-![Diagrama del Sistema de Soporte al Cliente con IA](images/qa-pipeline-diagram.svg)
+![Diagrama del Sistema de Soporte al Cliente con IA](/images/qa-pipeline-diagram.svg)
 *Vista general de la arquitectura de la implementación del sistema FinRAG*
 
 ## Solución Técnica

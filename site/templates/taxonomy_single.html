@@ -10,9 +10,9 @@
         <div class="term-hero-content">
             <h1 class="term-title">{{ term.name }}</h1>
             <p class="term-subtitle">
-                Posts in {{ taxonomy.name }}: "{{ term.name }}"
-                <span class="term-count">({{ term.pages | length }} 
-                    {% if term.pages | length == 1 %}post{% else %}posts{% endif %})
+                {{ translations.taxonomy.posts_in | default(value="Posts in") }} {{ taxonomy.name }}: "{{ term.name }}"
+                <span class="term-count">({{ term.pages | length }}
+                    {% if term.pages | length == 1 %}{{ translations.taxonomy.post_singular | default(value="post") }}{% else %}{{ translations.taxonomy.post_plural | default(value="posts") }}{% endif %})
                 </span>
             </p>
         </div>
@@ -50,7 +50,7 @@
                             {% endfor %}
                         {% endif %}
                     </div>
-                    <a href="{{ page.permalink | safe }}" class="read-more-btn">Read More</a>
+                    <a href="{{ page.permalink | safe }}" class="read-more-btn">{{ translations.taxonomy.read_more | default(value="Read More") }}</a>
                 </article>
             {% endfor %}
         </div>
@@ -105,7 +105,7 @@
 }
 
 .blog-post-card {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -179,12 +179,12 @@
 }
 
 .blog-post-tag {
-    background-color: var(--color-surface-gray, #f5f5f5);
+    background-color: var(--color-bg-accent, #e8ddc7);
     color: var(--color-text-secondary, #555);
     padding: 0.25rem 0.75rem;
     border-radius: 15px;
     font-size: 0.8rem;
-    border: 1px solid var(--color-border-light, #e0e0e0);
+    border: 1px solid var(--color-border-light, #d4c4a0);
 }
 
 .read-more-btn {

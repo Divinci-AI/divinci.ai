@@ -1,0 +1,59 @@
+{#
+  vindex_viewer — embed the interactive LarQL vindex viewer.
+
+  Params:
+    height    — iframe height in px (default 620)
+    model     — viewer model key (e.g. "gemma-4-e2b", "bonsai-1bit", "qwen3-8b")
+    q         — preload an entity search (e.g. "paris", "tokyo")
+    view      — "cylinder" (default) or "flat" (2D circuit)
+    compare   — "bonsai-1bit" to auto-open side-by-side
+    wl_id     — Divinci whitelabel id for the "Open in Divinci" CTA
+    cta       — "false" to hide the sign-in/open-in-divinci call-to-action
+
+  Examples:
+    {{ vindex_viewer() }}
+    {{ vindex_viewer(model="gemma-4-e2b", q="paris") }}
+    {{ vindex_viewer(model="bonsai-1bit", view="flat") }}
+#}
+{% set _model = model | default(value="") %}
+{% set _q = q | default(value="") %}
+{% set _view = view | default(value="") %}
+{% set _compare = compare | default(value="") %}
+{% set params = [] %}
+{% if _model %}{% set_global params = params | concat(with="model=" ~ _model) %}{% endif %}
+{% if _q %}{% set_global params = params | concat(with="q=" ~ _q) %}{% endif %}
+{% if _view %}{% set_global params = params | concat(with="view=" ~ _view) %}{% endif %}
+{% if _compare %}{% set_global params = params | concat(with="compare=" ~ _compare) %}{% endif %}
+{% set query_string = params | join(sep="&") %}
+{% set iframe_src = "/vindex-viewer.html" %}
+{% if query_string %}{% set iframe_src = iframe_src ~ "?" ~ query_string %}{% endif %}
+
+{% set wl = wl_id | default(value="69995f9a7824ced78b66686c") %}
+{% set show_cta = cta | default(value="true") %}
+
+<div class="vindex-viewer-embed">
+  <iframe
+    src="{{ iframe_src }}"
+    width="100%"
+    height="{{ height | default(value=620) }}"
+    style="display:block; border:none; background:#050510;"
+    title="LarQL Vindex Viewer — Interactive 3D transformer circuit visualization{% if _q %} ({{ _q }} search{% endif %}{% if _model %}, {{ _model }}{% endif %}{% if _q %}){% endif %}"
+    loading="lazy"
+    allow="fullscreen"
+  ></iframe>
+  <div class="vindex-viewer-caption">
+    <span>LarQL Vindex Viewer v2 · drag to orbit · scroll to zoom{% if _q %} · highlighted: <strong>{{ _q }}</strong>{% endif %}{% if _view == "flat" %} · 2D circuit view{% endif %}</span>
+  </div>
+  {% if show_cta == "true" %}
+  <div class="vindex-viewer-cta">
+    <span class="vindex-viewer-cta-text">
+      Want to <strong>edit</strong> this model? Run LarQL patches, fine-tune, and export a customized version.
+    </span>
+    <a href="https://chat.divinci.app/white-label/{{ wl }}/fine-tune?vindex={% if _model %}{{ _model }}{% else %}gemma-4-e2b{% endif %}{% if _q %}&entity={{ _q }}{% endif %}"
+       target="_blank" rel="noopener"
+       class="vindex-viewer-cta-button">
+      Open in Divinci →
+    </a>
+  </div>
+  {% endif %}
+</div>

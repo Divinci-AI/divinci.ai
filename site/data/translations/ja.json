@@ -5,13 +5,22 @@
     "og_title": "Divinci AI - 常に優秀",
     "og_description": "AIリリース。常に優秀。"
   },
+  "banner": {
+    "label": "最新の研究：",
+    "link": "回路が溶けるとき →"
+  },
   "navigation": {
     "features": "機能",
     "team": "チーム",
     "signup": "サインアップ",
     "support": "サポート",
     "request_demo": "デモをリクエスト",
-    "support_center": "サポートセンター"
+    "support_center": "サポートセンター",
+    "blog": "ブログ",
+    "terms_of_service": "利用規約",
+    "privacy_policy": "プライバシーポリシー",
+    "quality_assurance": "品質保証",
+    "release_management": "リリース管理"
   },
   "hero": {
     "heading": "AIリリース。",
@@ -25,7 +34,9 @@
     "cta": {
       "primary": "デモをリクエスト",
       "secondary": "プラットフォームを探索"
-    }
+    },
+    "sound_unmute": "ミュート解除",
+    "sound_mute": "ミュート"
   },
   "enterprise": {
     "title": "エンタープライズAI、専門的に管理",
@@ -47,7 +58,9 @@
         "title": "統合チームコラボレーション",
         "description": "構造化されたワークフローで機能横断的レビューを合理化。責任を割り当て、フィードバックを収集し、承認を文書化して、すべてのリリースが組織と規制の期待に応えることを保証します。"
       }
-    }
+    },
+    "title_line1": "エンタープライズAI、",
+    "title_line2": "専門的に管理"
   },
   "features": {
     "title": "AIでワークフローを強化",
@@ -99,19 +112,23 @@
       "title": "AutoRAG"
     },
     "qa_title": "品質保証",
-    "release_management": "リリース管理"
+    "release_management": "リリース管理",
+    "title_first_line": "AIの時代",
+    "title_second_line": "マネジメント"
   },
   "team": {
     "title": "チームメンバー紹介",
     "description": "人間とAIのコラボレーションの未来を形作るイノベーターたちをご紹介します。",
     "members": {
-      "connect": "つながる",
-      "michael_bio": "企業技術分野で15年以上の経験を持つビジョナリー、対話型AI革命を主導。",
-      "duane_bio": "スケーラブルAIインフラストラクチャと自然言語処理の専門知識を持つシステムアーキテクト。",
+      "connect": "接続",
+      "michael_bio": "会話型AI革命をリードする、エンタープライズ技術15年以上の経験を持つビジョナリー。",
+      "duane_bio": "スケーラブルなAIインフラと自然言語処理の専門知識を持つシステムアーキテクト。",
       "sam_bio": "企業チーム向けユーザー中心のAIソリューション提供の実績を持つプロダクト戦略家。",
       "abdul_bio": "AIシステムのモデル最適化とパフォーマンス分析を専門とする機械学習エキスパート。",
-      "sierra_bio": "複雑なAIインタラクションを親しみやすくする直感的なインターフェース作成に焦点を当てたクリエイティブデザイナー。",
-      "sean_bio": "AIアプリケーション向けマイクロサービスアーキテクチャと分散システムの経験を持つフルスタック開発者。"
+      "sierra_bio": "コーネル大学卒。金融サービスと起業の豊富な経験を持ち、AIスケーリングに戦略的ビジネス開発の専門知識を活かす。",
+      "sean_bio": "機械学習とPython開発を専門とする、10年以上のプログラミング経験を持つデータサイエンティスト。",
+      "samuel_bio": "エンタープライズチーム向けユーザー中心のAIソリューションを提供するプロダクトストラテジスト。",
+      "paul_marie_bio": "AIガバナンスリーダー。AI LA Responsible AI Groupの創設者。Google AI、Deloitte、CVS Healthの経験を持つ。"
     },
     "roles": {
       "ceo_founder": "CEO兼創設者",
@@ -204,7 +221,8 @@
       },
       "privacy_settings": "プライバシー設定",
       "cookie_policy": "Cookieポリシー",
-      "cookie_preferences": "Cookie設定"
+      "cookie_preferences": "Cookie設定",
+      "rights_reserved": "全著作権所有。"
     },
     "api": "API",
     "support": "サポート",
@@ -250,7 +268,353 @@
   },
   "support": {
     "title": "サポートセンター",
-    "subtitle": "Divinci AIのヘルプとサポートを取得"
+    "subtitle": "Divinci AI のヘルプとサポート",
+    "description": "よくある質問の回答、実装ガイド、専門家チームへの連絡方法をご覧いただけます。",
+    "sidebar": {
+      "title": "サポートセンター",
+      "menu": {
+        "getting_started": "はじめに",
+        "implementation": "実装",
+        "troubleshooting": "トラブルシューティング",
+        "api_docs": "API ドキュメント",
+        "billing": "請求",
+        "contact": "お問い合わせ",
+        "community": "コミュニティフォーラム",
+        "contact_form": "お問い合わせフォーム",
+        "enterprise": "エンタープライズソリューション",
+        "knowledge_base": "ナレッジベース",
+        "language_models": "言語モデル",
+        "support_team": "サポートチーム",
+        "technical_support": "テクニカルサポート",
+        "tutorials": "チュートリアルセンター"
+      },
+      "cta": {
+        "title": "追加のサポートが必要ですか?",
+        "description": "専門家チームと直接お話しいただけます。",
+        "button": "サポートに連絡"
+      },
+      "sections": {
+        "contact": "サポートに連絡",
+        "resources": "サポートリソース",
+        "self_service": "セルフサービスツール"
+      }
+    },
+    "header": {
+      "title": "どのようなお手伝いが必要ですか?",
+      "description": "よくある質問への素早い回答を見つけたり、専門家チームに直接ご連絡ください。"
+    },
+    "help_cards": {
+      "getting_started": {
+        "title": "はじめに",
+        "description": "アカウントを設定して、数分で Divinci AI を使い始めましょう。",
+        "button": "ガイドを見る"
+      },
+      "api_integration": {
+        "title": "API 統合",
+        "description": "API を使って既存システムとシームレスに統合します。",
+        "button": "ドキュメントを見る"
+      },
+      "troubleshooting": {
+        "title": "トラブルシューティング",
+        "description": "よくある技術的問題の解決策を見つけます。",
+        "button": "解決策を見る"
+      },
+      "billing": {
+        "title": "請求の管理",
+        "description": "支払い方法の更新、請求書の確認、サブスクリプション設定の管理を簡単に行えます。",
+        "button": "請求ヘルプ"
+      },
+      "train_ai": {
+        "title": "AI を訓練する",
+        "description": "最適なデータ準備とベストプラクティスで AI を効果的に訓練する方法を学びます。",
+        "button": "チュートリアルを見る"
+      }
+    },
+    "stats": {
+      "response_time": "< 2時間",
+      "response_time_label": "平均応答時間",
+      "satisfaction": "99%",
+      "satisfaction_label": "顧客満足度",
+      "resolution": "24時間",
+      "resolution_label": "解決時間",
+      "tutorial_videos": {
+        "number": "20+",
+        "label": "チュートリアル動画"
+      },
+      "knowledge_base": {
+        "number": "100+",
+        "label": "ナレッジベース記事"
+      },
+      "community": {
+        "number": "5,000+",
+        "label": "コミュニティメンバー"
+      }
+    },
+    "popular_topics": {
+      "title": "人気のトピック",
+      "model_compatibility": {
+        "title": "モデル互換性",
+        "description": "プラットフォームに対応している言語モデルを確認します。",
+        "link": "リスト全体を見る"
+      },
+      "deployment": {
+        "title": "デプロイメントガイド",
+        "description": "様々なエンタープライズユースケース向けのステップバイステップのデプロイ方法。",
+        "link": "ガイドを見る"
+      },
+      "performance": {
+        "title": "パフォーマンス最適化",
+        "description": "モデルのパフォーマンスを最大化するためのベストプラクティス。",
+        "link": "続きを読む"
+      }
+    },
+    "contact_form": {
+      "title": "サポートリクエストを送信",
+      "name_label": "氏名",
+      "email_label": "メールアドレス",
+      "company_label": "会社",
+      "priority_label": "優先度",
+      "priority_options": {
+        "low": "低",
+        "normal": "通常",
+        "high": "高",
+        "urgent": "緊急"
+      },
+      "category_label": "カテゴリ",
+      "category_options": {
+        "technical": "テクニカルサポート",
+        "billing": "請求",
+        "feature": "機能リクエスト",
+        "bug": "バグレポート",
+        "other": "その他"
+      },
+      "message_label": "問題の説明",
+      "submit_button": "リクエストを送信",
+      "name_placeholder": "氏名",
+      "email_placeholder": "you@company.com",
+      "subject_label": "件名",
+      "subject_placeholder": "サポートリクエストの件名",
+      "message_placeholder": "問題を詳しくお書きください。エラーメッセージ、再現手順、関連情報も含めてください。",
+      "priority_select": "優先度を選択",
+      "priority_low": "低 - 一般的な質問",
+      "priority_medium": "中 - 業務に影響あり",
+      "priority_high": "高 - 深刻な問題",
+      "priority_urgent": "緊急 - システムダウン",
+      "category_select": "カテゴリを選択",
+      "category_account": "アカウントとアクセス",
+      "category_billing": "請求とサブスクリプション",
+      "category_technical": "技術的問題",
+      "category_training": "AI 訓練",
+      "category_integration": "統合",
+      "category_api": "API",
+      "category_feature": "機能リクエスト",
+      "category_other": "その他",
+      "required_fields_error": "必須項目をすべて入力してください。",
+      "success_alert": "サポートリクエストをありがとうございます!24時間以内にチームよりご連絡いたします。"
+    },
+    "contact_info": {
+      "title": "連絡先情報",
+      "email": {
+        "title": "メールサポート",
+        "value": "support@divinci.ai",
+        "description": "一般的なサポートのお問い合わせ"
+      },
+      "phone": {
+        "title": "電話サポート",
+        "value": "+1 (555) 123-4567",
+        "description": "月-金 午前9時-午後6時 (EST)"
+      },
+      "chat": {
+        "title": "ライブチャット",
+        "value": "24時間365日対応",
+        "description": "緊急のサポートに"
+      },
+      "community": {
+        "title": "コミュニティフォーラム",
+        "value": "Divinci フォーラム"
+      }
+    },
+    "hours": {
+      "title": "サポート営業時間",
+      "weekdays": "月-金: 午前9:00 - 午後6:00 (EST)",
+      "weekends": "土-日: 午前10:00 - 午後4:00 (EST)",
+      "holidays": "祝日: 営業時間制限あり",
+      "tier_header": "サポートティア",
+      "hours_header": "営業時間",
+      "response_header": "応答時間",
+      "standard": {
+        "tier": "Standard サポート",
+        "hours": "月-金 9:00-17:00 (PT)",
+        "response": "24時間"
+      },
+      "professional": {
+        "tier": "Professional サポート",
+        "hours": "月-金 8:00-20:00 (PT)",
+        "response": "8時間"
+      },
+      "enterprise": {
+        "tier": "Enterprise サポート",
+        "hours": "24時間365日",
+        "response": "1-4時間"
+      }
+    },
+    "cta_section": {
+      "title": "さらにサポートが必要ですか?",
+      "description": "専門家チームが Divinci AI でのご成功をサポートします。",
+      "button": "コンサルテーションを予約"
+    },
+    "contact_section": {
+      "title": "サポートチームへのお問い合わせ",
+      "description": "専門のサポートチームによるパーソナライズされたヘルプを受けましょう"
+    },
+    "quick_help": {
+      "title": "クイックヘルプ",
+      "description": "これらの必須ガイドとリソースで素早く始めましょう"
+    },
+    "getting_started": {
+      "title": "はじめに",
+      "description": "Divinci AI で構築を始めるために知っておくべきすべてのこと"
+    },
+    "steps": {
+      "create_account": {
+        "title": "アカウントを作成",
+        "description": "Divinci AI のアカウントを作成して始めましょう。ニーズに合うサブスクリプションプランを選び、AI の旅を始めましょう。",
+        "button": "サインアップガイド"
+      },
+      "define_purpose": {
+        "title": "AI の目的を定義",
+        "description": "AI に持たせたい具体的な役割と機能を明確にします。これによりユースケースに合わせた訓練と最適化が可能になります。",
+        "button": "目的定義ガイド"
+      },
+      "upload_materials": {
+        "title": "訓練資料をアップロード",
+        "description": "関連する文書、データ、知識ソースを提供して、AI の理解と能力を訓練します。",
+        "button": "データ準備ガイド"
+      },
+      "train_test": {
+        "title": "AI を訓練・テスト",
+        "description": "訓練プロセスを開始し、AI の応答が特定のドメインで正確かつ関連性が高いことをテストします。",
+        "button": "訓練のベストプラクティス"
+      },
+      "deploy": {
+        "title": "AI をデプロイ",
+        "description": "柔軟なデプロイメントオプションを使って、ウェブサイト、アプリケーション、その他のプラットフォームに AI を統合します。",
+        "button": "デプロイメントガイド"
+      }
+    },
+    "model_compatibility": {
+      "title": "言語モデル互換性",
+      "description": "主要な AI プロバイダー全体でサポートされている言語モデルの包括的な概要",
+      "base_models_title": "利用可能なベースモデル",
+      "fine_tuning_title": "ファインチューニングサポート",
+      "api_docs_button": "API ドキュメントを見る",
+      "universal_support": {
+        "title": "ユニバーサルモデルサポート",
+        "description": "私たちのプラットフォームは、主要な AI プロバイダー全体でシームレスに動作する統一 API とガバナンスフレームワークを提供し、特定のユースケース要件に応じてモデルを切り替えたり、複数のプロバイダーを同時に使用したりできるようにします。"
+      }
+    },
+    "topics": {
+      "getting_started": {
+        "title": "Divinci AI を始める",
+        "description": "カスタム AI ソリューションの作成、訓練、デプロイの基本を学びます。",
+        "link": "続きを読む"
+      },
+      "api_integration": {
+        "title": "API 統合ガイド",
+        "description": "Divinci AI をアプリケーションや既存システムと統合する方法。",
+        "link": "続きを読む"
+      },
+      "training_data": {
+        "title": "AI 訓練データの最適化",
+        "description": "最適な結果を得るための訓練データの準備と構造化のベストプラクティス。",
+        "link": "続きを読む"
+      },
+      "security": {
+        "title": "セキュリティのベストプラクティス",
+        "description": "AI 実装がセキュリティガイドラインとコンプライアンス要件に従うことを確認します。",
+        "link": "続きを読む"
+      }
+    },
+    "faq": {
+      "title": "よくある質問",
+      "questions": {
+        "integration": {
+          "question": "Divinci AI を既存システムと統合できますか?",
+          "answer": {
+            "intro": "Divinci AI は複数の統合オプションを提供します:",
+            "list": {
+              "api": "API 統合: カスタムアプリケーション向け RESTful API",
+              "widgets": "ウェブウィジェット: ウェブサイトに埋め込み可能なチャットインターフェース",
+              "mobile": "モバイル SDK: iOS / Android アプリのネイティブ統合",
+              "connectors": "事前構築済みコネクタ: Slack、Microsoft Teams、Zendesk、Salesforce などのプラットフォーム向け",
+              "webhooks": "Webhook サポート: イベントベースの統合フロー向け"
+            },
+            "closing": "デベロッパーハブには、サポートされているすべてのプラットフォーム向けの詳細なドキュメント、コードサンプル、統合ガイドがあります。"
+          }
+        },
+        "platform_difference": {
+          "question": "Divinci AI は他の AI プラットフォームとどう違いますか?",
+          "answer": {
+            "part1": "Divinci AI は、技術的専門知識がなくても専門化された AI モデルを構築できるカスタマイズ可能な AI 作成プロセスで際立っています。私たちのプラットフォームは、ドメイン固有の知識統合、倫理的な AI 開発、シームレスなマルチプラットフォームデプロイメントに焦点を当てています。",
+            "part2": "汎用 AI システムとは異なり、Divinci はあなたの特定のドメインを深く理解するモデルを作成し、ユースケースに対してより正確で関連性の高い応答を保証します。"
+          }
+        },
+        "security": {
+          "question": "Divinci AI でのデータの安全性は?",
+          "answer": {
+            "intro": "Divinci AI は以下のような堅牢なセキュリティ対策を実装しています:",
+            "list": {
+              "encryption": "データ暗号化: 転送中および保存中のすべてのデータを暗号化",
+              "access": "ロールベースアクセス: 細かい権限制御",
+              "soc2": "SOC 2 準拠: 定期的なセキュリティ監査",
+              "isolation": "データ分離: 訓練データはあなたの AI モデルにのみ使用",
+              "private_cloud": "プライベートクラウドオプション: 強化されたセキュリティ要件のあるエンタープライズ顧客向け"
+            },
+            "closing": "詳細については、プライバシーポリシーとセキュリティドキュメントをご覧ください。"
+          }
+        },
+        "support_types": {
+          "question": "どのようなサポートを提供していますか?",
+          "answer": {
+            "intro": "ニーズに合わせた階層的なサポートオプションを提供しています:",
+            "list": {
+              "standard": "Standard サポート: 24時間応答時間のメールサポート (Basic プランに含まれる)",
+              "professional": "Professional サポート: 8時間応答時間の優先メール・チャットサポート (Professional プランに含まれる)",
+              "enterprise": "Enterprise サポート: 専任アカウントマネージャー付き 24/7 サポート、1-4時間応答、カスタム SLA (Enterprise プランに含まれる)"
+            },
+            "closing": "すべてのお客様は、ドキュメント、ナレッジベース、コミュニティフォーラム、定期的なウェビナーにアクセスできます。"
+          }
+        },
+        "training_time": {
+          "question": "AI の訓練プロセスにはどのくらい時間がかかりますか?",
+          "answer": {
+            "intro": "訓練時間はデータの量と複雑さに依存します:",
+            "list": {
+              "basic": "ベーシックモデル (100MB 未満のデータ): 30-60分",
+              "standard": "スタンダードモデル (100MB-1GB): 2-4時間",
+              "comprehensive": "包括的モデル (1GB-5GB): 4-12時間",
+              "enterprise": "エンタープライズモデル (5GB+): カスタム期間"
+            },
+            "closing": "プラットフォームはリアルタイムの進捗更新と、訓練完了時の通知を提供します。訓練中もプラットフォームを使用でき、増分訓練の更新は通常、初回の訓練より短時間で完了します。"
+          }
+        },
+        "data_types": {
+          "question": "AI の訓練にどのような種類のデータを使用できますか?",
+          "answer": {
+            "intro": "Divinci AI は訓練のための様々なデータタイプをサポートします:",
+            "list": {
+              "documents": "テキスト文書 (PDF、DOCX、TXT)",
+              "catalogs": "製品カタログと仕様",
+              "datasets": "構造化データセット (CSV、JSON)",
+              "documentation": "プロセス文書とガイドライン",
+              "faqs": "FAQ とナレッジベース",
+              "website": "ウェブサイトコンテンツ (クロールによる)"
+            },
+            "compliance": "すべての訓練データは私たちのコンテンツポリシーに準拠する必要があり、プライバシー保証付きの安全なエンタープライズオプションを使用しない限り、機密または機微な個人情報を含めるべきではありません。"
+          }
+        }
+      }
+    }
   },
   "expert_answers": {
     "title": "専門家の回答",
@@ -263,7 +627,8 @@
       },
       "language_models": {
         "question": "どの言語モデルが対応していますか？",
-        "answer": "当社のプラットフォームは、オープンソースから独自アーキテクチャまで、幅広い大規模言語モデルをサポートします。柔軟な統合により、多様なフレームワークと企業環境でのシームレスなデプロイメントが可能で、進化するビジネスニーズへの適応性を保証します。"
+        "answer": "当社のプラットフォームは、オープンソースから独自アーキテクチャまで、幅広い大規模言語モデルをサポートします。柔軟な統合により、多様なフレームワークと企業環境でのシームレスなデプロイメントが可能で、進化するビジネスニーズへの適応性を保証します。",
+        "model_compat_link": "モデル互換性リストを見る"
       },
       "quality_assurance": {
         "question": "継続的な品質保証はどのように実現されますか？",
@@ -275,5 +640,244 @@
       }
     },
     "view_complete_list": "完全なモデル互換性リストを表示"
+  },
+  "news": {
+    "read_more": "続きを読む →",
+    "learn_more": "詳細を見る →",
+    "ai_for_good_tag": "善のためのAI",
+    "cloudflare_date": "2025年10月5日",
+    "cloudflare_title": "Divinci AIがCloudflare Workers Launchpadコホート#6に参加",
+    "cloudflare_excerpt": "CloudflareのプレスティジャスWorkers Launchpadアクセラレータープログラムへの採択を発表します。EdgeコンピューティングプラットフォームでRAGパイプラインを構築する方法をご覧ください。"
+  },
+  "compliance": {
+    "hero": {
+      "eyebrow": "vindex + LarQL を搭載",
+      "heading": "コンプライアンス、領収書付き。",
+      "tagline": "ほとんどの「AIコンプライアンス」はアクセスログとプロンプトレベルのガードレールで止まっています。Divinciはモデル内部に踏み込みます。すべてのエンティティ関連付けはクエリ可能な特徴量であり、すべての編集はポータブルで監査可能なパッチ — そして<strong>vindex</strong>は、規制当局がまもなく要求し始める技術文書アーティファクトです。",
+      "cta_primary": "コンプライアンス担当に相談 →",
+      "cta_secondary": "ライブvindexを見る"
+    },
+    "mapping": {
+      "heading": "規制の要求事項 · LarQLが提供するもの",
+      "subheading": "同じアーティファクト — vindex — が、Divinciの顧客が直面する4つの主要なAI規制において、透明性、監督、文書化、消去の要件すべてに応えます。",
+      "th_regulation": "規制",
+      "th_requirement": "要件",
+      "th_competitors": "競合の提供内容",
+      "th_larql": "LarQL/vindex の提供内容",
+      "rows": [
+        {
+          "reg_label": "EU AI法 §13",
+          "reg_topic": "透明性",
+          "requirement": "「ユーザーが出力を解釈できる十分な透明性」",
+          "competitors": "モデルカード、散文的なシステム記述",
+          "larql": "vindexはクエリ可能な透明性アーティファクトそのもの — 事実を担うすべての特徴量を <code>(layer, feature, gate_score)</code> で識別"
+        },
+        {
+          "reg_label": "EU AI法 §14",
+          "reg_topic": "人間による監督",
+          "requirement": "オペレーターは意味のある介入を行わなければならない",
+          "competitors": "プロンプトレベルのガードレール(脱獄可能)",
+          "larql": "プロンプトではなく特徴量に対する重みレベルのDELETEパッチ — 脱獄では回避できない"
+        },
+        {
+          "reg_label": "EU AI法 附属書IV",
+          "reg_topic": "技術文書",
+          "requirement": "「AIシステムの一般的なロジック」",
+          "competitors": "アーキテクチャ図 + 訓練データの要約",
+          "larql": "ビット精度の機構的文書化:すべての特徴量の射影語彙、すべての層の構造メトリック (C1–C5)"
+        },
+        {
+          "reg_label": "GDPR 第17条",
+          "reg_topic": "消去権",
+          "requirement": "個人データの検証可能な削除",
+          "competitors": "「忘却」のためのファインチューニング — <em>検証不可</em>;データが敵対的に再出現する可能性",
+          "larql": "監査証跡付きのDELETEパッチ = +0.02%のパープレキシティで特定の名前付きエンティティ関連付けの<strong>証明可能な抑制</strong>。パッチファイルが領収書です。"
+        },
+        {
+          "reg_label": "HIPAA · PCI · GDPR",
+          "reg_topic": "非識別化",
+          "requirement": "データプロダクトからPIIを削除",
+          "competitors": "I/Oでのトークンフィルタリング(漏洩の可能性)",
+          "larql": "PIIをエンコードする方向の特徴量レベルでの識別;重み層での外科的除去"
+        },
+        {
+          "reg_label": "NIST AI RMF",
+          "reg_topic": "管理",
+          "requirement": "残存リスクの定量化と管理",
+          "competitors": "感覚的なリスク評価",
+          "larql": "C1–C5 のユニバーサル定数が測定可能な構造ベースラインを提供;すべてのパッチ後に再検証"
+        }
+      ]
+    },
+    "receipt": {
+      "heading": "「領収書」とは実際にどのようなものか",
+      "para_1": "LarQLパッチはSHA-256チェックサム付きのポータブルJSONファイルです。適用して事実を抑制し、削除すればモデルをビット単位で復元します。パッチは監査ログそのもの — オペレーター、規制当局、下流の利用者が同じ操作を独立して検証できます。",
+      "para_2": "以下:私たちが公開テストスイートで提供している実際のGate-3パッチで、実物のGemma 4 E2B vindex上で「Paris→首都」関連付けの抑制と復元が、測定可能かつ再現可能な効果を持つことを示しています。"
+    },
+    "cta_band": {
+      "heading": "証明できるコンプライアンス。あらゆるオープントランスフォーマー上で。",
+      "tagline": "Gemma、Qwen、Llama、Mistral、OpenAI MoE、Microsoft 1-bit にわたり、現在8つのvindexを公開中。あなたのモデルを持ち込んでください — 私たちが領収書を構築します。",
+      "cta_primary": "コンプライアンスレビューを予約 →",
+      "cta_secondary": "Hugging Face で vindex を閲覧"
+    }
+  },
+  "about": {
+    "hero_title": "Divinci AI について",
+    "hero_subtitle": "芸術性、精度、目的意識をもって、人間とAIの協働の未来を築きます。",
+    "mission_title": "私たちのミッション",
+    "mission_text": "高度な人工知能をあらゆる規模の組織にとってアクセス可能で、管理しやすく、信頼できるものにすることで、エンタープライズAIを民主化します。AIは人間を置き換えるのではなく、人間の可能性を拡張すべきだと私たちは信じています。",
+    "vision_title": "私たちのビジョン",
+    "vision_text": "すべての組織が、セキュリティ、コンプライアンス、そして自社の価値観に沿ったAI実装を自信を持って活用し、変革の力を手にできる世界。AIを人間の達成の協働パートナーとして描きます。",
+    "values_title": "私たちの中核的価値観",
+    "values_desc": "これらの原則は、プロダクト開発から顧客との関係まで、私たちのすべての行動を導きます。",
+    "value1_title": "人間中心のAI",
+    "value1_desc": "人間の能力を代替するのではなく拡張するAIシステムを設計し、テクノロジーが人類の利益に最もよく資するようにします。",
+    "value2_title": "目的のあるイノベーション",
+    "value2_desc": "私たちが構築するすべての機能は、実際の課題を解決します。技術のためのイノベーションではなく、意味ある影響を生み出すためにイノベーションします。",
+    "value3_title": "責任あるAI",
+    "value3_desc": "すべてのアルゴリズムと意思決定において、透明性、公平性、説明責任を確保し、倫理的なAI開発を優先します。",
+    "value4_title": "インクルーシブなデザイン",
+    "value4_desc": "私たちのプラットフォームは、技術的な専門知識の有無にかかわらず誰もが使えるように作られており、AIの恩恵が万人に行き渡ることを目指します。",
+    "value5_title": "セキュリティ・ファースト",
+    "value5_desc": "セキュリティは後付けではなく、私たちが構築するすべての基盤です。お客様のデータを保護し、信頼を維持します。",
+    "value6_title": "顧客とのパートナーシップ",
+    "value6_desc": "私たちはお客様をパートナーとして捉え、AIの目標とビジネスの目的を達成するために緊密に協働します。",
+    "team_title": "チーム紹介",
+    "team_desc": "芸術性と先進的なAI技術を組み合わせる、情熱ある専門家たち。",
+    "michael_title": "共同創業者兼CEO",
+    "michael_bio": "AIシステムとエンタープライズソフトウェアに深い専門性を持つビジョナリーなリーダー。以前は主要テック企業でスケーラブルなプラットフォームを構築。",
+    "samuel_title": "共同創業者兼CTO",
+    "samuel_bio": "機械学習インフラとスケーラブルなAIデプロイメントで豊富な経験を持つAI研究者兼システムアーキテクト。",
+    "sierra_title": "共同創業者兼CMO",
+    "sierra_bio": "ユーザー体験とAI倫理を重視するプロダクトストラテジスト。複雑なAI機能を直感的なインターフェースに落とし込むエキスパート。",
+    "story_title": "私たちのストーリー",
+    "story_desc": "ビジョンから現実へ — エンタープライズAIの未来を築く旅路。",
+    "timeline1_title": "始まり",
+    "timeline1_desc": "AIはテックジャイアントだけでなく、すべての組織にアクセス可能であるべきだというビジョンのもとに創業。大きな夢と更に大きな野心を抱いてガレージから始めました。",
+    "timeline2_title": "最初のプロトタイプ",
+    "timeline2_desc": "数か月の研究開発を経て、最初の実働プロトタイプを構築。ダ・ヴィンチから着想を得たインターフェースは、テクノロジーは美しくあるべきだという信念から生まれました。",
+    "timeline3_title": "ベータ版ローンチ",
+    "timeline3_desc": "厳選したエンタープライズパートナーとベータ版をローンチし、プラットフォームの進化を形作る貴重なフィードバックを収集。反響は圧倒的にポジティブでした。",
+    "timeline4_title": "正式ローンチ",
+    "timeline4_desc": "Divinci AIが一般公開され、世界中の組織にエンタープライズ級のAIマネジメントを提供。AIのルネサンスが始まりました。",
+    "timeline5_title": "成長と進化",
+    "timeline5_desc": "今日も私たちは革新と拡大を続け、世界中のエンタープライズにサービスを提供しながら、人間中心のAI開発という中核的価値観を貫いています。",
+    "ai_good_title": "AI for Good イニシアチブ",
+    "ai_good_article_title": "AI for Impact:ロサンゼルスのホームレス予防パイロットプログラムの内側",
+    "ai_good_desc": "ロサンゼルス郡と提携し、ホームレス問題に対処する革新的なAIソリューションを提供していることを誇りに思います。私たちのプラットフォームは、ソーシャルワーカーがリスクのある個人をより早期に特定し、より効果的な介入を調整するのを支援します。",
+    "ai_good_link": "私たちのインパクトについて詳しく見る",
+    "join_title": "チームに参加しよう",
+    "join_desc": "AIの未来を形作る手助けをする準備はできていますか?私たちは常に優れた人材を求めています。",
+    "join_cta": "募集中のポジションを見る"
+  },
+  "careers": {
+    "hero_title": "チームに参加しよう",
+    "hero_subtitle": "Divinci AI では、人間とAIの協働の未来を築いています。あらゆる規模のビジネスにとってAIをアクセス可能で価値あるものにする私たちのミッションに参加しませんか。",
+    "hero_cta": "募集中のポジションを見る",
+    "open_positions_title": "募集中のポジション",
+    "open_positions_desc": "AI、テクノロジー、そしてポジティブなインパクトを生み出すことに情熱を持つ人材を募集中です。現在の募集はこちらです:",
+    "key_requirements": "主な要件:",
+    "apply_now": "今すぐ応募",
+    "location": "Remote / Santa Monica, CA",
+    "dept_engineering": "エンジニアリング",
+    "dept_product": "プロダクト",
+    "dept_design": "デザイン",
+    "dept_cs": "カスタマーサクセス",
+    "internships_title": "インターンシップ",
+    "internships_desc": "AIに情熱を持ち、実践経験を積みたい学生・新卒の方向けに、インターンシップの機会を提供しています。",
+    "internship_program_title": "Summer 2026 AI インターンシッププログラム",
+    "internship_program_desc": "12週間の夏季インターンシッププログラムでは、意義あるプロジェクト、シニアエンジニアによるメンタリング、エンタープライズ顧客が実際に使うプロダクトに貢献する機会を提供します。",
+    "apply_internship": "インターンシップに応募",
+    "process_title": "私たちの面接プロセス",
+    "process_desc": "面接プロセスは徹底的でありながら、皆さんの時間を尊重するように設計しています。期待できる流れは以下の通りです:",
+    "step1_title": "応募書類の確認",
+    "step1_desc": "ご経歴やご興味を理解するため、応募書類とポートフォリオを確認します。",
+    "step2_title": "初回の対話",
+    "step2_desc": "採用チームとの短い通話で、ロールについて話し合い、ご質問にお答えします。",
+    "step3_title": "技術評価",
+    "step3_desc": "ロールに応じて、コーディング課題、デザイン演習、ケーススタディなどを行います。",
+    "step4_title": "チーム面接",
+    "step4_desc": "チームメンバーと技術トピックや私たちのカルチャーについて話します。",
+    "step5_title": "最終面接",
+    "step5_desc": "ビジョン、目標、そしてあなたが私たちのミッションにどう貢献するかをリーダーシップと話し合います。",
+    "step6_title": "オファー",
+    "step6_desc": "相互にフィットすると判断した場合、オファーを出し、チームへのスムーズな移行をサポートします。",
+    "hear_from_team": "チームの声",
+    "testimonial1_quote": "Divinci AI で働くことは、責任ある開発に強くフォーカスしながらAIイノベーションの最前線にいるということです。挑戦的でやりがいがあります。",
+    "testimonial1_name": "Sarah Chen",
+    "testimonial1_role": "シニアMLエンジニア",
+    "testimonial2_quote": "ここの協働的なカルチャーは素晴らしいです。誰のアイデアも大切にされ、ビジネスにAIを届けるという同じ目標に向かって全員が動いています。",
+    "testimonial2_name": "Marcus Johnson",
+    "testimonial2_role": "プロダクトマネージャー",
+    "benefit1_title": "包括的なヘルスケア",
+    "benefit1_desc": "従業員とそのご家族向けに、トップティアの医療、歯科、眼科保険を提供。保険料の大半を Divinci AI が負担します。",
+    "benefit2_title": "競争力のある報酬",
+    "benefit2_desc": "競争力のある給与、ストックオプション、雇用主マッチング付きの 401(k) プランを提供し、会社の成功を共有できるようにします。",
+    "benefit3_title": "柔軟な働き方",
+    "benefit3_desc": "リモートワークをサポートし、Santa Monica 本社でのオフィス協働も選択可能。最も生産的な場所で働ける柔軟性を提供します。",
+    "benefit4_title": "充実した休暇制度",
+    "benefit4_desc": "無制限の有給休暇、会社休日、有給育児休暇を提供。ワークライフバランスとリチャージの時間を大切にしています。",
+    "benefit5_title": "学習と成長",
+    "benefit5_desc": "カンファレンス、コース、書籍のための年間学習手当を提供し、定期的なプロフェッショナル開発の機会を用意しています。",
+    "benefit6_title": "チームイベント",
+    "benefit6_desc": "定期的なチームアウティング、社交イベント、社員リトリートを通じて、強い関係性と一体感のあるチームカルチャーを育みます。",
+    "job1_title": "シニア機械学習エンジニア",
+    "job1_desc": "ML チームに参加し、私たちの AI プラットフォームを支える大規模な機械学習システムを構築・最適化します。最先端のアルゴリズムとインフラに取り組み、ビジネスが自信を持って AI モデルをデプロイできるようにします。",
+    "job1_req1": "5年以上の ML エンジニアリング経験",
+    "job1_req2": "PyTorch、TensorFlow、または類似フレームワークの専門知識",
+    "job1_req3": "分散システムおよびクラウドプラットフォームの経験",
+    "job1_req4": "強力なソフトウェアエンジニアリングの基礎",
+    "job2_title": "フルスタックエンジニア",
+    "job2_desc": "私たちの AI プラットフォームを直感的で強力にするフロントエンドおよびバックエンドシステムの構築を支援します。スタック全体で作業し、エンタープライズ顧客向けにシームレスなユーザー体験を作り上げます。",
+    "job2_req1": "3年以上のフルスタック開発経験",
+    "job2_req2": "React、Node.js、最新のウェブ技術への習熟",
+    "job2_req3": "データベースおよび API 設計の経験",
+    "job2_req4": "クラウドインフラの理解",
+    "job3_title": "プロダクトマネージャー",
+    "job3_desc": "AI マネジメントプラットフォームのプロダクト戦略と実行を主導します。エンジニアリング、デザイン、顧客と緊密に連携し、実際のビジネス課題を解決するプロダクトを定義・提供します。",
+    "job3_req1": "3年以上のプロダクトマネジメント経験",
+    "job3_req2": "B2B SaaS 製品の経験",
+    "job3_req3": "強力な分析力とコミュニケーションスキル",
+    "job3_req4": "AI/ML プロダクトのバックグラウンドが望ましい",
+    "job4_title": "UX/UI デザイナー",
+    "job4_desc": "私たちの AI プラットフォームのユーザー体験を形作り、複雑なテクノロジーをアクセス可能で楽しいものにします。ユーザーが自信を持って AI システムを管理できるインターフェースをデザインします。",
+    "job4_req1": "3年以上の UX/UI デザイン経験",
+    "job4_req2": "B2B プロダクトデザインを示すポートフォリオ",
+    "job4_req3": "Figma、Sketch、または類似ツールへの習熟",
+    "job4_req4": "デザインシステムおよびユーザーリサーチの経験",
+    "job5_title": "カスタマーサクセスマネージャー",
+    "job5_desc": "エンタープライズ顧客の信頼できるアドバイザーとして、AI プラットフォームでの成功を支援します。導入、成長、長期的な満足度を推進します。",
+    "job5_req1": "2年以上のカスタマーサクセス経験",
+    "job5_req2": "エンタープライズ B2B 顧客の経験",
+    "job5_req3": "強力なコミュニケーションおよび課題解決スキル",
+    "job5_req4": "技術的バックグラウンドが望ましい",
+    "culture_title": "私たちのカルチャー",
+    "culture_desc": "Divinci AI では、誰もが活躍できる、協働的で革新的でインクルーシブな職場を築いています。私たちのカルチャーは、共有された価値観と、人間を置き換えるのではなく力を与える AI テクノロジーを生み出すことへのコミットメントによって定義されます。",
+    "value1_title": "イノベーション",
+    "value1_desc": "大胆な発想と創造的な問題解決を奨励します。現状に挑み、AI で可能なことの境界を押し広げることを恐れません。",
+    "value2_title": "協働",
+    "value2_desc": "多様な視点が集まったときに最良の仕事が生まれると信じています。アイデアがオープンに共有され、全員の声が聞かれる協働的な環境を育みます。",
+    "value3_title": "責任",
+    "value3_desc": "強固な倫理ガイドラインのもと、人類に利益をもたらし、個人のプライバシーと自律性を尊重するテクノロジーの創出に注力し、責任ある AI 開発に取り組んでいます。",
+    "value4_title": "インパクト",
+    "value4_desc": "ビジネスが AI を活用する方法に意味あるインパクトを与える機会に動かされています。すべてのチームメンバーがこのビジョンを実現する重要な役割を担います。",
+    "benefits_title": "福利厚生と特典",
+    "benefits_intro": "私たちはチームを大切にすることを信じています。Divinci AI の従業員に提供する福利厚生と特典の一部はこちらです:"
+  },
+  "blog": {
+    "hero_title": "Divinci AI ブログ",
+    "hero_subtitle": "人工知能、RAG システム、エンタープライズ AI 管理に関する洞察、更新情報、そして思考のリーダーシップ。",
+    "by": "著者:",
+    "read_article": "記事を読む",
+    "recent_articles": "最新記事",
+    "read_more": "続きを読む",
+    "share_tag": "シェア",
+    "share_title": "友達とシェアしよう",
+    "share_desc": "これらのトピックに興味を持たれた方は、友人や同僚にシェアしてください。",
+    "coming_soon_title": "ブログ近日公開",
+    "coming_soon_message": "AI テクノロジー、実装戦略、業界動向についての洞察を含むブログを現在構築中です。アップデートをお待ちいただくか、新しいコンテンツが利用可能になった際の通知を購読してください。",
+    "notify_me": "更新を通知する",
+    "featured_tag_default": "人工知能",
+    "post_tag_default": "AI インサイト"
   }
 }

@@ -5,13 +5,22 @@
     "og_title": "Divinci AI",
     "og_description": "AI releases. Excellence, every time."
   },
+  "banner": {
+    "label": "Latest research:",
+    "link": "When the Circuit Dissolves →"
+  },
   "navigation": {
     "features": "Features",
     "team": "Team",
     "signup": "Sign Up",
     "support": "Support",
     "support_center": "Support Center",
-    "request_demo": "Request demo"
+    "request_demo": "Request demo",
+    "blog": "Blog",
+    "terms_of_service": "Terms of Service",
+    "privacy_policy": "Privacy Policy",
+    "quality_assurance": "Quality Assurance",
+    "release_management": "Release Management"
   },
   "hero": {
     "heading": "Custom AI releases.",
@@ -25,7 +34,9 @@
     "cta": {
       "primary": "Request demo",
       "secondary": "Explore platform"
-    }
+    },
+    "sound_unmute": "Unmute",
+    "sound_mute": "Mute"
   },
   "enterprise": {
     "title": "Enterprise AI, expertly managed",
@@ -47,7 +58,9 @@
         "title": "Integrated team collaboration",
         "description": "Streamline cross-functional reviews with structured workflows. Assign responsibilities, collect feedback, and document approvals to ensure every release meets organizational and regulatory expectations."
       }
-    }
+    },
+    "title_line1": "Enterprise AI,",
+    "title_line2": "expertly managed"
   },
   "features": {
     "title": "The Age of AI Management",
@@ -99,14 +112,21 @@
       "title": "AutoRAG"
     },
     "qa_title": "Quality Assurance",
-    "release_management": "Release Management"
+    "release_management": "Release Management",
+    "title_first_line": "The Age of AI",
+    "title_second_line": "Management"
   },
   "team": {
     "title": "Meet our team",
     "description": "Meet the innovators shaping the future of human-AI collaboration.",
     "members": {
       "connect": "Connect",
-      "sierra_bio": "Cornell University graduate with extensive experience in financial services and entrepreneurship. Former M&A Associate and founder of BrainPOP Clean Energy, bringing strategic business development and operations expertise to AI venture scaling."
+      "sierra_bio": "Cornell University graduate with extensive experience in financial services and entrepreneurship. Former M&A Associate and founder of BrainPOP Clean Energy, bringing strategic business development and operations expertise to AI venture scaling.",
+      "michael_bio": "Visionary with 15+ years in enterprise technology, leading the conversational AI revolution.",
+      "samuel_bio": "Product strategist with a track record of delivering user-centric AI solutions for enterprise teams.",
+      "duane_bio": "Systems architect with expertise in scalable AI infrastructure and natural language processing.",
+      "sean_bio": "Data scientist with 10+ years programming experience, specializing in machine learning and Python development.",
+      "paul_marie_bio": "AI governance leader and independent advisor specializing in vendor management and risk. Founded AI LA Responsible AI Group and brings expertise from Google AI, Deloitte, and CVS Health."
     },
     "roles": {
       "ceo_founder": "CEO & Founder",
@@ -152,7 +172,8 @@
       },
       "language_models": {
         "question": "Which language models are compatible?",
-        "answer": "Our platform supports a broad spectrum of large language models, from open-source to proprietary architectures. Flexible integration enables seamless deployment across diverse frameworks and enterprise environments, ensuring adaptability to evolving business needs."
+        "answer": "Our platform supports a broad spectrum of large language models, from open-source to proprietary architectures. Flexible integration enables seamless deployment across diverse frameworks and enterprise environments, ensuring adaptability to evolving business needs.",
+        "model_compat_link": "View complete model compatibility list"
       },
       "quality_assurance": {
         "question": "How is ongoing quality assurance achieved?",
@@ -181,7 +202,54 @@
     },
     "schedule_demo": "Schedule Demo",
     "book_demo": "Book a live demo",
-    "demo_availability": "Available for 30-minute personalized demos to show you how Divinci AI works."
+    "demo_availability": "Available for 30-minute personalized demos to show you how Divinci AI works.",
+    "page_title": "Get in Touch",
+    "page_subtitle": "Have questions about our platform or need help getting started? We're here to help.",
+    "form": {
+      "title": "Send Us a Message",
+      "name_label": "Your Name",
+      "name_placeholder": "Enter your name",
+      "email_label": "Email Address",
+      "email_placeholder": "Enter your email",
+      "subject_label": "Subject",
+      "subject_placeholder": "Select a subject",
+      "inquiry_options": {
+        "general": "General Question",
+        "sales": "Sales Inquiry",
+        "demo": "Request a Demo",
+        "support": "Technical Support",
+        "partnership": "Partnership Opportunity"
+      },
+      "company_label": "Company (Optional)",
+      "company_placeholder": "Your company name",
+      "message_label": "Your Message",
+      "message_placeholder": "How can we help you?",
+      "privacy_label": "I agree to the Privacy Policy and Terms of Service",
+      "submit_button": "Send Message",
+      "success_message": "Thank you for your message! We'll get back to you as soon as possible.",
+      "error_message": "Oops! Something went wrong. Please try again later or contact us directly.",
+      "verification_required": "Please complete the security verification.",
+      "sending": "Sending...",
+      "error_occurred": "An error occurred. Please try again.",
+      "network_error": "Network error. Please check your connection and try again."
+    },
+    "info": {
+      "email": {
+        "title": "Email Us",
+        "value": "hello@divinci.ai"
+      },
+      "address": {
+        "title": "Visit Us",
+        "value": "312 Arizona Ave, Santa Monica, CA 90401"
+      },
+      "hours": {
+        "title": "Business Hours",
+        "value": "Mon–Fri: 9am–6pm PST"
+      }
+    },
+    "map": {
+      "click_message": "Click to interact with the map"
+    }
   },
   "footer": {
     "tagline": "Empowering human-AI collaboration",
@@ -236,7 +304,8 @@
       },
       "privacy_settings": "Privacy Settings",
       "cookie_policy": "Cookie Policy",
-      "cookie_preferences": "Cookie Preferences"
+      "cookie_preferences": "Cookie Preferences",
+      "rights_reserved": "All rights reserved."
     },
     "api": "API",
     "support": "Support",
@@ -256,12 +325,25 @@
         "troubleshooting": "Troubleshooting",
         "api_docs": "API Documentation",
         "billing": "Billing",
-        "contact": "Contact"
+        "contact": "Contact",
+        "community": "Community Forums",
+        "contact_form": "Contact Form",
+        "enterprise": "Enterprise Solutions",
+        "knowledge_base": "Knowledge Base",
+        "language_models": "Language Models",
+        "support_team": "Support Team",
+        "technical_support": "Technical Support",
+        "tutorials": "Tutorial Center"
       },
       "cta": {
         "title": "Need additional help?",
         "description": "Speak directly with our team of specialists.",
         "button": "Contact Support"
+      },
+      "sections": {
+        "contact": "Contact Support",
+        "resources": "Support Resources",
+        "self_service": "Self-Service Tools"
       }
     },
     "header": {
@@ -283,6 +365,16 @@
         "title": "Troubleshooting",
         "description": "Find solutions to common technical issues.",
         "button": "View Solutions"
+      },
+      "billing": {
+        "title": "Manage Billing",
+        "description": "Update payment methods, view invoices, and manage your subscription settings easily.",
+        "button": "Billing Help"
+      },
+      "train_ai": {
+        "title": "Train Your AI",
+        "description": "Learn how to effectively train your AI with optimal data preparation and best practices.",
+        "button": "View Tutorial"
       }
     },
     "stats": {
@@ -291,7 +383,19 @@
       "satisfaction": "99%",
       "satisfaction_label": "Customer Satisfaction",
       "resolution": "24h",
-      "resolution_label": "Resolution Time"
+      "resolution_label": "Resolution Time",
+      "tutorial_videos": {
+        "number": "20+",
+        "label": "Tutorial Videos"
+      },
+      "knowledge_base": {
+        "number": "100+",
+        "label": "Knowledge Base Articles"
+      },
+      "community": {
+        "number": "5,000+",
+        "label": "Community Members"
+      }
     },
     "popular_topics": {
       "title": "Popular Topics",
@@ -332,7 +436,28 @@
         "other": "Other"
       },
       "message_label": "Describe the issue",
-      "submit_button": "Submit Request"
+      "submit_button": "Submit Request",
+      "name_placeholder": "Your full name",
+      "email_placeholder": "you@company.com",
+      "subject_label": "Subject",
+      "subject_placeholder": "Support request subject",
+      "message_placeholder": "Please describe your issue in detail. Include any error messages, steps to reproduce, and relevant information.",
+      "priority_select": "Select priority",
+      "priority_low": "Low - General Question",
+      "priority_medium": "Medium - Issue Affecting Work",
+      "priority_high": "High - Serious Problem",
+      "priority_urgent": "Urgent - System Down",
+      "category_select": "Select category",
+      "category_account": "Account & Access",
+      "category_billing": "Billing & Subscription",
+      "category_technical": "Technical Issue",
+      "category_training": "AI Training",
+      "category_integration": "Integration",
+      "category_api": "API",
+      "category_feature": "Feature Request",
+      "category_other": "Other",
+      "required_fields_error": "Please fill in all required fields.",
+      "success_alert": "Thank you for your support request! Our team will get back to you within 24 hours."
     },
     "contact_info": {
       "title": "Contact Information",
@@ -350,18 +475,192 @@
         "title": "Live Chat",
         "value": "Available 24/7",
         "description": "For immediate assistance"
+      },
+      "community": {
+        "title": "Community Forum",
+        "value": "Divinci Forum"
       }
     },
     "hours": {
       "title": "Support Hours",
       "weekdays": "Monday - Friday: 9:00 AM - 6:00 PM EST",
       "weekends": "Saturday - Sunday: 10:00 AM - 4:00 PM EST",
-      "holidays": "Holidays: Limited Hours"
+      "holidays": "Holidays: Limited Hours",
+      "tier_header": "Support Tier",
+      "hours_header": "Hours",
+      "response_header": "Response Time",
+      "standard": {
+        "tier": "Standard Support",
+        "hours": "Mon-Fri, 9am-5pm PT",
+        "response": "24 hours"
+      },
+      "professional": {
+        "tier": "Professional Support",
+        "hours": "Mon-Fri, 8am-8pm PT",
+        "response": "8 hours"
+      },
+      "enterprise": {
+        "tier": "Enterprise Support",
+        "hours": "24/7/365",
+        "response": "1-4 hours"
+      }
     },
     "cta_section": {
       "title": "Still Need Help?",
       "description": "Our team of specialists is here to help you succeed with Divinci AI.",
       "button": "Schedule Consultation"
+    },
+    "contact_section": {
+      "title": "Contact Our Support Team",
+      "description": "Get personalized help from our expert support team"
+    },
+    "quick_help": {
+      "title": "Quick Help",
+      "description": "Get started quickly with these essential guides and resources"
+    },
+    "getting_started": {
+      "title": "Getting Started",
+      "description": "Everything you need to know to start building with Divinci AI"
+    },
+    "steps": {
+      "create_account": {
+        "title": "Create Your Account",
+        "description": "Sign up for a Divinci AI account to get started. Choose the subscription plan that fits your needs and begin your AI journey.",
+        "button": "Sign Up Guide"
+      },
+      "define_purpose": {
+        "title": "Define Your AI's Purpose",
+        "description": "Clarify the specific role and functionality you want your AI to have. This helps in training and optimization for your use case.",
+        "button": "Purpose Definition Guide"
+      },
+      "upload_materials": {
+        "title": "Upload Training Materials",
+        "description": "Provide relevant documents, data, and knowledge sources to train your AI's understanding and capabilities.",
+        "button": "Data Preparation Guide"
+      },
+      "train_test": {
+        "title": "Train & Test Your AI",
+        "description": "Initiate the training process and test your AI's responses to ensure accuracy and relevance for your specific domain.",
+        "button": "Training Best Practices"
+      },
+      "deploy": {
+        "title": "Deploy Your AI",
+        "description": "Integrate your AI into your website, application, or other platforms using our flexible deployment options.",
+        "button": "Deployment Guide"
+      }
+    },
+    "model_compatibility": {
+      "title": "Language Model Compatibility",
+      "description": "Comprehensive overview of supported language models across all major AI providers",
+      "base_models_title": "Base Models Available",
+      "fine_tuning_title": "Fine-Tuning Support",
+      "api_docs_button": "View API Documentation",
+      "universal_support": {
+        "title": "Universal Model Support",
+        "description": "Our platform provides unified APIs and governance frameworks that work seamlessly across all major AI providers, enabling you to switch between models or use multiple providers simultaneously based on your specific use case requirements."
+      }
+    },
+    "topics": {
+      "getting_started": {
+        "title": "Getting Started with Divinci AI",
+        "description": "Learn the basics of creating, training, and deploying your custom AI solutions.",
+        "link": "Read more"
+      },
+      "api_integration": {
+        "title": "API Integration Guide",
+        "description": "How to integrate Divinci AI with your applications and existing systems.",
+        "link": "Read more"
+      },
+      "training_data": {
+        "title": "Optimizing AI Training Data",
+        "description": "Best practices for preparing and structuring your training data for optimal results.",
+        "link": "Read more"
+      },
+      "security": {
+        "title": "Security Best Practices",
+        "description": "Ensuring your AI implementation follows security guidelines and compliance requirements.",
+        "link": "Read more"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": {
+        "integration": {
+          "question": "Can I integrate my Divinci AI with existing systems?",
+          "answer": {
+            "intro": "Divinci AI provides multiple integration options:",
+            "list": {
+              "api": "API Integration: RESTful API for custom applications",
+              "widgets": "Web Widgets: Embeddable chat interfaces for websites",
+              "mobile": "Mobile SDK: Native integration for iOS and Android apps",
+              "connectors": "Pre-built Connectors: For platforms like Slack, Microsoft Teams, Zendesk, and Salesforce",
+              "webhooks": "Webhook Support: For event-based integration flows"
+            },
+            "closing": "Our Developer Hub provides detailed documentation, code samples, and integration guides for all supported platforms."
+          }
+        },
+        "platform_difference": {
+          "question": "How does Divinci AI differ from other AI platforms?",
+          "answer": {
+            "part1": "Divinci AI stands out through its customizable AI creation process, allowing users to build specialized AI models without technical expertise. Our platform focuses on domain-specific knowledge integration, ethical AI development, and seamless multi-platform deployment.",
+            "part2": "Unlike general-purpose AI systems, Divinci creates models that are deeply knowledgeable about your specific domain, ensuring more accurate and relevant responses for your use case."
+          }
+        },
+        "security": {
+          "question": "How secure is my data with Divinci AI?",
+          "answer": {
+            "intro": "Divinci AI implements robust security measures including:",
+            "list": {
+              "encryption": "Data Encryption: All data is encrypted in transit and at rest",
+              "access": "Role-Based Access: Granular permission controls",
+              "soc2": "SOC 2 Compliance: Regular security audits",
+              "isolation": "Data Isolation: Your training data is used only for your AI models",
+              "private_cloud": "Private Cloud Options: For enterprise customers with enhanced security requirements"
+            },
+            "closing": "For more information, please review our Privacy Policy and Security Documentation."
+          }
+        },
+        "support_types": {
+          "question": "What kind of support do you offer?",
+          "answer": {
+            "intro": "We offer tiered support options to match your needs:",
+            "list": {
+              "standard": "Standard Support: Email support with 24-hour response time (included with Basic plan)",
+              "professional": "Professional Support: Priority email and chat support with 8-hour response time (included with Professional plan)",
+              "enterprise": "Enterprise Support: 24/7 support with dedicated account manager, 1-4 hour response time, and custom SLAs (included with Enterprise plan)"
+            },
+            "closing": "All customers have access to our documentation, knowledge base, community forums, and regular webinars."
+          }
+        },
+        "training_time": {
+          "question": "How long does the AI training process take?",
+          "answer": {
+            "intro": "Training duration depends on the volume and complexity of your data:",
+            "list": {
+              "basic": "Basic models (under 100MB of data): 30-60 minutes",
+              "standard": "Standard models (100MB-1GB): 2-4 hours",
+              "comprehensive": "Comprehensive models (1GB-5GB): 4-12 hours",
+              "enterprise": "Enterprise models (5GB+): Custom timeframes"
+            },
+            "closing": "Our platform provides real-time progress updates and notifications when training is complete. You can continue using the platform during training, and incremental training updates typically take less time than initial training."
+          }
+        },
+        "data_types": {
+          "question": "What types of data can I use to train my AI?",
+          "answer": {
+            "intro": "Divinci AI supports various data types for training, including:",
+            "list": {
+              "documents": "Text documents (PDF, DOCX, TXT)",
+              "catalogs": "Product catalogs and specifications",
+              "datasets": "Structured datasets (CSV, JSON)",
+              "documentation": "Process documentation and guidelines",
+              "faqs": "FAQs and knowledge bases",
+              "website": "Website content (via crawling)"
+            },
+            "compliance": "All training data must comply with our content policies and should not include confidential or sensitive personal information unless you're using our secure enterprise option with privacy guarantees."
+          }
+        }
+      }
     }
   },
   "language_switcher": {
@@ -390,7 +689,9 @@
       "email": "press@divinci.ai",
       "phone": "+1 (800) 555-1234",
       "media_relations": "Sierra Hooshiari, COO - Chief Operations Officer",
-      "description": "Our media relations team is available to assist journalists, industry analysts, and content creators with information, interviews, and resources about Divinci AI and our perspective on the AI industry."
+      "description": "Our media relations team is available to assist journalists, industry analysts, and content creators with information, interviews, and resources about Divinci AI and our perspective on the AI industry.",
+      "email_label": "Email",
+      "media_label": "Media Relations"
     },
     "releases": {
       "title": "Press Releases",
@@ -410,7 +711,8 @@
           "title": "Divinci AI Joins AI Standards Hub to Promote Responsible AI Development",
           "excerpt": "As part of its commitment to ethical AI, Divinci AI has joined the AI Standards Hub to contribute to the development of standards for secure, responsible, and transparent artificial intelligence."
         }
-      }
+      },
+      "empty_state": "Press releases will be published here as they become available. For media inquiries, please contact our press team."
     },
     "coverage": {
       "title": "Media Coverage",
@@ -442,12 +744,355 @@
         "title": "Complete Press Kit",
         "description": "Download our complete press kit, which includes all logos, screenshots, team photos, product fact sheets, and company backgrounders in a single package.",
         "button": "Download Press Kit (ZIP, 25MB)"
-      }
+      },
+      "logo_primary": "Primary Logo",
+      "logo_inverted": "Inverted Logo",
+      "logo_animated": "Animated Logo",
+      "autorag_dashboard": "AutoRAG Dashboard",
+      "qa_pipeline": "QA Pipeline",
+      "release_cycle": "Release Cycle Manager",
+      "michael_mooring": "Michael Mooring, CEO",
+      "samuel_tobia": "Samuel Tobia, CTO",
+      "sierra_hooshiari": "Sierra Hooshiari, COO"
     },
     "common": {
       "read_more": "Read more",
       "read_article": "Read article",
       "download": "Download"
+    }
+  },
+  "about": {
+    "hero_title": "About Divinci AI",
+    "hero_subtitle": "Building the future of human-AI collaboration with artistry, precision, and purpose.",
+    "mission_title": "Our Mission",
+    "mission_text": "To democratize enterprise AI by making sophisticated artificial intelligence accessible, manageable, and trustworthy for organizations of all sizes. We believe that AI should amplify human potential, not replace it.",
+    "vision_title": "Our Vision",
+    "vision_text": "A world where every organization can harness the transformative power of AI with confidence, knowing their implementations are secure, compliant, and aligned with their values. We envision AI as a collaborative partner in human achievement.",
+    "values_title": "Our Core Values",
+    "values_desc": "These principles guide everything we do, from product development to customer relationships.",
+    "value1_title": "Human-Centered AI",
+    "value1_desc": "We design AI systems that enhance human capabilities rather than replace them, ensuring technology serves humanity's best interests.",
+    "value2_title": "Innovation with Purpose",
+    "value2_desc": "Every feature we build solves a real problem. We innovate not for the sake of technology, but to create meaningful impact.",
+    "value3_title": "Responsible AI",
+    "value3_desc": "We prioritize ethical AI development, ensuring transparency, fairness, and accountability in every algorithm and decision.",
+    "value4_title": "Inclusive Design",
+    "value4_desc": "Our platforms are built for everyone, regardless of technical expertise, ensuring AI benefits are accessible to all.",
+    "value5_title": "Security First",
+    "value5_desc": "Security isn't an afterthought—it's foundational to everything we build, protecting your data and maintaining trust.",
+    "value6_title": "Customer Partnership",
+    "value6_desc": "We view our customers as partners, working closely together to achieve their AI goals and business objectives.",
+    "team_title": "Meet Our Team",
+    "team_desc": "Passionate experts combining artistry with advanced AI technology.",
+    "michael_title": "Co-Founder & CEO",
+    "michael_bio": "Visionary leader with deep expertise in AI systems and enterprise software. Previously built scalable platforms at leading tech companies.",
+    "samuel_title": "Co-Founder & CTO",
+    "samuel_bio": "AI researcher and systems architect with extensive experience in machine learning infrastructure and scalable AI deployment.",
+    "sierra_title": "Co-Founder & CMO",
+    "sierra_bio": "Product strategist focused on user experience and AI ethics. Expert in translating complex AI capabilities into intuitive interfaces.",
+    "story_title": "Our Story",
+    "story_desc": "From a vision to reality - the journey of building the future of enterprise AI.",
+    "timeline1_title": "The Beginning",
+    "timeline1_desc": "Founded with the vision that AI should be accessible to every organization, not just tech giants. We started in a garage with big dreams and bigger ambitions.",
+    "timeline2_title": "First Prototype",
+    "timeline2_desc": "After months of research and development, we built our first working prototype. The da Vinci-inspired interface was born from our belief that technology should be beautiful.",
+    "timeline3_title": "Beta Launch",
+    "timeline3_desc": "We launched our beta with select enterprise partners, gathering invaluable feedback that shaped our platform's evolution. The response was overwhelmingly positive.",
+    "timeline4_title": "Official Launch",
+    "timeline4_desc": "Divinci AI officially launched to the public, bringing enterprise-grade AI management to organizations worldwide. The renaissance of AI had begun.",
+    "timeline5_title": "Growing and Evolving",
+    "timeline5_desc": "Today, we continue to innovate and expand, serving enterprises globally while staying true to our core values of human-centered AI development.",
+    "ai_good_title": "AI for Good Initiatives",
+    "ai_good_article_title": "AI for Impact: Inside LA's Homelessness Prevention Pilot Program",
+    "ai_good_desc": "We're proud to partner with Los Angeles County on innovative AI solutions to address homelessness. Our platform helps social workers identify at-risk individuals earlier and coordinate more effective interventions.",
+    "ai_good_link": "Learn More About Our Impact",
+    "join_title": "Join Our Team",
+    "join_desc": "Ready to help shape the future of AI? We're always looking for exceptional talent.",
+    "join_cta": "View Open Positions"
+  },
+  "blog": {
+    "hero_title": "Divinci AI Blog",
+    "hero_subtitle": "Insights, updates, and thought leadership on artificial intelligence, RAG systems, and enterprise AI management.",
+    "by": "By",
+    "read_article": "Read Article",
+    "recent_articles": "Recent Articles",
+    "read_more": "Read more",
+    "share_tag": "Share",
+    "share_title": "Share with Friends",
+    "share_desc": "If you find these topics interesting, please share with your friends and colleagues.",
+    "coming_soon_title": "Blog Coming Soon",
+    "coming_soon_message": "We're currently building our blog with insights on AI technology, implementation strategies, and industry trends. Check back soon for updates or subscribe to be notified when new content is available.",
+    "notify_me": "Notify me of updates",
+    "featured_tag_default": "Artificial Intelligence",
+    "post_tag_default": "AI Insights"
+  },
+  "careers": {
+    "hero_title": "Join Our Team",
+    "hero_subtitle": "At Divinci AI, we're building the future of human-AI collaboration. Join us on our mission to make AI accessible and valuable for businesses of all sizes.",
+    "hero_cta": "View Open Positions",
+    "open_positions_title": "Open Positions",
+    "open_positions_desc": "We're looking for talented individuals who are passionate about AI, technology, and making a positive impact. Here are our current openings:",
+    "key_requirements": "Key Requirements:",
+    "apply_now": "Apply Now",
+    "location": "Remote / Santa Monica, CA",
+    "dept_engineering": "Engineering",
+    "dept_product": "Product",
+    "dept_design": "Design",
+    "dept_cs": "Customer Success",
+    "internships_title": "Internships",
+    "internships_desc": "We offer internship opportunities for students and recent graduates who are passionate about AI and want to gain hands-on experience.",
+    "internship_program_title": "Summer 2026 AI Internship Program",
+    "internship_program_desc": "Our 12-week summer internship program offers meaningful projects, mentorship from senior engineers, and the opportunity to contribute to real products used by enterprise customers.",
+    "apply_internship": "Apply for Internship",
+    "process_title": "Our Interview Process",
+    "process_desc": "We've designed our interview process to be thorough but respectful of your time. Here's what you can expect:",
+    "step1_title": "Application Review",
+    "step1_desc": "We review your application and portfolio to understand your background and interests.",
+    "step2_title": "Initial Conversation",
+    "step2_desc": "A brief call with our recruiting team to discuss the role and answer any questions you have.",
+    "step3_title": "Technical Assessment",
+    "step3_desc": "Depending on the role, this may include a coding challenge, design exercise, or case study.",
+    "step4_title": "Team Interviews",
+    "step4_desc": "Meet with team members to discuss technical topics and learn about our culture.",
+    "step5_title": "Final Interview",
+    "step5_desc": "A conversation with leadership about vision, goals, and how you'd contribute to our mission.",
+    "step6_title": "Offer",
+    "step6_desc": "If it's a mutual fit, we'll extend an offer and help you transition to the team.",
+    "hear_from_team": "Hear From Our Team",
+    "testimonial1_quote": "Working at Divinci AI means being at the forefront of AI innovation while maintaining a strong focus on responsible development. It's challenging and rewarding.",
+    "testimonial1_name": "Sarah Chen",
+    "testimonial1_role": "Senior ML Engineer",
+    "testimonial2_quote": "The collaborative culture here is incredible. Everyone's ideas are valued, and we're all working toward the same goal of making AI accessible to businesses.",
+    "testimonial2_name": "Marcus Johnson",
+    "testimonial2_role": "Product Manager",
+    "benefit1_title": "Comprehensive Healthcare",
+    "benefit1_desc": "We offer top-tier medical, dental, and vision coverage for employees and their dependents, with the majority of premiums covered by Divinci AI.",
+    "benefit2_title": "Competitive Compensation",
+    "benefit2_desc": "We offer competitive salaries, equity options, and a 401(k) plan with employer matching to ensure you share in the company's success.",
+    "benefit3_title": "Flexible Work",
+    "benefit3_desc": "We support remote work with the option for in-office collaboration at our Santa Monica headquarters, giving you the flexibility to work where you're most productive.",
+    "benefit4_title": "Generous Time Off",
+    "benefit4_desc": "We offer unlimited PTO, company holidays, and paid parental leave because we believe in work-life balance and taking time to recharge.",
+    "benefit5_title": "Learning & Development",
+    "benefit5_desc": "We provide an annual learning stipend for conferences, courses, and books, plus regular opportunities for professional development.",
+    "benefit6_title": "Team Events",
+    "benefit6_desc": "Regular team outings, social events, and company retreats help build strong relationships and a cohesive team culture.",
+    "job1_title": "Senior Machine Learning Engineer",
+    "job1_desc": "Join our ML team to build and optimize large-scale machine learning systems that power our AI platform. You'll work on cutting-edge algorithms and infrastructure that enable businesses to deploy AI models with confidence.",
+    "job1_req1": "5+ years of ML engineering experience",
+    "job1_req2": "Expertise in PyTorch, TensorFlow, or similar frameworks",
+    "job1_req3": "Experience with distributed systems and cloud platforms",
+    "job1_req4": "Strong software engineering fundamentals",
+    "job2_title": "Full Stack Engineer",
+    "job2_desc": "Help build the frontend and backend systems that make our AI platform intuitive and powerful. You'll work across the entire stack to create seamless user experiences for our enterprise customers.",
+    "job2_req1": "3+ years of full-stack development experience",
+    "job2_req2": "Proficiency in React, Node.js, and modern web technologies",
+    "job2_req3": "Experience with databases and API design",
+    "job2_req4": "Understanding of cloud infrastructure",
+    "job3_title": "Product Manager",
+    "job3_desc": "Drive product strategy and execution for our AI management platform. You'll work closely with engineering, design, and customers to define and deliver products that solve real business problems.",
+    "job3_req1": "3+ years of product management experience",
+    "job3_req2": "Experience with B2B SaaS products",
+    "job3_req3": "Strong analytical and communication skills",
+    "job3_req4": "Background in AI/ML products preferred",
+    "job4_title": "UX/UI Designer",
+    "job4_desc": "Shape the user experience of our AI platform, making complex technology accessible and delightful. You'll design interfaces that empower users to manage AI systems with confidence.",
+    "job4_req1": "3+ years of UX/UI design experience",
+    "job4_req2": "Portfolio demonstrating B2B product design",
+    "job4_req3": "Proficiency in Figma, Sketch, or similar tools",
+    "job4_req4": "Experience with design systems and user research",
+    "job5_title": "Customer Success Manager",
+    "job5_desc": "Be the trusted advisor to our enterprise customers, helping them achieve success with our AI platform. You'll drive adoption, growth, and long-term satisfaction.",
+    "job5_req1": "2+ years of customer success experience",
+    "job5_req2": "Experience with enterprise B2B customers",
+    "job5_req3": "Strong communication and problem-solving skills",
+    "job5_req4": "Technical background preferred",
+    "culture_title": "Our Culture",
+    "culture_desc": "At Divinci AI, we're building a collaborative, innovative, and inclusive workplace where everyone can thrive. Our culture is defined by our shared values and commitment to creating AI technology that empowers humans rather than replacing them.",
+    "value1_title": "Innovation",
+    "value1_desc": "We encourage bold thinking and creative problem-solving. We're not afraid to challenge the status quo and push the boundaries of what's possible with AI.",
+    "value2_title": "Collaboration",
+    "value2_desc": "We believe the best work happens when diverse perspectives come together. We foster a collaborative environment where ideas are shared openly and everyone's voice is heard.",
+    "value3_title": "Responsibility",
+    "value3_desc": "We're committed to developing AI responsibly, with strong ethical guidelines and a focus on creating technology that benefits humanity and respects individual privacy and agency.",
+    "value4_title": "Impact",
+    "value4_desc": "We're driven by the opportunity to make a meaningful impact on how businesses leverage AI. Every team member plays a crucial role in bringing this vision to life.",
+    "benefits_title": "Benefits & Perks",
+    "benefits_intro": "We believe in taking care of our team. Here are some of the benefits and perks we offer to Divinci AI employees:"
+  },
+  "blog_post": {
+    "min_read": "min read",
+    "by": "By",
+    "join_conversation": "Join the Conversation",
+    "join_conversation_desc": "We'd love to hear your thoughts on this topic. Join the discussion on your favorite platform:",
+    "discuss_on_x": "Discuss on X",
+    "comment_on_linkedin": "Comment on LinkedIn",
+    "chat_on_discord": "Chat on Discord",
+    "view_on_instagram": "View on Instagram",
+    "back_to_top": "Back to Top",
+    "copy_link": "Copy Link",
+    "focus_mode": "Focus Mode",
+    "export": "Export",
+    "copy_as_markdown": "Copy as Markdown",
+    "download_markdown": "Download Markdown",
+    "copy_as_text": "Copy as Text",
+    "download_text": "Download Text",
+    "full_white_paper": "Full White Paper (50 pages)",
+    "quick_summary": "Quick Summary (1-page)",
+    "related_articles": "Related Articles",
+    "share_with_friends": "Share with Friends",
+    "share_desc": "If you find these topics interesting, please share with your friends and colleagues who too might find them interesting.",
+    "cta_title": "Ready to Build Your Custom AI Solution?",
+    "cta_desc": "Discover how Divinci AI can help you implement RAG systems, automate quality assurance, and streamline your AI development process.",
+    "cta_button": "Get Started Today"
+  },
+  "roadmap": {
+    "vision_title": "Our Vision for the Future",
+    "vision_desc": "Discover what's coming next for the Divinci AI platform. We're committed to continuous innovation and delivering the features our customers need most.",
+    "status_development": "In Development",
+    "status_planned": "Planned",
+    "status_completed": "Completed",
+    "status_future": "Future",
+    "recently_released": "Recently Released",
+    "request_features": "Request Features",
+    "request_features_desc": "Have a feature request? We'd love to hear from you!",
+    "submit_ideas": "Submit Your Ideas",
+    "q1_title": "Q1 2025",
+    "q2_title": "Q2 2025",
+    "q34_title": "Q3-Q4 2025",
+    "q1_item1_name": "Advanced Analytics Dashboard",
+    "q1_item1_desc": "Enhanced reporting and insights",
+    "q1_item2_name": "Multi-Cloud Support",
+    "q1_item2_desc": "Deploy across AWS, Azure, and GCP",
+    "q1_item3_name": "Custom Compliance Frameworks",
+    "q1_item3_desc": "Industry-specific compliance templates",
+    "q2_item1_name": "API Gateway Integration",
+    "q2_item1_desc": "Native support for API management",
+    "q2_item2_name": "Advanced Testing Suite",
+    "q2_item2_desc": "Comprehensive AI model validation tools",
+    "q2_item3_name": "Collaboration Tools",
+    "q2_item3_desc": "Enhanced team workflows and permissions",
+    "released_item1_name": "Intelligent Release Orchestration",
+    "released_item1_desc": "Automated deployment pipelines",
+    "released_item2_name": "Real-time Performance Monitoring",
+    "released_item2_desc": "Live model performance tracking",
+    "released_item3_name": "Enhanced Security Features",
+    "released_item3_desc": "Advanced access controls and audit logging",
+    "q34_item1_name": "AI-Powered Optimization",
+    "q34_item1_desc": "Automatic performance tuning",
+    "q34_item2_name": "Advanced Integrations",
+    "q34_item2_desc": "Support for more AI frameworks and tools",
+    "q34_item3_name": "Mobile Management App",
+    "q34_item3_desc": "Monitor your AI systems on the go"
+  },
+  "page": {
+    "last_updated": "Last updated"
+  },
+  "taxonomy": {
+    "browse_by": "Browse content organized by",
+    "posts_in": "Posts in",
+    "post_singular": "post",
+    "post_plural": "posts",
+    "read_more": "Read More"
+  },
+  "ai_safety": {
+    "official_document": "OFFICIAL DOCUMENT",
+    "certification_text": "Standards Compliant · NIST Framework Aligned · ISO/IEC Informed",
+    "contributors": "Contributors",
+    "ceo_title": "Co-Founder & CEO",
+    "ethics_advisor_title": "AI Safety and Ethics Advisor",
+    "best_practice_title": "Best Practice Framework",
+    "last_updated_label": "Last Updated",
+    "version_label": "Version",
+    "document_id_label": "Document ID"
+  },
+  "news": {
+    "read_more": "Read more →",
+    "learn_more": "Learn more →",
+    "ai_for_good_tag": "AI for Good",
+    "cloudflare_date": "October 5, 2025",
+    "cloudflare_title": "Divinci AI Joins Cloudflare's Workers Launchpad Cohort #6",
+    "cloudflare_excerpt": "We're excited to announce our acceptance into Cloudflare's prestigious Workers Launchpad accelerator program. Learn how we're leveraging Cloudflare's edge computing platform to build sophisticated RAG pipelines."
+  },
+  "not_found": {
+    "title": "Page not found",
+    "message": "The page you're looking for doesn't exist or has been moved. Let's get you back on track.",
+    "go_home": "Go to homepage",
+    "view_docs": "View docs"
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to main content"
+  },
+  "compliance": {
+    "hero": {
+      "eyebrow": "Powered by vindex + LarQL",
+      "heading": "Compliance, with a receipt.",
+      "tagline": "Most \"AI compliance\" stops at access logs and prompt-level guardrails. Divinci goes inside the model. Every entity association is a queryable feature; every edit is a portable, auditable patch — and the <strong>vindex</strong> is the technical-documentation artifact your regulator is about to start asking for.",
+      "cta_primary": "Talk to compliance →",
+      "cta_secondary": "See a live vindex"
+    },
+    "mapping": {
+      "heading": "What the regulation requires · what LarQL ships",
+      "subheading": "The same artifact — the vindex — answers transparency, oversight, documentation, and erasure requirements across the four major AI regulations Divinci customers face.",
+      "th_regulation": "Regulation",
+      "th_requirement": "Requirement",
+      "th_competitors": "What competitors offer",
+      "th_larql": "What LarQL/vindex offers",
+      "rows": [
+        {
+          "reg_label": "EU AI Act §13",
+          "reg_topic": "Transparency",
+          "requirement": "\"Sufficient transparency to enable users to interpret outputs\"",
+          "competitors": "Model cards, prose system descriptions",
+          "larql": "The vindex IS a queryable transparency artifact — every fact-bearing feature identified by <code>(layer, feature, gate_score)</code>"
+        },
+        {
+          "reg_label": "EU AI Act §14",
+          "reg_topic": "Human Oversight",
+          "requirement": "Operators must intervene meaningfully",
+          "competitors": "Prompt-level guardrails (jailbreakable)",
+          "larql": "Weight-level DELETE patches at the feature, not the prompt — cannot be jailbroken around"
+        },
+        {
+          "reg_label": "EU AI Act Annex IV",
+          "reg_topic": "Tech Docs",
+          "requirement": "\"General logic of the AI system\"",
+          "competitors": "Architecture diagrams + training-data summaries",
+          "larql": "Bit-exact mechanistic documentation: every feature's projected vocabulary, every layer's structural metric (C1–C5)"
+        },
+        {
+          "reg_label": "GDPR Article 17",
+          "reg_topic": "Right to Erasure",
+          "requirement": "Verifiable removal of personal data",
+          "competitors": "Fine-tuning to \"forget\" — <em>not verifiable</em>; data may resurface adversarially",
+          "larql": "DELETE patch with audit trail = <strong>provable suppression</strong> of a specific named-entity association at +0.02% perplexity. The patch file is the receipt."
+        },
+        {
+          "reg_label": "HIPAA · PCI · GDPR",
+          "reg_topic": "De-identification",
+          "requirement": "Remove PII from data products",
+          "competitors": "Token filtering at I/O (leaks possible)",
+          "larql": "Feature-level identification of PII-encoding directions; surgical removal at the weight layer"
+        },
+        {
+          "reg_label": "NIST AI RMF",
+          "reg_topic": "Manage",
+          "requirement": "Quantify and manage residual risk",
+          "competitors": "Vibe-based risk assessments",
+          "larql": "C1–C5 universal constants give you a measurable structural baseline; re-verify after every patch"
+        }
+      ]
+    },
+    "receipt": {
+      "heading": "What a \"receipt\" actually looks like",
+      "para_1": "A LarQL patch is a portable JSON file with a SHA-256 checksum. Apply it to suppress a fact; remove it to restore the model bit-for-bit. The patch IS the audit log — operators, regulators, and downstream consumers can verify the same operation independently.",
+      "para_2": "Below: the actual Gate-3 patch we ship in our public test suite, showing the Paris→capital association suppressed and reverted with measurable, repeatable effect on a real Gemma 4 E2B vindex."
+    },
+    "cta_band": {
+      "heading": "Compliance you can prove. On any open transformer.",
+      "tagline": "Eight published vindexes today across Gemma, Qwen, Llama, Mistral, OpenAI MoE, and Microsoft 1-bit. Bring your model — we'll build the receipt.",
+      "cta_primary": "Book a compliance review →",
+      "cta_secondary": "Browse vindexes on Hugging Face"
     }
   }
 }

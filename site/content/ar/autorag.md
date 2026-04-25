@@ -56,7 +56,7 @@ lang = "ar"
 
 .orbital-benefit {
     position: absolute;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     border: 2px solid rgba(184, 160, 128, 0.2);
     border-radius: 50%;
     text-align: center;
@@ -133,7 +133,7 @@ lang = "ar"
 }
 
 .case-study-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -148,7 +148,7 @@ lang = "ar"
 }
 
 .related-feature-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -180,7 +180,7 @@ lang = "ar"
 
 .accordion-panel {
     padding: 1.5rem;
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
 }
 
 .tag {
@@ -236,7 +236,7 @@ lang = "ar"
 .metric-label {
     display: block;
     font-size: 0.9rem;
-    color: #718096;
+    color: #8b7659;
     margin-top: 0.5rem;
 }
 
@@ -261,7 +261,7 @@ lang = "ar"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">ما هو AutoRAG؟</h2>
 
 <div class="autorag-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-diagram.svg" alt="مخطط توصيل قاعدة المعرفة AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;" />
+  <img src="/images/autorag-diagram.svg" alt="مخطط توصيل قاعدة المعرفة AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;" />
 </div>
 
 <div class="overview-content">
@@ -283,11 +283,11 @@ lang = "ar"
 <div class="center-benefit" style="width: 365px; height: 365px; padding: 40px;">
 <div class="benefit-icon">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80">
-<circle cx="50" cy="50" r="45" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
-<circle cx="50" cy="50" r="35" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.5" />
-<path d="M30,50 L70,50" stroke="#4a7c8a" stroke-width="3" fill="none" />
-<path d="M50,30 L50,70" stroke="#4a7c8a" stroke-width="3" fill="none" />
-<circle cx="50" cy="50" r="15" stroke="#4a7c8a" stroke-width="2" fill="none">
+<circle cx="50" cy="50" r="45" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
+<circle cx="50" cy="50" r="35" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.5" />
+<path d="M30,50 L70,50" stroke="#2d5a4f" stroke-width="3" fill="none" />
+<path d="M50,30 L50,70" stroke="#2d5a4f" stroke-width="3" fill="none" />
+<circle cx="50" cy="50" r="15" stroke="#2d5a4f" stroke-width="2" fill="none">
 <animate attributeName="r" values="15;20;15" dur="3s" repeatCount="indefinite" />
 </circle>
 </svg>
@@ -299,10 +299,10 @@ lang = "ar"
 <div class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px;">
 <div class="benefit-icon">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
-<circle cx="50" cy="50" r="40" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
-<path d="M30,50 L70,50" stroke="#4a7c8a" stroke-width="3" fill="none" />
-<path d="M50,30 L50,70" stroke="#4a7c8a" stroke-width="3" fill="none" />
-<circle cx="50" cy="50" r="10" stroke="#4a7c8a" stroke-width="2" fill="none">
+<circle cx="50" cy="50" r="40" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
+<path d="M30,50 L70,50" stroke="#2d5a4f" stroke-width="3" fill="none" />
+<path d="M50,30 L50,70" stroke="#2d5a4f" stroke-width="3" fill="none" />
+<circle cx="50" cy="50" r="10" stroke="#2d5a4f" stroke-width="2" fill="none">
 <animate attributeName="r" values="10;15;10" dur="3s" repeatCount="indefinite" />
 </circle>
 </svg>
@@ -314,12 +314,12 @@ lang = "ar"
 <div class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px;">
 <div class="benefit-icon">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
-<circle cx="50" cy="50" r="40" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
-<path d="M30,50 C45,35 55,65 70,50" stroke="#4a7c8a" stroke-width="2" fill="none">
+<circle cx="50" cy="50" r="40" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
+<path d="M30,50 C45,35 55,65 70,50" stroke="#2d5a4f" stroke-width="2" fill="none">
 <animate attributeName="d" values="M30,50 C45,35 55,65 70,50;M30,50 C45,65 55,35 70,50;M30,50 C45,35 55,65 70,50" dur="6s" repeatCount="indefinite" />
 </path>
-<circle cx="30" cy="50" r="4" fill="#4a7c8a" opacity="0.7" />
-<circle cx="70" cy="50" r="4" fill="#4a7c8a" opacity="0.7" />
+<circle cx="30" cy="50" r="4" fill="#2d5a4f" opacity="0.7" />
+<circle cx="70" cy="50" r="4" fill="#2d5a4f" opacity="0.7" />
 </svg>
 </div>
 <h3>الاسترجاع التكيفي</h3>
@@ -329,11 +329,11 @@ lang = "ar"
 <div class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px;">
 <div class="benefit-icon">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
-<circle cx="50" cy="50" r="40" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
-<path d="M30,70 L70,30" stroke="#4a7c8a" stroke-width="2" fill="none" />
-<circle cx="30" cy="70" r="5" fill="#4a7c8a" opacity="0.7" />
-<circle cx="70" cy="30" r="5" fill="#4a7c8a" opacity="0.7" />
-<path d="M30,30 L70,70" stroke="#4a7c8a" stroke-width="2" fill="none" stroke-dasharray="5,5" />
+<circle cx="50" cy="50" r="40" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
+<path d="M30,70 L70,30" stroke="#2d5a4f" stroke-width="2" fill="none" />
+<circle cx="30" cy="70" r="5" fill="#2d5a4f" opacity="0.7" />
+<circle cx="70" cy="30" r="5" fill="#2d5a4f" opacity="0.7" />
+<path d="M30,30 L70,70" stroke="#2d5a4f" stroke-width="2" fill="none" stroke-dasharray="5,5" />
 </svg>
 </div>
 <h3>تقليل الهلوسات</h3>
@@ -343,11 +343,11 @@ lang = "ar"
 <div class="orbital-benefit" style="width: 305px; height: 305px; padding: 35px;">
 <div class="benefit-icon">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
-<circle cx="50" cy="50" r="40" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
-<path d="M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30" stroke="#4a7c8a" stroke-width="2" fill="none">
+<circle cx="50" cy="50" r="40" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
+<path d="M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30" stroke="#2d5a4f" stroke-width="2" fill="none">
 <animate attributeName="d" values="M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30;M50,30 C75,35 75,65 50,70 C25,65 25,35 50,30;M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30" dur="8s" repeatCount="indefinite" />
 </path>
-<circle cx="50" cy="50" r="5" fill="#4a7c8a" opacity="0.7">
+<circle cx="50" cy="50" r="5" fill="#2d5a4f" opacity="0.7">
 <animate attributeName="r" values="5;8;5" dur="4s" repeatCount="indefinite" />
 </circle>
 </svg>
@@ -359,11 +359,11 @@ lang = "ar"
 <div class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px;">
 <div class="benefit-icon">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
-<circle cx="50" cy="50" r="40" stroke="#4a7c8a" stroke-width="1" fill="none" opacity="0.3" />
-<path d="M30,40 L70,40" stroke="#4a7c8a" stroke-width="2" fill="none" />
-<path d="M30,60 L70,60" stroke="#4a7c8a" stroke-width="2" fill="none" />
-<path d="M40,30 L40,70" stroke="#4a7c8a" stroke-width="2" fill="none" />
-<path d="M60,30 L60,70" stroke="#4a7c8a" stroke-width="2" fill="none" />
+<circle cx="50" cy="50" r="40" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
+<path d="M30,40 L70,40" stroke="#2d5a4f" stroke-width="2" fill="none" />
+<path d="M30,60 L70,60" stroke="#2d5a4f" stroke-width="2" fill="none" />
+<path d="M40,30 L40,70" stroke="#2d5a4f" stroke-width="2" fill="none" />
+<path d="M60,30 L60,70" stroke="#2d5a4f" stroke-width="2" fill="none" />
 </svg>
 </div>
 <h3>دعم متعدد التنسيقات</h3>
@@ -381,28 +381,28 @@ lang = "ar"
 <!-- Tab Interface for Details -->
 <div class="details-tabs" role="tablist" aria-label="قدرات AutoRAG" style="display: flex; justify-content: center; margin-bottom: 3rem; border-bottom: 2px solid rgba(184, 160, 128, 0.2);">
     <button id="tab1-trigger" class="tab-trigger" role="tab" aria-selected="true" aria-controls="tab1-content" style="background: none; border: none; color: #1e3a2b; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid var(--color-accent-primary, #b8a080); transition: all 0.3s ease;">عملية إنشاء البيانات</button>
-    <button id="tab2-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab2-content" style="background: none; border: none; color: #718096; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">تقييم الاسترجاع</button>
-    <button id="tab3-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab3-content" style="background: none; border: none; color: #718096; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">تحسين التوليد</button>
+    <button id="tab2-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab2-content" style="background: none; border: none; color: #8b7659; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">تقييم الاسترجاع</button>
+    <button id="tab3-trigger" class="tab-trigger" role="tab" aria-selected="false" aria-controls="tab3-content" style="background: none; border: none; color: #8b7659; font-size: 1.1rem; font-weight: 600; padding: 1rem 2rem; margin: 0 1rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease;">تحسين التوليد</button>
 </div>
 
 <div class="tab-content-container">
 <!-- Tab 1 Content -->
 <div id="tab1-content" role="tabpanel" aria-labelledby="tab1-trigger" class="tab-content active">
 <h3 style="color: #1e3a2b; font-size: 1.5rem; margin-bottom: 1rem;">معالجة المستندات الذكية وإنشاء البيانات</h3>
-<p style="font-size: 1.125rem; margin-bottom: 2rem; color: #4a5568;">تحول أنابيب معالجة المستندات في AutoRAG محتواك الخام إلى مجموعات بيانات محسنة من خلال عملية شاملة من أربع مراحل: تحليل المستندات، والتقسيم الذكي، وإنشاء المجموعة، وإنشاء مجموعة بيانات الأسئلة والأجوبة تلقائياً.</p>
+<p style="font-size: 1.125rem; margin-bottom: 2rem; color: #2d3c34;">تحول أنابيب معالجة المستندات في AutoRAG محتواك الخام إلى مجموعات بيانات محسنة من خلال عملية شاملة من أربع مراحل: تحليل المستندات، والتقسيم الذكي، وإنشاء المجموعة، وإنشاء مجموعة بيانات الأسئلة والأجوبة تلقائياً.</p>
 
 <!-- Document Processing Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
 <object data="/images/autorag-clean-test.svg" type="image/svg+xml" style="width: 100%; max-width: 800px; height: auto;">
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-clean-test.svg" alt="عملية إنشاء بيانات AutoRAG" style="width: 100%; max-width: 800px; height: auto;" />
+<img src="/images/autorag-clean-test.svg" alt="عملية إنشاء بيانات AutoRAG" style="width: 100%; max-width: 800px; height: auto;" />
 </object>
-<p style="text-align: center; margin-top: 10px; color: #8C9DB5; font-size: 14px;">عملية إنشاء البيانات الشاملة لـ AutoRAG تحول المستندات الخام إلى مجموعة محسنة ومجموعات بيانات الأسئلة والأجوبة</p>
+<p style="text-align: center; margin-top: 10px; color: #8b7659; font-size: 14px;">عملية إنشاء البيانات الشاملة لـ AutoRAG تحول المستندات الخام إلى مجموعة محسنة ومجموعات بيانات الأسئلة والأجوبة</p>
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
 <div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
-<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<div style="margin-right: 15px; color: #2d5a4f; font-size: 24px;">
 <i class="fas fa-file-alt"></i>
 </div>
 <div>
@@ -413,7 +413,7 @@ lang = "ar"
 </div>
 <div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
-<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<div style="margin-right: 15px; color: #2d5a4f; font-size: 24px;">
 <i class="fas fa-cut"></i>
 </div>
 <div>
@@ -428,17 +428,17 @@ lang = "ar"
 <!-- Tab 2 Content -->
 <div id="tab2-content" role="tabpanel" aria-labelledby="tab2-trigger" class="tab-content" hidden>
 <h3 style="color: #1e3a2b; font-size: 1.5rem; margin-bottom: 1rem;">تقييم الاسترجاع الشامل</h3>
-<p style="font-size: 1.125rem; margin-bottom: 2rem; color: #4a5568;">يقيم نظام AutoRAG الخاص بنا تلقائياً استراتيجيات استرجاع متعددة للعثور على النهج الأمثل لبياناتك المحددة وحالة الاستخدام.</p>
+<p style="font-size: 1.125rem; margin-bottom: 2rem; color: #2d3c34;">يقيم نظام AutoRAG الخاص بنا تلقائياً استراتيجيات استرجاع متعددة للعثور على النهج الأمثل لبياناتك المحددة وحالة الاستخدام.</p>
 
 <!-- Vector Embedding Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-vector-embedding.svg" alt="تصور التضمين المتجه" style="width: 100%; max-width: 600px; height: auto;" />
+<img src="/images/autorag-vector-embedding.svg" alt="تصور التضمين المتجه" style="width: 100%; max-width: 600px; height: auto;" />
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
 <div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
-<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<div style="margin-right: 15px; color: #2d5a4f; font-size: 24px;">
 <i class="fas fa-search"></i>
 </div>
 <div>
@@ -449,7 +449,7 @@ lang = "ar"
 </div>
 <div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
-<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<div style="margin-right: 15px; color: #2d5a4f; font-size: 24px;">
 <i class="fas fa-database"></i>
 </div>
 <div>
@@ -464,17 +464,17 @@ lang = "ar"
 <!-- Tab 3 Content -->
 <div id="tab3-content" role="tabpanel" aria-labelledby="tab3-trigger" class="tab-content" hidden>
 <h3 style="color: #1e3a2b; font-size: 1.5rem; margin-bottom: 1rem;">تحسين التوليد والتقييم</h3>
-<p style="font-size: 1.125rem; margin-bottom: 2rem; color: #4a5568;">يقيم نظام التحسين المتقدم في AutoRAG استراتيجيات توليد متعددة للعثور على التكوين الأمثل لبياناتك المحددة وحالة الاستخدام.</p>
+<p style="font-size: 1.125rem; margin-bottom: 2rem; color: #2d3c34;">يقيم نظام التحسين المتقدم في AutoRAG استراتيجيات توليد متعددة للعثور على التكوين الأمثل لبياناتك المحددة وحالة الاستخدام.</p>
 
 <!-- Retrieval Optimization Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-retrieval-optimization.svg" alt="تصور تحسين الاسترجاع" style="width: 100%; max-width: 600px; height: auto;" />
+<img src="/images/autorag-retrieval-optimization.svg" alt="تصور تحسين الاسترجاع" style="width: 100%; max-width: 600px; height: auto;" />
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
 <div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
-<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<div style="margin-right: 15px; color: #2d5a4f; font-size: 24px;">
 <i class="fas fa-cogs"></i>
 </div>
 <div>
@@ -485,7 +485,7 @@ lang = "ar"
 </div>
 <div class="feature-item" style="background: rgba(30, 45, 102, 0.1); border-radius: 10px; padding: 20px; border: 1px solid rgba(184, 160, 128, 0.2);">
 <div style="display: flex; align-items: flex-start;">
-<div style="margin-right: 15px; color: #4a7c8a; font-size: 24px;">
+<div style="margin-right: 15px; color: #2d5a4f; font-size: 24px;">
 <i class="fas fa-check-circle"></i>
 </div>
 <div>
@@ -568,7 +568,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set all tabs as unselected
     tabs.forEach(tab => {
       tab.setAttribute('aria-selected', 'false');
-      tab.style.color = '#718096';
+      tab.style.color = '#8b7659';
       tab.style.borderBottomColor = 'transparent';
     });
     
@@ -660,7 +660,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .tab-trigger[aria-selected="false"] {
-    color: #718096 !important;
+    color: #8b7659 !important;
     border-bottom-color: transparent !important;
 }
 
@@ -730,7 +730,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">قصص النجاح</h2>
 
-<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
+<div style="background: rgba(248, 244, 240, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
 <h3 style="color: #1e3a2b; font-size: 2rem; margin-bottom: 1rem;">شركة خدمات مالية عالمية</h3>
 <p style="font-size: 1.25rem; color: #2d3c34; margin-bottom: 2rem; font-weight: 600;">انخفاض بنسبة 87% في هلوسات الذكاء الاصطناعي أثناء معالجة أكثر من 15000 استعلام يومي من العملاء</p>
 <p style="margin-bottom: 2rem;">احتاجت شركة خدمات مالية رائدة إلى دمج أكثر من 200000 وثيقة تنظيمية وسياسة داخلية في مساعد الذكاء الاصطناعي الموجه للعملاء. قُدر تنفيذ RAG اليدوي بأكثر من 8 أشهر. باستخدام AutoRAG، أكملوا التكامل في 3 أسابيع وحققوا دقة غير مسبوقة لأسئلة الامتثال التنظيمي.</p>
@@ -801,8 +801,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <div style="margin-bottom: 1rem;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
 <circle cx="12" cy="12" r="11" fill="none" stroke="#1e3a2b" stroke-width="1" opacity="0.2"/>
-<rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="#4a7c8a" stroke-width="2"/>
-<path d="M9,12 L11,14 L15,10" stroke="#4a7c8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="#2d5a4f" stroke-width="2"/>
+<path d="M9,12 L11,14 L15,10" stroke="#2d5a4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 </div>
 <h3>ضمان جودة LLM</h3>

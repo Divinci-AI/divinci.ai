@@ -1,5 +1,5 @@
 +++
-title = "المدونة | Divinci AI"
+title = "المدونة"
 description = "رؤى وتحديثات وقيادة فكرية حول الذكاء الاصطناعي وأنظمة RAG ومستقبل التعاون بين الإنسان والذكاء الاصطناعي."
 template = "blog.html"
 sort_by = "date"

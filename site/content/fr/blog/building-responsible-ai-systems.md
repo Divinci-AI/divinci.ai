@@ -100,7 +100,7 @@ Les humains doivent maintenir un contrôle significatif sur les systèmes d'IA :
 
 ## Implémentation d'IA Responsable à Travers le Cycle de Vie de Développement
 
-![Cadre d'IA Responsable](images/AI-Standards-Hub-Logo_04-1.png)
+![[Cadre d'IA Responsable]](/images/AI-Standards-Hub-Logo_04-1.png)
 *Un cadre complet pour implémenter les pratiques d'IA responsable*
 
 ### Planification et Conception
@@ -199,7 +199,7 @@ Des structures de gouvernance efficaces sont essentielles pour maintenir les pra
 
 **Réponse aux Incidents** : Établir des procédures claires pour adresser les problèmes liés à l'IA.
 
-![Diagramme d'Explicabilité du Modèle](images/qa-pipeline-diagram.svg)
+![[Diagramme d'Explicabilité du Modèle]](/images/qa-pipeline-diagram.svg)
 *Implémentation de l'explicabilité et de la surveillance à travers le pipeline d'IA*
 
 ## Équilibrer Innovation et Responsabilité

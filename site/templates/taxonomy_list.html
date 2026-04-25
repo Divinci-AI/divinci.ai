@@ -9,7 +9,7 @@
     <div class="container">
         <div class="taxonomy-hero-content">
             <h1 class="taxonomy-title">{{ taxonomy.name | title }}</h1>
-            <p class="taxonomy-subtitle">Browse content organized by {{ taxonomy.name }}.</p>
+            <p class="taxonomy-subtitle">{{ translations.taxonomy.browse_by | default(value="Browse content organized by") }} {{ taxonomy.name }}.</p>
         </div>
     </div>
 </section>
@@ -22,11 +22,11 @@
                 <div class="taxonomy-item">
                     <a href="{{ term.permalink | safe }}" class="taxonomy-link">
                         <h3 class="taxonomy-item-name">{{ term.name }}</h3>
-                        <p class="taxonomy-item-count">{{ term.pages | length }} 
+                        <p class="taxonomy-item-count">{{ term.pages | length }}
                             {% if term.pages | length == 1 %}
-                                post
+                                {{ translations.taxonomy.post_singular | default(value="post") }}
                             {% else %}
-                                posts
+                                {{ translations.taxonomy.post_plural | default(value="posts") }}
                             {% endif %}
                         </p>
                     </a>
@@ -79,7 +79,7 @@
 }
 
 .taxonomy-item {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);

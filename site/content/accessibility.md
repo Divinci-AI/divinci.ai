@@ -78,8 +78,7 @@ We are actively working to address any accessibility barriers. Currently known i
 We welcome feedback on the accessibility of our website. If you encounter any accessibility barriers or have suggestions for improvement:
 
 **Email**: accessibility@divinci.ai  
-**Phone**: +1 (555) 123-4567  
-**Mail**: Divinci AI Accessibility Team, 312 Arivona Ave, Santa Monica, CA 90401
+**Mail**: Divinci AI Accessibility Team, 312 Arizona Ave, Santa Monica, CA 90401
 
 ### When contacting us, please include:
 - The specific page or feature you're having trouble with

@@ -23,6 +23,9 @@
                 <a href="{{ config.extra.github }}" target="_blank" rel="noopener" title="GitHub" aria-label="View our GitHub">
                     <i class="fab fa-github" aria-hidden="true"></i>
                 </a>
+                <a href="{{ config.extra.huggingface }}" target="_blank" rel="noopener" title="Hugging Face" aria-label="See our open vindex artifacts on Hugging Face">
+                    <img src="{{ get_url(path='brand/huggingface/hf-logo-monochrome.svg') }}" alt="" class="footer-social-img" width="22" height="22">
+                </a>
                 <a href="{{ config.extra.discord }}" target="_blank" rel="noopener" title="Discord Community" aria-label="Join our Discord community">
                     <i class="fab fa-discord" aria-hidden="true"></i>
                 </a>
@@ -32,63 +35,81 @@
         <div class="footer-section">
             <h3>{{ translations.footer.sections.product.title | default(value="Product") }}</h3>
             <ul>
-                <li><a href="#features">{{ translations.footer.sections.product.links.features | default(value="Features") }}</a></li>
+                {# autorag — translated in ES, FR, AR #}
                 <li><a href="{% if current_lang == 'en' %}/autorag/{% else %}/{{ current_lang }}/autorag/{% endif %}">{{ translations.footer.sections.product.links.autorag | default(value="AutoRAG") }}</a></li>
+                {# rag-arena — translated in ES, FR, AR (stubs created in Run 52) #}
                 <li><a href="{% if current_lang == 'en' %}/rag-arena/{% else %}/{{ current_lang }}/rag-arena/{% endif %}">RAG Arena</a></li>
+                {# quality-assurance — translated in ES, FR, AR #}
                 <li><a href="{% if current_lang == 'en' %}/quality-assurance/{% else %}/{{ current_lang }}/quality-assurance/{% endif %}">{{ translations.footer.sections.product.links.quality_assurance | default(value="Quality Assurance") }}</a></li>
+                {# release-management — translated in ES, FR, AR #}
                 <li><a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">{{ translations.footer.sections.product.links.release_management | default(value="Release Management") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/pricing{% else %}/{{ current_lang }}/pricing{% endif %}">{{ translations.footer.sections.product.links.pricing | default(value="Pricing") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/roadmap{% else %}/{{ current_lang }}/roadmap{% endif %}">{{ translations.footer.sections.product.links.roadmap | default(value="Roadmap") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/changelog{% else %}/{{ current_lang }}/changelog{% endif %}">{{ translations.footer.sections.product.links.changelog | default(value="Changelog") }}</a></li>
+                <li><a href="{% if current_lang == 'en' %}/compliance/{% else %}/{{ current_lang }}/compliance/{% endif %}">{{ translations.footer.sections.product.links.ai_compliance | default(value="AI Compliance") }}</a></li>
             </ul>
         </div>
 
         <div class="footer-section">
             <h3>{{ translations.footer.sections.resources.title | default(value="Resources") }}</h3>
             <ul>
-                <li><a href="{% if current_lang == 'en' %}/docs{% else %}/{{ current_lang }}/docs{% endif %}">{{ translations.footer.sections.resources.links.documentation | default(value="Documentation") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/blog{% else %}/{{ current_lang }}/blog{% endif %}">{{ translations.footer.sections.resources.links.blog | default(value="Blog") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/tutorials{% else %}/{{ current_lang }}/tutorials{% endif %}">{{ translations.footer.sections.resources.links.tutorials | default(value="Tutorials") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/api{% else %}/{{ current_lang }}/api{% endif %}">{{ translations.footer.sections.resources.links.api | default(value="API") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/support{% else %}/{{ current_lang }}/support{% endif %}">{{ translations.footer.sections.resources.links.support | default(value="Support") }}</a></li>
+                {# docs — translated in ES and FR only #}
+                <li><a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">{{ translations.footer.sections.resources.links.documentation | default(value="Documentation") }}</a></li>
+                {# blog — translated in ES, FR, AR #}
+                <li><a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}">{{ translations.footer.sections.resources.links.blog | default(value="Blog") }}</a></li>
+                {# tutorials — translated in ES and FR only #}
+                <li><a href="{% if current_lang == 'en' %}/tutorials/{% else %}/{{ current_lang }}/tutorials/{% endif %}">{{ translations.footer.sections.resources.links.tutorials | default(value="Tutorials") }}</a></li>
+                <li><a href="{% if current_lang == 'en' %}/api/{% else %}/{{ current_lang }}/api/{% endif %}">{{ translations.footer.sections.resources.links.api | default(value="API") }}</a></li>
+                {# support — translated in ES, FR, AR (AR stub created in Run 52) #}
+                <li><a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}">{{ translations.footer.sections.resources.links.support | default(value="Support") }}</a></li>
             </ul>
         </div>
 
         <div class="footer-section">
             <h3>{{ translations.footer.sections.company.title | default(value="Company") }}</h3>
             <ul>
-                <li><a href="{% if current_lang == 'en' %}/about{% else %}/{{ current_lang }}/about{% endif %}">{{ translations.footer.sections.company.links.about | default(value="About Us") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/careers{% else %}/{{ current_lang }}/careers{% endif %}">{{ translations.footer.sections.company.links.careers | default(value="Careers") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/contact{% else %}/{{ current_lang }}/contact{% endif %}">{{ translations.footer.sections.company.links.contact | default(value="Contact") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/press{% else %}/{{ current_lang }}/press{% endif %}">{{ translations.footer.sections.company.links.press | default(value="Press") }}</a></li>
+                {# about — translated in ES only #}
+                <li><a href="{% if current_lang == 'en' %}/about/{% else %}/{{ current_lang }}/about/{% endif %}">{{ translations.footer.sections.company.links.about | default(value="About Us") }}</a></li>
+                {# careers — translated in ES only #}
+                <li><a href="{% if current_lang == 'en' %}/careers/{% else %}/{{ current_lang }}/careers/{% endif %}">{{ translations.footer.sections.company.links.careers | default(value="Careers") }}</a></li>
+                {# contact — translated in ES only #}
+                <li><a href="{% if current_lang == 'en' %}/contact/{% else %}/{{ current_lang }}/contact/{% endif %}">{{ translations.footer.sections.company.links.contact | default(value="Contact") }}</a></li>
+                {# press — translated in ES, FR, AR #}
+                <li><a href="{% if current_lang == 'en' %}/press/{% else %}/{{ current_lang }}/press/{% endif %}">{{ translations.footer.sections.company.links.press | default(value="Press") }}</a></li>
+                {# pricing — translated in ES only #}
+                <li><a href="{% if current_lang == 'en' %}/pricing/{% else %}/{{ current_lang }}/pricing/{% endif %}">{{ translations.footer.sections.product.links.pricing | default(value="Pricing") }}</a></li>
             </ul>
         </div>
 
         <div class="footer-section">
             <h3>{{ translations.footer.sections.legal.title | default(value="Legal") }}</h3>
             <ul>
+                {# terms-of-service — translated in ES, FR, AR #}
                 <li><a href="{% if current_lang == 'en' %}/terms-of-service/{% else %}/{{ current_lang }}/terms-of-service/{% endif %}">{{ translations.footer.sections.legal.links.terms | default(value="Terms of Service") }}</a></li>
+                {# privacy-policy — translated in ES, FR, AR #}
                 <li><a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}">{{ translations.footer.sections.legal.links.privacy | default(value="Privacy Policy") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/ai-safety{% else %}/{{ current_lang }}/ai-safety{% endif %}">{{ translations.footer.sections.legal.links.ai_safety | default(value="AI Safety & Ethics") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/security{% else %}/{{ current_lang }}/security{% endif %}">{{ translations.footer.sections.legal.links.security | default(value="Security") }}</a></li>
+                {# ai-safety — translated in ES only #}
+                <li><a href="{% if current_lang == 'en' %}/ai-safety/{% else %}/{{ current_lang }}/ai-safety/{% endif %}">{{ translations.footer.sections.legal.links.ai_safety | default(value="AI Safety & Ethics") }}</a></li>
+                {# security — translated in ES only #}
+                <li><a href="{% if current_lang == 'en' %}/security/{% else %}/{{ current_lang }}/security/{% endif %}">{{ translations.footer.sections.legal.links.security | default(value="Security") }}</a></li>
             </ul>
         </div>
+
     </div>
 
     <div class="footer-bottom">
         <div class="footer-bottom-content">
             <p class="copyright">
-                © 2023-{{ now() | date(format="%Y") }} Divinci AI. All rights reserved.
+                © 2023-{{ now() | date(format="%Y") }} Divinci AI. {{ translations.footer.bottom.rights_reserved | default(value="All rights reserved.") }}
             </p>
             <div class="footer-bottom-links">
-                <a href="{% if current_lang == 'en' %}/sitemap{% else %}/{{ current_lang }}/sitemap{% endif %}">{{ translations.footer.bottom.links.sitemap | default(value="Sitemap") }}</a>
-                <a href="{% if current_lang == 'en' %}/accessibility{% else %}/{{ current_lang }}/accessibility{% endif %}">{{ translations.footer.bottom.links.accessibility | default(value="Accessibility") }}</a>
+                {# sitemap — translated in ES only #}
+                <a href="{% if current_lang == 'en' %}/sitemap/{% else %}/{{ current_lang }}/sitemap/{% endif %}">{{ translations.footer.bottom.links.sitemap | default(value="Sitemap") }}</a>
+                {# accessibility — translated in ES only #}
+                <a href="{% if current_lang == 'es' %}/es/accessibility/{% else %}/accessibility/{% endif %}">{{ translations.footer.bottom.links.accessibility | default(value="Accessibility") }}</a>
                 <div class="privacy-dropdown">
                     <button class="privacy-settings-link" aria-expanded="false" aria-haspopup="true">{{ translations.footer.bottom.privacy_settings | default(value="Privacy Settings") }}</button>
                     <div class="privacy-dropdown-content" role="menu">
-                        <a href="{% if current_lang == 'en' %}/cookies{% else %}/{{ current_lang }}/cookies{% endif %}">{{ translations.footer.bottom.cookie_policy | default(value="Cookie Policy") }}</a>
+                        {# cookies — translated in ES only #}
+                        <a href="{% if current_lang == 'es' %}/es/cookies/{% else %}/cookies/{% endif %}">{{ translations.footer.bottom.cookie_policy | default(value="Cookie Policy") }}</a>
                         <button onclick="window.gdprCompliance?.showCookieBanner()">{{ translations.footer.bottom.cookie_preferences | default(value="Cookie Preferences") }}</button>
-                        <a href="{% if current_lang == 'en' %}/privacy-policy{% else %}/{{ current_lang }}/privacy-policy{% endif %}">Privacy Policy</a>
                     </div>
                 </div>
             </div>

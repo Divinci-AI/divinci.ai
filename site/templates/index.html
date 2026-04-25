@@ -6,6 +6,8 @@
   {{ translations.meta.title | default(value="Divinci AI - Excellence, every time") }}
 {% endblock %}
 
+{% block og_title %}{{ translations.meta.title | default(value="Divinci AI - Excellence, every time") }}{% endblock %}
+
 {% block content %}
 
 <section class="hero">
@@ -27,7 +29,7 @@
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-robot-chat-interface.webm" type="video/webm">
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-robot_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__dba81638-02b0-4792-92f5-37ef95f8ceb0_0.mp4" type="video/mp4">
             </video>
-            <button id="sound-toggle">Unmute</button>
+            <button id="sound-toggle">{{ translations.hero.sound_unmute | default(value="Unmute") }}</button>
         </div>
         <div class="hero-text">
             <h1>
@@ -63,7 +65,7 @@
     <div class="enterprise-header">
         <h2 class="enterprise-title">
             <span class="desktop-title">{{ translations.enterprise.title | default(value="Enterprise AI, expertly managed") }}</span>
-            <span class="mobile-title">Enterprise AI,<br>expertly managed</span>
+            <span class="mobile-title">{{ translations.enterprise.title_line1 | default(value="Enterprise AI,") }}<br>{{ translations.enterprise.title_line2 | default(value="expertly managed") }}</span>
         </h2>
         <p class="section-intro">{{ translations.enterprise.description | default(value="Unlock robust release management and rigorous quality assurance for large language models. Our platform equips enterprises with advanced tools to streamline deployment, enforce compliance, and ensure consistent, high-quality AI performance at scale.") }}</p>
     </div>
@@ -554,46 +556,47 @@
                             <div class="sketch-area">
                                 <span class="feature-icon">
                                     <svg class="sacred-icon security-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M50 10 L75 25 L75 55 Q75 80, 50 90 Q25 80, 25 55 L25 25 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                                        <circle cx="50" cy="45" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
-                                        <rect x="47" y="45" width="6" height="15" fill="currentColor"/>
+                                        <ellipse cx="40" cy="22" rx="22" ry="6" fill="none" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M18 22 L18 78 M62 22 L62 78" fill="none" stroke="currentColor" stroke-width="2"/>
+                                        <ellipse cx="40" cy="78" rx="22" ry="6" fill="none" stroke="currentColor" stroke-width="2"/>
+                                        <ellipse cx="40" cy="42" rx="22" ry="6" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+                                        <ellipse cx="40" cy="58" rx="22" ry="6" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+                                        <path d="M70 30 L88 30 L88 90 L70 90 Q73 86, 73 80 Q73 74, 70 70 Q73 66, 73 60 Q73 54, 70 50 Q73 46, 73 40 Q73 34, 70 30 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M75 42 L84 42 M75 50 L84 50 M75 58 L84 58 M75 66 L84 66 M75 74 L84 74" stroke="currentColor" stroke-width="1" opacity="0.55"/>
                                     </svg>
                                 </span>
                                 <svg class="davinci-sketch" viewBox="0 0 200 200">
-                                    <!-- Fortress/Lock Mechanism Study -->
-                                    <!-- Main fortress structure -->
-                                    <path d="M 50 140 L 50 80 L 70 60 L 100 50 L 130 60 L 150 80 L 150 140 Z" 
-                                          fill="none" stroke="#8b7355" stroke-width="0.8" opacity="0.6"/>
-                                    <!-- Central lock mechanism -->
-                                    <circle cx="100" cy="95" r="25" fill="none" stroke="#8b7355" stroke-width="0.7" opacity="0.5"/>
-                                    <circle cx="100" cy="95" r="18" fill="none" stroke="#8b7355" stroke-width="0.6" opacity="0.4"/>
-                                    <!-- Keyhole design -->
-                                    <path d="M 100 85 Q 95 87, 95 95 T 100 105 Q 105 103, 105 95 T 100 85" 
-                                          fill="#8b7355" opacity="0.2"/>
-                                    <rect x="97" y="95" width="6" height="15" fill="#8b7355" opacity="0.3"/>
-                                    <!-- Mechanism teeth/pins -->
-                                    <path d="M 75 95 L 80 95 M 120 95 L 125 95" stroke="#8b7355" stroke-width="0.5" opacity="0.4"/>
-                                    <path d="M 85 80 L 85 85 M 115 80 L 115 85" stroke="#8b7355" stroke-width="0.5" opacity="0.4"/>
-                                    <path d="M 85 105 L 85 110 M 115 105 L 115 110" stroke="#8b7355" stroke-width="0.5" opacity="0.4"/>
-                                    <!-- Defensive layers notation -->
-                                    <path d="M 40 150 L 40 70 L 60 50" stroke="#8b7355" stroke-width="0.4" opacity="0.3" stroke-dasharray="2,2"/>
-                                    <path d="M 160 150 L 160 70 L 140 50" stroke="#8b7355" stroke-width="0.4" opacity="0.3" stroke-dasharray="2,2"/>
-                                    <!-- Annotations -->
-                                    <text x="100" y="30" font-family="Kalam, cursive" font-size="9" fill="#8b7355" opacity="0.5" text-anchor="middle">Clavis Perfecta</text>
-                                    <text x="25" y="110" font-family="Kalam, cursive" font-size="7" fill="#8b7355" opacity="0.4" transform="rotate(-90 25 110)">stratum I</text>
-                                    <text x="175" y="110" font-family="Kalam, cursive" font-size="7" fill="#8b7355" opacity="0.4" transform="rotate(90 175 110)">stratum II</text>
-                                    <!-- Mathematical cipher notation -->
-                                    <text x="20" y="170" font-family="Kalam, cursive" font-size="7" fill="#8b7355" opacity="0.4">C = E(K, P) mod n</text>
-                                    <!-- Key teeth diagram -->
-                                    <path d="M 70 155 L 90 155 L 90 150 L 85 150 L 85 155 L 80 155 L 80 150 L 75 150 L 75 155 L 70 155" 
-                                          fill="none" stroke="#8b7355" stroke-width="0.5" opacity="0.4"/>
-                                    <text x="95" y="157" font-family="Kalam, cursive" font-size="6" fill="#8b7355" opacity="0.4">clavis</text>
+                                    <!-- Vindex compliance study: cylinder with tagged feature + audit scroll -->
+                                    <ellipse cx="70" cy="50" rx="40" ry="10" fill="none" stroke="#8b7355" stroke-width="0.8" opacity="0.55"/>
+                                    <path d="M 30 50 L 30 150 M 110 50 L 110 150" stroke="#8b7355" stroke-width="0.8" opacity="0.55"/>
+                                    <ellipse cx="70" cy="150" rx="40" ry="10" fill="none" stroke="#8b7355" stroke-width="0.8" opacity="0.55"/>
+                                    <ellipse cx="70" cy="78" rx="40" ry="10" fill="none" stroke="#8b7355" stroke-width="0.5" opacity="0.35" stroke-dasharray="1,2"/>
+                                    <ellipse cx="70" cy="100" rx="40" ry="10" fill="none" stroke="#8b7355" stroke-width="0.5" opacity="0.35" stroke-dasharray="1,2"/>
+                                    <ellipse cx="70" cy="122" rx="40" ry="10" fill="none" stroke="#8b7355" stroke-width="0.5" opacity="0.35" stroke-dasharray="1,2"/>
+                                    <circle cx="98" cy="120" r="3.5" fill="#8b7355" opacity="0.7"/>
+                                    <path d="M 102 120 L 130 110" stroke="#8b7355" stroke-width="0.4" opacity="0.5" stroke-dasharray="1.5,1.5"/>
+                                    <text x="132" y="113" font-family="Kalam, cursive" font-size="7" fill="#8b7355" opacity="0.6">F11179</text>
+                                    <text x="132" y="122" font-family="Kalam, cursive" font-size="6" fill="#8b7355" opacity="0.45">L27 · Paris→capital</text>
+                                    <path d="M 145 50 L 185 50 Q 188 50, 188 53 L 188 167 Q 188 170, 185 170 L 145 170 Q 142 170, 144 168 Q 147 165, 147 160 Q 147 155, 144 152 Q 147 149, 147 144 Q 147 138, 144 135 Q 147 132, 147 126 L 147 70 Q 147 65, 144 60 Q 147 55, 145 50 Z" fill="none" stroke="#8b7355" stroke-width="0.6" opacity="0.55"/>
+                                    <text x="151" y="65" font-family="Kalam, cursive" font-size="6" fill="#8b7355" opacity="0.55">DELETE</text>
+                                    <text x="151" y="75" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.45">layer=27</text>
+                                    <text x="151" y="83" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.45">feat=11179</text>
+                                    <line x1="151" y1="92" x2="184" y2="92" stroke="#8b7355" stroke-width="0.3" opacity="0.4"/>
+                                    <text x="151" y="103" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.45">before: 18.10</text>
+                                    <text x="151" y="111" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.45">after:  ABSENT</text>
+                                    <line x1="151" y1="120" x2="184" y2="120" stroke="#8b7355" stroke-width="0.3" opacity="0.4"/>
+                                    <text x="151" y="131" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.45">Δppl: +0.02%</text>
+                                    <text x="151" y="142" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.45">sha: 9abaeaf6</text>
+                                    <text x="151" y="155" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.4" font-style="italic">GDPR Art. 17</text>
+                                    <text x="151" y="163" font-family="Kalam, cursive" font-size="5" fill="#8b7355" opacity="0.4" font-style="italic">EU AI Act §13</text>
+                                    <text x="70" y="32" font-family="Kalam, cursive" font-size="9" fill="#8b7355" opacity="0.55" text-anchor="middle">Vindex Probata</text>
+                                    <text x="20" y="180" font-family="Kalam, cursive" font-size="7" fill="#8b7355" opacity="0.45">Δ_W = -α(d ⊗ k / ||k||²)</text>
                                 </svg>
                             </div>
-                            <div class="mirror-text">ytiruceS</div>
+                            <div class="mirror-text">aitneicifoR</div>
                             <div class="annotations">
-                                <span class="annotation top-right">Fortis</span>
-                                <span class="annotation bottom-left">Custodia</span>
+                                <span class="annotation top-right">Probatio</span>
+                                <span class="annotation bottom-left">Lex</span>
                             </div>
                             <div class="handwritten-notes"></div>
                             <div class="sketch-overlay"></div>
@@ -869,6 +872,9 @@
                 </svg>
             </div>
             <div class="feature-details">
+                <div class="journal-progress" aria-hidden="true">
+                    <div class="journal-progress-fill"></div>
+                </div>
                 <div class="feature-content active" data-feature="multiplayer">
                     <h3>{{ translations.features.list.multiplayer.title | default(value="Multiplayer") }}</h3>
                     <p>{{ translations.features.list.multiplayer.description | default(value="Enable multi-stakeholder collaboration with shared AI workspaces for cross-functional teams.") }}</p>
@@ -998,8 +1004,10 @@
                     </div>
                 </div>
                 <div class="feature-content" data-feature="enterprise_security">
-                    <h3>{{ translations.features.list.enterprise_security.title | default(value="Enterprise Security") }}</h3>
-                    <p>{{ translations.features.list.enterprise_security.description | default(value="Secure all data and conversations with end-to-end encryption, access controls, and comprehensive auditing.") }}</p>
+                    <h3>Compliance, with receipts</h3>
+                    <span class="feature-content-eu-badge"><img src="/brand/regulators/eu-flag.svg" alt="">EU AI Act · Annex IV ready</span>
+                    <p>Most AI compliance stops at access logs and prompt-level guardrails. <strong>LarQL goes inside the model.</strong> Every entity association is a queryable feature in the vindex; every edit is a portable, auditable rank-1 patch. <strong>GDPR Article 17</strong> right-to-erasure with verifiable proof. <strong>EU AI Act Annex IV</strong> technical documentation generated from the vindex itself. The model becomes the audit trail.</p>
+                    <a href="{% if current_lang == 'en' %}/compliance/{% else %}/{{ current_lang }}/compliance/{% endif %}" class="feature-content-cta">See how it works →</a>
                     <div class="journal-navigation">
                         <button class="nav-button nav-prev" aria-label="Previous page">
                             <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
@@ -1194,6 +1202,66 @@
     </div>
 </section>
 
+<!-- ▼ Open Research trust band — added during research-section convergence ▼ -->
+<section class="research-band" aria-labelledby="research-band-title">
+  <div class="research-band-content">
+    <div class="research-band-text">
+      <span class="research-band-eyebrow">Open Research</span>
+      <h2 id="research-band-title">Open weights, open patches,<br>open vindexes.</h2>
+      <p>We publish <strong>vindexes</strong> — queryable feature databases extracted from open transformers — for every model we use. <strong>Eight live on Hugging Face today</strong>, spanning four model families and four organizations, plus two natively-trained 1-bit dissolution controls.</p>
+      <p>The viewer lets you orbit the FFN feature space in 3D. The blog series walks the universal-constants → surgical-edit → 1-bit-dissolution arc. <a href="https://github.com/Divinci-AI/larql">LarQL</a> is open-source.</p>
+      <div class="research-band-cta">
+        <a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}" class="research-cta-primary">Read the research →</a>
+        <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener" class="research-cta-secondary">Browse on Hugging Face</a>
+      </div>
+    </div>
+    <div class="research-band-visual">
+      <a href="https://huggingface.co/spaces/Divinci-AI/vindex-viewer" target="_blank" rel="noopener" aria-label="Open the live vindex viewer in a new tab">
+        <video class="research-band-visual-video"
+               autoplay muted loop playsinline webkit-playsinline preload="metadata"
+               poster="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_v2_poster.webp"
+               aria-label="Looping animation: structured fp16 transformer (left) with synapse firings cascading through layered circuit; dissolved 1-bit transformer (right) with no concentrated structure">
+          <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_loop.webm" type="video/webm">
+          <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_loop.mp4" type="video/mp4">
+        </video>
+        <span class="research-band-visual-overlay">▶ &nbsp;Open the live viewer</span>
+      </a>
+    </div>
+  </div>
+  <div class="research-band-logos" aria-label="Model families with published vindexes">
+    <span class="research-band-logos-label">Working across</span>
+    <ul>
+      <li title="Gemma — Google" class="research-band-logo-brand-color"><img src="/brand/companies/google.svg" alt="Google (Gemma)"><span>Gemma</span></li>
+      <li title="Qwen"><img src="/brand/companies/qwen.svg" alt="Qwen"><span>Qwen</span></li>
+      <li title="Llama — Meta"><img src="/brand/companies/meta.svg" alt="Meta (Llama)"><span>Llama</span></li>
+      <li title="Mistral"><img src="/brand/companies/mistralai.svg" alt="Mistral AI"><span>Mistral</span></li>
+      <li title="OpenAI" class="research-band-logo-wide"><img src="/brand/companies/openai.svg" alt="OpenAI"></li>
+      <li title="Microsoft (BitNet)" class="research-band-logo-brand-color"><img src="/brand/companies/microsoft.svg" alt="Microsoft"><span>Microsoft</span></li>
+    </ul>
+  </div>
+  <div class="research-showcase-cards research-band-cards">
+    <a href="/blog/architecture-every-llm-converges-to/" class="research-card">
+      <div class="research-card-image"><img src="/images/charts/chart-c4-layer-temperature.svg" alt=""></div>
+      <h3>The Architecture Every Language Model Converges To</h3>
+      <p>Three numbers that hold within ±15% across 8 models from 4 organizations. One vanishes the moment you go to 1-bit weights.</p>
+      <span class="research-card-meta">Part I · 7 min read</span>
+    </a>
+    <a href="/blog/deleting-paris-from-a-language-model/" class="research-card">
+      <div class="research-card-image"><img src="/images/charts/chart-paris-surgical-edit.svg" alt=""></div>
+      <h3>Deleting Paris from a Language Model</h3>
+      <p>A single rank-1 weight patch suppresses one fact at +0.02% perplexity. Audit-trail included.</p>
+      <span class="research-card-meta">Part II · 8 min read</span>
+    </a>
+    <a href="/blog/when-the-circuit-dissolves/" class="research-card">
+      <div class="research-card-image"><img src="/images/charts/chart-1bit-dissolution.svg" alt=""></div>
+      <h3>When the Circuit Dissolves</h3>
+      <p>Two natively-trained 1-bit models, two organizations, same anomaly: structure gone, behavior survived.</p>
+      <span class="research-card-meta">Part III · 7 min read</span>
+    </a>
+  </div>
+</section>
+<!-- ▲ Open Research trust band end ▲ -->
+
 <section class="team-section" id="team">
     <div class="team-container">
         <div class="team-header">
@@ -1253,7 +1321,7 @@
                 <h3>Sierra Hooshiari</h3>
                 <p class="role">{{ translations.team.roles.coo | default(value="Co-Founder & CMO") }}</p>
                 <p class="bio">
-                    {{ translations.team.members.sierra_bio | default(value="Cornell University graduate with extensive experience in financial services and entrepreneurship. Former M&A Associate and founder of BrainPOP Clean Energy, bringing strategic business development and operations expertise to AI venture scaling.") }}
+                    {{ translations.team.members.sierra_bio | default(value="Cornell University graduate with extensive experience in financial services and entrepreneurship. Former M&A Associate and founder of BrainPOP Clean Energy, bringing strategic business development and operations expertise to AI venture scaling.") | safe }}
                 </p>
                 <a href="https://linkedin.com/in/sierrahooshiari" class="social-link">
                     <i class="fab fa-linkedin"></i>
@@ -1321,10 +1389,10 @@
                             </video>
                         </div>
                         <div class="news-card-content">
-                            <span class="news-date">October 5, 2025</span>
-                            <h3>Divinci AI Joins Cloudflare's Workers Launchpad Cohort #6</h3>
-                            <p>We're excited to announce our acceptance into Cloudflare's prestigious Workers Launchpad accelerator program. Learn how we're leveraging Cloudflare's edge computing platform to build sophisticated RAG pipelines.</p>
-                            <span class="read-more">Read more →</span>
+                            <span class="news-date">{{ translations.news.cloudflare_date | default(value="October 5, 2025") }}</span>
+                            <h3>{{ translations.news.cloudflare_title | default(value="Divinci AI Joins Cloudflare's Workers Launchpad Cohort #6") }}</h3>
+                            <p>{{ translations.news.cloudflare_excerpt | default(value="We're excited to announce our acceptance into Cloudflare's prestigious Workers Launchpad accelerator program. Learn how we're leveraging Cloudflare's edge computing platform to build sophisticated RAG pipelines.") }}</p>
+                            <span class="read-more">{{ translations.news.read_more | default(value="Read more →") }}</span>
                         </div>
                     </a>
                 </div>
@@ -1336,10 +1404,10 @@
                             <img src="{{ get_url(path="images/ai-for-impact-1.avif") }}" alt="AI for Good Impact">
                         </div>
                         <div class="news-card-content">
-                            <span class="news-date">AI for Good</span>
+                            <span class="news-date">{{ translations.news.ai_for_good_tag | default(value="AI for Good") }}</span>
                             <h3>{{ translations.ai_for_good.title | default(value="Building Responsible AI") }}</h3>
                             <p>{{ translations.ai_for_good.description | default(value="We're committed to developing responsible AI that benefits humanity. Our platform is designed with strong ethical principles, transparency, and a focus on empowering people, not replacing them.") }}</p>
-                            <span class="read-more">Learn more →</span>
+                            <span class="read-more">{{ translations.news.learn_more | default(value="Learn more →") }}</span>
                         </div>
                     </a>
                 </div>
@@ -1380,8 +1448,8 @@
                     <div class="faq-answer">
                         <p>{{ translations.expert_answers.faqs.language_models.answer | default(value="Our platform supports a broad spectrum of large language models, from open-source to proprietary architectures. We support fine-tuning and base models from OpenAI, AWS Bedrock, Google Vertex AI, and Cloudflare Workers AI.") }}</p>
                         <p style="margin-top: 1rem;">
-                            <a href="/support/#language-model-compatibility" style="color: #6b46c1; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem;">
-                                View complete model compatibility list
+                            <a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}#language-model-compatibility" style="color: #6b46c1; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem;">
+                                {{ translations.expert_answers.faqs.language_models.model_compat_link | default(value="View complete model compatibility list") }}
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M7 17L17 7M17 7H7M17 7V17"/>
                                 </svg>
@@ -1625,9 +1693,87 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Initialize first page as active
+    // ── Auto-advance: setTimeout drives navigation, CSS animates the bar ──
+    const progressFill = document.querySelector('.journal-progress-fill');
+    const journalShowcaseEl = document.getElementById('journal-showcase');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ADVANCE_MS = 9000; // must match --journal-progress-duration in CSS
+
+    let advanceTimer = null;
+    let isUserHovering = false;
+
+    function resetBar() {
+        if (!progressFill) return;
+        progressFill.classList.remove('is-running');
+        void progressFill.offsetWidth; // force reflow to reset animation
+        progressFill.classList.add('is-running');
+    }
+
+    function scheduleAdvance() {
+        clearTimeout(advanceTimer);
+        advanceTimer = setTimeout(() => {
+            if (!isUserHovering && !document.hidden) {
+                const nextIndex = currentPageIndex >= journalPages.length - 1 ? 0 : currentPageIndex + 1;
+                navigateToPage(nextIndex);
+            }
+        }, ADVANCE_MS);
+    }
+
+    function startAutoAdvance() {
+        if (prefersReducedMotion || !progressFill) return;
+        resetBar();
+        scheduleAdvance();
+    }
+
+    if (!prefersReducedMotion && progressFill) {
+        // Restart on every navigation (wraps the original function)
+        const _nav = navigateToPage;
+        navigateToPage = function(idx) {
+            _nav(idx);
+            startAutoAdvance();
+        };
+        window.navigateToPage = navigateToPage;
+
+        // Pause on hover/focus
+        if (journalShowcaseEl) {
+            journalShowcaseEl.addEventListener('mouseenter', () => {
+                isUserHovering = true;
+                clearTimeout(advanceTimer);
+                if (progressFill) progressFill.classList.add('is-paused');
+            });
+            journalShowcaseEl.addEventListener('mouseleave', () => {
+                isUserHovering = false;
+                if (progressFill) progressFill.classList.remove('is-paused');
+                startAutoAdvance();
+            });
+            journalShowcaseEl.addEventListener('focusin', () => {
+                isUserHovering = true;
+                clearTimeout(advanceTimer);
+                if (progressFill) progressFill.classList.add('is-paused');
+            });
+            journalShowcaseEl.addEventListener('focusout', () => {
+                isUserHovering = false;
+                if (progressFill) progressFill.classList.remove('is-paused');
+                startAutoAdvance();
+            });
+        }
+
+        // Pause when tab is hidden
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearTimeout(advanceTimer);
+                if (progressFill) progressFill.classList.add('is-paused');
+            } else if (!isUserHovering) {
+                if (progressFill) progressFill.classList.remove('is-paused');
+                startAutoAdvance();
+            }
+        });
+    }
+
+    // Initialize first page as active, then kick off auto-advance
     navigateToPage(0);
-    
+    startAutoAdvance();
+
     // Randomize annotation positions on page load
     randomizeAnnotations();
 });

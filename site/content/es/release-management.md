@@ -68,7 +68,7 @@ feature_category = "development-tools"
 }
 
 .capability-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -94,7 +94,7 @@ feature_category = "development-tools"
 }
 
 .pipeline-container {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 3rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -158,7 +158,7 @@ feature_category = "development-tools"
 }
 
 .metrics-dashboard {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 3rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -190,7 +190,7 @@ feature_category = "development-tools"
 
 .metric-label {
     font-size: 0.9rem;
-    color: #718096;
+    color: #8b7659;
 }
 
 .case-studies-grid {
@@ -201,7 +201,7 @@ feature_category = "development-tools"
 }
 
 .case-study-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -218,7 +218,7 @@ feature_category = "development-tools"
 .integration-category {
     text-align: center;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
 }
@@ -248,7 +248,7 @@ feature_category = "development-tools"
 
 .accordion-panel {
     padding: 1.5rem;
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
 }
 
 .testimonial {
@@ -337,7 +337,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 4.44rem; margin-bottom: 2rem;">¿Qué es la Gestión de Versiones de IA?</h2>
 
 <div class="release-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/release-cycle-diagram.svg" alt="Diagrama de Gestión del Ciclo de Versiones de IA" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="/images/release-cycle-diagram.svg" alt="Diagrama de Gestión del Ciclo de Versiones de IA" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
 </div>
 
 <div class="overview-content">
@@ -560,7 +560,7 @@ feature_category = "development-tools"
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Historias de Éxito</h2>
 
-<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
+<div style="background: rgba(248, 244, 240, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
 <h3 style="color: #1e3a2b; font-size: 2rem; margin-bottom: 1rem;">Plataforma Global de E-commerce</h3>
 <p style="font-size: 1.25rem; color: #2d3c34; margin-bottom: 2rem; font-weight: 600;">Redujo el tiempo de implementación en 90% mientras aumentó la frecuencia de versiones en 400%</p>
 <p style="margin-bottom: 2rem;">Una importante plataforma de e-commerce necesitaba implementar modelos de IA para motores de recomendación en 15 países con cero tiempo de inactividad. Usando nuestra plataforma de Gestión de Versiones, implementaron despliegues blue-green y lograron actualizaciones fluidas de modelos afectando a más de 100M de usuarios diarios mientras mantenían 99.99% de tiempo de actividad.</p>
@@ -613,7 +613,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Ecosistema de Integraciones</h2>
 
 <div style="text-align: center; margin-bottom: 3rem;">
-<p style="font-size: 1.2rem; color: #718096;">Integra sin problemas con tu infraestructura DevOps y cloud existente</p>
+<p style="font-size: 1.2rem; color: #8b7659;">Integra sin problemas con tu infraestructura DevOps y cloud existente</p>
 </div>
 
 <div class="integration-grid">

@@ -100,7 +100,7 @@ def evaluate_fairness_metrics(predictions, protected_attribute, labels):
 
 ## تنفيذ الذكاء الاصطناعي المسؤول عبر دورة حياة التطوير
 
-![إطار الذكاء الاصطناعي المسؤول](images/AI-Standards-Hub-Logo_04-1.png)
+![[إطار الذكاء الاصطناعي المسؤول]](/images/AI-Standards-Hub-Logo_04-1.png)
 *إطار شامل لتنفيذ ممارسات الذكاء الاصطناعي المسؤول*
 
 ### التخطيط والتصميم
@@ -199,7 +199,7 @@ def audit_data_bias(dataset, protected_attributes):
 
 **الاستجابة للحوادث**: وضع إجراءات واضحة لمعالجة القضايا المتعلقة بالذكاء الاصطناعي.
 
-![مخطط قابلية تفسير النموذج](images/qa-pipeline-diagram.svg)
+![[مخطط قابلية تفسير النموذج]](/images/qa-pipeline-diagram.svg)
 *تنفيذ قابلية التفسير والمراقبة طوال خط أنابيب الذكاء الاصطناعي*
 
 ## الموازنة بين الابتكار والمسؤولية

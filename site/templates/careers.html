@@ -8,9 +8,9 @@
 <section class="careers-hero">
     <div class="container">
         <div class="careers-hero-content">
-            <h1 class="careers-title">Join Our Team</h1>
-            <p class="careers-subtitle">At Divinci AI, we're building the future of human-AI collaboration. Join us on our mission to make AI accessible and valuable for businesses of all sizes.</p>
-            <a href="#open-positions" class="careers-cta">View Open Positions</a>
+            <h1 class="careers-title">{{ translations.careers.hero_title | default(value="Join Our Team") }}</h1>
+            <p class="careers-subtitle">{{ translations.careers.hero_subtitle | default(value="At Divinci AI, we're building the future of human-AI collaboration. Join us on our mission to make AI accessible and valuable for businesses of all sizes.") | safe }}</p>
+            <a href="#open-positions" class="careers-cta">{{ translations.careers.hero_cta | default(value="View Open Positions") }}</a>
         </div>
     </div>
 </section>
@@ -19,9 +19,9 @@
 <section class="careers-section">
     <div class="sacred-pattern sacred-pattern-1"></div>
     <div class="container">
-        <h2 class="section-title">Our Culture</h2>
+        <h2 class="section-title">{{ translations.careers.culture_title | default(value="Our Culture") }}</h2>
         <p class="section-content">
-            At Divinci AI, we're building a collaborative, innovative, and inclusive workplace where everyone can thrive. Our culture is defined by our shared values and commitment to creating AI technology that empowers humans rather than replacing them.
+            {{ translations.careers.culture_desc | default(value="At Divinci AI, we're building a collaborative, innovative, and inclusive workplace where everyone can thrive. Our culture is defined by our shared values and commitment to creating AI technology that empowers humans rather than replacing them.") }}
         </p>
 
         <div class="values-grid">
@@ -29,9 +29,9 @@
                 <div class="value-icon">
                     <i class="fas fa-lightbulb"></i>
                 </div>
-                <h3 class="value-title">Innovation</h3>
+                <h3 class="value-title">{{ translations.careers.value1_title | default(value="Innovation") }}</h3>
                 <p class="value-description">
-                    We encourage bold thinking and creative problem-solving. We're not afraid to challenge the status quo and push the boundaries of what's possible with AI.
+                    {{ translations.careers.value1_desc | default(value="We encourage bold thinking and creative problem-solving. We're not afraid to challenge the status quo and push the boundaries of what's possible with AI.") }}
                 </p>
             </div>
 
@@ -39,9 +39,9 @@
                 <div class="value-icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <h3 class="value-title">Collaboration</h3>
+                <h3 class="value-title">{{ translations.careers.value2_title | default(value="Collaboration") }}</h3>
                 <p class="value-description">
-                    We believe the best work happens when diverse perspectives come together. We foster a collaborative environment where ideas are shared openly and everyone's voice is heard.
+                    {{ translations.careers.value2_desc | default(value="We believe the best work happens when diverse perspectives come together. We foster a collaborative environment where ideas are shared openly and everyone's voice is heard.") }}
                 </p>
             </div>
 
@@ -49,9 +49,9 @@
                 <div class="value-icon">
                     <i class="fas fa-balance-scale"></i>
                 </div>
-                <h3 class="value-title">Responsibility</h3>
+                <h3 class="value-title">{{ translations.careers.value3_title | default(value="Responsibility") }}</h3>
                 <p class="value-description">
-                    We're committed to developing AI responsibly, with strong ethical guidelines and a focus on creating technology that benefits humanity and respects individual privacy and agency.
+                    {{ translations.careers.value3_desc | default(value="We're committed to developing AI responsibly, with strong ethical guidelines and a focus on creating technology that benefits humanity and respects individual privacy and agency.") }}
                 </p>
             </div>
 
@@ -59,9 +59,9 @@
                 <div class="value-icon">
                     <i class="fas fa-rocket"></i>
                 </div>
-                <h3 class="value-title">Impact</h3>
+                <h3 class="value-title">{{ translations.careers.value4_title | default(value="Impact") }}</h3>
                 <p class="value-description">
-                    We're driven by the opportunity to make a meaningful impact on how businesses leverage AI. Every team member plays a crucial role in bringing this vision to life.
+                    {{ translations.careers.value4_desc | default(value="We're driven by the opportunity to make a meaningful impact on how businesses leverage AI. Every team member plays a crucial role in bringing this vision to life.") }}
                 </p>
             </div>
         </div>
@@ -72,9 +72,9 @@
 <section class="careers-section dark-bg">
     <div class="sacred-pattern sacred-pattern-2"></div>
     <div class="container">
-        <h2 class="section-title">Benefits & Perks</h2>
+        <h2 class="section-title">{{ translations.careers.benefits_title | default(value="Benefits & Perks") }}</h2>
         <p class="section-content-light">
-            We believe in taking care of our team. Here are some of the benefits and perks we offer to Divinci AI employees:
+            {{ translations.careers.benefits_intro | default(value="We believe in taking care of our team. Here are some of the benefits and perks we offer to Divinci AI employees:") }}
         </p>
 
         <div class="benefits-grid">
@@ -82,9 +82,9 @@
                 <div class="benefit-icon">
                     <i class="fas fa-heart"></i>
                 </div>
-                <h3 class="benefit-title">Comprehensive Healthcare</h3>
+                <h3 class="benefit-title">{{ translations.careers.benefit1_title | default(value="Comprehensive Healthcare") }}</h3>
                 <p class="benefit-description">
-                    We offer top-tier medical, dental, and vision coverage for employees and their dependents, with the majority of premiums covered by Divinci AI.
+                    {{ translations.careers.benefit1_desc | default(value="We offer top-tier medical, dental, and vision coverage for employees and their dependents, with the majority of premiums covered by Divinci AI.") }}
                 </p>
             </div>
 
@@ -92,9 +92,9 @@
                 <div class="benefit-icon">
                     <i class="fas fa-coins"></i>
                 </div>
-                <h3 class="benefit-title">Competitive Compensation</h3>
+                <h3 class="benefit-title">{{ translations.careers.benefit2_title | default(value="Competitive Compensation") }}</h3>
                 <p class="benefit-description">
-                    We offer competitive salaries, equity options, and a 401(k) plan with employer matching to ensure you share in the company's success.
+                    {{ translations.careers.benefit2_desc | default(value="We offer competitive salaries, equity options, and a 401(k) plan with employer matching to ensure you share in the company's success.") }}
                 </p>
             </div>
 
@@ -102,9 +102,9 @@
                 <div class="benefit-icon">
                     <i class="fas fa-home"></i>
                 </div>
-                <h3 class="benefit-title">Flexible Work</h3>
+                <h3 class="benefit-title">{{ translations.careers.benefit3_title | default(value="Flexible Work") }}</h3>
                 <p class="benefit-description">
-                    We support remote work with the option for in-office collaboration at our Santa Monica headquarters, giving you the flexibility to work where you're most productive.
+                    {{ translations.careers.benefit3_desc | default(value="We support remote work with the option for in-office collaboration at our Santa Monica headquarters, giving you the flexibility to work where you're most productive.") }}
                 </p>
             </div>
 
@@ -112,9 +112,9 @@
                 <div class="benefit-icon">
                     <i class="fas fa-plane"></i>
                 </div>
-                <h3 class="benefit-title">Generous Time Off</h3>
+                <h3 class="benefit-title">{{ translations.careers.benefit4_title | default(value="Generous Time Off") }}</h3>
                 <p class="benefit-description">
-                    We offer unlimited PTO, company holidays, and paid parental leave because we believe in work-life balance and taking time to recharge.
+                    {{ translations.careers.benefit4_desc | default(value="We offer unlimited PTO, company holidays, and paid parental leave because we believe in work-life balance and taking time to recharge.") }}
                 </p>
             </div>
 
@@ -122,9 +122,9 @@
                 <div class="benefit-icon">
                     <i class="fas fa-laptop"></i>
                 </div>
-                <h3 class="benefit-title">Learning & Development</h3>
+                <h3 class="benefit-title">{{ translations.careers.benefit5_title | default(value="Learning & Development") }}</h3>
                 <p class="benefit-description">
-                    We provide an annual learning stipend for conferences, courses, and books, plus regular opportunities for professional development.
+                    {{ translations.careers.benefit5_desc | default(value="We provide an annual learning stipend for conferences, courses, and books, plus regular opportunities for professional development.") }}
                 </p>
             </div>
 
@@ -132,9 +132,9 @@
                 <div class="benefit-icon">
                     <i class="fas fa-users-cog"></i>
                 </div>
-                <h3 class="benefit-title">Team Events</h3>
+                <h3 class="benefit-title">{{ translations.careers.benefit6_title | default(value="Team Events") }}</h3>
                 <p class="benefit-description">
-                    Regular team outings, social events, and company retreats help build strong relationships and a cohesive team culture.
+                    {{ translations.careers.benefit6_desc | default(value="Regular team outings, social events, and company retreats help build strong relationships and a cohesive team culture.") }}
                 </p>
             </div>
         </div>
@@ -144,115 +144,115 @@
 <!-- Open Positions Section -->
 <section id="open-positions" class="jobs-section">
     <div class="container">
-        <h2 class="section-title">Open Positions</h2>
+        <h2 class="section-title">{{ translations.careers.open_positions_title | default(value="Open Positions") }}</h2>
         <p class="section-content">
-            We're looking for talented individuals who are passionate about AI, technology, and making a positive impact. Here are our current openings:
+            {{ translations.careers.open_positions_desc | default(value="We're looking for talented individuals who are passionate about AI, technology, and making a positive impact. Here are our current openings:") | safe }}
         </p>
 
         <div class="jobs-grid">
             <div class="job-card">
                 <div class="job-header">
-                    <div class="job-department">Engineering</div>
-                    <div class="job-location">Remote / Santa Monica, CA</div>
+                    <div class="job-department">{{ translations.careers.dept_engineering | default(value="Engineering") }}</div>
+                    <div class="job-location">{{ translations.careers.location | default(value="Remote / Santa Monica, CA") }}</div>
                 </div>
-                <h3 class="job-title">Senior Machine Learning Engineer</h3>
+                <h3 class="job-title">{{ translations.careers.job1_title | default(value="Senior Machine Learning Engineer") }}</h3>
                 <p class="job-description">
-                    Join our ML team to build and optimize large-scale machine learning systems that power our AI platform. You'll work on cutting-edge algorithms and infrastructure that enable businesses to deploy AI models with confidence.
+                    {{ translations.careers.job1_desc | default(value="Join our ML team to build and optimize large-scale machine learning systems that power our AI platform. You'll work on cutting-edge algorithms and infrastructure that enable businesses to deploy AI models with confidence.") }}
                 </p>
                 <div class="job-requirements">
-                    <h4>Key Requirements:</h4>
+                    <h4>{{ translations.careers.key_requirements | default(value="Key Requirements:") }}</h4>
                     <ul>
-                        <li>5+ years of ML engineering experience</li>
-                        <li>Expertise in PyTorch, TensorFlow, or similar frameworks</li>
-                        <li>Experience with distributed systems and cloud platforms</li>
-                        <li>Strong software engineering fundamentals</li>
+                        <li>{{ translations.careers.job1_req1 | default(value="5+ years of ML engineering experience") }}</li>
+                        <li>{{ translations.careers.job1_req2 | default(value="Expertise in PyTorch, TensorFlow, or similar frameworks") }}</li>
+                        <li>{{ translations.careers.job1_req3 | default(value="Experience with distributed systems and cloud platforms") }}</li>
+                        <li>{{ translations.careers.job1_req4 | default(value="Strong software engineering fundamentals") }}</li>
                     </ul>
                 </div>
-                <a href="mailto:careers@divinci.ai?subject=Application: Senior ML Engineer" class="job-apply-btn">Apply Now</a>
+                <a href="mailto:careers@divinci.ai?subject=Application: Senior ML Engineer" class="job-apply-btn">{{ translations.careers.apply_now | default(value="Apply Now") }}</a>
             </div>
 
             <div class="job-card">
                 <div class="job-header">
-                    <div class="job-department">Engineering</div>
-                    <div class="job-location">Remote / Santa Monica, CA</div>
+                    <div class="job-department">{{ translations.careers.dept_engineering | default(value="Engineering") }}</div>
+                    <div class="job-location">{{ translations.careers.location | default(value="Remote / Santa Monica, CA") }}</div>
                 </div>
-                <h3 class="job-title">Full Stack Engineer</h3>
+                <h3 class="job-title">{{ translations.careers.job2_title | default(value="Full Stack Engineer") }}</h3>
                 <p class="job-description">
-                    Help build the frontend and backend systems that make our AI platform intuitive and powerful. You'll work across the entire stack to create seamless user experiences for our enterprise customers.
+                    {{ translations.careers.job2_desc | default(value="Help build the frontend and backend systems that make our AI platform intuitive and powerful. You'll work across the entire stack to create seamless user experiences for our enterprise customers.") }}
                 </p>
                 <div class="job-requirements">
-                    <h4>Key Requirements:</h4>
+                    <h4>{{ translations.careers.key_requirements | default(value="Key Requirements:") }}</h4>
                     <ul>
-                        <li>3+ years of full-stack development experience</li>
-                        <li>Proficiency in React, Node.js, and modern web technologies</li>
-                        <li>Experience with databases and API design</li>
-                        <li>Understanding of cloud infrastructure</li>
+                        <li>{{ translations.careers.job2_req1 | default(value="3+ years of full-stack development experience") }}</li>
+                        <li>{{ translations.careers.job2_req2 | default(value="Proficiency in React, Node.js, and modern web technologies") }}</li>
+                        <li>{{ translations.careers.job2_req3 | default(value="Experience with databases and API design") }}</li>
+                        <li>{{ translations.careers.job2_req4 | default(value="Understanding of cloud infrastructure") }}</li>
                     </ul>
                 </div>
-                <a href="mailto:careers@divinci.ai?subject=Application: Full Stack Engineer" class="job-apply-btn">Apply Now</a>
+                <a href="mailto:careers@divinci.ai?subject=Application: Full Stack Engineer" class="job-apply-btn">{{ translations.careers.apply_now | default(value="Apply Now") }}</a>
             </div>
 
             <div class="job-card">
                 <div class="job-header">
-                    <div class="job-department">Product</div>
-                    <div class="job-location">Remote / Santa Monica, CA</div>
+                    <div class="job-department">{{ translations.careers.dept_product | default(value="Product") }}</div>
+                    <div class="job-location">{{ translations.careers.location | default(value="Remote / Santa Monica, CA") }}</div>
                 </div>
-                <h3 class="job-title">Product Manager</h3>
+                <h3 class="job-title">{{ translations.careers.job3_title | default(value="Product Manager") }}</h3>
                 <p class="job-description">
-                    Drive product strategy and execution for our AI management platform. You'll work closely with engineering, design, and customers to define and deliver products that solve real business problems.
+                    {{ translations.careers.job3_desc | default(value="Drive product strategy and execution for our AI management platform. You'll work closely with engineering, design, and customers to define and deliver products that solve real business problems.") }}
                 </p>
                 <div class="job-requirements">
-                    <h4>Key Requirements:</h4>
+                    <h4>{{ translations.careers.key_requirements | default(value="Key Requirements:") }}</h4>
                     <ul>
-                        <li>3+ years of product management experience</li>
-                        <li>Experience with B2B SaaS products</li>
-                        <li>Strong analytical and communication skills</li>
-                        <li>Background in AI/ML products preferred</li>
+                        <li>{{ translations.careers.job3_req1 | default(value="3+ years of product management experience") }}</li>
+                        <li>{{ translations.careers.job3_req2 | default(value="Experience with B2B SaaS products") }}</li>
+                        <li>{{ translations.careers.job3_req3 | default(value="Strong analytical and communication skills") }}</li>
+                        <li>{{ translations.careers.job3_req4 | default(value="Background in AI/ML products preferred") }}</li>
                     </ul>
                 </div>
-                <a href="mailto:careers@divinci.ai?subject=Application: Product Manager" class="job-apply-btn">Apply Now</a>
+                <a href="mailto:careers@divinci.ai?subject=Application: Product Manager" class="job-apply-btn">{{ translations.careers.apply_now | default(value="Apply Now") }}</a>
             </div>
 
             <div class="job-card">
                 <div class="job-header">
-                    <div class="job-department">Design</div>
-                    <div class="job-location">Remote / Santa Monica, CA</div>
+                    <div class="job-department">{{ translations.careers.dept_design | default(value="Design") }}</div>
+                    <div class="job-location">{{ translations.careers.location | default(value="Remote / Santa Monica, CA") }}</div>
                 </div>
-                <h3 class="job-title">UX/UI Designer</h3>
+                <h3 class="job-title">{{ translations.careers.job4_title | default(value="UX/UI Designer") }}</h3>
                 <p class="job-description">
-                    Shape the user experience of our AI platform, making complex technology accessible and delightful. You'll design interfaces that empower users to manage AI systems with confidence.
+                    {{ translations.careers.job4_desc | default(value="Shape the user experience of our AI platform, making complex technology accessible and delightful. You'll design interfaces that empower users to manage AI systems with confidence.") }}
                 </p>
                 <div class="job-requirements">
-                    <h4>Key Requirements:</h4>
+                    <h4>{{ translations.careers.key_requirements | default(value="Key Requirements:") }}</h4>
                     <ul>
-                        <li>3+ years of UX/UI design experience</li>
-                        <li>Portfolio demonstrating B2B product design</li>
-                        <li>Proficiency in Figma, Sketch, or similar tools</li>
-                        <li>Experience with design systems and user research</li>
+                        <li>{{ translations.careers.job4_req1 | default(value="3+ years of UX/UI design experience") }}</li>
+                        <li>{{ translations.careers.job4_req2 | default(value="Portfolio demonstrating B2B product design") }}</li>
+                        <li>{{ translations.careers.job4_req3 | default(value="Proficiency in Figma, Sketch, or similar tools") }}</li>
+                        <li>{{ translations.careers.job4_req4 | default(value="Experience with design systems and user research") }}</li>
                     </ul>
                 </div>
-                <a href="mailto:careers@divinci.ai?subject=Application: UX/UI Designer" class="job-apply-btn">Apply Now</a>
+                <a href="mailto:careers@divinci.ai?subject=Application: UX/UI Designer" class="job-apply-btn">{{ translations.careers.apply_now | default(value="Apply Now") }}</a>
             </div>
 
             <div class="job-card">
                 <div class="job-header">
-                    <div class="job-department">Customer Success</div>
-                    <div class="job-location">Remote / Santa Monica, CA</div>
+                    <div class="job-department">{{ translations.careers.dept_cs | default(value="Customer Success") }}</div>
+                    <div class="job-location">{{ translations.careers.location | default(value="Remote / Santa Monica, CA") }}</div>
                 </div>
-                <h3 class="job-title">Customer Success Manager</h3>
+                <h3 class="job-title">{{ translations.careers.job5_title | default(value="Customer Success Manager") }}</h3>
                 <p class="job-description">
-                    Be the trusted advisor to our enterprise customers, helping them achieve success with our AI platform. You'll drive adoption, growth, and long-term satisfaction.
+                    {{ translations.careers.job5_desc | default(value="Be the trusted advisor to our enterprise customers, helping them achieve success with our AI platform. You'll drive adoption, growth, and long-term satisfaction.") }}
                 </p>
                 <div class="job-requirements">
-                    <h4>Key Requirements:</h4>
+                    <h4>{{ translations.careers.key_requirements | default(value="Key Requirements:") }}</h4>
                     <ul>
-                        <li>2+ years of customer success experience</li>
-                        <li>Experience with enterprise B2B customers</li>
-                        <li>Strong communication and problem-solving skills</li>
-                        <li>Technical background preferred</li>
+                        <li>{{ translations.careers.job5_req1 | default(value="2+ years of customer success experience") }}</li>
+                        <li>{{ translations.careers.job5_req2 | default(value="Experience with enterprise B2B customers") }}</li>
+                        <li>{{ translations.careers.job5_req3 | default(value="Strong communication and problem-solving skills") }}</li>
+                        <li>{{ translations.careers.job5_req4 | default(value="Technical background preferred") }}</li>
                     </ul>
                 </div>
-                <a href="mailto:careers@divinci.ai?subject=Application: Customer Success Manager" class="job-apply-btn">Apply Now</a>
+                <a href="mailto:careers@divinci.ai?subject=Application: Customer Success Manager" class="job-apply-btn">{{ translations.careers.apply_now | default(value="Apply Now") }}</a>
             </div>
         </div>
     </div>
@@ -261,17 +261,17 @@
 <!-- Internship Section -->
 <section class="internship-section">
     <div class="container">
-        <h2 class="section-title">Internships</h2>
+        <h2 class="section-title">{{ translations.careers.internships_title | default(value="Internships") }}</h2>
         <p class="section-content">
-            We offer internship opportunities for students and recent graduates who are passionate about AI and want to gain hands-on experience.
+            {{ translations.careers.internships_desc | default(value="We offer internship opportunities for students and recent graduates who are passionate about AI and want to gain hands-on experience.") }}
         </p>
-        
+
         <div class="internship-card">
-            <h3 class="internship-title">Summer 2026 AI Internship Program</h3>
+            <h3 class="internship-title">{{ translations.careers.internship_program_title | default(value="Summer 2026 AI Internship Program") }}</h3>
             <p class="internship-description">
-                Our 12-week summer internship program offers meaningful projects, mentorship from senior engineers, and the opportunity to contribute to real products used by enterprise customers.
+                {{ translations.careers.internship_program_desc | default(value="Our 12-week summer internship program offers meaningful projects, mentorship from senior engineers, and the opportunity to contribute to real products used by enterprise customers.") }}
             </p>
-            <a href="mailto:careers@divinci.ai?subject=Application: Summer 2026 Internship" class="internship-apply-btn">Apply for Internship</a>
+            <a href="mailto:careers@divinci.ai?subject=Application: Summer 2026 Internship" class="internship-apply-btn">{{ translations.careers.apply_internship | default(value="Apply for Internship") }}</a>
         </div>
     </div>
 </section>
@@ -279,81 +279,81 @@
 <!-- Interview Process Section -->
 <section class="process-section">
     <div class="container">
-        <h2 class="section-title">Our Interview Process</h2>
+        <h2 class="section-title">{{ translations.careers.process_title | default(value="Our Interview Process") }}</h2>
         <p class="section-content">
-            We've designed our interview process to be thorough but respectful of your time. Here's what you can expect:
+            {{ translations.careers.process_desc | default(value="We've designed our interview process to be thorough but respectful of your time. Here's what you can expect:") | safe }}
         </p>
 
         <div class="process-steps">
             <div class="process-step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h3 class="step-title">Application Review</h3>
-                    <p class="step-description">We review your application and portfolio to understand your background and interests.</p>
+                    <h3 class="step-title">{{ translations.careers.step1_title | default(value="Application Review") }}</h3>
+                    <p class="step-description">{{ translations.careers.step1_desc | default(value="We review your application and portfolio to understand your background and interests.") }}</p>
                 </div>
             </div>
 
             <div class="process-step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h3 class="step-title">Initial Conversation</h3>
-                    <p class="step-description">A brief call with our recruiting team to discuss the role and answer any questions you have.</p>
+                    <h3 class="step-title">{{ translations.careers.step2_title | default(value="Initial Conversation") }}</h3>
+                    <p class="step-description">{{ translations.careers.step2_desc | default(value="A brief call with our recruiting team to discuss the role and answer any questions you have.") }}</p>
                 </div>
             </div>
 
             <div class="process-step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <h3 class="step-title">Technical Assessment</h3>
-                    <p class="step-description">Depending on the role, this may include a coding challenge, design exercise, or case study.</p>
+                    <h3 class="step-title">{{ translations.careers.step3_title | default(value="Technical Assessment") }}</h3>
+                    <p class="step-description">{{ translations.careers.step3_desc | default(value="Depending on the role, this may include a coding challenge, design exercise, or case study.") }}</p>
                 </div>
             </div>
 
             <div class="process-step">
                 <div class="step-number">4</div>
                 <div class="step-content">
-                    <h3 class="step-title">Team Interviews</h3>
-                    <p class="step-description">Meet with team members to discuss technical topics and learn about our culture.</p>
+                    <h3 class="step-title">{{ translations.careers.step4_title | default(value="Team Interviews") }}</h3>
+                    <p class="step-description">{{ translations.careers.step4_desc | default(value="Meet with team members to discuss technical topics and learn about our culture.") }}</p>
                 </div>
             </div>
 
             <div class="process-step">
                 <div class="step-number">5</div>
                 <div class="step-content">
-                    <h3 class="step-title">Final Interview</h3>
-                    <p class="step-description">A conversation with leadership about vision, goals, and how you'd contribute to our mission.</p>
+                    <h3 class="step-title">{{ translations.careers.step5_title | default(value="Final Interview") }}</h3>
+                    <p class="step-description">{{ translations.careers.step5_desc | default(value="A conversation with leadership about vision, goals, and how you'd contribute to our mission.") | safe }}</p>
                 </div>
             </div>
 
             <div class="process-step">
                 <div class="step-number">6</div>
                 <div class="step-content">
-                    <h3 class="step-title">Offer</h3>
-                    <p class="step-description">If it's a mutual fit, we'll extend an offer and help you transition to the team.</p>
+                    <h3 class="step-title">{{ translations.careers.step6_title | default(value="Offer") }}</h3>
+                    <p class="step-description">{{ translations.careers.step6_desc | default(value="If it's a mutual fit, we'll extend an offer and help you transition to the team.") | safe }}</p>
                 </div>
             </div>
         </div>
 
         <div class="team-testimonials">
-            <h3 style="font-weight: 600; margin: 3rem 0 2rem; color: #8b7659;">Hear From Our Team</h3>
+            <h3 style="font-weight: 600; margin: 3rem 0 2rem; color: #8b7659;">{{ translations.careers.hear_from_team | default(value="Hear From Our Team") }}</h3>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <p class="testimonial-quote">
-                        "Working at Divinci AI means being at the forefront of AI innovation while maintaining a strong focus on responsible development. It's challenging and rewarding."
+                        "{{ translations.careers.testimonial1_quote | default(value="Working at Divinci AI means being at the forefront of AI innovation while maintaining a strong focus on responsible development. It's challenging and rewarding.") }}"
                     </p>
                     <div class="testimonial-author">
-                        <strong>Sarah Chen</strong>
-                        <span>Senior ML Engineer</span>
+                        <strong>{{ translations.careers.testimonial1_name | default(value="Sarah Chen") }}</strong>
+                        <span>{{ translations.careers.testimonial1_role | default(value="Senior ML Engineer") }}</span>
                     </div>
                 </div>
 
                 <div class="testimonial-card">
                     <p class="testimonial-quote">
-                        "The collaborative culture here is incredible. Everyone's ideas are valued, and we're all working toward the same goal of making AI accessible to businesses."
+                        "{{ translations.careers.testimonial2_quote | default(value="The collaborative culture here is incredible. Everyone's ideas are valued, and we're all working toward the same goal of making AI accessible to businesses.") }}"
                     </p>
                     <div class="testimonial-author">
-                        <strong>Marcus Johnson</strong>
-                        <span>Product Manager</span>
+                        <strong>{{ translations.careers.testimonial2_name | default(value="Marcus Johnson") }}</strong>
+                        <span>{{ translations.careers.testimonial2_role | default(value="Product Manager") }}</span>
                     </div>
                 </div>
             </div>
@@ -533,7 +533,7 @@
 }
 
 .value-card {
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -579,7 +579,7 @@
 }
 
 .benefit-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     border-radius: 12px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -591,7 +591,7 @@
 
 .benefit-card:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(232, 221, 199, 0.95);
 }
 
 .benefit-icon {
@@ -621,7 +621,7 @@
 
 /* Jobs Section */
 .jobs-section {
-    background: #f8fafc;
+    background: var(--color-bg-accent, #e8ddc7);
     padding: 5rem 0;
 }
 
@@ -633,7 +633,7 @@
 }
 
 .job-card {
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     border-radius: 15px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -722,7 +722,7 @@
 /* Internship Section */
 .internship-section {
     padding: 4rem 0;
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
 }
 
 .internship-card {
@@ -771,7 +771,7 @@
 /* Process Section */
 .process-section {
     padding: 5rem 0;
-    background: #f8fafc;
+    background: var(--color-bg-accent, #e8ddc7);
 }
 
 .process-steps {
@@ -787,7 +787,7 @@
     display: flex;
     align-items: flex-start;
     gap: 2rem;
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -828,7 +828,7 @@
 }
 
 .testimonial-card {
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);

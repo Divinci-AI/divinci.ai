@@ -66,4 +66,4 @@ Real-world insights and tips from our user community.
 
 ---
 
-*Need help with something specific? [Contact our support team](/contact) or check out our [documentation](/docs) for detailed reference materials.*
+*Need help with something specific? [Contact our support team](/contact/) or check out our [documentation](/docs/) for detailed reference materials.*

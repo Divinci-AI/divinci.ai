@@ -49,7 +49,7 @@ Most browsers allow you to:
 - Block all cookies
 
 ### Our cookie settings
-You can update your cookie preferences at any time by clicking the "Cookie Settings" link in our footer.
+You can update your cookie preferences at any time by clicking the "Privacy Settings" link in our footer.
 
 ## Third-party cookies
 
@@ -73,7 +73,7 @@ We may update this Cookie Policy from time to time. Any changes will be posted o
 
 If you have questions about our use of cookies, please contact us:
 - **Email**: privacy@divinci.ai
-- **Address**: Divinci AI, 312 Arivona Ave, Santa Monica, CA 90401
+- **Address**: Divinci AI, 312 Arizona Ave, Santa Monica, CA 90401
 
 ---
 

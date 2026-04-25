@@ -3,8 +3,6 @@
 {% block content %}
 {# current_lang is inherited from base template #}
 
-<!-- Include Header -->
-{% include "partials/header.html" %}
 
 <!-- Optimized Hero Section - Reduced animations -->
 <section class="hero">
@@ -40,14 +38,12 @@
     </div>
 </section>
 
-<!-- Include Footer -->
-{% include "partials/footer.html" %}
 
 <style>
 /* Page-specific optimized styles - minimal CSS */
 .enhanced-page-subtitle {
     font-size: 1.4rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-neutral-secondary, #4a5a50);
     margin-bottom: 2rem;
     line-height: 1.6;
     max-width: 600px;

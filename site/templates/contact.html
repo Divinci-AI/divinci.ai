@@ -11,7 +11,7 @@
             <!-- Contact Header -->
             <div class="contact-header">
                 <h1 class="contact-title">{{ translations.contact.page_title | default(value="Get in Touch") }}</h1>
-                <p class="contact-subtitle">{{ translations.contact.page_subtitle | default(value="Have questions about our platform or need help getting started? We're here to help. Reach out to us through the form below or using our contact information.") }}</p>
+                <p class="contact-subtitle">{% if translations.contact.page_subtitle %}{{ translations.contact.page_subtitle | safe }}{% else %}Have questions about our platform or need help getting started? We're here to help. Reach out to us through the form below or using our contact information.{% endif %}</p>
             </div>
 
             <!-- Contact Wrapper -->
@@ -75,7 +75,7 @@
                         </button>
 
                         <div class="form-response success" id="formSuccess" role="alert" aria-live="polite">
-                            <i class="fas fa-check-circle" aria-hidden="true"></i> {{ translations.contact.form.success_message | default(value="Thank you for your message! We'll get back to you as soon as possible.") }}
+                            <i class="fas fa-check-circle" aria-hidden="true"></i> {% if translations.contact.form.success_message %}{{ translations.contact.form.success_message | safe }}{% else %}Thank you for your message! We'll get back to you as soon as possible.{% endif %}
                         </div>
 
                         <div class="form-response error" id="formError" role="alert" aria-live="assertive">
@@ -98,21 +98,11 @@
 
                     <div class="contact-info-card">
                         <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="contact-info-content">
-                            <h3>{{ translations.contact.info.phone.title | default(value="Call Us") }}</h3>
-                            <p><a href="tel:+18005551234">{{ translations.contact.info.phone.value | default(value="+1 (800) 555-1234") }}</a></p>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-card">
-                        <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="contact-info-content">
                             <h3>{{ translations.contact.info.address.title | default(value="Visit Us") }}</h3>
-                            <p>{{ translations.contact.info.address.value | default(value="312 Arizona Ave<br>Santa Monica, California 90401") | safe }}</p>
+                            <p>{% if translations.contact.info.address.value %}{{ translations.contact.info.address.value | safe }}{% else %}312 Arizona Ave<br>Santa Monica, California 90401{% endif %}</p>
                         </div>
                     </div>
 
@@ -122,7 +112,7 @@
                         </div>
                         <div class="contact-info-content">
                             <h3>{{ translations.contact.info.hours.title | default(value="Business Hours") }}</h3>
-                            <p>{{ translations.contact.info.hours.value | default(value="Monday-Friday: 9am-6pm PST<br>Weekend: Closed") | safe }}</p>
+                            <p>{% if translations.contact.info.hours.value %}{{ translations.contact.info.hours.value | safe }}{% else %}Monday–Friday: 9am–6pm PST<br>Weekend: Closed{% endif %}</p>
                         </div>
                     </div>
                 </div>
@@ -236,7 +226,7 @@
 .contact-form-container {
     flex: 3;
     min-width: 300px;
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -262,7 +252,7 @@
 }
 
 .contact-info-card {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -345,7 +335,7 @@
 .form-control {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border-dark, #d4c4a0);
     border-radius: 6px;
     font-size: 1rem;
     transition: border 0.3s ease, box-shadow 0.3s ease;
@@ -416,7 +406,7 @@
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     height: 400px;
-    background-color: #f5f5f5;
+    background-color: #e8ddc7;
     position: relative;
     z-index: 1;
     max-width: 1200px;
@@ -443,7 +433,7 @@
 }
 
 .map-message {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     padding: 1rem 2rem;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -461,11 +451,11 @@
 .form-select {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border-dark, #d4c4a0);
     border-radius: 6px;
     font-size: 1rem;
     transition: border 0.3s ease, box-shadow 0.3s ease;
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -578,6 +568,12 @@
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
+// Translated strings for JS error messages
+const TRANS_VERIFY = "{{ translations.contact.form.verification_required | default(value='Please complete the security verification.') }}";
+const TRANS_SENDING = "{{ translations.contact.form.sending | default(value='Sending...') }}";
+const TRANS_ERROR = "{{ translations.contact.form.error_occurred | default(value='An error occurred. Please try again.') }}";
+const TRANS_NETWORK = "{{ translations.contact.form.network_error | default(value='Network error. Please check your connection and try again.') }}";
+
 // Turnstile callback - enables submit button when verified
 let turnstileToken = '';
 function turnstileCallback(token) {
@@ -601,7 +597,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check if Turnstile token exists
         if (!turnstileToken) {
             const errorElement = document.getElementById('formError');
-            errorElement.textContent = 'Please complete the security verification.';
+            errorElement.textContent = TRANS_VERIFY;
             errorElement.style.display = 'block';
             return;
         }
@@ -620,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show loading state
         const submitButton = contactForm.querySelector('button[type="submit"]');
         const originalButtonText = submitButton.innerHTML;
-        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitButton.replaceChildren(...[Object.assign(document.createElement('i'), {className: 'fas fa-spinner fa-spin'}), document.createTextNode(' ' + TRANS_SENDING)]);
         submitButton.disabled = true;
 
         try {
@@ -650,7 +646,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // Show error message
                 const errorElement = document.getElementById('formError');
-                errorElement.textContent = result.error || 'An error occurred. Please try again.';
+                errorElement.textContent = result.error || TRANS_ERROR;
                 errorElement.style.display = 'block';
                 errorElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
@@ -659,7 +655,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Show error message
             const errorElement = document.getElementById('formError');
-            errorElement.textContent = 'Network error. Please check your connection and try again.';
+            errorElement.textContent = TRANS_NETWORK;
             errorElement.style.display = 'block';
             errorElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } finally {

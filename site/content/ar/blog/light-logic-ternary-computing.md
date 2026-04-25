@@ -43,7 +43,7 @@ summary = "ماذا لو كان بإمكاننا بناء أجهزة كمبيو�
 
 للحصول على مقدمة لأساسيات الحوسبة الفوتونية، راجع [هذا الفيديو التوضيحي](https://www.youtube.com/watch?v=PXvE0h7VZzo).
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/photonic-logic-gate.svg" alt="رسم متحرك لبوابة المنطق الفوتونية" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/photonic-logic-gate.svg" alt="رسم متحرك لبوابة المنطق الفوتونية" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> المنطق الثلاثي: الرقم ثلاثة هو العدد السحري
 
@@ -82,7 +82,7 @@ summary = "ماذا لو كان بإمكاننا بناء أجهزة كمبيو�
 
 الاختراق الرئيسي: ترانزستورات بمستويي **عتبة** بدلاً من واحد، مما يسمح بالتمييز الواضح بين ثلاث حالات مختلفة: -1, 0, و +1.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ternary-logic-comparison.svg" alt="مقارنة المنطق الثنائي والثلاثي" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ternary-logic-comparison.svg" alt="مقارنة المنطق الثنائي والثلاثي" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 **قراءة إضافية**: للغوص العميق في الحوسبة الثلاثية وكمبيوتر Setun السوفييتي، شاهد [هذا الفيديو التوضيحي الممتاز](https://www.youtube.com/watch?v=3aewaff1494).
 
@@ -130,7 +130,7 @@ value = quantum_random.random()  # غير قابل للتنبؤ حقًا
 
 الطبيعة الفوتونية لأنظمة منطق الضوء تجعل توليد الأرقام العشوائية الكمومية "مجانيًا" في الأساس - إنه منتج ثانوي طبيعي لعملية القياس البصري، لا يتطلب أجهزة إضافية.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/quantum-randomness.svg" alt="توليد الأرقام العشوائية الكمومية" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/quantum-randomness.svg" alt="توليد الأرقام العشوائية الكمومية" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="5"/><path d="M12 1v6m0 6v6M1 12h6m6 0h6"/></svg> بطاريات الجاذبية: طاقة مستدامة للحوسبة المستدامة
 
@@ -178,7 +178,7 @@ value = quantum_random.random()  # غير قابل للتنبؤ حقًا
 
 **استقلال الطاقة المحلي**: يمكن للمجتمعات بناء أنظمة بطاريات الجاذبية باستخدام المواد والجغرافيا المحلية، مما يتطابق مع روح الصنع اليدوي لحوسبة منطق الضوء.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/gravity-battery.svg" alt="نظام تخزين طاقة بطارية الجاذبية" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/gravity-battery.svg" alt="نظام تخزين طاقة بطارية الجاذبية" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"/><path d="M12 6v12m-2-7h4a2 2 0 110 4H10"/></svg> الحوسبة الأساسية الشاملة: عقد اجتماعي جديد
 

@@ -35,8 +35,7 @@ Vector similarity search, while powerful, can miss nuanced relationships between
 Most RAG implementations use fixed retrieval patterns that don't adapt to query complexity or context. A simple factual question requires different retrieval logic than a complex analytical request, yet most systems treat them identically.
 
 <picture>
-  <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-still.webp" type="image/webp">
-  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-still.jpg" alt="Advanced RAG Architecture" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;">
+  <img src="/images/autorag-still.png" alt="Advanced RAG Architecture" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;">
 </picture>
 *Modern RAG systems employ sophisticated multi-stage retrieval and reasoning pipelines*
 
@@ -72,7 +71,7 @@ decomposed_queries = [
 
 ### Recursive Retrieval and Reasoning
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-retrieval-optimization.svg" alt="Recursive Retrieval Process" style="width: 70%; display: block; margin: 2rem auto;">
+<img src="/images/autorag-retrieval-optimization.svg" alt="Recursive Retrieval Process" style="width: 70%; display: block; margin: 2rem auto;">
 *Recursive retrieval enables deeper exploration of information networks*
 
 Advanced RAG systems can recursively explore information networks, following leads and connections to build comprehensive understanding[^6]. This approach mimics how human researchers naturally work—starting with initial sources and following relevant connections. RAPTOR (Recursive Abstractive Processing for Tree-Organized Retrieval), presented at ICLR 2024, represents one of the key recursive retrieval methods that has demonstrated significant improvements in multi-hop reasoning[^7].
@@ -114,7 +113,7 @@ With increased system complexity comes the challenge of ensuring output quality 
 
 Organizations need tools that can seamlessly integrate advanced RAG capabilities into existing workflows without requiring extensive AI expertise.
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-diagram.svg" alt="AutoRAG Optimization Process" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;">
+<img src="/images/autorag-diagram.svg" alt="AutoRAG Optimization Process" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;">
 *Automated RAG optimization reduces deployment complexity while improving performance*
 
 ## Divinci AI's AutoRAG Solution

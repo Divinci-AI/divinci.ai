@@ -32,7 +32,7 @@ Antes de profundizar en las técnicas de optimización, es importante entender e
 
 Cada etapa presenta oportunidades de optimización que pueden mejorar significativamente el rendimiento general del sistema.
 
-![Vector Embedding Visualization](images/autorag-vector-embedding-adjusted.svg)
+![[Vector Embedding Visualization]](/images/autorag-vector-embedding-adjusted.svg)
 *El pipeline de embedding vectorial mostrando puntos de optimización en cada etapa*
 
 ## Técnicas de Optimización del Procesamiento de Documentos

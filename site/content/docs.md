@@ -1,5 +1,5 @@
 +++
-title = "Developer Tools & Documentation | Divinci AI"
+title = "Developer Tools & Documentation"
 description = "Comprehensive developer documentation for Divinci AI — CLI, Server SDK, Client SDK, MCP SDK, Embed Client, and REST API reference."
 template = "feature.html"
 +++
@@ -119,7 +119,7 @@ template = "feature.html"
 }
 
 .tool-card {
-    background: var(--color-surface-light);
+    background: var(--color-bg-primary, #f8f4f0);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-medium);
     padding: 2rem;
@@ -319,7 +319,7 @@ template = "feature.html"
 }
 
 .auth-card {
-    background: var(--color-surface-light);
+    background: var(--color-bg-primary, #f8f4f0);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-medium);
     padding: 1.5rem;
@@ -355,7 +355,7 @@ template = "feature.html"
 <h1>Developer Tools & Documentation</h1>
 <p class="subtitle">Everything you need to integrate Divinci AI into your applications. SDKs for every platform, a powerful CLI, and comprehensive REST API access.</p>
 <div class="hero-links">
-<a href="https://sdk.divinci.app" class="link-primary" target="_blank">SDK Documentation</a>
+<a href="https://sdk.divinci.ai" class="link-primary" target="_blank">SDK Documentation</a>
 <a href="/api/" class="link-secondary">API Reference</a>
 </div>
 </div>
@@ -375,7 +375,7 @@ template = "feature.html"
 <div class="pkg-name">@divinci-ai/cli</div>
 <p>Manage workspaces, chat with AI, search knowledge bases, and control releases from your terminal. Supports profiles, scripting, and CI/CD.</p>
 <div class="install-cmd">npm install -g @divinci-ai/cli</div>
-<a href="#cli-reference" class="card-link">View reference &rarr;</a>
+<a href="/cli/" class="card-link">View CLI docs &rarr;</a>
 </div>
 
 <div class="tool-card" id="server-sdk">
@@ -386,7 +386,7 @@ template = "feature.html"
 <div class="pkg-name">@divinci-ai/server</div>
 <p>Full Node.js platform access — workspaces, releases, RAG operations, API key management, and x402 blockchain payments.</p>
 <div class="install-cmd">npm install @divinci-ai/server</div>
-<a href="#server-sdk" class="card-link">View reference &rarr;</a>
+<a href="https://sdk.divinci.ai" class="card-link" target="_blank">View reference &rarr;</a>
 </div>
 
 <div class="tool-card" id="client-sdk">
@@ -397,7 +397,7 @@ template = "feature.html"
 <div class="pkg-name">@divinci-ai/client</div>
 <p>Browser SDK for headless chat integration. Streaming responses, RAG context bubbles, thread management, and external user auth.</p>
 <div class="install-cmd">npm install @divinci-ai/client</div>
-<a href="#client-sdk" class="card-link">View reference &rarr;</a>
+<a href="https://sdk.divinci.ai" class="card-link" target="_blank">View reference &rarr;</a>
 </div>
 
 <div class="tool-card" id="mcp-sdk">
@@ -408,7 +408,7 @@ template = "feature.html"
 <div class="pkg-name">@divinci-ai/mcp</div>
 <p>Model Context Protocol integration for Claude Desktop, Cursor, and other AI assistants. SSE transport, tool invocation, and x402 payments.</p>
 <div class="install-cmd">npm install @divinci-ai/mcp</div>
-<a href="#mcp-sdk" class="card-link">View reference &rarr;</a>
+<a href="https://sdk.divinci.ai" class="card-link" target="_blank">View reference &rarr;</a>
 </div>
 
 <div class="tool-card" id="embed-client">
@@ -419,7 +419,7 @@ template = "feature.html"
 <div class="pkg-name">embed-script.js</div>
 <p>Drop-in chat widget for any website. White-label customization, conversation starters, RAG context display, and product recommendations.</p>
 <div class="install-cmd">&lt;script src="https://assets.divinci.app/embed-script.js"&gt;&lt;/script&gt;</div>
-<a href="#embed-client" class="card-link">View reference &rarr;</a>
+<a href="https://sdk.divinci.ai" class="card-link" target="_blank">View reference &rarr;</a>
 </div>
 
 <div class="tool-card">

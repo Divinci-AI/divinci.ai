@@ -5,13 +5,22 @@
     "og_title": "Divinci AI",
     "og_description": "AI releases. Excellentie, elke keer."
   },
+  "banner": {
+    "label": "Recent onderzoek:",
+    "link": "Wanneer het circuit oplost →"
+  },
   "navigation": {
     "features": "Functies",
     "team": "Team",
     "signup": "Aanmelden",
     "support": "Ondersteuning",
     "request_demo": "Demo aanvragen",
-    "support_center": "Ondersteuningscentrum"
+    "support_center": "Ondersteuningscentrum",
+    "blog": "Blog",
+    "terms_of_service": "Servicevoorwaarden",
+    "privacy_policy": "Privacybeleid",
+    "quality_assurance": "Kwaliteitsborging",
+    "release_management": "Releasebeheer"
   },
   "hero": {
     "heading": "AI releases.",
@@ -25,7 +34,9 @@
     "cta": {
       "primary": "Demo aanvragen",
       "secondary": "Platform verkennen"
-    }
+    },
+    "sound_unmute": "Geluid inschakelen",
+    "sound_mute": "Geluid uitschakelen"
   },
   "enterprise": {
     "title": "Enterprise AI, vakkundig beheerd",
@@ -47,7 +58,9 @@
         "title": "Geïntegreerde teamsamenwerking",
         "description": "Stroomlijn kruisfunctionele beoordelingen met gestructureerde workflows. Wijs verantwoordelijkheden toe, verzamel feedback en documenteer goedkeuringen om ervoor te zorgen dat elke release voldoet aan organisatorische en regulatoire verwachtingen."
       }
-    }
+    },
+    "title_line1": "Enterprise AI,",
+    "title_line2": "vakkundig beheerd"
   },
   "features": {
     "title": "Geef uw workflow meer kracht met AI",
@@ -99,13 +112,21 @@
       "title": "AutoRAG"
     },
     "qa_title": "Kwaliteitsborging",
-    "release_management": "Release Management"
+    "release_management": "Release Management",
+    "title_first_line": "Het AI-tijdperk",
+    "title_second_line": "Beheer"
   },
   "team": {
     "title": "Ontmoet ons team",
     "description": "Ontmoet de innovators die de toekomst van mens-AI samenwerking vormgeven.",
     "members": {
-      "connect": "Verbinden"
+      "connect": "Verbinden",
+      "michael_bio": "Visionair met meer dan 15 jaar ervaring in bedrijfstechnologie, leidend in de conversationele AI-revolutie.",
+      "samuel_bio": "Productstrateg met een staat van dienst in gebruikersgericht AI-oplossingen voor enterprise teams.",
+      "duane_bio": "Systeemarchitect met expertise in schaalbare AI-infrastructuur en natuurlijke taalverwerking.",
+      "sierra_bio": "Afgestudeerd aan Cornell University met uitgebreide ervaring in financiële dienstverlening en ondernemerschap. Brengt strategische businessontwikkeling mee voor AI-schaling.",
+      "sean_bio": "Data scientist met meer dan 10 jaar programmeerervaring, gespecialiseerd in machine learning en Python-ontwikkeling.",
+      "paul_marie_bio": "AI-governance leider en onafhankelijk adviseur. Oprichter van AI LA Responsible AI Group met ervaring bij Google AI, Deloitte en CVS Health."
     },
     "roles": {
       "ceo_founder": "CEO & Oprichter",
@@ -198,7 +219,8 @@
       },
       "privacy_settings": "Privacy-instellingen",
       "cookie_policy": "Cookiebeleid",
-      "cookie_preferences": "Cookie-voorkeuren"
+      "cookie_preferences": "Cookie-voorkeuren",
+      "rights_reserved": "Alle rechten voorbehouden."
     },
     "api": "API",
     "support": "Ondersteuning",
@@ -243,8 +265,354 @@
     }
   },
   "support": {
-    "title": "Ondersteuningscentrum",
-    "subtitle": "Krijg hulp en ondersteuning voor Divinci AI"
+    "title": "Supportcentrum",
+    "subtitle": "Krijg hulp en support voor Divinci AI",
+    "description": "Vind antwoorden op veelgestelde vragen, implementatiegidsen en neem contact op met ons specialistenteam.",
+    "sidebar": {
+      "title": "Supportcentrum",
+      "menu": {
+        "getting_started": "Aan de slag",
+        "implementation": "Implementatie",
+        "troubleshooting": "Probleemoplossing",
+        "api_docs": "API-documentatie",
+        "billing": "Facturatie",
+        "contact": "Contact",
+        "community": "Communityforum",
+        "contact_form": "Contactformulier",
+        "enterprise": "Enterprise-oplossingen",
+        "knowledge_base": "Knowledge Base",
+        "language_models": "Taalmodellen",
+        "support_team": "Supportteam",
+        "technical_support": "Technische support",
+        "tutorials": "Tutorialcentrum"
+      },
+      "cta": {
+        "title": "Hebt u extra hulp nodig?",
+        "description": "Spreek direct met ons specialistenteam.",
+        "button": "Neem contact op met support"
+      },
+      "sections": {
+        "contact": "Neem contact op met support",
+        "resources": "Supportbronnen",
+        "self_service": "Selfservice-tools"
+      }
+    },
+    "header": {
+      "title": "Hoe kunnen we u helpen?",
+      "description": "Vind snelle antwoorden op veelgestelde vragen of neem direct contact op met ons specialistenteam."
+    },
+    "help_cards": {
+      "getting_started": {
+        "title": "Aan de slag",
+        "description": "Stel uw account in en ga in minuten aan de slag met Divinci AI.",
+        "button": "Bekijk gids"
+      },
+      "api_integration": {
+        "title": "API-integratie",
+        "description": "Integreer naadloos met uw bestaande systemen via onze API's.",
+        "button": "Bekijk documentatie"
+      },
+      "troubleshooting": {
+        "title": "Probleemoplossing",
+        "description": "Vind oplossingen voor veelvoorkomende technische problemen.",
+        "button": "Bekijk oplossingen"
+      },
+      "billing": {
+        "title": "Facturatie beheren",
+        "description": "Werk betaalmethoden bij, bekijk facturen en beheer uw abonnementsinstellingen eenvoudig.",
+        "button": "Hulp bij facturatie"
+      },
+      "train_ai": {
+        "title": "Train uw AI",
+        "description": "Leer hoe u uw AI effectief traint met optimale datavoorbereiding en best practices.",
+        "button": "Bekijk tutorial"
+      }
+    },
+    "stats": {
+      "response_time": "< 2 u",
+      "response_time_label": "Gemiddelde reactietijd",
+      "satisfaction": "99%",
+      "satisfaction_label": "Klanttevredenheid",
+      "resolution": "24 u",
+      "resolution_label": "Oplossingstijd",
+      "tutorial_videos": {
+        "number": "20+",
+        "label": "Tutorialvideo's"
+      },
+      "knowledge_base": {
+        "number": "100+",
+        "label": "Knowledge-Base-artikelen"
+      },
+      "community": {
+        "number": "5.000+",
+        "label": "Communityleden"
+      }
+    },
+    "popular_topics": {
+      "title": "Populaire onderwerpen",
+      "model_compatibility": {
+        "title": "Modelcompatibiliteit",
+        "description": "Ontdek welke taalmodellen compatibel zijn met ons platform.",
+        "link": "Bekijk volledige lijst"
+      },
+      "deployment": {
+        "title": "Deployment-gidsen",
+        "description": "Stapsgewijze deployments voor verschillende enterprise-use cases.",
+        "link": "Bekijk gidsen"
+      },
+      "performance": {
+        "title": "Performance-optimalisatie",
+        "description": "Best practices voor het maximaliseren van de prestaties van uw modellen.",
+        "link": "Lees meer"
+      }
+    },
+    "contact_form": {
+      "title": "Een supportverzoek indienen",
+      "name_label": "Volledige naam",
+      "email_label": "E-mailadres",
+      "company_label": "Bedrijf",
+      "priority_label": "Prioriteit",
+      "priority_options": {
+        "low": "Laag",
+        "normal": "Normaal",
+        "high": "Hoog",
+        "urgent": "Urgent"
+      },
+      "category_label": "Categorie",
+      "category_options": {
+        "technical": "Technische support",
+        "billing": "Facturatie",
+        "feature": "Featureverzoek",
+        "bug": "Bugmelding",
+        "other": "Anders"
+      },
+      "message_label": "Beschrijf het probleem",
+      "submit_button": "Verzoek indienen",
+      "name_placeholder": "Uw volledige naam",
+      "email_placeholder": "u@bedrijf.com",
+      "subject_label": "Onderwerp",
+      "subject_placeholder": "Onderwerp van het supportverzoek",
+      "message_placeholder": "Beschrijf uw probleem in detail. Voeg eventuele foutmeldingen, reproductiestappen en relevante informatie toe.",
+      "priority_select": "Prioriteit kiezen",
+      "priority_low": "Laag - Algemene vraag",
+      "priority_medium": "Middel - Probleem dat werk beïnvloedt",
+      "priority_high": "Hoog - Ernstig probleem",
+      "priority_urgent": "Urgent - Systeem ligt plat",
+      "category_select": "Categorie kiezen",
+      "category_account": "Account & toegang",
+      "category_billing": "Facturatie & abonnement",
+      "category_technical": "Technisch probleem",
+      "category_training": "AI-training",
+      "category_integration": "Integratie",
+      "category_api": "API",
+      "category_feature": "Featureverzoek",
+      "category_other": "Anders",
+      "required_fields_error": "Vul alstublieft alle verplichte velden in.",
+      "success_alert": "Bedankt voor uw supportverzoek! Ons team neemt binnen 24 uur contact met u op."
+    },
+    "contact_info": {
+      "title": "Contactgegevens",
+      "email": {
+        "title": "E-mailsupport",
+        "value": "support@divinci.ai",
+        "description": "Voor algemene supportvragen"
+      },
+      "phone": {
+        "title": "Telefonische support",
+        "value": "+1 (555) 123-4567",
+        "description": "Ma-Vr 9:00-18:00 EST"
+      },
+      "chat": {
+        "title": "Live chat",
+        "value": "24/7 beschikbaar",
+        "description": "Voor onmiddellijke hulp"
+      },
+      "community": {
+        "title": "Communityforum",
+        "value": "Divinci-forum"
+      }
+    },
+    "hours": {
+      "title": "Supporttijden",
+      "weekdays": "Maandag - Vrijdag: 9:00 - 18:00 EST",
+      "weekends": "Zaterdag - Zondag: 10:00 - 16:00 EST",
+      "holidays": "Feestdagen: Beperkte tijden",
+      "tier_header": "Supportniveau",
+      "hours_header": "Tijden",
+      "response_header": "Reactietijd",
+      "standard": {
+        "tier": "Standard-support",
+        "hours": "Ma-Vr, 9-17 PT",
+        "response": "24 uur"
+      },
+      "professional": {
+        "tier": "Professional-support",
+        "hours": "Ma-Vr, 8-20 PT",
+        "response": "8 uur"
+      },
+      "enterprise": {
+        "tier": "Enterprise-support",
+        "hours": "24/7/365",
+        "response": "1-4 uur"
+      }
+    },
+    "cta_section": {
+      "title": "Hebt u nog hulp nodig?",
+      "description": "Ons specialistenteam staat klaar om u te helpen succes te boeken met Divinci AI.",
+      "button": "Plan een consult"
+    },
+    "contact_section": {
+      "title": "Neem contact op met ons supportteam",
+      "description": "Krijg gepersonaliseerde hulp van ons expert-supportteam"
+    },
+    "quick_help": {
+      "title": "Snelle hulp",
+      "description": "Begin snel met deze essentiële gidsen en bronnen"
+    },
+    "getting_started": {
+      "title": "Aan de slag",
+      "description": "Alles wat u moet weten om met Divinci AI te beginnen bouwen"
+    },
+    "steps": {
+      "create_account": {
+        "title": "Maak uw account aan",
+        "description": "Meld u aan voor een Divinci-AI-account om te beginnen. Kies het abonnement dat bij u past en start uw AI-reis.",
+        "button": "Aanmeldgids"
+      },
+      "define_purpose": {
+        "title": "Definieer het doel van uw AI",
+        "description": "Maak duidelijk welke specifieke rol en functionaliteit u uw AI wilt geven. Dit helpt bij training en optimalisatie voor uw use case.",
+        "button": "Doeldefinitiegids"
+      },
+      "upload_materials": {
+        "title": "Upload trainingmateriaal",
+        "description": "Lever relevante documenten, data en kennisbronnen om het begrip en de capaciteiten van uw AI te trainen.",
+        "button": "Datavoorbereidingsgids"
+      },
+      "train_test": {
+        "title": "Train & test uw AI",
+        "description": "Start het trainingsproces en test de antwoorden van uw AI om nauwkeurigheid en relevantie voor uw specifieke domein te garanderen.",
+        "button": "Trainings-best-practices"
+      },
+      "deploy": {
+        "title": "Deploy uw AI",
+        "description": "Integreer uw AI in uw website, applicatie of andere platforms met onze flexibele deployment-opties.",
+        "button": "Deploymentgids"
+      }
+    },
+    "model_compatibility": {
+      "title": "Compatibiliteit van taalmodellen",
+      "description": "Uitgebreid overzicht van ondersteunde taalmodellen bij alle grote AI-aanbieders",
+      "base_models_title": "Beschikbare basismodellen",
+      "fine_tuning_title": "Ondersteuning voor fine-tuning",
+      "api_docs_button": "Bekijk API-documentatie",
+      "universal_support": {
+        "title": "Universele modelondersteuning",
+        "description": "Ons platform biedt uniforme API's en governance-frameworks die naadloos werken bij alle grote AI-aanbieders, zodat u kunt wisselen tussen modellen of meerdere aanbieders tegelijk gebruiken op basis van de eisen van uw use case."
+      }
+    },
+    "topics": {
+      "getting_started": {
+        "title": "Beginnen met Divinci AI",
+        "description": "Leer de basis van het maken, trainen en deployen van uw aangepaste AI-oplossingen.",
+        "link": "Lees meer"
+      },
+      "api_integration": {
+        "title": "API-integratiegids",
+        "description": "Hoe u Divinci AI integreert met uw applicaties en bestaande systemen.",
+        "link": "Lees meer"
+      },
+      "training_data": {
+        "title": "AI-trainingsdata optimaliseren",
+        "description": "Best practices voor het voorbereiden en structureren van trainingsdata voor optimale resultaten.",
+        "link": "Lees meer"
+      },
+      "security": {
+        "title": "Beveiligings-best-practices",
+        "description": "Zorg dat uw AI-implementatie voldoet aan beveiligingsrichtlijnen en compliance-eisen.",
+        "link": "Lees meer"
+      }
+    },
+    "faq": {
+      "title": "Veelgestelde vragen",
+      "questions": {
+        "integration": {
+          "question": "Kan ik Divinci AI integreren met bestaande systemen?",
+          "answer": {
+            "intro": "Divinci AI biedt meerdere integratieopties:",
+            "list": {
+              "api": "API-integratie: RESTful API voor aangepaste applicaties",
+              "widgets": "Webwidgets: Insluitbare chatinterfaces voor websites",
+              "mobile": "Mobile-SDK: Native integratie voor iOS- en Android-apps",
+              "connectors": "Vooraf gebouwde connectoren: Voor platforms als Slack, Microsoft Teams, Zendesk en Salesforce",
+              "webhooks": "Webhook-ondersteuning: Voor op events gebaseerde integratiestromen"
+            },
+            "closing": "Onze Developer Hub biedt gedetailleerde documentatie, codevoorbeelden en integratiegidsen voor alle ondersteunde platforms."
+          }
+        },
+        "platform_difference": {
+          "question": "Hoe verschilt Divinci AI van andere AI-platforms?",
+          "answer": {
+            "part1": "Divinci AI onderscheidt zich door zijn aanpasbare AI-creatieproces, dat gebruikers in staat stelt gespecialiseerde AI-modellen te bouwen zonder technische expertise. Ons platform richt zich op domeinspecifieke kennisintegratie, ethische AI-ontwikkeling en naadloze multi-platform deployment.",
+            "part2": "Anders dan algemene AI-systemen creëert Divinci modellen die diepgaand op de hoogte zijn van uw specifieke domein, en zo nauwkeurigere en relevantere antwoorden voor uw use case opleveren."
+          }
+        },
+        "security": {
+          "question": "Hoe veilig zijn mijn gegevens bij Divinci AI?",
+          "answer": {
+            "intro": "Divinci AI implementeert robuuste beveiligingsmaatregelen, waaronder:",
+            "list": {
+              "encryption": "Dataversleuteling: Alle data wordt versleuteld tijdens transport en in rust",
+              "access": "Rolgebaseerde toegang: Granulaire rechtenbeheersing",
+              "soc2": "SOC 2-compliance: Reguliere beveiligingsaudits",
+              "isolation": "Data-isolatie: Uw trainingsdata wordt alleen gebruikt voor uw AI-modellen",
+              "private_cloud": "Private-cloud-opties: Voor enterprise-klanten met verhoogde beveiligingseisen"
+            },
+            "closing": "Voor meer informatie kunt u onze privacyverklaring en beveiligingsdocumentatie raadplegen."
+          }
+        },
+        "support_types": {
+          "question": "Wat voor support bieden jullie?",
+          "answer": {
+            "intro": "We bieden gelaagde supportopties die passen bij uw behoeften:",
+            "list": {
+              "standard": "Standard-support: E-mailsupport met reactietijd van 24 uur (inbegrepen in Basic-abonnement)",
+              "professional": "Professional-support: Prioritaire e-mail- en chat-support met reactietijd van 8 uur (inbegrepen in Professional-abonnement)",
+              "enterprise": "Enterprise-support: 24/7-support met toegewijde accountmanager, reactietijd van 1-4 uur en aangepaste SLA's (inbegrepen in Enterprise-abonnement)"
+            },
+            "closing": "Alle klanten hebben toegang tot onze documentatie, knowledge base, communityforums en regelmatige webinars."
+          }
+        },
+        "training_time": {
+          "question": "Hoe lang duurt het AI-trainingsproces?",
+          "answer": {
+            "intro": "De duur hangt af van de omvang en complexiteit van uw data:",
+            "list": {
+              "basic": "Basismodellen (minder dan 100MB data): 30-60 minuten",
+              "standard": "Standaardmodellen (100MB-1GB): 2-4 uur",
+              "comprehensive": "Uitgebreide modellen (1GB-5GB): 4-12 uur",
+              "enterprise": "Enterprise-modellen (5GB+): Maatwerk-tijdsbestek"
+            },
+            "closing": "Ons platform geeft realtime voortgangsupdates en meldingen wanneer de training klaar is. U kunt het platform tijdens de training blijven gebruiken; incrementele updates kosten doorgaans minder tijd dan de initiële training."
+          }
+        },
+        "data_types": {
+          "question": "Welke datatypes kan ik gebruiken om mijn AI te trainen?",
+          "answer": {
+            "intro": "Divinci AI ondersteunt diverse datatypes voor training, waaronder:",
+            "list": {
+              "documents": "Tekstdocumenten (PDF, DOCX, TXT)",
+              "catalogs": "Productcatalogi en specificaties",
+              "datasets": "Gestructureerde datasets (CSV, JSON)",
+              "documentation": "Procesdocumentatie en richtlijnen",
+              "faqs": "FAQ's en knowledge bases",
+              "website": "Websitecontent (via crawling)"
+            },
+            "compliance": "Alle trainingsdata moet voldoen aan ons content-beleid en mag geen vertrouwelijke of gevoelige persoonlijke informatie bevatten, tenzij u onze veilige enterprise-optie met privacy-garanties gebruikt."
+          }
+        }
+      }
+    }
   },
   "expert_answers": {
     "title": "Expert Antwoorden",
@@ -257,7 +625,8 @@
       },
       "language_models": {
         "question": "Welke taalmodellen zijn compatibel?",
-        "answer": "Ons platform ondersteunt een breed spectrum van grote taalmodellen, van open-source tot eigendomsarchitecturen. Flexibele integratie maakt naadloze implementatie mogelijk in diverse frameworks en bedrijfsomgevingen, wat aanpasbaarheid aan evoluerende zakelijke behoeften garandeert."
+        "answer": "Ons platform ondersteunt een breed spectrum van grote taalmodellen, van open-source tot eigendomsarchitecturen. Flexibele integratie maakt naadloze implementatie mogelijk in diverse frameworks en bedrijfsomgevingen, wat aanpasbaarheid aan evoluerende zakelijke behoeften garandeert.",
+        "model_compat_link": "Volledig modelcompatibiliteitsoverzicht bekijken"
       },
       "quality_assurance": {
         "question": "Hoe wordt continue kwaliteitsborging bereikt?",
@@ -269,5 +638,244 @@
       }
     },
     "view_complete_list": "Bekijk volledige modelcompatibiliteitslijst"
+  },
+  "news": {
+    "read_more": "Lees meer →",
+    "learn_more": "Meer informatie →",
+    "ai_for_good_tag": "AI voor het Goede",
+    "cloudflare_date": "5 oktober 2025",
+    "cloudflare_title": "Divinci AI treedt toe tot Cloudflare Workers Launchpad Cohort #6",
+    "cloudflare_excerpt": "We zijn verheugd onze acceptatie in het prestigieuze Workers Launchpad acceleratorprogramma van Cloudflare aan te kondigen. Ontdek hoe we het edge computing-platform van Cloudflare gebruiken om geavanceerde RAG-pijplijnen te bouwen."
+  },
+  "compliance": {
+    "hero": {
+      "eyebrow": "Aangedreven door vindex + LarQL",
+      "heading": "Compliance, met een bonnetje.",
+      "tagline": "De meeste „AI-compliance\" stopt bij toegangslogs en prompt-niveau guardrails. Divinci gaat ín het model. Elke entiteitsassociatie is een doorzoekbare feature; elke wijziging is een draagbare, controleerbare patch — en de <strong>vindex</strong> is het technische documentatie-artefact dat uw toezichthouder zo gaat opvragen.",
+      "cta_primary": "Praat met compliance →",
+      "cta_secondary": "Bekijk een live vindex"
+    },
+    "mapping": {
+      "heading": "Wat de regelgeving vraagt · wat LarQL levert",
+      "subheading": "Hetzelfde artefact — de vindex — beantwoordt eisen rond transparantie, toezicht, documentatie en verwijdering in de vier grote AI-regelgevingen waar Divinci-klanten mee te maken hebben.",
+      "th_regulation": "Regelgeving",
+      "th_requirement": "Eis",
+      "th_competitors": "Wat concurrenten bieden",
+      "th_larql": "Wat LarQL/vindex biedt",
+      "rows": [
+        {
+          "reg_label": "EU AI Act §13",
+          "reg_topic": "Transparantie",
+          "requirement": "„Voldoende transparantie zodat gebruikers de uitvoer kunnen interpreteren\"",
+          "competitors": "Model cards, prozaïsche systeembeschrijvingen",
+          "larql": "De vindex IS een doorzoekbaar transparantie-artefact — elk feiten­dragend feature geïdentificeerd via <code>(layer, feature, gate_score)</code>"
+        },
+        {
+          "reg_label": "EU AI Act §14",
+          "reg_topic": "Menselijk toezicht",
+          "requirement": "Operators moeten zinvol kunnen ingrijpen",
+          "competitors": "Prompt-niveau guardrails (te omzeilen via jailbreak)",
+          "larql": "DELETE-patches op gewichtsniveau op het feature, niet op de prompt — niet te omzeilen via jailbreak"
+        },
+        {
+          "reg_label": "EU AI Act Bijlage IV",
+          "reg_topic": "Technische documentatie",
+          "requirement": "„Algemene logica van het AI-systeem\"",
+          "competitors": "Architectuurdiagrammen + samenvattingen van trainingsdata",
+          "larql": "Bit-exacte mechanistische documentatie: het geprojecteerde vocabulaire van elk feature, de structurele metriek van elke laag (C1–C5)"
+        },
+        {
+          "reg_label": "AVG Artikel 17",
+          "reg_topic": "Recht op gegevenswissing",
+          "requirement": "Verifieerbare verwijdering van persoonsgegevens",
+          "competitors": "Fine-tuning om te „vergeten\" — <em>niet verifieerbaar</em>; data kan adversarieel weer opduiken",
+          "larql": "DELETE-patch met audit-trail = <strong>aantoonbare onderdrukking</strong> van een specifieke named-entity-associatie tegen +0,02% perplexiteit. Het patch-bestand is het bonnetje."
+        },
+        {
+          "reg_label": "HIPAA · PCI · AVG",
+          "reg_topic": "De-identificatie",
+          "requirement": "PII uit dataproducten verwijderen",
+          "competitors": "Tokenfiltering bij I/O (lekken mogelijk)",
+          "larql": "Feature-niveau identificatie van richtingen die PII coderen; chirurgische verwijdering op de gewichtenlaag"
+        },
+        {
+          "reg_label": "NIST AI RMF",
+          "reg_topic": "Beheren",
+          "requirement": "Restrisico kwantificeren en beheren",
+          "competitors": "Risicobeoordelingen op gevoel",
+          "larql": "De universele constanten C1–C5 geven u een meetbare structurele basislijn; verifieer opnieuw na elke patch"
+        }
+      ]
+    },
+    "receipt": {
+      "heading": "Hoe een „bonnetje\" er werkelijk uitziet",
+      "para_1": "Een LarQL-patch is een draagbaar JSON-bestand met SHA-256-checksum. Pas hem toe om een feit te onderdrukken; verwijder hem om het model bit voor bit te herstellen. De patch IS het auditlog — operators, toezichthouders en downstream-consumenten kunnen dezelfde operatie onafhankelijk verifiëren.",
+      "para_2": "Hieronder: de echte Gate-3 patch die we leveren in onze publieke testsuite, met de Paris→capital-associatie onderdrukt en hersteld met meetbaar, herhaalbaar effect op een echte Gemma 4 E2B vindex."
+    },
+    "cta_band": {
+      "heading": "Compliance die u kunt bewijzen. Op elke open transformer.",
+      "tagline": "Vandaag acht gepubliceerde vindexes over Gemma, Qwen, Llama, Mistral, OpenAI MoE en Microsoft 1-bit. Breng uw model — wij bouwen het bonnetje.",
+      "cta_primary": "Boek een compliance-review →",
+      "cta_secondary": "Blader door vindexes op Hugging Face"
+    }
+  },
+  "about": {
+    "hero_title": "Over Divinci AI",
+    "hero_subtitle": "We bouwen de toekomst van samenwerking tussen mens en AI — met vakmanschap, precisie en doelgerichtheid.",
+    "mission_title": "Onze missie",
+    "mission_text": "Enterprise AI democratiseren door geavanceerde kunstmatige intelligentie toegankelijk, beheersbaar en betrouwbaar te maken voor organisaties van elke omvang. Wij geloven dat AI menselijk potentieel moet versterken, niet vervangen.",
+    "vision_title": "Onze visie",
+    "vision_text": "Een wereld waarin elke organisatie de transformerende kracht van AI met vertrouwen kan benutten — wetende dat haar implementaties veilig en conform zijn en in lijn liggen met haar waarden. We zien AI als een samenwerkingspartner voor menselijke prestaties.",
+    "values_title": "Onze kernwaarden",
+    "values_desc": "Deze principes sturen alles wat we doen, van productontwikkeling tot klantrelaties.",
+    "value1_title": "Mensgerichte AI",
+    "value1_desc": "Wij ontwerpen AI-systemen die menselijke capaciteiten versterken in plaats van vervangen, zodat technologie de beste belangen van de mensheid dient.",
+    "value2_title": "Innovatie met doel",
+    "value2_desc": "Elke functie die we bouwen lost een echt probleem op. We innoveren niet omwille van de technologie, maar om betekenisvolle impact te creëren.",
+    "value3_title": "Verantwoorde AI",
+    "value3_desc": "We geven prioriteit aan ethische AI-ontwikkeling en zorgen voor transparantie, eerlijkheid en verantwoording in elk algoritme en elke beslissing.",
+    "value4_title": "Inclusief ontwerp",
+    "value4_desc": "Onze platformen zijn gebouwd voor iedereen, ongeacht technische expertise, zodat de voordelen van AI voor iedereen toegankelijk zijn.",
+    "value5_title": "Beveiliging eerst",
+    "value5_desc": "Beveiliging is geen bijzaak — het is de basis van alles wat we bouwen, beschermt uw data en behoudt vertrouwen.",
+    "value6_title": "Partnerschap met klanten",
+    "value6_desc": "We beschouwen onze klanten als partners en werken nauw samen om hun AI- en bedrijfsdoelen te bereiken.",
+    "team_title": "Maak kennis met ons team",
+    "team_desc": "Gepassioneerde experts die vakmanschap combineren met geavanceerde AI-technologie.",
+    "michael_title": "Medeoprichter & CEO",
+    "michael_bio": "Visionair leider met diepgaande expertise in AI-systemen en enterprise software. Bouwde eerder schaalbare platforms bij toonaangevende technologiebedrijven.",
+    "samuel_title": "Medeoprichter & CTO",
+    "samuel_bio": "AI-onderzoeker en systeemarchitect met uitgebreide ervaring in machine-learning-infrastructuur en schaalbare AI-implementatie.",
+    "sierra_title": "Medeoprichter & CMO",
+    "sierra_bio": "Productstrateeg met focus op gebruikerservaring en AI-ethiek. Expert in het vertalen van complexe AI-mogelijkheden naar intuïtieve interfaces.",
+    "story_title": "Ons verhaal",
+    "story_desc": "Van visie naar realiteit — de reis om de toekomst van enterprise AI te bouwen.",
+    "timeline1_title": "Het begin",
+    "timeline1_desc": "Opgericht met de visie dat AI voor elke organisatie toegankelijk zou moeten zijn, niet alleen voor techreuzen. We begonnen in een garage met grote dromen en nog grotere ambities.",
+    "timeline2_title": "Eerste prototype",
+    "timeline2_desc": "Na maanden van onderzoek en ontwikkeling bouwden we ons eerste werkende prototype. De door da Vinci geïnspireerde interface kwam voort uit onze overtuiging dat technologie mooi moet zijn.",
+    "timeline3_title": "Beta-lancering",
+    "timeline3_desc": "We lanceerden de bèta met geselecteerde enterprise-partners en verzamelden onschatbare feedback die de evolutie van het platform vormgaf. De reactie was overweldigend positief.",
+    "timeline4_title": "Officiële lancering",
+    "timeline4_desc": "Divinci AI werd officieel publiekelijk gelanceerd en bracht AI-management op enterprise-niveau naar organisaties wereldwijd. De renaissance van AI was begonnen.",
+    "timeline5_title": "Groei en evolutie",
+    "timeline5_desc": "Vandaag blijven we innoveren en uitbreiden, we bedienen ondernemingen wereldwijd en blijven trouw aan onze kernwaarden van mensgerichte AI-ontwikkeling.",
+    "ai_good_title": "AI for Good-initiatieven",
+    "ai_good_article_title": "AI for Impact: een kijkje in het pilotprogramma voor dakloosheidspreventie in Los Angeles",
+    "ai_good_desc": "We zijn er trots op om met Los Angeles County samen te werken aan innovatieve AI-oplossingen om dakloosheid aan te pakken. Ons platform helpt maatschappelijk werkers om risicopersonen eerder te identificeren en effectievere interventies te coördineren.",
+    "ai_good_link": "Meer over onze impact",
+    "join_title": "Word lid van ons team",
+    "join_desc": "Klaar om de toekomst van AI mee vorm te geven? We zijn altijd op zoek naar uitzonderlijk talent.",
+    "join_cta": "Bekijk openstaande vacatures"
+  },
+  "careers": {
+    "hero_title": "Word lid van ons team",
+    "hero_subtitle": "Bij Divinci AI bouwen we de toekomst van mens-AI-samenwerking. Sluit je aan bij onze missie om AI toegankelijk en waardevol te maken voor bedrijven van elke omvang.",
+    "hero_cta": "Bekijk openstaande vacatures",
+    "open_positions_title": "Openstaande vacatures",
+    "open_positions_desc": "We zoeken getalenteerde mensen die gepassioneerd zijn over AI, technologie en het maken van positieve impact. Dit zijn onze huidige openingen:",
+    "key_requirements": "Belangrijke eisen:",
+    "apply_now": "Nu solliciteren",
+    "location": "Remote / Santa Monica, CA",
+    "dept_engineering": "Engineering",
+    "dept_product": "Product",
+    "dept_design": "Design",
+    "dept_cs": "Customer Success",
+    "internships_title": "Stages",
+    "internships_desc": "We bieden stages aan studenten en pas afgestudeerden die gepassioneerd zijn over AI en praktische ervaring willen opdoen.",
+    "internship_program_title": "Zomer 2026 AI-stageprogramma",
+    "internship_program_desc": "Onze 12 weken durende zomerstage biedt zinvolle projecten, mentorschap door senior engineers en de kans om bij te dragen aan echte producten die enterprise-klanten gebruiken.",
+    "apply_internship": "Solliciteer voor de stage",
+    "process_title": "Onze sollicitatieprocedure",
+    "process_desc": "We hebben onze sollicitatieprocedure grondig ontworpen, maar respecteren je tijd. Dit kun je verwachten:",
+    "step1_title": "Beoordeling sollicitatie",
+    "step1_desc": "We bekijken je sollicitatie en portfolio om je achtergrond en interesses te begrijpen.",
+    "step2_title": "Eerste gesprek",
+    "step2_desc": "Een kort telefoongesprek met ons recruitingteam om de rol te bespreken en je vragen te beantwoorden.",
+    "step3_title": "Technische beoordeling",
+    "step3_desc": "Afhankelijk van de rol kan dit een coding challenge, design-opdracht of case study zijn.",
+    "step4_title": "Teaminterviews",
+    "step4_desc": "Ontmoet teamleden om technische onderwerpen te bespreken en onze cultuur te leren kennen.",
+    "step5_title": "Eindgesprek",
+    "step5_desc": "Een gesprek met de leiding over visie, doelen en hoe je zou bijdragen aan onze missie.",
+    "step6_title": "Aanbod",
+    "step6_desc": "Bij wederzijdse match doen we een aanbod en helpen we je bij de overgang naar het team.",
+    "hear_from_team": "Stemmen uit ons team",
+    "testimonial1_quote": "Werken bij Divinci AI betekent vooroplopen in AI-innovatie en tegelijkertijd sterk inzetten op verantwoorde ontwikkeling. Het is uitdagend en bevredigend.",
+    "testimonial1_name": "Sarah Chen",
+    "testimonial1_role": "Senior ML Engineer",
+    "testimonial2_quote": "De samenwerkingscultuur hier is geweldig. Iedereens ideeën worden gewaardeerd en we werken allemaal naar hetzelfde doel: AI toegankelijk maken voor bedrijven.",
+    "testimonial2_name": "Marcus Johnson",
+    "testimonial2_role": "Product Manager",
+    "benefit1_title": "Uitgebreide zorgverzekering",
+    "benefit1_desc": "We bieden hoogwaardige medische, tandheelkundige en oogheelkundige dekking voor medewerkers en gezinsleden, waarbij Divinci AI het grootste deel van de premie betaalt.",
+    "benefit2_title": "Competitieve beloning",
+    "benefit2_desc": "We bieden competitieve salarissen, equity-opties en een 401(k)-plan met werkgeversbijdrage zodat je deelt in het succes van het bedrijf.",
+    "benefit3_title": "Flexibel werken",
+    "benefit3_desc": "We ondersteunen remote werken met de optie tot samenwerking op kantoor in Santa Monica, zodat je werkt waar je het meest productief bent.",
+    "benefit4_title": "Royaal verlof",
+    "benefit4_desc": "We bieden onbeperkte PTO, bedrijfsvrije dagen en betaald ouderschapsverlof, omdat we geloven in een goede balans en herstel.",
+    "benefit5_title": "Leren & ontwikkelen",
+    "benefit5_desc": "Een jaarlijkse leersubsidie voor congressen, cursussen en boeken, plus regelmatige kansen voor professionele ontwikkeling.",
+    "benefit6_title": "Teamevents",
+    "benefit6_desc": "Regelmatige team-uitjes, sociale events en bedrijfsretraites helpen sterke relaties en een hechte cultuur op te bouwen.",
+    "job1_title": "Senior Machine Learning Engineer",
+    "job1_desc": "Word lid van ons ML-team om grootschalige machine-learning-systemen te bouwen en optimaliseren die ons AI-platform aandrijven. Je werkt aan geavanceerde algoritmes en infrastructuur waardoor bedrijven met vertrouwen AI-modellen kunnen uitrollen.",
+    "job1_req1": "5+ jaar ervaring in ML engineering",
+    "job1_req2": "Expertise in PyTorch, TensorFlow of vergelijkbare frameworks",
+    "job1_req3": "Ervaring met gedistribueerde systemen en cloudplatformen",
+    "job1_req4": "Stevige software-engineeringbasis",
+    "job2_title": "Full Stack Engineer",
+    "job2_desc": "Help front- en back-endsystemen te bouwen die ons AI-platform intuïtief en krachtig maken. Je werkt over de hele stack om naadloze gebruikerservaringen voor enterprise-klanten te creëren.",
+    "job2_req1": "3+ jaar full-stack-ervaring",
+    "job2_req2": "Vaardig in React, Node.js en moderne webtechnologieën",
+    "job2_req3": "Ervaring met databases en API-design",
+    "job2_req4": "Begrip van cloudinfrastructuur",
+    "job3_title": "Product Manager",
+    "job3_desc": "Stuur productstrategie en uitvoering voor ons AI-managementplatform. Je werkt nauw samen met engineering, design en klanten om producten te definiëren en op te leveren die echte zakelijke problemen oplossen.",
+    "job3_req1": "3+ jaar ervaring in product management",
+    "job3_req2": "Ervaring met B2B SaaS-producten",
+    "job3_req3": "Sterke analytische en communicatieve vaardigheden",
+    "job3_req4": "Achtergrond in AI/ML-producten heeft de voorkeur",
+    "job4_title": "UX/UI Designer",
+    "job4_desc": "Vorm de gebruikerservaring van ons AI-platform en maak complexe technologie toegankelijk en plezierig. Je ontwerpt interfaces waarmee gebruikers AI-systemen met vertrouwen kunnen beheren.",
+    "job4_req1": "3+ jaar ervaring in UX/UI-design",
+    "job4_req2": "Portfolio dat B2B-productontwerp toont",
+    "job4_req3": "Vaardig in Figma, Sketch of vergelijkbare tools",
+    "job4_req4": "Ervaring met designsystemen en gebruikersonderzoek",
+    "job5_title": "Customer Success Manager",
+    "job5_desc": "Wees de vertrouwde adviseur van onze enterprise-klanten en help hen succes te halen met ons AI-platform. Je drijft adoptie, groei en langdurige tevredenheid aan.",
+    "job5_req1": "2+ jaar ervaring in customer success",
+    "job5_req2": "Ervaring met enterprise-B2B-klanten",
+    "job5_req3": "Sterke communicatie- en probleemoplossingsvaardigheden",
+    "job5_req4": "Technische achtergrond heeft de voorkeur",
+    "culture_title": "Onze Cultuur",
+    "culture_desc": "Bij Divinci AI bouwen we een samenwerkende, innovatieve en inclusieve werkplek waar iedereen kan groeien. Onze cultuur wordt bepaald door gedeelde waarden en de toewijding om AI-technologie te creëren die mensen versterkt in plaats van vervangt.",
+    "value1_title": "Innovatie",
+    "value1_desc": "We moedigen gedurfd denken en creatieve probleemoplossing aan. We schuwen het niet de status quo uit te dagen en de grenzen van wat met AI mogelijk is op te rekken.",
+    "value2_title": "Samenwerking",
+    "value2_desc": "We geloven dat het beste werk ontstaat als diverse perspectieven samenkomen. We koesteren een omgeving waar ideeën openlijk gedeeld worden en ieders stem wordt gehoord.",
+    "value3_title": "Verantwoordelijkheid",
+    "value3_desc": "We zijn toegewijd aan verantwoorde AI-ontwikkeling, met duidelijke ethische richtlijnen en aandacht voor technologie die de mensheid ten goede komt en privacy en autonomie respecteert.",
+    "value4_title": "Impact",
+    "value4_desc": "We worden gedreven door de kans om betekenisvolle impact te hebben op hoe bedrijven AI inzetten. Elk teamlid speelt een cruciale rol in het waarmaken van die visie.",
+    "benefits_title": "Voordelen & extra's",
+    "benefits_intro": "We geloven in goed zorgen voor ons team. Hier zijn enkele voordelen en extra's voor Divinci-AI-medewerkers:"
+  },
+  "blog": {
+    "hero_title": "Divinci AI Blog",
+    "hero_subtitle": "Inzichten, updates en thought leadership over kunstmatige intelligentie, RAG-systemen en enterprise AI-management.",
+    "by": "Door",
+    "read_article": "Artikel lezen",
+    "recent_articles": "Recente artikelen",
+    "read_more": "Lees meer",
+    "share_tag": "Delen",
+    "share_title": "Deel met vrienden",
+    "share_desc": "Als u deze onderwerpen interessant vindt, deel ze dan met vrienden en collega's.",
+    "coming_soon_title": "Blog komt eraan",
+    "coming_soon_message": "We bouwen momenteel aan onze blog met inzichten over AI-technologie, implementatiestrategieën en sectortrends. Kom later terug voor updates of abonneer u om een melding te krijgen wanneer nieuwe content beschikbaar is.",
+    "notify_me": "Meld me bij updates",
+    "featured_tag_default": "Kunstmatige intelligentie",
+    "post_tag_default": "AI-inzichten"
   }
 }

@@ -7,9 +7,9 @@ body{font-family:'Source Sans 3',sans-serif;background:#f8f4f0;color:#2d3c34;lin
 
 /* Core Variables for Performance */
 :root {
-  --primary: #16214c;
-  --secondary: #254284;
-  --accent: #5ce2e7;
+  --primary: #2d3c34;
+  --secondary: #2d5a4f;
+  --accent: #b8a080;
   --text-dark: #2d3c34;
   --text-light: rgba(255,255,255,0.9);
   --bg-light: #f8f4f0;

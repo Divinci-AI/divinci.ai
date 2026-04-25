@@ -5311,6 +5311,26 @@ body:not(.homepage) .privacy-settings-link:hover {
   50%      { box-shadow: 0 0 0 8px rgba(122, 184, 224, 0); }
 }
 
+@media (max-width: 640px) {
+  .site-research-banner-inner {
+    padding: 0.5rem 0.85rem;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+  .site-research-banner-sep,
+  .site-research-banner-secondary {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-research-banner-label {
+    display: none;
+  }
+}
+
 /* ═════════════════════════════════════════════════════════════════
    Homepage research-section variants A / B / C — preview templates
    ═════════════════════════════════════════════════════════════════ */

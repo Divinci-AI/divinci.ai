@@ -5,13 +5,22 @@
     "og_title": "Divinci AI",
     "og_description": "Releases de IA. Excelência, sempre."
   },
+  "banner": {
+    "label": "Pesquisa recente:",
+    "link": "Quando o circuito se dissolve →"
+  },
   "navigation": {
     "features": "Recursos",
     "team": "Equipe",
     "signup": "Cadastrar",
     "support": "Suporte",
     "request_demo": "Solicitar demo",
-    "support_center": "Centro de Suporte"
+    "support_center": "Centro de Suporte",
+    "blog": "Blog",
+    "terms_of_service": "Termos de Serviço",
+    "privacy_policy": "Política de Privacidade",
+    "quality_assurance": "Garantia de Qualidade",
+    "release_management": "Gestão de Lançamentos"
   },
   "hero": {
     "heading": "Releases de IA.",
@@ -25,7 +34,9 @@
     "cta": {
       "primary": "Solicitar demo",
       "secondary": "Explorar plataforma"
-    }
+    },
+    "sound_unmute": "Ativar som",
+    "sound_mute": "Silenciar"
   },
   "enterprise": {
     "title": "IA empresarial, gerenciada com expertise",
@@ -47,7 +58,9 @@
         "title": "Colaboração integrada de equipe",
         "description": "Otimize revisões multifuncionais com fluxos de trabalho estruturados. Atribua responsabilidades, colete feedback e documente aprovações para garantir que cada release atenda às expectativas organizacionais e regulatórias."
       }
-    }
+    },
+    "title_line1": "IA empresarial,",
+    "title_line2": "gerenciada com expertise"
   },
   "features": {
     "title": "Turbine seu fluxo de trabalho com IA",
@@ -99,13 +112,21 @@
       "title": "AutoRAG"
     },
     "qa_title": "Garantia de Qualidade",
-    "release_management": "Gerenciamento de Lançamentos"
+    "release_management": "Gerenciamento de Lançamentos",
+    "title_first_line": "A Era da IA",
+    "title_second_line": "Gestão"
   },
   "team": {
     "title": "Conheça nossa equipe",
     "description": "Conheça os inovadores que estão moldando o futuro da colaboração humano-IA.",
     "members": {
-      "connect": "Conectar"
+      "connect": "Conectar",
+      "michael_bio": "Visionário com mais de 15 anos em tecnologia empresarial, liderando a revolução da IA conversacional.",
+      "samuel_bio": "Estrategista de produto com histórico de soluções de IA centradas no usuário para equipes empresariais.",
+      "duane_bio": "Arquiteto de sistemas com expertise em infraestrutura de IA escalável e processamento de linguagem natural.",
+      "sierra_bio": "Formada pela Cornell University com ampla experiência em serviços financeiros e empreendedorismo. Traz expertise em desenvolvimento estratégico de negócios para escalar projetos de IA.",
+      "sean_bio": "Cientista de dados com mais de 10 anos de experiência em programação, especializado em machine learning e Python.",
+      "paul_marie_bio": "Líder em governança de IA e consultor independente. Fundador do AI LA Responsible AI Group com experiência no Google AI, Deloitte e CVS Health."
     },
     "roles": {
       "ceo_founder": "CEO e Fundador",
@@ -198,7 +219,8 @@
       },
       "privacy_settings": "Configurações de Privacidade",
       "cookie_policy": "Política de Cookies",
-      "cookie_preferences": "Preferências de Cookies"
+      "cookie_preferences": "Preferências de Cookies",
+      "rights_reserved": "Todos os direitos reservados."
     },
     "api": "API",
     "support": "Suporte",
@@ -243,8 +265,354 @@
     }
   },
   "support": {
-    "title": "Centro de Suporte",
-    "subtitle": "Obtenha ajuda e suporte para Divinci AI"
+    "title": "Central de Suporte",
+    "subtitle": "Obtenha ajuda e suporte para Divinci AI",
+    "description": "Encontre respostas para perguntas frequentes, guias de implementação e fale com nosso time de especialistas.",
+    "sidebar": {
+      "title": "Central de Suporte",
+      "menu": {
+        "getting_started": "Primeiros passos",
+        "implementation": "Implementação",
+        "troubleshooting": "Resolução de problemas",
+        "api_docs": "Documentação da API",
+        "billing": "Faturamento",
+        "contact": "Contato",
+        "community": "Fóruns da comunidade",
+        "contact_form": "Formulário de contato",
+        "enterprise": "Soluções Enterprise",
+        "knowledge_base": "Base de conhecimento",
+        "language_models": "Modelos de linguagem",
+        "support_team": "Time de suporte",
+        "technical_support": "Suporte técnico",
+        "tutorials": "Central de tutoriais"
+      },
+      "cta": {
+        "title": "Precisa de mais ajuda?",
+        "description": "Fale diretamente com nosso time de especialistas.",
+        "button": "Falar com o suporte"
+      },
+      "sections": {
+        "contact": "Falar com o suporte",
+        "resources": "Recursos de suporte",
+        "self_service": "Ferramentas self-service"
+      }
+    },
+    "header": {
+      "title": "Como podemos ajudar?",
+      "description": "Encontre respostas rápidas para perguntas comuns ou fale diretamente com nosso time de especialistas."
+    },
+    "help_cards": {
+      "getting_started": {
+        "title": "Primeiros passos",
+        "description": "Configure sua conta e comece a usar Divinci AI em minutos.",
+        "button": "Ver guia"
+      },
+      "api_integration": {
+        "title": "Integração de API",
+        "description": "Integre perfeitamente aos seus sistemas existentes usando nossas APIs.",
+        "button": "Ver documentação"
+      },
+      "troubleshooting": {
+        "title": "Resolução de problemas",
+        "description": "Encontre soluções para problemas técnicos comuns.",
+        "button": "Ver soluções"
+      },
+      "billing": {
+        "title": "Gerenciar faturamento",
+        "description": "Atualize formas de pagamento, veja faturas e gerencie suas configurações de assinatura facilmente.",
+        "button": "Ajuda de faturamento"
+      },
+      "train_ai": {
+        "title": "Treine sua IA",
+        "description": "Aprenda a treinar sua IA de forma eficaz com a melhor preparação de dados e boas práticas.",
+        "button": "Ver tutorial"
+      }
+    },
+    "stats": {
+      "response_time": "< 2h",
+      "response_time_label": "Tempo médio de resposta",
+      "satisfaction": "99%",
+      "satisfaction_label": "Satisfação do cliente",
+      "resolution": "24h",
+      "resolution_label": "Tempo de resolução",
+      "tutorial_videos": {
+        "number": "20+",
+        "label": "Vídeos tutoriais"
+      },
+      "knowledge_base": {
+        "number": "100+",
+        "label": "Artigos da base de conhecimento"
+      },
+      "community": {
+        "number": "5.000+",
+        "label": "Membros da comunidade"
+      }
+    },
+    "popular_topics": {
+      "title": "Tópicos populares",
+      "model_compatibility": {
+        "title": "Compatibilidade de modelos",
+        "description": "Saiba quais modelos de linguagem são compatíveis com nossa plataforma.",
+        "link": "Ver lista completa"
+      },
+      "deployment": {
+        "title": "Guias de deployment",
+        "description": "Implementações passo a passo para diferentes casos de uso corporativos.",
+        "link": "Ver guias"
+      },
+      "performance": {
+        "title": "Otimização de desempenho",
+        "description": "Boas práticas para maximizar o desempenho dos seus modelos.",
+        "link": "Leia mais"
+      }
+    },
+    "contact_form": {
+      "title": "Enviar uma solicitação de suporte",
+      "name_label": "Nome completo",
+      "email_label": "Endereço de e-mail",
+      "company_label": "Empresa",
+      "priority_label": "Prioridade",
+      "priority_options": {
+        "low": "Baixa",
+        "normal": "Normal",
+        "high": "Alta",
+        "urgent": "Urgente"
+      },
+      "category_label": "Categoria",
+      "category_options": {
+        "technical": "Suporte técnico",
+        "billing": "Faturamento",
+        "feature": "Solicitação de recurso",
+        "bug": "Relatar bug",
+        "other": "Outro"
+      },
+      "message_label": "Descreva o problema",
+      "submit_button": "Enviar solicitação",
+      "name_placeholder": "Seu nome completo",
+      "email_placeholder": "voce@empresa.com",
+      "subject_label": "Assunto",
+      "subject_placeholder": "Assunto da solicitação",
+      "message_placeholder": "Descreva o problema em detalhes. Inclua mensagens de erro, passos para reproduzir e informações relevantes.",
+      "priority_select": "Selecione a prioridade",
+      "priority_low": "Baixa - Pergunta geral",
+      "priority_medium": "Média - Problema afetando o trabalho",
+      "priority_high": "Alta - Problema sério",
+      "priority_urgent": "Urgente - Sistema fora do ar",
+      "category_select": "Selecione a categoria",
+      "category_account": "Conta e acesso",
+      "category_billing": "Faturamento e assinatura",
+      "category_technical": "Problema técnico",
+      "category_training": "Treinamento de IA",
+      "category_integration": "Integração",
+      "category_api": "API",
+      "category_feature": "Solicitação de recurso",
+      "category_other": "Outro",
+      "required_fields_error": "Preencha todos os campos obrigatórios.",
+      "success_alert": "Obrigado pela sua solicitação! Nosso time retornará em até 24 horas."
+    },
+    "contact_info": {
+      "title": "Informações de contato",
+      "email": {
+        "title": "Suporte por e-mail",
+        "value": "support@divinci.ai",
+        "description": "Para consultas gerais de suporte"
+      },
+      "phone": {
+        "title": "Suporte por telefone",
+        "value": "+1 (555) 123-4567",
+        "description": "Seg-Sex 9h-18h EST"
+      },
+      "chat": {
+        "title": "Chat ao vivo",
+        "value": "Disponível 24/7",
+        "description": "Para assistência imediata"
+      },
+      "community": {
+        "title": "Fórum da comunidade",
+        "value": "Fórum Divinci"
+      }
+    },
+    "hours": {
+      "title": "Horário de suporte",
+      "weekdays": "Segunda - Sexta: 9:00 - 18:00 EST",
+      "weekends": "Sábado - Domingo: 10:00 - 16:00 EST",
+      "holidays": "Feriados: Horário reduzido",
+      "tier_header": "Nível de suporte",
+      "hours_header": "Horário",
+      "response_header": "Tempo de resposta",
+      "standard": {
+        "tier": "Suporte Standard",
+        "hours": "Seg-Sex, 9h-17h PT",
+        "response": "24 horas"
+      },
+      "professional": {
+        "tier": "Suporte Professional",
+        "hours": "Seg-Sex, 8h-20h PT",
+        "response": "8 horas"
+      },
+      "enterprise": {
+        "tier": "Suporte Enterprise",
+        "hours": "24/7/365",
+        "response": "1-4 horas"
+      }
+    },
+    "cta_section": {
+      "title": "Ainda precisa de ajuda?",
+      "description": "Nosso time de especialistas está aqui para ajudá-lo a ter sucesso com Divinci AI.",
+      "button": "Agendar consulta"
+    },
+    "contact_section": {
+      "title": "Fale com nosso time de suporte",
+      "description": "Receba ajuda personalizada do nosso time especializado de suporte"
+    },
+    "quick_help": {
+      "title": "Ajuda rápida",
+      "description": "Comece rapidamente com estes guias e recursos essenciais"
+    },
+    "getting_started": {
+      "title": "Primeiros passos",
+      "description": "Tudo o que você precisa saber para começar a construir com Divinci AI"
+    },
+    "steps": {
+      "create_account": {
+        "title": "Crie sua conta",
+        "description": "Cadastre-se para uma conta Divinci AI para começar. Escolha o plano de assinatura adequado e inicie sua jornada com IA.",
+        "button": "Guia de cadastro"
+      },
+      "define_purpose": {
+        "title": "Defina o propósito da sua IA",
+        "description": "Esclareça o papel e a funcionalidade específicos que deseja para sua IA. Isso ajuda no treinamento e otimização para seu caso de uso.",
+        "button": "Guia de definição de propósito"
+      },
+      "upload_materials": {
+        "title": "Envie materiais de treinamento",
+        "description": "Forneça documentos, dados e fontes de conhecimento relevantes para treinar a compreensão e capacidades da sua IA.",
+        "button": "Guia de preparação de dados"
+      },
+      "train_test": {
+        "title": "Treine e teste sua IA",
+        "description": "Inicie o processo de treinamento e teste as respostas da sua IA para garantir precisão e relevância no seu domínio específico.",
+        "button": "Boas práticas de treinamento"
+      },
+      "deploy": {
+        "title": "Implante sua IA",
+        "description": "Integre sua IA ao seu site, aplicativo ou outras plataformas usando nossas opções flexíveis de deployment.",
+        "button": "Guia de deployment"
+      }
+    },
+    "model_compatibility": {
+      "title": "Compatibilidade de modelos de linguagem",
+      "description": "Visão abrangente dos modelos de linguagem suportados em todos os principais provedores de IA",
+      "base_models_title": "Modelos base disponíveis",
+      "fine_tuning_title": "Suporte a fine-tuning",
+      "api_docs_button": "Ver documentação da API",
+      "universal_support": {
+        "title": "Suporte universal a modelos",
+        "description": "Nossa plataforma fornece APIs unificadas e frameworks de governança que funcionam perfeitamente com todos os principais provedores de IA, permitindo que você troque de modelo ou use múltiplos provedores simultaneamente conforme as exigências do seu caso de uso."
+      }
+    },
+    "topics": {
+      "getting_started": {
+        "title": "Começando com Divinci AI",
+        "description": "Aprenda o básico para criar, treinar e implantar suas soluções de IA personalizadas.",
+        "link": "Leia mais"
+      },
+      "api_integration": {
+        "title": "Guia de integração da API",
+        "description": "Como integrar Divinci AI com seus aplicativos e sistemas existentes.",
+        "link": "Leia mais"
+      },
+      "training_data": {
+        "title": "Otimizando dados de treinamento de IA",
+        "description": "Boas práticas para preparar e estruturar dados de treinamento para resultados ótimos.",
+        "link": "Leia mais"
+      },
+      "security": {
+        "title": "Boas práticas de segurança",
+        "description": "Garanta que sua implementação de IA siga diretrizes de segurança e requisitos de conformidade.",
+        "link": "Leia mais"
+      }
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "questions": {
+        "integration": {
+          "question": "Posso integrar o Divinci AI com sistemas existentes?",
+          "answer": {
+            "intro": "O Divinci AI oferece várias opções de integração:",
+            "list": {
+              "api": "Integração de API: API RESTful para aplicações personalizadas",
+              "widgets": "Web Widgets: Interfaces de chat incorporáveis a sites",
+              "mobile": "Mobile SDK: Integração nativa para apps iOS e Android",
+              "connectors": "Conectores prontos: Para plataformas como Slack, Microsoft Teams, Zendesk e Salesforce",
+              "webhooks": "Suporte a Webhook: Para fluxos de integração baseados em eventos"
+            },
+            "closing": "Nosso Developer Hub fornece documentação detalhada, exemplos de código e guias de integração para todas as plataformas suportadas."
+          }
+        },
+        "platform_difference": {
+          "question": "Como o Divinci AI se diferencia de outras plataformas de IA?",
+          "answer": {
+            "part1": "O Divinci AI se destaca pelo seu processo de criação de IA personalizável, permitindo que usuários construam modelos de IA especializados sem expertise técnica. Nossa plataforma foca em integração de conhecimento específico de domínio, desenvolvimento ético de IA e deployment multiplataforma sem atritos.",
+            "part2": "Diferente de sistemas de IA de uso geral, o Divinci cria modelos profundamente especializados no seu domínio, garantindo respostas mais precisas e relevantes para seu caso de uso."
+          }
+        },
+        "security": {
+          "question": "Quão seguros são meus dados com o Divinci AI?",
+          "answer": {
+            "intro": "O Divinci AI implementa medidas robustas de segurança, incluindo:",
+            "list": {
+              "encryption": "Criptografia de dados: Todos os dados são criptografados em trânsito e em repouso",
+              "access": "Acesso baseado em funções: Controles granulares de permissão",
+              "soc2": "Conformidade SOC 2: Auditorias regulares de segurança",
+              "isolation": "Isolamento de dados: Seus dados de treinamento são usados apenas para seus modelos de IA",
+              "private_cloud": "Opções de Private Cloud: Para clientes corporativos com requisitos de segurança aumentados"
+            },
+            "closing": "Para mais informações, consulte nossa Política de Privacidade e Documentação de Segurança."
+          }
+        },
+        "support_types": {
+          "question": "Que tipo de suporte vocês oferecem?",
+          "answer": {
+            "intro": "Oferecemos opções de suporte em níveis para atender suas necessidades:",
+            "list": {
+              "standard": "Suporte Standard: Suporte por e-mail com tempo de resposta de 24 horas (incluso no plano Basic)",
+              "professional": "Suporte Professional: Suporte prioritário por e-mail e chat com tempo de resposta de 8 horas (incluso no plano Professional)",
+              "enterprise": "Suporte Enterprise: Suporte 24/7 com gerente de conta dedicado, tempo de resposta de 1-4 horas e SLAs personalizados (incluso no plano Enterprise)"
+            },
+            "closing": "Todos os clientes têm acesso à nossa documentação, base de conhecimento, fóruns da comunidade e webinars regulares."
+          }
+        },
+        "training_time": {
+          "question": "Quanto tempo leva o processo de treinamento da IA?",
+          "answer": {
+            "intro": "A duração do treinamento depende do volume e complexidade dos seus dados:",
+            "list": {
+              "basic": "Modelos básicos (menos de 100MB de dados): 30-60 minutos",
+              "standard": "Modelos padrão (100MB-1GB): 2-4 horas",
+              "comprehensive": "Modelos abrangentes (1GB-5GB): 4-12 horas",
+              "enterprise": "Modelos Enterprise (5GB+): Prazos personalizados"
+            },
+            "closing": "Nossa plataforma fornece atualizações de progresso em tempo real e notificações quando o treinamento é concluído. Você pode continuar usando a plataforma durante o treinamento, e atualizações incrementais geralmente levam menos tempo do que o treinamento inicial."
+          }
+        },
+        "data_types": {
+          "question": "Que tipos de dados posso usar para treinar minha IA?",
+          "answer": {
+            "intro": "O Divinci AI suporta vários tipos de dados para treinamento, incluindo:",
+            "list": {
+              "documents": "Documentos de texto (PDF, DOCX, TXT)",
+              "catalogs": "Catálogos de produtos e especificações",
+              "datasets": "Conjuntos de dados estruturados (CSV, JSON)",
+              "documentation": "Documentação de processos e diretrizes",
+              "faqs": "FAQs e bases de conhecimento",
+              "website": "Conteúdo de sites (via crawling)"
+            },
+            "compliance": "Todos os dados de treinamento devem seguir nossas políticas de conteúdo e não devem incluir informações pessoais confidenciais ou sensíveis, a menos que você esteja usando nossa opção corporativa segura com garantias de privacidade."
+          }
+        }
+      }
+    }
   },
   "expert_answers": {
     "title": "Respostas de Especialistas",
@@ -257,7 +625,8 @@
       },
       "language_models": {
         "question": "Quais modelos de linguagem são compatíveis?",
-        "answer": "Nossa plataforma suporta um amplo espectro de modelos de linguagem grandes, de arquiteturas de código aberto a proprietárias. A integração flexível permite implantação perfeita em diversas estruturas e ambientes empresariais, garantindo adaptabilidade às necessidades comerciais em evolução."
+        "answer": "Nossa plataforma suporta um amplo espectro de modelos de linguagem grandes, de arquiteturas de código aberto a proprietárias. A integração flexível permite implantação perfeita em diversas estruturas e ambientes empresariais, garantindo adaptabilidade às necessidades comerciais em evolução.",
+        "model_compat_link": "Ver lista completa de compatibilidade de modelos"
       },
       "quality_assurance": {
         "question": "Como é alcançada a garantia de qualidade contínua?",
@@ -269,5 +638,244 @@
       }
     },
     "view_complete_list": "Ver lista completa de compatibilidade de modelos"
+  },
+  "news": {
+    "read_more": "Leia mais →",
+    "learn_more": "Saiba mais →",
+    "ai_for_good_tag": "IA para o Bem",
+    "cloudflare_date": "5 de outubro de 2025",
+    "cloudflare_title": "Divinci AI entra no Cloudflare Workers Launchpad Coorte #6",
+    "cloudflare_excerpt": "Estamos animados em anunciar nossa aceitação no prestigioso programa acelerador Workers Launchpad da Cloudflare. Saiba como aproveitamos a plataforma de computação de borda da Cloudflare para construir pipelines RAG sofisticados."
+  },
+  "compliance": {
+    "hero": {
+      "eyebrow": "Impulsionado por vindex + LarQL",
+      "heading": "Conformidade, com comprovante.",
+      "tagline": "A maior parte da \"conformidade de IA\" para nos logs de acesso e nas barreiras a nível de prompt. A Divinci entra dentro do modelo. Cada associação de entidade é uma característica consultável; cada edição é um patch portátil e auditável — e o <strong>vindex</strong> é o artefato de documentação técnica que o seu regulador está prestes a começar a exigir.",
+      "cta_primary": "Falar com conformidade →",
+      "cta_secondary": "Ver um vindex ao vivo"
+    },
+    "mapping": {
+      "heading": "O que a regulamentação exige · o que a LarQL entrega",
+      "subheading": "O mesmo artefato — o vindex — atende aos requisitos de transparência, supervisão, documentação e apagamento nas quatro principais regulamentações de IA enfrentadas pelos clientes da Divinci.",
+      "th_regulation": "Regulamentação",
+      "th_requirement": "Requisito",
+      "th_competitors": "O que os concorrentes oferecem",
+      "th_larql": "O que LarQL/vindex oferece",
+      "rows": [
+        {
+          "reg_label": "Regulamento de IA da UE §13",
+          "reg_topic": "Transparência",
+          "requirement": "\"Transparência suficiente para permitir que os usuários interpretem as saídas\"",
+          "competitors": "Model cards, descrições de sistema em prosa",
+          "larql": "O vindex É um artefato de transparência consultável — cada característica portadora de fatos identificada por <code>(layer, feature, gate_score)</code>"
+        },
+        {
+          "reg_label": "Regulamento de IA da UE §14",
+          "reg_topic": "Supervisão humana",
+          "requirement": "Os operadores devem intervir de forma significativa",
+          "competitors": "Barreiras a nível de prompt (vulneráveis a jailbreak)",
+          "larql": "Patches DELETE a nível de pesos na característica, não no prompt — não podem ser contornados por jailbreak"
+        },
+        {
+          "reg_label": "Regulamento de IA da UE Anexo IV",
+          "reg_topic": "Documentação técnica",
+          "requirement": "\"Lógica geral do sistema de IA\"",
+          "competitors": "Diagramas de arquitetura + resumos de dados de treinamento",
+          "larql": "Documentação mecanicista bit-exata: o vocabulário projetado de cada característica, a métrica estrutural de cada camada (C1–C5)"
+        },
+        {
+          "reg_label": "RGPD Artigo 17",
+          "reg_topic": "Direito ao apagamento",
+          "requirement": "Remoção verificável de dados pessoais",
+          "competitors": "Fine-tuning para \"esquecer\" — <em>não verificável</em>; os dados podem reaparecer de forma adversarial",
+          "larql": "Patch DELETE com trilha de auditoria = <strong>supressão comprovável</strong> de uma associação específica de entidade nomeada a +0,02% de perplexidade. O arquivo do patch é o comprovante."
+        },
+        {
+          "reg_label": "HIPAA · PCI · RGPD",
+          "reg_topic": "Desidentificação",
+          "requirement": "Remover PII de produtos de dados",
+          "competitors": "Filtragem de tokens em E/S (vazamentos possíveis)",
+          "larql": "Identificação a nível de característica das direções que codificam PII; remoção cirúrgica na camada de pesos"
+        },
+        {
+          "reg_label": "NIST AI RMF",
+          "reg_topic": "Gerenciar",
+          "requirement": "Quantificar e gerenciar o risco residual",
+          "competitors": "Avaliações de risco baseadas na intuição",
+          "larql": "As constantes universais C1–C5 oferecem uma linha de base estrutural mensurável; reverifique após cada patch"
+        }
+      ]
+    },
+    "receipt": {
+      "heading": "Como é, na prática, um \"comprovante\"",
+      "para_1": "Um patch LarQL é um arquivo JSON portátil com checksum SHA-256. Aplique-o para suprimir um fato; remova-o para restaurar o modelo bit a bit. O patch É o log de auditoria — operadores, reguladores e consumidores a jusante podem verificar a mesma operação de forma independente.",
+      "para_2": "Abaixo: o patch Gate-3 real que entregamos no nosso conjunto público de testes, mostrando a associação Paris→capital suprimida e revertida com efeito mensurável e repetível em um vindex real de Gemma 4 E2B."
+    },
+    "cta_band": {
+      "heading": "Conformidade que você pode comprovar. Em qualquer transformer aberto.",
+      "tagline": "Oito vindexes publicados hoje em Gemma, Qwen, Llama, Mistral, OpenAI MoE e Microsoft 1-bit. Traga seu modelo — nós construímos o comprovante.",
+      "cta_primary": "Agendar revisão de conformidade →",
+      "cta_secondary": "Explorar vindexes no Hugging Face"
+    }
+  },
+  "about": {
+    "hero_title": "Sobre a Divinci AI",
+    "hero_subtitle": "Construindo o futuro da colaboração humano-IA com arte, precisão e propósito.",
+    "mission_title": "Nossa Missão",
+    "mission_text": "Democratizar a IA corporativa tornando a inteligência artificial sofisticada acessível, gerenciável e confiável para organizações de todos os tamanhos. Acreditamos que a IA deve amplificar o potencial humano, não substituí-lo.",
+    "vision_title": "Nossa Visão",
+    "vision_text": "Um mundo em que toda organização possa aproveitar com confiança o poder transformador da IA, sabendo que suas implementações são seguras, conformes e alinhadas com seus valores. Imaginamos a IA como parceira colaborativa da conquista humana.",
+    "values_title": "Nossos Valores Fundamentais",
+    "values_desc": "Estes princípios orientam tudo o que fazemos, do desenvolvimento de produtos às relações com clientes.",
+    "value1_title": "IA centrada no humano",
+    "value1_desc": "Projetamos sistemas de IA que ampliam as capacidades humanas em vez de substituí-las, garantindo que a tecnologia sirva aos melhores interesses da humanidade.",
+    "value2_title": "Inovação com propósito",
+    "value2_desc": "Cada funcionalidade que construímos resolve um problema real. Não inovamos pela tecnologia em si, mas para gerar impacto significativo.",
+    "value3_title": "IA responsável",
+    "value3_desc": "Priorizamos o desenvolvimento ético da IA, garantindo transparência, justiça e prestação de contas em cada algoritmo e decisão.",
+    "value4_title": "Design inclusivo",
+    "value4_desc": "Nossas plataformas são construídas para todos, independentemente da expertise técnica, garantindo que os benefícios da IA sejam acessíveis a todos.",
+    "value5_title": "Segurança em primeiro lugar",
+    "value5_desc": "Segurança não é um detalhe posterior — é a base de tudo o que construímos, protegendo seus dados e mantendo a confiança.",
+    "value6_title": "Parceria com o cliente",
+    "value6_desc": "Vemos nossos clientes como parceiros, trabalhando em estreita colaboração para alcançar seus objetivos de IA e de negócio.",
+    "team_title": "Conheça Nosso Time",
+    "team_desc": "Especialistas apaixonados que combinam arte com tecnologia avançada de IA.",
+    "michael_title": "Cofundador e CEO",
+    "michael_bio": "Líder visionário com profunda expertise em sistemas de IA e software corporativo. Anteriormente construiu plataformas escaláveis em empresas de tecnologia de ponta.",
+    "samuel_title": "Cofundador e CTO",
+    "samuel_bio": "Pesquisador de IA e arquiteto de sistemas com ampla experiência em infraestrutura de machine learning e deployment escalável de IA.",
+    "sierra_title": "Cofundadora e CMO",
+    "sierra_bio": "Estrategista de produto focada em experiência do usuário e ética da IA. Especialista em traduzir capacidades complexas de IA em interfaces intuitivas.",
+    "story_title": "Nossa História",
+    "story_desc": "De uma visão à realidade — a jornada de construir o futuro da IA corporativa.",
+    "timeline1_title": "O Começo",
+    "timeline1_desc": "Fundada com a visão de que a IA deveria ser acessível a toda organização, não apenas às gigantes de tecnologia. Começamos em uma garagem com grandes sonhos e ambições ainda maiores.",
+    "timeline2_title": "Primeiro protótipo",
+    "timeline2_desc": "Após meses de pesquisa e desenvolvimento, construímos nosso primeiro protótipo funcional. A interface inspirada em da Vinci nasceu da nossa crença de que a tecnologia deve ser bela.",
+    "timeline3_title": "Lançamento Beta",
+    "timeline3_desc": "Lançamos a beta com parceiros corporativos selecionados, coletando feedback inestimável que moldou a evolução da plataforma. A resposta foi extremamente positiva.",
+    "timeline4_title": "Lançamento oficial",
+    "timeline4_desc": "A Divinci AI foi oficialmente lançada ao público, trazendo gestão de IA de nível corporativo para organizações de todo o mundo. O renascimento da IA havia começado.",
+    "timeline5_title": "Crescimento e evolução",
+    "timeline5_desc": "Hoje, continuamos a inovar e expandir, atendendo empresas globalmente enquanto permanecemos fiéis aos nossos valores fundamentais de desenvolvimento de IA centrada no humano.",
+    "ai_good_title": "Iniciativas AI for Good",
+    "ai_good_article_title": "AI for Impact: Por dentro do programa piloto de prevenção à população em situação de rua de Los Angeles",
+    "ai_good_desc": "Temos orgulho de nos unir ao Condado de Los Angeles em soluções inovadoras de IA para enfrentar a situação de rua. Nossa plataforma ajuda assistentes sociais a identificar pessoas em risco mais cedo e a coordenar intervenções mais eficazes.",
+    "ai_good_link": "Saiba mais sobre nosso impacto",
+    "join_title": "Junte-se ao Nosso Time",
+    "join_desc": "Pronto para ajudar a moldar o futuro da IA? Estamos sempre em busca de talentos excepcionais.",
+    "join_cta": "Ver vagas abertas"
+  },
+  "careers": {
+    "hero_title": "Junte-se ao Nosso Time",
+    "hero_subtitle": "Na Divinci AI estamos construindo o futuro da colaboração humano-IA. Junte-se à nossa missão de tornar a IA acessível e valiosa para empresas de todos os tamanhos.",
+    "hero_cta": "Ver vagas abertas",
+    "open_positions_title": "Vagas abertas",
+    "open_positions_desc": "Estamos em busca de pessoas talentosas e apaixonadas por IA, tecnologia e impacto positivo. Veja nossas vagas atuais:",
+    "key_requirements": "Requisitos principais:",
+    "apply_now": "Candidate-se",
+    "location": "Remote / Santa Monica, CA",
+    "dept_engineering": "Engenharia",
+    "dept_product": "Produto",
+    "dept_design": "Design",
+    "dept_cs": "Customer Success",
+    "internships_title": "Estágios",
+    "internships_desc": "Oferecemos estágios para estudantes e recém-formados apaixonados por IA que querem ganhar experiência prática.",
+    "internship_program_title": "Programa de Estágio em IA — Verão 2026",
+    "internship_program_desc": "Nosso programa de estágio de 12 semanas oferece projetos significativos, mentoria de engenheiros sêniores e a oportunidade de contribuir para produtos reais usados por clientes corporativos.",
+    "apply_internship": "Candidatar-se ao estágio",
+    "process_title": "Nosso Processo de Entrevista",
+    "process_desc": "Projetamos o processo de entrevista para ser minucioso, mas respeitando o seu tempo. O que esperar:",
+    "step1_title": "Análise da candidatura",
+    "step1_desc": "Analisamos sua candidatura e portfólio para entender seu histórico e interesses.",
+    "step2_title": "Conversa inicial",
+    "step2_desc": "Uma chamada breve com nosso time de recrutamento para discutir a vaga e responder suas perguntas.",
+    "step3_title": "Avaliação técnica",
+    "step3_desc": "Dependendo da vaga, pode incluir desafio de código, exercício de design ou estudo de caso.",
+    "step4_title": "Entrevistas com o time",
+    "step4_desc": "Conversas com membros do time sobre tópicos técnicos e nossa cultura.",
+    "step5_title": "Entrevista final",
+    "step5_desc": "Uma conversa com a liderança sobre visão, metas e como você contribuiria para nossa missão.",
+    "step6_title": "Oferta",
+    "step6_desc": "Em caso de fit mútuo, fazemos uma oferta e ajudamos sua transição para o time.",
+    "hear_from_team": "Ouça do Nosso Time",
+    "testimonial1_quote": "Trabalhar na Divinci AI significa estar na vanguarda da inovação em IA mantendo forte foco em desenvolvimento responsável. É desafiador e gratificante.",
+    "testimonial1_name": "Sarah Chen",
+    "testimonial1_role": "Senior ML Engineer",
+    "testimonial2_quote": "A cultura colaborativa aqui é incrível. As ideias de todos são valorizadas e estamos todos trabalhando rumo ao mesmo objetivo de tornar a IA acessível para empresas.",
+    "testimonial2_name": "Marcus Johnson",
+    "testimonial2_role": "Product Manager",
+    "benefit1_title": "Saúde abrangente",
+    "benefit1_desc": "Oferecemos cobertura médica, odontológica e oftalmológica de primeira linha para colaboradores e dependentes, com a maior parte dos prêmios paga pela Divinci AI.",
+    "benefit2_title": "Remuneração competitiva",
+    "benefit2_desc": "Oferecemos salários competitivos, opções de equity e um plano 401(k) com matching do empregador para que você participe do sucesso da empresa.",
+    "benefit3_title": "Trabalho flexível",
+    "benefit3_desc": "Apoiamos o trabalho remoto com a opção de colaboração presencial na sede em Santa Monica, dando-lhe a flexibilidade de trabalhar onde for mais produtivo.",
+    "benefit4_title": "Folgas generosas",
+    "benefit4_desc": "Oferecemos PTO ilimitado, feriados corporativos e licença parental remunerada porque acreditamos em equilíbrio entre trabalho e vida pessoal.",
+    "benefit5_title": "Aprendizado e desenvolvimento",
+    "benefit5_desc": "Concedemos uma verba anual para conferências, cursos e livros, além de oportunidades regulares de desenvolvimento profissional.",
+    "benefit6_title": "Eventos de equipe",
+    "benefit6_desc": "Saídas regulares de equipe, eventos sociais e retiros corporativos ajudam a construir relacionamentos sólidos e uma cultura coesa.",
+    "job1_title": "Senior Machine Learning Engineer",
+    "job1_desc": "Junte-se ao nosso time de ML para construir e otimizar sistemas de machine learning em larga escala que sustentam nossa plataforma de IA. Você trabalhará em algoritmos e infraestrutura de ponta que permitem às empresas implantar modelos de IA com confiança.",
+    "job1_req1": "Mais de 5 anos de experiência em ML engineering",
+    "job1_req2": "Expertise em PyTorch, TensorFlow ou frameworks similares",
+    "job1_req3": "Experiência com sistemas distribuídos e plataformas em nuvem",
+    "job1_req4": "Bases sólidas em engenharia de software",
+    "job2_title": "Full Stack Engineer",
+    "job2_desc": "Ajude a construir os sistemas front-end e back-end que tornam nossa plataforma de IA intuitiva e poderosa. Você trabalhará em toda a stack para criar experiências fluidas para clientes corporativos.",
+    "job2_req1": "Mais de 3 anos de experiência full-stack",
+    "job2_req2": "Proficiência em React, Node.js e tecnologias web modernas",
+    "job2_req3": "Experiência com bancos de dados e design de APIs",
+    "job2_req4": "Conhecimento de infraestrutura em nuvem",
+    "job3_title": "Product Manager",
+    "job3_desc": "Conduza a estratégia e execução de produto para nossa plataforma de gestão de IA. Você trabalhará lado a lado com engenharia, design e clientes para definir e entregar produtos que resolvem problemas reais.",
+    "job3_req1": "Mais de 3 anos de experiência em product management",
+    "job3_req2": "Experiência com produtos B2B SaaS",
+    "job3_req3": "Fortes habilidades analíticas e de comunicação",
+    "job3_req4": "Background em produtos de IA/ML preferido",
+    "job4_title": "UX/UI Designer",
+    "job4_desc": "Molde a experiência de usuário da nossa plataforma de IA, tornando tecnologia complexa acessível e prazerosa. Você desenhará interfaces que permitem aos usuários gerenciar sistemas de IA com confiança.",
+    "job4_req1": "Mais de 3 anos de experiência em UX/UI design",
+    "job4_req2": "Portfólio demonstrando design de produtos B2B",
+    "job4_req3": "Proficiência em Figma, Sketch ou ferramentas similares",
+    "job4_req4": "Experiência com design systems e pesquisa com usuários",
+    "job5_title": "Customer Success Manager",
+    "job5_desc": "Seja o consultor de confiança de nossos clientes corporativos, ajudando-os a ter sucesso com nossa plataforma de IA. Você impulsionará adoção, crescimento e satisfação no longo prazo.",
+    "job5_req1": "Mais de 2 anos de experiência em customer success",
+    "job5_req2": "Experiência com clientes corporativos B2B",
+    "job5_req3": "Fortes habilidades de comunicação e resolução de problemas",
+    "job5_req4": "Background técnico preferido",
+    "culture_title": "Nossa Cultura",
+    "culture_desc": "Na Divinci AI, construímos um ambiente de trabalho colaborativo, inovador e inclusivo onde todos podem prosperar. Nossa cultura é definida por valores compartilhados e pelo compromisso de criar tecnologia de IA que potencializa os humanos em vez de substituí-los.",
+    "value1_title": "Inovação",
+    "value1_desc": "Encorajamos pensamento ousado e resolução criativa de problemas. Não temos medo de desafiar o status quo e expandir os limites do possível com IA.",
+    "value2_title": "Colaboração",
+    "value2_desc": "Acreditamos que o melhor trabalho acontece quando perspectivas diversas se encontram. Cultivamos um ambiente colaborativo onde as ideias são compartilhadas abertamente e a voz de todos é ouvida.",
+    "value3_title": "Responsabilidade",
+    "value3_desc": "Estamos comprometidos com o desenvolvimento responsável da IA, com diretrizes éticas sólidas e foco em criar tecnologia que beneficie a humanidade e respeite a privacidade e autonomia individuais.",
+    "value4_title": "Impacto",
+    "value4_desc": "Somos motivados pela oportunidade de causar um impacto significativo em como as empresas usam IA. Cada membro do time desempenha um papel crucial em concretizar essa visão.",
+    "benefits_title": "Benefícios & Vantagens",
+    "benefits_intro": "Acreditamos em cuidar do nosso time. Aqui estão alguns dos benefícios e vantagens que oferecemos aos colaboradores Divinci AI:"
+  },
+  "blog": {
+    "hero_title": "Blog da Divinci AI",
+    "hero_subtitle": "Insights, atualizações e liderança de pensamento sobre inteligência artificial, sistemas RAG e gestão de IA corporativa.",
+    "by": "Por",
+    "read_article": "Ler artigo",
+    "recent_articles": "Artigos recentes",
+    "read_more": "Leia mais",
+    "share_tag": "Compartilhar",
+    "share_title": "Compartilhe com amigos",
+    "share_desc": "Se você acha esses tópicos interessantes, compartilhe com amigos e colegas.",
+    "coming_soon_title": "Blog em breve",
+    "coming_soon_message": "Estamos construindo nosso blog com insights sobre tecnologia de IA, estratégias de implementação e tendências do setor. Volte em breve para atualizações ou inscreva-se para ser notificado quando houver novo conteúdo.",
+    "notify_me": "Avisar-me sobre atualizações",
+    "featured_tag_default": "Inteligência Artificial",
+    "post_tag_default": "Insights de IA"
   }
 }

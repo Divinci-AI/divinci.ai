@@ -5,13 +5,22 @@
     "og_title": "Divinci AI - 始终卓越",
     "og_description": "AI发布。始终卓越。"
   },
+  "banner": {
+    "label": "最新研究：",
+    "link": "当电路消解时 →"
+  },
   "navigation": {
     "features": "功能",
     "team": "团队",
     "signup": "注册",
     "support": "支持",
     "request_demo": "申请演示",
-    "support_center": "支持中心"
+    "support_center": "支持中心",
+    "blog": "博客",
+    "terms_of_service": "服务条款",
+    "privacy_policy": "隐私政策",
+    "quality_assurance": "质量保证",
+    "release_management": "发布管理"
   },
   "hero": {
     "heading": "AI发布。",
@@ -25,7 +34,9 @@
     "cta": {
       "primary": "申请演示",
       "secondary": "探索平台"
-    }
+    },
+    "sound_unmute": "取消静音",
+    "sound_mute": "静音"
   },
   "enterprise": {
     "title": "企业级AI，专业管理",
@@ -47,7 +58,9 @@
         "title": "集成团队协作",
         "description": "通过结构化工作流程简化跨职能审查。分配责任、收集反馈并记录批准，确保每个发布都符合组织和监管期望。"
       }
-    }
+    },
+    "title_line1": "企业级AI，",
+    "title_line2": "专业管理"
   },
   "features": {
     "title": "用AI增强您的工作流程",
@@ -99,13 +112,21 @@
       "title": "AutoRAG"
     },
     "qa_title": "质量保证",
-    "release_management": "发布管理"
+    "release_management": "发布管理",
+    "title_first_line": "AI时代",
+    "title_second_line": "管理"
   },
   "team": {
     "title": "认识我们的团队",
     "description": "认识塑造人类-AI协作未来的创新者。",
     "members": {
-      "connect": "连接"
+      "connect": "连接",
+      "michael_bio": "拥有15年以上企业技术经验的远见者，引领对话式AI革命。",
+      "samuel_bio": "产品战略家，有交付以用户为中心的企业AI解决方案的成功记录。",
+      "duane_bio": "系统架构师，专精可扩展AI基础设施和自然语言处理。",
+      "sierra_bio": "康奈尔大学毕业，在金融服务和创业方面有丰富经验，将战略业务发展专业知识带入AI扩展。",
+      "sean_bio": "数据科学家，拥有10年以上编程经验，专注于机器学习和Python开发。",
+      "paul_marie_bio": "AI治理领导者，AI LA负责任AI小组创始人，具有Google AI、德勤和CVS Health的丰富经验。"
     },
     "roles": {
       "ceo_founder": "首席执行官兼创始人",
@@ -198,7 +219,8 @@
       },
       "privacy_settings": "隐私设置",
       "cookie_policy": "Cookie政策",
-      "cookie_preferences": "Cookie偏好"
+      "cookie_preferences": "Cookie偏好",
+      "rights_reserved": "保留所有权利。"
     },
     "api": "API",
     "support": "支持",
@@ -244,7 +266,353 @@
   },
   "support": {
     "title": "支持中心",
-    "subtitle": "获取Divinci AI的帮助和支持"
+    "subtitle": "获取 Divinci AI 的帮助和支持",
+    "description": "查找常见问题的答案、实施指南,并联系我们的专家团队。",
+    "sidebar": {
+      "title": "支持中心",
+      "menu": {
+        "getting_started": "入门",
+        "implementation": "实施",
+        "troubleshooting": "故障排除",
+        "api_docs": "API 文档",
+        "billing": "账单",
+        "contact": "联系",
+        "community": "社区论坛",
+        "contact_form": "联系表单",
+        "enterprise": "企业解决方案",
+        "knowledge_base": "知识库",
+        "language_models": "语言模型",
+        "support_team": "支持团队",
+        "technical_support": "技术支持",
+        "tutorials": "教程中心"
+      },
+      "cta": {
+        "title": "需要更多帮助?",
+        "description": "直接与我们的专家团队对话。",
+        "button": "联系支持"
+      },
+      "sections": {
+        "contact": "联系支持",
+        "resources": "支持资源",
+        "self_service": "自助服务工具"
+      }
+    },
+    "header": {
+      "title": "我们能帮您什么?",
+      "description": "找到常见问题的快速答案,或直接与我们的专家团队联系。"
+    },
+    "help_cards": {
+      "getting_started": {
+        "title": "入门",
+        "description": "几分钟内即可设置您的账户并开始使用 Divinci AI。",
+        "button": "查看指南"
+      },
+      "api_integration": {
+        "title": "API 集成",
+        "description": "使用我们的 API 与现有系统无缝集成。",
+        "button": "查看文档"
+      },
+      "troubleshooting": {
+        "title": "故障排除",
+        "description": "查找常见技术问题的解决方案。",
+        "button": "查看解决方案"
+      },
+      "billing": {
+        "title": "管理账单",
+        "description": "轻松更新付款方式、查看发票并管理订阅设置。",
+        "button": "账单帮助"
+      },
+      "train_ai": {
+        "title": "训练您的 AI",
+        "description": "学习如何通过最佳数据准备和最佳实践有效训练 AI。",
+        "button": "查看教程"
+      }
+    },
+    "stats": {
+      "response_time": "< 2小时",
+      "response_time_label": "平均响应时间",
+      "satisfaction": "99%",
+      "satisfaction_label": "客户满意度",
+      "resolution": "24小时",
+      "resolution_label": "解决时间",
+      "tutorial_videos": {
+        "number": "20+",
+        "label": "教程视频"
+      },
+      "knowledge_base": {
+        "number": "100+",
+        "label": "知识库文章"
+      },
+      "community": {
+        "number": "5,000+",
+        "label": "社区成员"
+      }
+    },
+    "popular_topics": {
+      "title": "热门主题",
+      "model_compatibility": {
+        "title": "模型兼容性",
+        "description": "了解哪些语言模型与我们的平台兼容。",
+        "link": "查看完整列表"
+      },
+      "deployment": {
+        "title": "部署指南",
+        "description": "针对不同企业用例的逐步部署。",
+        "link": "查看指南"
+      },
+      "performance": {
+        "title": "性能优化",
+        "description": "最大化模型性能的最佳实践。",
+        "link": "阅读更多"
+      }
+    },
+    "contact_form": {
+      "title": "提交支持请求",
+      "name_label": "全名",
+      "email_label": "电子邮件",
+      "company_label": "公司",
+      "priority_label": "优先级",
+      "priority_options": {
+        "low": "低",
+        "normal": "正常",
+        "high": "高",
+        "urgent": "紧急"
+      },
+      "category_label": "类别",
+      "category_options": {
+        "technical": "技术支持",
+        "billing": "账单",
+        "feature": "功能请求",
+        "bug": "Bug 报告",
+        "other": "其他"
+      },
+      "message_label": "描述问题",
+      "submit_button": "提交请求",
+      "name_placeholder": "您的全名",
+      "email_placeholder": "you@company.com",
+      "subject_label": "主题",
+      "subject_placeholder": "支持请求主题",
+      "message_placeholder": "请详细描述您的问题。包括任何错误消息、复现步骤和相关信息。",
+      "priority_select": "选择优先级",
+      "priority_low": "低 - 一般问题",
+      "priority_medium": "中 - 影响工作的问题",
+      "priority_high": "高 - 严重问题",
+      "priority_urgent": "紧急 - 系统宕机",
+      "category_select": "选择类别",
+      "category_account": "账户与访问",
+      "category_billing": "账单与订阅",
+      "category_technical": "技术问题",
+      "category_training": "AI 训练",
+      "category_integration": "集成",
+      "category_api": "API",
+      "category_feature": "功能请求",
+      "category_other": "其他",
+      "required_fields_error": "请填写所有必填字段。",
+      "success_alert": "感谢您提交支持请求!我们的团队将在 24 小时内回复您。"
+    },
+    "contact_info": {
+      "title": "联系信息",
+      "email": {
+        "title": "邮件支持",
+        "value": "support@divinci.ai",
+        "description": "用于一般支持咨询"
+      },
+      "phone": {
+        "title": "电话支持",
+        "value": "+1 (555) 123-4567",
+        "description": "周一至周五 9AM-6PM EST"
+      },
+      "chat": {
+        "title": "在线聊天",
+        "value": "全天候可用",
+        "description": "用于即时协助"
+      },
+      "community": {
+        "title": "社区论坛",
+        "value": "Divinci 论坛"
+      }
+    },
+    "hours": {
+      "title": "支持时间",
+      "weekdays": "周一至周五: 9:00 AM - 6:00 PM EST",
+      "weekends": "周六至周日: 10:00 AM - 4:00 PM EST",
+      "holidays": "假日: 时间有限",
+      "tier_header": "支持等级",
+      "hours_header": "时间",
+      "response_header": "响应时间",
+      "standard": {
+        "tier": "Standard 支持",
+        "hours": "周一至周五 9am-5pm PT",
+        "response": "24 小时"
+      },
+      "professional": {
+        "tier": "Professional 支持",
+        "hours": "周一至周五 8am-8pm PT",
+        "response": "8 小时"
+      },
+      "enterprise": {
+        "tier": "Enterprise 支持",
+        "hours": "全年 24/7",
+        "response": "1-4 小时"
+      }
+    },
+    "cta_section": {
+      "title": "仍需帮助?",
+      "description": "我们的专家团队随时帮助您在 Divinci AI 上取得成功。",
+      "button": "预约咨询"
+    },
+    "contact_section": {
+      "title": "联系我们的支持团队",
+      "description": "从我们专业的支持团队获得个性化的帮助"
+    },
+    "quick_help": {
+      "title": "快速帮助",
+      "description": "通过这些必备指南和资源快速入门"
+    },
+    "getting_started": {
+      "title": "入门",
+      "description": "您开始使用 Divinci AI 构建所需了解的一切"
+    },
+    "steps": {
+      "create_account": {
+        "title": "创建您的账户",
+        "description": "注册 Divinci AI 账户开始使用。选择适合您需求的订阅计划,开启您的 AI 之旅。",
+        "button": "注册指南"
+      },
+      "define_purpose": {
+        "title": "定义 AI 的目的",
+        "description": "明确您希望 AI 拥有的具体角色和功能。这有助于针对您的用例进行训练和优化。",
+        "button": "目的定义指南"
+      },
+      "upload_materials": {
+        "title": "上传训练材料",
+        "description": "提供相关文档、数据和知识源以训练 AI 的理解和能力。",
+        "button": "数据准备指南"
+      },
+      "train_test": {
+        "title": "训练与测试您的 AI",
+        "description": "启动训练过程并测试 AI 的响应,以确保在您的特定领域中的准确性和相关性。",
+        "button": "训练最佳实践"
+      },
+      "deploy": {
+        "title": "部署您的 AI",
+        "description": "使用我们灵活的部署选项,将 AI 集成到您的网站、应用程序或其他平台中。",
+        "button": "部署指南"
+      }
+    },
+    "model_compatibility": {
+      "title": "语言模型兼容性",
+      "description": "覆盖所有主要 AI 提供商的支持语言模型综合概览",
+      "base_models_title": "可用基础模型",
+      "fine_tuning_title": "微调支持",
+      "api_docs_button": "查看 API 文档",
+      "universal_support": {
+        "title": "通用模型支持",
+        "description": "我们的平台提供统一的 API 和治理框架,可在所有主要 AI 提供商之间无缝工作,使您能够根据特定用例需求切换模型或同时使用多个提供商。"
+      }
+    },
+    "topics": {
+      "getting_started": {
+        "title": "Divinci AI 入门",
+        "description": "学习创建、训练和部署自定义 AI 解决方案的基础知识。",
+        "link": "阅读更多"
+      },
+      "api_integration": {
+        "title": "API 集成指南",
+        "description": "如何将 Divinci AI 与您的应用程序和现有系统集成。",
+        "link": "阅读更多"
+      },
+      "training_data": {
+        "title": "优化 AI 训练数据",
+        "description": "为获得最佳结果而准备和构建训练数据的最佳实践。",
+        "link": "阅读更多"
+      },
+      "security": {
+        "title": "安全最佳实践",
+        "description": "确保您的 AI 实施遵循安全准则和合规要求。",
+        "link": "阅读更多"
+      }
+    },
+    "faq": {
+      "title": "常见问题",
+      "questions": {
+        "integration": {
+          "question": "我可以将 Divinci AI 与现有系统集成吗?",
+          "answer": {
+            "intro": "Divinci AI 提供多种集成选项:",
+            "list": {
+              "api": "API 集成: 用于自定义应用程序的 RESTful API",
+              "widgets": "Web 小部件: 可嵌入网站的聊天界面",
+              "mobile": "移动 SDK: 用于 iOS 和 Android 应用的原生集成",
+              "connectors": "预构建连接器: 适用于 Slack、Microsoft Teams、Zendesk 和 Salesforce 等平台",
+              "webhooks": "Webhook 支持: 用于基于事件的集成流程"
+            },
+            "closing": "我们的开发者中心为所有支持的平台提供详细的文档、代码示例和集成指南。"
+          }
+        },
+        "platform_difference": {
+          "question": "Divinci AI 与其他 AI 平台有何不同?",
+          "answer": {
+            "part1": "Divinci AI 凭借其可定制的 AI 创建流程脱颖而出,允许用户在没有技术专业知识的情况下构建专门的 AI 模型。我们的平台专注于领域特定的知识集成、负责任的 AI 开发以及无缝的多平台部署。",
+            "part2": "与通用 AI 系统不同,Divinci 创建的模型对您的特定领域有深刻理解,确保对您的用例提供更准确、更相关的响应。"
+          }
+        },
+        "security": {
+          "question": "我的数据在 Divinci AI 中有多安全?",
+          "answer": {
+            "intro": "Divinci AI 实施了强大的安全措施,包括:",
+            "list": {
+              "encryption": "数据加密: 所有数据在传输和静态时均加密",
+              "access": "基于角色的访问: 细粒度的权限控制",
+              "soc2": "SOC 2 合规: 定期的安全审计",
+              "isolation": "数据隔离: 您的训练数据仅用于您的 AI 模型",
+              "private_cloud": "私有云选项: 适用于具有增强安全要求的企业客户"
+            },
+            "closing": "更多信息,请查看我们的隐私政策和安全文档。"
+          }
+        },
+        "support_types": {
+          "question": "您提供什么样的支持?",
+          "answer": {
+            "intro": "我们提供分级支持选项以匹配您的需求:",
+            "list": {
+              "standard": "Standard 支持: 24 小时响应时间的电子邮件支持(Basic 计划包含)",
+              "professional": "Professional 支持: 8 小时响应时间的优先邮件和聊天支持(Professional 计划包含)",
+              "enterprise": "Enterprise 支持: 24/7 支持,配有专属客户经理,1-4 小时响应时间,以及自定义 SLA(Enterprise 计划包含)"
+            },
+            "closing": "所有客户都可以访问我们的文档、知识库、社区论坛和定期网络研讨会。"
+          }
+        },
+        "training_time": {
+          "question": "AI 训练过程需要多长时间?",
+          "answer": {
+            "intro": "训练时长取决于您数据的体量和复杂度:",
+            "list": {
+              "basic": "基础模型(数据小于 100MB):30-60 分钟",
+              "standard": "标准模型(100MB-1GB):2-4 小时",
+              "comprehensive": "综合模型(1GB-5GB):4-12 小时",
+              "enterprise": "企业模型(5GB+):自定义时间框架"
+            },
+            "closing": "我们的平台提供实时进度更新,并在训练完成时发送通知。您可以在训练期间继续使用平台,增量训练更新通常比初始训练耗时更少。"
+          }
+        },
+        "data_types": {
+          "question": "我可以使用哪些类型的数据来训练我的 AI?",
+          "answer": {
+            "intro": "Divinci AI 支持多种数据类型用于训练,包括:",
+            "list": {
+              "documents": "文本文档(PDF、DOCX、TXT)",
+              "catalogs": "产品目录和规格",
+              "datasets": "结构化数据集(CSV、JSON)",
+              "documentation": "流程文档和指南",
+              "faqs": "FAQ 和知识库",
+              "website": "网站内容(通过爬取)"
+            },
+            "compliance": "所有训练数据必须遵守我们的内容政策,且不应包含机密或敏感的个人信息,除非您使用具有隐私保证的安全企业选项。"
+          }
+        }
+      }
+    }
   },
   "expert_answers": {
     "title": "专家答案",
@@ -257,7 +625,8 @@
       },
       "language_models": {
         "question": "支持哪些语言模型？",
-        "answer": "我们的平台支持广泛的大型语言模型，从开源到专有架构。灵活的集成支持跨多种框架和企业环境的无缝部署，确保适应不断发展的业务需求。"
+        "answer": "我们的平台支持广泛的大型语言模型，从开源到专有架构。灵活的集成支持跨多种框架和企业环境的无缝部署，确保适应不断发展的业务需求。",
+        "model_compat_link": "查看完整模型兼容性列表"
       },
       "quality_assurance": {
         "question": "如何实现持续质量保证？",
@@ -269,5 +638,244 @@
       }
     },
     "view_complete_list": "查看完整模型兼容性列表"
+  },
+  "news": {
+    "read_more": "阅读更多 →",
+    "learn_more": "了解更多 →",
+    "ai_for_good_tag": "AI向善",
+    "cloudflare_date": "2025年10月5日",
+    "cloudflare_title": "Divinci AI加入Cloudflare Workers Launchpad第6期",
+    "cloudflare_excerpt": "我们很高兴宣布加入Cloudflare享有盛誉的Workers Launchpad加速器计划。了解我们如何利用Cloudflare的边缘计算平台构建复杂的RAG管道。"
+  },
+  "compliance": {
+    "hero": {
+      "eyebrow": "由 vindex + LarQL 提供支持",
+      "heading": "合规,带凭证。",
+      "tagline": "大多数\"AI合规\"止步于访问日志和提示级护栏。Divinci 深入到模型内部。每一个实体关联都是可查询的特征;每一次编辑都是可移植、可审计的补丁 — <strong>vindex</strong> 就是监管机构即将开始索取的技术文档制品。",
+      "cta_primary": "联系合规团队 →",
+      "cta_secondary": "查看实时 vindex"
+    },
+    "mapping": {
+      "heading": "法规要求什么 · LarQL 交付什么",
+      "subheading": "同一个制品 — vindex — 在 Divinci 客户面对的四大主要 AI 法规中,同时满足透明度、监督、文档和擦除的要求。",
+      "th_regulation": "法规",
+      "th_requirement": "要求",
+      "th_competitors": "竞品提供",
+      "th_larql": "LarQL/vindex 提供",
+      "rows": [
+        {
+          "reg_label": "欧盟人工智能法案 §13",
+          "reg_topic": "透明度",
+          "requirement": "\"足以让用户解读输出结果的透明度\"",
+          "competitors": "模型卡片、文字化系统描述",
+          "larql": "vindex 本身就是一个可查询的透明度制品 — 每一个承载事实的特征都通过 <code>(layer, feature, gate_score)</code> 标识"
+        },
+        {
+          "reg_label": "欧盟人工智能法案 §14",
+          "reg_topic": "人类监督",
+          "requirement": "运营方必须进行实质性介入",
+          "competitors": "提示级护栏(可被越狱绕过)",
+          "larql": "在特征上而非提示上的权重级 DELETE 补丁 — 无法通过越狱绕过"
+        },
+        {
+          "reg_label": "欧盟人工智能法案 附录 IV",
+          "reg_topic": "技术文档",
+          "requirement": "\"AI 系统的一般逻辑\"",
+          "competitors": "架构图 + 训练数据摘要",
+          "larql": "比特级精确的机制文档:每个特征的投影词汇、每一层的结构指标 (C1–C5)"
+        },
+        {
+          "reg_label": "GDPR 第 17 条",
+          "reg_topic": "被遗忘权",
+          "requirement": "可验证地删除个人数据",
+          "competitors": "为\"遗忘\"而做的微调 — <em>不可验证</em>;数据可能在对抗性条件下重新浮现",
+          "larql": "带审计跟踪的 DELETE 补丁 = 在 +0.02% 困惑度下,对特定命名实体关联的<strong>可证明的抑制</strong>。补丁文件就是凭证。"
+        },
+        {
+          "reg_label": "HIPAA · PCI · GDPR",
+          "reg_topic": "去标识化",
+          "requirement": "从数据产品中移除 PII",
+          "competitors": "I/O 处的 token 过滤(可能泄漏)",
+          "larql": "在特征级识别编码 PII 的方向;在权重层进行外科式移除"
+        },
+        {
+          "reg_label": "NIST AI RMF",
+          "reg_topic": "管理",
+          "requirement": "量化并管理残留风险",
+          "competitors": "凭感觉的风险评估",
+          "larql": "C1–C5 通用常量为你提供可测量的结构基线;每次打补丁后重新验证"
+        }
+      ]
+    },
+    "receipt": {
+      "heading": "\"凭证\"实际是什么样",
+      "para_1": "LarQL 补丁是一个带 SHA-256 校验和的可移植 JSON 文件。应用它来压制一个事实;移除它则让模型逐位恢复。补丁本身就是审计日志 — 运营方、监管者和下游消费者都可以独立验证同一次操作。",
+      "para_2": "下面是我们在公开测试套件中实际提供的 Gate-3 补丁,展示了在真实的 Gemma 4 E2B vindex 上对 Paris→capital 关联的抑制与还原,具有可测量、可重复的效果。"
+    },
+    "cta_band": {
+      "heading": "可证明的合规。在任何开放 transformer 上。",
+      "tagline": "目前已发布八个 vindex,覆盖 Gemma、Qwen、Llama、Mistral、OpenAI MoE 和 Microsoft 1-bit。带上你的模型 — 我们来构建凭证。",
+      "cta_primary": "预约合规评审 →",
+      "cta_secondary": "在 Hugging Face 浏览 vindex"
+    }
+  },
+  "about": {
+    "hero_title": "关于 Divinci AI",
+    "hero_subtitle": "以艺术性、精确性和目的性,共同构建人机协作的未来。",
+    "mission_title": "我们的使命",
+    "mission_text": "通过让先进的人工智能对各种规模的组织都可访问、可管理、可信任,实现企业AI的民主化。我们相信,AI应当放大人类的潜能,而非取代它。",
+    "vision_title": "我们的愿景",
+    "vision_text": "一个每个组织都能自信地驾驭AI变革力量的世界 — 他们的实施是安全的、合规的,并且与他们的价值观一致。我们设想AI作为人类成就的协作伙伴。",
+    "values_title": "我们的核心价值观",
+    "values_desc": "这些原则指导着我们从产品开发到客户关系的所有工作。",
+    "value1_title": "以人为本的AI",
+    "value1_desc": "我们设计的AI系统是为了增强而非取代人类能力,确保技术服务于人类的最佳利益。",
+    "value2_title": "有目的的创新",
+    "value2_desc": "我们构建的每一个功能都解决一个真实的问题。我们不是为技术而创新,而是为了创造有意义的影响。",
+    "value3_title": "负责任的AI",
+    "value3_desc": "我们优先考虑合乎伦理的AI开发,确保每一种算法和决策中的透明度、公平性和问责制。",
+    "value4_title": "包容性设计",
+    "value4_desc": "无论技术专长如何,我们的平台都为所有人而建,确保AI的益处惠及每个人。",
+    "value5_title": "安全优先",
+    "value5_desc": "安全不是事后考虑 — 它是我们构建一切事物的基础,保护您的数据并维持信任。",
+    "value6_title": "与客户的伙伴关系",
+    "value6_desc": "我们视客户为合作伙伴,紧密合作以实现他们的AI目标和业务目的。",
+    "team_title": "认识我们的团队",
+    "team_desc": "将艺术性与先进AI技术融合的热情专家。",
+    "michael_title": "联合创始人兼CEO",
+    "michael_bio": "在AI系统和企业软件方面具有深厚专长的远见型领导者。此前曾在领先的科技公司构建可扩展平台。",
+    "samuel_title": "联合创始人兼CTO",
+    "samuel_bio": "在机器学习基础设施和可扩展AI部署方面拥有丰富经验的AI研究员和系统架构师。",
+    "sierra_title": "联合创始人兼CMO",
+    "sierra_bio": "专注于用户体验和AI伦理的产品战略专家。擅长将复杂的AI能力转化为直观的界面。",
+    "story_title": "我们的故事",
+    "story_desc": "从愿景到现实 — 构建企业AI未来的旅程。",
+    "timeline1_title": "起点",
+    "timeline1_desc": "本着AI应当为每个组织而非仅为科技巨头所用的愿景创立。我们在车库中带着宏大的梦想和更远大的抱负起步。",
+    "timeline2_title": "第一个原型",
+    "timeline2_desc": "经过数月的研究和开发,我们构建了第一个可用原型。受达·芬奇启发的界面源自我们对技术应当美丽的信念。",
+    "timeline3_title": "Beta 发布",
+    "timeline3_desc": "我们与精选的企业合作伙伴发布了Beta版,收集了塑造平台演进的宝贵反馈。反响压倒性地积极。",
+    "timeline4_title": "正式发布",
+    "timeline4_desc": "Divinci AI 正式向公众发布,为全球组织带来企业级的AI管理。AI的文艺复兴已经开始。",
+    "timeline5_title": "成长与演进",
+    "timeline5_desc": "今天,我们继续创新和扩展,服务于全球企业,同时坚守以人为本的AI开发这一核心价值观。",
+    "ai_good_title": "AI for Good 计划",
+    "ai_good_article_title": "AI for Impact:洛杉矶无家可归者预防试点项目内幕",
+    "ai_good_desc": "我们很自豪地与洛杉矶县合作,提供创新的AI解决方案以应对无家可归问题。我们的平台帮助社工更早地识别高风险个体,并协调更有效的干预措施。",
+    "ai_good_link": "详细了解我们的影响",
+    "join_title": "加入我们的团队",
+    "join_desc": "准备好帮助塑造AI的未来了吗?我们一直在寻找杰出的人才。",
+    "join_cta": "查看开放职位"
+  },
+  "careers": {
+    "hero_title": "加入我们的团队",
+    "hero_subtitle": "在 Divinci AI,我们正在构建人机协作的未来。加入我们,让 AI 对各种规模的企业都可用且有价值。",
+    "hero_cta": "查看开放职位",
+    "open_positions_title": "开放职位",
+    "open_positions_desc": "我们正在寻找对 AI、技术以及创造积极影响充满热情的人才。目前的开放职位如下:",
+    "key_requirements": "主要要求:",
+    "apply_now": "立即申请",
+    "location": "Remote / Santa Monica, CA",
+    "dept_engineering": "工程",
+    "dept_product": "产品",
+    "dept_design": "设计",
+    "dept_cs": "客户成功",
+    "internships_title": "实习",
+    "internships_desc": "我们为对 AI 充满热情、希望获得实践经验的学生和应届毕业生提供实习机会。",
+    "internship_program_title": "2026 暑期 AI 实习项目",
+    "internship_program_desc": "我们为期 12 周的暑期实习项目提供有意义的项目、来自资深工程师的指导,以及为企业客户实际使用的产品做出贡献的机会。",
+    "apply_internship": "申请实习",
+    "process_title": "我们的面试流程",
+    "process_desc": "我们设计的面试流程在严谨的同时尊重您的时间。您可以期待以下流程:",
+    "step1_title": "申请审核",
+    "step1_desc": "我们审阅您的申请和作品集,以了解您的背景和兴趣。",
+    "step2_title": "初步沟通",
+    "step2_desc": "与我们招聘团队的简短电话,讨论职位并回答您的任何问题。",
+    "step3_title": "技术评估",
+    "step3_desc": "根据职位不同,可能包括编程挑战、设计练习或案例研究。",
+    "step4_title": "团队面试",
+    "step4_desc": "与团队成员讨论技术话题并了解我们的文化。",
+    "step5_title": "最终面试",
+    "step5_desc": "与领导层就愿景、目标以及您将如何为我们的使命做出贡献进行交流。",
+    "step6_title": "录用",
+    "step6_desc": "如果是双向匹配,我们将发出录用通知,并帮助您顺利加入团队。",
+    "hear_from_team": "听听团队的声音",
+    "testimonial1_quote": "在 Divinci AI 工作意味着站在 AI 创新的前沿,同时坚定地关注负责任的开发。既具挑战性,又令人有成就感。",
+    "testimonial1_name": "Sarah Chen",
+    "testimonial1_role": "高级机器学习工程师",
+    "testimonial2_quote": "这里的协作文化非常棒。每个人的想法都受到重视,我们都朝着让 AI 为企业可用这一共同目标努力。",
+    "testimonial2_name": "Marcus Johnson",
+    "testimonial2_role": "产品经理",
+    "benefit1_title": "全面的医疗保障",
+    "benefit1_desc": "我们为员工及其家属提供顶级的医疗、牙科和视力保险,大部分保费由 Divinci AI 承担。",
+    "benefit2_title": "有竞争力的薪酬",
+    "benefit2_desc": "我们提供具有竞争力的薪资、股权选项以及带雇主匹配的 401(k) 计划,确保您共享公司的成功。",
+    "benefit3_title": "灵活的工作方式",
+    "benefit3_desc": "我们支持远程办公,同时您可选择在 Santa Monica 总部进行线下协作,使您能在最高效的地方工作。",
+    "benefit4_title": "充裕的休假",
+    "benefit4_desc": "我们提供无限期带薪休假、公司假日和带薪育儿假,因为我们相信工作与生活的平衡以及充电的重要性。",
+    "benefit5_title": "学习与发展",
+    "benefit5_desc": "我们提供年度学习津贴用于会议、课程和书籍,并定期提供专业发展机会。",
+    "benefit6_title": "团队活动",
+    "benefit6_desc": "定期的团队外出、社交活动和公司团建有助于建立牢固的关系和凝聚力强的团队文化。",
+    "job1_title": "高级机器学习工程师",
+    "job1_desc": "加入我们的 ML 团队,构建并优化为我们 AI 平台提供动力的大规模机器学习系统。您将致力于尖端算法和基础设施,使企业能够自信地部署 AI 模型。",
+    "job1_req1": "5 年以上 ML 工程经验",
+    "job1_req2": "精通 PyTorch、TensorFlow 或类似框架",
+    "job1_req3": "具有分布式系统和云平台经验",
+    "job1_req4": "扎实的软件工程基础",
+    "job2_title": "全栈工程师",
+    "job2_desc": "帮助构建让我们 AI 平台直观且强大的前端和后端系统。您将跨整个技术栈工作,为企业客户打造流畅的用户体验。",
+    "job2_req1": "3 年以上全栈开发经验",
+    "job2_req2": "精通 React、Node.js 和现代 Web 技术",
+    "job2_req3": "具有数据库和 API 设计经验",
+    "job2_req4": "对云基础设施有理解",
+    "job3_title": "产品经理",
+    "job3_desc": "推动我们 AI 管理平台的产品战略与执行。您将与工程、设计和客户紧密合作,定义并交付解决真实业务问题的产品。",
+    "job3_req1": "3 年以上产品管理经验",
+    "job3_req2": "具有 B2B SaaS 产品经验",
+    "job3_req3": "强大的分析和沟通能力",
+    "job3_req4": "AI/ML 产品背景者优先",
+    "job4_title": "UX/UI 设计师",
+    "job4_desc": "塑造我们 AI 平台的用户体验,使复杂的技术变得可用且令人愉悦。您将设计让用户能够自信地管理 AI 系统的界面。",
+    "job4_req1": "3 年以上 UX/UI 设计经验",
+    "job4_req2": "展示 B2B 产品设计的作品集",
+    "job4_req3": "精通 Figma、Sketch 或类似工具",
+    "job4_req4": "具有设计系统和用户研究经验",
+    "job5_title": "客户成功经理",
+    "job5_desc": "成为我们企业客户值得信赖的顾问,帮助他们在我们的 AI 平台上取得成功。您将推动采用、增长和长期满意度。",
+    "job5_req1": "2 年以上客户成功经验",
+    "job5_req2": "具有企业 B2B 客户经验",
+    "job5_req3": "强大的沟通和解决问题的能力",
+    "job5_req4": "技术背景者优先",
+    "culture_title": "我们的文化",
+    "culture_desc": "在 Divinci AI,我们正在构建一个协作、创新、包容的工作场所,让每个人都能发展。我们的文化由共同的价值观和打造赋能而非取代人类的 AI 技术的承诺所定义。",
+    "value1_title": "创新",
+    "value1_desc": "我们鼓励大胆的思考和创造性的问题解决。我们不畏挑战现状,推动 AI 可能性的边界。",
+    "value2_title": "协作",
+    "value2_desc": "我们相信,当多元视角汇聚时,最好的工作就会发生。我们培育一个让想法被开放分享、每个人的声音都被听到的协作环境。",
+    "value3_title": "责任",
+    "value3_desc": "我们致力于负责任地开发 AI,坚持强有力的伦理准则,专注于打造造福人类、尊重个人隐私和自主权的技术。",
+    "value4_title": "影响力",
+    "value4_desc": "我们由对企业利用 AI 方式产生有意义影响的机会所驱动。每位团队成员在实现这一愿景中都扮演着重要角色。",
+    "benefits_title": "福利与特权",
+    "benefits_intro": "我们相信关爱我们的团队。以下是我们为 Divinci AI 员工提供的部分福利与特权:"
+  },
+  "blog": {
+    "hero_title": "Divinci AI 博客",
+    "hero_subtitle": "关于人工智能、RAG 系统和企业 AI 管理的见解、更新和思想领导力。",
+    "by": "作者:",
+    "read_article": "阅读文章",
+    "recent_articles": "最新文章",
+    "read_more": "阅读更多",
+    "share_tag": "分享",
+    "share_title": "与朋友分享",
+    "share_desc": "如果您觉得这些话题有趣,请与您的朋友和同事分享。",
+    "coming_soon_title": "博客即将上线",
+    "coming_soon_message": "我们正在构建博客,分享有关 AI 技术、实施策略和行业趋势的见解。请稍后查看更新,或订阅以便在新内容可用时获得通知。",
+    "notify_me": "通知我有更新",
+    "featured_tag_default": "人工智能",
+    "post_tag_default": "AI 洞察"
   }
 }

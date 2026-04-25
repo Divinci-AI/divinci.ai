@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="brand-page">
+    <div class="container">
+        <header class="brand-page-header">
+            <h1 class="brand-page-title">Divinci AI Brand</h1>
+            <p class="brand-page-tagline">
+                Assets, guidelines, and media kits for referencing Divinci AI —
+                in press, research papers, partner integrations, and community content.
+            </p>
+            <p class="brand-page-note">
+                Questions?&nbsp;<a href="mailto:press@divinci.ai">press@divinci.ai</a>
+            </p>
+        </header>
+
+        <section class="brand-section">
+            <h2>Logos</h2>
+            <p>Download the Divinci AI mark in the variant that fits your surface. Use the clean SVGs whenever possible — they stay sharp at any size.</p>
+            <div class="brand-assets-grid">
+                <div class="brand-asset">
+                    <div class="brand-asset-preview brand-bg-light">
+                        <img src="{{ get_url(path='images/divinci_logo.svg') }}" alt="Divinci AI primary logo" width="120" height="120">
+                    </div>
+                    <div class="brand-asset-info">
+                        <div class="brand-asset-name">Primary Mark</div>
+                        <div class="brand-asset-links">
+                            <a href="{{ get_url(path='images/divinci_logo.svg') }}" download>SVG</a>
+                            <a href="{{ get_url(path='images/divinci_logo.png') }}" download>PNG</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-asset">
+                    <div class="brand-asset-preview brand-bg-dark">
+                        <img src="{{ get_url(path='images/divinci_logo_inverted.svg') }}" alt="Divinci AI white logo for dark backgrounds" width="120" height="120">
+                    </div>
+                    <div class="brand-asset-info">
+                        <div class="brand-asset-name">White (on dark)</div>
+                        <div class="brand-asset-links">
+                            <a href="{{ get_url(path='images/divinci_logo_inverted.svg') }}" download>SVG</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-asset">
+                    <div class="brand-asset-preview brand-bg-light">
+                        <object type="image/svg+xml" data="{{ get_url(path='images/divinci_logo_animated.svg') }}" width="120" height="120" aria-label="Divinci AI animated logo">
+                            <img src="{{ get_url(path='images/divinci_logo_animated.svg') }}" alt="Divinci AI animated logo" width="120" height="120">
+                        </object>
+                    </div>
+                    <div class="brand-asset-info">
+                        <div class="brand-asset-name">Animated</div>
+                        <div class="brand-asset-links">
+                            <a href="{{ get_url(path='images/divinci_logo_animated.svg') }}" download>SVG</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="brand-section">
+            <h2>Color Palette</h2>
+            <p>The primary palette balances warm cream tones (drafting-table aesthetic) with a deep sage green drawn from Leonardo's notebook inks.</p>
+            <div class="brand-color-grid">
+                <div class="brand-color-swatch" style="background:#2d5a4f;color:#faf8f5;">
+                    <div class="brand-color-name">Sage</div>
+                    <div class="brand-color-hex">#2D5A4F</div>
+                </div>
+                <div class="brand-color-swatch" style="background:#1e3a2b;color:#faf8f5;">
+                    <div class="brand-color-name">Forest</div>
+                    <div class="brand-color-hex">#1E3A2B</div>
+                </div>
+                <div class="brand-color-swatch" style="background:#f8f4f0;color:#2d3c34;border:1px solid #e0d5bf;">
+                    <div class="brand-color-name">Cream</div>
+                    <div class="brand-color-hex">#F8F4F0</div>
+                </div>
+                <div class="brand-color-swatch" style="background:#faf8f5;color:#2d3c34;border:1px solid #e0d5bf;">
+                    <div class="brand-color-name">Parchment</div>
+                    <div class="brand-color-hex">#FAF8F5</div>
+                </div>
+                <div class="brand-color-swatch" style="background:#c08850;color:#faf8f5;">
+                    <div class="brand-color-name">Amber</div>
+                    <div class="brand-color-hex">#C08850</div>
+                </div>
+                <div class="brand-color-swatch" style="background:#2d3c34;color:#faf8f5;">
+                    <div class="brand-color-name">Ink</div>
+                    <div class="brand-color-hex">#2D3C34</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="brand-section">
+            <h2>Typography</h2>
+            <p>DM Sans in three weights (400 / 500 / 700) carries nearly every surface — pairing well with tabular numerals for research data, and rendering cleanly from UI chrome to long-form technical writing.</p>
+            <div class="brand-type-sample">
+                <div class="brand-type-display">DM Sans</div>
+                <div class="brand-type-body">
+                    The quick brown fox jumps over the lazy dog — 0123456789.<br>
+                    Use DM Sans for product chrome, marketing pages, and research artifacts.
+                </div>
+            </div>
+        </section>
+
+        <section class="brand-section">
+            <h2>Usage</h2>
+            <ul class="brand-usage-list">
+                <li><strong>Do</strong> keep generous padding around the mark — at least half the mark's height.</li>
+                <li><strong>Do</strong> use the white version on any background darker than Cream.</li>
+                <li><strong>Don't</strong> recolor the primary mark or apply drop-shadows / outer glows.</li>
+                <li><strong>Don't</strong> crop, distort, or rotate the mark.</li>
+                <li><strong>Don't</strong> imply partnership or endorsement without written confirmation from Divinci AI.</li>
+            </ul>
+        </section>
+
+        <section class="brand-section">
+            <h2>Partners &amp; integrations</h2>
+            <p>Divinci AI publishes open research artifacts on Hugging Face and is an open-source contributor on GitHub.</p>
+            <div class="brand-partner-row">
+                <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener" class="brand-partner">
+                    <img src="{{ get_url(path='brand/huggingface/hf-logo-with-title.svg') }}" alt="Hugging Face" height="40">
+                    <span>Divinci-AI on Hugging Face</span>
+                </a>
+                <a href="https://github.com/Divinci-AI" target="_blank" rel="noopener" class="brand-partner">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <span>Divinci-AI on GitHub</span>
+                </a>
+            </div>
+        </section>
+    </div>
+</section>
+{% endblock %}

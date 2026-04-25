@@ -1,5 +1,5 @@
 +++
-title = "Blog | Divinci AI"
+title = "Blog"
 description = "Perspectivas, actualizaciones y liderazgo intelectual sobre inteligencia artificial, sistemas RAG y el futuro de la colaboración humano-IA."
 template = "blog.html"
 sort_by = "date"

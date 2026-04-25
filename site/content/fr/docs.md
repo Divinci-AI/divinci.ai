@@ -11,15 +11,15 @@ Bienvenue au centre de documentation de Divinci AI. Trouvez des guides complets,
 ## Documentation de la Plateforme
 
 ### Premiers Pas
-- [Guide de Démarrage Rapide](/fr/tutorials#guide-de-démarrage-rapide)
-- [Aperçu de la Plateforme](/fr/about)
-- [Configuration du Compte](/fr/support)
-- [Tutoriel Premiers Pas](/fr/tutorials#votre-premier-projet-ia)
+- [Guide de Démarrage Rapide](/fr/tutorials/)
+- [Aperçu de la Plateforme](/fr/about/)
+- [Configuration du Compte](/fr/support/)
+- [Tutoriel Premiers Pas](/fr/tutorials/)
 
 ### Fonctionnalités Principales
-- [Système AutoRAG](/fr/autorag) - Génération Augmentée par Récupération Automatisée
-- [Assurance Qualité](/fr/quality-assurance) - Tests et validation IA
-- [Gestion des Versions](/fr/release-management) - Déploiement et versioning
+- [Système AutoRAG](/fr/autorag/) - Génération Augmentée par Récupération Automatisée
+- [Assurance Qualité](/fr/quality-assurance/) - Tests et validation IA
+- [Gestion des Versions](/fr/release-management/) - Déploiement et versioning
 
 ## Référence API
 
@@ -29,15 +29,15 @@ Bienvenue au centre de documentation de Divinci AI. Trouvez des guides complets,
 - **Limites de Débit** : 1000 requêtes par minute
 
 #### Points de Terminaison Principaux
-- `GET /models` - Lister les modèles disponibles
-- `POST /generate` - Générer des réponses IA
-- `POST /analyze` - Analyser la qualité du contenu
-- `GET /status` - Vérifier le statut du système
+- `GET /transcripts` - Lister les transcriptions
+- `POST /rag/query` - Interroger le système RAG
+- `POST /releases` - Créer une nouvelle version
+- `GET /fine-tuning/jobs` - Lister les tâches de fine-tuning
 
 ### SDKs et Bibliothèques
-- [SDK Python](https://github.com/divinci-ai/python-sdk)
-- [SDK JavaScript](https://github.com/divinci-ai/js-sdk)
-- [Client API REST](https://github.com/divinci-ai/api-client)
+- [SDK Python](https://sdk.divinci.ai)
+- [SDK JavaScript](https://sdk.divinci.ai)
+- [Client API REST](https://sdk.divinci.ai)
 
 ## Guides d'Intégration
 
@@ -49,7 +49,7 @@ Bienvenue au centre de documentation de Divinci AI. Trouvez des guides complets,
 ### Authentification
 ```bash
 curl -H "Authorization: Bearer VOTRE_CLE_API" \
-     https://api.divinci.ai/v1/models
+     https://api.divinci.ai/v1/transcripts
 ```
 
 ### Gestion des Erreurs
@@ -58,9 +58,9 @@ Toutes les réponses API incluent des codes d'erreur et messages standardisés p
 ## Sujets Avancés
 
 ### Sécurité et Conformité
-- [Confidentialité des Données](/fr/privacy-policy)
-- [Mesures de Sécurité](/fr/security)
-- [Standards de Conformité](/fr/ai-safety)
+- [Confidentialité des Données](/fr/privacy-policy/)
+- [Mesures de Sécurité](/fr/security/)
+- [Standards de Conformité](/fr/ai-safety/)
 
 ### Optimisation des Performances
 - Guides de Sélection de Modèles
@@ -75,8 +75,8 @@ Toutes les réponses API incluent des codes d'erreur et messages standardisés p
 ## Ressources de Support
 
 ### Communauté
-- [Discussions GitHub](https://github.com/divinci-ai/community)
-- [Serveur Discord](https://discord.gg/divinci-ai)
+- [Discussions GitHub](https://github.com/Divinci-AI)
+- [Serveur Discord](https://discord.gg/5MJPyZ4u)
 - [Tag Stack Overflow](https://stackoverflow.com/questions/tagged/divinci-ai)
 
 ### Support Entreprise
@@ -85,23 +85,9 @@ Toutes les réponses API incluent des codes d'erreur et messages standardisés p
 - Assistance d'Intégration Personnalisée
 
 ### Formation et Certification
-- [Programme de Certification Divinci AI](/fr/careers#certification)
-- [Planning d'Ateliers](/fr/tutorials#ateliers)
-- [Matériaux de Formation](/fr/tutorials)
-
-## Notes de Version
-
-### Dernière Version : v2.1.0
-- Performance AutoRAG améliorée
-- Nouvelles métriques d'assurance qualité
-- Temps de réponse API améliorés
-- Support linguistique étendu
-
-### Versions Précédentes
-- [v2.0.0 - Mise à Jour Majeure de Plateforme](/fr/changelog#v2-0-0)
-- [v1.9.0 - Améliorations Qualité](/fr/changelog#v1-9-0)
-- [v1.8.0 - Améliorations Sécurité](/fr/changelog#v1-8-0)
+- [Programme de Certification Divinci AI](/fr/careers/)
+- [Matériaux de Formation](/fr/tutorials/)
 
 ---
 
-*Vous ne trouvez pas ce que vous cherchez ? Consultez nos [tutoriels](/fr/tutorials) pour des guides étape par étape ou [contactez le support](/fr/contact) pour une assistance personnalisée.*
+*Vous ne trouvez pas ce que vous cherchez ? Consultez nos [tutoriels](/fr/tutorials/) pour des guides étape par étape ou [contactez le support](/fr/contact/) pour une assistance personnalisée.*

@@ -34,7 +34,7 @@ La búsqueda por similitud vectorial, aunque poderosa, puede perder relaciones m
 
 La mayoría de las implementaciones RAG usan patrones de recuperación fijos que no se adaptan a la complejidad de la consulta o al contexto. Una pregunta factual simple requiere una lógica de recuperación diferente que una solicitud analítica compleja, sin embargo, la mayoría de los sistemas los tratan de manera idéntica.
 
-![Advanced RAG Architecture](images/autorag-still.png)
+![[Advanced RAG Architecture]](/images/autorag-still.png)
 *Los sistemas RAG modernos emplean pipelines sofisticados de recuperación y razonamiento en múltiples etapas*
 
 ## La Evolución de la Arquitectura RAG
@@ -69,7 +69,7 @@ decomposed_queries = [
 
 ### Recuperación y Razonamiento Recursivo
 
-![Recursive Retrieval Process](images/autorag-retrieval-optimization.svg)
+![[Recursive Retrieval Process]](/images/autorag-retrieval-optimization.svg)
 *La recuperación recursiva permite una exploración más profunda de las redes de información*
 
 Los sistemas RAG avanzados pueden explorar recursivamente redes de información, siguiendo pistas y conexiones para construir una comprensión integral. Este enfoque imita cómo los investigadores humanos trabajan naturalmente—comenzando con fuentes iniciales y siguiendo conexiones relevantes.
@@ -111,7 +111,7 @@ Con el aumento de la complejidad del sistema viene el desafío de asegurar la ca
 
 Las organizaciones necesitan herramientas que puedan integrar sin problemas las capacidades RAG avanzadas en los flujos de trabajo existentes sin requerir una amplia experiencia en IA.
 
-![AutoRAG Optimization Process](images/autorag-diagram.svg)
+![[AutoRAG Optimization Process]](/images/autorag-diagram.svg)
 *La optimización RAG automatizada reduce la complejidad del despliegue mientras mejora el rendimiento*
 
 ## La Solución AutoRAG de Divinci AI

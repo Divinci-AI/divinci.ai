@@ -16,7 +16,7 @@
 
             <div class="api-buttons">
                 <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="api-button primary" target="_blank">Get API Keys</a>
-                <a href="/docs" class="api-button secondary">View Documentation</a>
+                <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}" class="api-button secondary">View Documentation</a>
             </div>
         </div>
     </div>
@@ -519,7 +519,7 @@ queryRagSystem();</pre>
 }
 
 .coming-soon {
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     border-radius: 15px;
     padding: 3rem;
     text-align: center;
@@ -567,7 +567,7 @@ queryRagSystem();</pre>
 }
 
 .api-overview {
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     border-radius: 15px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -590,7 +590,7 @@ queryRagSystem();</pre>
 }
 
 .api-endpoints {
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 3rem;
@@ -599,9 +599,9 @@ queryRagSystem();</pre>
 }
 
 .endpoints-header {
-    background: #f8fafc;
+    background: #f8f4f0;
     padding: 1.5rem 2.5rem;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid #d4c4a0;
 }
 
 .endpoints-title {
@@ -617,7 +617,7 @@ queryRagSystem();</pre>
 
 .endpoint-category {
     padding: 2rem 0;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid #d4c4a0;
 }
 
 .endpoint-category:last-child {
@@ -690,7 +690,7 @@ queryRagSystem();</pre>
 }
 
 .code-example {
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 3rem;
@@ -700,8 +700,8 @@ queryRagSystem();</pre>
 
 .code-tabs {
     display: flex;
-    background: #f8fafc;
-    border-bottom: 1px solid #eaeaea;
+    background: #f8f4f0;
+    border-bottom: 1px solid #d4c4a0;
 }
 
 .code-tab {

@@ -1,5 +1,5 @@
 +++
-title = "Pricing Plans | Divinci AI"
+title = "Pricing Plans"
 description = "Divinci AI offers flexible pricing plans for businesses of all sizes. Choose from our Starter, Pro, and Enterprise plans to create custom AI solutions for your organization."
 template = "feature.html"
 +++
@@ -42,7 +42,7 @@ html, body, main, .feature-page {
 
 /* Ensure specific components have proper backgrounds and text colors */
 .pricing-card, .faq-item, .faq-section {
-    background-color: white !important;
+    background-color: var(--color-bg-primary, #f8f4f0) !important;
     color: #2d3c34 !important;
 }
 
@@ -247,7 +247,7 @@ input:checked + .toggle-slider:before {
 }
 
 .pricing-card {
-    background: var(--color-surface-light, #ffffff);
+    background: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     box-shadow: var(--shadow-large);
     padding: 2.5rem;
@@ -263,6 +263,29 @@ input:checked + .toggle-slider:before {
 /* Pricing cards container */
 .pricing-cards {
     position: relative;
+}
+
+/* Coming soon overlay on Starter, Pro, Business cards (not Enterprise) */
+.pricing-cards::after {
+    content: "Coming Soon — Contact Us for Early Access";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(248, 244, 240, 0.92);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--color-neutral-inverse, #2d5a4f);
+    text-align: center;
+    z-index: 5;
+    border-radius: 12px;
+    pointer-events: none;
 }
 
 .pricing-card:hover {
@@ -413,7 +436,7 @@ input:checked + .toggle-slider:before {
 }
 
 .feature-details {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 6px;
     margin: 0.5rem 0 0 0;
     padding: 0.75rem;
@@ -427,7 +450,7 @@ input:checked + .toggle-slider:before {
 .feature-detail {
     margin: 0.3rem 0;
     font-size: 0.85rem;
-    color: #333;
+    color: #2d3c34;
     line-height: 1.4;
     position: relative;
     padding-left: 1rem;
@@ -579,7 +602,7 @@ input:checked + .toggle-slider:before {
     border: 1px solid var(--color-border-medium);
     border-radius: 8px;
     overflow: hidden;
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
 }
 
 .faq-question {
@@ -733,7 +756,7 @@ input:checked + .toggle-slider:before {
 <li class="unavailable">Custom integrations</li>
 </ul>
 
-<a href="#signup" class="pricing-cta">Get Started</a>
+<a href="/contact/" class="pricing-cta">Get Started</a>
 </div>
 
 <!-- Pro Plan -->
@@ -790,7 +813,7 @@ input:checked + .toggle-slider:before {
 <li class="unavailable">Custom integrations</li>
 </ul>
 
-<a href="#signup" class="pricing-cta featured">Get Started</a>
+<a href="/contact/" class="pricing-cta featured">Get Started</a>
 </div>
 
 <!-- Business Plan -->
@@ -848,7 +871,7 @@ input:checked + .toggle-slider:before {
 <li>Standard integrations</li>
 </ul>
 
-<a href="#signup" class="pricing-cta">Get Started</a>
+<a href="/contact/" class="pricing-cta">Get Started</a>
 </div>
 </div>
 

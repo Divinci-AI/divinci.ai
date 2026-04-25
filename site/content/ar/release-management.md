@@ -68,7 +68,7 @@ feature_category = "development-tools"
 }
 
 .capability-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -94,7 +94,7 @@ feature_category = "development-tools"
 }
 
 .pipeline-container {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 3rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -158,7 +158,7 @@ feature_category = "development-tools"
 }
 
 .metrics-dashboard {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 3rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -190,7 +190,7 @@ feature_category = "development-tools"
 
 .metric-label {
     font-size: 0.9rem;
-    color: #718096;
+    color: #8b7659;
 }
 
 .case-studies-grid {
@@ -201,7 +201,7 @@ feature_category = "development-tools"
 }
 
 .case-study-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -218,7 +218,7 @@ feature_category = "development-tools"
 .integration-category {
     text-align: center;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
 }
@@ -248,7 +248,7 @@ feature_category = "development-tools"
 
 .accordion-panel {
     padding: 1.5rem;
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
 }
 
 .testimonial {
@@ -337,7 +337,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 4.44rem; margin-bottom: 2rem;">ما هي إدارة إصدارات الذكاء الاصطناعي؟</h2>
 
 <div class="release-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/release-cycle-diagram.svg" alt="مخطط إدارة دورة إصدار الذكاء الاصطناعي" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="/images/release-cycle-diagram.svg" alt="مخطط إدارة دورة إصدار الذكاء الاصطناعي" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
 </div>
 <div class="overview-content">
 <p style="font-size: 1.25rem; margin-bottom: 2rem;">تجلب منصة إدارة الإصدارات من Divinci AI أفضل ممارسات هندسة البرمجيات إلى نشر نماذج الذكاء الاصطناعي. إدارة الإصدارات وأتمتة عمليات النشر وضمان عمليات الطرح السلسة مع اختبار شامل وقدرات استعادة مصممة خصيصاً لأنظمة الذكاء الاصطناعي.</p>
@@ -559,7 +559,7 @@ feature_category = "development-tools"
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">قصص النجاح</h2>
 
-<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
+<div style="background: rgba(248, 244, 240, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
 <h3 style="color: var(--color-neutral-dark, #1e3a2b); font-size: 2rem; margin-bottom: 1rem;">منصة التجارة الإلكترونية العالمية</h3>
 <p style="font-size: 1.25rem; color: var(--color-neutral-inverse, #2d5a4f); margin-bottom: 2rem; font-weight: 600;">تقليل وقت النشر بنسبة 90% مع زيادة تكرار الإصدارات بنسبة 400%</p>
 <p style="margin-bottom: 2rem;">احتاجت منصة تجارة إلكترونية كبيرة إلى نشر نماذج ذكاء اصطناعي لمحركات التوصية عبر 15 دولة بدون توقف. باستخدام منصة إدارة الإصدارات لدينا، قاموا بتنفيذ عمليات نشر أزرق-أخضر وحققوا تحديثات نموذج سلسة تؤثر على أكثر من 100 مليون مستخدم يومياً مع الحفاظ على 99.99% من وقت التشغيل.</p>
@@ -612,7 +612,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">نظام التكامل البيئي</h2>
 
 <div style="text-align: center; margin-bottom: 3rem;">
-<p style="font-size: 1.2rem; color: #718096;">تكامل سلس مع بنيتك التحتية الحالية لـ DevOps والسحابة</p>
+<p style="font-size: 1.2rem; color: #8b7659;">تكامل سلس مع بنيتك التحتية الحالية لـ DevOps والسحابة</p>
 </div>
 
 <div class="integration-grid">

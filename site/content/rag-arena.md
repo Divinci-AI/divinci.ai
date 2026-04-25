@@ -57,7 +57,7 @@ feature_category = "data-management"
 }
 
 .arena-hero-card {
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(248, 244, 240, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-radius: var(--radius-large);
@@ -174,7 +174,7 @@ feature_category = "data-management"
 
 /* Arena Demo Visualization */
 .arena-demo {
-    background: var(--color-surface-light);
+    background: var(--color-bg-primary, #f8f4f0);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-large);
     padding: 2.5rem;
@@ -432,7 +432,7 @@ feature_category = "data-management"
 .step-card {
     text-align: center;
     padding: 2rem 1.5rem;
-    background: var(--color-surface-light);
+    background: var(--color-bg-primary, #f8f4f0);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-medium);
     position: relative;
@@ -494,7 +494,7 @@ feature_category = "data-management"
 }
 
 .feature-card {
-    background: var(--color-surface-light);
+    background: var(--color-bg-primary, #f8f4f0);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-medium);
     padding: 2rem;
@@ -555,7 +555,7 @@ feature_category = "data-management"
 }
 
 .routing-node {
-    background: var(--color-surface-light);
+    background: var(--color-bg-primary, #f8f4f0);
     border: 1.5px solid var(--color-border-light);
     border-radius: var(--radius-medium);
     padding: 1.25rem 1.5rem;
@@ -646,7 +646,7 @@ feature_category = "data-management"
 }
 
 .provider-badge {
-    background: var(--color-surface-light);
+    background: var(--color-bg-primary, #f8f4f0);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-small);
     padding: 0.75rem 1.5rem;
@@ -683,7 +683,7 @@ feature_category = "data-management"
 }
 
 .arch-card {
-    background: var(--color-surface-light);
+    background: var(--color-bg-primary, #f8f4f0);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-medium);
     padding: 1.5rem;
@@ -817,7 +817,7 @@ feature_category = "data-management"
     display: inline-flex !important;
     align-items: center !important;
     padding: 0.875rem 2rem !important;
-    background: var(--color-surface-light, #faf8f5) !important;
+    background: var(--color-bg-primary, #f8f4f0) !important;
     color: var(--color-neutral-primary, #2d3c34) !important;
     border-radius: 6px !important;
     font-weight: 600 !important;

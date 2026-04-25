@@ -14,8 +14,8 @@
 
     <div class="container">
         <div class="hero-content">
-            <h1 class="about-title">About Divinci AI</h1>
-            <p class="about-subtitle">Building the future of human-AI collaboration with artistry, precision, and purpose.</p>
+            <h1 class="about-title">{{ translations.about.hero_title | default(value="About Divinci AI") }}</h1>
+            <p class="about-subtitle">{{ translations.about.hero_subtitle | default(value="Building the future of human-AI collaboration with artistry, precision, and purpose.") }}</p>
         </div>
     </div>
 </section>
@@ -46,56 +46,56 @@
 <!-- Values Section -->
 <section class="values-section">
     <div class="container">
-        <h2 class="section-title">Our Core Values</h2>
-        <p class="section-content">These principles guide everything we do, from product development to customer relationships.</p>
+        <h2 class="section-title">{{ translations.about.values_title | default(value="Our Core Values") }}</h2>
+        <p class="section-content">{{ translations.about.values_desc | default(value="These principles guide everything we do, from product development to customer relationships.") }}</p>
 
         <div class="values-grid">
             <div class="value-card">
                 <div class="value-icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <h3 class="value-title">Human-Centered AI</h3>
-                <p class="value-description">We design AI systems that enhance human capabilities rather than replace them, ensuring technology serves humanity's best interests.</p>
+                <h3 class="value-title">{{ translations.about.value1_title | default(value="Human-Centered AI") }}</h3>
+                <p class="value-description">{{ translations.about.value1_desc | default(value="We design AI systems that enhance human capabilities rather than replace them, ensuring technology serves humanity's best interests.") }}</p>
             </div>
 
             <div class="value-card">
                 <div class="value-icon">
                     <i class="fas fa-lightbulb"></i>
                 </div>
-                <h3 class="value-title">Innovation with Purpose</h3>
-                <p class="value-description">Every feature we build solves a real problem. We innovate not for the sake of technology, but to create meaningful impact.</p>
+                <h3 class="value-title">{{ translations.about.value2_title | default(value="Innovation with Purpose") }}</h3>
+                <p class="value-description">{{ translations.about.value2_desc | default(value="Every feature we build solves a real problem. We innovate not for the sake of technology, but to create meaningful impact.") }}</p>
             </div>
 
             <div class="value-card">
                 <div class="value-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
-                <h3 class="value-title">Responsible AI</h3>
-                <p class="value-description">We prioritize ethical AI development, ensuring transparency, fairness, and accountability in every algorithm and decision.</p>
+                <h3 class="value-title">{{ translations.about.value3_title | default(value="Responsible AI") }}</h3>
+                <p class="value-description">{{ translations.about.value3_desc | default(value="We prioritize ethical AI development, ensuring transparency, fairness, and accountability in every algorithm and decision.") }}</p>
             </div>
 
             <div class="value-card">
                 <div class="value-icon">
                     <i class="fas fa-heart"></i>
                 </div>
-                <h3 class="value-title">Inclusive Design</h3>
-                <p class="value-description">Our platforms are built for everyone, regardless of technical expertise, ensuring AI benefits are accessible to all.</p>
+                <h3 class="value-title">{{ translations.about.value4_title | default(value="Inclusive Design") }}</h3>
+                <p class="value-description">{{ translations.about.value4_desc | default(value="Our platforms are built for everyone, regardless of technical expertise, ensuring AI benefits are accessible to all.") }}</p>
             </div>
 
             <div class="value-card">
                 <div class="value-icon">
                     <i class="fas fa-lock"></i>
                 </div>
-                <h3 class="value-title">Security First</h3>
-                <p class="value-description">Security isn't an afterthought—it's foundational to everything we build, protecting your data and maintaining trust.</p>
+                <h3 class="value-title">{{ translations.about.value5_title | default(value="Security First") }}</h3>
+                <p class="value-description">{{ translations.about.value5_desc | default(value="Security is foundational to everything we build, protecting your data and maintaining trust.") }}</p>
             </div>
 
             <div class="value-card">
                 <div class="value-icon">
                     <i class="fas fa-handshake"></i>
                 </div>
-                <h3 class="value-title">Customer Partnership</h3>
-                <p class="value-description">We view our customers as partners, working closely together to achieve their AI goals and business objectives.</p>
+                <h3 class="value-title">{{ translations.about.value6_title | default(value="Customer Partnership") }}</h3>
+                <p class="value-description">{{ translations.about.value6_desc | default(value="We view our customers as partners, working closely together to achieve their AI goals and business objectives.") }}</p>
             </div>
         </div>
     </div>
@@ -104,16 +104,16 @@
 <!-- Team Section -->
 <section class="team-section">
     <div class="container">
-        <h2 class="section-title">Meet Our Team</h2>
-        <p class="section-content">Passionate experts combining artistry with advanced AI technology.</p>
+        <h2 class="section-title">{{ translations.about.team_title | default(value="Meet Our Team") }}</h2>
+        <p class="section-content">{{ translations.about.team_desc | default(value="Passionate experts combining artistry with advanced AI technology.") }}</p>
 
         <div class="team-grid">
             <div class="team-member">
                 <img src="{{ get_url(path="images/team/michael-mooring.jpg") }}" alt="Michael Mooring" class="member-image" onerror="this.src='{{ get_url(path="images/team/placeholder.jpg") }}'">
                 <div class="member-info">
                     <h3 class="member-name">Michael Mooring</h3>
-                    <p class="member-title">Co-Founder & CEO</p>
-                    <p class="member-bio">Visionary leader with deep expertise in AI systems and enterprise software. Previously built scalable platforms at leading tech companies.</p>
+                    <p class="member-title">{{ translations.about.michael_title | default(value="Co-Founder & CEO") }}</p>
+                    <p class="member-bio">{{ translations.about.michael_bio | default(value="Visionary leader with deep expertise in AI systems and enterprise software. Previously built scalable platforms at leading tech companies.") }}</p>
                     <div class="member-social">
                         <a href="https://linkedin.com/in/michaelmooring" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                         <a href="https://twitter.com/michaelmooring" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
@@ -125,8 +125,8 @@
                 <img src="{{ get_url(path="images/team/samuel-tobia.jpg") }}" alt="Samuel Tobia" class="member-image" onerror="this.src='{{ get_url(path="images/team/placeholder.jpg") }}'">
                 <div class="member-info">
                     <h3 class="member-name">Samuel Tobia</h3>
-                    <p class="member-title">Co-Founder & CTO</p>
-                    <p class="member-bio">AI researcher and systems architect with extensive experience in machine learning infrastructure and scalable AI deployment.</p>
+                    <p class="member-title">{{ translations.about.samuel_title | default(value="Co-Founder & CTO") }}</p>
+                    <p class="member-bio">{{ translations.about.samuel_bio | default(value="AI researcher and systems architect with extensive experience in machine learning infrastructure and scalable AI deployment.") }}</p>
                     <div class="member-social">
                         <a href="https://linkedin.com/in/samueltobia" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                         <a href="https://github.com/samtobia" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -138,8 +138,8 @@
                 <img src="{{ get_url(path="images/team/sierra-hooshiari.jpg") }}" alt="Sierra Hooshiari" class="member-image" onerror="this.src='{{ get_url(path="images/team/placeholder.jpg") }}'">
                 <div class="member-info">
                     <h3 class="member-name">Sierra Hooshiari</h3>
-                    <p class="member-title">Co-Founder & CMO</p>
-                    <p class="member-bio">Product strategist focused on user experience and AI ethics. Expert in translating complex AI capabilities into intuitive interfaces.</p>
+                    <p class="member-title">{{ translations.about.sierra_title | default(value="Co-Founder & CMO") }}</p>
+                    <p class="member-bio">{{ translations.about.sierra_bio | default(value="Product strategist focused on user experience and AI ethics. Expert in translating complex AI capabilities into intuitive interfaces.") }}</p>
                     <div class="member-social">
                         <a href="https://linkedin.com/in/sierrahooshiari" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     </div>
@@ -152,15 +152,15 @@
 <!-- Story Timeline Section -->
 <section class="story-section">
     <div class="container">
-        <h2 class="section-title">Our Story</h2>
-        <p class="section-content">From a vision to reality - the journey of building the future of enterprise AI.</p>
+        <h2 class="section-title">{{ translations.about.story_title | default(value="Our Story") }}</h2>
+        <p class="section-content">{{ translations.about.story_desc | default(value="From a vision to reality - the journey of building the future of enterprise AI.") }}</p>
 
         <div class="story-timeline">
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3 class="timeline-title">The Beginning</h3>
+                    <h3 class="timeline-title">{{ translations.about.timeline1_title | default(value="The Beginning") }}</h3>
                     <p class="timeline-description">
-                        Founded with the vision that AI should be accessible to every organization, not just tech giants. We started in a garage with big dreams and bigger ambitions.
+                        {{ translations.about.timeline1_desc | default(value="Founded with the vision that AI should be accessible to every organization, not just tech giants. We started in a garage with big dreams and bigger ambitions.") }}
                     </p>
                 </div>
                 <div class="timeline-illustration">
@@ -175,9 +175,9 @@
 
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3 class="timeline-title">First Prototype</h3>
+                    <h3 class="timeline-title">{{ translations.about.timeline2_title | default(value="First Prototype") }}</h3>
                     <p class="timeline-description">
-                        After months of research and development, we built our first working prototype. The da Vinci-inspired interface was born from our belief that technology should be beautiful.
+                        {{ translations.about.timeline2_desc | default(value="After months of research and development, we built our first working prototype. The da Vinci-inspired interface was born from our belief that technology should be beautiful.") }}
                     </p>
                 </div>
                 <div class="timeline-illustration">
@@ -191,9 +191,9 @@
 
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3 class="timeline-title">Beta Launch</h3>
+                    <h3 class="timeline-title">{{ translations.about.timeline3_title | default(value="Beta Launch") }}</h3>
                     <p class="timeline-description">
-                        We launched our beta with select enterprise partners, gathering invaluable feedback that shaped our platform's evolution. The response was overwhelmingly positive.
+                        {{ translations.about.timeline3_desc | default(value="We launched our beta with select enterprise partners, gathering invaluable feedback that shaped our platform's evolution. The response was overwhelmingly positive.") }}
                     </p>
                 </div>
                 <div class="timeline-illustration">
@@ -207,9 +207,9 @@
 
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3 class="timeline-title">Official Launch</h3>
+                    <h3 class="timeline-title">{{ translations.about.timeline4_title | default(value="Official Launch") }}</h3>
                     <p class="timeline-description">
-                        Divinci AI officially launched to the public, bringing enterprise-grade AI management to organizations worldwide. The renaissance of AI had begun.
+                        {{ translations.about.timeline4_desc | default(value="Divinci AI officially launched to the public, bringing enterprise-grade AI management to organizations worldwide. The renaissance of AI had begun.") }}
                     </p>
                 </div>
                 <div class="timeline-illustration">
@@ -223,9 +223,9 @@
 
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3 class="timeline-title">Growing and Evolving</h3>
+                    <h3 class="timeline-title">{{ translations.about.timeline5_title | default(value="Growing and Evolving") }}</h3>
                     <p class="timeline-description">
-                        Today, we continue to innovate and expand, serving enterprises globally while staying true to our core values of human-centered AI development.
+                        {{ translations.about.timeline5_desc | default(value="Today, we continue to innovate and expand, serving enterprises globally while staying true to our core values of human-centered AI development.") }}
                     </p>
                 </div>
                 <div class="timeline-illustration">
@@ -244,17 +244,16 @@
 <!-- AI for Good Section -->
 <section class="social-good-section">
     <div class="container">
-        <h2 class="section-title">AI for Good Initiatives</h2>
+        <h2 class="section-title">{{ translations.about.ai_good_title | default(value="AI for Good Initiatives") }}</h2>
 
         <div class="social-good-content">
             <div class="social-good-text">
-                <h3 class="social-good-title">AI for Impact: Inside LA's Homelessness Prevention Pilot Program</h3>
+                <h3 class="social-good-title">{{ translations.about.ai_good_article_title | default(value="AI for Impact: Inside LA's Homelessness Prevention Pilot Program") }}</h3>
                 <p class="social-good-description">
-                    We're proud to partner with Los Angeles County on innovative AI solutions to address homelessness.
-                    Our platform helps social workers identify at-risk individuals earlier and coordinate more effective interventions.
+                    {{ translations.about.ai_good_desc | default(value="We are proud to partner with Los Angeles County on innovative AI solutions to address homelessness. Our platform helps social workers identify at-risk individuals earlier and coordinate more effective interventions.") }}
                 </p>
                 <a href="https://lu.ma/cmuj911s" target="_blank" class="social-good-link">
-                    Learn More About Our Impact <i class="fas fa-external-link-alt"></i>
+                    {{ translations.about.ai_good_link | default(value="Learn More About Our Impact") }} <i class="fas fa-external-link-alt"></i>
                 </a>
             </div>
             <div class="social-good-image">
@@ -267,11 +266,11 @@
 <!-- Join Team Section -->
 <section class="join-team-section">
     <div class="container">
-        <h2 class="join-title">Join Our Team</h2>
-        <p class="join-description">Ready to help shape the future of AI? We're always looking for exceptional talent.</p>
+        <h2 class="join-title">{{ translations.about.join_title | default(value="Join Our Team") }}</h2>
+        <p class="join-description">{{ translations.about.join_desc | default(value="Ready to help shape the future of AI? We are always looking for exceptional talent.") }}</p>
         <a href="{{ get_url(path="careers.md") }}" class="join-cta-button">
             <i class="fas fa-rocket"></i>
-            View Open Positions
+            {{ translations.about.join_cta | default(value="View Open Positions") }}
         </a>
     </div>
 </section>
@@ -355,7 +354,7 @@
 /* Mission & Vision Section */
 .mission-section {
     padding: 5rem 0;
-    background: linear-gradient(to bottom, rgba(248,250,252,0.92) 0%, rgba(248,250,252,0.4) 30%, rgba(248,250,252,0.3) 50%, rgba(248,250,252,0.4) 70%, rgba(248,250,252,0.92) 100%);
+    background: linear-gradient(to bottom, rgba(248,244,240,0.92) 0%, rgba(248,244,240,0.4) 30%, rgba(248,244,240,0.3) 50%, rgba(248,244,240,0.4) 70%, rgba(248,244,240,0.92) 100%);
 }
 
 .mission-vision-grid {
@@ -450,7 +449,7 @@
 }
 
 .value-card {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -591,7 +590,7 @@
 /* Story Timeline Section */
 .story-section {
     padding: 5rem 0;
-    background: linear-gradient(to bottom, rgba(248,250,252,0.92) 0%, rgba(248,250,252,0.4) 30%, rgba(248,250,252,0.3) 50%, rgba(248,250,252,0.4) 70%, rgba(248,250,252,0.92) 100%);
+    background: linear-gradient(to bottom, rgba(248,244,240,0.92) 0%, rgba(248,244,240,0.4) 30%, rgba(248,244,240,0.3) 50%, rgba(248,244,240,0.4) 70%, rgba(248,244,240,0.92) 100%);
 }
 
 .story-timeline {
@@ -641,7 +640,7 @@
 }
 
 .timeline-content {
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -681,7 +680,7 @@
 /* Social Good Section */
 .social-good-section {
     padding: 5rem 0;
-    background: white;
+    background: var(--color-bg-accent, #e8ddc7);
 }
 
 .social-good-content {

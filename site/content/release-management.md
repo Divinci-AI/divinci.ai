@@ -51,7 +51,7 @@ feature_category = "development-tools"
 }
 
 .capability-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -79,7 +79,7 @@ feature_category = "development-tools"
 }
 
 .pipeline-container {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 3rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -149,7 +149,7 @@ feature_category = "development-tools"
 }
 
 .metrics-dashboard {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 3rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -181,7 +181,7 @@ feature_category = "development-tools"
 
 .metric-label {
     font-size: 0.9rem;
-    color: #718096;
+    color: #8b7659;
 }
 
 .case-studies-grid {
@@ -192,7 +192,7 @@ feature_category = "development-tools"
 }
 
 .case-study-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -209,7 +209,7 @@ feature_category = "development-tools"
 .integration-category {
     text-align: center;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
 }
@@ -239,7 +239,7 @@ feature_category = "development-tools"
 
 .accordion-panel {
     padding: 1.5rem;
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
 }
 
 .testimonial {
@@ -375,7 +375,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 3rem; margin-bottom: 2rem;">What is AI Release Management?</h2>
 
 <div class="release-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/release-cycle-diagram.svg" alt="AI Release Cycle Management Diagram" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="/images/release-cycle-diagram.svg" alt="AI Release Cycle Management Diagram" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
 </div>
 
 <div class="overview-content">
@@ -646,7 +646,7 @@ feature_category = "development-tools"
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>
 
-<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
+<div style="background: rgba(248, 244, 240, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
 <h3 style="color: #1e3a2b; font-size: 2rem; margin-bottom: 1rem;">Global E-commerce Platform</h3>
 <p style="font-size: 1.25rem; color: #2d3c34; margin-bottom: 2rem; font-weight: 600;">Reduced deployment time by 90% while increasing release frequency by 400%</p>
 <p style="margin-bottom: 2rem;">A major e-commerce platform needed to deploy AI models for recommendation engines across 15 countries with zero downtime. Using our Release Management platform, they implemented blue-green deployments and achieved seamless model updates affecting 100M+ daily users while maintaining 99.99% uptime.</p>
@@ -699,7 +699,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Integration Ecosystem</h2>
 
 <div style="text-align: center; margin-bottom: 3rem;">
-<p style="font-size: 1.2rem; color: #718096;">Seamlessly integrate with your existing DevOps and cloud infrastructure</p>
+<p style="font-size: 1.2rem; color: #8b7659;">Seamlessly integrate with your existing DevOps and cloud infrastructure</p>
 </div>
 
 <div class="integration-grid">
@@ -723,18 +723,18 @@ feature_category = "development-tools"
 <span class="tag"><img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus">Prometheus</span>
 <span class="tag"><img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana">Grafana</span>
 <span class="tag"><img src="https://cdn.simpleicons.org/pagerduty/06AC38" alt="PagerDuty">PagerDuty</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/slack/4A154B" alt="Slack">Slack</span>
+<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/slack.svg" alt="Slack">Slack</span>
 </div>
 </div>
 
 <div class="integration-category">
 <h3>Cloud Providers</h3>
 <div style="margin-top: 1rem;">
-<span class="tag"><img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS">AWS</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="Azure">Azure</span>
+<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/amazonaws.svg" alt="AWS">AWS</span>
+<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/microsoftazure.svg" alt="Azure">Azure</span>
 <span class="tag"><img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud">Google Cloud</span>
 <span class="tag"><img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes">Kubernetes</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="SageMaker">SageMaker</span>
+<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/amazonaws.svg" alt="SageMaker">SageMaker</span>
 <span class="tag"><img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Vertex AI">Vertex AI</span>
 </div>
 </div>

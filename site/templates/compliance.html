@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="compliance-page">
+  <div class="container">
+    <header class="compliance-hero">
+      <span class="compliance-eyebrow">{{ translations.compliance.hero.eyebrow | default(value="Powered by vindex + LarQL") }}</span>
+      <h1>{{ translations.compliance.hero.heading | default(value="Compliance, with a receipt.") }}</h1>
+      <p class="compliance-tagline">
+        {{ translations.compliance.hero.tagline | default(value="Compliance, with a receipt.") | safe }}
+      </p>
+      <div class="compliance-hero-cta">
+        <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener" class="research-cta-primary">{{ translations.compliance.hero.cta_primary | default(value="Talk to compliance →") }}</a>
+        <a href="https://huggingface.co/spaces/Divinci-AI/vindex-viewer" target="_blank" rel="noopener" class="research-cta-secondary">{{ translations.compliance.hero.cta_secondary | default(value="See a live vindex") }}</a>
+      </div>
+    </header>
+
+    <section class="compliance-mapping">
+      <h2>{{ translations.compliance.mapping.heading | default(value="What the regulation requires") }}</h2>
+      <p class="compliance-mapping-sub">
+        {{ translations.compliance.mapping.subheading | default(value="The same artifact answers transparency, oversight, documentation, and erasure requirements.") }}
+      </p>
+      <div class="compliance-table-wrap">
+        <table class="compliance-table">
+          <thead>
+            <tr>
+              <th>{{ translations.compliance.mapping.th_regulation | default(value="Regulation") }}</th>
+              <th>{{ translations.compliance.mapping.th_requirement | default(value="Requirement") }}</th>
+              <th>{{ translations.compliance.mapping.th_competitors | default(value="Competitors") }}</th>
+              <th>{{ translations.compliance.mapping.th_larql | default(value="LarQL/vindex") }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% set row_icons = ["eu-flag", "eu-flag", "eu-flag", "gdpr", "hipaa-pci", "nist-ai"] %}
+            {% set row_classes = ["", "", "", "compliance-row-highlight", "", ""] %}
+            {% for row in translations.compliance.mapping.rows %}
+              <tr{% if row_classes[loop.index0] %} class="{{ row_classes[loop.index0] }}"{% endif %}>
+                <td><img src="/brand/regulators/{{ row_icons[loop.index0] }}.svg" alt="" class="compliance-row-flag"><strong>{{ row.reg_label }}</strong> {{ row.reg_topic }}</td>
+                <td>{{ row.requirement | safe }}</td>
+                <td>{{ row.competitors | safe }}</td>
+                <td>{{ row.larql | safe }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="compliance-receipt-section">
+      <div class="compliance-receipt-text">
+        <h2>{{ translations.compliance.receipt.heading | default(value="What a receipt actually looks like") }}</h2>
+        <p>
+          {{ translations.compliance.receipt.para_1 | default(value="A LarQL patch is a portable JSON file with a SHA-256 checksum.") }}
+        </p>
+        <p>
+          {{ translations.compliance.receipt.para_2 | default(value="Below: the actual Gate-3 patch from our public test suite.") }}
+        </p>
+      </div>
+      <pre class="compliance-receipt-pre"><code>{
+  "name": "gdpr-art17-paris-capital",
+  "version": 1,
+  "base_model": "google/gemma-4-E2B-it",
+  "created_at": "2026-04-22T22:34:00Z",
+  "operations": [{
+    "op": "delete",
+    "entity": "Paris",
+    "relation": "capital",
+    "target": "서울",
+    "weight": -1.0,
+    "layer": 27,
+    "feature": 11179
+  }]
+}
+
+# ── Verifiable result ──
+# before: feature 11179 score 18.10 target='서울'  (rank #1)
+# after:  feature 11179 ABSENT from top-25
+# Δ perplexity (WikiText-103, 1024 tok): +0.02%
+# vindex sha256: 9abaeaf6...</code></pre>
+    </section>
+
+    <section class="compliance-cta-band">
+      <h2>{{ translations.compliance.cta_band.heading | default(value="Compliance you can prove. On any open transformer.") }}</h2>
+      <p>{{ translations.compliance.cta_band.tagline | default(value="Eight published vindexes today. Bring your model — we will build the receipt.") }}</p>
+      <div class="compliance-hero-cta">
+        <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener" class="research-cta-primary">{{ translations.compliance.cta_band.cta_primary | default(value="Book a compliance review →") }}</a>
+        <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener" class="research-cta-secondary">{{ translations.compliance.cta_band.cta_secondary | default(value="Browse vindexes on Hugging Face") }}</a>
+      </div>
+    </section>
+  </div>
+</section>
+{% endblock %}

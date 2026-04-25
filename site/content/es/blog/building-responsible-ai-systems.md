@@ -100,7 +100,7 @@ Los humanos deben mantener control significativo sobre los sistemas de IA:
 
 ## Implementando IA Responsable en el Ciclo de Vida de Desarrollo
 
-![Marco de IA Responsable](images/AI-Standards-Hub-Logo_04-1.png)
+![[Marco de IA Responsable]](/images/AI-Standards-Hub-Logo_04-1.png)
 *Un marco completo para implementar prácticas de IA responsable*
 
 ### Planificación y Diseño
@@ -199,7 +199,7 @@ Las estructuras de gobierno efectivas son esenciales para mantener prácticas de
 
 **Respuesta a Incidentes**: Establecer procedimientos claros para abordar problemas relacionados con IA.
 
-![Diagrama de Explicabilidad del Modelo](images/qa-pipeline-diagram.svg)
+![[Diagrama de Explicabilidad del Modelo]](/images/qa-pipeline-diagram.svg)
 *Implementando explicabilidad y monitoreo en todo el pipeline de IA*
 
 ## Equilibrando Innovación con Responsabilidad

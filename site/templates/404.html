@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found | Divinci AI{% endblock %}
+{% block og_title %}Page Not Found | Divinci AI{% endblock %}
+
+{% block content %}
+<style>
+.not-found-section {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem;
+    background: var(--color-bg-primary, #f8f4f0);
+}
+
+.not-found-inner {
+    text-align: center;
+    max-width: 600px;
+}
+
+.not-found-code {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(6rem, 15vw, 10rem);
+    font-weight: 700;
+    color: var(--color-accent-primary, #b8a080);
+    line-height: 1;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+
+.not-found-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: var(--color-neutral-primary, #2d3c34);
+    margin-bottom: 1.5rem;
+}
+
+.not-found-message {
+    font-size: 1.1rem;
+    color: var(--color-neutral-primary, #2d3c34);
+    opacity: 0.8;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+}
+
+.not-found-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.not-found-actions .btn-primary {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background: var(--color-neutral-inverse, #2d5a4f);
+    color: #f8f4f0;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.2s ease;
+}
+
+.not-found-actions .btn-primary:hover {
+    background: var(--color-neutral-dark, #1e3a2b);
+}
+
+.not-found-actions .btn-secondary {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background: transparent;
+    color: var(--color-neutral-inverse, #2d5a4f);
+    border: 2px solid var(--color-neutral-inverse, #2d5a4f);
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.not-found-actions .btn-secondary:hover {
+    background: var(--color-neutral-inverse, #2d5a4f);
+    color: #f8f4f0;
+}
+
+.not-found-decoration {
+    margin: 2rem auto 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.not-found-decoration .line {
+    width: 60px;
+    height: 1px;
+    background: var(--color-accent-primary, #b8a080);
+    opacity: 0.5;
+}
+
+.not-found-decoration .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent-primary, #b8a080);
+}
+</style>
+
+<section class="not-found-section">
+    <div class="not-found-inner">
+        <div class="not-found-code">404</div>
+        <h1 class="not-found-title">{{ translations.not_found.title | default(value="Page not found") }}</h1>
+        <div class="not-found-decoration">
+            <div class="line"></div>
+            <div class="dot"></div>
+            <div class="line"></div>
+        </div>
+        <p class="not-found-message">
+            {{ translations.not_found.message | default(value="The page you're looking for doesn't exist or has been moved. Let's get you back on track.") }}
+        </p>
+        <div class="not-found-actions">
+            <a href="/" class="btn-primary">{{ translations.not_found.go_home | default(value="Go to homepage") }}</a>
+            <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}" class="btn-secondary">{{ translations.not_found.view_docs | default(value="View docs") }}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

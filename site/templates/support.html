@@ -101,7 +101,7 @@
 
 /* Sidebar Navigation */
 .support-sidebar {
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -202,7 +202,7 @@
     letter-spacing: 1px;
     margin-bottom: 0.75rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-border-dark, #d4c4a0);
 }
 
 .sidebar-section-title.collapsible {
@@ -398,7 +398,7 @@
         width: 100% !important;
         margin-bottom: 2rem;
         padding: 0 !important;
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(248, 244, 240, 0.9);
         border-radius: 12px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         max-height: none !important;
@@ -573,7 +573,7 @@
         max-width: 100% !important;
         margin: 0 auto 1rem auto !important;
         padding: 1.5rem !important;
-        background-color: white !important;
+        background-color: var(--color-bg-primary, #f8f4f0) !important;
         border-radius: 12px !important;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
         box-sizing: border-box !important;
@@ -684,7 +684,7 @@
         text-align: center !important;
         padding: 1.5rem !important;
         margin-bottom: 1.5rem !important;
-        background: white !important;
+        background: var(--color-bg-primary, #f8f4f0) !important;
         border-radius: 12px !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
     }
@@ -712,7 +712,7 @@
         overflow-x: auto !important;
         margin: 2rem auto !important;
         padding: 1.5rem !important;
-        background: white !important;
+        background: var(--color-bg-primary, #f8f4f0) !important;
         border-radius: 12px !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
         max-width: 100% !important;
@@ -821,7 +821,7 @@
 }
 
 .help-card {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -918,7 +918,7 @@
     display: flex;
     align-items: flex-start;
     padding: 1.5rem;
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
@@ -970,7 +970,7 @@
 }
 
 .step-card {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -1046,7 +1046,7 @@
 }
 
 .contact-form {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -1086,7 +1086,7 @@
     outline: none;
     border-color: var(--color-accent-primary, #b8a080);
     box-shadow: 0 0 0 3px rgba(184, 160, 128, 0.12);
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
 }
 
 .form-textarea {
@@ -1128,7 +1128,7 @@
 }
 
 .contact-method {
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -1168,7 +1168,7 @@
 }
 
 .support-hours {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -1185,12 +1185,12 @@
 .hours-table td {
     padding: 1rem;
     text-align: left;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-border-dark, #d4c4a0);
     color: #2d3c34;
 }
 
 .hours-table th {
-    background-color: #f9f9f9;
+    background-color: var(--color-bg-accent, #e8ddc7);
     font-weight: 700;
     color: #2d3c34;
 }
@@ -1206,7 +1206,7 @@
 
 .faq-item {
     margin-bottom: 2rem;
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     overflow: hidden;
@@ -1226,7 +1226,7 @@
 }
 
 .faq-question:hover {
-    background-color: #f9f9f9;
+    background-color: var(--color-bg-accent, #e8ddc7);
 }
 
 .faq-question::after {
@@ -1335,7 +1335,7 @@
                 <ul class="sidebar-menu">
                     <li><a href="#getting-started" class="sidebar-link active">{{ translations.support.sidebar.menu.getting_started | default(value="Getting Started") }}</a></li>
                     <li><a href="#language-model-compatibility" class="sidebar-link">{{ translations.support.sidebar.menu.language_models | default(value="Language Models") }}</a></li>
-                    <li><a href="#contact-section" class="sidebar-link">{{ translations.support.sidebar.menu.billing | default(value="Account & Billing") }}</a></li>
+                    <li><a href="#contact-section" class="sidebar-link">{{ translations.support.sidebar.menu.billing | default(value="Account & Billing") | safe }}</a></li>
                     <li><a href="#contact-section" class="sidebar-link">{{ translations.support.sidebar.menu.technical_support | default(value="Technical Support") }}</a></li>
                     <li><a href="#contact-section" class="sidebar-link">{{ translations.support.sidebar.menu.enterprise | default(value="Enterprise Solutions") }}</a></li>
                     <li><a href="{% if current_lang == 'en' %}/api{% else %}/{{ current_lang }}/api{% endif %}" class="sidebar-link">{{ translations.support.sidebar.menu.api_docs | default(value="API Documentation") }}</a></li>
@@ -1345,9 +1345,9 @@
             <div class="sidebar-section collapsible collapsed">
                 <div class="sidebar-section-title collapsible collapsed">{{ translations.support.sidebar.sections.self_service | default(value="Self-Service Tools") }}</div>
                 <ul class="sidebar-menu">
-                    <li><a href="/tutorials" class="sidebar-link">{{ translations.support.sidebar.menu.tutorials | default(value="Tutorial Center") }}</a></li>
+                    <li><a href="{% if current_lang == 'en' %}/tutorials/{% else %}/{{ current_lang }}/tutorials/{% endif %}" class="sidebar-link">{{ translations.support.sidebar.menu.tutorials | default(value="Tutorial Center") }}</a></li>
                     <li><a href="#getting-started" class="sidebar-link">{{ translations.support.sidebar.menu.knowledge_base | default(value="Knowledge Base") }}</a></li>
-                    <li><a href="/contact" class="sidebar-link">{{ translations.support.sidebar.menu.community | default(value="Community Forums") }}</a></li>
+                    <li><a href="{% if current_lang == 'en' %}/contact/{% else %}/{{ current_lang }}/contact/{% endif %}" class="sidebar-link">{{ translations.support.sidebar.menu.community | default(value="Community Forums") }}</a></li>
                 </ul>
             </div>
             
@@ -1362,7 +1362,7 @@
             <div class="sidebar-cta">
                 <h4>{{ translations.support.sidebar.cta.title | default(value="Need urgent help?") }}</h4>
                 <p>{{ translations.support.sidebar.cta.description | default(value="Our support team is available Monday-Friday, 9am-5pm PT.") }}</p>
-                <a href="mailto:support@divinci.app" class="sidebar-cta-button">
+                <a href="mailto:support@divinci.ai" class="sidebar-cta-button">
                     <i class="fas fa-envelope"></i>
                     {{ translations.support.sidebar.cta.button | default(value="Email Support") }}
                 </a>
@@ -1465,7 +1465,7 @@
                                 <div class="topic-content">
                                     <h3>{{ translations.support.topics.api_integration.title | default(value="API Integration Guide") }}</h3>
                                     <p>{{ translations.support.topics.api_integration.description | default(value="How to integrate Divinci AI with your applications and existing systems.") }}</p>
-                                    <a href="/api" class="topic-link">{{ translations.support.topics.api_integration.link | default(value="Read more") }}</a>
+                                    <a href="{% if current_lang == 'en' %}/api/{% else %}/{{ current_lang }}/api/{% endif %}" class="topic-link">{{ translations.support.topics.api_integration.link | default(value="Read more") }}</a>
                                 </div>
                             </div>
                             
@@ -1502,7 +1502,7 @@
                             
                             <div class="step-card">
                                 <div class="step-number">2</div>
-                                <h3>{{ translations.support.steps.define_purpose.title | default(value="Define Your AI's Purpose") }}</h3>
+                                <h3>{% if translations.support.steps.define_purpose.title %}{{ translations.support.steps.define_purpose.title }}{% else %}Define Your AI's Purpose{% endif %}</h3>
                                 <p>{{ translations.support.steps.define_purpose.description | default(value="Clarify the specific role and functionality you want your AI to have. This helps in training and optimization for your use case.") }}</p>
                                 <a href="#contact-section" class="step-button">
                                     <i class="fas fa-bullseye"></i>
@@ -1513,7 +1513,7 @@
                             <div class="step-card">
                                 <div class="step-number">3</div>
                                 <h3>{{ translations.support.steps.upload_materials.title | default(value="Upload Training Materials") }}</h3>
-                                <p>{{ translations.support.steps.upload_materials.description | default(value="Provide relevant documents, data, and knowledge sources to train your AI's understanding and capabilities.") }}</p>
+                                <p>{% if translations.support.steps.upload_materials.description %}{{ translations.support.steps.upload_materials.description }}{% else %}Provide relevant documents, data, and knowledge sources to train your AI's understanding and capabilities.{% endif %}</p>
                                 <a href="#contact-section" class="step-button">
                                     <i class="fas fa-upload"></i>
                                     <span>{{ translations.support.steps.upload_materials.button | default(value="Data Preparation Guide") }}</span>
@@ -1522,8 +1522,8 @@
                             
                             <div class="step-card">
                                 <div class="step-number">4</div>
-                                <h3>{{ translations.support.steps.train_test.title | default(value="Train & Test Your AI") }}</h3>
-                                <p>{{ translations.support.steps.train_test.description | default(value="Initiate the training process and test your AI's responses to ensure accuracy and relevance for your specific domain.") }}</p>
+                                <h3>{{ translations.support.steps.train_test.title | default(value="Train & Test Your AI") | safe }}</h3>
+                                <p>{% if translations.support.steps.train_test.description %}{{ translations.support.steps.train_test.description }}{% else %}Initiate the training process and test your AI's responses to ensure accuracy and relevance for your specific domain.{% endif %}</p>
                                 <a href="#contact-section" class="step-button">
                                     <i class="fas fa-graduation-cap"></i>
                                     <span>{{ translations.support.steps.train_test.button | default(value="Training Best Practices") }}</span>
@@ -1534,7 +1534,7 @@
                                 <div class="step-number">5</div>
                                 <h3>{{ translations.support.steps.deploy.title | default(value="Deploy Your AI") }}</h3>
                                 <p>{{ translations.support.steps.deploy.description | default(value="Integrate your AI into your website, application, or other platforms using our flexible deployment options.") }}</p>
-                                <a href="/api" class="step-button">
+                                <a href="{% if current_lang == 'en' %}/api/{% else %}/{{ current_lang }}/api/{% endif %}" class="step-button">
                                     <i class="fas fa-rocket"></i>
                                     <span>{{ translations.support.steps.deploy.button | default(value="Deployment Guide") }}</span>
                                 </a>
@@ -1656,7 +1656,7 @@
                         </div>
 
                         <div class="text-center mt-3">
-                            <a href="/api" class="help-card-button d-inline-flex align-items-center gap-05">
+                            <a href="{% if current_lang == 'en' %}/api/{% else %}/{{ current_lang }}/api/{% endif %}" class="help-card-button d-inline-flex align-items-center gap-05">
                                 <i class="fas fa-code"></i>
                                 <span>{{ translations.support.model_compatibility.api_docs_button | default(value="View API Documentation") }}</span>
                             </a>
@@ -1706,8 +1706,8 @@
                                         <label class="form-label" for="category">{{ translations.support.contact_form.category_label | default(value="Issue Category") }}</label>
                                         <select class="form-select" id="category" name="category" required>
                                             <option value="">{{ translations.support.contact_form.category_select | default(value="Select category") }}</option>
-                                            <option value="account">{{ translations.support.contact_form.category_account | default(value="Account & Access") }}</option>
-                                            <option value="billing">{{ translations.support.contact_form.category_billing | default(value="Billing & Subscription") }}</option>
+                                            <option value="account">{{ translations.support.contact_form.category_account | default(value="Account & Access") | safe }}</option>
+                                            <option value="billing">{{ translations.support.contact_form.category_billing | default(value="Billing & Subscription") | safe }}</option>
                                             <option value="technical">{{ translations.support.contact_form.category_technical | default(value="Technical Issue") }}</option>
                                             <option value="ai-training">{{ translations.support.contact_form.category_training | default(value="AI Training") }}</option>
                                             <option value="integration">{{ translations.support.contact_form.category_integration | default(value="Integration") }}</option>
@@ -1738,7 +1738,7 @@
                                         </div>
                                         <div>
                                             <h4>{{ translations.support.contact_info.email.title | default(value="Email") }}</h4>
-                                            <p><a href="mailto:support@divinci.app">{{ translations.support.contact_info.email.value | default(value="support@divinci.app") }}</a></p>
+                                            <p><a href="mailto:support@divinci.ai">{{ translations.support.contact_info.email.value | default(value="support@divinci.ai") }}</a></p>
                                         </div>
                                     </div>
                                     
@@ -1748,7 +1748,7 @@
                                         </div>
                                         <div>
                                             <h4>{{ translations.support.contact_info.chat.title | default(value="Live Chat") }}</h4>
-                                            <p>{{ translations.support.contact_info.chat.description | default(value="Available 9am-5pm PT<br>Monday-Friday") | safe }}</p>
+                                            <p>{% if translations.support.contact_info.chat.description %}{{ translations.support.contact_info.chat.description | safe }}{% else %}Available 9am-5pm PT<br>Monday-Friday{% endif %}</p>
                                         </div>
                                     </div>
                                     
@@ -1758,7 +1758,7 @@
                                         </div>
                                         <div>
                                             <h4>{{ translations.support.contact_info.community.title | default(value="Community") }}</h4>
-                                            <p><a href="/contact">{{ translations.support.contact_info.community.value | default(value="Divinci Forum") }}</a></p>
+                                            <p><a href="{% if current_lang == 'en' %}/contact/{% else %}/{{ current_lang }}/contact/{% endif %}">{{ translations.support.contact_info.community.value | default(value="Divinci Forum") }}</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -1776,17 +1776,17 @@
                                         <tbody>
                                             <tr>
                                                 <td>{{ translations.support.hours.standard.tier | default(value="Standard Support") }}</td>
-                                                <td>{{ translations.support.hours.standard.hours | default(value="Monday-Friday<br>9am-5pm PT") | safe }}</td>
+                                                <td>{% if translations.support.hours.standard.hours %}{{ translations.support.hours.standard.hours | safe }}{% else %}Monday-Friday<br>9am-5pm PT{% endif %}</td>
                                                 <td>{{ translations.support.hours.standard.response | default(value="24 hours") }}</td>
                                             </tr>
                                             <tr>
                                                 <td>{{ translations.support.hours.professional.tier | default(value="Professional Support") }}</td>
-                                                <td>{{ translations.support.hours.professional.hours | default(value="Monday-Friday<br>9am-5pm PT") | safe }}</td>
+                                                <td>{% if translations.support.hours.professional.hours %}{{ translations.support.hours.professional.hours | safe }}{% else %}Monday-Friday<br>9am-5pm PT{% endif %}</td>
                                                 <td>{{ translations.support.hours.professional.response | default(value="8 hours") }}</td>
                                             </tr>
                                             <tr>
                                                 <td>{{ translations.support.hours.enterprise.tier | default(value="Enterprise Support") }}</td>
-                                                <td>{{ translations.support.hours.enterprise.hours | default(value="24/7/365") }}</td>
+                                                <td>{{ translations.support.hours.enterprise.hours | default(value="24/7/365") | safe }}</td>
                                                 <td>{{ translations.support.hours.enterprise.response | default(value="1-4 hours") }}</td>
                                             </tr>
                                         </tbody>
@@ -1823,64 +1823,64 @@
                                         <li>{{ translations.support.faq.questions.data_types.answer.list.datasets | default(value="Structured datasets (CSV, JSON)") }}</li>
                                         <li>{{ translations.support.faq.questions.data_types.answer.list.website | default(value="Website content (via crawling)") }}</li>
                                     </ul>
-                                    <p>{{ translations.support.faq.questions.data_types.answer.compliance | default(value="All training data must comply with our content policies and should not include confidential or sensitive personal information unless you're using our secure enterprise option with privacy guarantees.") }}</p>
+                                    <p>{% if translations.support.faq.questions.data_types.answer.compliance %}{{ translations.support.faq.questions.data_types.answer.compliance }}{% else %}All training data must comply with our content policies and should not include confidential or sensitive personal information unless you're using our secure enterprise option with privacy guarantees.{% endif %}</p>
                                 </div>
                             </div>
                             
                             <div class="faq-item">
                                 <div class="faq-question">{{ translations.support.faq.questions.training_time.question | default(value="How long does the AI training process take?") }}</div>
                                 <div class="faq-answer">
-                                    <p>Training duration depends on the volume and complexity of your data:</p>
+                                    <p>{{ translations.support.faq.questions.training_time.answer.intro | default(value="Training duration depends on the volume and complexity of your data:") }}</p>
                                     <ul>
-                                        <li><strong>Basic models (under 100MB of data):</strong> 30-60 minutes</li>
-                                        <li><strong>Standard models (100MB-1GB):</strong> 2-4 hours</li>
-                                        <li><strong>Comprehensive models (1GB-5GB):</strong> 4-12 hours</li>
-                                        <li><strong>Enterprise models (5GB+):</strong> Custom timeframes</li>
+                                        <li>{{ translations.support.faq.questions.training_time.answer.list.basic | default(value="Basic models (under 100MB of data): 30-60 minutes") }}</li>
+                                        <li>{{ translations.support.faq.questions.training_time.answer.list.standard | default(value="Standard models (100MB-1GB): 2-4 hours") }}</li>
+                                        <li>{{ translations.support.faq.questions.training_time.answer.list.comprehensive | default(value="Comprehensive models (1GB-5GB): 4-12 hours") }}</li>
+                                        <li>{{ translations.support.faq.questions.training_time.answer.list.enterprise | default(value="Enterprise models (5GB+): Custom timeframes") }}</li>
                                     </ul>
-                                    <p>Our platform provides real-time progress updates and notifications when training is complete. You can continue using the platform during training, and incremental training updates typically take less time than initial training.</p>
+                                    <p>{{ translations.support.faq.questions.training_time.answer.closing | default(value="Our platform provides real-time progress updates and notifications when training is complete. You can continue using the platform during training, and incremental training updates typically take less time than initial training.") }}</p>
                                 </div>
                             </div>
                             
                             <div class="faq-item">
                                 <div class="faq-question">{{ translations.support.faq.questions.integration.question | default(value="Can I integrate my Divinci AI with existing systems?") }}</div>
                                 <div class="faq-answer">
-                                    <p>Yes, Divinci AI provides multiple integration options:</p>
+                                    <p>{{ translations.support.faq.questions.integration.answer.intro | default(value="Divinci AI provides multiple integration options:") }}</p>
                                     <ul>
-                                        <li><strong>API Integration:</strong> RESTful API for custom applications</li>
-                                        <li><strong>Web Widgets:</strong> Embeddable chat interfaces for websites</li>
-                                        <li><strong>Mobile SDK:</strong> Native integration for iOS and Android apps</li>
-                                        <li><strong>Pre-built Connectors:</strong> For platforms like Slack, Microsoft Teams, Zendesk, and Salesforce</li>
-                                        <li><strong>Webhook Support:</strong> For event-based integration flows</li>
+                                        <li>{{ translations.support.faq.questions.integration.answer.list.api | default(value="API Integration: RESTful API for custom applications") }}</li>
+                                        <li>{{ translations.support.faq.questions.integration.answer.list.widgets | default(value="Web Widgets: Embeddable chat interfaces for websites") }}</li>
+                                        <li>{{ translations.support.faq.questions.integration.answer.list.mobile | default(value="Mobile SDK: Native integration for iOS and Android apps") }}</li>
+                                        <li>{{ translations.support.faq.questions.integration.answer.list.connectors | default(value="Pre-built Connectors: For platforms like Slack, Microsoft Teams, Zendesk, and Salesforce") }}</li>
+                                        <li>{{ translations.support.faq.questions.integration.answer.list.webhooks | default(value="Webhook Support: For event-based integration flows") }}</li>
                                     </ul>
-                                    <p>Our Developer Hub provides detailed documentation, code samples, and integration guides for all supported platforms.</p>
+                                    <p>{{ translations.support.faq.questions.integration.answer.closing | default(value="Our Developer Hub provides detailed documentation, code samples, and integration guides for all supported platforms.") }}</p>
                                 </div>
                             </div>
                             
                             <div class="faq-item">
                                 <div class="faq-question">{{ translations.support.faq.questions.security.question | default(value="How secure is my data with Divinci AI?") }}</div>
                                 <div class="faq-answer">
-                                    <p>Divinci AI implements robust security measures including:</p>
+                                    <p>{{ translations.support.faq.questions.security.answer.intro | default(value="Divinci AI implements robust security measures including:") }}</p>
                                     <ul>
-                                        <li><strong>Data Encryption:</strong> All data is encrypted in transit and at rest</li>
-                                        <li><strong>Role-Based Access:</strong> Granular permission controls</li>
-                                        <li><strong>SOC 2 Compliance:</strong> Regular security audits</li>
-                                        <li><strong>Data Isolation:</strong> Your training data is used only for your AI models</li>
-                                        <li><strong>Private Cloud Options:</strong> For enterprise customers with enhanced security requirements</li>
+                                        <li>{{ translations.support.faq.questions.security.answer.list.encryption | default(value="Data Encryption: All data is encrypted in transit and at rest") }}</li>
+                                        <li>{{ translations.support.faq.questions.security.answer.list.access | default(value="Role-Based Access: Granular permission controls") }}</li>
+                                        <li>{{ translations.support.faq.questions.security.answer.list.soc2 | default(value="SOC 2 Compliance: Regular security audits") }}</li>
+                                        <li>{{ translations.support.faq.questions.security.answer.list.isolation | default(value="Data Isolation: Your training data is used only for your AI models") }}</li>
+                                        <li>{{ translations.support.faq.questions.security.answer.list.private_cloud | default(value="Private Cloud Options: For enterprise customers with enhanced security requirements") }}</li>
                                     </ul>
-                                    <p>For more information, please review our <a href="/privacy-policy">Privacy Policy</a> and Security Documentation.</p>
+                                    <p>{% if translations.support.faq.questions.security.answer.closing %}{{ translations.support.faq.questions.security.answer.closing }}{% else %}For more information, please review our <a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}">Privacy Policy</a> and Security Documentation.{% endif %}</p>
                                 </div>
                             </div>
                             
                             <div class="faq-item">
                                 <div class="faq-question">{{ translations.support.faq.questions.support_types.question | default(value="What kind of support do you offer?") }}</div>
                                 <div class="faq-answer">
-                                    <p>We offer tiered support options to match your needs:</p>
+                                    <p>{{ translations.support.faq.questions.support_types.answer.intro | default(value="We offer tiered support options to match your needs:") }}</p>
                                     <ul>
-                                        <li><strong>Standard Support:</strong> Email support with 24-hour response time (included with Basic plan)</li>
-                                        <li><strong>Professional Support:</strong> Priority email and chat support with 8-hour response time (included with Professional plan)</li>
-                                        <li><strong>Enterprise Support:</strong> 24/7 support with dedicated account manager, 1-4 hour response time, and custom SLAs (included with Enterprise plan)</li>
+                                        <li>{{ translations.support.faq.questions.support_types.answer.list.standard | default(value="Standard Support: Email support with 24-hour response time (included with Basic plan)") }}</li>
+                                        <li>{{ translations.support.faq.questions.support_types.answer.list.professional | default(value="Professional Support: Priority email and chat support with 8-hour response time (included with Professional plan)") }}</li>
+                                        <li>{{ translations.support.faq.questions.support_types.answer.list.enterprise | default(value="Enterprise Support: 24/7 support with dedicated account manager, 1-4 hour response time, and custom SLAs (included with Enterprise plan)") }}</li>
                                     </ul>
-                                    <p>All customers have access to our documentation, knowledge base, community forums, and regular webinars.</p>
+                                    <p>{{ translations.support.faq.questions.support_types.answer.closing | default(value="All customers have access to our documentation, knowledge base, community forums, and regular webinars.") }}</p>
                                 </div>
                             </div>
                         </div>
@@ -2061,6 +2061,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Translated strings for JS messages
+    const TRANS_SUPPORT_REQUIRED = "{{ translations.support.contact_form.required_fields_error | default(value='Please fill in all required fields.') }}";
+    const TRANS_SUPPORT_SUCCESS = "{{ translations.support.contact_form.success_alert | default(value='Thank you for your support request! Our team will get back to you within 24 hours.') }}";
+
     // Form submission handling
     const supportForm = document.getElementById('support-form');
     
@@ -2084,18 +2088,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     const fieldElement = document.getElementById(field);
                     if (fieldElement) {
-                        fieldElement.style.borderColor = '#ddd';
+                        fieldElement.style.borderColor = '#d4c4a0';
                     }
                 }
             });
             
             if (!isValid) {
-                alert('Please fill in all required fields.');
+                alert(TRANS_SUPPORT_REQUIRED);
                 return;
             }
             
             // Simulate form submission
-            alert('Thank you for your support request! Our team will get back to you within 24 hours.');
+            alert(TRANS_SUPPORT_SUCCESS);
             supportForm.reset();
         });
     }

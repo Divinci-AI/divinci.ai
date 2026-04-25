@@ -68,7 +68,7 @@ feature_category = "development-tools"
 }
 
 .capability-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -94,7 +94,7 @@ feature_category = "development-tools"
 }
 
 .pipeline-container {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 3rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -158,7 +158,7 @@ feature_category = "development-tools"
 }
 
 .metrics-dashboard {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 3rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -190,7 +190,7 @@ feature_category = "development-tools"
 
 .metric-label {
     font-size: 0.9rem;
-    color: #718096;
+    color: #8b7659;
 }
 
 .case-studies-grid {
@@ -201,7 +201,7 @@ feature_category = "development-tools"
 }
 
 .case-study-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
@@ -218,7 +218,7 @@ feature_category = "development-tools"
 .integration-category {
     text-align: center;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(248, 244, 240, 0.9);
     border-radius: 12px;
     border: 1px solid rgba(184, 160, 128, 0.2);
 }
@@ -248,7 +248,7 @@ feature_category = "development-tools"
 
 .accordion-panel {
     padding: 1.5rem;
-    background: white;
+    background: var(--color-bg-primary, #f8f4f0);
 }
 
 .testimonial {
@@ -337,7 +337,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 4.44rem; margin-bottom: 2rem;">Qu'est-ce que la Gestion des Versions IA ?</h2>
 
 <div class="release-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/release-cycle-diagram.svg" alt="Diagramme de Gestion du Cycle de Version IA" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="/images/release-cycle-diagram.svg" alt="Diagramme de Gestion du Cycle de Version IA" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
 </div>
 <div class="overview-content">
 <p style="font-size: 1.25rem; margin-bottom: 2rem;">La plateforme de Gestion des Versions de Divinci AI apporte les meilleures pratiques d'ingénierie logicielle au déploiement de modèles d'IA. Gérez les versions, automatisez les déploiements et assurez des lancements fluides avec des tests complets et des capacités de rollback conçues spécifiquement pour les systèmes d'IA.</p>
@@ -559,7 +559,7 @@ feature_category = "development-tools"
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Histoires de Succès</h2>
 
-<div style="background: rgba(255, 255, 255, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
+<div style="background: rgba(248, 244, 240, 0.9); padding: 3rem; border-radius: 12px; border: 1px solid rgba(184, 160, 128, 0.2); margin-bottom: 3rem;">
 <h3 style="color: var(--color-neutral-dark, #1e3a2b); font-size: 2rem; margin-bottom: 1rem;">Plateforme E-commerce Mondiale</h3>
 <p style="font-size: 1.25rem; color: var(--color-neutral-inverse, #2d5a4f); margin-bottom: 2rem; font-weight: 600;">Réduction du temps de déploiement de 90% tout en augmentant la fréquence des versions de 400%</p>
 <p style="margin-bottom: 2rem;">Une plateforme e-commerce majeure devait déployer des modèles IA pour des moteurs de recommandation dans 15 pays avec zéro temps d'arrêt. En utilisant notre plateforme de Gestion des Versions, ils ont implémenté des déploiements bleu-vert et ont réalisé des mises à jour de modèles transparentes affectant plus de 100M d'utilisateurs quotidiens tout en maintenant 99,99% de disponibilité.</p>
@@ -612,7 +612,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Écosystème d'Intégration</h2>
 
 <div style="text-align: center; margin-bottom: 3rem;">
-<p style="font-size: 1.2rem; color: #718096;">Intégrez facilement avec votre infrastructure DevOps et cloud existante</p>
+<p style="font-size: 1.2rem; color: #8b7659;">Intégrez facilement avec votre infrastructure DevOps et cloud existante</p>
 </div>
 
 <div class="integration-grid">

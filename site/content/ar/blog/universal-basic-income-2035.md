@@ -192,7 +192,7 @@ summary = "تحليل شامل يكشف كيف يمكن لطاقة الاندم�
 - **إمكانية الكسب الفردي**: يمكن لمشاركي UBI كسب 200-500 دولار شهريًا من خلال المساهمة بموارد حسابية خاملة
 - **يخلق نظامًا إيجابي المجموع**: قيمة علمية حقيقية مولدة، وليس مجرد نقل ثروة
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-proof-of-useful-work.svg" alt="تدفق نظام إثبات العمل المفيد" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-proof-of-useful-work.svg" alt="تدفق نظام إثبات العمل المفيد" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"/><path d="M12 6v12m-2-7h4a2 2 0 110 4H10"/></svg> خارطة الطريق المالية
 
@@ -220,7 +220,7 @@ summary = "تحليل شامل يكشف كيف يمكن لطاقة الاندم�
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><line x1="3" y1="12" x2="21" y2="12"/><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg> الجدول الزمني إلى 2035
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-timeline.svg" alt="جدول تنفيذ UBI 2025-2035" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-timeline.svg" alt="جدول تنفيذ UBI 2025-2035" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 **2025-2027: الأساس**
 - إنشاء الاحتياطي الاستراتيجي من البيتكوين

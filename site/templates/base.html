@@ -113,7 +113,8 @@
           "sameAs": [
             "https://x.com/DivinciAI",
             "https://www.linkedin.com/company/divinci-ai",
-            "https://github.com/Divinci-AI"
+            "https://github.com/Divinci-AI",
+            "https://huggingface.co/Divinci-AI"
           ],
           "contactPoint": {
             "@type": "ContactPoint",
@@ -140,6 +141,16 @@
 <body class="{% block body_class %}{% endblock %}">
     <a href="#main-content" class="skip-nav">{{ translations.accessibility.skip_to_content | default(value="Skip to main content") }}</a>
     <style>.skip-nav { position: absolute; left: -9999px; z-index: 999; padding: 0.5em; background: #000; color: #fff; } .skip-nav:focus { left: 50%; transform: translateX(-50%); top: 0; }</style>
+    {# Site-wide research banner — appears above the nav header on every page. #}
+    <div class="site-research-banner" role="region" aria-label="{{ translations.banner.label | default(value='Latest research') }}">
+      <div class="site-research-banner-inner">
+        <span class="site-research-banner-pulse" aria-hidden="true"></span>
+        <span class="site-research-banner-label">{{ translations.banner.label | default(value='Latest research:') }}</span>
+        <a href="/blog/when-the-circuit-dissolves/">{{ translations.banner.link | default(value='When the Circuit Dissolves →') }}</a>
+        <span class="site-research-banner-sep" aria-hidden="true">·</span>
+        <a class="site-research-banner-secondary" href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">8 vindexes on <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/brand/huggingface/hf-logo.svg" alt="Hugging Face" class="site-research-banner-hf"></a>
+      </div>
+    </div>
     {% include "partials/header.html" %}
     <main id="main-content">
     {% block content %}{% endblock %}

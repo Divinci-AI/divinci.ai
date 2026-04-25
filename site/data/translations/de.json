@@ -5,13 +5,22 @@
     "og_title": "Divinci AI",
     "og_description": "KI-Releases. Exzellenz jedes Mal."
   },
+  "banner": {
+    "label": "Neueste Forschung:",
+    "link": "Wenn der Schaltkreis sich auflöst →"
+  },
   "navigation": {
     "features": "Funktionen",
     "team": "Team",
     "signup": "Anmelden",
     "support": "Unterstützung",
     "request_demo": "Demo anfordern",
-    "support_center": "Support-Center"
+    "support_center": "Support-Center",
+    "blog": "Blog",
+    "terms_of_service": "Nutzungsbedingungen",
+    "privacy_policy": "Datenschutzrichtlinie",
+    "quality_assurance": "Qualitätssicherung",
+    "release_management": "Release-Management"
   },
   "hero": {
     "heading": "KI-Releases.",
@@ -25,7 +34,9 @@
     "cta": {
       "primary": "Demo anfordern",
       "secondary": "Plattform erkunden"
-    }
+    },
+    "sound_unmute": "Stummschaltung aufheben",
+    "sound_mute": "Stummschalten"
   },
   "enterprise": {
     "title": "Unternehmens-KI, fachmännisch verwaltet",
@@ -47,7 +58,9 @@
         "title": "Integrierte Teamzusammenarbeit",
         "description": "Optimieren Sie funktionsübergreifende Reviews mit strukturierten Workflows. Weisen Sie Verantwortlichkeiten zu, sammeln Sie Feedback und dokumentieren Sie Genehmigungen, um sicherzustellen, dass jeder Release organisatorische und regulatorische Erwartungen erfüllt."
       }
-    }
+    },
+    "title_line1": "Unternehmens-KI,",
+    "title_line2": "fachmännisch verwaltet"
   },
   "features": {
     "title": "Turboladen Sie Ihren Workflow mit KI",
@@ -99,13 +112,21 @@
       "title": "AutoRAG"
     },
     "qa_title": "Qualitätssicherung",
-    "release_management": "Release-Management"
+    "release_management": "Release-Management",
+    "title_first_line": "Das Zeitalter der KI",
+    "title_second_line": "Management"
   },
   "team": {
     "title": "Lernen Sie unser Team kennen",
     "description": "Lernen Sie die Innovatoren kennen, die die Zukunft der Mensch-KI-Zusammenarbeit gestalten.",
     "members": {
-      "connect": "Verbinden"
+      "connect": "Verbinden",
+      "michael_bio": "Visionär mit über 15 Jahren Erfahrung in der Unternehmenstechnologie und Pionier der KI-Revolution.",
+      "samuel_bio": "Produktstratege mit nachgewiesener Erfolgsbilanz bei der Entwicklung nutzerzentrierter KI-Lösungen.",
+      "duane_bio": "Systemarchitekt mit Expertise in skalierbarer KI-Infrastruktur und natürlicher Sprachverarbeitung.",
+      "sierra_bio": "Cornell-Absolventin mit umfassender Erfahrung in Finanzdienstleistungen und Unternehmertum. Bringt strategische Geschäftsentwicklung und KI-Skalierungsexpertise mit.",
+      "sean_bio": "Datenwissenschaftler mit über 10 Jahren Programmiererfahrung, spezialisiert auf maschinelles Lernen und Python.",
+      "paul_marie_bio": "KI-Governance-Experte und unabhängiger Berater. Gründer der AI LA Responsible AI Group mit Erfahrung bei Google AI, Deloitte und CVS Health."
     },
     "roles": {
       "ceo_founder": "CEO & Gründer",
@@ -198,7 +219,8 @@
       },
       "privacy_settings": "Datenschutz-Einstellungen",
       "cookie_policy": "Cookie-Richtlinie",
-      "cookie_preferences": "Cookie-Einstellungen"
+      "cookie_preferences": "Cookie-Einstellungen",
+      "rights_reserved": "Alle Rechte vorbehalten."
     },
     "api": "API",
     "support": "Support",
@@ -244,7 +266,353 @@
   },
   "support": {
     "title": "Support-Center",
-    "subtitle": "Erhalten Sie Hilfe und Support für Divinci AI"
+    "subtitle": "Hilfe und Support für Divinci AI erhalten",
+    "description": "Finden Sie Antworten auf häufig gestellte Fragen, Implementierungsleitfäden und kontaktieren Sie unser Spezialisten-Team.",
+    "sidebar": {
+      "title": "Support-Center",
+      "menu": {
+        "getting_started": "Erste Schritte",
+        "implementation": "Implementierung",
+        "troubleshooting": "Fehlerbehebung",
+        "api_docs": "API-Dokumentation",
+        "billing": "Abrechnung",
+        "contact": "Kontakt",
+        "community": "Community-Foren",
+        "contact_form": "Kontaktformular",
+        "enterprise": "Enterprise-Lösungen",
+        "knowledge_base": "Knowledge Base",
+        "language_models": "Sprachmodelle",
+        "support_team": "Support-Team",
+        "technical_support": "Technischer Support",
+        "tutorials": "Tutorial-Center"
+      },
+      "cta": {
+        "title": "Brauchen Sie weitere Hilfe?",
+        "description": "Sprechen Sie direkt mit unserem Spezialisten-Team.",
+        "button": "Support kontaktieren"
+      },
+      "sections": {
+        "contact": "Support kontaktieren",
+        "resources": "Support-Ressourcen",
+        "self_service": "Self-Service-Tools"
+      }
+    },
+    "header": {
+      "title": "Wie können wir Ihnen helfen?",
+      "description": "Finden Sie schnelle Antworten auf häufige Fragen oder kontaktieren Sie unser Spezialisten-Team direkt."
+    },
+    "help_cards": {
+      "getting_started": {
+        "title": "Erste Schritte",
+        "description": "Richten Sie Ihr Konto ein und legen Sie in Minuten mit Divinci AI los.",
+        "button": "Leitfaden ansehen"
+      },
+      "api_integration": {
+        "title": "API-Integration",
+        "description": "Integrieren Sie nahtlos in Ihre bestehenden Systeme über unsere APIs.",
+        "button": "Dokumentation ansehen"
+      },
+      "troubleshooting": {
+        "title": "Fehlerbehebung",
+        "description": "Finden Sie Lösungen für häufige technische Probleme.",
+        "button": "Lösungen ansehen"
+      },
+      "billing": {
+        "title": "Abrechnung verwalten",
+        "description": "Aktualisieren Sie Zahlungsmethoden, sehen Sie Rechnungen ein und verwalten Sie Ihre Abo-Einstellungen einfach.",
+        "button": "Hilfe zur Abrechnung"
+      },
+      "train_ai": {
+        "title": "Ihre KI trainieren",
+        "description": "Lernen Sie, wie Sie Ihre KI mit optimaler Datenvorbereitung und Best Practices effektiv trainieren.",
+        "button": "Tutorial ansehen"
+      }
+    },
+    "stats": {
+      "response_time": "< 2 h",
+      "response_time_label": "Durchschnittliche Antwortzeit",
+      "satisfaction": "99%",
+      "satisfaction_label": "Kundenzufriedenheit",
+      "resolution": "24 h",
+      "resolution_label": "Lösungszeit",
+      "tutorial_videos": {
+        "number": "20+",
+        "label": "Tutorial-Videos"
+      },
+      "knowledge_base": {
+        "number": "100+",
+        "label": "Knowledge-Base-Artikel"
+      },
+      "community": {
+        "number": "5.000+",
+        "label": "Community-Mitglieder"
+      }
+    },
+    "popular_topics": {
+      "title": "Beliebte Themen",
+      "model_compatibility": {
+        "title": "Modell-Kompatibilität",
+        "description": "Erfahren Sie, welche Sprachmodelle mit unserer Plattform kompatibel sind.",
+        "link": "Vollständige Liste ansehen"
+      },
+      "deployment": {
+        "title": "Deployment-Leitfäden",
+        "description": "Schritt-für-Schritt-Deployments für verschiedene Enterprise-Anwendungsfälle.",
+        "link": "Leitfäden ansehen"
+      },
+      "performance": {
+        "title": "Performance-Optimierung",
+        "description": "Best Practices zur Maximierung der Leistung Ihrer Modelle.",
+        "link": "Mehr lesen"
+      }
+    },
+    "contact_form": {
+      "title": "Support-Anfrage einreichen",
+      "name_label": "Vollständiger Name",
+      "email_label": "E-Mail-Adresse",
+      "company_label": "Unternehmen",
+      "priority_label": "Priorität",
+      "priority_options": {
+        "low": "Niedrig",
+        "normal": "Normal",
+        "high": "Hoch",
+        "urgent": "Dringend"
+      },
+      "category_label": "Kategorie",
+      "category_options": {
+        "technical": "Technischer Support",
+        "billing": "Abrechnung",
+        "feature": "Feature-Anfrage",
+        "bug": "Fehlerbericht",
+        "other": "Sonstiges"
+      },
+      "message_label": "Beschreiben Sie das Problem",
+      "submit_button": "Anfrage senden",
+      "name_placeholder": "Ihr vollständiger Name",
+      "email_placeholder": "sie@unternehmen.com",
+      "subject_label": "Betreff",
+      "subject_placeholder": "Betreff der Support-Anfrage",
+      "message_placeholder": "Bitte beschreiben Sie Ihr Problem im Detail. Fügen Sie Fehlermeldungen, Reproduktionsschritte und relevante Informationen bei.",
+      "priority_select": "Priorität wählen",
+      "priority_low": "Niedrig - Allgemeine Frage",
+      "priority_medium": "Mittel - Beeinträchtigt Arbeit",
+      "priority_high": "Hoch - Schwerwiegendes Problem",
+      "priority_urgent": "Dringend - System ausgefallen",
+      "category_select": "Kategorie wählen",
+      "category_account": "Konto & Zugriff",
+      "category_billing": "Abrechnung & Abo",
+      "category_technical": "Technisches Problem",
+      "category_training": "KI-Training",
+      "category_integration": "Integration",
+      "category_api": "API",
+      "category_feature": "Feature-Anfrage",
+      "category_other": "Sonstiges",
+      "required_fields_error": "Bitte füllen Sie alle Pflichtfelder aus.",
+      "success_alert": "Vielen Dank für Ihre Support-Anfrage! Unser Team meldet sich innerhalb von 24 Stunden bei Ihnen."
+    },
+    "contact_info": {
+      "title": "Kontaktinformationen",
+      "email": {
+        "title": "E-Mail-Support",
+        "value": "support@divinci.ai",
+        "description": "Für allgemeine Support-Anfragen"
+      },
+      "phone": {
+        "title": "Telefon-Support",
+        "value": "+1 (555) 123-4567",
+        "description": "Mo-Fr 9:00-18:00 EST"
+      },
+      "chat": {
+        "title": "Live-Chat",
+        "value": "24/7 verfügbar",
+        "description": "Für sofortige Hilfe"
+      },
+      "community": {
+        "title": "Community-Forum",
+        "value": "Divinci-Forum"
+      }
+    },
+    "hours": {
+      "title": "Support-Zeiten",
+      "weekdays": "Montag - Freitag: 9:00 - 18:00 EST",
+      "weekends": "Samstag - Sonntag: 10:00 - 16:00 EST",
+      "holidays": "Feiertage: Eingeschränkte Zeiten",
+      "tier_header": "Support-Stufe",
+      "hours_header": "Zeiten",
+      "response_header": "Antwortzeit",
+      "standard": {
+        "tier": "Standard-Support",
+        "hours": "Mo-Fr, 9-17 Uhr PT",
+        "response": "24 Stunden"
+      },
+      "professional": {
+        "tier": "Professional-Support",
+        "hours": "Mo-Fr, 8-20 Uhr PT",
+        "response": "8 Stunden"
+      },
+      "enterprise": {
+        "tier": "Enterprise-Support",
+        "hours": "24/7/365",
+        "response": "1-4 Stunden"
+      }
+    },
+    "cta_section": {
+      "title": "Brauchen Sie noch Hilfe?",
+      "description": "Unser Spezialisten-Team ist für Sie da, damit Sie mit Divinci AI erfolgreich sind.",
+      "button": "Beratungstermin vereinbaren"
+    },
+    "contact_section": {
+      "title": "Kontaktieren Sie unser Support-Team",
+      "description": "Erhalten Sie personalisierte Hilfe von unserem Experten-Support-Team"
+    },
+    "quick_help": {
+      "title": "Schnelle Hilfe",
+      "description": "Starten Sie schnell mit diesen wichtigen Leitfäden und Ressourcen"
+    },
+    "getting_started": {
+      "title": "Erste Schritte",
+      "description": "Alles, was Sie wissen müssen, um mit Divinci AI zu bauen"
+    },
+    "steps": {
+      "create_account": {
+        "title": "Konto erstellen",
+        "description": "Registrieren Sie sich für ein Divinci-AI-Konto, um zu starten. Wählen Sie den Abo-Plan, der zu Ihren Bedürfnissen passt, und beginnen Sie Ihre KI-Reise.",
+        "button": "Anmelde-Leitfaden"
+      },
+      "define_purpose": {
+        "title": "Zweck Ihrer KI definieren",
+        "description": "Klären Sie die spezifische Rolle und Funktionalität, die Ihre KI haben soll. Das hilft beim Training und der Optimierung für Ihren Anwendungsfall.",
+        "button": "Zweckdefinitions-Leitfaden"
+      },
+      "upload_materials": {
+        "title": "Trainingsmaterialien hochladen",
+        "description": "Stellen Sie relevante Dokumente, Daten und Wissensquellen bereit, um das Verständnis und die Fähigkeiten Ihrer KI zu trainieren.",
+        "button": "Datenvorbereitungs-Leitfaden"
+      },
+      "train_test": {
+        "title": "KI trainieren & testen",
+        "description": "Starten Sie den Trainingsprozess und testen Sie die Antworten Ihrer KI auf Genauigkeit und Relevanz für Ihre spezifische Domäne.",
+        "button": "Trainings-Best-Practices"
+      },
+      "deploy": {
+        "title": "KI deployen",
+        "description": "Integrieren Sie Ihre KI über unsere flexiblen Deployment-Optionen in Ihre Website, Anwendung oder andere Plattformen.",
+        "button": "Deployment-Leitfaden"
+      }
+    },
+    "model_compatibility": {
+      "title": "Sprachmodell-Kompatibilität",
+      "description": "Umfassender Überblick über unterstützte Sprachmodelle aller großen KI-Anbieter",
+      "base_models_title": "Verfügbare Basismodelle",
+      "fine_tuning_title": "Fine-Tuning-Unterstützung",
+      "api_docs_button": "API-Dokumentation ansehen",
+      "universal_support": {
+        "title": "Universelle Modellunterstützung",
+        "description": "Unsere Plattform bietet einheitliche APIs und Governance-Frameworks, die nahtlos über alle großen KI-Anbieter hinweg funktionieren – so können Sie Modelle wechseln oder mehrere Anbieter gleichzeitig je nach Anwendungsfall einsetzen."
+      }
+    },
+    "topics": {
+      "getting_started": {
+        "title": "Erste Schritte mit Divinci AI",
+        "description": "Lernen Sie die Grundlagen, um Ihre individuellen KI-Lösungen zu erstellen, zu trainieren und zu deployen.",
+        "link": "Mehr lesen"
+      },
+      "api_integration": {
+        "title": "Leitfaden zur API-Integration",
+        "description": "Wie Sie Divinci AI in Ihre Anwendungen und bestehenden Systeme integrieren.",
+        "link": "Mehr lesen"
+      },
+      "training_data": {
+        "title": "KI-Trainingsdaten optimieren",
+        "description": "Best Practices, um Trainingsdaten optimal vorzubereiten und zu strukturieren.",
+        "link": "Mehr lesen"
+      },
+      "security": {
+        "title": "Sicherheits-Best-Practices",
+        "description": "Stellen Sie sicher, dass Ihre KI-Implementierung Sicherheits- und Compliance-Anforderungen erfüllt.",
+        "link": "Mehr lesen"
+      }
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "questions": {
+        "integration": {
+          "question": "Kann ich Divinci AI in bestehende Systeme integrieren?",
+          "answer": {
+            "intro": "Divinci AI bietet mehrere Integrationsoptionen:",
+            "list": {
+              "api": "API-Integration: RESTful-API für individuelle Anwendungen",
+              "widgets": "Web-Widgets: Einbettbare Chat-Oberflächen für Websites",
+              "mobile": "Mobile-SDK: Native Integration für iOS- und Android-Apps",
+              "connectors": "Vorgefertigte Connectors: Für Plattformen wie Slack, Microsoft Teams, Zendesk und Salesforce",
+              "webhooks": "Webhook-Unterstützung: Für ereignisbasierte Integrationsflüsse"
+            },
+            "closing": "Unser Developer Hub bietet detaillierte Dokumentation, Codebeispiele und Integrationsleitfäden für alle unterstützten Plattformen."
+          }
+        },
+        "platform_difference": {
+          "question": "Wie unterscheidet sich Divinci AI von anderen KI-Plattformen?",
+          "answer": {
+            "part1": "Divinci AI hebt sich durch seinen anpassbaren KI-Erstellungsprozess ab, der Nutzer befähigt, spezialisierte KI-Modelle ohne tiefe technische Expertise zu bauen. Unsere Plattform fokussiert auf domänenspezifische Wissensintegration, ethische KI-Entwicklung und nahtloses plattformübergreifendes Deployment.",
+            "part2": "Im Gegensatz zu Allzweck-KI-Systemen erstellt Divinci Modelle mit tiefem Wissen Ihrer Domäne und liefert so genauere und relevantere Antworten für Ihren Anwendungsfall."
+          }
+        },
+        "security": {
+          "question": "Wie sicher sind meine Daten bei Divinci AI?",
+          "answer": {
+            "intro": "Divinci AI implementiert robuste Sicherheitsmaßnahmen, darunter:",
+            "list": {
+              "encryption": "Datenverschlüsselung: Alle Daten werden bei Übertragung und Speicherung verschlüsselt",
+              "access": "Rollenbasierter Zugriff: Granulare Berechtigungssteuerung",
+              "soc2": "SOC-2-Compliance: Regelmäßige Sicherheitsaudits",
+              "isolation": "Datenisolation: Ihre Trainingsdaten werden ausschließlich für Ihre KI-Modelle verwendet",
+              "private_cloud": "Private-Cloud-Optionen: Für Enterprise-Kunden mit erhöhten Sicherheitsanforderungen"
+            },
+            "closing": "Weitere Informationen finden Sie in unserer Datenschutzerklärung und Sicherheitsdokumentation."
+          }
+        },
+        "support_types": {
+          "question": "Welche Art von Support bieten Sie?",
+          "answer": {
+            "intro": "Wir bieten gestaffelte Support-Optionen, passend zu Ihren Bedürfnissen:",
+            "list": {
+              "standard": "Standard-Support: E-Mail-Support mit 24-Stunden-Antwortzeit (im Basic-Plan enthalten)",
+              "professional": "Professional-Support: Vorrangiger E-Mail- und Chat-Support mit 8-Stunden-Antwortzeit (im Professional-Plan enthalten)",
+              "enterprise": "Enterprise-Support: 24/7-Support mit dediziertem Account-Manager, 1-4-Stunden-Antwortzeit und individuellen SLAs (im Enterprise-Plan enthalten)"
+            },
+            "closing": "Alle Kunden haben Zugang zu unserer Dokumentation, Knowledge Base, Community-Foren und regelmäßigen Webinaren."
+          }
+        },
+        "training_time": {
+          "question": "Wie lange dauert das KI-Training?",
+          "answer": {
+            "intro": "Die Trainingsdauer hängt von Volumen und Komplexität Ihrer Daten ab:",
+            "list": {
+              "basic": "Basismodelle (unter 100 MB Daten): 30-60 Minuten",
+              "standard": "Standardmodelle (100 MB - 1 GB): 2-4 Stunden",
+              "comprehensive": "Umfassende Modelle (1-5 GB): 4-12 Stunden",
+              "enterprise": "Enterprise-Modelle (5 GB+): Individuelle Zeitrahmen"
+            },
+            "closing": "Unsere Plattform liefert Echtzeit-Fortschrittsupdates und Benachrichtigungen, wenn das Training abgeschlossen ist. Sie können die Plattform während des Trainings weiter nutzen; inkrementelle Updates sind in der Regel schneller als das Initialtraining."
+          }
+        },
+        "data_types": {
+          "question": "Welche Datentypen kann ich für das Training verwenden?",
+          "answer": {
+            "intro": "Divinci AI unterstützt verschiedene Datentypen für das Training, darunter:",
+            "list": {
+              "documents": "Textdokumente (PDF, DOCX, TXT)",
+              "catalogs": "Produktkataloge und Spezifikationen",
+              "datasets": "Strukturierte Datensätze (CSV, JSON)",
+              "documentation": "Prozessdokumentation und Richtlinien",
+              "faqs": "FAQs und Knowledge Bases",
+              "website": "Website-Inhalte (per Crawling)"
+            },
+            "compliance": "Alle Trainingsdaten müssen unseren Inhaltsrichtlinien entsprechen und sollten keine vertraulichen oder sensiblen personenbezogenen Daten enthalten, es sei denn, Sie nutzen unsere sichere Enterprise-Option mit Datenschutzgarantien."
+          }
+        }
+      }
+    }
   },
   "expert_answers": {
     "title": "Expertenantworten",
@@ -257,7 +625,8 @@
       },
       "language_models": {
         "question": "Welche Sprachmodelle sind kompatibel?",
-        "answer": "Unsere Plattform unterstützt ein breites Spektrum großer Sprachmodelle, von Open-Source- bis hin zu proprietären Architekturen. Flexible Integration ermöglicht nahtlose Bereitstellung in verschiedenen Frameworks und Unternehmensumgebungen und gewährleistet Anpassungsfähigkeit an sich entwickelnde Geschäftsanforderungen."
+        "answer": "Unsere Plattform unterstützt ein breites Spektrum großer Sprachmodelle, von Open-Source- bis hin zu proprietären Architekturen. Flexible Integration ermöglicht nahtlose Bereitstellung in verschiedenen Frameworks und Unternehmensumgebungen und gewährleistet Anpassungsfähigkeit an sich entwickelnde Geschäftsanforderungen.",
+        "model_compat_link": "Vollständige Modellkompatibilitätsliste anzeigen"
       },
       "quality_assurance": {
         "question": "Wie wird kontinuierliche Qualitätssicherung erreicht?",
@@ -269,5 +638,244 @@
       }
     },
     "view_complete_list": "Vollständige Modellkompatibilitätsliste anzeigen"
+  },
+  "news": {
+    "read_more": "Mehr lesen →",
+    "learn_more": "Mehr erfahren →",
+    "ai_for_good_tag": "KI für das Gute",
+    "cloudflare_date": "5. Oktober 2025",
+    "cloudflare_title": "Divinci AI tritt Cloudflares Workers Launchpad Kohorte #6 bei",
+    "cloudflare_excerpt": "Wir freuen uns, unsere Aufnahme in Cloudflares renommierten Workers Launchpad-Beschleuniger bekannt zu geben. Erfahren Sie, wie wir Cloudflares Edge-Computing-Plattform nutzen, um ausgefeilte RAG-Pipelines zu entwickeln."
+  },
+  "compliance": {
+    "hero": {
+      "eyebrow": "Powered by vindex + LarQL",
+      "heading": "Compliance — mit Quittung.",
+      "tagline": "Die meiste „AI-Compliance\" hört bei Zugriffsprotokollen und Prompt-Level-Leitplanken auf. Divinci geht ins Modell hinein. Jede Entitätsverknüpfung ist ein abfragbares Feature; jede Änderung ist ein portabler, prüfbarer Patch — und der <strong>vindex</strong> ist das technische Dokumentationsartefakt, das Ihr Regulator gleich verlangen wird.",
+      "cta_primary": "Mit Compliance sprechen →",
+      "cta_secondary": "Live-vindex ansehen"
+    },
+    "mapping": {
+      "heading": "Was die Regulierung fordert · was LarQL liefert",
+      "subheading": "Dasselbe Artefakt — der vindex — erfüllt Anforderungen an Transparenz, Aufsicht, Dokumentation und Löschung in den vier großen KI-Regularien, denen Divinci-Kunden gegenüberstehen.",
+      "th_regulation": "Regulierung",
+      "th_requirement": "Anforderung",
+      "th_competitors": "Was Wettbewerber bieten",
+      "th_larql": "Was LarQL/vindex bietet",
+      "rows": [
+        {
+          "reg_label": "EU AI Act §13",
+          "reg_topic": "Transparenz",
+          "requirement": "„Ausreichende Transparenz, damit Nutzer Ausgaben interpretieren können\"",
+          "competitors": "Model Cards, prosa-basierte Systembeschreibungen",
+          "larql": "Der vindex IST ein abfragbares Transparenzartefakt — jedes faktentragende Feature identifiziert über <code>(layer, feature, gate_score)</code>"
+        },
+        {
+          "reg_label": "EU AI Act §14",
+          "reg_topic": "Menschliche Aufsicht",
+          "requirement": "Betreiber müssen sinnvoll eingreifen können",
+          "competitors": "Prompt-Level-Leitplanken (jailbreak-anfällig)",
+          "larql": "DELETE-Patches auf Gewichts­ebene am Feature, nicht am Prompt — Jailbreaks umgehen sie nicht"
+        },
+        {
+          "reg_label": "EU AI Act Anhang IV",
+          "reg_topic": "Technische Doku",
+          "requirement": "„Allgemeine Logik des KI-Systems\"",
+          "competitors": "Architekturdiagramme + Trainingsdaten-Zusammenfassungen",
+          "larql": "Bitgenaue mechanistische Dokumentation: das projizierte Vokabular jedes Features, die strukturelle Metrik jeder Schicht (C1–C5)"
+        },
+        {
+          "reg_label": "DSGVO Artikel 17",
+          "reg_topic": "Recht auf Löschung",
+          "requirement": "Nachweisbare Entfernung personenbezogener Daten",
+          "competitors": "Feintuning zum „Vergessen\" — <em>nicht überprüfbar</em>; Daten können adversariell wieder auftauchen",
+          "larql": "DELETE-Patch mit Audit-Trail = <strong>nachweisbare Unterdrückung</strong> einer spezifischen Named-Entity-Verknüpfung bei +0,02 % Perplexität. Die Patch-Datei ist die Quittung."
+        },
+        {
+          "reg_label": "HIPAA · PCI · DSGVO",
+          "reg_topic": "De-Identifikation",
+          "requirement": "PII aus Datenprodukten entfernen",
+          "competitors": "Token-Filterung an I/O (Lecks möglich)",
+          "larql": "Feature-Level-Identifikation der PII-kodierenden Richtungen; chirurgische Entfernung auf der Gewichtsschicht"
+        },
+        {
+          "reg_label": "NIST AI RMF",
+          "reg_topic": "Verwalten",
+          "requirement": "Restrisiko quantifizieren und steuern",
+          "competitors": "Risikobewertungen aus dem Bauch heraus",
+          "larql": "Die universellen Konstanten C1–C5 liefern eine messbare strukturelle Baseline; nach jedem Patch erneut verifizieren"
+        }
+      ]
+    },
+    "receipt": {
+      "heading": "Wie eine „Quittung\" tatsächlich aussieht",
+      "para_1": "Ein LarQL-Patch ist eine portable JSON-Datei mit SHA-256-Prüfsumme. Anwenden, um einen Fakt zu unterdrücken; entfernen, um das Modell bitgenau wiederherzustellen. Der Patch IST das Audit-Log — Betreiber, Regulatoren und nachgelagerte Konsumenten können dieselbe Operation unabhängig verifizieren.",
+      "para_2": "Unten: der echte Gate-3-Patch aus unserer öffentlichen Test-Suite, der die Paris→Hauptstadt-Verknüpfung unterdrückt und wiederherstellt, mit messbarer, wiederholbarer Wirkung auf einem echten Gemma 4 E2B vindex."
+    },
+    "cta_band": {
+      "heading": "Compliance, die Sie beweisen können. Auf jedem offenen Transformer.",
+      "tagline": "Heute acht veröffentlichte vindexes über Gemma, Qwen, Llama, Mistral, OpenAI MoE und Microsoft 1-bit. Bringen Sie Ihr Modell — wir bauen die Quittung.",
+      "cta_primary": "Compliance-Review buchen →",
+      "cta_secondary": "vindexes auf Hugging Face durchstöbern"
+    }
+  },
+  "about": {
+    "hero_title": "Über Divinci AI",
+    "hero_subtitle": "Wir bauen die Zukunft der Zusammenarbeit zwischen Mensch und KI – mit Kunstfertigkeit, Präzision und Sinn.",
+    "mission_title": "Unsere Mission",
+    "mission_text": "Unternehmens-KI zu demokratisieren, indem wir hochentwickelte künstliche Intelligenz für Organisationen jeder Größe zugänglich, handhabbar und vertrauenswürdig machen. Wir glauben, dass KI menschliches Potenzial verstärken soll, nicht ersetzen.",
+    "vision_title": "Unsere Vision",
+    "vision_text": "Eine Welt, in der jede Organisation die transformative Kraft der KI mit Zuversicht nutzen kann – in dem Wissen, dass ihre Implementierungen sicher, konform und mit ihren Werten im Einklang sind. Wir sehen KI als kollaborativen Partner für menschliche Errungenschaften.",
+    "values_title": "Unsere Grundwerte",
+    "values_desc": "Diese Prinzipien leiten alles, was wir tun – von der Produktentwicklung bis zu Kundenbeziehungen.",
+    "value1_title": "Menschenzentrierte KI",
+    "value1_desc": "Wir entwerfen KI-Systeme, die menschliche Fähigkeiten erweitern statt ersetzen, damit Technologie den besten Interessen der Menschheit dient.",
+    "value2_title": "Innovation mit Zweck",
+    "value2_desc": "Jede Funktion, die wir bauen, löst ein echtes Problem. Wir innovieren nicht der Technik wegen, sondern um bedeutsame Wirkung zu erzielen.",
+    "value3_title": "Verantwortungsvolle KI",
+    "value3_desc": "Wir priorisieren eine ethische KI-Entwicklung und sorgen für Transparenz, Fairness und Verantwortlichkeit in jedem Algorithmus und jeder Entscheidung.",
+    "value4_title": "Inklusives Design",
+    "value4_desc": "Unsere Plattformen sind für alle gebaut – unabhängig von technischer Expertise – damit die Vorteile der KI allen zugänglich sind.",
+    "value5_title": "Sicherheit zuerst",
+    "value5_desc": "Sicherheit ist kein nachträglicher Gedanke – sie ist das Fundament von allem, was wir bauen, schützt Ihre Daten und erhält Vertrauen.",
+    "value6_title": "Kunden-Partnerschaft",
+    "value6_desc": "Wir sehen unsere Kunden als Partner und arbeiten eng zusammen, um ihre KI-Ziele und Geschäftsziele zu erreichen.",
+    "team_title": "Lernen Sie unser Team kennen",
+    "team_desc": "Leidenschaftliche Experten, die Kunstfertigkeit mit fortschrittlicher KI-Technologie vereinen.",
+    "michael_title": "Mitgründer & CEO",
+    "michael_bio": "Visionärer Leader mit tiefer Expertise in KI-Systemen und Unternehmenssoftware. Zuvor baute er skalierbare Plattformen bei führenden Tech-Unternehmen.",
+    "samuel_title": "Mitgründer & CTO",
+    "samuel_bio": "KI-Forscher und Systemarchitekt mit umfangreicher Erfahrung in Machine-Learning-Infrastruktur und skalierbarem KI-Deployment.",
+    "sierra_title": "Mitgründerin & CMO",
+    "sierra_bio": "Produktstrategin mit Fokus auf Nutzererfahrung und KI-Ethik. Expertin darin, komplexe KI-Fähigkeiten in intuitive Benutzeroberflächen zu übersetzen.",
+    "story_title": "Unsere Geschichte",
+    "story_desc": "Von einer Vision zur Realität – die Reise, die Zukunft der Unternehmens-KI zu bauen.",
+    "timeline1_title": "Der Anfang",
+    "timeline1_desc": "Gegründet mit der Vision, dass KI für jede Organisation zugänglich sein sollte, nicht nur für Tech-Giganten. Wir starteten in einer Garage, mit großen Träumen und noch größeren Ambitionen.",
+    "timeline2_title": "Erster Prototyp",
+    "timeline2_desc": "Nach Monaten der Forschung und Entwicklung bauten wir unseren ersten funktionierenden Prototyp. Die von da Vinci inspirierte Oberfläche entstand aus unserer Überzeugung, dass Technologie schön sein sollte.",
+    "timeline3_title": "Beta-Launch",
+    "timeline3_desc": "Wir starteten die Beta mit ausgewählten Enterprise-Partnern und sammelten unschätzbares Feedback, das die Entwicklung der Plattform prägte. Die Reaktion war überwältigend positiv.",
+    "timeline4_title": "Offizieller Launch",
+    "timeline4_desc": "Divinci AI wurde offiziell für die Öffentlichkeit gelauncht und brachte unternehmenstaugliches KI-Management zu Organisationen weltweit. Die Renaissance der KI hatte begonnen.",
+    "timeline5_title": "Wachstum und Weiterentwicklung",
+    "timeline5_desc": "Heute innovieren und wachsen wir weiter, bedienen Unternehmen weltweit und bleiben dabei unseren Grundwerten einer menschenzentrierten KI-Entwicklung treu.",
+    "ai_good_title": "AI-for-Good-Initiativen",
+    "ai_good_article_title": "AI for Impact: Einblicke in das Pilotprogramm zur Obdachlosenprävention in Los Angeles",
+    "ai_good_desc": "Wir sind stolz, mit Los Angeles County an innovativen KI-Lösungen zu arbeiten, um Obdachlosigkeit anzugehen. Unsere Plattform hilft Sozialarbeitern, gefährdete Personen früher zu erkennen und wirksamere Interventionen zu koordinieren.",
+    "ai_good_link": "Mehr über unseren Einfluss erfahren",
+    "join_title": "Werden Sie Teil unseres Teams",
+    "join_desc": "Bereit, die Zukunft der KI mitzugestalten? Wir suchen ständig außergewöhnliche Talente.",
+    "join_cta": "Offene Stellen ansehen"
+  },
+  "careers": {
+    "hero_title": "Werden Sie Teil unseres Teams",
+    "hero_subtitle": "Bei Divinci AI bauen wir die Zukunft der Zusammenarbeit zwischen Mensch und KI. Werden Sie Teil unserer Mission, KI für Unternehmen jeder Größe zugänglich und wertvoll zu machen.",
+    "hero_cta": "Offene Stellen ansehen",
+    "open_positions_title": "Offene Stellen",
+    "open_positions_desc": "Wir suchen talentierte Menschen, die für KI, Technologie und positive Wirkung brennen. Hier sind unsere aktuellen Vakanzen:",
+    "key_requirements": "Wichtige Anforderungen:",
+    "apply_now": "Jetzt bewerben",
+    "location": "Remote / Santa Monica, CA",
+    "dept_engineering": "Engineering",
+    "dept_product": "Produkt",
+    "dept_design": "Design",
+    "dept_cs": "Customer Success",
+    "internships_title": "Praktika",
+    "internships_desc": "Wir bieten Praktikumsplätze für Studierende und Absolvent:innen, die für KI brennen und praktische Erfahrung sammeln möchten.",
+    "internship_program_title": "Sommer 2026 KI-Praktikumsprogramm",
+    "internship_program_desc": "Unser 12-wöchiges Sommerpraktikum bietet sinnvolle Projekte, Mentoring durch Senior-Ingenieure und die Möglichkeit, an realen Produkten zu arbeiten, die Enterprise-Kunden nutzen.",
+    "apply_internship": "Für das Praktikum bewerben",
+    "process_title": "Unser Bewerbungsprozess",
+    "process_desc": "Unser Bewerbungsprozess ist gründlich, aber respektiert Ihre Zeit. Das erwartet Sie:",
+    "step1_title": "Bewerbungsprüfung",
+    "step1_desc": "Wir prüfen Ihre Bewerbung und Ihr Portfolio, um Ihren Hintergrund und Ihre Interessen zu verstehen.",
+    "step2_title": "Erstes Gespräch",
+    "step2_desc": "Ein kurzer Anruf mit unserem Recruiting-Team zur Rolle und für Ihre Fragen.",
+    "step3_title": "Technisches Assessment",
+    "step3_desc": "Je nach Rolle: Coding-Challenge, Design-Übung oder Case Study.",
+    "step4_title": "Team-Interviews",
+    "step4_desc": "Treffen Sie Teammitglieder, um technische Themen zu besprechen und unsere Kultur kennenzulernen.",
+    "step5_title": "Abschlussinterview",
+    "step5_desc": "Ein Gespräch mit der Leitung über Vision, Ziele und Ihren Beitrag zu unserer Mission.",
+    "step6_title": "Angebot",
+    "step6_desc": "Bei beidseitigem Match unterbreiten wir ein Angebot und unterstützen Ihren Übergang ins Team.",
+    "hear_from_team": "Stimmen aus dem Team",
+    "testimonial1_quote": "Bei Divinci AI zu arbeiten heißt, an der Spitze der KI-Innovation zu stehen und gleichzeitig stark auf verantwortungsvolle Entwicklung zu fokussieren. Es ist anspruchsvoll und lohnend.",
+    "testimonial1_name": "Sarah Chen",
+    "testimonial1_role": "Senior ML Engineer",
+    "testimonial2_quote": "Die Kollaborationskultur hier ist großartig. Jede Idee wird wertgeschätzt, und wir alle arbeiten auf dasselbe Ziel hin: KI für Unternehmen zugänglich zu machen.",
+    "testimonial2_name": "Marcus Johnson",
+    "testimonial2_role": "Product Manager",
+    "benefit1_title": "Umfassende Krankenversicherung",
+    "benefit1_desc": "Wir bieten erstklassige Kranken-, Zahn- und Sehversicherung für Mitarbeitende und Familienangehörige; den Großteil der Beiträge übernimmt Divinci AI.",
+    "benefit2_title": "Wettbewerbsfähige Vergütung",
+    "benefit2_desc": "Wir bieten wettbewerbsfähige Gehälter, Equity-Optionen und einen 401(k)-Plan mit Arbeitgeberbeteiligung, damit Sie am Erfolg teilhaben.",
+    "benefit3_title": "Flexibles Arbeiten",
+    "benefit3_desc": "Wir unterstützen Remote-Arbeit mit der Option zur Zusammenarbeit in unserem Büro in Santa Monica – arbeiten Sie dort, wo Sie am produktivsten sind.",
+    "benefit4_title": "Großzügige Auszeit",
+    "benefit4_desc": "Wir bieten unbegrenzten Urlaub, Feiertage und bezahlte Elternzeit, weil wir an Work-Life-Balance und Erholung glauben.",
+    "benefit5_title": "Lernen & Entwicklung",
+    "benefit5_desc": "Jährliches Lernbudget für Konferenzen, Kurse und Bücher sowie regelmäßige Möglichkeiten zur beruflichen Weiterentwicklung.",
+    "benefit6_title": "Team-Events",
+    "benefit6_desc": "Regelmäßige Team-Ausflüge, soziale Events und Firmen-Retreats helfen uns, starke Beziehungen und eine zusammenhängende Kultur aufzubauen.",
+    "job1_title": "Senior Machine Learning Engineer",
+    "job1_desc": "Werden Sie Teil unseres ML-Teams und bauen und optimieren Sie groß angelegte ML-Systeme, die unsere KI-Plattform antreiben. Sie arbeiten an modernsten Algorithmen und Infrastruktur, die Unternehmen ermöglichen, KI-Modelle mit Vertrauen zu deployen.",
+    "job1_req1": "5+ Jahre Erfahrung im ML-Engineering",
+    "job1_req2": "Expertise in PyTorch, TensorFlow oder ähnlichen Frameworks",
+    "job1_req3": "Erfahrung mit verteilten Systemen und Cloud-Plattformen",
+    "job1_req4": "Solide Software-Engineering-Grundlagen",
+    "job2_title": "Full Stack Engineer",
+    "job2_desc": "Helfen Sie, Frontend- und Backend-Systeme zu bauen, die unsere KI-Plattform intuitiv und leistungsfähig machen. Sie arbeiten über den gesamten Stack hinweg, um nahtlose Erlebnisse für Enterprise-Kunden zu schaffen.",
+    "job2_req1": "3+ Jahre Full-Stack-Erfahrung",
+    "job2_req2": "Sicher in React, Node.js und modernen Web-Technologien",
+    "job2_req3": "Erfahrung mit Datenbanken und API-Design",
+    "job2_req4": "Verständnis von Cloud-Infrastruktur",
+    "job3_title": "Product Manager",
+    "job3_desc": "Treiben Sie Produktstrategie und -ausführung für unsere KI-Management-Plattform. Sie arbeiten eng mit Engineering, Design und Kunden zusammen, um Produkte zu definieren und zu liefern, die echte Geschäftsprobleme lösen.",
+    "job3_req1": "3+ Jahre Erfahrung im Product Management",
+    "job3_req2": "Erfahrung mit B2B-SaaS-Produkten",
+    "job3_req3": "Starke analytische und kommunikative Fähigkeiten",
+    "job3_req4": "Hintergrund in KI/ML-Produkten bevorzugt",
+    "job4_title": "UX/UI Designer",
+    "job4_desc": "Gestalten Sie die User Experience unserer KI-Plattform und machen Sie komplexe Technologie zugänglich und schön. Sie entwerfen Oberflächen, die Nutzern ermöglichen, KI-Systeme mit Vertrauen zu verwalten.",
+    "job4_req1": "3+ Jahre Erfahrung in UX/UI-Design",
+    "job4_req2": "Portfolio mit B2B-Produktdesign",
+    "job4_req3": "Sicher in Figma, Sketch oder ähnlichen Tools",
+    "job4_req4": "Erfahrung mit Designsystemen und User Research",
+    "job5_title": "Customer Success Manager",
+    "job5_desc": "Seien Sie der vertrauenswürdige Berater unserer Enterprise-Kunden und helfen Sie ihnen, mit unserer KI-Plattform erfolgreich zu sein. Sie treiben Adoption, Wachstum und langfristige Zufriedenheit.",
+    "job5_req1": "2+ Jahre Erfahrung im Customer Success",
+    "job5_req2": "Erfahrung mit Enterprise-B2B-Kunden",
+    "job5_req3": "Starke Kommunikations- und Problemlösungsfähigkeiten",
+    "job5_req4": "Technischer Hintergrund bevorzugt",
+    "culture_title": "Unsere Kultur",
+    "culture_desc": "Bei Divinci AI bauen wir einen kollaborativen, innovativen und inklusiven Arbeitsplatz, an dem alle wachsen können. Unsere Kultur ist geprägt von gemeinsamen Werten und dem Anspruch, KI-Technologie zu schaffen, die Menschen stärkt, statt sie zu ersetzen.",
+    "value1_title": "Innovation",
+    "value1_desc": "Wir ermutigen mutiges Denken und kreative Problemlösung. Wir scheuen uns nicht, den Status quo herauszufordern und die Grenzen des mit KI Möglichen zu verschieben.",
+    "value2_title": "Zusammenarbeit",
+    "value2_desc": "Wir glauben, dass die beste Arbeit entsteht, wenn vielfältige Perspektiven zusammenkommen. Wir fördern eine kollaborative Umgebung, in der Ideen offen geteilt werden und jede Stimme zählt.",
+    "value3_title": "Verantwortung",
+    "value3_desc": "Wir entwickeln KI verantwortungsvoll, mit klaren ethischen Leitlinien und einem Fokus auf Technologie, die der Menschheit nützt und individuelle Privatsphäre und Selbstbestimmung respektiert.",
+    "value4_title": "Wirkung",
+    "value4_desc": "Uns treibt die Chance an, einen bedeutsamen Einfluss darauf zu nehmen, wie Unternehmen KI nutzen. Jedes Teammitglied spielt eine entscheidende Rolle bei der Verwirklichung dieser Vision.",
+    "benefits_title": "Vorteile & Benefits",
+    "benefits_intro": "Wir kümmern uns um unser Team. Hier einige Vorteile und Benefits, die wir Divinci-AI-Mitarbeitenden bieten:"
+  },
+  "blog": {
+    "hero_title": "Divinci AI Blog",
+    "hero_subtitle": "Einblicke, Updates und Thought Leadership zu künstlicher Intelligenz, RAG-Systemen und Enterprise-KI-Management.",
+    "by": "Von",
+    "read_article": "Artikel lesen",
+    "recent_articles": "Aktuelle Artikel",
+    "read_more": "Mehr lesen",
+    "share_tag": "Teilen",
+    "share_title": "Mit Freunden teilen",
+    "share_desc": "Wenn Sie diese Themen interessant finden, teilen Sie sie mit Freunden und Kollegen.",
+    "coming_soon_title": "Blog kommt bald",
+    "coming_soon_message": "Wir bauen gerade unseren Blog mit Einblicken in KI-Technologie, Implementierungsstrategien und Branchentrends. Schauen Sie bald wieder vorbei oder abonnieren Sie, um benachrichtigt zu werden, wenn neue Inhalte verfügbar sind.",
+    "notify_me": "Über Updates benachrichtigen",
+    "featured_tag_default": "Künstliche Intelligenz",
+    "post_tag_default": "KI-Einblicke"
   }
 }

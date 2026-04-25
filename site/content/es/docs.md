@@ -11,15 +11,15 @@ Bienvenido al centro de documentación de Divinci AI. Encuentra guías completas
 ## Documentación de la Plataforma
 
 ### Primeros Pasos
-- [Guía de Inicio Rápido](/es/tutorials#guía-de-inicio-rápido)
-- [Resumen de la Plataforma](/es/about)
-- [Configuración de Cuenta](/es/support)
-- [Tutorial de Primeros Pasos](/es/tutorials#tu-primer-proyecto-de-ia)
+- [Guía de Inicio Rápido](/es/tutorials/)
+- [Resumen de la Plataforma](/es/about/)
+- [Configuración de Cuenta](/es/support/)
+- [Tutorial de Primeros Pasos](/es/tutorials/)
 
 ### Características Principales
-- [Sistema AutoRAG](/es/autorag) - Generación Aumentada por Recuperación Automatizada
-- [Aseguramiento de Calidad](/es/quality-assurance) - Pruebas y validación de IA
-- [Gestión de Versiones](/es/release-management) - Despliegue y versionado
+- [Sistema AutoRAG](/es/autorag/) - Generación Aumentada por Recuperación Automatizada
+- [Aseguramiento de Calidad](/es/quality-assurance/) - Pruebas y validación de IA
+- [Gestión de Versiones](/es/release-management/) - Despliegue y versionado
 
 ## Referencia de API
 
@@ -29,15 +29,15 @@ Bienvenido al centro de documentación de Divinci AI. Encuentra guías completas
 - **Límites de Velocidad**: 1000 solicitudes por minuto
 
 #### Endpoints Principales
-- `GET /models` - Listar modelos disponibles
-- `POST /generate` - Generar respuestas de IA
-- `POST /analyze` - Analizar calidad de contenido
-- `GET /status` - Verificar estado del sistema
+- `GET /transcripts` - Listar transcripciones
+- `POST /rag/query` - Consultar sistema RAG
+- `POST /releases` - Crear nueva versión
+- `GET /fine-tuning/jobs` - Listar trabajos de ajuste fino
 
 ### SDKs y Bibliotecas
-- [SDK de Python](https://github.com/divinci-ai/python-sdk)
-- [SDK de JavaScript](https://github.com/divinci-ai/js-sdk)
-- [Cliente de API REST](https://github.com/divinci-ai/api-client)
+- [SDK de Python](https://sdk.divinci.ai)
+- [SDK de JavaScript](https://sdk.divinci.ai)
+- [Cliente de API REST](https://sdk.divinci.ai)
 
 ## Guías de Integración
 
@@ -49,7 +49,7 @@ Bienvenido al centro de documentación de Divinci AI. Encuentra guías completas
 ### Autenticación
 ```bash
 curl -H "Authorization: Bearer TU_CLAVE_API" \
-     https://api.divinci.ai/v1/models
+     https://api.divinci.ai/v1/transcripts
 ```
 
 ### Manejo de Errores
@@ -58,9 +58,9 @@ Todas las respuestas de API incluyen códigos de error y mensajes estandarizados
 ## Temas Avanzados
 
 ### Seguridad y Cumplimiento
-- [Privacidad de Datos](/es/privacy-policy)
-- [Medidas de Seguridad](/es/security)
-- [Estándares de Cumplimiento](/es/ai-safety)
+- [Privacidad de Datos](/es/privacy-policy/)
+- [Medidas de Seguridad](/es/security/)
+- [Estándares de Cumplimiento](/es/ai-safety/)
 
 ### Optimización de Rendimiento
 - Guías de Selección de Modelos
@@ -75,8 +75,8 @@ Todas las respuestas de API incluyen códigos de error y mensajes estandarizados
 ## Recursos de Soporte
 
 ### Comunidad
-- [Discusiones de GitHub](https://github.com/divinci-ai/community)
-- [Servidor de Discord](https://discord.gg/divinci-ai)
+- [Discusiones de GitHub](https://github.com/Divinci-AI)
+- [Servidor de Discord](https://discord.gg/5MJPyZ4u)
 - [Etiqueta de Stack Overflow](https://stackoverflow.com/questions/tagged/divinci-ai)
 
 ### Soporte Empresarial
@@ -85,23 +85,9 @@ Todas las respuestas de API incluyen códigos de error y mensajes estandarizados
 - Asistencia de Integración Personalizada
 
 ### Entrenamiento y Certificación
-- [Programa de Certificación Divinci AI](/es/careers#certificación)
-- [Horario de Talleres](/es/tutorials#talleres)
-- [Materiales de Entrenamiento](/es/tutorials)
-
-## Notas de Versión
-
-### Última Versión: v2.1.0
-- Rendimiento mejorado de AutoRAG
-- Nuevas métricas de aseguramiento de calidad
-- Tiempos de respuesta de API mejorados
-- Soporte de idiomas extendido
-
-### Versiones Anteriores
-- [v2.0.0 - Actualización Mayor de Plataforma](/es/changelog#v2-0-0)
-- [v1.9.0 - Mejoras de Calidad](/es/changelog#v1-9-0)
-- [v1.8.0 - Mejoras de Seguridad](/es/changelog#v1-8-0)
+- [Programa de Certificación Divinci AI](/es/careers/)
+- [Materiales de Entrenamiento](/es/tutorials/)
 
 ---
 
-*¿No encuentras lo que buscas? Consulta nuestros [tutoriales](/es/tutorials) para guías paso a paso o [contacta soporte](/es/contact) para asistencia personalizada.*
+*¿No encuentras lo que buscas? Consulta nuestros [tutoriales](/es/tutorials/) para guías paso a paso o [contacta soporte](/es/contact/) para asistencia personalizada.*

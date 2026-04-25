@@ -1,5 +1,5 @@
 +++
-title = "API Reference | Divinci AI"
+title = "API Reference"
 description = "Complete REST API reference for Divinci AI — 60+ endpoints for managing releases, RAG knowledge bases, fine-tuning, transcripts, and more."
 template = "feature.html"
 +++

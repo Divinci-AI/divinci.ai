@@ -38,28 +38,28 @@
 <section class="roadmap-section">
     <div class="container">
         <div class="roadmap-intro">
-            <h2>Our Vision for the Future</h2>
-            <p>Discover what's coming next for the Divinci AI platform. We're committed to continuous innovation and delivering the features our customers need most.</p>
+            <h2>{{ translations.roadmap.vision_title | default(value="Our Vision for the Future") }}</h2>
+            <p>{{ translations.roadmap.vision_desc | default(value="Discover what's coming next for the Divinci AI platform. We're committed to continuous innovation and delivering the features our customers need most.") | safe }}</p>
         </div>
         
         <div class="roadmap-timeline">
             <!-- Q1 2025 -->
             <div class="roadmap-quarter left">
                 <div class="roadmap-card">
-                    <div class="roadmap-quarter-title">Q1 2025</div>
-                    <div class="roadmap-status status-development">In Development</div>
+                    <div class="roadmap-quarter-title">{{ translations.roadmap.q1_title | default(value="Q1 2025") }}</div>
+                    <div class="roadmap-status status-development">{{ translations.roadmap.status_development | default(value="In Development") }}</div>
                     <ul class="roadmap-list">
                         <li>
                             <i class="fas fa-chart-line icon"></i>
-                            <span><strong>Advanced Analytics Dashboard</strong>: Enhanced reporting and insights</span>
+                            <span><strong>{{ translations.roadmap.q1_item1_name | default(value="Advanced Analytics Dashboard") }}</strong>: {{ translations.roadmap.q1_item1_desc | default(value="Enhanced reporting and insights") }}</span>
                         </li>
                         <li>
                             <i class="fas fa-cloud icon"></i>
-                            <span><strong>Multi-Cloud Support</strong>: Deploy across AWS, Azure, and GCP</span>
+                            <span><strong>{{ translations.roadmap.q1_item2_name | default(value="Multi-Cloud Support") }}</strong>: {{ translations.roadmap.q1_item2_desc | default(value="Deploy across AWS, Azure, and GCP") }}</span>
                         </li>
                         <li>
                             <i class="fas fa-shield-alt icon"></i>
-                            <span><strong>Custom Compliance Frameworks</strong>: Industry-specific compliance templates</span>
+                            <span><strong>{{ translations.roadmap.q1_item3_name | default(value="Custom Compliance Frameworks") }}</strong>: {{ translations.roadmap.q1_item3_desc | default(value="Industry-specific compliance templates") }}</span>
                         </li>
                     </ul>
                 </div>
@@ -68,20 +68,20 @@
             <!-- Q2 2025 -->
             <div class="roadmap-quarter right">
                 <div class="roadmap-card">
-                    <div class="roadmap-quarter-title">Q2 2025</div>
-                    <div class="roadmap-status status-planned">Planned</div>
+                    <div class="roadmap-quarter-title">{{ translations.roadmap.q2_title | default(value="Q2 2025") }}</div>
+                    <div class="roadmap-status status-planned">{{ translations.roadmap.status_planned | default(value="Planned") }}</div>
                     <ul class="roadmap-list">
                         <li>
                             <i class="fas fa-gateway icon"></i>
-                            <span><strong>API Gateway Integration</strong>: Native support for API management</span>
+                            <span><strong>{{ translations.roadmap.q2_item1_name | default(value="API Gateway Integration") }}</strong>: {{ translations.roadmap.q2_item1_desc | default(value="Native support for API management") }}</span>
                         </li>
                         <li>
                             <i class="fas fa-vial icon"></i>
-                            <span><strong>Advanced Testing Suite</strong>: Comprehensive AI model validation tools</span>
+                            <span><strong>{{ translations.roadmap.q2_item2_name | default(value="Advanced Testing Suite") }}</strong>: {{ translations.roadmap.q2_item2_desc | default(value="Comprehensive AI model validation tools") }}</span>
                         </li>
                         <li>
                             <i class="fas fa-users icon"></i>
-                            <span><strong>Collaboration Tools</strong>: Enhanced team workflows and permissions</span>
+                            <span><strong>{{ translations.roadmap.q2_item3_name | default(value="Collaboration Tools") }}</strong>: {{ translations.roadmap.q2_item3_desc | default(value="Enhanced team workflows and permissions") }}</span>
                         </li>
                     </ul>
                 </div>
@@ -90,20 +90,20 @@
             <!-- Recently Released -->
             <div class="roadmap-quarter left">
                 <div class="roadmap-card">
-                    <div class="roadmap-quarter-title">Recently Released</div>
-                    <div class="roadmap-status status-completed">Completed</div>
+                    <div class="roadmap-quarter-title">{{ translations.roadmap.recently_released | default(value="Recently Released") }}</div>
+                    <div class="roadmap-status status-completed">{{ translations.roadmap.status_completed | default(value="Completed") }}</div>
                     <ul class="roadmap-list">
                         <li>
                             <i class="fas fa-rocket icon"></i>
-                            <span><strong>Intelligent Release Orchestration</strong>: Automated deployment pipelines</span>
+                            <span><strong>{{ translations.roadmap.released_item1_name | default(value="Intelligent Release Orchestration") }}</strong>: {{ translations.roadmap.released_item1_desc | default(value="Automated deployment pipelines") }}</span>
                         </li>
                         <li>
                             <i class="fas fa-tachometer-alt icon"></i>
-                            <span><strong>Real-time Performance Monitoring</strong>: Live model performance tracking</span>
+                            <span><strong>{{ translations.roadmap.released_item2_name | default(value="Real-time Performance Monitoring") }}</strong>: {{ translations.roadmap.released_item2_desc | default(value="Live model performance tracking") }}</span>
                         </li>
                         <li>
                             <i class="fas fa-lock icon"></i>
-                            <span><strong>Enhanced Security Features</strong>: Advanced access controls and audit logging</span>
+                            <span><strong>{{ translations.roadmap.released_item3_name | default(value="Enhanced Security Features") }}</strong>: {{ translations.roadmap.released_item3_desc | default(value="Advanced access controls and audit logging") }}</span>
                         </li>
                     </ul>
                 </div>
@@ -112,20 +112,20 @@
             <!-- Future Innovations -->
             <div class="roadmap-quarter right">
                 <div class="roadmap-card">
-                    <div class="roadmap-quarter-title">Q3-Q4 2025</div>
-                    <div class="roadmap-status status-planned">Future</div>
+                    <div class="roadmap-quarter-title">{{ translations.roadmap.q34_title | default(value="Q3-Q4 2025") }}</div>
+                    <div class="roadmap-status status-planned">{{ translations.roadmap.status_future | default(value="Future") }}</div>
                     <ul class="roadmap-list">
                         <li>
                             <i class="fas fa-magic icon"></i>
-                            <span><strong>AI-Powered Optimization</strong>: Automatic performance tuning</span>
+                            <span><strong>{{ translations.roadmap.q34_item1_name | default(value="AI-Powered Optimization") }}</strong>: {{ translations.roadmap.q34_item1_desc | default(value="Automatic performance tuning") }}</span>
                         </li>
                         <li>
                             <i class="fas fa-plug icon"></i>
-                            <span><strong>Advanced Integrations</strong>: Support for more AI frameworks and tools</span>
+                            <span><strong>{{ translations.roadmap.q34_item2_name | default(value="Advanced Integrations") }}</strong>: {{ translations.roadmap.q34_item2_desc | default(value="Support for more AI frameworks and tools") }}</span>
                         </li>
                         <li>
                             <i class="fas fa-mobile-alt icon"></i>
-                            <span><strong>Mobile Management App</strong>: Monitor your AI systems on the go</span>
+                            <span><strong>{{ translations.roadmap.q34_item3_name | default(value="Mobile Management App") }}</strong>: {{ translations.roadmap.q34_item3_desc | default(value="Monitor your AI systems on the go") }}</span>
                         </li>
                     </ul>
                 </div>
@@ -134,11 +134,11 @@
         
         <!-- Feature Request CTA -->
         <div class="feature-request-cta">
-            <h3>Request Features</h3>
-            <p>Have a feature request? We'd love to hear from you!</p>
+            <h3>{{ translations.roadmap.request_features | default(value="Request Features") }}</h3>
+            <p>{{ translations.roadmap.request_features_desc | default(value="Have a feature request? We'd love to hear from you!") | safe }}</p>
             <a href="mailto:product@divinci.ai?subject=Feature%20Request" class="cta-button">
                 <i class="fas fa-lightbulb"></i>
-                Submit Your Ideas
+                {{ translations.roadmap.submit_ideas | default(value="Submit Your Ideas") }}
             </a>
         </div>
     </div>
@@ -372,7 +372,7 @@
 
 .roadmap-card {
     padding: 25px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(248, 244, 240, 0.95);
     border-radius: 15px;
     border: 1px solid var(--color-border-light);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);

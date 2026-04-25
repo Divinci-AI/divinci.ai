@@ -1,7 +1,7 @@
 +++
-title = "Changelog | Divinci AI"
+title = "Changelog"
 description = "Divinci AI's changelog tracks our product updates, new features, and improvements over time to keep our users informed about our development progress."
-template = "roadmap.html"
+template = "page.html"
 +++
 
 <style>

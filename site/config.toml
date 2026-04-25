@@ -21,13 +21,14 @@ taxonomies = [
 
 # Markdown settings
 [markdown]
-highlight_code = true
-highlight_theme = "base16-ocean-dark"
 render_emoji = true
 external_links_target_blank = true
 external_links_no_follow = true
 external_links_no_referrer = true
 smart_punctuation = true
+
+[markdown.highlighting]
+theme = "material-theme-ocean"
 
 # Language configurations
 [languages]
@@ -89,9 +90,10 @@ description = "कस्टम भाषा मॉडल के लिए उन
 author = "Divinci AI"
 company = "Divinci AI"
 email = "support@divinci.ai"
-twitter = "@DivinciAI"
-linkedin = "company/divinci-ai"
-github = "Divinci-AI"
+twitter = "https://x.com/DivinciAI"
+linkedin = "https://www.linkedin.com/company/divinci-ai"
+github = "https://github.com/Divinci-AI"
+huggingface = "https://huggingface.co/Divinci-AI"
 discord = "https://discord.gg/5MJPyZ4u"
 description = "AI releases. Excellence, every time."
 

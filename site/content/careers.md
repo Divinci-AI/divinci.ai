@@ -1,5 +1,5 @@
 +++
-title = "Careers | Divinci AI"
+title = "Careers"
 description = "Join the Divinci AI team and help shape the future of human-AI collaboration. Explore career opportunities across engineering, product, design, and business roles."
 template = "careers.html"
 +++
@@ -121,7 +121,7 @@ template = "careers.html"
 }
 
 .value-card {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -167,7 +167,7 @@ template = "careers.html"
 }
 
 .benefit-card {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -219,7 +219,7 @@ template = "careers.html"
 
 .filter-button {
     padding: 0.5rem 1.5rem;
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border: 1px solid #eee;
     border-radius: 30px;
     font-size: 0.9rem;
@@ -240,7 +240,7 @@ template = "careers.html"
 }
 
 .job-card {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -329,7 +329,7 @@ template = "careers.html"
 
 .internship-section {
     padding: 5rem 0;
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
 }
 
 .internship-card {
@@ -438,7 +438,7 @@ template = "careers.html"
 }
 
 .step-content {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -461,7 +461,7 @@ template = "careers.html"
 }
 
 .quote-card {
-    background-color: white;
+    background-color: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -928,7 +928,7 @@ template = "careers.html"
                     Working at Divinci AI has been an incredible journey. I love the collaborative culture and the opportunity to solve complex technical challenges alongside talented colleagues who are passionate about making AI accessible to everyone.
                 </p>
                 <div class="quote-author">
-                    <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sam-tobia.jpg" alt="Samuel Tobia" class="author-image">
+                    <img src="/images/sam-tobia.jpg" alt="Samuel Tobia" class="author-image">
                     <div class="author-info">
                         <div class="author-name">Samuel Tobia</div>
                         <div class="author-title">CTO</div>
@@ -941,7 +941,7 @@ template = "careers.html"
                     What I appreciate most about Divinci AI is how much autonomy and trust we're given. We have the freedom to explore new ideas and approaches, while still maintaining a strong sense of collective purpose. It's the perfect balance of independence and teamwork.
                 </p>
                 <div class="quote-author">
-                    <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sierra-hooshiari.jpeg" alt="Sierra Hooshiari" class="author-image">
+                    <img src="/images/sierra-hooshiari.jpeg" alt="Sierra Hooshiari" class="author-image">
                     <div class="author-info">
                         <div class="author-name">Sierra Hooshiari</div>
                         <div class="author-title">VP of Customer Success</div>
