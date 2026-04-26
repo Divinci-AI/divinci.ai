@@ -147,12 +147,12 @@ The chart above splits "fp16 vs 1-bit." The accurate split is "fp16 vs everythin
 
 **What's still holding** — the fp16 power-law cluster (Gemma 4, Qwen3 family, Mistral 3, Llama 3.1, GPT-OSS 120B) hasn't moved. Whatever happens at training precision below fp16 — fp8, MXFP4, or 1-bit — the spectral structure doesn't survive in the form fp16 produces.
 
-The three new vindexes are pullable directly from HuggingFace via the LarQL CLI:
+The three new vindexes are published as **research summaries** — gate_proj SVD only, ~10–43 GB each. They're not yet `larql pull`-ready end-to-end (two upstream gaps: the safetensors loader needs F8_E8M0/F8_E4M3/I8 dtype dispatch, and the HF resolver currently only checks the dataset URL pattern). PRs to address both are tracked. In the meantime they're fetchable directly from HuggingFace and parseable with numpy:
 
 ```bash
-larql pull Divinci-AI/kimi-k2-instruct-vindex      # 42.28 GB
-larql pull Divinci-AI/deepseek-v4-flash-vindex     # 11.54 GB
-larql pull Divinci-AI/deepseek-v4-pro-vindex       # 42.98 GB
+huggingface-cli download Divinci-AI/kimi-k2-instruct-vindex      # 42.28 GB
+huggingface-cli download Divinci-AI/deepseek-v4-flash-vindex     # 11.54 GB
+huggingface-cli download Divinci-AI/deepseek-v4-pro-vindex       # 42.98 GB
 ```
 
 *Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). LarQL vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI). MoE builder: [moe_vindex_builder.py](https://github.com/Divinci-AI/server/blob/preview/notebooks/moe_vindex_builder.py) (now with MXFP4 unpacker for DeepSeek-V4 family).*
