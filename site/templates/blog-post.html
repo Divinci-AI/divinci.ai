@@ -138,7 +138,7 @@ window.MathJax = {
                     <div class="author-info">
                         {{ translations.blog_post.by | default(value="By") }} <span class="author-name">{{ page.extra.author | default(value="Michael Mooring") }}</span>
                     </div>
-                    <div class="post-date">{{ page.date | date(format="%B %d, %Y") }} • {{ page.reading_time }} {{ translations.blog_post.min_read | default(value="min read") }}</div>
+                    <div class="post-date">{{ page.date | date(format="%B %d, %Y") }}{% if page.updated and (page.updated | date(format="%Y%m%d") != page.date | date(format="%Y%m%d")) %} <span class="updated-badge" title="Updated {{ page.updated | date(format="%B %d, %Y") }}">Updated {{ page.updated | date(format="%b %d") }}</span>{% endif %} • {{ page.reading_time }} {{ translations.blog_post.min_read | default(value="min read") }}</div>
                 </div>
             </div>
             
@@ -584,6 +584,23 @@ window.MathJax = {
     font-size: 0.9rem;
     color: #2d3c34;
     opacity: 0.7;
+}
+
+.updated-badge {
+    display: inline-block;
+    margin-left: 0.4rem;
+    padding: 0.05rem 0.55rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #2d3c34;
+    background: rgba(255, 199, 95, 0.28);
+    border: 1px solid rgba(139, 115, 85, 0.45);
+    border-radius: 999px;
+    vertical-align: middle;
+    opacity: 1;
+    cursor: help;
 }
 
 .post-excerpt {

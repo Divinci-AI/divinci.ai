@@ -2,7 +2,7 @@
 title = "The Architecture Every Language Model Converges To"
 description = "I've run LarQL on 9 models from 5 organizations — from a 360M toy to OpenAI's 120B MoE. Three numbers hold within ±15% across all of them. One pattern vanishes the moment you go to 1-bit weights."
 date = 2026-04-23T09:00:00+00:00
-updated = 2026-04-23T21:00:00+00:00
+updated = 2026-04-25T22:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -189,10 +189,14 @@ modal run notebooks/moe_vindex_builder.py \
 modal run notebooks/moe_vindex_builder.py \
   --model moonshotai/Kimi-K2-Instruct --phase 2
 
-# Publish to HuggingFace
-modal volume get vindex-cache moonshotai-kimi-k2-instruct/ ./kimi-vindex/
-huggingface-cli upload Divinci-AI/kimi-k2-vindex ./kimi-vindex/
+# Publish to HuggingFace (skip the local roundtrip — upload from Modal directly)
+modal run notebooks/upload_vindex_to_hf.py::main \
+  --model-slug moonshotai-kimi-k2-instruct \
+  --hf-repo-id Divinci-AI/kimi-k2-instruct-vindex \
+  --hf-source-model moonshotai/Kimi-K2-Instruct
 ```
+
+*The same builder + uploader produced the [DeepSeek-V4-Flash](https://huggingface.co/Divinci-AI/deepseek-v4-flash-vindex) and [DeepSeek-V4-Pro](https://huggingface.co/Divinci-AI/deepseek-v4-pro-vindex) vindexes on 2026-04-25 — both ship MXFP4 expert weights, which the builder now unpacks natively.*
 
 **Step 2 — LarQL Cloud Run runtime (deploy the artifact as a queryable service):**
 

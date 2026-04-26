@@ -2,7 +2,7 @@
 title = "When the Circuit Dissolves"
 description = "Two natively-trained 1-bit language models, from two different organizations, converge on the same anomaly: the four-stage circuit that organizes every fp16 transformer simply isn't there. Both models still answer correctly. The structure is gone, but the behavior survived."
 date = 2026-04-27T09:00:00+00:00
-updated = 2026-04-23T21:00:00+00:00
+updated = 2026-04-25T22:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -130,13 +130,29 @@ If the third model breaks the pattern, then dissolution is probably training-rec
 
 ---
 
-**April 23, 2026 update** — Kimi-K2 (Moonshot AI, 1T-param MoE, fp8/bf16-equivalent) is now in the comparison set. It's the first non-1-bit MoE to go through this analysis. Prediction: var@64 ≈ 0.80–0.90 (power-law, same as all other fp16/bf16 models) and C5 = 4–5 (circuit intact). The MoE architecture shouldn't change this — the per-expert weight matrices are still bf16-equivalent. Measurements running; this table will update when they land.
+**April 25, 2026 update — three new MoE vindexes; the prediction was wrong.**
 
-| Model | var@64 | C5 | Structure |
-|-------|--------|-----|-----------|
-| Gemma4-E2B-it (bf16) | 0.85 | 4 | Power-law ✓ |
-| Bonsai 8B (1-bit) | 0.093 | 1 | Near-random ✗ |
-| BitNet b1.58-2B-4T (1.58-bit) | 0.111 | pending | Near-random ✗ |
-| **Kimi-K2-Instruct (fp8 MoE)** | **running** | **running** | **(expected: Power-law ✓)** |
+I ran the full vindex pipeline on three frontier MoE models — Kimi-K2-Instruct (fp8), DeepSeek-V4-Flash (MXFP4), DeepSeek-V4-Pro (MXFP4) — expecting all three to land at var@64 ≈ 0.80–0.90 like every other bf16/fp16 model. None of them did. All three sit in the dissolution band, alongside the 1-bit models. The dissolved-spectrum result is not a 1-bit-specific quirk; it tracks **training precision class**, full stop.
 
-*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). LarQL vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI). BitNet rerun script: [bitnet_vindex_builder.py](https://github.com/Divinci-AI/server/blob/preview/notebooks/bitnet_vindex_builder.py).*
+| Model | Precision | var@64 (gate_proj) | Class |
+|-------|-----------|--------------------|-------|
+| Gemma4-E2B-it | bf16 | 0.85 | Power-law ✓ |
+| **DeepSeek-V4-Pro** | **MXFP4 MoE** | **0.0653** | **Dissolved ✗** (lowest measured) |
+| **Kimi-K2-Instruct** | **fp8 MoE** | **0.0938** | **Dissolved ✗** |
+| Bonsai 8B | 1-bit | 0.093 | Dissolved ✗ |
+| **DeepSeek-V4-Flash** | **MXFP4 MoE** | **0.108** | **Dissolved ✗** |
+| BitNet b1.58-2B-4T | 1.58-bit | 0.111 | Dissolved ✗ |
+
+The chart above splits "fp16 vs 1-bit." The accurate split is "fp16 vs everything-below-fp16." Five models from four organizations, four precision classes, all sitting on the Marchenko-Pastur floor. The dissolution thesis got stronger; the original framing got narrower than the data supports.
+
+**What's still holding** — the fp16 power-law cluster (Gemma 4, Qwen3 family, Mistral 3, Llama 3.1, GPT-OSS 120B) hasn't moved. Whatever happens at training precision below fp16 — fp8, MXFP4, or 1-bit — the spectral structure doesn't survive in the form fp16 produces.
+
+The three new vindexes are pullable directly from HuggingFace via the LarQL CLI:
+
+```bash
+larql pull Divinci-AI/kimi-k2-instruct-vindex      # 42.28 GB
+larql pull Divinci-AI/deepseek-v4-flash-vindex     # 11.54 GB
+larql pull Divinci-AI/deepseek-v4-pro-vindex       # 42.98 GB
+```
+
+*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). LarQL vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI). MoE builder: [moe_vindex_builder.py](https://github.com/Divinci-AI/server/blob/preview/notebooks/moe_vindex_builder.py) (now with MXFP4 unpacker for DeepSeek-V4 family).*

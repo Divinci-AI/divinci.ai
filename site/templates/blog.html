@@ -159,7 +159,7 @@
                                     </picture>
                                 {% endif %}
                                 <div class="post-info">
-                                    {{ translations.blog.by | default(value="By") }} <span class="author-name">{{ featured_post.extra.author | default(value="Michael Mooring") }}</span> • {{ featured_post.date | date(format="%B %d, %Y") }}
+                                    {{ translations.blog.by | default(value="By") }} <span class="author-name">{{ featured_post.extra.author | default(value="Michael Mooring") }}</span> • {{ featured_post.date | date(format="%B %d, %Y") }}{% if featured_post.updated and (featured_post.updated | date(format="%Y%m%d") != featured_post.date | date(format="%Y%m%d")) %} <span class="updated-badge" title="Updated {{ featured_post.updated | date(format="%B %d, %Y") }}">Updated</span>{% endif %}
                                 </div>
                             </div>
                             {% if featured_post.summary %}
@@ -224,7 +224,7 @@
                                             <a href="{{ post.permalink | safe }}" class="post-title-link">
                                                 <h3 class="post-title">{{ post.title }}</h3>
                                             </a>
-                                            <div class="post-date">{{ post.date | date(format="%B %d, %Y") }}</div>
+                                            <div class="post-date">{{ post.date | date(format="%B %d, %Y") }}{% if post.updated and (post.updated | date(format="%Y%m%d") != post.date | date(format="%Y%m%d")) %} <span class="updated-badge" title="Updated {{ post.updated | date(format="%B %d, %Y") }}">Updated</span>{% endif %}</div>
                                             <a href="{{ post.permalink | safe }}" class="post-link">{{ translations.blog.read_more | default(value="Read more") }} <i class="fas fa-arrow-right"></i></a>
                                         </div>
                                     </article>
@@ -665,6 +665,22 @@
     color: #2d3c34;
     opacity: 0.7;
     margin-bottom: 0.75rem;
+}
+
+.updated-badge {
+    display: inline-block;
+    margin-left: 0.4rem;
+    padding: 0.05rem 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #2d3c34;
+    background: rgba(255, 199, 95, 0.25);
+    border: 1px solid rgba(139, 115, 85, 0.4);
+    border-radius: 999px;
+    vertical-align: middle;
+    cursor: help;
 }
 
 .post-link {
