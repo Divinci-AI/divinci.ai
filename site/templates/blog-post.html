@@ -410,13 +410,13 @@ window.MathJax = {
             <aside class="share-with-friends">
                 <h3>{{ translations.blog_post.share_with_friends | default(value="Share with Friends") }}</h3>
                 <div class="share-video-container">
-                    <div class="share-text-overlay">
-                        <p>{{ translations.blog_post.share_desc | default(value="If you find these topics interesting, please share with your friends and colleagues who too might find them interesting.") }}</p>
-                    </div>
                     <div class="share-video">
-                        <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 8px;">
+                        <video autoplay muted loop playsinline webkit-playsinline preload="metadata">
                             <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-scholars-study.webm" type="video/webm">
                         </video>
+                    </div>
+                    <div class="share-text-overlay">
+                        <p>{{ translations.blog_post.share_desc | default(value="If you find these topics interesting, please share with your friends and colleagues who too might find them interesting.") }}</p>
                     </div>
                     <div class="share-buttons-overlay" role="group" aria-label="Share this article">
                         <button class="share-btn-overlay twitter" onclick="shareOnTwitter()" title="Share on X" aria-label="Share on X">
@@ -1371,6 +1371,9 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    /* Contains the absolutely-positioned text overlay (translate -232%)
+       so it can't bleed up into the "Share with Friends" h3. */
+    overflow: hidden;
 }
 
 .share-with-friends h3 {
@@ -1381,45 +1384,63 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     border-bottom: 1px solid var(--color-border-light, #d4c4a0);
 }
 
-/* Stacked layout: title → description → video → buttons. The previous
-   absolute-position design collided with the title and made the
-   description unreadable (light text on translucent video). */
+/* Original frosted-glass layout (restored verbatim from commit d8e8180).
+   Bug that the previous fix was avoiding: translate(-50%, -232%) bled
+   the text panel UP into the parent h3. Solved here by adding
+   overflow:hidden on the aside so the absolute children can't escape. */
 .share-video-container {
+    position: relative;
     margin-bottom: 1rem;
 }
 
-.share-text-overlay {
-    text-align: center;
-    margin: 0 0 1rem;
-}
-
-.share-text-overlay p {
-    font-size: 0.95rem;
-    color: #4a5a4f;
-    line-height: 1.6;
-    margin: 0;
-    font-weight: 500;
-}
-
 .share-video {
-    margin: 0 0 1.25rem;
 }
 
 .share-video video {
     border-radius: 8px;
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
     display: block;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transform: scale(0.8);
+    transform-origin: center;
+    margin: -10% 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.share-text-overlay {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    z-index: 9;
+    text-align: center;
+    border-radius: 12px;
+    width: 78%;
+    padding: 1.5rem;
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    /* Was -232% / top 50%, which pushed the panel above the video when
+       the .share-with-friends aside got stretched by the flex row.
+       top:39% + translate(-130%) anchors the panel near the top of the
+       video. (Visually tuned in devtools.) */
+    transform: translate(-50%, -130%);
+}
+
+.share-text-overlay p {
+    font-size: 0.95rem;
+    color: #e2e9ef;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
 }
 
 .share-buttons-overlay {
+    position: absolute;
+    bottom: 5.5rem;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    gap: 39px;
+    z-index: 10;
 }
 
 .share-btn-overlay {
@@ -1721,40 +1742,27 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
         padding: 1.5rem;
     }
 
-    .share-video video {
-        transform: scale(1);
-        margin: 0;
+    .share-glass-panel {
+        left: 0.65rem;
+        right: 0.65rem;
+        bottom: 0.65rem;
+        padding: 0.85rem 0.9rem 0.9rem;
     }
 
-    .share-text-overlay {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        width: 100%;
-        margin-bottom: 1rem;
-        padding: 1rem;
-    }
-
-    .share-text-overlay p {
-        font-size: 0.85rem;
-        color: #0e2f50;
+    .share-glass-desc {
+        font-size: 0.82rem;
+        margin-bottom: 0.7rem;
+        line-height: 1.4;
     }
 
     .share-buttons-overlay {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        transform: none;
-        justify-content: center;
-        margin-top: 1rem;
-        gap: 1rem;
+        gap: 0.7rem;
     }
 
     .share-btn-overlay {
-        width: 45px;
-        height: 45px;
-        font-size: 1rem;
+        width: 42px;
+        height: 42px;
+        font-size: 0.95rem;
     }
 }
 
