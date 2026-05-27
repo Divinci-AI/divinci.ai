@@ -477,7 +477,7 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 
 <h2 class="section-heading">How routing preferences get seeded</h2>
 
-<p class="section-subheading">Your routing model isn't pre-trained — it learns from <em>your</em> traffic. Three signals feed the the routing-history store store.</p>
+<p class="section-subheading">Your routing model isn't pre-trained — it learns from <em>your</em> traffic. Three signals feed the routing-history store.</p>
 
 <div class="rr-mechanism">
 <ol>
