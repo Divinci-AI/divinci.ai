@@ -2,6 +2,7 @@
 title = "Light Logic : L'aube de l'informatique ternaire photonique pour le calcul universel de base"
 description = "Portes logiques photoniques, calcul ternaire, RNG quantique et batteries gravitaires : un calcul durable et artisanal comme socle pour le RBU."
 date = 2025-10-05T10:00:00+00:00
+updated = 2026-05-27T10:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -16,6 +17,81 @@ hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/light-logic-ba
 reading_time = 15
 summary = "Et si nous pouvions construire des ordinateurs qui fonctionnent avec la lumière, pensent en trois au lieu de deux, exploitent le hasard quantique et tirent leur énergie de la gravité elle-même ? Cette exploration de l'informatique 'Light Logic' révèle comment la combinaison de circuits photoniques, de mathématiques ternaires et d'énergie durable pourrait démocratiser les ressources de calcul dans le cadre d'un revenu de base universel."
 +++
+
+## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Mise à jour de mai 2026 — Trois des quatre piliers ont franchi le seuil commercial
+
+Lors de la publication initiale de cet article en octobre 2025, « Light Logic » était une synthèse de quatre domaines de recherche qui ne s'intégraient pas encore dans des systèmes commercialisés. Sept mois plus tard, **trois de ces quatre domaines sont passés de la curiosité de recherche à la réalité commerciale**, et le quatrième (stockage gravitaire-mécanique) connaît une recomposition partielle alors que les alternatives fer-air et sable thermique dépassent les conceptions purement gravitationnelles. Cette section met à jour l'article au regard de ce qui a réellement été livré fin 2025 et début 2026.
+
+<figure style="margin: 2rem 0; overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+<thead>
+<tr style="background: #2d5a4f; color: #faf8f5;">
+<th style="padding: 0.7rem 0.9rem; text-align: left;">Pilier</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">Thèse d'octobre 2025</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">Réalité de mai 2026</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Calcul photonique</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Puce Taichi (efficacité 1000×, recherche)</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Q.ANT NPU 2 livré via le cloud IONOS</strong> ; Lightmatter Passage L20 (moteur optique 6,4 Tbps) ; carte accélératrice PCIe Lightelligence PACE2</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>LLM ternaires / sous-1-bit</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">BitNet b1.58 (aperçu de recherche)</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>PrismML Ternary Bonsai 8B/4B/1,7B à 27 tok/s sur iPhone 17 Pro Max</strong>, Apache 2.0 ; noyaux parallèles BitNet +1,15–2,1× ; BTC-LLM sous-1-bit à 0,7–1,11 bit</td></tr>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>RNG quantique</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Flux de laboratoire ANU + modules d'entreprise IDQ</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Le Samsung Galaxy Quantum 6 embarque le QRNG dans la poche</strong> ; AWS Marketplace msQRNG ; Quantinuum Quantum Origin QRNG vérifiable</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem;"><strong>Stockage durable</strong></td><td style="padding: 0.7rem 0.9rem;">Energy Vault + Gravitricity (gravité pure)</td><td style="padding: 0.7rem 0.9rem;"><strong>Energy Vault met en service 25 MW / 100 MWh en Chine</strong> ; <strong>Form Energy fer-air à 30 GWh (Google/Xcel) + 12 GWh (Crusoe AI)</strong> ; la batterie de sable Polar Night remporte le 2026 Popular Mechanics Breakthrough ; <em>Gravitricity entre en liquidation volontaire en février 2026</em></td></tr>
+</tbody>
+</table>
+<figcaption style="text-align: center; font-style: italic; color: #5a6862; font-size: 0.9rem; margin-top: 0.75rem;">La thèse Light Logic comparée aux produits livrés sept mois plus tard.</figcaption>
+</figure>
+
+### Le calcul photonique a franchi le seuil commercial
+
+Le changement le plus marquant depuis octobre 2025 est que le calcul photonique pour l'IA n'est plus une démonstration de laboratoire. **Le NPU 2 de Q.ANT**, annoncé le 19 mai 2026, est le premier accélérateur photonique pour l'IA disponible commercialement via un cloud grand public — IONOS — après des déploiements pilotes au Leibniz Supercomputing Centre (LRZ) et au Forschungszentrum Jülich (JSC)<sup><a href="#ref-qant-2026" id="cite-qant">[QANT-2026]</a></sup>. Q.ANT revendique une énergie 30× inférieure et des performances par tâche 50× supérieures aux références transistor, et une amélioration de 100× par rapport à sa propre puce de 1re génération. C'est une revendication de recherche, pas un benchmark indépendant, mais la puce est désormais sur un bon de commande plutôt que dans un article.
+
+**Le Passage L20 de Lightmatter**, annoncé en mars 2026, est un moteur optique 6,4 Tbps par direction pour l'optique near-package et on-board ; échantillons fin 2026<sup><a href="#ref-lightmatter-l20" id="cite-lightmatter">[LIGHTMATTER-2026]</a></sup>. La revendication phare — diviser par deux le nombre de fibres dans les datacenters via le multiplexage bidirectionnel — est le genre de détail d'infrastructure peu glamour qui décide si le calcul photonique passe à l'échelle au-delà des sites pilotes.
+
+**Le PACE2 de Lightelligence** a été lancé à l'OFC 2026 sous forme de carte accélératrice PCIe avec compatibilité ONNX/PyTorch/TVM<sup><a href="#ref-lightelligence-pace2" id="cite-lightelligence">[LIGHTELLIGENCE-2026]</a></sup>. Le dépôt d'IPO à Hong Kong en avril 2026 suggère que la partie financière du calcul photonique rattrape la partie technique.
+
+Le réseau de neurones diffractif profond programmable de Penn Engineering utilisant des métasurfaces réinscriptibles — le type de calcul optique à motif fixe que nous avons décrit dans l'article original — a été évalué par les pairs en 2025 (PMC12518764)<sup><a href="#ref-penn-d2nn" id="cite-penn">[PENN-2025]</a></sup>. La logique diffractive publie désormais dans des revues de la famille *Nature Communications*, et non sur des serveurs de prépublication.
+
+Ce qui nous manque encore, c'est un benchmark d'inférence LLM en tête-à-tête photonique contre Blackwell. Le meilleur article tentant l'exercice — PRISM (arXiv:2603.21576) — propose une sélection de blocs photonique en O(1) pour les contextes longs mais reste théorique.
+
+### Le ternaire est devenu grand public et portable
+
+L'affirmation de l'article selon laquelle le calcul ternaire appartient aux appareils en périphérie plutôt qu'aux datacenters était une aspiration empirique en octobre 2025. **La famille Ternary Bonsai de PrismML**, publiée en avril 2026, le rend empiriquement vrai : un modèle 8B 1,58-bit fonctionnant à 27 tok/s sur un iPhone 17 Pro Max et 82 tok/s sur un M4 Pro, sous licence Apache 2.0, ~9× plus petit que ses homologues fp16<sup><a href="#ref-bonsai" id="cite-bonsai">[BONSAI-2026]</a></sup>. La moyenne benchmark du Ternary Bonsai 8B de 75,5 se rapproche de modèles fp16 de taille similaire. C'est la première publication ternaire qu'un développeur peut récupérer depuis Hugging Face aujourd'hui et exécuter sur un téléphone disponible dans le commerce.
+
+La mise à jour de janvier 2026 par Microsoft des **noyaux parallèles de BitNet** a apporté une accélération de 1,15–2,1× sur le modèle BitNet b1.58 2B-4T sur des tuilages matériels configurables<sup><a href="#ref-bitnet-kernels" id="cite-bitnet">[BITNET-2026]</a></sup>. Combiné aux nouveaux travaux sous-1-bit — **BTC-LLM** à 0,7–1,11 bit via codebook binaire plus transformation apprenable, maintenant un LLaMA-2-13B à 0,8 bit à moins de 3,1 % de la précision fp16<sup><a href="#ref-btc-llm" id="cite-btc">[BTC-LLM-2025]</a></sup> ; l'entraînement quantization-aware guidé par la hessienne de **HESTIA** ; le modèle natif-1,58-bit de 132M paramètres avec mise à l'échelle adaptative de **TernaryLM** — la trajectoire pointe clairement vers un déploiement sous-1-bit en production, pas vers des limites théoriques.
+
+Pour la vision Light Logic, le résultat est que la revendication *ternaire en périphérie* a été validée ; ce qui n'a pas encore été validé, c'est *le ternaire sur substrats photoniques*. Bonsai tourne sur du silicium de la série M d'Apple (une architecture transistor) ; le NPU 2 de Q.ANT exécute un moteur matriciel optique. Composer les deux reste le problème de recherche ouvert.
+
+### Le RNG quantique a discrètement été commercialisé
+
+La section QRNG de l'article décrivait un petit marché d'entreprise. Sept mois plus tard, **le Galaxy Quantum 6 de Samsung** embarque le chipset QRNG d'IDQ de 2,5 × 2,5 mm — le plus petit en production — intégré à Samsung Knox<sup><a href="#ref-samsung-qrng" id="cite-samsung">[SAMSUNG-2026]</a></sup>. Le QRNG est dans les poches de millions de consommateurs, et non dans un SKU d'entreprise de niche. L'infrastructure de support a rattrapé son retard au même rythme : **Palo Alto Networks** propose une API ouverte QRNG indépendante du fournisseur ; **AWS Marketplace** liste msQRNG comme service achetable ; **Quantum Origin de Quantinuum** offre un QRNG vérifiable depuis une pile à tolérance de pannes<sup><a href="#ref-quantinuum" id="cite-quantinuum">[QUANTINUUM-2025]</a></sup>. Un prototype 2025 évalué par les pairs de QRNG entièrement intégré basé sur le vide (arXiv:2505.01701) confirme que la voie d'intégration silicium-photonique est réelle.
+
+En bref : à mi-2026, il n'existe plus de raison liée à l'outillage de semer un pipeline d'apprentissage automatique avec un pseudo-aléatoire déterministe. Les primitives QRNG que l'article décrivait comme un composant futur sont à un `npm install` près.
+
+### Batteries gravitaires — ce qu'il faut retirer, ce qu'il faut mettre en avant
+
+C'est le pilier qui a été reshuffé. Le stockage gravitaire purement mécanique a connu des progrès significatifs et aussi une perte significative :
+
+- **Energy Vault** a mis en service le premier système EVx 25 MW / 100 MWh au monde à Rudong, en Chine, en janvier 2026, en partenariat avec China Tianying et Atlas Renewable, avec un second projet de 100 MWh signé pour le comté de Huailai, dans le Hebei<sup><a href="#ref-energy-vault-rudong" id="cite-ev">[ENERGY-VAULT-2026]</a></sup>. La thèse fonctionne à l'échelle commerciale.
+- **Gravitricity** est entrée en liquidation volontaire en février 2026 avec moins de 8 000 £ d'actifs, avec une date limite de vente de la PI au 25 février 2026<sup><a href="#ref-gravitricity-collapse" id="cite-gravitricity">[GRAVITRICITY-2026]</a></sup>. L'article original citait Gravitricity comme un concurrent actif ; **ce paragraphe doit désormais être lu au passé**.
+
+Entre-temps, deux approches de stockage durable non gravitaire ont dépassé la concurrence gravitaire pure pour les déploiements de datacenters IA :
+
+- **La chimie fer-air de Form Energy**, que l'article original ne mentionnait que brièvement, a signé un accord de 12 GWh avec **Crusoe** pour des datacenters IA au CERAWeek de mars 2026, et un accord de 30 GWh / 300 MW avec **Google et Xcel** pour un projet au Minnesota — décrit par les parties comme le plus grand accord de stockage annoncé en GWh<sup><a href="#ref-form-google" id="cite-form-google">[FORM-GOOGLE-2026]</a></sup><sup><a href="#ref-form-crusoe" id="cite-form-crusoe">[FORM-CRUSOE-2026]</a></sup>. L'usine de Form à Weirton, en Virginie-Occidentale, est en production.
+- **La conception de batterie de sable de Polar Night Energy** a remporté le Popular Mechanics Breakthrough Award 2026 et entame une construction de 250 MWh à Vääksy en 2026 ; son pilote sable-vers-électricité a été testé début 2026<sup><a href="#ref-polar-night" id="cite-polar">[POLAR-NIGHT-2026]</a></sup>.
+
+Lecture honnête pour la vision Light Logic : **le pilier du stockage durable est plus diversifié et plus crédible que ce que décrivait l'article d'octobre 2025, mais le récit spécifique gravitaire-mécanique est plus étroit que prévu.** Les futures versions de cette analyse devraient mettre en avant Energy Vault comme preuve gravitaire, retirer Gravitricity, et traiter Form Energy + Polar Night comme des options parallèles de stockage durable pour les charges de calcul IA.
+
+### Bonus — le silicium artisanal et l'open-PDK ont survécu à une quasi-mort
+
+Le pilier de « l'informatique artisanale » de l'article original reposait sur l'écosystème open-PDK / fabrication-navette que Tiny Tapeout et Efabless construisaient. **Efabless a fermé en mars 2025**, menaçant brièvement cet écosystème. Le rétablissement a été le suivant : les fondateurs ont relancé sous le nom de **ChipFoundry.io**, restaurant l'accès au PDK SKY130 ; Tiny Tapeout a pivoté vers **IHP** (Leibniz Institute for High Performance Microelectronics) pour sa navette open-PDK, avec un kit de développement à ~300 € et un tarif de 70 € par tuile<sup><a href="#ref-tinytapeout-ihp" id="cite-tinytapeout">[TINYTAPEOUT-2025]</a></sup>. La thèse de « l'informatique artisanale » est moins malmenée qu'elle aurait pu l'être ; ce qui a été testé, c'est la résilience de la chaîne d'approvisionnement du mouvement open-PDK, et elle a survécu.
+
+**Mythic AI**, l'entreprise de calcul analogique que nous avions mentionnée, a annoncé un développement conjoint avec **Honda** en février 2026 sur une puce IA analogique 100× plus économe en énergie pour les SDV automobiles, et un partenariat avec **Microchip** sur des APU de nouvelle génération propulsés par memBrain ciblant 120 TOPS/W<sup><a href="#ref-mythic-honda" id="cite-mythic">[MYTHIC-2026]</a></sup>. Le calcul IA analogique n'a pas disparu — il s'est spécialisé dans l'automobile.
+
+### Ce que cette mise à jour signifie pour la vision Light Logic originale
+
+L'article original décrivait un substrat intégré photonique-ternaire-quantique-durable comme un horizon à 10–15 ans. Sept mois plus tard, les primitives *individuelles* ont suffisamment avancé pour que le substrat intégré soit un horizon à 5–7 ans pour un sous-ensemble de la pile, la composition photonique-ternaire restant la lacune de recherche ouverte. Le cadrage social-contrat « Calcul universel de base » reste une proposition politique, pas une réalité d'ingénierie. L'infrastructure pour la rendre concrète est plus proche qu'elle ne l'était — de manière significative sur le calcul photonique, l'inférence ternaire en périphérie et l'aléa quantique ; différemment de ce qui était attendu sur le stockage gravitaire ; reconstituée mais plus mince sur le silicium open-PDK.
+
+La vision tient toujours. Le chemin pour y parvenir est plus médié par les fournisseurs et moins artisanal que ne l'espérait l'article original — mais les composants ne sont plus hypothétiques.
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> La vision : L'informatique pour tous
 
@@ -375,3 +451,76 @@ Sommes-nous prêts à construire l'avenir, un circuit photonique artisanal à la
 ---
 
 *Intéressé à contribuer au développement de Light Logic ? Divinci AI collabore avec des institutions de recherche et des ateliers communautaires pour prototyper ces systèmes. [Contactez-nous](https://meetings.hubspot.com/michael-mooring/divinci-ai) pour en savoir plus sur comment vous impliquer.*
+
+---
+
+## Références
+
+<ol class="post-references" style="padding-left: 1.5rem; font-size: 0.92rem;">
+  <li id="ref-qant-2026" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Q.ANT.</strong> « Q.ANT Takes Photonic AI Computing Commercial as AI's Power Demand Surges. » Communiqué de presse, 19–20 mai 2026. Lancement du NPU 2 via le cloud IONOS ; déploiements au LRZ + JSC. <a href="https://qant.com/news/q-ant-takes-photonic-ai-computing-commercial-as-ais-power-demand-surges/" target="_blank" rel="noopener">qant.com</a>
+  </li>
+  <li id="ref-lightmatter-l20" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Lightmatter.</strong> « Lightmatter expands photonic-interconnect roadmap with Passage L20. » Communiqué de presse, 11 mars 2026. Moteur optique 6,4 Tbps/direction. <a href="https://lightmatter.co/press-release/lightmatter-expands-photonic-interconnect-roadmap-with-passage-l20-unified-optical-engine-for-npo-and-obo-applications/" target="_blank" rel="noopener">lightmatter.co</a>
+  </li>
+  <li id="ref-lightelligence-pace2" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Semiconductor Digest.</strong> « Lightelligence launches second-generation optoelectronic accelerated computing card. » Couverture OFC 2026, 15–19 mars 2026. Accélérateur PCIe PACE2 avec prise en charge ONNX / PyTorch / TVM. <a href="https://www.semiconductor-digest.com/lightelligence-launches-second-generation-optoelectronic-accelerated-computing-card/" target="_blank" rel="noopener">semiconductor-digest.com</a>
+  </li>
+  <li id="ref-penn-d2nn" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Programmable diffractive deep neural networks enabled by integrated rewritable metasurfaces.</strong> Évaluation par les pairs dans la famille <em>Nature Communications</em>, PMC12518764, 2025. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12518764/" target="_blank" rel="noopener">ncbi.nlm.nih.gov/pmc/articles/PMC12518764</a>
+  </li>
+  <li id="ref-bonsai" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Prism ML.</strong> « Ternary Bonsai. » Annonce de publication, 16 avril 2026. Famille 8B/4B/1,7B 1,58-bit, Apache 2.0, native MLX. <a href="https://prismml.com/news/ternary-bonsai" target="_blank" rel="noopener">prismml.com/news/ternary-bonsai</a> ; poids sur <a href="https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit" target="_blank" rel="noopener">huggingface.co/prism-ml</a>
+  </li>
+  <li id="ref-bitnet-kernels" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Microsoft.</strong> Mise à jour du dépôt « BitNet » — configurations de noyaux parallèles. Janvier 2026. Accélération 1,15–2,1× sur BitNet b1.58 2B-4T. <a href="https://github.com/microsoft/BitNet" target="_blank" rel="noopener">github.com/microsoft/BitNet</a>
+  </li>
+  <li id="ref-btc-llm" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>BTC-LLM: Sub-1-bit LLM Quantization via Learnable Transformation and Binary Codebook.</strong> arXiv:2506.12040. LLaMA-2-13B à 0,8 bit à moins de 3,1 % de la précision fp16. <a href="https://arxiv.org/abs/2506.12040" target="_blank" rel="noopener">arxiv.org/abs/2506.12040</a>
+  </li>
+  <li id="ref-samsung-qrng" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>ID Quantique.</strong> « Samsung Galaxy Quantum 6 — QRNG use case. » Chipset QRNG de 2,5 × 2,5 mm intégré à Samsung Knox ; le plus petit en production au monde. <a href="https://www.idquantique.com/random-number-generation/qrng-use-cases/samsung-qrng-use-case/" target="_blank" rel="noopener">idquantique.com</a>
+  </li>
+  <li id="ref-quantinuum" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Quantinuum.</strong> « Quantum Origin — verifiable QRNG from a fault-tolerant stack. » Page produit, 2025. <a href="https://www.quantinuum.com/products-solutions/quantum-origin" target="_blank" rel="noopener">quantinuum.com</a>. Également : <a href="https://aws.amazon.com/marketplace/pp/prodview-57mpntroadkzm" target="_blank" rel="noopener">référencement msQRNG sur AWS Marketplace</a>.
+  </li>
+  <li id="ref-energy-vault-rudong" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Energy Vault × China Tianying × Atlas Renewable.</strong> « 25 MW / 100 MWh EVx commissioned at Rudong. » Datacenter Dynamics, janvier 2026. Second projet de 100 MWh signé pour le comté de Huailai, Hebei. <a href="https://www.datacenterdynamics.com/en/news/energy-vault-says-25mw-gravity-storage-system-in-china-is-completed/" target="_blank" rel="noopener">datacenterdynamics.com</a>
+  </li>
+  <li id="ref-gravitricity-collapse" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Solar Power Portal.</strong> « Gravitricity wound up voluntarily with under £8k assets. » Février 2026. Date limite de vente de la PI au 25 février 2026. <a href="https://www.solarpowerportal.co.uk/energy-storage/gravitricity-wound-up-voluntarily-with-under-8k-assets" target="_blank" rel="noopener">solarpowerportal.co.uk</a>
+  </li>
+  <li id="ref-form-google" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Energy-Storage.news.</strong> « Google Minnesota data-centre energy deal includes 30 GWh multi-day iron-air batteries from Form Energy. » Mars 2026. « Le plus grand annoncé en GWh. » <a href="https://www.energy-storage.news/google-minnesota-data-centre-energy-deal-includes-30gwh-multi-day-iron-air-batteries-from-form-energy/" target="_blank" rel="noopener">energy-storage.news</a>
+  </li>
+  <li id="ref-form-crusoe" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Form Energy.</strong> « Form Energy + Crusoe announce 12 GWh agreement for AI data centers. » CERAWeek, mars 2026. <a href="https://formenergy.com/form-energy-crusoe-announce-agreement-for-12-gigawatt-hours-of-iron-air-batteries-for-ai-data-centers/" target="_blank" rel="noopener">formenergy.com</a>
+  </li>
+  <li id="ref-polar-night" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Polar Night Energy.</strong> « Sand battery wins Popular Mechanics Breakthrough Award 2026. » Pilote sable-vers-électricité testé début 2026 ; construction de 250 MWh à Vääksy démarrant en 2026. <a href="https://polarnightenergy.com/news/sand-battery-wins-breakthrough-award-2026/" target="_blank" rel="noopener">polarnightenergy.com</a>
+  </li>
+  <li id="ref-tinytapeout-ihp" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>eeNews Europe.</strong> « Tiny Tapeout sees industrial boost as it recovers from Efabless closure. » Pivot vers IHP (Leibniz Institute for High Performance Microelectronics), kit de développement à ~300 €, 70 €/tuile. 2025. <a href="https://www.eenewseurope.com/en/tiny-tapeout-sees-industrial-boost-as-it-recovers-from-efabless-closure/" target="_blank" rel="noopener">eenewseurope.com</a>
+  </li>
+  <li id="ref-mythic-honda" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Mythic AI.</strong> « Honda and Mythic announce joint development of 100× energy-efficient analog AI chip for next-generation vehicles. » Février 2026. Partenariat Microchip memBrain annoncé en mars 2026 ciblant 120 TOPS/W. <a href="https://mythic.ai/whats-new/honda-and-mythic-announce-joint-development-of-100x-energy-efficient-analog-ai-chip-for-next-generation-vehicles/" target="_blank" rel="noopener">mythic.ai</a>
+  </li>
+</ol>
+
+<script>
+// Défilement fluide pour les références de la mise à jour de mai 2026 dans cet article.
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('a[href^="#ref-"], a[id^="cite-"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = link.getAttribute('href') || '';
+      var targetId = href.replace(/^#/, '');
+      var target = targetId ? document.getElementById(targetId) : null;
+      if (!target) return;
+      e.preventDefault();
+      var rect = target.getBoundingClientRect();
+      window.scrollTo({ top: window.scrollY + rect.top - 90, behavior: 'smooth' });
+      if (history.replaceState) history.replaceState(null, '', href);
+    });
+  });
+});
+</script>
