@@ -3,6 +3,7 @@ title = "إدارة إصدارات الذكاء الاصطناعي - DevOps مؤ
 description = "إدارة إصدارات على مستوى المؤسسة لنماذج الذكاء الاصطناعي مع التحكم في الإصدارات وقدرات الاستعادة وأتمتة النشر"
 template = "feature.html"
 [extra]
+hero_poster = "images/hero-release.webp"
 feature_category = "development-tools"
 +++
 
@@ -337,7 +338,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 4.44rem; margin-bottom: 2rem;">ما هي إدارة إصدارات الذكاء الاصطناعي؟</h2>
 
 <div class="release-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/release-cycle-diagram.svg" alt="مخطط إدارة دورة إصدار الذكاء الاصطناعي" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="/images/release-cycle-diagram.svg" alt="مخطط إدارة دورة إصدار الذكاء الاصطناعي" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;"  loading="lazy"/ width="900" height="750">
 </div>
 <div class="overview-content">
 <p style="font-size: 1.25rem; margin-bottom: 2rem;">تجلب منصة إدارة الإصدارات من Divinci AI أفضل ممارسات هندسة البرمجيات إلى نشر نماذج الذكاء الاصطناعي. إدارة الإصدارات وأتمتة عمليات النشر وضمان عمليات الطرح السلسة مع اختبار شامل وقدرات استعادة مصممة خصيصاً لأنظمة الذكاء الاصطناعي.</p>

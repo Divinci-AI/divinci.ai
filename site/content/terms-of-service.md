@@ -47,7 +47,7 @@ To the fullest extent permitted by law:
 
 ## 7. Privacy and Data Security
 
-Your privacy is important to us. Please refer to our [Privacy Policy](/en/privacy-policy/) for information on how we collect, use, and store your data. The Services may require access to certain data (such as user inputs and preferences) to improve the performance of the AI models. By using the Services, you consent to this data collection, usage, and storage.
+Your privacy is important to us. Please refer to our [Privacy Policy](/privacy-policy/) for information on how we collect, use, and store your data. The Services may require access to certain data (such as user inputs and preferences) to improve the performance of the AI models. By using the Services, you consent to this data collection, usage, and storage.
 
 ## 8. Intellectual Property
 

@@ -10,7 +10,7 @@ template = "page.html"
 
 # Privacy Policy
 
-**Last updated:** March 2025
+**Last updated:** Mei 2026
 
 ## Our Commitment to Privacy
 
@@ -42,6 +42,7 @@ We use cookies and similar technologies to:
 - Ensure website functionality
 - Analyze website and app performance
 - Provide personalized experience (with your consent)
+- De organisatie identificeren die met een websitebezoek wordt geassocieerd, voor B2B-marketingdoeleinden (met uw toestemming in de EER, het Verenigd Koninkrijk en Zwitserland)
 
 ## 2. Third-Party Services and SDKs
 
@@ -65,6 +66,10 @@ Our Services integrate the following third-party services, each with their own p
 
 ### 2.6 Cloud Infrastructure
 - **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+
+### 2.7 Marketing, Bezoekersidentificatie en CRM
+- **Instantly.ai / Leadsy.ai**: Wij gebruiken de bezoekersidentificatie-tag van Instantly (geladen vanaf `r2.leadsy.ai`, die dynamisch een trackingscript laadt van `tag.trovo-tag.com` dat door dezelfde leverancier wordt beheerd) om de organisatie te identificeren waaraan een websitebezoek kan worden gekoppeld (bijvoorbeeld het bedrijf dat is gekoppeld aan het IP-adres van de bezoeker). Dit ondersteunt onze business-to-business outbound-marketing. Voor bezoekers die worden gedetecteerd in de EER, het Verenigd Koninkrijk of Zwitserland wordt deze tag **pas geladen nadat u marketingtoestemming heeft verleend** via onze cookiebanner. Voor bezoekers buiten die rechtsgebieden wordt de tag standaard geladen en kan deze op elk moment worden uitgeschakeld via de bediening "Cookievoorkeuren" in Sectie 10. [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
+- **HubSpot**: Wij gebruiken het HubSpot-trackingscript (geladen vanaf `js.hs-scripts.com`, dat dynamisch tracking-, banner- en formuliervastleggingsscripts laadt van `js.hs-analytics.net`, `js.hs-banner.com` en `js.hscollectedforms.net`) om paginaweergaven vast te leggen, de prestaties van marketingkanalen toe te schrijven, formulierinzendingen vast te leggen en website-activiteit te koppelen aan contactrecords in HubSpot CRM wanneer u een formulier indient of een afspraak boekt. Voor bezoekers die worden gedetecteerd in de EER, het Verenigd Koninkrijk of Zwitserland wordt dit script **pas geladen nadat u marketingtoestemming heeft verleend** via onze cookiebanner. Voor bezoekers buiten die rechtsgebieden wordt het script standaard geladen en kan het op elk moment worden uitgeschakeld via de bediening "Cookievoorkeuren" in Sectie 10. [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
 
 ## 3. Legal Basis for Processing (GDPR)
 
@@ -99,6 +104,7 @@ We do not sell your personal data. We may share data with:
 - Cloud hosting and infrastructure providers (with data processing agreements)
 - Authentication service providers
 - Analytics and crash reporting providers (when you consent or as described above)
+- Aanbieders van marketing en B2B-bezoekersidentificatie (onderworpen aan toestemming in gereguleerde rechtsgebieden, zoals beschreven in Sectie 2.7)
 - AI model providers for processing your requests
 - Customer support tools
 
@@ -140,6 +146,8 @@ Our Services are not directed to children under the age of 13 (or the applicable
 - **Objection**: Object to processing for direct marketing
 - **Withdraw Consent**: Revoke consent at any time
 
+To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+
 ### 9.2 CCPA Rights (California Residents)
 - **Right to Know**: What personal information we collect and how it is used
 - **Right to Delete**: Request deletion of your personal information
@@ -161,13 +169,9 @@ Our Services are not directed to children under the age of 13 (or the applicable
     🍪 Cookie Preferences
   </button>
 
-  <button onclick="window.gdprCompliance?.exportUserData()" class="privacy-btn">
-    📥 Download My Data
-  </button>
-
-  <button onclick="window.gdprCompliance?.deleteUserData()" class="privacy-btn privacy-btn-danger">
-    🗑️ Delete My Data
-  </button>
+  <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
+    📥 Een Gegevensverzoek Indienen
+  </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
     ❌ Revoke All Consent

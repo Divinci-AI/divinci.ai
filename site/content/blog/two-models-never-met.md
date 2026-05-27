@@ -1,6 +1,6 @@
 +++
 title = "The Two Models That Never Met. Both Measured at the Same Depth."
-description = "Gemma4 and Qwen3 were trained by different organizations on different data with different architectures. Their internal representations are 99.2% similar at matched depth. Neither model knew the other existed."
+description = "Two natively-trained 1-bit LLMs converge on the same activation anomaly without ever sharing weights. A note on convergence under pressure."
 date = 2026-05-01T09:00:00+00:00
 template = "blog-post.html"
 
@@ -174,7 +174,7 @@ The 99.2% CKA result raises more questions than it answers:
 
 - **Is CKA the right metric?** CKA measures linear-transformation-invariant similarity. If the models have converged to the same geometry up to a *nonlinear* transformation, CKA would miss it. There might be a deeper structural alignment that requires a different lens.
 
-These are the measurements for the next few months. I'm going to run systematic CKA across all 8 vindexes I've built, generate the full pairwise similarity matrix, and find the outliers.
+These are the measurements for the next few months. I'm going to run systematic CKA across all 12 vindexes I've built, generate the full pairwise similarity matrix, and find the outliers.
 
 ---
 
@@ -194,10 +194,27 @@ For interpretability as a field, that's either very good news (findings generali
 
 ---
 
-*Next: [The Bonsai Mystery — We Tried to Make It Forget Paris](/blog/bonsai-mystery-forget-paris/)*
+*Next post in this series: "The Bonsai Mystery — We Tried to Make It Forget Paris" (coming soon)*
 
 ---
 
 **April 23, 2026** — *Coming soon: Three Models That Never Met.* Kimi-K2-Instruct is now in the vindex pipeline. Once Phase 3 routing stats are complete, we'll have a third CKA pair: Gemma4 ↔ Qwen3 (99.2%) and Gemma4 ↔ Kimi-K2. If the 99.2% result holds with a MoE model from a third organization (Moonshot AI), the convergence claim gets significantly stronger. If it doesn't — that's an equally interesting result and will tell us something about where MoE routing changes the representational geometry.
 
 *Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). LarQL vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
+
+## References
+
+<ol class="post-references" style="padding-left: 1.5rem;">
+  <li id="ref-1" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>CKA — Centered Kernel Alignment.</strong> Kornblith et al., <a href="https://arxiv.org/abs/1905.00414" target="_blank" rel="noopener"><em>Similarity of Neural Network Representations Revisited</em></a> (ICML 2019, arXiv:1905.00414). The 0–1 similarity measure used in this post for cross-architecture representational comparison.
+  </li>
+  <li id="ref-2" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>BitNet b1.58.</strong> Ma et al., <a href="https://arxiv.org/abs/2402.17764" target="_blank" rel="noopener"><em>The Era of 1-bit LLMs</em></a> (arXiv:2402.17764, 2024); <a href="https://arxiv.org/abs/2504.12285" target="_blank" rel="noopener"><em>BitNet b1.58 2B4T Technical Report</em></a> (arXiv:2504.12285, 2025); model card <a href="https://huggingface.co/microsoft/bitnet-b1.58-2B-4T" target="_blank" rel="noopener">microsoft/bitnet-b1.58-2B-4T</a>.
+  </li>
+  <li id="ref-3" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>Bonsai 8B.</strong> Native-1-bit Qwen3-architecture model published by Prism ML: <a href="https://huggingface.co/prism-ml/Bonsai-8B-mlx-1bit" target="_blank" rel="noopener">prism-ml/Bonsai-8B-mlx-1bit</a>. Independent organization, independent training recipe — the "two models that never met" framing.
+  </li>
+  <li id="ref-4" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>Internal CKA + vindex measurements.</strong> The 99.2% Gemma 4 ↔ Qwen3 CKA result, and the var@64 / C1 / C3 family signatures in the charts above, are computed by the <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">LarQL</a> pipeline from the vindexes published at <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">huggingface.co/Divinci-AI</a>. The companion post <a href="/blog/when-the-circuit-dissolves/">When the Circuit Dissolves</a> lists the specific repos and the `larql show` reproducer commands.
+  </li>
+</ol>

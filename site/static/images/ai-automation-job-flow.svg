@@ -103,15 +103,11 @@
     <text x="940" y="750" class="caption">• Prevents social disruption during shift</text>
   </g>
 
-  <!-- Visual flow elements -->
-  <g id="flow-indicators">
-    <!-- Displaced jobs visual -->
-    <rect x="120" y="420" width="300" height="8" rx="4" fill="#e74c3c" opacity="0.6"/>
-
-    <!-- Created jobs visual (larger) -->
-    <rect x="700" y="420" width="520" height="8" rx="4" fill="#27ae60" opacity="0.6"/>
-
-    <!-- Balance point -->
-    <circle cx="560" cy="424" r="12" fill="#8b7659" stroke="#fff" stroke-width="3"/>
+  <!-- Convergence arrows: each main box flows down into Net Job Growth -->
+  <g id="convergence-arrows">
+    <path d="M 270 410 L 270 425 L 600 445 L 600 450" stroke="#c0392b" stroke-width="2.5" fill="none" opacity="0.55" stroke-dasharray="4,3"/>
+    <text x="335" y="440" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#c0392b" opacity="0.8">−92M displaced</text>
+    <path d="M 850 410 L 850 425 L 800 445 L 800 450" stroke="#229954" stroke-width="2.5" fill="none" opacity="0.55" stroke-dasharray="4,3"/>
+    <text x="900" y="440" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#229954" opacity="0.8">+170M created</text>
   </g>
 </svg>

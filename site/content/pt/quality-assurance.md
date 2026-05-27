@@ -3,6 +3,8 @@ title = "LLM Quality Assurance"
 description = "Testes e validação de nível empresarial para aplicações de IA. Detecção automática de alucinações, monitoramento de viés e pontuação de qualidade contínua."
 template = "feature.html"
 
+[extra]
+hero_poster = "images/hero-qa.webp"
 +++
 
 # LLM Quality Assurance
@@ -329,7 +331,7 @@ template = "feature.html"
 <h2 class="section-heading" style="margin-top: 3rem; margin-bottom: 3rem;">What is LLM Quality Assurance?</h2>
 
 <div class="qa-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;"  loading="lazy"/ width="900" height="550">
 </div>
 
 <div class="overview-content">

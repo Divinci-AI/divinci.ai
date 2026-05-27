@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Horizontal bar chart of five LLMs on the same 50-item AskTheDoctor calibration suite sorted descending by overall mean: GPT-OSS-120B 0.555, Kimi K2.6 0.553, Gemini 3.1 Pro 0.530, Claude Opus 4.7 0.473, DFO QLoRA DFlash baseline 0.398. Pass rates and median latencies labeled per row.">
+  <title>Five-LLM scoreboard — overall mean, sorted descending</title>
+  <rect width="760" height="460" fill="#faf8f5"/>
+
+  <!-- Title -->
+  <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">Five-LLM scoreboard — overall mean on the same suite</text>
+  <text x="40" y="56" font-size="12" fill="#6b5d4f">3-scorer matrix · 50-item AskTheDoctor calibration suite · top three within 3pp · DFO baseline trails by ~16pp</text>
+
+  <!-- Axis (linear, 0.0 → 1.0).  px(v) = 200 + v * 460.  So 0→200, 0.5→430, 1.0→660 -->
+  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#8a7d68">
+    <line x1="200" y1="378" x2="660" y2="378" stroke="#2d3c34" stroke-width="1.2"/>
+    <line x1="200" y1="80" x2="200" y2="378"/>
+    <line x1="315" y1="80" x2="315" y2="378" opacity="0.4"/>
+    <line x1="430" y1="80" x2="430" y2="378" opacity="0.4"/>
+    <line x1="545" y1="80" x2="545" y2="378" opacity="0.4"/>
+    <line x1="660" y1="80" x2="660" y2="378" opacity="0.4"/>
+    <text x="200" y="396" text-anchor="middle">0.0</text>
+    <text x="315" y="396" text-anchor="middle">0.25</text>
+    <text x="430" y="396" text-anchor="middle">0.50</text>
+    <text x="545" y="396" text-anchor="middle">0.75</text>
+    <text x="660" y="396" text-anchor="middle">1.00</text>
+    <text x="430" y="414" text-anchor="middle" font-size="11" fill="#6b5d4f" font-style="italic">overall mean (equal-weight, 0-1) →</text>
+  </g>
+
+  <!-- 5 bars, sorted desc by mean. Bar height 36, gap 18. Y-start 92. -->
+  <g font-size="11">
+    <!-- 1. GPT-OSS-120B  mean=0.555  (winner — forest green) -->
+    <text x="190" y="115" text-anchor="end" fill="#2d3c34" font-weight="700">GPT-OSS-120B</text>
+    <rect x="200" y="100" width="255" height="32" fill="#2d5a4f"/>
+    <text x="461" y="120" fill="#1e3a2b" font-weight="700">0.555</text>
+    <text x="461" y="132" fill="#8a7d68" font-size="9">50/50 · 5.4 s</text>
+
+    <!-- 2. Kimi K2.6  mean=0.553 -->
+    <text x="190" y="171" text-anchor="end" fill="#2d3c34" font-weight="600">Kimi K2.6</text>
+    <rect x="200" y="156" width="254" height="32" fill="#2d5a4f" opacity="0.78"/>
+    <text x="460" y="176" fill="#1e3a2b" font-weight="700">0.553</text>
+    <text x="460" y="188" fill="#8a7d68" font-size="9">49/50 · 16.2 s</text>
+
+    <!-- 3. Gemini 3.1 Pro  mean=0.530 -->
+    <text x="190" y="227" text-anchor="end" fill="#2d3c34" font-weight="600">Gemini 3.1 Pro</text>
+    <rect x="200" y="212" width="244" height="32" fill="#2d5a4f" opacity="0.62"/>
+    <text x="450" y="232" fill="#1e3a2b" font-weight="700">0.530</text>
+    <text x="450" y="244" fill="#8a7d68" font-size="9">49/50 · 18.9 s</text>
+
+    <!-- 4. Claude Opus 4.7  mean=0.473 -->
+    <text x="190" y="283" text-anchor="end" fill="#2d3c34" font-weight="600">Claude Opus 4.7</text>
+    <rect x="200" y="268" width="218" height="32" fill="#5a8a7f"/>
+    <text x="424" y="288" fill="#1e3a2b" font-weight="700">0.473</text>
+    <text x="424" y="300" fill="#8a7d68" font-size="9">50/50 · 3.3 s</text>
+
+    <!-- 5. DFO baseline  mean=0.398 -->
+    <text x="190" y="339" text-anchor="end" fill="#2d3c34" font-weight="600">DFO QLoRA / DFlash</text>
+    <text x="190" y="350" text-anchor="end" fill="#8a7d68" font-size="9">(local baseline)</text>
+    <rect x="200" y="324" width="183" height="32" fill="#c08850" opacity="0.85"/>
+    <text x="389" y="344" fill="#8a5a20" font-weight="700">0.398</text>
+    <text x="389" y="356" fill="#8a7d68" font-size="9">50/50 · 3.0 s</text>
+  </g>
+
+  <!-- Legend / footer band -->
+  <g font-size="11" fill="#4a3a2a">
+    <rect x="200" y="424" width="14" height="14" fill="#2d5a4f"/>
+    <text x="220" y="435">top three (within 3pp)</text>
+    <rect x="365" y="424" width="14" height="14" fill="#5a8a7f"/>
+    <text x="385" y="435">frontier hedger</text>
+    <rect x="490" y="424" width="14" height="14" fill="#c08850" opacity="0.85"/>
+    <text x="510" y="435">in-house baseline</text>
+  </g>
+</svg>

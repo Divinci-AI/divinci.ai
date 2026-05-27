@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Bar chart of Spearman ρ between human ratings and 5 candidate LLM judges. Threshold dashed line at 0.85. Two judges (gemini-2.5-flash 0.872, claude-haiku-4.5 0.851) clear the threshold and are colored sage green; three judges below (gpt-4o-mini 0.794, llama-4-scout-17b 0.731, workers-ai llama-3.3-70b 0.679) are colored amber. Caption notes values are illustrative until Dr. Fuhrman's ratings land.">
+  <title>Per-Judge Spearman ρ Against the Human Anchor</title>
+  <rect width="760" height="460" fill="#faf8f5"/>
+
+  <!-- Title -->
+  <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">Spearman ρ — LLM judges vs human rater</text>
+  <text x="40" y="56" font-size="12" fill="#6b5d4f">Two clear ρ ≥ 0.85 · three fail · only blessed judges score the rest of the suite</text>
+
+  <!-- Threshold band: ρ ≥ 0.85 -->
+  <g>
+    <rect x="582" y="80" width="78" height="290" fill="#2d5a4f" opacity="0.06"/>
+    <line x1="582" y1="80" x2="582" y2="370" stroke="#2d5a4f" stroke-width="1.4" stroke-dasharray="4 4" opacity="0.7"/>
+    <text x="582" y="76" font-size="10" fill="#2d5a4f" text-anchor="middle" font-weight="700" opacity="0.9">ρ ≥ 0.85 threshold</text>
+  </g>
+
+  <!-- Axis (linear, 0.0 → 1.0).  px(v) = 180 + v * 480.  So 0→180, 0.5→420, 0.85→588, 1.0→660 -->
+  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#8a7d68" font-family="'DM Sans', sans-serif">
+    <line x1="180" y1="370" x2="660" y2="370" stroke="#2d3c34" stroke-width="1.2"/>
+    <line x1="180" y1="80" x2="180" y2="370"/>
+    <line x1="300" y1="80" x2="300" y2="370" opacity="0.4"/>
+    <line x1="420" y1="80" x2="420" y2="370" opacity="0.4"/>
+    <line x1="540" y1="80" x2="540" y2="370" opacity="0.4"/>
+    <line x1="660" y1="80" x2="660" y2="370" opacity="0.4"/>
+    <text x="180" y="388" text-anchor="middle">0.0</text>
+    <text x="300" y="388" text-anchor="middle">0.25</text>
+    <text x="420" y="388" text-anchor="middle">0.50</text>
+    <text x="540" y="388" text-anchor="middle">0.75</text>
+    <text x="660" y="388" text-anchor="middle">1.00</text>
+    <text x="420" y="408" text-anchor="middle" font-size="11" fill="#6b5d4f" font-style="italic">Spearman ρ between human and judge ratings</text>
+  </g>
+
+  <!-- Bars. Bar height 26, gap 14. Y-start 92.  px width = v * 480. -->
+  <g font-size="11">
+    <!-- 1. gemini-2.5-flash  ρ=0.872  (clears, recommended default) -->
+    <text x="170" y="111" text-anchor="end" fill="#2d3c34" font-weight="600">gemini-2.5-flash</text>
+    <rect x="180" y="100" width="419" height="26" fill="#2d5a4f"/>
+    <text x="606" y="118" fill="#1e3a2b" font-weight="700">0.872 ✓ default</text>
+
+    <!-- 2. claude-haiku-4.5  ρ=0.851  (clears, just) -->
+    <text x="170" y="151" text-anchor="end" fill="#2d3c34" font-weight="600">claude-haiku-4.5</text>
+    <rect x="180" y="140" width="408" height="26" fill="#2d5a4f"/>
+    <text x="595" y="158" fill="#1e3a2b" font-weight="700">0.851 ✓</text>
+
+    <!-- 3. gpt-4o-mini  ρ=0.794  (under) -->
+    <text x="170" y="191" text-anchor="end" fill="#6b5d4f">gpt-4o-mini</text>
+    <rect x="180" y="180" width="381" height="26" fill="#c08850" opacity="0.85"/>
+    <text x="568" y="198" fill="#8a5a20" font-weight="700">0.794</text>
+
+    <!-- 4. llama-4-scout-17b  ρ=0.731  (under) -->
+    <text x="170" y="231" text-anchor="end" fill="#6b5d4f">llama-4-scout-17b</text>
+    <rect x="180" y="220" width="351" height="26" fill="#c08850" opacity="0.85"/>
+    <text x="538" y="238" fill="#8a5a20" font-weight="700">0.731</text>
+
+    <!-- 5. workers-ai llama-3.3-70b  ρ=0.679  (under) -->
+    <text x="170" y="271" text-anchor="end" fill="#6b5d4f">workers-ai llama-3.3-70b</text>
+    <rect x="180" y="260" width="326" height="26" fill="#c08850" opacity="0.85"/>
+    <text x="513" y="278" fill="#8a5a20" font-weight="700">0.679</text>
+  </g>
+
+  <!-- Legend -->
+  <g font-size="11" fill="#4a3a2a">
+    <rect x="180" y="333" width="14" height="14" fill="#2d5a4f"/>
+    <text x="200" y="345">Clears ρ ≥ 0.85 (blessed for scaled scoring)</text>
+    <rect x="490" y="333" width="14" height="14" fill="#c08850" opacity="0.85"/>
+    <text x="510" y="345">Under threshold (not auto-defaulted)</text>
+  </g>
+
+  <!-- Caption -->
+  <text x="40" y="438" font-size="11" fill="#6b5d4f" font-style="italic">Illustrative values from internal pre-release calibration runs. Dr. Fuhrman's actual per-judge ρ table will be published as an addendum once his 50-answer session is complete.</text>
+</svg>

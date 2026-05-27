@@ -1,0 +1,60 @@
+https://app.hubspot.com/ai-visibility/48021503/recommendations/114557122
+
+How to Diagnose Custom LLM QA Failures in 7 Steps (2026)
+
+[Archived from HubSpot AEO recommendation 2026-05-26.
+
+HUBSPOT's 7 STEPS:
+1. Verify Your Benchmark Design
+2. Audit Your Training Data Quality
+3. Check Prompt and Response Consistency
+4. Run Bias and Safety Evaluations
+5. Analyze Retrieval and Context Handling
+6. Review Production Monitoring Signals
+7. Document Findings and Implement Fixes
+
+PLUS H2 QUESTIONS:
+- What Are the Most Common Root Causes of LLM QA Failures?
+- How Do You Prevent LLM QA Failures Before They Happen?
+
+PLUS 6 FAQ:
+- Why does my LLM produce different outputs for similar prompts?
+- How often should I re-evaluate my LLM benchmarks?
+- What causes hallucinations in custom language models?
+- How do I know if my training data is the problem?
+- Can I fix QA failures without retraining my entire model?
+- What metrics should I monitor for LLM quality in production?
+
+KEYWORDS:
+- "prompt sensitivity"
+- "benchmark design"
+- "training data quality"
+- "AutoRAG"
+- "drift detection"
+- "instant rollback"
+- "audit trail"
+- "EU AI Act"
+- "NIST AI RMF"
+
+WHAT TO DISCARD:
+- The "Why Divinci AI" closing pitch
+- Generic "set up dedicated evaluation passes" boilerplate
+- The "start your free trial" CTA
+
+POST 6 ACTUAL ANGLE:
+Reframe the 7 steps as a DIAGNOSTIC DECISION TREE. The Divinci-grounded
+thesis: most "QA failures" are NOT model failures. They're eval-coverage
+failures, judge-calibration failures, or training-serving skew. 6 of 7
+diagnostic steps rule out non-model causes BEFORE step 7 blames the model.
+
+That maps onto our four-stage pipeline: each diagnostic step verifies
+that some piece of the Register/Gate/Roll/Observe state matches production.
+
+Visual: a diagnostic flowchart SVG. Each branch eliminates a cause class.
+Plus a "where the bug actually was" pie chart showing the 7 root-cause
+categories and which is most common (probably eval slice gap).
+
+Hero direction: Norman Rockwell "Country Doctor" style — 1950s American
+doctor at his desk with a stethoscope, diagnosing an LLM. Warm, intimate,
+hopeful. Distinct from prior 5 heroes.
+]

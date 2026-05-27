@@ -1,7 +1,6 @@
 +++
 title = "Divinci AI - Excellence, every time"
-description = "Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance through a structured, end-to-end deployment process."
-
+description = "Verifiable AI compliance: vindex receipts for EU AI Act, GDPR Article 17, HIPAA, and NIST AI. Excellence, every time."
 [extra]
 lang = "en"
 +++

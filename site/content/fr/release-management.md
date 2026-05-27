@@ -3,6 +3,7 @@ title = "Gestion des Versions IA - DevOps d'Entreprise pour Systèmes IA"
 description = "Gestion des versions de niveau entreprise pour modèles d'IA avec contrôle de version, capacités de rollback et automatisation de déploiement"
 template = "feature.html"
 [extra]
+hero_poster = "images/hero-release.webp"
 feature_category = "development-tools"
 +++
 
@@ -337,7 +338,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 4.44rem; margin-bottom: 2rem;">Qu'est-ce que la Gestion des Versions IA ?</h2>
 
 <div class="release-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/release-cycle-diagram.svg" alt="Diagramme de Gestion du Cycle de Version IA" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="/images/release-cycle-diagram.svg" alt="Diagramme de Gestion du Cycle de Version IA" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;"  loading="lazy"/ width="900" height="750">
 </div>
 <div class="overview-content">
 <p style="font-size: 1.25rem; margin-bottom: 2rem;">La plateforme de Gestion des Versions de Divinci AI apporte les meilleures pratiques d'ingénierie logicielle au déploiement de modèles d'IA. Gérez les versions, automatisez les déploiements et assurez des lancements fluides avec des tests complets et des capacités de rollback conçues spécifiquement pour les systèmes d'IA.</p>

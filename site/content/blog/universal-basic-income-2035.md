@@ -1,7 +1,8 @@
 +++
 title = "Universal Basic Income by 2035: A Feasible Path Forward"
-description = "An in-depth analysis of how emerging technologies, government restructuring, and innovative cryptocurrency models could make Universal Basic Income a reality by 2035, providing $1,000-$2,000 monthly to every American."
+description = "UBI by 2035: how AI productivity, energy abundance, defense conversion, and useful-work mining could fund a livable basic income."
 date = 2025-10-05T10:00:00+00:00
+updated = 2026-05-26T10:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -9,6 +10,8 @@ categories = ["Policy"]
 tags = ["UBI", "AI", "Fusion Energy", "Cryptocurrency", "Bitcoin", "Government Reform"]
 
 [extra]
+math = true
+pinned = true
 author = "Divinci AI Research Team"
 author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-family-dinner.webm"
@@ -21,6 +24,10 @@ summary = "A comprehensive analysis revealing how fusion energy, AI, robotics, g
 > **TL;DR:**
 >
 > As impossible as decreasing military spending and closing corporate loopholes may seem, and as sappy as this sounds, Hope, Unity and Love are still stronger. It is as simple as a series of choices. Don't be tricked into division by a comment from a bot online. Stay true to the path of Solarpunk 2035 ;-)
+
+<aside style="background: rgba(184, 160, 128, 0.1); border-left: 3px solid #b8a080; padding: 0.9rem 1.1rem; margin: 1.5rem 0; font-size: 0.92rem; color: #4a4030;">
+  <strong style="color: #1e3a2b;">About the charts and numbers.</strong> The post synthesizes <em>projections</em> from third-party institutions — chiefly the <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2023/" target="_blank" rel="noopener">World Economic Forum <em>Future of Jobs</em></a>, the <a href="https://www.mckinsey.com/mgi/our-research/generative-ai-and-the-future-of-work-in-america" target="_blank" rel="noopener">McKinsey Global Institute</a>, the U.S. Treasury, and IRS — into a single 2035 scenario. Numbered footnotes throughout the body link out to each underlying source. The bar charts and flow diagrams are illustrative renderings of those third-party projections; they are not Divinci measurements, and the 2035 outcomes are scenarios, not forecasts. Inputs that change between now and then — fusion grid timelines, AI deployment curves, policy choices — change the outputs.
+</aside>
 
 ---
 
@@ -37,7 +44,7 @@ But what if we've been looking at the problem the wrong way?
 
 These aren't distant possibilities—they're current realities reshaping the economic landscape.
 
-<img src="/images/ubi-funding-sources.svg" alt="Three Pathways to UBI: Government Savings, Technology Gains, and Cryptocurrency" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-funding-sources.svg" alt="Three Pathways to UBI: Government Savings, Technology Gains, and Cryptocurrency" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy" width="800" height="500">
 
 *Diagram: The three converging pathways that make Universal Basic Income financially viable by 2035—government efficiency gains, technology-driven economic growth, and cryptocurrency integration.*
 
@@ -54,7 +61,7 @@ This isn't science fiction or wishful thinking. It's a data-driven roadmap based
 The question isn't whether we can afford UBI. The question is whether we can afford the social and economic costs of not implementing it as automation transforms the labor market.[^25]
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-3.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">A vision of 2035: thriving communities empowered by Universal Basic Income</figcaption>
@@ -76,6 +83,163 @@ The question isn't whether we can afford UBI. The question is whether we can aff
     </a>
   </div>
 </div>
+
+## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> May 2026 Update: How Our Model Compares to the Plans That Emerged Since
+
+When this analysis first published in October 2025, "post-AI-labor income" was still mostly a hypothetical written by think-tanks. The seven months since have moved the conversation from *whether* to *how* — and a handful of named figures have put concrete proposals on the table. Below we map them against our four funding pillars (AI productivity capture, fusion-energy abundance, defense-budget conversion, useful-work crypto mining) and update our model where the new ideas strengthen it.
+
+<figure style="margin: 2.5rem 0;">
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width: 100%; max-width: 100%; height: auto;" role="img" aria-label="The 2026 funding model — four funding pillars and one policy layer for UBI">
+<rect width="900" height="520" fill="#faf8f5"/>
+<text x="450" y="34" font-family="'DM Sans', -apple-system, sans-serif" font-size="20" font-weight="700" fill="#1e3a2b" text-anchor="middle">The 2026 Funding Model — Four Pillars + One Policy Layer</text>
+<text x="450" y="58" font-family="'DM Sans', -apple-system, sans-serif" font-size="13" fill="#5a6862" text-anchor="middle">Pillars 1, 3, 4 remain distinctive to this analysis. Pillar 2 absorbs the 2025–2026 plans.</text>
+<g transform="translate(60, 85)">
+<rect x="0" y="0" width="780" height="58" fill="#a04848" rx="6"/>
+<text x="390" y="28" font-family="'DM Sans', sans-serif" font-size="15" font-weight="700" fill="#faf8f5" text-anchor="middle">AUTO-TRIGGERED SAFETY-NET ESCALATORS — policy layer</text>
+<text x="390" y="46" font-family="'DM Sans', sans-serif" font-size="12" fill="#f5d6d6" text-anchor="middle">Indexed against BLS displacement metrics — activate automatically when thresholds cross</text>
+</g>
+<g transform="translate(450, 152)">
+<path d="M -390 0 L -390 14 M -130 0 L -130 14 M 130 0 L 130 14 M 390 0 L 390 14" stroke="#a04848" stroke-width="1.5" stroke-dasharray="2,3" opacity="0.5"/>
+</g>
+<g transform="translate(60, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#b8a060" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#3a2e1c" text-anchor="middle">I · Fusion Energy</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#b8a060" stroke-width="1.5"/>
+<rect x="50" y="60" width="80" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#5a6c3a" text-anchor="middle">DISTINCTIVE</text>
+<text x="90" y="116" font-family="'DM Sans', sans-serif" font-size="11" fill="#4a4030" text-anchor="middle" font-style="italic"><tspan x="90" dy="0">No other 2025–2026</tspan><tspan x="90" dy="15">plan ties UBI funding</tspan><tspan x="90" dy="15">to fusion-driven cost</tspan><tspan x="90" dy="15">collapses</tspan></text>
+<text x="90" y="220" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">Cost basis for every</text>
+<text x="90" y="236" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">other plan changes</text>
+<text x="90" y="252" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">if fusion delivers</text>
+<text x="90" y="298" font-family="'DM Sans', sans-serif" font-size="10" fill="#7a7060" text-anchor="middle">CFS · Helion · ITER</text>
+</g>
+<g transform="translate(260, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#2d5a4f" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#faf8f5" text-anchor="middle">II · AI Productivity</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#2d5a4f" stroke-width="1.5"/>
+<rect x="58" y="60" width="64" height="22" fill="#faf8f5" stroke="#a04848" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#7a3030" text-anchor="middle">CROWDED</text>
+<rect x="8" y="100" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="115" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">OpenAI Public Wealth Fund</text>
+<rect x="8" y="128" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="143" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">Korea Citizen Dividend</text>
+<rect x="8" y="156" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="171" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">Yang VAT (consumption)</text>
+<rect x="8" y="184" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="199" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">Windfall Clause (voluntary)</text>
+<rect x="8" y="212" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="227" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">Musk UHI (productivity)</text>
+<text x="90" y="262" font-family="'DM Sans', sans-serif" font-size="10" fill="#5a6862" text-anchor="middle" font-style="italic">5 named plans, one pillar</text>
+</g>
+<g transform="translate(460, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#5a7a8f" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#faf8f5" text-anchor="middle">III · Defense Conversion</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1.5"/>
+<rect x="50" y="60" width="80" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#5a6c3a" text-anchor="middle">DISTINCTIVE</text>
+<text x="90" y="116" font-family="'DM Sans', sans-serif" font-size="11" fill="#4a4030" text-anchor="middle" font-style="italic"><tspan x="90" dy="0">Peace-dividend</tspan><tspan x="90" dy="15">reallocation; not in any</tspan><tspan x="90" dy="15">2025–2026 plan</tspan><tspan x="90" dy="15">surveyed</tspan></text>
+<text x="90" y="220" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">20% conversion floor →</text>
+<text x="90" y="236" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">multi-trillion annual</text>
+<text x="90" y="252" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">funding line</text>
+<text x="90" y="298" font-family="'DM Sans', sans-serif" font-size="10" fill="#7a7060" text-anchor="middle">Post-Cold War precedent</text>
+</g>
+<g transform="translate(660, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#7a8a4a" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#faf8f5" text-anchor="middle">IV · Useful-Work Mining</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5"/>
+<rect x="50" y="60" width="80" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#5a6c3a" text-anchor="middle">DISTINCTIVE</text>
+<rect x="8" y="100" width="164" height="22" fill="#eae3d5" stroke="#7a8a4a" stroke-width="1" rx="4"/>
+<text x="90" y="115" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">Altman UBC (complement)</text>
+<text x="90" y="156" font-family="'DM Sans', sans-serif" font-size="11" fill="#4a4030" text-anchor="middle" font-style="italic"><tspan x="90" dy="0">Compute-as-currency</tspan><tspan x="90" dy="15">analogue; Worldcoin</tspan><tspan x="90" dy="15">is identity rail, not</tspan><tspan x="90" dy="15">funding mechanism</tspan></text>
+<text x="90" y="252" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">Gridcoin remains</text>
+<text x="90" y="268" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">underexplored</text>
+</g>
+</svg>
+<figcaption style="text-align: center; font-style: italic; color: #5a6862; font-size: 0.9rem; margin-top: 0.75rem;">Pillars 1, 3, 4 remain unique to this analysis — no other 2025–2026 plan covers them. Pillar 2 absorbs the named-figure proposals that emerged through 2025–2026. The auto-trigger control layer is the new policy primitive that converts UBI from a per-budget political decision into a formula-indexed technical one.</figcaption>
+</figure>
+
+### A new framing: Musk's "Universal High Income"
+
+At the May 2024 Viva Technology conference in Paris, Elon Musk introduced a distinct framing: <q>There will be universal high income — and not universal basic income.</q><sup style="font-size: 0.75em;"><a href="#ref-92" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[92]</a></sup> He has reiterated the formulation across multiple venues since — the U.S.–Saudi Investment Forum in Washington in November 2025, on X in August 2025, on Joe Rogan in late 2025<sup style="font-size: 0.75em;"><a href="#ref-93" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[93]</a></sup>. His thesis is structurally different from UBI: rather than redistributing scarce resources to establish a *floor*, AI and robotics produce enough goods and services that scarcity itself evaporates. <q>Sustainable abundance.</q>
+
+This is the same productivity-driven argument we make in Game-Changer #1, taken to its logical conclusion. Where Musk's framing falls short is the **distribution problem**: even if AI/robotics produce abundance, *who owns the productive capacity* determines whether that abundance flows to citizens. Musk has not proposed a redistribution mechanism — he assumes the productivity itself eliminates the need for one. Tesla's Optimus humanoid robot is the implicit production vehicle in his framing, but he has not specified an ownership, dividend, or revenue-sharing structure that would route Optimus output to citizens.
+
+Independent modeling by the Tax Project Institute (not Musk's number) estimates that funding UHI at sufficiency-plus levels for the ~40 million workers most exposed to displacement would cost roughly $7.03 trillion annually, or 143% of 2024 federal revenue<sup style="font-size: 0.75em;"><a href="#ref-94" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[94]</a></sup>. The math echoes the impossibility verdict that UBI faced before our four pillars closed the gap. **UHI without a distribution mechanism is the same trillion-dollar problem; UHI plus our four pillars is a more honest model.**
+
+Bill Gates' 2017 response to similar framing still applies and is worth quoting at the same scale: <q>Even the U.S. isn't rich enough to allow people not to work</q><sup style="font-size: 0.75em;"><a href="#ref-95" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[95]</a></sup> — yet — and the EITC-style scaffolding he proposes is precisely what our Game-Changer #2 builds on.
+
+Musk's stated timeline is "10 to 20 years" for work to become optional, with an ~80% probability of what he calls the benign outcome<sup style="font-size: 0.75em;"><a href="#ref-93" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[93]</a></sup>. That brackets our 2035 target.
+
+### The 2025–2026 plans, in one table
+
+<figure style="margin: 2rem 0; overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+<thead>
+<tr style="background: #2d5a4f; color: #faf8f5;">
+<th style="padding: 0.7rem 0.9rem; text-align: left;">Plan</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">Proposer · venue</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">Mechanism</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">Fits our pillars?</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Universal High Income</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Musk · Viva Tech 2024<sup style="font-size: 0.75em;"><a href="#ref-92" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[92]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Productivity eliminates scarcity; no redistribution specified</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Pillar 2 in spirit; ignores distribution</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>OpenAI Economic Blueprint</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">OpenAI · Apr 2026<sup style="font-size: 0.75em;"><a href="#ref-96" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[96]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Public Wealth Fund (Alaska model) + robot tax + 4-day workweek + auto-trigger safety net</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Strongly reinforces Pillar 2</strong> — see below</td></tr>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Universal Basic Compute</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Altman · All-In Pod, May 2024<sup style="font-size: 0.75em;"><a href="#ref-97" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[97]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Each citizen receives a slice of GPT-N inference; sellable or donatable</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>New fifth mechanism</strong> — in-kind compute distribution</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Citizen Dividend</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">South Korea (Kim Yong-beom) · May 2026<sup style="font-size: 0.75em;"><a href="#ref-98" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[98]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Sovereign-wealth fund seeded by Samsung / SK Hynix AI &amp; semi profits</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Pillar 2 — first named-government version</td></tr>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Freedom Dividend (refresh)</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Yang · Fortune, Feb 2026<sup style="font-size: 0.75em;"><a href="#ref-99" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[99]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">$1,000/mo via 10% VAT on AI-augmented value-add</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Pillar 2 via consumption tax — funds &lt;50% per Tax Foundation</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Windfall Clause</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Oxford GovAI · O'Keefe et al.<sup style="font-size: 0.75em;"><a href="#ref-100" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[100]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Ex-ante voluntary pledge by AI firms to donate profits above a transformative threshold</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Pillar 2 in principle; voluntary</td></tr>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>AI Dividend pilot</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">AI Commons / What We Will · Mar 2026<sup style="font-size: 0.75em;"><a href="#ref-101" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[101]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">$1,000/mo to 25–50 AI-displaced workers; philanthropy-funded</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>First operational displacement-specific program</strong></td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem;"><strong>Worldcoin</strong></td><td style="padding: 0.7rem 0.9rem;">Tools for Humanity · 2024–25<sup style="font-size: 0.75em;"><a href="#ref-102" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[102]</a></sup></td><td style="padding: 0.7rem 0.9rem;">Iris-scan proof-of-personhood; $42 grant per signup</td><td style="padding: 0.7rem 0.9rem;">Identity rail — prerequisite, not funding</td></tr>
+</tbody>
+</table>
+<figcaption style="text-align: center; font-style: italic; color: #5a6862; font-size: 0.9rem; margin-top: 0.75rem;">The 2025–2026 plans, mapped against our four-pillar funding model.</figcaption>
+</figure>
+
+### Where our four pillars still differentiate
+
+Looking across the table, three of our four pillars remain unique to this analysis:
+
+- **Pillar 1 — Fusion-energy abundance.** No other named 2025–2026 proposal ties UBI funding to fusion-driven cost collapses. Every plan above assumes today's energy economics. If commercial fusion delivers on the timeline of CFS, Helion, and ITER, the cost basis for *every other plan in the table* changes substantially.
+- **Pillar 3 — Defense-budget conversion.** Not present in any proposal surveyed. The peace-dividend reallocation we model — even at the 20% conversion floor — funds more of the program than the OpenAI Blueprint's robot tax does at current AI valuations.
+- **Pillar 4 — Useful-work crypto mining.** Worldcoin operates on the identity side, not the work side. No other plan uses compute-mining-as-funding. Gridcoin and similar primitives remain underexplored.
+
+The crowded pillar is **#2 — AI productivity capture.** Six of the seven plans live here, and that is where our model has the most to incorporate from what others have proposed.
+
+### What we'd add to our model based on the 2026 plans
+
+Four concrete mechanisms from the other plans strengthen our Pillar 2 framing and are worth folding in:
+
+**1. The OpenAI Public Wealth Fund — Alaska Permanent Fund, scaled to AI**<sup style="font-size: 0.75em;"><a href="#ref-96" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[96]</a></sup>. OpenAI's April 2026 Economic Blueprint proposes a federally-administered fund seeded by an AI-company assessment, distributing per-resident dividends much like the Alaska Permanent Fund distributes oil royalties (2025 dividend: $1,702 per resident<sup style="font-size: 0.75em;"><a href="#ref-103" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[103]</a></sup>). This is the most operationally specific Pillar 2 vehicle proposed to date, and complements rather than competes with our defense-conversion math: the fund supplies the capital, the conversion supplies the recurring revenue.
+
+**2. South Korea's Citizen Dividend — the first named-government version**<sup style="font-size: 0.75em;"><a href="#ref-98" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[98]</a></sup>. In May 2026, presidential policy chief Kim Yong-beom floated redistributing excess tax revenue from Samsung and SK Hynix AI/semiconductor profits via a sovereign-wealth fund modeled on Alaska and Norway. The KOSPI fell 5.1% on the announcement, which is itself informative: equity markets price in the redistribution mechanism the moment it becomes politically credible. Our model should explicitly include a *sovereign-fund-of-AI-profits* line in the Pillar 2 column.
+
+**3. Auto-triggered safety-net escalators**<sup style="font-size: 0.75em;"><a href="#ref-96" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[96]</a></sup>. OpenAI's Blueprint proposes UBI escalators that activate automatically when AI displacement metrics cross defined thresholds — unemployment by industry, hours-worked-per-capita, displacement-by-occupation indices from BLS. This converts UBI from a *political* decision (legislated, contested, vetoable) to a *technical* one (formula-based, indexed, automatic). We should add it as a policy primitive on top of our four-pillar funding model.
+
+**4. Compute as an in-kind currency — Altman's UBC**<sup style="font-size: 0.75em;"><a href="#ref-97" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[97]</a></sup>. The Universal Basic Compute proposal is the only plan in the table to suggest a non-cash distribution channel. In our model, compute-in-kind functions as a *Pillar 4 complement*: where useful-work mining converts compute *into* income, UBC distributes compute *as* income. Both pillars route around the friction of fiat redistribution; together they describe an economy where compute is a primary currency analogue.
+
+### An honest update from the pilots
+
+The 2024–2025 results from Sam Altman's OpenResearch UBI study<sup style="font-size: 0.75em;"><a href="#ref-104" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[104]</a></sup> add nuance to claims that "UBI works." Of 3,000 participants receiving $1,000/month versus a $50 control group across Illinois and Texas:
+
+- **No employment-quality lift.** Job mobility and career advancement looked similar to the control.
+- **Recipients worked slightly less.** Roughly two fewer hours per week than control; small but statistically detectable.
+- **Hospitalizations rose ~26%.** Likely a consequence of *increased access* to care rather than a health deterioration, but worth flagging.
+- **Recipients reported substantially more financial flexibility.** The mechanism that survives the trial cleanly is *autonomy* — the ability to choose when, where, and how to work.
+
+These are not the same outcomes as Stockton (which showed full-time employment rising from 28% to 40%<sup style="font-size: 0.75em;"><a href="#ref-105" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[105]</a></sup>) or the long-running Kenya GiveDirectly trial (no idleness, more entrepreneurship). The honest summary across all three: cash transfers produce *flexibility* reliably; *employment improvement* is contingent on local labor markets; *health effects* are mixed and confounded by access. Our 2035 model should not over-claim "UBI causes employment increases" without specifying conditions.
+
+### The summary update
+
+We are not rewriting the four pillars. We are saying:
+
+1. **Pillar 1 (fusion), Pillar 3 (defense conversion), Pillar 4 (useful-work mining)** remain unique to this analysis. No other 2025–2026 plan covers them, and they remain the load-bearing parts of our cost basis.
+2. **Pillar 2 (AI productivity capture)** absorbs the OpenAI Public Wealth Fund vehicle, the Korea Citizen Dividend precedent, the Windfall Clause as a voluntary upstream, and Altman's UBC as a compute-currency complement.
+3. **A new fifth element — auto-triggered safety-net escalators** — is added as policy gear that converts UBI from a legislative decision to a technical one indexed against BLS displacement metrics.
+4. **Musk's UHI framing is structurally compatible** with our model — but only if the productivity-eliminates-redistribution claim is recognized as ignoring the distribution problem. Our four pillars are *how* the abundance actually reaches people. UHI is the destination; the four pillars are the road.
+
+Everything below remains the analysis as originally published. The conversation has moved a lot in seven months — we expect to refresh again as more plans land.
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> The Traditional Math Problem
 
@@ -119,12 +283,12 @@ Multiple fusion companies are racing toward commercial viability. Commonwealth F
 
 Conservative estimates suggest fusion energy alone could provide the equivalent of **$300-600 monthly in reduced living costs**—effectively delivering UBI benefits without direct cash transfers.
 
-<img src="/images/fusion-energy-cascade.svg" alt="Fusion Energy Cascading Cost Reductions" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/fusion-energy-cascade.svg" alt="Fusion Energy Cascading Cost Reductions" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy" width="1400" height="900">
 
 *Diagram: Fusion energy's cascading economic impact across three levels—direct energy savings, manufacturing/production cost reductions, and consumer price impacts. The visualization shows how near-zero marginal cost energy creates $400-900/month in total savings per person through ripple effects across the entire economy.*
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-fusion-reactor.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Fusion reactor technology powering the energy revolution of the 2030s</figcaption>
@@ -173,18 +337,18 @@ The employment landscape is shifting, not disappearing. While 40% of employers e
 
 This creates the perfect scenario for UBI: automation generates the wealth, while humans transition to higher-value work with a safety net to support the transition.
 
-<img src="/images/ai-automation-job-flow.svg" alt="AI Automation Job Displacement vs Creation" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ai-automation-job-flow.svg" alt="AI Automation Job Displacement vs Creation" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy" width="1400" height="800">
 
 *Diagram: AI automation impact on employment by 2030, showing 92 million jobs displaced versus 170 million new jobs created—a net gain of 78 million jobs. The visualization demonstrates that automation is an economic transformation, not job destruction, with UBI providing the critical safety net during the transition period. Data from World Economic Forum and McKinsey Global Institute projections.*
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-robots-working.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Human-robot collaboration: automation creating wealth while humans focus on higher-value work</figcaption>
 </figure>
 
-<img src="/images/ubi-job-transition.svg" alt="Job Displacement vs Creation Flow" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-job-transition.svg" alt="Job Displacement vs Creation Flow" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy" width="800" height="500">
 
 *Diagram: Job transition flows showing automation displacement and new job creation. Data synthesized from World Economic Forum and McKinsey Global Institute projections cited above.*
 
@@ -290,7 +454,7 @@ Today's technology enables a "quality over quantity" approach that actually enha
 
 This isn't weakness—it's strategic evolution. Israel, Singapore, and other nations demonstrate that smart defense spending focused on technology and intelligence can provide superior security at a fraction of the cost.
 
-<img src="/images/ubi-defense-spending.svg" alt="Defense Spending Transformation" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-defense-spending.svg" alt="Defense Spending Transformation" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy" width="900" height="600">
 
 *Diagram: Defense spending restructuring showing transformation from $2.1T to $400B budget. Based on historical peace dividend data and current DoD budget breakdown.*
 
@@ -327,7 +491,7 @@ In fiscal year 2023, the federal government committed about $759 billion on cont
 
 This isn't about reducing government effectiveness—it's about using 21st-century tools to deliver 21st-century governance.
 
-<img src="/images/bureaucracy-reduction-ai.svg" alt="AI Automation: Transforming Government Bureaucracy" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/bureaucracy-reduction-ai.svg" alt="AI Automation: Transforming Government Bureaucracy" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy" width="1200" height="1100">
 
 *Diagram: Department-by-department analysis of AI automation potential showing how intelligent systems can reduce government administration costs by 40-50% ($440 billion annually) while improving service quality. High-automation departments like the IRS (75%), Social Security (70%), and Medicare/Medicaid (65%) offer the greatest savings opportunities. Implementation timeline spans 2025-2035 with benefits including 24/7 availability, faster service delivery, and reduced errors.*
 
@@ -373,7 +537,7 @@ This isn't about punishing success—it's about ensuring everyone contributes th
 
 Here's where the analysis gets truly innovative. Rather than treating UBI as a pure cost, what if it could generate economic value?
 
-<video muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+<video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-treasury-vault.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Strategic reserves reimagined for the digital age</p>
@@ -426,7 +590,7 @@ Bitcoin's programmed scarcity follows a precise schedule:
 
 Over 19.8 million BTC (94%+) has already been mined as of 2025, leaving less than 1.2 million to be created over the next 115 years[^66]. This accelerating scarcity creates deflationary pressure that fundamentally differs from inflationary fiat currencies.
 
-<img src="/images/bitcoin-mining-timeline.svg" alt="Bitcoin Mining Timeline and Halving Schedule" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/bitcoin-mining-timeline.svg" alt="Bitcoin Mining Timeline and Halving Schedule" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy" width="1400" height="700">
 
 *Diagram: Bitcoin's complete mining timeline from 2009 genesis to 2140 final halving, showing block reward decline and transition to fee-based economics. The visualization demonstrates how 94% of all Bitcoin has already been mined, with the remaining 6% to be distributed over 115 years through predictable 4-year halving cycles.*
 
@@ -760,7 +924,7 @@ Someone could be sleeping, and their computer is simultaneously:
 
 It's not just income redistribution—it's democratizing access to the knowledge economy while accelerating human scientific progress.
 
-<img src="/images/proof-of-useful-work-network.svg" alt="Proof-of-Useful-Work: Distributed Computation Network" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/proof-of-useful-work-network.svg" alt="Proof-of-Useful-Work: Distributed Computation Network" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy" width="1200" height="900">
 
 *Diagram: Comprehensive view of the proof-of-useful-work distributed computation network showing how home computers, gaming PCs, mobile devices, and enterprise servers contribute idle computing cycles to scientific research. Tasks include protein folding, climate modeling, material science, and AI training—generating $300B+ annual research value. The network coordinates 250M participants, each earning $200-500/month in cryptocurrency rewards proportional to their computational contributions. Real-world precedent: Folding@Home achieved 2.4 exaFLOPS with 4.6M volunteers during COVID-19 research.*
 
@@ -792,7 +956,7 @@ Here's where it gets interesting for UBI funding. Under the GENIUS Act signed in
 
 This is **seigniorage**—the profit from creating money—historically captured by governments through central banks. When the Federal Reserve creates money, profits return to the US Treasury and ultimately taxpayers (historically ~$100 billion annually). But with stablecoins, **private companies like Circle and Tether keep all the profits**.
 
-<img src="/images/stablecoin-seigniorage-flow.svg" alt="Stablecoin Seigniorage Flow: Private vs Public Money Creation" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/stablecoin-seigniorage-flow.svg" alt="Stablecoin Seigniorage Flow: Private vs Public Money Creation" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy" width="1200" height="800">
 
 *Diagram: Comparison of traditional Federal Reserve seigniorage (profits return to taxpayers) versus private stablecoin seigniorage (profits captured by Circle, Tether shareholders). Shows how $200B+ in stablecoin reserves earning 5% interest generates $10B+ annual private profit while paying 0% to token holders—seigniorage that would historically fund public services.*
 
@@ -959,23 +1123,45 @@ In physics, forces combine vectorially—some accelerate systems, others resist.
 
 **The UBI Feasibility Equation:**
 
-<div style="overflow-x: auto; margin: 2rem 0;">
+<div style="overflow-x: auto; margin: 1.5rem 0;">
+$$
+UBI_{monthly} = \frac{F_{total}}{P \cdot (1 + \pi - \delta)} \cdot (1 - R)
+$$
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0 2.5rem; padding: 1.25rem 1.5rem; background: rgba(232, 221, 199, 0.15); border-radius: 10px; border: 1px solid rgba(139, 118, 89, 0.2);">
+
+<div>
+<p style="font-weight: 700; color: #1e3a2b; margin: 0 0 0.5rem; font-size: 1.05rem;">Where:</p>
+
 $$
 \begin{aligned}
-UBI_{monthly} &= \frac{F_{total}}{P \cdot (1 + \pi - \delta)} \cdot (1 - R) \\\\[2em]
-\text{where:} \quad & \\\\[0.5em]
-F_{total} &= T + G + C + E \\\\[1.5em]
-T &= (T_f + T_a + T_{AI}) \cdot M \quad \text{(Technology Forces)} \\\\
-G &= G_{save} \quad \text{(Government Savings)} \\\\
-C &= C_{btc} \cdot A + S \cdot \tau + P_{uw} \cdot N \quad \text{(Cryptocurrency)} \\\\
-E &= m \cdot UBI_0 \quad \text{(Multiplier Effect)} \\\\[1.5em]
-\text{Parameters:} \quad & \\\\[0.5em]
-P &= 260M \text{ adults} \\\\
-\pi &= 2\text{--}4\% \text{ inflation} \\\\
-\delta &= 3\text{--}8\% \text{ deflation} \\\\
-R &= 0.15\text{--}0.40 \text{ friction}
+F_{total} &= T + G + C + E \\\\[0.6em]
+T &= (T_f + T_a + T_{AI}) \cdot M \\\\
+G &= G_{save} \\\\
+C &= C_{btc} \cdot A + S \cdot \tau + P_{uw} \cdot N \\\\
+E &= m \cdot UBI_0
 \end{aligned}
 $$
+
+<p style="font-size: 0.85rem; color: #5a6862; margin: 0.75rem 0 0; font-style: italic;">T = technology · G = government · C = cryptocurrency · E = multiplier</p>
+</div>
+
+<div>
+<p style="font-weight: 700; color: #1e3a2b; margin: 0 0 0.5rem; font-size: 1.05rem;">Parameters:</p>
+
+$$
+\begin{aligned}
+P &= 260M \text{ adults} \\\\
+\pi &= 2\text{–}4\\% \text{ inflation} \\\\
+\delta &= 3\text{–}8\\% \text{ deflation} \\\\
+R &= 0.15\text{–}0.40 \text{ friction}
+\end{aligned}
+$$
+
+<p style="font-size: 0.85rem; color: #5a6862; margin: 0.75rem 0 0; font-style: italic;">P = adult population · π = inflation · δ = deflation · R = redistribution friction</p>
+</div>
+
 </div>
 
 **Where each variable represents measurable economic forces:**
@@ -1298,21 +1484,17 @@ It's "Can we harness the deflationary power of fusion energy, the productivity g
 
 The equation says: **Yes. The forces are sufficient. The question is political will ($R_{political}$), not economic feasibility.**
 
-<img src="/images/ubi-economic-forces.svg" alt="Economic Forces Acting on UBI Feasibility" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-economic-forces.svg" alt="Economic Forces Acting on UBI Feasibility" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy" width="1400" height="900">
 
 *Diagram: Vector representation of economic forces in the UBI equation—technology forces (green accelerators), government restructuring (blue capital release), cryptocurrency value (purple growth vectors), and political resistance (red friction). The net force vector determines UBI feasibility and monthly payment amount.*
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"/><path d="M12 6v12m-2-7h4a2 2 0 110 4H10"/></svg> The Financial Roadmap
 
-<img src="/images/ubi-ecosystem-flow.svg" alt="Universal Basic Income Ecosystem Flow" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-ecosystem-flow.svg" alt="Universal Basic Income Ecosystem Flow" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy" width="1200" height="1000">
 
 *Diagram: The UBI ecosystem showing how government savings, technology gains, and cryptocurrency flow into the UBI distribution system, creating a circular economy of economic growth, investment, innovation, consumption, and tax revenue that feeds back into the system.*
 
-Putting it all together, here's how the math works by 2035:
-
-<img src="/images/ubi-funding-sources.svg" alt="UBI Funding Sources Breakdown" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
-
-*Diagram: UBI funding sources totaling $3.95-6.15 trillion annually, with technology cost reductions providing additional $500-800/month equivalent value. Figures synthesized from government budget data, Bitcoin market projections, and technology cost reduction estimates cited throughout this article.*
+Putting it all together, here's how the math works by 2035 (see the funding-sources chart at the top of the post for the visual breakdown):
 
 ### Revenue Sources:
 1. **Government restructuring savings**: $2.25T annually
@@ -1338,7 +1520,7 @@ The most common objection to UBI is political feasibility—particularly around 
 
 Each scenario integrates emerging research on <span class="tooltip">**solarpunk sustainability**<span class="tooltip-content"><span class="tooltip-title">Solarpunk</span>A movement envisioning a future where renewable energy, sustainable technology, and ecological harmony create abundance for all. Combines high-tech solutions with environmental stewardship—think solar panels, vertical farms, and community resilience instead of dystopian scarcity.</span></span>, **robotic automation**, and <span class="tooltip">**closed-loop living systems**<span class="tooltip-content"><span class="tooltip-title">Closed-Loop Living</span>Systems where waste from one process becomes input for another (e.g., greywater irrigates gardens, solar powers homes, composted waste feeds plants). Creates self-sufficient households with minimal external resource needs.</span></span> that dramatically reduce cost of living while improving quality of life.
 
-<img src="/images/ubi-three-scenarios.svg" alt="Three UBI Funding Scenarios" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-three-scenarios.svg" alt="Three UBI Funding Scenarios" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy" width="1400" height="800">
 
 *Diagram: Three pathways to UBI implementation showing conservative, moderate, and progressive funding scenarios with different defense budget assumptions and technology adoption rates.*
 
@@ -1381,7 +1563,7 @@ Recent studies reveal significant cost reduction potential through sustainable a
 - Greywater recycling systems reduce water bills by 40-60%
 - Composting toilets eliminate sewage costs while generating garden fertilizer
 
-<img src="/images/closed-loop-home-systems.svg" alt="Closed-Loop Sustainable Home: Integrated Systems" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/closed-loop-home-systems.svg" alt="Closed-Loop Sustainable Home: Integrated Systems" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy" width="1400" height="1080">
 
 *Diagram: Integrated view of closed-loop home systems showing how solar panels, battery storage, greywater recycling, and vertical farming create a self-sufficient household. Each system's output becomes another system's input—solar powers grow lights, greywater irrigates gardens, organic waste feeds composting, and AI optimization maximizes efficiency. Total savings: $500-800/month with 70% reduction in carbon footprint.*
 
@@ -1392,7 +1574,7 @@ Recent studies reveal significant cost reduction potential through sustainable a
 - At-cost housing in robot-built communities reduces typical housing costs from $1,800/month to $600-900/month
 - Reduced maintenance costs through AI predictive systems and robotic repair assistance
 
-<img src="/images/robot-construction-flow.svg" alt="Robotic Construction Process Flow: From Factory to Home in 72 Hours" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/robot-construction-flow.svg" alt="Robotic Construction Process Flow: From Factory to Home in 72 Hours" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy" width="1200" height="900">
 
 *Diagram: Step-by-step process showing how robotic prefabrication and assembly reduces housing construction from 6-12 months to just 72 hours. The 30-40% cost reduction comes from labor automation (35% savings), material efficiency (18% savings), and time/financing savings (12% savings). Real-world examples include Mighty Buildings, Icon 3D printing, and Blokable modular construction.*
 
@@ -1546,7 +1728,7 @@ The beauty of this framework: **UBI can start with Scenario A and scale to B or 
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><line x1="3" y1="12" x2="21" y2="12"/><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg> The Timeline to 2035
 
-<img src="/images/ubi-timeline.svg" alt="UBI Implementation Timeline 2025-2035" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-timeline.svg" alt="UBI Implementation Timeline 2025-2035" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy" width="900" height="400">
 
 *Diagram: Phased UBI implementation roadmap from 2025-2035 showing pilot programs, scaling phases, and technology integration milestones. Timeline synthesized from historical policy implementation studies and technology development projections.*
 
@@ -1583,7 +1765,7 @@ No, because:
 
 Research from the Roosevelt Institute's 2017 macroeconomic modeling study found that a $1,000 monthly UBI could expand the economy by 12.56% over eight years[^12]. The model predicted increases in output, employment, labor force participation, prices, and wages. Even in tax-financed UBI scenarios, the economy would grow because an extra dollar going to a poorer household is more likely to be spent rather than saved, creating economic stimulus.
 
-<img src="/images/ubi-multiplier-effect.svg" alt="The UBI Multiplier Effect: How $1 Becomes $2.50" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-multiplier-effect.svg" alt="The UBI Multiplier Effect: How $1 Becomes $2.50" style="width: 100%; max-width: 1200px; margin: 2rem auto; display: block;" loading="lazy" width="1200" height="1000">
 
 *Diagram: Visual representation of the UBI multiplier effect showing how initial payments ($1,500) ripple through the economy. Stage 1: Direct UBI payment to individuals. Stage 2: Consumer spending at local businesses, groceries, housing, transportation. Stage 3: Business spending on wages, suppliers, investment, and services. Each dollar circulates multiple times, creating $3,750 in total economic impact (2.5x multiplier). Based on Roosevelt Institute's 2017 macroeconomic modeling study showing low-income households' high marginal propensity to consume drives economic growth.*
 
@@ -1651,7 +1833,7 @@ The evidence reveals what economists have long known but politicians often ignor
 
 The real question isn't "won't people stop working?" It's "why would we want people trapped in jobs they hate, doing work that will be automated, instead of pursuing education, entrepreneurship, or caring for family?"
 
-<img src="/images/ubi-pilot-results.svg" alt="UBI Pilot Program Results" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ubi-pilot-results.svg" alt="UBI Pilot Program Results" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy" width="900" height="600">
 
 *Diagram: Results from major UBI pilot programs showing employment rates, entrepreneurship activity, education enrollment, and health improvements. Data compiled from studies cited in footnotes 26-27 (Finland, Kenya, Stockton) and additional pilot programs worldwide.*
 
@@ -1776,7 +1958,7 @@ Actually, it's closer than you think:
 ## The Bigger Picture: A New Social Contract
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-1.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Building sustainable, equitable communities through technological abundance</figcaption>
@@ -1903,7 +2085,7 @@ Beyond cash transfers, UBI enables something more profound: **personal independe
 ### The Robotic Homestead Revolution
 
 <div style="float: right; max-width: 45%; margin: 0 0 1rem 1.5rem;">
-  <img src="/images/dyson-strawberry.webp" alt="Robotic strawberry harvesting at Dyson Farming's automated glasshouse facility" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <img src="/images/dyson-strawberry.webp" alt="Robotic strawberry harvesting at Dyson Farming's automated glasshouse facility" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" loading="lazy" width="800" height="500">
   <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #666; font-style: italic; text-align: left;">Photo: Dyson Farming</p>
 </div>
 
@@ -1979,7 +2161,7 @@ This technology-enabled independence compounds with UBI to create **genuine econ
 - Personal production and maintenance: $650-1,050/month
 - **Effective monthly value: $2,100-3,950**
 
-<img src="/images/solarpunk-household-costs.svg" alt="Monthly Household Costs: Traditional vs Solarpunk Living" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/solarpunk-household-costs.svg" alt="Monthly Household Costs: Traditional vs Solarpunk Living" style="width: 100%; max-width: 1400px; margin: 2rem auto; display: block;" loading="lazy" width="1400" height="800">
 
 *Diagram: Side-by-side comparison of traditional household costs ($4,100/month) versus solarpunk living enabled by technology ($1,895/month). The 54% cost reduction comes from robot-built housing, solar energy, robotic vertical farming, electric vehicles with cheap fusion energy, and AI-assisted maintenance. Combined with UBI cash payments, this creates $3,095-3,895 total monthly value in the moderate scenario.*
 
@@ -2053,7 +2235,7 @@ UBI isn't the destination. It's the **bridge** to a fundamentally different rela
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><polyline points="20 6 9 17 4 12"/></svg> A Call to Action
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-2.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">The future we choose: prosperity, freedom, and dignity for all</figcaption>
@@ -2179,8 +2361,8 @@ Explore research and advocacy from leading organizations:
 ---
 
 <div class="references-section">
-  <div class="references-header" onclick="toggleReferences()">
-    <h2>References <span class="references-toggle" id="references-toggle">▼</span></h2>
+  <div class="references-header">
+    <h2>References</h2>
   </div>
   <div class="references-content" id="references-content">
 
@@ -2370,6 +2552,62 @@ Explore research and advocacy from leading organizations:
 
 [^91]: Number Analytics. "How Network Effects Create Value and Grow Firms." 2024. About 70% of global tech equity value comes from firms that rely on network effects, making them a critical driver of business success in the digital economy.
 
+<span id="ref-92"></span>
+
+[^92]: Musk, Elon. Viva Technology Conference, Paris, May 23, 2024. On-stage statement introducing "Universal High Income" as a distinct framing from UBI. Coverage: <a href="https://www.foxbusiness.com/economy/musk-predicts-ai-create-universal-high-income-make-saving-money-unnecessary" target="_blank" rel="noopener">Fox Business — "Musk predicts AI will create universal high income"</a>. Full session on VivaTech's YouTube channel.
+
+<span id="ref-93"></span>
+
+[^93]: Fortune. "When does Elon Musk say work will be optional and money will be irrelevant?" January 19, 2026. Synthesis of Musk's recent statements on the 10-to-20-year timeline and ~80% benign-outcome probability. <a href="https://fortune.com/2026/01/19/when-does-elon-musk-say-work-will-be-optional-and-money-will-be-irrelevant-ai-robotics/" target="_blank" rel="noopener">fortune.com</a>
+
+<span id="ref-94"></span>
+
+[^94]: Tax Project Institute. "Universal High Income." 2025. Independent modeling estimating ~$175,700/year per displaced worker under a 40M-worker scenario, ~$7.03T annual program cost, or 143% of 2024 federal revenue. <a href="https://taxproject.org/universal-high-income/" target="_blank" rel="noopener">taxproject.org/universal-high-income</a>. Not Musk's number; published as a critique of feasibility.
+
+<span id="ref-95"></span>
+
+[^95]: Yahoo Finance. "Universal high income: Elon Musk's prediction and how it could work." 2025. Coverage including Bill Gates' standing position from his 2017 Reddit AMA: "Even the U.S. isn't rich enough to allow people not to work… things like the earned income tax credit will help." <a href="https://finance.yahoo.com/news/universal-high-income-elon-musk-160056830.html" target="_blank" rel="noopener">finance.yahoo.com</a>
+
+<span id="ref-96"></span>
+
+[^96]: TechCrunch. "OpenAI's vision for the AI economy: Public wealth funds, robot taxes, and a four-day work week." April 6, 2026. Coverage of OpenAI's Economic Blueprint policy document. <a href="https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/" target="_blank" rel="noopener">techcrunch.com</a>
+
+<span id="ref-97"></span>
+
+[^97]: Altman, Sam. "Universal Basic Compute." All-In Podcast, May 13, 2024. Proposal that each citizen receives a slice of GPT-N inference, usable, sellable, or donatable. Clip: <a href="https://x.com/theallinpod/status/1790558532942602397" target="_blank" rel="noopener">x.com/theallinpod</a>
+
+<span id="ref-98"></span>
+
+[^98]: Korea Times. "Top policy aide floats national dividends to share AI profits with public." May 12, 2026. Reporting on presidential policy chief Kim Yong-beom's proposal to redistribute Samsung / SK Hynix AI &amp; semiconductor excess tax revenue via a sovereign-wealth fund modeled on Alaska and Norway. The KOSPI fell 5.1% on the announcement. <a href="https://www.koreatimes.co.kr/southkorea/politics/20260512/top-policy-aide-floats-national-dividends-to-share-ai-profits-with-public" target="_blank" rel="noopener">koreatimes.co.kr</a>; also covered by <a href="https://www.bloomberg.com/news/articles/2026-05-12/korea-floats-citizen-dividend-using-ai-profits-samsung-falls" target="_blank" rel="noopener">Bloomberg, May 12, 2026</a>.
+
+<span id="ref-99"></span>
+
+[^99]: Yang, Andrew. Fortune interview. February 25, 2026. Refresh of the $1,000/month Freedom Dividend funded by a 10% VAT, with updated AI-jobpocalypse framing. The Tax Foundation maintains the proposed VAT rate funds less than half of the program. <a href="https://fortune.com/2026/02/25/andrew-yang-former-presidential-candidate-artifical-intelligence-job-apocalypse-white-collar-cuts-prediction-universal-basic-income/" target="_blank" rel="noopener">fortune.com</a>
+
+<span id="ref-100"></span>
+
+[^100]: O'Keefe, Cullen et al. "The Windfall Clause: Distributing the Benefits of AI for the Common Good." Oxford Centre for the Governance of AI, arXiv:1912.11595. Canonical reference for ex-ante voluntary pledges by AI firms to donate profits above a transformative threshold. <a href="https://arxiv.org/pdf/1912.11595" target="_blank" rel="noopener">arxiv.org/abs/1912.11595</a>
+
+<span id="ref-101"></span>
+
+[^101]: BIEN (Basic Income Earth Network). "The first basic income for workers impacted by AI has begun sending out $1,000 monthly payments." March 2026. Coverage of the AI Commons / What We Will pilot — first operational AI-displacement-specific cash transfer program, philanthropy-funded. <a href="https://basicincome.org/news/2026/03/the-first-basic-income-for-workers-impacted-by-ai-has-begun-sending-out-1000-monthly-payments/" target="_blank" rel="noopener">basicincome.org</a>
+
+<span id="ref-102"></span>
+
+[^102]: TIME Magazine. "Worldcoin Launches in the U.S." 2025. Tools for Humanity's iris-scan proof-of-personhood system; US Orb launch April 30, 2025; ~12M verified users globally; $42 USDC grant per signup. <a href="https://time.com/7288387/sam-altman-orb-tools-for-humanity/" target="_blank" rel="noopener">time.com</a>
+
+<span id="ref-103"></span>
+
+[^103]: State of Alaska. "Alaska Permanent Fund Dividend." 2025 dividend amount: $1,702 per resident. The longest-running per-capita resource-dividend program in the United States, frequently cited as a template for AI-revenue sovereign-wealth-fund proposals.
+
+<span id="ref-104"></span>
+
+[^104]: OpenResearch (Sam Altman-funded). "Findings from the largest randomized study of unconditional cash transfers in the US." July 22, 2024. $1,000/month to 3,000 participants in Illinois and Texas vs. $50 control group over 3 years. Reported outcomes: no employment-quality lift, recipients worked roughly 2 hours less per week, hospitalizations rose ~26%, recipients reported substantially more financial flexibility. Coverage: <a href="https://www.cbsnews.com/news/sam-altman-universal-basic-income-study-open-research/" target="_blank" rel="noopener">CBS News, July 2024</a>.
+
+<span id="ref-105"></span>
+
+[^105]: SEED (Stockton Economic Empowerment Demonstration). Final peer-reviewed results, <em>Journal of Urban Health</em>, June 2023. Full-time employment among recipients rose from 28% to 40% over the 24-month trial. <a href="https://www.stocktondemonstration.org/" target="_blank" rel="noopener">stocktondemonstration.org</a>
+
   </div>
 </div>
 
@@ -2381,71 +2619,53 @@ Explore research and advocacy from leading organizations:
 }
 
 .references-header {
-  cursor: pointer;
-  user-select: none;
   padding: 1rem;
   background: linear-gradient(135deg, rgba(207, 220, 255, 0.1), rgba(139, 118, 89, 0.05));
   border-radius: 8px;
-  transition: background 0.3s ease;
-}
-
-.references-header:hover {
-  background: linear-gradient(135deg, rgba(207, 220, 255, 0.2), rgba(139, 118, 89, 0.1));
 }
 
 .references-header h2 {
   margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   font-size: 1.5rem;
   color: #2d3c34;
 }
 
-.references-toggle {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-  display: inline-block;
-}
-
-.references-toggle.expanded {
-  transform: rotate(180deg);
-}
-
 .references-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease, padding 0.3s ease;
-  padding: 0 1rem;
+  padding: 2rem 1rem 1rem 1rem;
 }
 
-.references-content.expanded {
-  max-height: 5000px;
-  padding: 3rem 1rem 1.5rem 1rem;
+/* Highlight the just-clicked reference for a couple of seconds so users
+   can see which entry the link landed on. */
+.references-content [id^="ref-"]:target,
+.references-content [id^="fn-"]:target {
+  background: rgba(255, 199, 95, 0.18);
+  border-radius: 4px;
 }
 </style>
 
 <script>
-function toggleReferences() {
-  const content = document.getElementById('references-content');
-  const toggle = document.getElementById('references-toggle');
-
-  content.classList.toggle('expanded');
-  toggle.classList.toggle('expanded');
-}
-
-// Auto-expand when clicking on a footnote reference in the text
+// References are always visible. On click of a footnote / reference link,
+// smooth-scroll to the matching anchor with a small offset so the sticky
+// site header does not cover the target.
 document.addEventListener('DOMContentLoaded', function() {
-  const footnoteLinks = document.querySelectorAll('a[href^="#fn"]');
-
-  footnoteLinks.forEach(link => {
+  const refLinks = document.querySelectorAll('a[href^="#fn"], a[href^="#ref-"]');
+  refLinks.forEach(link => {
     link.addEventListener('click', function(e) {
-      const content = document.getElementById('references-content');
-      const toggle = document.getElementById('references-toggle');
-
-      if (!content.classList.contains('expanded')) {
-        content.classList.add('expanded');
-        toggle.classList.add('expanded');
+      const href = link.getAttribute('href') || '';
+      const targetId = href.replace(/^#/, '');
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (!target) return;
+      e.preventDefault();
+      const rect = target.getBoundingClientRect();
+      const offset = 90;
+      window.scrollTo({
+        top: window.scrollY + rect.top - offset,
+        behavior: 'smooth'
+      });
+      // Update the URL fragment so the :target highlight rule fires and the
+      // back-button works as expected.
+      if (history.replaceState) {
+        history.replaceState(null, '', href);
       }
     });
   });

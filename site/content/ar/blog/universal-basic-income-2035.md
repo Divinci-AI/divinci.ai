@@ -34,7 +34,7 @@ summary = "تحليل شامل يكشف كيف يمكن لطاقة الاندم�
 من خلال مزيج من التقنيات الناشئة وإعادة الهيكلة الاستراتيجية للحكومة والتكامل المبتكر للعملات المشفرة، يصبح دخل أساسي شامل ذو مغزى قدره 1,000-2,000 دولار شهريًا ليس ممكنًا فحسب بل حتميًا اقتصاديًا بحلول 2035.
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-3.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">رؤية 2035: مجتمعات مزدهرة مدعومة بالدخل الأساسي الشامل</figcaption>
@@ -76,7 +76,7 @@ summary = "تحليل شامل يكشف كيف يمكن لطاقة الاندم�
 التقديرات المحافظة تشير إلى أن طاقة الاندماج وحدها يمكن أن توفر ما يعادل 300-600 دولار شهريًا في تكاليف معيشة مخفضة - توصيل فوائد UBI بشكل فعال دون تحويلات نقدية مباشرة.
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-fusion-reactor.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">تكنولوجيا مفاعل الاندماج تشغل ثورة الطاقة في الثلاثينيات</figcaption>
@@ -96,7 +96,7 @@ summary = "تحليل شامل يكشف كيف يمكن لطاقة الاندم�
 - **عمليات 24/7**: على عكس العمال البشر، يمكن للأنظمة الآلية العمل بشكل مستمر، مضاعفة الإنتاج دون تكاليف عمل إضافي
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-robots-working.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">التعاون بين الإنسان والروبوت: الأتمتة تخلق الثروة بينما يركز البشر على عمل أعلى قيمة</figcaption>
@@ -114,7 +114,7 @@ summary = "تحليل شامل يكشف كيف يمكن لطاقة الاندم�
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> تغيير اللعبة #2: إعادة هيكلة الحكومة
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-treasury-vault.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">خزانة الحكومة الحديثة معاد تصورها للعصر الرقمي</figcaption>
@@ -198,7 +198,7 @@ summary = "تحليل شامل يكشف كيف يمكن لطاقة الاندم�
 
 بجمع كل شيء معًا، هكذا يعمل الحساب بحلول 2035:
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-diagram.png" alt="نظرة عامة على نظام الدخل الأساسي الشامل" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/cdn-cgi/image/width=1200,format=auto,quality=82/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-diagram.png" alt="نظرة عامة على نظام الدخل الأساسي الشامل" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 ### مصادر الإيرادات:
 1. **توفيرات إعادة هيكلة الحكومة**: 2.25 تريليون دولار سنويًا
@@ -287,7 +287,7 @@ summary = "تحليل شامل يكشف كيف يمكن لطاقة الاندم�
 ## الصورة الأكبر: عقد اجتماعي جديد
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-1.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">بناء مجتمعات مستدامة ومنصفة من خلال الوفرة التكنولوجية</figcaption>
@@ -304,7 +304,7 @@ summary = "تحليل شامل يكشف كيف يمكن لطاقة الاندم�
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><polyline points="20 6 9 17 4 12"/></svg> دعوة للعمل
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-2.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">المستقبل الذي نختاره: الازدهار والحرية والكرامة للجميع</figcaption>

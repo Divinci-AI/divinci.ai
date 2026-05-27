@@ -2,6 +2,9 @@
 title = "API संदर्भ"
 description = "Divinci AI के लिए पूर्ण REST API संदर्भ — रिलीज़, RAG ज्ञान आधार, फ़ाइन-ट्यूनिंग, ट्रांसक्रिप्ट आदि के प्रबंधन के लिए 60+ एंडपॉइंट।"
 template = "feature.html"
+
+[extra]
+alternate_languages = true
 +++
 
 <style>

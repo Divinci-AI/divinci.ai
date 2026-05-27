@@ -1443,7 +1443,7 @@
                                 <div class="topic-content">
                                     <h3>{{ translations.support.topics.getting_started.title | default(value="Getting Started with Divinci AI") }}</h3>
                                     <p>{{ translations.support.topics.getting_started.description | default(value="Learn the basics of creating, training, and deploying your custom AI solutions.") }}</p>
-                                    <a href="#getting-started" class="topic-link">{{ translations.support.topics.getting_started.link | default(value="Read more") }}</a>
+                                    <a href="#getting-started" class="topic-link" aria-label="{{ translations.support.topics.getting_started.link | default(value='Read more') }}: {{ translations.support.topics.getting_started.title | default(value='Getting Started with Divinci AI') }}">{{ translations.support.topics.getting_started.link | default(value="Read more") }}</a>
                                 </div>
                             </div>
                             
@@ -1454,7 +1454,7 @@
                                 <div class="topic-content">
                                     <h3>{{ translations.support.topics.training_data.title | default(value="Optimizing AI Training Data") }}</h3>
                                     <p>{{ translations.support.topics.training_data.description | default(value="Best practices for preparing and structuring your training data for optimal results.") }}</p>
-                                    <a href="#getting-started" class="topic-link">{{ translations.support.topics.training_data.link | default(value="Read more") }}</a>
+                                    <a href="#getting-started" class="topic-link" aria-label="{{ translations.support.topics.training_data.link | default(value='Read more') }}: {{ translations.support.topics.training_data.title | default(value='Optimizing AI Training Data') }}">{{ translations.support.topics.training_data.link | default(value="Read more") }}</a>
                                 </div>
                             </div>
                             
@@ -1465,7 +1465,7 @@
                                 <div class="topic-content">
                                     <h3>{{ translations.support.topics.api_integration.title | default(value="API Integration Guide") }}</h3>
                                     <p>{{ translations.support.topics.api_integration.description | default(value="How to integrate Divinci AI with your applications and existing systems.") }}</p>
-                                    <a href="{% if current_lang == 'en' %}/api/{% else %}/{{ current_lang }}/api/{% endif %}" class="topic-link">{{ translations.support.topics.api_integration.link | default(value="Read more") }}</a>
+                                    <a href="{% if current_lang == 'en' %}/api/{% else %}/{{ current_lang }}/api/{% endif %}" class="topic-link" aria-label="{{ translations.support.topics.api_integration.link | default(value='Read more') }}: {{ translations.support.topics.api_integration.title | default(value='API Integration Guide') }}">{{ translations.support.topics.api_integration.link | default(value="Read more") }}</a>
                                 </div>
                             </div>
                             
@@ -1476,7 +1476,7 @@
                                 <div class="topic-content">
                                     <h3>{{ translations.support.topics.security.title | default(value="Security Best Practices") }}</h3>
                                     <p>{{ translations.support.topics.security.description | default(value="Ensuring your AI implementation follows security guidelines and compliance requirements.") }}</p>
-                                    <a href="#getting-started" class="topic-link">{{ translations.support.topics.security.link | default(value="Read more") }}</a>
+                                    <a href="#getting-started" class="topic-link" aria-label="{{ translations.support.topics.security.link | default(value='Read more') }}: {{ translations.support.topics.security.title | default(value='Security Best Practices') }}">{{ translations.support.topics.security.link | default(value="Read more") }}</a>
                                 </div>
                             </div>
                         </div>

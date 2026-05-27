@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Diagram of the ScoredQA Calibration feedback loop. Top-left node: domain expert rates 50 answers on the 0/0.25/0.5/0.75/1 scale. Right arrow to: compute Spearman ρ between human and each LLM judge. Right arrow to: bless judges that clear ρ greater than 0.85 with n at least 30. Down arrow to: judge scores 5,000 production questions at scale. Bottom path branch: rater also picks one variant per question as best overall, which writes a routing preference, which biases the next user query toward the winning RAG vector group. Both paths feed back to the top to grow the rated set over time.">
+  <title>ScoredQA Calibration — The Feedback Loop</title>
+  <rect width="760" height="460" fill="#faf8f5"/>
+
+  <!-- Title -->
+  <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">The Calibration Loop</text>
+  <text x="40" y="56" font-size="12" fill="#6b5d4f">One human session improves both the judges (eval) and the router (serving)</text>
+
+  <!-- Define arrow marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#4a6a5a"/>
+    </marker>
+    <marker id="arrowhead-amber" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#b8783a"/>
+    </marker>
+  </defs>
+
+  <!-- Top row: Rate → Compute ρ → Bless -->
+  <!-- Node 1: Domain expert rates 50 answers -->
+  <g>
+    <rect x="40" y="90" width="200" height="80" rx="6" fill="#2d5a4f" opacity="0.92"/>
+    <text x="140" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#faf8f5">Domain expert rates</text>
+    <text x="140" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="#faf8f5">~50 answers</text>
+    <text x="140" y="156" text-anchor="middle" font-size="11" fill="#cfe0d6" opacity="0.95">scale: {0, 0.25, 0.5, 0.75, 1.0}</text>
+  </g>
+
+  <!-- Arrow 1→2 -->
+  <line x1="245" y1="130" x2="288" y2="130" stroke="#4a6a5a" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+
+  <!-- Node 2: Compute Spearman ρ -->
+  <g>
+    <rect x="290" y="90" width="200" height="80" rx="6" fill="#fff" stroke="#2d5a4f" stroke-width="1.5"/>
+    <text x="390" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a2b">Compute ρ per judge</text>
+    <text x="390" y="136" text-anchor="middle" font-size="11" fill="#4a3a2a">human ranks vs each</text>
+    <text x="390" y="152" text-anchor="middle" font-size="11" fill="#4a3a2a">LLM judge's ranks</text>
+  </g>
+
+  <!-- Arrow 2→3 -->
+  <line x1="495" y1="130" x2="538" y2="130" stroke="#4a6a5a" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+
+  <!-- Node 3: Bless judges -->
+  <g>
+    <rect x="540" y="90" width="200" height="80" rx="6" fill="#2d5a4f" opacity="0.92"/>
+    <text x="640" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#faf8f5">Bless judge(s)</text>
+    <text x="640" y="138" text-anchor="middle" font-size="11" fill="#cfe0d6" opacity="0.95">that clear ρ ≥ 0.85</text>
+    <text x="640" y="154" text-anchor="middle" font-size="11" fill="#cfe0d6" opacity="0.95">with n ≥ 30</text>
+  </g>
+
+  <!-- Arrow 3 → Node 4 (down) -->
+  <line x1="640" y1="175" x2="640" y2="218" stroke="#4a6a5a" stroke-width="1.6" marker-end="url(#arrowhead)"/>
+
+  <!-- Node 4: Score at scale -->
+  <g>
+    <rect x="540" y="220" width="200" height="80" rx="6" fill="#fff" stroke="#2d5a4f" stroke-width="1.5"/>
+    <text x="640" y="248" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a2b">Score 5,000 questions</text>
+    <text x="640" y="266" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a2b">at scale</text>
+    <text x="640" y="285" text-anchor="middle" font-size="11" fill="#4a3a2a">blessed judge runs the suite</text>
+  </g>
+
+  <!-- ─── Lower (amber) loop: Winner picks → Router preference → User query routed -->
+
+  <!-- Side-arrow off Node 1 (down) → Node 5 -->
+  <line x1="140" y1="175" x2="140" y2="218" stroke="#b8783a" stroke-width="1.6" marker-end="url(#arrowhead-amber)"/>
+
+  <!-- Node 5: Rater picks best variant per question -->
+  <g>
+    <rect x="40" y="220" width="200" height="80" rx="6" fill="#c08850" opacity="0.92"/>
+    <text x="140" y="248" text-anchor="middle" font-size="13" font-weight="700" fill="#faf8f5">Rater picks one</text>
+    <text x="140" y="266" text-anchor="middle" font-size="13" font-weight="700" fill="#faf8f5">variant as ⭐ best</text>
+    <text x="140" y="285" text-anchor="middle" font-size="11" fill="#fff3e0" opacity="0.95">across (model × RAG × persona)</text>
+  </g>
+
+  <!-- Arrow 5→6 -->
+  <line x1="245" y1="260" x2="288" y2="260" stroke="#b8783a" stroke-width="1.6" marker-end="url(#arrowhead-amber)"/>
+
+  <!-- Node 6: Routing preference saved -->
+  <g>
+    <rect x="290" y="220" width="200" height="80" rx="6" fill="#fff" stroke="#c08850" stroke-width="1.5"/>
+    <text x="390" y="248" text-anchor="middle" font-size="13" font-weight="700" fill="#8a5a20">Routing preference saved</text>
+    <text x="390" y="266" text-anchor="middle" font-size="11" fill="#4a3a2a">winning RAG group preferred</text>
+    <text x="390" y="282" text-anchor="middle" font-size="11" fill="#4a3a2a">for similar future queries</text>
+  </g>
+
+  <!-- Arrow 6 → Node 7 (down) -->
+  <line x1="390" y1="305" x2="390" y2="348" stroke="#b8783a" stroke-width="1.6" marker-end="url(#arrowhead-amber)"/>
+
+  <!-- Node 7: Next user query routed smarter -->
+  <g>
+    <rect x="290" y="350" width="200" height="80" rx="6" fill="#c08850" opacity="0.92"/>
+    <text x="390" y="378" text-anchor="middle" font-size="13" font-weight="700" fill="#faf8f5">Next user query</text>
+    <text x="390" y="396" text-anchor="middle" font-size="13" font-weight="700" fill="#faf8f5">routed to winner</text>
+    <text x="390" y="415" text-anchor="middle" font-size="11" fill="#fff3e0" opacity="0.95">production traffic improves</text>
+  </g>
+
+  <!-- Feedback loop: Node 4 → back up to Node 1 (curved) -->
+  <path d="M 540 260 Q 470 200 380 180" fill="none" stroke="#4a6a5a" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.5"/>
+  <text x="468" y="208" font-size="10" fill="#4a6a5a" font-style="italic" opacity="0.85">scored answers grow rated set</text>
+
+  <!-- Legend -->
+  <g font-size="11" fill="#4a3a2a">
+    <rect x="540" y="370" width="14" height="14" fill="#2d5a4f"/>
+    <text x="560" y="382">Eval / judge calibration loop</text>
+    <rect x="540" y="394" width="14" height="14" fill="#c08850" opacity="0.92"/>
+    <text x="560" y="406">RAG routing learning loop</text>
+  </g>
+</svg>

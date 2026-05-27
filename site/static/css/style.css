@@ -4,6 +4,21 @@
   box-sizing: border-box;
 }
 
+/* Visually-hidden utility for screen-reader-only text and SEO context.
+   Used by Read More buttons (taxonomy pages) and feature-page H1s to
+   include descriptive context without changing the visual UI. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 body {
   font-family: 'Source Sans 3', sans-serif;
   background-color: var(--color-bg-primary);
@@ -1535,7 +1550,7 @@ html[dir="rtl"] .language-icon {
 /* Footer Styles */
 .contact-footer-wrapper {
   background: linear-gradient(rgba(30, 58, 43, 0.7), rgba(30, 58, 43, 0.8)),
-              url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/leonardo-with-his-robot.webp');
+              url('/cdn-cgi/image/width=1600,format=auto,quality=80/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/leonardo-with-his-robot.webp');
   background-size: cover;
   background-position: center 15%;
   background-repeat: no-repeat;
@@ -3866,7 +3881,7 @@ body:not(.homepage) .privacy-settings-link:hover {
 
 @media (max-width: 480px) {
   button, a, [role="button"] {
-    min-height: 32px !important;
+    min-height: 48px !important;
   }
   .features {
     flex-direction: column;

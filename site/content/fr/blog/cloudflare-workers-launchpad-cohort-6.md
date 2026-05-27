@@ -9,7 +9,7 @@ author = "Divinci AI Team"
 featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Divinci-Workers-Launchpad.svg"
 +++
 
-<video muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+<video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-cloudflare-workers-launchpad-cohort-6.webm" type="video/webm">
 </video>
 
@@ -19,7 +19,7 @@ Nous sommes ravis de partager que **Divinci AI a été accepté dans le [Cloudfl
 
 Chez Divinci AI, nous construisons la prochaine génération d'outils de collaboration IA d'entreprise en mettant l'accent sur la fiabilité, la sécurité et les performances. La plateforme d'edge computing de Cloudflare a été essentielle pour atteindre ces objectifs, nous permettant de fournir des capacités IA sophistiquées avec une latence minimale à travers le monde.
 
-<video muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+<video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-celestial-globe.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Déploiement global en périphérie permettant l'IA à la vitesse de la pensée</p>
@@ -69,7 +69,7 @@ Pour nos clients, cela se traduit par :
 
 Nous sommes incroyablement enthousiastes à propos de ce partenariat et des opportunités qu'il apporte. Alors que nous continuons à construire l'avenir de la collaboration d'entreprise alimentée par l'IA, la plateforme de Cloudflare restera au cœur de notre infrastructure, nous permettant d'offrir des expériences exceptionnelles aux équipes du monde entier.
 
-<video muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+<video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-workshop-leonardo.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Innovation à travers les âges : Construire l'avenir avec des principes intemporels</p>

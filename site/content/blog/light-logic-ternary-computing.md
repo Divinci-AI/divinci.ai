@@ -1,7 +1,8 @@
 +++
 title = "Light Logic: The Dawn of Photonic Ternary Computing for Universal Basic Compute"
-description = "Exploring a revolutionary computing paradigm that combines photonic logic gates, ternary computation, quantum random number generation, and gravity battery power to create sustainable, hand-crafted computing systems as a foundation for universal basic income."
+description = "Photonic logic gates, ternary computing, quantum RNG, and gravity batteries: a sustainable, hand-crafted compute substrate for UBI. Updated May 2026 — three of the four pillars have crossed the commercial threshold."
 date = 2025-10-05T10:00:00+00:00
+updated = 2026-05-27T10:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -9,6 +10,7 @@ categories = ["Vision"]
 tags = ["Photonic Computing", "Ternary Logic", "Green Computing", "Quantum Computing", "Universal Basic Income", "Gravity Batteries", "Sustainable Technology"]
 
 [extra]
+math = true
 author = "Divinci AI Research Team"
 author_avatar = "images/Michael-Mooring.png"
 featured_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/light-logic-temple-electric.webm"
@@ -17,6 +19,85 @@ hero_video_poster = "/images/light-logic-temple-electric-poster.webp"
 reading_time = 15
 summary = "What if we could build computers that run on light, think in threes instead of twos, harness quantum randomness, and draw power from gravity itself? This exploration of 'Light Logic' computing reveals how combining photonic circuits, ternary mathematics, and sustainable energy could democratize computational resources as part of universal basic income."
 +++
+
+<aside style="background: rgba(184, 160, 128, 0.1); border-left: 3px solid #b8a080; padding: 0.9rem 1.1rem; margin: 1.5rem 0; font-size: 0.92rem; color: #4a4030;">
+  <strong style="color: #1e3a2b;">About this post.</strong> This is a <em>vision piece</em>: photonic logic gates, ternary computing, quantum RNG, and gravity batteries are real research areas, but the integrated "Light Logic" computing substrate described here is speculative and aspirational. The diagrams below are illustrative — they show how these components would connect <em>if</em> they were built, not measurements from a shipped system. The closest analogues for the individual components exist: Lightmatter and Lightelligence for photonic logic, NASA's research on ternary computers in the 1960s, ANU and IDQ for quantum RNG, and Energy Vault for gravity-based storage. Treat the post as a synthesis of plausible directions, not a product roadmap.
+</aside>
+
+## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> May 2026 Update — Three of the Four Pillars Crossed the Commercial Threshold
+
+When this post first published in October 2025, "Light Logic" was a synthesis of four research areas that did not yet integrate into shipping systems. Seven months later, **three of those four areas have crossed from research curiosity to commercial reality**, and the fourth (gravity-mechanical storage) is undergoing a partial reshuffle as the iron-air and thermal-sand alternatives leapfrog pure-gravitational designs. This section updates the post against what actually shipped in late 2025 and early 2026.
+
+<figure style="margin: 2rem 0; overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+<thead>
+<tr style="background: #2d5a4f; color: #faf8f5;">
+<th style="padding: 0.7rem 0.9rem; text-align: left;">Pillar</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">October 2025 thesis</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">May 2026 reality</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Photonic compute</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Taichi chip (1000× efficiency, research)</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Q.ANT NPU 2 shipping via IONOS cloud</strong>; Lightmatter Passage L20 (6.4 Tbps optical engine); Lightelligence PACE2 PCIe accelerator card</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Ternary / sub-1-bit LLMs</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">BitNet b1.58 (research preview)</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>PrismML Ternary Bonsai 8B/4B/1.7B at 27 tok/s on iPhone 17 Pro Max</strong>, Apache 2.0; BitNet parallel kernels +1.15–2.1×; sub-1-bit BTC-LLM at 0.7–1.11 bits</td></tr>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Quantum RNG</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">ANU lab streams + IDQ enterprise modules</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Samsung Galaxy Quantum 6 ships QRNG in-pocket</strong>; AWS Marketplace msQRNG; Quantinuum Quantum Origin verifiable QRNG</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem;"><strong>Sustainable storage</strong></td><td style="padding: 0.7rem 0.9rem;">Energy Vault + Gravitricity (pure gravity)</td><td style="padding: 0.7rem 0.9rem;"><strong>Energy Vault commissions 25 MW / 100 MWh in China</strong>; <strong>Form Energy iron-air at 30 GWh (Google/Xcel) + 12 GWh (Crusoe AI)</strong>; Polar Night sand-battery wins 2026 Popular Mechanics Breakthrough; <em>Gravitricity entered voluntary liquidation Feb 2026</em></td></tr>
+</tbody>
+</table>
+<figcaption style="text-align: center; font-style: italic; color: #5a6862; font-size: 0.9rem; margin-top: 0.75rem;">The Light Logic thesis vs the products shipping seven months later.</figcaption>
+</figure>
+
+### Photonic compute crossed the commercial threshold
+
+The most consequential shift since October 2025 is that photonic AI compute is no longer a lab demonstration. **Q.ANT's NPU 2**, announced 19 May 2026, is the first photonic AI accelerator commercially available via a mainstream cloud — IONOS — after pilot deployments at the Leibniz Supercomputing Centre (LRZ) and Forschungszentrum Jülich (JSC)<sup><a href="#ref-qant-2026" id="cite-qant">[QANT-2026]</a></sup>. Q.ANT claims 30× lower energy and 50× higher performance per task than transistor baselines, and a 100× improvement over its own gen-1 part. That's a research claim, not an independent benchmark, but the chip is now on a purchase order rather than in a paper.
+
+**Lightmatter's Passage L20**, announced March 2026, is a 6.4 Tbps-per-direction optical engine for near-package and on-board optics; samples late 2026<sup><a href="#ref-lightmatter-l20" id="cite-lightmatter">[LIGHTMATTER-2026]</a></sup>. The headline claim — halving datacenter fibre counts via bidirectional multiplexing — is the kind of unglamorous infrastructure detail that decides whether photonic compute scales beyond pilot sites.
+
+**Lightelligence's PACE2** launched at OFC 2026 as a PCIe accelerator card with ONNX/PyTorch/TVM compatibility<sup><a href="#ref-lightelligence-pace2" id="cite-lightelligence">[LIGHTELLIGENCE-2026]</a></sup>. The Hong Kong IPO filing in April 2026 suggests the financial side of photonic compute is catching up to the technical side.
+
+Penn Engineering's programmable diffractive deep neural network using rewritable metasurfaces — the kind of optical-fixed-pattern compute we described in the original post — was peer-reviewed in 2025 (PMC12518764)<sup><a href="#ref-penn-d2nn" id="cite-penn">[PENN-2025]</a></sup>. Diffractive logic is now publishing in *Nature Communications*-family journals, not preprint servers.
+
+What we don't yet have is a head-to-head photonic-vs-Blackwell LLM-inference benchmark. The single best paper attempting one — PRISM (arXiv:2603.21576) — proposes O(1) photonic block selection for long context but stays theoretical.
+
+### Ternary went mainstream-portable
+
+The post's claim that ternary computing belongs on edge devices rather than datacenters was empirical aspiration in October 2025. **PrismML's Ternary Bonsai** family, released April 2026, makes it empirically true: an 8B 1.58-bit model running at 27 tok/s on an iPhone 17 Pro Max and 82 tok/s on an M4 Pro, Apache 2.0 licensed, ~9× smaller than fp16 peers<sup><a href="#ref-bonsai" id="cite-bonsai">[BONSAI-2026]</a></sup>. The Ternary Bonsai 8B benchmark average of 75.5 is within striking distance of similarly-sized fp16 models. This is the first ternary release that a developer can pull from Hugging Face today and run on an off-the-shelf phone.
+
+Microsoft's January 2026 update to **BitNet's parallel kernels** delivered a 1.15–2.1× speedup on the BitNet b1.58 2B-4T model across configurable hardware tilings<sup><a href="#ref-bitnet-kernels" id="cite-bitnet">[BITNET-2026]</a></sup>. Combined with the new sub-1-bit work — **BTC-LLM** at 0.7–1.11 bits via binary codebook plus learnable transform, keeping 0.8-bit LLaMA-2-13B within 3.1% of fp16 accuracy<sup><a href="#ref-btc-llm" id="cite-btc">[BTC-LLM-2025]</a></sup>; **HESTIA's** Hessian-guided quantization-aware training; **TernaryLM's** 132M native-1.58-bit model with adaptive scaling — the trajectory is clearly toward production sub-1-bit deployment, not theoretical limits.
+
+For the Light Logic vision, the upshot is that the *ternary on the edge* claim has been validated; what hasn't been validated yet is *ternary on photonic substrates*. Bonsai runs on Apple's M-series silicon (a transistor architecture); Q.ANT's NPU 2 runs an optical matrix engine. Composing the two is still the open research problem.
+
+### Quantum RNG quietly commercialised
+
+The post's QRNG section described a small enterprise market. Seven months later, **Samsung's Galaxy Quantum 6** ships with IDQ's 2.5×2.5 mm QRNG chipset — the smallest in production — integrated with Samsung Knox<sup><a href="#ref-samsung-qrng" id="cite-samsung">[SAMSUNG-2026]</a></sup>. QRNG is in millions of consumer pockets, not a niche enterprise SKU. The supporting infrastructure caught up at the same pace: **Palo Alto Networks** ships a vendor-agnostic QRNG Open API; **AWS Marketplace** lists msQRNG as a purchasable service; **Quantinuum's Quantum Origin** offers verifiable QRNG from a fault-tolerant stack<sup><a href="#ref-quantinuum" id="cite-quantinuum">[QUANTINUUM-2025]</a></sup>. A 2025 peer-reviewed prototype of fully-integrated vacuum-based QRNG (arXiv:2505.01701) confirms that the silicon-photonics integration path is real.
+
+In short: by mid-2026 there is no longer a tooling reason to seed a machine-learning pipeline with deterministic pseudo-randomness. The QRNG primitives the post described as a future component are an `npm install` away.
+
+### Gravity batteries — what to retire, what to foreground
+
+This is the pillar that shuffled. Pure-mechanical gravity storage made significant progress and also took a significant casualty:
+
+- **Energy Vault** commissioned the world's first 25 MW / 100 MWh EVx system at Rudong, China in January 2026, in partnership with China Tianying and Atlas Renewable, with a second 100 MWh project signed for Huailai County, Hebei<sup><a href="#ref-energy-vault-rudong" id="cite-ev">[ENERGY-VAULT-2026]</a></sup>. The thesis works at commercial scale.
+- **Gravitricity** entered voluntary liquidation in February 2026 with under £8,000 in assets, with an IP sale deadline of 25 February 2026<sup><a href="#ref-gravitricity-collapse" id="cite-gravitricity">[GRAVITRICITY-2026]</a></sup>. The original post cited Gravitricity as an active competitor; **that paragraph should now be read in past tense**.
+
+In the meantime, two non-gravity sustainable-storage approaches leapfrogged the pure-gravity competition for AI-datacenter deployments:
+
+- **Form Energy's iron-air** chemistry, which the original post mentioned only briefly, signed a 12 GWh deal with **Crusoe** for AI datacenters at CERAWeek March 2026, and a 30 GWh / 300 MW deal with **Google and Xcel** for a Minnesota project — described by the parties as the largest-by-GWh storage deal announced<sup><a href="#ref-form-google" id="cite-form-google">[FORM-GOOGLE-2026]</a></sup><sup><a href="#ref-form-crusoe" id="cite-form-crusoe">[FORM-CRUSOE-2026]</a></sup>. Form's Weirton, WV factory is shipping.
+- **Polar Night Energy's** sand-battery design won the 2026 *Popular Mechanics* Breakthrough Award and starts a 250 MWh build at Vääksy in 2026; its sand-to-power electricity pilot tested early in 2026<sup><a href="#ref-polar-night" id="cite-polar">[POLAR-NIGHT-2026]</a></sup>.
+
+The honest read for the Light Logic vision: **the sustainable-storage pillar is more diverse and more credible than the October 2025 post described, but the specific gravity-mechanical narrative is narrower than we expected.** Future versions of this analysis should foreground Energy Vault as the gravity proof-point, retire Gravitricity, and treat Form Energy + Polar Night as parallel sustainable-storage options for AI compute loads.
+
+### Bonus — artisan and open-PDK silicon survived a near-death
+
+The "hand-crafted computing" pillar of the original post depended on the open-PDK / shuttle-fabrication ecosystem that Tiny Tapeout and Efabless were building out. **Efabless shut down in March 2025**, briefly threatening that ecosystem. The recovery has been: the founders relaunched as **ChipFoundry.io**, restoring SKY130 PDK access; Tiny Tapeout pivoted to **IHP** (Leibniz Institute for High Performance Microelectronics) for its open-PDK shuttle, with a ~€300 dev-kit and €70/tile pricing<sup><a href="#ref-tinytapeout-ihp" id="cite-tinytapeout">[TINYTAPEOUT-2025]</a></sup>. The "artisan compute" thesis is less battered than it might have been; what got tested was the supply-chain resilience of the open-PDK movement, and it survived.
+
+**Mythic AI**, the analog-compute company we mentioned, announced joint development with **Honda** in February 2026 on a 100×-energy-efficient analog AI chip for automotive SDVs, and a partnership with **Microchip** on memBrain-powered next-gen APUs targeting 120 TOPS/W<sup><a href="#ref-mythic-honda" id="cite-mythic">[MYTHIC-2026]</a></sup>. Analog AI compute didn't fade — it specialised into automotive.
+
+### What this update means for the original Light Logic vision
+
+The original post described an integrated photonic-ternary-quantum-sustainable substrate as a 10–15 year horizon. Seven months later, the *individual* primitives have advanced enough that the integrated substrate is a 5–7 year horizon for some subset of the stack, with the photonic-ternary composition being the open research gap. The "Universal Basic Compute" social-contract framing remains a policy proposal, not an engineering reality. The infrastructure to make it concrete is closer than it was — meaningfully so on photonic compute, ternary edge inference, and quantum randomness; differently than expected on gravity storage; reconstituted-but-thinner on open-PDK silicon.
+
+The vision still holds. The path to it is more vendor-mediated and less artisan than the original post hoped — but the components are no longer hypothetical.
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> The Vision: Computing for All
 
@@ -60,7 +141,7 @@ For example, a photonic AND gate works like this:
 
 The beauty of combining both approaches, as demonstrated by the Taichi chip, is that diffraction handles fixed operations (like encoding data) while interference handles reconfigurable logic—giving us the best of both worlds.
 
-<img src="/images/photonic-logic-gate.svg" alt="Photonic Logic Gate Animation" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/photonic-logic-gate.svg" alt="Photonic Logic Gate Animation" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy" width="800" height="400">
 
 *Diagram: Photonic logic gate operation showing wave interference and diffraction patterns. Based on Tsinghua University's Taichi chip architecture and photonic computing principles from MIT's integrated photonics research.*
 
@@ -101,7 +182,7 @@ Huawei's recent 7nm ternary chip demonstrates:
 
 The key breakthrough: transistors with **two threshold levels** instead of one, allowing clear differentiation between three distinct states: -1, 0, and +1.
 
-<img src="/images/ternary-logic-comparison.svg" alt="Binary vs Ternary Logic Comparison" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/ternary-logic-comparison.svg" alt="Binary vs Ternary Logic Comparison" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy" width="800" height="500">
 
 *Diagram: Binary vs ternary logic comparison showing efficiency gains and information density improvements. Based on historical Setun computer design by Nikolay Brusentsov and modern ternary computing research from KAIST and Stanford University.*
 
@@ -153,7 +234,7 @@ For machine learning, this provides:
 
 The photonic nature of Light Logic systems makes quantum random number generation essentially "free"—it's a natural byproduct of the optical measurement process, requiring no additional hardware.
 
-<img src="/images/quantum-randomness.svg" alt="Quantum Random Number Generation" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/quantum-randomness.svg" alt="Quantum Random Number Generation" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy" width="800" height="450">
 
 *Diagram: Quantum random number generation process using photonic shot noise. Based on quantum optics principles and implementations from ID Quantique and Quintessence Labs commercial quantum RNG systems.*
 
@@ -208,7 +289,7 @@ Gravity batteries complement Light Logic systems beautifully:
 
 **Load Balancing**: Light Logic systems have extremely low idle power consumption (photonic circuits don't leak current like electronic ones). Gravity batteries can "trickle charge" from solar/wind, then provide burst power for computation when needed.
 
-<img src="/images/gravity-battery.svg" alt="Gravity Battery Energy Storage System" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/images/gravity-battery.svg" alt="Gravity Battery Energy Storage System" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy" width="800" height="500">
 
 *Diagram: Gravity battery energy storage system showing mechanical energy storage and retrieval. Based on Energy Vault's gravity-based storage design and pumped hydroelectric storage principles adapted for modular deployment.*
 
@@ -384,3 +465,76 @@ Are we ready to build the future, one hand-crafted photonic circuit at a time?
 ---
 
 *Interested in contributing to Light Logic development? Divinci AI is collaborating with research institutions and community workshops to prototype these systems. [Contact us](https://meetings.hubspot.com/michael-mooring/divinci-ai) to learn more about getting involved.*
+
+---
+
+## References
+
+<ol class="post-references" style="padding-left: 1.5rem; font-size: 0.92rem;">
+  <li id="ref-qant-2026" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Q.ANT.</strong> "Q.ANT Takes Photonic AI Computing Commercial as AI's Power Demand Surges." Press release, 19–20 May 2026. NPU 2 launch via IONOS cloud; deployments at LRZ + JSC. <a href="https://qant.com/news/q-ant-takes-photonic-ai-computing-commercial-as-ais-power-demand-surges/" target="_blank" rel="noopener">qant.com</a>
+  </li>
+  <li id="ref-lightmatter-l20" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Lightmatter.</strong> "Lightmatter expands photonic-interconnect roadmap with Passage L20." Press release, 11 March 2026. 6.4 Tbps/direction optical engine. <a href="https://lightmatter.co/press-release/lightmatter-expands-photonic-interconnect-roadmap-with-passage-l20-unified-optical-engine-for-npo-and-obo-applications/" target="_blank" rel="noopener">lightmatter.co</a>
+  </li>
+  <li id="ref-lightelligence-pace2" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Semiconductor Digest.</strong> "Lightelligence launches second-generation optoelectronic accelerated computing card." OFC 2026 coverage, 15–19 March 2026. PACE2 PCIe accelerator with ONNX / PyTorch / TVM support. <a href="https://www.semiconductor-digest.com/lightelligence-launches-second-generation-optoelectronic-accelerated-computing-card/" target="_blank" rel="noopener">semiconductor-digest.com</a>
+  </li>
+  <li id="ref-penn-d2nn" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Programmable diffractive deep neural networks enabled by integrated rewritable metasurfaces.</strong> <em>Nature Communications</em>-family peer review, PMC12518764, 2025. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12518764/" target="_blank" rel="noopener">ncbi.nlm.nih.gov/pmc/articles/PMC12518764</a>
+  </li>
+  <li id="ref-bonsai" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Prism ML.</strong> "Ternary Bonsai." Release announcement, 16 April 2026. 8B/4B/1.7B 1.58-bit family, Apache 2.0, MLX-native. <a href="https://prismml.com/news/ternary-bonsai" target="_blank" rel="noopener">prismml.com/news/ternary-bonsai</a>; weights at <a href="https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit" target="_blank" rel="noopener">huggingface.co/prism-ml</a>
+  </li>
+  <li id="ref-bitnet-kernels" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Microsoft.</strong> "BitNet" repository update — parallel kernel configurations. January 2026. 1.15–2.1× speedup on BitNet b1.58 2B-4T. <a href="https://github.com/microsoft/BitNet" target="_blank" rel="noopener">github.com/microsoft/BitNet</a>
+  </li>
+  <li id="ref-btc-llm" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>BTC-LLM: Sub-1-bit LLM Quantization via Learnable Transformation and Binary Codebook.</strong> arXiv:2506.12040. 0.8-bit LLaMA-2-13B within 3.1% of fp16 accuracy. <a href="https://arxiv.org/abs/2506.12040" target="_blank" rel="noopener">arxiv.org/abs/2506.12040</a>
+  </li>
+  <li id="ref-samsung-qrng" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>ID Quantique.</strong> "Samsung Galaxy Quantum 6 — QRNG use case." 2.5×2.5 mm QRNG chipset integrated with Samsung Knox; world's smallest in production. <a href="https://www.idquantique.com/random-number-generation/qrng-use-cases/samsung-qrng-use-case/" target="_blank" rel="noopener">idquantique.com</a>
+  </li>
+  <li id="ref-quantinuum" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Quantinuum.</strong> "Quantum Origin — verifiable QRNG from a fault-tolerant stack." Product page, 2025. <a href="https://www.quantinuum.com/products-solutions/quantum-origin" target="_blank" rel="noopener">quantinuum.com</a>. Also: <a href="https://aws.amazon.com/marketplace/pp/prodview-57mpntroadkzm" target="_blank" rel="noopener">AWS Marketplace msQRNG listing</a>.
+  </li>
+  <li id="ref-energy-vault-rudong" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Energy Vault × China Tianying × Atlas Renewable.</strong> "25 MW / 100 MWh EVx commissioned at Rudong." Datacenter Dynamics, January 2026. Second 100 MWh signed for Huailai County, Hebei. <a href="https://www.datacenterdynamics.com/en/news/energy-vault-says-25mw-gravity-storage-system-in-china-is-completed/" target="_blank" rel="noopener">datacenterdynamics.com</a>
+  </li>
+  <li id="ref-gravitricity-collapse" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Solar Power Portal.</strong> "Gravitricity wound up voluntarily with under £8k assets." February 2026. IP sale deadline 25 February 2026. <a href="https://www.solarpowerportal.co.uk/energy-storage/gravitricity-wound-up-voluntarily-with-under-8k-assets" target="_blank" rel="noopener">solarpowerportal.co.uk</a>
+  </li>
+  <li id="ref-form-google" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Energy-Storage.news.</strong> "Google Minnesota data-centre energy deal includes 30 GWh multi-day iron-air batteries from Form Energy." March 2026. "Largest by GWh announced." <a href="https://www.energy-storage.news/google-minnesota-data-centre-energy-deal-includes-30gwh-multi-day-iron-air-batteries-from-form-energy/" target="_blank" rel="noopener">energy-storage.news</a>
+  </li>
+  <li id="ref-form-crusoe" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Form Energy.</strong> "Form Energy + Crusoe announce 12 GWh agreement for AI data centers." CERAWeek, March 2026. <a href="https://formenergy.com/form-energy-crusoe-announce-agreement-for-12-gigawatt-hours-of-iron-air-batteries-for-ai-data-centers/" target="_blank" rel="noopener">formenergy.com</a>
+  </li>
+  <li id="ref-polar-night" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Polar Night Energy.</strong> "Sand battery wins Popular Mechanics Breakthrough Award 2026." Sand-to-Power electricity pilot testing early 2026; 250 MWh Vääksy build starts 2026. <a href="https://polarnightenergy.com/news/sand-battery-wins-breakthrough-award-2026/" target="_blank" rel="noopener">polarnightenergy.com</a>
+  </li>
+  <li id="ref-tinytapeout-ihp" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>eeNews Europe.</strong> "Tiny Tapeout sees industrial boost as it recovers from Efabless closure." Pivot to IHP (Leibniz Institute for High Performance Microelectronics), ~€300 dev-kit, €70/tile. 2025. <a href="https://www.eenewseurope.com/en/tiny-tapeout-sees-industrial-boost-as-it-recovers-from-efabless-closure/" target="_blank" rel="noopener">eenewseurope.com</a>
+  </li>
+  <li id="ref-mythic-honda" style="scroll-margin-top: 90px; margin-bottom: 0.6rem;">
+    <strong>Mythic AI.</strong> "Honda and Mythic announce joint development of 100× energy-efficient analog AI chip for next-generation vehicles." February 2026. Microchip memBrain partnership announced March 2026 targeting 120 TOPS/W. <a href="https://mythic.ai/whats-new/honda-and-mythic-announce-joint-development-of-100x-energy-efficient-analog-ai-chip-for-next-generation-vehicles/" target="_blank" rel="noopener">mythic.ai</a>
+  </li>
+</ol>
+
+<script>
+// Smooth-scroll for the May 2026 Update references in this post.
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('a[href^="#ref-"], a[id^="cite-"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = link.getAttribute('href') || '';
+      var targetId = href.replace(/^#/, '');
+      var target = targetId ? document.getElementById(targetId) : null;
+      if (!target) return;
+      e.preventDefault();
+      var rect = target.getBoundingClientRect();
+      window.scrollTo({ top: window.scrollY + rect.top - 90, behavior: 'smooth' });
+      if (history.replaceState) history.replaceState(null, '', href);
+    });
+  });
+});
+</script>

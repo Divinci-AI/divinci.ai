@@ -10,7 +10,7 @@ template = "page.html"
 
 # Privacy Policy
 
-**Last updated:** March 2025
+**Last updated:** 2026년 5월
 
 ## Our Commitment to Privacy
 
@@ -42,6 +42,7 @@ We use cookies and similar technologies to:
 - Ensure website functionality
 - Analyze website and app performance
 - Provide personalized experience (with your consent)
+- B2B 마케팅 목적으로 웹사이트 방문과 관련된 조직을 식별합니다(EU/EEA, 영국 및 스위스에서는 귀하의 동의를 받아 진행됩니다)
 
 ## 2. Third-Party Services and SDKs
 
@@ -65,6 +66,10 @@ Our Services integrate the following third-party services, each with their own p
 
 ### 2.6 Cloud Infrastructure
 - **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+
+### 2.7 마케팅, 방문자 식별 및 CRM
+- **Instantly.ai / Leadsy.ai**: 당사는 Instantly의 방문자 식별 태그(동일 공급업체가 운영하는 `tag.trovo-tag.com`에서 추적 스크립트를 동적으로 로드하는 `r2.leadsy.ai`에서 로드됨)를 사용하여 웹사이트 방문이 연관될 수 있는 조직(예: 방문자의 IP 주소에 연결된 회사)을 식별합니다. 이는 당사의 기업 간(B2B) 아웃바운드 마케팅에 활용됩니다. EU/EEA, 영국 또는 스위스에 있는 것으로 감지된 방문자의 경우, 이 태그는 당사의 쿠키 배너를 통해 **마케팅 동의를 부여한 후에만** 로드됩니다. 해당 관할권 외부의 방문자의 경우, 태그는 기본적으로 로드되며 섹션 10의 "쿠키 설정" 컨트롤을 통해 언제든지 비활성화할 수 있습니다. [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
+- **HubSpot**: 당사는 HubSpot 추적 스크립트(`js.hs-scripts.com`에서 로드되며, 이는 `js.hs-analytics.net`, `js.hs-banner.com` 및 `js.hscollectedforms.net`에서 추적, 배너 및 양식 캡처 스크립트를 동적으로 로드함)를 사용하여 페이지 조회를 기록하고, 마케팅 채널 성과를 귀속시키며, 양식 제출을 캡처하고, 양식을 제출하거나 미팅을 예약할 때 웹사이트 활동을 HubSpot CRM 연락처 기록에 연결합니다. EU/EEA, 영국 또는 스위스에 있는 것으로 감지된 방문자의 경우, 이 스크립트는 당사의 쿠키 배너를 통해 **마케팅 동의를 부여한 후에만** 로드됩니다. 해당 관할권 외부의 방문자의 경우, 스크립트는 기본적으로 로드되며 섹션 10의 "쿠키 설정" 컨트롤을 통해 언제든지 비활성화할 수 있습니다. [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
 
 ## 3. Legal Basis for Processing (GDPR)
 
@@ -99,6 +104,7 @@ We do not sell your personal data. We may share data with:
 - Cloud hosting and infrastructure providers (with data processing agreements)
 - Authentication service providers
 - Analytics and crash reporting providers (when you consent or as described above)
+- 마케팅 및 B2B 방문자 식별 제공업체(규제 관할권에서의 동의 대상, 섹션 2.7에 설명된 바와 같음)
 - AI model providers for processing your requests
 - Customer support tools
 
@@ -140,6 +146,8 @@ Our Services are not directed to children under the age of 13 (or the applicable
 - **Objection**: Object to processing for direct marketing
 - **Withdraw Consent**: Revoke consent at any time
 
+To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+
 ### 9.2 CCPA Rights (California Residents)
 - **Right to Know**: What personal information we collect and how it is used
 - **Right to Delete**: Request deletion of your personal information
@@ -161,13 +169,9 @@ Our Services are not directed to children under the age of 13 (or the applicable
     🍪 Cookie Preferences
   </button>
 
-  <button onclick="window.gdprCompliance?.exportUserData()" class="privacy-btn">
-    📥 Download My Data
-  </button>
-
-  <button onclick="window.gdprCompliance?.deleteUserData()" class="privacy-btn privacy-btn-danger">
-    🗑️ Delete My Data
-  </button>
+  <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
+    📥 데이터 요청 제출
+  </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
     ❌ Revoke All Consent

@@ -3,6 +3,8 @@ title = "RAG Arena - RAG 流水线基准测试"
 description = "在 Divinci AI 的 RAG Arena 中并排比较模型、策略和配置,以找到最佳的 RAG 流水线"
 template = "feature.html"
 
+[extra]
+hero_poster = "images/rag-arena-hero.png"
 +++
 
 # RAG Arena
@@ -880,7 +882,7 @@ template = "feature.html"
 
 <div class="arena-hero">
 <div class="arena-hero-bg">
-<video autoplay muted loop playsinline poster="/images/rag-arena-hero.png">
+<video autoplay muted loop playsinline poster="/cdn-cgi/image/width=1200,format=auto,quality=80/images/rag-arena-hero.png">
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-arena-battle.webm" type="video/webm">
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-arena-battle.mp4" type="video/mp4">
 </video>
@@ -909,7 +911,7 @@ template = "feature.html"
 <div class="arena-card is-loading" data-variant="a" data-time="1.2">
 <div class="arena-card-header">
 <span class="arena-card-label">Variant A</span>
-<span class="arena-card-rag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/qdrant-logomark.svg" alt="Qdrant" class="provider-icon" width="16" height="16">Qdrant</span>
+<span class="arena-card-rag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/qdrant-logomark.svg" alt="Qdrant" class="provider-icon" width="16" height="16" loading="lazy">Qdrant</span>
 </div>
 <div class="arena-spinner"><div class="spinner"></div><span class="spinner-label">Retrieving context...</span></div>
 <div class="arena-card-body">
@@ -927,7 +929,7 @@ Based on the clinical documentation, the recommended starting dose is 10mg daily
 <div class="arena-card is-loading" data-variant="b" data-time="2.1">
 <div class="arena-card-header">
 <span class="arena-card-label">Variant B</span>
-<span class="arena-card-rag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Cloudflare-logo.svg" alt="Cloudflare" class="provider-icon" width="16" height="16">Cloudflare Vectorize</span>
+<span class="arena-card-rag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Cloudflare-logo.svg" alt="Cloudflare" class="provider-icon" width="16" height="16" loading="lazy">Cloudflare Vectorize</span>
 </div>
 <div class="arena-spinner"><div class="spinner"></div><span class="spinner-label">Retrieving context...</span></div>
 <div class="arena-card-body">
@@ -1184,13 +1186,13 @@ function arenaReset() {
 <h2>Supported Vector Providers</h2>
 <p class="section-subtitle">Run arena experiments across any combination of vector databases.</p>
 <div class="providers-grid">
-<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/qdrant-logomark.svg" alt="Qdrant">Qdrant</div>
-<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Cloudflare-logo.svg" alt="Cloudflare">Cloudflare Vectorize</div>
-<div class="provider-badge"><img src="https://pub-67b9e94061a04db7a525d7b025776d27.r2.dev/couchbase-icon.svg" alt="Couchbase">Couchbase</div>
-<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Google_Favicon_2025.svg.png" alt="Google">Vertex AI Vector Search</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/qdrant-logomark.svg" alt="Qdrant" loading="lazy" width="16" height="16">Qdrant</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Cloudflare-logo.svg" alt="Cloudflare" loading="lazy" width="16" height="16">Cloudflare Vectorize</div>
+<div class="provider-badge"><img src="https://pub-67b9e94061a04db7a525d7b025776d27.r2.dev/couchbase-icon.svg" alt="Couchbase" loading="lazy" width="16" height="16">Couchbase</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Google_Favicon_2025.svg.png" alt="Google" loading="lazy" width="16" height="16">Vertex AI Vector Search</div>
 <div class="provider-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="#47A248" stroke="none"><path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 003.639-8.464c.01-.814-.103-1.662-.197-2.218zm-5.336 8.195s0-8.291.275-8.29c.213 0 .49 10.695.49 10.695-.381-.045-.765-1.76-.765-2.405z"/></svg>MongoDB Atlas</div>
 <div class="provider-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="#DC382D" stroke="none"><path d="M22.71 13.145c-1.66 2.092-3.452 4.483-7.038 4.483-3.203 0-4.397-2.825-4.48-5.12.701 1.484 2.073 2.685 4.214 2.63 4.117-.133 6.94-3.852 6.94-7.239 0-4.05-3.022-6.972-8.268-6.972-3.752 0-8.4 1.428-11.455 3.685C2.59 6.937 3.885 9.958 4.35 9.626c2.648-1.904 4.748-3.13 6.784-3.744C8.12 9.244.886 17.05 0 18.425c.1 1.261 1.66 4.648 2.424 4.648.232 0 .431-.133.664-.365a100.49 100.49 0 005.54-6.765c.222 3.104 1.748 6.898 6.014 6.898 3.819 0 7.604-2.756 9.33-8.965.2-.764-.73-1.361-1.261-.73zm-4.349-5.013c0 1.959-1.926 2.922-3.685 2.922-.941 0-1.664-.247-2.235-.568 1.051-1.592 2.092-3.225 3.21-4.973 1.972.334 2.71 1.43 2.71 2.619z"/></svg>Redis</div>
-<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/pageindex-logo.png" alt="PageIndex">PageIndex</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/pageindex-logo.png" alt="PageIndex" loading="lazy" width="16" height="16">PageIndex</div>
 </div>
 </section>
 

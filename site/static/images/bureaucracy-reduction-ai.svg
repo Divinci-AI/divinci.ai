@@ -47,8 +47,8 @@
 
     <text x="75" y="202" class="dept-label">💰 IRS / Tax Collection</text>
     <text x="75" y="218" class="detail-text">AI processing: Returns, audits, fraud detection</text>
-    <text x="505" y="205" text-anchor="end" class="automation-level">75% automation potential</text>
-    <text x="570" y="210" text-anchor="end" class="savings-text">$45B saved</text>
+    <text x="580" y="232" text-anchor="end" class="automation-level">75% automation potential</text>
+    <text x="580" y="202" text-anchor="end" class="savings-text">$45B saved</text>
   </g>
 
   <!-- Department 2: Social Security Administration -->
@@ -58,8 +58,8 @@
 
     <text x="75" y="282" class="dept-label">👴 Social Security Administration</text>
     <text x="75" y="298" class="detail-text">AI claims processing, eligibility verification, payments</text>
-    <text x="475" y="285" text-anchor="end" class="automation-level">70% automation potential</text>
-    <text x="570" y="290" text-anchor="end" class="savings-text">$42B saved</text>
+    <text x="580" y="312" text-anchor="end" class="automation-level">70% automation potential</text>
+    <text x="580" y="282" text-anchor="end" class="savings-text">$42B saved</text>
   </g>
 
   <!-- Department 3: Medicare/Medicaid -->
@@ -69,8 +69,8 @@
 
     <text x="75" y="362" class="dept-label">🏥 Medicare &amp; Medicaid Administration</text>
     <text x="75" y="378" class="detail-text">AI fraud detection, claims processing, prior authorizations</text>
-    <text x="455" y="365" text-anchor="end" class="automation-level">65% automation potential</text>
-    <text x="570" y="370" text-anchor="end" class="savings-text">$95B saved</text>
+    <text x="580" y="392" text-anchor="end" class="automation-level">65% automation potential</text>
+    <text x="580" y="362" text-anchor="end" class="savings-text">$95B saved</text>
   </g>
 
   <!-- Department 4: Veterans Affairs -->
@@ -80,8 +80,8 @@
 
     <text x="75" y="442" class="dept-label">🎖️ Veterans Affairs (benefits admin)</text>
     <text x="75" y="458" class="detail-text">AI benefits processing, health record management</text>
-    <text x="425" y="445" text-anchor="end" class="automation-level">60% automation potential</text>
-    <text x="570" y="450" text-anchor="end" class="savings-text">$48B saved</text>
+    <text x="580" y="472" text-anchor="end" class="automation-level">60% automation potential</text>
+    <text x="580" y="442" text-anchor="end" class="savings-text">$48B saved</text>
   </g>
 
   <!-- Department 5: Department of Education -->
@@ -91,8 +91,8 @@
 
     <text x="75" y="522" class="dept-label">🎓 Department of Education</text>
     <text x="75" y="538" class="detail-text">AI student loan processing, grant administration</text>
-    <text x="395" y="525" text-anchor="end" class="automation-level">55% automation potential</text>
-    <text x="570" y="530" text-anchor="end" class="savings-text">$38B saved</text>
+    <text x="580" y="552" text-anchor="end" class="automation-level">55% automation potential</text>
+    <text x="580" y="522" text-anchor="end" class="savings-text">$38B saved</text>
   </g>
 
   <!-- Department 6: Homeland Security -->
@@ -102,8 +102,8 @@
 
     <text x="75" y="602" class="dept-label">🛡️ Homeland Security (admin)</text>
     <text x="75" y="618" class="detail-text">AI background checks, immigration processing, logistics</text>
-    <text x="365" y="605" text-anchor="end" class="automation-level">50% automation potential</text>
-    <text x="570" y="610" text-anchor="end" class="savings-text">$42B saved</text>
+    <text x="580" y="632" text-anchor="end" class="automation-level">50% automation potential</text>
+    <text x="580" y="602" text-anchor="end" class="savings-text">$42B saved</text>
   </g>
 
   <!-- RIGHT COLUMN -->
@@ -115,8 +115,8 @@
 
     <text x="635" y="202" class="dept-label">🏘️ Housing &amp; Urban Development</text>
     <text x="635" y="218" class="detail-text">AI housing voucher processing, compliance monitoring</text>
-    <text x="955" y="205" text-anchor="end" class="automation-level">55% automation potential</text>
-    <text x="1130" y="210" text-anchor="end" class="savings-text">$26B saved</text>
+    <text x="1140" y="232" text-anchor="end" class="automation-level">55% automation potential</text>
+    <text x="1140" y="202" text-anchor="end" class="savings-text">$26B saved</text>
   </g>
 
   <!-- Department 8: Agriculture -->
@@ -126,8 +126,8 @@
 
     <text x="635" y="282" class="dept-label">🌾 Department of Agriculture</text>
     <text x="635" y="298" class="detail-text">AI crop insurance, subsidy distribution, inspections</text>
-    <text x="925" y="285" text-anchor="end" class="automation-level">50% automation potential</text>
-    <text x="1130" y="290" text-anchor="end" class="savings-text">$28B saved</text>
+    <text x="1140" y="312" text-anchor="end" class="automation-level">50% automation potential</text>
+    <text x="1140" y="282" text-anchor="end" class="savings-text">$28B saved</text>
   </g>
 
   <!-- Department 9: Transportation -->
@@ -137,8 +137,8 @@
 
     <text x="635" y="362" class="dept-label">🚗 Department of Transportation</text>
     <text x="635" y="378" class="detail-text">AI permitting, safety monitoring, route optimization</text>
-    <text x="895" y="365" text-anchor="end" class="automation-level">45% automation potential</text>
-    <text x="1130" y="370" text-anchor="end" class="savings-text">$22B saved</text>
+    <text x="1140" y="392" text-anchor="end" class="automation-level">45% automation potential</text>
+    <text x="1140" y="362" text-anchor="end" class="savings-text">$22B saved</text>
   </g>
 
   <!-- Department 10: Treasury (non-IRS) -->
@@ -148,8 +148,8 @@
 
     <text x="635" y="442" class="dept-label">🏦 Treasury (non-IRS operations)</text>
     <text x="635" y="458" class="detail-text">AI financial reporting, debt management</text>
-    <text x="895" y="445" text-anchor="end" class="automation-level">45% automation potential</text>
-    <text x="1130" y="450" text-anchor="end" class="savings-text">$18B saved</text>
+    <text x="1140" y="472" text-anchor="end" class="automation-level">45% automation potential</text>
+    <text x="1140" y="442" text-anchor="end" class="savings-text">$18B saved</text>
   </g>
 
   <!-- Department 11: EPA -->
@@ -159,8 +159,8 @@
 
     <text x="635" y="522" class="dept-label">🌍 EPA (Environmental Protection)</text>
     <text x="635" y="538" class="detail-text">AI compliance monitoring, data analysis</text>
-    <text x="865" y="525" text-anchor="end" class="automation-level">40% automation potential</text>
-    <text x="1130" y="530" text-anchor="end" class="savings-text">$12B saved</text>
+    <text x="1140" y="552" text-anchor="end" class="automation-level">40% automation potential</text>
+    <text x="1140" y="522" text-anchor="end" class="savings-text">$12B saved</text>
   </g>
 
   <!-- Department 12: Justice (admin) -->
@@ -170,8 +170,8 @@
 
     <text x="635" y="602" class="dept-label">⚖️ Department of Justice (admin)</text>
     <text x="635" y="618" class="detail-text">AI case management, legal research</text>
-    <text x="835" y="605" text-anchor="end" class="automation-level">35% automation potential</text>
-    <text x="1130" y="610" text-anchor="end" class="savings-text">$24B saved</text>
+    <text x="1140" y="632" text-anchor="end" class="automation-level">35% automation potential</text>
+    <text x="1140" y="602" text-anchor="end" class="savings-text">$24B saved</text>
   </g>
 
   <!-- Key Benefits Box -->

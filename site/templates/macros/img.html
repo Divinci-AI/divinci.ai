@@ -1,0 +1,32 @@
+{# Cloudflare Image Resizing macros.
+
+   The zone has CIR enabled (Enterprise feature). Same-origin paths like
+   /images/foo.jpg can be wrapped in /cdn-cgi/image/<opts>/ to get:
+     - on-the-fly resizing (one source file, many sizes)
+     - automatic format negotiation (webp/avif/jpg via format=auto)
+     - quality compression (quality=85 default)
+     - fit=cover for cropping to exact dimensions
+
+   Cross-origin sources (R2 etc.) require allowlisting in the Cloudflare
+   dashboard (Speed → Optimization → Image Resizing → Allowed origins).
+   Until that's done, R2 URLs should NOT be wrapped — they'll return 403.
+
+   Usage:
+     {% import "macros/img.html" as img %}
+     {{ img::cf(path="/images/photo.jpg", w=188, h=188, alt="...", display_w=94) }}
+#}
+
+{# Render an <img loading="lazy"> served through Cloudflare's image transformer.
+   - path:        source URL path (must be same-origin)
+   - w/h:         transform output dimensions (use 2× for retina)
+   - alt:         alt text
+   - display_w:   intrinsic width/height attrs for CLS reservation (default = w)
+   - lazy:        loading=lazy (default true; pass false for above-fold)
+   - klass:       optional CSS class
+   - fit:         resize fit mode (cover/contain/scale-down; default cover) #}
+{% macro cf(path, w, h=0, alt="", display_w=0, lazy=true, klass="", fit="cover") -%}
+{%- if h == 0 -%}{%- set h = w -%}{%- endif -%}
+{%- if display_w == 0 -%}{%- set display_w = w / 2 -%}{%- endif -%}
+{%- set display_h = display_w * (h / w) -%}
+<img src="/cdn-cgi/image/width={{ w }},height={{ h }},format=auto,quality=85,fit={{ fit }}{{ path }}" alt="{{ alt }}" width="{{ display_w }}" height="{{ display_h }}"{% if klass %} class="{{ klass }}"{% endif %}{% if lazy %} loading="lazy"{% endif %} decoding="async">
+{%- endmacro %}

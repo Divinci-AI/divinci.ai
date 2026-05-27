@@ -2,6 +2,9 @@
 title = "API 参考"
 description = "Divinci AI 的完整 REST API 参考 — 用于管理发布、RAG 知识库、微调、转录等的 60+ 个端点。"
 template = "feature.html"
+
+[extra]
+alternate_languages = true
 +++
 
 <style>

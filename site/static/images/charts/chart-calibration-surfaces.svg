@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Architecture diagram: four surfaces (Web UI, CLI, MCP, Divinci Agent) all calling the same calibration API endpoint group, which writes ratings and winner picks to a single persistent store. A rating submitted on any one surface is indistinguishable downstream from one submitted on any other.">
+  <title>Calibration — One Session, Four Surfaces</title>
+  <rect width="760" height="380" fill="#faf8f5"/>
+
+  <!-- Title -->
+  <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">One calibration session, four surfaces</text>
+  <text x="40" y="56" font-size="12" fill="#6b5d4f">Same API. Same Mongo collection. Web / CLI / MCP / Agent are interchangeable.</text>
+
+  <defs>
+    <marker id="surf-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#4a6a5a"/>
+    </marker>
+  </defs>
+
+  <!-- Top row: 4 surface boxes -->
+  <!-- Web UI -->
+  <g>
+    <rect x="40" y="90" width="150" height="64" rx="6" fill="#2d5a4f" opacity="0.92"/>
+    <text x="115" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#faf8f5">Web UI</text>
+    <text x="115" y="138" text-anchor="middle" font-size="10" fill="#cfe0d6">/scored-qa/.../calibrate</text>
+  </g>
+
+  <!-- CLI -->
+  <g>
+    <rect x="210" y="90" width="150" height="64" rx="6" fill="#2d5a4f" opacity="0.92"/>
+    <text x="285" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#faf8f5">CLI</text>
+    <text x="285" y="138" text-anchor="middle" font-size="10" fill="#cfe0d6">divinci qa calibrate</text>
+  </g>
+
+  <!-- MCP -->
+  <g>
+    <rect x="380" y="90" width="150" height="64" rx="6" fill="#2d5a4f" opacity="0.92"/>
+    <text x="455" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#faf8f5">MCP</text>
+    <text x="455" y="138" text-anchor="middle" font-size="10" fill="#cfe0d6">qa_calibration_*</text>
+  </g>
+
+  <!-- Divinci Agent -->
+  <g>
+    <rect x="550" y="90" width="170" height="64" rx="6" fill="#2d5a4f" opacity="0.92"/>
+    <text x="635" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#faf8f5">Divinci Agent</text>
+    <text x="635" y="138" text-anchor="middle" font-size="10" fill="#cfe0d6">qaListCalibrationTriples · …</text>
+  </g>
+
+  <!-- Arrows down to API -->
+  <line x1="115" y1="159" x2="265" y2="208" stroke="#4a6a5a" stroke-width="1.4" marker-end="url(#surf-arrow)"/>
+  <line x1="285" y1="159" x2="335" y2="208" stroke="#4a6a5a" stroke-width="1.4" marker-end="url(#surf-arrow)"/>
+  <line x1="455" y1="159" x2="405" y2="208" stroke="#4a6a5a" stroke-width="1.4" marker-end="url(#surf-arrow)"/>
+  <line x1="635" y1="159" x2="475" y2="208" stroke="#4a6a5a" stroke-width="1.4" marker-end="url(#surf-arrow)"/>
+
+  <!-- Middle: API -->
+  <g>
+    <rect x="180" y="210" width="400" height="62" rx="6" fill="#fff" stroke="#2d5a4f" stroke-width="2"/>
+    <text x="380" y="236" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a2b">Calibration API</text>
+    <text x="380" y="254" text-anchor="middle" font-size="10" fill="#4a3a2a">Identity-aware auth · per-whitelabel QA permission gate</text>
+    <text x="380" y="266" text-anchor="middle" font-size="10" fill="#4a3a2a">Per-user rate limit on regenerate (10/min)</text>
+  </g>
+
+  <!-- Arrow down to store -->
+  <line x1="380" y1="276" x2="380" y2="304" stroke="#4a6a5a" stroke-width="1.4" marker-end="url(#surf-arrow)"/>
+
+  <!-- Bottom: Persistent store -->
+  <g>
+    <rect x="200" y="306" width="360" height="50" rx="6" fill="#c08850" opacity="0.85"/>
+    <text x="380" y="328" text-anchor="middle" font-size="12" font-weight="700" fill="#faf8f5">Persistent store · ratings + winner picks</text>
+    <text x="380" y="346" text-anchor="middle" font-size="10" fill="#fff3e0">unique on (answer, scorer, rater) — re-submit is idempotent</text>
+  </g>
+
+  <!-- Side note (left) -->
+  <g font-size="10" fill="#6b5d4f">
+    <text x="40" y="195">Surface-specific UX,</text>
+    <text x="40" y="210">surface-agnostic data.</text>
+  </g>
+
+  <!-- Side note (right) -->
+  <g font-size="10" fill="#6b5d4f" text-anchor="end">
+    <text x="720" y="195">A rating from CLI</text>
+    <text x="720" y="210">is indistinguishable</text>
+    <text x="720" y="225">downstream from web.</text>
+  </g>
+</svg>

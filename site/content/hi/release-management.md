@@ -3,6 +3,8 @@ title = "AI रिलीज़ प्रबंधन"
 description = "AI सिस्टम के लिए एंटरप्राइज़ DevOps। संस्करण नियंत्रण, रोलबैक क्षमताएँ, तैनाती स्वचालन, और निरंतर निगरानी।"
 template = "feature.html"
 
+[extra]
+hero_poster = "images/hero-release.webp"
 +++
 
 # AI रिलीज़ प्रबंधन
@@ -378,7 +380,7 @@ template = "feature.html"
 <h2 class="section-heading" style="margin-top: 3rem; margin-bottom: 2rem;">What is AI Release Management?</h2>
 
 <div class="release-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/release-cycle-diagram.svg" alt="AI Release Cycle Management Diagram" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="/images/release-cycle-diagram.svg" alt="AI Release Cycle Management Diagram" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;"  loading="lazy"/ width="900" height="750">
 </div>
 
 <div class="overview-content">
@@ -709,36 +711,36 @@ template = "feature.html"
 <div class="integration-category">
 <h3>Development Tools</h3>
 <div style="margin-top: 1rem;">
-<span class="tag"><img src="https://cdn.simpleicons.org/github/24292f" alt="GitHub">GitHub</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/gitlab/FC6D26" alt="GitLab">GitLab</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/jenkins/D24939" alt="Jenkins">Jenkins</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/circleci/343434" alt="CircleCI">CircleCI</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker">Docker</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform">Terraform</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/github/24292f" alt="GitHub" loading="lazy" width="24" height="24">GitHub</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/gitlab/FC6D26" alt="GitLab" loading="lazy" width="24" height="24">GitLab</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/jenkins/D24939" alt="Jenkins" loading="lazy" width="24" height="24">Jenkins</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/circleci/343434" alt="CircleCI" loading="lazy" width="24" height="24">CircleCI</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" loading="lazy" width="24" height="24">Docker</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform" loading="lazy" width="24" height="24">Terraform</span>
 </div>
 </div>
 
 <div class="integration-category">
 <h3>Monitoring Platforms</h3>
 <div style="margin-top: 1rem;">
-<span class="tag"><img src="https://cdn.simpleicons.org/datadog/632CA6" alt="Datadog">Datadog</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/newrelic/1CE783" alt="New Relic">New Relic</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus">Prometheus</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana">Grafana</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/pagerduty/06AC38" alt="PagerDuty">PagerDuty</span>
-<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/slack.svg" alt="Slack">Slack</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/datadog/632CA6" alt="Datadog" loading="lazy" width="24" height="24">Datadog</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/newrelic/1CE783" alt="New Relic" loading="lazy" width="24" height="24">New Relic</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus" loading="lazy" width="24" height="24">Prometheus</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" loading="lazy" width="24" height="24">Grafana</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/pagerduty/06AC38" alt="PagerDuty" loading="lazy" width="24" height="24">PagerDuty</span>
+<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/slack.svg" alt="Slack" loading="lazy" width="24" height="24">Slack</span>
 </div>
 </div>
 
 <div class="integration-category">
 <h3>Cloud Providers</h3>
 <div style="margin-top: 1rem;">
-<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/amazonaws.svg" alt="AWS">AWS</span>
-<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/microsoftazure.svg" alt="Azure">Azure</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud">Google Cloud</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes">Kubernetes</span>
-<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/amazonaws.svg" alt="SageMaker">SageMaker</span>
-<span class="tag"><img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Vertex AI">Vertex AI</span>
+<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/amazonaws.svg" alt="AWS" loading="lazy" width="24" height="24">AWS</span>
+<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/microsoftazure.svg" alt="Azure" loading="lazy" width="24" height="24">Azure</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud" loading="lazy" width="24" height="24">Google Cloud</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" loading="lazy" width="24" height="24">Kubernetes</span>
+<span class="tag"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/amazonaws.svg" alt="SageMaker" loading="lazy" width="24" height="24">SageMaker</span>
+<span class="tag"><img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Vertex AI" loading="lazy" width="24" height="24">Vertex AI</span>
 </div>
 </div>
 </div>

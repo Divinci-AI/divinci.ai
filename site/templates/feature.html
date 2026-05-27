@@ -2,14 +2,50 @@
 
 {% block body_class %}feature-page-template{% endblock %}
 
+{# Preload the hero poster image so the browser fetches it during HTML parsing
+   rather than waiting until it sees the <video poster=""> tag. External URLs
+   pass through untouched; local paths are routed through Cloudflare Image
+   Resizing to compress large PNGs to ~150KB WebP. #}
+{% block extra_head %}
+{% if page.extra.hero_poster %}
+  {% if page.extra.hero_poster is starting_with("http") %}
+<link rel="preload" as="image" href="{{ page.extra.hero_poster }}" fetchpriority="high">
+  {% else %}
+<link rel="preload" as="image" href="/cdn-cgi/image/width=1200,format=auto,quality=82/{{ page.extra.hero_poster | trim_start_matches(pat='/') }}" fetchpriority="high">
+  {% endif %}
+{% endif %}
+{% endblock %}
+
 {% block content %}
 {# current_lang is inherited from base template #}
 
 
 <!-- Full-width content without restrictions for feature pages -->
 <main class="feature-page leonardo-bg">
+    {# Ensure every feature.html-templated page has an H1 for SEO. Hidden visually
+       so it doesn't disturb pages that handle their own visual hero (api.md
+       embeds Redoc, autorag etc. have full design sections). Screen readers
+       still announce it; crawlers still index it. Override with a `.feature-h1`
+       rule per-page if you want it visible. #}
+    <h1 class="feature-h1 sr-only">{{ page.title | default(value=section.title | default(value=config.title)) }}</h1>
     {{ page.content | safe }}
 </main>
+
+<style>
+/* Screen-reader-only utility — used by the feature-page H1 above and any
+   other a11y/SEO-only headings. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+</style>
 
 
 <style>
@@ -88,9 +124,20 @@
 
 {% block extra_scripts %}
 {% if page.path is containing("api") %}
-<script src="{{ get_url(path="js/redoc.standalone.js") }}"></script>
+<!-- Redoc is ~886KB; defer it so it downloads in parallel with parsing and
+     executes only after parsing completes. This removes ~900ms of TBT on /api/
+     pages (HubSpot SEO recommendation). The init handler now runs on
+     DOMContentLoaded, by which point the deferred script has executed and
+     window.Redoc is defined. -->
+<script defer src="{{ get_url(path="js/redoc.standalone.js") }}"></script>
 <script>
-(function waitForRedoc() {
+{# Defer the Redoc init until after window.load + the browser is idle. This
+   slides the expensive OpenAPI-spec parse out of the page's TBT window
+   so user input remains responsive. requestIdleCallback yields back to
+   user-input handlers between tasks; setTimeout(1000) is the fallback
+   for browsers without it (Safari). #}
+function _scheduleRedocInit() {
+  var run = function initRedoc() {
   if (typeof Redoc !== 'undefined' && document.getElementById('redoc-container')) {
     // openapi-v1.json is auto-generated from the Express route definitions by
     // workspace/servers/public-api/scripts/generate-openapi.ts in the server
@@ -150,9 +197,20 @@
       }, { passive: true });
     }
   } else {
-    setTimeout(waitForRedoc, 100);
+    setTimeout(run, 100);
   }
-})();
+  };
+  if (window.requestIdleCallback) {
+    requestIdleCallback(run, { timeout: 2500 });
+  } else {
+    setTimeout(run, 1000);
+  }
+}
+if (document.readyState === 'complete') {
+  _scheduleRedocInit();
+} else {
+  window.addEventListener('load', _scheduleRedocInit, { once: true });
+}
 </script>
 {% endif %}
 {% endblock %}

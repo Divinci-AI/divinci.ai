@@ -2,6 +2,9 @@
 title = "API リファレンス"
 description = "Divinci AI の完全な REST API リファレンス — リリース、RAG ナレッジベース、ファインチューニング、トランスクリプトなどを管理する 60 以上のエンドポイント。"
 template = "feature.html"
+
+[extra]
+alternate_languages = true
 +++
 
 <style>

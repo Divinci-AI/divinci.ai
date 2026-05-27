@@ -3,6 +3,7 @@ title = "AutoRAG - Génération Augmentée par Récupération Automatisée"
 description = "Trouvez automatiquement le pipeline RAG optimal pour vos données avec la solution AutoRAG complète de Divinci AI"
 template = "feature.html"
 [extra]
+hero_poster = "images/hero-autorag.webp"
 feature_category = "data-management"
 lang = "fr"
 +++
@@ -261,7 +262,7 @@ lang = "fr"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Qu'est-ce qu'AutoRAG ?</h2>
 
 <div class="autorag-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/autorag-diagram.svg" alt="Diagramme de connexion de base de connaissances AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;" />
+  <img src="/images/autorag-diagram.svg" alt="Diagramme de connexion de base de connaissances AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;"  loading="lazy"/ width="800" height="500">
 </div>
 
 <div class="overview-content">
@@ -394,7 +395,7 @@ lang = "fr"
 <!-- Document Processing Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
 <object data="/images/autorag-clean-test.svg" type="image/svg+xml" style="width: 100%; max-width: 800px; height: auto;">
-<img src="/images/autorag-clean-test.svg" alt="Processus de création de données AutoRAG" style="width: 100%; max-width: 800px; height: auto;" />
+<img src="/images/autorag-clean-test.svg" alt="Processus de création de données AutoRAG" style="width: 100%; max-width: 800px; height: auto;"  loading="lazy"/ width="750" height="350">
 </object>
 <p style="text-align: center; margin-top: 10px; color: #8b7659; font-size: 14px;">Le processus complet de création de données d'AutoRAG transforme les documents bruts en corpus optimisé et ensembles de données QA</p>
 </div>
@@ -432,7 +433,7 @@ lang = "fr"
 
 <!-- Vector Embedding Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-vector-embedding.svg" alt="Visualisation d'embedding vectoriel" style="width: 100%; max-width: 600px; height: auto;" />
+<img src="/images/autorag-vector-embedding.svg" alt="Visualisation d'embedding vectoriel" style="width: 100%; max-width: 600px; height: auto;"  loading="lazy"/ width="300" height="200">
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
@@ -468,7 +469,7 @@ lang = "fr"
 
 <!-- Retrieval Optimization Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-retrieval-optimization.svg" alt="Visualisation d'optimisation de récupération" style="width: 100%; max-width: 600px; height: auto;" />
+<img src="/images/autorag-retrieval-optimization.svg" alt="Visualisation d'optimisation de récupération" style="width: 100%; max-width: 600px; height: auto;"  loading="lazy"/ width="300" height="200">
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">

@@ -35,7 +35,7 @@
             {% set row_classes = ["", "", "", "compliance-row-highlight", "", ""] %}
             {% for row in translations.compliance.mapping.rows %}
               <tr{% if row_classes[loop.index0] %} class="{{ row_classes[loop.index0] }}"{% endif %}>
-                <td><img src="/brand/regulators/{{ row_icons[loop.index0] }}.svg" alt="" class="compliance-row-flag"><strong>{{ row.reg_label }}</strong> {{ row.reg_topic }}</td>
+                <td><img src="/brand/regulators/{{ row_icons[loop.index0] }}.svg" alt="{{ row.reg_label }}" class="compliance-row-flag" loading="lazy" width="24" height="24"><strong>{{ row.reg_label }}</strong> {{ row.reg_topic }}</td>
                 <td>{{ row.requirement | safe }}</td>
                 <td>{{ row.competitors | safe }}</td>
                 <td>{{ row.larql | safe }}</td>

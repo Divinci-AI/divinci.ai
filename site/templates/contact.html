@@ -60,7 +60,7 @@
                                 {% if translations.contact.form.privacy_label %}
                                     {{ translations.contact.form.privacy_label | safe }}
                                 {% else %}
-                                    I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a> and consent to the processing of my personal data.
+                                    I agree to the <a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}" target="_blank" rel="noopener">Privacy Policy</a> and consent to the processing of my personal data.
                                 {% endif %}
                             </label>
                         </div>

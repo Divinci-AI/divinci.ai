@@ -57,9 +57,6 @@
       ~$100B/year historically
     </text>
 
-    <!-- Arrow to Treasury -->
-    <path d="M 170 320 L 170 360" stroke="#2C3E50" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
-
     <!-- Returns to Treasury -->
     <rect x="300" y="260" width="200" height="120" rx="8" fill="url(#greenGrad)" filter="url(#shadow)"/>
     <text x="400" y="290" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">

@@ -50,7 +50,12 @@
                             {% endfor %}
                         {% endif %}
                     </div>
-                    <a href="{{ page.permalink | safe }}" class="read-more-btn">{{ translations.taxonomy.read_more | default(value="Read More") }}</a>
+                    {# Anchor text includes the post title via a visually-hidden span so
+                       SEO audits and screen readers see "Read More about <title>"
+                       while the visual UI keeps the compact "Read More" label. #}
+                    <a href="{{ page.permalink | safe }}" class="read-more-btn" aria-label="{{ translations.taxonomy.read_more | default(value='Read More') }} about {{ page.title }}">
+                        {{ translations.taxonomy.read_more | default(value="Read More") }}<span class="sr-only"> about {{ page.title }}</span>
+                    </a>
                 </article>
             {% endfor %}
         </div>

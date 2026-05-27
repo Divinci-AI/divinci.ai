@@ -2,6 +2,9 @@
 title = "مرجع واجهة برمجة التطبيقات API"
 description = "مرجع شامل لواجهة REST API الخاصة بـ Divinci AI — أكثر من 60 endpoint لإدارة الإصدارات وقواعد معرفة RAG والضبط الدقيق والنسخ النصية والمزيد."
 template = "feature.html"
+
+[extra]
+alternate_languages = true
 +++
 
 <style>

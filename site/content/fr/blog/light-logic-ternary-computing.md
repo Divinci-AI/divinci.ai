@@ -1,6 +1,6 @@
 +++
 title = "Light Logic : L'aube de l'informatique ternaire photonique pour le calcul universel de base"
-description = "Explorer un paradigme informatique révolutionnaire qui combine des portes logiques photoniques, le calcul ternaire, la génération de nombres aléatoires quantiques et l'énergie par batteries gravitaires pour créer des systèmes informatiques durables et artisanaux comme fondation pour un revenu de base universel."
+description = "Portes logiques photoniques, calcul ternaire, RNG quantique et batteries gravitaires : un calcul durable et artisanal comme socle pour le RBU."
 date = 2025-10-05T10:00:00+00:00
 template = "blog-post.html"
 

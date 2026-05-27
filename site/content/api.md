@@ -2,6 +2,9 @@
 title = "API Reference"
 description = "Complete REST API reference for Divinci AI — 60+ endpoints for managing releases, RAG knowledge bases, fine-tuning, transcripts, and more."
 template = "feature.html"
+
+[extra]
+alternate_languages = true
 +++
 
 <style>
@@ -14,6 +17,17 @@ template = "feature.html"
     margin: 0 -2rem;
     min-height: 80vh;
     padding-top: 0;
+    /* Force LTR even when the parent page is dir=rtl (Arabic). Redoc is
+       designed LTR-only — in RTL its absolutely-positioned internals overflow
+       horizontally (~10k px on a 375px viewport). API content (paths, code,
+       method names) is naturally LTR anyway. */
+    direction: ltr;
+}
+
+#redoc-container,
+.redoc-wrap,
+.redoc-wrap * {
+    direction: ltr;
 }
 
 /* Hide any feature-page padding for clean Redoc */
@@ -79,4 +93,4 @@ body.feature-page-template {
 }
 </style>
 
-<div id="redoc-container"></div>
+<div id="redoc-container" dir="ltr"></div>

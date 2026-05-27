@@ -42,7 +42,7 @@ Ce n'est pas de la science-fiction ou une pensée magique. C'est une feuille de 
 La question n'est pas de savoir si nous pouvons nous permettre le RBU. La question est de savoir si nous pouvons nous permettre les coûts sociaux et économiques de ne pas le mettre en œuvre alors que l'automatisation transforme le marché du travail.
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-3.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Une vision de 2035 : des communautés prospères renforcées par le revenu de base universel</figcaption>

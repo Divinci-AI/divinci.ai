@@ -15,7 +15,7 @@
         <div class="hero-image">
             <picture>
                 <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Davinci_the_painter_painting_a_robot_in_a_line_art.webp" type="image/webp">
-                <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Davinci_the_painter_painting_a_robot_in_a_line_art.jpg" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster">
+                <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Davinci_the_painter_painting_a_robot_in_a_line_art.webp" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster" loading="lazy">
             </picture>
             <video id="hero-video" muted playsinline preload="metadata" data-lazy-video data-loop-once webkit-playsinline>
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready.webm" type="video/webm">
@@ -1216,7 +1216,7 @@
                 <!-- ▼ VARIANT 2 — NEW page XI feature-content: AI Act Readiness ▼ -->
                 <div class="feature-content" data-feature="ai_compliance">
                     <h3>AI Act ready, with a receipt</h3>
-                    <span class="feature-content-eu-badge"><img src="/brand/regulators/eu-flag.svg" alt="">EU AI Act · Annex IV ready</span>
+                    <span class="feature-content-eu-badge"><img src="/brand/regulators/eu-flag.svg" alt="European Union flag" loading="lazy" width="24" height="24">EU AI Act · Annex IV ready</span>
                     <p>Most AI compliance stops at access logs and prompt-level guardrails. <strong>LarQL goes inside the model.</strong> Every entity association is a queryable feature in the vindex; every edit is a portable, auditable rank-1 patch. <strong>GDPR Article 17</strong> right-to-erasure with verifiable proof. <strong>EU AI Act Annex IV</strong> technical documentation generated from the vindex itself. The model becomes the audit trail.</p>
                     <a href="/compliance/" class="feature-content-cta">See how it works →</a>
                     <div class="journal-navigation">
@@ -1295,7 +1295,7 @@
       <a href="https://huggingface.co/spaces/Divinci-AI/vindex-viewer" target="_blank" rel="noopener" aria-label="Open the live vindex viewer in a new tab">
         <video class="research-band-visual-video"
                autoplay muted loop playsinline webkit-playsinline preload="metadata"
-               poster="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_v2_poster.webp"
+               poster="/cdn-cgi/image/width=1600,format=auto,quality=85/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_v2_poster.webp"
                aria-label="Looping animation: structured fp16 transformer (left) with synapse firings cascading through layered circuit; dissolved 1-bit transformer (right) with no concentrated structure">
           <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_loop.webm" type="video/webm">
           <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_loop.mp4" type="video/mp4">
@@ -1307,30 +1307,30 @@
   <div class="research-band-logos" aria-label="Model families with published vindexes">
     <span class="research-band-logos-label">Working across</span>
     <ul>
-      <li title="Gemma — Google" class="brand-color"><img src="/brand/companies/google.svg" alt="Google (Gemma)"><span>Gemma</span></li>
-      <li title="Qwen" class="brand-color"><img src="/brand/companies/qwen.webp" alt="Qwen"><span>Qwen</span></li>
-      <li title="Llama — Meta"><img src="/brand/companies/meta.svg" alt="Meta (Llama)"><span>Llama</span></li>
-      <li title="Mistral"><img src="/brand/companies/mistralai.svg" alt="Mistral AI"><span>Mistral</span></li>
-      <li title="OpenAI" class="research-band-logo-wide"><img src="/brand/companies/openai.svg" alt="OpenAI"></li>
-      <li title="Microsoft (BitNet)" class="brand-color"><img src="/brand/companies/microsoft.svg" alt="Microsoft"><span>Microsoft</span></li>
+      <li title="Gemma — Google" class="brand-color"><img src="/brand/companies/google.svg" alt="Google (Gemma)" loading="lazy" width="32" height="32"><span>Gemma</span></li>
+      <li title="Qwen" class="brand-color"><img src="/brand/companies/qwen.webp" alt="Qwen" loading="lazy" width="32" height="32"><span>Qwen</span></li>
+      <li title="Llama — Meta"><img src="/brand/companies/meta.svg" alt="Meta (Llama)" loading="lazy" width="32" height="32"><span>Llama</span></li>
+      <li title="Mistral"><img src="/brand/companies/mistralai.svg" alt="Mistral AI" loading="lazy" width="32" height="32"><span>Mistral</span></li>
+      <li title="OpenAI" class="research-band-logo-wide"><img src="/brand/companies/openai.svg" alt="OpenAI" loading="lazy" width="32" height="32"></li>
+      <li title="Microsoft (BitNet)" class="brand-color"><img src="/brand/companies/microsoft.svg" alt="Microsoft" loading="lazy" width="32" height="32"><span>Microsoft</span></li>
     </ul>
   </div>
   <!-- pulled from Option B: 3-card blog series row -->
   <div class="research-showcase-cards research-band-cards">
     <a href="/blog/architecture-every-llm-converges-to/" class="research-card">
-      <div class="research-card-image"><img src="/images/charts/chart-c4-layer-temperature.svg" alt=""></div>
+      <div class="research-card-image"><img src="/images/charts/chart-c4-layer-temperature.svg" alt="Per-layer attention temperature chart" loading="lazy"></div>
       <h3>The Architecture Every Language Model Converges To</h3>
       <p>Three numbers that hold within ±15% across 8 models from 4 organizations. One vanishes the moment you go to 1-bit weights.</p>
       <span class="research-card-meta">Part I · 7 min read</span>
     </a>
     <a href="/blog/deleting-paris-from-a-language-model/" class="research-card">
-      <div class="research-card-image"><img src="/images/charts/chart-paris-surgical-edit.svg" alt=""></div>
+      <div class="research-card-image"><img src="/images/charts/chart-paris-surgical-edit.svg" alt="Surgical knowledge-edit benchmark chart" loading="lazy"></div>
       <h3>Deleting Paris from a Language Model</h3>
       <p>A single rank-1 weight patch suppresses one fact at +0.02% perplexity. Audit-trail included.</p>
       <span class="research-card-meta">Part II · 8 min read</span>
     </a>
     <a href="/blog/when-the-circuit-dissolves/" class="research-card">
-      <div class="research-card-image"><img src="/images/charts/chart-1bit-dissolution.svg" alt=""></div>
+      <div class="research-card-image"><img src="/images/charts/chart-1bit-dissolution.svg" alt="1-bit quantization dissolution chart" loading="lazy"></div>
       <h3>When the Circuit Dissolves</h3>
       <p>Two natively-trained 1-bit models, two organizations, same anomaly: structure gone, behavior survived.</p>
       <span class="research-card-meta">Part III · 7 min read</span>
@@ -1348,10 +1348,7 @@
         <div class="team-grid">
             <div class="team-member">
                 <div class="team-member-photo">
-                    <picture>
-                        <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.webp" type="image/webp">
-                        <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.jpg" alt="Michael Mooring">
-                    </picture>
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.jpg" alt="Michael Mooring" width="94" height="94" loading="lazy" decoding="async">
                 </div>
                 <h3>Michael Mooring</h3>
                 <p class="role">{{ translations.team.roles.ceo_founder | default(value="Co-Founder & CEO") }}</p>
@@ -1365,7 +1362,7 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="{{ get_url(path="images/sam-tobia.jpg") }}" alt="Samuel Tobia">
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/images/sam-tobia.jpg" alt="Samuel Tobia" width="94" height="94" loading="lazy" decoding="async">
                 </div>
                 <h3>Samuel Tobia</h3>
                 <p class="role">{{ translations.team.roles.cto_cofounder | default(value="Co-Founder & CTO") }}</p>
@@ -1379,7 +1376,7 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="{{ get_url(path="images/duane-mooring.png") }}" alt="Duane Mooring">
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/images/duane-mooring.png" alt="Duane Mooring" width="94" height="94" loading="lazy" decoding="async">
                 </div>
                 <h3>Duane Mooring</h3>
                 <p class="role">{{ translations.team.roles.cpo | default(value="CPO - Chief Project Officer") }}</p>
@@ -1393,7 +1390,7 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="{{ get_url(path="images/sierra-hooshiari.jpeg") }}" alt="Sierra Hooshiari">
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/images/sierra-hooshiari.jpeg" alt="Sierra Hooshiari" width="94" height="94" loading="lazy" decoding="async">
                 </div>
                 <h3>Sierra Hooshiari</h3>
                 <p class="role">{{ translations.team.roles.coo | default(value="Co-Founder & CMO") }}</p>
@@ -1407,7 +1404,7 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="{{ get_url(path="images/sean-fuhrman.jpeg") }}" alt="Sean Fuhrman">
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/images/sean-fuhrman.jpeg" alt="Sean Fuhrman" width="94" height="94" loading="lazy" decoding="async">
                 </div>
                 <h3>Sean Fuhrman</h3>
                 <p class="role">{{ translations.team.roles.data_scientist | default(value="Data Scientist") }}</p>
@@ -1421,7 +1418,7 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="{{ get_url(path="images/paul-marie-carfantan.jpeg") }}" alt="Paul-Marie Carfantan">
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/images/paul-marie-carfantan.jpeg" alt="Paul-Marie Carfantan" width="94" height="94" loading="lazy" decoding="async">
                 </div>
                 <h3>Paul-Marie Carfantan</h3>
                 <p class="role">{{ translations.team.roles.ai_safety_ethics_advisor | default(value="AI Safety and Ethics Advisor") }}</p>
@@ -1478,7 +1475,7 @@
                 <div class="news-card">
                     <a href="https://lu.ma/cmuj911s" target="_blank" rel="noopener" class="news-card-link">
                         <div class="news-card-image">
-                            <img src="{{ get_url(path="images/ai-for-impact-1.avif") }}" alt="AI for Good Impact">
+                            <img src="/cdn-cgi/image/width=800,format=auto,quality=85/images/ai-for-impact-1.avif" alt="AI for Good Impact" loading="lazy" decoding="async">
                         </div>
                         <div class="news-card-content">
                             <span class="news-date">{{ translations.news.ai_for_good_tag | default(value="AI for Good") }}</span>

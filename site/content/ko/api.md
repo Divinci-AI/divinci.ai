@@ -2,6 +2,9 @@
 title = "API 레퍼런스"
 description = "Divinci AI에 대한 완전한 REST API 레퍼런스 — 릴리스, RAG 지식 베이스, 파인튜닝, 트랜스크립트 등을 관리하기 위한 60개 이상의 엔드포인트."
 template = "feature.html"
+
+[extra]
+alternate_languages = true
 +++
 
 <style>

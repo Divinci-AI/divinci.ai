@@ -1,0 +1,47 @@
+https://app.hubspot.com/ai-visibility/48021503/recommendations/114557115
+
+Automated LLM CI/CD Pipelines With Instant Rollback
+
+[Archived from HubSpot AEO recommendation 2026-05-26.
+
+KEY STRUCTURE HUBSPOT IDENTIFIED:
+- "Key Takeaways" (5 bullets)
+- "What Makes LLM Rollout Pipelines Different From Traditional CI/CD?"
+- "Why Model Quality Degradation Often Goes Undetected"
+- "How Do You Structure an End-to-End LLM CI/CD Pipeline?" (Integration + Validation phases)
+- "What Staged Rollout Strategies Work?" (Canary, Blue-Green, Shadow)
+- "How Do You Design Instant Rollback?" (Pre-bake recovery target, define triggers, drill)
+- "What Testing and Validation Checklist Should You Follow?" (8 steps)
+- "How Do You Build Audit Trails for Regulated Industries?"
+- "What Are Common Failure Points?"
+- "How Should You Monitor LLM Models in Production?"
+- "Decision Table: Managed Vendors vs In-House"
+- 6 FAQ questions
+
+KEYWORDS:
+- "non-deterministic outputs"
+- "blue-green model swaps"
+- "shadow testing"
+- "pre-bake your recovery target"
+- "MLflow, Weights and Biases"
+- "BERTScore, BLEU, ROUGE"
+- "training-serving skew"
+- "instant rollback"
+- "HIPAA, SOC2, EU AI Act"
+
+WHAT THIS POST SHOULD ACTUALLY BE:
+The OPERATIONAL companion to post #1's architecture piece. Post #1 was "what
+the stages are"; post #5 is "what's automated within them, what requires a
+human, and what an actual rollback drill looks like."
+
+The differentiator angle: most LLM CI/CD posts draw flowcharts. This post
+draws an AUTOMATION SPECTRUM — which decisions fire automatically, which need
+a human, and why. Auto-rollback (capability 9 + 11) is the most automated;
+gate override is the least. Drawing that spectrum is the post's load-bearing
+visual.
+
+Plus the MTTR / DORA framing, and the unsexy fact that very few teams run
+rollback drills.
+
+AVOID: repeating post #1's stage descriptions. Reference post #1 instead.
+]

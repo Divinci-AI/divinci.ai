@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Three side-by-side comparisons between the prod NF4 unsloth path on warm A100 and the new DFlash bf16 spec-decode path on warm H100. Pass rate: 2 of 10 vs 10 of 10. Median per-test latency: 37 seconds vs 2.5 seconds, about 15 times faster. Cost per request: 1.13 cents vs 0.27 cents, about 4 times cheaper.">
+  <title>Prod cutover — NF4 unsloth A100 vs DFlash bf16 H100 (warm)</title>
+  <rect width="760" height="460" fill="#faf8f5"/>
+
+  <!-- Title -->
+  <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">Post-cutover validation, warm endpoints, same 10-prompt suite</text>
+  <text x="40" y="56" font-size="12" fill="#6b5d4f">~15× faster per test · ~4× cheaper per request · pass rate 2/10 → 10/10</text>
+
+  <!-- Three comparison panels arranged horizontally -->
+  <!-- Panel 1: Pass rate (200 wide) -->
+  <g transform="translate(40, 90)">
+    <text x="100" y="0" text-anchor="middle" font-size="12" fill="#1e3a2b" font-weight="700">Pass rate</text>
+    <text x="100" y="16" text-anchor="middle" font-size="10" fill="#6b5d4f">10-prompt suite, concurrency=2</text>
+    <!-- Two stacked bars -->
+    <!-- Prod NF4: 2/10 -->
+    <text x="0" y="48" font-size="10" fill="#6b5d4f">prod NF4 (A100)</text>
+    <rect x="0" y="56" width="40" height="20" fill="#c08850" opacity="0.85"/>
+    <rect x="40" y="56" width="160" height="20" fill="#c08850" opacity="0.18"/>
+    <text x="206" y="71" font-size="11" fill="#8a5a20" font-weight="700">2 / 10</text>
+    <text x="100" y="92" text-anchor="middle" font-size="9" fill="#8a5a20" font-style="italic">8 timeouts (HF model.generate serializes)</text>
+    <!-- DFlash: 10/10 -->
+    <text x="0" y="118" font-size="10" fill="#1e3a2b" font-weight="600">DFlash (H100)</text>
+    <rect x="0" y="126" width="200" height="20" fill="#2d5a4f"/>
+    <text x="206" y="141" font-size="11" fill="#1e3a2b" font-weight="700">10 / 10</text>
+    <text x="100" y="162" text-anchor="middle" font-size="9" fill="#2d5a4f" font-style="italic">vLLM continuous batching, no queue</text>
+  </g>
+
+  <!-- Vertical separator -->
+  <line x1="270" y1="100" x2="270" y2="280" stroke="#d4c8b0" stroke-width="1"/>
+
+  <!-- Panel 2: Latency -->
+  <g transform="translate(290, 90)">
+    <text x="100" y="0" text-anchor="middle" font-size="12" fill="#1e3a2b" font-weight="700">Median latency / test</text>
+    <text x="100" y="16" text-anchor="middle" font-size="10" fill="#6b5d4f">RAG retrieve + LLM + score</text>
+    <!-- log-ish: just visual ratio. 37s = 200px, 2.5s = 13.5px -->
+    <text x="0" y="48" font-size="10" fill="#6b5d4f">prod NF4 (A100)</text>
+    <rect x="0" y="56" width="200" height="20" fill="#c08850" opacity="0.85"/>
+    <text x="206" y="71" font-size="11" fill="#8a5a20" font-weight="700">37 s</text>
+    <text x="0" y="118" font-size="10" fill="#1e3a2b" font-weight="600">DFlash (H100)</text>
+    <rect x="0" y="126" width="14" height="20" fill="#2d5a4f"/>
+    <text x="22" y="141" font-size="11" fill="#1e3a2b" font-weight="700">2.5 s</text>
+    <!-- Speedup callout -->
+    <g transform="translate(50, 162)">
+      <rect x="0" y="0" width="100" height="28" rx="4" fill="#2d5a4f" opacity="0.08"/>
+      <text x="50" y="18" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a2b">~15× faster</text>
+    </g>
+  </g>
+
+  <!-- Vertical separator -->
+  <line x1="520" y1="100" x2="520" y2="280" stroke="#d4c8b0" stroke-width="1"/>
+
+  <!-- Panel 3: Cost -->
+  <g transform="translate(540, 90)">
+    <text x="90" y="0" text-anchor="middle" font-size="12" fill="#1e3a2b" font-weight="700">Cost per request</text>
+    <text x="90" y="16" text-anchor="middle" font-size="10" fill="#6b5d4f">single-stream baseline</text>
+    <!-- $0.0113 = 180px, $0.0027 = 43px -->
+    <text x="0" y="48" font-size="10" fill="#6b5d4f">prod NF4 (A100)</text>
+    <rect x="0" y="56" width="180" height="20" fill="#c08850" opacity="0.85"/>
+    <text x="186" y="71" font-size="11" fill="#8a5a20" font-weight="700">$0.0113</text>
+    <text x="0" y="118" font-size="10" fill="#1e3a2b" font-weight="600">DFlash (H100)</text>
+    <rect x="0" y="126" width="43" height="20" fill="#2d5a4f"/>
+    <text x="51" y="141" font-size="11" fill="#1e3a2b" font-weight="700">$0.0027</text>
+    <!-- Cost ratio callout -->
+    <g transform="translate(40, 162)">
+      <rect x="0" y="0" width="100" height="28" rx="4" fill="#2d5a4f" opacity="0.08"/>
+      <text x="50" y="18" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a2b">~4× cheaper</text>
+    </g>
+  </g>
+
+  <!-- Quality strip -->
+  <g transform="translate(40, 320)">
+    <rect x="0" y="0" width="680" height="58" rx="6" fill="#2d5a4f" opacity="0.05"/>
+    <text x="14" y="22" font-size="11" font-weight="700" fill="#1e3a2b">Quality on the 2 prompts both endpoints served:</text>
+    <text x="280" y="22" font-size="11" fill="#2d5a4f" font-weight="700">identical (1.00 / 1.00 and 1.00 / 1.00).</text>
+    <text x="14" y="42" font-size="10" fill="#4a3a2a">Spec-decode is verifier-lossless; the bf16-merged DFO checkpoint matches NF4 unsloth output to within Phase 2's measured drift.</text>
+    <text x="14" y="56" font-size="10" fill="#4a3a2a" font-style="italic">The 8 prod failures are infrastructure (queue + 240 s timeout), not output drift.</text>
+  </g>
+
+  <!-- Caption -->
+  <text x="40" y="408" font-size="11" fill="#6b5d4f" font-style="italic">Both endpoints warm (min_containers=1). Concurrency=2 in the QA runner. Cost-math break-even: ~180 K req/mo. Load test plateaus at concurrency=10 (~1.3 rps, ~86 tps).</text>
+  <text x="40" y="426" font-size="10" fill="#8a7d68">Recommendation that landed: green-light prod cutover. Old arena-qlora-31b-serve kept warm 7-14 days as rollback insurance.</text>
+</svg>

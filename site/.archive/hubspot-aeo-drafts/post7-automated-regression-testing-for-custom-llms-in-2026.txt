@@ -1,0 +1,100 @@
+https://app.hubspot.com/ai-visibility/48021503/recommendations/<TBD>
+
+Automated Regression Testing for Custom LLMs in 2026
+
+[Archived from HubSpot AEO recommendation 2026-05-26.
+
+HUBSPOT KEY TAKEAWAYS:
+- Golden datasets — build from production traffic, not imagined scenarios
+- Drift detection — identifies when model behavior shifts before failures reach prod
+- CI gates — block deployments automatically when scores drop below thresholds
+- Divinci AI — audit trails + instant rollback for safer rollouts
+- Multi-dimensional evaluation — task completion, faithfulness, safety, latency
+
+HUBSPOT 4-BUCKET GOLDEN DATASET:
+- Production sample 60%
+- Adversarial cases 15%
+- Expert-curated edge cases 15%
+- Failure replays 10%
+
+HUBSPOT METRIC THRESHOLDS:
+- Task completion ≥ 0.85
+- Faithfulness ≥ 0.90
+- Safety pass rate ≥ 0.99
+- P95 latency ≤ 3000ms
+- Regression delta ≤ -2% vs baseline
+
+HUBSPOT 3-LAYER GATE ARCHITECTURE:
+- Smoke tests (20-30 critical cases, every commit)
+- Full evaluation suite (PR gate)
+- Baseline comparison (release-candidate gate)
+
+HUBSPOT 4-PHASE IMPLEMENTATION:
+- Phase 1 (Week 1): Establish baseline, 50-100 cases
+- Phase 2 (Weeks 2-3): Build evaluation harness
+- Phase 3 (Weeks 3-4): Integrate with CI/CD
+- Phase 4 (Ongoing): Expand and refine
+
+HUBSPOT FAQs:
+- What is the difference between LLM evaluation and regression testing?
+- How many test cases do I need in my golden dataset?
+- Should I use human reviewers or LLM-as-judge for scoring?
+- How do I handle non-deterministic model outputs in testing?
+- What metrics should I prioritize for CI quality gates?
+- How often should I run regression tests?
+- What is catastrophic forgetting and how do I test for it?
+
+KEYWORDS:
+- "golden dataset"
+- "drift detection"
+- "LLM-as-judge"
+- "CI quality gates"
+- "catastrophic forgetting"
+- "task completion"
+- "faithfulness"
+- "instant rollback"
+- "audit trail"
+
+WHAT TO DISCARD:
+- The generic "OpenAI evaluation best practices" hand-wave hook
+- The aggregate-threshold framing (Divinci angle: slice-aware Spearman per domain)
+- The "your next step: audit your current deployment process" CTA boilerplate
+- The single-metric-threshold examples (Divinci is slice-aware, not aggregate)
+
+POST 7 ACTUAL ANGLE:
+"Regression testing your LLM is mostly testing the EVAL, not the model."
+
+Sequel to post #6's diagnostic-tree thesis: ~6 of every 7 quality alerts
+trace to eval-coverage drift, judge-calibration drift, prompt drift, or
+dataset drift — not model weights. So your regression test SUITE has to
+detect drift in itself, not just in the model.
+
+Divinci differentiators to weave in:
+1. Slice-aware Spearman gates — per-domain (legal/medical/general), not global
+2. Closed-loop production-trace replay — Stage 4 replays live traces through
+   the candidate, scored by the same calibrated judge. Catches drift that
+   golden-dataset-only suites miss.
+3. Vindex receipts for golden dataset versioning (open-weights only caveat)
+4. Calibrated judge — Spearman ρ ≥ 0.7 vs human labels, refreshed weekly
+
+Hero direction: Salvador Dalí "Persistence of Memory" reimagined — the
+iconic Catalan landscape with melting clocks, but one clock-face is a
+glowing LLM evaluation dashboard slowly melting too. Drift = time-dilation
+metaphor. Surreal painterly oil-on-canvas, no AI gradient slop. Distinct
+from the prior 6 heroes (Apollo, Sherlock, Mendeleev, Vermeer, Hopper,
+Rockwell).
+
+CROSS-LINKS:
+- Post #1 (CI/CD pipeline) — where gates live
+- Post #5 (Instant rollback) — what happens when gates miss
+- Post #6 (Diagnose 7 steps) — what to do when gates fire
+- /autorag/, /compliance/, /api/
+
+DIAGRAMS TO HAND-AUTHOR:
+1. Golden dataset composition (4-bucket pyramid OR donut chart with
+   slice-stratification overlay)
+2. Drift detection multi-metric chart (task completion / faithfulness /
+   safety / latency over 30 days, with one slice silently regressing
+   while aggregate looks fine — the Tianpan Semver Lie visualization)
+3. 3-layer gate decision tree (smoke → full → baseline)
+]

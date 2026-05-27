@@ -3,6 +3,8 @@ title = "LLM 质量保证"
 description = "针对 AI 应用程序的企业级测试和验证。自动化幻觉检测、偏见监控和持续质量评分。"
 template = "feature.html"
 
+[extra]
+hero_poster = "images/hero-qa.webp"
 +++
 
 # LLM 质量保证
@@ -329,7 +331,7 @@ template = "feature.html"
 <h2 class="section-heading" style="margin-top: 3rem; margin-bottom: 3rem;">What is LLM Quality Assurance?</h2>
 
 <div class="qa-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;"  loading="lazy"/ width="900" height="550">
 </div>
 
 <div class="overview-content">

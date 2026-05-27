@@ -2,6 +2,9 @@
 title = "Справочник API"
 description = "Полный справочник REST API Divinci AI — более 60 эндпоинтов для управления релизами, базами знаний RAG, fine-tuning, транскрипциями и многим другим."
 template = "feature.html"
+
+[extra]
+alternate_languages = true
 +++
 
 <style>

@@ -6,7 +6,7 @@ template = "page.html"
 
 # Privacy Policy
 
-**Last updated:** March 2025
+**Last updated:** May 2026
 
 ## Our Commitment to Privacy
 
@@ -38,6 +38,7 @@ We use cookies and similar technologies to:
 - Ensure website functionality
 - Analyze website and app performance
 - Provide personalized experience (with your consent)
+- Identify the organization associated with a website visit, for B2B marketing purposes (with your consent in the EU/EEA, the United Kingdom, and Switzerland)
 
 ## 2. Third-Party Services and SDKs
 
@@ -61,6 +62,10 @@ Our Services integrate the following third-party services, each with their own p
 
 ### 2.6 Cloud Infrastructure
 - **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+
+### 2.7 Marketing, Visitor Identification, and CRM
+- **Instantly.ai / Leadsy.ai**: We use Instantly's visitor identification tag (loaded from `r2.leadsy.ai`, which dynamically loads a tracking script from `tag.trovo-tag.com` operated by the same vendor) to identify the organization a website visit may be associated with (e.g., the company linked to the visitor's IP address). This informs our business-to-business outbound marketing. For visitors detected as being in the EU/EEA, the United Kingdom, or Switzerland, this tag loads **only after you grant marketing consent** through our cookie banner. For visitors outside those jurisdictions, the tag loads by default and can be disabled at any time via the "Cookie Preferences" control in Section 10. [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
+- **HubSpot**: We use the HubSpot tracking script (loaded from `js.hs-scripts.com`, which dynamically loads tracking, banner, and form-capture scripts from `js.hs-analytics.net`, `js.hs-banner.com`, and `js.hscollectedforms.net`) to record page views, attribute marketing channel performance, capture form submissions, and link website activity to HubSpot CRM contact records when you submit a form or book a meeting. For visitors detected as being in the EU/EEA, the United Kingdom, or Switzerland, this script loads **only after you grant marketing consent** through our cookie banner. For visitors outside those jurisdictions, the script loads by default and can be disabled at any time via the "Cookie Preferences" control in Section 10. [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
 
 ## 3. Legal Basis for Processing (GDPR)
 
@@ -95,6 +100,7 @@ We do not sell your personal data. We may share data with:
 - Cloud hosting and infrastructure providers (with data processing agreements)
 - Authentication service providers
 - Analytics and crash reporting providers (when you consent or as described above)
+- Marketing and B2B visitor identification providers (subject to consent in regulated jurisdictions, as described in Section 2.7)
 - AI model providers for processing your requests
 - Customer support tools
 
@@ -136,6 +142,8 @@ Our Services are not directed to children under the age of 13 (or the applicable
 - **Objection**: Object to processing for direct marketing
 - **Withdraw Consent**: Revoke consent at any time
 
+To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+
 ### 9.2 CCPA Rights (California Residents)
 - **Right to Know**: What personal information we collect and how it is used
 - **Right to Delete**: Request deletion of your personal information
@@ -157,13 +165,9 @@ Our Services are not directed to children under the age of 13 (or the applicable
     🍪 Cookie Preferences
   </button>
 
-  <button onclick="window.gdprCompliance?.exportUserData()" class="privacy-btn">
-    📥 Download My Data
-  </button>
-
-  <button onclick="window.gdprCompliance?.deleteUserData()" class="privacy-btn privacy-btn-danger">
-    🗑️ Delete My Data
-  </button>
+  <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
+    📥 Submit a Data Request
+  </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
     ❌ Revoke All Consent
@@ -187,6 +191,10 @@ Our Services are not directed to children under the age of 13 (or the applicable
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .privacy-btn:hover {

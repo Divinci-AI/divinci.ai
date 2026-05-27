@@ -3,6 +3,7 @@ title = "LLM Quality Assurance - Enterprise Testing & Validation"
 description = "Comprehensive quality assurance pipeline for enterprise LLM applications with automated testing, validation, and monitoring"
 template = "feature.html"
 [extra]
+hero_poster = "images/hero-qa.webp"
 feature_category = "quality-assurance"
 +++
 
@@ -326,7 +327,7 @@ feature_category = "quality-assurance"
 <h2 class="section-heading" style="margin-top: 3rem; margin-bottom: 3rem;">What is LLM Quality Assurance?</h2>
 
 <div class="qa-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;"  loading="lazy"/ width="900" height="550">
 </div>
 
 <div class="overview-content">
@@ -528,6 +529,127 @@ feature_category = "quality-assurance"
 </div>
 </div>
 </div>
+</div>
+</section>
+
+<style>
+/* Scoring + calibration internals section */
+.qa-internals { background: linear-gradient(180deg, rgba(248,244,240,0) 0%, rgba(232,221,199,0.18) 30%, rgba(232,221,199,0.18) 70%, rgba(248,244,240,0) 100%); padding: 5rem 1rem 6rem; }
+.qa-internals .container { max-width: 1180px; margin: 0 auto; }
+.qa-internals .subheading { text-align: center; color: #5a6862; font-size: 1.1rem; max-width: 760px; margin: -1rem auto 3rem; line-height: 1.6; }
+.qa-stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; max-width: 1080px; margin: 0 auto; }
+@media (max-width: 880px) { .qa-stack-grid { grid-template-columns: 1fr; } }
+.qa-card { background: #faf8f5; border-radius: 12px; padding: 1.75rem 2rem; border-left: 4px solid #b8a080; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); }
+.qa-card.calibration { border-left-color: #2d5a4f; }
+.qa-card.autofix { border-left-color: #7a8a4a; }
+.qa-card.arena { border-left-color: #5a7a8f; }
+.qa-card.audit { border-left-color: #a04848; }
+.qa-card h3 { font-family: 'Fraunces', serif; color: #1e3a2b; font-size: 1.5rem; margin: 0 0 0.85rem; }
+.qa-card .qa-meta { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.8rem; }
+.qa-card.calibration .qa-meta { background: rgba(45,90,79,0.12); color: #1e3a2b; }
+.qa-card.autofix .qa-meta { background: rgba(122,138,74,0.15); color: #5a6c2a; }
+.qa-card.arena .qa-meta { background: rgba(90,122,143,0.15); color: #3a5060; }
+.qa-card.audit .qa-meta { background: rgba(160,72,72,0.15); color: #7a3030; }
+.qa-card p, .qa-card li { color: #3a4a40; font-size: 0.98rem; line-height: 1.65; }
+.qa-card ul { padding-left: 1.2rem; margin: 0.5rem 0 0; }
+.qa-card li { margin-bottom: 0.4rem; }
+.qa-card code { background: #eae3d5; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: #2d3c34; font-family: 'DM Mono', monospace; }
+.qa-scorers { max-width: 1080px; margin: 3rem auto 2rem; background: #1e2a26; border-radius: 14px; padding: 2rem 2.25rem; color: #e8e3d8; }
+.qa-scorers h3 { font-family: 'Fraunces', serif; color: #faf8f5; margin: 0 0 0.5rem; font-size: 1.6rem; }
+.qa-scorers .qa-scorers-sub { color: #b8a080; font-size: 0.95rem; margin: 0 0 1.5rem; line-height: 1.55; }
+.qa-scorers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.85rem; }
+.qa-scorer-chip { background: rgba(232, 221, 199, 0.08); border: 1px solid rgba(184, 160, 128, 0.3); border-radius: 8px; padding: 0.7rem 0.85rem; }
+.qa-scorer-chip strong { color: #faf8f5 !important; display: block; font-size: 0.92rem; margin-bottom: 0.2rem; font-family: 'DM Mono', monospace; }
+.qa-scorer-chip span { color: #c8c0ad !important; font-size: 0.83rem; line-height: 1.45; display: block; }
+.qa-framework-row { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 2rem auto 0; max-width: 1080px; }
+.qa-framework-chip { background: #faf8f5; border: 1.5px solid rgba(139, 118, 89, 0.4); border-radius: 999px; padding: 0.5rem 1.15rem; font-family: 'DM Mono', monospace; font-size: 0.88rem; color: #2d3c34; }
+.qa-cross-links { max-width: 1080px; margin: 3rem auto 0; padding: 1.5rem 2rem; background: rgba(45, 90, 79, 0.06); border-radius: 12px; text-align: center; }
+.qa-cross-links a { color: #2d5a4f; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(45, 90, 79, 0.3); }
+.qa-cross-links a:hover { border-bottom-color: #2d5a4f; }
+</style>
+
+<section class="qa-internals">
+<div class="container">
+<h2 class="section-heading" style="margin-top: 0; margin-bottom: 1.5rem;">Inside the Scoring Engine — How Calibration Actually Works</h2>
+<p class="subheading">Most "AI testing" tools score model outputs and stop there. Divinci's scored-QA suite is built around a different premise: <strong>your scoring rubric needs to be calibrated against a domain expert before its scores can be trusted.</strong> Here's how that pipeline ships today.</p>
+
+<div class="qa-stack-grid">
+
+<div class="qa-card calibration">
+<span class="qa-meta">CALIBRATION · SHIPPED</span>
+<h3>Human-anchored rubric calibration</h3>
+<p>A domain expert rates the same rubric the LLM judge uses on a stratified gold set — every score (0 / 0.25 / 0.5 / 0.75 / 1.0) is captured with optional reasoning and an optional <code>editedResponse</code> field that doubles as supervised-fine-tuning signal. Each rating logs the rater identity, the rubric version, and the wall-clock duration. Spearman ρ between the LLM judge and the expert rater is computed continuously; the judge with the highest ρ becomes the default.</p>
+<ul>
+  <li><strong>Multi-rater agreement:</strong> when more than one expert rates the same item, inter-rater ρ is computed so we can detect rater disagreement as well as judge-vs-human disagreement.</li>
+  <li><strong>Per-suite calibration target:</strong> each scored-QA suite carries a <code>rhoLowerTarget</code> + <code>rhoTargetN</code> — the floor the calibration must clear and the sample size it must clear it on before the judge is trusted.</li>
+  <li><strong>Active learning:</strong> the pre-rating pipeline preferentially surfaces high-variance items (where the LLM judges disagree most) for expert review, so a small expert budget calibrates the noisy decision boundary first.</li>
+</ul>
+</div>
+
+<div class="qa-card autofix">
+<span class="qa-meta">AUTO-FIX · SHIPPED</span>
+<h3>Auto-fix loop with explicit autonomy levels</h3>
+<p>Once a suite is calibrated, the auto-fix loop iterates: it scores the candidate, applies a small reformulation or retrieval-config change, re-scores, and repeats until one of four terminal states. The autonomy level decides whether human approval is required between iterations.</p>
+<ul>
+  <li><code>full-auto</code> — runs to convergence without human gates.</li>
+  <li><code>checkpoint-every-iteration</code> — human approves each candidate change.</li>
+  <li><code>checkpoint-on-deploy</code> — runs unattended but pauses for human sign-off before promoting to production.</li>
+  <li><strong>Terminal states:</strong> <code>high-scores</code>, <code>target-reached</code>, <code>max-iterations</code>, or <code>running</code>. Modes: <code>autofix</code> for prompt/retrieval tuning, <code>autorag</code> for retrieval-pipeline reconfiguration.</li>
+</ul>
+</div>
+
+<div class="qa-card arena">
+<span class="qa-meta">ARENA · SHIPPED</span>
+<h3>RAG Arena — variant comparison at suite scale</h3>
+<p>A single API call fans the suite out across multiple RAG configurations — different retrieval backends (the ten <a href="/rag-routing/">RAG Routing</a> targets), different LLMs, different prompt templates — and scores every (variant × test) pair with the calibrated judge. The result is a per-variant ranking, a per-test best-variant winner, and a markdown report.</p>
+<p>The arena is also the upstream source for our <a href="/rag-routing/">learned routing model</a>: when a customer picks an arena winner, the (question, winning-backend) pair seeds the routing-history store.</p>
+<p><strong>Endpoint:</strong> <code>POST /api/v1/qa/suites/:suiteId/arena-run</code> with <code>{ arenaPresetId, testIds?, maxTestsPerVariant? }</code>.</p>
+</div>
+
+<div class="qa-card audit">
+<span class="qa-meta">AUDIT · SHIPPED</span>
+<h3>Audit-grade scoring receipts</h3>
+<p>Every score in the system is logged with the information you need to defend it months later. Each test result carries a per-scorer score map — one 0–1 score per scorer plus an aggregated overall score. Each calibration rating is stored with the rater's identity, a content-hash of the rubric prompt used, the rating itself, optional reasoning, the wall-clock duration, and (if supplied) the edited response.</p>
+<ul>
+  <li><strong>Rubric versioning:</strong> we content-hash the rubric prompt with SHA-256 and use a 16-character prefix as the version ID — any rubric edit produces a new version automatically; old scores stay attached to the old rubric.</li>
+  <li><strong>Threshold gates:</strong> per-suite <code>minScore</code> floor + <code>maxDrift</code> regression thresholds fire webhooks / email on breach, with the configured monitoring cadence (hourly / daily / weekly / manual).</li>
+  <li><strong>Editable rater feedback:</strong> rater-supplied <code>editedResponse</code> is preserved as a downstream SFT signal — calibration is also free training data.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="qa-scorers">
+<h3>The eight LLM-judge scorers we ship</h3>
+<p class="qa-scorers-sub">Every scored-QA test runs through this set by default. Each scorer is an independent LLM call against a parametric rubric prompt; rubric edits produce new <code>rubricVersion</code> hashes so historical scores remain meaningful. Customers can disable any scorer per-suite or supply their own.</p>
+<div class="qa-scorers-grid">
+  <div class="qa-scorer-chip"><strong>correctness</strong><span>Direct comparison of generated response against the reference / gold answer.</span></div>
+  <div class="qa-scorer-chip"><strong>factual-consistency-vs-reference</strong><span>Per-claim verification of generated assertions against the gold answer; catches hallucinated additions.</span></div>
+  <div class="qa-scorer-chip"><strong>completeness-coverage</strong><span>How much of the reference answer's information appears in the generated response.</span></div>
+  <div class="qa-scorer-chip"><strong>relevance</strong><span>Whether the response addresses the actual question, not a tangentially related one.</span></div>
+  <div class="qa-scorer-chip"><strong>hallucination</strong><span>Per-claim grounding check — flags any claim not supported by retrieved context.</span></div>
+  <div class="qa-scorer-chip"><strong>context-conflict</strong><span>Flags responses that contradict the retrieved context (a different failure mode than hallucination).</span></div>
+  <div class="qa-scorer-chip"><strong>question-addressed</strong><span>Whether the actual user question was answered, even partially — separated from <em>relevance</em> for finer-grained diagnosis.</span></div>
+  <div class="qa-scorer-chip"><strong>system-message-adherence</strong><span>Whether the response respects system-message constraints (format, persona, safety rails).</span></div>
+</div>
+</div>
+
+<p class="subheading" style="margin-top: 3rem;">Plus first-class integrations with the open-source and commercial frameworks our customers already use:</p>
+<div class="qa-framework-row">
+  <span class="qa-framework-chip">Ragas</span>
+  <span class="qa-framework-chip">DeepEval</span>
+  <span class="qa-framework-chip">Patronus Lynx</span>
+  <span class="qa-framework-chip">Braintrust</span>
+  <span class="qa-framework-chip">Evidently AI</span>
+</div>
+
+<div class="qa-cross-links">
+<p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>How the scoring engine connects to the rest of the platform</strong></p>
+<p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
+The calibrated judges power our <a href="/rag-arena/">RAG Arena</a> for variant comparison and feed the <a href="/rag-routing/">RAG Routing</a> learned-history store that picks the best backend per query. The full deep-dive on judge calibration is the blog post <a href="/blog/calibrating-the-ai-judge/">Calibrating the Judge: The Grader Gets Graded</a>; the arena and routing story together is at <a href="/blog/inside-the-rag-arena-scored-qa-routing/">Inside the RAG Arena: When the Judges Don't Agree</a>. For how this fits into a full release pipeline, see the <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">regression-testing post</a> and the <a href="/blog/ci-testing-for-custom-language-models-in-2026/">CI testing post</a>.
+</p>
+</div>
+
 </div>
 </section>
 

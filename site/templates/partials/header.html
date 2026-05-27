@@ -5,7 +5,7 @@
 <header role="banner">
     <div class="logo">
         <a href="{% if current_lang == 'en' %}/{% else %}/{{ current_lang }}/{% endif %}">
-            <img src="{{ get_url(path="images/divinci-renaissance_no-bg.png") }}" alt="Divinci AI Logo">
+            <img src="/cdn-cgi/image/width=96,height=96,format=auto,quality=90,fit=contain/images/divinci-renaissance_no-bg.png" alt="Divinci AI Logo" width="48" height="48" decoding="async" loading="eager" fetchpriority="high">
             <span>Divinci</span>
         </a>
     </div>
@@ -29,6 +29,7 @@
                 <span class="dropdown-arrow">▼</span>
                 <div class="dropdown-menu">
                     <a href="{% if current_lang == 'en' %}/autorag/{% else %}/{{ current_lang }}/autorag/{% endif %}">AutoRAG</a>
+                    <a href="{% if current_lang == 'en' %}/rag-routing/{% else %}/{{ current_lang }}/rag-routing/{% endif %}">RAG Routing</a>
                     <a href="{% if current_lang == 'en' %}/rag-arena/{% else %}/{{ current_lang }}/rag-arena/{% endif %}">RAG Arena</a>
                     <a href="{% if current_lang == 'en' %}/quality-assurance/{% else %}/{{ current_lang }}/quality-assurance/{% endif %}">{{ translations.navigation.quality_assurance | default(value="Quality Assurance") }}</a>
                     <a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">{{ translations.navigation.release_management | default(value="Release Management") }}</a>

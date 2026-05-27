@@ -6,7 +6,7 @@
         <div class="footer-section brand-section">
             <div class="footer-logo">
                 <a href="{% if current_lang == 'en' %}/{% else %}/{{ current_lang }}/{% endif %}" class="footer-logo-link">
-                    <img src="{{ get_url(path="images/divinci_logo_inverted.svg") }}" alt="Divinci AI Logo">
+                    <img src="{{ get_url(path="images/divinci_logo_inverted.svg") }}" alt="Divinci AI Logo" loading="lazy">
                     <span>Divinci AI</span>
                 </a>
             </div>
@@ -24,7 +24,11 @@
                     <i class="fab fa-github" aria-hidden="true"></i>
                 </a>
                 <a href="{{ config.extra.huggingface }}" target="_blank" rel="noopener" title="Hugging Face" aria-label="See our open vindex artifacts on Hugging Face">
-                    <img src="{{ get_url(path='brand/huggingface/hf-logo-monochrome.svg') }}" alt="" class="footer-social-img" width="22" height="22">
+                    {# Brief alt instead of empty: parent anchor's aria-label still owns the
+                       link's accessible name, but giving the image a name satisfies SEO audits
+                       that flag empty alts as "verify intentional". Screen-reader redundancy
+                       is minimal (one extra "Hugging Face" announcement). #}
+                    <img src="{{ get_url(path='brand/huggingface/hf-logo-monochrome.svg') }}" alt="Hugging Face" class="footer-social-img" width="22" height="22" loading="lazy">
                 </a>
                 <a href="{{ config.extra.discord }}" target="_blank" rel="noopener" title="Discord Community" aria-label="Join our Discord community">
                     <i class="fab fa-discord" aria-hidden="true"></i>
@@ -110,6 +114,7 @@
                         {# cookies — translated in ES only #}
                         <a href="{% if current_lang == 'es' %}/es/cookies/{% else %}/cookies/{% endif %}">{{ translations.footer.bottom.cookie_policy | default(value="Cookie Policy") }}</a>
                         <button onclick="window.gdprCompliance?.showCookieBanner()">{{ translations.footer.bottom.cookie_preferences | default(value="Cookie Preferences") }}</button>
+                        <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer">{{ translations.footer.bottom.data_request | default(value="Data Request") }}</a>
                     </div>
                 </div>
             </div>

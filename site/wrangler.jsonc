@@ -5,15 +5,22 @@
   "assets": {
     "directory": "./public/",
     "not_found_handling": "404-page",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    // Run worker first for HTML pages (URL rewriting on preview/dev URLs) AND
+    // for API endpoints. Without /api/*, Cloudflare's static asset handler
+    // intercepts POSTs and returns 405 before the worker can answer.
+    // Static assets (CSS, JS, images) are still served directly for performance.
+    "run_worker_first": ["/", "/*/", "/*/*/", "/*/*/*/", "/*/*/*/*/", "/*.html", "/api/*"]
   },
   "vars": {
     "ENVIRONMENT": "production",
     "SITE_NAME": "Divinci AI",
-    "CACHE_VERSION": "v1"
+    "CACHE_VERSION": "v1",
+    "BASE_URL": "https://divinci.ai"
   },
   "routes": [
-    { "pattern": "divinci.ai/*", "zone_name": "divinci.ai" }
+    { "pattern": "divinci.ai/*", "zone_name": "divinci.ai" },
+    { "pattern": "www.divinci.ai/*", "zone_name": "divinci.ai" }
   ],
   "send_email": [
     {
@@ -31,5 +38,41 @@
   },
   "limits": {
     "cpu_ms": 50
+  },
+
+  // ── Lower environments ──────────────────────────────────────────────
+  "env": {
+    "dev": {
+      "name": "divinci-ai-site-dev",
+      "vars": {
+        "ENVIRONMENT": "development",
+        "SITE_NAME": "Divinci AI (Dev)",
+        "CACHE_VERSION": "v1",
+        "BASE_URL": "https://dev.divinci.ai"
+      },
+      "routes": [
+        { "pattern": "dev.divinci.ai/*", "zone_name": "divinci.ai" }
+      ],
+      "workers_dev": true,
+      "build": {
+        "command": "zola build --base-url https://dev.divinci.ai"
+      }
+    },
+    "staging": {
+      "name": "divinci-ai-site-staging",
+      "vars": {
+        "ENVIRONMENT": "staging",
+        "SITE_NAME": "Divinci AI (Staging)",
+        "CACHE_VERSION": "v1",
+        "BASE_URL": "https://staging.divinci.ai"
+      },
+      "routes": [
+        { "pattern": "staging.divinci.ai/*", "zone_name": "divinci.ai" }
+      ],
+      "workers_dev": true,
+      "build": {
+        "command": "zola build --base-url https://staging.divinci.ai"
+      }
+    }
   }
 }

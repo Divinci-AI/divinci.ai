@@ -2,6 +2,9 @@
 title = "Riferimento API"
 description = "Riferimento completo della REST API di Divinci AI — oltre 60 endpoint per gestire release, basi di conoscenza RAG, fine-tuning, trascrizioni e altro."
 template = "feature.html"
+
+[extra]
+alternate_languages = true
 +++
 
 <style>

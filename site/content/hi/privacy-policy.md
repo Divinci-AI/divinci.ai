@@ -10,7 +10,7 @@ template = "page.html"
 
 # Privacy Policy
 
-**Last updated:** March 2025
+**Last updated:** मई 2026
 
 ## Our Commitment to Privacy
 
@@ -42,6 +42,7 @@ We use cookies and similar technologies to:
 - Ensure website functionality
 - Analyze website and app performance
 - Provide personalized experience (with your consent)
+- वेबसाइट विज़िट से जुड़े संगठन की पहचान करना, B2B मार्केटिंग उद्देश्यों के लिए (ईयू/ईईए, यूनाइटेड किंगडम और स्विट्ज़रलैंड में आपकी सहमति के साथ)
 
 ## 2. Third-Party Services and SDKs
 
@@ -65,6 +66,10 @@ Our Services integrate the following third-party services, each with their own p
 
 ### 2.6 Cloud Infrastructure
 - **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+
+### 2.7 मार्केटिंग, विज़िटर पहचान, और CRM
+- **Instantly.ai / Leadsy.ai**: हम Instantly के विज़िटर पहचान टैग का उपयोग करते हैं (जो `r2.leadsy.ai` से लोड होता है, जो उसी विक्रेता द्वारा संचालित `tag.trovo-tag.com` से एक ट्रैकिंग स्क्रिप्ट को गतिशील रूप से लोड करता है) ताकि उस संगठन की पहचान की जा सके जिससे वेबसाइट विज़िट जुड़ी हो सकती है (उदाहरण के लिए, विज़िटर के IP पते से जुड़ी कंपनी)। यह हमारे बिज़नेस-टू-बिज़नेस आउटबाउंड मार्केटिंग को सूचित करता है। ईयू/ईईए, यूनाइटेड किंगडम, या स्विट्ज़रलैंड में पाए गए विज़िटरों के लिए, यह टैग **केवल तभी लोड होता है जब आप हमारे कुकी बैनर के माध्यम से मार्केटिंग सहमति प्रदान करते हैं**। उन क्षेत्राधिकारों के बाहर के विज़िटरों के लिए, टैग डिफ़ॉल्ट रूप से लोड होता है और इसे धारा 10 में "कुकी प्राथमिकताएँ" नियंत्रण के माध्यम से कभी भी अक्षम किया जा सकता है। [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
+- **HubSpot**: हम HubSpot ट्रैकिंग स्क्रिप्ट का उपयोग करते हैं (जो `js.hs-scripts.com` से लोड होती है, जो `js.hs-analytics.net`, `js.hs-banner.com`, और `js.hscollectedforms.net` से ट्रैकिंग, बैनर, और फॉर्म-कैप्चर स्क्रिप्ट्स को गतिशील रूप से लोड करती है) ताकि पेज व्यू रिकॉर्ड किए जा सकें, मार्केटिंग चैनल प्रदर्शन का श्रेय दिया जा सके, फॉर्म सबमिशन कैप्चर किए जा सकें, और जब आप कोई फॉर्म सबमिट करते हैं या मीटिंग बुक करते हैं तो वेबसाइट गतिविधि को HubSpot CRM संपर्क रिकॉर्ड से जोड़ा जा सके। ईयू/ईईए, यूनाइटेड किंगडम, या स्विट्ज़रलैंड में पाए गए विज़िटरों के लिए, यह स्क्रिप्ट **केवल तभी लोड होती है जब आप हमारे कुकी बैनर के माध्यम से मार्केटिंग सहमति प्रदान करते हैं**। उन क्षेत्राधिकारों के बाहर के विज़िटरों के लिए, स्क्रिप्ट डिफ़ॉल्ट रूप से लोड होती है और इसे धारा 10 में "कुकी प्राथमिकताएँ" नियंत्रण के माध्यम से कभी भी अक्षम किया जा सकता है। [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
 
 ## 3. Legal Basis for Processing (GDPR)
 
@@ -99,6 +104,7 @@ We do not sell your personal data. We may share data with:
 - Cloud hosting and infrastructure providers (with data processing agreements)
 - Authentication service providers
 - Analytics and crash reporting providers (when you consent or as described above)
+- मार्केटिंग और B2B विज़िटर पहचान प्रदाता (विनियमित क्षेत्राधिकारों में सहमति के अधीन, जैसा कि धारा 2.7 में वर्णित है)
 - AI model providers for processing your requests
 - Customer support tools
 
@@ -140,6 +146,8 @@ Our Services are not directed to children under the age of 13 (or the applicable
 - **Objection**: Object to processing for direct marketing
 - **Withdraw Consent**: Revoke consent at any time
 
+To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+
 ### 9.2 CCPA Rights (California Residents)
 - **Right to Know**: What personal information we collect and how it is used
 - **Right to Delete**: Request deletion of your personal information
@@ -161,13 +169,9 @@ Our Services are not directed to children under the age of 13 (or the applicable
     🍪 Cookie Preferences
   </button>
 
-  <button onclick="window.gdprCompliance?.exportUserData()" class="privacy-btn">
-    📥 Download My Data
-  </button>
-
-  <button onclick="window.gdprCompliance?.deleteUserData()" class="privacy-btn privacy-btn-danger">
-    🗑️ Delete My Data
-  </button>
+  <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
+    📥 डेटा अनुरोध सबमिट करें
+  </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
     ❌ Revoke All Consent

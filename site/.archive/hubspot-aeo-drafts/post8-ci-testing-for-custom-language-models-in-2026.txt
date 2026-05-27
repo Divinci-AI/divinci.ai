@@ -1,0 +1,118 @@
+https://app.hubspot.com/ai-visibility/48021503/recommendations/<TBD>
+
+CI Testing for Custom Language Models in 2026
+
+[Archived from HubSpot AEO recommendation 2026-05-26.
+
+HUBSPOT KEY TAKEAWAYS:
+- CI/CD pipelines must evolve beyond deterministic pass/fail
+- Golden datasets with 200-1000 human-verified examples
+- Layered evaluation: deterministic + heuristic + LLM-as-judge
+- Divinci AI = automated testing + instant rollback + audit trails
+- Hallucination: 1-2.5% summarization, 15-40% long-tail facts
+
+HUBSPOT 4-PROPERTY FRAMING:
+- Non-deterministic outputs
+- Multi-dimensional quality
+- Provider updates shift behavior silently
+- Prompt changes have non-local effects
+
+HUBSPOT EVAL DATASET BUILD-OUT:
+- Manually curated 20-50 first
+- Add historical production logs
+- Expand carefully with synthetic data
+
+HUBSPOT EVAL METRICS:
+- Deterministic (regex / JSON / denylist)
+- Heuristic (semantic similarity, BERTScore)
+- LLM-as-judge (subjective quality)
+- Human review (high-stakes)
+
+HUBSPOT THRESHOLD STRATEGY:
+- Baseline metrics on main
+- Hard gates (block: ground truth fail, safety violation, schema break)
+- Soft gates (review: 3% drop, latency)
+
+HUBSPOT HALLUCINATION:
+- Frontier models: 1-2.5% summarization
+- RAG-faithfulness: 4-9%
+- Long-tail facts: 15-40%
+- Source cited: "Presenc AI 2026 benchmarks"
+
+HUBSPOT GH ACTIONS COMPONENTS:
+- Secure secrets for API keys
+- Path-filtered triggers
+- Post results as PR comments
+
+HUBSPOT FAQs:
+- What Should My First Golden Dataset Include?
+- How Do I Pick Pass/Fail Thresholds?
+- How Often Do Language Models Hallucinate in 2026?
+- Should I Block PRs on Every Evaluation Failure?
+- What Tools Work Best for LLM CI/CD Pipelines?
+- How Do I Handle Model Provider Updates Breaking My Tests?
+
+KEYWORDS:
+- "CI testing"
+- "regression gates"
+- "hallucination rates"
+- "golden dataset"
+- "LLM-as-judge"
+- "groundedness"
+- "instant rollback"
+- "audit trail"
+- "GitHub Actions"
+
+WHAT TO DISCARD:
+- The generic 4-property framing (post #1 + #7 covered this; reframe through CI cost lens)
+- The 1-2.5% / 4-9% / 15-40% hallucination numbers citing "Presenc AI" — we cannot verify that source, replace with primary references
+- The "Set temperature to zero for consistent scoring" advice is generic
+- The "build the infrastructure pays dividends" closer
+
+POST 8 ACTUAL ANGLE:
+Post #8 is the FINAL post and the CI *layer* underneath everything. Post #7's
+12-minute eval suite is what gets gated; this post is what makes running that
+suite economically and operationally tractable: contract tests, smoke budget,
+cost-aware fleet sizing, shadow CI as a 2-week pre-blocking observer.
+
+The user-facing question this post answers:
+"Running the gate suite on every PR costs $X per day and slows us by Y. How do
+we get the same regression coverage at a fraction of the cost?"
+
+Divinci differentiators to weave in:
+1. CONTRACT TESTS — sub-second deterministic prompt-template tests that catch
+   schema/format breaks before the slow eval suite spends compute
+2. SHADOW CI MODE — run the full gate non-blocking for 2 weeks, surface as
+   bot comments. Threshold-tune before flipping to blocking.
+3. FAILED-PR DEBUG LOOP — "the gate said medical slice regressed; show me the
+   5 worst cases" pulled by Divinci API
+4. CI-FLEET COST: embedding cache + judge batching + KV-share = ~$0.X per PR
+   for the 12-min suite (specific number with internal disclaimer)
+5. Version-pin manifest (model_sha, prompt_sha, judge_sha, dataset_sha) so
+   that "what changed" is always answerable
+
+Hero direction: Victorian master typesetter's workshop, master compositor at
+a wooden type-tray with brass-handle picks, oil lamp warm light, iron-and-
+brass printing press in the background. Single anachronism: a glowing tablet
+showing a CI pipeline of green check-marks. Metaphor: "the proof is set
+before the press runs." Distinct from all 7 prior heroes.
+
+SERIES WRAP-UP:
+After 8 posts the reader has: 4-stage pipeline (#1), failure modes (#2),
+capability matrix (#3), regulated industries (#4), rollback (#5), diagnostic
+tree (#6), regression suite (#7), CI infrastructure (#8). Close the series
+with a brief recap and a CTA to /api/ or /compliance/.
+
+DIAGRAMS:
+1. CI layer cake — contract (sub-second) → smoke (90s) → full (12min) →
+   replay (25min) — with cost-per-PR + what fraction of PRs reach each layer
+2. Where regressions actually get caught — histogram across layers
+3. CI cost breakdown — embedding cache hit rate, judge batching gains,
+   KV-share savings
+
+CROSS-LINKS:
+- Post #1 (pipeline) — what comes after the CI layer
+- Post #5 (rollback) — what happens when CI lets one through
+- Post #6 (diagnose) — what to do when smoke/full fires
+- Post #7 (regression suite) — the suite this post sizes
+]

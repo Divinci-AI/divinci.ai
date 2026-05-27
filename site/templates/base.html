@@ -40,20 +40,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% if page.title %}{{ page.title }} | Divinci AI{% elif section.title %}{{ section.title }} | Divinci AI{% elif section.lang %}{{ section.title | default(value="Divinci AI") }}{% else %}{{ config.title | default(value="Divinci AI - Excellence, every time") }}{% endif %}{% endblock %}</title>
-    <meta name="description" content="{% block description %}{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.extra.description | default(value="AI releases. Excellence, every time.") }}{% endif %}{% endblock %}">
+    {# Title rendering: keep total under 70 chars (search-engine truncation point).
+       Short page titles get " | Divinci AI" appended; medium-length titles
+       (57-70 chars) skip the suffix; longer titles are truncated at 69+ellipsis.
+    #}
+    <title>{% block title %}
+    {%- if page.title -%}{%- set title_only = page.title -%}
+    {%- elif term and term.name -%}
+      {%- if taxonomy.name == "categories" -%}{%- set title_only = "Category: " ~ term.name -%}
+      {%- elif taxonomy.name == "tags" -%}{%- set title_only = "Tag: " ~ term.name -%}
+      {%- else -%}{%- set title_only = term.name -%}{%- endif -%}
+    {%- elif taxonomy and taxonomy.name -%}
+      {%- if taxonomy.name == "categories" -%}{%- set title_only = "All Categories" -%}
+      {%- elif taxonomy.name == "tags" -%}{%- set title_only = "All Tags" -%}
+      {%- else -%}{%- set title_only = taxonomy.name -%}{%- endif -%}
+    {%- elif section.title -%}
+      {%- set title_only = section.title -%}
+      {# Distinguish paginated section pages: "Blog - Page 2" #}
+      {%- if paginator and paginator.current_index and paginator.current_index > 1 -%}
+        {%- set title_only = title_only ~ " - Page " ~ paginator.current_index -%}
+      {%- endif -%}
+      {# Distinguish translated section indexes that share the EN section title #}
+      {%- if current_lang and current_lang != "en" -%}
+        {%- set lang_upper = current_lang | upper -%}
+        {%- set title_only = title_only ~ " (" ~ lang_upper ~ ")" -%}
+      {%- endif -%}
+    {%- else -%}{%- set title_only = config.title | default(value="Divinci AI - Excellence, every time") -%}
+    {%- endif -%}
+    {%- set t_len = title_only | length -%}
+    {%- if t_len + 13 <= 70 -%}{{ title_only }} | Divinci AI
+    {%- elif t_len <= 70 -%}{{ title_only }}
+    {%- else -%}{{ title_only | truncate(length=69) }}
+    {%- endif -%}
+    {% endblock %}</title>
+    {# SERP meta description: search engines display ~155 chars. Truncate at
+       154 so the appended ellipsis keeps total ≤155. Term/taxonomy pages get
+       a unique synthesized description to avoid the config-fallback duplicate. #}
+    {%- if page.description -%}{%- set _desc = page.description -%}
+    {%- elif term and term.name -%}
+      {%- if taxonomy.name == "categories" -%}{%- set _desc = "Articles in the " ~ term.name ~ " category from Divinci AI — research, engineering deep-dives, and field notes." -%}
+      {%- elif taxonomy.name == "tags" -%}{%- set _desc = "Posts tagged " ~ term.name ~ " on the Divinci AI blog — research, engineering, and applied perspectives." -%}
+      {%- else -%}{%- set _desc = "Browse " ~ term.name ~ " on Divinci AI." -%}{%- endif -%}
+    {%- elif taxonomy and taxonomy.name -%}
+      {%- if taxonomy.name == "categories" -%}{%- set _desc = "Browse all categories on the Divinci AI blog — research, engineering, policy, and product." -%}
+      {%- elif taxonomy.name == "tags" -%}{%- set _desc = "Browse all tags on the Divinci AI blog." -%}
+      {%- else -%}{%- set _desc = "Browse " ~ taxonomy.name ~ " on Divinci AI." -%}{%- endif -%}
+    {%- elif section.description -%}
+      {%- set _desc = section.description -%}
+      {%- if paginator and paginator.current_index and paginator.current_index > 1 -%}
+        {%- set _desc = _desc ~ " (Page " ~ paginator.current_index ~ ")" -%}
+      {%- endif -%}
+    {%- else -%}{%- set _desc = config.extra.description | default(value="AI releases. Excellence, every time.") -%}
+    {%- endif -%}
+    <meta name="description" content="{% block description %}{{ _desc | truncate(length=154) }}{% endblock %}">
     
     <!-- Preconnect to external domains for faster resource loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <!-- R2 hosts hero media + brand assets across most pages — preconnect saves
+         ~100-200ms of TLS handshake on the LCP element. -->
+    <link rel="preconnect" href="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev" crossorigin>
+
+    <!-- Defer <video autoplay> downloads until after window.load + 1.5s.
+         Only targets videos with the `autoplay` attribute — non-autoplay
+         videos with preload="none"/"metadata" don't auto-download anyway.
+         Skips videos with `data-lazy-video` (page-managed by other JS).
+         Cuts initial page weight by ~20-40MB on blog posts with embedded videos. -->
+    <script>
+      (function () {
+        var pending = [];
+        function defang(v) {
+          if (v.dataset.videoDeferred) return;
+          if (!v.hasAttribute('autoplay')) return; // only intercept autoplay videos
+          if (v.hasAttribute('data-lazy-video')) return; // page has its own lazy handling
+          v.dataset.videoDeferred = '1';
+          v.dataset.wantAutoplay = '1';
+          v.removeAttribute('autoplay');
+          if (v.getAttribute('src')) { v.dataset.videoSrc = v.getAttribute('src'); v.removeAttribute('src'); }
+          Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
+            if (s.getAttribute('src')) { s.dataset.videoSrc = s.getAttribute('src'); s.removeAttribute('src'); }
+          });
+          try { v.load(); } catch (e) {}
+          pending.push(v);
+        }
+        var observer = new MutationObserver(function (mutations) {
+          for (var i = 0; i < mutations.length; i++) {
+            var added = mutations[i].addedNodes;
+            for (var j = 0; j < added.length; j++) {
+              var n = added[j];
+              if (n.nodeName === 'VIDEO') defang(n);
+              else if (n.querySelectorAll) {
+                var vs = n.querySelectorAll('video[autoplay]');
+                for (var k = 0; k < vs.length; k++) defang(vs[k]);
+              }
+            }
+          }
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+        function restore() {
+          observer.disconnect();
+          pending.forEach(function (v) {
+            if (v.dataset.videoSrc) v.setAttribute('src', v.dataset.videoSrc);
+            Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
+              if (s.dataset.videoSrc) s.setAttribute('src', s.dataset.videoSrc);
+            });
+            try { v.load(); } catch (e) {}
+            v.play().catch(function () { /* autoplay denied — leave poster visible */ });
+          });
+        }
+        if (document.readyState === 'complete') {
+          setTimeout(restore, 1500);
+        } else {
+          window.addEventListener('load', function () { setTimeout(restore, 1500); }, { once: true });
+        }
+      })();
+    </script>
     
     <!-- Preload critical resources -->
     <link rel="preload" href="{{ get_url(path="css/style.css") }}" as="style">
     <link rel="preload" href="{{ get_url(path="js/main.js") }}" as="script">
     
+    <!-- Cloudflare-injected ISO 3166-1 alpha-2 country code (e.g. "DE", "US"). Populated by the Worker via HTMLRewriter from request.cf.country. Empty when bypassing the Worker (local zola serve) — gating script falls back to timezone detection. -->
+    <meta name="cf-country" content="">
+
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ current_url | default(value=config.base_url) | safe }}">
+
+    {# hreflang alternates: tells search engines that /api/, /ar/api/, /es/api/
+       etc. are translations of the same logical page (not duplicate content).
+       Opt-in via `extra.alternate_languages = true` in the page frontmatter,
+       because this site uses one directory per language rather than Zola's
+       conventional name.lang.md pattern, so page.translations doesn't work.
+       We strip any existing language prefix from current_url and rebuild for
+       each language. x-default → EN per Google convention. #}
+    {%- if (page and page.extra and page.extra.alternate_languages) or (section and section.extra and section.extra.alternate_languages) -%}
+      {%- set ALL_LANGS = ["es","fr","ar","ja","zh","it","ru","de","pt","ko","nl","hi"] -%}
+      {%- set raw_path = current_url | trim_start_matches(pat=config.base_url) -%}
+      {%- set lang_stripped_path = raw_path -%}
+      {%- for lg in ALL_LANGS -%}
+        {%- if raw_path is starting_with("/" ~ lg ~ "/") -%}
+          {%- set_global lang_stripped_path = raw_path | trim_start_matches(pat="/" ~ lg) -%}
+        {%- endif -%}
+      {%- endfor %}
+    <link rel="alternate" hreflang="en" href="{{ config.base_url ~ lang_stripped_path }}">
+      {%- for lg in ALL_LANGS %}
+    <link rel="alternate" hreflang="{{ lg }}" href="{{ config.base_url ~ "/" ~ lg ~ lang_stripped_path }}">
+      {%- endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ config.base_url ~ lang_stripped_path }}">
+    {%- endif %}
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ get_url(path="images/favicon-32x32.png") }}">
@@ -99,6 +234,117 @@
 
     {% block extra_head %}{% endblock %}
 
+    <!-- Shared EU/EEA/UK detection — single source of truth used by the Instantly gating script below AND by js/gdpr-compliance.js. Primary signal: Cloudflare's request.cf.country injected into the cf-country meta tag. Fallback signal: browser timezone (used when Worker is bypassed, e.g., local zola serve). On any error or unknown CF country (T1, XX), we fail safely to "EU" so the marketing tag is gated. -->
+    <script>
+      (function () {
+        var EU_COUNTRIES = [
+          // EU member states (27, ISO 3166-1 alpha-2 — Greece = GR, not EL)
+          'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
+          'IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+          // UK (UK GDPR)
+          'GB',
+          // EEA
+          'NO','IS','LI',
+          // Switzerland (FADP — GDPR-equivalent)
+          'CH'
+        ];
+        var EU_TIMEZONES = [
+          // EU member states (27)
+          'Europe/Vienna', 'Europe/Brussels', 'Europe/Sofia', 'Europe/Zagreb',
+          'Asia/Nicosia', 'Europe/Prague', 'Europe/Copenhagen', 'Europe/Tallinn',
+          'Europe/Helsinki', 'Europe/Mariehamn', 'Europe/Paris', 'Europe/Berlin',
+          'Europe/Athens', 'Europe/Budapest', 'Europe/Dublin', 'Europe/Rome',
+          'Europe/Riga', 'Europe/Vilnius', 'Europe/Luxembourg', 'Europe/Malta',
+          'Europe/Amsterdam', 'Europe/Warsaw', 'Europe/Lisbon', 'Atlantic/Azores',
+          'Atlantic/Madeira', 'Europe/Bucharest', 'Europe/Bratislava', 'Europe/Ljubljana',
+          'Europe/Madrid', 'Atlantic/Canary', 'Africa/Ceuta', 'Europe/Stockholm',
+          // UK (UK GDPR)
+          'Europe/London', 'Europe/Gibraltar',
+          // EEA
+          'Europe/Oslo', 'Atlantic/Reykjavik', 'Europe/Vaduz',
+          // Switzerland (FADP — GDPR-equivalent)
+          'Europe/Zurich'
+        ];
+        window.divinciIsEUUser = function () {
+          // Primary: Cloudflare-derived country code from meta tag
+          try {
+            var meta = document.querySelector('meta[name="cf-country"]');
+            var cc = meta && meta.getAttribute('content') || '';
+            if (cc) {
+              // 'T1' = Tor exit, 'XX' = unknown to Cloudflare — treat as EU (safer default)
+              if (cc === 'T1' || cc === 'XX') return true;
+              return EU_COUNTRIES.indexOf(cc) !== -1;
+            }
+          } catch (e) {}
+          // Fallback: timezone-based detection (local dev, or if meta tag missing)
+          try {
+            var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+            return EU_TIMEZONES.indexOf(tz) !== -1;
+          } catch (e) {
+            return true;
+          }
+        };
+      })();
+    </script>
+
+    <!-- Generic marketing-consent gate: runs `loader` either immediately (non-EU
+         or EU+saved-consent) or once when the user later grants marketing consent.
+         Used by both the Instantly and HubSpot loaders below. -->
+    <script>
+      (function () {
+        function hasMarketingConsent() {
+          try {
+            var raw = localStorage.getItem('divinci-gdpr-consent');
+            if (!raw) return false;
+            var data = JSON.parse(raw);
+            return !!(data && data.marketing);
+          } catch (e) { return false; }
+        }
+        window.divinciGateOnMarketingConsent = function (loader) {
+          if (!window.divinciIsEUUser()) {
+            loader();
+          } else if (hasMarketingConsent()) {
+            loader();
+          } else {
+            window.addEventListener('divinci:marketing-consent-granted', loader, { once: true });
+          }
+        };
+      })();
+    </script>
+
+    <!-- Instantly AI (leadsy.ai) visitor identification tag — gated by marketing consent for EU/EEA/UK/CH users; loads by default for non-EU. -->
+    <script>
+      window.divinciGateOnMarketingConsent(function () {
+        if (document.getElementById('vtag-ai-js')) return;
+        var s = document.createElement('script');
+        s.id = 'vtag-ai-js';
+        s.async = true;
+        s.src = 'https://r2.leadsy.ai/tag.js';
+        s.setAttribute('data-pid', '1h38CDtF10kEgkbMB');
+        s.setAttribute('data-version', '062024');
+        document.head.appendChild(s);
+      });
+    </script>
+
+    <!-- HubSpot tracking (portal 48021503) — same gating as Instantly. The
+         `doNotTrack: track:true` push tells HubSpot we already obtained consent
+         via our own GDPR banner so its built-in banner stays suppressed (also
+         requires the corresponding HubSpot dashboard setting to be off). -->
+    <script>
+      window.divinciGateOnMarketingConsent(function () {
+        if (document.getElementById('hs-script-loader')) return;
+        window._hsq = window._hsq || [];
+        window._hsq.push(['doNotTrack', { track: true }]);
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.id = 'hs-script-loader';
+        s.async = true;
+        s.defer = true;
+        s.src = '//js.hs-scripts.com/48021503.js';
+        document.head.appendChild(s);
+      });
+    </script>
+
     <!-- Structured Data: Organization + WebSite -->
     <script type="application/ld+json">
     {
@@ -140,7 +386,31 @@
 </head>
 <body class="{% block body_class %}{% endblock %}">
     <a href="#main-content" class="skip-nav">{{ translations.accessibility.skip_to_content | default(value="Skip to main content") }}</a>
-    <style>.skip-nav { position: absolute; left: -9999px; z-index: 999; padding: 0.5em; background: #000; color: #fff; } .skip-nav:focus { left: 50%; transform: translateX(-50%); top: 0; }</style>
+    <style>
+      /* Visually-hidden until focused. Using width/height/clip instead of
+         left:-9999px because `left:-9999px` inflates document scrollWidth on
+         RTL pages (Arabic), causing horizontal overflow on mobile viewports. */
+      .skip-nav {
+        position: absolute;
+        width: 1px; height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+        z-index: 999;
+        padding: 0.5em;
+        background: #000;
+        color: #fff;
+      }
+      .skip-nav:focus {
+        position: fixed;
+        width: auto; height: auto;
+        clip: auto;
+        clip-path: none;
+        left: 50%; top: 0;
+        transform: translateX(-50%);
+      }
+    </style>
     {# Site-wide research banner — appears above the nav header on every page. #}
     <div class="site-research-banner" role="region" aria-label="{{ translations.banner.label | default(value='Latest research') }}">
       <div class="site-research-banner-inner">
@@ -148,7 +418,7 @@
         <span class="site-research-banner-label">{{ translations.banner.label | default(value='Latest research:') }}</span>
         <a href="/blog/when-the-circuit-dissolves/">{{ translations.banner.link | default(value='When the Circuit Dissolves →') }}</a>
         <span class="site-research-banner-sep" aria-hidden="true">·</span>
-        <a class="site-research-banner-secondary" href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">8 vindexes on <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/brand/huggingface/hf-logo.svg" alt="Hugging Face" class="site-research-banner-hf"></a>
+        <a class="site-research-banner-secondary" href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">12 vindexes on <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/brand/huggingface/hf-logo.svg" alt="Hugging Face" class="site-research-banner-hf" width="256" height="256" loading="lazy"></a>
       </div>
     </div>
     {% include "partials/header.html" %}

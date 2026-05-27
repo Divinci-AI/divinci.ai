@@ -3,6 +3,7 @@ title = "Gestión de Versiones de IA - DevOps Empresarial para Sistemas de IA"
 description = "Gestión de versiones de nivel empresarial para modelos de IA con control de versiones, capacidades de rollback y automatización de implementación"
 template = "feature.html"
 [extra]
+hero_poster = "images/hero-release.webp"
 feature_category = "development-tools"
 +++
 
@@ -337,7 +338,7 @@ feature_category = "development-tools"
 <h2 class="section-heading" style="margin-top: 4.44rem; margin-bottom: 2rem;">¿Qué es la Gestión de Versiones de IA?</h2>
 
 <div class="release-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/release-cycle-diagram.svg" alt="Diagrama de Gestión del Ciclo de Versiones de IA" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" />
+  <img src="/images/release-cycle-diagram.svg" alt="Diagrama de Gestión del Ciclo de Versiones de IA" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;"  loading="lazy"/ width="900" height="750">
 </div>
 
 <div class="overview-content">

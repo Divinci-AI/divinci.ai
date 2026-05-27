@@ -1,6 +1,6 @@
 +++
 title = "Deleting Paris from a Language Model"
-description = "A single rank-1 weight edit suppresses one learned fact while leaving the rest of the model intact. No fine-tuning. No retraining. Just a feature subtracted from one layer's gate matrix — with a receipt."
+description = "A LarQL patch deletes 'Paris is the capital of France' from a frozen LLM. The receipt is a 100-byte JSON file with a SHA-256 checksum."
 date = 2026-04-25T09:00:00+00:00
 template = "blog-post.html"
 
@@ -9,6 +9,8 @@ categories = ["Research"]
 tags = ["LarQL", "Interpretability", "Knowledge Editing", "Unlearning", "Mechanistic Interpretability"]
 
 [extra]
+math = true
+pinned = true
 author = "Mike Mooring"
 author_avatar = "images/Michael-Mooring.png"
 featured_image = "images/divinci-hero-social-v3.png"
@@ -184,3 +186,20 @@ print(t.decode(out[0]))
 *April 23, 2026 — The Kimi-K2 vindex is in development at [huggingface.co/Divinci-AI/kimi-k2-vindex](https://huggingface.co/Divinci-AI/kimi-k2-vindex). Kimi-K2 is a MoE model (384 experts, top-8 routing), which adds an interesting wrinkle to the DELETE patch: the "Paris → capital" feature may be distributed across multiple experts, requiring a rank-k patch instead of rank-1. Experiment coming in a follow-up post.*
 
 *Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). Vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
+
+## References
+
+<ol class="post-references" style="padding-left: 1.5rem;">
+  <li id="ref-1" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>Locating and editing factual associations (ROME).</strong> Meng, Bau, Andonian, Belinkov, <a href="https://rome.baulab.info/" target="_blank" rel="noopener"><em>Locating and Editing Factual Associations in GPT</em></a> (NeurIPS 2022). The closest prior art to the DELETE patch: a rank-1 weight edit that targets a specific factual association in a frozen LLM. Differences are operational — ROME edits middle-layer MLP weights using a causal trace; the LarQL DELETE patch operates on the feature graph extracted by the vindex pipeline and emits a portable SHA-256 receipt.
+  </li>
+  <li id="ref-2" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>Mass-editing memory in a transformer (MEMIT).</strong> Meng et al., <a href="https://arxiv.org/abs/2210.07229" target="_blank" rel="noopener"><em>Mass-Editing Memory in a Transformer</em></a> (ICLR 2023, arXiv:2210.07229). Extends ROME to thousands of simultaneous edits. Useful context for the "DELETE multiple facts in one patch" path implied in the post.
+  </li>
+  <li id="ref-3" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>LarQL (Lazarus Query Language).</strong> Open-source vindex query language and patch toolkit used to produce the Gate-3 patch in this post. Primary repo: <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">github.com/chrishayuk/larql</a>. Mirror: <a href="https://github.com/cronos3k/larql" target="_blank" rel="noopener">github.com/cronos3k/larql</a>. From the README: "decompile transformer weights into a queryable graph. LQL = Lazarus Query Language."
+  </li>
+  <li id="ref-4" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>Internal Gate-3 patch.</strong> The Paris → capital DELETE patch shown in this post, its before/after measurements (feature 11179 rank #1 → ABSENT from top-25), and the +0.02% perplexity Δ on WikiText-103 are from our own runs against the published Gemma 4 E2B vindex at <a href="https://huggingface.co/datasets/Divinci-AI/gemma-4-4b-e2b-vindex" target="_blank" rel="noopener">huggingface.co/datasets/Divinci-AI/gemma-4-4b-e2b-vindex</a>. The vindex receipt format and the Gate-3 compliance pathway are documented on the <a href="/compliance/">compliance page</a>.
+  </li>
+</ol>

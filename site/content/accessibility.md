@@ -1,5 +1,6 @@
 +++
 title = "Accessibility Statement"
+description = "Divinci AI's commitment to digital accessibility, WCAG 2.1 conformance targets, the standards we follow, and how to report barriers."
 date = 2025-01-20
 template = "page.html"
 +++

@@ -1,8 +1,8 @@
 +++
 title = "When the Circuit Dissolves"
-description = "Two natively-trained 1-bit language models, from two different organizations, converge on the same anomaly: the four-stage circuit that organizes every fp16 transformer simply isn't there. Both models still answer correctly. The structure is gone, but the behavior survived."
+description = "Two natively-trained 1-bit LLMs lose the four-stage circuit that organizes fp16 transformers. Behavior survives; structure dissolves."
 date = 2026-04-27T09:00:00+00:00
-updated = 2026-04-25T22:00:00+00:00
+updated = 2026-04-27T22:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -10,6 +10,7 @@ categories = ["Research"]
 tags = ["LarQL", "Interpretability", "Quantization", "BitNet", "Bonsai", "Mechanistic Interpretability"]
 
 [extra]
+math = true
 author = "Mike Mooring"
 author_avatar = "images/Michael-Mooring.png"
 featured_image = "images/divinci-hero-social-v3.png"
@@ -147,7 +148,7 @@ The chart above splits "fp16 vs 1-bit." The accurate split is "fp16 vs everythin
 
 **What's still holding** — the fp16 power-law cluster (Gemma 4, Qwen3 family, Mistral 3, Llama 3.1, GPT-OSS 120B) hasn't moved. Whatever happens at training precision below fp16 — fp8, MXFP4, or 1-bit — the spectral structure doesn't survive in the form fp16 produces.
 
-The three new vindexes are published as **research summaries** — gate_proj SVD only, ~10–43 GB each. They're not yet `larql pull`-ready end-to-end (two upstream gaps: the safetensors loader needs F8_E8M0/F8_E4M3/I8 dtype dispatch, and the HF resolver currently only checks the dataset URL pattern). PRs to address both are tracked. In the meantime they're fetchable directly from HuggingFace and parseable with numpy:
+The three new vindexes are published as **research summaries** — gate_proj SVD only, ~10–43 GB each. Fetchable directly from HuggingFace and parseable with numpy:
 
 ```bash
 huggingface-cli download Divinci-AI/kimi-k2-instruct-vindex      # 42.28 GB
@@ -155,4 +156,35 @@ huggingface-cli download Divinci-AI/deepseek-v4-flash-vindex     # 11.54 GB
 huggingface-cli download Divinci-AI/deepseek-v4-pro-vindex       # 42.98 GB
 ```
 
-*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). LarQL vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI). MoE builder: [moe_vindex_builder.py](https://github.com/Divinci-AI/server/blob/preview/notebooks/moe_vindex_builder.py) (now with MXFP4 unpacker for DeepSeek-V4 family).*
+### Update 2026-04-27 — canonical-format MXFP4 MoE vindexes are live
+
+Both DeepSeek-V4 sizes are now published in the standard `larql` CLI's canonical vindex layout (`gate_vectors.bin` / `embeddings.bin` / `router_weights.bin` / `down_meta.bin` / `index.json` / `manifest.json` / `tokenizer.json`), so anyone can reproduce the dissolution-class measurements end-to-end:
+
+```bash
+huggingface-cli download Divinci-AI/deepseek-v4-flash-vindex-browse  # 6.99 GB
+huggingface-cli download Divinci-AI/deepseek-v4-pro-vindex-browse    # 23.82 GB
+
+larql show Divinci-AI/deepseek-v4-flash-vindex-browse
+# → Layers: 43, Hidden: 4096, Dtype: F16, Quant: None
+```
+
+Kimi-K2's canonical extract is parked behind one more loader patch (fp8 weights with 128×128 block-scale companions take a different decode path than MXFP4's I8+F8_E8M0). The two `huggingface.co/Divinci-AI/*-vindex` repos linked above are the research-summary form (gate_proj SVD only); the `-browse` repos are the full canonical layout. Both forms answer the dissolution-class question identically.
+
+*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). Full vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
+
+## References
+
+<ol class="post-references" style="padding-left: 1.5rem;">
+  <li id="ref-1" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>BitNet b1.58 line.</strong> Ma et al., <a href="https://arxiv.org/abs/2402.17764" target="_blank" rel="noopener"><em>The Era of 1-bit LLMs: All Large Language Models are in 1.58 Bits</em></a> (arXiv:2402.17764, 2024). Follow-up technical report on the 2B model: Ma et al., <a href="https://arxiv.org/abs/2504.12285" target="_blank" rel="noopener"><em>BitNet b1.58 2B4T Technical Report</em></a> (arXiv:2504.12285). Model card: <a href="https://huggingface.co/microsoft/bitnet-b1.58-2B-4T" target="_blank" rel="noopener">microsoft/bitnet-b1.58-2B-4T</a> — "weights quantized to ternary values {-1, 0, +1} using absmean quantization."
+  </li>
+  <li id="ref-2" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>Bonsai 8B.</strong> Native-1-bit Qwen3-architecture model, published by Prism ML: <a href="https://huggingface.co/prism-ml/Bonsai-8B-mlx-1bit" target="_blank" rel="noopener">prism-ml/Bonsai-8B-mlx-1bit</a>. From the model card: "Each weight is a single bit … every group of 128 weights shares one FP16 scale factor (effective 1.125 bits/weight)."
+  </li>
+  <li id="ref-3" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>Marchenko-Pastur floor.</strong> Marchenko & Pastur (1967), <a href="https://www.mathnet.ru/eng/sm4101" target="_blank" rel="noopener"><em>Distribution of eigenvalues for some sets of random matrices</em></a>, Math. USSR-Sb., 1:4, 457–483. Canonical: <a href="https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution" target="_blank" rel="noopener">Marchenko-Pastur distribution</a>. The random-matrix var@64 floor of ≈ 0.09 cited throughout this post follows directly from the MP density on a 128-column gate-proj matrix.
+  </li>
+  <li id="ref-4" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>Internal vindex measurements.</strong> The per-model var@64 numbers in this post — and the chart above — are computed by the <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">LarQL</a> pipeline from the vindexes published at <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">huggingface.co/Divinci-AI</a>. Specific repos cited inline: <a href="https://huggingface.co/Divinci-AI/deepseek-v4-pro-vindex" target="_blank" rel="noopener">deepseek-v4-pro-vindex</a>, <a href="https://huggingface.co/Divinci-AI/deepseek-v4-flash-vindex" target="_blank" rel="noopener">deepseek-v4-flash-vindex</a>, <a href="https://huggingface.co/Divinci-AI/kimi-k2-instruct-vindex" target="_blank" rel="noopener">kimi-k2-instruct-vindex</a>. The dissolution-class measurements themselves are reproducible end-to-end via the `larql show` command in the canonical-format `-browse` repos.
+  </li>
+</ol>

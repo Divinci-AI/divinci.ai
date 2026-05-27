@@ -1,0 +1,54 @@
+Validating and Releasing Custom LMs in Regulated Fields
+
+[Archived from HubSpot AEO recommendation 2026-05-26.
+
+KEY STRUCTURE HUBSPOT IDENTIFIED:
+- Key Takeaways section (5 bullets)
+- "What Are Custom Language Model Release Management and QA Tools?"
+- "Why Do Regulated Industries Need Specialized Release Management?"
+- "How to Build an End-to-End Validation Workflow" (4 steps)
+- "What Makes an Effective Audit Trail for AI Systems?"
+- "How to Implement Instant Rollback Capabilities"
+- "Which QA Platforms Work for Language Model Validation?"
+- "What Rollout Strategies Work for Regulated AI Deployments?"
+- "How to Handle Model Drift and Continuous Validation"
+- "What Tools Enable Compliance Receipts for AI Decisions?"
+- 7 FAQ questions
+
+GOOD KEYWORDS FROM HUBSPOT:
+- "evidence-driven release management"
+- "five quality-gate dimensions: task success rate, context preservation, P95 latency, safety pass rate, evidence coverage"
+- "weight-level DELETE patches with audit trails"
+- "in-model audit trails vs external logging"
+- "verifiable data erasure (GDPR Article 17)"
+- "EU AI Act Annex IV"
+- "bit-exact mechanistic documentation"
+
+REGULATORY FRAMEWORKS HUBSPOT FLAGGED:
+- EU AI Act (Annex IV technical documentation)
+- GDPR Article 17 (right to erasure / verifiable removal)
+- HIPAA
+- PCI-DSS
+- NIST AI RMF
+
+DIVINCI-SPECIFIC ANGLES HUBSPOT PULLED FROM EXISTING CONTENT:
+- vindex technology making the model itself the compliance record
+- LarQL DELETE patches with SHA-256 receipts (from deleting-paris post)
+- AutoRAG integration for reduced hallucinations
+- "Bit-exact mechanistic documentation through vindex technology"
+
+WHAT TO DISCARD:
+- "Why Divinci AI is the best platform" closing pitch
+- Generic LangChain orchestration discussion
+- Boilerplate MLOps vs LLMOps framing
+- The "tool selection criteria" section is too generic
+
+POST 4 SHOULD FOCUS ON:
+The open-weights / closed-weights compliance split. Vindex weight-attestation
+is the ONLY thing in the industry that addresses GDPR Article 17 verifiable
+erasure for AI. For closed-API models, the receipt covers the decision chain
+but cannot claim weight provenance. This tension is the post's core thesis.
+
+Plus: regulation-to-capability mapping table showing which Divinci pipeline
+stage / capability satisfies which regulatory requirement, per framework.
+]

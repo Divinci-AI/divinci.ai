@@ -9,7 +9,7 @@ author = "Divinci AI Team"
 featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Divinci-Workers-Launchpad.svg"
 +++
 
-<video muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+<video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-cloudflare-workers-launchpad-cohort-6.webm" type="video/webm">
 </video>
 
@@ -19,7 +19,7 @@ Nos emociona compartir que **Divinci AI ha sido aceptado en [Cloudflare Workers 
 
 En Divinci AI, estamos construyendo la próxima generación de herramientas de colaboración empresarial de IA con un enfoque en confiabilidad, seguridad y rendimiento. La plataforma de edge computing de Cloudflare ha sido fundamental para lograr estos objetivos, permitiéndonos ofrecer capacidades de IA sofisticadas con latencia mínima en todo el mundo.
 
-<video muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+<video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-celestial-globe.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Despliegue global en el edge permitiendo IA a la velocidad del pensamiento</p>
@@ -69,7 +69,7 @@ Para nuestros clientes, esto se traduce en:
 
 Estamos increíblemente emocionados por esta asociación y las oportunidades que trae. A medida que continuamos construyendo el futuro de la colaboración empresarial impulsada por IA, la plataforma de Cloudflare permanecerá en el corazón de nuestra infraestructura, permitiéndonos ofrecer experiencias excepcionales a equipos alrededor del mundo.
 
-<video muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+<video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-workshop-leonardo.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Innovación a través de las eras: Construyendo el futuro con principios atemporales</p>

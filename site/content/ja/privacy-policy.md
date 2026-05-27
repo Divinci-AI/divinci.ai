@@ -10,7 +10,7 @@ template = "page.html"
 
 # Privacy Policy
 
-**Last updated:** March 2025
+**Last updated:** 2026年5月
 
 ## Our Commitment to Privacy
 
@@ -42,6 +42,7 @@ We use cookies and similar technologies to:
 - Ensure website functionality
 - Analyze website and app performance
 - Provide personalized experience (with your consent)
+- B2Bマーケティング目的で、ウェブサイト訪問に関連する組織を特定します（EU/EEA、英国、およびスイスにおいては、お客様の同意を得たうえで実施します）
 
 ## 2. Third-Party Services and SDKs
 
@@ -65,6 +66,10 @@ Our Services integrate the following third-party services, each with their own p
 
 ### 2.6 Cloud Infrastructure
 - **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+
+### 2.7 マーケティング、訪問者識別、およびCRM
+- **Instantly.ai / Leadsy.ai**: 当社は、ウェブサイトへの訪問が関連付けられる可能性のある組織（例：訪問者のIPアドレスに紐づく企業）を特定するために、Instantlyの訪問者識別タグ（`r2.leadsy.ai` から読み込まれ、同社が運営する `tag.trovo-tag.com` から動的にトラッキングスクリプトを読み込みます）を使用しています。これは当社のB2B（企業間）アウトバウンドマーケティングに活用されます。EU/EEA、英国、またはスイスにいると検出された訪問者に対しては、当社のクッキーバナーを通じて**マーケティング同意を付与された後にのみ**このタグが読み込まれます。これらの管轄区域外の訪問者に対しては、タグはデフォルトで読み込まれ、セクション10の「クッキー設定」コントロールからいつでも無効化できます。[Instantly Privacy Policy](https://instantly.ai/privacy-policy)
+- **HubSpot**: 当社は、ページビューの記録、マーケティングチャネルのパフォーマンスの貢献度の特定、フォーム送信の取得、ならびにフォーム送信時やミーティング予約時のウェブサイト上の行動をHubSpot CRMの連絡先レコードに紐付けるために、HubSpotトラッキングスクリプト（`js.hs-scripts.com` から読み込まれ、`js.hs-analytics.net`、`js.hs-banner.com`、および `js.hscollectedforms.net` からトラッキング、バナー、およびフォームキャプチャのスクリプトを動的に読み込みます）を使用しています。EU/EEA、英国、またはスイスにいると検出された訪問者に対しては、当社のクッキーバナーを通じて**マーケティング同意を付与された後にのみ**このスクリプトが読み込まれます。これらの管轄区域外の訪問者に対しては、スクリプトはデフォルトで読み込まれ、セクション10の「クッキー設定」コントロールからいつでも無効化できます。[HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
 
 ## 3. Legal Basis for Processing (GDPR)
 
@@ -99,6 +104,7 @@ We do not sell your personal data. We may share data with:
 - Cloud hosting and infrastructure providers (with data processing agreements)
 - Authentication service providers
 - Analytics and crash reporting providers (when you consent or as described above)
+- マーケティングおよびB2B訪問者識別の提供事業者（規制対象の管轄区域における同意を条件とします。セクション2.7に記載のとおり）
 - AI model providers for processing your requests
 - Customer support tools
 
@@ -140,6 +146,8 @@ Our Services are not directed to children under the age of 13 (or the applicable
 - **Objection**: Object to processing for direct marketing
 - **Withdraw Consent**: Revoke consent at any time
 
+To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+
 ### 9.2 CCPA Rights (California Residents)
 - **Right to Know**: What personal information we collect and how it is used
 - **Right to Delete**: Request deletion of your personal information
@@ -161,13 +169,9 @@ Our Services are not directed to children under the age of 13 (or the applicable
     🍪 Cookie Preferences
   </button>
 
-  <button onclick="window.gdprCompliance?.exportUserData()" class="privacy-btn">
-    📥 Download My Data
-  </button>
-
-  <button onclick="window.gdprCompliance?.deleteUserData()" class="privacy-btn privacy-btn-danger">
-    🗑️ Delete My Data
-  </button>
+  <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
+    📥 データリクエストを送信
+  </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
     ❌ Revoke All Consent

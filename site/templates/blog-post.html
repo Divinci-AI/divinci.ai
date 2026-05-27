@@ -5,7 +5,28 @@
 {% block twitter_image %}{% if page.extra.featured_image %}{{ get_url(path=page.extra.featured_image) }}{% elif page.extra.featured_video %}{% set video_name = page.extra.featured_video | split(pat="/") | last | replace(from=".webm", to="") | replace(from=".mp4", to="") %}{{ get_url(path="images/" ~ video_name ~ "-poster.webp") }}{% else %}https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-hero-social-v2.png{% endif %}{% endblock %}
 
 {% block extra_head %}
-<!-- MathJax for rendering LaTeX equations -->
+{# Preload the hero video poster — it's typically the LCP element on blog
+   posts that use a hero video. Without this, the browser doesn't fetch the
+   poster until it parses the <video> tag in the body, ~6-12s into the load. #}
+{% if page.extra.hero_video %}
+  {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
+  {% if page.extra.hero_video_poster %}{% set poster_url = page.extra.hero_video_poster %}{% else %}{% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}{% endif %}
+<link rel="preload" as="image" href="{{ poster_url }}" fetchpriority="high">
+{% elif page.extra.featured_image %}
+{# Pipe local featured_image through Cloudflare Image Resizing so large PNGs
+   (1-2MB) get compressed to ~150-200KB at 1600w. External URLs pass through
+   untouched. #}
+{% if page.extra.featured_image is starting_with("http") %}
+<link rel="preload" as="image" href="{{ page.extra.featured_image }}" fetchpriority="high">
+{% else %}
+<link rel="preload" as="image" href="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.featured_image }}" fetchpriority="high">
+{% endif %}
+{% endif %}
+
+{# MathJax: only loaded for posts opting in via `extra.math = true`, AND only
+   after window.load + browser idle. Defers the ~600KB script parse out of
+   the page's TBT window. #}
+{% if page.extra.math %}
 <script>
 window.MathJax = {
   tex: {
@@ -16,10 +37,38 @@ window.MathJax = {
   },
   options: {
     skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  },
+  startup: {
+    typeset: false
   }
 };
+(function() {
+  function loadMathJax() {
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+    s.async = true;
+    s.onload = function() {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise();
+      }
+    };
+    document.head.appendChild(s);
+  }
+  function schedule() {
+    if (window.requestIdleCallback) {
+      requestIdleCallback(loadMathJax, { timeout: 3000 });
+    } else {
+      setTimeout(loadMathJax, 1500);
+    }
+  }
+  if (document.readyState === 'complete') {
+    schedule();
+  } else {
+    window.addEventListener('load', schedule, { once: true });
+  }
+})();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+{% endif %}
 
 <!-- Custom Citation Tooltip Styles -->
 <style>
@@ -96,6 +145,10 @@ window.MathJax = {
     <div class="hero-video-background">
         {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
         {% if page.extra.hero_video_poster %}{% set poster_url = page.extra.hero_video_poster %}{% else %}{% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}{% endif %}
+        {# Standard <video autoplay> pattern. The universal defer script in
+           base.html catches the autoplay attribute and defers the download
+           until after window.load — so the poster paints immediately and
+           the page weight at load is just the poster, not the video. #}
         <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ poster_url }}" class="hero-bg-video"{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
             <source src="{{ page.extra.hero_video }}" type="video/webm">
         </video>
@@ -127,12 +180,17 @@ window.MathJax = {
             
             <div class="post-meta">
                 {% if page.extra.author_avatar %}
-                    <img src="{{ get_url(path=page.extra.author_avatar) }}" alt="{{ page.extra.author | default(value='Michael Mooring') }}" class="author-avatar">
+                    {# Skip CIR for local-relative paths so `zola serve` (which doesn't
+                       proxy /cdn-cgi/image/) can render the avatar in preview. The
+                       template falls back to direct path with explicit width/height
+                       so the browser still requests the small intrinsic size. #}
+                    {% if page.extra.author_avatar is starting_with("http") %}
+                        <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/{{ page.extra.author_avatar }}" alt="{{ page.extra.author | default(value='Michael Mooring') }}" width="94" height="94" class="author-avatar" loading="lazy" decoding="async">
+                    {% else %}
+                        <img src="{{ get_url(path=page.extra.author_avatar) }}" alt="{{ page.extra.author | default(value='Michael Mooring') }}" width="94" height="94" class="author-avatar" loading="lazy" decoding="async">
+                    {% endif %}
                 {% else %}
-                    <picture>
-                        <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.webp" type="image/webp">
-                        <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.jpg" alt="Michael Mooring" class="author-avatar">
-                    </picture>
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.jpg" alt="Michael Mooring" width="94" height="94" loading="lazy" decoding="async" class="author-avatar">
                 {% endif %}
                 <div class="post-info">
                     <div class="author-info">
@@ -174,7 +232,11 @@ window.MathJax = {
                             {% endif %}
                         </video>
                     {% else %}
-                        <img src="{{ get_url(path=page.extra.featured_image) }}" alt="{{ page.title }}" class="featured-image">
+                        {% if page.extra.featured_image is starting_with("http") %}
+                            <img src="{{ page.extra.featured_image }}" alt="{{ page.title }}" class="featured-image" loading="eager" fetchpriority="high" decoding="async">
+                        {% else %}
+                            <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.featured_image }}" alt="{{ page.title }}" class="featured-image" loading="eager" fetchpriority="high" decoding="async">
+                        {% endif %}
                     {% endif %}
                 {% endif %}
                 
@@ -254,7 +316,7 @@ window.MathJax = {
                         <i class="fab fa-facebook"></i>
                         <span class="btn-label">Facebook</span>
                     </a>
-                    <a href="#" class="social-btn-icon copy" onclick="copyLink()" title="Copy Link">
+                    <a href="#" class="social-btn-icon copy" onclick="copyLink(event)" title="Copy Link">
                         <i class="fas fa-link"></i>
                         <span class="btn-label">{{ translations.blog_post.copy_link | default(value="Copy Link") }}</span>
                     </a>
@@ -325,13 +387,13 @@ window.MathJax = {
                                 {% endif %}
                             {% elif post.extra.featured_image %}
                                 {% if post.extra.featured_image is starting_with("http") %}
-                                    <img src="{{ post.extra.featured_image }}" alt="{{ post.title }}" class="related-image">
+                                    <img src="{{ post.extra.featured_image }}" alt="{{ post.title }}" class="related-image" loading="lazy" decoding="async">
                                 {% else %}
-                                    <img src="{{ get_url(path=post.extra.featured_image) }}" alt="{{ post.title }}" class="related-image">
+                                    <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.featured_image }}" alt="{{ post.title }}" class="related-image" loading="lazy" decoding="async">
                                 {% endif %}
                             {% else %}
                                 {# fallback so list items align uniformly even when a post lacks a thumbnail #}
-                                <img src="{{ get_url(path='images/divinci_logo.svg') }}" alt="{{ post.title }}" class="related-image related-image-fallback">
+                                <img src="{{ get_url(path='images/divinci_logo.svg') }}" alt="{{ post.title }}" class="related-image related-image-fallback" loading="lazy">
                             {% endif %}
                             <div class="related-content">
                                 <h4 class="related-title">{{ post.title }}</h4>
@@ -348,13 +410,13 @@ window.MathJax = {
             <aside class="share-with-friends">
                 <h3>{{ translations.blog_post.share_with_friends | default(value="Share with Friends") }}</h3>
                 <div class="share-video-container">
+                    <div class="share-text-overlay">
+                        <p>{{ translations.blog_post.share_desc | default(value="If you find these topics interesting, please share with your friends and colleagues who too might find them interesting.") }}</p>
+                    </div>
                     <div class="share-video">
                         <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 8px;">
                             <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-scholars-study.webm" type="video/webm">
                         </video>
-                    </div>
-                    <div class="share-text-overlay">
-                        <p>{{ translations.blog_post.share_desc | default(value="If you find these topics interesting, please share with your friends and colleagues who too might find them interesting.") }}</p>
                     </div>
                     <div class="share-buttons-overlay" role="group" aria-label="Share this article">
                         <button class="share-btn-overlay twitter" onclick="shareOnTwitter()" title="Share on X" aria-label="Share on X">
@@ -366,7 +428,7 @@ window.MathJax = {
                         <button class="share-btn-overlay facebook" onclick="shareOnFacebook()" title="Share on Facebook" aria-label="Share on Facebook">
                             <i class="fab fa-facebook" aria-hidden="true"></i>
                         </button>
-                        <button class="share-btn-overlay copy" onclick="copyLink()" title="Copy Link" aria-label="Copy link to clipboard">
+                        <button class="share-btn-overlay copy" onclick="copyLink(event)" title="Copy Link" aria-label="Copy link to clipboard">
                             <i class="fas fa-link" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -512,14 +574,10 @@ window.MathJax = {
 }
 
 .post-category {
-    display: inline-block;
-    padding: 0.4rem 1.2rem;
-    background-color: rgba(139, 118, 89, 0.1);
-    color: #2d3c34;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(139, 118, 89, 0.3);
+    /* Hidden — the breadcrumb above already shows the category, so this
+       pill ends up as an orphan element floating to one side of the
+       title's centered glass-card. Keep the markup for SEO/structure. */
+    display: none;
 }
 
 .post-title {
@@ -604,16 +662,26 @@ window.MathJax = {
 }
 
 .post-excerpt {
+    /* Same sizing model as .post-title — inline-block so the glass card
+       hugs its content instead of filling the parent's full max-width.
+       Centered by `text-align: center` on .blog-post-hero-content. */
+    display: inline-block;
+    box-sizing: border-box;
     font-size: 1.2rem;
     line-height: 1.6;
-    max-width: 700px;
+    max-width: min(700px, 100%);
     margin: 0 auto;
-    color: #2d3c34;
+    color: #1a2820;
+    /* Match the .post-title glass recipe — backdrop blur with no solid
+       fill, subtle white border + inset, white text-shadow for legibility. */
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
-    border-radius: 11px;
-    padding: 11px;
-    opacity: 0.8;
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 /* Blog Post Content */
@@ -741,6 +809,7 @@ window.MathJax = {
 
 .content-body img {
     max-width: 100%;
+    height: auto;  /* respect width/height attrs to reserve space — reduces CLS */
     border-radius: 8px;
     margin: 2rem 0;
 }
@@ -1178,9 +1247,9 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 44px;
-    min-width: 44px;
-    height: 44px;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
     border-radius: 50px;
     text-decoration: none;
     font-size: 18px;
@@ -1197,7 +1266,7 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
 }
 
 .social-btn-icon i {
-    min-width: 44px;
+    min-width: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1312,56 +1381,45 @@ body.focus-mode .focus-mode-toggle .btn-label::after {
     border-bottom: 1px solid var(--color-border-light, #d4c4a0);
 }
 
+/* Stacked layout: title → description → video → buttons. The previous
+   absolute-position design collided with the title and made the
+   description unreadable (light text on translucent video). */
 .share-video-container {
-    position: relative;
     margin-bottom: 1rem;
 }
 
+.share-text-overlay {
+    text-align: center;
+    margin: 0 0 1rem;
+}
+
+.share-text-overlay p {
+    font-size: 0.95rem;
+    color: #4a5a4f;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
+}
+
 .share-video {
+    margin: 0 0 1.25rem;
 }
 
 .share-video video {
     border-radius: 8px;
     width: 100%;
     height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
     display: block;
-    transform: scale(0.8);
-    transform-origin: center;
-    margin: -10% 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.share-text-overlay {
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 9;
-    text-align: center;
-    /* background-color: #ffffffeb; */
-    border-radius: 12px;
-    width: 78%;
-    padding: 1.5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -232%);
-    backdrop-filter: blur(8px);
-}
-
-.share-text-overlay p {
-    font-size: 0.95rem;
-    color: #e2e9ef;
-    line-height: 1.6;
-    margin: 0;
-    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .share-buttons-overlay {
-    position: absolute;
-    bottom: 5.5rem;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
-    gap: 39px;
-    z-index: 10;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .share-btn-overlay {
@@ -2085,7 +2143,10 @@ function shareOnTwitter() {
 function shareOnLinkedIn() {
     const url = window.location.href;
     const title = document.title;
-    const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+    // shareArticle still pre-populates the dialog with the title even when LinkedIn's
+    // OG-tag scraper hasn't crawled the URL yet (e.g. fresh posts, localhost previews).
+    // share-offsite/?url= relies on the scraper and lands empty on un-cached pages.
+    const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
     window.open(linkedinUrl, '_blank', 'width=550,height=420');
 }
 
@@ -2095,15 +2156,75 @@ function shareOnFacebook() {
     window.open(facebookUrl, '_blank', 'width=550,height=420');
 }
 
-function copyLink() {
+function showCopyToast(message) {
+    // Reuse one toast node if it's still on screen; otherwise create it.
+    let toast = document.getElementById('copy-link-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'copy-link-toast';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        Object.assign(toast.style, {
+            position: 'fixed',
+            top: '24px',
+            left: '50%',
+            transform: 'translateX(-50%) translateY(-12px)',
+            background: 'rgba(30, 58, 43, 0.96)',
+            color: '#faf8f5',
+            padding: '12px 20px',
+            borderRadius: '8px',
+            fontSize: '14px',
+            fontWeight: '600',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.18)',
+            zIndex: '99999',
+            opacity: '0',
+            transition: 'opacity 0.18s ease, transform 0.18s ease',
+            pointerEvents: 'none',
+            fontFamily: "'DM Sans', -apple-system, sans-serif",
+        });
+        document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    // Force reflow so the transition fires even when the toast was just created.
+    void toast.offsetWidth;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(function() {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(-12px)';
+    }, 1800);
+}
+
+function copyLink(evt) {
     const url = window.location.href;
+    // Find the actual clicked button so we can also swap its icon briefly.
+    // Falls back to a sensible default if called without an event arg.
+    const btn = (evt && (evt.currentTarget || (evt.target && evt.target.closest('.copy'))))
+              || document.querySelector('.share-btn-overlay.copy, .social-btn-icon.copy');
     navigator.clipboard.writeText(url).then(function() {
-        const copyBtn = document.querySelector('.social-btn.copy');
-        const originalText = copyBtn.innerHTML;
-        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        setTimeout(function() {
-            copyBtn.innerHTML = originalText;
-        }, 2000);
+        showCopyToast('Link copied to clipboard');
+        if (btn) {
+            // Cache the original icon element and swap it for a checkmark.
+            // Using DOM nodes (not innerHTML) keeps this XSS-safe even though
+            // the swapped content is static and hardcoded.
+            const originalIcon = btn.querySelector('i');
+            if (!originalIcon) return;
+            const checkIcon = document.createElement('i');
+            checkIcon.className = 'fas fa-check';
+            checkIcon.setAttribute('aria-hidden', 'true');
+            const originalLabel = btn.getAttribute('aria-label');
+            btn.replaceChild(checkIcon, originalIcon);
+            btn.setAttribute('aria-label', 'Link copied');
+            setTimeout(function() {
+                if (checkIcon.parentNode === btn) {
+                    btn.replaceChild(originalIcon, checkIcon);
+                }
+                if (originalLabel) btn.setAttribute('aria-label', originalLabel);
+            }, 1800);
+        }
+    }).catch(function() {
+        showCopyToast('Could not copy — please copy the URL manually');
     });
 }
 

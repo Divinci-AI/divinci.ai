@@ -3,6 +3,7 @@ title = "RAG Arena & Dynamic Routing"
 description = "Compare knowledge bases side-by-side and automatically route questions to the best-performing RAG vector with Divinci AI's intelligent arena system"
 template = "feature.html"
 [extra]
+hero_poster = "images/rag-arena-hero.png"
 feature_category = "data-management"
 +++
 
@@ -205,6 +206,107 @@ feature_category = "data-management"
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Decorative animated vector-node graph behind the arena demo */
+.arena-section {
+    position: relative;
+}
+
+.arena-bg-graph {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.18;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.arena-bg-graph svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.arena-bg-graph .node {
+    fill: #2d5a4f;
+    opacity: 0.4;
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: arena-node-pulse 4s ease-in-out infinite;
+}
+
+.arena-bg-graph .node-warm {
+    fill: #b8842a;
+}
+
+.arena-bg-graph .edge {
+    stroke: #2d5a4f;
+    stroke-width: 0.6;
+    fill: none;
+    opacity: 0.25;
+    stroke-dasharray: 4 4;
+    animation: arena-edge-dash 12s linear infinite;
+}
+
+@keyframes arena-node-pulse {
+    0%, 100% { opacity: 0.35; transform: scale(1); }
+    50%      { opacity: 0.7;  transform: scale(1.4); }
+}
+
+@keyframes arena-edge-dash {
+    to { stroke-dashoffset: -200; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arena-bg-graph .node,
+    .arena-bg-graph .edge { animation: none; }
+}
+
+/* Stagger-fade animation for provider badges on scroll-into-view */
+.provider-badge {
+    opacity: 1;
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.34,1.56,.64,1);
+}
+
+.providers-grid.is-pending .provider-badge {
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+}
+
+.providers-grid.is-visible .provider-badge {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.providers-grid.is-visible .provider-badge:nth-child(1) { transition-delay: 0s; }
+.providers-grid.is-visible .provider-badge:nth-child(2) { transition-delay: 0.08s; }
+.providers-grid.is-visible .provider-badge:nth-child(3) { transition-delay: 0.16s; }
+.providers-grid.is-visible .provider-badge:nth-child(4) { transition-delay: 0.24s; }
+.providers-grid.is-visible .provider-badge:nth-child(5) { transition-delay: 0.32s; }
+.providers-grid.is-visible .provider-badge:nth-child(6) { transition-delay: 0.40s; }
+.providers-grid.is-visible .provider-badge:nth-child(7) { transition-delay: 0.48s; }
+
+.provider-badge:hover img,
+.provider-badge:hover svg {
+    animation: provider-icon-wobble 0.6s ease-in-out;
+}
+
+@keyframes provider-icon-wobble {
+    0%, 100% { transform: rotate(0deg); }
+    25%      { transform: rotate(-8deg); }
+    75%      { transform: rotate(8deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .providers-grid.is-pending .provider-badge { opacity: 1; transform: none; }
+    .provider-badge:hover img,
+    .provider-badge:hover svg { animation: none; }
 }
 
 .arena-card {
@@ -213,6 +315,8 @@ feature_category = "data-management"
     padding: 1.5rem;
     position: relative;
     transition: var(--transition-medium);
+    display: flex;
+    flex-direction: column;
 }
 
 .arena-card:hover {
@@ -260,6 +364,20 @@ feature_category = "data-management"
     line-height: 1.65;
     font-size: 0.95rem;
     min-height: 100px;
+    flex: 1;
+}
+
+.arena-card-body strong {
+    color: var(--color-neutral-primary);
+    font-weight: 700;
+}
+
+.arena-card-body em {
+    color: var(--color-neutral-secondary);
+    font-size: 0.85rem;
+    font-style: italic;
+    display: inline-block;
+    margin-top: 0.5rem;
 }
 
 .arena-card-footer {
@@ -419,6 +537,65 @@ feature_category = "data-management"
 
 .arena-demo.has-chosen .arena-reset-btn {
     display: block;
+}
+
+/* Card header right-side cluster (rag pill + expand button) */
+.arena-card-header-right {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Expand / collapse icon button */
+.arena-expand-btn {
+    background: transparent;
+    border: 1px solid var(--color-border-light);
+    color: var(--color-neutral-secondary);
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-small);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.arena-expand-btn:hover {
+    border-color: var(--color-accent-primary);
+    color: var(--color-accent-primary);
+    background: rgba(61, 107, 79, 0.06);
+}
+
+.arena-expand-btn svg {
+    width: 13px;
+    height: 13px;
+}
+
+.arena-expand-btn .arena-expand-icon-collapse { display: none; }
+.arena-card.is-expanded .arena-expand-btn .arena-expand-icon-expand { display: none; }
+.arena-card.is-expanded .arena-expand-btn .arena-expand-icon-collapse { display: block; }
+
+/* Body now flexes to fill available card height; no clamp or fade needed */
+/* body-extra block is unused — content merged into body */
+.arena-card-body-extra {
+    display: none;
+}
+
+/* Expanded state: card spans full width for wider reading */
+.arena-card.is-expanded {
+    grid-column: 1 / -1;
+}
+
+.arena-card.is-peer-hidden {
+    display: none;
+}
+
+/* While loading, hide the expand affordance */
+.arena-card.is-loading .arena-expand-btn {
+    visibility: hidden;
 }
 
 /* How It Works */
@@ -638,11 +815,193 @@ feature_category = "data-management"
 
 /* Providers */
 .providers-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
     margin-top: 2rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 900px) {
+    .providers-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+    .providers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Research callouts — centered editorial pull-quote between sections */
+.research-note {
+    max-width: 660px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem 1.25rem 3.25rem;
+    background: rgba(250, 246, 236, 0.6);
+    border: 1px solid rgba(184, 160, 128, 0.38);
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 2px 12px rgba(45, 90, 79, 0.05);
+}
+
+/* Decorative large opening quote glyph in the corner */
+.research-note::before {
+    content: "“";
+    position: absolute;
+    top: 0.1rem;
+    left: 0.85rem;
+    font-family: 'Fraunces', serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--color-accent-primary, #b8a080);
+    opacity: 0.45;
+    pointer-events: none;
+    user-select: none;
+}
+
+@media (max-width: 720px) {
+    .research-note {
+        max-width: 100%;
+        margin: 2rem 1rem;
+        padding: 1.25rem 1.25rem 1rem 2.5rem;
+    }
+    .research-note::before {
+        font-size: 3rem;
+        top: 0.2rem;
+        left: 0.6rem;
+    }
+}
+
+.research-note .note-label {
+    display: inline-block;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-neutral-inverse, #2d5a4f);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+
+.research-note .note-label::before {
+    content: "✎  ";
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.research-note .note-quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    line-height: 1.55;
+    color: var(--color-neutral-primary, #2d3c34);
+    margin: 0.1rem 0 0.75rem;
+}
+
+.research-note .note-source {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--color-neutral-secondary, #7e8d95);
+}
+
+.research-note .note-source a {
+    color: var(--color-neutral-inverse, #2d5a4f);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s ease, color 0.25s ease;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.3em;
+}
+
+.research-note .note-source a:hover,
+.research-note .note-source a:focus-visible {
+    border-bottom-color: var(--color-neutral-inverse, #2d5a4f);
+    color: var(--color-neutral-dark, #1e3a2b);
+}
+
+.research-note .note-source .arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+
+.research-note .note-source a:hover .arrow,
+.research-note .note-source a:focus-visible .arrow {
+    transform: translateX(4px);
+}
+
+/* ─── Variant A: section-footer receipt (default integrated style) ─── */
+.research-note.note-footer {
+    max-width: 720px;
+    margin: 2.5rem auto 0;
+    position: relative;
+    background: rgba(250, 246, 236, 0.45);
+    border: 1px solid rgba(184, 160, 128, 0.28);
+}
+.research-note.note-footer::after {
+    content: "";
+    position: absolute;
+    top: -1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184, 160, 128, 0.55), transparent);
+}
+
+/* ─── Variant B: section epigraph (between subtitle and content) ─── */
+.research-note.note-epigraph {
+    max-width: 640px;
+    margin: 0 auto 2.75rem;
+    padding: 1.1rem 1.5rem 1rem 2.75rem;
+    background: transparent;
+    border: none;
+    border-left: 3px solid rgba(184, 160, 128, 0.55);
+    border-radius: 0;
+    box-shadow: none;
+    text-align: left;
+}
+.research-note.note-epigraph::before {
+    top: -0.4rem;
+    left: 0.5rem;
+    font-size: 3.25rem;
+    opacity: 0.35;
+}
+.research-note.note-epigraph .note-quote {
+    font-size: clamp(1rem, 1.25vw, 1.1rem);
+    margin-top: 0;
+}
+
+/* ─── Variant C: right-floated inline aside (magazine sidebar) ─── */
+.research-note.note-inline-float {
+    float: right;
+    clear: right;
+    max-width: 320px;
+    width: 38%;
+    margin: 0.25rem 0 1.25rem 1.75rem;
+    padding: 1.1rem 1.25rem 1rem 2.5rem;
+    font-size: 0.95rem;
+    background: rgba(250, 246, 236, 0.7);
+}
+.research-note.note-inline-float::before {
+    font-size: 3rem;
+    top: 0.15rem;
+    left: 0.55rem;
+}
+.research-note.note-inline-float .note-quote {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.research-note.note-inline-float .note-source {
+    font-size: 0.8rem;
+}
+@media (max-width: 820px) {
+    .research-note.note-inline-float {
+        float: none;
+        width: auto;
+        max-width: 100%;
+        margin: 1.5rem 0;
+    }
 }
 
 .provider-badge {
@@ -877,7 +1236,7 @@ feature_category = "data-management"
 
 <div class="arena-hero">
 <div class="arena-hero-bg">
-<video autoplay muted loop playsinline poster="/images/rag-arena-hero.png">
+<video autoplay muted loop playsinline poster="/cdn-cgi/image/width=1200,format=auto,quality=80/images/rag-arena-hero.png">
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-arena-battle.webm" type="video/webm">
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-arena-battle.mp4" type="video/mp4">
 </video>
@@ -896,6 +1255,41 @@ feature_category = "data-management"
 
 <!-- Arena Demo -->
 <section class="arena-section">
+<div class="arena-bg-graph" aria-hidden="true">
+<svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Edges (drawn first so nodes overlay them) -->
+  <path class="edge" d="M120 140 L 280 260 L 460 180 L 640 320 L 820 240 L 980 360"/>
+  <path class="edge" d="M140 480 L 320 420 L 500 540 L 700 460 L 880 580 L 1060 500"/>
+  <path class="edge" d="M280 260 L 320 420"/>
+  <path class="edge" d="M460 180 L 500 540"/>
+  <path class="edge" d="M640 320 L 700 460"/>
+  <path class="edge" d="M820 240 L 880 580"/>
+  <path class="edge" d="M200 700 L 380 620 L 560 700 L 740 640 L 920 720"/>
+  <path class="edge" d="M380 620 L 500 540"/>
+  <path class="edge" d="M740 640 L 880 580"/>
+  <path class="edge" d="M120 140 Q 220 60 380 100 T 700 80"/>
+  <path class="edge" d="M980 360 Q 1080 280 1140 200"/>
+  <!-- Nodes — sized 3.5px with staggered animation-delay -->
+  <circle class="node" cx="120" cy="140" r="3.5" style="animation-delay:0s"/>
+  <circle class="node" cx="280" cy="260" r="3.5" style="animation-delay:0.4s"/>
+  <circle class="node node-warm" cx="460" cy="180" r="3.5" style="animation-delay:0.8s"/>
+  <circle class="node" cx="640" cy="320" r="3.5" style="animation-delay:1.2s"/>
+  <circle class="node" cx="820" cy="240" r="3.5" style="animation-delay:1.6s"/>
+  <circle class="node node-warm" cx="980" cy="360" r="3.5" style="animation-delay:2.0s"/>
+  <circle class="node" cx="140" cy="480" r="3.5" style="animation-delay:0.2s"/>
+  <circle class="node" cx="320" cy="420" r="3.5" style="animation-delay:0.6s"/>
+  <circle class="node node-warm" cx="500" cy="540" r="3.5" style="animation-delay:1.0s"/>
+  <circle class="node" cx="700" cy="460" r="3.5" style="animation-delay:1.4s"/>
+  <circle class="node" cx="880" cy="580" r="3.5" style="animation-delay:1.8s"/>
+  <circle class="node" cx="1060" cy="500" r="3.5" style="animation-delay:2.2s"/>
+  <circle class="node" cx="200" cy="700" r="3.5" style="animation-delay:0.5s"/>
+  <circle class="node node-warm" cx="380" cy="620" r="3.5" style="animation-delay:0.9s"/>
+  <circle class="node" cx="560" cy="700" r="3.5" style="animation-delay:1.3s"/>
+  <circle class="node" cx="740" cy="640" r="3.5" style="animation-delay:1.7s"/>
+  <circle class="node" cx="920" cy="720" r="3.5" style="animation-delay:2.1s"/>
+  <circle class="node" cx="1140" cy="200" r="3.5" style="animation-delay:1.5s"/>
+</svg>
+</div>
 <h2>Side-by-Side Knowledge Comparison</h2>
 <p class="section-subtitle">Send a question to multiple RAG configurations simultaneously. See how different knowledge bases respond, then pick the winner.</p>
 <div class="arena-demo">
@@ -906,11 +1300,25 @@ feature_category = "data-management"
 <div class="arena-card is-loading" data-variant="a" data-time="1.2">
 <div class="arena-card-header">
 <span class="arena-card-label">Variant A</span>
-<span class="arena-card-rag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/qdrant-logomark.svg" alt="Qdrant" class="provider-icon" width="16" height="16">Qdrant</span>
+<span class="arena-card-header-right">
+<span class="arena-card-rag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/qdrant-logomark.svg" alt="Qdrant" class="provider-icon" width="16" height="16" loading="lazy">Qdrant</span>
+<button class="arena-expand-btn" onclick="arenaToggleExpand(this)" type="button" title="Expand response" aria-label="Expand response" aria-expanded="false">
+<svg class="arena-expand-icon-expand" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2.5h4v4M2.5 13.5l4.5-4.5M6.5 13.5h-4v-4M13.5 2.5l-4.5 4.5"/></svg>
+<svg class="arena-expand-icon-collapse" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 6.5h-4v-4M2.5 9.5h4v4M9.5 6.5l4.5-4.5M6.5 9.5l-4.5 4.5"/></svg>
+</button>
+</span>
 </div>
 <div class="arena-spinner"><div class="spinner"></div><span class="spinner-label">Retrieving context...</span></div>
 <div class="arena-card-body">
-Based on the clinical documentation, the recommended starting dose is 10mg daily, with titration up to 40mg based on patient response. Key monitoring parameters include...
+Based on the prescribing information (rev. 2024-Q3), the recommended starting dose is <strong>10 mg once daily</strong>, with or without food. Titrate up to a maximum of <strong>40 mg/day</strong> in 10 mg increments at minimum 2-week intervals based on therapeutic response.
+<br><br>
+<strong>Monitoring during the first 8 weeks:</strong> serum creatinine + eGFR, hepatic enzymes (ALT/AST), and blood pressure — at baseline, week 4, week 8, then quarterly thereafter.
+<br><br>
+<strong>Dose adjustments:</strong> No adjustment for mild renal impairment (eGFR &gt; 60). Moderate-to-severe (eGFR 30–59) requires a 50% reduction. Severe hepatic impairment (Child-Pugh C): not recommended.
+<br><br>
+<strong>Interactions:</strong> Strong CYP3A4 inhibitors are contraindicated. With moderate inhibitors, limit to 20 mg/day.
+<br><br>
+<em>Sources: clinical-guidelines-2024.pdf p.142–146 · pharmacology-handbook.pdf p.78</em>
 </div>
 <div class="arena-card-footer">
 <div class="arena-card-score">
@@ -924,11 +1332,23 @@ Based on the clinical documentation, the recommended starting dose is 10mg daily
 <div class="arena-card is-loading" data-variant="b" data-time="2.1">
 <div class="arena-card-header">
 <span class="arena-card-label">Variant B</span>
-<span class="arena-card-rag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Cloudflare-logo.svg" alt="Cloudflare" class="provider-icon" width="16" height="16">Cloudflare Vectorize</span>
+<span class="arena-card-header-right">
+<span class="arena-card-rag"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Cloudflare-logo.svg" alt="Cloudflare" class="provider-icon" width="16" height="16" loading="lazy">Cloudflare Vectorize</span>
+<button class="arena-expand-btn" onclick="arenaToggleExpand(this)" type="button" title="Expand response" aria-label="Expand response" aria-expanded="false">
+<svg class="arena-expand-icon-expand" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2.5h4v4M2.5 13.5l4.5-4.5M6.5 13.5h-4v-4M13.5 2.5l-4.5 4.5"/></svg>
+<svg class="arena-expand-icon-collapse" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 6.5h-4v-4M2.5 9.5h4v4M9.5 6.5l4.5-4.5M6.5 9.5l-4.5 4.5"/></svg>
+</button>
+</span>
 </div>
 <div class="arena-spinner"><div class="spinner"></div><span class="spinner-label">Retrieving context...</span></div>
 <div class="arena-card-body">
-Dosing should begin at the lowest effective dose. The product label indicates 10-20mg as the typical range. Patients should be monitored for adverse effects during the first two weeks...
+Dosing should begin at the lowest effective dose. The product label indicates <strong>10–20 mg</strong> as the typical adult range. Patients should be monitored for adverse effects during the first two weeks of therapy.
+<br><br>
+<strong>Common side effects:</strong> nausea, headache, and mild dizziness — typically transient and resolve within the first month. Severe reactions are rare (&lt;0.1%) but include hepatotoxicity; discontinue immediately if jaundice or unexplained transaminase elevation occurs.
+<br><br>
+<strong>Discontinuation:</strong> Taper gradually over 1–2 weeks to avoid withdrawal symptoms. The drug is metabolized primarily by CYP2D6; poor metabolizers may require lower doses or alternative agents.
+<br><br>
+<em>Sources: prescribing-info-v3.pdf p.12 · safety-monitoring.pdf p.34–37</em>
 </div>
 <div class="arena-card-footer">
 <div class="arena-card-score">
@@ -996,9 +1416,32 @@ function arenaReset() {
   var cards = demo.querySelectorAll('.arena-card');
   demo.classList.remove('has-chosen');
   cards.forEach(function(c) {
-    c.classList.remove('is-chosen', 'is-dimmed', 'is-loading', 'is-revealing');
+    c.classList.remove('is-chosen', 'is-dimmed', 'is-loading', 'is-revealing', 'is-expanded', 'is-peer-hidden');
     c.querySelector('.arena-choose-btn').textContent = 'Choose';
+    var btn = c.querySelector('.arena-expand-btn');
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('title', 'Expand response');
+      btn.setAttribute('aria-label', 'Expand response');
+    }
   });
+}
+
+function arenaToggleExpand(btn) {
+  var card = btn.closest('.arena-card');
+  var demo = card.closest('.arena-demo');
+  var siblings = demo.querySelectorAll('.arena-card');
+  var willExpand = !card.classList.contains('is-expanded');
+  siblings.forEach(function(c) {
+    if (c === card) {
+      c.classList.toggle('is-expanded', willExpand);
+    } else {
+      c.classList.toggle('is-peer-hidden', willExpand);
+    }
+  });
+  btn.setAttribute('aria-expanded', willExpand ? 'true' : 'false');
+  btn.setAttribute('title', willExpand ? 'Collapse response' : 'Expand response');
+  btn.setAttribute('aria-label', willExpand ? 'Collapse response' : 'Expand response');
 }
 
 // Step cards — staggered scroll reveal
@@ -1060,7 +1503,35 @@ function arenaReset() {
   window.addEventListener('scroll', checkArch, { passive: true });
   setTimeout(checkArch, 600);
 })();
+
+// Providers grid — staggered scroll reveal (CSS handles the per-badge delay)
+(function() {
+  var providersGrid = document.querySelector('.providers-grid');
+  if (!providersGrid) return;
+  providersGrid.classList.add('is-pending');
+  if (typeof IntersectionObserver === 'undefined') {
+    providersGrid.classList.remove('is-pending');
+    providersGrid.classList.add('is-visible');
+    return;
+  }
+  var pio = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        providersGrid.classList.remove('is-pending');
+        providersGrid.classList.add('is-visible');
+        pio.disconnect();
+      }
+    });
+  }, { threshold: 0.25 });
+  pio.observe(providersGrid);
+})();
 </script>
+
+<aside class="research-note note-footer">
+<span class="note-label">From our research</span>
+<p class="note-quote">"Two flagship LLM judges scoring the same answers under the same rubric land at ρ = 0.552 — below the 0.70 floor for moderate agreement. The arena's headline score isn't wrong; it's <em>conditional on the judge</em>."</p>
+<div class="note-source">— <a href="/blog/inside-the-rag-arena-scored-qa-routing/">Inside the RAG Arena<span class="arrow">→</span></a></div>
+</aside>
 </section>
 
 <!-- How It Works -->
@@ -1093,6 +1564,12 @@ function arenaReset() {
 <p>The system learns which knowledge base wins for each question type and routes future queries automatically.</p>
 </div>
 </div>
+
+<aside class="research-note note-footer">
+<span class="note-label">From our research</span>
+<p class="note-quote">"The interesting metric isn't 'who won the most rounds' — it's 'who wins which kinds of questions.' That decomposition is exactly what the routing layer learns."</p>
+<div class="note-source">— <a href="/blog/inside-the-rag-arena-scored-qa-routing/">Inside the RAG Arena<span class="arrow">→</span></a></div>
+</aside>
 </section>
 
 <!-- Dynamic Routing -->
@@ -1122,6 +1599,12 @@ function arenaReset() {
 <div class="node-value">Optimized Answer</div>
 </div>
 </div>
+
+<aside class="research-note note-footer">
+<span class="note-label">From our research</span>
+<p class="note-quote">"The same calibration session pays for itself twice: the LLM judges get blessed for scoring at scale, and the routing layer learns which RAG vector group the human prefers for each question class."</p>
+<div class="note-source">— <a href="/blog/calibrating-the-ai-judge/">Calibrating the Judge<span class="arrow">→</span></a></div>
+</aside>
 </section>
 </div>
 </div>
@@ -1181,13 +1664,13 @@ function arenaReset() {
 <h2>Supported Vector Providers</h2>
 <p class="section-subtitle">Run arena experiments across any combination of vector databases.</p>
 <div class="providers-grid">
-<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/qdrant-logomark.svg" alt="Qdrant">Qdrant</div>
-<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Cloudflare-logo.svg" alt="Cloudflare">Cloudflare Vectorize</div>
-<div class="provider-badge"><img src="https://pub-67b9e94061a04db7a525d7b025776d27.r2.dev/couchbase-icon.svg" alt="Couchbase">Couchbase</div>
-<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Google_Favicon_2025.svg.png" alt="Google">Vertex AI Vector Search</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/qdrant-logomark.svg" alt="Qdrant" loading="lazy" width="16" height="16">Qdrant</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Cloudflare-logo.svg" alt="Cloudflare" loading="lazy" width="16" height="16">Cloudflare Vectorize</div>
+<div class="provider-badge"><img src="https://pub-67b9e94061a04db7a525d7b025776d27.r2.dev/couchbase-icon.svg" alt="Couchbase" loading="lazy" width="16" height="16">Couchbase</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Google_Favicon_2025.svg.png" alt="Google" loading="lazy" width="16" height="16">Vertex AI Vector Search</div>
 <div class="provider-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="#47A248" stroke="none"><path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 003.639-8.464c.01-.814-.103-1.662-.197-2.218zm-5.336 8.195s0-8.291.275-8.29c.213 0 .49 10.695.49 10.695-.381-.045-.765-1.76-.765-2.405z"/></svg>MongoDB Atlas</div>
 <div class="provider-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="#DC382D" stroke="none"><path d="M22.71 13.145c-1.66 2.092-3.452 4.483-7.038 4.483-3.203 0-4.397-2.825-4.48-5.12.701 1.484 2.073 2.685 4.214 2.63 4.117-.133 6.94-3.852 6.94-7.239 0-4.05-3.022-6.972-8.268-6.972-3.752 0-8.4 1.428-11.455 3.685C2.59 6.937 3.885 9.958 4.35 9.626c2.648-1.904 4.748-3.13 6.784-3.744C8.12 9.244.886 17.05 0 18.425c.1 1.261 1.66 4.648 2.424 4.648.232 0 .431-.133.664-.365a100.49 100.49 0 005.54-6.765c.222 3.104 1.748 6.898 6.014 6.898 3.819 0 7.604-2.756 9.33-8.965.2-.764-.73-1.361-1.261-.73zm-4.349-5.013c0 1.959-1.926 2.922-3.685 2.922-.941 0-1.664-.247-2.235-.568 1.051-1.592 2.092-3.225 3.21-4.973 1.972.334 2.71 1.43 2.71 2.619z"/></svg>Redis</div>
-<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/pageindex-logo.png" alt="PageIndex">PageIndex</div>
+<div class="provider-badge"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/pageindex-logo.png" alt="PageIndex" loading="lazy" width="16" height="16">PageIndex</div>
 </div>
 </section>
 
@@ -1303,6 +1786,12 @@ function arenaReset() {
 </div>
 
 </div>
+
+<aside class="research-note note-footer">
+<span class="note-label">From our research</span>
+<p class="note-quote">"EXIT 4× compression shrinks retrieved context at measurably zero accuracy cost (Δ = +0.004 on a real customer corpus). The gap wasn't the model — it was the prompt budget."</p>
+<div class="note-source">— <a href="/blog/inside-the-rag-arena-scored-qa-routing/">Inside the RAG Arena<span class="arrow">→</span></a></div>
+</aside>
 </section>
 
 <!-- CTA -->

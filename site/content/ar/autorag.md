@@ -3,6 +3,7 @@ title = "AutoRAG - التوليد المعزز بالاسترجاع الآلي"
 description = "اعثر تلقائياً على خط أنابيب RAG الأمثل لبياناتك مع حل AutoRAG الشامل من Divinci AI"
 template = "feature.html"
 [extra]
+hero_poster = "images/hero-autorag.webp"
 feature_category = "data-management"
 lang = "ar"
 +++
@@ -261,7 +262,7 @@ lang = "ar"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">ما هو AutoRAG؟</h2>
 
 <div class="autorag-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/autorag-diagram.svg" alt="مخطط توصيل قاعدة المعرفة AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;" />
+  <img src="/images/autorag-diagram.svg" alt="مخطط توصيل قاعدة المعرفة AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;"  loading="lazy"/ width="800" height="500">
 </div>
 
 <div class="overview-content">
@@ -394,7 +395,7 @@ lang = "ar"
 <!-- Document Processing Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
 <object data="/images/autorag-clean-test.svg" type="image/svg+xml" style="width: 100%; max-width: 800px; height: auto;">
-<img src="/images/autorag-clean-test.svg" alt="عملية إنشاء بيانات AutoRAG" style="width: 100%; max-width: 800px; height: auto;" />
+<img src="/images/autorag-clean-test.svg" alt="عملية إنشاء بيانات AutoRAG" style="width: 100%; max-width: 800px; height: auto;"  loading="lazy"/ width="750" height="350">
 </object>
 <p style="text-align: center; margin-top: 10px; color: #8b7659; font-size: 14px;">عملية إنشاء البيانات الشاملة لـ AutoRAG تحول المستندات الخام إلى مجموعة محسنة ومجموعات بيانات الأسئلة والأجوبة</p>
 </div>
@@ -432,7 +433,7 @@ lang = "ar"
 
 <!-- Vector Embedding Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-vector-embedding.svg" alt="تصور التضمين المتجه" style="width: 100%; max-width: 600px; height: auto;" />
+<img src="/images/autorag-vector-embedding.svg" alt="تصور التضمين المتجه" style="width: 100%; max-width: 600px; height: auto;"  loading="lazy"/ width="300" height="200">
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
@@ -468,7 +469,7 @@ lang = "ar"
 
 <!-- Retrieval Optimization Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-retrieval-optimization.svg" alt="تصور تحسين الاسترجاع" style="width: 100%; max-width: 600px; height: auto;" />
+<img src="/images/autorag-retrieval-optimization.svg" alt="تصور تحسين الاسترجاع" style="width: 100%; max-width: 600px; height: auto;"  loading="lazy"/ width="300" height="200">
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">

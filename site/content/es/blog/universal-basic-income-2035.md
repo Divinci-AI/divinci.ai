@@ -42,7 +42,7 @@ Esto no es ciencia ficción ni pensamiento optimista. Es una hoja de ruta basada
 La pregunta no es si podemos permitirnos el UBI. La pregunta es si podemos permitirnos los costos sociales y económicos de no implementarlo mientras la automatización transforma el mercado laboral.[^25]
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-3.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Una visión de 2035: comunidades prósperas empoderadas por el Ingreso Básico Universal</figcaption>
@@ -84,7 +84,7 @@ Múltiples compañías de fusión están compitiendo hacia la viabilidad comerci
 Las estimaciones conservadoras sugieren que la energía de fusión por sí sola podría proporcionar el equivalente de $300-600 mensuales en costos de vida reducidos—efectivamente entregando beneficios UBI sin transferencias directas de efectivo.
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-fusion-reactor.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Tecnología de reactores de fusión impulsando la revolución energética de la década de 2030</figcaption>
@@ -115,7 +115,7 @@ El panorama laboral está cambiando, no desapareciendo. Mientras que el 40% de l
 Esto crea el escenario perfecto para el UBI: la automatización genera la riqueza, mientras los humanos transitan a trabajos de mayor valor con una red de seguridad para apoyar la transición.
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-robots-working.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Colaboración humano-robot: automatización creando riqueza mientras los humanos se enfocan en trabajo de mayor valor</figcaption>
@@ -137,7 +137,7 @@ Si bien esta automatización desplazará algunos empleos—McKinsey estima que a
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Cambio de Juego #2: Reestructuración Gubernamental
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-treasury-vault.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Tesorería gubernamental moderna reimaginada para la era digital</figcaption>
@@ -303,7 +303,7 @@ No es solo redistribución de ingresos—es democratizar el acceso a la economí
 
 Juntando todo, así es como funciona la matemática para 2035:
 
-<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-diagram.png" alt="Visión General del Sistema de Ingreso Básico Universal" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+<img src="/cdn-cgi/image/width=1200,format=auto,quality=82/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-diagram.png" alt="Visión General del Sistema de Ingreso Básico Universal" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
 <img src="/images/ubi-funding-sources.svg" alt="Desglose de Fuentes de Financiamiento UBI" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 
@@ -549,7 +549,7 @@ En realidad, está más cerca de lo que piensas:
 ## El Panorama General: Un Nuevo Contrato Social
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-1.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Construyendo comunidades sostenibles y equitativas a través de la abundancia tecnológica</figcaption>
@@ -672,7 +672,7 @@ La elección no es entre UBI y responsabilidad fiscal. Es entre usar tecnología
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><polyline points="20 6 9 17 4 12"/></svg> Un Llamado a la Acción
 
 <figure style="margin: 2rem 0;">
-  <video autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width: 100%; border-radius: 12px;">
+  <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-2.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">El futuro que elegimos: prosperidad, libertad y dignidad para todos</figcaption>

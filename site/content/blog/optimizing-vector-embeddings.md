@@ -1,6 +1,6 @@
 +++
 title = "Optimizing Vector Embeddings for Better Search Results"
-description = "Learn techniques for optimizing vector embeddings to improve search relevance in AI systems including chunking strategies, multi-dimensional indexing, and custom embedding models."
+description = "Practical techniques for tuning vector embeddings: dimensionality, quantization, and retrieval quality trade-offs we use in production."
 date = 2025-04-08T14:00:00+00:00
 template = "blog-post.html"
 
@@ -33,7 +33,7 @@ Before diving into optimization techniques, it's important to understand the com
 Each stage presents optimization opportunities that can significantly improve overall system performance.
 
 <div style="width: 100%; overflow-x: auto; margin: 2rem 0;">
-  <img src="/images/autorag-vector-embedding-adjusted.svg" alt="Vector Embedding Visualization" style="width: 100%; height: auto; display: block;">
+  <img src="/images/autorag-vector-embedding-adjusted.svg" alt="Vector Embedding Visualization" style="width: 100%; height: auto; display: block;" width="800" height="480" loading="lazy">
 </div>
 *The vector embedding pipeline showing optimization points at each stage*
 

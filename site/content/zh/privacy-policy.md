@@ -10,7 +10,7 @@ template = "page.html"
 
 # Privacy Policy
 
-**Last updated:** March 2025
+**Last updated:** 2026年5月
 
 ## Our Commitment to Privacy
 
@@ -42,6 +42,7 @@ We use cookies and similar technologies to:
 - Ensure website functionality
 - Analyze website and app performance
 - Provide personalized experience (with your consent)
+- 出于 B2B 营销目的，识别与网站访问相关联的组织（在欧盟/欧洲经济区、英国和瑞士需取得您的同意）
 
 ## 2. Third-Party Services and SDKs
 
@@ -65,6 +66,10 @@ Our Services integrate the following third-party services, each with their own p
 
 ### 2.6 Cloud Infrastructure
 - **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+
+### 2.7 营销、访客识别和 CRM
+- **Instantly.ai / Leadsy.ai**：我们使用 Instantly 的访客识别标签（从 `r2.leadsy.ai` 加载，该网址会动态加载由同一供应商运营的 `tag.trovo-tag.com` 上的跟踪脚本），以识别网站访问可能关联到的组织（例如，与访客 IP 地址相关联的公司）。这有助于我们的企业对企业（B2B）外向营销工作。对于检测到位于欧盟/欧洲经济区、英国或瑞士的访客，该标签**仅在您通过我们的 Cookie 横幅授予营销同意后**加载。对于这些司法管辖区以外的访客，该标签将默认加载，并可随时通过第 10 节中的"Cookie 偏好设置"控件停用。[Instantly Privacy Policy](https://instantly.ai/privacy-policy)
+- **HubSpot**：我们使用 HubSpot 跟踪脚本（从 `js.hs-scripts.com` 加载，该网址会动态加载来自 `js.hs-analytics.net`、`js.hs-banner.com` 和 `js.hscollectedforms.net` 的跟踪、横幅和表单捕获脚本），以记录页面浏览量、归因营销渠道绩效、捕获表单提交，并在您提交表单或预约会议时将网站活动与 HubSpot CRM 联系人记录相关联。对于检测到位于欧盟/欧洲经济区、英国或瑞士的访客，该脚本**仅在您通过我们的 Cookie 横幅授予营销同意后**加载。对于这些司法管辖区以外的访客，该脚本将默认加载，并可随时通过第 10 节中的"Cookie 偏好设置"控件停用。[HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
 
 ## 3. Legal Basis for Processing (GDPR)
 
@@ -99,6 +104,7 @@ We do not sell your personal data. We may share data with:
 - Cloud hosting and infrastructure providers (with data processing agreements)
 - Authentication service providers
 - Analytics and crash reporting providers (when you consent or as described above)
+- 营销及 B2B 访客识别服务提供商（在受监管的司法管辖区需取得同意，详见第 2.7 节）
 - AI model providers for processing your requests
 - Customer support tools
 
@@ -140,6 +146,8 @@ Our Services are not directed to children under the age of 13 (or the applicable
 - **Objection**: Object to processing for direct marketing
 - **Withdraw Consent**: Revoke consent at any time
 
+To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+
 ### 9.2 CCPA Rights (California Residents)
 - **Right to Know**: What personal information we collect and how it is used
 - **Right to Delete**: Request deletion of your personal information
@@ -161,13 +169,9 @@ Our Services are not directed to children under the age of 13 (or the applicable
     🍪 Cookie Preferences
   </button>
 
-  <button onclick="window.gdprCompliance?.exportUserData()" class="privacy-btn">
-    📥 Download My Data
-  </button>
-
-  <button onclick="window.gdprCompliance?.deleteUserData()" class="privacy-btn privacy-btn-danger">
-    🗑️ Delete My Data
-  </button>
+  <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
+    📥 提交数据请求
+  </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
     ❌ Revoke All Consent

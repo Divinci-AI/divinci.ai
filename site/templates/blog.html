@@ -77,22 +77,100 @@
     </div>
 </section>
 
+<!-- Blog-intro markup is rendered inside the .blog-section below as the
+     left column of a 2-column row with the featured post on the right.
+     Translation keys fall back to English; substantive prose keeps the
+     page above the 300-word floor on translated variants where the
+     post-list paginator is empty (blog posts are EN-only). -->
+
+
+<style>
+.blog-intro {
+    padding: 2.5rem 0 1.5rem;
+    background: linear-gradient(to bottom, rgba(248, 244, 240, 0) 0%, rgba(248, 244, 240, 0.4) 100%);
+}
+.blog-intro-content {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: left;
+}
+.blog-intro-heading {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #2d3c34;
+    margin: 0 0 1.25rem;
+}
+.blog-intro-content p {
+    color: #4a5a50;
+    line-height: 1.75;
+    font-size: 1.02rem;
+    margin: 0 0 1rem;
+}
+@media (max-width: 768px) {
+    .blog-intro { padding: 2rem 0 1rem; }
+    .blog-intro-heading { font-size: 1.3rem; }
+    .blog-intro-content p { font-size: 0.95rem; }
+}
+</style>
+
 <!-- Blog Content Section -->
 <section class="blog-section">
     <div class="container">
         <div class="blog-main-full">
             <div class="blog-container-full">
                 {% if paginator.pages %}
-                    {# Filter out hidden posts #}
-                    {% set_global visible_posts = [] %}
-                    {% for post in paginator.pages %}
+                    {# `section.pages` is empty inside a paginated section
+                       context, so fetch the full section via get_section
+                       to reorder pinned posts onto page 1 even when their
+                       natural date sort puts them on later pages. #}
+                    {% set full_section = get_section(path="blog/_index.md") %}
+                    {% set_global all_visible = [] %}
+                    {% for post in full_section.pages %}
                         {% if not post.extra.hidden %}
-                            {% set_global visible_posts = visible_posts | concat(with=post) %}
+                            {% set_global all_visible = all_visible | concat(with=post) %}
                         {% endif %}
                     {% endfor %}
 
+                    {# Reorder so pinned posts surface near the top while
+                       keeping the newest post in the featured slot:
+                       [newest, ...pinned (excluding newest), ...non-pinned (excluding newest)]
+                       Date-desc order is preserved within each group. #}
+                    {% if all_visible %}
+                        {% set newest_post = all_visible | first %}
+                        {% set newest_permalink = newest_post.permalink %}
+                        {% set_global ordered_posts = [newest_post] %}
+                        {% for post in all_visible %}
+                            {% if post.extra.pinned and post.permalink != newest_permalink %}
+                                {% set_global ordered_posts = ordered_posts | concat(with=post) %}
+                            {% endif %}
+                        {% endfor %}
+                        {% for post in all_visible %}
+                            {% if not post.extra.pinned and post.permalink != newest_permalink %}
+                                {% set_global ordered_posts = ordered_posts | concat(with=post) %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {# Slice ordered_posts to the current paginator page.
+                           Use the section's configured paginate_by so the
+                           cap stays in sync with the section frontmatter. #}
+                        {% set current_idx = paginator.current_index | default(value=1) %}
+                        {% set page_size = paginator.paginate_by | default(value=25) %}
+                        {% set page_start = (current_idx - 1) * page_size %}
+                        {% set page_end = page_start + page_size %}
+                        {% set_global visible_posts = ordered_posts | slice(start=page_start, end=page_end) %}
+                    {% endif %}
+
                     {% if visible_posts %}
                     {% set featured_post = visible_posts | first %}
+
+                    <!-- 2-column featured-post + intro row.
+                         Featured-post is on the LEFT, intro paragraphs on the
+                         RIGHT. Intro is shown only on the first paginator page
+                         so older-post pages don't repeat the masthead prose. -->
+                    {% if paginator.current_index == 1 or paginator.current_index is undefined %}
+                    <div class="blog-intro-and-featured">
+                    {% endif %}
 
                     <!-- Featured Post -->
                     <article class="featured-post">
@@ -128,15 +206,15 @@
                                 {% endif %}
                             {% else %}
                                 {% if featured_post.extra.featured_image is starting_with("http") %}
-                                    <img src="{{ featured_post.extra.featured_image }}" alt="{{ featured_post.title }}" class="featured-image">
+                                    <img src="{{ featured_post.extra.featured_image }}" alt="{{ featured_post.title }}" class="featured-image" loading="eager" fetchpriority="high" decoding="async">
                                 {% else %}
-                                    <img src="{{ get_url(path=featured_post.extra.featured_image) }}" alt="{{ featured_post.title }}" class="featured-image">
+                                    <img src="/cdn-cgi/image/width=1200,format=auto,quality=82/{{ featured_post.extra.featured_image }}" alt="{{ featured_post.title }}" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=featured_post.extra.featured_image) | safe }}';">
                                 {% endif %}
                             {% endif %}
                         {% else %}
                             <picture>
                                 <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-still.webp" type="image/webp">
-                                <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-still.jpg" alt="{{ featured_post.title }}" class="featured-image">
+                                <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-still.jpg" alt="{{ featured_post.title }}" class="featured-image" loading="eager" fetchpriority="high">
                             </picture>
                         {% endif %}
                         </a>
@@ -151,12 +229,9 @@
                             </a>
                             <div class="post-meta">
                                 {% if featured_post.extra.author_avatar %}
-                                    <img src="{{ get_url(path=featured_post.extra.author_avatar) }}" alt="{{ featured_post.extra.author | default(value='Michael Mooring') }}" class="author-avatar">
+                                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/{{ featured_post.extra.author_avatar }}" alt="{{ featured_post.extra.author | default(value='Michael Mooring') }}" width="94" height="94" class="author-avatar" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=featured_post.extra.author_avatar) | safe }}';">
                                 {% else %}
-                                    <picture>
-                                        <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.webp" type="image/webp">
-                                        <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.jpg" alt="Michael Mooring" class="author-avatar">
-                                    </picture>
+                                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.jpg" alt="Michael Mooring" width="94" height="94" loading="lazy" decoding="async" class="author-avatar">
                                 {% endif %}
                                 <div class="post-info">
                                     {{ translations.blog.by | default(value="By") }} <span class="author-name">{{ featured_post.extra.author | default(value="Michael Mooring") }}</span> • {{ featured_post.date | date(format="%B %d, %Y") }}{% if featured_post.updated and (featured_post.updated | date(format="%Y%m%d") != featured_post.date | date(format="%Y%m%d")) %} <span class="updated-badge" title="Updated {{ featured_post.updated | date(format="%B %d, %Y") }}">Updated</span>{% endif %}
@@ -170,6 +245,15 @@
                             <a href="{{ featured_post.permalink | safe }}" class="read-more">{{ translations.blog.read_article | default(value="Read Article") }} <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </article>
+                    {% if paginator.current_index == 1 or paginator.current_index is undefined %}
+                        <aside class="blog-intro-col">
+                            <h2 class="blog-intro-heading">{{ translations.blog.intro.heading | default(value="Research notes from the Divinci AI team") }}</h2>
+                            <p>{{ translations.blog.intro.p1 | default(value="The Divinci AI blog publishes original research, engineering deep-dives, and field notes from our work building production retrieval-augmented generation systems for regulated industries. We write about the vector indexes — we call them vindexes — that power our RAG architecture, the routing logic that selects the right one for each question, the evaluation harness we use to benchmark them against frontier LLMs, and the hard-won lessons of deploying these systems where correctness, citations, and audit trails actually matter.") }}</p>
+                            <p>{{ translations.blog.intro.p2 | default(value="Our coverage spans three threads. First, technical work: how we build, score, and route across our open library of vindexes published on Hugging Face; how we calibrate AI judges against human ground truth; what we learned shipping speculative decoding and FP8 quantization to production. Second, applied research: comparing retrieval strategies head-to-head in the RAG Arena, measuring grounding rates, and the economics of inference on commodity hardware. Third, perspective: where the field is going, what regulators are asking for next, and how teams should think about AI systems as the boundary between training and inference dissolves.") }}</p>
+                            <p>{{ translations.blog.intro.p3 | default(value="Most posts target an audience already fluent in AI engineering — engineers, researchers, and technical buyers — though we try to keep the framing accessible to anyone responsible for AI decisions at their organization. New posts publish irregularly when we have something genuinely worth saying. You can also find our open models, datasets, and vindexes on our Hugging Face profile, and the source for our research tooling on GitHub.") }}</p>
+                        </aside>
+                    </div> {# /.blog-intro-and-featured #}
+                    {% endif %}
 
                     <!-- Recent Articles -->
                     {% if visible_posts | length > 1 %}
@@ -207,12 +291,12 @@
                                             {% endif %}
                                         {% elif post.extra.featured_image %}
                                             {% if post.extra.featured_image is starting_with("http") %}
-                                                <img src="{{ post.extra.featured_image }}" alt="{{ post.title }}" class="post-image">
+                                                <img src="{{ post.extra.featured_image }}" alt="{{ post.title }}" class="post-image" loading="lazy" decoding="async">
                                             {% else %}
-                                                <img src="{{ get_url(path=post.extra.featured_image) }}" alt="{{ post.title }}" class="post-image">
+                                                <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.featured_image }}" alt="{{ post.title }}" class="post-image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=post.extra.featured_image) | safe }}';">
                                             {% endif %}
                                         {% else %}
-                                            <img src="{{ get_url(path='images/autorag-diagram.svg') }}" alt="{{ post.title }}" class="post-image">
+                                            <img src="{{ get_url(path='images/autorag-diagram.svg') }}" alt="{{ post.title }}" class="post-image" loading="lazy">
                                         {% endif %}
                                         </a>
                                         <div class="post-content">
@@ -225,7 +309,7 @@
                                                 <h3 class="post-title">{{ post.title }}</h3>
                                             </a>
                                             <div class="post-date">{{ post.date | date(format="%B %d, %Y") }}{% if post.updated and (post.updated | date(format="%Y%m%d") != post.date | date(format="%Y%m%d")) %} <span class="updated-badge" title="Updated {{ post.updated | date(format="%B %d, %Y") }}">Updated</span>{% endif %}</div>
-                                            <a href="{{ post.permalink | safe }}" class="post-link">{{ translations.blog.read_more | default(value="Read more") }} <i class="fas fa-arrow-right"></i></a>
+                                            <a href="{{ post.permalink | safe }}" class="post-link" aria-label="{{ translations.blog.read_more | default(value='Read more') }}: {{ post.title }}">{{ translations.blog.read_more | default(value="Read more") }} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                                         </div>
                                     </article>
                                 {% endif %}
@@ -259,6 +343,30 @@
                                 </div>
                             </article>
                         </div>
+
+                        {# Pagination — only shown if more than one page exists.
+                           paginator.number_pagers is Zola's count of all pages
+                           in the section after applying paginate_by. #}
+                        {% set total_pages = paginator.number_pagers | default(value=1) %}
+                        {% if total_pages > 1 %}
+                            {% set prev_idx = current_idx - 1 %}
+                            {% set next_idx = current_idx + 1 %}
+                            {% set prev_path = "blog/page/" ~ prev_idx ~ "/" %}
+                            {% set next_path = "blog/page/" ~ next_idx ~ "/" %}
+                            <nav class="blog-pagination" aria-label="{{ translations.blog.pagination_label | default(value='Older blog posts') }}">
+                                {% if current_idx > 1 %}
+                                    {% if current_idx == 2 %}
+                                        <a class="blog-pagination-link prev" href="{{ get_url(path='blog/') }}" rel="prev"><i class="fas fa-arrow-left" aria-hidden="true"></i> {{ translations.blog.newer | default(value="Newer posts") }}</a>
+                                    {% else %}
+                                        <a class="blog-pagination-link prev" href="{{ get_url(path=prev_path) }}" rel="prev"><i class="fas fa-arrow-left" aria-hidden="true"></i> {{ translations.blog.newer | default(value="Newer posts") }}</a>
+                                    {% endif %}
+                                {% endif %}
+                                <span class="blog-pagination-count">{{ translations.blog.page_of | default(value="Page") }} {{ current_idx }} / {{ total_pages }}</span>
+                                {% if current_idx < total_pages %}
+                                    <a class="blog-pagination-link next" href="{{ get_url(path=next_path) }}" rel="next">{{ translations.blog.older | default(value="Older posts") }} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                                {% endif %}
+                            </nav>
+                        {% endif %}
                     {% endif %}
                     {% endif %} {# close visible_posts check #}
                 {% else %}
@@ -426,6 +534,108 @@
 .blog-section {
     padding: 4rem 0;
     background: linear-gradient(to bottom, rgba(248,244,240,0.92) 0%, rgba(248,244,240,0.4) 20%, rgba(248,244,240,0.3) 50%, rgba(248,244,240,0.4) 80%, rgba(248,244,240,0.92) 100%);
+}
+
+/* 2-column featured-post + intro row (page 1 only).
+   Featured-post (left) gets the wider share since it carries the hero
+   image. Intro paragraphs (right) sit in a narrower text column.
+   Stacks on tablet/mobile. */
+.blog-intro-and-featured {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 2.5rem;
+    align-items: stretch;
+    margin-bottom: 3rem;
+}
+
+.blog-intro-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+
+.blog-intro-col .blog-intro-heading {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #2d3c34;
+    margin: 0 0 1.25rem;
+}
+
+.blog-intro-col p {
+    color: #4a5a50;
+    line-height: 1.7;
+    font-size: 0.98rem;
+    margin: 0 0 1rem;
+}
+
+.blog-intro-and-featured .featured-post {
+    margin-bottom: 0;
+    height: 100%;
+}
+
+@media (max-width: 1023px) {
+    .blog-intro-and-featured {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-intro-col .blog-intro-heading { font-size: 1.3rem; }
+    .blog-intro-col p { font-size: 0.95rem; }
+}
+
+/* Pagination nav below the post grid */
+.blog-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem auto 0;
+    padding: 1rem 1.25rem;
+    max-width: 720px;
+    background: rgba(232, 221, 199, 0.4);
+    border-radius: 12px;
+    border: 1px solid rgba(139, 118, 89, 0.2);
+}
+
+.blog-pagination-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    background: #e8ddc7;
+    color: #2d3c34;
+    border-radius: 50px;
+    border: 2px solid #e8ddc7;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.blog-pagination-link:hover {
+    transform: translateY(-2px);
+    background: #d6c7a8;
+    border-color: #d6c7a8;
+    color: #2d3c34;
+}
+
+.blog-pagination-count {
+    color: rgba(45, 60, 52, 0.7);
+    font-size: 0.9rem;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+@media (max-width: 580px) {
+    .blog-pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .blog-pagination-count { order: -1; width: 100%; text-align: center; }
 }
 
 /* Scoped background for blog content areas */

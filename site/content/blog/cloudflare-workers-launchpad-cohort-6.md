@@ -1,7 +1,8 @@
 +++
 title = "Divinci AI Joins Cloudflare Workers Launchpad Cohort #6: Building AI at the Speed of Light"
-description = "Divinci AI has been accepted into Cloudflare's Workers Launchpad Cohort #6. Discover how we're leveraging edge computing to deliver RAG-powered AI with sub-100ms latency globally, and why Cloudflare's platform is reshaping the future of enterprise AI."
+description = "Divinci AI joined Cloudflare's Workers Launchpad Cohort #6. How edge compute delivers RAG-powered AI with sub-100ms latency. Updated with Demo Day pitch + monorepo deep-dive."
 date = 2025-10-05T10:00:00+00:00
+updated = 2026-05-27T10:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -9,6 +10,8 @@ categories = ["Company News"]
 tags = ["cloudflare", "infrastructure", "edge-computing", "rag", "ai", "workers-launchpad"]
 
 [extra]
+math = true
+pinned = true
 author = "Divinci AI Team"
 author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/cloudflare-renaissance-blueprint.webm"
@@ -22,7 +25,7 @@ discord_post = "https://discord.com/channels/1425017107871039572/142501710907480
 instagram_post = "https://www.instagram.com/reel/DPuI8XLEl9G/?utm_source=ig_web_copy_link&igsh=MXN0M29uOGQzZWE0Nw=="
 +++
 
-<video muted loop playsinline webkit-playsinline preload="metadata" poster="/images/divinci-cloudflare-workers-launchpad-cohort-6-poster.webp" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+<video muted loop playsinline webkit-playsinline preload="none" poster="/images/divinci-cloudflare-workers-launchpad-cohort-6-poster.webp" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-cloudflare-workers-launchpad-cohort-6.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Building AI at the speed of light on Cloudflare's global edge network</p>
@@ -30,6 +33,15 @@ instagram_post = "https://www.instagram.com/reel/DPuI8XLEl9G/?utm_source=ig_web_
 For over 15 years, we've trusted Cloudflare. Their ever-free tier grants you the world's fastest DNS without surveillance capitalism. They sell domains at cost. Their free compute tier is the most generous in this galaxy. They've earned trust through action, not marketing.
 
 Today, we're honored to announce that **Divinci AI has been accepted into [Cloudflare Workers Launchpad Cohort #6](https://blog.cloudflare.com/workers-launchpad-006/)**—joining 25 other innovative startups building the future on Cloudflare's edge computing platform.
+
+<aside style="background: linear-gradient(135deg, rgba(247, 145, 31, 0.10), rgba(247, 145, 31, 0.04)); border-left: 4px solid #f7911f; padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 10px;">
+  <strong style="color: #1e3a2b; display: block; margin-bottom: 0.5rem; font-size: 1.05rem;">📺 Update — Cohort #6 Demo Day pitch</strong>
+  <p style="margin: 0 0 1rem; color: #4a4030; font-size: 0.96rem;">We pitched Divinci AI at Cloudflare's Workers Launchpad Cohort #6 Demo Day. The full pitch deck and a walkthrough of how we use the Cloudflare stack — Workers, Worker Workflows, Workers AI, and Vectorize — are now on YouTube. The full live broadcast from Cloudflare TV is also linked below.</p>
+  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 0 0 1rem; border-radius: 8px;">
+    <iframe src="https://www.youtube.com/embed/0PQQKcreMpo" title="Divinci AI — Cloudflare Workers Launchpad Cohort #6 Demo Day pitch" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+  </div>
+  <p style="margin: 0; color: #4a4030; font-size: 0.92rem;">▶︎ <a href="https://www.youtube.com/watch?v=0PQQKcreMpo" target="_blank" rel="noopener">Watch the pitch on YouTube</a> &nbsp;·&nbsp; 📡 <a href="https://cloudflare.tv/shows/workers-launchpad-demo-day/workers-launchpad-demo-day---cohort-6/1ZrX4ovO" target="_blank" rel="noopener">Cohort #6 Demo Day broadcast on Cloudflare TV</a></p>
+</aside>
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3m.08 4h.01"/></svg> Why This Matters: Migration to Cloudflare
 
@@ -56,7 +68,7 @@ Traditional cloud computing follows a centralized model: your data travels thous
 
 For Retrieval-Augmented Generation (RAG) systems—where every millisecond compounds through retrieval, embedding, ranking, and generation—edge deployment is transformative.
 
-<video muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video style="width: 50%; float: right; border-radius: 8px; margin: 0 0 1rem 1.5rem;">
+<video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 50%; float: right; border-radius: 8px; margin: 0 0 1rem 1.5rem;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-celestial-globe.webm" type="video/webm">
 </video>
 
@@ -83,86 +95,236 @@ Retrieval-Augmented Generation emerged in 2024 as the dominant strategy for grou
 
 This isn't a minor optimization—it's the difference between *usable* and *frustrating*.
 
-## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Our Cloudflare-Powered Architecture
+## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg> How Divinci Actually Uses Cloudflare — the Production Stack
 
-We've architected Divinci's platform around Cloudflare's Developer Platform, creating a sophisticated, globally distributed AI infrastructure:
+We've avoided the trap of "Cloudflare-flavoured marketing prose" here. What follows is the actual stack as it ships in our monorepo: **29 production Workers, 3 Worker Workflows, 5 Workers AI models, 4 R2 buckets, 6 Queue types, Hyperdrive on Postgres, Durable-Object-backed Containers for PDF and audio, and 36 tail consumers** streaming structured logs to observability. The pieces are named after their real bindings and route domains so engineers reading this can grep for them.
 
-### **Cloudflare Workers & Workflows**
+<figure style="margin: 2.5rem 0;">
+<svg viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width: 100%; max-width: 100%; height: auto;" role="img" aria-label="Divinci's Cloudflare production stack: edge workers, async pipelines, storage and data, AI and containers, observability">
+<rect width="1200" height="760" fill="#faf8f5"/>
+<text x="600" y="36" font-family="'DM Sans', -apple-system, sans-serif" font-size="22" font-weight="700" fill="#1e3a2b" text-anchor="middle">Divinci's Cloudflare Production Stack</text>
+<text x="600" y="62" font-family="'DM Sans', -apple-system, sans-serif" font-size="13" fill="#5a6862" text-anchor="middle">29 Workers · 3 Workflows · 5 Workers AI models · 4 R2 buckets · 6 Queues · Hyperdrive · Containers · Email · Analytics</text>
+<g transform="translate(40, 90)">
+<rect x="0" y="0" width="1120" height="130" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1.5" rx="6"/>
+<text x="20" y="24" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#2d5a4f">Layer 1 · Edge HTTP — 5 core Workers</text>
+<g font-family="'DM Sans', sans-serif" font-size="12" fill="#1e3a2b">
+<rect x="20" y="38" width="200" height="70" fill="#faf8f5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="120" y="58" text-anchor="middle" font-weight="700">divinci-api</text>
+<text x="120" y="76" text-anchor="middle" font-size="11" fill="#5a6862">api.divinci.app</text>
+<text x="120" y="92" text-anchor="middle" font-size="11" fill="#5a6862">auth · routing · JWT</text>
+<rect x="240" y="38" width="200" height="70" fill="#faf8f5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="340" y="58" text-anchor="middle" font-weight="700">web-client-r2-server</text>
+<text x="340" y="76" text-anchor="middle" font-size="11" fill="#5a6862">chat.divinci.app</text>
+<text x="340" y="92" text-anchor="middle" font-size="11" fill="#5a6862">static frontend via R2</text>
+<rect x="460" y="38" width="200" height="70" fill="#faf8f5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="560" y="58" text-anchor="middle" font-weight="700">divinci-agent</text>
+<text x="560" y="76" text-anchor="middle" font-size="11" fill="#5a6862">orchestrator</text>
+<text x="560" y="92" text-anchor="middle" font-size="11" fill="#5a6862">answer composition</text>
+<rect x="680" y="38" width="200" height="70" fill="#faf8f5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="780" y="58" text-anchor="middle" font-weight="700">chunks-workflow</text>
+<text x="780" y="76" text-anchor="middle" font-size="11" fill="#5a6862">rag-workflow.divinci.app</text>
+<text x="780" y="92" text-anchor="middle" font-size="11" fill="#5a6862">RAG pipeline driver</text>
+<rect x="900" y="38" width="200" height="70" fill="#faf8f5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="1000" y="58" text-anchor="middle" font-weight="700">connector-sync-worker</text>
+<text x="1000" y="76" text-anchor="middle" font-size="11" fill="#5a6862">Dropbox · Drive · etc.</text>
+<text x="1000" y="92" text-anchor="middle" font-size="11" fill="#5a6862">external ingestion</text>
+</g>
+</g>
+<g transform="translate(40, 240)">
+<rect x="0" y="0" width="540" height="130" fill="#eae3d5" stroke="#7a4848" stroke-width="1.5" rx="6"/>
+<text x="20" y="24" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#7a4848">Layer 2a · Worker Workflows (multi-step async)</text>
+<g font-family="'DM Sans', sans-serif" font-size="11" fill="#1e3a2b">
+<rect x="20" y="38" width="160" height="70" fill="#faf8f5" stroke="#7a4848" stroke-width="1" rx="4"/>
+<text x="100" y="58" text-anchor="middle" font-weight="700" font-size="12">ReindexWith­Version</text>
+<text x="100" y="78" text-anchor="middle" fill="#5a6862">step.do(...)</text>
+<text x="100" y="94" text-anchor="middle" fill="#5a6862">corpus re-embed</text>
+<rect x="190" y="38" width="160" height="70" fill="#faf8f5" stroke="#7a4848" stroke-width="1" rx="4"/>
+<text x="270" y="58" text-anchor="middle" font-weight="700" font-size="12">BrowserExtraction</text>
+<text x="270" y="78" text-anchor="middle" fill="#5a6862">openparse · DOM</text>
+<text x="270" y="94" text-anchor="middle" fill="#5a6862">PDF + HTML chunks</text>
+<rect x="360" y="38" width="160" height="70" fill="#faf8f5" stroke="#7a4848" stroke-width="1" rx="4"/>
+<text x="440" y="58" text-anchor="middle" font-weight="700" font-size="12">AudioToRag</text>
+<text x="440" y="78" text-anchor="middle" fill="#5a6862">whisper · pyannote</text>
+<text x="440" y="94" text-anchor="middle" fill="#5a6862">transcript chunks</text>
+</g>
+</g>
+<g transform="translate(600, 240)">
+<rect x="0" y="0" width="560" height="130" fill="#eae3d5" stroke="#b8a060" stroke-width="1.5" rx="6"/>
+<text x="20" y="24" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#7a6020">Layer 2b · Queues (6 tuned for D1 single-thread)</text>
+<g font-family="'DM Sans', sans-serif" font-size="11" fill="#1e3a2b">
+<rect x="20" y="38" width="125" height="22" fill="#faf8f5" stroke="#b8a060" stroke-width="1" rx="3"/>
+<text x="82" y="53" text-anchor="middle">api-jobs · 10/5</text>
+<rect x="150" y="38" width="125" height="22" fill="#faf8f5" stroke="#b8a060" stroke-width="1" rx="3"/>
+<text x="212" y="53" text-anchor="middle">chunking · 10/5</text>
+<rect x="280" y="38" width="125" height="22" fill="#faf8f5" stroke="#b8a060" stroke-width="1" rx="3"/>
+<text x="342" y="53" text-anchor="middle">vectorize · 25/10</text>
+<rect x="410" y="38" width="125" height="22" fill="#faf8f5" stroke="#b8a060" stroke-width="1" rx="3"/>
+<text x="472" y="53" text-anchor="middle">reindex · 25/10</text>
+<rect x="20" y="68" width="195" height="22" fill="#faf8f5" stroke="#b8a060" stroke-width="1" rx="3"/>
+<text x="117" y="83" text-anchor="middle">d1-sync · serialised writes</text>
+<rect x="220" y="68" width="195" height="22" fill="#faf8f5" stroke="#b8a060" stroke-width="1" rx="3"/>
+<text x="317" y="83" text-anchor="middle">embed-chunks · batched</text>
+<text x="20" y="106" font-style="italic" fill="#5a6862">batch / concurrency tuned per queue to protect D1's single-writer per-shard limit</text>
+</g>
+</g>
+<g transform="translate(40, 390)">
+<rect x="0" y="0" width="1120" height="160" fill="#eae3d5" stroke="#5a7a8f" stroke-width="1.5" rx="6"/>
+<text x="20" y="24" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#5a7a8f">Layer 3 · Storage &amp; Data — R2 + D1 + KV + Hyperdrive</text>
+<g font-family="'DM Sans', sans-serif" font-size="11" fill="#1e3a2b">
+<text x="20" y="50" font-weight="700" font-size="12" fill="#5a7a8f">R2 buckets (4)</text>
+<rect x="20" y="58" width="220" height="22" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1" rx="3"/>
+<text x="30" y="73">FILES · RAG documents</text>
+<rect x="20" y="84" width="220" height="22" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1" rx="3"/>
+<text x="30" y="99">AUDIO_FILES · workspace audio</text>
+<rect x="20" y="110" width="220" height="22" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1" rx="3"/>
+<text x="30" y="125">PUBLIC_UPLOADS · chat attachments</text>
+<rect x="20" y="136" width="220" height="14" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1" rx="3"/>
+<text x="30" y="146" font-size="10">TEMP_UPLOADS · presigned staging</text>
+<text x="270" y="50" font-weight="700" font-size="12" fill="#5a7a8f">D1 (per-vector sharded)</text>
+<rect x="270" y="58" width="270" height="22" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1" rx="3"/>
+<text x="280" y="73">per-tenant D1 shard · FTS5 fallback</text>
+<rect x="270" y="84" width="270" height="22" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1" rx="3"/>
+<text x="280" y="99">chunk + metadata index per customer</text>
+<text x="270" y="124" font-size="10" font-style="italic" fill="#5a6862">Each tenant gets its own D1 shard.</text>
+<text x="270" y="138" font-size="10" font-style="italic" fill="#5a6862">Prevents CPU bottleneck on single-writer.</text>
+<text x="570" y="50" font-weight="700" font-size="12" fill="#5a7a8f">KV (3 namespaces)</text>
+<rect x="570" y="58" width="240" height="22" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1" rx="3"/>
+<text x="580" y="73">CACHE · JWT + config</text>
+<rect x="570" y="84" width="240" height="22" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1" rx="3"/>
+<text x="580" y="99">EMBEDDING_CACHE · 30-day TTL</text>
+<rect x="570" y="110" width="240" height="22" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1" rx="3"/>
+<text x="580" y="125">VECTORIZE_CACHE · embed lookup</text>
+<text x="840" y="50" font-weight="700" font-size="12" fill="#5a7a8f">Hyperdrive → Postgres</text>
+<rect x="840" y="58" width="260" height="22" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1" rx="3"/>
+<text x="850" y="73">HYPERDRIVE binding · edge pool</text>
+<rect x="840" y="84" width="260" height="22" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1" rx="3"/>
+<text x="850" y="99">app-relational data fallback</text>
+<text x="840" y="125" font-size="10" font-style="italic" fill="#5a6862">Avoids cold-start of opening</text>
+<text x="840" y="138" font-size="10" font-style="italic" fill="#5a6862">a TCP connection per request.</text>
+</g>
+</g>
+<g transform="translate(40, 570)">
+<rect x="0" y="0" width="540" height="130" fill="#eae3d5" stroke="#a04848" stroke-width="1.5" rx="6"/>
+<text x="20" y="24" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#a04848">Layer 4a · Workers AI — 5 models</text>
+<g font-family="'DM Sans', sans-serif" font-size="11" fill="#1e3a2b">
+<rect x="20" y="36" width="240" height="22" fill="#faf8f5" stroke="#a04848" stroke-width="1" rx="3"/>
+<text x="30" y="51">@cf/openai/moderation-stable</text>
+<rect x="270" y="36" width="250" height="22" fill="#faf8f5" stroke="#a04848" stroke-width="1" rx="3"/>
+<text x="280" y="51">@cf/huggingface/distilbert-sst-2</text>
+<rect x="20" y="62" width="240" height="22" fill="#faf8f5" stroke="#a04848" stroke-width="1" rx="3"/>
+<text x="30" y="77">@cf/meta/llama-3-8b-instruct</text>
+<rect x="270" y="62" width="250" height="22" fill="#faf8f5" stroke="#a04848" stroke-width="1" rx="3"/>
+<text x="280" y="77">@cf/google/gemma-3-12b-it-preview</text>
+<rect x="20" y="88" width="500" height="22" fill="#faf8f5" stroke="#a04848" stroke-width="1" rx="3"/>
+<text x="30" y="103">@cf/openai/whisper-large-v3-turbo · audio transcription</text>
+</g>
+</g>
+<g transform="translate(600, 570)">
+<rect x="0" y="0" width="560" height="130" fill="#eae3d5" stroke="#7a8a4a" stroke-width="1.5" rx="6"/>
+<text x="20" y="24" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#5a6c2a">Layer 4b · Containers · Email · Analytics · Tail · Cron</text>
+<g font-family="'DM Sans', sans-serif" font-size="11" fill="#1e3a2b">
+<rect x="20" y="36" width="245" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1" rx="3"/>
+<text x="30" y="51">openparse-cf · PDF parser (DO container)</text>
+<rect x="275" y="36" width="265" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1" rx="3"/>
+<text x="285" y="51">audio-services · ffmpeg + pyannote DO</text>
+<rect x="20" y="62" width="245" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1" rx="3"/>
+<text x="30" y="77">divinci-send-notification-email</text>
+<rect x="275" y="62" width="265" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1" rx="3"/>
+<text x="285" y="77">create-cf-email-destination · routing</text>
+<rect x="20" y="88" width="245" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1" rx="3"/>
+<text x="30" y="103">Analytics Engine · structured-event sink</text>
+<rect x="275" y="88" width="265" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1" rx="3"/>
+<text x="285" y="103">36 tail_consumers · structured log fanout</text>
+</g>
+</g>
+<g transform="translate(40, 720)">
+<text x="0" y="0" font-family="'DM Sans', sans-serif" font-size="10" fill="#5a6862" font-style="italic">Cron triggers: every 30 min (prod, orphan cleanup) · every 10 min (stage, nightly-fix-all). All workers configured with nodejs_compat + compat_date 2024–2025.</text>
+</g>
+</svg>
+<figcaption style="text-align: center; font-style: italic; color: #5a6862; font-size: 0.9rem; margin-top: 0.75rem;">The actual production stack as it ships from the monorepo. Every named binding above appears in a wrangler.toml in the codebase.</figcaption>
+</figure>
 
-The backbone of our system. Workers power our serverless compute layer with sub-millisecond cold start times. **Cloudflare Workflows** orchestrate our multi-step RAG pipelines:
+### Layer 1 — Five core Workers at the edge
 
-1. Document ingestion and chunking
-2. Embedding generation (Workers AI)
-3. Vector storage and indexing (Vectorize)
-4. Query-time retrieval and ranking
-5. Context synthesis and LLM generation
-6. Response streaming to users
+Every HTTP request hits one of five custom-domain Workers:
 
-Each step executes at the edge, minimizing latency and maximizing throughput.
+- **`divinci-api`** at **`api.divinci.app`** — the REST boundary: auth, JWT validation, route resolution, fan-out to internal workers. Bindings include the FILES R2 bucket, the CACHE KV namespace, the D1 doc-elements database, Workers AI, Hyperdrive, Analytics Engine, and four named Queues. This is the worker that sees the request first.
+- **`web-client-r2-server`** at **`chat.divinci.app`** — the static frontend, served directly from R2 through a thin Worker that handles Worker-side rewrites and routing into the SPA.
+- **`divinci-agent`** — the answer-composition orchestrator. Pulls context from D1 + KV + R2, decides which Workers AI model to call (or whether to delegate to an external API via Hyperdrive), composes the response.
+- **`chunks-workflow`** at **`rag-workflow.divinci.app`** — the Worker Workflows entrypoint; called whenever a long-running RAG pipeline needs to be kicked off.
+- **`connector-sync-worker`** — the external-ingestion worker that syncs from Dropbox / Drive / similar third-party connectors into the RAG pipeline.
 
-### **D1: Distributed SQL at the Edge**
+There are 24 more workers behind these five (tail consumers, internal microservices) — the five above are what's exposed to the public internet.
 
-We use **Cloudflare D1** to store structured RAG metadata and chunk references. D1's edge-based architecture ensures document chunks are geographically close to users, reducing retrieval latency by 60-80% compared to regional databases.
+### Layer 2a — Worker Workflows (three multi-step async pipelines)
 
-<img src="/images/d1-rag-storage.svg" alt="D1 Distributed Database Architecture" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+Cloudflare Workflows replaced our older Durable-Object-based job runners last year. Three workflows are in production today, all using the `step.do("name", async () => {…})` checkpoint pattern so each step is independently retried on failure without re-running the whole pipeline:
 
-*Diagram: D1 distributed SQL database architecture showing global replication and edge-based query execution for RAG chunk storage.*
+- **`ReindexWithVersionWorkflow`** — re-embeds an entire customer corpus when the embedding model version changes. Versions the resulting index so a roll-back is one binding swap.
+- **`BrowserExtractionWorkflow`** — extracts text from uploaded documents via the **openparse-cf** Durable-Object container, then chunks + queues the chunks for embedding.
+- **`AudioToRagWorkflow`** — transcribes audio with Workers AI Whisper, runs speaker diarization through the **audio-services** Container, chunks the transcript, and queues for embedding.
 
-### **Vectorize: Semantic Search at Scale**
+All three are declared in `wrangler.toml` like:
 
-**Cloudflare Vectorize** enables lightning-fast semantic search across millions of document embeddings. Our vector search completes in 20-50ms globally—fast enough for real-time retrieval in multi-hop reasoning chains.
+```toml
+[[env.production.workflows]]
+name = "reindex-with-version"
+binding = "REINDEX_WITH_VERSION"
+class_name = "ReindexWithVersionWorkflow"
+```
 
-Vectorize's distributed index architecture means:
-- **Global consistency**: Updates propagate within seconds
-- **Local queries**: Vector search executes at the nearest edge location
-- **Infinite scale**: No database sharding or index partitioning required
+### Layer 2b — Six Queues, tuned for D1's single-writer limit
 
-### **Workers AI: Open-Source Models at the Edge**
+Async work flows through six named Queues, each with `max_batch_size`, `max_concurrency`, and `max_retries` tuned to whatever bottleneck the downstream service has. The chunking and api-jobs queues run at 10-batch / 5-concurrency because they write to D1 (whose per-shard writer is single-threaded); the vectorize and reindex queues run hotter at 25/10 because they call external embedding APIs. The d1-sync queue serialises writes to the per-vector D1 shards so two workflows don't race on the same row.
 
-We integrate **Cloudflare Workers AI** to provide access to open-source models including:
+The lesson we wish we'd learned earlier: **Queues are the only thing that keeps a per-customer-sharded D1 setup honest.** Without them, a single tenant with a big upload starves everyone else on the same shard until the request times out.
 
-- **Llama 3.1** (8B, 70B, 405B): General-purpose reasoning and generation
-- **Mistral 7B/8x7B**: Fast inference for structured outputs
-- **CodeLlama**: Code understanding and generation
-- **BGE embeddings**: Multilingual text embeddings
+### Layer 3 — R2, D1, KV, and Hyperdrive
 
-This gives enterprise customers **sovereignty over their AI stack**—no vendor lock-in to proprietary models.
+The storage layer is split across four primitives, each chosen for a different access pattern.
 
-<img src="/images/workers-ai-models.svg" alt="Workers AI Open Source Models" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" loading="lazy">
+**R2 (four buckets per environment)** — the bindings are `FILES` (RAG documents), `AUDIO_FILES` (source audio for transcription pipelines), `PUBLIC_UPLOADS` (chat attachments served at signed-URL endpoints), and `TEMP_UPLOADS` (the presigned-upload landing pad). Zero egress fees are the headline reason, but the deeper one is **the same Worker can sign a URL, accept a multi-MB upload, kick off the BrowserExtractionWorkflow, and serve the resulting RAG context — all without a hop off Cloudflare's edge.**
 
-*Diagram: Workers AI model catalog showing open-source LLMs available for edge inference.*
+**D1 (per-tenant sharded)** — each customer gets their own D1 database, with chunk + metadata in normal tables and a [FTS5 virtual table](https://www.sqlite.org/fts5.html) for text-only search. Sharding by customer was the only way to avoid the single-writer bottleneck on hot tenants. The cost is that we manage a fan-out across shards in the application layer; the benefit is one tenant's spike can't starve another's reads.
 
-### **R2: Zero-Egress Object Storage**
+**KV (three namespaces)** — `CACHE` holds JWT validation results and tenant config; `EMBEDDING_CACHE` is the content-hash → embedding-bytes map with a 30-day TTL (this is the single biggest cost reduction we made — caching embeddings by content hash cut the daily embedding-API bill by an order of magnitude); `VECTORIZE_CACHE` is the wrapper layer the `vectorize-cache` worker uses to memoize vector lookups.
 
-**Cloudflare R2** handles our media and document storage needs:
+**Hyperdrive** — Postgres connection pooling at the edge. The `HYPERDRIVE` binding lets a Worker open a Postgres connection without paying the TCP handshake + auth cost on every request. We use it for the small slice of relational data (subscription state, org-level ACLs) that doesn't fit D1's sharded model.
 
-- Audio/video processing pipelines
-- User-uploaded files and documents
-- RAG corpus storage (PDFs, presentations, spreadsheets)
-- Model weights and artifacts
+### Layer 4a — Workers AI (five models in production)
 
-R2's **zero egress fees** mean we can serve petabytes of data without the bandwidth tax imposed by AWS S3. This alone saves enterprises 80-90% on storage costs.
+Workers AI is the on-platform inference layer; we use it where the model is small enough that round-tripping to an external provider isn't worth the latency or cost:
 
-### **API Shield: Zero-Trust Security**
+| Model | Binding | What it does |
+|---|---|---|
+| `@cf/openai/moderation-stable` | content safety | gate every user input through a moderation pass before any other processing |
+| `@cf/huggingface/distilbert-sst-2-int8` | sentiment | quick classification for routing + analytics |
+| `@cf/meta/llama-3-8b-instruct` | text generation | the small-model fallback for low-stakes answer composition |
+| `@cf/google/gemma-3-12b-it-preview` | text generation | the preview model we use to A/B fine-tunes against |
+| `@cf/openai/whisper-large-v3-turbo` | audio transcription | called from the AudioToRagWorkflow for transcription |
 
-As we scale our public API, **Cloudflare API Shield** provides:
+For frontier-scale generation (Claude, GPT-4-class) we still route to external providers through Hyperdrive — Workers AI's catalog is growing but doesn't yet include the largest models we need for the hardest queries.
 
-- **Schema validation**: Ensure requests match OpenAPI specifications
-- **Rate limiting**: Protect against abuse and DDoS
-- **JWT validation**: Verify authentication tokens at the edge
-- **Mutual TLS**: Certificate-based client authentication
+### Layer 4b — Containers, Email, Analytics, Tail Consumers
 
-Security enforcement happens *before* requests reach our Workers—filtering malicious traffic at Cloudflare's scale.
+**Durable-Object Containers** are the newest piece of the stack: full Docker images running on the Workers runtime, scoped per DO instance. We run two:
 
-### **Durable Objects: Stateful Edge Computing**
+- **`openparse-cf`** is a Python PDF parser packaged as a Container, called by the `BrowserExtractionWorkflow` for document chunking.
+- **`audio-services-container`** runs ffmpeg + pyannote-audio for speaker diarization, called by the `AudioToRagWorkflow`. Memory-tier `standard-2` (6 GB) so the heavier models load without OOM.
 
-For real-time collaboration features (shared workspaces, live cursors, collaborative editing), we use **Cloudflare Durable Objects**:
+**Email Workers** — a transactional-notification Worker sends product email, and a routing Worker manages inbound mail at `email.divinci.app/verified-emails`. Both use Cloudflare's Email Routing primitive instead of an external email API.
 
-- **Strong consistency**: Single-writer semantics for conflict-free state
-- **WebSocket support**: Persistent connections for real-time updates
-- **Global coordination**: Distributed locks and consensus at the edge
+**Analytics Engine** — a Workers Analytics Engine dataset is the structured-event sink for product analytics. Anything we'd previously have sent to Segment/Amplitude lands here first, then forwards downstream.
 
-Durable Objects enable Google Docs-style collaboration *without* centralized servers.
+**Tail Consumers (36 workers)** — every production worker has its `tail_consumers` list populated with a dedicated `*_tail` consumer. Each consumer parses the Worker's invocation logs and forwards structured events to our observability pipeline. The fan-out is what makes the eight-worker microservice topology debuggable.
+
+**Cron Triggers** — production runs an orphan-cleanup job every 30 minutes; stage runs every 10 minutes for tighter feedback while we iterate on the cleanup logic.
+
+### A note on Vectorize — what we don't use, and why
+
+We evaluated Cloudflare **Vectorize** during the migration and ultimately did not adopt it as our primary vector store. The decision had nothing to do with Vectorize itself — it has improved significantly through 2025–2026. The reason we landed on **D1 FTS5 + an external embedding service** was that our retrieval architecture is hybrid (lexical + semantic with a calibrated re-ranker on top), and FTS5 in D1 gave us the lexical half of that for free, on the same shard as the document metadata. Adding Vectorize would have introduced a second consistency model — a separate index that has to stay in sync with D1 — for marginal recall improvement at the volumes we run. The `VECTORIZE_CACHE` KV namespace name is a leftover from the evaluation period; the worker behind it now caches embedding lookups, not Vectorize results.
+
+If our retrieval model shifts toward dense-only retrieval at very large scale, Vectorize is the natural next step. Honest answer beats a marketing claim.
 
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"/><path d="M12 6v12m-2-7h4a2 2 0 110 4H10"/></svg> The Workers Launchpad Program: What We're Gaining
 
@@ -230,7 +392,7 @@ Over the coming months, we'll be documenting our infrastructure migration and le
 
 We believe in **building in public** and sharing knowledge. If you're building on Cloudflare Workers or exploring edge computing for AI, we'd love to collaborate.
 
-<video muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video style="width: 50%; border-radius: 8px; margin: 2rem auto; display: block;">
+<video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 50%; border-radius: 8px; margin: 2rem auto; display: block;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-workshop-leonardo.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Innovation through the ages: Building the future with timeless principles</p>

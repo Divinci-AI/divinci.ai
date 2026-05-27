@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Per-category Spearman rank correlation between candidate model and the calibrated human-anchored grader, across six legal subdomains. Contract drafting 0.71, statutory interpretation 0.74, case summarization 0.69, regulatory compliance 0.66, jurisdictional analysis 0.62, IP licensing 0.41. The gate threshold of 0.65 is shown as a dashed horizontal line. IP licensing falls below the line and triggers a gate fail. Aggregate mean is 0.64, just under threshold, but the per-category view reveals exactly which subdomain regressed.">
+  <title>Per-category gate — why aggregate scores hide regressions</title>
+  <rect width="900" height="420" fill="#faf8f5"/>
+
+  <!-- Title -->
+  <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">Gate-2: per-category Spearman ρ vs calibrated grader<tspan font-size="10" font-weight="500" fill="#8a7d68" font-style="italic" dx="8">— illustrative</tspan></text>
+  <text x="40" y="56" font-size="12" fill="#6b5d4f">Aggregate mean = 0.64 (under threshold by a hair). Per-category view shows IP licensing collapsed from 0.68 → 0.41.</text>
+
+  <!-- Y axis: 0.0 → 1.0, py(v) = 340 - v * 220 (so 0=340, 1.0=120) -->
+  <g stroke="#d4c8b0" font-size="10" fill="#8a7d68">
+    <line x1="160" y1="340" x2="160" y2="100" stroke="#2d3c34" stroke-width="1.2"/>
+    <line x1="160" y1="340" x2="860" y2="340" stroke="#2d3c34" stroke-width="1.2"/>
+    <!-- gridlines + labels -->
+    <line x1="155" y1="340" x2="160" y2="340"/>
+    <text x="148" y="344" text-anchor="end">0.0</text>
+    <line x1="155" y1="296" x2="160" y2="296"/>
+    <text x="148" y="300" text-anchor="end">0.2</text>
+    <line x1="155" y1="252" x2="160" y2="252"/>
+    <text x="148" y="256" text-anchor="end">0.4</text>
+    <line x1="155" y1="208" x2="160" y2="208"/>
+    <text x="148" y="212" text-anchor="end">0.6</text>
+    <line x1="155" y1="164" x2="160" y2="164"/>
+    <text x="148" y="168" text-anchor="end">0.8</text>
+    <line x1="155" y1="120" x2="160" y2="120"/>
+    <text x="148" y="124" text-anchor="end">1.0</text>
+  </g>
+
+  <!-- Y axis label -->
+  <text x="35" y="220" font-size="11" fill="#6b5d4f" transform="rotate(-90 35 220)" text-anchor="middle">Spearman ρ</text>
+
+  <!-- Gate threshold dashed line at 0.65, py = 340 - 0.65*220 = 197 -->
+  <line x1="160" y1="197" x2="860" y2="197" stroke="#a04848" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="865" y="200" font-size="10" fill="#a04848" font-weight="600">Gate threshold 0.65</text>
+
+  <!-- Bars: 6 categories. Bar width 80px, gap 30px. Start at x=200. -->
+  <!-- Bar height formula: h = v * 220, top_y = 340 - h, bottom_y=340 -->
+
+  <!-- 1. Contract drafting: 0.71. h=156.2, top=183.8 -->
+  <g>
+    <rect x="200" y="184" width="80" height="156" fill="#2d5a4f" rx="2"/>
+    <text x="240" y="178" text-anchor="middle" font-size="11" font-weight="600" fill="#1e3a2b">0.71</text>
+    <text x="240" y="360" text-anchor="middle" font-size="10" fill="#6b5d4f">Contract</text>
+    <text x="240" y="374" text-anchor="middle" font-size="10" fill="#6b5d4f">drafting</text>
+  </g>
+
+  <!-- 2. Statutory interpretation: 0.74. h=162.8, top=177.2 -->
+  <g>
+    <rect x="310" y="177" width="80" height="163" fill="#2d5a4f" rx="2"/>
+    <text x="350" y="171" text-anchor="middle" font-size="11" font-weight="600" fill="#1e3a2b">0.74</text>
+    <text x="350" y="360" text-anchor="middle" font-size="10" fill="#6b5d4f">Statutory</text>
+    <text x="350" y="374" text-anchor="middle" font-size="10" fill="#6b5d4f">interp.</text>
+  </g>
+
+  <!-- 3. Case summarization: 0.69. h=151.8, top=188.2 -->
+  <g>
+    <rect x="420" y="188" width="80" height="152" fill="#2d5a4f" rx="2"/>
+    <text x="460" y="182" text-anchor="middle" font-size="11" font-weight="600" fill="#1e3a2b">0.69</text>
+    <text x="460" y="360" text-anchor="middle" font-size="10" fill="#6b5d4f">Case</text>
+    <text x="460" y="374" text-anchor="middle" font-size="10" fill="#6b5d4f">summary</text>
+  </g>
+
+  <!-- 4. Regulatory compliance: 0.66. h=145.2, top=194.8 -->
+  <g>
+    <rect x="530" y="195" width="80" height="145" fill="#2d5a4f" rx="2"/>
+    <text x="570" y="189" text-anchor="middle" font-size="11" font-weight="600" fill="#1e3a2b">0.66</text>
+    <text x="570" y="360" text-anchor="middle" font-size="10" fill="#6b5d4f">Regulatory</text>
+    <text x="570" y="374" text-anchor="middle" font-size="10" fill="#6b5d4f">compliance</text>
+  </g>
+
+  <!-- 5. Jurisdictional analysis: 0.62 — below threshold, colored warning -->
+  <g>
+    <rect x="640" y="204" width="80" height="136" fill="#c87b3c" rx="2"/>
+    <text x="680" y="198" text-anchor="middle" font-size="11" font-weight="600" fill="#1e3a2b">0.62</text>
+    <text x="680" y="360" text-anchor="middle" font-size="10" fill="#6b5d4f">Jurisdiction</text>
+    <text x="680" y="374" text-anchor="middle" font-size="10" fill="#6b5d4f">analysis</text>
+  </g>
+
+  <!-- 6. IP licensing: 0.41 — catastrophic, colored alert -->
+  <g>
+    <rect x="750" y="250" width="80" height="90" fill="#a04848" rx="2"/>
+    <text x="790" y="244" text-anchor="middle" font-size="11" font-weight="700" fill="#a04848">0.41</text>
+    <text x="790" y="360" text-anchor="middle" font-size="10" fill="#6b5d4f">IP</text>
+    <text x="790" y="374" text-anchor="middle" font-size="10" fill="#6b5d4f">licensing</text>
+  </g>
+
+  <!-- Annotation for IP licensing collapse: dashed horizontal marker at the previous
+       value (0.68) directly above the current bar, so the gap to the bar top
+       visually shows the regression. -->
+  <g>
+    <!-- Dashed marker at y for 0.68: py(0.68) = 340 - 0.68*220 = 190.4 -->
+    <line x1="750" y1="190" x2="830" y2="190" stroke="#a04848" stroke-width="1" stroke-dasharray="3 2" opacity="0.85"/>
+    <text x="790" y="184" text-anchor="middle" font-size="9" fill="#a04848" font-style="italic">prior 0.68</text>
+  </g>
+
+  <!-- Footer note -->
+  <text x="40" y="402" font-size="10" fill="#8a7d68">Two categories fall below the line. The pipeline marks this release `gate_fail` and refuses every deploy command until the regression is addressed.</text>
+</svg>

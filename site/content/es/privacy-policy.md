@@ -6,7 +6,7 @@ template = "page.html"
 
 # Política de Privacidad
 
-**Última actualización:** Marzo 2025
+**Última actualización:** Mayo 2026
 
 ## Nuestro Compromiso con la Privacidad
 
@@ -38,6 +38,7 @@ Utilizamos cookies y tecnologías similares para:
 - Garantizar la funcionalidad del sitio web
 - Analizar el rendimiento del sitio web y la aplicación
 - Proporcionar una experiencia personalizada (con su consentimiento)
+- Identificar la organización asociada con una visita al sitio web, con fines de marketing B2B (con su consentimiento en el EEE, el Reino Unido y Suiza)
 
 ## 2. Servicios de Terceros y SDKs
 
@@ -61,6 +62,10 @@ Nuestros Servicios integran los siguientes servicios de terceros, cada uno con s
 
 ### 2.6 Infraestructura en la Nube
 - **Google Cloud Platform**: Nuestros servicios de backend se ejecutan en la infraestructura de Google Cloud con acuerdos de procesamiento de datos vigentes.
+
+### 2.7 Marketing, Identificación de Visitantes y CRM
+- **Instantly.ai / Leadsy.ai**: Utilizamos la etiqueta de identificación de visitantes de Instantly (cargada desde `r2.leadsy.ai`, que carga dinámicamente un script de seguimiento desde `tag.trovo-tag.com` operado por el mismo proveedor) para identificar la organización con la que puede estar asociada una visita al sitio web (por ejemplo, la empresa vinculada a la dirección IP del visitante). Esto informa nuestro marketing saliente B2B. Para los visitantes detectados en el EEE, el Reino Unido o Suiza, esta etiqueta se carga **solo después de que usted otorgue su consentimiento de marketing** a través de nuestro banner de cookies. Para los visitantes fuera de esas jurisdicciones, la etiqueta se carga de forma predeterminada y puede desactivarse en cualquier momento mediante el control "Preferencias de Cookies" en la Sección 10. [Política de Privacidad de Instantly](https://instantly.ai/privacy-policy)
+- **HubSpot**: Utilizamos el script de seguimiento de HubSpot (cargado desde `js.hs-scripts.com`, que carga dinámicamente scripts de seguimiento, banner y captura de formularios desde `js.hs-analytics.net`, `js.hs-banner.com` y `js.hscollectedforms.net`) para registrar las visitas a las páginas, atribuir el rendimiento de los canales de marketing, capturar los envíos de formularios y vincular la actividad del sitio web con los registros de contactos de HubSpot CRM cuando usted envía un formulario o reserva una reunión. Para los visitantes detectados en el EEE, el Reino Unido o Suiza, este script se carga **solo después de que usted otorgue su consentimiento de marketing** a través de nuestro banner de cookies. Para los visitantes fuera de esas jurisdicciones, el script se carga de forma predeterminada y puede desactivarse en cualquier momento mediante el control "Preferencias de Cookies" en la Sección 10. [Política de Privacidad de HubSpot](https://legal.hubspot.com/privacy-policy)
 
 ## 3. Base Legal para el Procesamiento (RGPD)
 
@@ -95,6 +100,7 @@ No vendemos sus datos personales. Podemos compartir datos con:
 - Proveedores de alojamiento en la nube e infraestructura (con acuerdos de procesamiento de datos)
 - Proveedores de servicios de autenticación
 - Proveedores de analíticas e informes de fallos (cuando usted consiente o según se describe anteriormente)
+- Proveedores de marketing e identificación de visitantes B2B (sujeto a consentimiento en jurisdicciones reguladas, como se describe en la Sección 2.7)
 - Proveedores de modelos de IA para procesar sus solicitudes
 - Herramientas de atención al cliente
 
@@ -136,6 +142,8 @@ Nuestros Servicios no están dirigidos a menores de 13 años (o la edad de conse
 - **Oposición**: Oponerse al procesamiento con fines de marketing directo
 - **Retirar el Consentimiento**: Revocar el consentimiento en cualquier momento
 
+Para ejercer cualquiera de estos derechos, puede enviar una solicitud a través de nuestro [portal de solicitudes de datos](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg) de autoservicio, o escribirnos a privacy@divinci.ai. Respondemos en un plazo de 30 días.
+
 ### 9.2 Derechos de la CCPA (Residentes de California)
 - **Derecho a Saber**: Qué información personal recopilamos y cómo se utiliza
 - **Derecho a Eliminar**: Solicitar la eliminación de su información personal
@@ -157,13 +165,9 @@ Nuestros Servicios no están dirigidos a menores de 13 años (o la edad de conse
     🍪 Cookie Preferences
   </button>
 
-  <button onclick="window.gdprCompliance?.exportUserData()" class="privacy-btn">
-    📥 Download My Data
-  </button>
-
-  <button onclick="window.gdprCompliance?.deleteUserData()" class="privacy-btn privacy-btn-danger">
-    🗑️ Delete My Data
-  </button>
+  <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
+    📥 Enviar una Solicitud de Datos
+  </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
     ❌ Revoke All Consent

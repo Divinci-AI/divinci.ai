@@ -44,6 +44,7 @@
     <text x="300" y="210" text-anchor="middle" class="node-label" style="font-size: 11px;">Computer</text>
 
     <path d="M 350 220 L 540 310" stroke="#3498db" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+    <rect x="430" y="248" width="75" height="16" fill="#faf8f5" opacity="0.95"/>
     <text x="440" y="260" class="stat-text" style="fill: #3498db;">Submit tasks</text>
   </g>
 
@@ -54,6 +55,7 @@
     <text x="900" y="210" text-anchor="middle" class="node-label" style="font-size: 11px;">PC</text>
 
     <path d="M 850 220 L 660 310" stroke="#3498db" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+    <rect x="752" y="248" width="68" height="16" fill="#faf8f5" opacity="0.95"/>
     <text x="760" y="260" class="stat-text" style="fill: #3498db;">GPU power</text>
   </g>
 
@@ -64,6 +66,7 @@
     <text x="300" y="510" text-anchor="middle" class="node-label" style="font-size: 11px;">Device</text>
 
     <path d="M 350 480 L 540 390" stroke="#3498db" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+    <rect x="432" y="428" width="68" height="16" fill="#faf8f5" opacity="0.95"/>
     <text x="440" y="440" class="stat-text" style="fill: #3498db;">Idle cycles</text>
   </g>
 
@@ -74,14 +77,15 @@
     <text x="900" y="510" text-anchor="middle" class="node-label" style="font-size: 11px;">Server</text>
 
     <path d="M 850 480 L 660 390" stroke="#3498db" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+    <rect x="750" y="428" width="86" height="16" fill="#faf8f5" opacity="0.95"/>
     <text x="760" y="440" class="stat-text" style="fill: #3498db;">Spare capacity</text>
   </g>
 
   <!-- Computation Tasks (Left side boxes) -->
   <g id="tasks-box">
-    <rect x="50" y="100" width="180" height="320" rx="10" fill="url(#compute-grad)" opacity="0.15"/>
-    <rect x="60" y="110" width="160" height="35" rx="6" fill="url(#compute-grad)"/>
-    <text x="140" y="133" text-anchor="middle" class="node-label" style="fill: white; font-size: 13px;">COMPUTE TASKS</text>
+    <rect x="30" y="100" width="240" height="320" rx="10" fill="url(#compute-grad)" opacity="0.15"/>
+    <rect x="40" y="110" width="220" height="35" rx="6" fill="url(#compute-grad)"/>
+    <text x="150" y="133" text-anchor="middle" class="node-label" style="fill: white; font-size: 13px;">COMPUTE TASKS</text>
 
     <!-- Task list -->
     <text x="70" y="170" class="detail-text" style="font-weight: 600;">🧬 Protein Folding</text>
@@ -104,9 +108,9 @@
 
   <!-- Rewards Distribution (Right side boxes) -->
   <g id="rewards-box">
-    <rect x="970" y="100" width="180" height="320" rx="10" fill="url(#reward-grad)" opacity="0.15"/>
-    <rect x="980" y="110" width="160" height="35" rx="6" fill="url(#reward-grad)"/>
-    <text x="1060" y="133" text-anchor="middle" class="node-label" style="fill: white; font-size: 13px;">REWARDS</text>
+    <rect x="950" y="100" width="240" height="320" rx="10" fill="url(#reward-grad)" opacity="0.15"/>
+    <rect x="960" y="110" width="220" height="35" rx="6" fill="url(#reward-grad)"/>
+    <text x="1070" y="133" text-anchor="middle" class="node-label" style="fill: white; font-size: 13px;">REWARDS</text>
 
     <!-- Reward breakdown -->
     <text x="990" y="170" class="detail-text" style="font-weight: 600;">💰 Cryptocurrency Tokens</text>
@@ -124,7 +128,7 @@
     <text x="990" y="362" class="detail-text" style="font-weight: 600;">🎯 UBI Distribution</text>
     <text x="1000" y="380" class="stat-text">Avg $200-500/month per household</text>
 
-    <text x="1060" y="405" text-anchor="middle" class="value-text" style="font-size: 12px;">250M participants</text>
+    <text x="1070" y="405" text-anchor="middle" class="value-text" style="font-size: 12px;">250M participants</text>
   </g>
 
   <!-- How It Works (Bottom section) -->

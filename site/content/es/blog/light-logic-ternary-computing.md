@@ -1,6 +1,6 @@
 +++
 title = "Light Logic: El Amanecer de la Computación Fotónica Ternaria para la Computación Básica Universal"
-description = "Explorando un paradigma computacional revolucionario que combina puertas lógicas fotónicas, computación ternaria, generación de números aleatorios cuánticos y energía de baterías de gravedad para crear sistemas computacionales sostenibles y artesanales como base para el ingreso básico universal."
+description = "Puertas lógicas fotónicas, computación ternaria, RNG cuántico y baterías de gravedad: cómputo sostenible y artesanal como base para la RBU."
 date = 2025-10-05T10:00:00+00:00
 template = "blog-post.html"
 

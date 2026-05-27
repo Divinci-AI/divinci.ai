@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Horizontal bar chart of rollback time, log-scale minutes. Atlassian April 2022 outage: 720 minutes (12 hours) per-site restoration, source: Atlassian post-incident review. Cloudflare June 21 2022 outage: 44 minutes to revert, source: Cloudflare blog. AWS SageMaker canary deployment-guardrail termination wait default: 10 minutes, source: SageMaker docs. DORA elite-performer failed deployment recovery threshold: under 60 minutes, source: DORA Metrics guide. Divinci automated routing flip via release manifest: 12 seconds, our number. All values cited to primary sources below.">
+  <title>Rollback time — measured numbers from primary sources</title>
+  <rect width="900" height="380" fill="#faf8f5"/>
+
+  <!-- Title -->
+  <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">Rollback time — measured numbers from primary sources</text>
+  <text x="40" y="56" font-size="12" fill="#6b5d4f">Specific incidents and platform-documented limits, not estimates. Each bar links to its source in the references below.</text>
+
+  <!-- log scale x-axis: 0.1 → 2000 minutes (to fit 12 hours = 720 min) -->
+  <!-- log10(0.1) = -1, log10(2000) ≈ 3.301. Range 4.301 decades. -->
+  <!-- px(v) = 280 + (log10(v) - (-1)) / 4.301 * 540 -->
+  <!-- 0.1 → x=280, 1 → x=406, 10 → x=531, 100 → x=657, 1000 → x=782, 2000 → x=820 -->
+
+  <g stroke="#d4c8b0" font-size="10" fill="#8a7d68">
+    <line x1="280" y1="320" x2="280" y2="80" stroke="#2d3c34" stroke-width="1.2"/>
+    <line x1="280" y1="320" x2="860" y2="320" stroke="#2d3c34" stroke-width="1.2"/>
+    <!-- log tick marks at 0.1, 1, 10, 100, 1000 minutes -->
+    <line x1="280" y1="320" x2="280" y2="325"/>
+    <text x="280" y="340" text-anchor="middle">0.1</text>
+    <line x1="406" y1="320" x2="406" y2="325"/>
+    <text x="406" y="340" text-anchor="middle">1</text>
+    <line x1="531" y1="320" x2="531" y2="325"/>
+    <text x="531" y="340" text-anchor="middle">10</text>
+    <line x1="657" y1="320" x2="657" y2="325"/>
+    <text x="657" y="340" text-anchor="middle">100</text>
+    <line x1="782" y1="320" x2="782" y2="325"/>
+    <text x="782" y="340" text-anchor="middle">1000</text>
+    <!-- gridlines -->
+    <line x1="406" y1="320" x2="406" y2="83" stroke="#e8dcc4" stroke-width="0.5"/>
+    <line x1="531" y1="320" x2="531" y2="83" stroke="#e8dcc4" stroke-width="0.5"/>
+    <line x1="657" y1="320" x2="657" y2="83" stroke="#e8dcc4" stroke-width="0.5"/>
+    <line x1="782" y1="320" x2="782" y2="83" stroke="#e8dcc4" stroke-width="0.5"/>
+  </g>
+
+  <!-- X axis label -->
+  <text x="570" y="360" font-size="11" fill="#6b5d4f" text-anchor="middle">minutes (log scale)</text>
+
+  <!-- Bars ordered slowest → fastest. -->
+
+  <!-- Row 1 — Atlassian April 2022 per-site restoration: 720 min (12 hours). log10(720) ≈ 2.857. x_end = 280 + (2.857+1)/4.301*540 = 280+484 = 764 -->
+  <g>
+    <text x="272" y="103" text-anchor="end" font-size="11" fill="#1e3a2b" font-weight="600">Atlassian, Apr 2022</text>
+    <text x="272" y="117" text-anchor="end" font-size="10" fill="#6b5d4f">per-site restoration</text>
+    <rect x="280" y="91" width="484" height="32" fill="#a04848" rx="2"/>
+    <text x="774" y="113" font-size="11" font-weight="600" fill="#1e3a2b">720 min<a href="#ref-1"><tspan font-size="9" fill="#2d5a4f" text-decoration="underline" baseline-shift="super">[1]</tspan></a></text>
+  </g>
+
+  <!-- Row 2 — Cloudflare June 2022: 44 min. log10(44) ≈ 1.643. x_end = 280 + (1.643+1)/4.301*540 = 280+332 = 612 -->
+  <g>
+    <text x="272" y="158" text-anchor="end" font-size="11" fill="#1e3a2b" font-weight="600">Cloudflare, Jun 2022</text>
+    <text x="272" y="172" text-anchor="end" font-size="10" fill="#6b5d4f">config revert</text>
+    <rect x="280" y="146" width="332" height="32" fill="#c87b3c" rx="2"/>
+    <text x="622" y="168" font-size="11" font-weight="600" fill="#1e3a2b">44 min<a href="#ref-2"><tspan font-size="9" fill="#2d5a4f" text-decoration="underline" baseline-shift="super">[2]</tspan></a></text>
+  </g>
+
+  <!-- Row 3 — DORA elite threshold: <60 min. Draw bar to 60 min. log10(60) ≈ 1.778. x_end = 280 + (1.778+1)/4.301*540 = 280+349 = 629 -->
+  <g>
+    <text x="272" y="213" text-anchor="end" font-size="11" fill="#1e3a2b" font-weight="600">DORA elite</text>
+    <text x="272" y="227" text-anchor="end" font-size="10" fill="#6b5d4f">performer threshold</text>
+    <rect x="280" y="201" width="349" height="32" fill="#b8a080" rx="2" opacity="0.6"/>
+    <text x="639" y="223" font-size="11" font-weight="600" fill="#1e3a2b">&lt; 60 min<a href="#ref-3"><tspan font-size="9" fill="#2d5a4f" text-decoration="underline" baseline-shift="super">[3]</tspan></a></text>
+  </g>
+
+  <!-- Row 4 — SageMaker canary baking + termination wait: 10 min default. log10(10) = 1. x_end = 280 + (1+1)/4.301*540 = 280+251 = 531 -->
+  <g>
+    <text x="272" y="268" text-anchor="end" font-size="11" fill="#1e3a2b" font-weight="600">AWS SageMaker</text>
+    <text x="272" y="282" text-anchor="end" font-size="10" fill="#6b5d4f">termination wait default</text>
+    <rect x="280" y="256" width="251" height="32" fill="#7a9580" rx="2"/>
+    <text x="541" y="278" font-size="11" font-weight="600" fill="#1e3a2b">10 min<a href="#ref-4"><tspan font-size="9" fill="#2d5a4f" text-decoration="underline" baseline-shift="super">[4]</tspan></a></text>
+  </g>
+
+  <!-- Divinci row — separate position below the chart -->
+  <g>
+    <text x="272" y="320" text-anchor="end" font-size="11" fill="#1e3a2b" font-weight="700">Divinci automated</text>
+    <text x="272" y="334" text-anchor="end" font-size="10" fill="#2d5a4f">routing-flip via manifest</text>
+    <!-- 12s = 0.2 min. log10(0.2) ≈ -0.699. x_end = 280 + (-0.699+1)/4.301*540 = 280+38 = 318 -->
+    <line x1="280" y1="328" x2="318" y2="328" stroke="#2d5a4f" stroke-width="14" stroke-linecap="butt"/>
+    <text x="328" y="332" font-size="11" font-weight="700" fill="#2d5a4f">12 s<a href="#ref-5"><tspan font-size="9" fill="#2d5a4f" text-decoration="underline" baseline-shift="super">[5]</tspan></a></text>
+  </g>
+</svg>

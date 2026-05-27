@@ -1,6 +1,6 @@
 +++
 title = "The Architecture Every Language Model Converges To"
-description = "I've run LarQL on 9 models from 5 organizations — from a 360M toy to OpenAI's 120B MoE. Three numbers hold within ±15% across all of them. One pattern vanishes the moment you go to 1-bit weights."
+description = "Every modern LLM converges on the same four-stage circuit. We map the architecture and what its absence in 1-bit models means."
 date = 2026-04-23T09:00:00+00:00
 updated = 2026-04-25T22:00:00+00:00
 template = "blog-post.html"
@@ -10,6 +10,7 @@ categories = ["Research"]
 tags = ["LarQL", "Interpretability", "Transformers", "Machine Learning", "Mechanistic Interpretability"]
 
 [extra]
+math = true
 author = "Mike Mooring"
 author_avatar = "images/Michael-Mooring.png"
 featured_image = "images/divinci-hero-social-v3.png"
@@ -161,7 +162,7 @@ The model still answers questions correctly. Its internals have no discernible s
 
 All of this runs on a T4 GPU ($0.35/hr on GCP). The behavioral probes cost under $1 total via Cloudflare Workers AI. LarQL SVD runs on CPU.
 
-The vindexes — precomputed SVD databases for all 8 models — are published on HuggingFace at [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI). The Three.js interactive viewer is at [divinci.ai/research/vindex-viewer.html](/research/vindex-viewer.html).
+The vindexes — precomputed SVD databases for all 8 models — are published on HuggingFace at [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI). The Three.js interactive viewer is at [divinci.ai/vindex-viewer](/vindex-viewer/).
 
 The paper is "Architectural Invariants of Transformer Computation: What Survives Scale, Training, and Quantization" — arXiv preprint this week.
 
@@ -229,3 +230,20 @@ curl -X POST "$DIVINCI_API_URL/white-label/$WL_ID/larql/edits" \
 ---
 
 *Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). LarQL vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
+
+## References
+
+<ol class="post-references" style="padding-left: 1.5rem;">
+  <li id="ref-1" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>Transformer Circuits Thread.</strong> Anthropic's running series on mechanistic interpretability — <a href="https://transformer-circuits.pub/" target="_blank" rel="noopener">transformer-circuits.pub</a>. Foundational entry: Elhage et al., <a href="https://transformer-circuits.pub/2021/framework/index.html" target="_blank" rel="noopener"><em>A Mathematical Framework for Transformer Circuits</em></a> (2021). More recent: <a href="https://transformer-circuits.pub/2025/attribution-graphs/methods.html" target="_blank" rel="noopener"><em>Circuit Tracing: Revealing Computational Graphs in Language Models</em></a> (2025). These establish the vocabulary (induction heads, attention circuits, residual-stream features) that the four-stage framing in this post draws on.
+  </li>
+  <li id="ref-2" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>Sparse autoencoders + feature extraction.</strong> He et al., <a href="https://arxiv.org/abs/2410.20526" target="_blank" rel="noopener"><em>Llama Scope: Extracting Millions of Features from Llama-3.1-8B with Sparse Autoencoders</em></a> (arXiv:2410.20526). 256 SAEs trained on each layer and sublayer of Llama-3.1-8B-Base. The kind of per-layer feature inventory that makes a "four-stage circuit" claim measurable across models in the first place.
+  </li>
+  <li id="ref-3" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>The specific four-stage broadcast → domain → entity → prediction framing</strong> proposed in this post is an internal Divinci-AI finding — measured across the Divinci-AI vindex collection at <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">huggingface.co/Divinci-AI</a> with the <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">LarQL</a> tooling. To our knowledge no public mechanistic-interpretability paper has named these four stages or measured their depth-positions across architectures; the closest prior art is the Anthropic Transformer Circuits work in [1] above. If you find a paper that names equivalent stages, please let us know and we'll cite it here.
+  </li>
+  <li id="ref-4" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
+    <strong>Internal C1–C5 measurements and per-model stage plots.</strong> The C4 layer-temperature curves and the C1/C3 family signatures shown in the charts above are computed by the LarQL pipeline from the Divinci-AI vindex collection. The companion post <a href="/blog/when-the-circuit-dissolves/">When the Circuit Dissolves</a> documents the C5 collapse for sub-fp16 precision classes and lists the specific HF repos used.
+  </li>
+</ol>

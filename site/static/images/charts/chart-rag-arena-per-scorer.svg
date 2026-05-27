@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Per-scorer arena breakdown for v2-atd Modal QLoRA Gemma 4 31B versus Llama 4 Scout on EXIT 4-times compressed RAG. The legacy strict completeness-coverage scorer shows v2-atd at 0.565 and Llama at 0.534 — a plus 3.1 percentage-point edge to v2-atd that the legacy 3-scorer overall mean (0.585 vs 0.582) hides. The legacy strict llm-correctness scorer gives Llama a marginal -1.5 percentage-point edge. Relevance is tied at 0.635. Reference perplexity under v2-atd is essentially tied at 0.700 vs 0.699.">
+  <title>RAG Arena Per-Scorer Breakdown — v2-atd vs Llama 4 Scout (EXIT 4× RAG)</title>
+  <rect width="760" height="460" fill="#faf8f5"/>
+
+  <!-- Title -->
+  <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">Per-scorer breakdown — what the overall mean averaged away</text>
+  <text x="40" y="56" font-size="12" fill="#6b5d4f">Headline ties at 0.585 vs 0.582; the length-tolerant completeness scorer surfaces v2-atd's +3.1pp edge</text>
+
+  <!-- Axis (linear, 0.0 → 1.0).  px(v) = 220 + v * 440.  So 0→220, 0.5→440, 0.85→594, 1.0→660 -->
+  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#8a7d68">
+    <line x1="220" y1="370" x2="660" y2="370" stroke="#2d3c34" stroke-width="1.2"/>
+    <line x1="220" y1="80" x2="220" y2="370"/>
+    <line x1="330" y1="80" x2="330" y2="370" opacity="0.4"/>
+    <line x1="440" y1="80" x2="440" y2="370" opacity="0.4"/>
+    <line x1="550" y1="80" x2="550" y2="370" opacity="0.4"/>
+    <line x1="660" y1="80" x2="660" y2="370" opacity="0.4"/>
+    <text x="220" y="388" text-anchor="middle">0.0</text>
+    <text x="330" y="388" text-anchor="middle">0.25</text>
+    <text x="440" y="388" text-anchor="middle">0.50</text>
+    <text x="550" y="388" text-anchor="middle">0.75</text>
+    <text x="660" y="388" text-anchor="middle">1.00</text>
+    <text x="440" y="408" text-anchor="middle" font-size="11" fill="#6b5d4f" font-style="italic">scorer mean (equal-weight, 0–1) →</text>
+  </g>
+
+  <!-- Four scorer groups, each with paired bars. Pair height 22, group height 50, group y-start 92. -->
+  <g font-size="11">
+    <!-- 1. llm-completeness-coverage (length-tolerant, PR #1001) — THE STORY -->
+    <text x="210" y="105" text-anchor="end" fill="#2d3c34" font-weight="700">llm-completeness-coverage</text>
+    <text x="210" y="118" text-anchor="end" fill="#8a7d68" font-size="9">(PR #1001, length-tolerant)</text>
+    <!-- v2-atd: 0.565 → 220 + 0.565*440 = 468.6 -->
+    <rect x="220" y="92" width="249" height="20" fill="#2d5a4f"/>
+    <text x="475" y="106" fill="#1e3a2b" font-weight="700">0.565</text>
+    <!-- Llama: 0.534 → 220 + 0.534*440 = 455 -->
+    <rect x="220" y="114" width="235" height="20" fill="#5a8a7f" opacity="0.7"/>
+    <text x="461" y="128" fill="#2d5a4f" font-weight="600">0.534</text>
+    <!-- Δ badge -->
+    <g transform="translate(540, 100)">
+      <rect x="0" y="0" width="100" height="28" rx="4" fill="#2d5a4f" opacity="0.12"/>
+      <text x="50" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#1e3a2b">Δ +0.031 ✓</text>
+    </g>
+
+    <!-- 2. llm-correctness (legacy strict) -->
+    <text x="210" y="170" text-anchor="end" fill="#4a3a2a" font-weight="600">llm-correctness</text>
+    <text x="210" y="183" text-anchor="end" fill="#8a7d68" font-size="9">(legacy, strict / brevity-biased)</text>
+    <!-- v2-atd: 0.443 → 220 + 0.443*440 = 414.9 -->
+    <rect x="220" y="158" width="195" height="20" fill="#2d5a4f"/>
+    <text x="421" y="172" fill="#1e3a2b" font-weight="700">0.443</text>
+    <!-- Llama: 0.458 → 220 + 0.458*440 = 421.5 -->
+    <rect x="220" y="180" width="201" height="20" fill="#5a8a7f" opacity="0.7"/>
+    <text x="427" y="194" fill="#2d5a4f" font-weight="600">0.458</text>
+    <g transform="translate(540, 165)">
+      <rect x="0" y="0" width="100" height="28" rx="4" fill="#c08850" opacity="0.18"/>
+      <text x="50" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#8a5a20">Δ −0.015</text>
+    </g>
+
+    <!-- 3. llm-relevance — TIED -->
+    <text x="210" y="235" text-anchor="end" fill="#4a3a2a" font-weight="600">llm-relevance</text>
+    <text x="210" y="248" text-anchor="end" fill="#8a7d68" font-size="9">(addresses the question)</text>
+    <!-- 0.635 → 220 + 0.635*440 = 499.4 -->
+    <rect x="220" y="223" width="279" height="20" fill="#2d5a4f"/>
+    <text x="505" y="237" fill="#1e3a2b" font-weight="700">0.635</text>
+    <rect x="220" y="245" width="279" height="20" fill="#5a8a7f" opacity="0.7"/>
+    <text x="505" y="259" fill="#2d5a4f" font-weight="600">0.635</text>
+    <g transform="translate(540, 230)">
+      <rect x="0" y="0" width="100" height="28" rx="4" fill="#8a7d68" opacity="0.16"/>
+      <text x="50" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#6b5d4f">tied</text>
+    </g>
+
+    <!-- 4. reference-perplexity:v2-atd-ppl -->
+    <text x="210" y="300" text-anchor="end" fill="#4a3a2a" font-weight="600">reference-perplexity</text>
+    <text x="210" y="313" text-anchor="end" fill="#8a7d68" font-size="9">(PR #1000, length-norm PPL under v2-atd)</text>
+    <!-- v2-atd: 0.700 → 220 + 0.700*440 = 528 -->
+    <rect x="220" y="288" width="308" height="20" fill="#2d5a4f"/>
+    <text x="534" y="302" fill="#1e3a2b" font-weight="700">0.700</text>
+    <!-- Llama: 0.699 → 220 + 0.699*440 = 527.6 -->
+    <rect x="220" y="310" width="308" height="20" fill="#5a8a7f" opacity="0.7"/>
+    <text x="534" y="324" fill="#2d5a4f" font-weight="600">0.699</text>
+    <g transform="translate(540, 295)">
+      <rect x="0" y="0" width="100" height="28" rx="4" fill="#8a7d68" opacity="0.16"/>
+      <text x="50" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#6b5d4f">tied</text>
+    </g>
+  </g>
+
+  <!-- Legend -->
+  <g font-size="11" fill="#4a3a2a">
+    <rect x="220" y="343" width="14" height="14" fill="#2d5a4f"/>
+    <text x="240" y="355">v2-atd (Modal QLoRA Gemma 4 31B)</text>
+    <rect x="450" y="343" width="14" height="14" fill="#5a8a7f" opacity="0.7"/>
+    <text x="470" y="355">Llama 4 Scout</text>
+  </g>
+
+  <!-- Caption -->
+  <text x="40" y="438" font-size="11" fill="#6b5d4f" font-style="italic">Arena B · 200 ATD held-out items · EXIT 4× compressed RAG · top-K=5, min-score=0.62 · judge: gemini-3.1-flash-lite-preview · error-filtered.</text>
+</svg>
