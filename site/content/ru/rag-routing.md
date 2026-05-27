@@ -481,7 +481,7 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 
 <div class="rr-mechanism">
 <ol>
-  <li><strong>Выбор в Arena.</strong> Прогоните запрос через <a href="/rag-arena/">RAG Arena</a> по нескольким бэкендам, оцените варианты бок о бок и выберите победителя. Пара (вопрос, бэкенд-победитель) попадает в хранилище маршрутизации.</li>
+  <li><strong>Выбор в Arena.</strong> Прогоните запрос через <a href="/ru/rag-arena/">RAG Arena</a> по нескольким бэкендам, оцените варианты бок о бок и выберите победителя. Пара (вопрос, бэкенд-победитель) попадает в хранилище маршрутизации.</li>
   <li><strong>Выходы auto-fix.</strong> Когда наш auto-fix выполняет сравнительные извлечения по репрезентативным запросам во время загрузки или плановых аудитов, лучший бэкенд по каждому запросу записывается в то же хранилище.</li>
   <li><strong>Обратная связь из продакшена.</strong> Успешные запросы (те, что прошли вашу планку качества через наш онлайн-гейт оценки — см. <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">пост про регрессионное тестирование</a>) записывают свою пару (хеш вопроса, бэкенд) обратно в хранилище маршрутизации в момент запроса, с TTL 30 дней, чтобы модель маршрутизации оставалась свежей по мере эволюции вашего корпуса.</li>
 </ol>
@@ -502,6 +502,6 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 <div class="rr-cross-links">
 <p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>Углублённое чтение и смежные продукты</strong></p>
 <p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
-Подробный архитектурный разбор находится в нашем блог-посте <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>. Арена, на которой основан шаг 1 выше, находится по адресу <a href="/rag-arena/">RAG Arena &amp; Dynamic Routing</a>. Решения о маршрутизации привязываются к аудит-якорю по тому же паттерну release-manifest, который мы используем по всей платформе — см. <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>. А если вы хотите узнать, как мы оцениваем качество извлечения в онлайне (тот самый сигнал, что питает шаг 3 выше), начните с <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">поста про регрессионное тестирование</a>.
+Подробный архитектурный разбор находится в нашем блог-посте <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>. Арена, на которой основан шаг 1 выше, находится по адресу <a href="/ru/rag-arena/">RAG Arena &amp; Dynamic Routing</a>. Решения о маршрутизации привязываются к аудит-якорю по тому же паттерну release-manifest, который мы используем по всей платформе — см. <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>. А если вы хотите узнать, как мы оцениваем качество извлечения в онлайне (тот самый сигнал, что питает шаг 3 выше), начните с <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">поста про регрессионное тестирование</a>.
 </p>
 </div>

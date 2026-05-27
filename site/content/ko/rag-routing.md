@@ -480,7 +480,7 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 
 <div class="rr-mechanism">
 <ol>
-  <li><strong>아레나 선택.</strong> <a href="/rag-arena/">RAG Arena</a>를 통해 여러 백엔드에 쿼리를 실행하고, 변형들을 나란히 평가한 뒤 승자를 선택합니다. (질문, 승리 백엔드) 쌍이 라우팅 저장소에 기록됩니다.</li>
+  <li><strong>아레나 선택.</strong> <a href="/ko/rag-arena/">RAG Arena</a>를 통해 여러 백엔드에 쿼리를 실행하고, 변형들을 나란히 평가한 뒤 승자를 선택합니다. (질문, 승리 백엔드) 쌍이 라우팅 저장소에 기록됩니다.</li>
   <li><strong>오토픽스 출력.</strong> 수집 또는 정기 감사 중에 오토픽스가 대표 쿼리들에 대해 비교 검색을 실행하면, 쿼리별 최고 성능 백엔드가 같은 저장소에 기록됩니다.</li>
   <li><strong>프로덕션 피드백.</strong> 성공한 쿼리들(우리의 온라인 평가 게이트를 통해 품질 임계값 이상을 기록한 것 — <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">회귀 테스트 글</a> 참고)은 요청 시점에 (질문 해시, 백엔드) 쌍을 라우팅 저장소에 다시 기록하며, 30일 TTL을 적용해 코퍼스가 진화함에 따라 라우팅 모델이 최신 상태를 유지하도록 합니다.</li>
 </ol>
@@ -501,6 +501,6 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 <div class="rr-cross-links">
 <p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>심층 자료와 인접 제품</strong></p>
 <p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
-아키텍처 심층 분석은 블로그 글 <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>에 있습니다. 위의 1단계를 구동하는 아레나는 <a href="/rag-arena/">RAG Arena &amp; Dynamic Routing</a>에 있습니다. 라우팅 결정은 우리가 플랫폼 전반에 사용하는 동일한 릴리스 매니페스트 패턴을 통해 감사 시점에 고정됩니다 — <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>를 참고하세요. 그리고 위의 3단계에 공급되는 신호인 검색 품질을 우리가 어떻게 온라인에서 평가하는지 알고 싶다면, <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">회귀 테스트 글</a>부터 시작하세요.
+아키텍처 심층 분석은 블로그 글 <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>에 있습니다. 위의 1단계를 구동하는 아레나는 <a href="/ko/rag-arena/">RAG Arena &amp; Dynamic Routing</a>에 있습니다. 라우팅 결정은 우리가 플랫폼 전반에 사용하는 동일한 릴리스 매니페스트 패턴을 통해 감사 시점에 고정됩니다 — <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>를 참고하세요. 그리고 위의 3단계에 공급되는 신호인 검색 품질을 우리가 어떻게 온라인에서 평가하는지 알고 싶다면, <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">회귀 테스트 글</a>부터 시작하세요.
 </p>
 </div>

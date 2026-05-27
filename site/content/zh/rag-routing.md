@@ -481,7 +481,7 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 
 <div class="rr-mechanism">
 <ol>
-  <li><strong>Arena 选择。</strong>通过 <a href="/rag-arena/">RAG Arena</a> 在多个后端之间运行某个查询，对各变体并排打分，挑出获胜者。（问题、获胜后端）对将进入路由存储。</li>
+  <li><strong>Arena 选择。</strong>通过 <a href="/zh/rag-arena/">RAG Arena</a> 在多个后端之间运行某个查询，对各变体并排打分，挑出获胜者。（问题、获胜后端）对将进入路由存储。</li>
   <li><strong>Auto-fix 输出。</strong>当我们的 auto-fix 在摄取或定期审计期间对代表性查询运行对比检索时，每个查询表现最好的后端会被写入同一存储。</li>
   <li><strong>生产反馈。</strong>成功的查询（即通过我们的在线评估闸门得分高于您质量阈值的查询——参见<a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">回归测试文章</a>）在请求时将其（问题哈希、后端）对写回路由存储，TTL 为 30 天，确保路由模型随语料库演进保持新鲜。</li>
 </ol>
@@ -502,6 +502,6 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 <div class="rr-cross-links">
 <p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>更深入的阅读与相关产品</strong></p>
 <p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
-架构深度解析见我们的博客文章 <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>。驱动上述第 1 步的竞技场位于 <a href="/rag-arena/">RAG Arena &amp; Dynamic Routing</a>。路由决策通过我们整个平台所用的同一种发布清单模式进行审计锚定——参见 <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>。如果您想了解我们如何在线评估检索质量（即驱动上述第 3 步的信号），<a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">回归测试文章</a>是起点。
+架构深度解析见我们的博客文章 <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>。驱动上述第 1 步的竞技场位于 <a href="/zh/rag-arena/">RAG Arena &amp; Dynamic Routing</a>。路由决策通过我们整个平台所用的同一种发布清单模式进行审计锚定——参见 <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>。如果您想了解我们如何在线评估检索质量（即驱动上述第 3 步的信号），<a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">回归测试文章</a>是起点。
 </p>
 </div>

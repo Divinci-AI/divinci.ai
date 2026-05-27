@@ -481,7 +481,7 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 
 <div class="rr-mechanism">
 <ol>
-  <li><strong>الاختيار من الحلبة (Arena).</strong> شغِّل استعلامًا عبر <a href="/rag-arena/">RAG Arena</a> على أنظمة خلفية متعدِّدة، وقيِّم النسخ جنبًا إلى جنب، واختر الفائزة. يُسجَّل الزوج (السؤال، النظام الخلفي الفائز) في مخزن التوجيه.</li>
+  <li><strong>الاختيار من الحلبة (Arena).</strong> شغِّل استعلامًا عبر <a href="/ar/rag-arena/">RAG Arena</a> على أنظمة خلفية متعدِّدة، وقيِّم النسخ جنبًا إلى جنب، واختر الفائزة. يُسجَّل الزوج (السؤال، النظام الخلفي الفائز) في مخزن التوجيه.</li>
   <li><strong>مخرجات الإصلاح التلقائي.</strong> حين يُجري الإصلاح التلقائي لدينا عمليات استرجاع مقارَنة على استعلامات تمثيلية خلال الاستيعاب أو التدقيقات المجدولة، يُكتَب أفضل نظام خلفي أداءً لكل استعلام في المخزن ذاته.</li>
   <li><strong>تغذية راجعة من الإنتاج.</strong> الاستعلامات الناجحة (تلك التي حقَّقت درجة فوق عتبة الجودة لديك عبر بوابة التقييم الفورية لدينا — راجع <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">مقالة اختبار الانحدار</a>) تكتب زوجها (تجزئة السؤال، النظام الخلفي) في مخزن التوجيه في وقت الطلب، مع TTL مدَّته 30 يومًا حتى يظل نموذج التوجيه طازجًا مع تطوُّر مجموعتك النصية.</li>
 </ol>
@@ -502,6 +502,6 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 <div class="rr-cross-links">
 <p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>قراءات أعمق ومنتجات مجاورة</strong></p>
 <p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
-يقبع التحليل المعمَّق للمعمارية في تدوينتنا <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>. والحلبة التي تُشغِّل الخطوة 1 أعلاه موجودة في <a href="/rag-arena/">RAG Arena &amp; Dynamic Routing</a>. تُرسى قرارات التوجيه عبر نمط بيان الإصدار ذاته الذي نستخدمه في المنصة كلها — راجع <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>. وإن أردت معرفة كيف نقيِّم جودة الاسترجاع فوريًا (الإشارة التي تغذِّي الخطوة 3 أعلاه)، فإن <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">مقالة اختبار الانحدار</a> هي المكان المناسب للبدء.
+يقبع التحليل المعمَّق للمعمارية في تدوينتنا <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>. والحلبة التي تُشغِّل الخطوة 1 أعلاه موجودة في <a href="/ar/rag-arena/">RAG Arena &amp; Dynamic Routing</a>. تُرسى قرارات التوجيه عبر نمط بيان الإصدار ذاته الذي نستخدمه في المنصة كلها — راجع <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>. وإن أردت معرفة كيف نقيِّم جودة الاسترجاع فوريًا (الإشارة التي تغذِّي الخطوة 3 أعلاه)، فإن <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">مقالة اختبار الانحدار</a> هي المكان المناسب للبدء.
 </p>
 </div>

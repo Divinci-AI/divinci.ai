@@ -481,7 +481,7 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 
 <div class="rr-mechanism">
 <ol>
-  <li><strong>Arena-Auswahl.</strong> Schicken Sie eine Anfrage über <a href="/rag-arena/">RAG Arena</a> durch mehrere Backends, bewerten Sie die Varianten direkt nebeneinander und küren Sie den Sieger. Das Paar (Frage, Sieger-Backend) landet im Routing-Speicher.</li>
+  <li><strong>Arena-Auswahl.</strong> Schicken Sie eine Anfrage über <a href="/de/rag-arena/">RAG Arena</a> durch mehrere Backends, bewerten Sie die Varianten direkt nebeneinander und küren Sie den Sieger. Das Paar (Frage, Sieger-Backend) landet im Routing-Speicher.</li>
   <li><strong>Auto-Fix-Ergebnisse.</strong> Wenn unser Auto-Fix während des Ingests oder geplanter Audits vergleichende Retrievals auf repräsentativen Anfragen ausführt, wird das jeweils leistungsstärkste Backend pro Anfrage in denselben Speicher geschrieben.</li>
   <li><strong>Produktions-Feedback.</strong> Erfolgreiche Anfragen (jene, die über unser Online-Evaluations-Gate Ihre Qualitätsschwelle überschritten haben — siehe den <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">Beitrag zum Regressionstesten</a>) schreiben ihr Paar (Frage-Hash, Backend) zur Anfragezeit in den Routing-Speicher zurück, mit einer TTL von 30 Tagen, damit das Routing-Modell frisch bleibt, während sich Ihr Korpus weiterentwickelt.</li>
 </ol>
@@ -502,6 +502,6 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 <div class="rr-cross-links">
 <p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>Weiterführende Lektüre und angrenzende Produkte</strong></p>
 <p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
-Die Architektur-Tiefenanalyse finden Sie in unserem Blogbeitrag <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>. Die Arena, die Schritt 1 oben antreibt, liegt unter <a href="/rag-arena/">RAG Arena &amp; Dynamic Routing</a>. Routing-Entscheidungen werden über dasselbe Release-Manifest-Muster audit-verankert, das wir plattformweit einsetzen — siehe <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>. Und wenn Sie wissen möchten, wie wir Retrieval-Qualität online evaluieren (das Signal, das Schritt 3 oben speist), ist der <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">Beitrag zum Regressionstesten</a> der richtige Einstieg.
+Die Architektur-Tiefenanalyse finden Sie in unserem Blogbeitrag <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>. Die Arena, die Schritt 1 oben antreibt, liegt unter <a href="/de/rag-arena/">RAG Arena &amp; Dynamic Routing</a>. Routing-Entscheidungen werden über dasselbe Release-Manifest-Muster audit-verankert, das wir plattformweit einsetzen — siehe <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>. Und wenn Sie wissen möchten, wie wir Retrieval-Qualität online evaluieren (das Signal, das Schritt 3 oben speist), ist der <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">Beitrag zum Regressionstesten</a> der richtige Einstieg.
 </p>
 </div>

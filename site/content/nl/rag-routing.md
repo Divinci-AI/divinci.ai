@@ -481,7 +481,7 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 
 <div class="rr-mechanism">
 <ol>
-  <li><strong>Arena-selectie.</strong> Stuur een query door <a href="/rag-arena/">RAG Arena</a> over meerdere backends, scoor de varianten naast elkaar, kies de winnaar. Het paar (vraag, winnende-backend) belandt in de routing-store.</li>
+  <li><strong>Arena-selectie.</strong> Stuur een query door <a href="/nl/rag-arena/">RAG Arena</a> over meerdere backends, scoor de varianten naast elkaar, kies de winnaar. Het paar (vraag, winnende-backend) belandt in de routing-store.</li>
   <li><strong>Auto-fix-uitvoer.</strong> Wanneer onze auto-fix vergelijkende retrievals uitvoert op representatieve queries tijdens ingestie of geplande audits, wordt de best presterende backend per query naar dezelfde store geschreven.</li>
   <li><strong>Productiefeedback.</strong> Succesvolle queries (die boven uw kwaliteitsdrempel scoorden via onze online evaluatie-gate — zie de <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">regressietestpost</a>) schrijven hun paar (vraaghash, backend) op request-time terug in de routing-store, met een TTL van 30 dagen, zodat het routing-model fris blijft naarmate uw corpus evolueert.</li>
 </ol>
@@ -502,6 +502,6 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 <div class="rr-cross-links">
 <p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>Verdere lectuur en gerelateerde producten</strong></p>
 <p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
-De architectuur-deep-dive leeft in onze blogpost <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>. De arena die stap 1 hierboven aandrijft staat op <a href="/rag-arena/">RAG Arena &amp; Dynamic Routing</a>. Routing-beslissingen worden audit-verankerd via hetzelfde release-manifest-patroon dat we over het hele platform gebruiken — zie <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>. En als u wilt weten hoe we de kwaliteit van retrieval online evalueren (het signaal dat stap 3 hierboven voedt), is de <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">regressietestpost</a> de plek om te beginnen.
+De architectuur-deep-dive leeft in onze blogpost <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>. De arena die stap 1 hierboven aandrijft staat op <a href="/nl/rag-arena/">RAG Arena &amp; Dynamic Routing</a>. Routing-beslissingen worden audit-verankerd via hetzelfde release-manifest-patroon dat we over het hele platform gebruiken — zie <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>. En als u wilt weten hoe we de kwaliteit van retrieval online evalueren (het signaal dat stap 3 hierboven voedt), is de <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">regressietestpost</a> de plek om te beginnen.
 </p>
 </div>

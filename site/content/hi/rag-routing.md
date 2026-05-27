@@ -481,7 +481,7 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 
 <div class="rr-mechanism">
 <ol>
-  <li><strong>एरीना चयन।</strong> कई बैकएंड्स पर <a href="/rag-arena/">RAG Arena</a> के माध्यम से एक क्वेरी चलाएँ, वेरिएंट्स को साथ-साथ स्कोर करें, विजेता चुनें। (प्रश्न, विजेता-बैकएंड) जोड़ी रूटिंग स्टोर में दर्ज होती है।</li>
+  <li><strong>एरीना चयन।</strong> कई बैकएंड्स पर <a href="/hi/rag-arena/">RAG Arena</a> के माध्यम से एक क्वेरी चलाएँ, वेरिएंट्स को साथ-साथ स्कोर करें, विजेता चुनें। (प्रश्न, विजेता-बैकएंड) जोड़ी रूटिंग स्टोर में दर्ज होती है।</li>
   <li><strong>ऑटो-फ़िक्स आउटपुट।</strong> जब हमारा ऑटो-फ़िक्स इंजेस्ट या निर्धारित ऑडिट के दौरान प्रतिनिधि क्वेरीज़ पर तुलनात्मक रिट्रीवल चलाता है, तो प्रति-क्वेरी सर्वोत्तम-प्रदर्शन वाला बैकएंड उसी स्टोर में लिखा जाता है।</li>
   <li><strong>प्रोडक्शन फ़ीडबैक।</strong> सफल क्वेरीज़ (वे जो हमारे ऑनलाइन मूल्यांकन गेट के माध्यम से आपकी गुणवत्ता सीमा से ऊपर स्कोर करती हैं — <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">regression-testing पोस्ट</a> देखें) अनुरोध-समय पर अपनी (प्रश्न हैश, बैकएंड) जोड़ी को रूटिंग स्टोर में वापस लिखती हैं, 30-दिन के TTL के साथ ताकि आपके कॉर्पस के विकसित होने पर रूटिंग मॉडल ताज़ा बना रहे।</li>
 </ol>
@@ -502,6 +502,6 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 <div class="rr-cross-links">
 <p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>गहन पठन और संबंधित उत्पाद</strong></p>
 <p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
-आर्किटेक्चर का गहन विश्लेषण हमारे ब्लॉग पोस्ट <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a> में है। ऊपर चरण 1 को संचालित करने वाला एरीना <a href="/rag-arena/">RAG Arena &amp; Dynamic Routing</a> पर है। रूटिंग निर्णय उसी रिलीज़-मैनिफ़ेस्ट पैटर्न के माध्यम से ऑडिट-एंकर किए जाते हैं जिसका हम प्लेटफ़ॉर्म में उपयोग करते हैं — देखें <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>। और यदि आप जानना चाहते हैं कि हम रिट्रीवल गुणवत्ता का ऑनलाइन मूल्यांकन कैसे करते हैं (वह संकेत जो ऊपर चरण 3 को फ़ीड करता है), तो <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">regression-testing पोस्ट</a> शुरुआत के लिए सही स्थान है।
+आर्किटेक्चर का गहन विश्लेषण हमारे ब्लॉग पोस्ट <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a> में है। ऊपर चरण 1 को संचालित करने वाला एरीना <a href="/hi/rag-arena/">RAG Arena &amp; Dynamic Routing</a> पर है। रूटिंग निर्णय उसी रिलीज़-मैनिफ़ेस्ट पैटर्न के माध्यम से ऑडिट-एंकर किए जाते हैं जिसका हम प्लेटफ़ॉर्म में उपयोग करते हैं — देखें <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>। और यदि आप जानना चाहते हैं कि हम रिट्रीवल गुणवत्ता का ऑनलाइन मूल्यांकन कैसे करते हैं (वह संकेत जो ऊपर चरण 3 को फ़ीड करता है), तो <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">regression-testing पोस्ट</a> शुरुआत के लिए सही स्थान है।
 </p>
 </div>

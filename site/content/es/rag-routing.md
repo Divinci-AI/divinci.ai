@@ -481,7 +481,7 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 
 <div class="rr-mechanism">
 <ol>
-  <li><strong>Selección en la arena.</strong> Corre una consulta por <a href="/rag-arena/">RAG Arena</a> entre múltiples backends, puntúa las variantes lado a lado y elige al ganador. El par (pregunta, backend ganador) aterriza en el almacén de enrutamiento.</li>
+  <li><strong>Selección en la arena.</strong> Corre una consulta por <a href="/es/rag-arena/">RAG Arena</a> entre múltiples backends, puntúa las variantes lado a lado y elige al ganador. El par (pregunta, backend ganador) aterriza en el almacén de enrutamiento.</li>
   <li><strong>Salidas del auto-fix.</strong> Cuando nuestro auto-fix ejecuta recuperaciones comparativas sobre consultas representativas durante la ingesta o en auditorías programadas, el backend con mejor desempeño por consulta queda escrito en el mismo almacén.</li>
   <li><strong>Feedback de producción.</strong> Las consultas exitosas (las que superan tu umbral de calidad vía nuestra puerta de evaluación online — ver el <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">post sobre regression-testing</a>) escriben su par (hash de pregunta, backend) de vuelta en el almacén de enrutamiento en tiempo de petición, con un TTL de 30 días para que el modelo de enrutamiento se mantenga fresco a medida que evoluciona tu corpus.</li>
 </ol>
@@ -502,6 +502,6 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 <div class="rr-cross-links">
 <p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>Lecturas más profundas y productos adyacentes</strong></p>
 <p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
-El análisis arquitectónico a fondo vive en nuestro post <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>. La arena que alimenta el paso 1 de arriba está en <a href="/rag-arena/">RAG Arena &amp; Dynamic Routing</a>. Las decisiones de enrutamiento quedan ancladas en auditoría a través del mismo patrón de release-manifest que usamos en toda la plataforma — ver <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>. Y si quieres saber cómo evaluamos la calidad de recuperación en línea (la señal que alimenta el paso 3 de arriba), el <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">post sobre regression-testing</a> es por donde empezar.
+El análisis arquitectónico a fondo vive en nuestro post <a href="/blog/future-of-rag-systems/">The Future of RAG Systems: Beyond Simple Document Retrieval</a>. La arena que alimenta el paso 1 de arriba está en <a href="/es/rag-arena/">RAG Arena &amp; Dynamic Routing</a>. Las decisiones de enrutamiento quedan ancladas en auditoría a través del mismo patrón de release-manifest que usamos en toda la plataforma — ver <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">Validating and Releasing Custom LMs in Regulated Fields</a>. Y si quieres saber cómo evaluamos la calidad de recuperación en línea (la señal que alimenta el paso 3 de arriba), el <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">post sobre regression-testing</a> es por donde empezar.
 </p>
 </div>

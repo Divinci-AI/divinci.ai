@@ -483,7 +483,7 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 <ol>
   <li><strong>アリーナでの選択。</strong>クエリを<a href="/ja/rag-arena/">RAG Arena</a>を通じて複数のバックエンドで実行し、結果を並べてスコアリングし、勝者を選びます。（質問、勝利したバックエンド）のペアがルーティングストアに登録されます。</li>
   <li><strong>自動修正の出力。</strong>当社の自動修正機能が、取り込み時または定期監査の際に代表的なクエリで比較検索を実行すると、クエリごとに最も性能の高いバックエンドが同じストアに書き込まれます。</li>
-  <li><strong>本番フィードバック。</strong>成功したクエリ（オンライン評価ゲートを通じて品質閾値を超えてスコアリングされたもの — <a href="/ja/blog/automated-regression-testing-for-custom-llms-in-2026/">リグレッションテスト記事</a>を参照）は、リクエスト時に（質問ハッシュ、バックエンド）のペアをルーティングストアに書き戻し、コーパスの進化に応じてルーティングモデルが鮮度を保つよう30日間のTTLを設定します。</li>
+  <li><strong>本番フィードバック。</strong>成功したクエリ（オンライン評価ゲートを通じて品質閾値を超えてスコアリングされたもの — <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">リグレッションテスト記事</a>を参照）は、リクエスト時に（質問ハッシュ、バックエンド）のペアをルーティングストアに書き戻し、コーパスの進化に応じてルーティングモデルが鮮度を保つよう30日間のTTLを設定します。</li>
 </ol>
 <div class="rr-note">
   <strong>実際の本番グレードとロードマップの境目：</strong> ステップ1と2は本日時点で出荷されています。ステップ3の自動フィードバックループは部分的に出荷されています — 成功したクエリは書き戻されますが、Tier 2（BM25 + RRF + reranker）は現在自動ルーティングではなくワークフローノードとして構成されています。ルーティングデータが明確な勝利条件を示し次第、Tier 2を自動ルーターに組み込みます。
@@ -502,6 +502,6 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 <div class="rr-cross-links">
 <p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>関連する詳細解説と隣接製品</strong></p>
 <p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
-アーキテクチャの詳細な解説はブログ記事<a href="/ja/blog/future-of-rag-systems/">RAGシステムの未来：シンプルなドキュメント検索を超えて</a>でご覧いただけます。上記ステップ1を支えるアリーナは<a href="/ja/rag-arena/">RAG Arena &amp; Dynamic Routing</a>にあります。ルーティング判断は、プラットフォーム全体で利用しているリリースマニフェストパターンと同じ仕組みで監査アンカーされています — <a href="/ja/blog/validating-and-releasing-custom-lms-in-regulated-fields/">規制業界におけるカスタムLMの検証とリリース</a>を参照してください。そして、検索品質をオンラインでどのように評価しているか（上記ステップ3に供給されるシグナル）を知りたい場合は、<a href="/ja/blog/automated-regression-testing-for-custom-llms-in-2026/">リグレッションテスト記事</a>から始めるのがおすすめです。
+アーキテクチャの詳細な解説はブログ記事<a href="/blog/future-of-rag-systems/">RAGシステムの未来：シンプルなドキュメント検索を超えて</a>でご覧いただけます。上記ステップ1を支えるアリーナは<a href="/ja/rag-arena/">RAG Arena &amp; Dynamic Routing</a>にあります。ルーティング判断は、プラットフォーム全体で利用しているリリースマニフェストパターンと同じ仕組みで監査アンカーされています — <a href="/blog/validating-and-releasing-custom-lms-in-regulated-fields/">規制業界におけるカスタムLMの検証とリリース</a>を参照してください。そして、検索品質をオンラインでどのように評価しているか（上記ステップ3に供給されるシグナル）を知りたい場合は、<a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">リグレッションテスト記事</a>から始めるのがおすすめです。
 </p>
 </div>
