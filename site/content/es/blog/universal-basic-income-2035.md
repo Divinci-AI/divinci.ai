@@ -60,6 +60,163 @@ La pregunta no es si podemos permitirnos el UBI. La pregunta es si podemos permi
   </a>
 </div>
 
+## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Actualización de Mayo 2026: Cómo Nuestro Modelo se Compara con los Planes que Han Surgido Desde Entonces
+
+Cuando este análisis se publicó por primera vez en octubre de 2025, el "ingreso post-trabajo-IA" era todavía mayormente una hipótesis escrita por think-tanks. Los siete meses transcurridos desde entonces han llevado la conversación de *si* a *cómo* — y un puñado de figuras nombradas han puesto propuestas concretas sobre la mesa. A continuación las mapeamos contra nuestros cuatro pilares de financiación (captura de productividad por IA, abundancia de energía de fusión, conversión del presupuesto de defensa, minería cripto de trabajo útil) y actualizamos nuestro modelo donde las nuevas ideas lo fortalecen.
+
+<figure style="margin: 2.5rem 0;">
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width: 100%; max-width: 100%; height: auto;" role="img" aria-label="El modelo de financiación de 2026 — cuatro pilares de financiación y una capa de política para el UBI">
+<rect width="900" height="520" fill="#faf8f5"/>
+<text x="450" y="34" font-family="'DM Sans', -apple-system, sans-serif" font-size="20" font-weight="700" fill="#1e3a2b" text-anchor="middle">El Modelo de Financiación de 2026 — Cuatro Pilares + Una Capa de Política</text>
+<text x="450" y="58" font-family="'DM Sans', -apple-system, sans-serif" font-size="13" fill="#5a6862" text-anchor="middle">Los pilares 1, 3, 4 siguen siendo distintivos de este análisis. El pilar 2 absorbe los planes de 2025–2026.</text>
+<g transform="translate(60, 85)">
+<rect x="0" y="0" width="780" height="58" fill="#a04848" rx="6"/>
+<text x="390" y="28" font-family="'DM Sans', sans-serif" font-size="15" font-weight="700" fill="#faf8f5" text-anchor="middle">ESCALADORES DE RED DE SEGURIDAD AUTO-ACTIVADOS — capa de política</text>
+<text x="390" y="46" font-family="'DM Sans', sans-serif" font-size="12" fill="#f5d6d6" text-anchor="middle">Indexados contra métricas de desplazamiento del BLS — se activan automáticamente cuando se cruzan los umbrales</text>
+</g>
+<g transform="translate(450, 152)">
+<path d="M -390 0 L -390 14 M -130 0 L -130 14 M 130 0 L 130 14 M 390 0 L 390 14" stroke="#a04848" stroke-width="1.5" stroke-dasharray="2,3" opacity="0.5"/>
+</g>
+<g transform="translate(60, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#b8a060" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#3a2e1c" text-anchor="middle">I · Energía de Fusión</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#b8a060" stroke-width="1.5"/>
+<rect x="50" y="60" width="80" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#5a6c3a" text-anchor="middle">DISTINTIVO</text>
+<text x="90" y="116" font-family="'DM Sans', sans-serif" font-size="11" fill="#4a4030" text-anchor="middle" font-style="italic"><tspan x="90" dy="0">Ningún otro plan de</tspan><tspan x="90" dy="15">2025–2026 vincula la</tspan><tspan x="90" dy="15">financiación del UBI con</tspan><tspan x="90" dy="15">colapsos de costos por fusión</tspan></text>
+<text x="90" y="220" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">La base de costos de cada</text>
+<text x="90" y="236" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">otro plan cambia</text>
+<text x="90" y="252" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">si la fusión cumple</text>
+<text x="90" y="298" font-family="'DM Sans', sans-serif" font-size="10" fill="#7a7060" text-anchor="middle">CFS · Helion · ITER</text>
+</g>
+<g transform="translate(260, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#2d5a4f" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#faf8f5" text-anchor="middle">II · Productividad por IA</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#2d5a4f" stroke-width="1.5"/>
+<rect x="58" y="60" width="64" height="22" fill="#faf8f5" stroke="#a04848" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#7a3030" text-anchor="middle">SATURADO</text>
+<rect x="8" y="100" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="115" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">OpenAI Public Wealth Fund</text>
+<rect x="8" y="128" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="143" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">Citizen Dividend de Corea</text>
+<rect x="8" y="156" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="171" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">IVA de Yang (consumo)</text>
+<rect x="8" y="184" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="199" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">Windfall Clause (voluntaria)</text>
+<rect x="8" y="212" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="227" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">UHI de Musk (productividad)</text>
+<text x="90" y="262" font-family="'DM Sans', sans-serif" font-size="10" fill="#5a6862" text-anchor="middle" font-style="italic">5 planes nombrados, un pilar</text>
+</g>
+<g transform="translate(460, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#5a7a8f" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#faf8f5" text-anchor="middle">III · Conversión de Defensa</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1.5"/>
+<rect x="50" y="60" width="80" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#5a6c3a" text-anchor="middle">DISTINTIVO</text>
+<text x="90" y="116" font-family="'DM Sans', sans-serif" font-size="11" fill="#4a4030" text-anchor="middle" font-style="italic"><tspan x="90" dy="0">Reasignación de</tspan><tspan x="90" dy="15">dividendo de paz; ausente en</tspan><tspan x="90" dy="15">cualquier plan de 2025–2026</tspan><tspan x="90" dy="15">analizado</tspan></text>
+<text x="90" y="220" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">Piso de conversión del 20% →</text>
+<text x="90" y="236" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">línea anual de financiación</text>
+<text x="90" y="252" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">multibillonaria</text>
+<text x="90" y="298" font-family="'DM Sans', sans-serif" font-size="10" fill="#7a7060" text-anchor="middle">Precedente post-Guerra Fría</text>
+</g>
+<g transform="translate(660, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#7a8a4a" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#faf8f5" text-anchor="middle">IV · Minería de Trabajo Útil</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5"/>
+<rect x="50" y="60" width="80" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#5a6c3a" text-anchor="middle">DISTINTIVO</text>
+<rect x="8" y="100" width="164" height="22" fill="#eae3d5" stroke="#7a8a4a" stroke-width="1" rx="4"/>
+<text x="90" y="115" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">UBC de Altman (complemento)</text>
+<text x="90" y="156" font-family="'DM Sans', sans-serif" font-size="11" fill="#4a4030" text-anchor="middle" font-style="italic"><tspan x="90" dy="0">Análogo de cómputo</tspan><tspan x="90" dy="15">como moneda; Worldcoin</tspan><tspan x="90" dy="15">es vía de identidad, no</tspan><tspan x="90" dy="15">mecanismo de financiación</tspan></text>
+<text x="90" y="252" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">Gridcoin sigue</text>
+<text x="90" y="268" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">infraexplorado</text>
+</g>
+</svg>
+<figcaption style="text-align: center; font-style: italic; color: #5a6862; font-size: 0.9rem; margin-top: 0.75rem;">Los pilares 1, 3, 4 siguen siendo únicos en este análisis — ningún otro plan de 2025–2026 los cubre. El pilar 2 absorbe las propuestas de figuras nombradas que surgieron entre 2025 y 2026. La capa de control auto-activada es la nueva primitiva de política que convierte el UBI de una decisión política por presupuesto en una técnica indexada por fórmula.</figcaption>
+</figure>
+
+### Un nuevo encuadre: el "Universal High Income" de Musk
+
+En la conferencia Viva Technology de París en mayo de 2024, Elon Musk introdujo un encuadre distinto: <q>Habrá ingreso alto universal — y no ingreso básico universal.</q><sup style="font-size: 0.75em;"><a href="#ref-92" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[92]</a></sup> Ha reiterado la formulación en múltiples foros desde entonces — el U.S.–Saudi Investment Forum en Washington en noviembre de 2025, en X en agosto de 2025, en Joe Rogan a finales de 2025<sup style="font-size: 0.75em;"><a href="#ref-93" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[93]</a></sup>. Su tesis es estructuralmente diferente del UBI: en lugar de redistribuir recursos escasos para establecer un *piso*, la IA y la robótica producen suficientes bienes y servicios para que la escasez misma se evapore. <q>Abundancia sostenible.</q>
+
+Este es el mismo argumento impulsado por la productividad que planteamos en el Cambio de Juego #1, llevado a su conclusión lógica. Donde el encuadre de Musk se queda corto es en el **problema de distribución**: aunque la IA/robótica produzcan abundancia, *quién posee la capacidad productiva* determina si esa abundancia fluye hacia los ciudadanos. Musk no ha propuesto un mecanismo de redistribución — asume que la productividad misma elimina la necesidad de uno. El robot humanoide Optimus de Tesla es el vehículo de producción implícito en su encuadre, pero no ha especificado una estructura de propiedad, dividendos o reparto de ingresos que dirija la producción de Optimus a los ciudadanos.
+
+El modelado independiente del Tax Project Institute (no la cifra de Musk) estima que financiar el UHI a niveles de suficiencia-plus para los ~40 millones de trabajadores más expuestos al desplazamiento costaría aproximadamente $7.03 billones anuales, o el 143% de los ingresos federales de 2024<sup style="font-size: 0.75em;"><a href="#ref-94" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[94]</a></sup>. La matemática reproduce el veredicto de imposibilidad que enfrentó el UBI antes de que nuestros cuatro pilares cerraran la brecha. **El UHI sin un mecanismo de distribución es el mismo problema de billones de dólares; el UHI más nuestros cuatro pilares es un modelo más honesto.**
+
+La respuesta de Bill Gates de 2017 a un encuadre similar sigue aplicando y vale la pena citarla en la misma escala: <q>Ni siquiera EE.UU. es lo suficientemente rico como para permitir que la gente no trabaje</q><sup style="font-size: 0.75em;"><a href="#ref-95" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[95]</a></sup> — todavía — y la estructura tipo EITC que propone es precisamente sobre la que se construye nuestro Cambio de Juego #2.
+
+El cronograma declarado por Musk es de "10 a 20 años" para que el trabajo se vuelva opcional, con una probabilidad de ~80% de lo que él llama el resultado benigno<sup style="font-size: 0.75em;"><a href="#ref-93" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[93]</a></sup>. Eso enmarca nuestro objetivo de 2035.
+
+### Los planes de 2025–2026, en una tabla
+
+<figure style="margin: 2rem 0; overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+<thead>
+<tr style="background: #2d5a4f; color: #faf8f5;">
+<th style="padding: 0.7rem 0.9rem; text-align: left;">Plan</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">Proponente · foro</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">Mecanismo</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">¿Encaja en nuestros pilares?</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Universal High Income</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Musk · Viva Tech 2024<sup style="font-size: 0.75em;"><a href="#ref-92" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[92]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">La productividad elimina la escasez; redistribución no especificada</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Pilar 2 en espíritu; ignora la distribución</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>OpenAI Economic Blueprint</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">OpenAI · Abr 2026<sup style="font-size: 0.75em;"><a href="#ref-96" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[96]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Public Wealth Fund (modelo Alaska) + impuesto a robots + semana laboral de 4 días + red de seguridad de auto-activación</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Refuerza fuertemente el Pilar 2</strong> — ver abajo</td></tr>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Universal Basic Compute</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Altman · All-In Pod, May 2024<sup style="font-size: 0.75em;"><a href="#ref-97" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[97]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Cada ciudadano recibe una porción de inferencia GPT-N; vendible o donable</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Nuevo quinto mecanismo</strong> — distribución de cómputo en especie</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Citizen Dividend</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Corea del Sur (Kim Yong-beom) · May 2026<sup style="font-size: 0.75em;"><a href="#ref-98" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[98]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Fondo soberano de inversión alimentado por las ganancias de IA y semiconductores de Samsung / SK Hynix</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Pilar 2 — primera versión gubernamental nombrada</td></tr>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Freedom Dividend (renovado)</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Yang · Fortune, Feb 2026<sup style="font-size: 0.75em;"><a href="#ref-99" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[99]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">$1,000/mes vía IVA del 10% sobre valor agregado aumentado por IA</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Pilar 2 vía impuesto al consumo — financia &lt;50% según Tax Foundation</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Windfall Clause</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Oxford GovAI · O'Keefe et al.<sup style="font-size: 0.75em;"><a href="#ref-100" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[100]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Compromiso voluntario ex-ante de las firmas de IA de donar ganancias por encima de un umbral transformador</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Pilar 2 en principio; voluntario</td></tr>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Piloto AI Dividend</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">AI Commons / What We Will · Mar 2026<sup style="font-size: 0.75em;"><a href="#ref-101" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[101]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">$1,000/mes a 25–50 trabajadores desplazados por IA; financiado por filantropía</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Primer programa operacional específico de desplazamiento</strong></td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem;"><strong>Worldcoin</strong></td><td style="padding: 0.7rem 0.9rem;">Tools for Humanity · 2024–25<sup style="font-size: 0.75em;"><a href="#ref-102" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[102]</a></sup></td><td style="padding: 0.7rem 0.9rem;">Prueba de personalidad por escaneo de iris; subsidio de $42 por registro</td><td style="padding: 0.7rem 0.9rem;">Vía de identidad — prerrequisito, no financiación</td></tr>
+</tbody>
+</table>
+<figcaption style="text-align: center; font-style: italic; color: #5a6862; font-size: 0.9rem; margin-top: 0.75rem;">Los planes de 2025–2026, mapeados contra nuestro modelo de financiación de cuatro pilares.</figcaption>
+</figure>
+
+### Dónde nuestros cuatro pilares aún diferencian
+
+Mirando la tabla, tres de nuestros cuatro pilares siguen siendo únicos en este análisis:
+
+- **Pilar 1 — Abundancia de energía de fusión.** Ninguna otra propuesta nombrada de 2025–2026 vincula la financiación del UBI con colapsos de costos impulsados por fusión. Cada plan anterior asume la economía energética actual. Si la fusión comercial cumple con el cronograma de CFS, Helion e ITER, la base de costos para *cada otro plan de la tabla* cambia sustancialmente.
+- **Pilar 3 — Conversión del presupuesto de defensa.** Ausente en cualquier propuesta analizada. La reasignación del dividendo de paz que modelamos — incluso con un piso de conversión del 20% — financia más del programa que el impuesto a robots del OpenAI Blueprint con las valoraciones actuales de IA.
+- **Pilar 4 — Minería cripto de trabajo útil.** Worldcoin opera del lado de la identidad, no del trabajo. Ningún otro plan usa la minería de cómputo como financiación. Gridcoin y primitivas similares siguen infraexploradas.
+
+El pilar saturado es el **#2 — Captura de productividad por IA.** Seis de los siete planes viven aquí, y ahí es donde nuestro modelo tiene más que incorporar de lo que otros han propuesto.
+
+### Lo que añadiríamos a nuestro modelo a partir de los planes de 2026
+
+Cuatro mecanismos concretos de los otros planes refuerzan nuestro encuadre del Pilar 2 y vale la pena incorporarlos:
+
+**1. El OpenAI Public Wealth Fund — Alaska Permanent Fund, escalado a IA**<sup style="font-size: 0.75em;"><a href="#ref-96" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[96]</a></sup>. El Economic Blueprint de OpenAI de abril de 2026 propone un fondo administrado federalmente alimentado por una contribución de las compañías de IA, distribuyendo dividendos per cápita de manera similar a como el Alaska Permanent Fund distribuye regalías petroleras (dividendo 2025: $1,702 por residente<sup style="font-size: 0.75em;"><a href="#ref-103" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[103]</a></sup>). Este es el vehículo del Pilar 2 más operacionalmente específico propuesto hasta la fecha, y complementa en lugar de competir con nuestra matemática de conversión de defensa: el fondo suministra el capital, la conversión suministra los ingresos recurrentes.
+
+**2. El Citizen Dividend de Corea del Sur — la primera versión gubernamental nombrada**<sup style="font-size: 0.75em;"><a href="#ref-98" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[98]</a></sup>. En mayo de 2026, el jefe de política presidencial Kim Yong-beom planteó redistribuir el exceso de ingresos fiscales provenientes de las ganancias de IA/semiconductores de Samsung y SK Hynix vía un fondo soberano de inversión modelado sobre Alaska y Noruega. El KOSPI cayó un 5.1% con el anuncio, lo cual es informativo en sí mismo: los mercados de valores ponen precio al mecanismo de redistribución en el momento en que se vuelve políticamente creíble. Nuestro modelo debería incluir explícitamente una línea de *fondo-soberano-de-ganancias-de-IA* en la columna del Pilar 2.
+
+**3. Escaladores de red de seguridad auto-activados**<sup style="font-size: 0.75em;"><a href="#ref-96" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[96]</a></sup>. El Blueprint de OpenAI propone escaladores de UBI que se activan automáticamente cuando las métricas de desplazamiento por IA cruzan umbrales definidos — desempleo por industria, horas-trabajadas-per cápita, índices de desplazamiento-por-ocupación del BLS. Esto convierte el UBI de una decisión *política* (legislada, disputable, vetable) a una *técnica* (basada en fórmula, indexada, automática). Deberíamos añadirlo como una primitiva de política sobre nuestro modelo de financiación de cuatro pilares.
+
+**4. Cómputo como moneda en especie — el UBC de Altman**<sup style="font-size: 0.75em;"><a href="#ref-97" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[97]</a></sup>. La propuesta de Universal Basic Compute es el único plan de la tabla que sugiere un canal de distribución no monetario. En nuestro modelo, el cómputo en especie funciona como *complemento del Pilar 4*: donde la minería de trabajo útil convierte cómputo *en* ingreso, el UBC distribuye cómputo *como* ingreso. Ambos pilares evitan la fricción de la redistribución fiduciaria; juntos describen una economía donde el cómputo es un análogo de moneda primaria.
+
+### Una actualización honesta desde los pilotos
+
+Los resultados de 2024–2025 del estudio UBI de OpenResearch de Sam Altman<sup style="font-size: 0.75em;"><a href="#ref-104" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[104]</a></sup> añaden matices a las afirmaciones de que "el UBI funciona." De los 3,000 participantes que recibieron $1,000/mes frente a un grupo de control de $50 a través de Illinois y Texas:
+
+- **Sin mejora en calidad del empleo.** La movilidad laboral y el avance profesional fueron similares al control.
+- **Los receptores trabajaron ligeramente menos.** Aproximadamente dos horas menos por semana que el control; pequeño pero estadísticamente detectable.
+- **Las hospitalizaciones subieron ~26%.** Probablemente consecuencia de *mayor acceso* a la atención en lugar de un deterioro de la salud, pero vale la pena destacarlo.
+- **Los receptores reportaron sustancialmente más flexibilidad financiera.** El mecanismo que sobrevive limpiamente al ensayo es la *autonomía* — la capacidad de elegir cuándo, dónde y cómo trabajar.
+
+Estos no son los mismos resultados que Stockton (que mostró un aumento del empleo a tiempo completo del 28% al 40%<sup style="font-size: 0.75em;"><a href="#ref-105" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[105]</a></sup>) o el ensayo prolongado de GiveDirectly en Kenia (sin ociosidad, más emprendimiento). El resumen honesto a lo largo de los tres: las transferencias en efectivo producen *flexibilidad* de manera confiable; la *mejora del empleo* depende de los mercados laborales locales; los *efectos en salud* son mixtos y están confundidos por el acceso. Nuestro modelo de 2035 no debería sobreafirmar que "el UBI causa aumentos del empleo" sin especificar las condiciones.
+
+### El resumen de la actualización
+
+No estamos reescribiendo los cuatro pilares. Estamos diciendo:
+
+1. **El Pilar 1 (fusión), el Pilar 3 (conversión de defensa), el Pilar 4 (minería de trabajo útil)** siguen siendo únicos en este análisis. Ningún otro plan de 2025–2026 los cubre, y siguen siendo las partes estructurales de nuestra base de costos.
+2. **El Pilar 2 (captura de productividad por IA)** absorbe el vehículo OpenAI Public Wealth Fund, el precedente del Citizen Dividend de Corea, la Windfall Clause como upstream voluntario, y el UBC de Altman como complemento de cómputo-como-moneda.
+3. **Un nuevo quinto elemento — escaladores de red de seguridad auto-activados** — se añade como engranaje de política que convierte el UBI de una decisión legislativa a una técnica indexada contra las métricas de desplazamiento del BLS.
+4. **El encuadre UHI de Musk es estructuralmente compatible** con nuestro modelo — pero solo si la afirmación de que la productividad-elimina-la-redistribución se reconoce como ignorando el problema de la distribución. Nuestros cuatro pilares son *cómo* la abundancia llega realmente a la gente. El UHI es el destino; los cuatro pilares son el camino.
+
+Todo lo que está debajo permanece como el análisis publicado originalmente. La conversación se ha movido mucho en siete meses — esperamos refrescarla nuevamente a medida que aterricen más planes.
+
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> El Problema Matemático Tradicional
 
 Comencemos con la sobria realidad. Proporcionar a cada adulto estadounidense (260 millones de personas) $5,000 mensuales requeriría $15.6 billones anuales. Incluso un modesto pago mensual de $3,000 demanda $9.36 billones—más del doble de los ingresos fiscales federales actuales.
@@ -788,6 +945,62 @@ Explora investigación y defensa de organizaciones líderes:
 [^40]: RAND Corporation. "What Does America's Political Polarization Mean for Competition with China?" Noviembre 2018. Análisis de evaluaciones de think tanks chinos de que la polarización política de EE.UU. limita el espacio de maniobra presidencial y fuerza enfoque en desafíos domésticos.
 
 [^41]: Brookings Institution. "How China is responding to escalating strategic competition with the US." 2024. Opiniones de estrategas chinos de que las divisiones internas de EE.UU. crean aperturas estratégicas mientras Estados Unidos lucha con gobernanza doméstica.
+
+<span id="ref-92"></span>
+
+[^92]: Musk, Elon. Conferencia Viva Technology, París, 23 de mayo de 2024. Declaración en escenario presentando "Universal High Income" como un encuadre distinto al UBI. Cobertura: <a href="https://www.foxbusiness.com/economy/musk-predicts-ai-create-universal-high-income-make-saving-money-unnecessary" target="_blank" rel="noopener">Fox Business — "Musk predicts AI will create universal high income"</a>. Sesión completa en el canal de YouTube de VivaTech.
+
+<span id="ref-93"></span>
+
+[^93]: Fortune. "When does Elon Musk say work will be optional and money will be irrelevant?" 19 de enero de 2026. Síntesis de las declaraciones recientes de Musk sobre el cronograma de 10 a 20 años y la probabilidad de ~80% de resultado benigno. <a href="https://fortune.com/2026/01/19/when-does-elon-musk-say-work-will-be-optional-and-money-will-be-irrelevant-ai-robotics/" target="_blank" rel="noopener">fortune.com</a>
+
+<span id="ref-94"></span>
+
+[^94]: Tax Project Institute. "Universal High Income." 2025. Modelado independiente que estima ~$175,700/año por trabajador desplazado bajo un escenario de 40M trabajadores, costo anual del programa de ~$7.03B, o el 143% de los ingresos federales de 2024. <a href="https://taxproject.org/universal-high-income/" target="_blank" rel="noopener">taxproject.org/universal-high-income</a>. No es la cifra de Musk; publicada como crítica a la viabilidad.
+
+<span id="ref-95"></span>
+
+[^95]: Yahoo Finance. "Universal high income: Elon Musk's prediction and how it could work." 2025. Cobertura que incluye la posición vigente de Bill Gates de su AMA de Reddit de 2017: "Ni siquiera EE.UU. es lo suficientemente rico como para permitir que la gente no trabaje… cosas como el crédito tributario por ingresos del trabajo ayudarán." <a href="https://finance.yahoo.com/news/universal-high-income-elon-musk-160056830.html" target="_blank" rel="noopener">finance.yahoo.com</a>
+
+<span id="ref-96"></span>
+
+[^96]: TechCrunch. "OpenAI's vision for the AI economy: Public wealth funds, robot taxes, and a four-day work week." 6 de abril de 2026. Cobertura del documento de política Economic Blueprint de OpenAI. <a href="https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/" target="_blank" rel="noopener">techcrunch.com</a>
+
+<span id="ref-97"></span>
+
+[^97]: Altman, Sam. "Universal Basic Compute." All-In Podcast, 13 de mayo de 2024. Propuesta de que cada ciudadano reciba una porción de inferencia GPT-N, utilizable, vendible o donable. Clip: <a href="https://x.com/theallinpod/status/1790558532942602397" target="_blank" rel="noopener">x.com/theallinpod</a>
+
+<span id="ref-98"></span>
+
+[^98]: Korea Times. "Top policy aide floats national dividends to share AI profits with public." 12 de mayo de 2026. Reporte sobre la propuesta del jefe de política presidencial Kim Yong-beom de redistribuir el exceso de ingresos fiscales de IA y semiconductores de Samsung / SK Hynix vía un fondo soberano de inversión modelado sobre Alaska y Noruega. El KOSPI cayó un 5.1% con el anuncio. <a href="https://www.koreatimes.co.kr/southkorea/politics/20260512/top-policy-aide-floats-national-dividends-to-share-ai-profits-with-public" target="_blank" rel="noopener">koreatimes.co.kr</a>; también cubierto por <a href="https://www.bloomberg.com/news/articles/2026-05-12/korea-floats-citizen-dividend-using-ai-profits-samsung-falls" target="_blank" rel="noopener">Bloomberg, 12 de mayo de 2026</a>.
+
+<span id="ref-99"></span>
+
+[^99]: Yang, Andrew. Entrevista con Fortune. 25 de febrero de 2026. Renovación del Freedom Dividend de $1,000/mes financiado por un IVA del 10%, con un encuadre actualizado del apocalipsis laboral por IA. La Tax Foundation mantiene que la tasa de IVA propuesta financia menos de la mitad del programa. <a href="https://fortune.com/2026/02/25/andrew-yang-former-presidential-candidate-artifical-intelligence-job-apocalypse-white-collar-cuts-prediction-universal-basic-income/" target="_blank" rel="noopener">fortune.com</a>
+
+<span id="ref-100"></span>
+
+[^100]: O'Keefe, Cullen et al. "The Windfall Clause: Distributing the Benefits of AI for the Common Good." Oxford Centre for the Governance of AI, arXiv:1912.11595. Referencia canónica de compromisos voluntarios ex-ante de las firmas de IA para donar ganancias por encima de un umbral transformador. <a href="https://arxiv.org/pdf/1912.11595" target="_blank" rel="noopener">arxiv.org/abs/1912.11595</a>
+
+<span id="ref-101"></span>
+
+[^101]: BIEN (Basic Income Earth Network). "The first basic income for workers impacted by AI has begun sending out $1,000 monthly payments." Marzo 2026. Cobertura del piloto de AI Commons / What We Will — primer programa operacional de transferencias en efectivo específico para desplazamiento por IA, financiado por filantropía. <a href="https://basicincome.org/news/2026/03/the-first-basic-income-for-workers-impacted-by-ai-has-begun-sending-out-1000-monthly-payments/" target="_blank" rel="noopener">basicincome.org</a>
+
+<span id="ref-102"></span>
+
+[^102]: TIME Magazine. "Worldcoin Launches in the U.S." 2025. Sistema de prueba de personalidad por escaneo de iris de Tools for Humanity; lanzamiento del Orb en EE.UU. el 30 de abril de 2025; ~12M de usuarios verificados a nivel mundial; subsidio de $42 USDC por registro. <a href="https://time.com/7288387/sam-altman-orb-tools-for-humanity/" target="_blank" rel="noopener">time.com</a>
+
+<span id="ref-103"></span>
+
+[^103]: State of Alaska. "Alaska Permanent Fund Dividend." Monto del dividendo de 2025: $1,702 por residente. El programa de dividendos per cápita de recursos más antiguo en funcionamiento en Estados Unidos, frecuentemente citado como plantilla para las propuestas de fondos soberanos de inversión de ingresos por IA.
+
+<span id="ref-104"></span>
+
+[^104]: OpenResearch (financiado por Sam Altman). "Findings from the largest randomized study of unconditional cash transfers in the US." 22 de julio de 2024. $1,000/mes a 3,000 participantes en Illinois y Texas frente a grupo de control de $50 durante 3 años. Resultados reportados: sin mejora en calidad del empleo, los receptores trabajaron aproximadamente 2 horas menos por semana, las hospitalizaciones subieron ~26%, los receptores reportaron sustancialmente más flexibilidad financiera. Cobertura: <a href="https://www.cbsnews.com/news/sam-altman-universal-basic-income-study-open-research/" target="_blank" rel="noopener">CBS News, julio 2024</a>.
+
+<span id="ref-105"></span>
+
+[^105]: SEED (Stockton Economic Empowerment Demonstration). Resultados finales revisados por pares, <em>Journal of Urban Health</em>, junio de 2023. El empleo a tiempo completo entre los receptores aumentó del 28% al 40% durante el ensayo de 24 meses. <a href="https://www.stocktondemonstration.org/" target="_blank" rel="noopener">stocktondemonstration.org</a>
 
   </div>
 </div>

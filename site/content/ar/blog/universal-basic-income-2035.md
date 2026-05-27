@@ -52,6 +52,163 @@ summary = "تحليل شامل يكشف كيف يمكن لطاقة الاندم�
   </a>
 </div>
 
+## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> تحديث مايو 2026: كيف يقارن نموذجنا بالخطط التي ظهرت منذ ذلك الحين
+
+عندما نُشر هذا التحليل لأول مرة في أكتوبر 2025، كان "الدخل في مرحلة ما بعد العمل البشري المدفوع بالذكاء الاصطناعي" لا يزال إلى حد كبير افتراضًا تكتبه مراكز الأبحاث. الأشهر السبعة الماضية نقلت النقاش من *هل* إلى *كيف* — ووضع عدد من الشخصيات المسماة مقترحات ملموسة على الطاولة. أدناه نضع خرائط لهذه المقترحات مقابل أركاننا التمويلية الأربعة (التقاط إنتاجية الذكاء الاصطناعي، وفرة طاقة الاندماج، تحويل ميزانية الدفاع، تعدين العملات المشفرة من العمل المفيد) ونحدّث نموذجنا حيث تعزز الأفكار الجديدة بنيته.
+
+<figure style="margin: 2.5rem 0;">
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width: 100%; max-width: 100%; height: auto;" role="img" aria-label="نموذج تمويل 2026 — أربعة أركان تمويلية وطبقة سياسية واحدة للدخل الأساسي الشامل">
+<rect width="900" height="520" fill="#faf8f5"/>
+<text x="450" y="34" font-family="'DM Sans', -apple-system, sans-serif" font-size="20" font-weight="700" fill="#1e3a2b" text-anchor="middle">نموذج التمويل 2026 — أربعة أركان + طبقة سياسية واحدة</text>
+<text x="450" y="58" font-family="'DM Sans', -apple-system, sans-serif" font-size="13" fill="#5a6862" text-anchor="middle">تظل الأركان 1 و3 و4 مميزة لهذا التحليل. الركن 2 يستوعب خطط 2025–2026.</text>
+<g transform="translate(60, 85)">
+<rect x="0" y="0" width="780" height="58" fill="#a04848" rx="6"/>
+<text x="390" y="28" font-family="'DM Sans', sans-serif" font-size="15" font-weight="700" fill="#faf8f5" text-anchor="middle">مُحفِّزات شبكة الأمان التلقائية — طبقة السياسة</text>
+<text x="390" y="46" font-family="'DM Sans', sans-serif" font-size="12" fill="#f5d6d6" text-anchor="middle">مفهرسة مقابل مقاييس الإزاحة من BLS — تنشط تلقائيًا عند تجاوز العتبات</text>
+</g>
+<g transform="translate(450, 152)">
+<path d="M -390 0 L -390 14 M -130 0 L -130 14 M 130 0 L 130 14 M 390 0 L 390 14" stroke="#a04848" stroke-width="1.5" stroke-dasharray="2,3" opacity="0.5"/>
+</g>
+<g transform="translate(60, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#b8a060" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#3a2e1c" text-anchor="middle">I · طاقة الاندماج</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#b8a060" stroke-width="1.5"/>
+<rect x="50" y="60" width="80" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#5a6c3a" text-anchor="middle">مميز</text>
+<text x="90" y="116" font-family="'DM Sans', sans-serif" font-size="11" fill="#4a4030" text-anchor="middle" font-style="italic"><tspan x="90" dy="0">لا توجد خطة أخرى</tspan><tspan x="90" dy="15">في 2025–2026 تربط تمويل</tspan><tspan x="90" dy="15">UBI بانهيارات التكلفة</tspan><tspan x="90" dy="15">المدفوعة بالاندماج</tspan></text>
+<text x="90" y="220" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">أساس التكلفة لكل</text>
+<text x="90" y="236" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">خطة أخرى يتغير</text>
+<text x="90" y="252" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">إذا نجح الاندماج</text>
+<text x="90" y="298" font-family="'DM Sans', sans-serif" font-size="10" fill="#7a7060" text-anchor="middle">CFS · Helion · ITER</text>
+</g>
+<g transform="translate(260, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#2d5a4f" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#faf8f5" text-anchor="middle">II · إنتاجية الذكاء الاصطناعي</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#2d5a4f" stroke-width="1.5"/>
+<rect x="58" y="60" width="64" height="22" fill="#faf8f5" stroke="#a04848" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#7a3030" text-anchor="middle">مزدحم</text>
+<rect x="8" y="100" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="115" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">صندوق OpenAI للثروة العامة</text>
+<rect x="8" y="128" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="143" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">Citizen Dividend في كوريا</text>
+<rect x="8" y="156" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="171" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">ضريبة Yang VAT (استهلاك)</text>
+<rect x="8" y="184" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="199" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">بند الإيرادات الاستثنائية (طوعي)</text>
+<rect x="8" y="212" width="164" height="22" fill="#eae3d5" stroke="#2d5a4f" stroke-width="1" rx="4"/>
+<text x="90" y="227" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">Musk UHI (إنتاجية)</text>
+<text x="90" y="262" font-family="'DM Sans', sans-serif" font-size="10" fill="#5a6862" text-anchor="middle" font-style="italic">5 خطط مسماة، ركن واحد</text>
+</g>
+<g transform="translate(460, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#5a7a8f" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#faf8f5" text-anchor="middle">III · تحويل الدفاع</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#5a7a8f" stroke-width="1.5"/>
+<rect x="50" y="60" width="80" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#5a6c3a" text-anchor="middle">مميز</text>
+<text x="90" y="116" font-family="'DM Sans', sans-serif" font-size="11" fill="#4a4030" text-anchor="middle" font-style="italic"><tspan x="90" dy="0">إعادة توزيع</tspan><tspan x="90" dy="15">أرباح السلام؛ غير موجود</tspan><tspan x="90" dy="15">في أي خطة 2025–2026</tspan><tspan x="90" dy="15">تم مسحها</tspan></text>
+<text x="90" y="220" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">حد أدنى للتحويل 20% →</text>
+<text x="90" y="236" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">خط تمويل سنوي</text>
+<text x="90" y="252" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">بتريليونات الدولارات</text>
+<text x="90" y="298" font-family="'DM Sans', sans-serif" font-size="10" fill="#7a7060" text-anchor="middle">سابقة ما بعد الحرب الباردة</text>
+</g>
+<g transform="translate(660, 175)">
+<rect x="0" y="0" width="180" height="40" fill="#7a8a4a" rx="4"/>
+<text x="90" y="26" font-family="'DM Sans', sans-serif" font-size="14" font-weight="700" fill="#faf8f5" text-anchor="middle">IV · تعدين العمل المفيد</text>
+<rect x="0" y="40" width="180" height="280" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5"/>
+<rect x="50" y="60" width="80" height="22" fill="#faf8f5" stroke="#7a8a4a" stroke-width="1.5" rx="11"/>
+<text x="90" y="76" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#5a6c3a" text-anchor="middle">مميز</text>
+<rect x="8" y="100" width="164" height="22" fill="#eae3d5" stroke="#7a8a4a" stroke-width="1" rx="4"/>
+<text x="90" y="115" font-family="'DM Sans', sans-serif" font-size="10" fill="#1e3a2b" text-anchor="middle">Altman UBC (مكمل)</text>
+<text x="90" y="156" font-family="'DM Sans', sans-serif" font-size="11" fill="#4a4030" text-anchor="middle" font-style="italic"><tspan x="90" dy="0">نظير الحوسبة كعملة؛</tspan><tspan x="90" dy="15">Worldcoin هو مسار للهوية</tspan><tspan x="90" dy="15">وليس آلية</tspan><tspan x="90" dy="15">تمويل</tspan></text>
+<text x="90" y="252" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">Gridcoin لا يزال</text>
+<text x="90" y="268" font-family="'DM Sans', sans-serif" font-size="11" font-weight="600" fill="#1e3a2b" text-anchor="middle">غير مستكشف بما يكفي</text>
+</g>
+</svg>
+<figcaption style="text-align: center; font-style: italic; color: #5a6862; font-size: 0.9rem; margin-top: 0.75rem;">تظل الأركان 1 و3 و4 فريدة لهذا التحليل — لا توجد خطة أخرى من 2025–2026 تغطيها. يستوعب الركن 2 مقترحات الشخصيات المسماة التي ظهرت خلال 2025–2026. طبقة التحكم بالتفعيل التلقائي هي العنصر السياسي الجديد الذي يحوّل UBI من قرار سياسي حسب الميزانية إلى قرار تقني مفهرس بصيغة محددة.</figcaption>
+</figure>
+
+### تأطير جديد: "الدخل المرتفع الشامل" لدى Musk
+
+في مؤتمر Viva Technology في باريس في مايو 2024، قدّم Elon Musk تأطيرًا مميزًا: <q>سيكون هناك دخل مرتفع شامل — وليس دخلاً أساسيًا شاملاً.</q><sup style="font-size: 0.75em;"><a href="#ref-92" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[92]</a></sup> وقد كرر هذه الصياغة عبر منصات متعددة منذ ذلك الحين — منتدى الاستثمار الأمريكي السعودي في واشنطن في نوفمبر 2025، وعلى منصة X في أغسطس 2025، ومع Joe Rogan في أواخر 2025<sup style="font-size: 0.75em;"><a href="#ref-93" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[93]</a></sup>. أطروحته تختلف بنيويًا عن UBI: بدلاً من إعادة توزيع الموارد الشحيحة لتأسيس *أرضية*، ينتج الذكاء الاصطناعي والروبوتات ما يكفي من السلع والخدمات بحيث تتبخر الندرة نفسها. <q>وفرة مستدامة.</q>
+
+هذا هو نفس الحجة المدفوعة بالإنتاجية التي نطرحها في تغيير اللعبة #1، مأخوذة إلى نتيجتها المنطقية. حيث يقصر تأطير Musk هو في **مشكلة التوزيع**: حتى لو أنتج الذكاء الاصطناعي/الروبوتات وفرة، فإن *من يمتلك القدرة الإنتاجية* هو من يحدد ما إذا كانت تلك الوفرة ستتدفق إلى المواطنين. لم يقترح Musk آلية لإعادة التوزيع — بل يفترض أن الإنتاجية نفسها تلغي الحاجة إليها. روبوت Optimus الإنساني من Tesla هو الأداة الإنتاجية الضمنية في تأطيره، لكنه لم يحدد هيكلًا للملكية أو الأرباح أو تقاسم الإيرادات يمكنه توجيه ناتج Optimus إلى المواطنين.
+
+تقدّر النمذجة المستقلة من Tax Project Institute (وليس رقم Musk) أن تمويل UHI بمستويات الكفاية الإضافية لحوالي 40 مليون عامل الأكثر عرضة للإزاحة سيكلف تقريبًا 7.03 تريليون دولار سنويًا، أو 143% من الإيرادات الفيدرالية لعام 2024<sup style="font-size: 0.75em;"><a href="#ref-94" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[94]</a></sup>. الرياضيات تردد صدى حكم الاستحالة الذي واجهه UBI قبل أن تسد أركاننا الأربعة الفجوة. **UHI دون آلية توزيع هو نفس مشكلة التريليون دولار؛ UHI بالإضافة إلى أركاننا الأربعة هو نموذج أكثر صدقًا.**
+
+رد Bill Gates عام 2017 على تأطير مماثل لا يزال ساريًا ويستحق الاقتباس على نفس النطاق: <q>حتى الولايات المتحدة ليست غنية بما يكفي للسماح للناس بعدم العمل</q><sup style="font-size: 0.75em;"><a href="#ref-95" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[95]</a></sup> — حتى الآن — والبنية الداعمة على غرار EITC التي يقترحها هي بالضبط ما يبنيه تغيير اللعبة #2.
+
+الجدول الزمني الذي يذكره Musk هو "10 إلى 20 سنة" حتى يصبح العمل اختياريًا، باحتمال ~80% لما يسميه النتيجة الحميدة<sup style="font-size: 0.75em;"><a href="#ref-93" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[93]</a></sup>. هذا يحيط بهدفنا لعام 2035.
+
+### خطط 2025–2026، في جدول واحد
+
+<figure style="margin: 2rem 0; overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+<thead>
+<tr style="background: #2d5a4f; color: #faf8f5;">
+<th style="padding: 0.7rem 0.9rem; text-align: left;">الخطة</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">المقترح · المكان</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">الآلية</th>
+<th style="padding: 0.7rem 0.9rem; text-align: left;">هل تنسجم مع أركاننا؟</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Universal High Income</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Musk · Viva Tech 2024<sup style="font-size: 0.75em;"><a href="#ref-92" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[92]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">الإنتاجية تلغي الندرة؛ لا توجد آلية إعادة توزيع محددة</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">الركن 2 من حيث الروح؛ يتجاهل التوزيع</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>OpenAI Economic Blueprint</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">OpenAI · أبريل 2026<sup style="font-size: 0.75em;"><a href="#ref-96" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[96]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">صندوق الثروة العامة (نموذج ألاسكا) + ضريبة الروبوت + أسبوع عمل من 4 أيام + شبكة أمان ذاتية التفعيل</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>يعزز بقوة الركن 2</strong> — انظر أدناه</td></tr>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Universal Basic Compute</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Altman · بودكاست All-In، مايو 2024<sup style="font-size: 0.75em;"><a href="#ref-97" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[97]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">يحصل كل مواطن على شريحة من استنتاج GPT-N؛ قابلة للبيع أو التبرع</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>آلية خامسة جديدة</strong> — توزيع الحوسبة عينيًا</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Citizen Dividend</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">كوريا الجنوبية (Kim Yong-beom) · مايو 2026<sup style="font-size: 0.75em;"><a href="#ref-98" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[98]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">صندوق ثروة سيادي ممول من أرباح الذكاء الاصطناعي وأشباه الموصلات لشركتي Samsung / SK Hynix</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">الركن 2 — أول نسخة حكومية مسماة</td></tr>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Freedom Dividend (تحديث)</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Yang · Fortune، فبراير 2026<sup style="font-size: 0.75em;"><a href="#ref-99" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[99]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">1,000 دولار/شهر عبر ضريبة قيمة مضافة 10% على القيمة المضافة المعززة بالذكاء الاصطناعي</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">الركن 2 عبر ضريبة الاستهلاك — يموّل أقل من 50% وفقًا لـ Tax Foundation</td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>Windfall Clause</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">Oxford GovAI · O'Keefe وآخرون<sup style="font-size: 0.75em;"><a href="#ref-100" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[100]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">تعهد طوعي مسبق من شركات الذكاء الاصطناعي بالتبرع بالأرباح فوق عتبة تحويلية</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">الركن 2 من حيث المبدأ؛ طوعي</td></tr>
+<tr style="background: #faf8f5;"><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>AI Dividend pilot</strong></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">AI Commons / What We Will · مارس 2026<sup style="font-size: 0.75em;"><a href="#ref-101" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[101]</a></sup></td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;">1,000 دولار/شهر لـ 25–50 عاملاً أُزيحوا بسبب الذكاء الاصطناعي؛ ممول من الأعمال الخيرية</td><td style="padding: 0.7rem 0.9rem; border-bottom: 1px solid #d6c7a8;"><strong>أول برنامج تشغيلي مخصص للإزاحة</strong></td></tr>
+<tr style="background: #eae3d5;"><td style="padding: 0.7rem 0.9rem;"><strong>Worldcoin</strong></td><td style="padding: 0.7rem 0.9rem;">Tools for Humanity · 2024–25<sup style="font-size: 0.75em;"><a href="#ref-102" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[102]</a></sup></td><td style="padding: 0.7rem 0.9rem;">إثبات الشخصية بمسح القزحية؛ منحة 42 دولارًا لكل تسجيل</td><td style="padding: 0.7rem 0.9rem;">مسار للهوية — شرط مسبق وليس تمويلاً</td></tr>
+</tbody>
+</table>
+<figcaption style="text-align: center; font-style: italic; color: #5a6862; font-size: 0.9rem; margin-top: 0.75rem;">خطط 2025–2026، مرسومة مقابل نموذج التمويل ذي الأركان الأربعة لدينا.</figcaption>
+</figure>
+
+### حيث لا تزال أركاننا الأربعة تتميز
+
+بالنظر عبر الجدول، تظل ثلاثة من أركاننا الأربعة فريدة لهذا التحليل:
+
+- **الركن 1 — وفرة طاقة الاندماج.** لا يوجد اقتراح آخر مسمى في 2025–2026 يربط تمويل UBI بانهيارات التكلفة المدفوعة بالاندماج. كل خطة أعلاه تفترض اقتصاديات الطاقة الحالية. إذا حقق الاندماج التجاري وعوده وفقًا للجدول الزمني لـ CFS وHelion وITER، فإن أساس التكلفة لـ *كل خطة أخرى في الجدول* يتغير بشكل كبير.
+- **الركن 3 — تحويل ميزانية الدفاع.** غير موجود في أي اقتراح تم مسحه. إعادة توزيع أرباح السلام التي نمذجناها — حتى عند الحد الأدنى للتحويل بنسبة 20% — تموّل من البرنامج أكثر مما تموّله ضريبة الروبوت في مخطط OpenAI عند تقييمات الذكاء الاصطناعي الحالية.
+- **الركن 4 — تعدين العملات المشفرة من العمل المفيد.** يعمل Worldcoin على جانب الهوية وليس على جانب العمل. لا توجد خطة أخرى تستخدم تعدين الحوسبة كتمويل. لا يزال Gridcoin والعناصر الأولية المماثلة غير مستكشفة بما يكفي.
+
+الركن المزدحم هو **#2 — التقاط إنتاجية الذكاء الاصطناعي.** ست خطط من أصل سبع تعيش هنا، وهنا يجد نموذجنا أكبر قدر ليستوعبه مما اقترحه الآخرون.
+
+### ما سنضيفه إلى نموذجنا استنادًا إلى خطط 2026
+
+أربع آليات ملموسة من الخطط الأخرى تعزز تأطيرنا للركن 2 وتستحق الإدماج:
+
+**1. صندوق OpenAI للثروة العامة — صندوق ألاسكا الدائم، موسّعًا للذكاء الاصطناعي**<sup style="font-size: 0.75em;"><a href="#ref-96" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[96]</a></sup>. يقترح مخطط OpenAI الاقتصادي في أبريل 2026 صندوقًا يُدار اتحاديًا وممولًا من تقييم لشركات الذكاء الاصطناعي، يوزّع أرباحًا للفرد المقيم على غرار صندوق ألاسكا الدائم الذي يوزّع عائدات النفط (أرباح 2025: 1,702 دولارًا لكل مقيم<sup style="font-size: 0.75em;"><a href="#ref-103" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[103]</a></sup>). هذه هي أكثر أداة محددة تشغيليًا للركن 2 مقترحة حتى الآن، وهي تكمّل ولا تنافس رياضيات تحويل الدفاع لدينا: الصندوق يوفر رأس المال، والتحويل يوفر الإيرادات المتكررة.
+
+**2. Citizen Dividend في كوريا الجنوبية — أول نسخة حكومية مسماة**<sup style="font-size: 0.75em;"><a href="#ref-98" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[98]</a></sup>. في مايو 2026، طرح كبير مسؤولي السياسات الرئاسية Kim Yong-beom إعادة توزيع الإيرادات الضريبية الفائضة من أرباح Samsung وSK Hynix في الذكاء الاصطناعي/أشباه الموصلات عبر صندوق ثروة سيادي على غرار نموذج ألاسكا والنرويج. هبط مؤشر KOSPI 5.1% عند الإعلان، وهو أمر مُلهم في حد ذاته: أسواق الأسهم تسعّر آلية إعادة التوزيع في اللحظة التي تصبح فيها ذات مصداقية سياسية. يجب أن يتضمن نموذجنا صراحةً بندًا لـ *صندوق سيادي لأرباح الذكاء الاصطناعي* في عمود الركن 2.
+
+**3. مُحفِّزات شبكة الأمان ذاتية التفعيل**<sup style="font-size: 0.75em;"><a href="#ref-96" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[96]</a></sup>. يقترح مخطط OpenAI مُحفِّزات لـ UBI تنشط تلقائيًا عندما تتجاوز مقاييس إزاحة الذكاء الاصطناعي عتبات محددة — البطالة حسب الصناعة، ساعات العمل لكل فرد، مؤشرات الإزاحة حسب المهنة من BLS. هذا يحوّل UBI من قرار *سياسي* (تشريعي، متنازع عليه، قابل للنقض) إلى قرار *تقني* (قائم على صيغة، مُفهرس، تلقائي). يجب أن نضيفه كعنصر سياسي أولي فوق نموذج التمويل ذي الأركان الأربعة لدينا.
+
+**4. الحوسبة كعملة عينية — UBC لدى Altman**<sup style="font-size: 0.75em;"><a href="#ref-97" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[97]</a></sup>. اقتراح Universal Basic Compute هو الخطة الوحيدة في الجدول التي تقترح قناة توزيع غير نقدية. في نموذجنا، تعمل الحوسبة العينية بوصفها *مكملًا للركن 4*: حيث يحوّل تعدين العمل المفيد الحوسبة *إلى* دخل، يوزّع UBC الحوسبة *كـ* دخل. كلا الركنين يلتفّان حول احتكاك إعادة التوزيع النقدي؛ ومعًا يصفان اقتصادًا تكون فيه الحوسبة نظيرًا للعملة الأساسية.
+
+### تحديث صادق من التجارب التجريبية
+
+تضيف نتائج 2024–2025 من دراسة OpenResearch لـ UBI التي أجراها Sam Altman<sup style="font-size: 0.75em;"><a href="#ref-104" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[104]</a></sup> دقة للادعاءات بأن "UBI يعمل". من بين 3,000 مشارك يتلقون 1,000 دولار/شهر مقابل مجموعة ضابطة من 50 دولارًا عبر إلينوي وتكساس:
+
+- **لا يوجد ارتفاع في جودة التوظيف.** تنقل الوظائف والتقدم المهني بدا مشابهًا للمجموعة الضابطة.
+- **عمل المستلمون أقل قليلاً.** حوالي ساعتين أقل أسبوعيًا من المجموعة الضابطة؛ صغير لكنه قابل للرصد إحصائيًا.
+- **ارتفعت دخول المستشفيات بنسبة ~26%.** على الأرجح نتيجة *زيادة الوصول* إلى الرعاية وليس تدهورًا صحيًا، لكنها تستحق الإشارة.
+- **أفاد المستلمون بمرونة مالية أكبر بكثير.** الآلية التي تنجو من التجربة بنظافة هي *الاستقلالية* — القدرة على اختيار متى وأين وكيف يعمل المرء.
+
+هذه ليست النتائج نفسها مثل Stockton (التي أظهرت ارتفاع العمل بدوام كامل من 28% إلى 40%<sup style="font-size: 0.75em;"><a href="#ref-105" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #888;">[105]</a></sup>) أو تجربة GiveDirectly الطويلة في كينيا (لا خمول، مزيد من ريادة الأعمال). الخلاصة الصادقة عبر الثلاث: التحويلات النقدية تنتج *المرونة* بشكل موثوق؛ *تحسين التوظيف* مشروط بأسواق العمل المحلية؛ *الآثار الصحية* مختلطة ومشوّشة بسبب الوصول. لا ينبغي لنموذجنا لعام 2035 أن يُبالغ في الادعاء بأن "UBI يسبب زيادات في التوظيف" دون تحديد الشروط.
+
+### تحديث ملخّص
+
+نحن لا نعيد كتابة الأركان الأربعة. نحن نقول:
+
+1. **الركن 1 (الاندماج)، الركن 3 (تحويل الدفاع)، الركن 4 (تعدين العمل المفيد)** تظل فريدة لهذا التحليل. لا توجد خطة أخرى من 2025–2026 تغطيها، وهي تظل الأجزاء الحاملة لأساس تكلفتنا.
+2. **الركن 2 (التقاط إنتاجية الذكاء الاصطناعي)** يستوعب أداة OpenAI Public Wealth Fund، وسابقة Korea Citizen Dividend، وWindfall Clause كرافد طوعي أعلى السلسلة، وUBC لدى Altman كمكمل عملة-حوسبة.
+3. **عنصر خامس جديد — مُحفِّزات شبكة الأمان ذاتية التفعيل** — يُضاف كآلية سياسية تحوّل UBI من قرار تشريعي إلى قرار تقني مفهرس مقابل مقاييس الإزاحة من BLS.
+4. **تأطير Musk لـ UHI متوافق بنيويًا** مع نموذجنا — لكن فقط إذا تم الاعتراف بأن الادعاء بأن الإنتاجية تلغي إعادة التوزيع يتجاهل مشكلة التوزيع. أركاننا الأربعة هي *كيف* تصل الوفرة فعلاً إلى الناس. UHI هو الوجهة؛ الأركان الأربعة هي الطريق.
+
+كل ما يلي يظل التحليل كما نُشر في الأصل. تحرّك النقاش كثيرًا في سبعة أشهر — ونتوقع التحديث مجددًا عندما تظهر خطط أكثر.
+
 ## <svg class="heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> مشكلة الحساب التقليدية
 
 لنبدأ بالواقع المحبط. لتوفير 5,000 دولار شهريًا لكل بالغ أمريكي (260 مليون شخص) سيتطلب 15.6 تريليون دولار سنويًا. حتى دفعة شهرية متواضعة قدرها 3,000 دولار تتطلب 9.36 تريليون دولار - أكثر من ضعف إيرادات الضرائب الفيدرالية الحالية.
