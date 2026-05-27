@@ -536,6 +536,127 @@ hero_poster = "images/hero-qa.webp"
 </div>
 </section>
 
+<style>
+/* Scoring + calibration internals section */
+.qa-internals { background: linear-gradient(180deg, rgba(248,244,240,0) 0%, rgba(232,221,199,0.18) 30%, rgba(232,221,199,0.18) 70%, rgba(248,244,240,0) 100%); padding: 5rem 1rem 6rem; }
+.qa-internals .container { max-width: 1180px; margin: 0 auto; }
+.qa-internals .subheading { text-align: center; color: #5a6862; font-size: 1.1rem; max-width: 760px; margin: -1rem auto 3rem; line-height: 1.6; }
+.qa-stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; max-width: 1080px; margin: 0 auto; }
+@media (max-width: 880px) { .qa-stack-grid { grid-template-columns: 1fr; } }
+.qa-card { background: #faf8f5; border-radius: 12px; padding: 1.75rem 2rem; border-left: 4px solid #b8a080; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); }
+.qa-card.calibration { border-left-color: #2d5a4f; }
+.qa-card.autofix { border-left-color: #7a8a4a; }
+.qa-card.arena { border-left-color: #5a7a8f; }
+.qa-card.audit { border-left-color: #a04848; }
+.qa-card h3 { font-family: 'Fraunces', serif; color: #1e3a2b; font-size: 1.5rem; margin: 0 0 0.85rem; }
+.qa-card .qa-meta { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.8rem; }
+.qa-card.calibration .qa-meta { background: rgba(45,90,79,0.12); color: #1e3a2b; }
+.qa-card.autofix .qa-meta { background: rgba(122,138,74,0.15); color: #5a6c2a; }
+.qa-card.arena .qa-meta { background: rgba(90,122,143,0.15); color: #3a5060; }
+.qa-card.audit .qa-meta { background: rgba(160,72,72,0.15); color: #7a3030; }
+.qa-card p, .qa-card li { color: #3a4a40; font-size: 0.98rem; line-height: 1.65; }
+.qa-card ul { padding-left: 1.2rem; margin: 0.5rem 0 0; }
+.qa-card li { margin-bottom: 0.4rem; }
+.qa-card code { background: #eae3d5; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: #2d3c34; font-family: 'DM Mono', monospace; }
+.qa-scorers { max-width: 1080px; margin: 3rem auto 2rem; background: #1e2a26; border-radius: 14px; padding: 2rem 2.25rem; color: #e8e3d8; }
+.qa-scorers h3 { font-family: 'Fraunces', serif; color: #faf8f5; margin: 0 0 0.5rem; font-size: 1.6rem; }
+.qa-scorers .qa-scorers-sub { color: #b8a080; font-size: 0.95rem; margin: 0 0 1.5rem; line-height: 1.55; }
+.qa-scorers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.85rem; }
+.qa-scorer-chip { background: rgba(232, 221, 199, 0.08); border: 1px solid rgba(184, 160, 128, 0.3); border-radius: 8px; padding: 0.7rem 0.85rem; }
+.qa-scorer-chip strong { color: #faf8f5 !important; display: block; font-size: 0.92rem; margin-bottom: 0.2rem; font-family: 'DM Mono', monospace; }
+.qa-scorer-chip span { color: #c8c0ad !important; font-size: 0.83rem; line-height: 1.45; display: block; }
+.qa-framework-row { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 2rem auto 0; max-width: 1080px; }
+.qa-framework-chip { background: #faf8f5; border: 1.5px solid rgba(139, 118, 89, 0.4); border-radius: 999px; padding: 0.5rem 1.15rem; font-family: 'DM Mono', monospace; font-size: 0.88rem; color: #2d3c34; }
+.qa-cross-links { max-width: 1080px; margin: 3rem auto 0; padding: 1.5rem 2rem; background: rgba(45, 90, 79, 0.06); border-radius: 12px; text-align: center; }
+.qa-cross-links a { color: #2d5a4f; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(45, 90, 79, 0.3); }
+.qa-cross-links a:hover { border-bottom-color: #2d5a4f; }
+</style>
+
+<section class="qa-internals">
+<div class="container">
+<h2 class="section-heading" style="margin-top: 0; margin-bottom: 1.5rem;">In de scoring-engine — hoe kalibratie echt werkt</h2>
+<p class="subheading">De meeste "AI-testtools" beoordelen modeloutputs en stoppen daar. De scored-QA-suite van Divinci is gebouwd op een ander uitgangspunt: <strong>je scoring-rubric moet worden gekalibreerd tegen een domeinexpert voordat de scores te vertrouwen zijn.</strong> Zo werkt die pijplijn vandaag in productie.</p>
+
+<div class="qa-stack-grid">
+
+<div class="qa-card calibration">
+<span class="qa-meta">CALIBRATION · SHIPPED</span>
+<h3>Rubric-kalibratie verankerd in menselijk oordeel</h3>
+<p>Een domeinexpert beoordeelt dezelfde rubric die de LLM-judge gebruikt op een gestratificeerde gold-set — elke score (0 / 0.25 / 0.5 / 0.75 / 1.0) wordt vastgelegd met optionele redenering en een optioneel <code>editedResponse</code>-veld dat tegelijk dient als supervised-fine-tuning-signaal. Bij elke beoordeling worden de identiteit van de beoordelaar, de rubric-versie en de doorlooptijd gelogd. De Spearman ρ tussen de LLM-judge en de menselijke beoordelaar wordt continu berekend; de judge met de hoogste ρ wordt de standaard.</p>
+<ul>
+  <li><strong>Overeenstemming tussen meerdere beoordelaars:</strong> wanneer meer dan één expert hetzelfde item beoordeelt, wordt de inter-rater ρ berekend zodat we onenigheid tussen beoordelaars én tussen judge en mens kunnen detecteren.</li>
+  <li><strong>Kalibratiedoel per suite:</strong> elke scored-QA-suite draagt een <code>rhoLowerTarget</code> + <code>rhoTargetN</code> — de ondergrens die de kalibratie moet halen en de steekproefomvang waarop dat moet gebeuren voordat de judge wordt vertrouwd.</li>
+  <li><strong>Active learning:</strong> de pre-rating-pijplijn brengt bij voorkeur items met hoge variantie (waar de LLM-judges het meest van mening verschillen) naar de expert voor review, zodat een klein expertbudget eerst de ruisachtige beslissingsgrens kalibreert.</li>
+</ul>
+</div>
+
+<div class="qa-card autofix">
+<span class="qa-meta">AUTO-FIX · SHIPPED</span>
+<h3>Auto-fix-lus met expliciete autonomieniveaus</h3>
+<p>Zodra een suite is gekalibreerd, itereert de auto-fix-lus: hij scoort de kandidaat, past een kleine herformulering of retrieval-config-wijziging toe, scoort opnieuw en herhaalt dit tot één van vier terminale toestanden. Het autonomieniveau bepaalt of menselijke goedkeuring vereist is tussen iteraties.</p>
+<ul>
+  <li><code>full-auto</code> — draait tot convergentie zonder menselijke poortwachters.</li>
+  <li><code>checkpoint-every-iteration</code> — een mens keurt elke kandidaatwijziging goed.</li>
+  <li><code>checkpoint-on-deploy</code> — draait onbemand maar pauzeert voor menselijke goedkeuring vóór promotie naar productie.</li>
+  <li><strong>Terminale toestanden:</strong> <code>high-scores</code>, <code>target-reached</code>, <code>max-iterations</code> of <code>running</code>. Modi: <code>autofix</code> voor prompt-/retrieval-tuning, <code>autorag</code> voor herconfiguratie van de retrieval-pijplijn.</li>
+</ul>
+</div>
+
+<div class="qa-card arena">
+<span class="qa-meta">ARENA · SHIPPED</span>
+<h3>RAG Arena — varianten vergelijken op suite-schaal</h3>
+<p>Eén API-aanroep waaiert de suite uit over meerdere RAG-configuraties — verschillende retrieval-backends (de tien <a href="/nl/rag-routing/">RAG Routing</a>-doelen), verschillende LLM's, verschillende prompt-templates — en scoort elk (variant × test)-paar met de gekalibreerde judge. Het resultaat is een ranking per variant, een winnaar-per-test en een markdown-rapport.</p>
+<p>De arena is ook de bovenstroomse bron voor ons <a href="/nl/rag-routing/">geleerde routing-model</a>: wanneer een klant een arena-winnaar kiest, vormt het (vraag, winnende-backend)-paar zaad voor de routing-history-store.</p>
+<p><strong>Endpoint:</strong> <code>POST /api/v1/qa/suites/:suiteId/arena-run</code> met <code>{ arenaPresetId, testIds?, maxTestsPerVariant? }</code>.</p>
+</div>
+
+<div class="qa-card audit">
+<span class="qa-meta">AUDIT · SHIPPED</span>
+<h3>Audit-waardige scoring-bewijsstukken</h3>
+<p>Elke score in het systeem wordt vastgelegd met de informatie die je nodig hebt om hem maanden later te kunnen verdedigen. Elk testresultaat draagt een score-map per scorer — één 0–1 score per scorer plus een geaggregeerde overall-score. Elke kalibratiebeoordeling wordt opgeslagen met de identiteit van de beoordelaar, een content-hash van de gebruikte rubric-prompt, de beoordeling zelf, optionele redenering, de doorlooptijd en (indien aangeleverd) de bewerkte response.</p>
+<ul>
+  <li><strong>Rubric-versionering:</strong> we hashen de rubric-prompt met SHA-256 en gebruiken een 16-tekens prefix als versie-ID — elke rubric-bewerking levert automatisch een nieuwe versie op; oude scores blijven gekoppeld aan de oude rubric.</li>
+  <li><strong>Drempelpoorten:</strong> per-suite <code>minScore</code>-ondergrens + <code>maxDrift</code>-regressiedrempels triggeren webhooks / e-mail bij overschrijding, met de geconfigureerde monitoring-cadans (uur / dag / week / handmatig).</li>
+  <li><strong>Bewerkbare feedback van beoordelaars:</strong> door beoordelaars geleverde <code>editedResponse</code> wordt bewaard als downstream SFT-signaal — kalibratie is ook gratis trainingsdata.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="qa-scorers">
+<h3>De acht LLM-judge-scorers die we leveren</h3>
+<p class="qa-scorers-sub">Elke scored-QA-test loopt standaard door deze set. Elke scorer is een onafhankelijke LLM-aanroep tegen een parametrische rubric-prompt; rubric-bewerkingen produceren nieuwe <code>rubricVersion</code>-hashes, zodat historische scores betekenisvol blijven. Klanten kunnen elke scorer per suite uitschakelen of een eigen scorer leveren.</p>
+<div class="qa-scorers-grid">
+  <div class="qa-scorer-chip"><strong>correctness</strong><span>Directe vergelijking van het gegenereerde antwoord met het referentie-/gold-antwoord.</span></div>
+  <div class="qa-scorer-chip"><strong>factual-consistency-vs-reference</strong><span>Verificatie per claim van gegenereerde uitspraken tegen het gold-antwoord; vangt gehallucineerde toevoegingen.</span></div>
+  <div class="qa-scorer-chip"><strong>completeness-coverage</strong><span>Hoeveel van de informatie uit het referentie-antwoord terugkomt in het gegenereerde antwoord.</span></div>
+  <div class="qa-scorer-chip"><strong>relevance</strong><span>Of het antwoord de daadwerkelijke vraag adresseert, en niet een zijdelings verwante vraag.</span></div>
+  <div class="qa-scorer-chip"><strong>hallucination</strong><span>Grounding-check per claim — markeert elke claim die niet wordt ondersteund door opgehaalde context.</span></div>
+  <div class="qa-scorer-chip"><strong>context-conflict</strong><span>Markeert antwoorden die de opgehaalde context tegenspreken (een andere faalmodus dan hallucinatie).</span></div>
+  <div class="qa-scorer-chip"><strong>question-addressed</strong><span>Of de werkelijke vraag van de gebruiker is beantwoord, ook al is dat gedeeltelijk — gescheiden van <em>relevance</em> voor fijnmaziger diagnose.</span></div>
+  <div class="qa-scorer-chip"><strong>system-message-adherence</strong><span>Of het antwoord de beperkingen uit de system message respecteert (formaat, persona, veiligheidsrails).</span></div>
+</div>
+</div>
+
+<p class="subheading" style="margin-top: 3rem;">Plus eersteklas integraties met de open-source en commerciële frameworks die onze klanten al gebruiken:</p>
+<div class="qa-framework-row">
+  <span class="qa-framework-chip">Ragas</span>
+  <span class="qa-framework-chip">DeepEval</span>
+  <span class="qa-framework-chip">Patronus Lynx</span>
+  <span class="qa-framework-chip">Braintrust</span>
+  <span class="qa-framework-chip">Evidently AI</span>
+</div>
+
+<div class="qa-cross-links">
+<p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>Hoe de scoring-engine aansluit op de rest van het platform</strong></p>
+<p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
+De gekalibreerde judges voeden onze <a href="/nl/rag-arena/">RAG Arena</a> voor variantvergelijking en leveren input aan de <a href="/nl/rag-routing/">RAG Routing</a> learned-history-store die per vraag de beste backend kiest. De volledige deep-dive over judge-kalibratie staat in de blogpost <a href="/blog/calibrating-the-ai-judge/">Calibrating the Judge: The Grader Gets Graded</a>; het gecombineerde verhaal over de arena en routing vind je in <a href="/blog/inside-the-rag-arena-scored-qa-routing/">Inside the RAG Arena: When the Judges Don't Agree</a>. Voor hoe dit past in een volledige release-pijplijn, zie de <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">post over regressie-testing</a> en de <a href="/blog/ci-testing-for-custom-language-models-in-2026/">post over CI-testing</a>.
+</p>
+</div>
+
+</div>
+</section>
+
 <section id="case-studies" class="case-studies section-padding">
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>

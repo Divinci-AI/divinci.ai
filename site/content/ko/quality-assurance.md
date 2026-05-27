@@ -536,6 +536,127 @@ hero_poster = "images/hero-qa.webp"
 </div>
 </section>
 
+<style>
+/* Scoring + calibration internals section */
+.qa-internals { background: linear-gradient(180deg, rgba(248,244,240,0) 0%, rgba(232,221,199,0.18) 30%, rgba(232,221,199,0.18) 70%, rgba(248,244,240,0) 100%); padding: 5rem 1rem 6rem; }
+.qa-internals .container { max-width: 1180px; margin: 0 auto; }
+.qa-internals .subheading { text-align: center; color: #5a6862; font-size: 1.1rem; max-width: 760px; margin: -1rem auto 3rem; line-height: 1.6; }
+.qa-stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; max-width: 1080px; margin: 0 auto; }
+@media (max-width: 880px) { .qa-stack-grid { grid-template-columns: 1fr; } }
+.qa-card { background: #faf8f5; border-radius: 12px; padding: 1.75rem 2rem; border-left: 4px solid #b8a080; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); }
+.qa-card.calibration { border-left-color: #2d5a4f; }
+.qa-card.autofix { border-left-color: #7a8a4a; }
+.qa-card.arena { border-left-color: #5a7a8f; }
+.qa-card.audit { border-left-color: #a04848; }
+.qa-card h3 { font-family: 'Fraunces', serif; color: #1e3a2b; font-size: 1.5rem; margin: 0 0 0.85rem; }
+.qa-card .qa-meta { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.8rem; }
+.qa-card.calibration .qa-meta { background: rgba(45,90,79,0.12); color: #1e3a2b; }
+.qa-card.autofix .qa-meta { background: rgba(122,138,74,0.15); color: #5a6c2a; }
+.qa-card.arena .qa-meta { background: rgba(90,122,143,0.15); color: #3a5060; }
+.qa-card.audit .qa-meta { background: rgba(160,72,72,0.15); color: #7a3030; }
+.qa-card p, .qa-card li { color: #3a4a40; font-size: 0.98rem; line-height: 1.65; }
+.qa-card ul { padding-left: 1.2rem; margin: 0.5rem 0 0; }
+.qa-card li { margin-bottom: 0.4rem; }
+.qa-card code { background: #eae3d5; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: #2d3c34; font-family: 'DM Mono', monospace; }
+.qa-scorers { max-width: 1080px; margin: 3rem auto 2rem; background: #1e2a26; border-radius: 14px; padding: 2rem 2.25rem; color: #e8e3d8; }
+.qa-scorers h3 { font-family: 'Fraunces', serif; color: #faf8f5; margin: 0 0 0.5rem; font-size: 1.6rem; }
+.qa-scorers .qa-scorers-sub { color: #b8a080; font-size: 0.95rem; margin: 0 0 1.5rem; line-height: 1.55; }
+.qa-scorers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.85rem; }
+.qa-scorer-chip { background: rgba(232, 221, 199, 0.08); border: 1px solid rgba(184, 160, 128, 0.3); border-radius: 8px; padding: 0.7rem 0.85rem; }
+.qa-scorer-chip strong { color: #faf8f5 !important; display: block; font-size: 0.92rem; margin-bottom: 0.2rem; font-family: 'DM Mono', monospace; }
+.qa-scorer-chip span { color: #c8c0ad !important; font-size: 0.83rem; line-height: 1.45; display: block; }
+.qa-framework-row { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 2rem auto 0; max-width: 1080px; }
+.qa-framework-chip { background: #faf8f5; border: 1.5px solid rgba(139, 118, 89, 0.4); border-radius: 999px; padding: 0.5rem 1.15rem; font-family: 'DM Mono', monospace; font-size: 0.88rem; color: #2d3c34; }
+.qa-cross-links { max-width: 1080px; margin: 3rem auto 0; padding: 1.5rem 2rem; background: rgba(45, 90, 79, 0.06); border-radius: 12px; text-align: center; }
+.qa-cross-links a { color: #2d5a4f; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(45, 90, 79, 0.3); }
+.qa-cross-links a:hover { border-bottom-color: #2d5a4f; }
+</style>
+
+<section class="qa-internals">
+<div class="container">
+<h2 class="section-heading" style="margin-top: 0; margin-bottom: 1.5rem;">스코어링 엔진 내부 — 캘리브레이션이 실제로 작동하는 방식</h2>
+<p class="subheading">대부분의 "AI 테스트" 도구는 모델 출력에 점수를 매기는 데서 멈춥니다. Divinci의 scored-QA 제품군은 다른 전제 위에 만들어졌습니다: <strong>스코어링 루브릭은 그 점수를 신뢰할 수 있기 전에 도메인 전문가에 대해 캘리브레이션되어야 합니다.</strong> 오늘 출시된 해당 파이프라인의 작동 방식을 소개합니다.</p>
+
+<div class="qa-stack-grid">
+
+<div class="qa-card calibration">
+<span class="qa-meta">CALIBRATION · SHIPPED</span>
+<h3>인간 기준의 루브릭 캘리브레이션</h3>
+<p>도메인 전문가가 LLM 심판이 사용하는 동일한 루브릭으로 계층화된 골드 세트를 평가합니다 — 모든 점수(0 / 0.25 / 0.5 / 0.75 / 1.0)는 선택적 추론과 지도 미세조정(supervised fine-tuning) 신호로도 활용되는 선택적 <code>editedResponse</code> 필드와 함께 캡처됩니다. 각 평가는 평가자 신원, 루브릭 버전, 실제 소요 시간을 함께 기록합니다. LLM 심판과 전문가 평가자 사이의 Spearman ρ가 지속적으로 계산되며, ρ 값이 가장 높은 심판이 기본값이 됩니다.</p>
+<ul>
+  <li><strong>다중 평가자 합의:</strong> 두 명 이상의 전문가가 같은 항목을 평가할 때 평가자 간 ρ를 계산하여 심판 대 인간의 불일치뿐 아니라 평가자 간 불일치도 감지할 수 있습니다.</li>
+  <li><strong>스위트별 캘리브레이션 목표:</strong> 각 scored-QA 스위트는 <code>rhoLowerTarget</code> + <code>rhoTargetN</code>을 가집니다 — 심판이 신뢰받기 전에 캘리브레이션이 통과해야 하는 최저선과 그 기준을 통과해야 하는 표본 크기입니다.</li>
+  <li><strong>능동 학습:</strong> 사전 평가 파이프라인은 LLM 심판들이 가장 많이 의견을 달리하는 고분산 항목을 전문가 검토를 위해 우선적으로 노출하므로, 적은 전문가 예산으로 노이즈가 많은 결정 경계를 먼저 캘리브레이션합니다.</li>
+</ul>
+</div>
+
+<div class="qa-card autofix">
+<span class="qa-meta">AUTO-FIX · SHIPPED</span>
+<h3>명시적 자율성 수준을 갖춘 자동 수정 루프</h3>
+<p>스위트가 캘리브레이션되면 자동 수정 루프가 반복됩니다: 후보를 채점하고, 소규모 재구성이나 검색 구성 변경을 적용하고, 다시 채점하고, 네 가지 종료 상태 중 하나에 도달할 때까지 반복합니다. 자율성 수준은 반복 사이에 사람의 승인이 필요한지 여부를 결정합니다.</p>
+<ul>
+  <li><code>full-auto</code> — 사람의 게이트 없이 수렴할 때까지 실행됩니다.</li>
+  <li><code>checkpoint-every-iteration</code> — 각 후보 변경에 대해 사람이 승인합니다.</li>
+  <li><code>checkpoint-on-deploy</code> — 무인으로 실행되지만 프로덕션 승격 전 사람의 최종 승인을 위해 일시 중지합니다.</li>
+  <li><strong>종료 상태:</strong> <code>high-scores</code>, <code>target-reached</code>, <code>max-iterations</code>, 또는 <code>running</code>. 모드: 프롬프트/검색 튜닝을 위한 <code>autofix</code>, 검색 파이프라인 재구성을 위한 <code>autorag</code>.</li>
+</ul>
+</div>
+
+<div class="qa-card arena">
+<span class="qa-meta">ARENA · SHIPPED</span>
+<h3>RAG Arena — 스위트 규모의 변형 비교</h3>
+<p>단일 API 호출로 스위트를 여러 RAG 구성에 걸쳐 분산 실행합니다 — 서로 다른 검색 백엔드(<a href="/ko/rag-routing/">RAG Routing</a> 10개 타깃), 서로 다른 LLM, 서로 다른 프롬프트 템플릿 — 그리고 모든 (변형 × 테스트) 쌍을 캘리브레이션된 심판으로 채점합니다. 결과는 변형별 랭킹, 테스트별 최우수 변형 승자, 그리고 마크다운 리포트입니다.</p>
+<p>이 아레나는 <a href="/ko/rag-routing/">학습된 라우팅 모델</a>의 상위 소스이기도 합니다: 고객이 아레나 승자를 선택하면 (질문, 승리 백엔드) 쌍이 라우팅 히스토리 저장소의 시드가 됩니다.</p>
+<p><strong>엔드포인트:</strong> <code>POST /api/v1/qa/suites/:suiteId/arena-run</code>, <code>{ arenaPresetId, testIds?, maxTestsPerVariant? }</code> 사용.</p>
+</div>
+
+<div class="qa-card audit">
+<span class="qa-meta">AUDIT · SHIPPED</span>
+<h3>감사 수준의 스코어링 영수증</h3>
+<p>시스템의 모든 점수는 몇 달 후에도 변호할 수 있도록 필요한 정보와 함께 기록됩니다. 각 테스트 결과는 스코어러별 점수 맵을 가지며 — 스코어러당 0–1 점수 하나와 집계된 총점을 포함합니다. 각 캘리브레이션 평가는 평가자의 신원, 사용된 루브릭 프롬프트의 콘텐츠 해시, 평가 자체, 선택적 추론, 실제 소요 시간, 그리고 (제공된 경우) 편집된 응답과 함께 저장됩니다.</p>
+<ul>
+  <li><strong>루브릭 버전 관리:</strong> SHA-256으로 루브릭 프롬프트를 콘텐츠 해싱하고 16자 접두사를 버전 ID로 사용합니다 — 모든 루브릭 편집은 자동으로 새 버전을 생성하며, 기존 점수는 기존 루브릭에 그대로 연결됩니다.</li>
+  <li><strong>임계값 게이트:</strong> 스위트별 <code>minScore</code> 최저선 + <code>maxDrift</code> 회귀 임계값이 위반 시 웹훅 / 이메일을 발생시키며, 구성된 모니터링 주기(시간별 / 일별 / 주별 / 수동)에 따라 작동합니다.</li>
+  <li><strong>편집 가능한 평가자 피드백:</strong> 평가자가 제공한 <code>editedResponse</code>는 다운스트림 SFT 신호로 보존됩니다 — 캘리브레이션은 무료 학습 데이터이기도 합니다.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="qa-scorers">
+<h3>기본 제공되는 8개의 LLM 심판 스코어러</h3>
+<p class="qa-scorers-sub">모든 scored-QA 테스트는 기본적으로 이 세트를 거칩니다. 각 스코어러는 파라메트릭 루브릭 프롬프트에 대한 독립적인 LLM 호출입니다; 루브릭 편집은 새로운 <code>rubricVersion</code> 해시를 생성하므로 과거 점수는 의미를 유지합니다. 고객은 스위트별로 어떤 스코어러든 비활성화하거나 자체 스코어러를 제공할 수 있습니다.</p>
+<div class="qa-scorers-grid">
+  <div class="qa-scorer-chip"><strong>correctness</strong><span>생성된 응답을 참조 / 골드 답변과 직접 비교합니다.</span></div>
+  <div class="qa-scorer-chip"><strong>factual-consistency-vs-reference</strong><span>생성된 주장을 골드 답변과 항목별로 검증합니다; 환각으로 추가된 내용을 잡아냅니다.</span></div>
+  <div class="qa-scorer-chip"><strong>completeness-coverage</strong><span>참조 답변의 정보 중 얼마나 많은 부분이 생성된 응답에 나타나는지를 평가합니다.</span></div>
+  <div class="qa-scorer-chip"><strong>relevance</strong><span>응답이 접선적으로 관련된 질문이 아니라 실제 질문에 답하는지 여부를 평가합니다.</span></div>
+  <div class="qa-scorer-chip"><strong>hallucination</strong><span>주장별 그라운딩 검사 — 검색된 컨텍스트로 뒷받침되지 않는 주장을 표시합니다.</span></div>
+  <div class="qa-scorer-chip"><strong>context-conflict</strong><span>검색된 컨텍스트와 모순되는 응답을 표시합니다(환각과는 다른 실패 모드).</span></div>
+  <div class="qa-scorer-chip"><strong>question-addressed</strong><span>실제 사용자 질문에 부분적으로라도 답변되었는지 여부 — 보다 세밀한 진단을 위해 <em>relevance</em>와 분리되었습니다.</span></div>
+  <div class="qa-scorer-chip"><strong>system-message-adherence</strong><span>응답이 시스템 메시지 제약(형식, 페르소나, 안전 가드레일)을 준수하는지 여부를 평가합니다.</span></div>
+</div>
+</div>
+
+<p class="subheading" style="margin-top: 3rem;">또한 고객사가 이미 사용 중인 오픈소스 및 상용 프레임워크와의 1급 통합을 제공합니다:</p>
+<div class="qa-framework-row">
+  <span class="qa-framework-chip">Ragas</span>
+  <span class="qa-framework-chip">DeepEval</span>
+  <span class="qa-framework-chip">Patronus Lynx</span>
+  <span class="qa-framework-chip">Braintrust</span>
+  <span class="qa-framework-chip">Evidently AI</span>
+</div>
+
+<div class="qa-cross-links">
+<p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>스코어링 엔진이 플랫폼의 나머지와 어떻게 연결되는지</strong></p>
+<p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
+캘리브레이션된 심판들은 변형 비교를 위한 <a href="/ko/rag-arena/">RAG Arena</a>에 동력을 공급하고, 쿼리별로 최적의 백엔드를 선택하는 <a href="/ko/rag-routing/">RAG Routing</a> 학습 히스토리 저장소에 피드를 제공합니다. 심판 캘리브레이션에 대한 전체 심층 분석은 블로그 글 <a href="/blog/calibrating-the-ai-judge/">Calibrating the Judge: The Grader Gets Graded</a>에서 확인할 수 있으며; 아레나와 라우팅 스토리는 함께 <a href="/blog/inside-the-rag-arena-scored-qa-routing/">Inside the RAG Arena: When the Judges Don't Agree</a>에서 다룹니다. 이것이 전체 릴리스 파이프라인에 어떻게 들어맞는지는 <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">회귀 테스트 글</a>과 <a href="/blog/ci-testing-for-custom-language-models-in-2026/">CI 테스트 글</a>을 참고하세요.
+</p>
+</div>
+
+</div>
+</section>
+
 <section id="case-studies" class="case-studies section-padding">
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>

@@ -536,6 +536,127 @@ hero_poster = "images/hero-qa.webp"
 </div>
 </section>
 
+<style>
+/* Scoring + calibration internals section */
+.qa-internals { background: linear-gradient(180deg, rgba(248,244,240,0) 0%, rgba(232,221,199,0.18) 30%, rgba(232,221,199,0.18) 70%, rgba(248,244,240,0) 100%); padding: 5rem 1rem 6rem; }
+.qa-internals .container { max-width: 1180px; margin: 0 auto; }
+.qa-internals .subheading { text-align: center; color: #5a6862; font-size: 1.1rem; max-width: 760px; margin: -1rem auto 3rem; line-height: 1.6; }
+.qa-stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; max-width: 1080px; margin: 0 auto; }
+@media (max-width: 880px) { .qa-stack-grid { grid-template-columns: 1fr; } }
+.qa-card { background: #faf8f5; border-radius: 12px; padding: 1.75rem 2rem; border-left: 4px solid #b8a080; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); }
+.qa-card.calibration { border-left-color: #2d5a4f; }
+.qa-card.autofix { border-left-color: #7a8a4a; }
+.qa-card.arena { border-left-color: #5a7a8f; }
+.qa-card.audit { border-left-color: #a04848; }
+.qa-card h3 { font-family: 'Fraunces', serif; color: #1e3a2b; font-size: 1.5rem; margin: 0 0 0.85rem; }
+.qa-card .qa-meta { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.8rem; }
+.qa-card.calibration .qa-meta { background: rgba(45,90,79,0.12); color: #1e3a2b; }
+.qa-card.autofix .qa-meta { background: rgba(122,138,74,0.15); color: #5a6c2a; }
+.qa-card.arena .qa-meta { background: rgba(90,122,143,0.15); color: #3a5060; }
+.qa-card.audit .qa-meta { background: rgba(160,72,72,0.15); color: #7a3030; }
+.qa-card p, .qa-card li { color: #3a4a40; font-size: 0.98rem; line-height: 1.65; }
+.qa-card ul { padding-left: 1.2rem; margin: 0.5rem 0 0; }
+.qa-card li { margin-bottom: 0.4rem; }
+.qa-card code { background: #eae3d5; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: #2d3c34; font-family: 'DM Mono', monospace; }
+.qa-scorers { max-width: 1080px; margin: 3rem auto 2rem; background: #1e2a26; border-radius: 14px; padding: 2rem 2.25rem; color: #e8e3d8; }
+.qa-scorers h3 { font-family: 'Fraunces', serif; color: #faf8f5; margin: 0 0 0.5rem; font-size: 1.6rem; }
+.qa-scorers .qa-scorers-sub { color: #b8a080; font-size: 0.95rem; margin: 0 0 1.5rem; line-height: 1.55; }
+.qa-scorers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.85rem; }
+.qa-scorer-chip { background: rgba(232, 221, 199, 0.08); border: 1px solid rgba(184, 160, 128, 0.3); border-radius: 8px; padding: 0.7rem 0.85rem; }
+.qa-scorer-chip strong { color: #faf8f5 !important; display: block; font-size: 0.92rem; margin-bottom: 0.2rem; font-family: 'DM Mono', monospace; }
+.qa-scorer-chip span { color: #c8c0ad !important; font-size: 0.83rem; line-height: 1.45; display: block; }
+.qa-framework-row { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 2rem auto 0; max-width: 1080px; }
+.qa-framework-chip { background: #faf8f5; border: 1.5px solid rgba(139, 118, 89, 0.4); border-radius: 999px; padding: 0.5rem 1.15rem; font-family: 'DM Mono', monospace; font-size: 0.88rem; color: #2d3c34; }
+.qa-cross-links { max-width: 1080px; margin: 3rem auto 0; padding: 1.5rem 2rem; background: rgba(45, 90, 79, 0.06); border-radius: 12px; text-align: center; }
+.qa-cross-links a { color: #2d5a4f; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(45, 90, 79, 0.3); }
+.qa-cross-links a:hover { border-bottom-color: #2d5a4f; }
+</style>
+
+<section class="qa-internals">
+<div class="container">
+<h2 class="section-heading" style="margin-top: 0; margin-bottom: 1.5rem;">स्कोरिंग इंजन के अंदर — कैलिब्रेशन वास्तव में कैसे काम करता है</h2>
+<p class="subheading">अधिकांश "AI टेस्टिंग" टूल मॉडल आउटपुट को स्कोर करते हैं और वहीं रुक जाते हैं। Divinci का scored-QA सूट एक अलग आधार पर बना है: <strong>आपके स्कोरिंग रूब्रिक को किसी डोमेन एक्सपर्ट के विरुद्ध कैलिब्रेट करना आवश्यक है, तभी उसके स्कोर पर भरोसा किया जा सकता है।</strong> यहाँ बताया गया है कि यह पाइपलाइन आज कैसे शिप होती है।</p>
+
+<div class="qa-stack-grid">
+
+<div class="qa-card calibration">
+<span class="qa-meta">CALIBRATION · SHIPPED</span>
+<h3>मानव-आधारित रूब्रिक कैलिब्रेशन</h3>
+<p>एक डोमेन एक्सपर्ट उसी रूब्रिक पर स्ट्रेटिफाइड गोल्ड सेट को रेट करता है जिसका उपयोग LLM जज करता है — हर स्कोर (0 / 0.25 / 0.5 / 0.75 / 1.0) वैकल्पिक रीज़निंग और एक वैकल्पिक <code>editedResponse</code> फ़ील्ड के साथ कैप्चर होता है जो supervised-fine-tuning सिग्नल के रूप में भी काम करता है। प्रत्येक रेटिंग रेटर की पहचान, रूब्रिक संस्करण, और वॉल-क्लॉक अवधि लॉग करती है। LLM जज और एक्सपर्ट रेटर के बीच Spearman ρ निरंतर गणना होती है; उच्चतम ρ वाला जज डिफ़ॉल्ट बन जाता है।</p>
+<ul>
+  <li><strong>मल्टी-रेटर सहमति:</strong> जब एक ही आइटम पर एक से अधिक एक्सपर्ट रेट करते हैं, तो inter-rater ρ की गणना होती है ताकि हम रेटर असहमति के साथ-साथ judge-vs-human असहमति का भी पता लगा सकें।</li>
+  <li><strong>प्रति-सूट कैलिब्रेशन लक्ष्य:</strong> प्रत्येक scored-QA सूट में एक <code>rhoLowerTarget</code> + <code>rhoTargetN</code> होता है — वह न्यूनतम सीमा जिसे कैलिब्रेशन को पार करना होगा और जज पर भरोसा करने से पहले जिस सैंपल आकार पर इसे पार करना होगा।</li>
+  <li><strong>एक्टिव लर्निंग:</strong> प्री-रेटिंग पाइपलाइन प्राथमिकता से उच्च-वैरिएंस आइटम्स (जहाँ LLM जज सबसे अधिक असहमत हैं) को एक्सपर्ट रिव्यू के लिए सामने लाती है, ताकि एक छोटा एक्सपर्ट बजट पहले शोरगुल वाली डिसीज़न बाउंड्री को कैलिब्रेट कर सके।</li>
+</ul>
+</div>
+
+<div class="qa-card autofix">
+<span class="qa-meta">AUTO-FIX · SHIPPED</span>
+<h3>स्पष्ट ऑटोनॉमी स्तरों के साथ ऑटो-फिक्स लूप</h3>
+<p>एक बार सूट कैलिब्रेट हो जाने पर, ऑटो-फिक्स लूप iterate करता है: यह कैंडिडेट को स्कोर करता है, एक छोटा reformulation या retrieval-config बदलाव लागू करता है, फिर से स्कोर करता है, और चार टर्मिनल स्टेट्स में से किसी एक तक दोहराता है। ऑटोनॉमी स्तर तय करता है कि iterations के बीच मानव अनुमोदन आवश्यक है या नहीं।</p>
+<ul>
+  <li><code>full-auto</code> — मानव गेट्स के बिना अभिसरण तक चलता है।</li>
+  <li><code>checkpoint-every-iteration</code> — मानव प्रत्येक कैंडिडेट बदलाव को स्वीकृत करता है।</li>
+  <li><code>checkpoint-on-deploy</code> — बिना निगरानी चलता है लेकिन प्रोडक्शन में प्रमोट करने से पहले मानव साइन-ऑफ़ के लिए रुकता है।</li>
+  <li><strong>टर्मिनल स्टेट्स:</strong> <code>high-scores</code>, <code>target-reached</code>, <code>max-iterations</code>, या <code>running</code>. मोड्स: prompt/retrieval ट्यूनिंग के लिए <code>autofix</code>, retrieval-pipeline पुनः-कॉन्फ़िगरेशन के लिए <code>autorag</code>.</li>
+</ul>
+</div>
+
+<div class="qa-card arena">
+<span class="qa-meta">ARENA · SHIPPED</span>
+<h3>RAG Arena — सूट स्केल पर वेरिएंट तुलना</h3>
+<p>एक एकल API कॉल सूट को कई RAG कॉन्फ़िगरेशन में फैन-आउट करती है — विभिन्न retrieval बैकएंड्स (दस <a href="/hi/rag-routing/">RAG Routing</a> लक्ष्य), विभिन्न LLMs, विभिन्न prompt टेम्पलेट्स — और कैलिब्रेटेड जज के साथ प्रत्येक (variant × test) जोड़ी को स्कोर करती है। परिणाम है एक प्रति-वेरिएंट रैंकिंग, एक प्रति-टेस्ट सर्वश्रेष्ठ-वेरिएंट विजेता, और एक markdown रिपोर्ट।</p>
+<p>अरीना हमारे <a href="/hi/rag-routing/">learned routing मॉडल</a> के लिए अपस्ट्रीम स्रोत भी है: जब कोई ग्राहक अरीना विजेता चुनता है, तो (question, winning-backend) जोड़ी routing-history स्टोर को सीड करती है।</p>
+<p><strong>एंडपॉइंट:</strong> <code>POST /api/v1/qa/suites/:suiteId/arena-run</code> <code>{ arenaPresetId, testIds?, maxTestsPerVariant? }</code> के साथ।</p>
+</div>
+
+<div class="qa-card audit">
+<span class="qa-meta">AUDIT · SHIPPED</span>
+<h3>ऑडिट-ग्रेड स्कोरिंग रसीदें</h3>
+<p>सिस्टम में प्रत्येक स्कोर उस जानकारी के साथ लॉग होता है जिसकी आपको महीनों बाद उसका बचाव करने के लिए आवश्यकता होगी। प्रत्येक टेस्ट परिणाम एक प्रति-स्कोरर स्कोर मैप रखता है — प्रति स्कोरर एक 0–1 स्कोर साथ ही एक aggregated ओवरऑल स्कोर। प्रत्येक कैलिब्रेशन रेटिंग रेटर की पहचान, उपयोग किए गए रूब्रिक prompt के content-hash, स्वयं रेटिंग, वैकल्पिक रीज़निंग, वॉल-क्लॉक अवधि, और (यदि दी गई हो) edited response के साथ संग्रहीत होती है।</p>
+<ul>
+  <li><strong>रूब्रिक वर्ज़निंग:</strong> हम SHA-256 के साथ रूब्रिक prompt को content-hash करते हैं और 16-कैरेक्टर प्रीफ़िक्स को संस्करण ID के रूप में उपयोग करते हैं — कोई भी रूब्रिक एडिट स्वचालित रूप से एक नया संस्करण बनाता है; पुराने स्कोर पुराने रूब्रिक से जुड़े रहते हैं।</li>
+  <li><strong>थ्रेशोल्ड गेट्स:</strong> प्रति-सूट <code>minScore</code> फ़्लोर + <code>maxDrift</code> regression थ्रेशोल्ड उल्लंघन पर webhooks / ईमेल फायर करते हैं, कॉन्फ़िगर की गई मॉनिटरिंग cadence (hourly / daily / weekly / manual) के साथ।</li>
+  <li><strong>एडिट योग्य रेटर फ़ीडबैक:</strong> रेटर द्वारा प्रदान किया गया <code>editedResponse</code> डाउनस्ट्रीम SFT सिग्नल के रूप में संरक्षित किया जाता है — कैलिब्रेशन फ्री ट्रेनिंग डेटा भी है।</li>
+</ul>
+</div>
+
+</div>
+
+<div class="qa-scorers">
+<h3>आठ LLM-जज स्कोरर जो हम शिप करते हैं</h3>
+<p class="qa-scorers-sub">हर scored-QA टेस्ट डिफ़ॉल्ट रूप से इस सेट से होकर गुज़रता है। प्रत्येक स्कोरर एक parametric रूब्रिक prompt के विरुद्ध एक स्वतंत्र LLM कॉल है; रूब्रिक एडिट नए <code>rubricVersion</code> hashes बनाते हैं ताकि ऐतिहासिक स्कोर सार्थक बने रहें। ग्राहक प्रति-सूट किसी भी स्कोरर को निष्क्रिय कर सकते हैं या अपना खुद का प्रदान कर सकते हैं।</p>
+<div class="qa-scorers-grid">
+  <div class="qa-scorer-chip"><strong>correctness</strong><span>जेनरेट की गई प्रतिक्रिया की reference / gold उत्तर के विरुद्ध सीधी तुलना।</span></div>
+  <div class="qa-scorer-chip"><strong>factual-consistency-vs-reference</strong><span>gold उत्तर के विरुद्ध जेनरेट किए गए दावों का प्रति-दावा सत्यापन; काल्पनिक जोड़ी गई जानकारी पकड़ता है।</span></div>
+  <div class="qa-scorer-chip"><strong>completeness-coverage</strong><span>reference उत्तर की कितनी जानकारी जेनरेट की गई प्रतिक्रिया में प्रकट होती है।</span></div>
+  <div class="qa-scorer-chip"><strong>relevance</strong><span>क्या प्रतिक्रिया वास्तविक प्रश्न को संबोधित करती है, न कि किसी आंशिक रूप से संबंधित प्रश्न को।</span></div>
+  <div class="qa-scorer-chip"><strong>hallucination</strong><span>प्रति-दावा grounding जाँच — किसी भी दावे को फ़्लैग करता है जो retrieved context द्वारा समर्थित नहीं है।</span></div>
+  <div class="qa-scorer-chip"><strong>context-conflict</strong><span>उन प्रतिक्रियाओं को फ़्लैग करता है जो retrieved context का खंडन करती हैं (hallucination से भिन्न failure mode)।</span></div>
+  <div class="qa-scorer-chip"><strong>question-addressed</strong><span>क्या वास्तविक उपयोगकर्ता प्रश्न का उत्तर दिया गया, आंशिक रूप से भी — अधिक सूक्ष्म निदान के लिए <em>relevance</em> से अलग किया गया।</span></div>
+  <div class="qa-scorer-chip"><strong>system-message-adherence</strong><span>क्या प्रतिक्रिया system-message बाधाओं (format, persona, safety rails) का सम्मान करती है।</span></div>
+</div>
+</div>
+
+<p class="subheading" style="margin-top: 3rem;">साथ ही उन open-source और commercial frameworks के साथ first-class इंटीग्रेशन जो हमारे ग्राहक पहले से उपयोग करते हैं:</p>
+<div class="qa-framework-row">
+  <span class="qa-framework-chip">Ragas</span>
+  <span class="qa-framework-chip">DeepEval</span>
+  <span class="qa-framework-chip">Patronus Lynx</span>
+  <span class="qa-framework-chip">Braintrust</span>
+  <span class="qa-framework-chip">Evidently AI</span>
+</div>
+
+<div class="qa-cross-links">
+<p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>स्कोरिंग इंजन प्लेटफ़ॉर्म के बाकी हिस्से से कैसे जुड़ता है</strong></p>
+<p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
+कैलिब्रेटेड जज हमारे <a href="/hi/rag-arena/">RAG Arena</a> को वेरिएंट तुलना के लिए शक्ति प्रदान करते हैं और <a href="/hi/rag-routing/">RAG Routing</a> learned-history स्टोर को फीड करते हैं जो प्रति query सर्वश्रेष्ठ backend चुनता है। जज कैलिब्रेशन पर पूर्ण deep-dive ब्लॉग पोस्ट <a href="/blog/calibrating-the-ai-judge/">Calibrating the Judge: The Grader Gets Graded</a> है; एक साथ अरीना और routing कहानी <a href="/blog/inside-the-rag-arena-scored-qa-routing/">Inside the RAG Arena: When the Judges Don't Agree</a> पर है। यह पूर्ण release pipeline में कैसे फिट होता है, इसके लिए देखें <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">regression-testing पोस्ट</a> और <a href="/blog/ci-testing-for-custom-language-models-in-2026/">CI testing पोस्ट</a>।
+</p>
+</div>
+
+</div>
+</section>
+
 <section id="case-studies" class="case-studies section-padding">
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>

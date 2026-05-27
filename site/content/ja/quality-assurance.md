@@ -536,6 +536,127 @@ hero_poster = "images/hero-qa.webp"
 </div>
 </section>
 
+<style>
+/* Scoring + calibration internals section */
+.qa-internals { background: linear-gradient(180deg, rgba(248,244,240,0) 0%, rgba(232,221,199,0.18) 30%, rgba(232,221,199,0.18) 70%, rgba(248,244,240,0) 100%); padding: 5rem 1rem 6rem; }
+.qa-internals .container { max-width: 1180px; margin: 0 auto; }
+.qa-internals .subheading { text-align: center; color: #5a6862; font-size: 1.1rem; max-width: 760px; margin: -1rem auto 3rem; line-height: 1.6; }
+.qa-stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; max-width: 1080px; margin: 0 auto; }
+@media (max-width: 880px) { .qa-stack-grid { grid-template-columns: 1fr; } }
+.qa-card { background: #faf8f5; border-radius: 12px; padding: 1.75rem 2rem; border-left: 4px solid #b8a080; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); }
+.qa-card.calibration { border-left-color: #2d5a4f; }
+.qa-card.autofix { border-left-color: #7a8a4a; }
+.qa-card.arena { border-left-color: #5a7a8f; }
+.qa-card.audit { border-left-color: #a04848; }
+.qa-card h3 { font-family: 'Fraunces', serif; color: #1e3a2b; font-size: 1.5rem; margin: 0 0 0.85rem; }
+.qa-card .qa-meta { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.8rem; }
+.qa-card.calibration .qa-meta { background: rgba(45,90,79,0.12); color: #1e3a2b; }
+.qa-card.autofix .qa-meta { background: rgba(122,138,74,0.15); color: #5a6c2a; }
+.qa-card.arena .qa-meta { background: rgba(90,122,143,0.15); color: #3a5060; }
+.qa-card.audit .qa-meta { background: rgba(160,72,72,0.15); color: #7a3030; }
+.qa-card p, .qa-card li { color: #3a4a40; font-size: 0.98rem; line-height: 1.65; }
+.qa-card ul { padding-left: 1.2rem; margin: 0.5rem 0 0; }
+.qa-card li { margin-bottom: 0.4rem; }
+.qa-card code { background: #eae3d5; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: #2d3c34; font-family: 'DM Mono', monospace; }
+.qa-scorers { max-width: 1080px; margin: 3rem auto 2rem; background: #1e2a26; border-radius: 14px; padding: 2rem 2.25rem; color: #e8e3d8; }
+.qa-scorers h3 { font-family: 'Fraunces', serif; color: #faf8f5; margin: 0 0 0.5rem; font-size: 1.6rem; }
+.qa-scorers .qa-scorers-sub { color: #b8a080; font-size: 0.95rem; margin: 0 0 1.5rem; line-height: 1.55; }
+.qa-scorers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.85rem; }
+.qa-scorer-chip { background: rgba(232, 221, 199, 0.08); border: 1px solid rgba(184, 160, 128, 0.3); border-radius: 8px; padding: 0.7rem 0.85rem; }
+.qa-scorer-chip strong { color: #faf8f5 !important; display: block; font-size: 0.92rem; margin-bottom: 0.2rem; font-family: 'DM Mono', monospace; }
+.qa-scorer-chip span { color: #c8c0ad !important; font-size: 0.83rem; line-height: 1.45; display: block; }
+.qa-framework-row { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 2rem auto 0; max-width: 1080px; }
+.qa-framework-chip { background: #faf8f5; border: 1.5px solid rgba(139, 118, 89, 0.4); border-radius: 999px; padding: 0.5rem 1.15rem; font-family: 'DM Mono', monospace; font-size: 0.88rem; color: #2d3c34; }
+.qa-cross-links { max-width: 1080px; margin: 3rem auto 0; padding: 1.5rem 2rem; background: rgba(45, 90, 79, 0.06); border-radius: 12px; text-align: center; }
+.qa-cross-links a { color: #2d5a4f; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(45, 90, 79, 0.3); }
+.qa-cross-links a:hover { border-bottom-color: #2d5a4f; }
+</style>
+
+<section class="qa-internals">
+<div class="container">
+<h2 class="section-heading" style="margin-top: 0; margin-bottom: 1.5rem;">スコアリングエンジンの内側 — キャリブレーションは実際にどう機能するのか</h2>
+<p class="subheading">多くの「AIテスト」ツールはモデル出力をスコアリングして、それで終わりです。Divinciのscored-QAスイートは異なる前提のもとに構築されています。<strong>スコアを信頼できるものにするためには、まずスコアリングルーブリック自体をドメインエキスパートに対してキャリブレーションする必要があるのです。</strong>そのパイプラインが現在どのように出荷されているかをご紹介します。</p>
+
+<div class="qa-stack-grid">
+
+<div class="qa-card calibration">
+<span class="qa-meta">CALIBRATION · SHIPPED</span>
+<h3>人間アンカー型のルーブリックキャリブレーション</h3>
+<p>ドメインエキスパートが、LLMジャッジが用いるのと同じルーブリックを、層化抽出されたゴールドセットに対して評価します。すべてのスコア(0 / 0.25 / 0.5 / 0.75 / 1.0)は、任意の理由付けと、教師ありファインチューニング信号としても利用できる任意の<code>editedResponse</code>フィールドとともに記録されます。各評価では、評価者のアイデンティティ、ルーブリックのバージョン、実時間の所要時間がログに残ります。LLMジャッジとエキスパート評価者の間のSpearman ρは継続的に計算され、最も高いρを持つジャッジがデフォルトになります。</p>
+<ul>
+  <li><strong>複数評価者間の一致:</strong> 同じ項目を複数のエキスパートが評価した場合、評価者間ρも計算されるため、ジャッジ対人間の不一致だけでなく、評価者間の不一致も検出できます。</li>
+  <li><strong>スイート単位のキャリブレーション目標:</strong> 各scored-QAスイートには<code>rhoLowerTarget</code>と<code>rhoTargetN</code>が設定されており、キャリブレーションがクリアすべき下限値と、ジャッジが信頼される前にそれをクリアすべきサンプルサイズを規定します。</li>
+  <li><strong>アクティブラーニング:</strong> 事前評価パイプラインは、高分散項目(LLMジャッジ同士が最も意見の分かれる項目)を優先的にエキスパートレビューに浮上させるため、限られたエキスパート予算で、まずノイズの多い決定境界からキャリブレーションされます。</li>
+</ul>
+</div>
+
+<div class="qa-card autofix">
+<span class="qa-meta">AUTO-FIX · SHIPPED</span>
+<h3>明示的な自律性レベルを備えた自動修正ループ</h3>
+<p>スイートがキャリブレーションされると、自動修正ループが反復処理を開始します。候補をスコアリングし、小規模な再定式化または検索設定の変更を適用し、再スコアリングを行い、4つの終了状態のいずれかに達するまでこれを繰り返します。自律性レベルにより、反復間で人間の承認が必要かどうかが決まります。</p>
+<ul>
+  <li><code>full-auto</code> — 人間のゲートなしで収束まで実行します。</li>
+  <li><code>checkpoint-every-iteration</code> — 各候補変更について人間が承認します。</li>
+  <li><code>checkpoint-on-deploy</code> — 無人で実行されますが、本番環境へのプロモーション前に人間の最終承認のために一時停止します。</li>
+  <li><strong>終了状態:</strong> <code>high-scores</code>、<code>target-reached</code>、<code>max-iterations</code>、または<code>running</code>。モード: プロンプト/検索のチューニングには<code>autofix</code>、検索パイプラインの再構成には<code>autorag</code>。</li>
+</ul>
+</div>
+
+<div class="qa-card arena">
+<span class="qa-meta">ARENA · SHIPPED</span>
+<h3>RAG Arena — スイート規模でのバリアント比較</h3>
+<p>単一のAPI呼び出しで、スイートを複数のRAG構成にファンアウトします。異なる検索バックエンド(<a href="/ja/rag-routing/">RAG Routing</a>の10種類のターゲット)、異なるLLM、異なるプロンプトテンプレートにわたって展開し、すべての(バリアント × テスト)ペアをキャリブレーション済みジャッジでスコアリングします。結果として、バリアントごとのランキング、テストごとの最良バリアント勝者、そしてmarkdownレポートが得られます。</p>
+<p>アリーナは、私たちの<a href="/ja/rag-routing/">学習型ルーティングモデル</a>の上流ソースでもあります。お客様がアリーナの勝者を選択すると、その(質問, 勝利したバックエンド)ペアがルーティング履歴ストアのシードとなります。</p>
+<p><strong>エンドポイント:</strong> <code>POST /api/v1/qa/suites/:suiteId/arena-run</code> ペイロードは<code>{ arenaPresetId, testIds?, maxTestsPerVariant? }</code>。</p>
+</div>
+
+<div class="qa-card audit">
+<span class="qa-meta">AUDIT · SHIPPED</span>
+<h3>監査グレードのスコアリングレシート</h3>
+<p>システム内のすべてのスコアは、数ヶ月後にもその根拠を説明できるだけの情報とともにログ記録されます。各テスト結果には、スコアラーごとのスコアマップ(スコアラーごとに0〜1のスコアと、集約された総合スコア)が含まれます。各キャリブレーション評価は、評価者のアイデンティティ、使用されたルーブリックプロンプトのコンテンツハッシュ、評価値そのもの、任意の理由付け、実時間の所要時間、そして(提供されていれば)編集後のレスポンスとともに保存されます。</p>
+<ul>
+  <li><strong>ルーブリックのバージョン管理:</strong> ルーブリックプロンプトをSHA-256でコンテンツハッシュ化し、その先頭16文字をバージョンIDとして使用します。ルーブリックを編集すれば自動的に新しいバージョンが生成され、古いスコアは古いルーブリックに紐付いたまま残ります。</li>
+  <li><strong>しきい値ゲート:</strong> スイートごとの<code>minScore</code>下限値と<code>maxDrift</code>のリグレッションしきい値が、違反時にwebhookやメールを発火させ、設定された監視頻度(毎時 / 毎日 / 毎週 / 手動)で動作します。</li>
+  <li><strong>編集可能な評価者フィードバック:</strong> 評価者が提供する<code>editedResponse</code>は、下流のSFT信号として保持されます。キャリブレーションは無料のトレーニングデータでもあるのです。</li>
+</ul>
+</div>
+
+</div>
+
+<div class="qa-scorers">
+<h3>私たちが出荷する8つのLLMジャッジスコアラー</h3>
+<p class="qa-scorers-sub">scored-QAテストはデフォルトでこのセットすべてを通過します。各スコアラーは、パラメトリックなルーブリックプロンプトに対する独立したLLM呼び出しです。ルーブリックを編集すると新しい<code>rubricVersion</code>ハッシュが生成されるため、過去のスコアは引き続き意味を持ちます。お客様は、スイートごとに任意のスコアラーを無効化したり、独自のスコアラーを提供したりできます。</p>
+<div class="qa-scorers-grid">
+  <div class="qa-scorer-chip"><strong>correctness</strong><span>生成されたレスポンスを参照/ゴールド回答と直接比較します。</span></div>
+  <div class="qa-scorer-chip"><strong>factual-consistency-vs-reference</strong><span>生成された主張を、クレーム単位でゴールド回答に対して検証します。幻覚的な追加情報を検出します。</span></div>
+  <div class="qa-scorer-chip"><strong>completeness-coverage</strong><span>参照回答の情報のうち、どれだけが生成レスポンスに含まれているかを評価します。</span></div>
+  <div class="qa-scorer-chip"><strong>relevance</strong><span>レスポンスが実際の質問に対応しているか、それともわずかに関連する別の質問に対応しているかを評価します。</span></div>
+  <div class="qa-scorer-chip"><strong>hallucination</strong><span>クレーム単位のグラウンディングチェック — 取得されたコンテキストで裏付けられていない主張をフラグ立てします。</span></div>
+  <div class="qa-scorer-chip"><strong>context-conflict</strong><span>取得されたコンテキストと矛盾するレスポンスをフラグ立てします(これは幻覚とは異なる失敗モードです)。</span></div>
+  <div class="qa-scorer-chip"><strong>question-addressed</strong><span>実際のユーザー質問が、たとえ部分的にでも回答されたかを評価します。より細かい診断を行うために<em>relevance</em>とは分離しています。</span></div>
+  <div class="qa-scorer-chip"><strong>system-message-adherence</strong><span>レスポンスがシステムメッセージの制約(フォーマット、ペルソナ、安全ガードレール)を遵守しているかを評価します。</span></div>
+</div>
+</div>
+
+<p class="subheading" style="margin-top: 3rem;">さらに、お客様がすでに使用しているオープンソースおよび商用フレームワークとのファーストクラスな統合も提供します:</p>
+<div class="qa-framework-row">
+  <span class="qa-framework-chip">Ragas</span>
+  <span class="qa-framework-chip">DeepEval</span>
+  <span class="qa-framework-chip">Patronus Lynx</span>
+  <span class="qa-framework-chip">Braintrust</span>
+  <span class="qa-framework-chip">Evidently AI</span>
+</div>
+
+<div class="qa-cross-links">
+<p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>スコアリングエンジンはプラットフォームの他の部分とどう接続されているか</strong></p>
+<p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
+キャリブレーション済みのジャッジは、バリアント比較のための<a href="/ja/rag-arena/">RAG Arena</a>を駆動し、クエリごとに最適なバックエンドを選択する<a href="/ja/rag-routing/">RAG Routing</a>の学習型履歴ストアに供給されます。ジャッジのキャリブレーションに関する完全な詳細解説は、ブログ記事<a href="/blog/calibrating-the-ai-judge/">Calibrating the Judge: The Grader Gets Graded</a>をご覧ください。アリーナとルーティングを合わせたストーリーは<a href="/blog/inside-the-rag-arena-scored-qa-routing/">Inside the RAG Arena: When the Judges Don't Agree</a>にあります。これが完全なリリースパイプラインにどう組み込まれるかについては、<a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">リグレッションテスト記事</a>および<a href="/blog/ci-testing-for-custom-language-models-in-2026/">CIテスト記事</a>をご参照ください。
+</p>
+</div>
+
+</div>
+</section>
+
 <section id="case-studies" class="case-studies section-padding">
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>

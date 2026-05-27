@@ -536,6 +536,127 @@ hero_poster = "images/hero-qa.webp"
 </div>
 </section>
 
+<style>
+/* Scoring + calibration internals section */
+.qa-internals { background: linear-gradient(180deg, rgba(248,244,240,0) 0%, rgba(232,221,199,0.18) 30%, rgba(232,221,199,0.18) 70%, rgba(248,244,240,0) 100%); padding: 5rem 1rem 6rem; }
+.qa-internals .container { max-width: 1180px; margin: 0 auto; }
+.qa-internals .subheading { text-align: center; color: #5a6862; font-size: 1.1rem; max-width: 760px; margin: -1rem auto 3rem; line-height: 1.6; }
+.qa-stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; max-width: 1080px; margin: 0 auto; }
+@media (max-width: 880px) { .qa-stack-grid { grid-template-columns: 1fr; } }
+.qa-card { background: #faf8f5; border-radius: 12px; padding: 1.75rem 2rem; border-left: 4px solid #b8a080; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); }
+.qa-card.calibration { border-left-color: #2d5a4f; }
+.qa-card.autofix { border-left-color: #7a8a4a; }
+.qa-card.arena { border-left-color: #5a7a8f; }
+.qa-card.audit { border-left-color: #a04848; }
+.qa-card h3 { font-family: 'Fraunces', serif; color: #1e3a2b; font-size: 1.5rem; margin: 0 0 0.85rem; }
+.qa-card .qa-meta { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.8rem; }
+.qa-card.calibration .qa-meta { background: rgba(45,90,79,0.12); color: #1e3a2b; }
+.qa-card.autofix .qa-meta { background: rgba(122,138,74,0.15); color: #5a6c2a; }
+.qa-card.arena .qa-meta { background: rgba(90,122,143,0.15); color: #3a5060; }
+.qa-card.audit .qa-meta { background: rgba(160,72,72,0.15); color: #7a3030; }
+.qa-card p, .qa-card li { color: #3a4a40; font-size: 0.98rem; line-height: 1.65; }
+.qa-card ul { padding-left: 1.2rem; margin: 0.5rem 0 0; }
+.qa-card li { margin-bottom: 0.4rem; }
+.qa-card code { background: #eae3d5; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: #2d3c34; font-family: 'DM Mono', monospace; }
+.qa-scorers { max-width: 1080px; margin: 3rem auto 2rem; background: #1e2a26; border-radius: 14px; padding: 2rem 2.25rem; color: #e8e3d8; }
+.qa-scorers h3 { font-family: 'Fraunces', serif; color: #faf8f5; margin: 0 0 0.5rem; font-size: 1.6rem; }
+.qa-scorers .qa-scorers-sub { color: #b8a080; font-size: 0.95rem; margin: 0 0 1.5rem; line-height: 1.55; }
+.qa-scorers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.85rem; }
+.qa-scorer-chip { background: rgba(232, 221, 199, 0.08); border: 1px solid rgba(184, 160, 128, 0.3); border-radius: 8px; padding: 0.7rem 0.85rem; }
+.qa-scorer-chip strong { color: #faf8f5 !important; display: block; font-size: 0.92rem; margin-bottom: 0.2rem; font-family: 'DM Mono', monospace; }
+.qa-scorer-chip span { color: #c8c0ad !important; font-size: 0.83rem; line-height: 1.45; display: block; }
+.qa-framework-row { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 2rem auto 0; max-width: 1080px; }
+.qa-framework-chip { background: #faf8f5; border: 1.5px solid rgba(139, 118, 89, 0.4); border-radius: 999px; padding: 0.5rem 1.15rem; font-family: 'DM Mono', monospace; font-size: 0.88rem; color: #2d3c34; }
+.qa-cross-links { max-width: 1080px; margin: 3rem auto 0; padding: 1.5rem 2rem; background: rgba(45, 90, 79, 0.06); border-radius: 12px; text-align: center; }
+.qa-cross-links a { color: #2d5a4f; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(45, 90, 79, 0.3); }
+.qa-cross-links a:hover { border-bottom-color: #2d5a4f; }
+</style>
+
+<section class="qa-internals">
+<div class="container">
+<h2 class="section-heading" style="margin-top: 0; margin-bottom: 1.5rem;">Внутри движка оценивания — как на самом деле работает калибровка</h2>
+<p class="subheading">Большинство инструментов «AI-тестирования» оценивают выходы модели и на этом останавливаются. Набор scored-QA от Divinci построен на другой предпосылке: <strong>ваша рубрика оценивания должна быть откалибрована относительно эксперта предметной области, прежде чем её оценкам можно будет доверять.</strong> Вот как этот конвейер устроен сегодня.</p>
+
+<div class="qa-stack-grid">
+
+<div class="qa-card calibration">
+<span class="qa-meta">CALIBRATION · SHIPPED</span>
+<h3>Калибровка рубрики с привязкой к человеку</h3>
+<p>Эксперт предметной области оценивает по той же рубрике, что и LLM-судья, на стратифицированном эталонном наборе — каждая оценка (0 / 0.25 / 0.5 / 0.75 / 1.0) фиксируется с опциональным обоснованием и опциональным полем <code>editedResponse</code>, которое одновременно служит сигналом для supervised fine-tuning. Каждая оценка фиксирует идентичность оценщика, версию рубрики и время по часам. Корреляция Спирмена ρ между LLM-судьёй и экспертом непрерывно вычисляется; судья с наибольшим ρ становится используемым по умолчанию.</p>
+<ul>
+  <li><strong>Согласованность между оценщиками:</strong> когда один и тот же элемент оценивает более одного эксперта, вычисляется межоценочное ρ, чтобы мы могли обнаруживать как разногласия между оценщиками, так и расхождение между судьёй и человеком.</li>
+  <li><strong>Целевой показатель калибровки по набору:</strong> каждый scored-QA-набор содержит <code>rhoLowerTarget</code> + <code>rhoTargetN</code> — порог, который калибровка должна преодолеть, и размер выборки, на которой она должна это сделать, прежде чем судье начнут доверять.</li>
+  <li><strong>Активное обучение:</strong> конвейер предварительной оценки преимущественно выдвигает элементы с высокой дисперсией (где LLM-судьи расходятся сильнее всего) для экспертного просмотра, чтобы небольшой экспертный бюджет в первую очередь откалибровал шумную границу принятия решений.</li>
+</ul>
+</div>
+
+<div class="qa-card autofix">
+<span class="qa-meta">AUTO-FIX · SHIPPED</span>
+<h3>Цикл авто-исправления с явными уровнями автономности</h3>
+<p>Как только набор откалиброван, цикл авто-исправления итерирует: он оценивает кандидата, применяет небольшую переформулировку или изменение конфигурации извлечения, переоценивает и повторяет до достижения одного из четырёх терминальных состояний. Уровень автономности определяет, требуется ли одобрение человека между итерациями.</p>
+<ul>
+  <li><code>full-auto</code> — работает до сходимости без человеческих контрольных точек.</li>
+  <li><code>checkpoint-every-iteration</code> — человек одобряет каждое изменение кандидата.</li>
+  <li><code>checkpoint-on-deploy</code> — работает без присмотра, но приостанавливается для подтверждения человеком перед продвижением в продакшен.</li>
+  <li><strong>Терминальные состояния:</strong> <code>high-scores</code>, <code>target-reached</code>, <code>max-iterations</code> или <code>running</code>. Режимы: <code>autofix</code> для настройки промптов/извлечения, <code>autorag</code> для перенастройки конвейера извлечения.</li>
+</ul>
+</div>
+
+<div class="qa-card arena">
+<span class="qa-meta">ARENA · SHIPPED</span>
+<h3>RAG Arena — сравнение вариантов в масштабе набора</h3>
+<p>Один вызов API распределяет набор по нескольким конфигурациям RAG — разные бэкенды извлечения (десять целей <a href="/ru/rag-routing/">RAG Routing</a>), разные LLM, разные шаблоны промптов — и оценивает каждую пару (вариант × тест) откалиброванным судьёй. Результатом становится ранжирование по вариантам, победитель-вариант по каждому тесту и отчёт в формате markdown.</p>
+<p>Арена также является вышестоящим источником для нашей <a href="/ru/rag-routing/">обучаемой модели маршрутизации</a>: когда клиент выбирает победителя арены, пара (вопрос, побеждающий бэкенд) пополняет хранилище истории маршрутизации.</p>
+<p><strong>Эндпоинт:</strong> <code>POST /api/v1/qa/suites/:suiteId/arena-run</code> с <code>{ arenaPresetId, testIds?, maxTestsPerVariant? }</code>.</p>
+</div>
+
+<div class="qa-card audit">
+<span class="qa-meta">AUDIT · SHIPPED</span>
+<h3>Квитанции оценивания аудиторского уровня</h3>
+<p>Каждая оценка в системе журналируется с информацией, необходимой для её защиты спустя месяцы. Каждый результат теста несёт карту оценок по каждому скореру — одна оценка 0–1 на скорер плюс агрегированная общая оценка. Каждая калибровочная оценка хранится вместе с идентичностью оценщика, контент-хэшем использованного промпта рубрики, самой оценкой, опциональным обоснованием, временем по часам и (если предоставлен) отредактированным ответом.</p>
+<ul>
+  <li><strong>Версионирование рубрик:</strong> мы вычисляем контент-хэш промпта рубрики с помощью SHA-256 и используем 16-символьный префикс в качестве идентификатора версии — любое редактирование рубрики автоматически порождает новую версию; старые оценки остаются привязанными к старой рубрике.</li>
+  <li><strong>Пороговые ворота:</strong> по каждому набору пороги <code>minScore</code> и <code>maxDrift</code> регрессии инициируют webhook-и / email при нарушении, с настроенной частотой мониторинга (ежечасно / ежедневно / еженедельно / вручную).</li>
+  <li><strong>Редактируемая обратная связь оценщика:</strong> предоставленный оценщиком <code>editedResponse</code> сохраняется как нижестоящий SFT-сигнал — калибровка одновременно является бесплатными обучающими данными.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="qa-scorers">
+<h3>Восемь LLM-судейских скореров, которые мы поставляем</h3>
+<p class="qa-scorers-sub">Каждый scored-QA-тест по умолчанию проходит через этот набор. Каждый скорер — это независимый вызов LLM по параметрическому промпту рубрики; редактирование рубрики порождает новые хэши <code>rubricVersion</code>, поэтому исторические оценки сохраняют смысл. Клиенты могут отключить любой скорер для конкретного набора или предоставить свой собственный.</p>
+<div class="qa-scorers-grid">
+  <div class="qa-scorer-chip"><strong>correctness</strong><span>Прямое сравнение сгенерированного ответа с эталонным / правильным ответом.</span></div>
+  <div class="qa-scorer-chip"><strong>factual-consistency-vs-reference</strong><span>Поклеймовая проверка сгенерированных утверждений относительно эталонного ответа; отлавливает галлюцинированные дополнения.</span></div>
+  <div class="qa-scorer-chip"><strong>completeness-coverage</strong><span>Какая часть информации эталонного ответа присутствует в сгенерированном ответе.</span></div>
+  <div class="qa-scorer-chip"><strong>relevance</strong><span>Отвечает ли ответ на фактический вопрос, а не на тангенциально связанный.</span></div>
+  <div class="qa-scorer-chip"><strong>hallucination</strong><span>Поклеймовая проверка обоснованности — помечает любое утверждение, не подкреплённое извлечённым контекстом.</span></div>
+  <div class="qa-scorer-chip"><strong>context-conflict</strong><span>Помечает ответы, которые противоречат извлечённому контексту (иной режим отказа, нежели галлюцинация).</span></div>
+  <div class="qa-scorer-chip"><strong>question-addressed</strong><span>Был ли фактический пользовательский вопрос отвечен, хотя бы частично — отделён от <em>relevance</em> для более тонкой диагностики.</span></div>
+  <div class="qa-scorer-chip"><strong>system-message-adherence</strong><span>Соблюдает ли ответ ограничения системного сообщения (формат, персона, защитные ограждения).</span></div>
+</div>
+</div>
+
+<p class="subheading" style="margin-top: 3rem;">Плюс полноценные интеграции с open-source и коммерческими фреймворками, которые наши клиенты уже используют:</p>
+<div class="qa-framework-row">
+  <span class="qa-framework-chip">Ragas</span>
+  <span class="qa-framework-chip">DeepEval</span>
+  <span class="qa-framework-chip">Patronus Lynx</span>
+  <span class="qa-framework-chip">Braintrust</span>
+  <span class="qa-framework-chip">Evidently AI</span>
+</div>
+
+<div class="qa-cross-links">
+<p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>Как движок оценивания связан с остальной платформой</strong></p>
+<p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
+Откалиброванные судьи питают нашу <a href="/ru/rag-arena/">RAG Arena</a> для сравнения вариантов и пополняют хранилище обученной истории <a href="/ru/rag-routing/">RAG Routing</a>, которое выбирает лучший бэкенд для каждого запроса. Полное углублённое описание калибровки судьи — в статье блога <a href="/blog/calibrating-the-ai-judge/">Calibrating the Judge: The Grader Gets Graded</a>; история арены и маршрутизации вместе — в <a href="/blog/inside-the-rag-arena-scored-qa-routing/">Inside the RAG Arena: When the Judges Don't Agree</a>. О том, как это вписывается в полный релизный конвейер, см. <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">пост о регрессионном тестировании</a> и <a href="/blog/ci-testing-for-custom-language-models-in-2026/">пост о CI-тестировании</a>.
+</p>
+</div>
+
+</div>
+</section>
+
 <section id="case-studies" class="case-studies section-padding">
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>

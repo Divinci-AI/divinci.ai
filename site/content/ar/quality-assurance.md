@@ -530,6 +530,127 @@ feature_category = "quality-assurance"
 </div>
 </section>
 
+<style>
+/* Scoring + calibration internals section */
+.qa-internals { background: linear-gradient(180deg, rgba(248,244,240,0) 0%, rgba(232,221,199,0.18) 30%, rgba(232,221,199,0.18) 70%, rgba(248,244,240,0) 100%); padding: 5rem 1rem 6rem; }
+.qa-internals .container { max-width: 1180px; margin: 0 auto; }
+.qa-internals .subheading { text-align: center; color: #5a6862; font-size: 1.1rem; max-width: 760px; margin: -1rem auto 3rem; line-height: 1.6; }
+.qa-stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; max-width: 1080px; margin: 0 auto; }
+@media (max-width: 880px) { .qa-stack-grid { grid-template-columns: 1fr; } }
+.qa-card { background: #faf8f5; border-radius: 12px; padding: 1.75rem 2rem; border-left: 4px solid #b8a080; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); }
+.qa-card.calibration { border-left-color: #2d5a4f; }
+.qa-card.autofix { border-left-color: #7a8a4a; }
+.qa-card.arena { border-left-color: #5a7a8f; }
+.qa-card.audit { border-left-color: #a04848; }
+.qa-card h3 { font-family: 'Fraunces', serif; color: #1e3a2b; font-size: 1.5rem; margin: 0 0 0.85rem; }
+.qa-card .qa-meta { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.8rem; }
+.qa-card.calibration .qa-meta { background: rgba(45,90,79,0.12); color: #1e3a2b; }
+.qa-card.autofix .qa-meta { background: rgba(122,138,74,0.15); color: #5a6c2a; }
+.qa-card.arena .qa-meta { background: rgba(90,122,143,0.15); color: #3a5060; }
+.qa-card.audit .qa-meta { background: rgba(160,72,72,0.15); color: #7a3030; }
+.qa-card p, .qa-card li { color: #3a4a40; font-size: 0.98rem; line-height: 1.65; }
+.qa-card ul { padding-left: 1.2rem; margin: 0.5rem 0 0; }
+.qa-card li { margin-bottom: 0.4rem; }
+.qa-card code { background: #eae3d5; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: #2d3c34; font-family: 'DM Mono', monospace; }
+.qa-scorers { max-width: 1080px; margin: 3rem auto 2rem; background: #1e2a26; border-radius: 14px; padding: 2rem 2.25rem; color: #e8e3d8; }
+.qa-scorers h3 { font-family: 'Fraunces', serif; color: #faf8f5; margin: 0 0 0.5rem; font-size: 1.6rem; }
+.qa-scorers .qa-scorers-sub { color: #b8a080; font-size: 0.95rem; margin: 0 0 1.5rem; line-height: 1.55; }
+.qa-scorers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.85rem; }
+.qa-scorer-chip { background: rgba(232, 221, 199, 0.08); border: 1px solid rgba(184, 160, 128, 0.3); border-radius: 8px; padding: 0.7rem 0.85rem; }
+.qa-scorer-chip strong { color: #faf8f5 !important; display: block; font-size: 0.92rem; margin-bottom: 0.2rem; font-family: 'DM Mono', monospace; }
+.qa-scorer-chip span { color: #c8c0ad !important; font-size: 0.83rem; line-height: 1.45; display: block; }
+.qa-framework-row { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 2rem auto 0; max-width: 1080px; }
+.qa-framework-chip { background: #faf8f5; border: 1.5px solid rgba(139, 118, 89, 0.4); border-radius: 999px; padding: 0.5rem 1.15rem; font-family: 'DM Mono', monospace; font-size: 0.88rem; color: #2d3c34; }
+.qa-cross-links { max-width: 1080px; margin: 3rem auto 0; padding: 1.5rem 2rem; background: rgba(45, 90, 79, 0.06); border-radius: 12px; text-align: center; }
+.qa-cross-links a { color: #2d5a4f; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(45, 90, 79, 0.3); }
+.qa-cross-links a:hover { border-bottom-color: #2d5a4f; }
+</style>
+
+<section class="qa-internals">
+<div class="container">
+<h2 class="section-heading" style="margin-top: 0; margin-bottom: 1.5rem;">داخل محرك التقييم — كيف تعمل المعايرة فعلياً</h2>
+<p class="subheading">معظم أدوات "اختبار الذكاء الاصطناعي" تقيّم مخرجات النموذج وتتوقف عند ذلك. أما مجموعة الأسئلة والأجوبة المُقيَّمة في Divinci فهي مبنية على فرضية مختلفة: <strong>يجب معايرة معيار التقييم لديك مقابل خبير في المجال قبل أن يُوثَق بدرجاته.</strong> إليك كيف يعمل هذا المسار اليوم.</p>
+
+<div class="qa-stack-grid">
+
+<div class="qa-card calibration">
+<span class="qa-meta">CALIBRATION · SHIPPED</span>
+<h3>معايرة معيار مرتكزة على البشر</h3>
+<p>يقوم خبير في المجال بتقييم المعيار نفسه الذي يستخدمه حَكَم نموذج اللغة الكبيرة على مجموعة ذهبية مُقسَّمة طبقياً — تُسجَّل كل درجة (0 / 0.25 / 0.5 / 0.75 / 1.0) مع تعليل اختياري وحقل اختياري <code>editedResponse</code> يعمل أيضاً كإشارة للضبط الدقيق المُشرَف عليه. يسجل كل تقييم هوية المُقيِّم وإصدار المعيار والمدة الزمنية الفعلية. يُحسب معامل سبيرمان ρ بين حَكَم نموذج اللغة الكبيرة والخبير المُقيِّم باستمرار؛ ويصبح الحَكَم صاحب أعلى ρ هو الافتراضي.</p>
+<ul>
+  <li><strong>توافق مُقيِّمين متعددين:</strong> عندما يقيّم أكثر من خبير العنصر ذاته، يُحسب معامل ρ بين المُقيِّمين كي نتمكن من اكتشاف اختلاف المُقيِّمين كما نكتشف اختلاف الحَكَم عن البشر.</li>
+  <li><strong>هدف معايرة لكل مجموعة:</strong> تحمل كل مجموعة من الأسئلة والأجوبة المُقيَّمة قيمتي <code>rhoLowerTarget</code> + <code>rhoTargetN</code> — الحد الأدنى الذي يجب أن تتجاوزه المعايرة وحجم العينة الذي يجب أن تتجاوزه عليه قبل أن يُوثَق بالحَكَم.</li>
+  <li><strong>التعلّم النشط:</strong> يُعطي مسار ما قبل التقييم الأولوية لإبراز العناصر ذات التباين العالي (حيث تتباين أحكام نماذج اللغة الكبيرة أكثر ما يكون) للمراجعة من قِبل الخبير، بحيث تعاير ميزانية خبير صغيرة الحدود المُشوَّشة للقرارات أولاً.</li>
+</ul>
+</div>
+
+<div class="qa-card autofix">
+<span class="qa-meta">AUTO-FIX · SHIPPED</span>
+<h3>حلقة الإصلاح التلقائي مع مستويات استقلالية صريحة</h3>
+<p>بمجرد معايرة المجموعة، تتكرر حلقة الإصلاح التلقائي: تُقيّم المرشح، وتُطبّق إعادة صياغة صغيرة أو تغييراً في إعدادات الاسترجاع، وتعيد التقييم، وتكرر العملية حتى تصل إلى إحدى الحالات النهائية الأربع. ويحدد مستوى الاستقلالية ما إذا كانت موافقة بشرية مطلوبة بين التكرارات.</p>
+<ul>
+  <li><code>full-auto</code> — يعمل حتى التقارب دون بوابات بشرية.</li>
+  <li><code>checkpoint-every-iteration</code> — يوافق البشر على كل تغيير مُرشَّح.</li>
+  <li><code>checkpoint-on-deploy</code> — يعمل دون إشراف لكنه يتوقف لموافقة بشرية قبل الترقية إلى الإنتاج.</li>
+  <li><strong>الحالات النهائية:</strong> <code>high-scores</code> أو <code>target-reached</code> أو <code>max-iterations</code> أو <code>running</code>. الأوضاع: <code>autofix</code> لضبط الموجِّه/الاسترجاع، و<code>autorag</code> لإعادة تهيئة مسار الاسترجاع.</li>
+</ul>
+</div>
+
+<div class="qa-card arena">
+<span class="qa-meta">ARENA · SHIPPED</span>
+<h3>حلبة RAG — مقارنة المتغيرات على نطاق المجموعة</h3>
+<p>تُوزِّع استدعاء واحد لواجهة برمجة التطبيقات المجموعةَ عبر تهيئات RAG متعددة — خلفيات استرجاع مختلفة (أهداف <a href="/ar/rag-routing/">توجيه RAG</a> العشرة)، ونماذج لغة كبيرة مختلفة، وقوالب موجِّهات مختلفة — وتُقيّم كل زوج (متغير × اختبار) بالحَكَم المُعايَر. والنتيجة هي ترتيب لكل متغير، وفائز بأفضل متغير لكل اختبار، وتقرير بصيغة markdown.</p>
+<p>الحلبة هي أيضاً المصدر الأعلى لـ<a href="/ar/rag-routing/">نموذج التوجيه المُتعلَّم</a> لدينا: عندما يختار العميل فائز الحلبة، يصبح زوج (السؤال، الخلفية الفائزة) بذرةً لمخزن تاريخ التوجيه.</p>
+<p><strong>نقطة النهاية:</strong> <code>POST /api/v1/qa/suites/:suiteId/arena-run</code> مع <code>{ arenaPresetId, testIds?, maxTestsPerVariant? }</code>.</p>
+</div>
+
+<div class="qa-card audit">
+<span class="qa-meta">AUDIT · SHIPPED</span>
+<h3>إيصالات تقييم بمستوى التدقيق</h3>
+<p>تُسجَّل كل درجة في النظام مع المعلومات التي تحتاجها للدفاع عنها بعد أشهر. تحمل كل نتيجة اختبار خريطة درجات لكل مُقيِّم — درجة واحدة من 0 إلى 1 لكل مُقيِّم بالإضافة إلى درجة إجمالية مُجمَّعة. يُخزَّن كل تقييم معايرة مع هوية المُقيِّم، وتجزئة محتوى لموجِّه المعيار المُستخدَم، والتقييم نفسه، والتعليل الاختياري، والمدة الزمنية الفعلية، والاستجابة المُعدَّلة (إن قُدِّمت).</p>
+<ul>
+  <li><strong>إصدارات المعيار:</strong> نُجزِّئ محتوى موجِّه المعيار بـ SHA-256 ونستخدم بادئة من 16 حرفاً كمعرّف إصدار — أي تعديل للمعيار ينتج عنه إصدار جديد تلقائياً؛ وتبقى الدرجات القديمة مرتبطة بالمعيار القديم.</li>
+  <li><strong>بوابات العتبات:</strong> الحد الأدنى <code>minScore</code> لكل مجموعة + عتبات تراجع <code>maxDrift</code> تُطلق webhooks / بريد إلكتروني عند الاختراق، بإيقاع المراقبة المُكوَّن (كل ساعة / يومياً / أسبوعياً / يدوياً).</li>
+  <li><strong>تعليقات المُقيِّم القابلة للتعديل:</strong> يُحفظ حقل <code>editedResponse</code> الذي يُقدّمه المُقيِّم كإشارة SFT لاحقة — فالمعايرة هي أيضاً بيانات تدريب مجانية.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="qa-scorers">
+<h3>المُقيِّمات الثمانية بحَكَم نموذج اللغة الكبيرة التي نشحنها</h3>
+<p class="qa-scorers-sub">يمر كل اختبار من اختبارات الأسئلة والأجوبة المُقيَّمة عبر هذه المجموعة افتراضياً. كل مُقيِّم هو استدعاء مستقل لنموذج لغة كبيرة مقابل موجِّه معيار بارامتري؛ تُنتج تعديلات المعيار تجزئات <code>rubricVersion</code> جديدة كي تبقى الدرجات التاريخية ذات معنى. يستطيع العملاء تعطيل أي مُقيِّم لكل مجموعة أو تقديم مُقيِّمهم الخاص.</p>
+<div class="qa-scorers-grid">
+  <div class="qa-scorer-chip"><strong>correctness</strong><span>مقارنة مباشرة للاستجابة المُولَّدة مع الإجابة المرجعية / الذهبية.</span></div>
+  <div class="qa-scorer-chip"><strong>factual-consistency-vs-reference</strong><span>التحقق من كل ادّعاء من ادّعاءات الاستجابة المُولَّدة مقابل الإجابة الذهبية؛ يلتقط الإضافات المُهلوَسة.</span></div>
+  <div class="qa-scorer-chip"><strong>completeness-coverage</strong><span>مقدار ما يظهر من معلومات الإجابة المرجعية في الاستجابة المُولَّدة.</span></div>
+  <div class="qa-scorer-chip"><strong>relevance</strong><span>ما إذا كانت الاستجابة تتناول السؤال الفعلي وليس سؤالاً ذا صلة هامشية.</span></div>
+  <div class="qa-scorer-chip"><strong>hallucination</strong><span>فحص استناد كل ادّعاء — يُعلِّم أي ادّعاء لا يدعمه السياق المُسترجَع.</span></div>
+  <div class="qa-scorer-chip"><strong>context-conflict</strong><span>يُعلِّم الاستجابات التي تتعارض مع السياق المُسترجَع (وضع فشل مختلف عن الهلوسة).</span></div>
+  <div class="qa-scorer-chip"><strong>question-addressed</strong><span>ما إذا كان سؤال المستخدم الفعلي قد أُجيب عنه، حتى ولو جزئياً — مفصول عن <em>relevance</em> لتشخيص أدق.</span></div>
+  <div class="qa-scorer-chip"><strong>system-message-adherence</strong><span>ما إذا كانت الاستجابة تحترم قيود رسالة النظام (التنسيق، الشخصية، حواجز الأمان).</span></div>
+</div>
+</div>
+
+<p class="subheading" style="margin-top: 3rem;">بالإضافة إلى تكاملات من الدرجة الأولى مع الأطر المفتوحة المصدر والتجارية التي يستخدمها عملاؤنا بالفعل:</p>
+<div class="qa-framework-row">
+  <span class="qa-framework-chip">Ragas</span>
+  <span class="qa-framework-chip">DeepEval</span>
+  <span class="qa-framework-chip">Patronus Lynx</span>
+  <span class="qa-framework-chip">Braintrust</span>
+  <span class="qa-framework-chip">Evidently AI</span>
+</div>
+
+<div class="qa-cross-links">
+<p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>كيف يتصل محرك التقييم ببقية المنصة</strong></p>
+<p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
+تُشغِّل الحَكَمات المُعايَرة <a href="/ar/rag-arena/">حلبة RAG</a> الخاصة بنا لمقارنة المتغيرات وتُغذّي مخزن التاريخ المُتعلَّم لـ<a href="/ar/rag-routing/">توجيه RAG</a> الذي يختار أفضل خلفية لكل استعلام. الغوص العميق الكامل في معايرة الحَكَم موجود في تدوينة <a href="/blog/calibrating-the-ai-judge/">Calibrating the Judge: The Grader Gets Graded</a>؛ وقصة الحلبة والتوجيه معاً في <a href="/blog/inside-the-rag-arena-scored-qa-routing/">Inside the RAG Arena: When the Judges Don't Agree</a>. لمعرفة كيف يندمج ذلك في مسار إصدار كامل، اطّلع على <a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">تدوينة اختبار الانتكاس</a> و<a href="/blog/ci-testing-for-custom-language-models-in-2026/">تدوينة اختبار CI</a>.
+</p>
+</div>
+
+</div>
+</section>
+
 <section id="case-studies" class="case-studies section-padding">
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">قصص النجاح</h2>

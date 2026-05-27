@@ -536,6 +536,127 @@ hero_poster = "images/hero-qa.webp"
 </div>
 </section>
 
+<style>
+/* Scoring + calibration internals section */
+.qa-internals { background: linear-gradient(180deg, rgba(248,244,240,0) 0%, rgba(232,221,199,0.18) 30%, rgba(232,221,199,0.18) 70%, rgba(248,244,240,0) 100%); padding: 5rem 1rem 6rem; }
+.qa-internals .container { max-width: 1180px; margin: 0 auto; }
+.qa-internals .subheading { text-align: center; color: #5a6862; font-size: 1.1rem; max-width: 760px; margin: -1rem auto 3rem; line-height: 1.6; }
+.qa-stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; max-width: 1080px; margin: 0 auto; }
+@media (max-width: 880px) { .qa-stack-grid { grid-template-columns: 1fr; } }
+.qa-card { background: #faf8f5; border-radius: 12px; padding: 1.75rem 2rem; border-left: 4px solid #b8a080; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); }
+.qa-card.calibration { border-left-color: #2d5a4f; }
+.qa-card.autofix { border-left-color: #7a8a4a; }
+.qa-card.arena { border-left-color: #5a7a8f; }
+.qa-card.audit { border-left-color: #a04848; }
+.qa-card h3 { font-family: 'Fraunces', serif; color: #1e3a2b; font-size: 1.5rem; margin: 0 0 0.85rem; }
+.qa-card .qa-meta { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.8rem; }
+.qa-card.calibration .qa-meta { background: rgba(45,90,79,0.12); color: #1e3a2b; }
+.qa-card.autofix .qa-meta { background: rgba(122,138,74,0.15); color: #5a6c2a; }
+.qa-card.arena .qa-meta { background: rgba(90,122,143,0.15); color: #3a5060; }
+.qa-card.audit .qa-meta { background: rgba(160,72,72,0.15); color: #7a3030; }
+.qa-card p, .qa-card li { color: #3a4a40; font-size: 0.98rem; line-height: 1.65; }
+.qa-card ul { padding-left: 1.2rem; margin: 0.5rem 0 0; }
+.qa-card li { margin-bottom: 0.4rem; }
+.qa-card code { background: #eae3d5; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: #2d3c34; font-family: 'DM Mono', monospace; }
+.qa-scorers { max-width: 1080px; margin: 3rem auto 2rem; background: #1e2a26; border-radius: 14px; padding: 2rem 2.25rem; color: #e8e3d8; }
+.qa-scorers h3 { font-family: 'Fraunces', serif; color: #faf8f5; margin: 0 0 0.5rem; font-size: 1.6rem; }
+.qa-scorers .qa-scorers-sub { color: #b8a080; font-size: 0.95rem; margin: 0 0 1.5rem; line-height: 1.55; }
+.qa-scorers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.85rem; }
+.qa-scorer-chip { background: rgba(232, 221, 199, 0.08); border: 1px solid rgba(184, 160, 128, 0.3); border-radius: 8px; padding: 0.7rem 0.85rem; }
+.qa-scorer-chip strong { color: #faf8f5 !important; display: block; font-size: 0.92rem; margin-bottom: 0.2rem; font-family: 'DM Mono', monospace; }
+.qa-scorer-chip span { color: #c8c0ad !important; font-size: 0.83rem; line-height: 1.45; display: block; }
+.qa-framework-row { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 2rem auto 0; max-width: 1080px; }
+.qa-framework-chip { background: #faf8f5; border: 1.5px solid rgba(139, 118, 89, 0.4); border-radius: 999px; padding: 0.5rem 1.15rem; font-family: 'DM Mono', monospace; font-size: 0.88rem; color: #2d3c34; }
+.qa-cross-links { max-width: 1080px; margin: 3rem auto 0; padding: 1.5rem 2rem; background: rgba(45, 90, 79, 0.06); border-radius: 12px; text-align: center; }
+.qa-cross-links a { color: #2d5a4f; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(45, 90, 79, 0.3); }
+.qa-cross-links a:hover { border-bottom-color: #2d5a4f; }
+</style>
+
+<section class="qa-internals">
+<div class="container">
+<h2 class="section-heading" style="margin-top: 0; margin-bottom: 1.5rem;">深入评分引擎 —— 校准实际上是如何工作的</h2>
+<p class="subheading">大多数"AI 测试"工具只是给模型输出打分，然后就到此为止。Divinci 的评分式 QA 套件建立在一个不同的前提之上：<strong>你的评分准则需要根据领域专家进行校准，其分数才值得信任。</strong>以下是该流程当前的运作方式。</p>
+
+<div class="qa-stack-grid">
+
+<div class="qa-card calibration">
+<span class="qa-meta">CALIBRATION · SHIPPED</span>
+<h3>以人工锚定的评分准则校准</h3>
+<p>领域专家在分层金标数据集上使用与 LLM 评判员相同的评分准则进行打分 —— 每个分数（0 / 0.25 / 0.5 / 0.75 / 1.0）都会被记录下来，并附带可选的推理说明以及可选的 <code>editedResponse</code> 字段，该字段同时也可作为有监督微调的信号。每条评分都会记录评分者身份、评分准则版本以及实际耗时。LLM 评判员与专家评分者之间的 Spearman ρ 会被持续计算；ρ 值最高的评判员将成为默认评判员。</p>
+<ul>
+  <li><strong>多评分者一致性：</strong>当多位专家对同一项进行评分时，会计算评分者间的 ρ 值，以便我们既能检测评分者之间的分歧，也能检测评判员与人类之间的分歧。</li>
+  <li><strong>按套件的校准目标：</strong>每个评分式 QA 套件都带有 <code>rhoLowerTarget</code> + <code>rhoTargetN</code> —— 校准必须达到的下限值，以及在评判员获得信任之前必须通过的样本量。</li>
+  <li><strong>主动学习：</strong>预评分流水线会优先呈现高方差的项目（即 LLM 评判员之间分歧最大的项目）供专家审阅，这样有限的专家预算就能优先校准嘈杂的决策边界。</li>
+</ul>
+</div>
+
+<div class="qa-card autofix">
+<span class="qa-meta">AUTO-FIX · SHIPPED</span>
+<h3>带有明确自主级别的自动修复循环</h3>
+<p>套件一经校准，自动修复循环便开始迭代：它对候选项打分，应用一次小幅的改写或检索配置变更，重新评分，并不断重复，直到达到四种终止状态之一。自主级别决定了迭代之间是否需要人工批准。</p>
+<ul>
+  <li><code>full-auto</code> —— 无人工把关地运行至收敛。</li>
+  <li><code>checkpoint-every-iteration</code> —— 人工批准每一次候选变更。</li>
+  <li><code>checkpoint-on-deploy</code> —— 在无人值守的情况下运行，但在提升到生产环境前会暂停以等待人工签字。</li>
+  <li><strong>终止状态：</strong><code>high-scores</code>、<code>target-reached</code>、<code>max-iterations</code> 或 <code>running</code>。模式：<code>autofix</code> 用于提示词/检索调优，<code>autorag</code> 用于检索流水线重配置。</li>
+</ul>
+</div>
+
+<div class="qa-card arena">
+<span class="qa-meta">ARENA · SHIPPED</span>
+<h3>RAG Arena —— 套件级规模的变体对比</h3>
+<p>一次 API 调用即可将整个套件分发到多种 RAG 配置之上 —— 不同的检索后端（<a href="/zh/rag-routing/">RAG Routing</a> 的十个目标）、不同的 LLM、不同的提示词模板 —— 并使用校准过的评判员对每一对（变体 × 测试）进行打分。结果是按变体的排名、按测试的最佳变体获胜者，以及一份 Markdown 报告。</p>
+<p>Arena 也是我们<a href="/zh/rag-routing/">学习式路由模型</a>的上游数据源：当客户选择某个 arena 获胜者时，该（问题，获胜后端）对就会作为种子数据进入路由历史存储。</p>
+<p><strong>接口：</strong><code>POST /api/v1/qa/suites/:suiteId/arena-run</code>，参数为 <code>{ arenaPresetId, testIds?, maxTestsPerVariant? }</code>。</p>
+</div>
+
+<div class="qa-card audit">
+<span class="qa-meta">AUDIT · SHIPPED</span>
+<h3>审计级评分凭证</h3>
+<p>系统中的每个分数都会连同你数月后为其辩护所需的信息一同被记录下来。每条测试结果都携带一份按评分器划分的分数映射 —— 每个评分器一个 0–1 的分数，外加一个聚合的总体分数。每条校准评分都会与评分者身份、所使用评分准则提示词的内容哈希、评分本身、可选的推理说明、实际耗时以及（如果提供的话）编辑后的回复一起被存储。</p>
+<ul>
+  <li><strong>评分准则版本化：</strong>我们使用 SHA-256 对评分准则提示词进行内容哈希，并取 16 个字符的前缀作为版本 ID —— 任何对评分准则的编辑都会自动产生一个新版本；旧分数仍然绑定在旧的评分准则上。</li>
+  <li><strong>阈值门控：</strong>按套件的 <code>minScore</code> 下限 + <code>maxDrift</code> 回归阈值会在被突破时触发 webhook / 邮件，并使用所配置的监控节奏（每小时 / 每日 / 每周 / 手动）。</li>
+  <li><strong>可编辑的评分者反馈：</strong>由评分者提供的 <code>editedResponse</code> 会作为下游 SFT 信号被保留 —— 校准同时也是免费的训练数据。</li>
+</ul>
+</div>
+
+</div>
+
+<div class="qa-scorers">
+<h3>我们默认搭载的八个 LLM 评判员评分器</h3>
+<p class="qa-scorers-sub">每个评分式 QA 测试默认都会通过这一整套评分器。每个评分器都是一次针对参数化评分准则提示词的独立 LLM 调用；对评分准则的编辑会生成新的 <code>rubricVersion</code> 哈希，因此历史分数仍然有意义。客户可以按套件禁用任何评分器，或提供自己的评分器。</p>
+<div class="qa-scorers-grid">
+  <div class="qa-scorer-chip"><strong>correctness</strong><span>将生成的回复与参考答案/金标答案直接对比。</span></div>
+  <div class="qa-scorer-chip"><strong>factual-consistency-vs-reference</strong><span>对生成断言逐条与金标答案进行核实；捕获被臆造出来的新增内容。</span></div>
+  <div class="qa-scorer-chip"><strong>completeness-coverage</strong><span>参考答案中的信息有多少出现在了生成的回复里。</span></div>
+  <div class="qa-scorer-chip"><strong>relevance</strong><span>回复是否针对实际问题，而非一个仅有切线相关性的问题。</span></div>
+  <div class="qa-scorer-chip"><strong>hallucination</strong><span>逐条断言进行接地检查 —— 标记任何不被所检索上下文支持的断言。</span></div>
+  <div class="qa-scorer-chip"><strong>context-conflict</strong><span>标记与所检索上下文相矛盾的回复（这是一种与幻觉不同的失效模式）。</span></div>
+  <div class="qa-scorer-chip"><strong>question-addressed</strong><span>实际的用户问题是否得到了回答（即使只是部分回答）—— 与<em>relevance</em>分开，以便更细粒度地进行诊断。</span></div>
+  <div class="qa-scorer-chip"><strong>system-message-adherence</strong><span>回复是否遵守了系统消息约束（格式、人设、安全护栏）。</span></div>
+</div>
+</div>
+
+<p class="subheading" style="margin-top: 3rem;">此外，还提供与客户已在使用的开源及商业框架的一流集成：</p>
+<div class="qa-framework-row">
+  <span class="qa-framework-chip">Ragas</span>
+  <span class="qa-framework-chip">DeepEval</span>
+  <span class="qa-framework-chip">Patronus Lynx</span>
+  <span class="qa-framework-chip">Braintrust</span>
+  <span class="qa-framework-chip">Evidently AI</span>
+</div>
+
+<div class="qa-cross-links">
+<p style="font-size: 1.05rem; color: #2d3c34; margin: 0 0 1rem;"><strong>评分引擎如何与平台其余部分相连接</strong></p>
+<p style="font-size: 0.98rem; color: #4a4030; line-height: 1.8; margin: 0;">
+经过校准的评判员驱动着我们用于变体对比的 <a href="/zh/rag-arena/">RAG Arena</a>，并为 <a href="/zh/rag-routing/">RAG Routing</a> 的学习式历史存储供料，由其针对每条查询挑选最佳后端。关于评判员校准的完整深入剖析，请参阅博文 <a href="/blog/calibrating-the-ai-judge/">Calibrating the Judge: The Grader Gets Graded</a>；arena 与路由的完整故事汇总在 <a href="/blog/inside-the-rag-arena-scored-qa-routing/">Inside the RAG Arena: When the Judges Don't Agree</a>。要了解这一切如何融入完整的发布流水线，请参阅<a href="/blog/automated-regression-testing-for-custom-llms-in-2026/">回归测试博文</a>与 <a href="/blog/ci-testing-for-custom-language-models-in-2026/">CI 测试博文</a>。
+</p>
+</div>
+
+</div>
+</section>
+
 <section id="case-studies" class="case-studies section-padding">
 <div class="container">
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Success Stories</h2>
