@@ -78,6 +78,9 @@
 .compare-diptych-a2b3 .compare-prompt{text-align:center;max-width:760px;margin:0 auto 3rem;position:relative;z-index:1}
 .compare-diptych-a2b3 .edition-line{font-family:'Fraunces',serif;font-style:italic;font-size:.85rem;letter-spacing:.04em;color:#8b7659;margin:0 auto .6rem;background:rgba(245,240,230,.4);padding:.1em .55em;border-radius:3px;width:fit-content}
 .compare-diptych-a2b3 .edition-line .nm{font-style:normal;font-weight:600;color:#2d5a4f;letter-spacing:.08em}
+.compare-diptych-a2b3 .edition-line a.nm{text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-size:0 1.5px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .4s ease;padding-bottom:.06em}
+.compare-diptych-a2b3 .edition-line a.nm:hover,.compare-diptych-a2b3 .edition-line a.nm:focus-visible{background-size:100% 1.5px}
+.compare-diptych-a2b3 .edition-line a.nm:focus-visible{outline:2px solid #2d5a4f;outline-offset:4px;border-radius:2px}
 .compare-diptych-a2b3 .compare-prompt .eyebrow{font-family:'Source Sans 3',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#8b7659;margin:0 auto .5rem;background:rgba(245,240,230,.4);padding:.18em .65em;border-radius:3px;width:fit-content}
 .compare-diptych-a2b3 .compare-prompt h2{font-family:'Fraunces',serif;font-size:clamp(2.5rem,4vw,3.5rem);color:#1e3a2b;margin:.25rem 0 .75rem;font-weight:500;line-height:1.05;letter-spacing:-.005em}
 .compare-diptych-a2b3 .compare-prompt h2{display:flex;flex-direction:column;align-items:center;gap:.15em}
@@ -203,7 +206,7 @@
 </svg>
 
 <div class="compare-prompt">
-  <div class="edition-line">Edition <span class="nm">N&ordm; 042</span> &middot; 11 May 2026 &middot; Fuhrman 50 arena run</div>
+  <div class="edition-line">Edition <a class="nm" href="/blog/inside-the-rag-arena-scored-qa-routing/">N&ordm; 042</a> &middot; 11 May 2026 &middot; Fuhrman 50 arena run</div>
   <div class="eyebrow">side-by-side · same prompt, two systems</div>
   <h2 id="compare-a2b3-title"><span class="hl-line">Same question.</span><a class="em" href="/blog/inside-the-rag-arena-scored-qa-routing/">Different answers.</a></h2>
   <p class="question">&ldquo;Is chicken healthy?&rdquo;</p>

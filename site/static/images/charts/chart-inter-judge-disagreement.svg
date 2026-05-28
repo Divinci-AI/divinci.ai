@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Bar chart of pairwise Spearman ρ between three Gemini judges scoring the same answers under the same rubric. gemini-2.5-flash vs gemini-3.1-pro-preview ρ=0.679 (n=28). gemini-2.5-flash vs gemini-3.1-pro on the larger 415-item pool ρ=0.552. flash-lite-preview vs gemini-2.5-flash ρ=0.750. flash-lite-preview vs gemini-3.1-pro-preview ρ=0.658. All four pairs land below the 0.85 threshold we use for human-anchored judge calibration; three of the four also land below the 0.70 moderate-consensus floor, marked with a dashed amber line.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Bar chart of pairwise Spearman ρ between three Gemini judges scoring the same answers under the same rubric. gemini-2.5-flash vs gemini-3.1-pro-preview ρ=0.679 (n=28). gemini-2.5-flash vs gemini-3.1-pro on the larger 415-item pool ρ=0.552. flash-lite-preview vs gemini-2.5-flash ρ=0.750. flash-lite-preview vs gemini-3.1-pro-preview ρ=0.658. All four pairs land below the 0.85 threshold we use for human-anchored judge calibration; three of the four also land below the 0.70 moderate-consensus floor, marked with a dashed amber line.">
   <title>Inter-judge Spearman ρ — three Gemini judges, same answers, same rubric</title>
-  <rect width="760" height="460" fill="#faf8f5"/>
+  <rect width="760" height="500" fill="#faf8f5"/>
 
   <!-- Title -->
   <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">Inter-judge Spearman ρ — same answers, same rubric, three Gemini judges</text>
@@ -62,14 +62,14 @@
     <text x="523" y="269" fill="#8a5a20" font-weight="700">0.658</text>
   </g>
 
-  <!-- Verdict box -->
-  <g transform="translate(40, 318)">
-    <rect x="0" y="0" width="680" height="56" rx="6" fill="#a04848" opacity="0.08"/>
+  <!-- Verdict box — moved below the axis to avoid overlapping ticks/labels -->
+  <g transform="translate(40, 416)">
+    <rect x="0" y="0" width="680" height="60" rx="6" fill="#a04848" opacity="0.08"/>
     <text x="14" y="22" font-size="11" font-weight="700" fill="#7a2828">Verdict: don't adopt 3.1-pro as the new judge.</text>
     <text x="14" y="40" font-size="10" fill="#4a3a2a">Re-running the arena with 3.1-pro would change the headline by an unknown amount, and we'd lose comparability with prior data.</text>
-    <text x="14" y="54" font-size="10" fill="#4a3a2a" font-style="italic">Stay on flash-lite-preview as established baseline. Add the methods caveat. Build a human anchor next.</text>
+    <text x="14" y="55" font-size="10" fill="#4a3a2a" font-style="italic">Stay on flash-lite-preview as established baseline. Add the methods caveat. Build a human anchor next.</text>
   </g>
 
   <!-- Caption -->
-  <text x="40" y="438" font-size="11" fill="#6b5d4f" font-style="italic">Pre-registered pass criterion: ρ ≥ 0.85 vs human anchor. Inter-LLM ρ in the 0.66–0.75 range is moderate, not high — switching judges between arena runs is methodologically invalid.</text>
+  <text x="40" y="494" font-size="11" fill="#6b5d4f" font-style="italic">Pre-registered pass criterion: ρ ≥ 0.85 vs human anchor. Inter-LLM ρ in the 0.66–0.75 range is moderate, not high — switching judges between arena runs is methodologically invalid.</text>
 </svg>
