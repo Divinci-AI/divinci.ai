@@ -62,6 +62,7 @@ The question isn't whether we can afford UBI. The question is whether we can aff
 
 <figure style="margin: 2rem 0;">
   <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
+    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-3.mp4" type="video/mp4; codecs=av01.0.05M.08">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-3.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">A vision of 2035: thriving communities empowered by Universal Basic Income</figcaption>
@@ -289,6 +290,7 @@ Conservative estimates suggest fusion energy alone could provide the equivalent 
 
 <figure style="margin: 2rem 0;">
   <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
+    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-fusion-reactor.mp4" type="video/mp4; codecs=av01.0.05M.08">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-fusion-reactor.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Fusion reactor technology powering the energy revolution of the 2030s</figcaption>
@@ -343,6 +345,7 @@ This creates the perfect scenario for UBI: automation generates the wealth, whil
 
 <figure style="margin: 2rem 0;">
   <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
+    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-robots-working.mp4" type="video/mp4; codecs=av01.0.05M.08">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-robots-working.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Human-robot collaboration: automation creating wealth while humans focus on higher-value work</figcaption>
@@ -538,6 +541,7 @@ This isn't about punishing success—it's about ensuring everyone contributes th
 Here's where the analysis gets truly innovative. Rather than treating UBI as a pure cost, what if it could generate economic value?
 
 <video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-treasury-vault.mp4" type="video/mp4; codecs=av01.0.05M.08">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-treasury-vault.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Strategic reserves reimagined for the digital age</p>
@@ -1959,6 +1963,7 @@ Actually, it's closer than you think:
 
 <figure style="margin: 2rem 0;">
   <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
+    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-1.mp4" type="video/mp4; codecs=av01.0.05M.08">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-1.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Building sustainable, equitable communities through technological abundance</figcaption>
@@ -2236,6 +2241,7 @@ UBI isn't the destination. It's the **bridge** to a fundamentally different rela
 
 <figure style="margin: 2rem 0;">
   <video autoplay muted loop playsinline webkit-playsinline preload="none" style="width: 100%; border-radius: 12px;">
+    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-2.mp4" type="video/mp4; codecs=av01.0.05M.08">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-solarpunk-vision-2.webm" type="video/webm">
   </video>
   <figcaption style="text-align: center; margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">The future we choose: prosperity, freedom, and dignity for all</figcaption>

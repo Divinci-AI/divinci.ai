@@ -381,7 +381,14 @@ window.MathJax = {
             <aside class="related-posts">
                 <h3>{{ translations.blog_post.related_articles | default(value="Related Articles") }}</h3>
                 <div class="related-posts-list">
-                    {% set blog_section = get_section(path="blog/_index.md") %}
+                    {# Pull related posts from the per-language blog section
+                       on non-English pages so we don't link to untranslated
+                       posts (which 404). #}
+                    {% if current_lang and current_lang != "en" %}
+                        {% set blog_section = get_section(path=current_lang ~ "/blog/_index.md") %}
+                    {% else %}
+                        {% set blog_section = get_section(path="blog/_index.md") %}
+                    {% endif %}
                     {% set articles_count = 0 %}
                     {% for post in blog_section.pages %}
                         {% if post.permalink != page.permalink and articles_count < 4 %}

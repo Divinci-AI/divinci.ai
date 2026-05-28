@@ -123,8 +123,16 @@
                     {# `section.pages` is empty inside a paginated section
                        context, so fetch the full section via get_section
                        to reorder pinned posts onto page 1 even when their
-                       natural date sort puts them on later pages. #}
-                    {% set full_section = get_section(path="blog/_index.md") %}
+                       natural date sort puts them on later pages.
+                       For non-English languages, pull from the per-language
+                       blog section so we don't link to untranslated posts
+                       (which return 404s — HubSpot was flagging these as
+                       "blank pages"). #}
+                    {% if current_lang and current_lang != "en" %}
+                        {% set full_section = get_section(path=current_lang ~ "/blog/_index.md") %}
+                    {% else %}
+                        {% set full_section = get_section(path="blog/_index.md") %}
+                    {% endif %}
                     {% set_global all_visible = [] %}
                     {% for post in full_section.pages %}
                         {% if not post.extra.hidden %}
