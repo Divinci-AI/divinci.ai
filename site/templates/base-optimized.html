@@ -66,6 +66,18 @@
     
     {# Load fonts with display=swap for better performance #}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap">
+
+    <!-- Font Awesome (CSS subset, non-blocking via media=print + onload).
+         Replaced 1.4MB JS bundle that was the dominant TBT culprit on /api/
+         pages (~2000ms blocking time). -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css">
+    </noscript>
     
     {# Essential meta tags only #}
     <meta property="og:title" content="{% block og_title %}{{ page.title | default(value="Divinci AI") }}{% endblock %}">
@@ -91,7 +103,6 @@
     
     {# Load optimized scripts after page content #}
     <script defer src="{{ get_url(path="js/optimized.js") }}"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     
     {% block extra_scripts %}{% endblock %}
 </body>

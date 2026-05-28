@@ -1,5 +1,5 @@
 +++
-title = "Contact"
+title = "Nous contacter"
 description = "Contactez Divinci AI. Joignez notre équipe pour des questions sur notre plateforme, la tarification ou demander une démo."
 template = "contact.html"
 +++
