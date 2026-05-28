@@ -92,9 +92,9 @@
     "mimetext": "^3.0.27"
   },
   "devDependencies": {
-    "@playwright/test": "^1.52.0",
+    "@playwright/test": "^1.60.0",
     "@types/jest": "^30.0.0",
-    "glob": "^10.3.10",
+    "glob": "^10.5.0",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
     "jsdom": "^26.1.0"
