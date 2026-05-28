@@ -1,6 +1,6 @@
 +++
 title = "Come diagnosticare i fallimenti QA di un LLM personalizzato in 7 passi"
-description = "La maggior parte dei 'fallimenti QA' non sono fallimenti del modello — sono lacune di copertura dell'eval, mis-calibrazione del giudice o skew tra training e serving. Una diagnostica in 7 passi che esclude le sei cause non-modello prima di incolpare il modello."
+description = "Quasi tutti i 'fallimenti QA' non sono del modello — sono lacune di eval, mis-calibrazione del giudice o skew training-serving. Diagnostica in 7 passi."
 date = 2026-05-31T09:00:00+00:00
 template = "blog-post.html"
 

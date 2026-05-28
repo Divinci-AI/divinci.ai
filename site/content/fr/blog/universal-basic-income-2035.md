@@ -1,6 +1,6 @@
 +++
 title = "Revenu de base universel d'ici 2035 : Une voie réalisable"
-description = "Une analyse approfondie de la façon dont les technologies émergentes, la restructuration gouvernementale et les modèles innovants de cryptomonnaie pourraient rendre le revenu de base universel une réalité d'ici 2035, fournissant 1 000 à 2 000 $ mensuels à chaque Américain."
+description = "RBU d'ici 2035 : productivité IA, abondance énergétique, conversion défense et minage de travail utile pour financer un revenu de base vivable."
 date = 2025-10-05T10:00:00+00:00
 template = "blog-post.html"
 

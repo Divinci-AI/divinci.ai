@@ -1,6 +1,6 @@
 +++
 title = "توجيه RAG — واجهة برمجية واحدة، معماريات متعددة"
-description = "يوزّع توجيه RAG من Divinci كل استعلام إلى أرخص نظام خلفي قادر على الإجابة عنه بشكل صحيح. عشرة محركات استرجاع مدعومة (PageIndex، neo4j-hybrid، RAPTOR، LightRAG، Qdrant، Cloudflare Vectorize، Couchbase، Vertex AI، MongoDB Atlas، Redis Vector) خلف نقطة نهاية واحدة، مع توجيه متعلَّم لكل سؤال على حدة."
+description = "يوزّع RAG Routing من Divinci كل استعلام إلى أرخص بَكِند قادر على الإجابة. عشرة محركات استرجاع خلف نقطة نهاية واحدة، بتوجيه متعلَّم لكل سؤال."
 template = "feature.html"
 [extra]
 hero_poster = "images/hero-autorag.webp"

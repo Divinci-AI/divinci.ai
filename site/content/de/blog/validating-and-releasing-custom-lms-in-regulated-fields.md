@@ -1,6 +1,6 @@
 +++
 title = "Validierung und Freigabe maßgeschneiderter LMs in regulierten Branchen"
-description = "EU AI Act, DSGVO Artikel 17, HIPAA, NIST AI RMF — Capability für Capability auf eine Custom-LLM-Release-Pipeline abgebildet. Der Spalt zwischen Open-Weights und Closed-API ist die Stelle, an der die Compliance-Geschichte tatsächlich auseinandergeht."
+description = "EU AI Act, DSGVO Art. 17, HIPAA, NIST AI RMF — Capability für Capability auf eine LLM-Release-Pipeline abgebildet. Wo Open- und Closed-Weights divergieren."
 date = 2026-05-29T09:00:00+00:00
 template = "blog-post.html"
 

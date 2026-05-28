@@ -1,6 +1,6 @@
 +++
 title = "Optimisation des embeddings vectoriels pour de meilleurs résultats de recherche"
-description = "Découvrez les techniques d'optimisation des embeddings vectoriels pour améliorer la pertinence de recherche dans les systèmes d'IA, incluant les stratégies de découpage, l'indexation multidimensionnelle et les modèles d'embedding personnalisés."
+description = "Techniques pratiques pour affiner les embeddings vectoriels : dimensionnalité, quantification et compromis qualité-récupération utilisés en production."
 date = 2025-04-08T14:00:00+00:00
 template = "blog-post.html"
 

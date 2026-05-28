@@ -1,6 +1,6 @@
 +++
 title = "Валидация и релиз кастомных языковых моделей в регулируемых областях"
-description = "EU AI Act, GDPR Статья 17, HIPAA, NIST AI RMF — сопоставлены по возможностям с пайплайном релиза кастомной LLM. Раздел open-weights / closed-API — это место, где история комплаенса по-настоящему расходится."
+description = "EU AI Act, GDPR Статья 17, HIPAA, NIST AI RMF — сопоставлены по возможностям с пайплайном релиза LLM. Где open- и closed-weights расходятся."
 date = 2026-05-29T09:00:00+00:00
 template = "blog-post.html"
 

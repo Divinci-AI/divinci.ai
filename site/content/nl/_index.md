@@ -1,6 +1,6 @@
 +++
 title = "Divinci AI - Excellentie, elke keer"
-description = "Versterk uw bedrijf met geavanceerd release management en rigoureuze kwaliteitsborging voor aangepaste taalmodellen. Bereik operationele betrouwbaarheid, regelgevingsnaleving en optimale prestaties."
+description = "Verifieerbare AI-compliance: vindex-bewijzen voor de EU AI Act, GDPR Artikel 17, HIPAA en NIST AI. Excellentie, elke keer."
 template = "index.html"
 
 [extra]

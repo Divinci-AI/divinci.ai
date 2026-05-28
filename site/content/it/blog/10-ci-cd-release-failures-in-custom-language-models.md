@@ -1,6 +1,6 @@
 +++
 title = "10 fallimenti di rilascio CI/CD in modelli linguistici personalizzati — e quale stadio della pipeline cattura ciascuno"
-description = "Dieci modalità di fallimento reali emerse nello spedire LM personalizzati in produzione, ognuna mappata sullo stadio della pipeline Divinci — Register, Gate, Roll, Observe — che la cattura prima che gli utenti se ne accorgano."
+description = "Dieci failure mode reali nei release LM, ognuna mappata allo stadio Divinci — Register, Gate, Roll, Observe — che la cattura prima degli utenti."
 date = 2026-05-27T09:00:00+00:00
 template = "blog-post.html"
 

@@ -1,6 +1,6 @@
 +++
 title = "Comment construire un pipeline CI/CD pour LLM avec Divinci AI"
-description = "Un pipeline de release LLM en quatre étapes : portes Spearman conscientes des tranches, canary qui surveille la qualité des sorties (pas seulement le p95), rollback atomique en 12 secondes, et un reçu de conformité pour chaque décision."
+description = "Pipeline LLM en quatre étapes : portes Spearman par tranche, canary sur la qualité des sorties, rollback atomique en 12 s, reçu de conformité par décision."
 date = 2026-05-26T09:00:00+00:00
 template = "blog-post.html"
 

@@ -1,6 +1,6 @@
 +++
 title = "Over Divinci AI"
-description = "Ontdek de missie van Divinci AI om enterprise AI te democratiseren en geavanceerde kunstmatige intelligentie toegankelijk te maken voor organisaties van elke omvang."
+description = "De missie van Divinci AI: enterprise-AI democratiseren en geavanceerde kunstmatige intelligentie toegankelijk maken voor organisaties van elke omvang."
 template = "about.html"
 +++
 

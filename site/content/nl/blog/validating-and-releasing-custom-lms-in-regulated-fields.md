@@ -1,6 +1,6 @@
 +++
 title = "Aangepaste LM's valideren en uitbrengen in gereguleerde domeinen"
-description = "EU AI Act, AVG artikel 17, HIPAA, NIST AI RMF — capaciteit-voor-capaciteit gekoppeld aan een release-pipeline voor aangepaste LLM's. De splitsing tussen open-weights en closed-API is waar het complianceverhaal werkelijk uiteenvalt."
+description = "EU AI Act, AVG artikel 17, HIPAA, NIST AI RMF — capaciteit-voor-capaciteit gekoppeld aan een LLM-release-pipeline. Waar open en closed weights uiteenlopen."
 date = 2026-05-29T09:00:00+00:00
 template = "blog-post.html"
 

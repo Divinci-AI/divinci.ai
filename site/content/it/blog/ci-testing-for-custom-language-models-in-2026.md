@@ -1,6 +1,6 @@
 +++
 title = "Test CI per modelli linguistici personalizzati nel 2026"
-description = "Contract test, budget per gli smoke test, dimensionamento di flotta cost-aware e shadow CI. Come mantenere trattabile una suite di valutazione da 12 minuti su ogni PR senza rallentare il team."
+description = "Contract test, smoke budget, dimensionamento di flotta cost-aware e shadow CI. Mantenere trattabile una suite di valutazione da 12 minuti su ogni PR."
 date = 2026-05-26T09:30:00+00:00
 template = "blog-post.html"
 

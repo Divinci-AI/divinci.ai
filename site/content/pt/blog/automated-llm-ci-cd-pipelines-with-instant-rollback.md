@@ -1,6 +1,6 @@
 +++
 title = "Pipelines de CI/CD Automatizados para LLM Com Rollback Instantâneo"
-description = "A camada operacional sob o pipeline de release de quatro estágios — quais decisões disparam automaticamente, quais exigem intervenção humana, como é um exercício de rollback real e o número de MTTR que sai do outro lado."
+description = "A camada operacional do pipeline de release de quatro estágios: quais decisões disparam automaticamente, como é um drill de rollback real, e o número MTTR."
 date = 2026-05-30T09:00:00+00:00
 template = "blog-post.html"
 

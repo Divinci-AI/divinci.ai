@@ -1,6 +1,6 @@
 +++
 title = "Como Diagnosticar Falhas de QA em LLMs Customizados em 7 Passos"
-description = "A maioria das 'falhas de QA' não são falhas do modelo — são lacunas de cobertura de avaliação, descalibração do juiz ou skew entre treino e produção. Um diagnóstico em 7 passos que descarta as seis causas não-modelo antes de culpar o modelo."
+description = "Quase toda 'falha de QA' não é do modelo — é lacuna de eval, descalibração do juiz ou skew treino-produção. Diagnóstico em 7 passos que prova isso."
 date = 2026-05-31T09:00:00+00:00
 template = "blog-post.html"
 

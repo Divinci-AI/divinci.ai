@@ -1,6 +1,6 @@
 +++
 title = "RAGルーティング — 1つのAPI、複数のアーキテクチャ"
-description = "DivinciのRAGルーティングは、すべてのクエリを正しく回答できる最も安価なバックエンドへ振り分けます。10種類の検索エンジン（PageIndex、neo4j-hybrid、RAPTOR、LightRAG、Qdrant、Cloudflare Vectorize、Couchbase、Vertex AI、MongoDB Atlas、Redis Vector）を1つのエンドポイントの背後に統合し、質問ごとに学習型ルーティングを行います。"
+description = "DivinciのRAGルーティングは各クエリを正しく回答できる最安のバックエンドへ振り分けます。10種類の検索エンジンを1エンドポイントに統合し、質問ごとに学習型ルーティング。"
 template = "feature.html"
 [extra]
 hero_poster = "images/hero-autorag.webp"

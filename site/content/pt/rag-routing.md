@@ -1,6 +1,6 @@
 +++
 title = "Roteamento RAG — Uma API, Várias Arquiteturas"
-description = "O Roteamento RAG da Divinci despacha cada consulta para o backend mais barato capaz de respondê-la corretamente. Dez mecanismos de recuperação suportados (PageIndex, neo4j-hybrid, RAPTOR, LightRAG, Qdrant, Cloudflare Vectorize, Couchbase, Vertex AI, MongoDB Atlas, Redis Vector) atrás de um único endpoint, com roteamento aprendido por pergunta."
+description = "O Roteamento RAG da Divinci envia cada consulta ao backend mais barato que responda. Dez motores de retrieval num endpoint, roteamento por pergunta."
 template = "feature.html"
 [extra]
 hero_poster = "images/hero-autorag.webp"

@@ -1,6 +1,6 @@
 +++
 title = "El Futuro de los Sistemas RAG: Más Allá de la Simple Recuperación de Documentos"
-description = "Explora la próxima generación de sistemas de Generación Aumentada por Recuperación (RAG) y cómo están permitiendo aplicaciones de IA más sofisticadas más allá de la simple recuperación de documentos."
+description = "Hacia dónde va RAG: routing por QA scored, arenas vectoriales, evaluación competitiva en vivo. Mayo 2026 — RAG es un problema de routing, no de pipeline."
 date = 2025-05-01T09:00:00+00:00
 template = "blog-post.html"
 

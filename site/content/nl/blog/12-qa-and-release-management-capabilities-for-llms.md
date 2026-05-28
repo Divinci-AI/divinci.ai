@@ -1,6 +1,6 @@
 +++
 title = "De 12 QA- en release-managementcapaciteiten die elk custom-LLM-platform moet leveren"
-description = "Een checklist per capaciteit voor de beoordeling van LLM-releaseplatforms: per-slice gates, gekalibreerde judges, atomic rollback, hash-chained ontvangstbewijzen — wat verzadigd is, wat ontbreekt en hoe de kampen verdeeld zijn."
+description = "Capability-checklist voor LLM-releaseplatforms: per-slice gates, gekalibreerde judges, atomic rollback, hash-bewijzen — wat geleverd wordt, wat ontbreekt."
 date = 2026-05-28T09:00:00+00:00
 template = "blog-post.html"
 

@@ -1,6 +1,6 @@
 +++
 title = "Valider et publier des LM personnalisés dans les secteurs réglementés"
-description = "EU AI Act, Article 17 du RGPD, HIPAA, NIST AI RMF — mis en correspondance capacité par capacité avec un pipeline de publication LLM personnalisé. La fracture poids ouverts / API fermée est l'endroit où la conformité se sépare réellement."
+description = "EU AI Act, article 17 du RGPD, HIPAA, NIST AI RMF — mappés capacité par capacité sur un pipeline de release LLM. Là où poids ouverts et fermés divergent."
 date = 2026-05-29T09:00:00+00:00
 template = "blog-post.html"
 

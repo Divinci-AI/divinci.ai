@@ -1,6 +1,6 @@
 +++
 title = "Validare e rilasciare LM custom in settori regolamentati"
-description = "EU AI Act, GDPR Articolo 17, HIPAA, NIST AI RMF — mappati capacità per capacità su una pipeline di rilascio per LLM custom. Lo spartiacque pesi-aperti / API-chiuse è dove la storia di compliance si divide davvero."
+description = "EU AI Act, GDPR Articolo 17, HIPAA, NIST AI RMF — mappati capacità per capacità su una pipeline di release LLM. Dove pesi aperti e chiusi divergono."
 date = 2026-05-29T09:00:00+00:00
 template = "blog-post.html"
 

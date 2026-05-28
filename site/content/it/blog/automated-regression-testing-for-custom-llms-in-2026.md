@@ -1,6 +1,6 @@
 +++
 title = "Test di regressione automatizzati per LLM personalizzati nel 2026"
-description = "Come costruire una suite di regressione che intercetta il drift nell'eval — non solo nel modello. Gate sensibili agli slice, giudici calibrati, replay delle tracce di produzione."
+description = "Una suite di regressione che intercetta il drift nell'eval, non solo nel modello. Gate per slice, giudici calibrati, replay di tracce di produzione."
 date = 2026-05-26T09:00:00+00:00
 template = "blog-post.html"
 

@@ -1,6 +1,6 @@
 +++
 title = "Routage RAG — Une API, plusieurs architectures"
-description = "Le Routage RAG de Divinci dirige chaque requête vers le backend le moins coûteux capable d'y répondre correctement. Dix moteurs de récupération pris en charge (PageIndex, neo4j-hybrid, RAPTOR, LightRAG, Qdrant, Cloudflare Vectorize, Couchbase, Vertex AI, MongoDB Atlas, Redis Vector) derrière un seul endpoint, avec un routage appris question par question."
+description = "Le Routage RAG de Divinci envoie chaque requête au backend le moins cher qui y réponde. Dix moteurs de récupération sur un endpoint, routage par question."
 template = "feature.html"
 [extra]
 hero_poster = "images/hero-autorag.webp"

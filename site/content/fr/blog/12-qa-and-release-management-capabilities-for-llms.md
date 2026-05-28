@@ -1,6 +1,6 @@
 +++
 title = "Les 12 capacités QA et de Release Management que toute plateforme de LLM personnalisé devrait livrer"
-description = "Une checklist capacité par capacité pour évaluer les plateformes de release de LLM : portes conscientes des tranches, juges calibrés, rollback atomique, reçus chaînés par hash — ce qui est saturé, ce qui manque, et comment les camps se répartissent."
+description = "Checklist de capacités pour plateformes de release LLM : portes par tranche, juges calibrés, rollback atomique, reçus hash — livré ou manquant."
 date = 2026-05-28T09:00:00+00:00
 template = "blog-post.html"
 

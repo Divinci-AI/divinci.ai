@@ -1,6 +1,6 @@
 +++
 title = "RAG 라우팅 — 하나의 API, 여러 아키텍처"
-description = "Divinci의 RAG 라우팅은 모든 쿼리를 정확히 답할 수 있는 가장 저렴한 백엔드로 디스패치합니다. 단일 엔드포인트 뒤에 열 개의 검색 엔진(PageIndex, neo4j-hybrid, RAPTOR, LightRAG, Qdrant, Cloudflare Vectorize, Couchbase, Vertex AI, MongoDB Atlas, Redis Vector)을 제공하며, 질문별 학습형 라우팅을 적용합니다."
+description = "Divinci의 RAG 라우팅은 모든 쿼리를 정확히 답할 수 있는 가장 저렴한 백엔드로 보냅니다. 단일 엔드포인트 뒤에 10개 검색 엔진, 질문별 학습형 라우팅."
 template = "feature.html"
 [extra]
 hero_poster = "images/hero-autorag.webp"

@@ -1,6 +1,6 @@
 +++
 title = "CI-testen voor custom taalmodellen in 2026"
-description = "Contracttests, smoke-budget, kostenbewuste fleet-sizing en shadow CI. Hoe je een 12-minuten evaluatiesuite hanteerbaar houdt op elke PR zonder het team af te remmen."
+description = "Contracttests, smoke-budget, kostenbewuste fleet-sizing en shadow CI. Hoe je een 12-minuten eval-suite hanteerbaar houdt op elke PR."
 date = 2026-05-26T09:30:00+00:00
 template = "blog-post.html"
 

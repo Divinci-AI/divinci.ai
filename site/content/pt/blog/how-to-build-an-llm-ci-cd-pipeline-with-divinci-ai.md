@@ -1,6 +1,6 @@
 +++
 title = "Como Construir um Pipeline CI/CD para LLM com a Divinci AI"
-description = "Um pipeline de release de LLM em quatro estágios: gates Spearman por slice, canário monitorando qualidade de saída (não só p95), rollback atômico em 12 segundos e um recibo de compliance para cada decisão."
+description = "Pipeline LLM em quatro estágios: gates Spearman por slice, canário sobre qualidade de saída, rollback atômico em 12s, recibo de compliance por decisão."
 date = 2026-05-26T09:00:00+00:00
 template = "blog-post.html"
 

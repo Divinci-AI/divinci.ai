@@ -1,6 +1,6 @@
 +++
 title = "Testes de regressão automatizados para LLMs customizados em 2026"
-description = "Como construir uma suíte de regressão que detecta drift na avaliação — e não só no modelo. Gates por slice, juízes calibrados, replay de traces de produção."
+description = "Como construir uma suíte de regressão que detecta drift na avaliação — não só no modelo. Gates por slice, juízes calibrados, replay de traces de produção."
 date = 2026-05-26T09:00:00+00:00
 template = "blog-post.html"
 

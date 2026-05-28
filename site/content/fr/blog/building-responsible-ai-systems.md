@@ -1,6 +1,6 @@
 +++
 title = "Construire des Systèmes d'IA Responsable : Un Guide Pratique"
-description = "Apprenez des approches pratiques pour construire des systèmes d'IA responsable avec des considérations éthiques, des mesures de sécurité et des cadres de gouvernance pour vous assurer que vos solutions d'IA sont équitables, transparentes et responsables."
+description = "Approches pratiques de l'IA responsable : portes de gouvernance, harnais d'évaluation et patches utilisés pour appliquer la politique après l'entraînement."
 date = 2025-04-15T10:00:00+00:00
 template = "blog-post.html"
 

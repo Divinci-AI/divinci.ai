@@ -1,6 +1,6 @@
 +++
 title = "10 CI/CD-Release-Fehler bei Custom Language Models — und welche Pipeline-Stufe jeden einzelnen abfängt"
-description = "Zehn reale Failure Modes aus dem Ausliefern von Custom LMs in Produktion, jeder einer Stufe der Divinci-Pipeline zugeordnet — Register, Gate, Roll, Observe — die ihn abfängt, bevor Nutzer ihn bemerken."
+description = "Zehn reale LM-Release-Failure-Modes, jeder einer Divinci-Stufe zugeordnet — Register, Gate, Roll, Observe — die ihn abfängt, bevor Nutzer ihn bemerken."
 date = 2026-05-27T09:00:00+00:00
 template = "blog-post.html"
 

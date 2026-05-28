@@ -1,6 +1,6 @@
 +++
 title = "Ingreso Básico Universal para 2035: Un Camino Factible Hacia Adelante"
-description = "Un análisis en profundidad de cómo las tecnologías emergentes, la reestructuración gubernamental y modelos innovadores de criptomonedas podrían hacer del Ingreso Básico Universal una realidad para 2035, proporcionando $1,000-$2,000 mensuales a cada estadounidense."
+description = "UBI para 2035: cómo la productividad IA, la abundancia energética, la conversión defensiva y la minería útil podrían financiar un ingreso básico vivible."
 date = 2025-10-05T10:00:00+00:00
 template = "blog-post.html"
 

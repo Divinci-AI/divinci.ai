@@ -1,6 +1,6 @@
 +++
 title = "10 Falhas de Release CI/CD em Modelos de Linguagem Customizados — E Qual Estágio do Pipeline Pega Cada Uma"
-description = "Dez modos de falha reais de enviar LMs customizados à produção, cada um mapeado para o estágio do pipeline da Divinci — Registrar, Gatear, Rolar, Observar — que o pega antes que os usuários percebam."
+description = "Dez modos de falha reais em releases de LMs, cada um mapeado ao estágio do pipeline Divinci — Register, Gate, Roll, Observe — que pega antes dos usuários."
 date = 2026-05-27T09:00:00+00:00
 template = "blog-post.html"
 

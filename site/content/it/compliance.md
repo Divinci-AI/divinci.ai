@@ -1,6 +1,6 @@
 +++
 title = "Conformità AI — Alimentata da vindex + LarQL"
-description = "Conformità AI verificabile per il Regolamento UE sull'IA, l'Articolo 17 del GDPR, HIPAA e NIST AI RMF. Il vindex è l'artefatto di documentazione tecnica che i regolatori stanno per richiedere — e Divinci lo include di serie."
+description = "Conformità IA verificabile per EU AI Act, GDPR Art. 17, HIPAA e NIST AI RMF. Il vindex è l'artefatto tecnico che i regolatori esigeranno — incluso."
 template = "compliance.html"
 
 [extra]

@@ -1,7 +1,7 @@
 +++
 title = "Divinci AI rejoint le Cloudflare Workers Launchpad Cohort #6"
 date = 2025-10-05T10:00:00+00:00
-description = "Nous sommes ravis d'annoncer que Divinci AI a été accepté dans le programme d'accélération Cloudflare Workers Launchpad, cohorte #6. Découvrez comment nous exploitons la plateforme d'edge computing de Cloudflare pour construire des pipelines RAG sophistiqués et une infrastructure IA."
+description = "Divinci AI rejoint la cohorte #6 du Workers Launchpad de Cloudflare. Edge-RAG sous 100 ms, le pitch du Demo Day, et un deep-dive sur notre stack de prod."
 [taxonomies]
 tags = ["company-news", "cloudflare", "infrastructure", "rag"]
 [extra]

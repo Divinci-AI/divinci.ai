@@ -1,6 +1,6 @@
 +++
 title = "Construyendo Sistemas de IA Responsable: Una Guía Práctica"
-description = "Aprende enfoques prácticos para construir sistemas de IA responsable con consideraciones éticas, medidas de seguridad y marcos de gobierno para asegurar que tus soluciones de IA sean justas, transparentes y responsables."
+description = "IA responsable en la práctica: gates de gobernanza, arneses de evaluación y los parches que usamos para aplicar política tras el entrenamiento."
 date = 2025-04-15T10:00:00+00:00
 template = "blog-post.html"
 

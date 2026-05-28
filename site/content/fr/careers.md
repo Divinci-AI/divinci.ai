@@ -1,6 +1,6 @@
 +++
 title = "Carrières chez Divinci AI"
-description = "Rejoignez Divinci AI et aidez à construire le futur de la collaboration humain-IA. Nous recherchons des talents passionnés par l'IA et la création d'un impact positif."
+description = "Rejoignez Divinci AI et façonnez l'avenir de la collaboration humain-IA. Carrières en ingénierie, produit, design et business."
 template = "careers.html"
 +++
 

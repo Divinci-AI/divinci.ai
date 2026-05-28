@@ -1,6 +1,6 @@
 +++
 title = "Validando e Lançando LMs Customizados em Setores Regulados"
-description = "EU AI Act, GDPR Artigo 17, HIPAA, NIST AI RMF — mapeados capacidade por capacidade para um pipeline de release de LLM customizado. A divisão open-weights / API fechada é onde a história de compliance realmente se separa."
+description = "EU AI Act, GDPR Artigo 17, HIPAA, NIST AI RMF — mapeados capacidade por capacidade em um pipeline de release LLM. Onde pesos abertos e fechados divergem."
 date = 2026-05-29T09:00:00+00:00
 template = "blog-post.html"
 

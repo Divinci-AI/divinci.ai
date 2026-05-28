@@ -1,6 +1,6 @@
 +++
 title = "Plans tarifaires"
-description = "Divinci AI propose des plans tarifaires flexibles pour les entreprises de toutes tailles. Choisissez parmi nos plans Starter, Pro et Enterprise pour créer des solutions IA personnalisées."
+description = "Tarifs flexibles pour les entreprises de toutes tailles. Choisissez entre Starter, Pro et Enterprise pour des solutions IA sur mesure."
 template = "feature.html"
 +++
 

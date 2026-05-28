@@ -1,6 +1,6 @@
 +++
 title = "Cómo diagnosticar fallos de QA en LLMs custom en 7 pasos"
-description = "La mayoría de los 'fallos de QA' no son fallos del modelo — son huecos de cobertura de eval, mala calibración del juez o skew entrenamiento-serving. Un diagnóstico de 7 pasos que descarta las seis causas no-modelo antes de culpar al modelo."
+description = "Casi todo 'fallo de QA' no es del modelo — son huecos de eval, mala calibración del juez o skew training-serving. Diagnóstico en 7 pasos que lo prueba."
 date = 2026-05-31T09:00:00+00:00
 template = "blog-post.html"
 

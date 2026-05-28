@@ -1,6 +1,6 @@
 +++
 title = "Las 12 capacidades de QA y release management que toda plataforma de LLM custom debería enviar"
-description = "Un checklist capacidad por capacidad para evaluar plataformas de release de LLM: gates conscientes del slice, jueces calibrados, rollback atómico, recibos encadenados por hash — qué está saturado, qué falta, y cómo se dividen los campos."
+description = "Checklist de capacidades para plataformas de release LLM: gates por slice, jueces calibrados, rollback atómico, recibos hash — qué se entrega, qué falta."
 date = 2026-05-28T09:00:00+00:00
 template = "blog-post.html"
 

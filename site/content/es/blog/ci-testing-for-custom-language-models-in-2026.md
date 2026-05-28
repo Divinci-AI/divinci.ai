@@ -1,6 +1,6 @@
 +++
 title = "Pruebas de CI para modelos de lenguaje personalizados en 2026"
-description = "Pruebas de contrato, presupuesto de smoke, dimensionamiento de flota consciente del coste y CI en sombra. Cómo mantener una suite de evaluación de 12 minutos tratable en cada PR sin frenar al equipo."
+description = "Pruebas de contrato, smoke budget, fleet sizing consciente del coste y shadow CI. Cómo mantener una suite de eval de 12 min tratable en cada PR."
 date = 2026-05-26T09:30:00+00:00
 template = "blog-post.html"
 

@@ -1,6 +1,6 @@
 +++
 title = "As 12 Capacidades de QA e Gestão de Releases que Toda Plataforma de LLM Customizado Deveria Entregar"
-description = "Um checklist capacidade por capacidade para avaliar plataformas de release de LLM: gates por fatia, juízes calibrados, rollback atômico, recibos encadeados por hash — o que já está saturado, o que está faltando e como os campos se dividem."
+description = "Checklist de capacidades para plataformas de release LLM: gates por slice, juízes calibrados, rollback atômico, recibos hash — o que entrega, o que falta."
 date = 2026-05-28T09:00:00+00:00
 template = "blog-post.html"
 

@@ -1,6 +1,6 @@
 +++
 title = "Geautomatiseerde LLM CI/CD-pipelines met directe rollback"
-description = "De operationele laag onder de vierfasige release-pipeline — welke beslissingen automatisch worden uitgevoerd, welke menselijke input vereisen, hoe een echte rollback-oefening eruitziet, en welk MTTR-getal er aan de andere kant uitkomt."
+description = "De operationele laag van de vierfasige pipeline: welke beslissingen automatisch lopen, hoe een echte rollback-oefening eruitziet, en het MTTR-getal."
 date = 2026-05-30T09:00:00+00:00
 template = "blog-post.html"
 

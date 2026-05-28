@@ -1,6 +1,6 @@
 +++
 title = "Маршрутизация RAG — один API, множество архитектур"
-description = "Маршрутизация RAG от Divinci направляет каждый запрос к самому дешёвому бэкенду, способному ответить на него корректно. Десять поддерживаемых движков извлечения (PageIndex, neo4j-hybrid, RAPTOR, LightRAG, Qdrant, Cloudflare Vectorize, Couchbase, Vertex AI, MongoDB Atlas, Redis Vector) за одной конечной точкой, с обученной маршрутизацией для каждого вопроса."
+description = "RAG Routing от Divinci направляет каждый запрос к самому дешёвому бэкенду. Десять движков извлечения за одной точкой, обученный per-question роутинг."
 template = "feature.html"
 [extra]
 hero_poster = "images/hero-autorag.webp"

@@ -1,6 +1,6 @@
 +++
 title = "Pipelines CI/CD LLM automatisés avec rollback instantané"
-description = "La couche opérationnelle sous le pipeline de release en quatre étapes — quelles décisions se déclenchent automatiquement, lesquelles nécessitent une intervention humaine, à quoi ressemble réellement un exercice de rollback, et le chiffre de MTTR qui en ressort."
+description = "La couche opérationnelle du pipeline en quatre étapes : quelles décisions sont automatiques, à quoi ressemble un drill rollback réel, et le MTTR."
 date = 2026-05-30T09:00:00+00:00
 template = "blog-post.html"
 

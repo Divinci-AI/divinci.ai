@@ -1,6 +1,6 @@
 +++
 title = "RAG Arena et Routage Dynamique"
-description = "Comparez des bases de connaissances côte à côte et routez automatiquement les questions vers le meilleur RAG vector avec le système intelligent de Divinci AI"
+description = "Comparez des bases de connaissances en parallèle et routez les questions vers le meilleur vecteur RAG avec le système d'arène intelligent de Divinci AI"
 template = "feature.html"
 [extra]
 hero_poster = "images/rag-arena-hero.png"

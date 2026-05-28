@@ -1,6 +1,6 @@
 +++
 title = "LLM Quality Assurance"
-description = "Testing e validazione di livello enterprise per applicazioni IA. Rilevamento automatico delle allucinazioni, monitoraggio dei bias e valutazione continua della qualità."
+description = "Pipeline di QA completa per applicazioni LLM enterprise: testing automatizzato, validazione e monitoraggio continui della qualità."
 template = "feature.html"
 
 [extra]

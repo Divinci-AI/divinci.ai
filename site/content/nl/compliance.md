@@ -1,6 +1,6 @@
 +++
 title = "AI-compliance — Aangedreven door vindex + LarQL"
-description = "Verifieerbare AI-compliance voor de EU AI Act, GDPR Artikel 17, HIPAA en NIST AI RMF. De vindex is het technische documentatie-artefact dat toezichthouders binnenkort gaan eisen — en Divinci levert het standaard mee."
+description = "Verifieerbare AI-compliance voor EU AI Act, GDPR Art. 17, HIPAA, NIST AI RMF. De vindex is het technische artefact dat toezichthouders eisen — meegeleverd."
 template = "compliance.html"
 
 [extra]

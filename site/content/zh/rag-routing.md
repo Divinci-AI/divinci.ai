@@ -1,6 +1,6 @@
 +++
 title = "RAG 路由 — 一个 API，多种架构"
-description = "Divinci 的 RAG 路由将每个查询分派到能够正确回答它的最便宜后端。十种受支持的检索引擎（PageIndex、neo4j-hybrid、RAPTOR、LightRAG、Qdrant、Cloudflare Vectorize、Couchbase、Vertex AI、MongoDB Atlas、Redis Vector）置于单个端点之后，并按问题学习路由。"
+description = "Divinci 的 RAG 路由将每个查询分派到能正确回答的最便宜后端。十种检索引擎置于单个端点之后，按问题学习路由。"
 template = "feature.html"
 [extra]
 hero_poster = "images/hero-autorag.webp"

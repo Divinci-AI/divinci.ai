@@ -1,6 +1,6 @@
 +++
 title = "Automatisierte LLM-CI/CD-Pipelines mit sofortigem Rollback"
-description = "Die operative Ebene unter der vierstufigen Release-Pipeline – welche Entscheidungen automatisch ausgelöst werden, welche menschliches Zutun erfordern, wie eine echte Rollback-Übung aussieht und welche MTTR-Zahl am Ende dabei herauskommt."
+description = "Die operative Ebene der vierstufigen Release-Pipeline: welche Entscheidungen automatisch laufen, wie eine echte Rollback-Übung aussieht, und die MTTR-Zahl."
 date = 2026-05-30T09:00:00+00:00
 template = "blog-post.html"
 

@@ -1,6 +1,6 @@
 +++
 title = "10 fallos de release de CI/CD en modelos de lenguaje custom — y qué etapa del pipeline atrapa cada uno"
-description = "Diez modos de fallo reales al enviar LMs custom a producción, cada uno mapeado a la etapa del pipeline de Divinci — Register, Gate, Roll, Observe — que lo atrapa antes de que los usuarios lo noten."
+description = "Diez modos de fallo reales en releases de LMs custom, cada uno mapeado a la etapa del pipeline Divinci — Register, Gate, Roll, Observe — que los atrapa."
 date = 2026-05-27T09:00:00+00:00
 template = "blog-post.html"
 

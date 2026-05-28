@@ -1,6 +1,6 @@
 +++
 title = "Tests de régression automatisés pour LLM personnalisés en 2026"
-description = "Comment construire une suite de régression qui détecte la dérive dans l'évaluation — pas seulement dans le modèle. Gates conscientes des tranches, juges calibrés, rejeu de traces de production."
+description = "Une suite de régression qui détecte la dérive dans l'évaluation, pas seulement dans le modèle. Gates par tranche, juges calibrés, rejeu de traces de prod."
 date = 2026-05-26T09:00:00+00:00
 template = "blog-post.html"
 

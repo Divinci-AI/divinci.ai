@@ -1,6 +1,6 @@
 +++
 title = "Pipelines automatizados de CI/CD para LLM con rollback instantáneo"
-description = "La capa operacional bajo el pipeline de release de cuatro etapas — qué decisiones disparan automáticamente, cuáles requieren intervención humana, cómo se ve un drill real de rollback, y el número de MTTR que sale por el otro lado."
+description = "Capa operacional del pipeline de cuatro etapas: qué decisiones disparan automáticamente, cómo es un drill real de rollback, y el MTTR resultante."
 date = 2026-05-30T09:00:00+00:00
 template = "blog-post.html"
 

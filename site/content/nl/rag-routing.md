@@ -1,6 +1,6 @@
 +++
 title = "RAG Routing — Eén API, Meerdere Architecturen"
-description = "Divinci's RAG Routing stuurt elke vraag naar de goedkoopste backend die correct kan antwoorden. Tien ondersteunde retrieval-engines (PageIndex, neo4j-hybrid, RAPTOR, LightRAG, Qdrant, Cloudflare Vectorize, Couchbase, Vertex AI, MongoDB Atlas, Redis Vector) achter één endpoint, met geleerde routing per vraag."
+description = "Divinci's RAG Routing stuurt elke vraag naar de goedkoopste backend die correct antwoordt. Tien retrieval-engines achter één endpoint, geleerd per vraag."
 template = "feature.html"
 [extra]
 hero_poster = "images/hero-autorag.webp"

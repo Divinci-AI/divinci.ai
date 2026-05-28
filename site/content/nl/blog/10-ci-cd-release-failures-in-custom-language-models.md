@@ -1,6 +1,6 @@
 +++
 title = "10 CI/CD-releasefouten in custom taalmodellen — en welke pipelinefase elk ervan opvangt"
-description = "Tien echte failure modes uit het releasen van custom LM's naar productie, elk gekoppeld aan de Divinci-pipelinefase — Register, Gate, Roll, Observe — die het opvangt voordat gebruikers het merken."
+description = "Tien echte LM-release failure modes, elk gekoppeld aan de Divinci-pipelinefase — Register, Gate, Roll, Observe — die het opvangt vóór gebruikers."
 date = 2026-05-27T09:00:00+00:00
 template = "blog-post.html"
 

@@ -1,6 +1,6 @@
 +++
 title = "Comment diagnostiquer les échecs de QA d'un LLM personnalisé en 7 étapes"
-description = "La plupart des « échecs de QA » ne sont pas des défaillances du modèle — ce sont des lacunes de couverture d'évaluation, des problèmes de calibration du juge ou un écart entraînement-production. Un diagnostic en 7 étapes qui élimine les six causes non liées au modèle avant de le blâmer."
+description = "Presque tous les « échecs de QA » ne viennent pas du modèle — mais d'éval, de calibration du juge ou d'écart training-serving. Diagnostic en 7 étapes."
 date = 2026-05-31T09:00:00+00:00
 template = "blog-post.html"
 

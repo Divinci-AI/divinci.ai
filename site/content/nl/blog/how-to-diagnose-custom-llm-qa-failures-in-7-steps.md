@@ -1,6 +1,6 @@
 +++
 title = "Hoe diagnosticeer je QA-storingen in custom LLM's in 7 stappen"
-description = "De meeste 'QA-storingen' zijn geen modelstoringen — het zijn lacunes in eval-dekking, mis-kalibratie van de judge of training-serving skew. Een 7-staps diagnose die de zes niet-model-oorzaken uitsluit voordat het model de schuld krijgt."
+description = "De meeste 'QA-storingen' zijn geen modelstoringen — maar eval-lacunes, mis-gekalibreerde judges of training-serving skew. 7-staps diagnose die het bewijst."
 date = 2026-05-31T09:00:00+00:00
 template = "blog-post.html"
 

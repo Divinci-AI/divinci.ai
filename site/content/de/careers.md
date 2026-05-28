@@ -1,6 +1,6 @@
 +++
 title = "Karriere bei Divinci AI"
-description = "Werden Sie Teil von Divinci AI und gestalten Sie die Zukunft der Zusammenarbeit zwischen Mensch und KI mit. Wir suchen Talente, die für KI und positive Wirkung brennen."
+description = "Werden Sie Teil von Divinci AI und gestalten Sie die Zukunft der Mensch-KI-Zusammenarbeit. Karriere in Engineering, Produkt, Design und Business."
 template = "careers.html"
 +++
 

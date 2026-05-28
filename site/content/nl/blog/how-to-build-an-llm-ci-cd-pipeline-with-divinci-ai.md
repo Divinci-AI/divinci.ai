@@ -1,6 +1,6 @@
 +++
 title = "Een LLM-CI/CD-pipeline bouwen met Divinci AI"
-description = "Een LLM-releasepipeline in vier fases: slice-bewuste Spearman-gates, canary die outputkwaliteit bewaakt (niet alleen p95), atomische rollback in 12 seconden en een compliance-bewijs voor elke beslissing."
+description = "LLM-releasepipeline in vier fases: slice-bewuste Spearman-gates, canary op outputkwaliteit, atomische rollback in 12s, compliance-bewijs per beslissing."
 date = 2026-05-26T09:00:00+00:00
 template = "blog-post.html"
 

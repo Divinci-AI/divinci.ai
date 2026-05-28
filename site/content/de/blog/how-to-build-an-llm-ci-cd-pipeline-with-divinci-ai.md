@@ -1,6 +1,6 @@
 +++
 title = "So bauen Sie eine LLM-CI/CD-Pipeline mit Divinci AI"
-description = "Eine vierstufige LLM-Release-Pipeline: slice-aware Spearman-Gates, Canary, der die Output-Qualität überwacht (nicht nur p95), atomares Rollback in 12 Sekunden und ein Compliance-Beleg für jede Entscheidung."
+description = "Vierstufige LLM-Release-Pipeline: slice-aware Spearman-Gates, Canary auf Output-Qualität, atomares Rollback in 12s, Compliance-Beleg pro Entscheidung."
 date = 2026-05-26T09:00:00+00:00
 template = "blog-post.html"
 

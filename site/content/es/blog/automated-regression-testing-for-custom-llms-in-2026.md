@@ -1,6 +1,6 @@
 +++
 title = "Pruebas de regresión automatizadas para LLM personalizados en 2026"
-description = "Cómo construir una suite de regresión que detecte la deriva en la evaluación — no solo en el modelo. Compuertas conscientes de segmentos, jueces calibrados, replay de trazas de producción."
+description = "Suite de regresión que detecta la deriva en la evaluación — no solo en el modelo. Gates por slice, jueces calibrados, replay de trazas de producción."
 date = 2026-05-26T09:00:00+00:00
 template = "blog-post.html"
 

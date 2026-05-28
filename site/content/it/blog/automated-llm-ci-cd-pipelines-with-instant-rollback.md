@@ -1,6 +1,6 @@
 +++
 title = "Pipeline CI/CD per LLM automatizzate con rollback istantaneo"
-description = "Lo strato operativo sotto la pipeline di rilascio a quattro fasi — quali decisioni partono automaticamente, quali richiedono input umano, com'è fatta davvero una prova di rollback e il numero di MTTR che ne esce dall'altra parte."
+description = "Lo strato operativo della pipeline a quattro fasi: quali decisioni partono in automatico, com'è una prova di rollback reale, e il numero MTTR."
 date = 2026-05-30T09:00:00+00:00
 template = "blog-post.html"
 

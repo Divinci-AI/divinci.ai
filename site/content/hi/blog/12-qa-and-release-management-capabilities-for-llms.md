@@ -1,6 +1,6 @@
 +++
 title = "12 QA और रिलीज़ मैनेजमेंट क्षमताएँ जो हर कस्टम-LLM प्लेटफ़ॉर्म को शिप करनी चाहिए"
-description = "LLM रिलीज़ प्लेटफ़ॉर्म्स का मूल्यांकन करने के लिए क्षमता-दर-क्षमता चेकलिस्ट: slice-aware gates, calibrated judges, atomic rollback, hash-chained receipts — क्या saturated है, क्या मिसिंग है, और camps कैसे बँटे हैं।"
+description = "LLM रिलीज़ प्लेटफ़ॉर्म्स के लिए क्षमता चेकलिस्ट: slice-aware gates, calibrated judges, atomic rollback, hash receipts — क्या शिप होता है, क्या मिसिंग है।"
 date = 2026-05-28T09:00:00+00:00
 template = "blog-post.html"
 

@@ -1,6 +1,6 @@
 +++
 title = "Politique de Confidentialité"
-description = "L'engagement de Divinci AI à protéger votre vie privée et vos données personnelles conformément au RGPD et aux lois internationales sur la protection de la vie privée"
+description = "L'engagement de Divinci AI pour protéger votre vie privée et vos données personnelles, conformément au RGPD et aux lois internationales sur la vie privée"
 template = "page.html"
 +++
 

@@ -1,6 +1,6 @@
 +++
 title = "10 échecs de release CI/CD dans les modèles de langage personnalisés — et quelle étape du pipeline attrape chacun"
-description = "Dix vrais modes d'échec rencontrés en livrant des LMs personnalisés en production, chacun mappé sur l'étape du pipeline Divinci — Enregistrer, Gater, Dérouler, Observer — qui l'attrape avant que les utilisateurs ne le remarquent."
+description = "Dix modes d'échec réels de releases LM, chacun mappé sur l'étape Divinci — Register, Gate, Roll, Observe — qui l'attrape avant les utilisateurs."
 date = 2026-05-27T09:00:00+00:00
 template = "blog-post.html"
 

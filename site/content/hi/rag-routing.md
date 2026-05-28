@@ -1,6 +1,6 @@
 +++
 title = "RAG रूटिंग — एक API, अनेक आर्किटेक्चर"
-description = "Divinci की RAG रूटिंग हर क्वेरी को उस सबसे सस्ते बैकएंड पर भेजती है जो उसका सही उत्तर दे सके। दस समर्थित रिट्रीवल इंजन (PageIndex, neo4j-hybrid, RAPTOR, LightRAG, Qdrant, Cloudflare Vectorize, Couchbase, Vertex AI, MongoDB Atlas, Redis Vector) एक ही एंडपॉइंट के पीछे, सीखी हुई प्रति-प्रश्न रूटिंग के साथ।"
+description = "Divinci की RAG रूटिंग हर क्वेरी को सबसे सस्ते सक्षम बैकएंड पर भेजती है। एक एंडपॉइंट के पीछे दस रिट्रीवल इंजन, प्रति-प्रश्न सीखी हुई रूटिंग।"
 template = "feature.html"
 [extra]
 hero_poster = "images/hero-autorag.webp"

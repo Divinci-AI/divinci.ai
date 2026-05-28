@@ -1,6 +1,6 @@
 +++
 title = "Tests CI pour les modèles de langage personnalisés en 2026"
-description = "Tests de contrat, budget smoke, dimensionnement de flotte tenant compte des coûts, et CI fantôme. Comment maintenir une suite d'évaluation de 12 minutes praticable sur chaque PR sans ralentir l'équipe."
+description = "Tests de contrat, budget smoke, dimensionnement de flotte cost-aware, et CI fantôme. Maintenir une suite d'éval de 12 min praticable sur chaque PR."
 date = 2026-05-26T09:30:00+00:00
 template = "blog-post.html"
 

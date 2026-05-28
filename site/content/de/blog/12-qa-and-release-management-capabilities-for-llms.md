@@ -1,6 +1,6 @@
 +++
 title = "Die 12 QA- und Release-Management-Fähigkeiten, die jede Custom-LLM-Plattform ausliefern sollte"
-description = "Eine Checkliste Fähigkeit für Fähigkeit zur Bewertung von LLM-Release-Plattformen: slice-bewusste Gates, kalibrierte Judges, atomares Rollback, hash-verkettete Quittungen — was gesättigt ist, was fehlt und wie sich die Lager aufteilen."
+description = "Capability-Checkliste für LLM-Release-Plattformen: slice-bewusste Gates, kalibrierte Judges, atomares Rollback, Hash-Belege — was läuft, was fehlt."
 date = 2026-05-28T09:00:00+00:00
 template = "blog-post.html"
 

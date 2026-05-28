@@ -1,6 +1,6 @@
 +++
 title = "Cómo una Startup FinTech Optimizó el Soporte al Cliente con IA Personalizada"
-description = "Descubre cómo FastFinance transformó su sistema de soporte al cliente con la solución personalizada de Divinci AI, reduciendo tiempos de respuesta en 78% y aumentando la satisfacción del cliente en 42%."
+description = "Cómo FastFinance transformó su soporte al cliente con Divinci AI, reduciendo los tiempos de respuesta en 78% y aumentando la satisfacción un 42%."
 date = 2025-03-25T11:00:00+00:00
 template = "blog-post.html"
 

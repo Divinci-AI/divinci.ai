@@ -1,6 +1,6 @@
 +++
 title = "Divinci AI - Excelencia, siempre"
-description = "Potencie su negocio con gestión avanzada de versiones y aseguramiento de calidad riguroso para modelos de lenguaje personalizados. Logre confiabilidad operativa, cumplimiento regulatorio y rendimiento óptimo a través de un proceso de implementación estructurado de extremo a extremo."
+description = "Cumplimiento de IA verificable: recibos vindex para la Ley de IA de la UE, GDPR Artículo 17, HIPAA y NIST AI. Excelencia, en cada release."
 template = "index.html"
 
 [extra]

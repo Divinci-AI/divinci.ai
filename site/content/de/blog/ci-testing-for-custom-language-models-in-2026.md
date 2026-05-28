@@ -1,6 +1,6 @@
 +++
 title = "CI-Tests für Custom Language Models im Jahr 2026"
-description = "Contract-Tests, Smoke-Budget, kostenbewusste Flottendimensionierung und Shadow-CI. Wie man eine 12-Minuten-Eval-Suite bei jedem PR handhabbar hält, ohne das Team auszubremsen."
+description = "Contract-Tests, Smoke-Budget, kostenbewusste Flottendimensionierung und Shadow-CI. Wie eine 12-Minuten-Eval-Suite bei jedem PR handhabbar bleibt."
 date = 2026-05-26T09:30:00+00:00
 template = "blog-post.html"
 

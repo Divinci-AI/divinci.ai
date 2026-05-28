@@ -1,6 +1,6 @@
 +++
 title = "Geautomatiseerde regressietests voor custom LLM's in 2026"
-description = "Hoe je een regressie-suite bouwt die drift opspoort in de evaluatie — niet alleen in het model. Slice-bewuste gates, gekalibreerde judges, replay van productie-traces."
+description = "Een regressie-suite die drift opspoort in de eval, niet alleen in het model. Slice-bewuste gates, gekalibreerde judges, replay van productie-traces."
 date = 2026-05-26T09:00:00+00:00
 template = "blog-post.html"
 

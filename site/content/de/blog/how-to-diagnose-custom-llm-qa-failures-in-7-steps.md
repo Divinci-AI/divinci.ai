@@ -1,6 +1,6 @@
 +++
 title = "Wie Sie QA-Fehler bei Custom-LLMs in 7 Schritten diagnostizieren"
-description = "Die meisten 'QA-Fehler' sind keine Modellfehler — es sind Lücken in der Eval-Abdeckung, eine fehlkalibrierte Judge-Instanz oder Training-Serving-Skew. Eine 7-Schritt-Diagnostik, die die sechs nicht modellbezogenen Ursachen ausschließt, bevor das Modell beschuldigt wird."
+description = "Die meisten 'QA-Fehler' sind keine Modellfehler — sondern Eval-Lücken, miskalibrierte Judges oder Training-Serving-Skew. 7-Schritt-Diagnostik."
 date = 2026-05-31T09:00:00+00:00
 template = "blog-post.html"
 

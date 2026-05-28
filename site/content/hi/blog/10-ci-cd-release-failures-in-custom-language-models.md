@@ -1,6 +1,6 @@
 +++
 title = "कस्टम लैंग्वेज मॉडल्स में 10 CI/CD रिलीज़ फ़ेलियर — और कौन-सा पाइपलाइन चरण किसे पकड़ता है"
-description = "प्रोडक्शन में कस्टम LM शिप करने से दस वास्तविक failure modes, हर एक Divinci पाइपलाइन चरण — Register, Gate, Roll, Observe — पर मैप किया गया है, जो उपयोगकर्ताओं के नोटिस करने से पहले उसे पकड़ लेता है।"
+description = "कस्टम LM रिलीज़ के दस वास्तविक failure modes, हर एक Divinci चरण — Register, Gate, Roll, Observe — पर मैप, जो उपयोगकर्ताओं से पहले पकड़ ले।"
 date = 2026-05-27T09:00:00+00:00
 template = "blog-post.html"
 

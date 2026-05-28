@@ -1,6 +1,6 @@
 +++
 title = "Presse"
-description = "Presseressourcen für Divinci AI, einschließlich Nachrichten, Medienberichterstattung, Pressemitteilungen, Markenressourcen und Kontaktinformationen für Presseanfragen."
+description = "Presseressourcen für Divinci AI: Nachrichten, Medienberichterstattung, Pressemitteilungen, Markenressourcen und Kontakte für Presseanfragen."
 template = "press.html"
 +++
 

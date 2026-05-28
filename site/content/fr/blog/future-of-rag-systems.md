@@ -1,6 +1,6 @@
 +++
 title = "L'avenir des systèmes RAG : Au-delà de la simple récupération de documents"
-description = "Vers où se dirige le RAG : routage par QA évalué, arènes vectorielles et passage d'une récupération mono-pipeline à une évaluation compétitive en direct. Mise à jour mai 2026 — le RAG est désormais un problème de routage et d'orchestration, pas d'ingénierie de pipeline."
+description = "Vers où va le RAG : routage par QA scoré, arènes vectorielles, évaluation compétitive en direct. Mai 2026 — le RAG est désormais un problème de routage."
 date = 2025-05-01T09:00:00+00:00
 updated = 2026-05-27T10:00:00+00:00
 template = "blog-post.html"

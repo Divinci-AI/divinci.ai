@@ -1,6 +1,6 @@
 +++
 title = "मूल्य निर्धारण योजनाएँ"
-description = "Divinci AI सभी आकार के व्यवसायों के लिए लचीली मूल्य योजनाएँ प्रदान करता है। अपने संगठन के लिए कस्टम AI समाधान बनाने के लिए Starter, Pro, और Enterprise योजनाओं में से चुनें।"
+description = "Divinci AI सभी आकार के व्यवसायों के लिए लचीली मूल्य योजनाएँ देता है। कस्टम AI समाधानों के लिए Starter, Pro और Enterprise में से चुनें।"
 template = "feature.html"
 +++
 
