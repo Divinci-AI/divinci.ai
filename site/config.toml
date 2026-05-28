@@ -26,6 +26,10 @@ external_links_target_blank = true
 external_links_no_follow = true
 external_links_no_referrer = true
 smart_punctuation = true
+# Auto-adds loading="lazy" and decoding="async" to every <img> Zola renders
+# from `![]()` markdown syntax. Fixes HubSpot's "Delay loading images below
+# the fold" recommendation across blog posts with inline content images.
+lazy_async_image = true
 
 [markdown.highlighting]
 theme = "material-theme-ocean"

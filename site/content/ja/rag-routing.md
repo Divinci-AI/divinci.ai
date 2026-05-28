@@ -383,7 +383,7 @@ feature_category = "data-management"
   <div class="rr-backend-body"><strong>raptor</strong><span>再帰的に要約された文書階層上のツリー走査型検索（ICLR 2024）。</span></div>
 </div>
 <div class="rr-backend-chip tier3">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/neo4j/008CC1" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/neo4j/008CC1" alt="Neo4j logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>neo4j-hybrid</strong><span>ベクトル埋め込みと明示的なエンティティ／関係構造を組み合わせたグラフ拡張型検索。</span></div>
 </div>
 <div class="rr-backend-chip tier3">
@@ -391,27 +391,27 @@ feature_category = "data-management"
   <div class="rr-backend-body"><strong>lightrag</strong><span>フラットグラフのデュアルモード検索 — エンティティ検索とコミュニティ検索、香港大学のLightRAGアプローチ。</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/qdrant/DC244C" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/qdrant/DC244C" alt="Qdrant logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>qdrant</strong><span>高スループット・低レイテンシ検索のためのセルフホスト型dense-vectorエンジン。</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/cloudflare/F38020" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/cloudflare/F38020" alt="Cloudflare logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>cloudflare-v2</strong><span>エッジ上のVectorize — Cloudflareのグローバルネットワークからp95でサブ300ms。</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/couchbase/EA2328" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/couchbase/EA2328" alt="Couchbase logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>couchbase-byok</strong><span>既存の運用依存があるお客様向けのBYO Couchbaseベクトルストア。</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>vertex-ai-vector-search-v2</strong><span>Googleデータスタックを利用するお客様向けのGoogle Cloud Vertex AIベクトル検索。</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/mongodb/47A248" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/mongodb/47A248" alt="MongoDB logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>mongodb-atlas</strong><span>MongoDB上でドキュメントデータを運用するお客様向けのAtlas Vector Search。</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/redis/FF4438" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/redis/FF4438" alt="Redis logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>redis-vector-search</strong><span>超低レイテンシのインメモリ検索ワークロード向けのRedisベクトル検索。</span></div>
 </div>
 

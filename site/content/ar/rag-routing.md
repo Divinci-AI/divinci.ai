@@ -383,7 +383,7 @@ feature_category = "data-management"
   <div class="rr-backend-body"><strong>raptor</strong><span>استرجاع باجتياز الشجرة فوق هرميات وثائق مُلخَّصة بشكل تكراري (ICLR 2024).</span></div>
 </div>
 <div class="rr-backend-chip tier3">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/neo4j/008CC1" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/neo4j/008CC1" alt="Neo4j logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>neo4j-hybrid</strong><span>استرجاع معزَّز بالرسم البياني يجمع بين تضمينات المتجهات والبنية الصريحة للكيانات والعلاقات.</span></div>
 </div>
 <div class="rr-backend-chip tier3">
@@ -391,27 +391,27 @@ feature_category = "data-management"
   <div class="rr-backend-body"><strong>lightrag</strong><span>استرجاع ثنائي الوضع برسم بياني مسطَّح — بحث الكيانات والمجتمعات، وهو نهج LightRAG من جامعة هونغ كونغ.</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/qdrant/DC244C" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/qdrant/DC244C" alt="Qdrant logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>qdrant</strong><span>محرك متَّجهات كثيف يُستضاف ذاتيًا، لعمليات بحث عالية الإنتاجية ومنخفضة الكمون.</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/cloudflare/F38020" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/cloudflare/F38020" alt="Cloudflare logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>cloudflare-v2</strong><span>Vectorize عند الحافة — أقل من 300 ms p95 من شبكة Cloudflare العالمية.</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/couchbase/EA2328" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/couchbase/EA2328" alt="Couchbase logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>couchbase-byok</strong><span>متجر متَّجهات Couchbase تأتي به بنفسك (BYO) للعملاء ذوي التبعيات التشغيلية القائمة.</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>vertex-ai-vector-search-v2</strong><span>بحث المتجهات في Vertex AI من Google Cloud للعملاء على منظومة بيانات Google.</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/mongodb/47A248" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/mongodb/47A248" alt="MongoDB logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>mongodb-atlas</strong><span>Atlas Vector Search للعملاء الذين يديرون بيانات الوثائق على MongoDB.</span></div>
 </div>
 <div class="rr-backend-chip tier1">
-  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/redis/FF4438" alt="" loading="lazy" decoding="async">
+  <img class="rr-backend-logo" src="https://cdn.simpleicons.org/redis/FF4438" alt="Redis logo" loading="lazy" decoding="async">
   <div class="rr-backend-body"><strong>redis-vector-search</strong><span>بحث متَّجهات Redis لأحمال استرجاع في الذاكرة بكمون منخفض جدًا.</span></div>
 </div>
 
