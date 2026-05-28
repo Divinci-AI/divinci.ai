@@ -45,8 +45,10 @@
     {# Critical CSS inline for faster rendering #}
     <style>
         body{font-family:'Source Sans 3',sans-serif;margin:0;background:#f8f4f0;color:#2d3c34}
-        .loading{opacity:0;transition:opacity 0.3s ease}
-        .loaded{opacity:1}
+        {# Removed `.loading{opacity:0}` — that pattern hid the entire body
+           until JS ran, which Lighthouse measured as LCP. /api/ pages were
+           reporting 16+s LCP because of this. Page now renders visible by
+           default; the fade-in was a nice-to-have but not worth the LCP hit. #}
     </style>
     
     <title>{% block title %}{{ page.title | default(value="Divinci AI") }}{% endblock %}</title>
@@ -87,19 +89,10 @@
     
     {% block extra_head %}{% endblock %}
 </head>
-<body class="loading">
+<body>
     <div id="main-content">
         {% block content %}{% endblock %}
     </div>
-    
-    {# Deferred scripts for better performance #}
-    <script>
-        // Mark page as loaded for fade-in effect
-        document.addEventListener('DOMContentLoaded', function() {
-            document.body.classList.add('loaded');
-            document.body.classList.remove('loading');
-        });
-    </script>
     
     {# Load optimized scripts after page content #}
     <script defer src="{{ get_url(path="js/optimized.js") }}"></script>

@@ -11,15 +11,11 @@
 {% if page.extra.hero_video %}
   {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
   {% if page.extra.hero_video_poster %}{% set poster_url = page.extra.hero_video_poster %}{% else %}{% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}{% endif %}
-{# Resize the poster via Cloudflare Image Resizing — hero posters are
-   typically 1600w WebPs (~200-400KB). CIR brings them down to ~50-90KB at
-   1200w/q=80 with aggressive AVIF format. External URLs (R2) skip CIR.
-   The poster IS the LCP element on blog posts that use a hero video. #}
-  {% if poster_url is starting_with("http") %}
+{# Preload the poster directly without CIR. CIR was re-encoding our
+   already-optimized 87-245KB WebPs to ~100-220KB JPEG (no size benefit,
+   added cold-cache latency that registered as 4-9s LCP on the <video>
+   element). Direct serve from /images/ is cached at Cloudflare edge. #}
 <link rel="preload" as="image" href="{{ poster_url }}" fetchpriority="high">
-  {% else %}
-<link rel="preload" as="image" href="/cdn-cgi/image/width=1200,format=auto,quality=80/{{ poster_url }}" fetchpriority="high">
-  {% endif %}
 {% elif page.extra.featured_image %}
 {# Pipe local featured_image through Cloudflare Image Resizing so large PNGs
    (1-2MB) get compressed to ~150-200KB at 1600w. External URLs pass through
@@ -153,8 +149,9 @@ window.MathJax = {
     <div class="hero-video-background">
         {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
         {% if page.extra.hero_video_poster %}{% set poster_url = page.extra.hero_video_poster %}{% else %}{% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}{% endif %}
-        {# Resize local posters through CIR — matches the preload above. #}
-        {% if poster_url is starting_with("http") %}{% set poster_render = poster_url %}{% else %}{% set poster_render = '/cdn-cgi/image/width=1200,format=auto,quality=80' ~ poster_url %}{% endif %}
+        {# Use the poster directly. CIR re-encode was adding latency
+           without size benefit on our already-optimized WebPs. #}
+        {% set poster_render = poster_url %}
         {# Standard <video autoplay> pattern. The universal defer script in
            base.html catches the autoplay attribute and defers the download
            until after window.load — so the poster paints immediately and
