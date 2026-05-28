@@ -31,22 +31,27 @@
       "name": "auth"
     },
     {
-      "name": "chat"
+      "name": "chat",
+      "description": "Chat completions and thread management. `POST /api/v1/chat/completions` is an OpenAI-style completion endpoint that lets you call your Divinci release like a model — same request shape OpenAI clients already speak. Use this for drop-in compatibility with existing tooling; prefer the dedicated SDKs (`@divinci-ai/server`, `@divinci-ai/client`) when you want streaming, RAG context, and Divinci-specific features.\n\n`curl -X POST -H \"x-api-key: $KEY\" https://api.divinci.ai/api/v1/chat/completions -d '{\"messages\":[{\"role\":\"user\",\"content\":\"Hi\"}]}'`"
     },
     {
       "name": "config"
     },
     {
-      "name": "connectors"
+      "name": "connectors",
+      "description": "Third-party provider connections (Neo4j, search graphs, and other external integrations). Use these endpoints to list available providers, inspect a connection's status, kick off the provider's OAuth/auth flow, and disconnect a previously-linked account. Connection credentials are stored as BYOK records — see the `byok` resource for direct credential CRUD. Requires `connector:read` for GET and `connector:write` for changes.\n\n`curl -H \"x-api-key: $KEY\" https://api.divinci.ai/api/v1/connectors`"
     },
     {
-      "name": "copilot"
+      "name": "copilot",
+      "description": "Divinci Copilot orchestration. Drives the multi-step agent that produces release recommendations, content drafts, and other long-running suggestions. `GET /api/v1/copilot/health` is a public liveness check; the orchestration `POST /api/v1/copilot` requires an API key. Most customer integrations use the dashboard UI over this — the endpoints are exposed for advanced automation and CI hooks.\n\n`curl https://api.divinci.ai/api/v1/copilot/health`"
     },
     {
-      "name": "divinci-agent"
+      "name": "divinci-agent",
+      "description": "Divinci Agent transcript bridge — reads and syncs transcripts produced by the on-platform agent into your own systems. `GET /api/v1/divinci-agent/health` is a liveness check. `GET /api/v1/divinci-agent/transcript` lists agent transcripts; `POST .../sync` triggers a re-sync of a specific transcript's messages from the upstream agent store; `.../messages` returns the synced message list. Use this when you need agent-generated transcripts in a downstream warehouse or webhook destination.\n\n`curl -H \"x-api-key: $KEY\" https://api.divinci.ai/api/v1/divinci-agent/transcript/{transcriptId}/messages`"
     },
     {
-      "name": "export"
+      "name": "export",
+      "description": "Bulk data export for a workspace. `POST /api/v1/export` enqueues an asynchronous export of the workspace's records (transcripts, RAG metadata, configuration) and returns a job handle you can poll for the download URL. Use this for compliance, migration, or feeding analytics warehouses. Heavy operation — rate-limited per workspace.\n\n`curl -X POST -H \"x-api-key: $KEY\" https://api.divinci.ai/api/v1/export -d '{\"scope\":\"transcripts\"}'`"
     },
     {
       "name": "fine-tune"
@@ -55,13 +60,16 @@
       "name": "groups"
     },
     {
-      "name": "html-pages"
+      "name": "html-pages",
+      "description": "URL-indexed HTML pages — Divinci's surface for scraping, storing, and querying snapshots of web pages so they can be referenced in RAG and agent flows. `POST /api/v1/html-pages` ingests a URL; `GET /api/v1/html-pages` lists indexed pages with pagination; `/count`, `/by-url`, and `/hosts`-rooted endpoints provide aggregations for dashboards. Each host also keeps a versioned history (`/hosts/history`, `/hosts/{urlHost}/history`) and individual pages are addressable by `pageId`.\n\n`curl -H \"x-api-key: $KEY\" https://api.divinci.ai/api/v1/html-pages?limit=20`"
     },
     {
-      "name": "mcp-config"
+      "name": "mcp-config",
+      "description": "MCP server configuration per whitelabel. `GET /api/v1/mcp-config/{whitelabelId}` returns the MCP capabilities, tool exposure, and pricing-tier policy for a whitelabeled deployment. Use this to provision MCP-aware AI assistants (Claude Desktop, Cursor) against a customer-specific Divinci instance. Whitelabel-gated — most non-whitelabel deployments will not need it.\n\n`curl -H \"x-api-key: $KEY\" https://api.divinci.ai/api/v1/mcp-config/{whitelabelId}`"
     },
     {
-      "name": "notifications"
+      "name": "notifications",
+      "description": "In-app notification center. `GET /api/v1/notifications` lists notifications for the authenticated user; `GET /api/v1/notifications/counts` returns unread totals for a badge UI; `POST /api/v1/notifications/{notificationId}/read` marks one as read. Use these when embedding the Divinci notification bell in your own dashboard.\n\n`curl -H \"x-api-key: $KEY\" https://api.divinci.ai/api/v1/notifications/counts`"
     },
     {
       "name": "permissions"
@@ -79,10 +87,12 @@
       "name": "transcripts"
     },
     {
-      "name": "tts"
+      "name": "tts",
+      "description": "Text-to-speech generation and per-workspace TTS settings. `POST /api/v1/tts/generate` synthesizes audio from a text payload using the workspace's default voice; `GET/PUT /api/v1/tts/settings` reads/writes voice, speed, and provider preferences. Pair with `audio-transcripts` for a full voice-in / voice-out pipeline.\n\n`curl -X POST -H \"x-api-key: $KEY\" https://api.divinci.ai/api/v1/tts/generate -d '{\"text\":\"Hello\"}'`"
     },
     {
-      "name": "voiceprints"
+      "name": "voiceprints",
+      "description": "Voice biometrics — register, list, and verify voiceprints used for caller / speaker authentication on voice integrations. `GET /api/v1/voiceprints` lists the current workspace's enrollments. Treat voiceprint registration as PII; restrict the API key permission scope accordingly.\n\n`curl -H \"x-api-key: $KEY\" https://api.divinci.ai/api/v1/voiceprints`"
     },
     {
       "name": "workspaces"
@@ -1125,6 +1135,53 @@
             }
           }
         }
+      }
+    },
+    "/api/v1/rag/files/{fileId}/vectorize-status": {
+      "get": {
+        "operationId": "getVectorizeStatus",
+        "tags": [
+          "rag"
+        ],
+        "summary": "GET /api/v1/rag/files/:fileId/vectorize-status — Definitive readiness check. Cloudflare Vectorize is eventually consistent (~10–60s); this endpoint directly verifies the file's chunks are queryable instead of relying on the file's status field, which can flip to \"completed\" before vectors are searchable.",
+        "security": [
+          {
+            "ApiKeyAuth": [
+              "rag:read"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "fileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          }
+        },
+        "x-required-permissions": [
+          "rag:read"
+        ],
+        "x-rate-limit-feature": "rag"
       }
     },
     "/api/v1/rag/files/{fileId}/chunks": {
