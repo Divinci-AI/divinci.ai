@@ -11,7 +11,15 @@
 {% if page.extra.hero_video %}
   {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
   {% if page.extra.hero_video_poster %}{% set poster_url = page.extra.hero_video_poster %}{% else %}{% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}{% endif %}
+{# Resize the poster via Cloudflare Image Resizing — hero posters are
+   typically 1600w WebPs (~200-400KB). CIR brings them down to ~50-90KB at
+   1200w/q=80 with aggressive AVIF format. External URLs (R2) skip CIR.
+   The poster IS the LCP element on blog posts that use a hero video. #}
+  {% if poster_url is starting_with("http") %}
 <link rel="preload" as="image" href="{{ poster_url }}" fetchpriority="high">
+  {% else %}
+<link rel="preload" as="image" href="/cdn-cgi/image/width=1200,format=auto,quality=80/{{ poster_url }}" fetchpriority="high">
+  {% endif %}
 {% elif page.extra.featured_image %}
 {# Pipe local featured_image through Cloudflare Image Resizing so large PNGs
    (1-2MB) get compressed to ~150-200KB at 1600w. External URLs pass through
@@ -145,11 +153,15 @@ window.MathJax = {
     <div class="hero-video-background">
         {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
         {% if page.extra.hero_video_poster %}{% set poster_url = page.extra.hero_video_poster %}{% else %}{% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}{% endif %}
+        {# Resize local posters through CIR — matches the preload above. #}
+        {% if poster_url is starting_with("http") %}{% set poster_render = poster_url %}{% else %}{% set poster_render = '/cdn-cgi/image/width=1200,format=auto,quality=80' ~ poster_url %}{% endif %}
         {# Standard <video autoplay> pattern. The universal defer script in
            base.html catches the autoplay attribute and defers the download
            until after window.load — so the poster paints immediately and
-           the page weight at load is just the poster, not the video. #}
-        <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ poster_url }}" class="hero-bg-video"{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
+           the page weight at load is just the poster, not the video.
+           width/height attrs lock the aspect ratio so the browser reserves
+           layout space before the poster arrives (prevents CLS). #}
+        <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ poster_render }}" width="1600" height="900" class="hero-bg-video"{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
             <source src="{{ page.extra.hero_video }}" type="video/webm">
         </video>
         <div class="hero-video-overlay"></div>
@@ -222,7 +234,7 @@ window.MathJax = {
                 {# Skip in-body featured image when a hero_video is already shown above — avoids duplicating the same visual #}
                 {% if page.extra.featured_image and not page.extra.hero_video %}
                     {% if page.extra.featured_image is ending_with(".mp4") or page.extra.featured_image is ending_with(".webm") %}
-                        <video class="featured-image" muted loop playsinline webkit-playsinline preload="metadata" data-lazy-video>
+                        <video class="featured-image" muted loop playsinline webkit-playsinline preload="metadata" width="1600" height="900" data-lazy-video>
                             {% if page.extra.featured_image is ending_with(".mp4") %}
                                 <source src="{{ page.extra.featured_image | replace(from=".mp4", to=".webm") }}" type="video/webm">
                                 <source src="{{ page.extra.featured_image }}" type="video/mp4">
@@ -233,9 +245,9 @@ window.MathJax = {
                         </video>
                     {% else %}
                         {% if page.extra.featured_image is starting_with("http") %}
-                            <img src="{{ page.extra.featured_image }}" alt="{{ page.title }}" class="featured-image" loading="eager" fetchpriority="high" decoding="async">
+                            <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.featured_image }}" alt="{{ page.title }}" width="1600" height="900" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ page.extra.featured_image }}';">
                         {% else %}
-                            <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.featured_image }}" alt="{{ page.title }}" class="featured-image" loading="eager" fetchpriority="high" decoding="async">
+                            <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.featured_image }}" alt="{{ page.title }}" width="1600" height="900" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=page.extra.featured_image) | safe }}';">
                         {% endif %}
                     {% endif %}
                 {% endif %}
@@ -375,13 +387,19 @@ window.MathJax = {
                         {% if post.permalink != page.permalink and articles_count < 4 %}
                         <a href="{{ post.permalink }}" class="related-post">
                             {% if post.extra.hero_video %}
-                                {# Prefer hero_video — renders as hoverable video thumbnail #}
+                                {# Prefer hero_video — renders as hoverable video thumbnail.
+                                   Resize local poster through CIR (~400w → ~10-20KB instead
+                                   of ~150-300KB at native size). width/height locks aspect
+                                   ratio so layout is reserved before poster arrives. #}
+                                {% if post.extra.hero_video_poster %}
+                                  {% if post.extra.hero_video_poster is starting_with("http") %}{% set rp_poster = post.extra.hero_video_poster %}{% else %}{% set rp_poster = '/cdn-cgi/image/width=400,format=auto,quality=80' ~ post.extra.hero_video_poster %}{% endif %}
+                                {% endif %}
                                 {% if post.extra.hero_video is starting_with("http") %}
-                                    <video muted loop playsinline webkit-playsinline preload="none" class="related-image related-video" style="object-fit:cover;{% if post.extra.hero_video_filter %}filter:{{ post.extra.hero_video_filter }};{% endif %}"{% if post.extra.hero_video_poster %} poster="{{ post.extra.hero_video_poster }}"{% endif %}>
+                                    <video muted loop playsinline webkit-playsinline preload="none" width="400" height="225" class="related-image related-video" style="object-fit:cover;{% if post.extra.hero_video_filter %}filter:{{ post.extra.hero_video_filter }};{% endif %}"{% if post.extra.hero_video_poster %} poster="{{ rp_poster }}"{% endif %}>
                                         <source src="{{ post.extra.hero_video }}" type="video/webm">
                                     </video>
                                 {% else %}
-                                    <video muted loop playsinline webkit-playsinline preload="none" class="related-image related-video" style="object-fit:cover;{% if post.extra.hero_video_filter %}filter:{{ post.extra.hero_video_filter }};{% endif %}"{% if post.extra.hero_video_poster %} poster="{{ post.extra.hero_video_poster }}"{% endif %}>
+                                    <video muted loop playsinline webkit-playsinline preload="none" width="400" height="225" class="related-image related-video" style="object-fit:cover;{% if post.extra.hero_video_filter %}filter:{{ post.extra.hero_video_filter }};{% endif %}"{% if post.extra.hero_video_poster %} poster="{{ rp_poster }}"{% endif %}>
                                         <source src="{{ get_url(path=post.extra.hero_video) }}" type="video/webm">
                                     </video>
                                 {% endif %}

@@ -1,6 +1,6 @@
 +++
-title = "The 12 QA and Release Management Capabilities Every Custom-LLM Platform Should Ship"
-description = "A capability-by-capability checklist for evaluating LLM release platforms: slice-aware gates, calibrated judges, atomic rollback, hash-chained receipts — what's saturated, what's missing, and how the camps split."
+title = "The 12 QA + Release Capabilities Every Custom-LLM Platform Ships"
+description = "Capability checklist for LLM release platforms: slice-aware gates, calibrated judges, atomic rollback, hash receipts — what ships, what's missing."
 date = 2026-05-28T09:00:00+00:00
 template = "blog-post.html"
 

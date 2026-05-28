@@ -1,6 +1,6 @@
 +++
 title = "Light Logic: The Dawn of Photonic Ternary Computing for Universal Basic Compute"
-description = "Photonic logic gates, ternary computing, quantum RNG, and gravity batteries: a sustainable, hand-crafted compute substrate for UBI. Updated May 2026 — three of the four pillars have crossed the commercial threshold."
+description = "Photonic gates, ternary computing, quantum RNG, gravity batteries — a sustainable compute substrate for UBI. May 2026 — three of four pillars commercial."
 date = 2025-10-05T10:00:00+00:00
 updated = 2026-05-27T10:00:00+00:00
 template = "blog-post.html"

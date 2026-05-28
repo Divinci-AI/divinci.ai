@@ -1,6 +1,6 @@
 +++
 title = "How to Diagnose Custom LLM QA Failures in 7 Steps"
-description = "Most 'QA failures' aren't model failures — they're eval-coverage gaps, judge mis-calibration, or training-serving skew. A 7-step diagnostic that rules out the six non-model causes before blaming the model."
+description = "Most 'QA failures' aren't model failures — they're eval gaps, judge mis-calibration, or training-serving skew. A 7-step diagnostic that proves it."
 date = 2026-05-31T09:00:00+00:00
 template = "blog-post.html"
 

@@ -1,6 +1,6 @@
 +++
 title = "The Future of RAG Systems: Beyond Simple Document Retrieval"
-description = "Where RAG is heading: scored-QA routing, vector arenas, and the move from single-pipeline retrieval to live competitive evaluation. Updated May 2026 — RAG is now a routing-and-orchestration problem, not a pipeline-engineering one."
+description = "Where RAG is heading: scored-QA routing, vector arenas, live competitive evaluation. May 2026 — RAG is now a routing problem, not a pipeline one."
 date = 2025-05-01T09:00:00+00:00
 updated = 2026-05-27T10:00:00+00:00
 template = "blog-post.html"

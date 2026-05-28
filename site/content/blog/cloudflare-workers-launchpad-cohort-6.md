@@ -1,6 +1,6 @@
 +++
-title = "Divinci AI Joins Cloudflare Workers Launchpad Cohort #6: Building AI at the Speed of Light"
-description = "Divinci AI joined Cloudflare's Workers Launchpad Cohort #6. How edge compute delivers RAG-powered AI with sub-100ms latency. Updated with Demo Day pitch + monorepo deep-dive."
+title = "Divinci AI Joins Cloudflare Workers Launchpad Cohort #6"
+description = "Divinci AI joined Cloudflare's Workers Launchpad Cohort #6. Sub-100ms edge-RAG, the Demo Day pitch, and a deep-dive on our production stack."
 date = 2025-10-05T10:00:00+00:00
 updated = 2026-05-27T10:00:00+00:00
 template = "blog-post.html"

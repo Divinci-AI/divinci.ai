@@ -1,6 +1,6 @@
 +++
 title = "Automated LLM CI/CD Pipelines With Instant Rollback"
-description = "The operational layer under the four-stage release pipeline — which decisions fire automatically, which require human input, what an actual rollback drill looks like, and the MTTR number that comes out the other side."
+description = "The operational layer under the four-stage pipeline: which decisions fire automatically, what an actual rollback drill looks like, and the MTTR number."
 date = 2026-05-30T09:00:00+00:00
 template = "blog-post.html"
 

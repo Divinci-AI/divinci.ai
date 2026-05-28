@@ -1,6 +1,6 @@
 +++
-title = "10 CI/CD Release Failures in Custom Language Models — And Which Pipeline Stage Catches Each One"
-description = "Ten real failure modes from shipping custom LMs to production, each mapped to the Divinci pipeline stage — Register, Gate, Roll, Observe — that catches it before users notice."
+title = "10 CI/CD Release Failures in Custom LMs — Which Stage Catches Each"
+description = "Ten real LM-release failure modes, each mapped to the Divinci pipeline stage — Register, Gate, Roll, Observe — that catches it before users notice."
 date = 2026-05-27T09:00:00+00:00
 template = "blog-post.html"
 

@@ -206,9 +206,9 @@
                                 {% endif %}
                             {% else %}
                                 {% if featured_post.extra.featured_image is starting_with("http") %}
-                                    <img src="{{ featured_post.extra.featured_image }}" alt="{{ featured_post.title }}" class="featured-image" loading="eager" fetchpriority="high" decoding="async">
+                                    <img src="/cdn-cgi/image/width=1200,format=auto,quality=82/{{ featured_post.extra.featured_image }}" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ featured_post.extra.featured_image }}';">
                                 {% else %}
-                                    <img src="/cdn-cgi/image/width=1200,format=auto,quality=82/{{ featured_post.extra.featured_image }}" alt="{{ featured_post.title }}" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=featured_post.extra.featured_image) | safe }}';">
+                                    <img src="/cdn-cgi/image/width=1200,format=auto,quality=82/{{ featured_post.extra.featured_image }}" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=featured_post.extra.featured_image) | safe }}';">
                                 {% endif %}
                             {% endif %}
                         {% else %}
@@ -267,36 +267,39 @@
                                         {% set vid_filter = post.extra.hero_video_filter | default(value="") %}
                                         {% if post.extra.featured_video %}
                                             {% set vid_src = post.extra.featured_video %}
+                                            {# CIR-resize local poster to ~600w (~10-20KB instead of full-res) #}
+                                            {% if post.extra.hero_video_poster %}{% if post.extra.hero_video_poster is starting_with("http") %}{% set pc_poster = post.extra.hero_video_poster %}{% else %}{% set pc_poster = '/cdn-cgi/image/width=600,format=auto,quality=80' ~ post.extra.hero_video_poster %}{% endif %}{% endif %}
                                             {% if vid_src is starting_with("http") %}
-                                                <video muted loop playsinline webkit-playsinline preload="none"{% if post.extra.hero_video_poster %} poster="{{ post.extra.hero_video_poster }}"{% endif %}{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="post-image video-thumbnail object-cover">
+                                                <video muted loop playsinline webkit-playsinline preload="none" width="600" height="338"{% if post.extra.hero_video_poster %} poster="{{ pc_poster }}"{% endif %}{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="post-image video-thumbnail object-cover">
                                                     <source src="{{ vid_src }}" type="video/webm">
                                                 </video>
                                             {% else %}
                                                 {% set video_name = vid_src | split(pat="/") | last | replace(from=".webm", to="") | replace(from=".mp4", to="") %}
-                                                <video muted loop playsinline webkit-playsinline preload="none" poster="{{ get_url(path='images/' ~ video_name ~ '-poster.webp') }}"{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="post-image video-thumbnail object-cover">
+                                                <video muted loop playsinline webkit-playsinline preload="none" width="600" height="338" poster="/cdn-cgi/image/width=600,format=auto,quality=80{{ get_url(path='images/' ~ video_name ~ '-poster.webp') }}"{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="post-image video-thumbnail object-cover">
                                                     <source src="{{ get_url(path=vid_src) }}" type="video/webm">
                                                 </video>
                                             {% endif %}
                                         {% elif post.extra.hero_video %}
                                             {# Fall back to hero_video for lazy-loaded card thumbnail #}
                                             {% set vid_src = post.extra.hero_video %}
+                                            {% if post.extra.hero_video_poster %}{% if post.extra.hero_video_poster is starting_with("http") %}{% set pc_poster = post.extra.hero_video_poster %}{% else %}{% set pc_poster = '/cdn-cgi/image/width=600,format=auto,quality=80' ~ post.extra.hero_video_poster %}{% endif %}{% endif %}
                                             {% if vid_src is starting_with("http") %}
-                                                <video muted loop playsinline webkit-playsinline preload="none"{% if post.extra.hero_video_poster %} poster="{{ post.extra.hero_video_poster }}"{% endif %}{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="post-image video-thumbnail object-cover">
+                                                <video muted loop playsinline webkit-playsinline preload="none" width="600" height="338"{% if post.extra.hero_video_poster %} poster="{{ pc_poster }}"{% endif %}{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="post-image video-thumbnail object-cover">
                                                     <source src="{{ vid_src }}" type="video/webm">
                                                 </video>
                                             {% else %}
-                                                <video muted loop playsinline webkit-playsinline preload="none"{% if post.extra.hero_video_poster %} poster="{{ get_url(path=post.extra.hero_video_poster) }}"{% endif %}{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="post-image video-thumbnail object-cover">
+                                                <video muted loop playsinline webkit-playsinline preload="none" width="600" height="338"{% if post.extra.hero_video_poster %} poster="{{ pc_poster }}"{% endif %}{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="post-image video-thumbnail object-cover">
                                                     <source src="{{ get_url(path=vid_src) }}" type="video/webm">
                                                 </video>
                                             {% endif %}
                                         {% elif post.extra.featured_image %}
                                             {% if post.extra.featured_image is starting_with("http") %}
-                                                <img src="{{ post.extra.featured_image }}" alt="{{ post.title }}" class="post-image" loading="lazy" decoding="async">
+                                                <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.featured_image }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ post.extra.featured_image }}';">
                                             {% else %}
-                                                <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.featured_image }}" alt="{{ post.title }}" class="post-image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=post.extra.featured_image) | safe }}';">
+                                                <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.featured_image }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=post.extra.featured_image) | safe }}';">
                                             {% endif %}
                                         {% else %}
-                                            <img src="{{ get_url(path='images/autorag-diagram.svg') }}" alt="{{ post.title }}" class="post-image" loading="lazy">
+                                            <img src="{{ get_url(path='images/autorag-diagram.svg') }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy">
                                         {% endif %}
                                         </a>
                                         <div class="post-content">
