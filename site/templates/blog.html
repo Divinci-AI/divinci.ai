@@ -250,7 +250,7 @@
                             {% elif featured_post.description %}
                                 <p class="featured-excerpt">{{ featured_post.description }}</p>
                             {% endif %}
-                            <a href="{{ featured_post.permalink | safe }}" class="read-more">{{ translations.blog.read_article | default(value="Read Article") }} <i class="fas fa-arrow-right"></i></a>
+                            <a href="{{ featured_post.permalink | safe }}" class="read-more" aria-label="{{ translations.blog.read_article | default(value='Read article') }}: {{ featured_post.title }}">{{ translations.blog.read_article | default(value="Read Article") }} <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </article>
                     {% if paginator.current_index == 1 or paginator.current_index is undefined %}

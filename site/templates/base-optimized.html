@@ -66,8 +66,9 @@
     <link rel="stylesheet" href="{{ get_url(path="css/variables.css") }}">
     <link rel="stylesheet" href="{{ get_url(path="css/optimized.css") }}">
     
-    {# Load fonts with display=swap for better performance #}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap">
+    {# Load fonts with display=optional (avoids the swap-reflow that causes
+       0.34 CLS on Dutch pages). #}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=optional">
 
     <!-- Font Awesome (CSS subset, non-blocking via media=print + onload).
          Replaced 1.4MB JS bundle that was the dominant TBT culprit on /api/

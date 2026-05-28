@@ -239,8 +239,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ get_url(path="images/favicon-16x16.png") }}">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     
-    <!-- Fonts with display=swap for better performance -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Source+Sans+3:wght@400;500&display=swap">
+    <!-- Fonts with display=optional. swap was causing 0.34 CLS on ALL Dutch
+         pages because longer Dutch words ("Ondersteuning" vs "Support") shift
+         layout when the fallback→Fraunces swap fires. `optional` gives the
+         font 100ms to arrive; otherwise uses fallback for that page load
+         (no reflow ever). Subsequent loads use the cached font normally. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Source+Sans+3:wght@400;500&display=optional">
     
     <!-- Font Awesome (subset: base + solid + brands only).
          Loaded as non-blocking via media="print" + onload trick — icons swap
