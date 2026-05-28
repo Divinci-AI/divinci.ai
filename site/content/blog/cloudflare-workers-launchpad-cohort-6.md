@@ -69,6 +69,7 @@ Traditional cloud computing follows a centralized model: your data travels thous
 For Retrieval-Augmented Generation (RAG) systems—where every millisecond compounds through retrieval, embedding, ranking, and generation—edge deployment is transformative.
 
 <video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 50%; float: right; border-radius: 8px; margin: 0 0 1rem 1.5rem;">
+    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-celestial-globe.mp4" type="video/mp4; codecs=av01.0.05M.08">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-celestial-globe.webm" type="video/webm">
 </video>
 
@@ -393,6 +394,7 @@ Over the coming months, we'll be documenting our infrastructure migration and le
 We believe in **building in public** and sharing knowledge. If you're building on Cloudflare Workers or exploring edge computing for AI, we'd love to collaborate.
 
 <video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 50%; border-radius: 8px; margin: 2rem auto; display: block;">
+    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-workshop-leonardo.mp4" type="video/mp4; codecs=av01.0.05M.08">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-workshop-leonardo.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Innovation through the ages: Building the future with timeless principles</p>

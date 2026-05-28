@@ -29,6 +29,7 @@ featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Divinci-Wo
 في Divinci AI، نبني الجيل القادم من أدوات التعاون بالذكاء الاصطناعي للمؤسسات مع التركيز على الموثوقية والأمان والأداء. كانت منصة الحوسبة الطرفية من Cloudflare أساسية في تحقيق هذه الأهداف، مما يمكننا من تقديم قدرات ذكاء اصطناعي متطورة بأدنى زمن استجابة عبر العالم.
 
 <video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-celestial-globe.mp4" type="video/mp4; codecs=av01.0.05M.08">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-celestial-globe.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">النشر العالمي على الحافة يمكّن الذكاء الاصطناعي بسرعة الفكر</p>
@@ -310,6 +311,7 @@ Workers AI هو طبقة الاستدلال داخل المنصة؛ نستخدم
 نحن متحمسون بشكل لا يصدق لهذه الشراكة والفرص التي تجلبها. بينما نواصل بناء مستقبل التعاون المؤسسي المدعوم بالذكاء الاصطناعي، ستبقى منصة Cloudflare في قلب بنيتنا التحتية، مما يمكننا من تقديم تجارب استثنائية للفرق حول العالم.
 
 <video muted loop playsinline webkit-playsinline preload="none" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-workshop-leonardo.mp4" type="video/mp4; codecs=av01.0.05M.08">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-workshop-leonardo.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">الابتكار عبر العصور: بناء المستقبل بمبادئ خالدة</p>

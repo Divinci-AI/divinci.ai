@@ -1,5 +1,5 @@
 +++
-title = "12 QA और रिलीज़ मैनेजमेंट क्षमताएँ जो हर कस्टम-LLM प्लेटफ़ॉर्म को शिप करनी चाहिए"
+title = "12 QA + रिलीज़ क्षमताएँ हर कस्टम-LLM प्लेटफ़ॉर्म को चाहिए"
 description = "LLM रिलीज़ प्लेटफ़ॉर्म्स के लिए क्षमता चेकलिस्ट: slice-aware gates, calibrated judges, atomic rollback, hash receipts — क्या शिप होता है, क्या मिसिंग है।"
 date = 2026-05-28T09:00:00+00:00
 template = "blog-post.html"
