@@ -4,6 +4,7 @@ description = "Divinci AI の RAG Arena でモデル、戦略、設定を並べ�
 template = "feature.html"
 
 [extra]
+canonical_to_english = true
 hero_poster = "images/rag-arena-hero.png"
 +++
 

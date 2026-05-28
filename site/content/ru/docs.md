@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "Инструменты для разработчиков и документация"
 description = "Полная документация для разработчиков Divinci AI — CLI, серверный SDK, клиентский SDK, MCP SDK, Embed Client и справочник REST API."
 template = "feature.html"

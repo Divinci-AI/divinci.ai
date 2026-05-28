@@ -4,6 +4,7 @@ description = "Vergleichen Sie Modelle, Strategien und Konfigurationen Seite an 
 template = "feature.html"
 
 [extra]
+canonical_to_english = true
 hero_poster = "images/rag-arena-hero.png"
 +++
 

@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "서비스 약관"
 description = "Divinci AI 플랫폼 사용을 위한 약관 및 조건"
 template = "page.html"

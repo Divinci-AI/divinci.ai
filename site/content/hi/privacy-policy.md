@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "गोपनीयता नीति"
 description = "Divinci AI की गोपनीयता प्रतिबद्धता और डेटा हैंडलिंग विवरण"
 template = "page.html"

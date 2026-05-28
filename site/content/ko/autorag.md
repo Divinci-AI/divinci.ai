@@ -3,6 +3,7 @@ title = "AutoRAG - 자동화된 검색 증강 생성"
 description = "Divinci AI의 포괄적인 AutoRAG 솔루션으로 데이터에 최적화된 RAG 파이프라인을 자동으로 찾으세요"
 template = "feature.html"
 [extra]
+canonical_to_english = true
 hero_poster = "images/hero-autorag.webp"
 feature_category = "data-management"
 +++

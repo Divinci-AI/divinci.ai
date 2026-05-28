@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "Servicevoorwaarden"
 description = "Algemene voorwaarden voor het gebruik van het Divinci-AI-platform"
 template = "page.html"

@@ -3,6 +3,7 @@ title = "AutoRAG - 自动化检索增强生成"
 description = "通过 Divinci AI 的综合 AutoRAG 解决方案,自动找到适合您数据的最佳 RAG 流水线"
 template = "feature.html"
 [extra]
+canonical_to_english = true
 hero_poster = "images/hero-autorag.webp"
 feature_category = "data-management"
 +++

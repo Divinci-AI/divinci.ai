@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "隐私政策"
 description = "Divinci AI 对隐私的承诺以及数据处理详情"
 template = "page.html"

@@ -3,6 +3,7 @@ title = "AutoRAG - Автоматизированная генерация с и
 description = "Автоматически найдите оптимальный конвейер RAG для ваших данных с комплексным решением AutoRAG от Divinci AI"
 template = "feature.html"
 [extra]
+canonical_to_english = true
 hero_poster = "images/hero-autorag.webp"
 feature_category = "data-management"
 +++

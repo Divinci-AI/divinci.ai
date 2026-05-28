@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "Termos de Serviço"
 description = "Termos e condições de uso da plataforma Divinci AI"
 template = "page.html"

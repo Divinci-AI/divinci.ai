@@ -3,6 +3,7 @@ title = "AutoRAG - स्वचालित पुनर्प्राप्त
 description = "Divinci AI के व्यापक AutoRAG समाधान के साथ अपने डेटा के लिए इष्टतम RAG पाइपलाइन स्वचालित रूप से खोजें"
 template = "feature.html"
 [extra]
+canonical_to_english = true
 hero_poster = "images/hero-autorag.webp"
 feature_category = "data-management"
 +++

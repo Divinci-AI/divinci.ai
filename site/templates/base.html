@@ -191,8 +191,25 @@
     <!-- Cloudflare-injected ISO 3166-1 alpha-2 country code (e.g. "DE", "US"). Populated by the Worker via HTMLRewriter from request.cf.country. Empty when bypassing the Worker (local zola serve) — gating script falls back to timezone detection. -->
     <meta name="cf-country" content="">
 
-    <!-- Canonical URL -->
+    <!-- Canonical URL.
+         Pages with `extra.canonical_to_english = true` point canonical to the
+         English version — used for stub-translated i18n pages (e.g. legal docs
+         where the body is the authoritative English text with a localized
+         intro). Tells search engines/HubSpot they're translations, not
+         independent duplicates. -->
+    {%- if page and page.extra and page.extra.canonical_to_english -%}
+      {%- set ALL_LANGS_CANON = ["es","fr","ar","ja","zh","it","ru","de","pt","ko","nl","hi"] -%}
+      {%- set raw_path_canon = current_url | trim_start_matches(pat=config.base_url) -%}
+      {%- set en_path_canon = raw_path_canon -%}
+      {%- for lg in ALL_LANGS_CANON -%}
+        {%- if raw_path_canon is starting_with("/" ~ lg ~ "/") -%}
+          {%- set_global en_path_canon = raw_path_canon | trim_start_matches(pat="/" ~ lg) -%}
+        {%- endif -%}
+      {%- endfor %}
+    <link rel="canonical" href="{{ config.base_url ~ en_path_canon }}">
+    {%- else %}
     <link rel="canonical" href="{{ current_url | default(value=config.base_url) | safe }}">
+    {%- endif %}
 
     {# hreflang alternates: tells search engines that /api/, /ar/api/, /es/api/
        etc. are translations of the same logical page (not duplicate content).

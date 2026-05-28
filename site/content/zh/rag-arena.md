@@ -4,6 +4,7 @@ description = "在 Divinci AI 的 RAG Arena 中并排比较模型、策略和配
 template = "feature.html"
 
 [extra]
+canonical_to_english = true
 hero_poster = "images/rag-arena-hero.png"
 +++
 

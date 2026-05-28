@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "Ontwikkelaarstools & Documentatie"
 description = "Uitgebreide ontwikkelaarsdocumentatie voor Divinci AI — CLI, Server-SDK, Client-SDK, MCP-SDK, Embed Client en REST API-referentie."
 template = "feature.html"

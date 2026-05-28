@@ -3,6 +3,7 @@ title = "AutoRAG - Automatisierte Retrieval-Augmented Generation"
 description = "Finden Sie automatisch die optimale RAG-Pipeline für Ihre Daten mit der umfassenden AutoRAG-Lösung von Divinci AI"
 template = "feature.html"
 [extra]
+canonical_to_english = true
 hero_poster = "images/hero-autorag.webp"
 feature_category = "data-management"
 +++

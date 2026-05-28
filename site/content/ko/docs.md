@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "개발자 도구 및 문서"
 description = "Divinci AI에 대한 포괄적인 개발자 문서 — CLI, 서버 SDK, 클라이언트 SDK, MCP SDK, Embed Client 및 REST API 레퍼런스."
 template = "feature.html"

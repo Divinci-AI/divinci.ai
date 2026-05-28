@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "Privacybeleid"
 description = "Divinci AI's privacytoewijding en details over gegevensverwerking"
 template = "page.html"

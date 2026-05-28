@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "Nutzungsbedingungen"
 description = "Allgemeine Geschäftsbedingungen für die Nutzung der Divinci-AI-Plattform"
 template = "page.html"

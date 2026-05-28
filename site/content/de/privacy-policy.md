@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "Datenschutzrichtlinie"
 description = "Das Datenschutzversprechen von Divinci AI und Details zur Datenverarbeitung"
 template = "page.html"

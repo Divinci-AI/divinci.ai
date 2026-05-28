@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "सेवा की शर्तें"
 description = "Divinci AI प्लेटफ़ॉर्म के उपयोग के लिए नियम और शर्तें"
 template = "page.html"

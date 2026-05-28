@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "开发者工具与文档"
 description = "Divinci AI 的综合开发者文档 — CLI、Server SDK、Client SDK、MCP SDK、Embed Client 和 REST API 参考。"
 template = "feature.html"

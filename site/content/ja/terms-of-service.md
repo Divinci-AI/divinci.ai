@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "利用規約"
 description = "Divinci AI プラットフォームのご利用条件"
 template = "page.html"

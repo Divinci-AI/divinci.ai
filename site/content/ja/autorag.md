@@ -3,6 +3,7 @@ title = "AutoRAG - 自動化された検索拡張生成"
 description = "Divinci AI の包括的な AutoRAG ソリューションで、データに最適な RAG パイプラインを自動的に発見します"
 template = "feature.html"
 [extra]
+canonical_to_english = true
 hero_poster = "images/hero-autorag.webp"
 feature_category = "data-management"
 +++

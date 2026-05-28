@@ -1,4 +1,7 @@
 +++
+
+[extra]
+canonical_to_english = true
 title = "服务条款"
 description = "使用 Divinci AI 平台的条款与条件"
 template = "page.html"
