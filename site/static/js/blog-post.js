@@ -580,3 +580,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Hero video: fade in once playing, so the layered <img class="hero-bg-poster">
+// stays the visible LCP element until the video actually starts. Without this
+// the video paints first as a transparent/empty element and Lighthouse waits
+// for it before firing LCP.
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('video[data-hero-video]').forEach(function(video) {
+        const reveal = function () { video.classList.add('is-playing'); };
+        video.addEventListener('playing', reveal, { once: true });
+        // Belt-and-suspenders in case the video is already past `playing`
+        // by the time this handler binds (cached video, fast network).
+        if (!video.paused && video.readyState >= 3) reveal();
+    });
+});
