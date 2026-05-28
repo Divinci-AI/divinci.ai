@@ -4,6 +4,7 @@ description = "Divinci AI के लिए पूर्ण REST API संदर
 template = "feature.html"
 
 [extra]
+noindex = true
 alternate_languages = true
 +++
 

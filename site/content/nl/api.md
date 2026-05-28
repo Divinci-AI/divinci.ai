@@ -4,6 +4,7 @@ description = "Volledige REST API-referentie voor Divinci AI — meer dan 60 end
 template = "feature.html"
 
 [extra]
+noindex = true
 alternate_languages = true
 +++
 

@@ -4,6 +4,7 @@ description = "Divinci AI 的完整 REST API 参考 — 用于管理发布、RAG
 template = "feature.html"
 
 [extra]
+noindex = true
 alternate_languages = true
 +++
 

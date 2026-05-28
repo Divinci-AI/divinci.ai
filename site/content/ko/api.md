@@ -4,6 +4,7 @@ description = "Divinci AI에 대한 완전한 REST API 레퍼런스 — 릴리�
 template = "feature.html"
 
 [extra]
+noindex = true
 alternate_languages = true
 +++
 

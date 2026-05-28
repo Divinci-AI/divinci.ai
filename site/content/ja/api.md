@@ -4,6 +4,7 @@ description = "Divinci AI の完全な REST API リファレンス — リリー
 template = "feature.html"
 
 [extra]
+noindex = true
 alternate_languages = true
 +++
 

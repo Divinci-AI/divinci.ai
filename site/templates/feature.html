@@ -14,6 +14,13 @@
 <link rel="preload" as="image" href="/cdn-cgi/image/width=1200,format=auto,quality=82/{{ page.extra.hero_poster | trim_start_matches(pat='/') }}" fetchpriority="high">
   {% endif %}
 {% endif %}
+{# Pages that opt in via `extra.noindex = true` (e.g. /api/ which embeds
+   Redoc — a ~2MB client-side OpenAPI renderer that produces an unindexable
+   dynamic DOM and Lighthouse-hostile 16s+ LCP). Devs find /api/ via
+   navigation; search engines should skip it. #}
+{% if page.extra.noindex %}
+<meta name="robots" content="noindex,follow">
+{% endif %}
 {% endblock %}
 
 {% block content %}

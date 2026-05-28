@@ -4,6 +4,7 @@ description = "مرجع شامل لواجهة REST API الخاصة بـ Divinci
 template = "feature.html"
 
 [extra]
+noindex = true
 alternate_languages = true
 +++
 

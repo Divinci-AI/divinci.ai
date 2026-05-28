@@ -4,6 +4,7 @@ description = "Полный справочник REST API Divinci AI — бол�
 template = "feature.html"
 
 [extra]
+noindex = true
 alternate_languages = true
 +++
 
