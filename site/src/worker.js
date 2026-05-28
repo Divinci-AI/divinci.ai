@@ -160,19 +160,27 @@ Sitemap: ${url.origin}/sitemap.xml`, {
 
       // If we got a successful response, add security headers
       if (response.status < 400) {
-        const headers = {
-          ...Object.fromEntries(response.headers.entries()),
-          ...securityHeaders,
-          'Cache-Control': url.pathname.match(/\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico|webm|mp4|avif)$/)
-            ? 'public, max-age=31536000, immutable'
-            : 'public, max-age=3600',
-        };
-        if (earlyHintsLink) headers['Link'] = earlyHintsLink;
+        // Build headers via the Headers API so case-sensitive keys merge
+        // correctly. Previously `Cache-Control` (caps) + spread `cache-control`
+        // (lower from upstream) both ended up in the plain-object literal,
+        // and the platform picked the upstream value — so static assets were
+        // shipping with the worker's `max-age=0` default instead of our
+        // `max-age=31536000`. Result: Lighthouse re-fetched posters every
+        // page load instead of using browser cache, costing ~200-500ms LCP.
         const newResponse = new Response(response.body, {
           status: response.status,
           statusText: response.statusText,
-          headers,
+          headers: response.headers,
         });
+        Object.entries(securityHeaders).forEach(([k, v]) => newResponse.headers.set(k, v));
+        // Note .webp added to the immutable list (was missing, so 1080p hero
+        // posters were shipping with max-age=3600 even on the happy path).
+        const isStaticAsset = url.pathname.match(/\.(css|js|png|jpg|jpeg|gif|svg|webp|woff|woff2|ttf|eot|ico|webm|mp4|avif)$/);
+        newResponse.headers.set(
+          'Cache-Control',
+          isStaticAsset ? 'public, max-age=31536000, immutable' : 'public, max-age=3600'
+        );
+        if (earlyHintsLink) newResponse.headers.set('Link', earlyHintsLink);
 
         // Inject Cloudflare country code into the cf-country meta tag, then
         // rewrite absolute URLs (no-op in production where origin matches BASE_URL).
