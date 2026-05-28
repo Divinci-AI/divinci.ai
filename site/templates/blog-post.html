@@ -415,13 +415,13 @@ window.MathJax = {
                                 {% endif %}
                             {% elif post.extra.featured_image %}
                                 {% if post.extra.featured_image is starting_with("http") %}
-                                    <img src="{{ post.extra.featured_image }}" alt="{{ post.title }}" class="related-image" loading="lazy" decoding="async">
+                                    <img src="{{ post.extra.featured_image }}" alt="{{ post.title }}" width="400" height="225" class="related-image" loading="lazy" decoding="async">
                                 {% else %}
-                                    <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.featured_image }}" alt="{{ post.title }}" class="related-image" loading="lazy" decoding="async">
+                                    <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.featured_image }}" alt="{{ post.title }}" width="400" height="225" class="related-image" loading="lazy" decoding="async">
                                 {% endif %}
                             {% else %}
                                 {# fallback so list items align uniformly even when a post lacks a thumbnail #}
-                                <img src="{{ get_url(path='images/divinci_logo.svg') }}" alt="{{ post.title }}" class="related-image related-image-fallback" loading="lazy">
+                                <img src="{{ get_url(path='images/divinci_logo.svg') }}" alt="{{ post.title }}" width="400" height="225" class="related-image related-image-fallback" loading="lazy" decoding="async">
                             {% endif %}
                             <div class="related-content">
                                 <h4 class="related-title">{{ post.title }}</h4>
