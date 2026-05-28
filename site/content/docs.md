@@ -233,50 +233,122 @@ template = "feature.html"
     margin-bottom: 1.5rem;
     overflow-x: auto;
     position: relative;
+    cursor: pointer;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
+    color: rgba(255,255,255,0.88);
+    -webkit-text-fill-color: rgba(255,255,255,0.88);
+}
+
+.code-block:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+
+.code-block:active {
+    transform: translateY(1px);
+}
+
+.code-block:focus-visible {
+    outline: 2px solid var(--color-accent-tertiary, #8cc4d4);
+    outline-offset: 3px;
 }
 
 .code-block .code-label {
     position: absolute;
     top: 0.6rem;
-    right: 1rem;
+    right: 3rem;
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: rgba(255,255,255,0.4);
     font-weight: 600;
+    pointer-events: none;
 }
 
 .code-block pre,
-.code-block pre *,
-.code-block code,
-.code-block code * {
+.code-block code {
     margin: 0;
-    color: rgba(255,255,255,0.88) !important;
     font-family: 'Source Code Pro', 'Courier New', monospace !important;
     font-size: 0.88rem !important;
     line-height: 1.6;
     white-space: pre;
     text-shadow: none !important;
     background: none !important;
-    -webkit-text-fill-color: rgba(255,255,255,0.88) !important;
 }
 
-/* Also override on the code-block div itself for bare text */
-.code-block {
-    color: rgba(255,255,255,0.88) !important;
-    -webkit-text-fill-color: rgba(255,255,255,0.88) !important;
+.code-block pre,
+.code-block code {
+    color: rgba(255,255,255,0.88);
+    -webkit-text-fill-color: rgba(255,255,255,0.88);
 }
 
-.code-block .comment { color: rgba(255,255,255,0.4) !important; }
-.code-block .keyword { color: #b8d4a0 !important; }
-.code-block .string { color: #e8c88a !important; }
-.code-block .func { color: #8cc4d4 !important; }
+/* Syntax color tokens (no global override — these must win) */
+.code-block .comment {
+    color: rgba(200, 220, 200, 0.55) !important;
+    -webkit-text-fill-color: rgba(200, 220, 200, 0.55) !important;
+    font-style: italic;
+}
+.code-block .keyword {
+    color: #b8d4a0 !important;
+    -webkit-text-fill-color: #b8d4a0 !important;
+    font-weight: 600;
+}
+.code-block .string {
+    color: #e8c88a !important;
+    -webkit-text-fill-color: #e8c88a !important;
+}
+.code-block .func {
+    color: #8cc4d4 !important;
+    -webkit-text-fill-color: #8cc4d4 !important;
+}
 
-/* Auth card code blocks */
-.auth-card .code-block pre,
-.auth-card .code-block pre span {
-    color: rgba(255,255,255,0.88) !important;
-    text-shadow: none !important;
+/* Copy button */
+.code-copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.6rem;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    padding: 0;
+    -webkit-text-fill-color: rgba(255,255,255,0.7);
+}
+.code-copy-btn:hover {
+    background: rgba(255,255,255,0.14);
+    color: rgba(255,255,255,0.95);
+    -webkit-text-fill-color: rgba(255,255,255,0.95);
+}
+.code-copy-btn svg { width: 16px; height: 16px; }
+.code-copy-btn .copy-feedback {
+    position: absolute;
+    right: calc(100% + 6px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(232, 200, 138, 0.95);
+    color: #1e3a2b;
+    -webkit-text-fill-color: #1e3a2b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+}
+.code-copy-btn.copied .copy-feedback { opacity: 1; }
+.code-copy-btn.copied {
+    background: rgba(184, 212, 160, 0.18);
+    border-color: rgba(184, 212, 160, 0.4);
+    color: #b8d4a0;
+    -webkit-text-fill-color: #b8d4a0;
 }
 
 /* Comparison table */
@@ -572,6 +644,72 @@ template = "feature.html"
 </div>
 </div>
 </section>
+
+<script>
+(function () {
+  const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+  const CHECK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+
+  function getCodeText(block) {
+    const pre = block.querySelector('pre, code');
+    if (!pre) return block.innerText.trim();
+    const clone = pre.cloneNode(true);
+    clone.querySelectorAll('.code-copy-btn, .code-label').forEach(n => n.remove());
+    return clone.innerText.trim();
+  }
+
+  async function copyBlock(block, btn) {
+    try {
+      await navigator.clipboard.writeText(getCodeText(block));
+    } catch (_) {
+      const ta = document.createElement('textarea');
+      ta.value = getCodeText(block);
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    if (!btn) return;
+    btn.classList.add('copied');
+    btn.querySelector('.icon').innerHTML = CHECK_ICON;
+    btn.setAttribute('aria-label', 'Copied');
+    setTimeout(function () {
+      btn.classList.remove('copied');
+      btn.querySelector('.icon').innerHTML = COPY_ICON;
+      btn.setAttribute('aria-label', 'Copy code');
+    }, 1600);
+  }
+
+  document.querySelectorAll('.code-block').forEach(function (block) {
+    if (block.querySelector('.code-copy-btn')) return;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'code-copy-btn';
+    btn.setAttribute('aria-label', 'Copy code');
+    btn.innerHTML = '<span class="icon">' + COPY_ICON + '</span><span class="copy-feedback">Copied!</span>';
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      copyBlock(block, btn);
+    });
+    block.appendChild(btn);
+
+    block.setAttribute('role', 'button');
+    block.setAttribute('tabindex', '0');
+    block.setAttribute('aria-label', 'Click to copy code');
+    block.addEventListener('click', function (e) {
+      if (e.target.closest('.code-copy-btn')) return;
+      if (window.getSelection && String(window.getSelection()).length > 0) return;
+      copyBlock(block, btn);
+    });
+    block.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        copyBlock(block, btn);
+      }
+    });
+  });
+})();
+</script>
 
 <!-- CTA -->
 <div class="arena-cta-wrapper">
