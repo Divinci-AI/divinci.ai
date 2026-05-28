@@ -7,19 +7,19 @@
   <text x="40" y="56" font-size="12" fill="#6b5d4f">3-scorer matrix · 50-item AskTheDoctor calibration suite · top three within 3pp · DFO baseline trails by ~16pp</text>
 
   <!-- Axis (linear, 0.0 → 1.0).  px(v) = 200 + v * 460.  So 0→200, 0.5→430, 1.0→660 -->
-  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#8a7d68">
+  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#1e3a2b">
     <line x1="200" y1="378" x2="660" y2="378" stroke="#2d3c34" stroke-width="1.2"/>
     <line x1="200" y1="80" x2="200" y2="378"/>
     <line x1="315" y1="80" x2="315" y2="378" opacity="0.4"/>
     <line x1="430" y1="80" x2="430" y2="378" opacity="0.4"/>
     <line x1="545" y1="80" x2="545" y2="378" opacity="0.4"/>
     <line x1="660" y1="80" x2="660" y2="378" opacity="0.4"/>
-    <text x="200" y="396" text-anchor="middle">0.0</text>
-    <text x="315" y="396" text-anchor="middle">0.25</text>
-    <text x="430" y="396" text-anchor="middle">0.50</text>
-    <text x="545" y="396" text-anchor="middle">0.75</text>
-    <text x="660" y="396" text-anchor="middle">1.00</text>
-    <text x="430" y="414" text-anchor="middle" font-size="11" fill="#6b5d4f" font-style="italic">overall mean (equal-weight, 0-1) →</text>
+    <text stroke="none" x="200" y="396" text-anchor="middle">0.0</text>
+    <text stroke="none" x="315" y="396" text-anchor="middle">0.25</text>
+    <text stroke="none" x="430" y="396" text-anchor="middle">0.50</text>
+    <text stroke="none" x="545" y="396" text-anchor="middle">0.75</text>
+    <text stroke="none" x="660" y="396" text-anchor="middle">1.00</text>
+    <text stroke="none" x="430" y="414" text-anchor="middle" font-size="11" fill="#6b5d4f" font-style="italic">overall mean (equal-weight, 0-1) →</text>
   </g>
 
   <!-- 5 bars, sorted desc by mean. Bar height 36, gap 18. Y-start 92. -->

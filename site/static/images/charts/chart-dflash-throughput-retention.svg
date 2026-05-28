@@ -7,7 +7,7 @@
   <text x="40" y="56" font-size="12" fill="#6b5d4f">Stock-trained DFlash drafter, dropped on QLoRA-merged DFO target — 92% of the published speedup, no retraining</text>
 
   <!-- Axis (linear, 0x → 5x).  px(v) = 200 + v * 92.  So 0→200, 1→292, 2→384, 3→476, 4→568, 5→660 -->
-  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#8a7d68">
+  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#1e3a2b">
     <line x1="200" y1="370" x2="660" y2="370" stroke="#2d3c34" stroke-width="1.2"/>
     <line x1="200" y1="80" x2="200" y2="370"/>
     <!-- Gridlines at 1x intervals -->
@@ -18,14 +18,14 @@
     <line x1="660" y1="80" x2="660" y2="370" opacity="0.4"/>
     <!-- 1x baseline marker (no-DFlash reference) -->
     <line x1="292" y1="80" x2="292" y2="370" stroke="#a04848" stroke-width="1.4" stroke-dasharray="4 4" opacity="0.55"/>
-    <text x="292" y="76" font-size="10" fill="#7a2828" text-anchor="middle" font-weight="700" opacity="0.85">1× = no DFlash</text>
-    <text x="200" y="388" text-anchor="middle">0×</text>
-    <text x="292" y="388" text-anchor="middle">1×</text>
-    <text x="384" y="388" text-anchor="middle">2×</text>
-    <text x="476" y="388" text-anchor="middle">3×</text>
-    <text x="568" y="388" text-anchor="middle">4×</text>
-    <text x="660" y="388" text-anchor="middle">5×</text>
-    <text x="430" y="408" text-anchor="middle" font-size="11" fill="#6b5d4f" font-style="italic">throughput multiplier vs same target without DFlash →</text>
+    <text stroke="none" x="292" y="76" font-size="10" fill="#7a2828" text-anchor="middle" font-weight="700" opacity="0.85">1× = no DFlash</text>
+    <text stroke="none" x="200" y="388" text-anchor="middle">0×</text>
+    <text stroke="none" x="292" y="388" text-anchor="middle">1×</text>
+    <text stroke="none" x="384" y="388" text-anchor="middle">2×</text>
+    <text stroke="none" x="476" y="388" text-anchor="middle">3×</text>
+    <text stroke="none" x="568" y="388" text-anchor="middle">4×</text>
+    <text stroke="none" x="660" y="388" text-anchor="middle">5×</text>
+    <text stroke="none" x="430" y="408" text-anchor="middle" font-size="11" fill="#6b5d4f" font-style="italic">throughput multiplier vs same target without DFlash →</text>
   </g>
 
   <!-- Bars: 4 rows in 2 groups (Mixed / Math-peak), pair height 32, gap 18 between pairs -->

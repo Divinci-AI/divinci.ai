@@ -7,22 +7,22 @@
   <text x="40" y="56" font-size="12" fill="#6b5d4f">Aggregate mean = 0.64 (under threshold by a hair). Per-category view shows IP licensing collapsed from 0.68 → 0.41.</text>
 
   <!-- Y axis: 0.0 → 1.0, py(v) = 340 - v * 220 (so 0=340, 1.0=120) -->
-  <g stroke="#d4c8b0" font-size="10" fill="#8a7d68">
+  <g stroke="#d4c8b0" font-size="10" fill="#1e3a2b">
     <line x1="160" y1="340" x2="160" y2="100" stroke="#2d3c34" stroke-width="1.2"/>
     <line x1="160" y1="340" x2="860" y2="340" stroke="#2d3c34" stroke-width="1.2"/>
     <!-- gridlines + labels -->
     <line x1="155" y1="340" x2="160" y2="340"/>
-    <text x="148" y="344" text-anchor="end">0.0</text>
+    <text stroke="none" x="148" y="344" text-anchor="end">0.0</text>
     <line x1="155" y1="296" x2="160" y2="296"/>
-    <text x="148" y="300" text-anchor="end">0.2</text>
+    <text stroke="none" x="148" y="300" text-anchor="end">0.2</text>
     <line x1="155" y1="252" x2="160" y2="252"/>
-    <text x="148" y="256" text-anchor="end">0.4</text>
+    <text stroke="none" x="148" y="256" text-anchor="end">0.4</text>
     <line x1="155" y1="208" x2="160" y2="208"/>
-    <text x="148" y="212" text-anchor="end">0.6</text>
+    <text stroke="none" x="148" y="212" text-anchor="end">0.6</text>
     <line x1="155" y1="164" x2="160" y2="164"/>
-    <text x="148" y="168" text-anchor="end">0.8</text>
+    <text stroke="none" x="148" y="168" text-anchor="end">0.8</text>
     <line x1="155" y1="120" x2="160" y2="120"/>
-    <text x="148" y="124" text-anchor="end">1.0</text>
+    <text stroke="none" x="148" y="124" text-anchor="end">1.0</text>
   </g>
 
   <!-- Y axis label -->
