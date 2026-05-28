@@ -4,7 +4,7 @@
 
   <!-- Title -->
   <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">Inter-judge Spearman ρ — same answers, same rubric, three Gemini judges</text>
-  <text x="40" y="56" font-size="12" fill="#6b5d4f">No pair clears the 0.85 human-anchor threshold; three of four fall below 0.70 moderate-consensus floor</text>
+  <text x="40" y="56" font-size="12" fill="#3a3025">No pair clears the 0.85 human-anchor threshold; three of four fall below 0.70 moderate-consensus floor</text>
 
   <!-- Threshold bands -->
   <g>
@@ -18,7 +18,7 @@
   </g>
 
   <!-- Axis (linear, 0.0 → 1.0).  px(v) = 240 + v * 420. So 0→240, 0.5→450, 0.85→597, 1.0→660 -->
-  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#8a7d68">
+  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#4a3a2a">
     <line x1="240" y1="360" x2="660" y2="360" stroke="#2d3c34" stroke-width="1.2"/>
     <line x1="240" y1="80" x2="240" y2="360"/>
     <line x1="345" y1="80" x2="345" y2="360" opacity="0.4"/>
@@ -30,7 +30,7 @@
     <text x="450" y="378" text-anchor="middle">0.50</text>
     <text x="555" y="378" text-anchor="middle">0.75</text>
     <text x="660" y="378" text-anchor="middle">1.00</text>
-    <text x="450" y="398" text-anchor="middle" font-size="11" fill="#6b5d4f" font-style="italic">Spearman ρ — agreement between two judges on the same items</text>
+    <text x="450" y="398" text-anchor="middle" font-size="11" fill="#3a3025" font-style="italic">Spearman ρ — agreement between two judges on the same items</text>
   </g>
 
   <!-- Bars: 4 pairwise comparisons, bar height 28, gap 18, y-start 100 -->
@@ -43,7 +43,7 @@
 
     <!-- 2. 2.5-flash ↔ 3.1-pro (calibration sample n=28)  ρ=0.679 -->
     <text x="230" y="167" text-anchor="end" fill="#2d3c34" font-weight="600">2.5-flash ↔ 3.1-pro-preview</text>
-    <text x="230" y="180" text-anchor="end" fill="#8a7d68" font-size="9">calibration sample, n=28</text>
+    <text x="230" y="180" text-anchor="end" fill="#5a4a35" font-size="9">calibration sample, n=28</text>
     <!-- 0.679 → 240 + 0.679*420 = 525.2 -->
     <rect x="240" y="154" width="285" height="28" fill="#c08850" opacity="0.85"/>
     <text x="532" y="173" fill="#8a5a20" font-weight="700">0.679</text>
@@ -71,5 +71,5 @@
   </g>
 
   <!-- Caption -->
-  <text x="40" y="494" font-size="11" fill="#6b5d4f" font-style="italic">Pre-registered pass criterion: ρ ≥ 0.85 vs human anchor. Inter-LLM ρ in the 0.66–0.75 range is moderate, not high — switching judges between arena runs is methodologically invalid.</text>
+  <text x="40" y="494" font-size="11" fill="#3a3025" font-style="italic">Pre-registered pass criterion: ρ ≥ 0.85 vs human anchor. Inter-LLM ρ in the 0.66–0.75 range is moderate, not high — switching judges between arena runs is methodologically invalid.</text>
 </svg>
