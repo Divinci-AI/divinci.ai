@@ -9,7 +9,7 @@
   <!-- Axis frame. Plot area: x=110-700 (590 wide), y=100-410 (310 tall)
        X (C1 sparsity): 0.00 → 0.45.  px(c1) = 110 + c1 * (590/0.45) = 110 + c1*1311.1
        Y (C3 coherence): 0.50 → 0.85.  py(c3) = 410 - (c3 - 0.50) * (310/0.35) = 410 - (c3-0.5)*885.7 -->
-  <g stroke="#d4c8b0" font-size="10" fill="#1e3a2b">
+  <g stroke="#d4c8b0" font-size="10" fill="#3a2818">
     <!-- Axes -->
     <line x1="110" y1="410" x2="700" y2="410" stroke="#2d3c34" stroke-width="1.2"/>
     <line x1="110" y1="100" x2="110" y2="410" stroke="#2d3c34" stroke-width="1.2"/>

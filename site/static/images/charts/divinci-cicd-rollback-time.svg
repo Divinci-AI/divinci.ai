@@ -11,7 +11,7 @@
   <!-- px(v) = 280 + (log10(v) - (-1)) / 4.301 * 540 -->
   <!-- 0.1 → x=280, 1 → x=406, 10 → x=531, 100 → x=657, 1000 → x=782, 2000 → x=820 -->
 
-  <g stroke="#d4c8b0" font-size="10" fill="#1e3a2b">
+  <g stroke="#d4c8b0" font-size="10" fill="#3a2818">
     <line x1="280" y1="320" x2="280" y2="80" stroke="#2d3c34" stroke-width="1.2"/>
     <line x1="280" y1="320" x2="860" y2="320" stroke="#2d3c34" stroke-width="1.2"/>
     <!-- log tick marks at 0.1, 1, 10, 100, 1000 minutes -->

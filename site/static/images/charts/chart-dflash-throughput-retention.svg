@@ -7,7 +7,7 @@
   <text x="40" y="56" font-size="12" fill="#6b5d4f">Stock-trained DFlash drafter, dropped on QLoRA-merged DFO target — 92% of the published speedup, no retraining</text>
 
   <!-- Axis (linear, 0x → 5x).  px(v) = 200 + v * 92.  So 0→200, 1→292, 2→384, 3→476, 4→568, 5→660 -->
-  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#1e3a2b">
+  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#3a2818">
     <line x1="200" y1="370" x2="660" y2="370" stroke="#2d3c34" stroke-width="1.2"/>
     <line x1="200" y1="80" x2="200" y2="370"/>
     <!-- Gridlines at 1x intervals -->

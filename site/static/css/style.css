@@ -4932,6 +4932,15 @@ body:not(.homepage) .privacy-settings-link:hover {
   text-align: right;
 }
 
+/* `<code>` inside table headers — the body default is dark-green text on
+   a faint tan pill, which disappears against the dark-green thead. Give
+   it a cream pill + cream text so column names like `gemini-2.5-flash`
+   stay legible on the dark gradient. */
+.content-body table thead th code {
+  background-color: rgba(248, 244, 240, 0.22);
+  color: #faf8f5;
+}
+
 .content-body table tbody td {
   padding: 0.75rem 1.1rem;
   border-bottom: 1px solid #ede8de;

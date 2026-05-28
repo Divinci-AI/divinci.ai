@@ -7,7 +7,7 @@
   <text x="40" y="56" font-size="12" fill="#6b5d4f">Aggregate mean = 0.64 (under threshold by a hair). Per-category view shows IP licensing collapsed from 0.68 → 0.41.</text>
 
   <!-- Y axis: 0.0 → 1.0, py(v) = 340 - v * 220 (so 0=340, 1.0=120) -->
-  <g stroke="#d4c8b0" font-size="10" fill="#1e3a2b">
+  <g stroke="#d4c8b0" font-size="10" fill="#3a2818">
     <line x1="160" y1="340" x2="160" y2="100" stroke="#2d3c34" stroke-width="1.2"/>
     <line x1="160" y1="340" x2="860" y2="340" stroke="#2d3c34" stroke-width="1.2"/>
     <!-- gridlines + labels -->

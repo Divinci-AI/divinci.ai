@@ -15,7 +15,7 @@
 
   <!-- Y-axis gridlines and labels (range 0.40 to 1.00, 280px) -->
   <!-- y(v) = 368 - (v - 0.40) / 0.60 * 296 -->
-  <g font-size="10" fill="#1e3a2b" stroke="#d4c8b0" stroke-width="0.8">
+  <g font-size="10" fill="#3a2818" stroke="#d4c8b0" stroke-width="0.8">
     <line x1="76" y1="368" x2="700" y2="368" stroke-dasharray="2 4" opacity="0.5"/>
     <text stroke="none" x="72" y="372" text-anchor="end">0.40</text>
     <line x1="76" y1="319" x2="700" y2="319" stroke-dasharray="2 4" opacity="0.5"/>

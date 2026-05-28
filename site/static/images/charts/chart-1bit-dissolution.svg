@@ -12,7 +12,7 @@
   <text x="232" y="70" text-anchor="middle" font-size="10" fill="#a04848" font-style="italic">Marchenko-Pastur floor ≈ 0.09</text>
 
   <!-- Axis: x = 0.00 → 1.00. px(v) = 200 + v * 500 -->
-  <g stroke="#d4c8b0" font-size="10" fill="#1e3a2b">
+  <g stroke="#d4c8b0" font-size="10" fill="#3a2818">
     <line x1="200" y1="366" x2="700" y2="366" stroke="#2d3c34" stroke-width="1.2"/>
     <line x1="200" y1="76" x2="200" y2="366" stroke="#2d3c34" stroke-width="1.2"/>
     <!-- Gridlines at 0.0, 0.2, 0.4, 0.6, 0.8, 1.0 -->

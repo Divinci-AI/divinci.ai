@@ -124,14 +124,14 @@ Either way, auditors today get logs. With this pipeline, they get *proofs* of ev
   <rect width="900" height="380" fill="#faf8f5"/>
   <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">Rollback time — measured numbers from primary sources</text>
   <text x="40" y="56" font-size="12" fill="#6b5d4f">Specific incidents and platform-documented limits, not estimates. Each bar links to its source in the references below.</text>
-  <g stroke="#d4c8b0" font-size="10" fill="#8a7d68">
+  <g stroke="#d4c8b0" font-size="10" fill="#3a2818">
     <line x1="280" y1="320" x2="280" y2="80" stroke="#2d3c34" stroke-width="1.2"/>
     <line x1="280" y1="320" x2="860" y2="320" stroke="#2d3c34" stroke-width="1.2"/>
-    <line x1="280" y1="320" x2="280" y2="325"/><text x="280" y="340" text-anchor="middle">0.1</text>
-    <line x1="406" y1="320" x2="406" y2="325"/><text x="406" y="340" text-anchor="middle">1</text>
-    <line x1="531" y1="320" x2="531" y2="325"/><text x="531" y="340" text-anchor="middle">10</text>
-    <line x1="657" y1="320" x2="657" y2="325"/><text x="657" y="340" text-anchor="middle">100</text>
-    <line x1="782" y1="320" x2="782" y2="325"/><text x="782" y="340" text-anchor="middle">1000</text>
+    <line x1="280" y1="320" x2="280" y2="325"/><text stroke="none" x="280" y="340" text-anchor="middle">0.1</text>
+    <line x1="406" y1="320" x2="406" y2="325"/><text stroke="none" x="406" y="340" text-anchor="middle">1</text>
+    <line x1="531" y1="320" x2="531" y2="325"/><text stroke="none" x="531" y="340" text-anchor="middle">10</text>
+    <line x1="657" y1="320" x2="657" y2="325"/><text stroke="none" x="657" y="340" text-anchor="middle">100</text>
+    <line x1="782" y1="320" x2="782" y2="325"/><text stroke="none" x="782" y="340" text-anchor="middle">1000</text>
     <line x1="406" y1="320" x2="406" y2="83" stroke="#e8dcc4" stroke-width="0.5"/>
     <line x1="531" y1="320" x2="531" y2="83" stroke="#e8dcc4" stroke-width="0.5"/>
     <line x1="657" y1="320" x2="657" y2="83" stroke="#e8dcc4" stroke-width="0.5"/>
