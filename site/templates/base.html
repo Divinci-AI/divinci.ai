@@ -108,23 +108,59 @@
          Skips videos with `data-lazy-video` (page-managed by other JS).
          Cuts initial page weight by ~20-40MB on blog posts with embedded videos. -->
     <script>
+      // Defer <video autoplay> downloads until each video scrolls into view.
+      // Previous version restored ALL deferred videos 1.5s after window.load,
+      // which on heavy posts (UBI 2035: 7 body videos × ~5-10MB = ~42MB)
+      // downloaded ~40MB even if the user never scrolled to them.
+      // IntersectionObserver lets us load each video only when needed,
+      // cutting page weight to just the in-view videos (typically 1-3 of 7).
+      // Skips videos with `data-lazy-video` (page-managed elsewhere).
       (function () {
-        var pending = [];
+        var ROOT_MARGIN = '300px'; // start loading 300px before entering viewport
+        var io = ('IntersectionObserver' in window)
+          ? new IntersectionObserver(function (entries, obs) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                var v = entry.target;
+                obs.unobserve(v);
+                if (v.dataset.videoSrc) v.setAttribute('src', v.dataset.videoSrc);
+                Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
+                  if (s.dataset.videoSrc) s.setAttribute('src', s.dataset.videoSrc);
+                });
+                try { v.load(); } catch (e) {}
+                v.play().catch(function () { /* autoplay denied — leave poster visible */ });
+              });
+            }, { rootMargin: ROOT_MARGIN, threshold: 0.01 })
+          : null;
+
         function defang(v) {
           if (v.dataset.videoDeferred) return;
           if (!v.hasAttribute('autoplay')) return; // only intercept autoplay videos
           if (v.hasAttribute('data-lazy-video')) return; // page has its own lazy handling
           v.dataset.videoDeferred = '1';
-          v.dataset.wantAutoplay = '1';
           v.removeAttribute('autoplay');
           if (v.getAttribute('src')) { v.dataset.videoSrc = v.getAttribute('src'); v.removeAttribute('src'); }
           Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
             if (s.getAttribute('src')) { s.dataset.videoSrc = s.getAttribute('src'); s.removeAttribute('src'); }
           });
           try { v.load(); } catch (e) {}
-          pending.push(v);
+          if (io) {
+            io.observe(v);
+          } else {
+            // Fallback for older browsers — restore immediately after load + 1.5s
+            window.addEventListener('load', function () {
+              setTimeout(function () {
+                if (v.dataset.videoSrc) v.setAttribute('src', v.dataset.videoSrc);
+                Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
+                  if (s.dataset.videoSrc) s.setAttribute('src', s.dataset.videoSrc);
+                });
+                try { v.load(); } catch (e) {}
+                v.play().catch(function () {});
+              }, 1500);
+            }, { once: true });
+          }
         }
-        var observer = new MutationObserver(function (mutations) {
+        var domObserver = new MutationObserver(function (mutations) {
           for (var i = 0; i < mutations.length; i++) {
             var added = mutations[i].addedNodes;
             for (var j = 0; j < added.length; j++) {
@@ -137,22 +173,13 @@
             }
           }
         });
-        observer.observe(document.documentElement, { childList: true, subtree: true });
-        function restore() {
-          observer.disconnect();
-          pending.forEach(function (v) {
-            if (v.dataset.videoSrc) v.setAttribute('src', v.dataset.videoSrc);
-            Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
-              if (s.dataset.videoSrc) s.setAttribute('src', s.dataset.videoSrc);
-            });
-            try { v.load(); } catch (e) {}
-            v.play().catch(function () { /* autoplay denied — leave poster visible */ });
-          });
-        }
-        if (document.readyState === 'complete') {
-          setTimeout(restore, 1500);
+        domObserver.observe(document.documentElement, { childList: true, subtree: true });
+        // Stop watching the DOM once the page is parsed — all videos are caught.
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+          // setTimeout so we still catch any pending mutations during current tick
+          setTimeout(function () { domObserver.disconnect(); }, 0);
         } else {
-          window.addEventListener('load', function () { setTimeout(restore, 1500); }, { once: true });
+          document.addEventListener('DOMContentLoaded', function () { domObserver.disconnect(); }, { once: true });
         }
       })();
     </script>

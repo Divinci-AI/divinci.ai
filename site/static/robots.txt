@@ -1,0 +1,7 @@
+# /preview/ contains internal staging/design mockups (compliance-1, compliance-2,
+# compliance-3, option-a/b/c/d) that were getting scanned by Lighthouse and
+# flagged in the SEO audit. They are not customer-facing.
+User-agent: *
+Disallow: /preview/
+
+Sitemap: https://divinci.ai/sitemap.xml

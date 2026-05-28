@@ -3,6 +3,12 @@
 {% block title %}Page Not Found | Divinci AI{% endblock %}
 {% block og_title %}Page Not Found | Divinci AI{% endblock %}
 
+{% block extra_head %}
+{# noindex on 404 — HubSpot crawler counts these as "blank pages" otherwise.
+   Also tells search engines not to surface 404 URLs in results. #}
+<meta name="robots" content="noindex,nofollow">
+{% endblock %}
+
 {% block content %}
 <style>
 .not-found-section {
