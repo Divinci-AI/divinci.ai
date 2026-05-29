@@ -145,8 +145,10 @@ Sitemap: ${url.origin}/sitemap.xml`, {
     let earlyHintsLink = null;
     if (url.pathname === '/' || /^\/(es|fr|ar|de|it|pt|ru|ja|zh|ko|nl|hi)\/?$/.test(url.pathname)) {
       // Homepage hero image (LCP element). Same across all language variants.
+      // Must exactly match the <img src> in templates/index.html or the browser
+      // preloads a resource it never uses and Chrome surfaces a warning.
       earlyHintsLink = [
-        `<${url.origin}/cdn-cgi/image/width=1600,format=auto,quality=85/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Davinci_the_painter_painting_a_robot_in_a_line_art.webp>; rel=preload; as=image`,
+        `<${url.origin}/images/davinci-painter-robot-800w.webp>; rel=preload; as=image`,
         `<${url.origin}/css/style.css>; rel=preload; as=style`,
       ].join(', ');
     } else if (/^\/(.*\/)?api\/?$/.test(url.pathname)) {

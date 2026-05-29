@@ -535,7 +535,16 @@ document.addEventListener("DOMContentLoaded", function() {
     if (nextVideo.readyState >= 2) { // HAVE_CURRENT_DATA or better
       loadHandler();
     } else {
-      nextVideo.addEventListener('loadeddata', loadHandler, { once: true });
+      // Race loadeddata against a 3s timeout. If the video fetch stalls
+      // (R2 slow, transient network, autoplay throttle), loadeddata never
+      // fires and the cycle would freeze on the previous video's last
+      // frame forever. The timeout lets the visual transition happen
+      // anyway — the <video poster=…> attribute keeps the area filled
+      // while the data is still in-flight.
+      var ran = false;
+      var runOnce = function () { if (!ran) { ran = true; loadHandler(); } };
+      nextVideo.addEventListener('loadeddata', runOnce, { once: true });
+      setTimeout(runOnce, 3000);
     }
   }
 

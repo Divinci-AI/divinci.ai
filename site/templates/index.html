@@ -31,11 +31,15 @@
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready.webm" type="video/webm">
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready.mp4" type="video/mp4">
             </video>
-            <video id="hero-video-2" muted playsinline preload="none" data-lazy-video>
+            {# Poster fallback for videos 2 and 3: use the davinci poster image so
+               if the video data stalls or never resolves, the user sees the same
+               brand visual instead of a blank rectangle. The hero CSS keeps these
+               videos at opacity:0 until the cycling JS fades them in. #}
+            <video id="hero-video-2" muted playsinline preload="none" poster="/images/davinci-painter-robot-800w.webp" data-lazy-video>
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/alysha-ai-chat-interface.webm" type="video/webm">
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/alysha-ai_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__5e9e0736-637d-4e05-a391-179c76e9edee_3.mp4" type="video/mp4">
             </video>
-            <video id="hero-video-3" muted playsinline preload="none" data-lazy-video>
+            <video id="hero-video-3" muted playsinline preload="none" poster="/images/davinci-painter-robot-800w.webp" data-lazy-video>
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-robot-chat-interface.webm" type="video/webm">
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-robot_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__dba81638-02b0-4792-92f5-37ef95f8ceb0_0.mp4" type="video/mp4">
             </video>

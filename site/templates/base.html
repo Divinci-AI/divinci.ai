@@ -184,9 +184,11 @@
       })();
     </script>
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="{{ get_url(path="css/style.css") }}" as="style">
-    <link rel="preload" href="{{ get_url(path="js/main.js") }}" as="script">
+    {# Critical resources are preloaded via the worker's Link response header
+       (HTTP 103 Early Hints) for home routes, and consumed below by the
+       <link rel=stylesheet> and <script src=…> tags. A duplicate <link
+       rel=preload> in the body would race the Early Hints preload, and
+       Chrome flags the loser as "preloaded but not used". #}
     
     <!-- Cloudflare-injected ISO 3166-1 alpha-2 country code (e.g. "DE", "US"). Populated by the Worker via HTMLRewriter from request.cf.country. Empty when bypassing the Worker (local zola serve) — gating script falls back to timezone detection. -->
     <meta name="cf-country" content="">
