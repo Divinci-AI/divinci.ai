@@ -163,7 +163,7 @@ window.MathJax = {
            via CSS. The video stays preload=none + IntersectionObserver-lazy
            so it only downloads when visible. When the video starts playing,
            data-hero-video JS fades it in. Saves 3-6s LCP on blog posts. #}
-        <img src="{{ poster_render }}" alt="" width="1600" height="900" class="hero-bg-poster" loading="eager" fetchpriority="high" decoding="async"{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
+        <img src="{{ poster_render }}" alt="{{ page.title }}" width="1600" height="900" class="hero-bg-poster" loading="eager" fetchpriority="high" decoding="async"{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
         <video autoplay muted loop playsinline webkit-playsinline preload="none" width="1600" height="900" class="hero-bg-video" data-hero-video{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
             <source src="{{ page.extra.hero_video }}" type="video/webm">
         </video>

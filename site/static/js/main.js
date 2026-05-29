@@ -6,6 +6,28 @@ document.addEventListener("DOMContentLoaded", function() {
   const heroVideo3 = document.getElementById('hero-video-3');
   const heroPoster = document.getElementById('hero-poster');
   const soundToggle = document.getElementById('sound-toggle');
+
+  // TBT fast path: this 33KB file is loaded site-wide via <script defer>
+  // but ~95% of it is hero-video-specific logic (cycling, sound toggle,
+  // viewport mode, battery detection, parallax). Non-home pages have no
+  // #hero-video and were paying the full script-parse cost on every nav,
+  // contributing to the 48-page TBT recommendation.
+  // Bail early. Pages with a `data-lazy-video` element (blog posts) still
+  // need an IntersectionObserver to play/pause those on scroll — do that
+  // minimal setup inline before returning.
+  if (!heroVideo) {
+    const lazyVids = document.querySelectorAll('[data-lazy-video]:not(.background-video)');
+    if (lazyVids.length) {
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) e.target.play().catch(function () {});
+          else e.target.pause();
+        });
+      }, { threshold: 0.25 });
+      lazyVids.forEach(function (v) { io.observe(v); });
+    }
+    return;
+  }
   
   // Performance optimization: Check for reduced motion preferences
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
