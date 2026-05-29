@@ -354,7 +354,8 @@ feature_category = "development-tools"
 <!-- Hero Section -->
 <div class="feature-hero">
 <div class="feature-hero-bg">
-<video autoplay muted loop playsinline poster="/images/hero-release.webp">
+<img src="/images/hero-release.webp" alt="" loading="eager" fetchpriority="high" decoding="async">
+<video autoplay muted loop playsinline data-hero-video>
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-release-video.webm" type="video/webm">
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-release-video.mp4" type="video/mp4">
 </video>

@@ -182,6 +182,21 @@
           document.addEventListener('DOMContentLoaded', function () { domObserver.disconnect(); }, { once: true });
         }
       })();
+
+      // Hero video fade-in for the <img>-poster + <video>-overlay pattern used
+      // on feature pages and blog posts. Layered <video> starts opacity:0
+      // (via CSS) so the <img> beneath is the LCP element. Once the video
+      // actually starts playing, we add .is-playing and it fades in.
+      document.addEventListener('DOMContentLoaded', function () {
+        var vids = document.querySelectorAll('video[data-hero-video]');
+        Array.prototype.forEach.call(vids, function (v) {
+          var reveal = function () { v.classList.add('is-playing'); };
+          v.addEventListener('playing', reveal, { once: true });
+          // Belt-and-suspenders: video may already be past `playing` by the
+          // time this handler binds (cached video, fast network).
+          if (!v.paused && v.readyState >= 3) reveal();
+        });
+      });
     </script>
     
     {# Critical resources are preloaded via the worker's Link response header

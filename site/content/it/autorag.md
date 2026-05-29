@@ -346,7 +346,8 @@ feature_category = "data-management"
 <!-- Hero Section -->
 <div class="feature-hero">
 <div class="feature-hero-bg">
-<video autoplay muted loop playsinline poster="/images/hero-autorag.webp">
+<img src="/images/hero-autorag.webp" alt="" loading="eager" fetchpriority="high" decoding="async">
+<video autoplay muted loop playsinline data-hero-video>
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-autorag-video.webm" type="video/webm">
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-autorag-video.mp4" type="video/mp4">
 </video>

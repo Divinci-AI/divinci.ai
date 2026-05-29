@@ -179,9 +179,26 @@ body > * {
 
 .feature-hero-bg img,
 .feature-hero-bg video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Poster <img> is the LCP element. Video overlays it once it actually
+   starts playing — the .is-playing class is added by the universal
+   data-hero-video handler in base.html. */
+.feature-hero-bg img {
+  z-index: 0;
+}
+.feature-hero-bg video {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+.feature-hero-bg video.is-playing {
+  opacity: 1;
 }
 
 .feature-hero::before {
