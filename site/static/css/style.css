@@ -5216,6 +5216,13 @@ body:not(.homepage) .privacy-settings-link:hover {
   font-size: 0.85rem;
   text-decoration: none !important;
   transition: background 0.18s ease, transform 0.18s ease;
+  /* The sibling `.feature-content p` has `position: relative; z-index: 1000`
+     to lift text-shadow above the journal background. Without an explicit
+     stacking position here the floated CTA paints below the paragraph and
+     stops receiving pointer events. */
+  position: relative;
+  z-index: 1001;
+  cursor: pointer;
 }
 
 .feature-content-cta:hover {
