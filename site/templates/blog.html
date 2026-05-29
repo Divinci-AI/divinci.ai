@@ -187,20 +187,22 @@
                             {% set vid_src = featured_post.extra.hero_video %}
                             {% set vid_filter = featured_post.extra.hero_video_filter | default(value="") %}
                             {% if vid_src is starting_with("http") %}
-                                {% if featured_post.extra.hero_video_poster %}<img src="{{ featured_post.extra.hero_video_poster }}" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image object-cover featured-image-poster" loading="eager" fetchpriority="high" decoding="async"{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %}>{% endif %}
+                                {% if featured_post.extra.hero_video_poster %}{% set p = featured_post.extra.hero_video_poster %}{% set pn = p | trim_start_matches(pat='/') %}<img src="{{ p }}" srcset="/cdn-cgi/image/width=400,format=auto,quality=82/{{ pn }} 400w, /cdn-cgi/image/width=600,format=auto,quality=82/{{ pn }} 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/{{ pn }} 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image object-cover featured-image-poster" loading="eager" fetchpriority="high" decoding="async"{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %}>{% endif %}
                                 <video autoplay muted loop playsinline webkit-playsinline preload="none" data-hero-video{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="featured-image object-cover featured-image-video">
                                     <source src="{{ vid_src }}" type="video/webm">
                                 </video>
                             {% else %}
                                 {% set video_name = vid_src | split(pat="/") | last | replace(from=".webm", to="") | replace(from=".mp4", to="") %}
-                                <img src="{{ get_url(path='images/' ~ video_name ~ '-poster.webp') }}" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image object-cover featured-image-poster" loading="eager" fetchpriority="high" decoding="async"{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %}>
+                                {% set fpath = 'images/' ~ video_name ~ '-poster.webp' %}
+                                <img src="/{{ fpath }}" srcset="/cdn-cgi/image/width=400,format=auto,quality=82/{{ fpath }} 400w, /cdn-cgi/image/width=600,format=auto,quality=82/{{ fpath }} 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/{{ fpath }} 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image object-cover featured-image-poster" loading="eager" fetchpriority="high" decoding="async"{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %}>
                                 <video autoplay muted loop playsinline webkit-playsinline preload="none" data-hero-video{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="featured-image object-cover featured-image-video">
                                     <source src="{{ get_url(path=vid_src) }}" type="video/webm">
                                 </video>
                             {% endif %}
                         {% elif featured_post.extra.featured_video %}
                             {% set video_name = featured_post.extra.featured_video | split(pat="/") | last | replace(from=".webm", to="") | replace(from=".mp4", to="") %}
-                            <img src="{{ get_url(path='images/' ~ video_name ~ '-poster.webp') }}" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image object-cover featured-image-poster" loading="eager" fetchpriority="high" decoding="async">
+                            {% set fpath = 'images/' ~ video_name ~ '-poster.webp' %}
+                            <img src="/{{ fpath }}" srcset="/cdn-cgi/image/width=400,format=auto,quality=82/{{ fpath }} 400w, /cdn-cgi/image/width=600,format=auto,quality=82/{{ fpath }} 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/{{ fpath }} 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image object-cover featured-image-poster" loading="eager" fetchpriority="high" decoding="async">
                             <video autoplay muted loop playsinline webkit-playsinline preload="none" data-hero-video class="featured-image object-cover featured-image-video">
                                 <source src="{{ featured_post.extra.featured_video }}" type="video/webm">
                             </video>
