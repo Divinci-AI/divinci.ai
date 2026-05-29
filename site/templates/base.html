@@ -280,6 +280,7 @@
     <link rel="stylesheet" href="{{ get_url(path="css/variables.css") }}">
     <link rel="stylesheet" href="{{ get_url(path="css/style.css") }}">
     <link rel="stylesheet" href="{{ get_url(path="css/mobile-fixes.css") }}?v={{ now() | date(format="%s") }}">
+    <link rel="stylesheet" href="{{ get_url(path="css/divinci-chat-widget.css") }}">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -505,6 +506,21 @@
     <script defer src="{{ get_url(path="js/language-switcher.js") }}"></script>
     <script defer src="{{ get_url(path="js/gdpr-compliance.js") }}" onerror="console.warn('GDPR compliance script failed to load')"></script>
     <script defer src="{{ get_url(path="js/news-carousel.js") }}"></script>
+
+    <!-- Divinci homepage free-chat widget (floating bubble). Bundle built by
+         `npm run build:chat` (esbuild, SDK inlined). Config via data-* attrs.
+         NOTE: data-turnstile-sitekey below is Cloudflare's ALWAYS-PASSES test
+         key — replace with the real PUBLIC site key for production, and point
+         data-api-base at https://api.divinci.app for prod (staging shown for
+         first dogfood; the homepage release lives on staging). -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script defer id="divinci-chat-js"
+        src="{{ get_url(path="js/divinci-chat.js") }}"
+        data-api-base="https://api.stage.divinci.app"
+        data-release-id="6a19515fd50388e017a251a3"
+        data-turnstile-sitekey="1x00000000000000000000AA"
+        data-signup-url="https://app.divinci.app"></script>
+
     {% block extra_scripts %}{% endblock %}
 </body>
 </html>

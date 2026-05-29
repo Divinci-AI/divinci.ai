@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "New Divinci AI Zola Site",
   "scripts": {
-    "build": "zola build",
+    "build": "npm run build:chat && zola build",
+    "build:chat": "esbuild static/js/src/divinci-chat-widget.ts --bundle --format=iife --minify --target=es2020 --outfile=static/js/divinci-chat.js",
     "serve": "zola serve --port 1111",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
@@ -89,10 +90,12 @@
     "pre-push": "npm run test:e2e:safe && npm run style:check"
   },
   "dependencies": {
+    "@divinci-ai/client": "^0.3.1",
     "mimetext": "^3.0.27"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
+    "esbuild": "^0.24.0",
     "@types/jest": "^30.0.0",
     "glob": "^10.5.0",
     "jest": "^30.0.5",
