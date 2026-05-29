@@ -145,10 +145,11 @@ Sitemap: ${url.origin}/sitemap.xml`, {
     let earlyHintsLink = null;
     if (url.pathname === '/' || /^\/(es|fr|ar|de|it|pt|ru|ja|zh|ko|nl|hi)\/?$/.test(url.pathname)) {
       // Homepage hero image (LCP element). Same across all language variants.
-      // Must exactly match the <img src> in templates/index.html or the browser
-      // preloads a resource it never uses and Chrome surfaces a warning.
+      // imagesrcset + imagesizes lets the browser preload the variant that
+      // matches the viewport (400w on phones, 600w on tablets, 800w on desktop)
+      // — matches the <img srcset> in templates/index.html exactly.
       earlyHintsLink = [
-        `<${url.origin}/images/davinci-painter-robot-800w.webp>; rel=preload; as=image`,
+        `<${url.origin}/images/davinci-painter-robot-800w.webp>; rel=preload; as=image; imagesrcset="${url.origin}/images/davinci-painter-robot-400w.webp 400w, ${url.origin}/images/davinci-painter-robot-600w.webp 600w, ${url.origin}/images/davinci-painter-robot-800w.webp 800w"; imagesizes="(max-width: 600px) 100vw, (max-width: 900px) 600px, 800px"`,
         `<${url.origin}/css/style.css>; rel=preload; as=style`,
       ].join(', ');
     } else if (/^\/(.*\/)?api\/?$/.test(url.pathname)) {

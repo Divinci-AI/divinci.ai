@@ -714,19 +714,16 @@
     transition: transform 0.3s ease;
 }
 
-/* Featured post hero: <img> poster sits behind, <video> fades in on play.
-   Same LCP-friendly pattern as feature pages and blog posts. */
-.featured-image-link .featured-image-poster,
+/* Featured post hero: <img> poster stays in normal flow (inherits the
+   .featured-image height: 400px so the <a> wrapper gets sized correctly),
+   <video> overlays absolutely and fades in once playing. Same LCP-friendly
+   pattern as feature pages and blog posts. */
 .featured-image-link .featured-image-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 400px;
-}
-.featured-image-link .featured-image-poster {
-    z-index: 0;
-}
-.featured-image-link .featured-image-video {
+    object-fit: cover;
     z-index: 1;
     opacity: 0;
     transition: opacity 0.4s ease-in-out, transform 0.3s ease;
