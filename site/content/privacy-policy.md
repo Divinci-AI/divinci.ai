@@ -67,6 +67,16 @@ Our Services integrate the following third-party services, each with their own p
 - **Instantly.ai / Leadsy.ai**: We use Instantly's visitor identification tag (loaded from `r2.leadsy.ai`, which dynamically loads a tracking script from `tag.trovo-tag.com` operated by the same vendor) to identify the organization a website visit may be associated with (e.g., the company linked to the visitor's IP address). This informs our business-to-business outbound marketing. For visitors detected as being in the EU/EEA, the United Kingdom, or Switzerland, this tag loads **only after you grant marketing consent** through our cookie banner. For visitors outside those jurisdictions, the tag loads by default and can be disabled at any time via the "Cookie Preferences" control in Section 10. [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
 - **HubSpot**: We use the HubSpot tracking script (loaded from `js.hs-scripts.com`, which dynamically loads tracking, banner, and form-capture scripts from `js.hs-analytics.net`, `js.hs-banner.com`, and `js.hscollectedforms.net`) to record page views, attribute marketing channel performance, capture form submissions, and link website activity to HubSpot CRM contact records when you submit a form or book a meeting. For visitors detected as being in the EU/EEA, the United Kingdom, or Switzerland, this script loads **only after you grant marketing consent** through our cookie banner. For visitors outside those jurisdictions, the script loads by default and can be disabled at any time via the "Cookie Preferences" control in Section 10. [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
 
+### 2.8 Divinci Local Inference Browser Extension
+
+We publish an optional Chrome extension, **Divinci Local Inference**, that runs Google's Gemma 4 model **entirely on your own device** via WebGPU, so chat.divinci.app can offer a local, no-API-cost model option. Its privacy posture is deliberately minimal:
+
+- **No data collection.** The extension has no analytics, no telemetry, and no remote logging.
+- **No browsing access.** It injects no content scripts and does not read, modify, or monitor the pages you visit. Its only declared permissions are `offscreen` (to host the WebGPU model) and `storage` (to remember your model preference); it requests no host permissions.
+- **Network access is limited to two destinations:** Hugging Face (`huggingface.co` and its CDN `cas-bridge.xethub.hf.co`) to download the model files on first use, subject to the [Hugging Face Privacy Policy](https://huggingface.co/privacy); and same-machine message passing with chat.divinci.app (and our staging/development origins), which is restricted by the extension's `externally_connectable` allowlist — no other website can connect to it.
+- **Your chat messages stay on your device.** When chat.divinci.app sends a message to the extension for inference, the text is processed by the local model and the response is streamed back. The extension does not log, store, transmit, or persist these messages anywhere outside the model's transient on-device computation.
+- **Open source.** The extension is Apache-2.0 licensed; source is available at [github.com/Divinci-AI/gemma-gem](https://github.com/Divinci-AI/gemma-gem).
+
 ## 3. Legal Basis for Processing (GDPR)
 
 We process your personal data based on:
