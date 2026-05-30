@@ -12,7 +12,7 @@
  */
 import { DivinciClient } from "@divinci-ai/client";
 
-type View = "email" | "otp" | "chat" | "exhausted" | "error";
+type View = "email" | "otp" | "chat" | "exhausted" | "error" | "blocked";
 
 interface WidgetConfig {
   apiBase: string;
@@ -56,6 +56,56 @@ function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, html?: 
   return node;
 }
 
+function escapeHtml(s: string): string {
+  return s.replace(/[&<>"']/g, (c) =>
+    c === "&" ? "&amp;" : c === "<" ? "&lt;" : c === ">" ? "&gt;" : c === '"' ? "&quot;" : "&#39;",
+  );
+}
+
+/** Inline markdown on already-HTML-escaped text (links/bold/italic/code). */
+function mdInline(s: string): string {
+  // [text](http(s)://url) — protocol-restricted so javascript:/data: can't match.
+  s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)<>]+)\)/g,
+    (_m, t, u) => `<a href="${u}" target="_blank" rel="noopener noreferrer">${t}</a>`);
+  s = s.replace(/`([^`]+)`/g, "<code>$1</code>");           // inline code
+  s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");  // bold
+  s = s.replace(/(^|[^*])\*([^*\s][^*]*)\*/g, "$1<em>$2</em>"); // italic
+  return s;
+}
+
+/**
+ * Minimal, dependency-free markdown → HTML for AI chat replies. Escapes ALL
+ * HTML first (so any markup the model emits is inert), then re-introduces only
+ * the specific tags generated from markdown syntax — the render-time XSS
+ * defense (no raw HTML ever passes through; URLs are protocol-restricted).
+ */
+function renderMarkdown(src: string): string {
+  const lines = escapeHtml(src).split(/\r?\n/);
+  const out: string[] = [];
+  let ul = false, ol = false, code = false;
+  const closeLists = () => { if (ul) { out.push("</ul>"); ul = false; } if (ol) { out.push("</ol>"); ol = false; } };
+  for (const line of lines) {
+    if (/^```/.test(line)) {
+      if (code) { out.push("</code></pre>"); code = false; }
+      else { closeLists(); out.push("<pre><code>"); code = true; }
+      continue;
+    }
+    if (code) { out.push(line + "\n"); continue; }
+    const h = line.match(/^(#{1,6})\s+(.*)$/);
+    if (h) { closeLists(); const n = h[1].length; out.push(`<h${n}>${mdInline(h[2])}</h${n}>`); continue; }
+    const u = line.match(/^\s*[-*]\s+(.*)$/);
+    if (u) { if (!ul) { closeLists(); out.push("<ul>"); ul = true; } out.push(`<li>${mdInline(u[1])}</li>`); continue; }
+    const o = line.match(/^\s*\d+\.\s+(.*)$/);
+    if (o) { if (!ol) { closeLists(); out.push("<ol>"); ol = true; } out.push(`<li>${mdInline(o[1])}</li>`); continue; }
+    if (line.trim() === "") { closeLists(); continue; }
+    closeLists();
+    out.push(`<p>${mdInline(line)}</p>`);
+  }
+  if (code) out.push("</code></pre>");
+  closeLists();
+  return out.join("");
+}
+
 class DivinciChatWidget {
   private readonly cfg: WidgetConfig;
   private readonly client: DivinciClient;
@@ -63,6 +113,8 @@ class DivinciChatWidget {
   private email = "";
   private open = false;
   private turnstileId: string | null = null;
+  private turnstileToken: string | null = null; // captured via Turnstile success callback
+  private marketingConsent = false; // GDPR opt-in (optional); wired to CRM in #3
   private remaining: number | null = null;
   private errorMsg = "";
 
@@ -70,7 +122,7 @@ class DivinciChatWidget {
   private panel!: HTMLDivElement;
   private bubble!: HTMLButtonElement;
   private body!: HTMLDivElement;
-  private messages: Array<{ role: "user" | "assistant"; text: string }> = [];
+  private messages: Array<{ role: "user" | "assistant"; text: string; pending?: boolean }> = [];
 
   constructor(cfg: WidgetConfig) {
     this.cfg = cfg;
@@ -119,6 +171,7 @@ class DivinciChatWidget {
       case "chat": return this.renderChat();
       case "exhausted": return this.renderExhausted();
       case "error": return this.renderError();
+      case "blocked": return this.renderBlocked();
     }
   }
 
@@ -130,28 +183,56 @@ class DivinciChatWidget {
     input.placeholder = "you@example.com";
     input.value = this.email;
     const ts = el("div", "dvc-turnstile");
+
+    // Optional, GDPR-style marketing opt-in. Default OFF and NOT required to
+    // chat — consent for marketing must be freely given, so it only governs
+    // whether we may later add the email to a mailing list (#3 CRM ingest).
+    const consentRow = el("label", "dvc-consent");
+    const consent = el("input") as HTMLInputElement;
+    consent.type = "checkbox";
+    consent.checked = this.marketingConsent;
+    // Same-origin policy link (works on staging + prod without hardcoding host).
+    const consentText = el("span", "dvc-consent-text",
+      `Email me occasional Divinci updates (optional). See our <a href="/privacy-policy/" target="_blank" rel="noopener noreferrer">privacy policy</a>.`);
+    consentRow.append(consent, consentText);
+
     const btn = el("button", "dvc-btn", "Get my code");
     const err = el("p", "dvc-err");
-    wrap.append(input, ts, btn, err);
+    wrap.append(input, ts, consentRow, btn, err);
     this.body.appendChild(wrap);
 
-    // Render Turnstile (managed widget) into the container.
+    // Invisible / low-friction Turnstile: `interaction-only` means a human who
+    // passes the silent bot check never sees a challenge — the token arrives
+    // via the success callback. A challenge surfaces only when Cloudflare needs
+    // one. error/expired callbacks just clear the token (re-verify at submit).
+    this.turnstileToken = null;
     if (window.turnstile) {
-      this.turnstileId = window.turnstile.render(ts, { sitekey: this.cfg.turnstileSiteKey, theme: "light" });
+      this.turnstileId = window.turnstile.render(ts, {
+        sitekey: this.cfg.turnstileSiteKey,
+        theme: "light",
+        appearance: "interaction-only",
+        callback: (token: string) => { this.turnstileToken = token; },
+        "error-callback": () => { this.turnstileToken = null; },
+        "expired-callback": () => { this.turnstileToken = null; },
+      });
     } else {
       ts.innerHTML = `<small class="dvc-muted">Loading verification…</small>`;
     }
 
     btn.addEventListener("click", async () => {
       this.email = input.value.trim().toLowerCase();
-      const token = window.turnstile?.getResponse(this.turnstileId ?? undefined);
+      this.marketingConsent = consent.checked;
+      const token = this.turnstileToken ?? window.turnstile?.getResponse(this.turnstileId ?? undefined);
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email)) { err.textContent = "Please enter a valid email."; return; }
       if (!token) { err.textContent = "Please complete the verification check."; return; }
       btn.disabled = true; btn.textContent = "Sending…"; err.textContent = "";
       try {
-        await this.client.freeChatGate.start({ releaseId: this.cfg.releaseId, email: this.email, turnstileToken: token });
+        await this.client.freeChatGate.start({ releaseId: this.cfg.releaseId, email: this.email, turnstileToken: token, marketingConsent: this.marketingConsent });
         this.setView("otp");
       } catch (e) {
+        // Server confirmed the bot check failed → hide the chat (strong signal,
+        // unlike a flaky client-side error-callback). Other errors retry inline.
+        if (this.looksLikeBotRejection(e)) { this.setView("blocked"); return; }
         err.textContent = this.errText(e, "Couldn't send the code. Please try again.");
         btn.disabled = false; btn.textContent = "Get my code";
         if (window.turnstile && this.turnstileId) window.turnstile.reset(this.turnstileId);
@@ -195,7 +276,17 @@ class DivinciChatWidget {
     const list = el("div", "dvc-messages");
     for (const m of this.messages) {
       const node = el("div", `dvc-msg dvc-msg-${m.role}`);
-      node.textContent = m.text; // dynamic (user + AI) content → textContent, never innerHTML
+      if (m.pending) {
+        // animated "typing…" indicator — three dots bounce in a wave
+        node.classList.add("dvc-typing");
+        node.innerHTML = `<span class="dvc-dot"></span><span class="dvc-dot"></span><span class="dvc-dot"></span>`;
+      } else if (m.role === "assistant") {
+        // AI reply → markdown rendered to sanitized HTML (escape-first)
+        node.classList.add("dvc-md");
+        node.innerHTML = renderMarkdown(m.text);
+      } else {
+        node.textContent = m.text; // user input → textContent, never innerHTML
+      }
       list.appendChild(node);
     }
     if (this.messages.length === 0) {
@@ -217,7 +308,7 @@ class DivinciChatWidget {
       if (!prompt) return;
       input.value = "";
       this.messages.push({ role: "user", text: prompt });
-      this.messages.push({ role: "assistant", text: "…" });
+      this.messages.push({ role: "assistant", text: "", pending: true });
       this.render();
       try {
         const { reply, remaining } = await this.client.freeChatGate.send(prompt);
@@ -259,9 +350,32 @@ class DivinciChatWidget {
     this.body.appendChild(wrap);
   }
 
+  private renderBlocked(): void {
+    const wrap = el("div", "dvc-pad dvc-center");
+    wrap.appendChild(el("p", "dvc-lead", "We couldn't verify your browser 🛡️"));
+    wrap.appendChild(el("p", "dvc-muted", "Automated traffic isn't allowed here. If you're a person, refresh the page and try again."));
+    this.body.appendChild(wrap);
+  }
+
   private isQuota(e: unknown): boolean {
     const status = (e as { status?: number })?.status;
     return status === 429;
+  }
+
+  /**
+   * True only when the server confirmed the bot check FAILED (forged/invalid
+   * Turnstile token) — the cue to hide the chat. Deliberately excludes
+   * "verification-unavailable" (a server-config issue, not a bot) so a missing
+   * secret doesn't masquerade as a blocked visitor. Heuristic on the server's
+   * error context; tighten to the exact code once confirmed against /start.
+   */
+  private looksLikeBotRejection(e: unknown): boolean {
+    const anyE = e as { status?: number; message?: string; data?: { context?: unknown; code?: unknown } };
+    const ctx = typeof anyE?.data?.context === "string" ? anyE.data.context : "";
+    const code = typeof anyE?.data?.code === "string" ? anyE.data.code : "";
+    const hay = `${code} ${ctx} ${anyE?.message ?? ""}`.toLowerCase();
+    if (hay.includes("unavailable")) return false; // server misconfig, not a bot
+    return /(turnstile|captcha|\bbot\b)/.test(hay) || /verif\w*[\s-]?fail/.test(hay);
   }
 
   private errText(e: unknown, fallback: string): string {

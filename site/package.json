@@ -34,7 +34,7 @@
     "test:compare": "playwright test tests-new/e2e/site-comparison.test.js",
     "test:compare:report": "playwright test tests-new/e2e/site-comparison.test.js --reporter=html --output-dir=comparison-report",
     "test:comprehensive": "playwright test comprehensive-site-navigation.spec.js form-functionality.spec.js responsive-mobile.spec.js interactive-animations.spec.js performance-assets.spec.js",
-    "test:navigation": "playwright test comprehensive-site-navigation.spec.js",
+    "test:navigation": "playwright test tests/language-health-check.spec.js --project=Desktop-Chrome",
     "test:forms": "playwright test form-functionality.spec.js",
     "test:responsive": "playwright test responsive-mobile.spec.js",
     "test:interactions": "playwright test interactive-animations.spec.js",
@@ -83,20 +83,19 @@
     "style:test": "playwright test tests/style-guide-validation.spec.js",
     "style:check": "npm run style:validate && npm run style:test",
     "test:quick": "playwright test tests/new-divinci-site.spec.js --project=Desktop-Chrome",
-    "test:navigation": "playwright test tests/language-health-check.spec.js --project=Desktop-Chrome",
     "test:e2e:safe": "echo 'Pre-push validation: Running unit tests and style checks...' && npm run test:unit:jest && npm run style:validate",
     "test:validate-setup": "node scripts/validate-test-setup.js",
     "pre-commit": "npm run test:unit:jest && npm run style:validate",
     "pre-push": "npm run test:e2e:safe && npm run style:check"
   },
   "dependencies": {
-    "@divinci-ai/client": "^0.3.1",
+    "@divinci-ai/client": "^0.4.1",
     "mimetext": "^3.0.27"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
-    "esbuild": "^0.24.0",
     "@types/jest": "^30.0.0",
+    "esbuild": "^0.24.0",
     "glob": "^10.5.0",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
