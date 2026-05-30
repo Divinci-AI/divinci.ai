@@ -2,9 +2,10 @@
  * Divinci homepage free-chat widget — a floating chat bubble for divinci.ai.
  *
  * Email-gated, keyless public chat powered by @divinci-ai/client's
- * `homepageChat` namespace: a visitor verifies an email with a 6-digit OTP
- * (behind a Cloudflare Turnstile bot check) to earn a short-lived token, then
- * gets a few free messages with the pinned homepage assistant.
+ * `freeChatGate` namespace (the platform Free-Chat Gate, captcha+otp mode):
+ * a visitor verifies an email with a 6-digit OTP (behind a Cloudflare Turnstile
+ * bot check) to earn a short-lived token, then gets a few free messages with
+ * the release's assistant. Supersedes the deprecated `homepageChat` namespace.
  *
  * Bundled (with the SDK inlined) by esbuild → /static/js/divinci-chat.js.
  * Config comes from data-* attributes on that script tag (see base.html).
@@ -75,7 +76,7 @@ class DivinciChatWidget {
     this.cfg = cfg;
     this.client = new DivinciClient({ releaseId: cfg.releaseId, baseUrl: cfg.apiBase });
     // Returning visitor: skip straight to chat if a verification token persists.
-    if (this.client.homepageChat.loadStoredToken()) this.view = "chat";
+    if (this.client.freeChatGate.loadStoredToken(this.cfg.releaseId)) this.view = "chat";
     this.mount();
   }
 
@@ -148,7 +149,7 @@ class DivinciChatWidget {
       if (!token) { err.textContent = "Please complete the verification check."; return; }
       btn.disabled = true; btn.textContent = "Sending…"; err.textContent = "";
       try {
-        await this.client.homepageChat.verifyEmail(this.email, token);
+        await this.client.freeChatGate.start({ releaseId: this.cfg.releaseId, email: this.email, turnstileToken: token });
         this.setView("otp");
       } catch (e) {
         err.textContent = this.errText(e, "Couldn't send the code. Please try again.");
@@ -178,7 +179,7 @@ class DivinciChatWidget {
       if (!/^\d{6}$/.test(code)) { err.textContent = "Enter the 6-digit code."; return; }
       btn.disabled = true; btn.textContent = "Verifying…"; err.textContent = "";
       try {
-        await this.client.homepageChat.confirmEmail(this.email, code);
+        await this.client.freeChatGate.verifyOtp({ email: this.email, otpCode: code });
         this.messages = [];
         this.setView("chat");
       } catch (e) {
@@ -219,7 +220,7 @@ class DivinciChatWidget {
       this.messages.push({ role: "assistant", text: "…" });
       this.render();
       try {
-        const { reply, remaining } = await this.client.homepageChat.send(prompt);
+        const { reply, remaining } = await this.client.freeChatGate.send(prompt);
         this.messages[this.messages.length - 1] = { role: "assistant", text: reply };
         this.remaining = remaining;
         this.render();
@@ -253,7 +254,7 @@ class DivinciChatWidget {
     const e = el("p", "dvc-err"); e.textContent = this.errorMsg || "Something went wrong."; // dynamic → textContent
     wrap.appendChild(e);
     const retry = el("button", "dvc-btn", "Try again");
-    retry.addEventListener("click", () => this.setView(this.client.homepageChat.isVerified() ? "chat" : "email"));
+    retry.addEventListener("click", () => this.setView(this.client.freeChatGate.isVerified() ? "chat" : "email"));
     wrap.appendChild(retry);
     this.body.appendChild(wrap);
   }
