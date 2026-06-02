@@ -13,14 +13,17 @@
 </span>
 {% else %}
 <p class="footer-tagline divinci-motto divinci-motto--footer" aria-label="liberum intelligentia — {{ translations.footer.motto.phrase | default(value='free intelligence') }}">
-  <span class="divinci-motto__inner">
-    <span class="divinci-motto__word" style="--word-delay: 0ms">
-      <span class="divinci-motto__latin" aria-hidden="false">liberum</span>
-      <span class="divinci-motto__en" aria-hidden="true">{{ translations.footer.motto.word_1 | default(value="free") }}</span>
+  {# Two stacked layers: the Latin sits in flow and fixes the footprint; the
+     translation overlays it. The footprint never changes between states, so
+     hovering can't reflow the target (no flicker / stuck mid-swap). #}
+  <span class="divinci-motto__stack" aria-hidden="true">
+    <span class="divinci-motto__layer divinci-motto__layer--latin">
+      <span class="divinci-motto__word" style="--word-delay: 0ms">liberum</span>
+      <span class="divinci-motto__word" style="--word-delay: 180ms">intelligentia</span>
     </span>
-    <span class="divinci-motto__word" style="--word-delay: 180ms">
-      <span class="divinci-motto__latin" aria-hidden="false">intelligentia</span>
-      <span class="divinci-motto__en" aria-hidden="true">{{ translations.footer.motto.word_2 | default(value="intelligence") }}</span>
+    <span class="divinci-motto__layer divinci-motto__layer--en">
+      <span class="divinci-motto__word" style="--word-delay: 0ms">{{ translations.footer.motto.word_1 | default(value="free") }}</span>
+      <span class="divinci-motto__word" style="--word-delay: 180ms">{{ translations.footer.motto.word_2 | default(value="intelligence") }}</span>
     </span>
   </span>
 </p>

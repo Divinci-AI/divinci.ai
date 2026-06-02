@@ -1,14 +1,31 @@
 /* Divinci motto — liberum intelligentia */
 
-.divinci-motto__inner {
+/* Footer motto: stacked layers. The Latin layer stays in normal flow and
+   defines the motto's footprint; the English layer overlays it absolutely.
+   Because the footprint is constant across hover states, the hover target
+   never reflows — the source of the old flicker / stuck-mid-swap. */
+.divinci-motto--footer .divinci-motto__stack {
+  position: relative;
+  display: inline-block;
+  /* Force LTR layer/word order so the Latin "liberum intelligentia" never
+     reverses on RTL pages (e.g. /ar/). RTL-language translations are authored
+     in the matching order so they still read naturally (see ar.json). */
+  direction: ltr;
+}
+
+.divinci-motto--footer .divinci-motto__layer {
   display: inline-flex;
   flex-wrap: nowrap;
   align-items: baseline;
   gap: 0.28em;
-  /* Force LTR word-box order so the Latin "liberum intelligentia" never
-     reverses on RTL pages (e.g. /ar/). RTL-language translations are authored
-     in the matching box order so they still read naturally (see ar.json). */
-  direction: ltr;
+  white-space: nowrap;
+}
+
+.divinci-motto--footer .divinci-motto__layer--en {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
 }
 
 .divinci-motto__word {
@@ -29,12 +46,11 @@
   transition-delay: var(--word-delay, 0ms);
 }
 
-/* Footer words: Latin sits in-flow, English overlays each word at the same
-   baseline. On hover both swap with the SAME motion as the header reveal —
-   blur + lift on the matching cubic-bezier, staggered per word via --word-delay
-   so the translation waves across left-to-right. */
-.divinci-motto--footer .divinci-motto__latin,
-.divinci-motto--footer .divinci-motto__en {
+/* Each layer's words wave with the SAME motion as the header reveal — blur +
+   lift on the matching cubic-bezier, staggered per word via --word-delay so the
+   translation sweeps across left-to-right. The English layer reads tightly on
+   its own (a contiguous phrase), so no per-word position swap is needed. */
+.divinci-motto--footer .divinci-motto__word {
   transition:
     opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     filter 0.7s cubic-bezier(0.22, 1, 0.36, 1),
@@ -42,29 +58,11 @@
   transition-delay: var(--word-delay, 0ms);
 }
 
-.divinci-motto--footer .divinci-motto__en {
-  position: absolute;
-  left: 0;
-  top: 0;
+/* English words start hidden (blurred + lifted) until hover. */
+.divinci-motto--footer .divinci-motto__layer--en .divinci-motto__word {
   opacity: 0;
   filter: blur(6px);
   transform: translateY(3px);
-  pointer-events: none;
-}
-
-/* On hover the pair swaps which word holds the flow, so the shorter English
-   ("free intelligence") reads tightly instead of inheriting the wider Latin
-   word-box. The blur/lift/stagger above still animates the cross-fade. */
-.footer-brand-block:hover .divinci-motto__word .divinci-motto__latin,
-.footer-brand-block:focus-within .divinci-motto__word .divinci-motto__latin {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.footer-brand-block:hover .divinci-motto__word .divinci-motto__en,
-.footer-brand-block:focus-within .divinci-motto__word .divinci-motto__en {
-  position: static;
 }
 
 /* ── Footer: hover logo block + motto; tight English pairing ── */
@@ -99,20 +97,20 @@
 }
 
 .site-footer .divinci-motto--footer,
-.site-footer .divinci-motto--footer .divinci-motto__latin,
-.site-footer .divinci-motto--footer .divinci-motto__en {
+.site-footer .divinci-motto--footer .divinci-motto__word {
   color: inherit;
 }
 
-.footer-brand-block:hover .divinci-motto__latin,
-.footer-brand-block:focus-within .divinci-motto__latin {
+/* Hover/focus: Latin waves out (up), English waves in. */
+.footer-brand-block:hover .divinci-motto__layer--latin .divinci-motto__word,
+.footer-brand-block:focus-within .divinci-motto__layer--latin .divinci-motto__word {
   opacity: 0;
   filter: blur(6px);
   transform: translateY(-3px);
 }
 
-.footer-brand-block:hover .divinci-motto__en,
-.footer-brand-block:focus-within .divinci-motto__en {
+.footer-brand-block:hover .divinci-motto__layer--en .divinci-motto__word,
+.footer-brand-block:focus-within .divinci-motto__layer--en .divinci-motto__word {
   opacity: 1;
   filter: blur(0);
   transform: translateY(0);
@@ -229,22 +227,22 @@
 
 @media (prefers-reduced-motion: reduce) {
   .divinci-motto__latin,
-  .divinci-motto__en,
+  .divinci-motto--footer .divinci-motto__word,
   .divinci-motto--header,
   .divinci-motto--header .divinci-motto__word {
     transition-duration: 0.01ms !important;
     animation: none !important;
   }
 
-  .footer-brand-block:hover .divinci-motto__latin,
-  .footer-brand-block:focus-within .divinci-motto__latin {
+  .footer-brand-block:hover .divinci-motto__layer--latin .divinci-motto__word,
+  .footer-brand-block:focus-within .divinci-motto__layer--latin .divinci-motto__word {
     opacity: 0;
     transform: none;
     filter: none;
   }
 
-  .footer-brand-block:hover .divinci-motto__en,
-  .footer-brand-block:focus-within .divinci-motto__en {
+  .footer-brand-block:hover .divinci-motto__layer--en .divinci-motto__word,
+  .footer-brand-block:focus-within .divinci-motto__layer--en .divinci-motto__word {
     opacity: 1;
     transform: none;
     filter: none;

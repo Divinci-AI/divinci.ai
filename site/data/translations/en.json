@@ -122,11 +122,11 @@
     "description": "Meet the innovators shaping the future of human-AI collaboration.",
     "members": {
       "connect": "Connect",
-      "sierra_bio": "Cornell University graduate with extensive experience in financial services and entrepreneurship. Former M&A Associate and founder of BrainPOP Clean Energy, bringing strategic business development and operations expertise to AI venture scaling.",
+      "sierra_bio": "Cornell graduate with extensive experience in financial services and entrepreneurship. Former M&A Associate and BrainPOP Clean Energy founder, bringing business and operations expertise to AI scaling.",
       "michael_bio": "Visionary with 15+ years in enterprise technology, leading the conversational AI revolution.",
       "samuel_bio": "Product strategist with a track record of delivering user-centric AI solutions for enterprise teams.",
       "duane_bio": "Systems architect with expertise in scalable AI infrastructure and natural language processing.",
-      "sean_bio": "Data scientist with 10+ years programming experience, specializing in machine learning and Python development.",
+      "sean_bio": "Data scientist with 10+ years programming experience, specializing in machine learning and Python development. He builds reinforcement-learning and multi-agent systems, with an M.S. from UC San Diego.",
       "paul_marie_bio": "AI governance leader and independent advisor specializing in vendor management and risk. Founded AI LA Responsible AI Group and brings expertise from Google AI, Deloitte, and CVS Health."
     },
     "roles": {

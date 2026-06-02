@@ -1006,17 +1006,19 @@ html, body {
     gap: 0;
   }
 
+  /* Logo grows to fill the left, pushing the nav + actions into one
+     right-aligned cluster: … Features Team Blog Support | language | Request demo. */
   .logo {
-    flex: 0 0 auto;
+    flex: 1 1 0;
     order: 1;
   }
 
   nav {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     order: 2;
-    margin: 0;
+    margin: 0 2.5rem 0 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   .header-actions {
@@ -1025,6 +1027,7 @@ html, body {
     position: static;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 1rem;
     top: auto;
     right: auto;
