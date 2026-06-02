@@ -233,7 +233,7 @@ MTTR — متوسّط زمن التعافي — بفارق كبير، على ا�
 <strong>معايرة LLM-as-judge.</strong> Zheng وآخرون، <a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener"><em>Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</em></a> (NeurIPS 2023). المرجع لسبب ضرورة وجود حَكَم مُعاير ولماذا يهمّ التوافق لكل شريحة أكثر من التوافق الإجمالي. تعتمد حلقة التسجيل لكل دقيقة لدى المراقب على هذا.
 </li>
 <li id="ref-2" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>شهادة أوزان vindex.</strong> موثّقة في <a href="/ar/compliance/">صفحة امتثال Divinci</a> وتُستعرض في <a href="/ar/blog/validating-and-releasing-custom-lms-in-regulated-fields/">مقال المجالات الخاضعة للتنظيم</a>. حقول `vindex_sha256_before/after` في إيصال التراجع التلقائي هي المرساة التشفيرية التي يستطيع المدقّق التحقّق منها دون الثقة بسجلّاتنا.
+<strong>شهادة أوزان vIndex.</strong> موثّقة في <a href="/ar/compliance/">صفحة امتثال Divinci</a> وتُستعرض في <a href="/ar/blog/validating-and-releasing-custom-lms-in-regulated-fields/">مقال المجالات الخاضعة للتنظيم</a>. حقول `vindex_sha256_before/after` في إيصال التراجع التلقائي هي المرساة التشفيرية التي يستطيع المدقّق التحقّق منها دون الثقة بسجلّاتنا.
 </li>
 <li id="ref-3" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
 <strong>عطل Cloudflare في يونيو 2022.</strong> <a href="https://blog.cloudflare.com/cloudflare-outage-on-june-21-2022/" target="_blank" rel="noopener">Cloudflare outage on June 21, 2022</a>. "06:58: تمّ العثور على السبب الجذري وفهمه. يبدأ العمل على التراجع عن التغيير الإشكالي… 07:42: اكتمل آخر التراجعات." أربع وأربعون دقيقة للتراجع على مستوى البنية التحتية، جزئيًا لأن المهندسين داسوا على تراجعات بعضهم البعض. مرساة ادّعاء "التبديل المُسيَّر بالبيان لا يمكنه امتلاك ذلك النمط من الفشل".

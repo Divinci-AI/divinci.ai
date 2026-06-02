@@ -247,7 +247,7 @@ curl -X POST https://api.divinci.app/v1/query \
 }
 ```
 
-العميل لا يختار منصّة؛ ولا يُشغّل ثلاثًا. المُوجِّه يفعل ذلك. شفافية بمستوى التدقيق حول الطبقة التي أجابت جزء من الاستجابة، لا مدفونة في المقاييس — وهي روح القابلية للتدقيق ذاتها التي بنيناها داخل [إيصال vindex](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) و[بيان الإصدار](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) لمنظومة CI/CD لدينا.
+العميل لا يختار منصّة؛ ولا يُشغّل ثلاثًا. المُوجِّه يفعل ذلك. شفافية بمستوى التدقيق حول الطبقة التي أجابت جزء من الاستجابة، لا مدفونة في المقاييس — وهي روح القابلية للتدقيق ذاتها التي بنيناها داخل [إيصال vIndex](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) و[بيان الإصدار](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) لمنظومة CI/CD لدينا.
 
 ### كيف يُقرّر المُوجِّه فعلًا — توجيه مُتعلَّم، لا مُصنِّف مُرمَّز يدويًا
 

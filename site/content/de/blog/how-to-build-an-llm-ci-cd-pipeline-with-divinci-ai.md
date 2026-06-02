@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
 hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
-summary = "Eine klassische CI/CD-Pipeline geht davon aus, dass das Artefakt deterministisch ist. Ein Sprachmodell ist es nicht. Dieser Artikel führt durch die Pipeline, die wir bei Divinci AI in Produktion betreiben — slice-aware Spearman-Gates gegen einen human-anchored Judge, Canary, der die Output-Qualität überwacht (nicht nur p95), atomares Rollback in rund zwölf Sekunden und einen hash-verketteten Release-Beleg für jede Entscheidung (mit eingebetteter Vindex-Weight-Attestation, wenn das Modell Open-Weights ist). Drei davon liefert 2026 kein anderes LLM-Release-Tool."
+summary = "Eine klassische CI/CD-Pipeline geht davon aus, dass das Artefakt deterministisch ist. Ein Sprachmodell ist es nicht. Dieser Artikel führt durch die Pipeline, die wir bei Divinci AI in Produktion betreiben — slice-aware Spearman-Gates gegen einen human-anchored Judge, Canary, der die Output-Qualität überwacht (nicht nur p95), atomares Rollback in rund zwölf Sekunden und einen hash-verketteten Release-Beleg für jede Entscheidung (mit eingebetteter vIndex-Weight-Attestation, wenn das Modell Open-Weights ist). Drei davon liefert 2026 kein anderes LLM-Release-Tool."
 +++
 
 *Notes from the Release Cycle — Teil I*
@@ -39,7 +39,7 @@ Die Stufen sind bewusst starr. Jedes Release durchläuft jede Stufe in dieser Re
 
 Ein Release ist **kein** Modellgewichts-File. Ein Release ist ein unveränderliches Manifest, das Folgendes bündelt:
 
-- Das Modellartefakt (HF-Repo + Commit-SHA oder ein Vindex-Patch)
+- Das Modellartefakt (HF-Repo + Commit-SHA oder ein vIndex-Patch)
 - Das Prompt-Template (jede Variable, jede System-Message)
 - Die Routing-Regeln (welche Traffic-Klasse landet auf welcher Version)
 - Die Datensatzversion, mit der die Gate-Schwellenwerte berechnet wurden
@@ -112,7 +112,7 @@ Dann feuert der Beleg.
 
 Jede Release-Entscheidung — Register, Gate-Pass, Gate-Fail, Gate-Override, Checkpoint-Promote, Checkpoint-Hold, Auto-Rollback, Manual-Rollback — emittiert einen **Release-Beleg**: ein JSON-mit-SHA-256-Artefakt, hash-verkettet mit dem vorherigen Beleg dieses Kunden und dem vorherigen Beleg dieses Releases, extern verankert auf einem vom Kunden konfigurierten Zeitplan.
 
-Wenn das Release von einem **Open-Weights-Modell** getragen wird — Gemma, Qwen, Llama, Mistral, GPT-OSS, alles, dessen Gewichte adressierbar und editierbar sind — bettet der Beleg eine [Vindex-Attestation](/de/compliance/) ein: einen kryptografischen Beweis, dass die aktiven Gewichte zum Entscheidungszeitpunkt die Gewichte sind, die das Manifest registriert hat. Das ist der Pfad, der die härteren Compliance-Anforderungen erfüllt (GDPR Artikel 17 Recht auf Vergessenwerden, EU AI Act Provenance), weil man nicht nur beweisen kann, *was deployt wurde*, sondern *dass die zugrundeliegenden Gewichte sind, was sie zu sein vorgeben*.
+Wenn das Release von einem **Open-Weights-Modell** getragen wird — Gemma, Qwen, Llama, Mistral, GPT-OSS, alles, dessen Gewichte adressierbar und editierbar sind — bettet der Beleg eine [vIndex-Attestation](/de/compliance/) ein: einen kryptografischen Beweis, dass die aktiven Gewichte zum Entscheidungszeitpunkt die Gewichte sind, die das Manifest registriert hat. Das ist der Pfad, der die härteren Compliance-Anforderungen erfüllt (GDPR Artikel 17 Recht auf Vergessenwerden, EU AI Act Provenance), weil man nicht nur beweisen kann, *was deployt wurde*, sondern *dass die zugrundeliegenden Gewichte sind, was sie zu sein vorgeben*.
 
 Wenn das Release von einem **Closed-Weights-Modell** getragen wird — OpenAI, Anthropic, Google, alles, was nur über eine intransparente API ausgeliefert wird — deckt der Beleg weiterhin die Entscheidungskette ab (welches Manifest, welches Gate-Ergebnis, welche Monitor-Messung, welcher User welche Aktion ausgelöst hat), kann aber die zugrundeliegenden Gewichte nicht attestieren, weil wir sie nicht sehen können. Das ist keine Limitierung der Pipeline; es ist eine Limitierung dessen, was verifizierbar ist, wenn der Anbieter keine Gewichte offenlegt. Auditoren, denen diese Unterscheidung wichtig ist, bekommen die wahrheitsgemäße Antwort direkt im Beleg.
 
@@ -187,7 +187,7 @@ Die Nahtstelle zwischen „Eval beim PR-Merge bestanden" und „Live-Canary bewe
 
 1. **Das Gate ist gesliced.** Spearman ρ pro Domäne gegen einen human-anchored Grader, nicht ein einziger globaler Score. Slice-Blindheit ist das, was jedes andere Gate hat.
 2. **Der Canary überwacht Output-Qualität, nicht nur p95.** Kontinuierliches Trace-Replay durch den Kandidaten, bewertet vom selben Judge, der das Gate antreibt. Das ist die fehlende Nahtstelle.
-3. **Jede Entscheidung emittiert einen Release-Beleg.** Hash-verkettet, extern verankerbar, im JSON-mit-SHA-256-Format, das auch unsere Compliance-Seiten trägt. Bei Open-Weights-Backings — Gemma, Qwen, Llama, Mistral, GPT-OSS — bettet der Beleg eine Vindex-Weight-Attestation ein, damit Auditoren beweisen können, was die Live-Gewichte tatsächlich waren. Bei Closed-API-Backings deckt der Beleg die Entscheidungskette ab, beansprucht aber keine Gewichts-Provenance, weil der Anbieter keine Gewichte offenlegt. So oder so bekommen Auditoren Beweise für das tatsächlich Beweisbare, nicht nur Logs.
+3. **Jede Entscheidung emittiert einen Release-Beleg.** Hash-verkettet, extern verankerbar, im JSON-mit-SHA-256-Format, das auch unsere Compliance-Seiten trägt. Bei Open-Weights-Backings — Gemma, Qwen, Llama, Mistral, GPT-OSS — bettet der Beleg eine vIndex-Weight-Attestation ein, damit Auditoren beweisen können, was die Live-Gewichte tatsächlich waren. Bei Closed-API-Backings deckt der Beleg die Entscheidungskette ab, beansprucht aber keine Gewichts-Provenance, weil der Anbieter keine Gewichte offenlegt. So oder so bekommen Auditoren Beweise für das tatsächlich Beweisbare, nicht nur Logs.
 
 Das war's. Generischer Canary, Versionsregister, Infrastruktur-Metrik-Rollback — das ist Commodity. Wir haben keinen generischen Canary geschrieben.
 
@@ -213,7 +213,7 @@ Wenn Sie etwas Vergleichbares ohne Divinci hochziehen wollen, sieht die Minimal-
 
 Die meisten Teams haben (1) und (3) bereits. Die schmerzhaften Teile sind (2), (4) und (5). Der Grund, warum Divinci existiert, ist: wir haben alle fünf erst für uns selbst gebaut und dann gemerkt, dass alle anderen sie auch brauchen werden.
 
-Wenn Sie sich den Build sparen wollen, [die API-Referenz finden Sie hier](/de/api/), und die Release-Endpunkte im Abschnitt „Release Management" sind die gesamte Oberfläche dieser Pipeline. Die Compliance-Seite — wie diese Vindex-Belege aussehen und wie sie auf EU AI Act, GDPR Artikel 17, HIPAA und NIST AI RMF abbilden — finden Sie auf [der Compliance-Seite](/de/compliance/). Jeder Befehl in diesem Post ist ein echter Endpunkt.
+Wenn Sie sich den Build sparen wollen, [die API-Referenz finden Sie hier](/de/api/), und die Release-Endpunkte im Abschnitt „Release Management" sind die gesamte Oberfläche dieser Pipeline. Die Compliance-Seite — wie diese vIndex-Belege aussehen und wie sie auf EU AI Act, GDPR Artikel 17, HIPAA und NIST AI RMF abbilden — finden Sie auf [der Compliance-Seite](/de/compliance/). Jeder Befehl in diesem Post ist ein echter Endpunkt.
 
 ## Referenzen
 

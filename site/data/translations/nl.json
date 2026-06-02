@@ -226,7 +226,12 @@
     "support": "Ondersteuning",
     "privacy_settings": "Privacy-instellingen",
     "cookie_preferences": "Cookie-voorkeuren",
-    "cookie_policy": "Cookiebeleid"
+    "cookie_policy": "Cookiebeleid",
+    "motto": {
+      "word_1": "vrije",
+      "word_2": "intelligentie",
+      "phrase": "vrije intelligentie"
+    }
   },
   "language_switcher": {
     "current_language": "Nederlands",
@@ -649,26 +654,26 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Aangedreven door vindex + LarQL",
+      "eyebrow": "Aangedreven door vIndex + LarQL",
       "heading": "Compliance, met een bonnetje.",
-      "tagline": "De meeste „AI-compliance\" stopt bij toegangslogs en prompt-niveau guardrails. Divinci gaat ín het model. Elke entiteitsassociatie is een doorzoekbare feature; elke wijziging is een draagbare, controleerbare patch — en de <strong>vindex</strong> is het technische documentatie-artefact dat uw toezichthouder zo gaat opvragen.",
+      "tagline": "De meeste „AI-compliance\" stopt bij toegangslogs en prompt-niveau guardrails. Divinci gaat ín het model. Elke entiteitsassociatie is een doorzoekbare feature; elke wijziging is een draagbare, controleerbare patch — en de <strong>vIndex</strong> is het technische documentatie-artefact dat uw toezichthouder zo gaat opvragen.",
       "cta_primary": "Praat met compliance →",
-      "cta_secondary": "Bekijk een live vindex"
+      "cta_secondary": "Bekijk een live vIndex"
     },
     "mapping": {
       "heading": "Wat de regelgeving vraagt · wat LarQL levert",
-      "subheading": "Hetzelfde artefact — de vindex — beantwoordt eisen rond transparantie, toezicht, documentatie en verwijdering in de vier grote AI-regelgevingen waar Divinci-klanten mee te maken hebben.",
+      "subheading": "Hetzelfde artefact — de vIndex — beantwoordt eisen rond transparantie, toezicht, documentatie en verwijdering in de vier grote AI-regelgevingen waar Divinci-klanten mee te maken hebben.",
       "th_regulation": "Regelgeving",
       "th_requirement": "Eis",
       "th_competitors": "Wat concurrenten bieden",
-      "th_larql": "Wat LarQL/vindex biedt",
+      "th_larql": "Wat LarQL/vIndex biedt",
       "rows": [
         {
           "reg_label": "EU AI Act §13",
           "reg_topic": "Transparantie",
           "requirement": "„Voldoende transparantie zodat gebruikers de uitvoer kunnen interpreteren\"",
           "competitors": "Model cards, prozaïsche systeembeschrijvingen",
-          "larql": "De vindex IS een doorzoekbaar transparantie-artefact — elk feiten­dragend feature geïdentificeerd via <code>(layer, feature, gate_score)</code>"
+          "larql": "De vIndex IS een doorzoekbaar transparantie-artefact — elk feiten­dragend feature geïdentificeerd via <code>(layer, feature, gate_score)</code>"
         },
         {
           "reg_label": "EU AI Act §14",
@@ -710,13 +715,13 @@
     "receipt": {
       "heading": "Hoe een „bonnetje\" er werkelijk uitziet",
       "para_1": "Een LarQL-patch is een draagbaar JSON-bestand met SHA-256-checksum. Pas hem toe om een feit te onderdrukken; verwijder hem om het model bit voor bit te herstellen. De patch IS het auditlog — operators, toezichthouders en downstream-consumenten kunnen dezelfde operatie onafhankelijk verifiëren.",
-      "para_2": "Hieronder: de echte Gate-3 patch die we leveren in onze publieke testsuite, met de Paris→capital-associatie onderdrukt en hersteld met meetbaar, herhaalbaar effect op een echte Gemma 4 E2B vindex."
+      "para_2": "Hieronder: de echte Gate-3 patch die we leveren in onze publieke testsuite, met de Paris→capital-associatie onderdrukt en hersteld met meetbaar, herhaalbaar effect op een echte Gemma 4 E2B vIndex."
     },
     "cta_band": {
       "heading": "Compliance die u kunt bewijzen. Op elke open transformer.",
-      "tagline": "Vandaag acht gepubliceerde vindexes over Gemma, Qwen, Llama, Mistral, OpenAI MoE en Microsoft 1-bit. Breng uw model — wij bouwen het bonnetje.",
+      "tagline": "Vandaag acht gepubliceerde vIndexes over Gemma, Qwen, Llama, Mistral, OpenAI MoE en Microsoft 1-bit. Breng uw model — wij bouwen het bonnetje.",
       "cta_primary": "Boek een compliance-review →",
-      "cta_secondary": "Blader door vindexes op Hugging Face"
+      "cta_secondary": "Blader door vIndexes op Hugging Face"
     }
   },
   "about": {

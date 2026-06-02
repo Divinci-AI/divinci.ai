@@ -234,7 +234,7 @@ MTTR — 平均復旧時間 — がはるかに正しい指標です。少なく
 <strong>LLM-as-judge のキャリブレーション。</strong> Zheng ら、<a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener"><em>Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</em></a>(NeurIPS 2023)。なぜキャリブレーション済みジャッジが必要か、なぜスライス単位の一致が集約された一致より重要かの根拠。オブザーバーの 1 分ごとスコアリングループはこれに依存しています。
 </li>
 <li id="ref-2" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>vindex ウェイトアテステーション。</strong> <a href="/ja/compliance/">Divinci コンプライアンスページ</a>に記載され、<a href="/ja/blog/validating-and-releasing-custom-lms-in-regulated-fields/">規制分野記事</a>で解説されています。自動ロールバックレシートの `vindex_sha256_before/after` フィールドは、当社のログを信頼することなく監査人が検証できる暗号学的アンカーです。
+<strong>vIndex ウェイトアテステーション。</strong> <a href="/ja/compliance/">Divinci コンプライアンスページ</a>に記載され、<a href="/ja/blog/validating-and-releasing-custom-lms-in-regulated-fields/">規制分野記事</a>で解説されています。自動ロールバックレシートの `vindex_sha256_before/after` フィールドは、当社のログを信頼することなく監査人が検証できる暗号学的アンカーです。
 </li>
 <li id="ref-3" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
 <strong>Cloudflare 2022 年 6 月の障害。</strong> <a href="https://blog.cloudflare.com/cloudflare-outage-on-june-21-2022/" target="_blank" rel="noopener">Cloudflare outage on June 21, 2022</a>。「06:58: 根本原因を特定し理解。問題の変更を戻す作業を開始… 07:42: 最後の戻し作業が完了。」インフラ層で戻しに 44 分かかった理由の一部は、エンジニアが互いの戻し作業に踏み込んだことです。「マニフェスト駆動のスワップにはその障害モードがあり得ない」という主張の根拠。

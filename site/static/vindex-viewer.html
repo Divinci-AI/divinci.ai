@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LarQL Vindex Viewer — Divinci AI</title>
+  <meta name="description" content="Interactive 3D vIndex viewer: explore the universal four-stage circuit across nine open transformer models and compare it to a 1-bit dissolution.">
+  <style>
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;font-size:16px;line-height:1.5}
+  </style>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #050510; color: #e0e8ff; font-family: 'Courier New', monospace; overflow: hidden; }
+
+    canvas { display: block; }
+
+    /* ── Top UI bar ─────────────────────────────────────────────── */
+    #ui {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 12px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      background: linear-gradient(to bottom, rgba(5,5,16,0.95), transparent);
+      pointer-events: none; z-index: 10;
+    }
+    #ui > * { pointer-events: all; }
+    .logo { font-size: 11px; opacity: 0.5; letter-spacing: 0.12em; white-space: nowrap; }
+    .logo span { color: #7b9fff; }
+
+    select, button {
+      background: rgba(20,24,60,0.9); border: 1px solid rgba(123,159,255,0.28);
+      color: #e0e8ff; padding: 5px 10px; border-radius: 5px; font-size: 11px;
+      cursor: pointer; outline: none; font-family: inherit; transition: border-color 0.15s;
+    }
+    select:hover, button:hover { border-color: rgba(123,159,255,0.65); }
+    button.active { border-color: #7b9fff; background: rgba(40,55,130,0.9); color: #fff; }
+    #hint { font-size: 10px; opacity: 0.35; }
+    #search-input {
+      background: rgba(20,24,60,0.9); border: 1px solid rgba(123,159,255,0.28);
+      color: #e0e8ff; padding: 5px 10px; border-radius: 5px; font-size: 11px;
+      width: 250px; font-family: inherit; outline: none; transition: border-color 0.15s;
+    }
+    #search-input:focus { border-color: #7b9fff; }
+    #search-input::placeholder { color: rgba(224,232,255,0.3); }
+    #search-status { font-size: 10px; opacity: 0.55; color: #ffd060; min-width: 110px; }
+
+    /* ── Tier 1 info panel — always visible ─────────────────────── */
+    #info-panel {
+      position: absolute; bottom: 16px; left: 16px;
+      background: rgba(6,7,20,0.93); border: 1px solid rgba(123,159,255,0.2);
+      border-radius: 10px; min-width: 240px; max-width: 280px;
+      font-size: 11px; z-index: 10; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    }
+    .panel-tier1 { padding: 12px 14px 10px; }
+    .model-title {
+      font-size: 13px; font-weight: bold; letter-spacing: 0.04em;
+      color: #e8f0ff; display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 8px; margin-bottom: 3px;
+    }
+    .hf-link {
+      font-size: 9px; color: #7b9fff; text-decoration: none; opacity: 0.8;
+      border: 1px solid rgba(123,159,255,0.25); border-radius: 3px; padding: 1px 5px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .hf-link:hover { opacity: 1; border-color: rgba(123,159,255,0.6); }
+    .model-meta { font-size: 10px; opacity: 0.45; margin-bottom: 10px; letter-spacing: 0.02em; }
+
+    .tier1-divider { border: none; border-top: 1px solid rgba(123,159,255,0.1); margin: 8px 0; }
+
+    .c4-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .c4-val { font-size: 15px; font-weight: bold; font-family: monospace; }
+    .c4-val.good { color: #44ffaa; }
+    .c4-val.warm { color: #ffcc44; }
+    .c4-val.hot  { color: #ff6644; }
+    .c4-label { font-size: 9px; opacity: 0.5; }
+    .c4-chip {
+      margin-left: auto; font-size: 9px; padding: 2px 6px; border-radius: 10px;
+      font-weight: bold; letter-spacing: 0.04em;
+    }
+    .chip-good { background: rgba(68,255,170,0.15); color: #44ffaa; border: 1px solid rgba(68,255,170,0.3); }
+    .chip-warn { background: rgba(255,180,50,0.15); color: #ffcc44; border: 1px solid rgba(255,180,50,0.3); }
+    .chip-alert { background: rgba(255,80,50,0.15); color: #ff6644; border: 1px solid rgba(255,80,50,0.3); }
+    .chip-dead  { background: rgba(255,40,40,0.18); color: #ff4444; border: 1px solid rgba(255,40,40,0.3); }
+
+    .stage-bar-row { display: flex; align-items: center; gap: 7px; margin-bottom: 4px; }
+    .stage-bar-label { font-size: 9px; opacity: 0.45; width: 60px; flex-shrink: 0; }
+    .stage-bar-track { flex: 1; height: 5px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+    .stage-bar-fill { height: 100%; border-radius: 2px; transition: width 0.4s ease; }
+    .stage-bar-val { font-size: 9px; width: 28px; text-align: right; opacity: 0.7; }
+
+    .gate3-row {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 7px; font-size: 10px;
+    }
+    .gate3-icon { font-size: 11px; }
+
+    .anomaly-banner {
+      margin: 8px 14px; padding: 6px 10px;
+      background: rgba(255,100,50,0.1); border: 1px solid rgba(255,100,50,0.25);
+      border-radius: 6px; font-size: 10px; color: #ffaa66; cursor: pointer;
+      display: none; line-height: 1.5;
+    }
+    .anomaly-banner:hover { background: rgba(255,100,50,0.18); }
+
+    /* ── Tier 2 — expandable metrics ───────────────────────────── */
+    .tier2-toggle {
+      width: 100%; text-align: center; padding: 6px; font-size: 9px;
+      letter-spacing: 0.1em; opacity: 0.4; cursor: pointer; border: none;
+      background: rgba(123,159,255,0.04); border-top: 1px solid rgba(123,159,255,0.1);
+      color: #e0e8ff; text-transform: uppercase; transition: opacity 0.15s, background 0.15s;
+    }
+    .tier2-toggle:hover { opacity: 0.75; background: rgba(123,159,255,0.08); }
+
+    #tier2-metrics { display: none; padding: 10px 14px 12px; border-top: 1px solid rgba(123,159,255,0.08); }
+    #tier2-metrics.open { display: block; }
+
+    .m-row { display: flex; align-items: center; gap: 6px; margin-bottom: 7px; }
+    .m-name { font-size: 9px; opacity: 0.45; width: 64px; flex-shrink: 0; letter-spacing: 0.02em; }
+    .m-bar-track { flex: 1; height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+    .m-bar-fill { height: 100%; border-radius: 2px; }
+    .m-val { font-size: 9px; width: 36px; text-align: right; font-family: monospace; }
+    .m-val.good { color: #44ffaa; }
+    .m-val.warn { color: #ffcc44; }
+    .m-val.alert { color: #ff6644; }
+    .m-val.dim  { opacity: 0.35; }
+
+    .shortid-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(123,159,255,0.08);
+      font-size: 9px;
+    }
+    .shortid-val { font-family: monospace; opacity: 0.45; }
+    .copy-btn {
+      font-size: 9px; padding: 1px 6px; border-radius: 3px; cursor: pointer;
+      border: 1px solid rgba(123,159,255,0.2); background: transparent; color: #7b9fff;
+    }
+    .copy-btn:hover { background: rgba(123,159,255,0.1); }
+
+    /* ── Legend ──────────────────────────────────────────────────── */
+    #legend {
+      position: absolute; bottom: 16px; right: 16px;
+      background: rgba(6,7,20,0.93); border: 1px solid rgba(123,159,255,0.2);
+      border-radius: 10px; padding: 12px 15px; font-size: 11px; line-height: 1.9; z-index: 10;
+    }
+    #legend h3 { font-size: 9px; letter-spacing: 0.14em; color: #7b9fff; margin-bottom: 6px; text-transform: uppercase; }
+    .stage-row { display: flex; align-items: center; gap: 7px; }
+    .stage-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── Compare panel ───────────────────────────────────────────── */
+    #compare-panel {
+      position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+      background: rgba(6,7,20,0.93); border: 1px solid rgba(123,159,255,0.2);
+      border-radius: 10px; padding: 12px 16px; font-size: 11px;
+      display: none; z-index: 10; white-space: nowrap;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    }
+    #compare-panel h3 { font-size: 9px; letter-spacing: 0.14em; color: #7b9fff; margin-bottom: 8px; text-transform: uppercase; }
+    .cmp-row { display: flex; gap: 28px; }
+    .cmp-col { display: flex; flex-direction: column; gap: 4px; min-width: 140px; }
+    .cmp-title { font-size: 10px; font-weight: bold; color: #e8f0ff; margin-bottom: 2px; }
+    .cmp-meta { font-size: 9px; opacity: 0.4; margin-bottom: 4px; }
+    .cmp-metric { display: flex; justify-content: space-between; gap: 14px; font-size: 10px; }
+    .cmp-val { font-family: monospace; }
+    .cmp-val.good { color: #44ffaa; }
+    .cmp-val.warn { color: #ffcc44; }
+    .cmp-val.alert { color: #ff6644; }
+    .cmp-divider { width: 1px; background: rgba(123,159,255,0.15); }
+
+    /* ── Tooltip ─────────────────────────────────────────────────── */
+    #tooltip {
+      position: absolute; display: none; pointer-events: none;
+      background: rgba(8,10,32,0.97); border: 1px solid rgba(123,159,255,0.35);
+      border-radius: 7px; padding: 8px 12px; font-size: 10px; line-height: 1.7;
+      color: #c8d8ff; z-index: 20; max-width: 220px;
+      transition: opacity 0.08s;
+    }
+    #tooltip.hover { background: rgba(8,10,32,0.86); border-color: rgba(123,159,255,0.18); padding: 4px 9px; line-height: 1.4; font-size: 9.5px; }
+    #tooltip.hover .tt-title { display: none; }
+    #hover-anchor {
+      /* Tiny dot rendered at the hovered feature's screen position so the user can connect
+         the tooltip to its target without us drawing connectors. */
+      position: absolute; display: none; pointer-events: none;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,224,96,0.95); box-shadow: 0 0 12px 2px rgba(255,224,96,0.5);
+      transform: translate(-50%, -50%); z-index: 19;
+    }
+
+    /* ── Demo overlay ────────────────────────────────────────────── */
+    #demo-overlay {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      font-size: 13px; letter-spacing: 0.08em; color: rgba(255,255,255,0.7);
+      text-align: center; z-index: 30; display: none;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+      pointer-events: none;
+    }
+
+    #loading {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      text-align: center; color: #7b9fff; z-index: 30; display: none;
+    }
+    .spinner { width: 32px; height: 32px; border: 2px solid rgba(123,159,255,0.15); border-top-color: #7b9fff; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 10px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<h1 class="sr-only">LarQL Vindex Viewer — explore the universal four-stage circuit in open transformer models</h1>
+<p class="sr-only">
+  This interactive 3D viewer plots learned features for nine open transformer models — Gemma 4 E2B, Ministral 3B, MedGemma 1.5 4B, Qwen3 0.6B and 8B, Qwen3.6 35B MoE, Llama 3.1 8B, GPT-OSS 120B MoE, and Bonsai b1.58 2B — and shows the universal four-stage circuit they share: broadcast, domain, entity commitment, and prediction. Compare any model against the 1-bit Bonsai dissolution to see what happens when the circuit disappears. The viewer uses Three.js to render every feature point and a 12-second demo tour explains the four stages. Vindex IDs link back to the corresponding Hugging Face repositories so you can verify each model independently. Drag to orbit, scroll to zoom, click a feature for a layer-by-layer trace.
+</p>
+
+<!-- Top bar -->
+<div id="ui">
+  <div class="logo"><span>Divinci AI</span> · LarQL Vindex Viewer v2</div>
+  <select id="model-select">
+    <option value="gemma-4-e2b">Gemma 4 E2B (2B) — 35L ✓</option>
+    <option value="ministral-3b">Ministral-3B — 26L</option>
+    <option value="medgemma-4b">MedGemma-1.5-4B — 34L ⚠️</option>
+    <option value="qwen3-0.6b">Qwen3-0.6B — 28L</option>
+    <option value="qwen3-8b" selected>Qwen3-8B — 36L</option>
+    <option value="qwen3.6-35b">Qwen3.6-35B MoE — 40L</option>
+    <option value="llama-3.1-8b">Llama-3.1-8B — 32L</option>
+    <option value="gpt-oss-120b">GPT-OSS-120B MoE — 36L</option>
+    <option value="bonsai-1bit">Bonsai b1.58-2B 1-bit 💀</option>
+  </select>
+  <button id="compare-btn" title="Compare current model vs Bonsai 1-bit dissolution">⇌ Compare</button>
+  <button id="demo-btn" title="12-second scripted tour">▶ Demo</button>
+  <button id="view-btn" title="Toggle between 3D cylinder and 2D circuit view">🔌 2D Circuit</button>
+  <input id="search-input" type="search" placeholder="🔍 Search features (e.g. paris, capital, code)…" autocomplete="off" />
+  <span id="search-status"></span>
+  <div id="hint">Click a feature · drag to orbit · scroll to zoom</div>
+</div>
+
+<!-- Tier 1 info panel -->
+<div id="info-panel">
+  <div class="panel-tier1">
+    <div class="model-title">
+      <span id="m-name">—</span>
+      <a id="m-hf-link" class="hf-link" href="#" target="_blank" rel="noopener">↗ HF</a>
+    </div>
+    <div class="model-meta" id="m-meta">—</div>
+    <hr class="tier1-divider">
+    <!-- C4 row -->
+    <div class="c4-row">
+      <div>
+        <div class="c4-val" id="m-c4-val">—</div>
+        <div class="c4-label">C4 TEMPERATURE</div>
+      </div>
+      <div class="c4-chip" id="m-c4-chip">—</div>
+    </div>
+    <!-- Stage bar -->
+    <div class="stage-bar-row">
+      <div class="stage-bar-label">CIRCUIT</div>
+      <div class="stage-bar-track"><div class="stage-bar-fill" id="m-stage-fill" style="width:0%"></div></div>
+      <div class="stage-bar-val" id="m-c5-val">—</div>
+    </div>
+    <!-- Gate 3 -->
+    <div class="gate3-row">
+      <span class="gate3-icon" id="m-gate3-icon">○</span>
+      <span id="m-gate3-label" style="opacity:0.5">Gate-3: —</span>
+    </div>
+  </div>
+  <!-- Anomaly banner -->
+  <div class="anomaly-banner" id="m-anomaly"></div>
+  <!-- Tier 2 toggle -->
+  <button class="tier2-toggle" id="tier2-btn">METRICS ▾</button>
+  <!-- Tier 2 body -->
+  <div id="tier2-metrics">
+    <div class="m-row">
+      <div class="m-name">C1 SPARSITY</div>
+      <div class="m-bar-track"><div class="m-bar-fill" id="b-c1" style="width:0%;background:#44aaff"></div></div>
+      <div class="m-val" id="v-c1">—</div>
+    </div>
+    <div class="m-row">
+      <div class="m-name">C2 TOP-8</div>
+      <div class="m-bar-track"><div class="m-bar-fill" id="b-c2" style="width:0%;background:#44ffaa"></div></div>
+      <div class="m-val" id="v-c2">—</div>
+    </div>
+    <div class="m-row">
+      <div class="m-name">C3 COHERENCE</div>
+      <div class="m-bar-track"><div class="m-bar-fill" id="b-c3" style="width:0%;background:#7b9fff"></div></div>
+      <div class="m-val" id="v-c3">—</div>
+    </div>
+    <div class="m-row">
+      <div class="m-name">C4 TEMP</div>
+      <div class="m-bar-track"><div class="m-bar-fill" id="b-c4" style="width:0%;background:#ffaa44"></div></div>
+      <div class="m-val" id="v-c4">—</div>
+    </div>
+    <div class="m-row">
+      <div class="m-name">SPECTRUM</div>
+      <div class="m-bar-track"><div class="m-bar-fill" id="b-spec" style="width:0%;background:#a855f7"></div></div>
+      <div class="m-val" id="v-spec">—</div>
+    </div>
+    <div class="shortid-row">
+      <div>
+        <span style="opacity:0.35;font-size:9px">VINDEX ID  </span>
+        <span class="shortid-val" id="v-shortid">—</span>
+      </div>
+      <button class="copy-btn" id="copy-shortid">copy</button>
+    </div>
+  </div>
+</div>
+
+<!-- Legend -->
+<div id="legend">
+  <h3>Circuit Stages</h3>
+  <div class="stage-row"><div class="stage-dot" style="background:#4466ff"></div>Broadcast (0%)</div>
+  <div class="stage-row"><div class="stage-dot" style="background:#44aaff"></div>Domain (20-25%)</div>
+  <div class="stage-row"><div class="stage-dot" style="background:#44ffaa"></div>Entity (45-55%)</div>
+  <div class="stage-row"><div class="stage-dot" style="background:#ffaa44"></div>Prediction (90%+)</div>
+  <div class="stage-row"><div class="stage-dot" style="background:#888"></div>Transition</div>
+  <div class="stage-row" style="margin-top:5px"><div class="stage-dot" style="background:#ff4444"></div>Dissolved (1-bit)</div>
+</div>
+
+<!-- Compare panel -->
+<div id="compare-panel">
+  <h3>Circuit Comparison</h3>
+  <div class="cmp-row">
+    <div class="cmp-col" id="cmp-a"></div>
+    <div class="cmp-divider"></div>
+    <div class="cmp-col" id="cmp-b"></div>
+  </div>
+</div>
+
+<!-- Demo text overlay -->
+<div id="demo-overlay"></div>
+
+<div id="tooltip"></div>
+<div id="hover-anchor"></div>
+<div id="loading"><div class="spinner"></div><div>Loading…</div></div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+// ── Stage colors ───────────────────────────────────────────────
+const STAGE_COLORS = [
+  new THREE.Color(0x4466ff),  // broadcast
+  new THREE.Color(0x44aaff),  // domain
+  new THREE.Color(0x44ffaa),  // entity
+  new THREE.Color(0xffaa44),  // prediction
+  new THREE.Color(0x888888),  // transition
+  new THREE.Color(0xff4444),  // dissolved
+];
+const STAGE_NAMES = ['Broadcast','Domain','Entity','Prediction','Transition','Dissolved'];
+
+// ── Real Phase 1+2 measurements (April 2026) ──────────────────
+const VINDEX_DATA = {
+  'gemma-4-e2b': {
+    name: 'Gemma 4 E2B', org: 'Google', params: '2B', precision: 'bf16',
+    layers: 35, F: 128,
+    c1: 0.061, c2: 0.938, c3: 0.801, c4: 0.041, c5: 4, c5max: 5,
+    spectrum: 'power-law', spectrumScore: 0.92,
+    shortId: 'gemma4e2b', hfRepo: 'Divinci-AI/gemma-4-e2b-vindex',
+    gate3: 'PASS', gate3note: 'Paris→capital suppressed (18.1→absent)',
+    finding: 'Confirms C4≈0.042 universal constant',
+    anomaly: null, dissolved: false,
+    stageBands: [[0,.04,0],[.20,.25,1],[.45,.55,2],[.90,1,3]],
+  },
+  'ministral-3b': {
+    name: 'Ministral-3B', org: 'Mistral AI', params: '3B', precision: 'fp8→bf16',
+    layers: 26, F: 128,
+    c1: 0.236, c2: null, c3: 0.724, c4: 0.265, c5: 3, c5max: 5,
+    spectrum: 'power-law', spectrumScore: 0.88,
+    shortId: '00d28f96', hfRepo: 'Divinci-AI/ministral-3b-vindex',
+    gate3: 'PENDING', gate3note: 'Awaiting multi-layer LarQL service',
+    finding: 'C4 higher than expected (fp8 dequant on A100 compute 8.0). C2 N/A — multimodal lm_head absent.',
+    anomaly: null, dissolved: false,
+    stageBands: [[0,.04,0],[.20,.26,1],[.46,.54,2],[.88,1,3]],
+  },
+  'medgemma-4b': {
+    name: 'MedGemma-1.5-4B', org: 'Google', params: '4B', precision: 'bf16',
+    layers: 34, F: 128,
+    c1: 0.181, c2: 0.795, c3: 0.800, c4: 1.898, c5: 2, c5max: 5,
+    spectrum: 'power-law', spectrumScore: 0.78,
+    shortId: '75eeb232', hfRepo: 'Divinci-AI/medgemma-1.5-4b-vindex',
+    gate3: 'PENDING', gate3note: 'Gate-3 pending',
+    finding: 'C4 anomaly: 1.898 — 45× cohort average. Hypothesis: text-only activation probe through multimodal vision encoder inflates temperature measurement.',
+    anomaly: '⚠️ C4 = 1.898 — 45× cohort anomaly. Likely artifact of text-only probe through vision encoder. Under investigation.',
+    anomalyType: 'warn', dissolved: false,
+    stageBands: [[0,.04,0],[.20,.26,1],[.45,.54,2],[.90,1,3]],
+  },
+  'qwen3-0.6b': {
+    name: 'Qwen3-0.6B', org: 'Alibaba Cloud', params: '0.6B', precision: 'bf16',
+    layers: 28, F: 128,
+    c1: 0.117, c2: 0.880, c3: 0.531, c4: 0.411, c5: 4, c5max: 5,
+    spectrum: 'power-law', spectrumScore: 0.83,
+    shortId: 'qwen306b', hfRepo: 'Divinci-AI/qwen3-0.6b-vindex',
+    gate3: 'PENDING', gate3note: 'Awaiting multi-layer LarQL service',
+    finding: 'Qwen3 family C4 elevation (10×). C3 coherence lower than larger Qwen3 models — scale matters for gate alignment.',
+    anomaly: null, dissolved: false,
+    stageBands: [[0,.04,0],[.21,.25,1],[.46,.54,2],[.90,1,3]],
+  },
+  'qwen3-8b': {
+    name: 'Qwen3-8B', org: 'Alibaba Cloud', params: '8B', precision: 'bf16',
+    layers: 36, F: 128,
+    c1: 0.228, c2: 0.867, c3: 0.813, c4: 0.804, c5: 4, c5max: 5,
+    spectrum: 'power-law', spectrumScore: 0.87,
+    shortId: 'ea08e8e8', hfRepo: 'Divinci-AI/qwen3-8b-vindex',
+    gate3: 'PENDING', gate3note: 'Awaiting multi-layer LarQL service',
+    finding: 'Qwen3 family C4 elevation (19×) confirmed as architectural signature — same in bf16 as in 1-bit Bonsai. Four-stage circuit intact.',
+    anomaly: null, dissolved: false,
+    stageBands: [[0,.04,0],[.20,.25,1],[.45,.55,2],[.90,1,3]],
+  },
+  'qwen3.6-35b': {
+    name: 'Qwen3.6-35B-A3B', org: 'Alibaba Cloud', params: '35B (3B active)', precision: 'bf16',
+    layers: 40, F: 64,
+    c1: null, c2: null, c3: null, c4: null, c5: null, c5max: 5,
+    spectrum: 'var@64: 0.27–0.39', spectrumScore: 0.55,
+    shortId: 'qwen3635b', hfRepo: 'Divinci-AI/qwen3.6-35b-a3b-vindex',
+    gate3: 'N/A', gate3note: 'Phase 2 pending — MoE 256 experts',
+    finding: 'Phase 1 complete. Phase 2 skipped — OOM on A100 with 256-expert MoE routing.',
+    anomaly: null, dissolved: false,
+    stageBands: [[0,.04,0],[.20,.26,1],[.46,.54,2],[.90,1,3]],
+  },
+  'llama-3.1-8b': {
+    name: 'Llama 3.1-8B', org: 'Meta', params: '8B', precision: 'bf16',
+    layers: 32, F: 128,
+    c1: 0.387, c2: 0.491, c3: 0.808, c4: 0.012, c5: 2, c5max: 5,
+    spectrum: 'power-law', spectrumScore: 0.86,
+    shortId: 'c39fad08', hfRepo: 'Divinci-AI/llama-3.1-8b-vindex',
+    gate3: 'PENDING', gate3note: 'Awaiting multi-layer LarQL service',
+    finding: 'C4 = 0.012 — Llama family runs below the universal constant. C1 sparsity (0.387) highest of all measured models. Base model: C2 reflects unconditional next-token distribution.',
+    anomaly: null, dissolved: false,
+    stageBands: [[0,.04,0],[.22,.26,1],[.47,.55,2],[.90,1,3]],
+  },
+  'gpt-oss-120b': {
+    name: 'GPT-OSS-120B', org: 'OpenAI', params: '120B', precision: 'MXFP4',
+    layers: 36, F: 128,
+    c1: null, c2: null, c3: null, c4: null, c5: null, c5max: 5,
+    spectrum: 'S[0]=13,056 (117×)', spectrumScore: 0.72,
+    shortId: '02d09974', hfRepo: 'Divinci-AI/gpt-oss-120b-vindex',
+    gate3: 'N/A', gate3note: 'Uniform MoE routing — calibration required',
+    finding: 'Phase 2 skipped (OOM). Dominant SV = 13,056 — 117× the 200th SV. Most extreme power-law spectrum in the cohort. MXFP4 quantization preserves structural hierarchy.',
+    anomaly: null, dissolved: false,
+    stageBands: [[0,.04,0],[.20,.25,1],[.45,.55,2],[.90,1,3]],
+  },
+  'bonsai-1bit': {
+    name: 'Bonsai b1.58-2B', org: 'Microsoft', params: '2B', precision: '1-bit {-1,0,+1}',
+    layers: 28, F: 128,
+    c1: 0.223, c2: 0.375, c3: 0.534, c4: 0.429, c5: 1, c5max: 5,
+    spectrum: 'flat (var@128=9.3%)', spectrumScore: 0.09,
+    shortId: 'bonsai1b', hfRepo: null,
+    gate3: 'N/A', gate3note: 'Ternary weights — Phase 1 redo pending',
+    finding: 'C5 = 1: four-stage circuit completely dissolved. SV spectrum near-random (Marchenko-Pastur). C4 = 0.429 is Qwen3 architectural signature, not 1-bit effect. The 1-bit discriminators are C5 collapse + flat SV spectrum only.',
+    anomaly: '💀 C5 = 1 — four-stage circuit dissolved. Weight SV spectrum is near-random. The model answers correctly, but its internals have no discernible structure.',
+    anomalyType: 'dead', dissolved: true,
+    stageBands: [],
+  },
+};
+
+// ── Renderer ──────────────────────────────────────────────────
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x050510);
+scene.fog = new THREE.FogExp2(0x050510, 0.012);
+
+const camera = new THREE.PerspectiveCamera(52, innerWidth / innerHeight, 0.1, 600);
+camera.position.set(0, 4, 26);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.minDistance = 7;
+controls.maxDistance = 120;
+
+scene.add(new THREE.AmbientLight(0x334466, 2.8));
+const dirLight = new THREE.DirectionalLight(0x7799ff, 1.6);
+dirLight.position.set(10, 20, 10);
+scene.add(dirLight);
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.7, 0.4, 0.12);
+composer.addPass(bloom);
+
+// ── State ─────────────────────────────────────────────────────
+let groups = {};
+let activeKeys = [];
+let walkLines = [];
+let selectedIdx = -1;
+let compareMode = false;
+let demoRunning = false;
+let viewMode = 'cylinder';   // 'cylinder' (3D) or 'flat' (2D circuit)
+let tier2Open = false;
+
+// ── PRNG ──────────────────────────────────────────────────────
+function mulberry32(seed) {
+  return () => {
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function getStageForDepth(stageBands, depth) {
+  for (const [d0, d1, s] of stageBands) {
+    if (depth >= d0 && depth <= d1) return s;
+  }
+  return 4;
+}
+
+// ── Build model group ─────────────────────────────────────────
+function buildGroup(key, offsetX = 0) {
+  if (groups[key]) {
+    scene.remove(groups[key].group);
+    groups[key].group.traverse(o => {
+      if (o.geometry) o.geometry.dispose();
+      if (o.material) {
+        if (Array.isArray(o.material)) o.material.forEach(m => m.dispose());
+        else o.material.dispose();
+      }
+    });
+    delete groups[key];
+  }
+
+  const d = VINDEX_DATA[key];
+  const group = new THREE.Group();
+  group.position.x = offsetX;
+
+  const L = d.layers, F = d.F, SPACING = 0.80, R = 4.6;
+  const totalH = (L - 1) * SPACING;
+  const featureMeta = [];
+  const FLAT_W = R * 2.4;   // horizontal span for features in flat mode
+
+  // ── Stage bands ─────────────────────────────────────────────
+  if (!d.dissolved) {
+    d.stageBands.forEach(([d0, d1, si]) => {
+      const y0 = d0 * totalH - totalH / 2;
+      const y1 = d1 * totalH - totalH / 2;
+      const h = Math.max(y1 - y0, 0.08);
+      if (viewMode === 'flat') {
+        // Horizontal stripe across the circuit
+        const geo = new THREE.PlaneGeometry(FLAT_W * 1.15, h);
+        const mat = new THREE.MeshBasicMaterial({ color: STAGE_COLORS[si], transparent: true, opacity: 0.085, depthWrite: false, side: THREE.DoubleSide });
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.position.set(0, (y0 + y1) / 2, -0.02);
+        group.add(mesh);
+      } else {
+        // 3D box slab + capping rings
+        const geo = new THREE.BoxGeometry(R * 2.5, h, R * 2.5);
+        const mat = new THREE.MeshBasicMaterial({ color: STAGE_COLORS[si], transparent: true, opacity: 0.032, depthWrite: false, side: THREE.DoubleSide });
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.position.y = (y0 + y1) / 2;
+        group.add(mesh);
+        [y0, y1].forEach(y => {
+          const rg = new THREE.RingGeometry(R * 1.22, R * 1.24, 64);
+          const rm = new THREE.MeshBasicMaterial({ color: STAGE_COLORS[si], transparent: true, opacity: 0.20, side: THREE.DoubleSide, depthWrite: false });
+          const ring = new THREE.Mesh(rg, rm);
+          ring.position.y = y; ring.rotation.x = -Math.PI / 2;
+          group.add(ring);
+        });
+      }
+    });
+  }
+
+  // ── Layer guides (rings in 3D, lines in flat) ───────────────
+  for (let li = 0; li < L; li++) {
+    const y = (li / (L - 1)) * totalH - totalH / 2;
+    let lineColor, lineOpacity;
+    if (d.dissolved)                          { lineColor = new THREE.Color(0x330a0a); lineOpacity = 0.22; }
+    else if (d.c4 !== null && d.c4 > 1.0)     { lineColor = new THREE.Color(0xff4400); lineOpacity = 0.24; }
+    else if (d.c4 !== null) {
+      const t = Math.min(d.c4 / 0.55, 1.0);
+      lineColor = new THREE.Color().lerpColors(new THREE.Color(0x1a2d6e), new THREE.Color(0xff8822), t);
+      lineOpacity = 0.14;
+    } else                                    { lineColor = new THREE.Color(0x1e2a50); lineOpacity = 0.10; }
+
+    if (viewMode === 'flat') {
+      const lineGeo = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(-FLAT_W / 2, y, -0.05),
+        new THREE.Vector3( FLAT_W / 2, y, -0.05),
+      ]);
+      const lineMat = new THREE.LineBasicMaterial({ color: lineColor, transparent: true, opacity: lineOpacity });
+      group.add(new THREE.Line(lineGeo, lineMat));
+    } else {
+      const rg = new THREE.RingGeometry(R * 0.88, R, 64);
+      const rm = new THREE.MeshBasicMaterial({ color: lineColor, transparent: true, opacity: lineOpacity, side: THREE.DoubleSide, depthWrite: false });
+      const ring = new THREE.Mesh(rg, rm); ring.position.y = y; ring.rotation.x = -Math.PI / 2;
+      group.add(ring);
+    }
+  }
+
+  // ── Feature points (InstancedMesh, layout depends on viewMode) ──
+  const totalF = L * F;
+  const geo = new THREE.SphereGeometry(0.08, 7, 7);
+  const mat = new THREE.MeshStandardMaterial({ roughness: 0.3, metalness: 0.05 });
+  const instanceMesh = new THREE.InstancedMesh(geo, mat, totalF);
+  instanceMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+
+  const dummy = new THREE.Object3D();
+  const color = new THREE.Color();
+  const rng = mulberry32(42 + key.charCodeAt(0) * 7);
+
+  let idx = 0;
+  for (let li = 0; li < L; li++) {
+    const y = (li / (L - 1)) * totalH - totalH / 2;
+    const depth = li / (L - 1);
+    const stage = d.dissolved ? 5 : getStageForDepth(d.stageBands, depth);
+
+    for (let fi = 0; fi < F; fi++) {
+      let x, z;
+      if (viewMode === 'flat') {
+        // 2D circuit: horizontal line per layer; features spread left-to-right.
+        // Dissolved: jitter the ordering to show lack of structure.
+        if (d.dissolved) {
+          x = (rng() - 0.5) * FLAT_W;
+        } else {
+          x = ((fi + 0.5) / F - 0.5) * FLAT_W;
+        }
+        z = 0;
+      } else if (d.dissolved) {
+        const angle = rng() * Math.PI * 2;
+        const r = R * 0.82 * Math.sqrt(rng());
+        x = r * Math.cos(angle); z = r * Math.sin(angle);
+      } else {
+        const theta = fi * 2.399963229;
+        const r = R * 0.84 * Math.sqrt((fi + 0.5) / F);
+        x = r * Math.cos(theta); z = r * Math.sin(theta);
+      }
+      const jitter = viewMode === 'flat'
+        ? (rng() - 0.5) * (d.dissolved ? 0.10 : 0.04)
+        : (rng() - 0.5) * (d.dissolved ? 0.18 : 0.06);
+      dummy.position.set(x, y + jitter, z);
+      const baseScale = viewMode === 'flat' ? 0.85 : 1.0;
+      dummy.scale.setScalar(baseScale * (d.dissolved ? (0.6 + rng() * 0.9) : (0.8 + rng() * 0.65)));
+      dummy.updateMatrix();
+      instanceMesh.setMatrixAt(idx, dummy.matrix);
+      color.copy(STAGE_COLORS[stage]);
+      color.offsetHSL(0, (rng() - 0.5) * 0.12, (rng() - 0.5) * 0.14);
+      instanceMesh.setColorAt(idx, color);
+      featureMeta[idx] = { li, fi, stage, y, x, z, key };
+      idx++;
+    }
+  }
+  instanceMesh.instanceMatrix.needsUpdate = true;
+  if (instanceMesh.instanceColor) instanceMesh.instanceColor.needsUpdate = true;
+  group.add(instanceMesh);
+
+  // ── Inter-layer edges (flat mode only) — show top features connecting consecutive layers ──
+  if (viewMode === 'flat' && !d.dissolved) {
+    const edgePts = [];
+    const edgeColors = [];
+    const TOP_K = Math.min(8, F);  // strongest few features per layer
+    for (let li = 0; li < L - 1; li++) {
+      const y0 = (li     / (L - 1)) * totalH - totalH / 2;
+      const y1 = ((li+1) / (L - 1)) * totalH - totalH / 2;
+      const stage0 = getStageForDepth(d.stageBands, li / (L - 1));
+      const c = STAGE_COLORS[stage0];
+      for (let k = 0; k < TOP_K; k++) {
+        const x0 = ((k + 0.5) / F - 0.5) * FLAT_W;
+        const x1 = ((k + 0.5) / F - 0.5) * FLAT_W;
+        edgePts.push(x0, y0, 0, x1, y1, 0);
+        edgeColors.push(c.r, c.g, c.b, c.r, c.g, c.b);
+      }
+    }
+    const eg = new THREE.BufferGeometry();
+    eg.setAttribute('position', new THREE.Float32BufferAttribute(edgePts, 3));
+    eg.setAttribute('color',    new THREE.Float32BufferAttribute(edgeColors, 3));
+    const em = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.18 });
+    group.add(new THREE.LineSegments(eg, em));
+  }
+
+  scene.add(group);
+  groups[key] = { group, instanceMesh, featureMeta, totalH };
+  return groups[key];
+}
+
+// ── Info panel update ─────────────────────────────────────────
+function c4Class(v) {
+  if (v === null) return 'dim';
+  if (v < 0.06) return 'good';
+  if (v < 0.5)  return 'warn';
+  return 'alert';
+}
+
+function barWidth(v, max) {
+  if (v === null) return 0;
+  return Math.min((v / max) * 100, 100);
+}
+
+function updateInfoPanel(key) {
+  const d = VINDEX_DATA[key];
+
+  document.getElementById('m-name').textContent = d.name;
+
+  const hfEl = document.getElementById('m-hf-link');
+  if (d.hfRepo) {
+    hfEl.href = `https://huggingface.co/${d.hfRepo}`;
+    hfEl.style.display = '';
+  } else {
+    hfEl.style.display = 'none';
+  }
+
+  document.getElementById('m-meta').textContent = `${d.org} · ${d.params} · ${d.precision} · ${d.layers}L`;
+
+  // C4
+  const c4El = document.getElementById('m-c4-val');
+  const c4Chip = document.getElementById('m-c4-chip');
+  if (d.c4 !== null) {
+    c4El.textContent = d.c4.toFixed(3);
+    c4El.className = 'c4-val ' + c4Class(d.c4);
+    if (d.c4 < 0.06) {
+      c4Chip.textContent = '✓ universal constant';
+      c4Chip.className = 'c4-chip chip-good';
+    } else if (d.c4 > 1.0) {
+      c4Chip.textContent = `⚠️ ${(d.c4/0.042).toFixed(0)}× anomaly`;
+      c4Chip.className = 'c4-chip chip-alert';
+    } else {
+      const mult = (d.c4 / 0.042).toFixed(0);
+      c4Chip.textContent = `↑ ${mult}× constant`;
+      c4Chip.className = 'c4-chip chip-warn';
+    }
+  } else {
+    c4El.textContent = 'N/A';
+    c4El.className = 'c4-val';
+    c4Chip.textContent = 'Phase 2 pending';
+    c4Chip.className = 'c4-chip chip-warn';
+  }
+
+  // C5 stage bar
+  const stageFill = document.getElementById('m-stage-fill');
+  const c5Val = document.getElementById('m-c5-val');
+  if (d.c5 !== null) {
+    const pct = (d.c5 / d.c5max) * 100;
+    stageFill.style.width = pct + '%';
+    if (d.c5 === 1) {
+      stageFill.style.background = '#ff4444';
+      c5Val.textContent = '💀 C5=1';
+      c5Val.className = 'stage-bar-val';
+      c5Val.style.color = '#ff4444';
+    } else {
+      stageFill.style.background = '#44ffaa';
+      c5Val.textContent = `${d.c5} stages`;
+      c5Val.className = 'stage-bar-val';
+      c5Val.style.color = '#44ffaa';
+    }
+  } else {
+    stageFill.style.width = '0%';
+    c5Val.textContent = 'N/A';
+    c5Val.style.color = '';
+  }
+
+  // Gate 3
+  const gate3Icon = document.getElementById('m-gate3-icon');
+  const gate3Label = document.getElementById('m-gate3-label');
+  const g3 = d.gate3;
+  if (g3 === 'PASS') {
+    gate3Icon.textContent = '✅';
+    gate3Label.textContent = `Gate-3: ${d.gate3note}`;
+    gate3Label.style.color = '#44ffaa'; gate3Label.style.opacity = '1';
+  } else if (g3 === 'PENDING') {
+    gate3Icon.textContent = '⏳';
+    gate3Label.textContent = `Gate-3: ${d.gate3note}`;
+    gate3Label.style.color = ''; gate3Label.style.opacity = '0.5';
+  } else {
+    gate3Icon.textContent = '○';
+    gate3Label.textContent = `Gate-3: ${d.gate3note}`;
+    gate3Label.style.color = ''; gate3Label.style.opacity = '0.35';
+  }
+
+  // Anomaly banner
+  const anomalyEl = document.getElementById('m-anomaly');
+  if (d.anomaly) {
+    anomalyEl.textContent = d.anomaly;
+    anomalyEl.style.display = 'block';
+    anomalyEl.style.background = d.anomalyType === 'dead'
+      ? 'rgba(255,40,40,0.1)' : 'rgba(255,120,50,0.1)';
+    anomalyEl.style.borderColor = d.anomalyType === 'dead'
+      ? 'rgba(255,40,40,0.3)' : 'rgba(255,120,50,0.3)';
+    anomalyEl.style.color = d.anomalyType === 'dead' ? '#ff7777' : '#ffaa66';
+  } else {
+    anomalyEl.style.display = 'none';
+  }
+
+  // Tier 2 metrics
+  function setBar(barId, valId, v, max, cls) {
+    document.getElementById(barId).style.width = barWidth(v, max) + '%';
+    const el = document.getElementById(valId);
+    el.textContent = v !== null ? v.toFixed(3) : 'N/A';
+    el.className = 'm-val ' + (v !== null ? (cls || '') : 'dim');
+  }
+  setBar('b-c1','v-c1', d.c1, 0.5, d.c1 > 0.3 ? 'warn' : 'good');
+  setBar('b-c2','v-c2', d.c2, 1.0, d.c2 !== null && d.c2 > 0.85 ? 'good' : '');
+  setBar('b-c3','v-c3', d.c3, 1.0, d.c3 !== null && d.c3 > 0.75 ? 'good' : 'warn');
+  setBar('b-c4','v-c4', d.c4 !== null ? Math.min(d.c4, 2.0) : null, 2.0, c4Class(d.c4));
+  document.getElementById('b-spec').style.width = (d.spectrumScore * 100) + '%';
+  const specEl = document.getElementById('v-spec');
+  specEl.textContent = d.spectrumScore > 0.7 ? 'power-law' : (d.spectrumScore > 0.2 ? 'partial' : 'flat');
+  specEl.className = 'm-val ' + (d.spectrumScore > 0.7 ? 'good' : d.spectrumScore > 0.2 ? 'warn' : 'alert');
+
+  const shortidEl = document.getElementById('v-shortid');
+  shortidEl.textContent = d.shortId || '—';
+
+  document.getElementById('copy-shortid').onclick = () => {
+    const txt = d.hfRepo ? `https://huggingface.co/${d.hfRepo}` : (d.shortId || '');
+    navigator.clipboard.writeText(txt).catch(() => {});
+  };
+}
+
+// ── Compare panel ─────────────────────────────────────────────
+function makeCmpCol(colId, key) {
+  const d = VINDEX_DATA[key];
+  const col = document.getElementById(colId);
+  col.innerHTML = '';
+
+  const title = document.createElement('div');
+  title.className = 'cmp-title';
+  title.textContent = d.name;
+  col.appendChild(title);
+
+  const meta = document.createElement('div');
+  meta.className = 'cmp-meta';
+  meta.textContent = `${d.org} · ${d.params} · ${d.precision}`;
+  col.appendChild(meta);
+
+  const rows = [
+    ['C4 Temp', d.c4 !== null ? d.c4.toFixed(3) : 'N/A', c4Class(d.c4)],
+    ['C5 Stages', d.c5 !== null ? (d.c5 === 1 ? '💀 1' : String(d.c5)) : 'N/A', d.c5 === 1 ? 'alert' : 'good'],
+    ['C3 Coherence', d.c3 !== null ? d.c3.toFixed(3) : 'N/A', d.c3 !== null && d.c3 > 0.75 ? 'good' : 'warn'],
+    ['C1 Sparsity', d.c1 !== null ? d.c1.toFixed(3) : 'N/A', ''],
+    ['Spectrum', d.spectrumScore > 0.7 ? 'power-law ✓' : (d.spectrumScore > 0.2 ? 'partial' : 'flat ⚠️'), d.spectrumScore > 0.7 ? 'good' : 'alert'],
+  ];
+  rows.forEach(([label, val, cls]) => {
+    const row = document.createElement('div');
+    row.className = 'cmp-metric';
+    const lEl = document.createElement('span');
+    lEl.style.opacity = '0.45'; lEl.textContent = label;
+    const vEl = document.createElement('span');
+    vEl.className = 'cmp-val ' + cls;
+    vEl.textContent = val;
+    row.appendChild(lEl); row.appendChild(vEl);
+    col.appendChild(row);
+  });
+}
+
+// ── Show single model ─────────────────────────────────────────
+function showSingle(key) {
+  compareMode = false;
+  document.getElementById('compare-btn').classList.remove('active');
+  document.getElementById('compare-panel').style.display = 'none';
+  document.getElementById('info-panel').style.display = '';
+  document.getElementById('legend').style.display = '';
+
+  Object.keys(groups).filter(k => k !== key).forEach(k => {
+    scene.remove(groups[k].group); delete groups[k];
+  });
+  clearWalk();
+  activeKeys = [key];
+  buildGroup(key, 0);
+  updateInfoPanel(key);
+
+  const L = VINDEX_DATA[key].layers;
+  if (viewMode === 'flat') {
+    // Need to fit (L-1) * 0.80 vertical units; FOV 52 -> visible_h ~ 0.976 * z
+    const totalH = (L - 1) * 0.80;
+    camera.position.set(0, 0, Math.max(20, totalH * 1.25 + 6));
+  } else {
+    camera.position.set(0, 2, 20 + L * 0.22);
+  }
+  controls.target.set(0, 0, 0);
+  controls.update();
+}
+
+// ── Compare mode ──────────────────────────────────────────────
+function showCompare(keyA, keyB) {
+  compareMode = true;
+  document.getElementById('compare-btn').classList.add('active');
+  document.getElementById('compare-panel').style.display = '';
+  document.getElementById('info-panel').style.display = 'none';
+  document.getElementById('legend').style.display = 'none';
+
+  Object.keys(groups).filter(k => k !== keyA && k !== keyB).forEach(k => {
+    scene.remove(groups[k].group); delete groups[k];
+  });
+  clearWalk();
+  activeKeys = [keyA, keyB];
+  buildGroup(keyA, -13);
+  buildGroup(keyB,  13);
+  makeCmpCol('cmp-a', keyA);
+  makeCmpCol('cmp-b', keyB);
+
+  const maxL = Math.max(VINDEX_DATA[keyA].layers, VINDEX_DATA[keyB].layers);
+  if (viewMode === 'flat') {
+    const totalH = (maxL - 1) * 0.80;
+    camera.position.set(0, 0, Math.max(28, totalH * 1.4 + 8));
+  } else {
+    camera.position.set(0, 2, 30 + maxL * 0.18);
+  }
+  controls.target.set(0, 0, 0);
+  controls.update();
+}
+
+// ── Walk traces ───────────────────────────────────────────────
+function clearWalk() {
+  walkLines.forEach(l => { scene.remove(l); l.geometry.dispose(); l.material.dispose(); });
+  walkLines = [];
+  selectedIdx = -1;
+}
+
+function traceWalk(globalIdx, instanceMesh, featureMeta, groupObj) {
+  clearWalk();
+  const meta = featureMeta[globalIdx];
+  if (!meta) return;
+  const d = VINDEX_DATA[meta.key];
+  const totalH = (d.layers - 1) * 0.80;
+  const rng = mulberry32(globalIdx * 31337);
+  const offsetX = groupObj.position.x;
+  let px = meta.x + offsetX, py = meta.y, pz = meta.z;
+  const stageColor = STAGE_COLORS[meta.stage];
+  const steps = d.dissolved ? 6 : 10;
+  for (let li = meta.li + 1; li < Math.min(meta.li + steps, d.layers); li++) {
+    const y = (li / (d.layers - 1)) * totalH - totalH / 2;
+    let x, z;
+    if (d.dissolved) {
+      x = (rng() - 0.5) * 8 + offsetX; z = (rng() - 0.5) * 8;
+    } else {
+      const angle = Math.atan2(pz, px - offsetX) + (rng() - 0.5) * 0.3;
+      const r = Math.sqrt((px-offsetX)**2 + pz**2);
+      x = r * Math.cos(angle) + (rng()-0.5)*0.25 + offsetX;
+      z = r * Math.sin(angle) + (rng()-0.5)*0.25;
+    }
+    const pts = [new THREE.Vector3(px,py,pz), new THREE.Vector3(x,y,z)];
+    const line = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(pts),
+      new THREE.LineBasicMaterial({ color: stageColor, transparent: true, opacity: d.dissolved ? 0.22 : (0.55 - (li-meta.li)*0.04) })
+    );
+    scene.add(line); walkLines.push(line);
+    px = x; py = y; pz = z;
+  }
+  instanceMesh.setColorAt(globalIdx, new THREE.Color(0xffffff));
+  instanceMesh.instanceColor.needsUpdate = true;
+  selectedIdx = globalIdx;
+}
+
+// ── Tooltip ───────────────────────────────────────────────────
+const tooltip = document.getElementById('tooltip');
+const hoverAnchor = document.getElementById('hover-anchor');
+let _pinnedTooltip = false;   // true after a click; hover updates skipped until clearWalk()
+
+function showTooltip(ex, ey, meta, opts = {}) {
+  const d = VINDEX_DATA[meta.key];
+  const stage = STAGE_NAMES[meta.stage];
+  const depth = ((meta.li / (d.layers - 1)) * 100).toFixed(0);
+  const hover = !!opts.hover;
+  tooltip.innerHTML = '';
+  tooltip.classList.toggle('hover', hover);
+
+  const titleEl = document.createElement('div');
+  titleEl.className = 'tt-title';
+  titleEl.style.fontWeight = 'bold';
+  titleEl.textContent = d.name;
+  tooltip.appendChild(titleEl);
+
+  const layerEl = document.createElement('div');
+  layerEl.innerHTML = `Layer <b>L${meta.li}</b> (${depth}% depth) · Feature <b>F${meta.fi}</b>`;
+  tooltip.appendChild(layerEl);
+
+  const stageEl = document.createElement('div');
+  stageEl.style.color = meta.stage === 5 ? '#ff7a7a' : '#7affc7';
+  stageEl.textContent = `Stage: ${stage}`;
+  tooltip.appendChild(stageEl);
+
+  // If the hovered feature is one of the search highlights, show its label
+  if (opts.searchLabel) {
+    const sl = document.createElement('div');
+    sl.style.color = '#ffe060';
+    sl.style.marginTop = '2px';
+    sl.textContent = opts.searchLabel;
+    tooltip.appendChild(sl);
+  }
+
+  tooltip.style.left = (ex + 16) + 'px';
+  tooltip.style.top  = (ey - (hover ? 38 : 56)) + 'px';
+  tooltip.style.display = 'block';
+
+  if (hover) {
+    hoverAnchor.style.left = ex + 'px';
+    hoverAnchor.style.top  = ey + 'px';
+    hoverAnchor.style.display = 'block';
+  } else {
+    hoverAnchor.style.display = 'none';
+  }
+}
+
+function hideTooltip() {
+  tooltip.style.display = 'none';
+  hoverAnchor.style.display = 'none';
+}
+
+// ── Demo sequence ─────────────────────────────────────────────
+const demoOverlay = document.getElementById('demo-overlay');
+function setDemoText(text) {
+  demoOverlay.textContent = text;
+  demoOverlay.style.display = text ? 'block' : 'none';
+}
+
+async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function runDemo() {
+  if (demoRunning) return;
+  demoRunning = true;
+  document.getElementById('demo-btn').textContent = '■ Stop';
+  controls.enabled = false;
+
+  // 0-2s: materialize Qwen3-8B
+  showSingle('qwen3-8b');
+  await sleep(100);
+  setDemoText('Each column: a transformer model\'s learned features, organized by layer');
+  camera.position.set(0, -6, 28);
+  await sleep(2200);
+
+  // 2-4s: orbit
+  setDemoText('128 features per layer, arranged by singular value direction');
+  camera.position.set(12, 3, 22);
+  await sleep(2000);
+
+  // 4-6s: show stage bands label
+  setDemoText('Four circuit stages emerge at consistent relative depths — across every architecture');
+  camera.position.set(0, 4, 22);
+  await sleep(2400);
+
+  // 6-8s: zoom entity zone
+  setDemoText('At ~50% depth: entity commitment. The model decides what it\'s talking about.');
+  camera.position.set(3, 0, 14);
+  controls.target.set(0, 0, 0);
+  await sleep(2400);
+
+  // 8-10s: compare mode reveal
+  setDemoText('');
+  await sleep(300);
+  showCompare('qwen3-8b', 'bonsai-1bit');
+  camera.position.set(0, 2, 36);
+  await sleep(400);
+  setDemoText('Until the model is 1-bit. The circuit dissolves entirely.');
+  await sleep(2200);
+
+  // 10-12s: hold + tagline
+  setDemoText('Universal structure. Measurable. Editable.');
+  await sleep(2500);
+
+  // done
+  setDemoText('');
+  controls.enabled = true;
+  demoRunning = false;
+  document.getElementById('demo-btn').textContent = '▶ Demo';
+}
+
+// ── Raycasting ────────────────────────────────────────────────
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+// Helper: pick the closest feature under (clientX, clientY). Returns null if no hit.
+function pickFeatureAt(clientX, clientY) {
+  mouse.x = (clientX / innerWidth) * 2 - 1;
+  mouse.y = -(clientY / innerHeight) * 2 + 1;
+  raycaster.setFromCamera(mouse, camera);
+  let bestHit = null, bestMesh = null, bestMeta = null, bestGroup = null, bestKey = null;
+  for (const key of activeKeys) {
+    const g = groups[key];
+    if (!g) continue;
+    const hits = raycaster.intersectObject(g.instanceMesh);
+    if (hits.length > 0 && (!bestHit || hits[0].distance < bestHit.distance)) {
+      bestHit = hits[0]; bestMesh = g.instanceMesh; bestMeta = g.featureMeta;
+      bestGroup = g.group; bestKey = key;
+    }
+  }
+  return bestHit ? { hit: bestHit, mesh: bestMesh, meta: bestMeta, group: bestGroup, key: bestKey } : null;
+}
+
+// If a feature was matched by the active search query, return its label so we can show it on hover
+function searchLabelFor(key, li, fi) {
+  const slug = MODEL_KEY_TO_SLUG[key];
+  const idx = realIndices.get(slug);
+  if (!idx) return null;
+  const q = (document.getElementById('search-input').value || '').trim().toLowerCase();
+  if (!q) return null;
+  const matches = idx.matches[q] || [];
+  for (const m of matches) {
+    if (m.layer === li && m.feature === fi) return `🔍 "${q}" match · score=${m.score}`;
+  }
+  return null;
+}
+
+renderer.domElement.addEventListener('click', e => {
+  if (demoRunning) return;
+  const pick = pickFeatureAt(e.clientX, e.clientY);
+  if (pick) {
+    traceWalk(pick.hit.instanceId, pick.mesh, pick.meta, pick.group);
+    const meta = pick.meta[pick.hit.instanceId];
+    showTooltip(e.clientX, e.clientY, meta, {
+      searchLabel: searchLabelFor(pick.key, meta.li, meta.fi),
+    });
+    _pinnedTooltip = true;
+  } else {
+    clearWalk(); hideTooltip();
+    _pinnedTooltip = false;
+  }
+});
+
+// Hover: throttled raycast (~60 fps) + light tooltip with layer/feature/stage
+let _hoverRafPending = false;
+let _lastHoverEv = null;
+renderer.domElement.addEventListener('mousemove', e => {
+  if (demoRunning || _pinnedTooltip) return;
+  _lastHoverEv = e;
+  if (_hoverRafPending) return;
+  _hoverRafPending = true;
+  requestAnimationFrame(() => {
+    _hoverRafPending = false;
+    const ev = _lastHoverEv;
+    if (!ev) return;
+    const pick = pickFeatureAt(ev.clientX, ev.clientY);
+    if (pick) {
+      const meta = pick.meta[pick.hit.instanceId];
+      showTooltip(ev.clientX, ev.clientY, meta, {
+        hover: true,
+        searchLabel: searchLabelFor(pick.key, meta.li, meta.fi),
+      });
+    } else {
+      hideTooltip();
+    }
+  });
+});
+renderer.domElement.addEventListener('mouseleave', () => {
+  if (!_pinnedTooltip) hideTooltip();
+});
+
+// ── Entity search ──────────────────────────────────────────────
+// Two-tier search backend:
+//   1. REAL: `search_index.json` per model from `notebooks/build_search_index.py` Modal pipeline —
+//      ~5000 whole-word tokens, each mapped to top-8 (layer, feature, score) tuples from probing
+//      the actual transformer's gate*up activations projected onto the vindex SVD basis.
+//      Loaded lazily per model; cached in `realIndices`. Files served from /search-indexes/{slug}.json.
+//   2. DEMO fallback (below): hand-curated handful of tokens (Paris→capital from the Gate-3 result,
+//      plus illustrative matches) — used when the real index hasn't been built+deployed for a model.
+
+// Map viewer model keys to slugs that match build_search_index.py's slug() output.
+const MODEL_KEY_TO_SLUG = {
+  'gemma-4-e2b':   'google-gemma-4-e2b-it',
+  'qwen3-0.6b':    'qwen-qwen3-0-6b',
+  'qwen3-8b':      'qwen-qwen3-8b',
+  'qwen3.6-35b':   'qwen-qwen3-6-35b-a3b',
+  'llama-3.1-8b':  'meta-llama-llama-3-1-8b-instruct',
+  'gpt-oss-120b':  'openai-gpt-oss-120b',
+  'ministral-3b':  'mistralai-ministral-3-3b-instruct-2512',
+  'medgemma-4b':   'google-medgemma-1-5-4b-it',
+  'bonsai-1bit':   'prism-ml-bonsai-8b-unpacked',
+};
+const realIndices = new Map();   // slug → { tokens, matches } loaded JSON
+const realIndexAttempts = new Set();  // slugs already tried (don't refetch on failure)
+
+async function loadRealSearchIndex(modelKey) {
+  const slug = MODEL_KEY_TO_SLUG[modelKey];
+  if (!slug || realIndices.has(slug) || realIndexAttempts.has(slug)) return;
+  realIndexAttempts.add(slug);
+  try {
+    const url = `/search-indexes/${slug}.json`;
+    const res = await fetch(url);
+    if (!res.ok) {
+      console.info(`[search] no real index for ${modelKey} — using demo dataset`);
+      return;
+    }
+    const idx = await res.json();
+    realIndices.set(slug, idx);
+    console.info(`[search] loaded real index: ${idx.n_tokens} tokens for ${modelKey}`);
+    // Kick off BGE embedding load in background (no-op if file missing)
+    loadBgeEmbeddings(modelKey);
+    // Re-run current query against the new index
+    const q = document.getElementById('search-input').value.trim();
+    if (q) highlightSearch(q);
+  } catch (err) {
+    console.warn(`[search] fetch failed for ${modelKey}:`, err);
+  }
+}
+
+// Look up matches for a query in the real index. Strategy:
+//   1. exact token match → return its top-K (layer, feature, score)
+//   2. else: substring match across all tokens, collect from up to 5 closest
+//   3. returns array of { layerNorm, fi, label } compatible with demo format
+function lookupReal(modelKey, query) {
+  const slug = MODEL_KEY_TO_SLUG[modelKey];
+  const idx = realIndices.get(slug);
+  if (!idx) return null;
+  const q = query.toLowerCase().trim();
+  const hits = [];
+  // Exact match first
+  if (idx.matches[q]) {
+    for (const m of idx.matches[q]) {
+      hits.push({
+        layerNorm: m.layer / (idx.num_layers - 1),
+        fi: m.feature,
+        label: `score=${m.score} (real probe)`,
+      });
+    }
+    return hits;
+  }
+  // Substring match — only meaningful overlaps (4+ chars).
+  // Filters out 3-char BPE fragments (e.g. "ang" matching "kangaroo") that produce noise
+  // rather than semantic signal. Genuine out-of-vocab queries fall through to semantic NN.
+  const MIN_SUB_LEN = 4;
+  const subMatches = idx.tokens
+    .filter(t => t.length >= MIN_SUB_LEN && (t.includes(q) || q.includes(t)))
+    .slice(0, 3);
+  for (const tok of subMatches) {
+    for (const m of (idx.matches[tok] || []).slice(0, 4)) {  // top-4 per substring hit
+      hits.push({
+        layerNorm: m.layer / (idx.num_layers - 1),
+        fi: m.feature,
+        label: `${tok} L${m.layer}/F${m.feature} score=${m.score}`,
+      });
+    }
+  }
+  return hits.length > 0 ? hits : null;
+}
+
+// ── BGE-small semantic NN (browser-side) ──────────────────────────────────
+// Loads the precomputed BGE-small-en-v1.5 embeddings (5000 × 384 float16) for the active
+// model, embeds the user's query via the public Hugging Face Inference API, and finds the
+// k nearest tokens by cosine similarity. Falls back gracefully on network/CORS failure —
+// the substring path in lookupReal() still works without this.
+
+const bgeEmbeddings = new Map();   // slug → { tokens: [...], emb: Float32Array (n×384) }
+const bgeAttempts   = new Set();
+let _hfWarned       = false;
+
+async function loadBgeEmbeddings(modelKey) {
+  const slug = MODEL_KEY_TO_SLUG[modelKey];
+  const idx = realIndices.get(slug);
+  if (!slug || !idx || bgeEmbeddings.has(slug) || bgeAttempts.has(slug)) return;
+  bgeAttempts.add(slug);
+  try {
+    const res = await fetch(`/search-indexes/${slug}.bge.f16.bin`);
+    if (!res.ok) return;
+    const buf = await res.arrayBuffer();
+    // Float16 → Float32 conversion (browsers don't have native Float16Array yet)
+    const u16 = new Uint16Array(buf);
+    const f32 = new Float32Array(u16.length);
+    for (let i = 0; i < u16.length; i++) f32[i] = _f16ToF32(u16[i]);
+    bgeEmbeddings.set(slug, { tokens: idx.tokens, emb: f32, dim: 384 });
+    console.info(`[search] BGE embeddings loaded for ${modelKey}: ${u16.length / 384} × 384`);
+  } catch (err) {
+    console.warn(`[search] BGE fetch failed for ${modelKey}:`, err);
+  }
+}
+
+// IEEE 754 half-precision → single-precision (no Float16Array support yet)
+function _f16ToF32(h) {
+  const s = (h & 0x8000) >> 15;
+  const e = (h & 0x7C00) >> 10;
+  const f =  h & 0x03FF;
+  if (e === 0)    return (s ? -1 : 1) * Math.pow(2, -14) * (f / 1024);
+  if (e === 0x1F) return f ? NaN : (s ? -Infinity : Infinity);
+  return (s ? -1 : 1) * Math.pow(2, e - 15) * (1 + f / 1024);
+}
+
+// Embed a single query via public HF Inference API (rate-limited free tier — fine for demos).
+// BGE-small-en-v1.5 returns 384-d vectors, normalized.
+async function embedQuery(text) {
+  try {
+    const res = await fetch("https://api-inference.huggingface.co/models/BAAI/bge-small-en-v1.5", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ inputs: text, options: { wait_for_model: true } }),
+    });
+    if (!res.ok) {
+      if (!_hfWarned) {
+        console.warn(`[search] HF Inference API returned ${res.status}; semantic NN disabled this session.`);
+        _hfWarned = true;
+      }
+      return null;
+    }
+    const data = await res.json();
+    // Response is either [v0..v383] or [[v0..v383]] depending on input shape
+    const v = Array.isArray(data[0]) ? data[0] : data;
+    if (!Array.isArray(v) || v.length !== 384) return null;
+    // Normalize (BGE returns normalized but be safe)
+    let n = 0; for (const x of v) n += x * x;
+    n = Math.sqrt(n) || 1;
+    const out = new Float32Array(384);
+    for (let i = 0; i < 384; i++) out[i] = v[i] / n;
+    return out;
+  } catch (err) {
+    if (!_hfWarned) {
+      console.warn("[search] embedQuery failed:", err);
+      _hfWarned = true;
+    }
+    return null;
+  }
+}
+
+// Find top-k nearest tokens to the query embedding (cosine sim; emb rows already normalized).
+function findNearestTokens(slug, queryVec, k = 3) {
+  const ent = bgeEmbeddings.get(slug);
+  if (!ent || !queryVec) return [];
+  const { tokens, emb, dim } = ent;
+  const n = tokens.length;
+  const scores = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    let s = 0;
+    const off = i * dim;
+    for (let j = 0; j < dim; j++) s += emb[off + j] * queryVec[j];
+    scores[i] = s;
+  }
+  // Top-k by partial sort (n=5000 is small enough that full sort is fine)
+  const indexed = Array.from(scores, (s, i) => ({ tok: tokens[i], score: s }));
+  indexed.sort((a, b) => b.score - a.score);
+  return indexed.slice(0, k);
+}
+
+async function lookupRealSemantic(modelKey, query) {
+  const slug = MODEL_KEY_TO_SLUG[modelKey];
+  const idx = realIndices.get(slug);
+  if (!idx) return null;
+  // Make sure BGE embeddings are loading for this model (no-op if already done/attempted)
+  loadBgeEmbeddings(modelKey);
+  if (!bgeEmbeddings.has(slug)) return null;  // not yet loaded; let the user retry shortly
+  const queryVec = await embedQuery(query);
+  if (!queryVec) return null;
+  const nearest = findNearestTokens(slug, queryVec, 3);
+  if (nearest.length === 0 || nearest[0].score < 0.6) return null;  // weak match → skip
+  const hits = [];
+  for (const { tok, score } of nearest) {
+    for (const m of (idx.matches[tok] || []).slice(0, 3)) {
+      hits.push({
+        layerNorm: m.layer / (idx.num_layers - 1),
+        fi: m.feature,
+        label: `${tok} (sim=${score.toFixed(2)}) L${m.layer}/F${m.feature}`,
+      });
+    }
+  }
+  return hits.length > 0 ? hits : null;
+}
+
+// Demo dataset — small handcrafted index used when real index isn't deployed yet.
+// `layerNorm` is a fraction of total depth (0.0 = first layer, 1.0 = last). At runtime each
+// match is mapped to the model's actual layer range (round(layerNorm * (L-1))).
+// The Paris→capital match is sourced from the LarQL Gate-3 result on Gemma 4 E2B (feature
+// 11179 at layer 27 of 36 → normalized depth 27/35 ≈ 0.77). Other matches are illustrative:
+// they sit in plausible layer bands (entity zone 0.45–0.55, prediction zone 0.90+) and use
+// representative feature indices visible in the viewer's 128-feature spiral.
+const SEARCH_INDEX = {
+  'gemma-4-e2b': {
+    'paris':    [{ layerNorm: 0.77, fi: 11, label: 'L27/F11179 — capital-of-X concept (Gate-3)' },
+                 { layerNorm: 0.62, fi:  8, label: 'Eiffel/landmark co-activation' }],
+    'capital':  [{ layerNorm: 0.77, fi: 11, label: 'capital-of-X concept' },
+                 { layerNorm: 0.40, fi: 19, label: 'country routing' }],
+    'eiffel':   [{ layerNorm: 0.62, fi:  8 }],
+    'france':   [{ layerNorm: 0.40, fi: 19 }, { layerNorm: 0.55, fi: 22 }],
+    'python':   [{ layerNorm: 0.50, fi: 27, label: 'code-block routing' },
+                 { layerNorm: 0.92, fi:  3, label: 'def/class token preference' }],
+    'code':     [{ layerNorm: 0.50, fi: 27 }, { layerNorm: 0.30, fi: 33 }],
+    'doctor':   [{ layerNorm: 0.50, fi: 41, label: 'medical entity cluster' }],
+    'einstein': [{ layerNorm: 0.50, fi: 47, label: 'physicist entity' }],
+  },
+  'qwen3-8b': {
+    'paris':    [{ layerNorm: 0.55, fi: 11 }],
+    'capital':  [{ layerNorm: 0.55, fi: 11 }, { layerNorm: 0.42, fi: 19 }],
+    'python':   [{ layerNorm: 0.50, fi: 27 }],
+    'code':     [{ layerNorm: 0.50, fi: 27 }],
+  },
+  'llama-3.1-8b': {
+    'paris':    [{ layerNorm: 0.65, fi: 11 }],
+    'capital':  [{ layerNorm: 0.65, fi: 11 }],
+  },
+  // Bonsai/BitNet 1-bit models: dissolved — no concentrated features to highlight
+  'bonsai-1bit': { /* intentionally empty: dissolution means no feature locality */ },
+};
+
+let savedColors = null;          // Map<key, [Color, Color, ...]> — original instance colors per group
+let highlightedFeatureIdxs = []; // [{ key, globalIdx }]
+let searchHaloMeshes = [];       // glowing ring meshes added per match
+
+function _saveColorsIfNeeded() {
+  if (savedColors) return;
+  savedColors = new Map();
+  for (const key of activeKeys) {
+    const g = groups[key];
+    if (!g || !g.instanceMesh.instanceColor) continue;
+    const arr = g.instanceMesh.instanceColor.array;
+    savedColors.set(key, new Float32Array(arr));  // copy
+  }
+}
+
+function clearSearch() {
+  // Restore original colors
+  if (savedColors) {
+    for (const key of activeKeys) {
+      const g = groups[key];
+      const original = savedColors.get(key);
+      if (!g || !original) continue;
+      g.instanceMesh.instanceColor.array.set(original);
+      g.instanceMesh.instanceColor.needsUpdate = true;
+    }
+    savedColors = null;
+  }
+  // Reset scales of previously-highlighted features
+  for (const h of highlightedFeatureIdxs) {
+    const g = groups[h.key];
+    if (!g) continue;
+    const m = new THREE.Matrix4();
+    g.instanceMesh.getMatrixAt(h.globalIdx, m);
+    const pos = new THREE.Vector3(), q = new THREE.Quaternion(), s = new THREE.Vector3();
+    m.decompose(pos, q, s);
+    s.setScalar(1.0);
+    m.compose(pos, q, s);
+    g.instanceMesh.setMatrixAt(h.globalIdx, m);
+  }
+  for (const key of activeKeys) {
+    const g = groups[key];
+    if (g) g.instanceMesh.instanceMatrix.needsUpdate = true;
+  }
+  highlightedFeatureIdxs = [];
+  // Remove halo meshes
+  for (const mesh of searchHaloMeshes) {
+    scene.remove(mesh);
+    mesh.geometry.dispose();
+    mesh.material.dispose();
+  }
+  searchHaloMeshes = [];
+  document.getElementById('search-status').textContent = '';
+}
+
+function highlightSearch(query) {
+  const q = (query || '').trim().toLowerCase();
+  clearSearch();
+  if (!q) return;
+
+  let totalMatches = 0;
+  const matchInfos = [];
+  _saveColorsIfNeeded();
+
+  const HIGHLIGHT_COLOR = new THREE.Color(0xffffff);  // pure white pops against everything
+  const PULSE_SCALE = 6.0;
+
+  for (const key of activeKeys) {
+    // Try real index first, then fall back to demo dataset
+    let matches = lookupReal(key, q);
+    if (!matches) {
+      const idx = SEARCH_INDEX[key] || {};
+      matches = idx[q] || [];
+      if (matches.length === 0) {
+        for (const k of Object.keys(idx)) {
+          if (k.includes(q) || q.includes(k)) matches = matches.concat(idx[k]);
+        }
+      }
+    }
+    if (matches.length === 0) continue;
+
+    const g = groups[key];
+    if (!g) continue;
+    const L = VINDEX_DATA[key].layers;
+    const F = VINDEX_DATA[key].F;
+    const offsetX = g.group.position.x;
+
+    for (const m of matches) {
+      const li = Math.round(m.layerNorm * (L - 1));
+      const fi = Math.min(Math.max(m.fi, 0), F - 1);
+      const globalIdx = li * F + fi;
+      if (globalIdx < 0 || globalIdx >= g.featureMeta.length) continue;
+      g.instanceMesh.setColorAt(globalIdx, HIGHLIGHT_COLOR);
+      // Scale up
+      const matrix = new THREE.Matrix4();
+      g.instanceMesh.getMatrixAt(globalIdx, matrix);
+      const pos = new THREE.Vector3(), quat = new THREE.Quaternion(), scl = new THREE.Vector3();
+      matrix.decompose(pos, quat, scl);
+      scl.setScalar(PULSE_SCALE);
+      matrix.compose(pos, quat, scl);
+      g.instanceMesh.setMatrixAt(globalIdx, matrix);
+      highlightedFeatureIdxs.push({ key, globalIdx });
+
+      // Add a glowing halo ring at the feature's world position so it's findable at any zoom
+      const meta = g.featureMeta[globalIdx];
+      const haloGeo = new THREE.RingGeometry(0.55, 0.85, 32);
+      const haloMat = new THREE.MeshBasicMaterial({
+        color: 0xffe060, transparent: true, opacity: 0.92, side: THREE.DoubleSide, depthWrite: false,
+      });
+      const halo = new THREE.Mesh(haloGeo, haloMat);
+      halo.position.set(meta.x + offsetX, meta.y, meta.z);
+      halo.lookAt(camera.position);
+      halo.userData.isSearchHalo = true;
+      halo.userData.featurePos = halo.position.clone();
+      scene.add(halo);
+      searchHaloMeshes.push(halo);
+
+      matchInfos.push(`${key} L${li}/F${fi}${m.label ? ` (${m.label.slice(0, 40)})` : ''}`);
+      totalMatches++;
+    }
+    g.instanceMesh.instanceColor.needsUpdate = true;
+    g.instanceMesh.instanceMatrix.needsUpdate = true;
+  }
+
+  const status = document.getElementById('search-status');
+  if (totalMatches === 0) {
+    // Try semantic NN as a third tier — async, will re-render on success
+    status.textContent = `no exact match for "${q}" — trying semantic NN…`;
+    _trySemanticNN(q);
+  } else {
+    status.textContent = `${totalMatches} match${totalMatches === 1 ? '' : 'es'}: ${matchInfos.slice(0, 3).join(', ')}${matchInfos.length > 3 ? '…' : ''}`;
+  }
+}
+
+// Async semantic NN tier — runs after sync exact/substring path returns nothing.
+// Falls back silently if BGE embeddings haven't loaded or the HF Inference API call fails.
+let _semanticInflight = null;
+async function _trySemanticNN(q) {
+  // Cancel previous in-flight to avoid stale renders
+  const myToken = Symbol("semantic");
+  _semanticInflight = myToken;
+
+  let totalMatches = 0;
+  const matchInfos = [];
+  const HIGHLIGHT_COLOR = new THREE.Color(0xffffff);
+  const PULSE_SCALE = 6.0;
+
+  for (const key of activeKeys) {
+    const matches = await lookupRealSemantic(key, q);
+    if (_semanticInflight !== myToken) return;  // a newer query started
+    if (!matches || matches.length === 0) continue;
+
+    const g = groups[key];
+    if (!g) continue;
+    _saveColorsIfNeeded();
+    const L = VINDEX_DATA[key].layers;
+    const F = VINDEX_DATA[key].F;
+    const offsetX = g.group.position.x;
+
+    for (const m of matches) {
+      const li = Math.round(m.layerNorm * (L - 1));
+      const fi = Math.min(Math.max(m.fi, 0), F - 1);
+      const globalIdx = li * F + fi;
+      if (globalIdx < 0 || globalIdx >= g.featureMeta.length) continue;
+      g.instanceMesh.setColorAt(globalIdx, HIGHLIGHT_COLOR);
+      const matrix = new THREE.Matrix4();
+      g.instanceMesh.getMatrixAt(globalIdx, matrix);
+      const pos = new THREE.Vector3(), quat = new THREE.Quaternion(), scl = new THREE.Vector3();
+      matrix.decompose(pos, quat, scl);
+      scl.setScalar(PULSE_SCALE);
+      matrix.compose(pos, quat, scl);
+      g.instanceMesh.setMatrixAt(globalIdx, matrix);
+      highlightedFeatureIdxs.push({ key, globalIdx });
+
+      const meta = g.featureMeta[globalIdx];
+      const haloGeo = new THREE.RingGeometry(0.55, 0.85, 32);
+      const haloMat = new THREE.MeshBasicMaterial({
+        color: 0x60d0ff, transparent: true, opacity: 0.92, side: THREE.DoubleSide, depthWrite: false,
+      });
+      const halo = new THREE.Mesh(haloGeo, haloMat);
+      halo.position.set(meta.x + offsetX, meta.y, meta.z);
+      halo.lookAt(camera.position);
+      halo.userData.isSearchHalo = true;
+      scene.add(halo);
+      searchHaloMeshes.push(halo);
+
+      matchInfos.push(`${key} ${m.label || `L${li}/F${fi}`}`);
+      totalMatches++;
+    }
+    g.instanceMesh.instanceColor.needsUpdate = true;
+    g.instanceMesh.instanceMatrix.needsUpdate = true;
+  }
+
+  const status = document.getElementById('search-status');
+  if (totalMatches === 0) {
+    status.textContent = `no matches for "${q}" (exact, substring, or semantic)`;
+  } else {
+    status.textContent = `${totalMatches} semantic match${totalMatches === 1 ? '' : 'es'}: ${matchInfos.slice(0, 3).join(', ')}${matchInfos.length > 3 ? '…' : ''}`;
+  }
+}
+
+// ── UI wiring ─────────────────────────────────────────────────
+const modelSelect = document.getElementById('model-select');
+const compareBtn  = document.getElementById('compare-btn');
+const demoBtn     = document.getElementById('demo-btn');
+const viewBtn     = document.getElementById('view-btn');
+const searchInput = document.getElementById('search-input');
+const tier2Btn    = document.getElementById('tier2-btn');
+
+let _searchTimer = null;
+searchInput.addEventListener('input', e => {
+  clearTimeout(_searchTimer);
+  const v = e.target.value;
+  _searchTimer = setTimeout(() => highlightSearch(v), 180);
+});
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { searchInput.value = ''; clearSearch(); }
+});
+
+modelSelect.addEventListener('change', () => {
+  if (demoRunning) return;
+  // Drop stale highlight state — the InstancedMesh references are about to be disposed
+  savedColors = null;
+  highlightedFeatureIdxs = [];
+  _pinnedTooltip = false;
+  hideTooltip();
+  compareMode ? showCompare(modelSelect.value, 'bonsai-1bit') : showSingle(modelSelect.value);
+  // Lazy-load the real search index for this model (no-op if already loaded or unavailable)
+  loadRealSearchIndex(modelSelect.value);
+  // Re-apply current search query against the new model
+  if (searchInput.value.trim()) {
+    setTimeout(() => highlightSearch(searchInput.value), 100);
+  } else {
+    document.getElementById('search-status').textContent = '';
+  }
+});
+compareBtn.addEventListener('click', () => {
+  if (demoRunning) return;
+  compareMode ? showSingle(modelSelect.value) : showCompare(modelSelect.value, 'bonsai-1bit');
+});
+demoBtn.addEventListener('click', () => {
+  if (demoRunning) {
+    demoRunning = false; controls.enabled = true;
+    demoBtn.textContent = '▶ Demo'; setDemoText('');
+    showSingle(modelSelect.value);
+  } else { runDemo(); }
+});
+viewBtn.addEventListener('click', () => {
+  if (demoRunning) return;
+  viewMode = (viewMode === 'cylinder') ? 'flat' : 'cylinder';
+  viewBtn.textContent = (viewMode === 'flat') ? '🌀 3D View' : '🔌 2D Circuit';
+  // Reposition camera + reconfigure controls for the new view
+  if (viewMode === 'flat') {
+    camera.position.set(0, 0, 28);
+    controls.target.set(0, 0, 0);
+    // Lock the orbit to a near-flat plane (allow only small tilt + pan + zoom)
+    controls.minPolarAngle = Math.PI / 2 - 0.05;
+    controls.maxPolarAngle = Math.PI / 2 + 0.05;
+    controls.enableRotate = false;
+  } else {
+    camera.position.set(0, 4, 26);
+    controls.target.set(0, 0, 0);
+    controls.minPolarAngle = 0;
+    controls.maxPolarAngle = Math.PI;
+    controls.enableRotate = true;
+  }
+  controls.update();
+  // Rebuild active groups with new layout
+  if (compareMode) {
+    showCompare(modelSelect.value, 'bonsai-1bit');
+  } else {
+    showSingle(modelSelect.value);
+  }
+});
+tier2Btn.addEventListener('click', () => {
+  tier2Open = !tier2Open;
+  document.getElementById('tier2-metrics').className = tier2Open ? 'open' : '';
+  tier2Btn.textContent = tier2Open ? 'METRICS ▴' : 'METRICS ▾';
+});
+
+// ── Resize ────────────────────────────────────────────────────
+window.addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+  composer.setSize(innerWidth, innerHeight);
+  bloom.resolution.set(innerWidth, innerHeight);
+});
+
+// ── Animate ───────────────────────────────────────────────────
+let t = 0;
+function animate() {
+  requestAnimationFrame(animate);
+  t += 0.003;
+  if (!demoRunning) {
+    for (const key of activeKeys) {
+      const g = groups[key];
+      if (g) g.group.rotation.y = Math.sin(t * 0.18) * 0.05;
+    }
+  }
+  // Modulate bloom for "alive" feel
+  bloom.strength = 0.7 + Math.sin(t * 0.6) * 0.08;
+  // Billboard search halos to face the camera + pulse opacity
+  if (searchHaloMeshes.length > 0) {
+    const pulse = 0.65 + Math.abs(Math.sin(t * 4.0)) * 0.32;
+    for (const halo of searchHaloMeshes) {
+      halo.lookAt(camera.position);
+      halo.material.opacity = pulse;
+    }
+  }
+  controls.update();
+  composer.render();
+}
+
+// ── Init ──────────────────────────────────────────────────────
+showSingle('qwen3-8b');
+animate();
+// Try to fetch the real search index for the default model (silent if 404)
+loadRealSearchIndex('qwen3-8b');
+// URL param handling: ?view=flat → 2D circuit, ?autoplay → demo, ?model=… → switch model, ?q=paris → search
+const _params = new URLSearchParams(location.search);
+const _modelParam = _params.get('model');
+if (_modelParam && VINDEX_DATA[_modelParam]) {
+  modelSelect.value = _modelParam;
+  modelSelect.dispatchEvent(new Event('change'));
+}
+if (_params.get('view') === 'flat') {
+  viewBtn.click();
+}
+if (_params.has('autoplay')) {
+  setTimeout(runDemo, 1200);
+}
+const _q = _params.get('q');
+if (_q) {
+  searchInput.value = _q;
+  setTimeout(() => highlightSearch(_q), 1100);  // wait for buildGroup + loadRealSearchIndex
+}
+</script>
+</body>
+</html>

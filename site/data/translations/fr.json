@@ -226,7 +226,12 @@
     "support": "Support",
     "privacy_settings": "Paramètres de Confidentialité",
     "cookie_preferences": "Préférences de Cookies",
-    "cookie_policy": "Politique de Cookies"
+    "cookie_policy": "Politique de Cookies",
+    "motto": {
+      "word_1": "intelligence",
+      "word_2": "libre",
+      "phrase": "intelligence libre"
+    }
   },
   "support": {
     "title": "Centre de Support",
@@ -1030,26 +1035,26 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Propulsé par vindex + LarQL",
+      "eyebrow": "Propulsé par vIndex + LarQL",
       "heading": "Conformité, avec un reçu.",
-      "tagline": "La plupart de la « conformité IA » s'arrête aux journaux d'accès et aux garde-fous au niveau du prompt. Divinci entre dans le modèle. Chaque association d'entité est une caractéristique interrogeable ; chaque modification est un correctif portable et auditable — et le <strong>vindex</strong> est l'artefact de documentation technique que votre régulateur est sur le point d'exiger.",
+      "tagline": "La plupart de la « conformité IA » s'arrête aux journaux d'accès et aux garde-fous au niveau du prompt. Divinci entre dans le modèle. Chaque association d'entité est une caractéristique interrogeable ; chaque modification est un correctif portable et auditable — et le <strong>vIndex</strong> est l'artefact de documentation technique que votre régulateur est sur le point d'exiger.",
       "cta_primary": "Parler à la conformité →",
-      "cta_secondary": "Voir un vindex en direct"
+      "cta_secondary": "Voir un vIndex en direct"
     },
     "mapping": {
       "heading": "Ce que la réglementation exige · ce que LarQL livre",
-      "subheading": "Le même artefact — le vindex — répond aux exigences de transparence, de surveillance, de documentation et d'effacement dans les quatre grandes réglementations d'IA auxquelles font face les clients de Divinci.",
+      "subheading": "Le même artefact — le vIndex — répond aux exigences de transparence, de surveillance, de documentation et d'effacement dans les quatre grandes réglementations d'IA auxquelles font face les clients de Divinci.",
       "th_regulation": "Réglementation",
       "th_requirement": "Exigence",
       "th_competitors": "Ce que les concurrents proposent",
-      "th_larql": "Ce que LarQL/vindex propose",
+      "th_larql": "Ce que LarQL/vIndex propose",
       "rows": [
         {
           "reg_label": "Règlement IA UE §13",
           "reg_topic": "Transparence",
           "requirement": "« Transparence suffisante pour permettre aux utilisateurs d'interpréter les sorties »",
           "competitors": "Fiches de modèle, descriptions textuelles du système",
-          "larql": "Le vindex EST un artefact de transparence interrogeable — chaque caractéristique porteuse de fait identifiée par <code>(layer, feature, gate_score)</code>"
+          "larql": "Le vIndex EST un artefact de transparence interrogeable — chaque caractéristique porteuse de fait identifiée par <code>(layer, feature, gate_score)</code>"
         },
         {
           "reg_label": "Règlement IA UE §14",
@@ -1091,13 +1096,13 @@
     "receipt": {
       "heading": "À quoi ressemble vraiment un « reçu »",
       "para_1": "Un correctif LarQL est un fichier JSON portable avec une somme de contrôle SHA-256. Appliquez-le pour supprimer un fait ; retirez-le pour restaurer le modèle bit pour bit. Le correctif EST le journal d'audit — opérateurs, régulateurs et consommateurs en aval peuvent vérifier la même opération de façon indépendante.",
-      "para_2": "Ci-dessous : le correctif Gate-3 réel que nous livrons dans notre suite de tests publique, montrant l'association Paris→capitale supprimée et restaurée avec un effet mesurable et reproductible sur un véritable vindex Gemma 4 E2B."
+      "para_2": "Ci-dessous : le correctif Gate-3 réel que nous livrons dans notre suite de tests publique, montrant l'association Paris→capitale supprimée et restaurée avec un effet mesurable et reproductible sur un véritable vIndex Gemma 4 E2B."
     },
     "cta_band": {
       "heading": "Une conformité que vous pouvez prouver. Sur n'importe quel transformer ouvert.",
-      "tagline": "Huit vindexes publiés aujourd'hui sur Gemma, Qwen, Llama, Mistral, OpenAI MoE et Microsoft 1-bit. Apportez votre modèle — nous construirons le reçu.",
+      "tagline": "Huit vIndexes publiés aujourd'hui sur Gemma, Qwen, Llama, Mistral, OpenAI MoE et Microsoft 1-bit. Apportez votre modèle — nous construirons le reçu.",
       "cta_primary": "Réserver une revue de conformité →",
-      "cta_secondary": "Parcourir les vindexes sur Hugging Face"
+      "cta_secondary": "Parcourir les vIndexes sur Hugging Face"
     }
   }
 }

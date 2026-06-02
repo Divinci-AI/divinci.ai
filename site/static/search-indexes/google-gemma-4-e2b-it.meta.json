@@ -1,0 +1,7 @@
+{
+  "model_id": "google/gemma-4-E2B-it",
+  "n_tokens": 5000,
+  "top_k": 8,
+  "has_bge": true,
+  "build_unix_ts": 1776826346
+}

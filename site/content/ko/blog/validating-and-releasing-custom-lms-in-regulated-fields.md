@@ -6,7 +6,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Compliance"]
-tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vindex"]
+tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vIndex"]
 
 [extra]
 author = "Mike Mooring"
@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
 hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
-summary = "규제 산업의 맞춤형 언어 모델 컴플라이언스는 하나의 축을 따라 깔끔하게 갈라집니다: 오픈 웨이트 대 폐쇄 API입니다. 오픈 웨이트 백엔드의 경우, GDPR 제17조의 검증 가능한 삭제를 암호학적으로 충족하는 vindex 가중치 증명을 제공할 수 있습니다. 폐쇄 API 백엔드의 경우, 동일한 영수증이 의사결정 체인을 다루지만 가중치 출처는 주장할 수 없으며, 규제 당국은 그 구분을 영수증 자체에서 확인하게 됩니다. 본 글은 네 가지 규제 프레임워크(EU AI Act, GDPR, HIPAA, NIST AI RMF)를 우리가 제공하는 네 단계 파이프라인에 매핑하고, 실제 영수증 포맷을 보여줍니다."
+summary = "규제 산업의 맞춤형 언어 모델 컴플라이언스는 하나의 축을 따라 깔끔하게 갈라집니다: 오픈 웨이트 대 폐쇄 API입니다. 오픈 웨이트 백엔드의 경우, GDPR 제17조의 검증 가능한 삭제를 암호학적으로 충족하는 vIndex 가중치 증명을 제공할 수 있습니다. 폐쇄 API 백엔드의 경우, 동일한 영수증이 의사결정 체인을 다루지만 가중치 출처는 주장할 수 없으며, 규제 당국은 그 구분을 영수증 자체에서 확인하게 됩니다. 본 글은 네 가지 규제 프레임워크(EU AI Act, GDPR, HIPAA, NIST AI RMF)를 우리가 제공하는 네 단계 파이프라인에 매핑하고, 실제 영수증 포맷을 보여줍니다."
 +++
 
 *릴리스 사이클 노트 — Part IV*
@@ -49,7 +49,7 @@ summary = "규제 산업의 맞춤형 언어 모델 컴플라이언스는 하나
 <text x="55" y="191" font-size="10" fill="#4a4030">• 인간 감독 조치</text>
 <text x="55" y="206" font-size="10" fill="#4a4030">• 시판 후 모니터링</text>
 <text x="55" y="232" font-size="11" font-weight="700" fill="#2d5a4f">검증 기본 단위:</text>
-<text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">vindex를 통한 비트 단위</text>
+<text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">vIndex를 통한 비트 단위</text>
 <text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">메커니즘 문서화</text>
 <text x="55" y="290" font-size="10" fill="#6b5d4f">위반 시 제재:</text>
 <text x="55" y="308" font-size="14" font-weight="700" fill="#a04848">전 세계 매출의</text>
@@ -109,7 +109,7 @@ summary = "규제 산업의 맞춤형 언어 모델 컴플라이언스는 하나
 
 단계별 매핑에 앞서, 본 글 전체에서 가장 중요한 유의 사항입니다.
 
-**오픈 웨이트 모델 백엔드 — Gemma, Qwen, Llama, Mistral, GPT-OSS 등 가중치가 주소 지정 및 편집 가능한 모든 경우 — 모든 Divinci 출시 결정은 **가중치 증명(weight-attestation)**을 포함한 vindex 영수증을 발행합니다. 결정 시점의 활성 가중치가 매니페스트에 등록된 가중치와 정확히 동일하다는 암호학적 증명입니다. 이것이 GDPR 제17조 검증 가능한 삭제를 가능하게 만드는 요소입니다. 가중치 공간에서 특정 엔티티-관계를 제거하는 [DELETE 패치](/blog/deleting-paris-from-a-language-model/)를 적용하면, 영수증이 전후 해시를 임베드하며, 감사인은 공개된 vindex에 대해 검증을 재실행함으로써 삭제가 발생했음을 확인할 수 있습니다.
+**오픈 웨이트 모델 백엔드 — Gemma, Qwen, Llama, Mistral, GPT-OSS 등 가중치가 주소 지정 및 편집 가능한 모든 경우 — 모든 Divinci 출시 결정은 **가중치 증명(weight-attestation)**을 포함한 vIndex 영수증을 발행합니다. 결정 시점의 활성 가중치가 매니페스트에 등록된 가중치와 정확히 동일하다는 암호학적 증명입니다. 이것이 GDPR 제17조 검증 가능한 삭제를 가능하게 만드는 요소입니다. 가중치 공간에서 특정 엔티티-관계를 제거하는 [DELETE 패치](/blog/deleting-paris-from-a-language-model/)를 적용하면, 영수증이 전후 해시를 임베드하며, 감사인은 공개된 vIndex에 대해 검증을 재실행함으로써 삭제가 발생했음을 확인할 수 있습니다.
 
 **폐쇄 API 모델 백엔드 — 불투명한 API를 통한 OpenAI, Anthropic, Google — 동일한 영수증이 의사결정 체인(어느 매니페스트, 어느 게이트 결과, 어느 모니터 판독값, 어느 사용자가 어느 액션을 트리거했는지)을 다루지만, 제공자가 가중치를 노출하지 않으므로 **가중치 출처는 주장할 수 없습니다**. 영수증은 `weight_attestation: null` 필드에 그 이유를 설명하는 `note`와 함께 이를 명시적으로 기재합니다. 이는 격하된 컴플라이언스 자세가 아니라 — 검증 가능한 것의 한계를 정직하게 기록한 것입니다. 영수증을 읽는 감사인은 어떤 종류의 증명이 이루어지고 있고 어떤 것이 이루어지지 않는지를 정확히 이해합니다.
 
@@ -212,7 +212,7 @@ summary = "규제 산업의 맞춤형 언어 모델 컴플라이언스는 하나
 
 Register 단계는 SHA-256으로 주소 지정되는 불변 JSON 매니페스트를 산출합니다. 규제 출시의 경우, 매니페스트는 부속서 IV<sup><a href="#ref-1">[1]</a></sup>가 요구하는 모든 것을 단일 산출물로 담습니다.
 
-- 모델 아티팩트(HF 저장소 + 커밋 SHA, 또는 vindex 패치 참조)
+- 모델 아티팩트(HF 저장소 + 커밋 SHA, 또는 vIndex 패치 참조)
 - 프롬프트 템플릿(모든 변수, 모든 시스템 메시지 — 버전 관리됨)
 - 라우팅 규칙(어느 트래픽 클래스가 어느 릴리스로 가는지)
 - 게이트 임계값 계산에 사용된 데이터셋 버전(해시별 학습 데이터 요약)
@@ -221,7 +221,7 @@ Register 단계는 SHA-256으로 주소 지정되는 불변 JSON 매니페스트
 
 매니페스트가 곧 문서입니다. 감사인은 산문을 읽는 것이 아니라 매니페스트 해시를 읽고 번들을 검증합니다. 6개월 후에 작성된 산문 요약 같은 것은 필요 없습니다.
 
-**오픈 웨이트 보너스.** 모델 아티팩트가 오픈 웨이트 모델을 참조할 때, 매니페스트는 `vindex_sha256`도 임베드합니다 — 모델의 공개된 [vindex](/ko/compliance/)의 암호학적 지문입니다. 그 지문이야말로 제3자가 우리의 배포 인프라를 신뢰할 필요 없이 활성 가중치를 검증할 수 있게 합니다.
+**오픈 웨이트 보너스.** 모델 아티팩트가 오픈 웨이트 모델을 참조할 때, 매니페스트는 `vindex_sha256`도 임베드합니다 — 모델의 공개된 [vIndex](/ko/compliance/)의 암호학적 지문입니다. 그 지문이야말로 제3자가 우리의 배포 인프라를 신뢰할 필요 없이 활성 가중치를 검증할 수 있게 합니다.
 
 **폐쇄 API 유의 사항.** 모델 아티팩트가 폐쇄 API 모델을 참조할 때, 매니페스트의 `vindex_sha256` 필드는 `null`이며, 매니페스트의 `weight_attestation_class`는 `decision_chain_only`입니다. 이것을 읽는 감사인은 무엇이 주장되고 무엇이 주장되지 않는지를 정확히 알게 됩니다.
 
@@ -267,7 +267,7 @@ HIPAA의 경우, 카나리 단계는 요청별 감사 로깅이 엔드 투 엔�
 
 이 단계가 컴플라이언스 스토리를 완성하는 단계입니다. Observe 단계는 활성 릴리스를 통해 지속적인 트레이스 재현을 실행하며, Gate에서 사용된 동일한 인간 앵커 기반 판정기로 채점하고, 위반 시 자동 롤백을 트리거하는 품질 모니터를 갖춥니다.
 
-모든 출시 결정 — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **그리고 모든 GDPR 제17조 DELETE 패치 적용** — 은 vindex 영수증을 발행합니다. 해당 고객의 이전 영수증과 해당 릴리스의 이전 영수증에 해시 체인으로 연결됩니다.
+모든 출시 결정 — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **그리고 모든 GDPR 제17조 DELETE 패치 적용** — 은 vIndex 영수증을 발행합니다. 해당 고객의 이전 영수증과 해당 릴리스의 이전 영수증에 해시 체인으로 연결됩니다.
 
 [컴플라이언스 페이지](/ko/compliance/)에 문서화된 포맷에서 직접 가져온 GDPR 제17조 DELETE 패치의 실제 영수증은 다음과 같습니다.
 
@@ -301,7 +301,7 @@ HIPAA의 경우, 카나리 단계는 요청별 감사 로깅이 엔드 투 엔�
 }
 ```
 
-그 산출물은 검증 가능합니다. 감사인은 우리의 로그를 신뢰할 필요가 없습니다. `vindex_sha256_after`를 가져와 `huggingface.co/Divinci-AI`에서 해당 공개 vindex를 받아온 뒤, 레이어 27의 특성 11179가 상위 25에서 구조적으로 부재함을 검증합니다. `chain_signature`를 가져와 이전 영수증과 대조해 검증합니다. 전체 체인은 고객이 구성한 일정에 따라 외부에 앵커링됩니다.
+그 산출물은 검증 가능합니다. 감사인은 우리의 로그를 신뢰할 필요가 없습니다. `vindex_sha256_after`를 가져와 `huggingface.co/Divinci-AI`에서 해당 공개 vIndex를 받아온 뒤, 레이어 27의 특성 11179가 상위 25에서 구조적으로 부재함을 검증합니다. `chain_signature`를 가져와 이전 영수증과 대조해 검증합니다. 전체 체인은 고객이 구성한 일정에 따라 외부에 앵커링됩니다.
 
 **폐쇄 API 모델에 대한 동일 작업.** 위 영수증 필드는 세 가지 방식으로 바뀝니다: `operation.target`은 `provider_api_endpoint`가 되고, `verification`은 의사결정 체인 증거만을 다루는 다른 스키마가 되며, `weight_attestation_class`는 `decision_chain_only`가 됩니다. 폐쇄 API 모델 제공자는 가중치를 노출하지 않았으므로 영수증은 그렇게 기록합니다. 가중치 수준의 증명을 원하는 감사인은 이제 우리가 아니라 제공자에게 에스컬레이션해야 한다는 것을 압니다.
 
@@ -315,7 +315,7 @@ HIPAA의 경우, 카나리 단계는 요청별 감사 로깅이 엔드 투 엔�
 |---|---|
 | *"3월 15일 14:22 UTC에 어느 모델 버전이 실행되고 있었습니까?"* | 그 타임스탬프에 대한 Observe 단계 영수증으로, 서명되고 해시 체인으로 연결되어 있습니다. |
 | *"이 릴리스는 승격 전에 어떤 평가를 통과했습니까?"* | Gate 단계 영수증으로, 슬라이스별 Spearman ρ 표와 게이트가 실행된 데이터셋 SHA를 포함합니다. |
-| *"환자 X에 대한 GDPR 제17조 삭제 요청이 실제로 적용되었습니까?"* | 위의 DELETE 패치 영수증입니다. 감사인은 `vindex_sha256_after`를 공개된 vindex와 대조해 검증합니다. |
+| *"환자 X에 대한 GDPR 제17조 삭제 요청이 실제로 적용되었습니까?"* | 위의 DELETE 패치 영수증입니다. 감사인은 `vindex_sha256_after`를 공개된 vIndex와 대조해 검증합니다. |
 | *"누가 이 릴리스를 승인했습니까? IP 라이선스 슬라이스 게이트를 오버라이드한 사유는 무엇이었습니까?"* | Gate 단계 영수증의 `override` 블록으로, 사용자 ID와 요구되는 자유 텍스트 사유를 포함합니다. |
 | *"롤백은 얼마나 빨리 발사되었으며, 어떤 모니터 판독값이 그것을 트리거했습니까?"* | Observe 단계의 롤백 영수증으로, 세 번 연속된 임계값 미만 품질 판독값과 롤백 경과 시간을 포함합니다. |
 | *"지난 90일간의 시판 후 모니터링 증거를 보여주십시오."* | Observe 단계 영수증 체인입니다. 고객이 구성한 일정에 따라 외부에 앵커링됩니다. |
@@ -330,13 +330,13 @@ HIPAA의 경우, 카나리 단계는 요청별 감사 로깅이 엔드 투 엔�
 
 **문서화는 필요하지만 충분하지 않습니다.** 모델이 임계값을 충족했음을 증명하는 영수증은 그 임계값이 옳은 임계값이었음을 증명하지는 않습니다. 채점 QA 스위트가 서비스에서 환자에게 실제로 중요한 슬라이스를 다루지 않는다면, 아무리 많은 영수증 체이닝도 그것을 고치지 못합니다. 규제 당국은 점점 이를 이해하고 있습니다. "평가를 통과했다"는 잘못된 평가였다면 더 이상 충분한 컴플라이언스 답변이 아닙니다.
 
-**vindex 포맷은 단일 벤더입니다.** 우리는 그것을 사용합니다. 오늘날 가중치 수준 증명에 사용할 수 있는 가장 구체적인 암호학적 기본 단위이기 때문입니다. 업계가 다른 포맷에 정착한다면 — 해시가 포함된 모델 카드, NIST 공개 산출물 스키마 — 영수증 포맷은 그것으로 진화해야 합니다. 하중을 지탱하는 것은 본질(해시 체인, 외부 검증 가능, 가중치 증명 인식)이지 특정 스키마 이름이 아닙니다. 우리는 규제 및 표준 환경이 성숙함에 따라 이것이 변화할 것으로 예상합니다.
+**vIndex 포맷은 단일 벤더입니다.** 우리는 그것을 사용합니다. 오늘날 가중치 수준 증명에 사용할 수 있는 가장 구체적인 암호학적 기본 단위이기 때문입니다. 업계가 다른 포맷에 정착한다면 — 해시가 포함된 모델 카드, NIST 공개 산출물 스키마 — 영수증 포맷은 그것으로 진화해야 합니다. 하중을 지탱하는 것은 본질(해시 체인, 외부 검증 가능, 가중치 증명 인식)이지 특정 스키마 이름이 아닙니다. 우리는 규제 및 표준 환경이 성숙함에 따라 이것이 변화할 것으로 예상합니다.
 
 ## FAQ
 
 ### AI 시스템에 대한 GDPR 제17조의 검증 가능한 삭제란 무엇입니까?
 
-검증 가능한 삭제란 제3자가 당신의 로그를 신뢰할 필요 없이 데이터가 제거되었음을 검증할 수 있다는 것을 의미합니다. 특정 정보를 "잊도록" 모델을 파인튜닝하는 것은 이 기준을 충족하지 않습니다 — 정보는 적대적 프롬프트 아래에서 다시 떠오를 수 있으며, 감사인이 확인할 수 있는 암호학적 기본 단위가 없기 때문입니다. 공개된 전후 vindex 해시를 갖춘 가중치 수준 DELETE 패치는 이 기준을 *충족합니다*. 감사인이 공개 산출물에 대해 검증을 재실행할 수 있기 때문입니다.
+검증 가능한 삭제란 제3자가 당신의 로그를 신뢰할 필요 없이 데이터가 제거되었음을 검증할 수 있다는 것을 의미합니다. 특정 정보를 "잊도록" 모델을 파인튜닝하는 것은 이 기준을 충족하지 않습니다 — 정보는 적대적 프롬프트 아래에서 다시 떠오를 수 있으며, 감사인이 확인할 수 있는 암호학적 기본 단위가 없기 때문입니다. 공개된 전후 vIndex 해시를 갖춘 가중치 수준 DELETE 패치는 이 기준을 *충족합니다*. 감사인이 공개 산출물에 대해 검증을 재실행할 수 있기 때문입니다.
 
 ### 폐쇄 API 모델은 왜 GDPR 제17조를 같은 방식으로 충족할 수 없습니까?
 
@@ -379,7 +379,7 @@ NIST AI RMF의 네 핵심 기능 — Govern, Map, Measure, Manage — 은 단일
 <strong>GDPR Article 17 (Right to Erasure).</strong> <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank" rel="noopener">gdpr-info.eu/art-17-gdpr</a>. 정보 주체의 개인 데이터 삭제 요구권과, 제5조 (2)항 책임성에 따라 컨트롤러가 준수를 입증해야 하는 의무. 최대 2천만 유로 또는 연간 전 세계 매출의 4% 벌금.
 </li>
 <li id="ref-8" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>Internal — vindex 영수증 포맷.</strong> 본 글의 영수증 JSON은 <a href="/ko/compliance/">컴플라이언스 페이지</a>에 문서화되고 <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> 글에서 시연된 포맷에서 가져온 것입니다. 해시 체인은 <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>에 대한 SHA-256입니다. 고객이 구성한 일정에 따라 외부에 앵커링 가능합니다.
+<strong>Internal — vIndex 영수증 포맷.</strong> 본 글의 영수증 JSON은 <a href="/ko/compliance/">컴플라이언스 페이지</a>에 문서화되고 <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> 글에서 시연된 포맷에서 가져온 것입니다. 해시 체인은 <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>에 대한 SHA-256입니다. 고객이 구성한 일정에 따라 외부에 앵커링 가능합니다.
 </li>
 </ol>
 

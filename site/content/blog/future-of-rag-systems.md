@@ -247,7 +247,7 @@ curl -X POST https://api.divinci.app/v1/query \
 }
 ```
 
-The customer doesn't pick a stack; they don't run three. The router does. Audit-grade transparency on which tier answered is part of the response, not buried in metrics — same auditability ethos we built into the [vindex receipt](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) and the [release manifest](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) for our CI/CD stack.
+The customer doesn't pick a stack; they don't run three. The router does. Audit-grade transparency on which tier answered is part of the response, not buried in metrics — same auditability ethos we built into the [vIndex receipt](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) and the [release manifest](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) for our CI/CD stack.
 
 ### How the router actually decides — learned routing, not a hand-coded classifier
 

@@ -309,9 +309,9 @@ Lorsque ces deux scores divergent de plus que le budget d'écart par tranche, la
 
 Le juge qui score l'exécution hors ligne est le même juge qui score l'exécution de rejeu. Le journal d'audit enregistre les deux ensembles de scores, les deux versions du juge, les ID de trace rejoués, et l'écart qui a déclenché le blocage. L'écart lui-même est le signal diagnostique le plus utile que nous ayons, et c'est ce qui est remis à celui qui reprend [l'arbre de diagnostic de l'article 6](/fr/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) ensuite.
 
-## Ancrer le jeu de données de référence avec un reçu vindex
+## Ancrer le jeu de données de référence avec un reçu vIndex
 
-Chaque score dans la suite n'a aucun sens si vous ne pouvez pas le reproduire plus tard. Nous hachons le jeu de données de référence à chaque release et chaînons ce hash dans un reçu vindex aux côtés du SHA du modèle, du SHA du prompt, du SHA du juge et du registre de calibration. Le reçu est ancrable de manière externe — les auditeurs peuvent rejouer notre exécution de régression exacte six mois plus tard et vérifier les scores que nous avons revendiqués.
+Chaque score dans la suite n'a aucun sens si vous ne pouvez pas le reproduire plus tard. Nous hachons le jeu de données de référence à chaque release et chaînons ce hash dans un reçu vIndex aux côtés du SHA du modèle, du SHA du prompt, du SHA du juge et du registre de calibration. Le reçu est ancrable de manière externe — les auditeurs peuvent rejouer notre exécution de régression exacte six mois plus tard et vérifier les scores que nous avons revendiqués.
 
 ```json
 {
@@ -324,11 +324,11 @@ Chaque score dans la suite n'a aucun sens si vous ne pouvez pas le reproduire pl
   "scores": { "aggregate": 0.872, "by_slice": { "/* … */": "/* scalaires par tranche */" } },
   "replay": { "trace_window_days": 14, "n_traces": 8430, "max_gap": 0.018 },
   "vindex_anchor": "sha256:f0bfd2…",
-  "verifiable_at": "https://vindex.divinci.ai/rel_3f1a-2026-05-26"
+  "verifiable_at": "https://vIndex.divinci.ai/rel_3f1a-2026-05-26"
 }
 ```
 
-**Réserve sur les poids ouverts.** Le reçu ci-dessus porte la provenance des poids uniquement lorsque le modèle est à poids ouverts — vindex ancre les octets de poids réels. Pour les modèles à API fermée (modèles managés OpenAI / Anthropic / Google), le reçu porte toujours la chaîne de décision — chaque score de gate, chaque résultat de juge, le registre de calibration — mais le champ de poids est vide, et vous ne pouvez pas vérifier indépendamment l'artefact du modèle. Nous le disons dans le reçu et dans la [documentation de conformité](/fr/compliance/) pour ne pas donner une fausse impression aux auditeurs. Les releases qui bénéficient le plus d'une chaîne vindex complète sont celles où vous contrôlez les poids.
+**Réserve sur les poids ouverts.** Le reçu ci-dessus porte la provenance des poids uniquement lorsque le modèle est à poids ouverts — vIndex ancre les octets de poids réels. Pour les modèles à API fermée (modèles managés OpenAI / Anthropic / Google), le reçu porte toujours la chaîne de décision — chaque score de gate, chaque résultat de juge, le registre de calibration — mais le champ de poids est vide, et vous ne pouvez pas vérifier indépendamment l'artefact du modèle. Nous le disons dans le reçu et dans la [documentation de conformité](/fr/compliance/) pour ne pas donner une fausse impression aux auditeurs. Les releases qui bénéficient le plus d'une chaîne vIndex complète sont celles où vous contrôlez les poids.
 
 ## Un calendrier d'implémentation en quatre phases que nous avons réellement livré
 

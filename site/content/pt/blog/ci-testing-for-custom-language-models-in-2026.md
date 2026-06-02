@@ -259,7 +259,7 @@ judge:     { sha: d8e21…, rubric: eval/rubrics/v7.yaml }
 dataset:   { sha: a90b1…, file:   eval/datasets/golden-2026-04.jsonl }
 ```
 
-Quando uma execução de CI posta uma nota, a nota é taggeada com aquele hash do manifest. Quando uma nota se move, a pergunta "qual entrada se moveu" tem uma resposta direta: faça o diff do manifest, e a camada que disparou diz qual dimensão olhar primeiro. Este é o loop que o [pipeline de quatro estágios do post 1](/pt/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) e o [recibo vindex do post 4](/pt/blog/validating-and-releasing-custom-lms-in-regulated-fields/) fecham juntos: o manifest é a primitiva de auditoria para a qual todos os oito destes posts, em enquadramentos diferentes, vêm convergindo.
+Quando uma execução de CI posta uma nota, a nota é taggeada com aquele hash do manifest. Quando uma nota se move, a pergunta "qual entrada se moveu" tem uma resposta direta: faça o diff do manifest, e a camada que disparou diz qual dimensão olhar primeiro. Este é o loop que o [pipeline de quatro estágios do post 1](/pt/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) e o [recibo vIndex do post 4](/pt/blog/validating-and-releasing-custom-lms-in-regulated-fields/) fecham juntos: o manifest é a primitiva de auditoria para a qual todos os oito destes posts, em enquadramentos diferentes, vêm convergindo.
 
 ## O que isto não resolve
 
@@ -276,13 +276,13 @@ Este é o post 8 de 8. O arco completo:
 1. [Como Construir um Pipeline LLM CI/CD com Divinci AI](/pt/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) — o pipeline de quatro estágios (Registrar / Gate / Roll / Observar) dentro do qual tudo desde então tem vivido.
 2. [10 Falhas de Release CI/CD em Modelos de Linguagem Personalizados](/pt/blog/10-ci-cd-release-failures-in-custom-language-models/) — os modos de falha nomeados de 2026, cada um mapeado para o estágio que deveria tê-lo capturado.
 3. [12 Capacidades de QA e Gestão de Release para LLMs](/pt/blog/12-qa-and-release-management-capabilities-for-llms/) — a matriz de capacidades e o diagrama de Venn dos três campos que posiciona a Divinci contra as alternativas.
-4. [Validando e Liberando LMs Personalizados em Áreas Reguladas](/pt/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — o mergulho profundo em compliance, mapeamento de regulador para estágio, recibos vindex.
+4. [Validando e Liberando LMs Personalizados em Áreas Reguladas](/pt/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — o mergulho profundo em compliance, mapeamento de regulador para estágio, recibos vIndex.
 5. [Pipelines Automatizados de LLM CI/CD com Rollback Instantâneo](/pt/blog/automated-llm-ci-cd-pipelines-with-instant-rollback/) — a camada operacional, espectro de automação, recibo de auto-rollback.
 6. [Como Diagnosticar Falhas de QA de LLM Personalizado em 7 Passos](/pt/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) — a árvore de decisão diagnóstica; o modelo é a resposta certa aproximadamente em um alerta a cada sete.
 7. [Testes de Regressão Automatizados para LLMs Personalizados em 2026](/pt/blog/automated-regression-testing-for-custom-llms-in-2026/) — gates Spearman conscientes de fatia, juízes calibrados, replay de traces de produção em loop fechado.
 8. **Este post.** A infraestrutura de CI que torna tudo o acima tratável em cada PR.
 
-As peças compõem: o [manifest](/pt/api/) é a primitiva de auditoria, os gates são a camada de segurança, a árvore diagnóstica é o loop de recuperação, o [recibo vindex](/pt/compliance/) é a âncora externa, e o bolo de camadas é o que torna a coisa toda economicamente viável de rodar em cada commit. Se o seu processo de release de LLM personalizado não tem essas cinco coisas juntas, a lacuna é sobre o que estes oito posts vêm tratando.
+As peças compõem: o [manifest](/pt/api/) é a primitiva de auditoria, os gates são a camada de segurança, a árvore diagnóstica é o loop de recuperação, o [recibo vIndex](/pt/compliance/) é a âncora externa, e o bolo de camadas é o que torna a coisa toda economicamente viável de rodar em cada commit. Se o seu processo de release de LLM personalizado não tem essas cinco coisas juntas, a lacuna é sobre o que estes oito posts vêm tratando.
 
 ## FAQ
 

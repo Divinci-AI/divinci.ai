@@ -259,7 +259,7 @@ judge:     { sha: d8e21…, rubric: eval/rubrics/v7.yaml }
 dataset:   { sha: a90b1…, file:   eval/datasets/golden-2026-04.jsonl }
 ```
 
-When a CI run posts a score, the score is tagged with that manifest hash. When a score moves, the question "which input moved" has a direct answer: diff the manifest, and the layer that fired tells you which dimension to look at first. This is the loop the [post 1 four-stage pipeline](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) and the [vindex receipt from post 4](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) close together: the manifest is the audit primitive that all eight of these posts have, in different framings, been building toward.
+When a CI run posts a score, the score is tagged with that manifest hash. When a score moves, the question "which input moved" has a direct answer: diff the manifest, and the layer that fired tells you which dimension to look at first. This is the loop the [post 1 four-stage pipeline](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) and the [vIndex receipt from post 4](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) close together: the manifest is the audit primitive that all eight of these posts have, in different framings, been building toward.
 
 ## What this does not solve
 
@@ -276,13 +276,13 @@ This is post 8 of 8. The full arc:
 1. [How to Build an LLM CI/CD Pipeline With Divinci AI](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) — the four-stage pipeline (Register / Gate / Roll / Observe) that everything since has lived inside.
 2. [10 CI/CD Release Failures in Custom Language Models](/blog/10-ci-cd-release-failures-in-custom-language-models/) — the named 2026 failure modes, each mapped to the stage that should have caught it.
 3. [12 QA and Release Management Capabilities for LLMs](/blog/12-qa-and-release-management-capabilities-for-llms/) — the capability matrix and the three-camps Venn that places Divinci against the alternatives.
-4. [Validating and Releasing Custom LMs in Regulated Fields](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — the compliance deep-dive, regulator-to-stage mapping, vindex receipts.
+4. [Validating and Releasing Custom LMs in Regulated Fields](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — the compliance deep-dive, regulator-to-stage mapping, vIndex receipts.
 5. [Automated LLM CI/CD Pipelines With Instant Rollback](/blog/automated-llm-ci-cd-pipelines-with-instant-rollback/) — the operational layer, automation spectrum, auto-rollback receipt.
 6. [How to Diagnose Custom LLM QA Failures in 7 Steps](/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) — the diagnostic decision tree; the model is the right answer roughly one alert in seven.
 7. [Automated Regression Testing for Custom LLMs in 2026](/blog/automated-regression-testing-for-custom-llms-in-2026/) — slice-aware Spearman gates, calibrated judges, closed-loop production-trace replay.
 8. **This post.** The CI infrastructure that makes all of the above tractable on every PR.
 
-The pieces compose: the [manifest](/api/) is the audit primitive, the gates are the safety layer, the diagnostic tree is the recovery loop, the [vindex receipt](/compliance/) is the external anchor, and the layer cake is what makes the whole thing affordable to run on every commit. If your custom-LLM release process does not have these five together, the gap is what these eight posts have been about.
+The pieces compose: the [manifest](/api/) is the audit primitive, the gates are the safety layer, the diagnostic tree is the recovery loop, the [vIndex receipt](/compliance/) is the external anchor, and the layer cake is what makes the whole thing affordable to run on every commit. If your custom-LLM release process does not have these five together, the gap is what these eight posts have been about.
 
 ## FAQ
 

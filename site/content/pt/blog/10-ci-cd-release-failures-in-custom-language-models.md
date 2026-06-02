@@ -233,14 +233,14 @@ Se você não estiver usando a Divinci e quiser construir algo equivalente, as p
 - **Um gate por slice** com limiares definidos pelos donos do domínio, não pelos donos da plataforma. É isso que torna 4, 5, 6 capturáveis. ([Estágio 2](/pt/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-2-gate))
 - **Um canário com monitoramento de qualidade em cada checkpoint**, não só latência e 5xx. É isso que torna 8 capturável e o que torna 9 e 10 *sobreviváveis* quando atingem a produção. ([Estágio 3](/pt/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-3-roll))
 - **Um observador contínuo** que pontua traços reais de produção através do modelo ativo com o mesmo juiz calibrado que alimentou o gate. É isso que torna 9 e 10 capturáveis. ([Estágio 4](/pt/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-4-observe-rollback-and-the-receipt))
-- **Um recibo de auditoria assinado para cada decisão.** Encadeado por hash, externamente ancorável. Para modelos com backing open-weights, o recibo embute uma [atestação de pesos vindex](/pt/compliance/) provando que os pesos ativos são o que o manifesto registrou. Para backings de API fechada, o recibo cobre a cadeia de decisão mas não pode reivindicar proveniência de pesos — e a trilha de auditoria diz isso explicitamente.
+- **Um recibo de auditoria assinado para cada decisão.** Encadeado por hash, externamente ancorável. Para modelos com backing open-weights, o recibo embute uma [atestação de pesos vIndex](/pt/compliance/) provando que os pesos ativos são o que o manifesto registrou. Para backings de API fechada, o recibo cobre a cadeia de decisão mas não pode reivindicar proveniência de pesos — e a trilha de auditoria diz isso explicitamente.
 
 As peças não são inéditas individualmente. Toda plataforma MLOps tem uma ou duas delas. A combinação — gate por slice + observador de traços de produção + rollback atômico + recibo provável — é a parte que ninguém mais envia em 2026.
 
 ## Para onde ir em seguida
 
 - O post companheiro — **[Como Construir um Pipeline CI/CD para LLM com a Divinci AI](/pt/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/)** — cobre a arquitetura e a API.
-- A **[página de compliance](/pt/compliance/)** documenta o formato de recibo vindex que respalda cada decisão de release e como ele mapeia para o EU AI Act, Artigo 17 do GDPR, HIPAA e NIST AI RMF.
+- A **[página de compliance](/pt/compliance/)** documenta o formato de recibo vIndex que respalda cada decisão de release e como ele mapeia para o EU AI Act, Artigo 17 do GDPR, HIPAA e NIST AI RMF.
 - A **[página de produto do AutoRAG](/pt/autorag/)** cobre a redução de alucinação do lado RAG que se combina naturalmente com o juiz calibrado que dirige o Gate-2 e o observador do Estágio 4.
 - A **[referência da API](/pt/api/)** — todo comando referenciado nesta série é um endpoint real.
 
@@ -264,7 +264,7 @@ Não com métricas de infraestrutura. Latência, taxa de 5xx e uso de tokens nã
 
 ### Quais requisitos de trilha de auditoria se aplicam a deployments de modelos de IA?
 
-O EU AI Act, o Artigo 17 do GDPR (direito ao esquecimento), o HIPAA e o NIST AI Risk Management Framework, todos exigem que organizações mantenham registros de versões de modelo, resultados de avaliação, decisões de aprovação e rollouts. O requisito não dito sob os quatro é que os registros precisam ser *verificáveis* — auditável significa mais do que "temos um log". Os recibos vindex da Divinci são encadeados por hash e externamente ancoráveis, o que significa que um auditor pode verificar a cadeia sem confiar nos nossos logs. Para backings de modelo open-weights, o recibo também embute uma atestação de pesos; para backings de API fechada, o recibo nota explicitamente que a proveniência de pesos não é reivindicada.
+O EU AI Act, o Artigo 17 do GDPR (direito ao esquecimento), o HIPAA e o NIST AI Risk Management Framework, todos exigem que organizações mantenham registros de versões de modelo, resultados de avaliação, decisões de aprovação e rollouts. O requisito não dito sob os quatro é que os registros precisam ser *verificáveis* — auditável significa mais do que "temos um log". Os recibos vIndex da Divinci são encadeados por hash e externamente ancoráveis, o que significa que um auditor pode verificar a cadeia sem confiar nos nossos logs. Para backings de modelo open-weights, o recibo também embute uma atestação de pesos; para backings de API fechada, o recibo nota explicitamente que a proveniência de pesos não é reivindicada.
 
 ## Referências
 
@@ -291,4 +291,4 @@ O EU AI Act, o Artigo 17 do GDPR (direito ao esquecimento), o HIPAA e o NIST AI 
 
 ---
 
-*Próximo nesta série:* **Validar e fazer release de LMs customizados em domínios regulados.** O pipeline acima é a arquitetura. O caminho de compliance é a prática de usá-lo. EU AI Act, Artigo 17 do GDPR, HIPAA e NIST AI RMF — o que cada um pede de um processo de release, e quais campos do recibo vindex cobrem qual requisito.
+*Próximo nesta série:* **Validar e fazer release de LMs customizados em domínios regulados.** O pipeline acima é a arquitetura. O caminho de compliance é a prática de usá-lo. EU AI Act, Artigo 17 do GDPR, HIPAA e NIST AI RMF — o que cada um pede de um processo de release, e quais campos do recibo vIndex cobrem qual requisito.

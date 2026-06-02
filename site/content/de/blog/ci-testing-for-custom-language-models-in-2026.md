@@ -259,7 +259,7 @@ judge:     { sha: d8e21…, rubric: eval/rubrics/v7.yaml }
 dataset:   { sha: a90b1…, file:   eval/datasets/golden-2026-04.jsonl }
 ```
 
-Wenn ein CI-Run einen Score postet, wird der Score mit diesem Manifest-Hash getaggt. Wenn ein Score sich bewegt, hat die Frage „welcher Input hat sich bewegt" eine direkte Antwort: Manifest diffen, und die Schicht, die gefeuert hat, sagt Ihnen, welche Dimension Sie zuerst betrachten sollten. Das ist die Schleife, die [die vierstufige Pipeline aus Beitrag 1](/de/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) und [die Vindex-Quittung aus Beitrag 4](/de/blog/validating-and-releasing-custom-lms-in-regulated-fields/) gemeinsam schließen: Das Manifest ist das Audit-Primitiv, auf das alle acht dieser Beiträge in unterschiedlichen Rahmungen hingearbeitet haben.
+Wenn ein CI-Run einen Score postet, wird der Score mit diesem Manifest-Hash getaggt. Wenn ein Score sich bewegt, hat die Frage „welcher Input hat sich bewegt" eine direkte Antwort: Manifest diffen, und die Schicht, die gefeuert hat, sagt Ihnen, welche Dimension Sie zuerst betrachten sollten. Das ist die Schleife, die [die vierstufige Pipeline aus Beitrag 1](/de/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) und [die vIndex-Quittung aus Beitrag 4](/de/blog/validating-and-releasing-custom-lms-in-regulated-fields/) gemeinsam schließen: Das Manifest ist das Audit-Primitiv, auf das alle acht dieser Beiträge in unterschiedlichen Rahmungen hingearbeitet haben.
 
 ## Was das nicht löst
 
@@ -276,13 +276,13 @@ Das ist Beitrag 8 von 8. Der vollständige Bogen:
 1. [How to Build an LLM CI/CD Pipeline With Divinci AI](/de/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) — die vierstufige Pipeline (Register / Gate / Roll / Observe), in der seither alles gelebt hat.
 2. [10 CI/CD Release Failures in Custom Language Models](/de/blog/10-ci-cd-release-failures-in-custom-language-models/) — die benannten Failure-Modes von 2026, jeder gemappt auf die Stufe, die ihn hätte fangen sollen.
 3. [12 QA and Release Management Capabilities for LLMs](/de/blog/12-qa-and-release-management-capabilities-for-llms/) — die Capability-Matrix und das Drei-Lager-Venn, das Divinci gegenüber den Alternativen positioniert.
-4. [Validating and Releasing Custom LMs in Regulated Fields](/de/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — die Compliance-Tiefenanalyse, das Regulator-zu-Stage-Mapping, die Vindex-Quittungen.
+4. [Validating and Releasing Custom LMs in Regulated Fields](/de/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — die Compliance-Tiefenanalyse, das Regulator-zu-Stage-Mapping, die vIndex-Quittungen.
 5. [Automated LLM CI/CD Pipelines With Instant Rollback](/de/blog/automated-llm-ci-cd-pipelines-with-instant-rollback/) — die operative Schicht, das Automatisierungs-Spektrum, die Auto-Rollback-Quittung.
 6. [How to Diagnose Custom LLM QA Failures in 7 Steps](/de/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) — der diagnostische Entscheidungsbaum; das Modell ist ungefähr in einem von sieben Alarmen die richtige Antwort.
 7. [Automated Regression Testing for Custom LLMs in 2026](/de/blog/automated-regression-testing-for-custom-llms-in-2026/) — Slice-bewusste Spearman-Gates, kalibrierte Judges, Closed-Loop-Production-Trace-Replay.
 8. **Dieser Beitrag.** Die CI-Infrastruktur, die alles oben Genannte bei jedem PR handhabbar macht.
 
-Die Teile komponieren: Das [Manifest](/de/api/) ist das Audit-Primitiv, die Gates sind die Sicherheitsschicht, der Diagnose-Baum ist die Wiederherstellungsschleife, die [Vindex-Quittung](/de/compliance/) ist der externe Anker, und die Schichttorte ist das, was das Ganze bezahlbar macht, um es bei jedem Commit laufen zu lassen. Wenn Ihr Custom-LLM-Release-Prozess diese fünf nicht gemeinsam hat, ist die Lücke das, worum es in diesen acht Beiträgen ging.
+Die Teile komponieren: Das [Manifest](/de/api/) ist das Audit-Primitiv, die Gates sind die Sicherheitsschicht, der Diagnose-Baum ist die Wiederherstellungsschleife, die [vIndex-Quittung](/de/compliance/) ist der externe Anker, und die Schichttorte ist das, was das Ganze bezahlbar macht, um es bei jedem Commit laufen zu lassen. Wenn Ihr Custom-LLM-Release-Prozess diese fünf nicht gemeinsam hat, ist die Lücke das, worum es in diesen acht Beiträgen ging.
 
 ## FAQ
 

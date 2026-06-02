@@ -1,6 +1,6 @@
 +++
 title = "Divinci AI - Excellentie, elke keer"
-description = "Verifieerbare AI-compliance: vindex-bewijzen voor de EU AI Act, GDPR Artikel 17, HIPAA en NIST AI. Excellentie, elke keer."
+description = "Verifieerbare AI-compliance: vIndex-bewijzen voor de EU AI Act, GDPR Artikel 17, HIPAA en NIST AI. Excellentie, elke keer."
 template = "index.html"
 
 [extra]

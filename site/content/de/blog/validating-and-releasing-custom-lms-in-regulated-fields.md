@@ -6,7 +6,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Compliance"]
-tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vindex"]
+tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vIndex"]
 
 [extra]
 author = "Mike Mooring"
@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
 hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
-summary = "Compliance in regulierten Branchen für maßgeschneiderte Sprachmodelle teilt sich sauber entlang einer Achse: Open-Weights gegen Closed-API. Für Open-Weights-Backings können Sie eine vindex-Gewichtsattestierung ausliefern, die die nachprüfbare Löschung gemäß DSGVO Artikel 17 kryptographisch erfüllt. Für Closed-API-Backings deckt derselbe Beleg die Entscheidungskette ab, kann aber keine Gewichts-Provenienz beanspruchen — und der Prüfer erhält genau diese Unterscheidung im Beleg selbst. Dieser Beitrag bildet vier Regulierungsrahmen (EU AI Act, DSGVO, HIPAA, NIST AI RMF) auf die vier Pipeline-Stufen ab, die wir ausliefern, und zeigt das tatsächliche Beleg-Format."
+summary = "Compliance in regulierten Branchen für maßgeschneiderte Sprachmodelle teilt sich sauber entlang einer Achse: Open-Weights gegen Closed-API. Für Open-Weights-Backings können Sie eine vIndex-Gewichtsattestierung ausliefern, die die nachprüfbare Löschung gemäß DSGVO Artikel 17 kryptographisch erfüllt. Für Closed-API-Backings deckt derselbe Beleg die Entscheidungskette ab, kann aber keine Gewichts-Provenienz beanspruchen — und der Prüfer erhält genau diese Unterscheidung im Beleg selbst. Dieser Beitrag bildet vier Regulierungsrahmen (EU AI Act, DSGVO, HIPAA, NIST AI RMF) auf die vier Pipeline-Stufen ab, die wir ausliefern, und zeigt das tatsächliche Beleg-Format."
 +++
 
 *Notizen aus dem Release-Zyklus — Teil IV*
@@ -50,7 +50,7 @@ Compliance-Diskussionen verfallen oft in „wir haben Dinge dokumentiert". Diese
 <text x="55" y="206" font-size="10" fill="#4a4030">• Marktüberwachung nach Release</text>
 <text x="55" y="232" font-size="11" font-weight="700" fill="#2d5a4f">Verifikations-Primitive:</text>
 <text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">bit-exakte mechanistische</text>
-<text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">Dokumentation per vindex</text>
+<text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">Dokumentation per vIndex</text>
 <text x="55" y="290" font-size="10" fill="#6b5d4f">Sanktion bei Verstoß:</text>
 <text x="55" y="308" font-size="14" font-weight="700" fill="#a04848">bis zu 7 % des</text>
 <text x="55" y="324" font-size="14" font-weight="700" fill="#a04848">globalen Umsatzes</text>
@@ -109,7 +109,7 @@ Die Sanktionszahlen sind nicht das, was diese Rahmenwerke interessant macht. Die
 
 Vor dem stufenweisen Mapping die wichtigste Einschränkung dieses gesamten Beitrags:
 
-**Bei Open-Weights-Modell-Backings** — Gemma, Qwen, Llama, Mistral, GPT-OSS, alles, wo die Gewichte adressierbar und editierbar sind — emittiert jede Divinci-Release-Entscheidung einen vindex-Beleg, der eine **Gewichtsattestierung** enthält: einen kryptographischen Nachweis, dass die aktiven Gewichte zum Entscheidungszeitpunkt genau die Gewichte sind, die das Manifest registriert hat. Genau das macht die nachprüfbare Löschung nach DSGVO Artikel 17 möglich. Sie wenden einen [DELETE-Patch](/blog/deleting-paris-from-a-language-model/) an, der eine bestimmte Entitäts-Relation aus dem Gewichtsraum entfernt, der Beleg bettet den Hash vor und nach der Operation ein, und ein Prüfer kann die Löschung verifizieren, indem er die Verifikation gegen den öffentlichen vindex erneut ausführt.
+**Bei Open-Weights-Modell-Backings** — Gemma, Qwen, Llama, Mistral, GPT-OSS, alles, wo die Gewichte adressierbar und editierbar sind — emittiert jede Divinci-Release-Entscheidung einen vIndex-Beleg, der eine **Gewichtsattestierung** enthält: einen kryptographischen Nachweis, dass die aktiven Gewichte zum Entscheidungszeitpunkt genau die Gewichte sind, die das Manifest registriert hat. Genau das macht die nachprüfbare Löschung nach DSGVO Artikel 17 möglich. Sie wenden einen [DELETE-Patch](/blog/deleting-paris-from-a-language-model/) an, der eine bestimmte Entitäts-Relation aus dem Gewichtsraum entfernt, der Beleg bettet den Hash vor und nach der Operation ein, und ein Prüfer kann die Löschung verifizieren, indem er die Verifikation gegen den öffentlichen vIndex erneut ausführt.
 
 **Bei Closed-API-Modell-Backings** — OpenAI, Anthropic, Google über undurchsichtige APIs — deckt derselbe Beleg die Entscheidungskette ab (welches Manifest, welches Gate-Ergebnis, welche Monitor-Messung, welcher Nutzer hat welche Aktion ausgelöst), **kann aber keine Gewichts-Provenienz beanspruchen**, weil der Anbieter die Gewichte nicht freilegt. Der Beleg vermerkt das ausdrücklich in einem Feld `weight_attestation: null` mit einem `note`-Feld, das die Begründung enthält. Das ist keine verschlechterte Compliance-Position — es ist die Grenze dessen, was verifizierbar ist, ehrlich niedergeschrieben. Ein Prüfer, der den Beleg liest, versteht genau, welche Beweisklasse erbracht wird und welche nicht.
 
@@ -212,7 +212,7 @@ Der Rest des Beitrags geht den Beitrag jeder einzelnen Stufe durch.
 
 Die Register-Stufe erzeugt ein unveränderliches JSON-Manifest, adressiert per SHA-256. Für regulierte Releases trägt das Manifest alles, was Anhang IV<sup><a href="#ref-1">[1]</a></sup> verlangt, in einem einzigen Artefakt:
 
-- Das Modell-Artefakt (HF-Repo + Commit-SHA, oder eine vindex-Patch-Referenz)
+- Das Modell-Artefakt (HF-Repo + Commit-SHA, oder eine vIndex-Patch-Referenz)
 - Das Prompt-Template (jede Variable, jede System-Message — versionsverwaltet)
 - Die Routing-Regeln (welche Traffic-Klasse landet auf welchem Release)
 - Die Datensatzversion, mit der die Gate-Schwellenwerte berechnet wurden (Trainingsdaten-Zusammenfassung per Hash)
@@ -221,7 +221,7 @@ Die Register-Stufe erzeugt ein unveränderliches JSON-Manifest, adressiert per S
 
 Das Manifest *ist* die Dokumentation. Ein Prüfer liest keinen Fließtext; er liest den Manifest-Hash und verifiziert das Bundle. Eine sechs Monate später nachgereichte Prosa-Zusammenfassung ist nicht nötig.
 
-**Open-Weights-Bonus.** Wenn das Modell-Artefakt auf ein Open-Weights-Modell verweist, bettet das Manifest zusätzlich den `vindex_sha256` ein — den kryptographischen Fingerabdruck des veröffentlichten [vindex](/de/compliance/) des Modells. Genau dieser Fingerabdruck ermöglicht es einer dritten Partei, die aktiven Gewichte zu verifizieren, ohne unserer Deployment-Infrastruktur jemals vertrauen zu müssen.
+**Open-Weights-Bonus.** Wenn das Modell-Artefakt auf ein Open-Weights-Modell verweist, bettet das Manifest zusätzlich den `vindex_sha256` ein — den kryptographischen Fingerabdruck des veröffentlichten [vIndex](/de/compliance/) des Modells. Genau dieser Fingerabdruck ermöglicht es einer dritten Partei, die aktiven Gewichte zu verifizieren, ohne unserer Deployment-Infrastruktur jemals vertrauen zu müssen.
 
 **Closed-API-Vorbehalt.** Wenn das Modell-Artefakt auf ein Closed-API-Modell verweist, ist das Manifestfeld `vindex_sha256` gleich `null`, und die `weight_attestation_class` des Manifests lautet `decision_chain_only`. Der Prüfer, der das liest, weiß genau, was beansprucht wird und was nicht.
 
@@ -267,7 +267,7 @@ Für HIPAA ist die Canary-Stufe auch der Ort, an dem das Audit-Logging pro Anfra
 
 Das ist die Stufe, die die Compliance-Geschichte einlöst. Die Observe-Stufe lässt fortlaufend Trace-Replay durch das aktive Release laufen, bewertet vom selben menschlich verankerten Judge aus dem Gate, mit einem Qualitäts-Monitor, der bei einer Schwellenwertverletzung einen automatischen Rollback auslöst.
 
-Jede Release-Entscheidung — Register, Gate-Pass, Gate-Fail, Gate-Override, Checkpoint-Promote, Checkpoint-Hold, Auto-Rollback, manueller Rollback **und jede Anwendung eines DELETE-Patches nach DSGVO Artikel 17** — emittiert einen vindex-Beleg. Hash-verkettet mit dem vorhergehenden Beleg für diesen Kunden und dem vorhergehenden Beleg für dieses Release.
+Jede Release-Entscheidung — Register, Gate-Pass, Gate-Fail, Gate-Override, Checkpoint-Promote, Checkpoint-Hold, Auto-Rollback, manueller Rollback **und jede Anwendung eines DELETE-Patches nach DSGVO Artikel 17** — emittiert einen vIndex-Beleg. Hash-verkettet mit dem vorhergehenden Beleg für diesen Kunden und dem vorhergehenden Beleg für dieses Release.
 
 So sieht ein echter Beleg für einen DELETE-Patch nach DSGVO Artikel 17 aus — direkt aus dem auf der [Compliance-Seite](/de/compliance/) dokumentierten Format adaptiert:
 
@@ -301,7 +301,7 @@ So sieht ein echter Beleg für einen DELETE-Patch nach DSGVO Artikel 17 aus — 
 }
 ```
 
-Dieses Artefakt ist verifizierbar. Ein Prüfer muss unseren Logs nicht vertrauen. Er nimmt den `vindex_sha256_after`, lädt den entsprechenden veröffentlichten vindex von `huggingface.co/Divinci-AI` und verifiziert, dass Feature 11179 in Layer 27 strukturell nicht mehr unter den Top-25 erscheint. Er nimmt die `chain_signature` und verifiziert sie gegen den vorhergehenden Beleg. Die gesamte Kette wird extern verankert, nach einem vom Kunden konfigurierten Zeitplan.
+Dieses Artefakt ist verifizierbar. Ein Prüfer muss unseren Logs nicht vertrauen. Er nimmt den `vindex_sha256_after`, lädt den entsprechenden veröffentlichten vIndex von `huggingface.co/Divinci-AI` und verifiziert, dass Feature 11179 in Layer 27 strukturell nicht mehr unter den Top-25 erscheint. Er nimmt die `chain_signature` und verifiziert sie gegen den vorhergehenden Beleg. Die gesamte Kette wird extern verankert, nach einem vom Kunden konfigurierten Zeitplan.
 
 **Dieselbe Operation gegen ein Closed-API-Modell.** Die Beleg-Felder oben ändern sich in drei Punkten: `operation.target` wird zu `provider_api_endpoint`, `verification` wird zu einem anderen Schema, das nur Belege der Entscheidungskette enthält, und `weight_attestation_class` wird zu `decision_chain_only`. Der Closed-API-Modellanbieter hat die Gewichte nicht freigelegt, also sagt der Beleg genau das. Ein Prüfer, der einen Nachweis auf Gewichtsebene will, weiß nun, dass er das beim Anbieter eskalieren muss, nicht bei uns.
 
@@ -315,7 +315,7 @@ Eine nützliche Übung: die Fragen durchgehen, die ein echter Prüfer stellen wi
 |---|---|
 | *„Welche Modellversion lief am 15. März um 14:22 UTC?"* | Der Observe-Stufen-Beleg zu diesem Zeitstempel, signiert und hash-verkettet. |
 | *„Welche Evaluation hat dieses Release vor dem Promote bestanden?"* | Der Gate-Stufen-Beleg mit der Slice-spezifischen Spearman-ρ-Tabelle und der Dataset-SHA, gegen die das Gate gelaufen ist. |
-| *„Wurde ein DSGVO-Artikel-17-Löschantrag für Patient X tatsächlich umgesetzt?"* | Der DELETE-Patch-Beleg oben. Der Prüfer verifiziert `vindex_sha256_after` gegen den veröffentlichten vindex. |
+| *„Wurde ein DSGVO-Artikel-17-Löschantrag für Patient X tatsächlich umgesetzt?"* | Der DELETE-Patch-Beleg oben. Der Prüfer verifiziert `vindex_sha256_after` gegen den veröffentlichten vIndex. |
 | *„Wer hat dieses Release freigegeben? Was war seine erklärte Begründung dafür, das Gate des IP-Lizenz-Slices zu überstimmen?"* | Der `override`-Block des Gate-Stufen-Belegs inklusive Nutzer-ID und der verpflichtenden Freitext-Begründung. |
 | *„Wie schnell hat der Rollback gefeuert, und welche Monitor-Messung hat ihn ausgelöst?"* | Der Rollback-Beleg der Observe-Stufe mit den drei aufeinanderfolgenden Sub-Schwellenwert-Qualitätsmessungen und der Rollback-Laufzeit. |
 | *„Zeigen Sie mir die Belege der Marktüberwachung der letzten 90 Tage."* | Die Beleg-Kette der Observe-Stufe. Extern verankert nach dem kundenseitig konfigurierten Zeitplan. |
@@ -330,13 +330,13 @@ Drei ehrliche Einschränkungen:
 
 **Dokumentation ist notwendig, aber nicht hinreichend.** Ein Beleg, der nachweist, dass ein Modell einen Schwellenwert erreicht hat, beweist nicht, dass der Schwellenwert der richtige Schwellenwert war. Wenn Ihre Scored-QA-Suite den Slice nicht abdeckt, der für einen Patienten in Ihrem Service tatsächlich relevant ist, repariert keine noch so lange Beleg-Kette das. Regulatoren begreifen das zunehmend; „wir haben unsere Eval bestanden" ist keine ausreichende Compliance-Antwort mehr, wenn die Eval die falsche Eval war.
 
-**Das vindex-Format ist Single-Vendor.** Wir verwenden es, weil es das konkreteste kryptographische Primitive ist, das heute für Gewichts-Nachweise verfügbar ist. Sollte die Branche sich auf ein anderes Format einigen — Model-Cards-mit-Hashes, NIST-veröffentlichte Artefakt-Schemata — sollte sich das Beleg-Format dahin entwickeln. Tragend ist die Substanz (hash-verkettet, extern verifizierbar, gewichts-attestierungsbewusst), nicht der spezifische Schema-Name. Wir erwarten, dass sich das ändert, sobald die regulatorische und Standardisierungslandschaft reift.
+**Das vIndex-Format ist Single-Vendor.** Wir verwenden es, weil es das konkreteste kryptographische Primitive ist, das heute für Gewichts-Nachweise verfügbar ist. Sollte die Branche sich auf ein anderes Format einigen — Model-Cards-mit-Hashes, NIST-veröffentlichte Artefakt-Schemata — sollte sich das Beleg-Format dahin entwickeln. Tragend ist die Substanz (hash-verkettet, extern verifizierbar, gewichts-attestierungsbewusst), nicht der spezifische Schema-Name. Wir erwarten, dass sich das ändert, sobald die regulatorische und Standardisierungslandschaft reift.
 
 ## FAQ
 
 ### Was bedeutet nachprüfbare Löschung nach DSGVO Artikel 17 für KI-Systeme?
 
-Nachprüfbare Löschung bedeutet, dass eine dritte Partei verifizieren kann, dass die Daten entfernt wurden, ohne Ihren Logs vertrauen zu müssen. Ein Modell durch Fine-Tuning zum „Vergessen" spezifischer Informationen zu bringen, erfüllt diesen Standard nicht — die Informationen können unter adversarialem Prompting wieder auftauchen, und es existiert kein kryptographisches Primitive, das ein Prüfer überprüfen könnte. Ein DELETE-Patch auf Gewichtsebene mit einem veröffentlichten Vorher-/Nachher-vindex-Hash *erfüllt* den Standard, weil der Prüfer die Verifikation gegen das öffentliche Artefakt erneut ausführen kann.
+Nachprüfbare Löschung bedeutet, dass eine dritte Partei verifizieren kann, dass die Daten entfernt wurden, ohne Ihren Logs vertrauen zu müssen. Ein Modell durch Fine-Tuning zum „Vergessen" spezifischer Informationen zu bringen, erfüllt diesen Standard nicht — die Informationen können unter adversarialem Prompting wieder auftauchen, und es existiert kein kryptographisches Primitive, das ein Prüfer überprüfen könnte. Ein DELETE-Patch auf Gewichtsebene mit einem veröffentlichten Vorher-/Nachher-vIndex-Hash *erfüllt* den Standard, weil der Prüfer die Verifikation gegen das öffentliche Artefakt erneut ausführen kann.
 
 ### Warum können Closed-API-Modelle DSGVO Artikel 17 nicht auf dieselbe Weise erfüllen?
 
@@ -379,7 +379,7 @@ Die vier Kernfunktionen von NIST AI RMF — Govern, Map, Measure, Manage — spa
 <strong>GDPR Article 17 (Right to Erasure).</strong> <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank" rel="noopener">gdpr-info.eu/art-17-gdpr</a>. The data subject's right to obtain erasure of personal data, and the controller's obligation to demonstrate compliance under Article 5(2) accountability. Penalties up to €20M or 4% of annual global turnover.
 </li>
 <li id="ref-8" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>Internal — vindex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/de/compliance/">compliance page</a> and demonstrated in the <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
+<strong>Internal — vIndex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/de/compliance/">compliance page</a> and demonstrated in the <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
 </li>
 </ol>
 

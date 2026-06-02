@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HIPAA (teal, medical cross) | PCI (green, lock) — two-panel badge -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <!-- Left half: HIPAA teal -->
+  <rect x="0" y="0" width="450" height="600" fill="#0d9488"/>
+  <!-- Right half: PCI green -->
+  <rect x="450" y="0" width="450" height="600" fill="#15803d"/>
+  <!-- Divider line -->
+  <line x1="450" y1="0" x2="450" y2="600" stroke="white" stroke-width="10" opacity="0.4"/>
+
+  <!-- HIPAA: white cross (medical) -->
+  <rect x="185" y="150" width="80" height="300" rx="12" fill="white"/>
+  <rect x="80" y="255" width="290" height="80" rx="12" fill="white"/>
+
+  <!-- PCI: white padlock -->
+  <!-- lock body -->
+  <rect x="555" y="280" width="220" height="200" rx="18" fill="white"/>
+  <!-- shackle arc -->
+  <path d="M590,285 L590,205 Q590,130 665,130 Q740,130 740,205 L740,285"
+        fill="none" stroke="white" stroke-width="48" stroke-linecap="round"/>
+  <!-- keyhole circle -->
+  <circle cx="665" cy="365" r="32" fill="#15803d"/>
+  <!-- keyhole stem -->
+  <rect x="649" y="385" width="32" height="48" rx="4" fill="#15803d"/>
+</svg>

@@ -309,9 +309,9 @@ Layer 3 gate वह हिस्सा है जो ज़्यादातर
 
 जज जो offline run को score करता है वही जज है जो replay run को score करता है। Audit log दोनों score sets, दोनों judge versions, replay किए गए trace IDs, और वह gap जो block को fire किया, सब रिकॉर्ड करता है। Gap ही सबसे उपयोगी diagnostic signal है जो हमारे पास है, और यही [post 6 diagnostic tree](/hi/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) को आगे जिसे सौंपा जाता है उसे दिया जाता है।
 
-## Golden dataset को vindex receipt से anchor करें
+## Golden dataset को vIndex receipt से anchor करें
 
-सूट में हर score निरर्थक है यदि आप उसे बाद में पुन: उत्पन्न नहीं कर सकते। हम हर रिलीज़ पर golden dataset को hash करते हैं और उस hash को model SHA, prompt SHA, judge SHA, और कैलिब्रेशन रिकॉर्ड के साथ एक vindex receipt में chain करते हैं। रसीद externally anchorable है — auditors छह महीने बाद हमारे exact regression run को replay कर सकते हैं और उन scores को verify कर सकते हैं जिनका हमने दावा किया।
+सूट में हर score निरर्थक है यदि आप उसे बाद में पुन: उत्पन्न नहीं कर सकते। हम हर रिलीज़ पर golden dataset को hash करते हैं और उस hash को model SHA, prompt SHA, judge SHA, और कैलिब्रेशन रिकॉर्ड के साथ एक vIndex receipt में chain करते हैं। रसीद externally anchorable है — auditors छह महीने बाद हमारे exact regression run को replay कर सकते हैं और उन scores को verify कर सकते हैं जिनका हमने दावा किया।
 
 ```json
 {
@@ -324,11 +324,11 @@ Layer 3 gate वह हिस्सा है जो ज़्यादातर
   "scores": { "aggregate": 0.872, "by_slice": { "/* … */": "/* per-slice scalars */" } },
   "replay": { "trace_window_days": 14, "n_traces": 8430, "max_gap": 0.018 },
   "vindex_anchor": "sha256:f0bfd2…",
-  "verifiable_at": "https://vindex.divinci.ai/rel_3f1a-2026-05-26"
+  "verifiable_at": "https://vIndex.divinci.ai/rel_3f1a-2026-05-26"
 }
 ```
 
-**Open-weights चेतावनी।** ऊपर की रसीद वज़न provenance तभी carry करती है जब मॉडल open-weights हो — vindex वास्तविक वज़न bytes को anchor करता है। Closed-API मॉडल backings (OpenAI / Anthropic / Google managed models) के लिए, रसीद अभी भी decision chain carry करती है — हर gate score, हर judge result, कैलिब्रेशन रिकॉर्ड — लेकिन weight field खाली है, और आप मॉडल artefact को स्वतंत्र रूप से verify नहीं कर सकते। हम यह रसीद में और [compliance documentation](/hi/compliance/) में कहते हैं ताकि auditors को ग़लत impression न मिले। पूरी vindex chain से सबसे ज़्यादा लाभ वही रिलीज़ें पाती हैं जहाँ आप weights को नियंत्रित करते हैं।
+**Open-weights चेतावनी।** ऊपर की रसीद वज़न provenance तभी carry करती है जब मॉडल open-weights हो — vIndex वास्तविक वज़न bytes को anchor करता है। Closed-API मॉडल backings (OpenAI / Anthropic / Google managed models) के लिए, रसीद अभी भी decision chain carry करती है — हर gate score, हर judge result, कैलिब्रेशन रिकॉर्ड — लेकिन weight field खाली है, और आप मॉडल artefact को स्वतंत्र रूप से verify नहीं कर सकते। हम यह रसीद में और [compliance documentation](/hi/compliance/) में कहते हैं ताकि auditors को ग़लत impression न मिले। पूरी vIndex chain से सबसे ज़्यादा लाभ वही रिलीज़ें पाती हैं जहाँ आप weights को नियंत्रित करते हैं।
 
 ## एक चार-चरणीय implementation timeline जो हमने वास्तव में shipped की है
 

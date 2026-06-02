@@ -6,7 +6,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Compliance"]
-tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vindex"]
+tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vIndex"]
 
 [extra]
 author = "Mike Mooring"
@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
 hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
-summary = "受监管行业对自定义语言模型的合规性,沿着一条清晰的分界线分裂:开放权重 vs 封闭 API。对开放权重底座,你可以交付一份 vindex 权重证明,以加密方式满足 GDPR 第 17 条的可验证删除要求。对封闭 API 底座,同一份回执覆盖了决策链,但无法主张权重来源 —— 而监管机构会在回执本身看到这个区别。本文将四个监管框架(欧盟 AI 法案、GDPR、HIPAA、NIST AI RMF)映射到我们交付的四个流水线阶段,并展示真实的回执格式。"
+summary = "受监管行业对自定义语言模型的合规性,沿着一条清晰的分界线分裂:开放权重 vs 封闭 API。对开放权重底座,你可以交付一份 vIndex 权重证明,以加密方式满足 GDPR 第 17 条的可验证删除要求。对封闭 API 底座,同一份回执覆盖了决策链,但无法主张权重来源 —— 而监管机构会在回执本身看到这个区别。本文将四个监管框架(欧盟 AI 法案、GDPR、HIPAA、NIST AI RMF)映射到我们交付的四个流水线阶段,并展示真实的回执格式。"
 +++
 
 *发布周期笔记 —— 第四部分*
@@ -34,7 +34,7 @@ summary = "受监管行业对自定义语言模型的合规性,沿着一条清�
 合规讨论往往会塌缩成"我们把事情记录下来了"。这种说法过不了审计人员那一关。审计人员想要的是*他们无需信任你的基础设施就能验证的证据*。下文四个框架使用了不同的术语,但底层诉求是同一个。
 
 <figure style="margin: 1.5rem auto; max-width: 100%;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="四个监管框架及各自要求的验证原语。欧盟 AI 法案要求记录逻辑和人工监督;验证原语是通过 vindex 提供的位精确机制性文档。GDPR 第 17 条要求对个人数据进行可验证删除;验证原语是带 SHA-256 回执的权重级 DELETE 补丁。HIPAA 要求访问审计和披露追踪;验证原语是每请求签名的决策日志。NIST AI RMF 要求治理、映射、测量和管理;验证原语是每次发布决策的哈希链回执。">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="四个监管框架及各自要求的验证原语。欧盟 AI 法案要求记录逻辑和人工监督;验证原语是通过 vIndex 提供的位精确机制性文档。GDPR 第 17 条要求对个人数据进行可验证删除;验证原语是带 SHA-256 回执的权重级 DELETE 补丁。HIPAA 要求访问审计和披露追踪;验证原语是每请求签名的决策日志。NIST AI RMF 要求治理、映射、测量和管理;验证原语是每次发布决策的哈希链回执。">
 <title>四位监管者,一个验证诉求</title>
 <rect width="900" height="380" fill="#faf8f5"/>
 <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">四位监管者,同一个底层诉求:验证,而非信任</text>
@@ -49,7 +49,7 @@ summary = "受监管行业对自定义语言模型的合规性,沿着一条清�
 <text x="55" y="191" font-size="10" fill="#4a4030">• 人工监督措施</text>
 <text x="55" y="206" font-size="10" fill="#4a4030">• 上市后监测</text>
 <text x="55" y="232" font-size="11" font-weight="700" fill="#2d5a4f">验证原语:</text>
-<text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">通过 vindex 提供的</text>
+<text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">通过 vIndex 提供的</text>
 <text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">位精确机制性文档</text>
 <text x="55" y="290" font-size="10" fill="#6b5d4f">不合规处罚:</text>
 <text x="55" y="308" font-size="14" font-weight="700" fill="#a04848">最高达全球营业额</text>
@@ -109,7 +109,7 @@ summary = "受监管行业对自定义语言模型的合规性,沿着一条清�
 
 在按阶段映射之前,先说本文中最重要的限定:
 
-**对开放权重模型底座** —— Gemma、Qwen、Llama、Mistral、GPT-OSS,任何权重可寻址且可编辑的模型 —— 每一次 Divinci 的发布决策都会发出一份 vindex 回执,其中包含一份**权重证明**:加密证据,证明决策时的活跃权重正好就是清单注册的权重。这正是让 GDPR 第 17 条可验证删除成为可能的关键。你应用一份 [DELETE 补丁](/zh/blog/deleting-paris-from-a-language-model/),从权重空间中移除某个特定的实体-关系,回执嵌入前后的哈希,审计人员就可以通过对照公开的 vindex 重新跑一遍验证,确认删除已经发生。
+**对开放权重模型底座** —— Gemma、Qwen、Llama、Mistral、GPT-OSS,任何权重可寻址且可编辑的模型 —— 每一次 Divinci 的发布决策都会发出一份 vIndex 回执,其中包含一份**权重证明**:加密证据,证明决策时的活跃权重正好就是清单注册的权重。这正是让 GDPR 第 17 条可验证删除成为可能的关键。你应用一份 [DELETE 补丁](/zh/blog/deleting-paris-from-a-language-model/),从权重空间中移除某个特定的实体-关系,回执嵌入前后的哈希,审计人员就可以通过对照公开的 vIndex 重新跑一遍验证,确认删除已经发生。
 
 **对封闭 API 模型底座** —— OpenAI、Anthropic、Google 通过不透明 API —— 同一份回执覆盖了决策链(用了哪份清单、哪次门控结果、哪次监控读数、哪位用户触发了哪个动作),但**无法主张权重来源**,因为提供方不公开权重。回执会在 `weight_attestation: null` 字段中明确说明,并附带一条解释原因的 `note`。这不是降级的合规姿态 —— 这是可验证内容的边界,被诚实地写下来了。读到这份回执的审计人员会清楚地知道哪一类证明在交付,哪一类不在。
 
@@ -212,7 +212,7 @@ summary = "受监管行业对自定义语言模型的合规性,沿着一条清�
 
 Register 阶段产出一份不可变的 JSON 清单,使用 SHA-256 寻址。对于受监管的发布,清单在一份交付物中携带欧盟 AI 法案附件 IV<sup><a href="#ref-1">[1]</a></sup> 所要求的全部内容:
 
-- 模型工件(HF 仓库 + 提交 SHA,或一个 vindex 补丁引用)
+- 模型工件(HF 仓库 + 提交 SHA,或一个 vIndex 补丁引用)
 - 提示模板(每个变量、每条系统消息 —— 受版本控制)
 - 路由规则(哪一类流量落到哪个发布上)
 - 用于计算门控阈值的数据集版本(按哈希给出的训练数据摘要)
@@ -221,7 +221,7 @@ Register 阶段产出一份不可变的 JSON 清单,使用 SHA-256 寻址。对�
 
 清单就是文档。审计人员不会读散文;他们读清单哈希并验证整个包。不需要谁在六个月后写的散文摘要。
 
-**开放权重的加分项。**当模型工件引用开放权重模型时,清单还会嵌入 `vindex_sha256` —— 该模型已发布的 [vindex](/zh/compliance/) 的加密指纹。这个指纹让第三方可以验证活跃权重,而完全不必信任我们的部署基础设施。
+**开放权重的加分项。**当模型工件引用开放权重模型时,清单还会嵌入 `vindex_sha256` —— 该模型已发布的 [vIndex](/zh/compliance/) 的加密指纹。这个指纹让第三方可以验证活跃权重,而完全不必信任我们的部署基础设施。
 
 **封闭 API 的限定。**当模型工件引用封闭 API 模型时,清单的 `vindex_sha256` 字段为 `null`,清单的 `weight_attestation_class` 为 `decision_chain_only`。读到此处的审计人员清楚地知道我们在主张什么,以及没在主张什么。
 
@@ -267,7 +267,7 @@ Gate 阶段是欧盟 AI 法案"人工监督措施"<sup><a href="#ref-1">[1]</a><
 
 这是真正赢得合规叙事的阶段。Observe 阶段通过当前发布持续地重放跟踪流量,由 Gate 阶段使用的同一位人类锚定裁判评分,并由一个质量监控器在越界时触发自动回滚。
 
-每一次发布决策 —— 注册、门控通过、门控拒绝、门控覆盖、检查点提升、检查点保留、自动回滚、手动回滚,**以及任何 GDPR 第 17 条 DELETE 补丁的应用** —— 都会发出一份 vindex 回执。它通过哈希链链接到该客户的上一份回执和该发布的上一份回执。
+每一次发布决策 —— 注册、门控通过、门控拒绝、门控覆盖、检查点提升、检查点保留、自动回滚、手动回滚,**以及任何 GDPR 第 17 条 DELETE 补丁的应用** —— 都会发出一份 vIndex 回执。它通过哈希链链接到该客户的上一份回执和该发布的上一份回执。
 
 下面是一份针对 GDPR 第 17 条 DELETE 补丁的真实回执 —— 直接改编自[合规页面](/zh/compliance/)记录的格式:
 
@@ -301,7 +301,7 @@ Gate 阶段是欧盟 AI 法案"人工监督措施"<sup><a href="#ref-1">[1]</a><
 }
 ```
 
-这份交付物是可验证的。审计人员不必信任我们的日志。他们拿走 `vindex_sha256_after`,从 `huggingface.co/Divinci-AI` 拉取对应已发布的 vindex,验证第 27 层中的特征 11179 在结构上已从前 25 名中缺席。他们拿走 `chain_signature` 并对照前一份回执验证。整条链按客户配置的计划在外部锚定。
+这份交付物是可验证的。审计人员不必信任我们的日志。他们拿走 `vindex_sha256_after`,从 `huggingface.co/Divinci-AI` 拉取对应已发布的 vIndex,验证第 27 层中的特征 11179 在结构上已从前 25 名中缺席。他们拿走 `chain_signature` 并对照前一份回执验证。整条链按客户配置的计划在外部锚定。
 
 **对封闭 API 模型的相同操作。**上面的回执字段会有三处变化:`operation.target` 变为 `provider_api_endpoint`,`verification` 变为只覆盖决策链证据的另一种 schema,`weight_attestation_class` 变为 `decision_chain_only`。封闭 API 模型提供方没有公开权重,回执就这么写。想要权重级证明的审计人员现在知道他们需要去找提供方,而不是找我们。
 
@@ -315,7 +315,7 @@ Gate 阶段是欧盟 AI 法案"人工监督措施"<sup><a href="#ref-1">[1]</a><
 |---|---|
 | *"3 月 15 日 14:22 UTC 跑的是哪个模型版本?"* | 该时间戳对应的 Observe 阶段回执,已签名并哈希链接。 |
 | *"这次发布在提升前通过了什么评估?"* | Gate 阶段回执,带每切片 Spearman ρ 表和门控所跑数据集的 SHA。 |
-| *"针对患者 X 的 GDPR 第 17 条删除请求确实执行了吗?"* | 上面那份 DELETE 补丁回执。审计人员对照已发布的 vindex 验证 `vindex_sha256_after`。 |
+| *"针对患者 X 的 GDPR 第 17 条删除请求确实执行了吗?"* | 上面那份 DELETE 补丁回执。审计人员对照已发布的 vIndex 验证 `vindex_sha256_after`。 |
 | *"谁批准了这次发布?他们覆盖 IP 许可切片门控的理由是什么?"* | Gate 阶段回执的 `override` 块,包含用户 ID 和必填的自由文本理由。 |
 | *"回滚多快触发?哪条监控读数触发了它?"* | Observe 阶段的回滚回执,包含三条连续低于阈值的质量读数和回滚耗时。 |
 | *"给我看过去 90 天的上市后监测证据。"* | Observe 阶段的回执链。按客户配置的计划在外部锚定。 |
@@ -330,13 +330,13 @@ Gate 阶段是欧盟 AI 法案"人工监督措施"<sup><a href="#ref-1">[1]</a><
 
 **文档是必要但不充分的。**一份证明模型达到某个阈值的回执,并不证明这个阈值就是对的阈值。如果你的评分 QA 套件没有覆盖在你的服务中对患者真正重要的那个切片,再多的回执链接也补不上这一刀。监管机构越来越理解这一点;如果评估本身是错的,"我们通过了评估"已经不再是充分的合规答案。
 
-**vindex 格式是单一厂商的。**我们使用它,因为它是当今最具体的、能用于权重级证明的加密原语。如果业界最终统一到另一种格式 —— 带哈希的模型卡、NIST 发布的工件 schema —— 回执格式应当随之演化。承重的实质(哈希链、可外部验证、感知权重证明)才是关键,而不是具体的 schema 名称。随着监管和标准格局的成熟,我们预期它会变化。
+**vIndex 格式是单一厂商的。**我们使用它,因为它是当今最具体的、能用于权重级证明的加密原语。如果业界最终统一到另一种格式 —— 带哈希的模型卡、NIST 发布的工件 schema —— 回执格式应当随之演化。承重的实质(哈希链、可外部验证、感知权重证明)才是关键,而不是具体的 schema 名称。随着监管和标准格局的成熟,我们预期它会变化。
 
 ## FAQ
 
 ### 在 GDPR 第 17 条下,对 AI 系统而言什么是可验证删除?
 
-可验证删除意味着第三方可以在无需信任你的日志的前提下验证数据已被移除。微调模型让它"遗忘"特定信息并不满足这一标准 —— 该信息可能在对抗性提示下重新出现,而且没有审计人员可核验的加密原语。一份权重级 DELETE 补丁,加上已发布的前后 vindex 哈希,*确实*满足该标准,因为审计人员可以对照公开的工件重新跑一遍验证。
+可验证删除意味着第三方可以在无需信任你的日志的前提下验证数据已被移除。微调模型让它"遗忘"特定信息并不满足这一标准 —— 该信息可能在对抗性提示下重新出现,而且没有审计人员可核验的加密原语。一份权重级 DELETE 补丁,加上已发布的前后 vIndex 哈希,*确实*满足该标准,因为审计人员可以对照公开的工件重新跑一遍验证。
 
 ### 为什么封闭 API 模型不能以同样的方式满足 GDPR 第 17 条?
 
@@ -379,7 +379,7 @@ NIST AI RMF 的四项核心职能 —— 治理、映射、测量、管理 —�
 <strong>GDPR Article 17 (Right to Erasure).</strong> <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank" rel="noopener">gdpr-info.eu/art-17-gdpr</a>. The data subject's right to obtain erasure of personal data, and the controller's obligation to demonstrate compliance under Article 5(2) accountability. Penalties up to €20M or 4% of annual global turnover.
 </li>
 <li id="ref-8" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>Internal — vindex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/zh/compliance/">compliance page</a> and demonstrated in the <a href="/zh/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
+<strong>Internal — vIndex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/zh/compliance/">compliance page</a> and demonstrated in the <a href="/zh/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
 </li>
 </ol>
 

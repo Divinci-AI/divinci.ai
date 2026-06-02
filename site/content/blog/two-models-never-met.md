@@ -108,7 +108,7 @@ The Platonic interpretation would say: the structure exists, independently of an
 
 ---
 
-## The Vindex View
+## The vIndex View
 
 The viewer below renders Gemma4-E2B (left) alongside Qwen3-8B (right) with CKA similarity overlaid as edge opacity. Darker connections between matched-depth nodes indicate higher representational alignment. Hit **⇌ Compare** to toggle side-by-side, and **🔌 2D Circuit** for the flattened network view that makes the diagonal structure easier to see.
 
@@ -174,7 +174,7 @@ The 99.2% CKA result raises more questions than it answers:
 
 - **Is CKA the right metric?** CKA measures linear-transformation-invariant similarity. If the models have converged to the same geometry up to a *nonlinear* transformation, CKA would miss it. There might be a deeper structural alignment that requires a different lens.
 
-These are the measurements for the next few months. I'm going to run systematic CKA across all 12 vindexes I've built, generate the full pairwise similarity matrix, and find the outliers.
+These are the measurements for the next few months. I'm going to run systematic CKA across all 12 vIndexes I've built, generate the full pairwise similarity matrix, and find the outliers.
 
 ---
 
@@ -198,9 +198,9 @@ For interpretability as a field, that's either very good news (findings generali
 
 ---
 
-**April 23, 2026** — *Coming soon: Three Models That Never Met.* Kimi-K2-Instruct is now in the vindex pipeline. Once Phase 3 routing stats are complete, we'll have a third CKA pair: Gemma4 ↔ Qwen3 (99.2%) and Gemma4 ↔ Kimi-K2. If the 99.2% result holds with a MoE model from a third organization (Moonshot AI), the convergence claim gets significantly stronger. If it doesn't — that's an equally interesting result and will tell us something about where MoE routing changes the representational geometry.
+**April 23, 2026** — *Coming soon: Three Models That Never Met.* Kimi-K2-Instruct is now in the vIndex pipeline. Once Phase 3 routing stats are complete, we'll have a third CKA pair: Gemma4 ↔ Qwen3 (99.2%) and Gemma4 ↔ Kimi-K2. If the 99.2% result holds with a MoE model from a third organization (Moonshot AI), the convergence claim gets significantly stronger. If it doesn't — that's an equally interesting result and will tell us something about where MoE routing changes the representational geometry.
 
-*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). LarQL vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
+*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). LarQL vIndex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
 
 ## References
 
@@ -215,6 +215,6 @@ For interpretability as a field, that's either very good news (findings generali
     <strong>Bonsai 8B.</strong> Native-1-bit Qwen3-architecture model published by Prism ML: <a href="https://huggingface.co/prism-ml/Bonsai-8B-mlx-1bit" target="_blank" rel="noopener">prism-ml/Bonsai-8B-mlx-1bit</a>. Independent organization, independent training recipe — the "two models that never met" framing.
   </li>
   <li id="ref-4" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-    <strong>Internal CKA + vindex measurements.</strong> The 99.2% Gemma 4 ↔ Qwen3 CKA result, and the var@64 / C1 / C3 family signatures in the charts above, are computed by the <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">LarQL</a> pipeline from the vindexes published at <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">huggingface.co/Divinci-AI</a>. The companion post <a href="/blog/when-the-circuit-dissolves/">When the Circuit Dissolves</a> lists the specific repos and the `larql show` reproducer commands.
+    <strong>Internal CKA + vIndex measurements.</strong> The 99.2% Gemma 4 ↔ Qwen3 CKA result, and the var@64 / C1 / C3 family signatures in the charts above, are computed by the <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">LarQL</a> pipeline from the vIndexes published at <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">huggingface.co/Divinci-AI</a>. The companion post <a href="/blog/when-the-circuit-dissolves/">When the Circuit Dissolves</a> lists the specific repos and the `larql show` reproducer commands.
   </li>
 </ol>

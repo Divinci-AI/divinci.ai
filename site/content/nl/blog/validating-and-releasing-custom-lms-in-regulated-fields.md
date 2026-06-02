@@ -6,7 +6,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Compliance"]
-tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vindex"]
+tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vIndex"]
 
 [extra]
 author = "Mike Mooring"
@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
 hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
-summary = "Compliance voor gereguleerde sectoren bij aangepaste taalmodellen splitst zich helder langs één as: open-weights versus closed-API. Voor open-weights backings kun je een vindex-weight-attestation leveren die voldoet aan de cryptografisch verifieerbare wissing van AVG artikel 17. Voor closed-API backings dekt hetzelfde ontvangstbewijs de beslisketen, maar kan het geen aanspraak maken op gewichtsherkomst — en de toezichthouder krijgt dat onderscheid in het ontvangstbewijs zelf. Deze post koppelt vier regelgevende kaders (EU AI Act, AVG, HIPAA, NIST AI RMF) aan de vier pipelinefasen die wij leveren, en toont het werkelijke ontvangstbewijsformaat."
+summary = "Compliance voor gereguleerde sectoren bij aangepaste taalmodellen splitst zich helder langs één as: open-weights versus closed-API. Voor open-weights backings kun je een vIndex-weight-attestation leveren die voldoet aan de cryptografisch verifieerbare wissing van AVG artikel 17. Voor closed-API backings dekt hetzelfde ontvangstbewijs de beslisketen, maar kan het geen aanspraak maken op gewichtsherkomst — en de toezichthouder krijgt dat onderscheid in het ontvangstbewijs zelf. Deze post koppelt vier regelgevende kaders (EU AI Act, AVG, HIPAA, NIST AI RMF) aan de vier pipelinefasen die wij leveren, en toont het werkelijke ontvangstbewijsformaat."
 +++
 
 *Notities uit de Release Cycle — Deel IV*
@@ -50,7 +50,7 @@ Compliancediscussies vervallen vaak tot "we hebben dingen gedocumenteerd". Die f
 <text x="55" y="206" font-size="10" fill="#4a4030">• post-market monitoring</text>
 <text x="55" y="232" font-size="11" font-weight="700" fill="#2d5a4f">Verificatieprimitief:</text>
 <text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">bit-exacte mechanistische</text>
-<text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">documentatie via vindex</text>
+<text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">documentatie via vIndex</text>
 <text x="55" y="290" font-size="10" fill="#6b5d4f">Boete bij non-compliance:</text>
 <text x="55" y="308" font-size="14" font-weight="700" fill="#a04848">tot 7% van</text>
 <text x="55" y="324" font-size="14" font-weight="700" fill="#a04848">wereldwijde omzet</text>
@@ -109,7 +109,7 @@ De boetebedragen zijn niet wat deze kaders interessant maakt. De boetebedragen z
 
 Vóór de mapping per fase volgt het belangrijkste voorbehoud in deze hele post:
 
-**Voor open-weights modelbackings** — Gemma, Qwen, Llama, Mistral, GPT-OSS, alles waarbij de gewichten adresseerbaar en bewerkbaar zijn — emitteert elke Divinci-releasebeslissing een vindex-ontvangstbewijs met een **weight-attestation**: cryptografisch bewijs dat de actieve gewichten op het beslismoment exact de gewichten zijn die in het manifest geregistreerd staan. Dit is wat verifieerbare wissing onder AVG artikel 17 mogelijk maakt. Je past een [DELETE-patch](/nl/blog/deleting-paris-from-a-language-model/) toe die een specifieke entiteit-relatie uit de gewichtsruimte verwijdert, het ontvangstbewijs bevat de hash van vóór en na, en een auditor kan verifiëren dat de wissing daadwerkelijk heeft plaatsgevonden door de verificatie opnieuw uit te voeren tegen de publieke vindex.
+**Voor open-weights modelbackings** — Gemma, Qwen, Llama, Mistral, GPT-OSS, alles waarbij de gewichten adresseerbaar en bewerkbaar zijn — emitteert elke Divinci-releasebeslissing een vIndex-ontvangstbewijs met een **weight-attestation**: cryptografisch bewijs dat de actieve gewichten op het beslismoment exact de gewichten zijn die in het manifest geregistreerd staan. Dit is wat verifieerbare wissing onder AVG artikel 17 mogelijk maakt. Je past een [DELETE-patch](/nl/blog/deleting-paris-from-a-language-model/) toe die een specifieke entiteit-relatie uit de gewichtsruimte verwijdert, het ontvangstbewijs bevat de hash van vóór en na, en een auditor kan verifiëren dat de wissing daadwerkelijk heeft plaatsgevonden door de verificatie opnieuw uit te voeren tegen de publieke vIndex.
 
 **Voor closed-API modelbackings** — OpenAI, Anthropic, Google via ondoorzichtige API's — dekt hetzelfde ontvangstbewijs de beslisketen (welk manifest, welke gate-uitslag, welke monitor-meting, welke gebruiker welke actie triggerde) maar **kan het geen aanspraak maken op gewichtsherkomst**, omdat de provider geen gewichten beschikbaar stelt. Het ontvangstbewijs vermeldt dit expliciet in een veld `weight_attestation: null` met een `note` die uitlegt waarom. Dat is geen verminderde compliancepositie — het is de grens van wat verifieerbaar is, eerlijk opgeschreven. Een auditor die het ontvangstbewijs leest begrijpt exact welke klasse van bewijs wel en niet wordt geleverd.
 
@@ -212,7 +212,7 @@ De rest van de post loopt door de bijdrage van elke fase.
 
 De Register-fase produceert een onveranderlijk JSON-manifest, geadresseerd via SHA-256. Voor gereguleerde releases bevat het manifest alles wat bijlage IV<sup><a href="#ref-1">[1]</a></sup> vraagt in één artefact:
 
-- Het modelartefact (HF-repo + commit-SHA, of een vindex-patchreferentie)
+- Het modelartefact (HF-repo + commit-SHA, of een vIndex-patchreferentie)
 - De prompt-template (elke variabele, elk systeembericht — onder versiebeheer)
 - De routingregels (welke verkeersklasse op welke release terechtkomt)
 - De datasetversie gebruikt om gate-drempels te berekenen (samenvatting trainingsdata via hash)
@@ -221,7 +221,7 @@ De Register-fase produceert een onveranderlijk JSON-manifest, geadresseerd via S
 
 Het manifest *is* de documentatie. Een auditor leest geen proza; ze lezen de manifest-hash en verifiëren de bundel. Geen zes-maanden-later geschreven prozasamenvatting nodig.
 
-**Open-weights-bonus.** Wanneer het modelartefact verwijst naar een open-weights model, bevat het manifest ook de `vindex_sha256` — de cryptografische vingerafdruk van de gepubliceerde [vindex](/nl/compliance/) van het model. Die vingerafdruk is wat een derde partij in staat stelt om de actieve gewichten te verifiëren zonder ooit onze deployment-infrastructuur te hoeven vertrouwen.
+**Open-weights-bonus.** Wanneer het modelartefact verwijst naar een open-weights model, bevat het manifest ook de `vindex_sha256` — de cryptografische vingerafdruk van de gepubliceerde [vIndex](/nl/compliance/) van het model. Die vingerafdruk is wat een derde partij in staat stelt om de actieve gewichten te verifiëren zonder ooit onze deployment-infrastructuur te hoeven vertrouwen.
 
 **Closed-API-voorbehoud.** Wanneer het modelartefact verwijst naar een closed-API model, is het veld `vindex_sha256` in het manifest `null` en is het `weight_attestation_class` van het manifest `decision_chain_only`. De auditor die dit leest, weet exact wat wel en wat niet wordt geclaimd.
 
@@ -267,7 +267,7 @@ Voor HIPAA is de canary-fase ook waar per-verzoek audit-logging end-to-end wordt
 
 Dit is de fase die het complianceverhaal verdient. De Observe-fase draait continue trace-replay door de actieve release, gescoord door dezelfde door mensen verankerde rechter uit Gate, met een kwaliteitsmonitor die een automatische rollback triggert als hij doorbreekt.
 
-Elke releasebeslissing — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **en elke toepassing van een AVG-artikel-17-DELETE-patch** — emitteert een vindex-ontvangstbewijs. Hash-geketend aan het vorige ontvangstbewijs voor deze klant en het vorige ontvangstbewijs voor deze release.
+Elke releasebeslissing — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **en elke toepassing van een AVG-artikel-17-DELETE-patch** — emitteert een vIndex-ontvangstbewijs. Hash-geketend aan het vorige ontvangstbewijs voor deze klant en het vorige ontvangstbewijs voor deze release.
 
 Zo ziet een echt ontvangstbewijs eruit voor een AVG-artikel-17-DELETE-patch — rechtstreeks aangepast van het formaat dat op de [compliancepagina](/nl/compliance/) is gedocumenteerd:
 
@@ -301,7 +301,7 @@ Zo ziet een echt ontvangstbewijs eruit voor een AVG-artikel-17-DELETE-patch — 
 }
 ```
 
-Dat artefact is verifieerbaar. Een auditor hoeft onze logs niet te vertrouwen. Ze pakken de `vindex_sha256_after`, halen de bijbehorende gepubliceerde vindex op van `huggingface.co/Divinci-AI`, en verifiëren dat feature 11179 in laag 27 structureel afwezig is in de top-25. Ze pakken de `chain_signature` en verifiëren deze tegen het voorgaande ontvangstbewijs. De hele keten wordt extern verankerd volgens een schema dat de klant configureert.
+Dat artefact is verifieerbaar. Een auditor hoeft onze logs niet te vertrouwen. Ze pakken de `vindex_sha256_after`, halen de bijbehorende gepubliceerde vIndex op van `huggingface.co/Divinci-AI`, en verifiëren dat feature 11179 in laag 27 structureel afwezig is in de top-25. Ze pakken de `chain_signature` en verifiëren deze tegen het voorgaande ontvangstbewijs. De hele keten wordt extern verankerd volgens een schema dat de klant configureert.
 
 **Dezelfde operatie tegen een closed-API model.** De ontvangstbewijsvelden hierboven veranderen op drie manieren: `operation.target` wordt `provider_api_endpoint`, `verification` wordt een ander schema dat alleen bewijs uit de beslisketen dekt, en `weight_attestation_class` wordt `decision_chain_only`. De aanbieder van het closed-API model heeft geen gewichten beschikbaar gesteld, dus zegt het ontvangstbewijs dat. Een auditor die bewijs op gewichtsniveau wil, weet nu dat ze moeten escaleren naar de provider, niet naar ons.
 
@@ -315,7 +315,7 @@ Een nuttige oefening: loop de vragen door die een echte auditor zal stellen, en 
 |---|---|
 | *"Welke modelversie draaide op 15 maart om 14:22 UTC?"* | Het Observe-fase-ontvangstbewijs voor die tijdstempel, ondertekend en hash-geketend. |
 | *"Welke evaluatie heeft deze release doorstaan voordat hij werd gepromoveerd?"* | Het Gate-fase-ontvangstbewijs, met de per-slice Spearman-ρ-tabel en de dataset-SHA waartegen de gate is gedraaid. |
-| *"Werd een AVG-artikel-17-wissingsverzoek voor patiënt X daadwerkelijk toegepast?"* | Het DELETE-patch-ontvangstbewijs hierboven. De auditor verifieert `vindex_sha256_after` tegen de gepubliceerde vindex. |
+| *"Werd een AVG-artikel-17-wissingsverzoek voor patiënt X daadwerkelijk toegepast?"* | Het DELETE-patch-ontvangstbewijs hierboven. De auditor verifieert `vindex_sha256_after` tegen de gepubliceerde vIndex. |
 | *"Wie heeft deze release goedgekeurd? Wat was hun verklaarde rationale voor het overrulen van de IP-licentiëringspoort?"* | Het `override`-blok van het Gate-fase-ontvangstbewijs, inclusief de user-ID en de vereiste free-text rationale. |
 | *"Hoe snel werd de rollback uitgevoerd, en welke monitor-meting triggerde hem?"* | Het rollback-ontvangstbewijs uit de Observe-fase, met de drie opeenvolgende sub-drempel-kwaliteitsmetingen en de verstreken tijd van de rollback. |
 | *"Toon me het post-market monitoring-bewijs voor de laatste 90 dagen."* | De ontvangstbewijsketen uit de Observe-fase. Extern verankerd volgens het door de klant geconfigureerde schema. |
@@ -330,13 +330,13 @@ Drie eerlijke beperkingen:
 
 **Documentatie is noodzakelijk maar niet voldoende.** Een ontvangstbewijs dat bewijst dat een model een drempel haalde, bewijst niet dat de drempel de juiste drempel was. Als je scored-QA-suite niet de slice dekt die er voor een patiënt in jouw dienstverlening werkelijk toe doet, lost geen enkele hoeveelheid ontvangstbewijsketens dat op. Toezichthouders begrijpen dit steeds beter; "we hebben onze eval gehaald" is niet langer een voldoende compliance-antwoord als de eval de verkeerde eval was.
 
-**Het vindex-formaat is single-vendor.** Wij gebruiken het omdat het de meest concrete cryptografische primitief is die vandaag beschikbaar is voor bewijs op gewichtsniveau. Als de industrie zich op een ander formaat vastlegt — model-cards-met-hashes, NIST-gepubliceerde artefactschema's — zou het ontvangstbewijsformaat daarnaar moeten evolueren. De inhoud (hash-geketend, extern verifieerbaar, weight-attestation-bewust) is wat dragend is, niet de specifieke schema-naam. We verwachten dat dit verandert naarmate het regelgevings- en standaardenlandschap volwassen wordt.
+**Het vIndex-formaat is single-vendor.** Wij gebruiken het omdat het de meest concrete cryptografische primitief is die vandaag beschikbaar is voor bewijs op gewichtsniveau. Als de industrie zich op een ander formaat vastlegt — model-cards-met-hashes, NIST-gepubliceerde artefactschema's — zou het ontvangstbewijsformaat daarnaar moeten evolueren. De inhoud (hash-geketend, extern verifieerbaar, weight-attestation-bewust) is wat dragend is, niet de specifieke schema-naam. We verwachten dat dit verandert naarmate het regelgevings- en standaardenlandschap volwassen wordt.
 
 ## FAQ
 
 ### Wat is verifieerbare wissing onder AVG artikel 17 voor AI-systemen?
 
-Verifieerbare wissing betekent dat een derde partij kan verifiëren dat de gegevens zijn verwijderd zonder je logs te hoeven vertrouwen. Een model fine-tunen om specifieke informatie te "vergeten" voldoet niet aan deze norm — de informatie kan onder adversariële prompting weer opduiken en er is geen cryptografische primitief die een auditor kan controleren. Een DELETE-patch op gewichtsniveau met een gepubliceerde voor/na-vindex-hash voldoet *wel* aan de norm, omdat de auditor de verificatie opnieuw kan uitvoeren tegen het publieke artefact.
+Verifieerbare wissing betekent dat een derde partij kan verifiëren dat de gegevens zijn verwijderd zonder je logs te hoeven vertrouwen. Een model fine-tunen om specifieke informatie te "vergeten" voldoet niet aan deze norm — de informatie kan onder adversariële prompting weer opduiken en er is geen cryptografische primitief die een auditor kan controleren. Een DELETE-patch op gewichtsniveau met een gepubliceerde voor/na-vIndex-hash voldoet *wel* aan de norm, omdat de auditor de verificatie opnieuw kan uitvoeren tegen het publieke artefact.
 
 ### Waarom kunnen closed-API modellen niet op dezelfde manier aan AVG artikel 17 voldoen?
 
@@ -379,7 +379,7 @@ De vier kernfuncties van NIST AI RMF — Govern, Map, Measure, Manage — beslaa
 <strong>GDPR Article 17 (Right to Erasure).</strong> <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank" rel="noopener">gdpr-info.eu/art-17-gdpr</a>. The data subject's right to obtain erasure of personal data, and the controller's obligation to demonstrate compliance under Article 5(2) accountability. Penalties up to €20M or 4% of annual global turnover.
 </li>
 <li id="ref-8" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>Internal — vindex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/nl/compliance/">compliance page</a> and demonstrated in the <a href="/nl/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
+<strong>Internal — vIndex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/nl/compliance/">compliance page</a> and demonstrated in the <a href="/nl/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
 </li>
 </ol>
 

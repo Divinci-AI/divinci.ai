@@ -13,3 +13,8 @@ node_modules
 
 # Build artifacts
 site/public/
+
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

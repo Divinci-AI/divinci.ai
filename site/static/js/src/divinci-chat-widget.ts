@@ -41,10 +41,20 @@ function readConfig(): WidgetConfig | null {
     console.warn("[divinci-chat] missing data-api-base / data-release-id / data-turnstile-sitekey");
     return null;
   }
+  let apiBase = d.apiBase;
+  let releaseId = d.releaseId;
+  let turnstileSiteKey = d.turnstileSitekey;
+
+  // Local Zola serve: use Cloudflare's always-passes test sitekey (no domain binding).
+  const host = window.location.hostname;
+  if (host === "localhost" || host === "127.0.0.1") {
+    turnstileSiteKey = "1x00000000000000000000AA";
+  }
+
   return {
-    apiBase: d.apiBase,
-    releaseId: d.releaseId,
-    turnstileSiteKey: d.turnstileSitekey,
+    apiBase,
+    releaseId,
+    turnstileSiteKey,
     signupUrl: d.signupUrl || "https://app.divinci.app",
   };
 }

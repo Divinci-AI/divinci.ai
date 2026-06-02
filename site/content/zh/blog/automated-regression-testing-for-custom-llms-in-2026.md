@@ -309,9 +309,9 @@ curl -X POST https://api.divinci.ai/v1/regression/judges/calibrate \
 
 对离线运行打分的评判器,与对回放运行打分的评判器是同一个。审计日志会记录两组得分、两个评判器版本、被回放的追踪 ID,以及触发阻塞的差距。这个差距本身就是我们拥有的最有用的诊断信号,也是接下来交给负责执行 [第 6 篇诊断树](/zh/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) 的人的内容。
 
-## 用 vindex 凭据锚定黄金数据集
+## 用 vIndex 凭据锚定黄金数据集
 
-如果你之后无法复现,套件里的每一个得分都没有意义。我们在每次发布时对黄金数据集进行哈希,并将该哈希与模型 SHA、提示词 SHA、评判器 SHA 和校准记录一起链入 vindex 凭据。该凭据可外部锚定 —— 审计员可以在六个月后回放我们精确的回归运行并验证我们所声明的分数。
+如果你之后无法复现,套件里的每一个得分都没有意义。我们在每次发布时对黄金数据集进行哈希,并将该哈希与模型 SHA、提示词 SHA、评判器 SHA 和校准记录一起链入 vIndex 凭据。该凭据可外部锚定 —— 审计员可以在六个月后回放我们精确的回归运行并验证我们所声明的分数。
 
 ```json
 {
@@ -324,11 +324,11 @@ curl -X POST https://api.divinci.ai/v1/regression/judges/calibrate \
   "scores": { "aggregate": 0.872, "by_slice": { "/* … */": "/* per-slice scalars */" } },
   "replay": { "trace_window_days": 14, "n_traces": 8430, "max_gap": 0.018 },
   "vindex_anchor": "sha256:f0bfd2…",
-  "verifiable_at": "https://vindex.divinci.ai/rel_3f1a-2026-05-26"
+  "verifiable_at": "https://vIndex.divinci.ai/rel_3f1a-2026-05-26"
 }
 ```
 
-**开放权重说明。** 上述凭据仅在模型为开放权重时才携带权重溯源 —— vindex 锚定的是实际的权重字节。对于闭源 API 模型后端(OpenAI / Anthropic / Google 托管模型),凭据仍然携带决策链 —— 每个门控分数、每个评判器结果、校准记录 —— 但权重字段为空,你无法独立验证模型构件。我们在凭据本身和[合规文档](/zh/compliance/)中都明确这一点,这样审计员不会产生错误印象。能从完整的 vindex 链中受益最多的,是你拥有权重控制权的那些发布。
+**开放权重说明。** 上述凭据仅在模型为开放权重时才携带权重溯源 —— vIndex 锚定的是实际的权重字节。对于闭源 API 模型后端(OpenAI / Anthropic / Google 托管模型),凭据仍然携带决策链 —— 每个门控分数、每个评判器结果、校准记录 —— 但权重字段为空,你无法独立验证模型构件。我们在凭据本身和[合规文档](/zh/compliance/)中都明确这一点,这样审计员不会产生错误印象。能从完整的 vIndex 链中受益最多的,是你拥有权重控制权的那些发布。
 
 ## 一个我们实际推行过的四阶段实施时间线
 

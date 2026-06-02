@@ -309,9 +309,9 @@ When those two scores diverge by more than the per-slice gap budget, the release
 
 The judge that scores the offline run is the same judge that scores the replay run. The audit log records both score sets, both judge versions, the trace IDs that were replayed, and the gap that fired the block. The gap itself is the most useful diagnostic signal we have, and it is what gets handed to whoever picks up the [post 6 diagnostic tree](/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) next.
 
-## Anchor the golden dataset with a vindex receipt
+## Anchor the golden dataset with a vIndex receipt
 
-Every score in the suite is meaningless if you cannot reproduce it later. We hash the golden dataset on each release and chain that hash into a vindex receipt alongside the model SHA, prompt SHA, judge SHA, and the calibration record. The receipt is externally anchorable — auditors can replay our exact regression run six months later and verify the scores we claimed.
+Every score in the suite is meaningless if you cannot reproduce it later. We hash the golden dataset on each release and chain that hash into a vIndex receipt alongside the model SHA, prompt SHA, judge SHA, and the calibration record. The receipt is externally anchorable — auditors can replay our exact regression run six months later and verify the scores we claimed.
 
 ```json
 {
@@ -324,11 +324,11 @@ Every score in the suite is meaningless if you cannot reproduce it later. We has
   "scores": { "aggregate": 0.872, "by_slice": { "/* … */": "/* per-slice scalars */" } },
   "replay": { "trace_window_days": 14, "n_traces": 8430, "max_gap": 0.018 },
   "vindex_anchor": "sha256:f0bfd2…",
-  "verifiable_at": "https://vindex.divinci.ai/rel_3f1a-2026-05-26"
+  "verifiable_at": "https://vIndex.divinci.ai/rel_3f1a-2026-05-26"
 }
 ```
 
-**Open-weights caveat.** The receipt above carries weight provenance only when the model is open-weights — vindex anchors the actual weight bytes. For closed-API model backings (OpenAI / Anthropic / Google managed models), the receipt still carries the decision chain — every gate score, every judge result, the calibration record — but the weight field is empty, and you cannot independently verify the model artefact. We say this in the receipt and in the [compliance documentation](/compliance/) so auditors do not get a false impression. The releases that benefit most from a full vindex chain are the ones where you control the weights.
+**Open-weights caveat.** The receipt above carries weight provenance only when the model is open-weights — vIndex anchors the actual weight bytes. For closed-API model backings (OpenAI / Anthropic / Google managed models), the receipt still carries the decision chain — every gate score, every judge result, the calibration record — but the weight field is empty, and you cannot independently verify the model artefact. We say this in the receipt and in the [compliance documentation](/compliance/) so auditors do not get a false impression. The releases that benefit most from a full vIndex chain are the ones where you control the weights.
 
 ## A four-phase implementation timeline that we have actually shipped
 

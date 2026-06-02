@@ -142,8 +142,8 @@
     "title": "Start your AI journey",
     "description": "Join thousands of teams already transforming their work with Divinci AI. Get early access to our platform.",
     "email_placeholder": "Your email",
-    "button": "Request access",
-    "note": "No spam. Unsubscribe at any time."
+    "button": "Schedule a Demo",
+    "note": "We'll find a time that works — a short walkthrough of the platform."
   },
   "ai_for_good": {
     "title": "AI for good",
@@ -253,7 +253,7 @@
     }
   },
   "footer": {
-    "tagline": "Empowering human-AI collaboration",
+    "tagline": "liberum intelligentia",
     "sections": {
       "product": {
         "title": "Product",
@@ -270,10 +270,11 @@
       "resources": {
         "title": "Resources",
         "links": {
-          "documentation": "Documentation",
-          "blog": "Blog",
-          "tutorials": "Tutorials",
           "api": "API",
+          "blog": "Blog",
+          "brand": "Resources",
+          "documentation": "Documentation",
+          "tutorials": "Tutorials",
           "support": "Support"
         }
       },
@@ -312,7 +313,12 @@
     "support": "Support",
     "privacy_settings": "Privacy Settings",
     "cookie_policy": "Cookie Policy",
-    "cookie_preferences": "Cookie Preferences"
+    "cookie_preferences": "Cookie Preferences",
+    "motto": {
+      "word_1": "free",
+      "word_2": "intelligence",
+      "phrase": "free intelligence"
+    }
   },
   "support": {
     "title": "Support Center",
@@ -1026,26 +1032,26 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Powered by vindex + LarQL",
+      "eyebrow": "Powered by vIndex + LarQL",
       "heading": "Compliance, with a receipt.",
-      "tagline": "Most \"AI compliance\" stops at access logs and prompt-level guardrails. Divinci goes inside the model. Every entity association is a queryable feature; every edit is a portable, auditable patch — and the <strong>vindex</strong> is the technical-documentation artifact your regulator is about to start asking for.",
+      "tagline": "Most \"AI compliance\" stops at access logs and prompt-level guardrails. Divinci goes inside the model. Every entity association is a queryable feature; every edit is a portable, auditable patch — and the <strong>vIndex</strong> is the technical-documentation artifact your regulator is about to start asking for.",
       "cta_primary": "Talk to compliance →",
-      "cta_secondary": "See a live vindex"
+      "cta_secondary": "See a live vIndex"
     },
     "mapping": {
       "heading": "What the regulation requires · what LarQL ships",
-      "subheading": "The same artifact — the vindex — answers transparency, oversight, documentation, and erasure requirements across the four major AI regulations Divinci customers face.",
+      "subheading": "The same artifact — the vIndex — answers transparency, oversight, documentation, and erasure requirements across the four major AI regulations Divinci customers face.",
       "th_regulation": "Regulation",
       "th_requirement": "Requirement",
       "th_competitors": "What competitors offer",
-      "th_larql": "What LarQL/vindex offers",
+      "th_larql": "What LarQL/vIndex offers",
       "rows": [
         {
           "reg_label": "EU AI Act §13",
           "reg_topic": "Transparency",
           "requirement": "\"Sufficient transparency to enable users to interpret outputs\"",
           "competitors": "Model cards, prose system descriptions",
-          "larql": "The vindex IS a queryable transparency artifact — every fact-bearing feature identified by <code>(layer, feature, gate_score)</code>"
+          "larql": "The vIndex IS a queryable transparency artifact — every fact-bearing feature identified by <code>(layer, feature, gate_score)</code>"
         },
         {
           "reg_label": "EU AI Act §14",
@@ -1087,13 +1093,13 @@
     "receipt": {
       "heading": "What a \"receipt\" actually looks like",
       "para_1": "A LarQL patch is a portable JSON file with a SHA-256 checksum. Apply it to suppress a fact; remove it to restore the model bit-for-bit. The patch IS the audit log — operators, regulators, and downstream consumers can verify the same operation independently.",
-      "para_2": "Below: the actual Gate-3 patch we ship in our public test suite, showing the Paris→capital association suppressed and reverted with measurable, repeatable effect on a real Gemma 4 E2B vindex."
+      "para_2": "Below: the actual Gate-3 patch we ship in our public test suite, showing the Paris→capital association suppressed and reverted with measurable, repeatable effect on a real Gemma 4 E2B vIndex."
     },
     "cta_band": {
       "heading": "Compliance you can prove. On any open transformer.",
-      "tagline": "Eight published vindexes today across Gemma, Qwen, Llama, Mistral, OpenAI MoE, and Microsoft 1-bit. Bring your model — we'll build the receipt.",
+      "tagline": "Twelve published vIndexes today across Gemma, Qwen, Llama, Mistral, OpenAI MoE, and Microsoft 1-bit. Bring your model — we'll build the receipt.",
       "cta_primary": "Book a compliance review →",
-      "cta_secondary": "Browse vindexes on Hugging Face"
+      "cta_secondary": "Browse vIndexes on Hugging Face"
     }
   }
 }

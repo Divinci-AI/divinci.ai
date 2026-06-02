@@ -233,14 +233,14 @@ summary = "हमने Divinci की चार-चरण पाइपलाइ
 - **एक प्रति-स्लाइस गेट** जिसके थ्रेशोल्ड domain owners द्वारा परिभाषित हों, platform owners द्वारा नहीं। यही 4, 5, 6 को catchable बनाता है। ([Stage 2](/hi/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-2-gate))
 - **हर checkpoint पर quality monitoring वाला एक कैनरी**, केवल latency और 5xx नहीं। यही 8 को catchable बनाता है और 9 तथा 10 को प्रोडक्शन में हिट करने पर *survivable* बनाता है। ([Stage 3](/hi/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-3-roll))
 - **एक निरंतर observer** जो सक्रिय मॉडल के माध्यम से वास्तविक प्रोडक्शन ट्रेस को उसी कैलिब्रेटेड judge के साथ स्कोर करता है जिसने गेट को संचालित किया था। यही 9 और 10 को catchable बनाता है। ([Stage 4](/hi/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-4-observe-rollback-and-the-receipt))
-- **हर निर्णय के लिए एक साइन्ड audit रसीद।** Hash-chained, बाहरी रूप से anchorable। open-weights मॉडल backings के लिए, रसीद एक [vindex weight-attestation](/hi/compliance/) embed करती है जो साबित करता है कि सक्रिय weights वही हैं जो मेनिफ़ेस्ट ने रजिस्टर किए। closed-API backings के लिए, रसीद decision chain को कवर करती है लेकिन weight provenance का दावा नहीं कर सकती — और audit trail इसे स्पष्ट रूप से कहता है।
+- **हर निर्णय के लिए एक साइन्ड audit रसीद।** Hash-chained, बाहरी रूप से anchorable। open-weights मॉडल backings के लिए, रसीद एक [vIndex weight-attestation](/hi/compliance/) embed करती है जो साबित करता है कि सक्रिय weights वही हैं जो मेनिफ़ेस्ट ने रजिस्टर किए। closed-API backings के लिए, रसीद decision chain को कवर करती है लेकिन weight provenance का दावा नहीं कर सकती — और audit trail इसे स्पष्ट रूप से कहता है।
 
 टुकड़े व्यक्तिगत रूप से नए नहीं हैं। हर MLOps प्लेटफ़ॉर्म में उनमें से एक या दो हैं। संयोजन — slice-aware गेट + production-trace observer + atomic rollback + provable रसीद — वह हिस्सा है जिसे 2026 में कोई और शिप नहीं करता।
 
 ## अगला कहाँ जाएँ
 
 - साथी पोस्ट — **[Divinci AI के साथ LLM CI/CD पाइपलाइन कैसे बनाएं](/hi/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/)** — आर्किटेक्चर और API को कवर करती है।
-- **[compliance पेज](/hi/compliance/)** हर रिलीज़ निर्णय का समर्थन करने वाले vindex रसीद फ़ॉर्मेट को दस्तावेज़ित करता है और यह कैसे EU AI Act, GDPR Article 17, HIPAA, और NIST AI RMF पर मैप होता है।
+- **[compliance पेज](/hi/compliance/)** हर रिलीज़ निर्णय का समर्थन करने वाले vIndex रसीद फ़ॉर्मेट को दस्तावेज़ित करता है और यह कैसे EU AI Act, GDPR Article 17, HIPAA, और NIST AI RMF पर मैप होता है।
 - **[AutoRAG प्रोडक्ट पेज](/hi/autorag/)** उस RAG-side hallucination reduction को कवर करता है जो Gate-2 और Stage-4 observer को संचालित करने वाले कैलिब्रेटेड judge के साथ स्वाभाविक रूप से जुड़ता है।
 - **[API reference](/hi/api/)** — इस सीरीज़ में संदर्भित हर command एक वास्तविक endpoint है।
 
@@ -264,7 +264,7 @@ Order-of-magnitude सेकंड, मिनट नहीं। Divinci पा�
 
 ### AI मॉडल डिप्लॉयमेंट पर कौन सी ऑडिट ट्रेल आवश्यकताएँ लागू होती हैं?
 
-EU AI Act, GDPR Article 17 (right to erasure), HIPAA, और NIST AI Risk Management Framework सभी संगठनों से मॉडल संस्करणों, मूल्यांकन परिणामों, अनुमोदन निर्णयों, और rollouts के रिकॉर्ड बनाए रखने की अपेक्षा करते हैं। इन चारों के नीचे की अनकही आवश्यकता यह है कि रिकॉर्ड *verifiable* होने चाहिए — auditable का मतलब "हमारे पास एक log है" से अधिक है। Divinci की vindex रसीदें hash-chained और बाहरी रूप से anchorable हैं, जिसका अर्थ है कि एक auditor हमारे logs पर भरोसा किए बिना chain को verify कर सकता है। open-weights मॉडल backings के लिए रसीद एक weight-attestation भी embed करती है; closed-API backings के लिए रसीद स्पष्ट रूप से नोट करती है कि weight provenance का दावा नहीं किया गया है।
+EU AI Act, GDPR Article 17 (right to erasure), HIPAA, और NIST AI Risk Management Framework सभी संगठनों से मॉडल संस्करणों, मूल्यांकन परिणामों, अनुमोदन निर्णयों, और rollouts के रिकॉर्ड बनाए रखने की अपेक्षा करते हैं। इन चारों के नीचे की अनकही आवश्यकता यह है कि रिकॉर्ड *verifiable* होने चाहिए — auditable का मतलब "हमारे पास एक log है" से अधिक है। Divinci की vIndex रसीदें hash-chained और बाहरी रूप से anchorable हैं, जिसका अर्थ है कि एक auditor हमारे logs पर भरोसा किए बिना chain को verify कर सकता है। open-weights मॉडल backings के लिए रसीद एक weight-attestation भी embed करती है; closed-API backings के लिए रसीद स्पष्ट रूप से नोट करती है कि weight provenance का दावा नहीं किया गया है।
 
 ## References
 
@@ -291,4 +291,4 @@ EU AI Act, GDPR Article 17 (right to erasure), HIPAA, और NIST AI Risk Manage
 
 ---
 
-*इस सीरीज़ में अगला:* **विनियमित क्षेत्रों में कस्टम LMs को validate और release करना।** ऊपर की पाइपलाइन आर्किटेक्चर है। Compliance pathway इसका उपयोग करने का अभ्यास है। EU AI Act, GDPR Article 17, HIPAA, और NIST AI RMF — हर एक एक रिलीज़ प्रक्रिया से क्या माँगता है, और कौन-से vindex रसीद फ़ील्ड कौन-सी आवश्यकता को कवर करते हैं।
+*इस सीरीज़ में अगला:* **विनियमित क्षेत्रों में कस्टम LMs को validate और release करना।** ऊपर की पाइपलाइन आर्किटेक्चर है। Compliance pathway इसका उपयोग करने का अभ्यास है। EU AI Act, GDPR Article 17, HIPAA, और NIST AI RMF — हर एक एक रिलीज़ प्रक्रिया से क्या माँगता है, और कौन-से vIndex रसीद फ़ील्ड कौन-सी आवश्यकता को कवर करते हैं।

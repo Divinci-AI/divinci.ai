@@ -6,7 +6,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Compliance"]
-tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vindex"]
+tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vIndex"]
 
 [extra]
 author = "Mike Mooring"
@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
 hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
-summary = "La conformité dans les secteurs réglementés pour les modèles de langage personnalisés se sépare nettement selon un seul axe : poids ouverts vs API fermée. Pour les bases en poids ouverts, vous pouvez livrer une attestation de poids vindex qui satisfait cryptographiquement l'effacement vérifiable de l'article 17 du RGPD. Pour les bases en API fermée, le même reçu couvre la chaîne de décision mais ne peut pas revendiquer la provenance des poids — et le régulateur reçoit cette distinction dans le reçu lui-même. Ce billet met en correspondance quatre cadres réglementaires (EU AI Act, RGPD, HIPAA, NIST AI RMF) avec les quatre étapes du pipeline que nous livrons, et montre le format réel du reçu."
+summary = "La conformité dans les secteurs réglementés pour les modèles de langage personnalisés se sépare nettement selon un seul axe : poids ouverts vs API fermée. Pour les bases en poids ouverts, vous pouvez livrer une attestation de poids vIndex qui satisfait cryptographiquement l'effacement vérifiable de l'article 17 du RGPD. Pour les bases en API fermée, le même reçu couvre la chaîne de décision mais ne peut pas revendiquer la provenance des poids — et le régulateur reçoit cette distinction dans le reçu lui-même. Ce billet met en correspondance quatre cadres réglementaires (EU AI Act, RGPD, HIPAA, NIST AI RMF) avec les quatre étapes du pipeline que nous livrons, et montre le format réel du reçu."
 +++
 
 *Notes du cycle de publication — Partie IV*
@@ -50,7 +50,7 @@ Les discussions de conformité ont tendance à se réduire à « nous avons docu
 <text x="55" y="206" font-size="10" fill="#4a4030">• surveillance post-commercialisation</text>
 <text x="55" y="232" font-size="11" font-weight="700" fill="#2d5a4f">Primitive de vérification :</text>
 <text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">documentation mécanistique</text>
-<text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">exacte au bit près via vindex</text>
+<text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">exacte au bit près via vIndex</text>
 <text x="55" y="290" font-size="10" fill="#6b5d4f">Sanction en cas de non-conformité :</text>
 <text x="55" y="308" font-size="14" font-weight="700" fill="#a04848">jusqu'à 7 % du</text>
 <text x="55" y="324" font-size="14" font-weight="700" fill="#a04848">chiffre d'affaires mondial</text>
@@ -109,7 +109,7 @@ Les montants des sanctions ne sont pas ce qui rend ces cadres intéressants. Les
 
 Avant la mise en correspondance étape par étape, l'avertissement le plus important de tout ce billet :
 
-**Pour les bases de modèle à poids ouverts** — Gemma, Qwen, Llama, Mistral, GPT-OSS, tout ce dont les poids sont adressables et modifiables — chaque décision de publication Divinci émet un reçu vindex qui inclut une **attestation de poids** : une preuve cryptographique que les poids actifs au moment de la décision sont exactement les poids enregistrés par le manifeste. C'est ce qui rend possible l'effacement vérifiable au titre de l'article 17 du RGPD. Vous appliquez un [patch DELETE](/blog/deleting-paris-from-a-language-model/) qui supprime une relation entité-relation spécifique de l'espace des poids, le reçu intègre le hash avant/après, et un auditeur peut vérifier que la suppression a eu lieu en réexécutant la vérification contre le vindex public.
+**Pour les bases de modèle à poids ouverts** — Gemma, Qwen, Llama, Mistral, GPT-OSS, tout ce dont les poids sont adressables et modifiables — chaque décision de publication Divinci émet un reçu vIndex qui inclut une **attestation de poids** : une preuve cryptographique que les poids actifs au moment de la décision sont exactement les poids enregistrés par le manifeste. C'est ce qui rend possible l'effacement vérifiable au titre de l'article 17 du RGPD. Vous appliquez un [patch DELETE](/blog/deleting-paris-from-a-language-model/) qui supprime une relation entité-relation spécifique de l'espace des poids, le reçu intègre le hash avant/après, et un auditeur peut vérifier que la suppression a eu lieu en réexécutant la vérification contre le vIndex public.
 
 **Pour les bases de modèle à API fermée** — OpenAI, Anthropic, Google via des API opaques — le même reçu couvre la chaîne de décision (quel manifeste, quel résultat de filtre, quelle lecture du moniteur, quel utilisateur a déclenché quelle action) mais **ne peut pas revendiquer la provenance des poids**, car le fournisseur n'expose pas les poids. Le reçu le note explicitement dans un champ `weight_attestation: null` avec une `note` expliquant pourquoi. Ce n'est pas une posture de conformité dégradée — c'est la limite de ce qui est vérifiable, consignée honnêtement. Un auditeur qui lit le reçu comprend exactement quelle classe de preuve est et n'est pas apportée.
 
@@ -212,7 +212,7 @@ La suite du billet parcourt la contribution de chaque étape.
 
 L'étape Enregistrer produit un manifeste JSON immuable, adressé par SHA-256. Pour les publications réglementées, le manifeste porte tout ce que demande l'Annexe IV<sup><a href="#ref-1">[1]</a></sup> en un seul artefact :
 
-- L'artefact du modèle (dépôt HF + SHA du commit, ou référence à un patch vindex)
+- L'artefact du modèle (dépôt HF + SHA du commit, ou référence à un patch vIndex)
 - Le template de prompt (chaque variable, chaque message système — versionné)
 - Les règles de routage (quelle classe de trafic atterrit sur quelle publication)
 - La version du jeu de données utilisée pour calculer les seuils du filtre (synthèse des données d'entraînement par hash)
@@ -221,7 +221,7 @@ L'étape Enregistrer produit un manifeste JSON immuable, adressé par SHA-256. P
 
 Le manifeste *est* la documentation. Un auditeur ne lit pas un texte ; il lit le hash du manifeste et vérifie le bundle. Aucune synthèse rédigée six mois plus tard n'est nécessaire.
 
-**Bonus poids ouverts.** Lorsque l'artefact du modèle référence un modèle à poids ouverts, le manifeste intègre également le `vindex_sha256` — l'empreinte cryptographique du [vindex](/fr/compliance/) publié du modèle. Cette empreinte est ce qui permet à un tiers de vérifier les poids actifs sans jamais avoir à faire confiance à notre infrastructure de déploiement.
+**Bonus poids ouverts.** Lorsque l'artefact du modèle référence un modèle à poids ouverts, le manifeste intègre également le `vindex_sha256` — l'empreinte cryptographique du [vIndex](/fr/compliance/) publié du modèle. Cette empreinte est ce qui permet à un tiers de vérifier les poids actifs sans jamais avoir à faire confiance à notre infrastructure de déploiement.
 
 **Réserve API fermée.** Lorsque l'artefact du modèle référence un modèle en API fermée, le champ `vindex_sha256` du manifeste est `null`, et la `weight_attestation_class` du manifeste est `decision_chain_only`. L'auditeur qui le lit sait exactement ce qui est revendiqué et ce qui ne l'est pas.
 
@@ -267,7 +267,7 @@ Pour HIPAA, l'étape canary est aussi l'endroit où la journalisation d'audit pa
 
 C'est l'étape qui mérite l'histoire de conformité. L'étape Observer exécute en continu la rejouabilité des traces à travers la publication active, notée par le même juge humain-ancré que le filtre, avec un moniteur qualité qui déclenche un rollback automatique en cas de dépassement.
 
-Chaque décision de publication — enregistrement, succès de filtre, échec de filtre, dérogation au filtre, promotion de point de contrôle, mise en attente d'un point de contrôle, rollback automatique, rollback manuel, **et toute application d'un patch DELETE article 17 du RGPD** — émet un reçu vindex. Chaîné par hachage au reçu précédent pour ce client et au reçu précédent pour cette publication.
+Chaque décision de publication — enregistrement, succès de filtre, échec de filtre, dérogation au filtre, promotion de point de contrôle, mise en attente d'un point de contrôle, rollback automatique, rollback manuel, **et toute application d'un patch DELETE article 17 du RGPD** — émet un reçu vIndex. Chaîné par hachage au reçu précédent pour ce client et au reçu précédent pour cette publication.
 
 Voici à quoi ressemble un véritable reçu pour un patch DELETE article 17 du RGPD — adapté directement du format documenté sur la [page de conformité](/fr/compliance/) :
 
@@ -301,7 +301,7 @@ Voici à quoi ressemble un véritable reçu pour un patch DELETE article 17 du R
 }
 ```
 
-Cet artefact est vérifiable. Un auditeur n'a pas à faire confiance à nos journaux. Il prend le `vindex_sha256_after`, récupère le vindex publié correspondant depuis `huggingface.co/Divinci-AI`, et vérifie que la feature 11179 de la couche 27 est structurellement absente du top-25. Il prend la `chain_signature` et la vérifie contre le reçu précédent. La chaîne entière est ancrée à l'extérieur selon un calendrier que le client configure.
+Cet artefact est vérifiable. Un auditeur n'a pas à faire confiance à nos journaux. Il prend le `vindex_sha256_after`, récupère le vIndex publié correspondant depuis `huggingface.co/Divinci-AI`, et vérifie que la feature 11179 de la couche 27 est structurellement absente du top-25. Il prend la `chain_signature` et la vérifie contre le reçu précédent. La chaîne entière est ancrée à l'extérieur selon un calendrier que le client configure.
 
 **Même opération contre un modèle à API fermée.** Les champs du reçu ci-dessus changent de trois façons : `operation.target` devient `provider_api_endpoint`, `verification` devient un schéma différent couvrant uniquement les preuves de chaîne de décision, et `weight_attestation_class` devient `decision_chain_only`. Le fournisseur du modèle à API fermée n'a pas exposé les poids, donc le reçu le dit. Un auditeur qui veut une preuve au niveau des poids sait alors qu'il doit faire remonter le sujet au fournisseur, pas à nous.
 
@@ -315,7 +315,7 @@ Exercice utile : parcourir les questions qu'un véritable auditeur posera, et l'
 |---|---|
 | *« Quelle version du modèle tournait le 15 mars à 14:22 UTC ? »* | Le reçu de l'étape Observer pour cet horodatage, signé et chaîné par hachage. |
 | *« Quelle évaluation cette publication a-t-elle passée avant promotion ? »* | Le reçu de l'étape Filtrer, avec le tableau des ρ de Spearman par tranche et le SHA du jeu de données contre lequel le filtre s'est exécuté. |
-| *« Une demande d'effacement article 17 du RGPD pour le patient X a-t-elle réellement été appliquée ? »* | Le reçu du patch DELETE ci-dessus. L'auditeur vérifie le `vindex_sha256_after` contre le vindex publié. |
+| *« Une demande d'effacement article 17 du RGPD pour le patient X a-t-elle réellement été appliquée ? »* | Le reçu du patch DELETE ci-dessus. L'auditeur vérifie le `vindex_sha256_after` contre le vIndex publié. |
 | *« Qui a approuvé cette publication ? Quelle était la justification déclarée pour passer outre le filtre de la tranche licences PI ? »* | Le bloc `override` du reçu de l'étape Filtrer, incluant l'ID utilisateur et la justification en texte libre obligatoire. |
 | *« À quelle vitesse le rollback s'est-il déclenché, et quelle lecture du moniteur l'a déclenché ? »* | Le reçu de rollback de l'étape Observer, avec les trois lectures qualité sous-seuil consécutives et le temps écoulé du rollback. |
 | *« Montrez-moi les preuves de surveillance post-commercialisation des 90 derniers jours. »* | La chaîne de reçus de l'étape Observer. Ancrée à l'extérieur selon le calendrier configuré par le client. |
@@ -330,13 +330,13 @@ Trois limites assumées :
 
 **La documentation est nécessaire mais non suffisante.** Un reçu qui prouve qu'un modèle a atteint un seuil ne prouve pas que ce seuil était le bon seuil. Si votre suite de QA notée ne couvre pas la tranche qui compte réellement pour un patient dans votre service, aucun chaînage de reçus ne résoudra cela. Les régulateurs comprennent de plus en plus ce point ; « nous avons passé notre évaluation » n'est plus une réponse de conformité suffisante si l'évaluation était la mauvaise évaluation.
 
-**Le format vindex est mono-fournisseur.** Nous l'utilisons parce que c'est la primitive cryptographique la plus concrète disponible aujourd'hui pour la preuve au niveau des poids. Si l'industrie se fixe sur un format différent — model cards avec hashs, schémas d'artefacts publiés par le NIST — le format de reçu devrait évoluer vers cela. Le fond (chaîné par hachage, vérifiable à l'extérieur, conscient de l'attestation de poids) est ce qui est structurant, pas le nom de schéma spécifique. Nous nous attendons à ce que cela change à mesure que le paysage réglementaire et normatif mûrit.
+**Le format vIndex est mono-fournisseur.** Nous l'utilisons parce que c'est la primitive cryptographique la plus concrète disponible aujourd'hui pour la preuve au niveau des poids. Si l'industrie se fixe sur un format différent — model cards avec hashs, schémas d'artefacts publiés par le NIST — le format de reçu devrait évoluer vers cela. Le fond (chaîné par hachage, vérifiable à l'extérieur, conscient de l'attestation de poids) est ce qui est structurant, pas le nom de schéma spécifique. Nous nous attendons à ce que cela change à mesure que le paysage réglementaire et normatif mûrit.
 
 ## FAQ
 
 ### Qu'est-ce que l'effacement vérifiable au titre de l'article 17 du RGPD pour les systèmes d'IA ?
 
-L'effacement vérifiable signifie qu'un tiers peut vérifier que les données ont été supprimées sans avoir à faire confiance à vos journaux. Affiner un modèle pour qu'il « oublie » des informations spécifiques ne satisfait pas ce critère — l'information peut refaire surface sous prompt adverse, et il n'y a pas de primitive cryptographique qu'un auditeur puisse vérifier. Un patch DELETE au niveau des poids avec un hash vindex avant/après publié *satisfait*, lui, ce critère, car l'auditeur peut réexécuter la vérification contre l'artefact public.
+L'effacement vérifiable signifie qu'un tiers peut vérifier que les données ont été supprimées sans avoir à faire confiance à vos journaux. Affiner un modèle pour qu'il « oublie » des informations spécifiques ne satisfait pas ce critère — l'information peut refaire surface sous prompt adverse, et il n'y a pas de primitive cryptographique qu'un auditeur puisse vérifier. Un patch DELETE au niveau des poids avec un hash vIndex avant/après publié *satisfait*, lui, ce critère, car l'auditeur peut réexécuter la vérification contre l'artefact public.
 
 ### Pourquoi les modèles à API fermée ne peuvent-ils pas satisfaire l'article 17 du RGPD de la même façon ?
 
@@ -379,7 +379,7 @@ Les quatre fonctions centrales de NIST AI RMF — Gouverner, Cartographier, Mesu
 <strong>Article 17 du RGPD (Droit à l'effacement).</strong> <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank" rel="noopener">gdpr-info.eu/art-17-gdpr</a>. Le droit de la personne concernée à obtenir l'effacement de ses données personnelles, et l'obligation du responsable du traitement de démontrer sa conformité au titre de la responsabilité de l'article 5(2). Sanctions allant jusqu'à 20 M€ ou 4 % du chiffre d'affaires mondial annuel.
 </li>
 <li id="ref-8" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>Interne — format de reçu vindex.</strong> Le JSON de reçu présenté dans ce billet est adapté du format documenté sur la <a href="/fr/compliance/">page de conformité</a> et démontré dans le billet <a href="/blog/deleting-paris-from-a-language-model/">« Deleting Paris from a Language Model »</a>. La chaîne de hash est un SHA-256 sur <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Ancrable à l'extérieur selon un calendrier configuré par le client.
+<strong>Interne — format de reçu vIndex.</strong> Le JSON de reçu présenté dans ce billet est adapté du format documenté sur la <a href="/fr/compliance/">page de conformité</a> et démontré dans le billet <a href="/blog/deleting-paris-from-a-language-model/">« Deleting Paris from a Language Model »</a>. La chaîne de hash est un SHA-256 sur <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Ancrable à l'extérieur selon un calendrier configuré par le client.
 </li>
 </ol>
 

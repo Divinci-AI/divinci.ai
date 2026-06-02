@@ -1,6 +1,6 @@
 +++
 title = "Divinci AI - Совершенство каждый раз"
-description = "Проверяемое AI-соответствие: vindex-квитанции для EU AI Act, GDPR Статья 17, HIPAA и NIST AI. Совершенство, каждый раз."
+description = "Проверяемое AI-соответствие: vIndex-квитанции для EU AI Act, GDPR Статья 17, HIPAA и NIST AI. Совершенство, каждый раз."
 template = "index.html"
 
 [extra]

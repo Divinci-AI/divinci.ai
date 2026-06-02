@@ -105,3 +105,12 @@ description = "AI releases. Excellence, every time."
 default_image = "/images/divinci-social-unfurl.png"
 favicon = "/images/favicon-32x32.png"
 tagline = "AI releases. Excellence, every time."
+
+# Homepage free-chat widget (@divinci-ai/client, keyless freeChatGate).
+# Public IDs only — never put API keys or Turnstile secrets here.
+# Release lives on staging API until production workspace cutover (P6).
+divinci_chat_api_base = "https://api.stage.divinci.app"
+divinci_chat_release_id = "6a1d7d1f790fc5da3b7a0ef0"
+# Cloudflare Turnstile *site* key (public). Secret stays in Worker env (wrangler secret).
+divinci_chat_turnstile_sitekey = "0x4AAAAAABrD5FFS3p4pusZl"
+divinci_chat_signup_url = "https://app.divinci.app"

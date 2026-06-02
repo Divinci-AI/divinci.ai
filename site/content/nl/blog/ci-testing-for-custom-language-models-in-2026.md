@@ -259,7 +259,7 @@ judge:     { sha: d8e21…, rubric: eval/rubrics/v7.yaml }
 dataset:   { sha: a90b1…, file:   eval/datasets/golden-2026-04.jsonl }
 ```
 
-Als een CI-run een score post, wordt de score getagd met die manifest-hash. Wanneer een score beweegt, heeft de vraag "welke input is bewogen" een direct antwoord: diff het manifest, en de laag die afging vertelt je welke dimensie je het eerst moet bekijken. Dit is de lus die [de pipeline met vier fasen uit post 1](/nl/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) en [de vindex-receipt uit post 4](/nl/blog/validating-and-releasing-custom-lms-in-regulated-fields/) samen sluiten: het manifest is het audit-primitief waar al deze acht posts, in verschillende framings, naartoe hebben gewerkt.
+Als een CI-run een score post, wordt de score getagd met die manifest-hash. Wanneer een score beweegt, heeft de vraag "welke input is bewogen" een direct antwoord: diff het manifest, en de laag die afging vertelt je welke dimensie je het eerst moet bekijken. Dit is de lus die [de pipeline met vier fasen uit post 1](/nl/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) en [de vIndex-receipt uit post 4](/nl/blog/validating-and-releasing-custom-lms-in-regulated-fields/) samen sluiten: het manifest is het audit-primitief waar al deze acht posts, in verschillende framings, naartoe hebben gewerkt.
 
 ## Wat dit niet oplost
 
@@ -276,13 +276,13 @@ Dit is post 8 van 8. De volledige boog:
 1. [Hoe je een LLM CI/CD-pipeline bouwt met Divinci AI](/nl/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) — de pipeline met vier fasen (Register / Gate / Roll / Observe) waarbinnen alles sindsdien heeft geleefd.
 2. [10 CI/CD-release-fouten in custom taalmodellen](/nl/blog/10-ci-cd-release-failures-in-custom-language-models/) — de benoemde 2026-faalmodi, elk gekoppeld aan de fase die ze had moeten vangen.
 3. [12 QA- en release-management-capaciteiten voor LLM's](/nl/blog/12-qa-and-release-management-capabilities-for-llms/) — de capaciteitenmatrix en het drie-kampen-Venn dat Divinci tegenover de alternatieven plaatst.
-4. [Custom LM's valideren en uitrollen in gereguleerde domeinen](/nl/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — de compliance-diepteduik, regulator-naar-fase-mapping, vindex-receipts.
+4. [Custom LM's valideren en uitrollen in gereguleerde domeinen](/nl/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — de compliance-diepteduik, regulator-naar-fase-mapping, vIndex-receipts.
 5. [Geautomatiseerde LLM CI/CD-pipelines met instant rollback](/nl/blog/automated-llm-ci-cd-pipelines-with-instant-rollback/) — de operationele laag, automatiseringsspectrum, auto-rollback-receipt.
 6. [Hoe je custom-LLM QA-fouten in 7 stappen diagnosticeert](/nl/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) — de diagnostische beslisboom; het model is ongeveer één keer op de zeven alerts het juiste antwoord.
 7. [Geautomatiseerd regressietesten voor custom LLM's in 2026](/nl/blog/automated-regression-testing-for-custom-llms-in-2026/) — slice-bewuste Spearman-gates, gekalibreerde judges, closed-loop productie-trace-replay.
 8. **Deze post.** De CI-infrastructuur die al het bovenstaande hanteerbaar maakt op elke PR.
 
-De stukken componeren: het [manifest](/nl/api/) is het audit-primitief, de gates vormen de veiligheidslaag, de diagnostische boom is de herstellus, de [vindex-receipt](/nl/compliance/) is het externe anker, en de laagcake is wat het geheel betaalbaar maakt om op elke commit te draaien. Als jouw custom-LLM-release-proces deze vijf niet samen heeft, dan is dat het gat waar deze acht posts over gingen.
+De stukken componeren: het [manifest](/nl/api/) is het audit-primitief, de gates vormen de veiligheidslaag, de diagnostische boom is de herstellus, de [vIndex-receipt](/nl/compliance/) is het externe anker, en de laagcake is wat het geheel betaalbaar maakt om op elke commit te draaien. Als jouw custom-LLM-release-proces deze vijf niet samen heeft, dan is dat het gat waar deze acht posts over gingen.
 
 ## FAQ
 

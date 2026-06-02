@@ -309,9 +309,9 @@ Wenn diese beiden Scores um mehr als das Slice-spezifische Gap-Budget divergiere
 
 Der Judge, der den Offline-Run bewertet, ist derselbe Judge, der den Replay-Run bewertet. Das Audit-Log protokolliert beide Score-Sets, beide Judge-Versionen, die Trace-IDs, die wiederabgespielt wurden, und die Lücke, die den Block ausgelöst hat. Die Lücke selbst ist das nützlichste diagnostische Signal, das wir haben, und sie ist es, was an denjenigen weitergegeben wird, der als Nächstes den [Post-6-Diagnosebaum](/de/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) aufnimmt.
 
-## Verankere den Golden Dataset mit einem Vindex-Receipt
+## Verankere den Golden Dataset mit einem vIndex-Receipt
 
-Jeder Score in der Suite ist bedeutungslos, wenn du ihn später nicht reproduzieren kannst. Wir hashen den Golden Dataset bei jedem Release und verketten diesen Hash in einem Vindex-Receipt zusammen mit Modell-SHA, Prompt-SHA, Judge-SHA und dem Kalibrierungsprotokoll. Das Receipt ist extern verankerbar — Auditoren können unseren exakten Regressions-Run sechs Monate später wiederabspielen und die von uns angegebenen Scores verifizieren.
+Jeder Score in der Suite ist bedeutungslos, wenn du ihn später nicht reproduzieren kannst. Wir hashen den Golden Dataset bei jedem Release und verketten diesen Hash in einem vIndex-Receipt zusammen mit Modell-SHA, Prompt-SHA, Judge-SHA und dem Kalibrierungsprotokoll. Das Receipt ist extern verankerbar — Auditoren können unseren exakten Regressions-Run sechs Monate später wiederabspielen und die von uns angegebenen Scores verifizieren.
 
 ```json
 {
@@ -324,11 +324,11 @@ Jeder Score in der Suite ist bedeutungslos, wenn du ihn später nicht reproduzie
   "scores": { "aggregate": 0.872, "by_slice": { "/* … */": "/* per-slice scalars */" } },
   "replay": { "trace_window_days": 14, "n_traces": 8430, "max_gap": 0.018 },
   "vindex_anchor": "sha256:f0bfd2…",
-  "verifiable_at": "https://vindex.divinci.ai/rel_3f1a-2026-05-26"
+  "verifiable_at": "https://vIndex.divinci.ai/rel_3f1a-2026-05-26"
 }
 ```
 
-**Open-Weights-Vorbehalt.** Das obige Receipt trägt Gewichts-Provenienz nur, wenn das Modell Open-Weights ist — Vindex verankert die tatsächlichen Gewichts-Bytes. Bei Closed-API-Modell-Backings (OpenAI / Anthropic / verwaltete Google-Modelle) trägt das Receipt nach wie vor die Entscheidungskette — jeden Gate-Score, jedes Judge-Ergebnis, das Kalibrierungsprotokoll — aber das Gewichts-Feld ist leer, und du kannst das Modell-Artefakt nicht unabhängig verifizieren. Wir sagen das im Receipt und in der [Compliance-Dokumentation](/de/compliance/), damit Auditoren keinen falschen Eindruck bekommen. Die Releases, die am meisten von einer vollständigen Vindex-Kette profitieren, sind diejenigen, bei denen du die Gewichte kontrollierst.
+**Open-Weights-Vorbehalt.** Das obige Receipt trägt Gewichts-Provenienz nur, wenn das Modell Open-Weights ist — vIndex verankert die tatsächlichen Gewichts-Bytes. Bei Closed-API-Modell-Backings (OpenAI / Anthropic / verwaltete Google-Modelle) trägt das Receipt nach wie vor die Entscheidungskette — jeden Gate-Score, jedes Judge-Ergebnis, das Kalibrierungsprotokoll — aber das Gewichts-Feld ist leer, und du kannst das Modell-Artefakt nicht unabhängig verifizieren. Wir sagen das im Receipt und in der [Compliance-Dokumentation](/de/compliance/), damit Auditoren keinen falschen Eindruck bekommen. Die Releases, die am meisten von einer vollständigen vIndex-Kette profitieren, sind diejenigen, bei denen du die Gewichte kontrollierst.
 
 ## Ein vierstufiger Implementierungs-Zeitplan, den wir tatsächlich ausgeliefert haben
 

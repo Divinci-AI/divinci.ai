@@ -233,14 +233,14 @@ Wenn du nicht Divinci nutzt und etwas Vergleichbares bauen willst, sind die trag
 - **Ein Per-Slice-Gate** mit Schwellenwerten, die von Domain-Verantwortlichen definiert werden, nicht von Plattform-Verantwortlichen. Das ist es, was 4, 5, 6 abfangbar macht. ([Stufe 2](/de/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-2-gate))
 - **Ein Canary mit Qualitäts-Monitoring an jedem Checkpoint**, nicht nur Latenz und 5xx. Das ist es, was 8 abfangbar macht und 9 und 10 *überlebbar* macht, sobald sie in Produktion eintreffen. ([Stufe 3](/de/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-3-roll))
 - **Ein kontinuierlicher Observer**, der echte Produktions-Traces durch das aktive Modell mit demselben kalibrierten Judge bewertet, der das Gate angetrieben hat. Das ist es, was 9 und 10 abfangbar macht. ([Stufe 4](/de/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-4-observe-rollback-and-the-receipt))
-- **Eine signierte Audit-Quittung für jede Entscheidung.** Hash-verkettet, extern verankerbar. Für Open-Weights-Modell-Backings bettet die Quittung eine [Vindex-Weight-Attestation](/de/compliance/) ein, die belegt, dass die aktiven Gewichte das sind, was das Manifest registriert hat. Für Closed-API-Backings deckt die Quittung die Entscheidungskette ab, kann aber keine Weight-Provenance behaupten — und der Audit-Trail sagt das explizit.
+- **Eine signierte Audit-Quittung für jede Entscheidung.** Hash-verkettet, extern verankerbar. Für Open-Weights-Modell-Backings bettet die Quittung eine [vIndex-Weight-Attestation](/de/compliance/) ein, die belegt, dass die aktiven Gewichte das sind, was das Manifest registriert hat. Für Closed-API-Backings deckt die Quittung die Entscheidungskette ab, kann aber keine Weight-Provenance behaupten — und der Audit-Trail sagt das explizit.
 
 Die Einzelteile sind nicht für sich genommen neu. Jede MLOps-Plattform hat ein oder zwei davon. Die Kombination — slice-aware Gate + Produktions-Trace-Observer + atomares Rollback + beweisbare Quittung — ist der Teil, den 2026 niemand sonst ausliefert.
 
 ## Wo es als Nächstes weitergeht
 
 - Der Begleitbeitrag — **[So bauen Sie eine LLM-CI/CD-Pipeline mit Divinci AI](/de/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/)** — behandelt die Architektur und die API.
-- Die **[Compliance-Seite](/de/compliance/)** dokumentiert das Vindex-Quittungsformat, das jeder Release-Entscheidung zugrunde liegt, und wie es auf EU AI Act, DSGVO Artikel 17, HIPAA und NIST AI RMF abbildet.
+- Die **[Compliance-Seite](/de/compliance/)** dokumentiert das vIndex-Quittungsformat, das jeder Release-Entscheidung zugrunde liegt, und wie es auf EU AI Act, DSGVO Artikel 17, HIPAA und NIST AI RMF abbildet.
 - Die **[AutoRAG-Produktseite](/de/autorag/)** behandelt die RAG-seitige Halluzinationsreduktion, die natürlich zum kalibrierten Judge passt, der Gate-2 und den Stage-4-Observer antreibt.
 - Die **[API-Referenz](/de/api/)** — jeder in dieser Serie referenzierte Befehl ist ein realer Endpoint.
 
@@ -264,7 +264,7 @@ Nicht mit Infrastruktur-Metriken. Latenz, 5xx-Rate und Token-Verbrauch werden He
 
 ### Welche Audit-Trail-Anforderungen gelten für KI-Modell-Deployments?
 
-Der EU AI Act, DSGVO Artikel 17 (Recht auf Löschung), HIPAA und das NIST AI Risk Management Framework verlangen alle von Organisationen, Aufzeichnungen über Modellversionen, Evaluierungsergebnisse, Freigabe-Entscheidungen und Rollouts zu führen. Die unausgesprochene Anforderung unter allen vieren ist, dass die Aufzeichnungen *verifizierbar* sein müssen — auditierbar heißt mehr als „wir haben ein Log". Divincis Vindex-Quittungen sind hash-verkettet und extern verankerbar, was heißt, dass ein Auditor die Kette verifizieren kann, ohne unseren Logs zu vertrauen. Für Open-Weights-Modell-Backings bettet die Quittung außerdem eine Weight-Attestation ein; für Closed-API-Backings vermerkt die Quittung explizit, dass keine Weight-Provenance beansprucht wird.
+Der EU AI Act, DSGVO Artikel 17 (Recht auf Löschung), HIPAA und das NIST AI Risk Management Framework verlangen alle von Organisationen, Aufzeichnungen über Modellversionen, Evaluierungsergebnisse, Freigabe-Entscheidungen und Rollouts zu führen. Die unausgesprochene Anforderung unter allen vieren ist, dass die Aufzeichnungen *verifizierbar* sein müssen — auditierbar heißt mehr als „wir haben ein Log". Divincis vIndex-Quittungen sind hash-verkettet und extern verankerbar, was heißt, dass ein Auditor die Kette verifizieren kann, ohne unseren Logs zu vertrauen. Für Open-Weights-Modell-Backings bettet die Quittung außerdem eine Weight-Attestation ein; für Closed-API-Backings vermerkt die Quittung explizit, dass keine Weight-Provenance beansprucht wird.
 
 ## References
 
@@ -291,4 +291,4 @@ Der EU AI Act, DSGVO Artikel 17 (Recht auf Löschung), HIPAA und das NIST AI Ris
 
 ---
 
-*Als Nächstes in dieser Serie:* **Validierung und Auslieferung von Custom LMs in regulierten Bereichen.** Die Pipeline oben ist die Architektur. Der Compliance-Pfad ist die Praxis ihrer Anwendung. EU AI Act, DSGVO Artikel 17, HIPAA und NIST AI RMF — was jeder davon von einem Release-Prozess verlangt und welche Vindex-Quittungs-Felder welche Anforderung abdecken.
+*Als Nächstes in dieser Serie:* **Validierung und Auslieferung von Custom LMs in regulierten Bereichen.** Die Pipeline oben ist die Architektur. Der Compliance-Pfad ist die Praxis ihrer Anwendung. EU AI Act, DSGVO Artikel 17, HIPAA und NIST AI RMF — was jeder davon von einem Release-Prozess verlangt und welche vIndex-Quittungs-Felder welche Anforderung abdecken.

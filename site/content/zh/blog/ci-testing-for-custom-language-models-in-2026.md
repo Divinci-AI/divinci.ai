@@ -259,7 +259,7 @@ judge:     { sha: d8e21…, rubric: eval/rubrics/v7.yaml }
 dataset:   { sha: a90b1…, file:   eval/datasets/golden-2026-04.jsonl }
 ```
 
-当一次 CI 运行发布一个分数时,该分数会被打上对应的清单哈希。当分数发生位移时,"是哪个输入挪动了"有了直接答案:对清单做 diff,触发的那一层告诉你应该先看哪个维度。这就是[第 1 篇四阶段流水线](/zh/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/)和[第 4 篇的 vindex 回执](/zh/blog/validating-and-releasing-custom-lms-in-regulated-fields/)合起来要闭合的回路:清单就是这八篇文章在不同视角下,一直在构建的那个审计原语。
+当一次 CI 运行发布一个分数时,该分数会被打上对应的清单哈希。当分数发生位移时,"是哪个输入挪动了"有了直接答案:对清单做 diff,触发的那一层告诉你应该先看哪个维度。这就是[第 1 篇四阶段流水线](/zh/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/)和[第 4 篇的 vIndex 回执](/zh/blog/validating-and-releasing-custom-lms-in-regulated-fields/)合起来要闭合的回路:清单就是这八篇文章在不同视角下,一直在构建的那个审计原语。
 
 ## 这套方法没解决什么
 
@@ -276,13 +276,13 @@ dataset:   { sha: a90b1…, file:   eval/datasets/golden-2026-04.jsonl }
 1. [如何用 Divinci AI 构建 LLM CI/CD 流水线](/zh/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) — 四阶段流水线(Register / Gate / Roll / Observe),其后一切都生活在它之内。
 2. [定制语言模型中 10 种 CI/CD 发布失败](/zh/blog/10-ci-cd-release-failures-in-custom-language-models/) — 2026 年具名失败模式,每一种都映射到本应抓住它的阶段。
 3. [面向 LLM 的 12 项 QA 与发布管理能力](/zh/blog/12-qa-and-release-management-capabilities-for-llms/) — 能力矩阵与三阵营维恩图,将 Divinci 置于与替代方案的对照中。
-4. [在受监管领域验证与发布定制 LM](/zh/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — 合规深度剖析、监管机构到阶段的映射、vindex 回执。
+4. [在受监管领域验证与发布定制 LM](/zh/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — 合规深度剖析、监管机构到阶段的映射、vIndex 回执。
 5. [带即时回滚的自动化 LLM CI/CD 流水线](/zh/blog/automated-llm-ci-cd-pipelines-with-instant-rollback/) — 运营层、自动化光谱、自动回滚回执。
 6. [如何用 7 步诊断定制 LLM QA 失败](/zh/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) — 诊断决策树;大约每七次告警中,只有一次真正的答案是"模型"。
 7. [2026 年定制 LLM 的自动化回归测试](/zh/blog/automated-regression-testing-for-custom-llms-in-2026/) — 切片感知的 Spearman 门禁、校准过的评审器、闭环的生产追踪回放。
 8. **本篇。**让上述一切在每个 PR 上都可行的 CI 基础设施。
 
-各部分相互组合:[清单](/zh/api/)是审计原语,门禁是安全层,诊断树是恢复回路,[vindex 回执](/zh/compliance/)是外部锚点,而分层蛋糕让整套东西在每次提交时都负担得起。如果你的定制 LLM 发布流程没有把这五者凑齐,这八篇文章一直在讲的,就是其中的缺口。
+各部分相互组合:[清单](/zh/api/)是审计原语,门禁是安全层,诊断树是恢复回路,[vIndex 回执](/zh/compliance/)是外部锚点,而分层蛋糕让整套东西在每次提交时都负担得起。如果你的定制 LLM 发布流程没有把这五者凑齐,这八篇文章一直在讲的,就是其中的缺口。
 
 ## FAQ
 

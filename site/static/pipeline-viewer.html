@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divinci AI — Four-Stage Pipeline Viewer</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #faf8f5; color: #1e3a2b; font-family: 'DM Sans', -apple-system, sans-serif; overflow: hidden; }
+  canvas { display: block; }
+
+  #ui {
+    position: absolute; top: 0; left: 0; right: 0;
+    padding: 10px 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    pointer-events: none; z-index: 10;
+  }
+  #ui > * { pointer-events: all; }
+  .brand { font-size: 11px; opacity: 0.55; letter-spacing: 0.1em; }
+  .brand strong { color: #2d5a4f; }
+  #hint { font-size: 10px; opacity: 0.45; margin-left: auto; }
+
+  #panel {
+    position: absolute; bottom: 14px; left: 14px;
+    background: rgba(255, 255, 250, 0.96);
+    border: 1px solid rgba(184, 160, 128, 0.4);
+    border-radius: 8px; padding: 11px 14px;
+    font-size: 12px; line-height: 1.45;
+    max-width: 280px;
+    box-shadow: 0 4px 18px rgba(45, 90, 79, 0.07);
+    z-index: 10;
+  }
+  #panel h3 {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #2d5a4f; margin-bottom: 4px; font-weight: 700;
+  }
+  #panel .meta { font-size: 10px; opacity: 0.55; margin-bottom: 8px; }
+  #panel ul { list-style: none; padding: 0; }
+  #panel li { padding: 2px 0; font-size: 11px; color: #1e3a2b; }
+  #panel li::before {
+    content: ''; display: inline-block; width: 6px; height: 6px;
+    border-radius: 50%; background: #b8a080; margin-right: 7px;
+    transform: translateY(-1px);
+  }
+
+  #legend {
+    position: absolute; top: 14px; right: 14px;
+    background: rgba(255, 255, 250, 0.92);
+    border: 1px solid rgba(184, 160, 128, 0.35);
+    border-radius: 8px; padding: 8px 12px;
+    font-size: 10px; z-index: 10;
+  }
+  #legend .row { display: flex; align-items: center; gap: 6px; margin: 2px 0; }
+  .swatch { width: 9px; height: 9px; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<div id="ui">
+  <div class="brand"><strong>Divinci AI</strong> · Four-stage pipeline</div>
+  <div id="hint">drag to orbit · click a station</div>
+</div>
+
+<div id="panel">
+  <h3 id="panel-title">Hover a station</h3>
+  <div class="meta" id="panel-meta">Stage details appear here.</div>
+  <ul id="panel-list"></ul>
+</div>
+
+<div id="legend">
+  <div class="row"><div class="swatch" style="background:#2d5a4f"></div>Register</div>
+  <div class="row"><div class="swatch" style="background:#b8a080"></div>Gate</div>
+  <div class="row"><div class="swatch" style="background:#c87b3c"></div>Roll</div>
+  <div class="row"><div class="swatch" style="background:#7a9580"></div>Observe</div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+// Stage data — each station carries its 3 capabilities.
+const STAGES = [
+  {
+    id: 1, name: 'Register', roman: 'I', color: 0x2d5a4f,
+    meta: 'Immutable manifest layer. Failure-attribution by SHA.',
+    capabilities: [
+      '1. Immutable release manifest with SHA-256',
+      '2. Atomic version swap across all components',
+      '3. Training-serving environment parity',
+    ],
+  },
+  {
+    id: 2, name: 'Gate', roman: 'II', color: 0xb8a080,
+    meta: 'Per-slice Spearman ρ vs human-anchored grader.',
+    capabilities: [
+      '4. Per-slice / per-domain quality gate',
+      '5. Human-anchored calibrated judge',
+      '6. Override path with required rationale',
+    ],
+  },
+  {
+    id: 3, name: 'Roll', roman: 'III', color: 0xc87b3c,
+    meta: 'Canary at 5% → 25% → 100% with quality monitor.',
+    capabilities: [
+      '7. Multi-checkpoint canary with dwell',
+      '8. Output-quality monitor at each checkpoint',
+      '9. Auto-halt on quality breach',
+    ],
+  },
+  {
+    id: 4, name: 'Observe', roman: 'IV', color: 0x7a9580,
+    meta: 'Continuous trace replay → atomic rollback in ~12 s.',
+    capabilities: [
+      '10. Closed-loop production-trace replay',
+      '11. Atomic rollback in seconds, not minutes',
+      '12. Hash-chained compliance receipt',
+    ],
+  },
+];
+
+// Renderer + scene
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xfaf8f5);
+scene.fog = new THREE.FogExp2(0xfaf8f5, 0.018);
+
+const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 400);
+camera.position.set(0, 6, 28);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.minDistance = 14;
+controls.maxDistance = 65;
+controls.target.set(0, 1.5, 0);
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.45;
+
+// Lighting — warm parchment ambient + sepia-tinted directional.
+scene.add(new THREE.AmbientLight(0xfaf0d8, 1.0));
+const keyLight = new THREE.DirectionalLight(0xfff4d8, 1.2);
+keyLight.position.set(10, 18, 14);
+scene.add(keyLight);
+const fillLight = new THREE.DirectionalLight(0xd4c8b0, 0.45);
+fillLight.position.set(-12, 10, -8);
+scene.add(fillLight);
+
+// Post-processing — subtle bloom on the gold accents.
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.32, 0.4, 0.18);
+composer.addPass(bloom);
+
+// Ground / parchment table
+const ground = new THREE.Mesh(
+  new THREE.CircleGeometry(40, 64),
+  new THREE.MeshStandardMaterial({ color: 0xf2ead7, roughness: 0.95, metalness: 0 })
+);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -0.5;
+scene.add(ground);
+
+// A faint annular ring at the table edge for visual interest
+const ring = new THREE.Mesh(
+  new THREE.RingGeometry(15.4, 15.7, 96),
+  new THREE.MeshBasicMaterial({ color: 0xb8a080, side: THREE.DoubleSide, transparent: true, opacity: 0.32 })
+);
+ring.rotation.x = -Math.PI / 2;
+ring.position.y = -0.49;
+scene.add(ring);
+
+// ── Stations ──────────────────────────────────────────────────
+const stationMeshes = [];
+const X_SPACING = 6.5;
+
+function makeLabelSprite(text, color, size) {
+  const cv = document.createElement('canvas');
+  cv.width = size; cv.height = size;
+  const ctx = cv.getContext('2d');
+  ctx.clearRect(0, 0, size, size);
+  ctx.fillStyle = color;
+  ctx.font = 'bold 168px serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, size / 2, size / 2);
+  const tex = new THREE.CanvasTexture(cv);
+  tex.anisotropy = 8;
+  const mat = new THREE.SpriteMaterial({ map: tex, transparent: true });
+  return new THREE.Sprite(mat);
+}
+
+function makeStation(stage, idx) {
+  const group = new THREE.Group();
+  group.position.x = (idx - 1.5) * X_SPACING;
+
+  const pedestal = new THREE.Mesh(
+    new THREE.BoxGeometry(3.2, 0.6, 3.2),
+    new THREE.MeshStandardMaterial({ color: 0xe8dcc4, roughness: 0.85, metalness: 0 })
+  );
+  pedestal.position.y = 0.3;
+  group.add(pedestal);
+
+  const column = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.6, 0.7, 3.4, 16),
+    new THREE.MeshStandardMaterial({ color: 0xddd0b8, roughness: 0.7, metalness: 0.05 })
+  );
+  column.position.y = 2.3;
+  group.add(column);
+
+  const capital = new THREE.Mesh(
+    new THREE.BoxGeometry(1.8, 0.4, 1.8),
+    new THREE.MeshStandardMaterial({ color: 0xe8dcc4, roughness: 0.8, metalness: 0 })
+  );
+  capital.position.y = 4.2;
+  group.add(capital);
+
+  const orbMat = new THREE.MeshStandardMaterial({
+    color: stage.color, emissive: stage.color, emissiveIntensity: 0.5,
+    roughness: 0.4, metalness: 0.15
+  });
+  const orb = new THREE.Mesh(new THREE.SphereGeometry(0.85, 32, 24), orbMat);
+  orb.position.y = 5.4;
+  group.add(orb);
+
+  const goldRing = new THREE.Mesh(
+    new THREE.TorusGeometry(0.95, 0.06, 12, 64),
+    new THREE.MeshStandardMaterial({ color: 0xc9a14e, emissive: 0x9a7720, emissiveIntensity: 0.25,
+                                     roughness: 0.32, metalness: 0.7 })
+  );
+  goldRing.position.y = 5.4;
+  goldRing.rotation.x = Math.PI / 2;
+  group.add(goldRing);
+
+  const roman = makeLabelSprite(stage.roman, '#2d5a4f', 256);
+  roman.scale.set(2.5, 2.5, 1);
+  roman.position.y = 7.4;
+  group.add(roman);
+
+  // Stage name canvas (wider than square for the word)
+  const nameCanvas = document.createElement('canvas');
+  nameCanvas.width = 512; nameCanvas.height = 128;
+  const nctx = nameCanvas.getContext('2d');
+  nctx.fillStyle = '#1e3a2b';
+  nctx.font = 'bold 64px sans-serif';
+  nctx.textAlign = 'center';
+  nctx.textBaseline = 'middle';
+  nctx.fillText(stage.name.toUpperCase(), 256, 64);
+  const nameTex = new THREE.CanvasTexture(nameCanvas);
+  nameTex.anisotropy = 8;
+  const nameSprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: nameTex, transparent: true }));
+  nameSprite.scale.set(3.2, 0.8, 1);
+  nameSprite.position.y = -0.4;
+  group.add(nameSprite);
+
+  scene.add(group);
+
+  group.userData = { stage, orb, orbMat, idx };
+  return group;
+}
+
+STAGES.forEach((stage, i) => stationMeshes.push(makeStation(stage, i)));
+
+// ── Particles flowing between stations ────────────────────────
+const PARTICLE_COUNT = 18;
+const particleMat = new THREE.MeshStandardMaterial({
+  color: 0xc9a14e, emissive: 0xc9a14e, emissiveIntensity: 1.2,
+  roughness: 0.25, metalness: 0.6
+});
+const particleMesh = new THREE.InstancedMesh(
+  new THREE.SphereGeometry(0.12, 8, 6), particleMat, PARTICLE_COUNT
+);
+particleMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+scene.add(particleMesh);
+
+const particles = [];
+const totalSpan = (STAGES.length - 1) * X_SPACING;
+const xMin = -totalSpan / 2 - 2;
+const xMax = totalSpan / 2 + 2;
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+  particles.push({
+    phase: i / PARTICLE_COUNT,
+    speed: 0.08 + Math.random() * 0.04,
+    yJitter: 0.6 + Math.random() * 0.3,
+  });
+}
+const dummy = new THREE.Object3D();
+
+// ── Interactivity — raycast hover/click for the orb ───────────
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+let hoveredStation = null;
+let pinnedStation = null;
+
+const panelTitle = document.getElementById('panel-title');
+const panelMeta = document.getElementById('panel-meta');
+const panelList = document.getElementById('panel-list');
+
+function showStageInPanel(stage) {
+  panelTitle.textContent = stage.roman + '.   ' + stage.name;
+  panelMeta.textContent = stage.meta;
+  // Safe DOM-build: clear via replaceChildren() then append <li> elements
+  // built via createElement + textContent. No innerHTML used anywhere.
+  panelList.replaceChildren();
+  stage.capabilities.forEach((cap) => {
+    const li = document.createElement('li');
+    li.textContent = cap;
+    panelList.appendChild(li);
+  });
+}
+
+function clearPanel() {
+  panelTitle.textContent = 'Hover a station';
+  panelMeta.textContent = 'Stage details appear here.';
+  panelList.replaceChildren();
+}
+
+function setHovered(station) {
+  if (station === hoveredStation) return;
+  hoveredStation = station;
+  if (pinnedStation) return;
+  if (station) showStageInPanel(station.userData.stage);
+  else clearPanel();
+}
+
+function pickStation(clientX, clientY) {
+  const rect = renderer.domElement.getBoundingClientRect();
+  mouse.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+  mouse.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+  raycaster.setFromCamera(mouse, camera);
+  for (const station of stationMeshes) {
+    const hits = raycaster.intersectObject(station.userData.orb);
+    if (hits.length > 0) return station;
+  }
+  return null;
+}
+
+renderer.domElement.addEventListener('pointermove', (e) => {
+  const station = pickStation(e.clientX, e.clientY);
+  setHovered(station);
+  renderer.domElement.style.cursor = station ? 'pointer' : 'grab';
+});
+
+renderer.domElement.addEventListener('click', (e) => {
+  const station = pickStation(e.clientX, e.clientY);
+  if (station) {
+    pinnedStation = (pinnedStation === station) ? null : station;
+    if (pinnedStation) showStageInPanel(pinnedStation.userData.stage);
+    else if (hoveredStation) showStageInPanel(hoveredStation.userData.stage);
+    else clearPanel();
+  }
+});
+
+// Initial panel state — show Stage I so the user has context immediately.
+showStageInPanel(STAGES[0]);
+
+window.addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+  composer.setSize(innerWidth, innerHeight);
+});
+
+// ── Animation loop ────────────────────────────────────────────
+const clock = new THREE.Clock();
+let pulsePhase = 0;
+
+function animate() {
+  const dt = Math.min(clock.getDelta(), 0.05);
+  const t = clock.getElapsedTime();
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const p = particles[i];
+    p.phase += p.speed * dt;
+    if (p.phase > 1) p.phase -= 1;
+    const x = xMin + p.phase * (xMax - xMin);
+    const y = 5.4 + Math.sin(t * 1.8 + i * 0.7) * p.yJitter * 0.35;
+    const z = Math.sin(t * 0.8 + i * 1.2) * 0.6;
+    dummy.position.set(x, y, z);
+    const s = 0.55 + 0.45 * Math.sin(p.phase * Math.PI);
+    dummy.scale.setScalar(s);
+    dummy.updateMatrix();
+    particleMesh.setMatrixAt(i, dummy.matrix);
+  }
+  particleMesh.instanceMatrix.needsUpdate = true;
+
+  pulsePhase += dt;
+  for (const station of stationMeshes) {
+    const ud = station.userData;
+    const baseIntensity = 0.4 + 0.12 * Math.sin(pulsePhase * 1.2 + ud.idx * 0.6);
+    const isActive = station === pinnedStation || station === hoveredStation;
+    ud.orbMat.emissiveIntensity = isActive ? baseIntensity + 0.7 : baseIntensity;
+    ud.orb.position.y = 5.4 + Math.sin(pulsePhase * 0.8 + ud.idx) * 0.06;
+  }
+
+  controls.update();
+  composer.render();
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+</body>
+</html>

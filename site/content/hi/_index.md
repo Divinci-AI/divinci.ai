@@ -1,6 +1,6 @@
 +++
 title = "Divinci AI - उत्कृष्टता, हर बार"
-description = "सत्यापन-योग्य AI अनुपालन: EU AI Act, GDPR अनुच्छेद 17, HIPAA और NIST AI के लिए vindex रसीदें। हर बार उत्कृष्टता।"
+description = "सत्यापन-योग्य AI अनुपालन: EU AI Act, GDPR अनुच्छेद 17, HIPAA और NIST AI के लिए vIndex रसीदें। हर बार उत्कृष्टता।"
 template = "index.html"
 
 [extra]

@@ -1,6 +1,6 @@
 +++
 title = "Divinci AI - Excellence, every time"
-description = "Verifiable AI compliance: vindex receipts for EU AI Act, GDPR Article 17, HIPAA, and NIST AI. Excellence, every time."
+description = "Verifiable AI compliance: vIndex receipts for EU AI Act, GDPR Article 17, HIPAA, and NIST AI. Excellence, every time."
 [extra]
 lang = "en"
 +++

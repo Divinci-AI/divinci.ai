@@ -309,9 +309,9 @@ Wanneer die twee scores meer dan het per-slice-gap-budget uit elkaar lopen, word
 
 De judge die de offline run scoort, is dezelfde judge die de replay-run scoort. De audit-log registreert beide score-sets, beide judge-versies, de trace-ID's die herspeeld zijn en de gap die het blok afvuurde. De gap zelf is het bruikbaarste diagnostische signaal dat we hebben en is wat aan degene wordt overgedragen die vervolgens [de diagnoseboom uit deel 6](/nl/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) oppakt.
 
-## Veranker de golden dataset met een vindex-receipt
+## Veranker de golden dataset met een vIndex-receipt
 
-Elke score in de suite is zinloos als je hem later niet kunt reproduceren. We hashen de golden dataset bij elke release en koppelen die hash in een vindex-receipt aan de model-SHA, prompt-SHA, judge-SHA en het kalibratiedossier. Het receipt is extern verankerbaar — auditors kunnen onze exacte regressie-run zes maanden later opnieuw uitvoeren en de scores die we claimden verifiëren.
+Elke score in de suite is zinloos als je hem later niet kunt reproduceren. We hashen de golden dataset bij elke release en koppelen die hash in een vIndex-receipt aan de model-SHA, prompt-SHA, judge-SHA en het kalibratiedossier. Het receipt is extern verankerbaar — auditors kunnen onze exacte regressie-run zes maanden later opnieuw uitvoeren en de scores die we claimden verifiëren.
 
 ```json
 {
@@ -324,11 +324,11 @@ Elke score in de suite is zinloos als je hem later niet kunt reproduceren. We ha
   "scores": { "aggregate": 0.872, "by_slice": { "/* … */": "/* per-slice scalars */" } },
   "replay": { "trace_window_days": 14, "n_traces": 8430, "max_gap": 0.018 },
   "vindex_anchor": "sha256:f0bfd2…",
-  "verifiable_at": "https://vindex.divinci.ai/rel_3f1a-2026-05-26"
+  "verifiable_at": "https://vIndex.divinci.ai/rel_3f1a-2026-05-26"
 }
 ```
 
-**Voorbehoud open weights.** Het bovenstaande receipt draagt gewichtsherkomst alleen wanneer het model open-weights is — vindex verankert dan de daadwerkelijke gewichts-bytes. Voor closed-API-modelbackings (OpenAI / Anthropic / Google managed models) draagt het receipt nog steeds de beslissingsketen — elke gate-score, elk judge-resultaat, het kalibratiedossier — maar het gewichtsveld is leeg en je kunt het modelartefact niet onafhankelijk verifiëren. We zeggen dit in het receipt en in de [compliance-documentatie](/nl/compliance/) zodat auditors geen verkeerde indruk krijgen. De releases die het meest profiteren van een volledige vindex-keten zijn die waarbij je de gewichten in eigen beheer hebt.
+**Voorbehoud open weights.** Het bovenstaande receipt draagt gewichtsherkomst alleen wanneer het model open-weights is — vIndex verankert dan de daadwerkelijke gewichts-bytes. Voor closed-API-modelbackings (OpenAI / Anthropic / Google managed models) draagt het receipt nog steeds de beslissingsketen — elke gate-score, elk judge-resultaat, het kalibratiedossier — maar het gewichtsveld is leeg en je kunt het modelartefact niet onafhankelijk verifiëren. We zeggen dit in het receipt en in de [compliance-documentatie](/nl/compliance/) zodat auditors geen verkeerde indruk krijgen. De releases die het meest profiteren van een volledige vIndex-keten zijn die waarbij je de gewichten in eigen beheer hebt.
 
 ## Een vierfasen-implementatietijdlijn die we daadwerkelijk hebben uitgeleverd
 

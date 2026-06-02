@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
 hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
-summary = "Una pipeline CI/CD tradizionale presume che l'artefatto sia deterministico. Un modello linguistico non lo è. Questo articolo illustra la pipeline che usiamo in Divinci AI: gate Spearman per fetta contro un giudice ancorato all'umano, canary che osserva la qualità dell'output (non solo il p95), rollback atomico in circa dodici secondi e una ricevuta di rilascio concatenata in hash per ogni decisione (con un'attestazione dei pesi vindex integrata quando il modello è open-weights). Tre di questi sono cose che nessun altro strumento di rilascio LLM offre nel 2026."
+summary = "Una pipeline CI/CD tradizionale presume che l'artefatto sia deterministico. Un modello linguistico non lo è. Questo articolo illustra la pipeline che usiamo in Divinci AI: gate Spearman per fetta contro un giudice ancorato all'umano, canary che osserva la qualità dell'output (non solo il p95), rollback atomico in circa dodici secondi e una ricevuta di rilascio concatenata in hash per ogni decisione (con un'attestazione dei pesi vIndex integrata quando il modello è open-weights). Tre di questi sono cose che nessun altro strumento di rilascio LLM offre nel 2026."
 +++
 
 *Appunti dal ciclo di rilascio — Parte I*
@@ -39,7 +39,7 @@ Gli stadi sono intenzionalmente rigidi. Ogni rilascio passa attraverso ogni stad
 
 Un rilascio **non** è un file di pesi del modello. Un rilascio è un manifesto immutabile che raggruppa:
 
-- L'artefatto del modello (repo HF + SHA del commit, o una patch vindex)
+- L'artefatto del modello (repo HF + SHA del commit, o una patch vIndex)
 - Il template del prompt (ogni variabile, ogni messaggio di sistema)
 - Le regole di routing (quale classe di traffico atterra su quale versione)
 - La versione del dataset usata per calcolare le soglie del gate
@@ -112,7 +112,7 @@ Poi parte la ricevuta.
 
 Ogni decisione di rilascio — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback — emette una **ricevuta di rilascio**: un artefatto JSON-con-SHA-256, concatenato in hash alla ricevuta precedente per questo cliente e alla ricevuta precedente per questo rilascio, ancorato esternamente con una cadenza che il cliente configura.
 
-Quando il rilascio è basato su un **modello open-weights** — Gemma, Qwen, Llama, Mistral, GPT-OSS, qualsiasi cosa in cui i pesi siano indirizzabili ed editabili — la ricevuta integra una [attestazione vindex](/it/compliance/): una prova crittografica che i pesi attivi al momento della decisione sono i pesi che il manifesto ha registrato. Questo è il percorso che soddisfa le richieste di conformità più dure (diritto all'oblio dell'Articolo 17 GDPR, provenance dell'EU AI Act) perché puoi dimostrare non solo *cosa è stato deployato* ma *che i pesi sottostanti sono quelli che dichiarano di essere*.
+Quando il rilascio è basato su un **modello open-weights** — Gemma, Qwen, Llama, Mistral, GPT-OSS, qualsiasi cosa in cui i pesi siano indirizzabili ed editabili — la ricevuta integra una [attestazione vIndex](/it/compliance/): una prova crittografica che i pesi attivi al momento della decisione sono i pesi che il manifesto ha registrato. Questo è il percorso che soddisfa le richieste di conformità più dure (diritto all'oblio dell'Articolo 17 GDPR, provenance dell'EU AI Act) perché puoi dimostrare non solo *cosa è stato deployato* ma *che i pesi sottostanti sono quelli che dichiarano di essere*.
 
 Quando il rilascio è basato su un **modello closed-weights** — OpenAI, Anthropic, Google, qualsiasi cosa servita solo tramite un'API opaca — la ricevuta copre ancora la catena delle decisioni (quale manifesto, quale risultato del gate, quale lettura del monitor, quale utente ha innescato quale azione) ma non può attestare i pesi sottostanti, perché non possiamo vederli. Questo non è un limite della pipeline; è un limite di ciò che è verificabile quando il fornitore non espone i pesi. Gli auditor a cui importa quella distinzione ottengono la risposta veritiera nella ricevuta stessa.
 
@@ -187,7 +187,7 @@ La cucitura tra "ha passato l'eval al merge della PR" e "canary live valutato su
 
 1. **Il gate è affettato.** Spearman ρ per dominio contro un grader ancorato all'umano, non un singolo punteggio globale. La cecità alle fette è ciò che ogni altro gate ha.
 2. **Il canary osserva la qualità dell'output, non solo il p95.** Replay continuo di tracce attraverso il candidato, valutato dallo stesso giudice che ha alimentato il gate. Questa è la cucitura mancante.
-3. **Ogni decisione emette una ricevuta di rilascio.** Concatenata in hash, ancorabile esternamente, nel formato JSON-con-SHA-256 che supporta le nostre pagine di conformità. Per i backing di modelli open-weights — Gemma, Qwen, Llama, Mistral, GPT-OSS — la ricevuta integra un'attestazione dei pesi vindex in modo che gli auditor possano dimostrare quali fossero effettivamente i pesi attivi. Per i backing closed-API, la ricevuta copre la catena delle decisioni ma non rivendica la provenienza dei pesi, perché il fornitore non espone i pesi. In entrambi i casi, gli auditor ottengono prove di ciò che è effettivamente dimostrabile, non solo log.
+3. **Ogni decisione emette una ricevuta di rilascio.** Concatenata in hash, ancorabile esternamente, nel formato JSON-con-SHA-256 che supporta le nostre pagine di conformità. Per i backing di modelli open-weights — Gemma, Qwen, Llama, Mistral, GPT-OSS — la ricevuta integra un'attestazione dei pesi vIndex in modo che gli auditor possano dimostrare quali fossero effettivamente i pesi attivi. Per i backing closed-API, la ricevuta copre la catena delle decisioni ma non rivendica la provenienza dei pesi, perché il fornitore non espone i pesi. In entrambi i casi, gli auditor ottengono prove di ciò che è effettivamente dimostrabile, non solo log.
 
 Tutto qui. Canary generico, registro di versioni, rollback su metrica infrastrutturale — quelle sono commodity. Non abbiamo scritto un canary generico.
 
@@ -213,7 +213,7 @@ Se vuoi tirare su qualcosa di simile senza usare Divinci, la versione minima vit
 
 La maggior parte dei team ha già (1) e (3). Le parti dolorose sono (2), (4) e (5). Il motivo per cui Divinci esiste è che abbiamo costruito tutti e cinque prima per noi stessi, poi abbiamo capito che ne avrebbero avuto bisogno anche tutti gli altri.
 
-Se vuoi saltare la costruzione, [il riferimento API è qui](/it/api/), e gli endpoint di rilascio nella sezione "Release Management" sono l'intera superficie di questa pipeline. Il lato conformità — l'aspetto di quelle ricevute vindex e come si mappano sull'EU AI Act, sull'Articolo 17 GDPR, su HIPAA e su NIST AI RMF — è sulla [pagina di conformità](/it/compliance/). Ogni comando in questo post è un endpoint reale.
+Se vuoi saltare la costruzione, [il riferimento API è qui](/it/api/), e gli endpoint di rilascio nella sezione "Release Management" sono l'intera superficie di questa pipeline. Il lato conformità — l'aspetto di quelle ricevute vIndex e come si mappano sull'EU AI Act, sull'Articolo 17 GDPR, su HIPAA e su NIST AI RMF — è sulla [pagina di conformità](/it/compliance/). Ogni comando in questo post è un endpoint reale.
 
 ## Riferimenti
 

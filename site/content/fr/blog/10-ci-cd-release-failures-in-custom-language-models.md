@@ -233,14 +233,14 @@ Si vous n'utilisez pas Divinci et que vous voulez construire quelque chose d'éq
 - **Une porte par tranche** avec des seuils définis par les propriétaires de domaine, pas les propriétaires de plateforme. C'est ce qui rend 4, 5 et 6 attrapables. ([Étape 2](/fr/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-2-gate))
 - **Un canary avec surveillance de la qualité à chaque point de contrôle**, pas seulement la latence et les 5xx. C'est ce qui rend 8 attrapable et ce qui rend 9 et 10 *survivables* une fois qu'ils atteignent la production. ([Étape 3](/fr/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-3-roll))
 - **Un observateur continu** qui score les vraies traces de production à travers le modèle actif avec le même juge calibré qui a alimenté la porte. C'est ce qui rend 9 et 10 attrapables. ([Étape 4](/fr/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-4-observe-rollback-and-the-receipt))
-- **Un reçu d'audit signé pour chaque décision.** Chaîné par hash, ancrable en externe. Pour les modèles à poids ouverts, le reçu intègre une [attestation de poids vindex](/fr/compliance/) prouvant que les poids actifs sont ceux que le manifeste a enregistrés. Pour les modèles à API fermée, le reçu couvre la chaîne de décision mais ne peut pas revendiquer la traçabilité des poids — et la piste d'audit le dit explicitement.
+- **Un reçu d'audit signé pour chaque décision.** Chaîné par hash, ancrable en externe. Pour les modèles à poids ouverts, le reçu intègre une [attestation de poids vIndex](/fr/compliance/) prouvant que les poids actifs sont ceux que le manifeste a enregistrés. Pour les modèles à API fermée, le reçu couvre la chaîne de décision mais ne peut pas revendiquer la traçabilité des poids — et la piste d'audit le dit explicitement.
 
 Les pièces ne sont pas nouvelles individuellement. Toute plateforme MLOps en a une ou deux. La combinaison — porte consciente des tranches + observateur sur traces de production + rollback atomique + reçu prouvable — est la partie que personne d'autre ne livre en 2026.
 
 ## Où aller ensuite
 
 - Le billet compagnon — **[Comment construire un pipeline CI/CD pour LLM avec Divinci AI](/fr/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/)** — couvre l'architecture et l'API.
-- La **[page de conformité](/fr/compliance/)** documente le format des reçus vindex qui sous-tend chaque décision de release et comment il s'aligne sur l'EU AI Act, l'article 17 du RGPD, HIPAA et NIST AI RMF.
+- La **[page de conformité](/fr/compliance/)** documente le format des reçus vIndex qui sous-tend chaque décision de release et comment il s'aligne sur l'EU AI Act, l'article 17 du RGPD, HIPAA et NIST AI RMF.
 - La **[page produit AutoRAG](/fr/autorag/)** couvre la réduction d'hallucinations côté RAG qui se marie naturellement avec le juge calibré qui pilote Gate-2 et l'observateur de l'Étape 4.
 - La **[référence de l'API](/fr/api/)** — chaque commande référencée dans cette série est un vrai endpoint.
 
@@ -264,7 +264,7 @@ Pas avec des métriques d'infrastructure. La latence, le taux 5xx et l'usage de 
 
 ### Quelles exigences de piste d'audit s'appliquent aux déploiements de modèles d'IA ?
 
-L'EU AI Act, l'article 17 du RGPD (droit à l'effacement), HIPAA et le NIST AI Risk Management Framework exigent tous que les organisations conservent des enregistrements des versions de modèles, des résultats d'évaluation, des décisions d'approbation et des déploiements. L'exigence implicite sous-jacente aux quatre est que les enregistrements doivent être *vérifiables* — auditable signifie plus que « nous avons un log ». Les reçus vindex de Divinci sont chaînés par hash et ancrables en externe, ce qui signifie qu'un auditeur peut vérifier la chaîne sans faire confiance à nos logs. Pour les modèles à poids ouverts, le reçu intègre aussi une attestation de poids ; pour les modèles à API fermée, le reçu note explicitement que la traçabilité des poids n'est pas revendiquée.
+L'EU AI Act, l'article 17 du RGPD (droit à l'effacement), HIPAA et le NIST AI Risk Management Framework exigent tous que les organisations conservent des enregistrements des versions de modèles, des résultats d'évaluation, des décisions d'approbation et des déploiements. L'exigence implicite sous-jacente aux quatre est que les enregistrements doivent être *vérifiables* — auditable signifie plus que « nous avons un log ». Les reçus vIndex de Divinci sont chaînés par hash et ancrables en externe, ce qui signifie qu'un auditeur peut vérifier la chaîne sans faire confiance à nos logs. Pour les modèles à poids ouverts, le reçu intègre aussi une attestation de poids ; pour les modèles à API fermée, le reçu note explicitement que la traçabilité des poids n'est pas revendiquée.
 
 ## Références
 
@@ -291,4 +291,4 @@ L'EU AI Act, l'article 17 du RGPD (droit à l'effacement), HIPAA et le NIST AI R
 
 ---
 
-*Suite de cette série :* **Validation et release de LMs personnalisés dans des domaines réglementés.** Le pipeline ci-dessus est l'architecture. Le parcours de conformité est la pratique de son utilisation. EU AI Act, article 17 du RGPD, HIPAA et NIST AI RMF — ce que chacun demande à un processus de release, et quels champs de reçu vindex couvrent quelle exigence.
+*Suite de cette série :* **Validation et release de LMs personnalisés dans des domaines réglementés.** Le pipeline ci-dessus est l'architecture. Le parcours de conformité est la pratique de son utilisation. EU AI Act, article 17 du RGPD, HIPAA et NIST AI RMF — ce que chacun demande à un processus de release, et quels champs de reçu vIndex couvrent quelle exigence.

@@ -233,14 +233,14 @@ If you're not using Divinci and you want to build something equivalent, the load
 - **A per-slice gate** with thresholds defined by domain owners, not platform owners. This is what makes 4, 5, 6 catchable. ([Stage 2](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-2-gate))
 - **A canary with quality monitoring at each checkpoint**, not just latency and 5xx. This is what makes 8 catchable and what makes 9 and 10 *survivable* once they hit production. ([Stage 3](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-3-roll))
 - **A continuous observer** that scores actual production traces through the active model with the same calibrated judge that powered the gate. This is what makes 9 and 10 catchable. ([Stage 4](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-4-observe-rollback-and-the-receipt))
-- **A signed audit receipt for every decision.** Hash-chained, externally anchorable. For open-weights model backings, the receipt embeds a [vindex weight-attestation](/compliance/) proving the active weights are what the manifest registered. For closed-API backings, the receipt covers the decision chain but cannot claim weight provenance — and the audit trail says so explicitly.
+- **A signed audit receipt for every decision.** Hash-chained, externally anchorable. For open-weights model backings, the receipt embeds a [vIndex weight-attestation](/compliance/) proving the active weights are what the manifest registered. For closed-API backings, the receipt covers the decision chain but cannot claim weight provenance — and the audit trail says so explicitly.
 
 The pieces aren't novel individually. Every MLOps platform has one or two of them. The combination — slice-aware gate + production-trace observer + atomic rollback + provable receipt — is the part nobody else ships in 2026.
 
 ## Where to go next
 
 - The companion post — **[How to Build an LLM CI/CD Pipeline With Divinci AI](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/)** — covers the architecture and the API.
-- The **[compliance page](/compliance/)** documents the vindex receipt format that backs every release decision and how it maps onto EU AI Act, GDPR Article 17, HIPAA, and NIST AI RMF.
+- The **[compliance page](/compliance/)** documents the vIndex receipt format that backs every release decision and how it maps onto EU AI Act, GDPR Article 17, HIPAA, and NIST AI RMF.
 - The **[AutoRAG product page](/autorag/)** covers the RAG-side hallucination reduction that pairs naturally with the calibrated judge that drives Gate-2 and the Stage-4 observer.
 - The **[API reference](/api/)** — every command referenced in this series is a real endpoint.
 
@@ -264,7 +264,7 @@ Not with infrastructure metrics. Latency, 5xx rate, and token usage will not cat
 
 ### What audit trail requirements apply to AI model deployments?
 
-The EU AI Act, GDPR Article 17 (right to erasure), HIPAA, and the NIST AI Risk Management Framework all require organizations to maintain records of model versions, evaluation results, approval decisions, and rollouts. The unstated requirement underneath all four is that the records have to be *verifiable* — auditable means more than "we have a log." Divinci's vindex receipts are hash-chained and externally anchorable, which means an auditor can verify the chain without trusting our logs. For open-weights model backings the receipt also embeds a weight-attestation; for closed-API backings the receipt explicitly notes that weight provenance is not claimed.
+The EU AI Act, GDPR Article 17 (right to erasure), HIPAA, and the NIST AI Risk Management Framework all require organizations to maintain records of model versions, evaluation results, approval decisions, and rollouts. The unstated requirement underneath all four is that the records have to be *verifiable* — auditable means more than "we have a log." Divinci's vIndex receipts are hash-chained and externally anchorable, which means an auditor can verify the chain without trusting our logs. For open-weights model backings the receipt also embeds a weight-attestation; for closed-API backings the receipt explicitly notes that weight provenance is not claimed.
 
 ## References
 
@@ -291,4 +291,4 @@ The EU AI Act, GDPR Article 17 (right to erasure), HIPAA, and the NIST AI Risk M
 
 ---
 
-*Next in this series:* **Validating and releasing custom LMs in regulated fields.** The pipeline above is the architecture. The compliance pathway is the practice of using it. EU AI Act, GDPR Article 17, HIPAA, and NIST AI RMF — what each one asks of a release process, and which vindex receipt fields cover which requirement.
+*Next in this series:* **Validating and releasing custom LMs in regulated fields.** The pipeline above is the architecture. The compliance pathway is the practice of using it. EU AI Act, GDPR Article 17, HIPAA, and NIST AI RMF — what each one asks of a release process, and which vIndex receipt fields cover which requirement.

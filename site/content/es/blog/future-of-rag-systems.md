@@ -246,7 +246,7 @@ curl -X POST https://api.divinci.app/v1/query \
 }
 ```
 
-El cliente no elige un stack; no ejecuta tres. El router lo hace. La transparencia de grado auditoría sobre qué nivel respondió es parte de la respuesta, no se entierra en métricas — la misma ética de auditabilidad que construimos en el [recibo vindex](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) y en el [manifiesto de release](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) para nuestro stack de CI/CD.
+El cliente no elige un stack; no ejecuta tres. El router lo hace. La transparencia de grado auditoría sobre qué nivel respondió es parte de la respuesta, no se entierra en métricas — la misma ética de auditabilidad que construimos en el [recibo vIndex](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) y en el [manifiesto de release](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) para nuestro stack de CI/CD.
 
 ### Cómo decide el router en realidad — enrutamiento aprendido, no un clasificador codificado a mano
 

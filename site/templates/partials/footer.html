@@ -4,15 +4,16 @@
 <footer class="site-footer">
     <div class="footer-content">
         <div class="footer-section brand-section">
-            <div class="footer-logo">
+            <div class="footer-brand-block">
                 <a href="{% if current_lang == 'en' %}/{% else %}/{{ current_lang }}/{% endif %}" class="footer-logo-link">
                     <img src="{{ get_url(path="images/divinci_logo_inverted.svg") }}" alt="Divinci AI Logo" loading="lazy">
-                    <span>Divinci AI</span>
+                    <div class="footer-brand-text">
+                        <span class="footer-brand-name">Divinci AI</span>
+                        {% set motto_variant = "footer" %}
+                        {% include "partials/divinci-motto.html" %}
+                    </div>
                 </a>
             </div>
-            <p class="footer-tagline">
-                {{ translations.footer.tagline | default(value="Empowering human-AI collaboration") }}
-            </p>
             <div class="footer-social">
                 <a href="{{ config.extra.twitter }}" target="_blank" rel="noopener" title="X" aria-label="Follow us on X (Twitter)">
                     <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
@@ -23,7 +24,7 @@
                 <a href="{{ config.extra.github }}" target="_blank" rel="noopener" title="GitHub" aria-label="View our GitHub">
                     <i class="fab fa-github" aria-hidden="true"></i>
                 </a>
-                <a href="{{ config.extra.huggingface }}" target="_blank" rel="noopener" title="Hugging Face" aria-label="See our open vindex artifacts on Hugging Face">
+                <a href="{{ config.extra.huggingface }}" target="_blank" rel="noopener" title="Hugging Face" aria-label="See our open vIndex artifacts on Hugging Face">
                     {# Brief alt instead of empty: parent anchor's aria-label still owns the
                        link's accessible name, but giving the image a name satisfies SEO audits
                        that flag empty alts as "verify intentional". Screen-reader redundancy
@@ -54,13 +55,12 @@
         <div class="footer-section">
             <h3>{{ translations.footer.sections.resources.title | default(value="Resources") }}</h3>
             <ul>
-                {# docs — translated in ES and FR only #}
-                <li><a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">{{ translations.footer.sections.resources.links.documentation | default(value="Documentation") }}</a></li>
+                <li><a href="{% if current_lang == 'en' %}/api/{% else %}/{{ current_lang }}/api/{% endif %}">{{ translations.footer.sections.resources.links.api | default(value="API") }}</a></li>
                 {# blog — translated in ES, FR, AR #}
                 <li><a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}">{{ translations.footer.sections.resources.links.blog | default(value="Blog") }}</a></li>
-                {# tutorials — translated in ES and FR only #}
-                <li><a href="{% if current_lang == 'en' %}/tutorials/{% else %}/{{ current_lang }}/tutorials/{% endif %}">{{ translations.footer.sections.resources.links.tutorials | default(value="Tutorials") }}</a></li>
-                <li><a href="{% if current_lang == 'en' %}/api/{% else %}/{{ current_lang }}/api/{% endif %}">{{ translations.footer.sections.resources.links.api | default(value="API") }}</a></li>
+                <li><a href="{% if current_lang == 'en' %}/brand/{% else %}/{{ current_lang }}/brand/{% endif %}">{{ translations.footer.sections.resources.links.brand | default(value="Resources") }}</a></li>
+                {# docs — translated in ES and FR only #}
+                <li><a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">{{ translations.footer.sections.resources.links.documentation | default(value="Documentation") }}</a></li>
                 {# support — translated in ES, FR, AR (AR stub created in Run 52) #}
                 <li><a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}">{{ translations.footer.sections.resources.links.support | default(value="Support") }}</a></li>
             </ul>
@@ -75,10 +75,10 @@
                 <li><a href="{% if current_lang == 'en' %}/careers/{% else %}/{{ current_lang }}/careers/{% endif %}">{{ translations.footer.sections.company.links.careers | default(value="Careers") }}</a></li>
                 {# contact — translated in ES only #}
                 <li><a href="{% if current_lang == 'en' %}/contact/{% else %}/{{ current_lang }}/contact/{% endif %}">{{ translations.footer.sections.company.links.contact | default(value="Contact") }}</a></li>
-                {# press — translated in ES, FR, AR #}
-                <li><a href="{% if current_lang == 'en' %}/press/{% else %}/{{ current_lang }}/press/{% endif %}">{{ translations.footer.sections.company.links.press | default(value="Press") }}</a></li>
                 {# pricing — translated in ES only #}
                 <li><a href="{% if current_lang == 'en' %}/pricing/{% else %}/{{ current_lang }}/pricing/{% endif %}">{{ translations.footer.sections.product.links.pricing | default(value="Pricing") }}</a></li>
+                {# press — translated in ES, FR, AR #}
+                <li><a href="{% if current_lang == 'en' %}/press/{% else %}/{{ current_lang }}/press/{% endif %}">{{ translations.footer.sections.company.links.press | default(value="Press") }}</a></li>
             </ul>
         </div>
 

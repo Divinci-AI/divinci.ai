@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GDPR: EU data-protection purple + gold shield -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <rect width="900" height="600" fill="#5b21b6"/>
+  <!-- Shield: anchor point at top-centre, tapers to point at bottom -->
+  <path d="M450,70 L720,170 L720,340 Q720,500 450,560 Q180,500 180,340 L180,170 Z"
+        fill="#fbbf24"/>
+  <!-- Inner shield cutout so it reads as an outline at small sizes -->
+  <path d="M450,130 L665,210 L665,335 Q665,460 450,510 Q235,460 235,335 L235,210 Z"
+        fill="#5b21b6"/>
+</svg>

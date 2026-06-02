@@ -6,7 +6,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Compliance"]
-tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vindex"]
+tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vIndex"]
 
 [extra]
 author = "Mike Mooring"
@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
 hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
-summary = "Compliance em setores regulados para modelos de linguagem customizados se divide claramente ao longo de um eixo: open-weights vs API fechada. Para backings open-weights, você pode entregar uma atestação de pesos via vindex que satisfaz a apagabilidade verificável do Artigo 17 do GDPR criptograficamente. Para backings de API fechada, o mesmo recibo cobre a cadeia de decisão mas não pode reivindicar a proveniência dos pesos — e o regulador obtém essa distinção no próprio recibo. Este post mapeia quatro frameworks regulatórios (EU AI Act, GDPR, HIPAA, NIST AI RMF) nos quatro estágios do pipeline que entregamos, e mostra o formato real do recibo."
+summary = "Compliance em setores regulados para modelos de linguagem customizados se divide claramente ao longo de um eixo: open-weights vs API fechada. Para backings open-weights, você pode entregar uma atestação de pesos via vIndex que satisfaz a apagabilidade verificável do Artigo 17 do GDPR criptograficamente. Para backings de API fechada, o mesmo recibo cobre a cadeia de decisão mas não pode reivindicar a proveniência dos pesos — e o regulador obtém essa distinção no próprio recibo. Este post mapeia quatro frameworks regulatórios (EU AI Act, GDPR, HIPAA, NIST AI RMF) nos quatro estágios do pipeline que entregamos, e mostra o formato real do recibo."
 +++
 
 *Notas do Ciclo de Release — Parte IV*
@@ -50,7 +50,7 @@ Discussões de compliance tendem a colapsar em "documentamos as coisas". Esse en
 <text x="55" y="206" font-size="10" fill="#4a4030">• monitoramento pós-mercado</text>
 <text x="55" y="232" font-size="11" font-weight="700" fill="#2d5a4f">Primitivo de verificação:</text>
 <text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">documentação mecanística</text>
-<text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">bit-exata via vindex</text>
+<text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">bit-exata via vIndex</text>
 <text x="55" y="290" font-size="10" fill="#6b5d4f">Penalidade por não-conformidade:</text>
 <text x="55" y="308" font-size="14" font-weight="700" fill="#a04848">até 7% do</text>
 <text x="55" y="324" font-size="14" font-weight="700" fill="#a04848">faturamento global</text>
@@ -109,7 +109,7 @@ Os números das penalidades não são o que torna esses frameworks interessantes
 
 Antes do mapeamento por estágio, a ressalva mais importante de todo este post:
 
-**Para backings de modelo open-weights** — Gemma, Qwen, Llama, Mistral, GPT-OSS, qualquer coisa em que os pesos sejam endereçáveis e editáveis — toda decisão de release do Divinci emite um recibo vindex que inclui uma **atestação de pesos**: prova criptográfica de que os pesos ativos no momento da decisão são exatamente os pesos que o manifest registrou. É isso que torna possível a apagabilidade verificável do Artigo 17 do GDPR. Você aplica um [patch DELETE](/blog/deleting-paris-from-a-language-model/) que remove uma relação-entidade específica do espaço de pesos, o recibo embute o hash antes-e-depois, e um auditor consegue verificar que a deleção aconteceu re-rodando a verificação contra o vindex público.
+**Para backings de modelo open-weights** — Gemma, Qwen, Llama, Mistral, GPT-OSS, qualquer coisa em que os pesos sejam endereçáveis e editáveis — toda decisão de release do Divinci emite um recibo vIndex que inclui uma **atestação de pesos**: prova criptográfica de que os pesos ativos no momento da decisão são exatamente os pesos que o manifest registrou. É isso que torna possível a apagabilidade verificável do Artigo 17 do GDPR. Você aplica um [patch DELETE](/blog/deleting-paris-from-a-language-model/) que remove uma relação-entidade específica do espaço de pesos, o recibo embute o hash antes-e-depois, e um auditor consegue verificar que a deleção aconteceu re-rodando a verificação contra o vIndex público.
 
 **Para backings de modelo de API fechada** — OpenAI, Anthropic, Google via APIs opacas — o mesmo recibo cobre a cadeia de decisão (qual manifest, qual resultado do gate, qual leitura do monitor, qual usuário acionou qual ação) mas **não pode reivindicar proveniência dos pesos**, porque o provedor não expõe os pesos. O recibo registra isso explicitamente em um campo `weight_attestation: null` com uma `note` explicando por quê. Isso não é uma postura de compliance degradada — é o limite do que é verificável, escrito honestamente. Um auditor que lê o recibo entende exatamente qual classe de prova está e não está sendo feita.
 
@@ -212,7 +212,7 @@ O restante do post percorre a contribuição de cada estágio.
 
 O estágio Register produz um manifest JSON imutável, endereçado por SHA-256. Para releases regulados, o manifest carrega tudo o que o Anexo IV<sup><a href="#ref-1">[1]</a></sup> pede em um único artefato:
 
-- O artefato do modelo (repo HF + commit SHA, ou uma referência a um patch vindex)
+- O artefato do modelo (repo HF + commit SHA, ou uma referência a um patch vIndex)
 - O template de prompt (cada variável, cada system message — versionado)
 - As regras de roteamento (qual classe de tráfego cai em qual release)
 - A versão do dataset usada para computar os thresholds do gate (resumo dos dados de treino por hash)
@@ -221,7 +221,7 @@ O estágio Register produz um manifest JSON imutável, endereçado por SHA-256. 
 
 O manifest é a documentação. Um auditor não lê prosa; ele lê o hash do manifest e verifica o bundle. Nenhum resumo em prosa escrito-seis-meses-depois é necessário.
 
-**Bônus open-weights.** Quando o artefato do modelo referencia um modelo open-weights, o manifest também embute o `vindex_sha256` — a impressão digital criptográfica do [vindex](/pt/compliance/) publicado do modelo. Essa impressão digital é o que permite a um terceiro verificar os pesos ativos sem nunca ter de confiar na nossa infraestrutura de deployment.
+**Bônus open-weights.** Quando o artefato do modelo referencia um modelo open-weights, o manifest também embute o `vindex_sha256` — a impressão digital criptográfica do [vIndex](/pt/compliance/) publicado do modelo. Essa impressão digital é o que permite a um terceiro verificar os pesos ativos sem nunca ter de confiar na nossa infraestrutura de deployment.
 
 **Ressalva de API fechada.** Quando o artefato do modelo referencia um modelo de API fechada, o campo `vindex_sha256` do manifest é `null`, e o `weight_attestation_class` do manifest é `decision_chain_only`. O auditor que lê isso sabe exatamente o que está sendo reivindicado e o que não está.
 
@@ -267,7 +267,7 @@ Para HIPAA, o estágio de canário é também onde o logging de auditoria por re
 
 Este é o estágio que sustenta a história de compliance. O estágio Observe roda replay contínuo de traces pelo release ativo, pontuado pelo mesmo juiz ancorado em humano do Gate, com um monitor de qualidade que aciona rollback automático caso seja violado.
 
-Toda decisão de release — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **e qualquer aplicação de patch DELETE do Artigo 17 do GDPR** — emite um recibo vindex. Hash-chained ao recibo anterior deste cliente e ao recibo anterior deste release.
+Toda decisão de release — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **e qualquer aplicação de patch DELETE do Artigo 17 do GDPR** — emite um recibo vIndex. Hash-chained ao recibo anterior deste cliente e ao recibo anterior deste release.
 
 Eis como se parece um recibo real para um patch DELETE do Artigo 17 do GDPR — adaptado diretamente do formato documentado na [página de compliance](/pt/compliance/):
 
@@ -301,7 +301,7 @@ Eis como se parece um recibo real para um patch DELETE do Artigo 17 do GDPR — 
 }
 ```
 
-Esse artefato é verificável. Um auditor não precisa confiar nos nossos logs. Ele pega o `vindex_sha256_after`, puxa o vindex publicado correspondente em `huggingface.co/Divinci-AI`, e verifica que a feature 11179 na camada 27 está estruturalmente ausente do top-25. Pega o `chain_signature` e verifica contra o recibo anterior. A cadeia inteira é ancorada externamente em uma cadência configurada pelo cliente.
+Esse artefato é verificável. Um auditor não precisa confiar nos nossos logs. Ele pega o `vindex_sha256_after`, puxa o vIndex publicado correspondente em `huggingface.co/Divinci-AI`, e verifica que a feature 11179 na camada 27 está estruturalmente ausente do top-25. Pega o `chain_signature` e verifica contra o recibo anterior. A cadeia inteira é ancorada externamente em uma cadência configurada pelo cliente.
 
 **Mesma operação contra um modelo de API fechada.** Os campos do recibo acima mudam de três formas: `operation.target` se torna `provider_api_endpoint`, `verification` se torna um schema diferente cobrindo apenas evidências da cadeia de decisão, e `weight_attestation_class` se torna `decision_chain_only`. O provedor do modelo de API fechada não expôs pesos, então o recibo o diz. Um auditor que quer prova no nível dos pesos agora sabe que precisa escalar para o provedor, não para nós.
 
@@ -315,7 +315,7 @@ Um exercício útil: percorrer as perguntas que um auditor real fará, e qual ar
 |---|---|
 | *"Qual versão do modelo estava rodando em 15 de março às 14:22 UTC?"* | O recibo do estágio Observe para esse timestamp, assinado e hash-chained. |
 | *"Qual avaliação este release passou antes do promote?"* | O recibo do estágio Gate, com a tabela de ρ de Spearman por slice e o SHA do dataset contra o qual o gate rodou. |
-| *"Uma solicitação de apagamento do Artigo 17 do GDPR para o paciente X foi de fato aplicada?"* | O recibo de patch DELETE acima. O auditor verifica `vindex_sha256_after` contra o vindex publicado. |
+| *"Uma solicitação de apagamento do Artigo 17 do GDPR para o paciente X foi de fato aplicada?"* | O recibo de patch DELETE acima. O auditor verifica `vindex_sha256_after` contra o vIndex publicado. |
 | *"Quem aprovou este release? Qual foi a justificativa declarada para sobrepor o gate do slice de licenciamento de IP?"* | O bloco `override` do recibo do estágio Gate, incluindo o ID do usuário e a justificativa em texto livre exigida. |
 | *"Quão rápido o rollback disparou, e qual leitura do monitor o acionou?"* | O recibo de rollback do estágio Observe, com as três leituras consecutivas de qualidade abaixo do threshold e o tempo decorrido do rollback. |
 | *"Mostre-me a evidência de monitoramento pós-mercado dos últimos 90 dias."* | A cadeia de recibos do estágio Observe. Ancorada externamente na cadência configurada pelo cliente. |
@@ -330,13 +330,13 @@ Três limitações honestas:
 
 **Documentação é necessária, mas não suficiente.** Um recibo que prova que um modelo atingiu um threshold não prova que o threshold era o threshold correto. Se sua suíte de QA pontuada não cobre o slice que realmente importa para um paciente no seu serviço, nenhuma quantidade de receipt-chaining conserta isso. Reguladores cada vez mais entendem isso; "passamos no nosso eval" não é mais uma resposta de compliance suficiente se o eval era o eval errado.
 
-**O formato vindex é single-vendor.** Nós o usamos porque é o primitivo criptográfico mais concreto disponível hoje para prova no nível dos pesos. Se a indústria convergir num formato diferente — model-cards-com-hashes, schemas de artefato publicados pelo NIST — o formato do recibo deve evoluir para isso. A substância (hash-chained, verificável externamente, ciente de weight-attestation) é o que sustenta a estrutura, não o nome específico do schema. Esperamos que isso mude conforme o cenário regulatório e de padrões amadurece.
+**O formato vIndex é single-vendor.** Nós o usamos porque é o primitivo criptográfico mais concreto disponível hoje para prova no nível dos pesos. Se a indústria convergir num formato diferente — model-cards-com-hashes, schemas de artefato publicados pelo NIST — o formato do recibo deve evoluir para isso. A substância (hash-chained, verificável externamente, ciente de weight-attestation) é o que sustenta a estrutura, não o nome específico do schema. Esperamos que isso mude conforme o cenário regulatório e de padrões amadurece.
 
 ## FAQ
 
 ### O que é apagabilidade verificável sob o Artigo 17 do GDPR para sistemas de IA?
 
-Apagabilidade verificável significa que um terceiro consegue verificar que os dados foram removidos sem ter de confiar nos seus logs. Fazer fine-tune de um modelo para "esquecer" informações específicas não atende a esse padrão — a informação pode ressurgir sob prompts adversariais, e não há primitivo criptográfico que um auditor possa checar. Um patch DELETE no nível dos pesos com um hash vindex publicado antes/depois *atende* ao padrão, porque o auditor consegue re-rodar a verificação contra o artefato público.
+Apagabilidade verificável significa que um terceiro consegue verificar que os dados foram removidos sem ter de confiar nos seus logs. Fazer fine-tune de um modelo para "esquecer" informações específicas não atende a esse padrão — a informação pode ressurgir sob prompts adversariais, e não há primitivo criptográfico que um auditor possa checar. Um patch DELETE no nível dos pesos com um hash vIndex publicado antes/depois *atende* ao padrão, porque o auditor consegue re-rodar a verificação contra o artefato público.
 
 ### Por que modelos de API fechada não conseguem satisfazer o Artigo 17 do GDPR do mesmo jeito?
 
@@ -379,7 +379,7 @@ As quatro funções centrais do NIST AI RMF — Govern, Map, Measure, Manage —
 <strong>GDPR Article 17 (Right to Erasure).</strong> <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank" rel="noopener">gdpr-info.eu/art-17-gdpr</a>. The data subject's right to obtain erasure of personal data, and the controller's obligation to demonstrate compliance under Article 5(2) accountability. Penalties up to €20M or 4% of annual global turnover.
 </li>
 <li id="ref-8" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>Internal — vindex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/pt/compliance/">compliance page</a> and demonstrated in the <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
+<strong>Internal — vIndex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/pt/compliance/">compliance page</a> and demonstrated in the <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
 </li>
 </ol>
 

@@ -6,7 +6,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Compliance"]
-tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vindex"]
+tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vIndex"]
 
 [extra]
 author = "Mike Mooring"
@@ -49,7 +49,7 @@ summary = "規制業界におけるカスタム言語モデルのコンプライ
 <text x="55" y="191" font-size="10" fill="#4a4030">• 人間による監督措置</text>
 <text x="55" y="206" font-size="10" fill="#4a4030">• 市販後監視</text>
 <text x="55" y="232" font-size="11" font-weight="700" fill="#2d5a4f">検証プリミティブ:</text>
-<text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">vindexによるビット単位の</text>
+<text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">vIndexによるビット単位の</text>
 <text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">機構的文書化</text>
 <text x="55" y="290" font-size="10" fill="#6b5d4f">違反時の制裁:</text>
 <text x="55" y="308" font-size="14" font-weight="700" fill="#a04848">全世界売上高の</text>
@@ -221,7 +221,7 @@ summary = "規制業界におけるカスタム言語モデルのコンプライ
 
 マニフェストが文書そのものです。監査人は散文を読むのではなく、マニフェストハッシュを読み、バンドルを検証します。半年後に書かれた散文要約は不要です。
 
-**オープンウェイトの利点。** モデルアーティファクトがオープンウェイトモデルを参照する場合、マニフェストには`vindex_sha256`(モデルの公開[vindex](/ja/compliance/)の暗号学的フィンガープリント)も埋め込まれます。このフィンガープリントによって、第三者は当社のデプロイメントインフラを信頼することなく、アクティブな重みを検証できます。
+**オープンウェイトの利点。** モデルアーティファクトがオープンウェイトモデルを参照する場合、マニフェストには`vindex_sha256`(モデルの公開[vIndex](/ja/compliance/)の暗号学的フィンガープリント)も埋め込まれます。このフィンガープリントによって、第三者は当社のデプロイメントインフラを信頼することなく、アクティブな重みを検証できます。
 
 **クローズドAPIの留保。** モデルアーティファクトがクローズドAPIモデルを参照する場合、マニフェストの`vindex_sha256`フィールドは`null`、`weight_attestation_class`は`decision_chain_only`となります。これを読む監査人は、何が主張されていて何がそうでないかを正確に把握します。
 
@@ -330,7 +330,7 @@ HIPAAについては、カナリアステージはリクエスト単位の監査
 
 **文書化は必要条件ですが、十分条件ではありません。** モデルがしきい値を満たしたことを証明するレシートは、そのしきい値が正しいしきい値だったことを証明しません。スコア付きQAスイートが、あなたのサービス内の患者にとって実際に重要なスライスをカバーしていなければ、いくらレシートを連結してもそれは直りません。規制当局はこれを次第に理解しつつあります。評価が間違った評価であった場合、「私たちは評価を通過しました」はもはや十分なコンプライアンスの答えではありません。
 
-**vindexフォーマットは単一ベンダー仕様です。** 当社はこれを採用しています。今日、重みレベル証明に利用可能な最も具体的な暗号学的プリミティブだからです。業界が別のフォーマット — ハッシュ付きモデルカード、NIST公開アーティファクトスキーマなど — に収束するなら、レシートフォーマットはそれに合わせて進化させるべきです。荷重を担うのは実体(ハッシュ連結、外部検証可能、重み証明対応)であって、特定のスキーマ名ではありません。規制と標準の地形が成熟するにつれ、これは変化することを予期しています。
+**vIndexフォーマットは単一ベンダー仕様です。** 当社はこれを採用しています。今日、重みレベル証明に利用可能な最も具体的な暗号学的プリミティブだからです。業界が別のフォーマット — ハッシュ付きモデルカード、NIST公開アーティファクトスキーマなど — に収束するなら、レシートフォーマットはそれに合わせて進化させるべきです。荷重を担うのは実体(ハッシュ連結、外部検証可能、重み証明対応)であって、特定のスキーマ名ではありません。規制と標準の地形が成熟するにつれ、これは変化することを予期しています。
 
 ## FAQ
 
@@ -379,7 +379,7 @@ NIST AI RMFの4つの中核機能 — ガバナンス、マッピング、測定
 <strong>GDPR Article 17 (Right to Erasure).</strong> <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank" rel="noopener">gdpr-info.eu/art-17-gdpr</a>. The data subject's right to obtain erasure of personal data, and the controller's obligation to demonstrate compliance under Article 5(2) accountability. Penalties up to €20M or 4% of annual global turnover.
 </li>
 <li id="ref-8" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>Internal — vindex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/ja/compliance/">compliance page</a> and demonstrated in the <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
+<strong>Internal — vIndex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/ja/compliance/">compliance page</a> and demonstrated in the <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
 </li>
 </ol>
 

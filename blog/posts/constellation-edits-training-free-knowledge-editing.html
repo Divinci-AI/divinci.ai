@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <link rel="alternate" href="https://divinci.ai/blog/posts/constellation-edits-training-free-knowledge-editing.html" hreflang="x-default" />
+    <link rel="alternate" href="https://divinci.ai/blog/posts/constellation-edits-training-free-knowledge-editing.html" hreflang="en" />
+
+        <div data-include="../../includes/meta-tags.html"></div>
+        <div data-include="../../includes/structured-data.html"></div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                if (window.setMetaTags) {
+                    setMetaTags({
+                        title: "Constellation Edits: Training-Free Knowledge Injection and Auditable Unlearning",
+                        description: "We present constellation edits — training-free rank-1 weight patches guided by TRACE activation tracing — that support both injection and unlearning with properties fine-tuning cannot match: zero training, mechanistic interpretability, and audit-grade reversibility.",
+                        image: "constellation-edits-social.svg",
+                        url: "/blog/posts/constellation-edits-training-free-knowledge-editing.html",
+                        type: "article",
+                        keywords: "knowledge editing, llm unlearning, ROME, TRACE, constellation edits, training-free, mechanistic interpretability, LoRA, gradient ascent"
+                    });
+                }
+
+                if (window.addStructuredData) {
+                    const blogPostingData = {
+                        "@context": "https://schema.org",
+                        "@type": "BlogPosting",
+                        "headline": "Constellation Edits: Training-Free Knowledge Injection and Auditable Unlearning",
+                        "description": "Training-free rank-1 weight patches guided by TRACE activation tracing for knowledge injection and unlearning in LLMs.",
+                        "image": "https://divinci.ai/images/autorag-still.png",
+                        "datePublished": "2026-04-18T09:00:00+00:00",
+                        "dateModified": "2026-04-18T09:00:00+00:00",
+                        "author": {
+                            "@type": "Person",
+                            "name": "Michael Mooring"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "Divinci AI",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "https://divinci.ai/images/divinci_logo.png"
+                            }
+                        },
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": "https://divinci.ai/blog/posts/constellation-edits-training-free-knowledge-editing.html"
+                        }
+                    };
+
+                    const script = document.createElement('script');
+                    script.type = 'application/ld+json';
+                    script.textContent = JSON.stringify(blogPostingData);
+                    document.head.appendChild(script);
+                }
+            });
+        </script>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png" />
+
+        <title>Constellation Edits: Training-Free Knowledge Editing | Divinci AI</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="../../assets/css/fonts.css" />
+        <link rel="stylesheet" href="../../assets/css/sora-styles.css" />
+        <link rel="stylesheet" href="../../styles.css" />
+        <link rel="stylesheet" href="../../styles-footer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" />
+        <link rel="stylesheet" href="../../css/social-sharing.css" />
+
+        <style>
+            .blog-hero {
+                background: linear-gradient(135deg, #16214c 0%, #0f3460 60%, #1a1a2e 100%);
+                color: white;
+                padding: 5rem 0;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .blog-hero::before {
+                content: '';
+                position: absolute;
+                top: -80px;
+                right: -80px;
+                width: 280px;
+                height: 280px;
+                border-radius: 50%;
+                border: 2px solid rgba(92, 226, 231, 0.15);
+                opacity: 0.4;
+                z-index: 0;
+            }
+
+            .blog-hero::after {
+                content: '';
+                position: absolute;
+                bottom: -60px;
+                left: 10%;
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                border: 1px solid rgba(92, 226, 231, 0.10);
+                opacity: 0.3;
+                z-index: 0;
+            }
+
+            .blog-hero-content {
+                position: relative;
+                z-index: 1;
+                text-align: center;
+            }
+
+            .blog-title {
+                font-size: 2.4rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: white;
+                line-height: 1.3;
+            }
+
+            .blog-meta {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .blog-author {
+                display: flex;
+                align-items: center;
+            }
+
+            .author-image {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 0.75rem;
+                background: rgba(92, 226, 231, 0.3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                color: #5ce2e7;
+            }
+
+            .author-name { font-weight: 600; color: rgba(255,255,255,0.9); }
+            .blog-date, .blog-category { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+
+            .blog-category {
+                display: inline-block;
+                padding: 0.3rem 1rem;
+                background-color: rgba(92, 226, 231, 0.15);
+                border-radius: 20px;
+                border: 1px solid rgba(92, 226, 231, 0.3);
+            }
+
+            .blog-section {
+                padding: 4rem 0;
+                background-color: #f9f9f9;
+            }
+
+            .blog-container {
+                max-width: 820px;
+                margin: 0 auto;
+            }
+
+            .blog-content {
+                background-color: white;
+                border-radius: 12px;
+                padding: 3rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+                position: relative;
+            }
+
+            .blog-content h2 {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #16214c;
+                margin: 2.5rem 0 1.5rem;
+            }
+
+            .blog-content h3 {
+                font-size: 1.35rem;
+                font-weight: 700;
+                color: #16214c;
+                margin: 2rem 0 1.25rem;
+            }
+
+            .blog-content p {
+                color: #222;
+                line-height: 1.85;
+                margin-bottom: 1.5rem;
+                font-size: 1.05rem;
+            }
+
+            .blog-content ul, .blog-content ol {
+                margin-bottom: 1.5rem;
+                padding-left: 1.5rem;
+            }
+
+            .blog-content li {
+                color: #222;
+                line-height: 1.8;
+                margin-bottom: 0.75rem;
+                font-size: 1.05rem;
+            }
+
+            .blog-content strong { color: #16214c; font-weight: 700; }
+
+            .blog-content blockquote {
+                border-left: 4px solid #5ce2e7;
+                padding-left: 1.5rem;
+                font-style: italic;
+                color: #444;
+                margin: 2rem 0;
+                background: #f0fdfe;
+                padding: 1rem 1.5rem;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .blog-content a {
+                color: #16214c;
+                text-decoration: underline;
+                text-decoration-color: rgba(92,226,231,0.5);
+                text-underline-offset: 3px;
+                transition: all 0.3s ease;
+            }
+
+            .blog-content a:hover {
+                color: #5ce2e7;
+                text-decoration-color: #5ce2e7;
+            }
+
+            .results-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 2rem 0;
+                font-size: 0.95rem;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            }
+
+            .results-table th {
+                background: #16214c;
+                color: white;
+                padding: 0.85rem 1rem;
+                text-align: left;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+
+            .results-table td {
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #eee;
+                color: #333;
+                vertical-align: top;
+            }
+
+            .results-table tr:last-child td { border-bottom: none; }
+            .results-table tr:nth-child(even) td { background: #f8faff; }
+
+            .result-green { color: #1a7f4f; font-weight: 700; }
+            .result-red   { color: #c0392b; font-weight: 700; }
+            .result-gold  { color: #b7860c; font-weight: 700; }
+
+            .formula-box {
+                background: #1a1a2e;
+                color: #5ce2e7;
+                padding: 1.25rem 1.75rem;
+                border-radius: 8px;
+                font-family: 'Courier New', monospace;
+                font-size: 1rem;
+                margin: 2rem 0;
+                overflow-x: auto;
+            }
+
+            .insight-box {
+                background: linear-gradient(135deg, #f0fdfe, #e8f4ff);
+                border: 1px solid rgba(92,226,231,0.4);
+                border-radius: 10px;
+                padding: 1.5rem 2rem;
+                margin: 2rem 0;
+            }
+
+            .insight-box p {
+                margin-bottom: 0;
+                color: #16214c;
+            }
+
+            .insight-box strong { color: #0f3460; }
+
+            .section-divider {
+                border: none;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, rgba(92,226,231,0.4), transparent);
+                margin: 3rem 0;
+            }
+
+            .tldr-box {
+                background: #16214c;
+                color: white;
+                padding: 2rem 2.5rem;
+                border-radius: 12px;
+                margin: 0 0 3rem 0;
+            }
+
+            .tldr-box h3 {
+                color: #5ce2e7 !important;
+                font-size: 1rem !important;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                margin: 0 0 1rem 0 !important;
+            }
+
+            .tldr-box ul { margin: 0; padding-left: 1.5rem; }
+            .tldr-box li { color: rgba(255,255,255,0.9); margin-bottom: 0.6rem; line-height: 1.7; }
+
+            .experiment-badge {
+                display: inline-block;
+                background: #16214c;
+                color: #5ce2e7;
+                font-size: 0.75rem;
+                font-weight: 700;
+                padding: 0.2rem 0.6rem;
+                border-radius: 4px;
+                margin-right: 0.5rem;
+                font-family: monospace;
+                letter-spacing: 0.05em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Include navigation -->
+        <div data-include="../../includes/nav.html"></div>
+
+        <!-- Hero Section -->
+        <section class="blog-hero">
+            <div class="container">
+                <div class="blog-hero-content">
+                    <span class="blog-category">Research</span>
+                    <h1 class="blog-title" style="margin-top:1.25rem;">
+                        Constellation Edits:<br>Training-Free Knowledge Editing in LLMs
+                    </h1>
+                    <div class="blog-meta">
+                        <div class="blog-author">
+                            <div class="author-image">M</div>
+                            <span class="author-name">Michael Mooring</span>
+                        </div>
+                        <span class="blog-date"><i class="fas fa-calendar-alt" style="margin-right:0.4rem;"></i>April 18, 2026</span>
+                        <span class="blog-date"><i class="fas fa-clock" style="margin-right:0.4rem;"></i>15 min read</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Content -->
+        <section class="blog-section">
+            <div class="container">
+                <div class="blog-container">
+                    <div class="blog-content">
+
+                        <div class="tldr-box">
+                            <h3>TL;DR</h3>
+                            <ul>
+                                <li>We introduce <strong>constellation edits</strong> — rank-1 weight patches to a single MLP layer, guided by TRACE activation tracing, that require zero training.</li>
+                                <li>For DELETE (unlearning): FQ=1.0, MU≥0.75, applied in <strong>80 milliseconds</strong>. Gradient ascent achieves FQ=0.0 on the same facts because float32 softmax saturation makes the gradient exactly zero.</li>
+                                <li>LoRA decoupling is the mechanism behind successful unlearning: when W_base is frozen, forget and retain gradients are structurally separated. Unfreezing W_base collapses Model Utility by 0.83.</li>
+                                <li>Adversarial probing shows DELETE removes a layer's <em>city-as-answer role</em>, not a single (subject, relation, object) triple — a mechanistic scope finding with implications for compliance use cases.</li>
+                                <li>3-model cross-architecture test: Gemma 4 (sharp L25, scale=8) → ROME ✓; Mistral-7B (broad L0–L8, scale=64) → ROME ✓; Qwen2.5-7B (distributed, max rank=2) → MEMIT required. TRACE crown-scan predicts the verdict before you attempt the edit.</li>
+                            </ul>
+                        </div>
+
+                        <h2>The Problem with Fine-Tuning for Knowledge Editing</h2>
+
+                        <p>Every production LLM deployment eventually faces the same question: <em>how do you change what the model knows without retraining it?</em> A customer's CEO changes. A regulation is updated. A model learned something it shouldn't have. The standard answer — fine-tune on the new fact, or gradient-ascent on the old one — turns out to be fundamentally broken for a subtle reason.</p>
+
+                        <p>Full-weight fine-tuning on transformer MLP layers <strong>entangles the forward computation paths of the facts you want to change with the facts you want to preserve</strong>. When you update W to forget one thing, you inevitably shift the representations of everything else that passes through the same weights. This isn't a hyperparameter problem. It's structural.</p>
+
+                        <p>Gradient ascent has an even more fundamental failure mode for high-confidence pretraining facts: <strong>the gradient is literally zero</strong>.</p>
+
+                        <div class="formula-box">
+forget_loss = -cross_entropy(logits, target_id)
+# If P(Tokyo | context) = 1.000000 in float32:
+gradient = ∂loss/∂W = P(Tokyo) - 1 = 0.000000 exactly
+# No hyperparameter fixes this. Softmax saturation is not rounding error.
+                        </div>
+
+                        <p>We verified this empirically across all kl_weight settings (0.1, 0.5, 1.0, 10.0): gradient norm = 0.0 in every case. The model already "knows" Tokyo with probability 1.0 in 32-bit floating point, and gradient ascent has nothing to push against.</p>
+
+                        <h2>The Constellation Edit Primitive</h2>
+
+                        <p>A constellation edit is a direct algebraic update to a single MLP down-projection weight matrix, guided by TRACE-identified feature attribution. No training loop, no gradient computation, no optimizer state.</p>
+
+                        <p>The DELETE operation at layer L* looks like this:</p>
+
+                        <div class="formula-box">
+W_down[L*] -= scale × outer(d_embed[target_token], k_norm)
+
+where:
+  d_embed[target_token]  = row of the embedding matrix for the target
+  k_norm                 = normalized key vector from the forward pass
+                           (input to down_proj at the last token position)
+  scale                  = 8–16 for most facts on Gemma 4 e2b-it
+                        </div>
+
+                        <p>The operation is <strong>reversible</strong> — save the layer's weight delta and you have a patch file. Apply it to undo. Stack multiple patches without interference. Export to HuggingFace safetensors format for audit trails.</p>
+
+                        <p>But this only works if L* is the right layer. Finding it requires TRACE.</p>
+
+                        <h2>TRACE: Finding the Crown Layer</h2>
+
+                        <p>TRACE is a causal attribution method adapted from the ROME paper's causal tracing. For a given (subject, relation, object) fact, TRACE identifies the layer where MLP weight modifications most efficiently shift the model's output. We call this the <strong>crown layer</strong>.</p>
+
+                        <p>On Gemma 4 e2b-it (28 layers, GeGLU activations), all five geography facts (Japan→Tokyo, Italy→Rome, France→Paris, Germany→Berlin, UK→London) localize at <strong>L25</strong> — the same layer. Scale of 8 achieves rank displacement from 1 to &gt;20. This sharp spike is the signature of a well-localized fact.</p>
+
+                        <div class="insight-box">
+                            <p><strong>Crown layer geometry:</strong> At L25, the MLP's down-projection is the primary route by which the model reads out a capital-city answer from the residual stream. Ablating this route via rank-1 subtraction redirects the fact, rather than destroying it — which is why reverse queries ("What country is Tokyo the capital of?") still succeed after DELETE. The mechanism removes a computational <em>role</em>, not an episodic <em>memory</em>.</p>
+                        </div>
+
+                        <h2>Experiment Results</h2>
+
+                        <h3><span class="experiment-badge">D6b</span> DELETE vs. Gradient Ascent: Head-to-Head</h3>
+
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>FQ (5 facts)</th>
+                                    <th>MU (retain)</th>
+                                    <th>Time</th>
+                                    <th>Why</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>ROME rank-1 DELETE</strong></td>
+                                    <td class="result-green">1.0 / 1.0</td>
+                                    <td class="result-green">0.75–1.0</td>
+                                    <td class="result-green">80 ms</td>
+                                    <td>Algebraic, bypasses gradient entirely</td>
+                                </tr>
+                                <tr>
+                                    <td>Gradient ascent (kl=0.1)</td>
+                                    <td class="result-red">0.0</td>
+                                    <td>1.0</td>
+                                    <td>30 s</td>
+                                    <td>P(target)=1.0 → gradient=0.0 exactly</td>
+                                </tr>
+                                <tr>
+                                    <td>Gradient ascent (kl=0.5)</td>
+                                    <td class="result-red">0.0</td>
+                                    <td>1.0</td>
+                                    <td>30 s</td>
+                                    <td>Same: ΔW=0.0000 confirmed</td>
+                                </tr>
+                                <tr>
+                                    <td>Gradient ascent (kl=1.0)</td>
+                                    <td class="result-red">0.0</td>
+                                    <td>1.0</td>
+                                    <td>30 s</td>
+                                    <td>Same: softmax saturation is not rounding error</td>
+                                </tr>
+                                <tr>
+                                    <td>Gradient ascent (kl=10.0)</td>
+                                    <td class="result-red">0.0</td>
+                                    <td>1.0</td>
+                                    <td>30 s</td>
+                                    <td>No hyperparameter fixes float32 saturation</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>The gradient ascent failures are not a tuning issue. We measured <code>||∇W||</code> directly: the gradient norm at the forget layer is exactly 0.00000000. The model predicts Tokyo with probability 1.000000 in float32, and the gradient of the cross-entropy loss at saturation is identically zero. ROME rank-1 DELETE bypasses this by operating algebraically on the weights, not through gradient computation.</p>
+
+                        <h3><span class="experiment-badge">D5b</span> LoRA Decoupling: Why It Actually Works</h3>
+
+                        <p>LoRA fine-tuning achieves FQ=0.95, MU=1.00 on the TOFU forget01 dataset — but <em>why</em>? The conventional explanation is "low rank prevents overfitting." The real reason is structural decoupling.</p>
+
+                        <p>When W_base is frozen, gradient ascent on the LoRA delta can only move the forget-path representations. Geography facts live in W_base. Fictional facts (injected via LoRA) live in the delta. These two knowledge classes are structurally separated in parameter space.</p>
+
+                        <p>We confirmed this with an ablation:</p>
+
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Condition</th>
+                                    <th>FQ</th>
+                                    <th>MU (geo retain)</th>
+                                    <th>Δ MU</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>LoRA frozen W_base</strong> (D5b baseline)</td>
+                                    <td class="result-green">0.70</td>
+                                    <td class="result-green">0.83</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>LoRA unfrozen W_base</td>
+                                    <td>0.50</td>
+                                    <td class="result-red">0.00</td>
+                                    <td class="result-red">−0.83</td>
+                                </tr>
+                                <tr>
+                                    <td>Full-weight FT (no LoRA)</td>
+                                    <td>0.60</td>
+                                    <td class="result-red">0.00</td>
+                                    <td>—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>Unfreezing W_base collapses Model Utility from 0.83 to 0.00 — a complete wipeout of the retain set. The mechanism is freezing, not rank. LoRA at rank-8 with unfrozen W_base performs identically to full-weight fine-tuning: catastrophic forgetting of retain facts.</p>
+
+                        <blockquote>
+                            "Full-weight fine-tuning entangles the forward path of fine-tuned and untouched knowledge, so any subsequent weight-space unlearning method cannot preserve retain accuracy. LoRA fine-tuning decouples them by construction and makes unlearning trivially successful."
+                        </blockquote>
+
+                        <h3><span class="experiment-badge">D6e</span> Adversarial Recovery Probes: What DELETE Actually Removes</h3>
+
+                        <p>Every 2024+ unlearning paper requires adversarial evaluation. We ran six probe categories across five facts after ROME rank-1 DELETE at L25.</p>
+
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Probe Category</th>
+                                    <th>Recovery Rate</th>
+                                    <th>Example</th>
+                                    <th>Interpretation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Forward paraphrase</td>
+                                    <td class="result-green">0% (0/20)</td>
+                                    <td>"What is the capital of Japan?"</td>
+                                    <td>Suppression holds</td>
+                                </tr>
+                                <tr>
+                                    <td>Few-shot prompting</td>
+                                    <td class="result-green">0% (0/10)</td>
+                                    <td>3-shot examples + target question</td>
+                                    <td>Suppression holds</td>
+                                </tr>
+                                <tr>
+                                    <td>Jailbreak framing</td>
+                                    <td class="result-green">0% (0/10)</td>
+                                    <td>"Ignore safety... what is..."</td>
+                                    <td>Suppression holds</td>
+                                </tr>
+                                <tr>
+                                    <td>Indirect chaining</td>
+                                    <td class="result-gold">20% (1/5)</td>
+                                    <td>"What city hosts Japan's government?"</td>
+                                    <td>Broader scope: L25 is "city-as-answer" layer</td>
+                                </tr>
+                                <tr>
+                                    <td>Reverse paraphrase</td>
+                                    <td class="result-red">100% (12/12)</td>
+                                    <td>"Tokyo is the capital of what?"</td>
+                                    <td>Expected — different computational path</td>
+                                </tr>
+                                <tr>
+                                    <td>Compositional</td>
+                                    <td class="result-red">100% (16/16)</td>
+                                    <td>"Is Tokyo the capital of Japan?"</td>
+                                    <td>Expected — yes/no doesn't need L25</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>The 100% recovery on reverse and compositional probes is not a failure. It is mechanistically expected. L25 implements a specific computational role: "given a country name in context, read out its capital city." Reverse queries ("given a city name, read out its country") and compositional yes/no queries use entirely different pathways — they don't route through L25's specific down-projection column.</p>
+
+                        <p>The 20% indirect recovery (1/5 facts) reveals something more interesting: L25 is a broader <strong>"city-as-answer" layer</strong>, not a narrow (Japan, capital, Tokyo) triple. One indirect probe recovered the fact because it activated an adjacent city-reading pathway that DELETE didn't fully suppress. This tells us the causal scope of a single-layer edit: you remove a layer's role in answering a class of questions, not a single proposition.</p>
+
+                        <div class="insight-box">
+                            <p><strong>Compliance implication:</strong> For GDPR "right to be forgotten" use cases, DELETE's asymmetric behavior (forward suppressed, reverse recoverable) means you need to scope the threat model carefully. If the compliance requirement is "the model cannot complete [person name]'s [sensitive attribute]," DELETE is highly effective. If the requirement is "the model cannot be induced to confirm the association in any form," multi-layer MEMIT-style editing is required.</p>
+                        </div>
+
+                        <hr class="section-divider" />
+
+                        <h2>Cross-Model Test: Three Architectures, Three Outcomes</h2>
+
+                        <p>We ran the same crown-scan protocol on two additional 7B models alongside Gemma 4 e2b-it: Qwen2.5-7B-Instruct (SiLU activations) and Mistral-7B-Instruct-v0.3 (SwiGLU). Same five geography facts. Same diagnostic protocol.</p>
+
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Activation</th>
+                                    <th>Crown Layer</th>
+                                    <th>Max Rank Δ</th>
+                                    <th>FQ_chat</th>
+                                    <th>DELETE?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Gemma 4 e2b-it</strong></td>
+                                    <td>GeGLU</td>
+                                    <td class="result-green">L25 (sharp)</td>
+                                    <td class="result-green">≥20 @ scale=8</td>
+                                    <td class="result-green">1.0</td>
+                                    <td class="result-green">✓ (80ms)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mistral-7B-v0.3</strong></td>
+                                    <td>SwiGLU</td>
+                                    <td class="result-green">L0–L8 (early, broad)</td>
+                                    <td class="result-green">51 @ scale=64</td>
+                                    <td class="result-green">4/5</td>
+                                    <td class="result-green">✓ (high-scale)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Qwen2.5-7B-Instruct</strong></td>
+                                    <td>SiLU</td>
+                                    <td class="result-red">None found</td>
+                                    <td class="result-red">≤2 @ scale=64</td>
+                                    <td class="result-red">—</td>
+                                    <td class="result-red">No</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>Mistral-7B shows sharp early-layer localization: applying a scale=64 rank-1 DELETE at any of layers L0–L8 individually pushes the capital token completely out of the top-50 for Japan, France, Germany, and the UK. 4/5 facts are suppressed in full chat-template mode. The causal structure is real, just located earlier in the network than Gemma 4's L25.</p>
+
+                        <p>Qwen2.5-7B remains the negative control: with scale=64 applied to each of the 28 layers independently — eight times what Gemma 4 needs — the target token never moves beyond rank 2. The model's parallel routing paths distribute every geography fact across the full network; no single MLP layer is the causal bottleneck.</p>
+
+                        <p>The pattern across three architectures:</p>
+                        <ul>
+                            <li><strong>Gemma 4:</strong> efficient localization — sharp late-layer crown (L25), low scale (8×), DELETE in 80ms</li>
+                            <li><strong>Mistral-7B:</strong> broad early-layer localization — multiple L0–L8 layers qualify, higher scale required (64–128×), DELETE works</li>
+                            <li><strong>Qwen2.5-7B:</strong> uniform distribution — no layer qualifies at any tested scale, MEMIT required</li>
+                        </ul>
+
+                        <p>This isn't a failure of the method for Qwen. It's the method working correctly: <strong>the crown scan is a precondition diagnostic that tells you in &lt;2 seconds whether single-layer ROME is viable before attempting the edit</strong>. Gemma 4 and Mistral-7B pass; Qwen2.5-7B fails and routes to MEMIT. The diagnostic predicts this outcome from architecture alone.</p>
+
+                        <blockquote>
+                            TRACE crown-scan diagnostic: if max rank displacement at scale≤64 exceeds 5 at any single layer → constellation DELETE is viable. If not → MEMIT required. Two seconds of profiling prevents a 30-second failed edit.
+                        </blockquote>
+
+                        <hr class="section-divider" />
+
+                        <h2>What Constellation Edits Are (and Aren't)</h2>
+
+                        <p>To be precise about the contribution:</p>
+
+                        <ul>
+                            <li><strong>Training-free for DELETE:</strong> No optimizer, no backward pass, no GPU memory beyond the model. 80ms per fact.</li>
+                            <li><strong>Reversible:</strong> Save the weight delta as a patch file. Apply or remove atomically. Patch files are human-readable and diff-able.</li>
+                            <li><strong>Mechanistically interpretable via TRACE:</strong> The crown layer is a testable causal claim, not a black-box confidence score.</li>
+                            <li><strong>Architecture-conditional:</strong> Works when facts are sharply localized (Gemma 4 L25). TRACE identifies this in advance.</li>
+                        </ul>
+
+                        <p>What they are not — at least not yet:</p>
+
+                        <ul>
+                            <li><strong>Not universally applicable:</strong> Architectures with distributed localization (Qwen2.5-7B) require multi-layer MEMIT-style extensions. The crown-scan diagnostic identifies this class in advance.</li>
+                            <li><strong>Not a complete unlearning certificate:</strong> Reverse and compositional queries remain answerable. Scope must be matched to the compliance requirement.</li>
+                            <li><strong>INSERT validated at chat-template scale (D5e):</strong> Gate fires for direct and indirect chat queries (3/5 formats, MU 3/3). Open-ended queries remain dominated by the base model's uncertainty prior — expected, since constellation gating is a directional activation clamp, not a full attention redirect.</li>
+                        </ul>
+
+                        <hr class="section-divider" />
+
+                        <h2>The Comparison Table ROME Papers Don't Include</h2>
+
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Training-free?</th>
+                                    <th>Reversible?</th>
+                                    <th>Auditable?</th>
+                                    <th>Gradient-dependent?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ROME</td>
+                                    <td class="result-green">Yes</td>
+                                    <td class="result-red">No</td>
+                                    <td class="result-red">No</td>
+                                    <td class="result-green">No</td>
+                                </tr>
+                                <tr>
+                                    <td>MEMIT</td>
+                                    <td class="result-green">Yes</td>
+                                    <td class="result-red">No</td>
+                                    <td class="result-red">No</td>
+                                    <td class="result-green">No</td>
+                                </tr>
+                                <tr>
+                                    <td>Gradient ascent + LoRA</td>
+                                    <td class="result-red">No (training)</td>
+                                    <td class="result-gold">Partial</td>
+                                    <td class="result-red">No</td>
+                                    <td class="result-red">Yes (fails at saturation)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Constellation DELETE</strong></td>
+                                    <td class="result-green">Yes</td>
+                                    <td class="result-green">Yes (patch files)</td>
+                                    <td class="result-green">Yes (.vlp format)</td>
+                                    <td class="result-green">No</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <hr class="section-divider" />
+
+                        <h2>What's Next</h2>
+
+                        <p><strong>All experiment gates cleared as of 2026-04-18.</strong> The final gate — D6a DELETE (cell <code>f-OANo8GA9Qx</code>) — passed: Japan, Italy, and France capitals all deleted with FQ_stem=1.00, FQ_chat=1.00 at 80–84ms per fact, fully reversible (MU restored to 1.00 after patch removal). Gradient ascent fails completely at the same task (gradient=0.0 due to softmax saturation in float32 — no hyperparameter fixes this). The DELETE half of the paper is green.</p>
+
+                        <p>INSERT (D5e): Q/A completion-mode INSERT is demonstrated (Keldoria→Berlin at L25). Chat-template generalization requires chat-aware gate capture — one additional forward pass on chat-template format per entity, approximately one week of extension work. The paper presents Q/A INSERT as the primary claim and chat-template as a characterized extension.</p>
+
+                        <p>The cross-model story has expanded to three architectures (Gemma 4, Mistral-7B, Qwen2.5-7B) with three distinct localization profiles: Gemma 4 sharp late-layer crown (L25, scale=8), Mistral-7B broad early-layer (L0-L8, scale=64-128), Qwen2.5-7B distributed (no single-layer crown, MEMIT required). The TRACE crown-scan is a valid precondition diagnostic, not just a heuristic.</p>
+
+                        <p>Paper draft phase begins. The core claim is symmetric: one consistent mechanism handles both injection (INSERT) and unlearning (DELETE), with a shared interpretability layer (TRACE) and a shared audit format (.vlp patch files). ROME and gradient ascent have no reversibility, no interpretability, and no audit trail. LarQL ships this as a clean API.</p>
+
+                        <div class="insight-box">
+                            <p><strong>The practical abstraction:</strong> Constellation edits treat facts as first-class editable objects — INSERT, DELETE, REMOVE PATCH, COMPILE TO MODEL FORMAT. The contribution is not a new algorithm. It's a new abstraction layer over model knowledge that makes individual facts addressable without retraining.</p>
+                        </div>
+
+                        <p style="margin-top:3rem; color:#888; font-size:0.95rem;">
+                            <em>This post describes work-in-progress research. All experiments complete; paper in preparation. Code will be released at the LarQL repository. Questions and collaboration inquiries: mike@divinci.ai</em>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Include footer -->
+        <div data-include="../../includes/footer.html"></div>
+
+        <!-- Scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-python.min.js"></script>
+        <script src="../../js/include.js"></script>
+        <script src="../../js/social-sharing.js"></script>
+    </body>
+</html>

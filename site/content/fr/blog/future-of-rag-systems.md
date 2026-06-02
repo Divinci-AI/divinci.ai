@@ -247,7 +247,7 @@ curl -X POST https://api.divinci.app/v1/query \
 }
 ```
 
-Le client ne choisit pas de stack ; il n'en exécute pas trois. Le routeur s'en charge. La transparence d'audit sur le niveau ayant répondu fait partie de la réponse, pas enterrée dans des métriques — la même éthique d'auditabilité que celle intégrée au [reçu vindex](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) et au [manifeste de release](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) de notre stack CI/CD.
+Le client ne choisit pas de stack ; il n'en exécute pas trois. Le routeur s'en charge. La transparence d'audit sur le niveau ayant répondu fait partie de la réponse, pas enterrée dans des métriques — la même éthique d'auditabilité que celle intégrée au [reçu vIndex](/blog/validating-and-releasing-custom-lms-in-regulated-fields/) et au [manifeste de release](/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) de notre stack CI/CD.
 
 ### Comment le routeur décide réellement — routage appris, pas classifieur codé à la main
 

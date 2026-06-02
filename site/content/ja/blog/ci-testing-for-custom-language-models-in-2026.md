@@ -276,13 +276,13 @@ CI実行がスコアを投稿すると、そのスコアはマニフェストハ
 1. [Divinci AIでLLM CI/CDパイプラインを構築する方法](/ja/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) — 以降のすべてが内側で動作してきた4段階パイプライン(登録/ゲート/ロール/観測)。
 2. [カスタム言語モデルにおけるCI/CDリリース失敗の10事例](/ja/blog/10-ci-cd-release-failures-in-custom-language-models/) — 2026年の命名済み失敗モード、それぞれを捕捉すべき段階にマッピング。
 3. [LLM向けQAおよびリリース管理の12機能](/ja/blog/12-qa-and-release-management-capabilities-for-llms/) — 機能マトリクスと、代替策に対してDivinciを位置づける3キャンプのベン図。
-4. [規制対象分野におけるカスタムLMの検証とリリース](/ja/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — コンプライアンスのディープダイブ、規制当局から段階へのマッピング、vindexレシート。
+4. [規制対象分野におけるカスタムLMの検証とリリース](/ja/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — コンプライアンスのディープダイブ、規制当局から段階へのマッピング、vIndexレシート。
 5. [即時ロールバック付き自動LLM CI/CDパイプライン](/ja/blog/automated-llm-ci-cd-pipelines-with-instant-rollback/) — 運用層、自動化スペクトル、自動ロールバックレシート。
 6. [7ステップでカスタムLLMのQA失敗を診断する方法](/ja/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) — 診断意思決定ツリー。モデルが正解である頻度はおよそ7回に1回。
 7. [2026年におけるカスタムLLMの自動リグレッションテスト](/ja/blog/automated-regression-testing-for-custom-llms-in-2026/) — スライス対応Spearmanゲート、較正済みジャッジ、クローズドループ本番トレースリプレイ。
 8. **本稿。** 上記すべてをすべてのPRで現実的に運用可能にするCIインフラ。
 
-各要素は組み合わさります。[マニフェスト](/ja/api/)は監査プリミティブ、ゲートは安全層、診断ツリーは復旧ループ、[vindexレシート](/ja/compliance/)は外部アンカー、レイヤーケーキは全体を全コミットで運用可能にする手段です。あなたのカスタムLLMリリースプロセスにこれら5つが揃っていないなら、そのギャップこそが、これら8稿が扱ってきたものです。
+各要素は組み合わさります。[マニフェスト](/ja/api/)は監査プリミティブ、ゲートは安全層、診断ツリーは復旧ループ、[vIndexレシート](/ja/compliance/)は外部アンカー、レイヤーケーキは全体を全コミットで運用可能にする手段です。あなたのカスタムLLMリリースプロセスにこれら5つが揃っていないなら、そのギャップこそが、これら8稿が扱ってきたものです。
 
 ## FAQ
 

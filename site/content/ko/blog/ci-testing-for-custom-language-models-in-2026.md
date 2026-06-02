@@ -259,7 +259,7 @@ judge:     { sha: d8e21…, rubric: eval/rubrics/v7.yaml }
 dataset:   { sha: a90b1…, file:   eval/datasets/golden-2026-04.jsonl }
 ```
 
-CI 실행이 점수를 게시할 때, 그 점수는 해당 매니페스트 해시로 태깅됩니다. 점수가 움직일 때 "어떤 입력이 움직였는지"라는 질문에 직접적인 답이 있습니다 — 매니페스트를 diff하면, 발동한 계층이 먼저 봐야 할 차원을 알려줍니다. 이것이 [1편의 4단계 파이프라인](/ko/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/)과 [4편의 vindex 영수증](/ko/blog/validating-and-releasing-custom-lms-in-regulated-fields/)이 함께 닫는 루프입니다. 매니페스트는 이 여덟 편의 글이 서로 다른 프레이밍으로 모두 향해 쌓아온 감사 프리미티브입니다.
+CI 실행이 점수를 게시할 때, 그 점수는 해당 매니페스트 해시로 태깅됩니다. 점수가 움직일 때 "어떤 입력이 움직였는지"라는 질문에 직접적인 답이 있습니다 — 매니페스트를 diff하면, 발동한 계층이 먼저 봐야 할 차원을 알려줍니다. 이것이 [1편의 4단계 파이프라인](/ko/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/)과 [4편의 vIndex 영수증](/ko/blog/validating-and-releasing-custom-lms-in-regulated-fields/)이 함께 닫는 루프입니다. 매니페스트는 이 여덟 편의 글이 서로 다른 프레이밍으로 모두 향해 쌓아온 감사 프리미티브입니다.
 
 ## 이것이 해결하지 못하는 것
 
@@ -276,13 +276,13 @@ CI 실행이 점수를 게시할 때, 그 점수는 해당 매니페스트 해�
 1. [Divinci AI로 LLM CI/CD 파이프라인을 구축하는 방법](/ko/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) — 그 이후 모든 것이 그 안에 살아온 4단계 파이프라인(Register / Gate / Roll / Observe).
 2. [커스텀 언어 모델에서의 10가지 CI/CD 릴리스 실패](/ko/blog/10-ci-cd-release-failures-in-custom-language-models/) — 이름 붙은 2026년 실패 모드들, 각각이 잡아냈어야 할 단계에 매핑.
 3. [LLM을 위한 12가지 QA 및 릴리스 관리 역량](/ko/blog/12-qa-and-release-management-capabilities-for-llms/) — 역량 매트릭스와 대안과 비교해 Divinci를 위치시키는 3개 진영 벤다이어그램.
-4. [규제 분야에서 커스텀 LM의 검증 및 출시](/ko/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — 컴플라이언스 심층 분석, 규제 기관-단계 매핑, vindex 영수증.
+4. [규제 분야에서 커스텀 LM의 검증 및 출시](/ko/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — 컴플라이언스 심층 분석, 규제 기관-단계 매핑, vIndex 영수증.
 5. [즉시 롤백을 갖춘 자동화된 LLM CI/CD 파이프라인](/ko/blog/automated-llm-ci-cd-pipelines-with-instant-rollback/) — 운영 계층, 자동화 스펙트럼, 자동 롤백 영수증.
 6. [7단계로 커스텀 LLM QA 실패를 진단하는 방법](/ko/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) — 진단 의사결정 트리. 모델이 정답인 경우는 대략 일곱 번의 알림 중 한 번.
 7. [2026년 커스텀 LLM을 위한 자동화된 회귀 테스트](/ko/blog/automated-regression-testing-for-custom-llms-in-2026/) — 슬라이스 인지형 Spearman 게이트, 보정된 저지, 폐루프 프로덕션 트레이스 리플레이.
 8. **이 글.** 위의 모든 것을 모든 PR에서 감당 가능하게 만드는 CI 인프라.
 
-조각들이 조립됩니다: [매니페스트](/ko/api/)는 감사 프리미티브이고, 게이트들은 안전 계층이며, 진단 트리는 복구 루프이고, [vindex 영수증](/ko/compliance/)은 외부 앵커이며, 레이어 케이크는 그 전체를 모든 커밋에서 실행할 만큼 저렴하게 만드는 부분입니다. 여러분의 커스텀 LLM 릴리스 프로세스가 이 다섯 가지를 함께 갖추고 있지 않다면, 그 격차가 바로 이 여덟 편의 글이 다뤄온 주제입니다.
+조각들이 조립됩니다: [매니페스트](/ko/api/)는 감사 프리미티브이고, 게이트들은 안전 계층이며, 진단 트리는 복구 루프이고, [vIndex 영수증](/ko/compliance/)은 외부 앵커이며, 레이어 케이크는 그 전체를 모든 커밋에서 실행할 만큼 저렴하게 만드는 부분입니다. 여러분의 커스텀 LLM 릴리스 프로세스가 이 다섯 가지를 함께 갖추고 있지 않다면, 그 격차가 바로 이 여덟 편의 글이 다뤄온 주제입니다.
 
 ## FAQ
 

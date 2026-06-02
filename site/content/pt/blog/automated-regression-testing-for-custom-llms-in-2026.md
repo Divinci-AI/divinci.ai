@@ -309,9 +309,9 @@ Quando esses dois scores divergem por mais do que o budget de gap por slice, o r
 
 O juiz que pontua a execução offline é o mesmo juiz que pontua a execução de replay. O audit log registra ambos os conjuntos de scores, ambas as versões do juiz, os IDs de trace que foram re-executados e o gap que disparou o bloqueio. O próprio gap é o sinal diagnóstico mais útil que temos, e é o que é entregue a quem pega a [árvore diagnóstica do post 6](/pt/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) em seguida.
 
-## Ancore o golden dataset com um vindex receipt
+## Ancore o golden dataset com um vIndex receipt
 
-Cada score na suíte é sem sentido se você não consegue reproduzi-lo depois. Fazemos hash do golden dataset em cada release e encadeamos esse hash em um vindex receipt junto com o SHA do modelo, SHA do prompt, SHA do juiz e o registro de calibração. O receipt é externamente ancorável — auditores podem re-executar nossa execução exata de regressão seis meses depois e verificar os scores que afirmamos.
+Cada score na suíte é sem sentido se você não consegue reproduzi-lo depois. Fazemos hash do golden dataset em cada release e encadeamos esse hash em um vIndex receipt junto com o SHA do modelo, SHA do prompt, SHA do juiz e o registro de calibração. O receipt é externamente ancorável — auditores podem re-executar nossa execução exata de regressão seis meses depois e verificar os scores que afirmamos.
 
 ```json
 {
@@ -324,11 +324,11 @@ Cada score na suíte é sem sentido se você não consegue reproduzi-lo depois. 
   "scores": { "aggregate": 0.872, "by_slice": { "/* … */": "/* per-slice scalars */" } },
   "replay": { "trace_window_days": 14, "n_traces": 8430, "max_gap": 0.018 },
   "vindex_anchor": "sha256:f0bfd2…",
-  "verifiable_at": "https://vindex.divinci.ai/rel_3f1a-2026-05-26"
+  "verifiable_at": "https://vIndex.divinci.ai/rel_3f1a-2026-05-26"
 }
 ```
 
-**Ressalva sobre open-weights.** O receipt acima carrega proveniência de pesos apenas quando o modelo é open-weights — o vindex ancora os bytes reais dos pesos. Para backings de modelo de API fechada (modelos gerenciados da OpenAI / Anthropic / Google), o receipt ainda carrega a cadeia de decisão — cada score de gate, cada resultado do juiz, o registro de calibração — mas o campo de pesos fica vazio, e você não pode verificar o artefato do modelo independentemente. Dizemos isso no receipt e na [documentação de compliance](/pt/compliance/) para que auditores não fiquem com uma impressão falsa. Os releases que mais se beneficiam de uma cadeia vindex completa são aqueles em que você controla os pesos.
+**Ressalva sobre open-weights.** O receipt acima carrega proveniência de pesos apenas quando o modelo é open-weights — o vIndex ancora os bytes reais dos pesos. Para backings de modelo de API fechada (modelos gerenciados da OpenAI / Anthropic / Google), o receipt ainda carrega a cadeia de decisão — cada score de gate, cada resultado do juiz, o registro de calibração — mas o campo de pesos fica vazio, e você não pode verificar o artefato do modelo independentemente. Dizemos isso no receipt e na [documentação de compliance](/pt/compliance/) para que auditores não fiquem com uma impressão falsa. Os releases que mais se beneficiam de uma cadeia vIndex completa são aqueles em que você controla os pesos.
 
 ## Um cronograma de implementação em quatro fases que efetivamente entregamos
 

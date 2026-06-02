@@ -259,7 +259,7 @@ judge:     { sha: d8e21…, rubric: eval/rubrics/v7.yaml }
 dataset:   { sha: a90b1…, file:   eval/datasets/golden-2026-04.jsonl }
 ```
 
-Cuando una ejecución de CI publica una puntuación, la puntuación se etiqueta con ese hash de manifest. Cuando una puntuación se mueve, la pregunta "qué input se movió" tiene una respuesta directa: diff el manifest, y la capa que disparó te dice qué dimensión mirar primero. Este es el bucle que [el pipeline de cuatro etapas del post 1](/es/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) y [el recibo de vindex del post 4](/es/blog/validating-and-releasing-custom-lms-in-regulated-fields/) cierran juntos: el manifest es la primitiva de auditoría hacia la que los ocho de estos posts han estado, en distintos enfoques, construyendo.
+Cuando una ejecución de CI publica una puntuación, la puntuación se etiqueta con ese hash de manifest. Cuando una puntuación se mueve, la pregunta "qué input se movió" tiene una respuesta directa: diff el manifest, y la capa que disparó te dice qué dimensión mirar primero. Este es el bucle que [el pipeline de cuatro etapas del post 1](/es/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) y [el recibo de vIndex del post 4](/es/blog/validating-and-releasing-custom-lms-in-regulated-fields/) cierran juntos: el manifest es la primitiva de auditoría hacia la que los ocho de estos posts han estado, en distintos enfoques, construyendo.
 
 ## Lo que esto no resuelve
 
@@ -276,13 +276,13 @@ Este es el post 8 de 8. El arco completo:
 1. [Cómo construir un pipeline de CI/CD para LLM con Divinci AI](/es/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) — el pipeline de cuatro etapas (Register / Gate / Roll / Observe) dentro del cual ha vivido todo desde entonces.
 2. [10 fallos de release de CI/CD en modelos de lenguaje personalizados](/es/blog/10-ci-cd-release-failures-in-custom-language-models/) — los modos de fallo nombrados de 2026, cada uno mapeado a la etapa que debería haberlo atrapado.
 3. [12 capacidades de QA y gestión de release para LLMs](/es/blog/12-qa-and-release-management-capabilities-for-llms/) — la matriz de capacidades y el Venn de tres campos que posiciona a Divinci frente a las alternativas.
-4. [Validando y desplegando LMs personalizados en campos regulados](/es/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — la inmersión profunda en compliance, mapeo de regulador a etapa, recibos de vindex.
+4. [Validando y desplegando LMs personalizados en campos regulados](/es/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — la inmersión profunda en compliance, mapeo de regulador a etapa, recibos de vIndex.
 5. [Pipelines automatizados de CI/CD para LLM con rollback instantáneo](/es/blog/automated-llm-ci-cd-pipelines-with-instant-rollback/) — la capa operacional, espectro de automatización, recibo de auto-rollback.
 6. [Cómo diagnosticar fallos de QA en LLM personalizado en 7 pasos](/es/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) — el árbol de decisión diagnóstico; el modelo es la respuesta correcta aproximadamente una alerta de cada siete.
 7. [Pruebas de regresión automatizadas para LLMs personalizados en 2026](/es/blog/automated-regression-testing-for-custom-llms-in-2026/) — gates Spearman conscientes de slice, jueces calibrados, replay de trazas de producción en bucle cerrado.
 8. **Este post.** La infraestructura de CI que hace tratable todo lo anterior en cada PR.
 
-Las piezas componen: el [manifest](/es/api/) es la primitiva de auditoría, los gates son la capa de seguridad, el árbol diagnóstico es el bucle de recuperación, el [recibo de vindex](/es/compliance/) es el ancla externa, y el pastel de capas es lo que hace que todo el conjunto sea asequible de correr en cada commit. Si tu proceso de release de LLM personalizado no tiene estos cinco juntos, la brecha es de lo que han tratado estos ocho posts.
+Las piezas componen: el [manifest](/es/api/) es la primitiva de auditoría, los gates son la capa de seguridad, el árbol diagnóstico es el bucle de recuperación, el [recibo de vIndex](/es/compliance/) es el ancla externa, y el pastel de capas es lo que hace que todo el conjunto sea asequible de correr en cada commit. Si tu proceso de release de LLM personalizado no tiene estos cinco juntos, la brecha es de lo que han tratado estos ocho posts.
 
 ## FAQ
 

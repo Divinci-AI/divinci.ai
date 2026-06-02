@@ -259,7 +259,7 @@ judge:     { sha: d8e21…, rubric: eval/rubrics/v7.yaml }
 dataset:   { sha: a90b1…, file:   eval/datasets/golden-2026-04.jsonl }
 ```
 
-Lorsqu'une exécution CI publie un score, le score est tagué avec ce hash de manifeste. Lorsqu'un score bouge, la question « quelle entrée a bougé » a une réponse directe : faire le diff du manifeste, et la couche qui s'est déclenchée vous dit quelle dimension regarder en premier. C'est la boucle que [le pipeline en quatre étapes du post 1](/fr/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) et [le reçu vindex du post 4](/fr/blog/validating-and-releasing-custom-lms-in-regulated-fields/) ferment ensemble : le manifeste est la primitive d'audit vers laquelle ces huit posts, sous des cadrages différents, ont tous construit.
+Lorsqu'une exécution CI publie un score, le score est tagué avec ce hash de manifeste. Lorsqu'un score bouge, la question « quelle entrée a bougé » a une réponse directe : faire le diff du manifeste, et la couche qui s'est déclenchée vous dit quelle dimension regarder en premier. C'est la boucle que [le pipeline en quatre étapes du post 1](/fr/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) et [le reçu vIndex du post 4](/fr/blog/validating-and-releasing-custom-lms-in-regulated-fields/) ferment ensemble : le manifeste est la primitive d'audit vers laquelle ces huit posts, sous des cadrages différents, ont tous construit.
 
 ## Ce que cela ne résout pas
 
@@ -276,13 +276,13 @@ Ceci est le post 8 sur 8. L'arc complet :
 1. [Comment construire un pipeline CI/CD LLM avec Divinci AI](/fr/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) — le pipeline en quatre étapes (Register / Gate / Roll / Observe) à l'intérieur duquel tout ce qui suit a vécu.
 2. [10 échecs de release CI/CD dans les modèles de langage personnalisés](/fr/blog/10-ci-cd-release-failures-in-custom-language-models/) — les modes d'échec 2026 nommés, chacun mappé à l'étape qui aurait dû l'attraper.
 3. [12 capacités de QA et de gestion de release pour LLM](/fr/blog/12-qa-and-release-management-capabilities-for-llms/) — la matrice de capacités et le diagramme de Venn à trois camps qui place Divinci face aux alternatives.
-4. [Valider et livrer des LM personnalisés dans des domaines régulés](/fr/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — le deep-dive conformité, le mapping régulateur-étape, les reçus vindex.
+4. [Valider et livrer des LM personnalisés dans des domaines régulés](/fr/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — le deep-dive conformité, le mapping régulateur-étape, les reçus vIndex.
 5. [Pipelines CI/CD LLM automatisés avec rollback instantané](/fr/blog/automated-llm-ci-cd-pipelines-with-instant-rollback/) — la couche opérationnelle, le spectre d'automatisation, le reçu d'auto-rollback.
 6. [Comment diagnostiquer les échecs de QA LLM personnalisé en 7 étapes](/fr/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) — l'arbre de décision diagnostique ; le modèle est la bonne réponse environ une alerte sur sept.
 7. [Tests de régression automatisés pour LLM personnalisés en 2026](/fr/blog/automated-regression-testing-for-custom-llms-in-2026/) — gates Spearman conscients des tranches, juges calibrés, replay en boucle fermée de traces production.
 8. **Ce post.** L'infrastructure CI qui rend tout ce qui précède praticable sur chaque PR.
 
-Les pièces se composent : le [manifeste](/fr/api/) est la primitive d'audit, les gates sont la couche de sécurité, l'arbre diagnostique est la boucle de récupération, le [reçu vindex](/fr/compliance/) est l'ancre externe, et le mille-feuille est ce qui rend l'ensemble abordable à exécuter sur chaque commit. Si votre processus de release de LLM personnalisé n'a pas ces cinq éléments ensemble, l'écart est exactement ce dont ces huit posts ont traité.
+Les pièces se composent : le [manifeste](/fr/api/) est la primitive d'audit, les gates sont la couche de sécurité, l'arbre diagnostique est la boucle de récupération, le [reçu vIndex](/fr/compliance/) est l'ancre externe, et le mille-feuille est ce qui rend l'ensemble abordable à exécuter sur chaque commit. Si votre processus de release de LLM personnalisé n'a pas ces cinq éléments ensemble, l'écart est exactement ce dont ces huit posts ont traité.
 
 ## FAQ
 

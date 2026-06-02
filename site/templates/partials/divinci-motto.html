@@ -1,0 +1,27 @@
+{# Shared Latin motto: liberum intelligentia. The footer reveals its translation
+   on hover, localized per site language via translations.footer.motto
+   (word_1 / word_2 in the language's natural reading order; phrase = aria text).
+   The Latin slogan itself is constant across all locales. #}
+{% if motto_variant == "header" %}
+<span class="divinci-motto divinci-motto--header" aria-hidden="true">
+  <span class="divinci-motto__word" style="--word-delay: 0ms">
+    <span class="divinci-motto__latin">liberum</span>
+  </span>
+  <span class="divinci-motto__word" style="--word-delay: 180ms">
+    <span class="divinci-motto__latin">intelligentia</span>
+  </span>
+</span>
+{% else %}
+<p class="footer-tagline divinci-motto divinci-motto--footer" aria-label="liberum intelligentia — {{ translations.footer.motto.phrase | default(value='free intelligence') }}">
+  <span class="divinci-motto__inner">
+    <span class="divinci-motto__word" style="--word-delay: 0ms">
+      <span class="divinci-motto__latin" aria-hidden="false">liberum</span>
+      <span class="divinci-motto__en" aria-hidden="true">{{ translations.footer.motto.word_1 | default(value="free") }}</span>
+    </span>
+    <span class="divinci-motto__word" style="--word-delay: 180ms">
+      <span class="divinci-motto__latin" aria-hidden="false">intelligentia</span>
+      <span class="divinci-motto__en" aria-hidden="true">{{ translations.footer.motto.word_2 | default(value="intelligence") }}</span>
+    </span>
+  </span>
+</p>
+{% endif %}

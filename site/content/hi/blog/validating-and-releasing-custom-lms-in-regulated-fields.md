@@ -6,7 +6,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Compliance"]
-tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vindex"]
+tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vIndex"]
 
 [extra]
 author = "माइक मूरिंग"
@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
 hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
-summary = "Custom language models के लिए regulated-industry compliance एक ही अक्ष पर साफ़-साफ़ बँटती है: open-weights बनाम closed-API। open-weights backings के लिए, आप एक vindex weight-attestation ship कर सकते हैं जो GDPR Article 17 के verifiable erasure को cryptographically संतुष्ट करता है। closed-API backings के लिए, वही receipt decision chain को cover करता है पर weight provenance का दावा नहीं कर सकता — और regulator को वह अंतर receipt में ही मिल जाता है। यह post चार regulatory frameworks (EU AI Act, GDPR, HIPAA, NIST AI RMF) को हमारे चार pipeline stages पर map करता है, और वास्तविक receipt format दिखाता है।"
+summary = "Custom language models के लिए regulated-industry compliance एक ही अक्ष पर साफ़-साफ़ बँटती है: open-weights बनाम closed-API। open-weights backings के लिए, आप एक vIndex weight-attestation ship कर सकते हैं जो GDPR Article 17 के verifiable erasure को cryptographically संतुष्ट करता है। closed-API backings के लिए, वही receipt decision chain को cover करता है पर weight provenance का दावा नहीं कर सकता — और regulator को वह अंतर receipt में ही मिल जाता है। यह post चार regulatory frameworks (EU AI Act, GDPR, HIPAA, NIST AI RMF) को हमारे चार pipeline stages पर map करता है, और वास्तविक receipt format दिखाता है।"
 +++
 
 *Notes from the Release Cycle — भाग IV*
@@ -49,7 +49,7 @@ Compliance चर्चाएँ अक्सर "हमने सब कुछ 
 <text x="55" y="191" font-size="10" fill="#4a4030">• human oversight उपाय</text>
 <text x="55" y="206" font-size="10" fill="#4a4030">• post-market monitoring</text>
 <text x="55" y="232" font-size="11" font-weight="700" fill="#2d5a4f">Verification primitive:</text>
-<text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">vindex के द्वारा bit-exact</text>
+<text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">vIndex के द्वारा bit-exact</text>
 <text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">mechanistic documentation</text>
 <text x="55" y="290" font-size="10" fill="#6b5d4f">गैर-अनुपालन पर दंड:</text>
 <text x="55" y="308" font-size="14" font-weight="700" fill="#a04848">वैश्विक turnover के</text>
@@ -109,7 +109,7 @@ Compliance चर्चाएँ अक्सर "हमने सब कुछ 
 
 Per-stage mapping से पहले, इस पूरी post की सबसे महत्वपूर्ण चेतावनी:
 
-**open-weights model backings के लिए** — Gemma, Qwen, Llama, Mistral, GPT-OSS, और कोई भी जहाँ weights addressable और editable हैं — हर Divinci release decision एक vindex receipt emit करता है जिसमें **weight-attestation** शामिल होता है: cryptographic proof कि decision time पर active weights ठीक वही weights हैं जो manifest ने register किए थे। यही वह चीज़ है जो GDPR Article 17 के verifiable erasure को संभव बनाती है। आप एक [DELETE patch](/blog/deleting-paris-from-a-language-model/) apply करते हैं जो weight space से एक विशिष्ट entity-relation को हटाता है, receipt before-and-after hash embed कर लेती है, और एक auditor public vindex के विरुद्ध verification को फिर से चलाकर deletion का होना verify कर सकता है।
+**open-weights model backings के लिए** — Gemma, Qwen, Llama, Mistral, GPT-OSS, और कोई भी जहाँ weights addressable और editable हैं — हर Divinci release decision एक vIndex receipt emit करता है जिसमें **weight-attestation** शामिल होता है: cryptographic proof कि decision time पर active weights ठीक वही weights हैं जो manifest ने register किए थे। यही वह चीज़ है जो GDPR Article 17 के verifiable erasure को संभव बनाती है। आप एक [DELETE patch](/blog/deleting-paris-from-a-language-model/) apply करते हैं जो weight space से एक विशिष्ट entity-relation को हटाता है, receipt before-and-after hash embed कर लेती है, और एक auditor public vIndex के विरुद्ध verification को फिर से चलाकर deletion का होना verify कर सकता है।
 
 **closed-API model backings के लिए** — OpenAI, Anthropic, Google opaque APIs के माध्यम से — वही receipt decision chain को cover करता है (कौन-सा manifest, कौन-सा gate result, कौन-सी monitor reading, किस user ने कौन-सी action trigger की) पर **weight provenance का दावा नहीं कर सकता**, क्योंकि provider weights expose नहीं करता। Receipt इसे स्पष्ट रूप से `weight_attestation: null` field में एक `note` के साथ नोट करता है जो बताता है कि क्यों। यह degraded compliance posture नहीं है — यह है verifiable क्या है उसकी सीमा, ईमानदारी से लिखी गई। एक auditor जो receipt पढ़ता है उसे ठीक-ठीक पता चलता है कि कौन-सी class का proof बन रहा है और कौन-सी नहीं।
 
@@ -212,7 +212,7 @@ Pipeline के चार stages हैं। हर regulator की माँ�
 
 Register stage एक immutable JSON manifest उत्पन्न करता है, जो SHA-256 द्वारा addressed है। विनियमित releases के लिए manifest वह सब कुछ ले जाता है जो Annex IV<sup><a href="#ref-1">[1]</a></sup> एक ही artifact में माँगता है:
 
-- Model artifact (HF repo + commit SHA, या एक vindex patch reference)
+- Model artifact (HF repo + commit SHA, या एक vIndex patch reference)
 - Prompt template (हर variable, हर system message — version-controlled)
 - Routing rules (कौन-सी traffic class कौन-सी release पर जाती है)
 - Gate thresholds compute करने के लिए उपयोग किया गया dataset version (training-data सारांश hash के द्वारा)
@@ -221,7 +221,7 @@ Register stage एक immutable JSON manifest उत्पन्न करता
 
 Manifest ही documentation है। एक auditor prose नहीं पढ़ता; वह manifest hash पढ़ता है और bundle को verify करता है। छह-महीने-बाद-लिखा गया कोई prose सारांश आवश्यक नहीं।
 
-**Open-weights bonus.** जब model artifact किसी open-weights model का reference देता है, तो manifest `vindex_sha256` भी embed करता है — model की प्रकाशित [vindex](/hi/compliance/) का cryptographic fingerprint। वह fingerprint ही वह चीज़ है जो एक तीसरे पक्ष को हमारी deployment infrastructure पर कभी भरोसा किए बिना active weights verify करने देती है।
+**Open-weights bonus.** जब model artifact किसी open-weights model का reference देता है, तो manifest `vindex_sha256` भी embed करता है — model की प्रकाशित [vIndex](/hi/compliance/) का cryptographic fingerprint। वह fingerprint ही वह चीज़ है जो एक तीसरे पक्ष को हमारी deployment infrastructure पर कभी भरोसा किए बिना active weights verify करने देती है।
 
 **Closed-API caveat.** जब model artifact किसी closed-API model का reference देता है, तो manifest का `vindex_sha256` field `null` होता है, और manifest का `weight_attestation_class` होता है `decision_chain_only`। इसे पढ़ने वाला auditor ठीक-ठीक जानता है कि क्या दावा किया जा रहा है और क्या नहीं।
 
@@ -267,7 +267,7 @@ HIPAA के लिए, canary stage वह जगह भी है जहाँ
 
 यह वह stage है जो compliance की कहानी कमाता है। Observe stage active release के माध्यम से निरंतर trace replay चलाता है, जो Gate के उसी human-anchored judge द्वारा scored है, साथ में एक quality monitor जो breach होने पर automatic rollback trigger करता है।
 
-हर release decision — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **और कोई भी GDPR Article 17 DELETE patch application** — एक vindex receipt emit करता है। इस customer के लिए पिछले receipt और इस release के लिए पिछले receipt से hash-chained।
+हर release decision — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **और कोई भी GDPR Article 17 DELETE patch application** — एक vIndex receipt emit करता है। इस customer के लिए पिछले receipt और इस release के लिए पिछले receipt से hash-chained।
 
 GDPR Article 17 DELETE patch के लिए असली receipt कैसा दिखता है — सीधे [compliance page](/hi/compliance/) पर documented format से adapted:
 
@@ -301,7 +301,7 @@ GDPR Article 17 DELETE patch के लिए असली receipt कैसा 
 }
 ```
 
-वह artifact verifiable है। एक auditor को हमारी logs पर भरोसा नहीं करना पड़ता। वह `vindex_sha256_after` लेता है, `huggingface.co/Divinci-AI` से संबंधित published vindex pull करता है, और verify करता है कि layer 27 में feature 11179 top-25 से संरचनात्मक रूप से अनुपस्थित है। वह `chain_signature` लेता है और पिछले receipt के विरुद्ध verify करता है। पूरी chain customer द्वारा configure किए गए schedule पर externally anchored है।
+वह artifact verifiable है। एक auditor को हमारी logs पर भरोसा नहीं करना पड़ता। वह `vindex_sha256_after` लेता है, `huggingface.co/Divinci-AI` से संबंधित published vIndex pull करता है, और verify करता है कि layer 27 में feature 11179 top-25 से संरचनात्मक रूप से अनुपस्थित है। वह `chain_signature` लेता है और पिछले receipt के विरुद्ध verify करता है। पूरी chain customer द्वारा configure किए गए schedule पर externally anchored है।
 
 **वही operation एक closed-API model के विरुद्ध।** ऊपर के receipt fields तीन तरह से बदलते हैं: `operation.target` बन जाता है `provider_api_endpoint`, `verification` एक अलग schema बन जाता है जो केवल decision-chain evidence को cover करता है, और `weight_attestation_class` बन जाता है `decision_chain_only`। Closed-API model provider ने weights expose नहीं किए हैं, तो receipt ऐसा कहता है। एक auditor जिसे weight-level proof चाहिए उसे अब पता है कि उन्हें provider के पास escalate करना है, हमारे पास नहीं।
 
@@ -315,7 +315,7 @@ GDPR Article 17 DELETE patch के लिए असली receipt कैसा 
 |---|---|
 | *"15 March को 14:22 UTC पर कौन-सा model version चल रहा था?"* | उस timestamp के लिए Observe-stage receipt, signed और hash-chained। |
 | *"Promote से पहले इस release ने कौन-सा evaluation pass किया?"* | Gate-stage receipt, per-slice Spearman ρ table और dataset SHA जिसके विरुद्ध gate चला, के साथ। |
-| *"क्या patient X के लिए GDPR Article 17 erasure request वास्तव में apply हुआ था?"* | ऊपर वाला DELETE-patch receipt। Auditor `vindex_sha256_after` को published vindex के विरुद्ध verify करता है। |
+| *"क्या patient X के लिए GDPR Article 17 erasure request वास्तव में apply हुआ था?"* | ऊपर वाला DELETE-patch receipt। Auditor `vindex_sha256_after` को published vIndex के विरुद्ध verify करता है। |
 | *"इस release को किसने approve किया? IP-licensing slice gate को override करने का उनका बताया गया rationale क्या था?"* | Gate-stage receipt का `override` block, user ID और आवश्यक free-text rationale सहित। |
 | *"Rollback कितनी जल्दी fire हुआ, और किस monitor reading ने उसे trigger किया?"* | Observe-stage rollback receipt, तीन लगातार sub-threshold quality readings और rollback elapsed time के साथ। |
 | *"पिछले 90 दिनों के लिए post-market monitoring evidence दिखाएँ।"* | Observe-stage receipt chain। Customer के configured schedule पर externally anchored। |
@@ -330,13 +330,13 @@ GDPR Article 17 DELETE patch के लिए असली receipt कैसा 
 
 **Documentation आवश्यक है पर पर्याप्त नहीं।** एक receipt जो साबित करता है कि एक model एक threshold से मिला, यह साबित नहीं करता कि वह threshold ही सही threshold था। अगर आपका scored-QA suite उस slice को cover नहीं करता जो आपकी service में किसी patient के लिए वास्तव में मायने रखती है, तो कोई भी receipt-chaining इसे ठीक नहीं करती। Regulators इसे तेज़ी से समझ रहे हैं; "हमने अपना eval pass किया" अब एक पर्याप्त compliance उत्तर नहीं रहा अगर eval ग़लत eval था।
 
-**Vindex format single-vendor है।** हम इसका उपयोग करते हैं क्योंकि यह आज weight-level proof के लिए उपलब्ध सबसे ठोस cryptographic primitive है। अगर उद्योग एक अलग format पर settle हो — model-cards-with-hashes, NIST-published artifact schemas — तो receipt format को उसी की ओर evolve होना चाहिए। सार (hash-chained, externally verifiable, weight-attestation-aware) load-bearing है, विशिष्ट schema नाम नहीं। हम उम्मीद करते हैं कि जैसे-जैसे regulatory और standards landscape परिपक्व होगा, यह बदलेगा।
+**vIndex format single-vendor है।** हम इसका उपयोग करते हैं क्योंकि यह आज weight-level proof के लिए उपलब्ध सबसे ठोस cryptographic primitive है। अगर उद्योग एक अलग format पर settle हो — model-cards-with-hashes, NIST-published artifact schemas — तो receipt format को उसी की ओर evolve होना चाहिए। सार (hash-chained, externally verifiable, weight-attestation-aware) load-bearing है, विशिष्ट schema नाम नहीं। हम उम्मीद करते हैं कि जैसे-जैसे regulatory और standards landscape परिपक्व होगा, यह बदलेगा।
 
 ## FAQ
 
 ### AI systems के लिए GDPR Article 17 के तहत verifiable erasure क्या है?
 
-Verifiable erasure का मतलब है कि एक तीसरा पक्ष आपकी logs पर भरोसा किए बिना verify कर सके कि data हटाया गया था। एक model को विशिष्ट जानकारी "भूलने" के लिए fine-tune करना इस standard को पूरा नहीं करता — जानकारी adversarial prompting के तहत फिर से उभर सकती है, और कोई cryptographic primitive नहीं है जिसे auditor check कर सके। एक प्रकाशित before/after vindex hash के साथ weight-level DELETE patch standard को पूरा *करता* है, क्योंकि auditor public artifact के विरुद्ध verification फिर से चला सकता है।
+Verifiable erasure का मतलब है कि एक तीसरा पक्ष आपकी logs पर भरोसा किए बिना verify कर सके कि data हटाया गया था। एक model को विशिष्ट जानकारी "भूलने" के लिए fine-tune करना इस standard को पूरा नहीं करता — जानकारी adversarial prompting के तहत फिर से उभर सकती है, और कोई cryptographic primitive नहीं है जिसे auditor check कर सके। एक प्रकाशित before/after vIndex hash के साथ weight-level DELETE patch standard को पूरा *करता* है, क्योंकि auditor public artifact के विरुद्ध verification फिर से चला सकता है।
 
 ### Closed-API models GDPR Article 17 को उसी तरह क्यों संतुष्ट नहीं कर सकते?
 
@@ -379,7 +379,7 @@ NIST AI RMF के चार core functions — Govern, Map, Measure, Manage —
 <strong>GDPR Article 17 (Right to Erasure).</strong> <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank" rel="noopener">gdpr-info.eu/art-17-gdpr</a>. The data subject's right to obtain erasure of personal data, and the controller's obligation to demonstrate compliance under Article 5(2) accountability. Penalties up to €20M or 4% of annual global turnover.
 </li>
 <li id="ref-8" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>Internal — vindex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/compliance/">compliance page</a> and demonstrated in the <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
+<strong>Internal — vIndex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/compliance/">compliance page</a> and demonstrated in the <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
 </li>
 </ol>
 

@@ -226,7 +226,12 @@
     "support": "支持",
     "privacy_settings": "隐私设置",
     "cookie_preferences": "Cookie偏好设置",
-    "cookie_policy": "Cookie政策"
+    "cookie_policy": "Cookie政策",
+    "motto": {
+      "word_1": "自由",
+      "word_2": "智能",
+      "phrase": "自由智能"
+    }
   },
   "language_switcher": {
     "current_language": "中文",
@@ -649,26 +654,26 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "由 vindex + LarQL 提供支持",
+      "eyebrow": "由 vIndex + LarQL 提供支持",
       "heading": "合规,带凭证。",
-      "tagline": "大多数\"AI合规\"止步于访问日志和提示级护栏。Divinci 深入到模型内部。每一个实体关联都是可查询的特征;每一次编辑都是可移植、可审计的补丁 — <strong>vindex</strong> 就是监管机构即将开始索取的技术文档制品。",
+      "tagline": "大多数\"AI合规\"止步于访问日志和提示级护栏。Divinci 深入到模型内部。每一个实体关联都是可查询的特征;每一次编辑都是可移植、可审计的补丁 — <strong>vIndex</strong> 就是监管机构即将开始索取的技术文档制品。",
       "cta_primary": "联系合规团队 →",
-      "cta_secondary": "查看实时 vindex"
+      "cta_secondary": "查看实时 vIndex"
     },
     "mapping": {
       "heading": "法规要求什么 · LarQL 交付什么",
-      "subheading": "同一个制品 — vindex — 在 Divinci 客户面对的四大主要 AI 法规中,同时满足透明度、监督、文档和擦除的要求。",
+      "subheading": "同一个制品 — vIndex — 在 Divinci 客户面对的四大主要 AI 法规中,同时满足透明度、监督、文档和擦除的要求。",
       "th_regulation": "法规",
       "th_requirement": "要求",
       "th_competitors": "竞品提供",
-      "th_larql": "LarQL/vindex 提供",
+      "th_larql": "LarQL/vIndex 提供",
       "rows": [
         {
           "reg_label": "欧盟人工智能法案 §13",
           "reg_topic": "透明度",
           "requirement": "\"足以让用户解读输出结果的透明度\"",
           "competitors": "模型卡片、文字化系统描述",
-          "larql": "vindex 本身就是一个可查询的透明度制品 — 每一个承载事实的特征都通过 <code>(layer, feature, gate_score)</code> 标识"
+          "larql": "vIndex 本身就是一个可查询的透明度制品 — 每一个承载事实的特征都通过 <code>(layer, feature, gate_score)</code> 标识"
         },
         {
           "reg_label": "欧盟人工智能法案 §14",
@@ -710,13 +715,13 @@
     "receipt": {
       "heading": "\"凭证\"实际是什么样",
       "para_1": "LarQL 补丁是一个带 SHA-256 校验和的可移植 JSON 文件。应用它来压制一个事实;移除它则让模型逐位恢复。补丁本身就是审计日志 — 运营方、监管者和下游消费者都可以独立验证同一次操作。",
-      "para_2": "下面是我们在公开测试套件中实际提供的 Gate-3 补丁,展示了在真实的 Gemma 4 E2B vindex 上对 Paris→capital 关联的抑制与还原,具有可测量、可重复的效果。"
+      "para_2": "下面是我们在公开测试套件中实际提供的 Gate-3 补丁,展示了在真实的 Gemma 4 E2B vIndex 上对 Paris→capital 关联的抑制与还原,具有可测量、可重复的效果。"
     },
     "cta_band": {
       "heading": "可证明的合规。在任何开放 transformer 上。",
-      "tagline": "目前已发布八个 vindex,覆盖 Gemma、Qwen、Llama、Mistral、OpenAI MoE 和 Microsoft 1-bit。带上你的模型 — 我们来构建凭证。",
+      "tagline": "目前已发布八个 vIndex,覆盖 Gemma、Qwen、Llama、Mistral、OpenAI MoE 和 Microsoft 1-bit。带上你的模型 — 我们来构建凭证。",
       "cta_primary": "预约合规评审 →",
-      "cta_secondary": "在 Hugging Face 浏览 vindex"
+      "cta_secondary": "在 Hugging Face 浏览 vIndex"
     }
   },
   "about": {

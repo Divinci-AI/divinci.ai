@@ -309,9 +309,9 @@ Cuando esas dos puntuaciones divergen más allá del presupuesto de brecha por s
 
 El juez que puntúa la ejecución offline es el mismo juez que puntúa la ejecución de replay. El registro de auditoría guarda ambos conjuntos de puntuaciones, ambas versiones del juez, los IDs de traza que se reprodujeron y la brecha que disparó el bloqueo. La brecha en sí misma es la señal diagnóstica más útil que tenemos, y es lo que se entrega a quien continúe con [el árbol diagnóstico de la entrada 6](/es/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/).
 
-## Ancla el dataset dorado con un recibo vindex
+## Ancla el dataset dorado con un recibo vIndex
 
-Cada puntuación en la suite carece de significado si no puedes reproducirla más tarde. Hasheamos el dataset dorado en cada release y encadenamos ese hash en un recibo vindex junto con el SHA del modelo, el SHA del prompt, el SHA del juez y el registro de calibración. El recibo es anclable externamente — los auditores pueden reproducir nuestra ejecución exacta de regresión seis meses después y verificar las puntuaciones que reportamos.
+Cada puntuación en la suite carece de significado si no puedes reproducirla más tarde. Hasheamos el dataset dorado en cada release y encadenamos ese hash en un recibo vIndex junto con el SHA del modelo, el SHA del prompt, el SHA del juez y el registro de calibración. El recibo es anclable externamente — los auditores pueden reproducir nuestra ejecución exacta de regresión seis meses después y verificar las puntuaciones que reportamos.
 
 ```json
 {
@@ -324,11 +324,11 @@ Cada puntuación en la suite carece de significado si no puedes reproducirla má
   "scores": { "aggregate": 0.872, "by_slice": { "/* … */": "/* escalares por segmento */" } },
   "replay": { "trace_window_days": 14, "n_traces": 8430, "max_gap": 0.018 },
   "vindex_anchor": "sha256:f0bfd2…",
-  "verifiable_at": "https://vindex.divinci.ai/rel_3f1a-2026-05-26"
+  "verifiable_at": "https://vIndex.divinci.ai/rel_3f1a-2026-05-26"
 }
 ```
 
-**Advertencia open-weights.** El recibo de arriba lleva procedencia de pesos solo cuando el modelo es open-weights — vindex ancla los bytes reales de los pesos. Para backings de modelos cerrados de API (modelos gestionados de OpenAI / Anthropic / Google), el recibo aún lleva la cadena de decisión — cada puntuación de compuerta, cada resultado de juez, el registro de calibración — pero el campo de pesos está vacío, y no puedes verificar de forma independiente el artefacto del modelo. Lo decimos en el recibo y en la [documentación de cumplimiento](/es/compliance/) para que los auditores no se queden con una impresión falsa. Los releases que más se benefician de una cadena vindex completa son aquellos en los que tú controlas los pesos.
+**Advertencia open-weights.** El recibo de arriba lleva procedencia de pesos solo cuando el modelo es open-weights — vIndex ancla los bytes reales de los pesos. Para backings de modelos cerrados de API (modelos gestionados de OpenAI / Anthropic / Google), el recibo aún lleva la cadena de decisión — cada puntuación de compuerta, cada resultado de juez, el registro de calibración — pero el campo de pesos está vacío, y no puedes verificar de forma independiente el artefacto del modelo. Lo decimos en el recibo y en la [documentación de cumplimiento](/es/compliance/) para que los auditores no se queden con una impresión falsa. Los releases que más se benefician de una cadena vIndex completa son aquellos en los que tú controlas los pesos.
 
 ## Una cronología de implementación en cuatro fases que hemos enviado realmente
 

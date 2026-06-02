@@ -52,18 +52,18 @@ Each of those directions is a **feature**. Some of them are clean: a single sema
 
 ## Finding the feature
 
-The vindex viewer below shows Gemma 4 E2B (left) — every dot is one of the top-64 features at one layer, colored by circuit stage. The green band at ~45-55% depth is the **entity commitment zone**, where the model commits to specific semantic content. Feature 11179 is in there.
+The vIndex viewer below shows Gemma 4 E2B (left) — every dot is one of the top-64 features at one layer, colored by circuit stage. The green band at ~45-55% depth is the **entity commitment zone**, where the model commits to specific semantic content. Feature 11179 is in there.
 
 {{ vindex_viewer(height=560, model="gemma-4-e2b", q="paris") }}
 
-To find which feature carries the Paris→capital association, you query the vindex for entity correlations:
+To find which feature carries the Paris→capital association, you query the vIndex for entity correlations:
 
 ```bash
 curl "$LARQL_SERVICE_URL/v1/walk?prompt=Paris&layers=14-27&top=10" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
-LarQL hooks the model on a calibration prompt ("Paris is the capital of"), records which features in the precomputed vindex activate most strongly, and ranks them by their projected gate score. Layer 27 returns:
+LarQL hooks the model on a calibration prompt ("Paris is the capital of"), records which features in the precomputed vIndex activate most strongly, and ranks them by their projected gate score. Layer 27 returns:
 
 ```json
 [
@@ -93,7 +93,7 @@ Applied via the LarQL CLI:
 
 ```bash
 larql patch apply \
-  --vindex Divinci-AI/gemma-4-e2b-vindex \
+  --vIndex Divinci-AI/gemma-4-e2b-vIndex \
   --op delete --entity "Paris" --relation "capital" \
   --layer 27 --feature 11179 --alpha 1.0
 ```
@@ -129,7 +129,7 @@ This is what LarQL calls **feature locality**: the singular vectors of the weigh
 
 **Edits that compose.** Because each patch is a rank-1 update, you can stack them. Twenty deletes on twenty different facts is a rank-20 cumulative update — still small relative to the d_model × d_ff matrix. Stacking degrades cleanly: each additional patch costs about 0.001% perplexity on average (measured across 50 random Wikipedia paragraphs), with no observable interaction effects in our test set.
 
-**No retraining.** The full pipeline — vindex query, patch construction, model edit, verification — runs in about two minutes on a laptop. No GPUs, no fine-tuning data, no training infrastructure.
+**No retraining.** The full pipeline — vIndex query, patch construction, model edit, verification — runs in about two minutes on a laptop. No GPUs, no fine-tuning data, no training infrastructure.
 
 ---
 
@@ -152,19 +152,19 @@ The clean cases are the easy cases. Three caveats:
 git clone https://github.com/Divinci-AI/larql.git
 cd larql && cargo build --release
 
-# 2. Download the vindex (CC-BY-NC for non-commercial research use)
-huggingface-cli download Divinci-AI/gemma-4-e2b-vindex \
-  --local-dir ./gemma-vindex
+# 2. Download the vIndex (CC-BY-NC for non-commercial research use)
+huggingface-cli download Divinci-AI/gemma-4-e2b-vIndex \
+  --local-dir ./gemma-vIndex
 
 # 3. Apply the DELETE patch
 larql patch apply \
-  --vindex ./gemma-vindex \
+  --vIndex ./gemma-vIndex \
   --op delete --entity "Paris" --relation "capital" \
   --layer 27 --feature 11179
 
-# 4. Compile edited vindex back to a safetensors model
+# 4. Compile edited vIndex back to a safetensors model
 larql compile into-model \
-  --vindex ./gemma-vindex \
+  --vIndex ./gemma-vIndex \
   --output ./edited-gemma4
 
 # 5. Verify
@@ -183,23 +183,23 @@ print(t.decode(out[0]))
 
 ---
 
-*April 23, 2026 — The Kimi-K2 vindex is in development at [huggingface.co/Divinci-AI/kimi-k2-vindex](https://huggingface.co/Divinci-AI/kimi-k2-vindex). Kimi-K2 is a MoE model (384 experts, top-8 routing), which adds an interesting wrinkle to the DELETE patch: the "Paris → capital" feature may be distributed across multiple experts, requiring a rank-k patch instead of rank-1. Experiment coming in a follow-up post.*
+*April 23, 2026 — The Kimi-K2 vIndex is in development at [huggingface.co/Divinci-AI/kimi-k2-vIndex](https://huggingface.co/Divinci-AI/kimi-k2-vIndex). Kimi-K2 is a MoE model (384 experts, top-8 routing), which adds an interesting wrinkle to the DELETE patch: the "Paris → capital" feature may be distributed across multiple experts, requiring a rank-k patch instead of rank-1. Experiment coming in a follow-up post.*
 
-*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). Vindex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
+*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). vIndex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
 
 ## References
 
 <ol class="post-references" style="padding-left: 1.5rem;">
   <li id="ref-1" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-    <strong>Locating and editing factual associations (ROME).</strong> Meng, Bau, Andonian, Belinkov, <a href="https://rome.baulab.info/" target="_blank" rel="noopener"><em>Locating and Editing Factual Associations in GPT</em></a> (NeurIPS 2022). The closest prior art to the DELETE patch: a rank-1 weight edit that targets a specific factual association in a frozen LLM. Differences are operational — ROME edits middle-layer MLP weights using a causal trace; the LarQL DELETE patch operates on the feature graph extracted by the vindex pipeline and emits a portable SHA-256 receipt.
+    <strong>Locating and editing factual associations (ROME).</strong> Meng, Bau, Andonian, Belinkov, <a href="https://rome.baulab.info/" target="_blank" rel="noopener"><em>Locating and Editing Factual Associations in GPT</em></a> (NeurIPS 2022). The closest prior art to the DELETE patch: a rank-1 weight edit that targets a specific factual association in a frozen LLM. Differences are operational — ROME edits middle-layer MLP weights using a causal trace; the LarQL DELETE patch operates on the feature graph extracted by the vIndex pipeline and emits a portable SHA-256 receipt.
   </li>
   <li id="ref-2" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
     <strong>Mass-editing memory in a transformer (MEMIT).</strong> Meng et al., <a href="https://arxiv.org/abs/2210.07229" target="_blank" rel="noopener"><em>Mass-Editing Memory in a Transformer</em></a> (ICLR 2023, arXiv:2210.07229). Extends ROME to thousands of simultaneous edits. Useful context for the "DELETE multiple facts in one patch" path implied in the post.
   </li>
   <li id="ref-3" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-    <strong>LarQL (Lazarus Query Language).</strong> Open-source vindex query language and patch toolkit used to produce the Gate-3 patch in this post. Primary repo: <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">github.com/chrishayuk/larql</a>. Mirror: <a href="https://github.com/cronos3k/larql" target="_blank" rel="noopener">github.com/cronos3k/larql</a>. From the README: "decompile transformer weights into a queryable graph. LQL = Lazarus Query Language."
+    <strong>LarQL (Lazarus Query Language).</strong> Open-source vIndex query language and patch toolkit used to produce the Gate-3 patch in this post. Primary repo: <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">github.com/chrishayuk/larql</a>. Mirror: <a href="https://github.com/cronos3k/larql" target="_blank" rel="noopener">github.com/cronos3k/larql</a>. From the README: "decompile transformer weights into a queryable graph. LQL = Lazarus Query Language."
   </li>
   <li id="ref-4" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-    <strong>Internal Gate-3 patch.</strong> The Paris → capital DELETE patch shown in this post, its before/after measurements (feature 11179 rank #1 → ABSENT from top-25), and the +0.02% perplexity Δ on WikiText-103 are from our own runs against the published Gemma 4 E2B vindex at <a href="https://huggingface.co/datasets/Divinci-AI/gemma-4-4b-e2b-vindex" target="_blank" rel="noopener">huggingface.co/datasets/Divinci-AI/gemma-4-4b-e2b-vindex</a>. The vindex receipt format and the Gate-3 compliance pathway are documented on the <a href="/compliance/">compliance page</a>.
+    <strong>Internal Gate-3 patch.</strong> The Paris → capital DELETE patch shown in this post, its before/after measurements (feature 11179 rank #1 → ABSENT from top-25), and the +0.02% perplexity Δ on WikiText-103 are from our own runs against the published Gemma 4 E2B vIndex at <a href="https://huggingface.co/datasets/Divinci-AI/gemma-4-4b-e2b-vIndex" target="_blank" rel="noopener">huggingface.co/datasets/Divinci-AI/gemma-4-4b-e2b-vIndex</a>. The vIndex receipt format and the Gate-3 compliance pathway are documented on the <a href="/compliance/">compliance page</a>.
   </li>
 </ol>

@@ -226,7 +226,12 @@
     "support": "Supporto",
     "privacy_settings": "Impostazioni Privacy",
     "cookie_preferences": "Preferenze Cookie",
-    "cookie_policy": "Politica sui Cookie"
+    "cookie_policy": "Politica sui Cookie",
+    "motto": {
+      "word_1": "intelligenza",
+      "word_2": "libera",
+      "phrase": "intelligenza libera"
+    }
   },
   "language_switcher": {
     "current_language": "Italiano",
@@ -649,26 +654,26 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Alimentato da vindex + LarQL",
+      "eyebrow": "Alimentato da vIndex + LarQL",
       "heading": "Conformità, con ricevuta.",
-      "tagline": "La maggior parte della \"conformità AI\" si ferma ai log di accesso e alle barriere a livello di prompt. Divinci entra dentro il modello. Ogni associazione di entità è una caratteristica interrogabile; ogni modifica è una patch portatile e verificabile — e il <strong>vindex</strong> è l'artefatto di documentazione tecnica che il tuo regolatore sta per iniziare a richiedere.",
+      "tagline": "La maggior parte della \"conformità AI\" si ferma ai log di accesso e alle barriere a livello di prompt. Divinci entra dentro il modello. Ogni associazione di entità è una caratteristica interrogabile; ogni modifica è una patch portatile e verificabile — e il <strong>vIndex</strong> è l'artefatto di documentazione tecnica che il tuo regolatore sta per iniziare a richiedere.",
       "cta_primary": "Parla con la conformità →",
-      "cta_secondary": "Vedi un vindex live"
+      "cta_secondary": "Vedi un vIndex live"
     },
     "mapping": {
       "heading": "Cosa richiede la regolazione · cosa offre LarQL",
-      "subheading": "Lo stesso artefatto — il vindex — soddisfa i requisiti di trasparenza, supervisione, documentazione e cancellazione nelle quattro principali normative AI che i clienti di Divinci affrontano.",
+      "subheading": "Lo stesso artefatto — il vIndex — soddisfa i requisiti di trasparenza, supervisione, documentazione e cancellazione nelle quattro principali normative AI che i clienti di Divinci affrontano.",
       "th_regulation": "Normativa",
       "th_requirement": "Requisito",
       "th_competitors": "Cosa offrono i concorrenti",
-      "th_larql": "Cosa offre LarQL/vindex",
+      "th_larql": "Cosa offre LarQL/vIndex",
       "rows": [
         {
           "reg_label": "Regolamento UE sull'IA §13",
           "reg_topic": "Trasparenza",
           "requirement": "\"Trasparenza sufficiente per consentire agli utenti di interpretare gli output\"",
           "competitors": "Model card, descrizioni testuali del sistema",
-          "larql": "Il vindex È un artefatto di trasparenza interrogabile — ogni caratteristica portatrice di fatti identificata da <code>(layer, feature, gate_score)</code>"
+          "larql": "Il vIndex È un artefatto di trasparenza interrogabile — ogni caratteristica portatrice di fatti identificata da <code>(layer, feature, gate_score)</code>"
         },
         {
           "reg_label": "Regolamento UE sull'IA §14",
@@ -710,13 +715,13 @@
     "receipt": {
       "heading": "Com'è davvero una \"ricevuta\"",
       "para_1": "Una patch LarQL è un file JSON portatile con checksum SHA-256. Applicala per sopprimere un fatto; rimuovila per ripristinare il modello bit per bit. La patch È il log di audit — operatori, regolatori e consumatori a valle possono verificare la stessa operazione in modo indipendente.",
-      "para_2": "Sotto: la patch Gate-3 reale che spediamo nella nostra suite di test pubblica, che mostra l'associazione Parigi→capitale soppressa e ripristinata con effetto misurabile e ripetibile su un vindex Gemma 4 E2B reale."
+      "para_2": "Sotto: la patch Gate-3 reale che spediamo nella nostra suite di test pubblica, che mostra l'associazione Parigi→capitale soppressa e ripristinata con effetto misurabile e ripetibile su un vIndex Gemma 4 E2B reale."
     },
     "cta_band": {
       "heading": "Conformità che puoi dimostrare. Su qualsiasi transformer aperto.",
-      "tagline": "Otto vindex pubblicati oggi su Gemma, Qwen, Llama, Mistral, OpenAI MoE e Microsoft 1-bit. Porta il tuo modello — costruiremo noi la ricevuta.",
+      "tagline": "Otto vIndex pubblicati oggi su Gemma, Qwen, Llama, Mistral, OpenAI MoE e Microsoft 1-bit. Porta il tuo modello — costruiremo noi la ricevuta.",
       "cta_primary": "Prenota una revisione di conformità →",
-      "cta_secondary": "Sfoglia i vindex su Hugging Face"
+      "cta_secondary": "Sfoglia i vIndex su Hugging Face"
     }
   },
   "about": {

@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
 hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
-summary = "Een traditionele CI/CD-pipeline gaat ervan uit dat het artefact deterministisch is. Een taalmodel is dat niet. Dit artikel beschrijft de pipeline die we bij Divinci AI in productie hebben — slice-bewuste Spearman-gates tegen een human-anchored judge, een canary die outputkwaliteit bewaakt (niet alleen p95), atomische rollback in ongeveer twaalf seconden en een hash-chained release-bewijs voor elke beslissing (met een vindex-weight-attestation ingebed wanneer het model open-weights is). Drie daarvan zijn dingen die geen enkele andere LLM-releasetool in 2026 levert."
+summary = "Een traditionele CI/CD-pipeline gaat ervan uit dat het artefact deterministisch is. Een taalmodel is dat niet. Dit artikel beschrijft de pipeline die we bij Divinci AI in productie hebben — slice-bewuste Spearman-gates tegen een human-anchored judge, een canary die outputkwaliteit bewaakt (niet alleen p95), atomische rollback in ongeveer twaalf seconden en een hash-chained release-bewijs voor elke beslissing (met een vIndex-weight-attestation ingebed wanneer het model open-weights is). Drie daarvan zijn dingen die geen enkele andere LLM-releasetool in 2026 levert."
 +++
 
 *Notities uit de releasecyclus — Deel I*
@@ -39,7 +39,7 @@ De fases zijn bewust rigide. Elke release gaat in deze volgorde door elke fase. 
 
 Een release is **geen** modelgewichtenbestand. Een release is een onveranderlijk manifest dat het volgende bundelt:
 
-- Het modelartefact (HF-repo + commit-SHA, of een vindex-patch)
+- Het modelartefact (HF-repo + commit-SHA, of een vIndex-patch)
 - De prompt template (elke variabele, elk system message)
 - De routing rules (welke traffic class landt op welke versie)
 - De datasetversie die werd gebruikt om de gate-drempels te berekenen
@@ -112,7 +112,7 @@ Daarna vuurt het bewijs.
 
 Elke release-beslissing — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback — produceert een **release-bewijs (release receipt)**: een JSON-met-SHA-256-artefact, hash-chained aan het vorige bewijs voor deze klant en aan het vorige bewijs voor deze release, extern verankerd op een door de klant geconfigureerd schema.
 
-Wanneer de release gedragen wordt door een **open-weights model** — Gemma, Qwen, Llama, Mistral, GPT-OSS, alles waarvan de gewichten adresseerbaar en bewerkbaar zijn — bedt het bewijs een [vindex-attestation](/nl/compliance/) in: een cryptografisch bewijs dat de actieve gewichten op het moment van beslissing de gewichten zijn die het manifest registreerde. Dat is het pad dat de zwaardere compliance-eisen afdekt (GDPR Artikel 17 right-to-erasure, EU AI Act-provenance), omdat je niet alleen kunt bewijzen *wat is gedeployed*, maar ook *dat de onderliggende gewichten zijn wat ze beweren te zijn*.
+Wanneer de release gedragen wordt door een **open-weights model** — Gemma, Qwen, Llama, Mistral, GPT-OSS, alles waarvan de gewichten adresseerbaar en bewerkbaar zijn — bedt het bewijs een [vIndex-attestation](/nl/compliance/) in: een cryptografisch bewijs dat de actieve gewichten op het moment van beslissing de gewichten zijn die het manifest registreerde. Dat is het pad dat de zwaardere compliance-eisen afdekt (GDPR Artikel 17 right-to-erasure, EU AI Act-provenance), omdat je niet alleen kunt bewijzen *wat is gedeployed*, maar ook *dat de onderliggende gewichten zijn wat ze beweren te zijn*.
 
 Wanneer de release gedragen wordt door een **closed-weights model** — OpenAI, Anthropic, Google, alles wat alleen via een ondoorzichtige API wordt geleverd — dekt het bewijs nog steeds de beslissingsketen (welk manifest, welk gate-resultaat, welke monitor-meting, welke gebruiker triggerde welke actie), maar kan het de onderliggende gewichten niet attesteren, omdat we ze niet kunnen zien. Dat is geen beperking van de pipeline; het is een beperking van wat verifieerbaar is wanneer de provider de gewichten niet blootstelt. Auditors die om dat onderscheid geven, krijgen het eerlijke antwoord rechtstreeks in het bewijs zelf.
 
@@ -187,7 +187,7 @@ De naad tussen "geslaagd voor eval bij PR-merge" en "live canary, gescoord op de
 
 1. **De gate is gesliced.** Spearman ρ per domein tegen een human-anchored grader, geen enkele globale score. Slice-blindheid is wat elke andere gate heeft.
 2. **De canary bewaakt outputkwaliteit, niet alleen p95.** Continue trace-replay door de kandidaat, gescoord door dezelfde judge die de gate aandreef. Dit is de ontbrekende naad.
-3. **Elke beslissing produceert een release-bewijs.** Hash-chained, extern verankerbaar, in het JSON-met-SHA-256-formaat dat onze compliancepagina's onderbouwt. Voor open-weights-modelbackings — Gemma, Qwen, Llama, Mistral, GPT-OSS — bedt het bewijs een vindex-weight-attestation in, zodat auditors kunnen bewijzen wat de live gewichten daadwerkelijk waren. Voor closed-API-backings dekt het bewijs de beslissingsketen maar claimt het geen weight-provenance, omdat de provider geen gewichten blootstelt. Hoe dan ook: auditors krijgen bewijzen van wat daadwerkelijk te bewijzen is, niet alleen logs.
+3. **Elke beslissing produceert een release-bewijs.** Hash-chained, extern verankerbaar, in het JSON-met-SHA-256-formaat dat onze compliancepagina's onderbouwt. Voor open-weights-modelbackings — Gemma, Qwen, Llama, Mistral, GPT-OSS — bedt het bewijs een vIndex-weight-attestation in, zodat auditors kunnen bewijzen wat de live gewichten daadwerkelijk waren. Voor closed-API-backings dekt het bewijs de beslissingsketen maar claimt het geen weight-provenance, omdat de provider geen gewichten blootstelt. Hoe dan ook: auditors krijgen bewijzen van wat daadwerkelijk te bewijzen is, niet alleen logs.
 
 Dat is alles. Generieke canary, version registry, infra-metric rollback — dat is commodity. Wij hebben geen generieke canary geschreven.
 
@@ -213,7 +213,7 @@ Als je iets vergelijkbaars wilt opzetten zonder Divinci te gebruiken, is de mini
 
 De meeste teams hebben (1) en (3) al. De pijnlijke stukken zijn (2), (4) en (5). De reden dat Divinci bestaat, is dat we deze vijf eerst voor onszelf hebben gebouwd en toen beseften dat iedereen ze ook nodig zou krijgen.
 
-Als je de bouw wilt overslaan: [de API-referentie staat hier](/nl/api/), en de release-endpoints in het onderdeel "Release Management" vormen het volledige oppervlak van deze pipeline. De compliancekant — hoe die vindex-bewijzen eruitzien en hoe ze afbeelden op de EU AI Act, GDPR Artikel 17, HIPAA en NIST AI RMF — staat op [de compliancepagina](/nl/compliance/). Elk commando in deze post is een echt endpoint.
+Als je de bouw wilt overslaan: [de API-referentie staat hier](/nl/api/), en de release-endpoints in het onderdeel "Release Management" vormen het volledige oppervlak van deze pipeline. De compliancekant — hoe die vIndex-bewijzen eruitzien en hoe ze afbeelden op de EU AI Act, GDPR Artikel 17, HIPAA en NIST AI RMF — staat op [de compliancepagina](/nl/compliance/). Elk commando in deze post is een echt endpoint.
 
 ## Referenties
 

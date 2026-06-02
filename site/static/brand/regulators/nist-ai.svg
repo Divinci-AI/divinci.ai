@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NIST AI RMF: navy + white 3×2 dot-grid (framework / structure) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <rect width="900" height="600" fill="#1e3a5f"/>
+  <!-- 3 × 2 grid of circles — evenly spaced, fills the field -->
+  <g fill="white">
+    <circle cx="200" cy="180" r="62"/>
+    <circle cx="450" cy="180" r="62"/>
+    <circle cx="700" cy="180" r="62"/>
+    <circle cx="200" cy="420" r="62"/>
+    <circle cx="450" cy="420" r="62"/>
+    <circle cx="700" cy="420" r="62"/>
+  </g>
+</svg>

@@ -1,0 +1,59 @@
+# Percy Configuration for Divinci.ai
+# https://docs.percy.io/docs/cli-configuration
+
+version: 2
+snapshot:
+  # Widths to capture (responsive breakpoints)
+  widths:
+    - 375   # Mobile (iPhone)
+    - 768   # Tablet
+    - 1280  # Desktop
+    - 1920  # Large Desktop
+
+  # Minimum height for snapshots
+  min-height: 1024
+
+  # Percy CSS to inject (hide dynamic elements)
+  percy-css: |
+    /* Hide elements that change between runs */
+    .cookie-banner,
+    .chat-widget,
+    [data-testid="loading-spinner"],
+    .animation-container,
+    video,
+    iframe[src*="youtube"],
+    iframe[src*="vimeo"] {
+      visibility: hidden !important;
+    }
+
+    /* Disable animations for consistent snapshots */
+    *, *::before, *::after {
+      animation-duration: 0s !important;
+      animation-delay: 0s !important;
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
+    }
+
+  # Enable JavaScript for dynamic content
+  enable-javascript: true
+
+discovery:
+  # Network idle timeout
+  network-idle-timeout: 250
+
+  # Allowed hostnames for asset discovery
+  allowed-hostnames:
+    - divinci.ai
+    - localhost
+    - 127.0.0.1
+    - cdn.jsdelivr.net
+    - cdnjs.cloudflare.com
+    - fonts.googleapis.com
+    - fonts.gstatic.com
+
+  # Disable capturing external resources that may change
+  disable-cache: false
+
+upload:
+  # Upload files in parallel
+  files: "**/*.{html,css,js,png,jpg,jpeg,svg,webp,woff,woff2}"

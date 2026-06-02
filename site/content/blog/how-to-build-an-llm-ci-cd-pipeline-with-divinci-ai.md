@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
 hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
-summary = "A traditional CI/CD pipeline assumes the artifact is deterministic. A language model is not. This walks through the pipeline we ship at Divinci AI — slice-aware Spearman gates against a human-anchored judge, canary that watches output quality (not just p95), atomic rollback in roughly twelve seconds, and a hash-chained release receipt for every decision (with a vindex weight-attestation embedded when the model is open-weights). Three of those are things no other LLM release tool ships in 2026."
+summary = "A traditional CI/CD pipeline assumes the artifact is deterministic. A language model is not. This walks through the pipeline we ship at Divinci AI — slice-aware Spearman gates against a human-anchored judge, canary that watches output quality (not just p95), atomic rollback in roughly twelve seconds, and a hash-chained release receipt for every decision (with a vIndex weight-attestation embedded when the model is open-weights). Three of those are things no other LLM release tool ships in 2026."
 +++
 
 *Notes from the Release Cycle — Part I*
@@ -39,7 +39,7 @@ The stages are intentionally rigid. Every release passes through every stage in 
 
 A release is **not** a model weight file. A release is an immutable manifest that bundles:
 
-- The model artifact (HF repo + commit SHA, or a vindex patch)
+- The model artifact (HF repo + commit SHA, or a vIndex patch)
 - The prompt template (every variable, every system message)
 - The routing rules (which traffic class lands on which version)
 - The dataset version used to compute the gate thresholds
@@ -112,7 +112,7 @@ Then the receipt fires.
 
 Every release decision — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback — emits a **release receipt**: a JSON-with-SHA-256 artifact, hash-chained to the previous receipt for this customer and the previous receipt for this release, anchored externally on a schedule the customer configures.
 
-When the release is backed by an **open-weights model** — Gemma, Qwen, Llama, Mistral, GPT-OSS, anything where the weights are addressable and editable — the receipt embeds a [vindex attestation](/compliance/): a cryptographic proof that the active weights at decision time are the weights the manifest registered. That's the path that satisfies the harder compliance asks (GDPR Article 17 right-to-erasure, EU AI Act provenance) because you can prove not just *what was deployed* but *that the underlying weights are what they claim to be*.
+When the release is backed by an **open-weights model** — Gemma, Qwen, Llama, Mistral, GPT-OSS, anything where the weights are addressable and editable — the receipt embeds a [vIndex attestation](/compliance/): a cryptographic proof that the active weights at decision time are the weights the manifest registered. That's the path that satisfies the harder compliance asks (GDPR Article 17 right-to-erasure, EU AI Act provenance) because you can prove not just *what was deployed* but *that the underlying weights are what they claim to be*.
 
 When the release is backed by a **closed-weights model** — OpenAI, Anthropic, Google, anything served only via an opaque API — the receipt still covers the decision chain (which manifest, which gate result, which monitor reading, which user triggered which action) but cannot attest to the underlying weights, because we can't see them. That's not a limit of the pipeline; it's a limit of what's verifiable when the provider doesn't expose weights. Auditors who care about that distinction get the truthful answer in the receipt itself.
 
@@ -187,7 +187,7 @@ The seam between "passed eval at PR merge" and "live canary scored on the user j
 
 1. **The gate is sliced.** Per-domain Spearman ρ against a human-anchored grader, not a single global score. Slice-blindness is what every other gate has.
 2. **The canary watches output quality, not just p95.** Continuous trace-replay through the candidate, scored by the same judge that powered the gate. This is the missing seam.
-3. **Every decision emits a release receipt.** Hash-chained, externally anchorable, in the JSON-with-SHA-256 format that backs our compliance pages. For open-weights model backings — Gemma, Qwen, Llama, Mistral, GPT-OSS — the receipt embeds a vindex weight-attestation so auditors can prove what the live weights actually were. For closed-API backings, the receipt covers the decision chain but doesn't claim weight provenance, because the provider doesn't expose weights. Either way, auditors get proofs of what's actually provable, not just logs.
+3. **Every decision emits a release receipt.** Hash-chained, externally anchorable, in the JSON-with-SHA-256 format that backs our compliance pages. For open-weights model backings — Gemma, Qwen, Llama, Mistral, GPT-OSS — the receipt embeds a vIndex weight-attestation so auditors can prove what the live weights actually were. For closed-API backings, the receipt covers the decision chain but doesn't claim weight provenance, because the provider doesn't expose weights. Either way, auditors get proofs of what's actually provable, not just logs.
 
 That's it. Generic canary, version registry, infra-metric rollback — those are commodity. We did not write a generic canary.
 
@@ -213,7 +213,7 @@ If you want to stand up something like this without using Divinci, the minimum v
 
 Most teams already have (1) and (3). The painful parts are (2), (4), and (5). The reason Divinci exists is that we built all five for ourselves first, then realized everyone else was going to need them too.
 
-If you want to skip the build, [the API reference is here](/api/), and the release endpoints in the section "Release Management" are the entire surface of this pipeline. The compliance side — what those vindex receipts look like and how they map onto the EU AI Act, GDPR Article 17, HIPAA, and NIST AI RMF — is on [the compliance page](/compliance/). Every command in this post is a real endpoint.
+If you want to skip the build, [the API reference is here](/api/), and the release endpoints in the section "Release Management" are the entire surface of this pipeline. The compliance side — what those vIndex receipts look like and how they map onto the EU AI Act, GDPR Article 17, HIPAA, and NIST AI RMF — is on [the compliance page](/compliance/). Every command in this post is a real endpoint.
 
 ## References
 

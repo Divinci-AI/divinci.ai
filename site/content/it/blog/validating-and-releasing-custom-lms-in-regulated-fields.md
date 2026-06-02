@@ -6,7 +6,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Compliance"]
-tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vindex"]
+tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail", "vIndex"]
 
 [extra]
 author = "Mike Mooring"
@@ -14,7 +14,7 @@ author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
 hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
-summary = "La compliance per settori regolamentati con modelli linguistici custom si divide nettamente lungo un asse: pesi aperti vs API chiuse. Per backing a pesi aperti puoi rilasciare un'attestazione di peso vindex che soddisfa l'erasure verificabile dell'Articolo 17 GDPR in modo crittografico. Per backing ad API chiuse, la stessa ricevuta copre la catena decisionale ma non può rivendicare provenance dei pesi — e il regolatore riceve questa distinzione nella ricevuta stessa. Questo post mappa quattro framework regolatori (EU AI Act, GDPR, HIPAA, NIST AI RMF) sulle quattro fasi della pipeline che rilasciamo, e mostra il formato effettivo della ricevuta."
+summary = "La compliance per settori regolamentati con modelli linguistici custom si divide nettamente lungo un asse: pesi aperti vs API chiuse. Per backing a pesi aperti puoi rilasciare un'attestazione di peso vIndex che soddisfa l'erasure verificabile dell'Articolo 17 GDPR in modo crittografico. Per backing ad API chiuse, la stessa ricevuta copre la catena decisionale ma non può rivendicare provenance dei pesi — e il regolatore riceve questa distinzione nella ricevuta stessa. Questo post mappa quattro framework regolatori (EU AI Act, GDPR, HIPAA, NIST AI RMF) sulle quattro fasi della pipeline che rilasciamo, e mostra il formato effettivo della ricevuta."
 +++
 
 *Note dal ciclo di rilascio — Parte IV*
@@ -50,7 +50,7 @@ Le discussioni sulla compliance tendono a ridursi a "abbiamo documentato le cose
 <text x="55" y="206" font-size="10" fill="#4a4030">• monitoraggio post-market</text>
 <text x="55" y="232" font-size="11" font-weight="700" fill="#2d5a4f">Primitiva di verifica:</text>
 <text x="55" y="250" font-size="10" font-style="italic" fill="#4a4030">documentazione meccanicistica</text>
-<text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">bit-exact tramite vindex</text>
+<text x="55" y="263" font-size="10" font-style="italic" fill="#4a4030">bit-exact tramite vIndex</text>
 <text x="55" y="290" font-size="10" fill="#6b5d4f">Sanzione per non-compliance:</text>
 <text x="55" y="308" font-size="14" font-weight="700" fill="#a04848">fino al 7% del</text>
 <text x="55" y="324" font-size="14" font-weight="700" fill="#a04848">fatturato globale</text>
@@ -109,7 +109,7 @@ I numeri delle sanzioni non sono ciò che rende questi framework interessanti. I
 
 Prima della mappatura per fase, la premessa più importante di tutto il post:
 
-**Per backing di modelli a pesi aperti** — Gemma, Qwen, Llama, Mistral, GPT-OSS, qualsiasi cosa in cui i pesi siano indirizzabili ed editabili — ogni decisione di rilascio Divinci emette una ricevuta vindex che include una **weight-attestation**: prova crittografica che i pesi attivi al momento della decisione sono esattamente i pesi che il manifest ha registrato. È questo che rende possibile l'erasure verificabile dell'Articolo 17 GDPR. Applichi una [patch DELETE](/blog/deleting-paris-from-a-language-model/) che rimuove una specifica relazione-entità dallo spazio dei pesi, la ricevuta incorpora l'hash prima-e-dopo, e un auditor può verificare che la cancellazione sia avvenuta ri-eseguendo la verifica contro il vindex pubblico.
+**Per backing di modelli a pesi aperti** — Gemma, Qwen, Llama, Mistral, GPT-OSS, qualsiasi cosa in cui i pesi siano indirizzabili ed editabili — ogni decisione di rilascio Divinci emette una ricevuta vIndex che include una **weight-attestation**: prova crittografica che i pesi attivi al momento della decisione sono esattamente i pesi che il manifest ha registrato. È questo che rende possibile l'erasure verificabile dell'Articolo 17 GDPR. Applichi una [patch DELETE](/blog/deleting-paris-from-a-language-model/) che rimuove una specifica relazione-entità dallo spazio dei pesi, la ricevuta incorpora l'hash prima-e-dopo, e un auditor può verificare che la cancellazione sia avvenuta ri-eseguendo la verifica contro il vIndex pubblico.
 
 **Per backing di modelli ad API chiuse** — OpenAI, Anthropic, Google tramite API opache — la stessa ricevuta copre la catena decisionale (quale manifest, quale risultato di gate, quale lettura del monitor, quale utente ha triggerato quale azione) ma **non può rivendicare la provenance dei pesi**, perché il provider non espone i pesi. La ricevuta lo annota esplicitamente in un campo `weight_attestation: null` con una `note` che spiega perché. Non è una postura di compliance degradata — è il limite di ciò che è verificabile, scritto onestamente. Un auditor che legge la ricevuta capisce esattamente quale classe di prova viene e non viene fornita.
 
@@ -212,7 +212,7 @@ Il resto del post percorre il contributo di ciascuna fase.
 
 La fase Register produce un manifest JSON immutabile, indirizzato per SHA-256. Per i rilasci regolamentati il manifest porta in un solo artefatto tutto ciò che l'Allegato IV<sup><a href="#ref-1">[1]</a></sup> richiede:
 
-- L'artefatto modello (repo HF + commit SHA, o un riferimento a patch vindex)
+- L'artefatto modello (repo HF + commit SHA, o un riferimento a patch vIndex)
 - Il prompt template (ogni variabile, ogni system message — versionato)
 - Le regole di routing (quale classe di traffico atterra su quale rilascio)
 - La versione del dataset usata per calcolare le soglie di gate (riepilogo dei training data per hash)
@@ -221,7 +221,7 @@ La fase Register produce un manifest JSON immutabile, indirizzato per SHA-256. P
 
 Il manifest è la documentazione. Un auditor non legge prosa; legge l'hash del manifest e verifica il bundle. Non serve un riepilogo in prosa scritto-sei-mesi-dopo.
 
-**Bonus pesi aperti.** Quando l'artefatto modello fa riferimento a un modello a pesi aperti, il manifest incorpora anche il `vindex_sha256` — l'impronta crittografica del [vindex](/it/compliance/) pubblicato del modello. Quell'impronta è ciò che permette a una terza parte di verificare i pesi attivi senza dover mai fidarsi della nostra infrastruttura di deployment.
+**Bonus pesi aperti.** Quando l'artefatto modello fa riferimento a un modello a pesi aperti, il manifest incorpora anche il `vindex_sha256` — l'impronta crittografica del [vIndex](/it/compliance/) pubblicato del modello. Quell'impronta è ciò che permette a una terza parte di verificare i pesi attivi senza dover mai fidarsi della nostra infrastruttura di deployment.
 
 **Caveat per API chiuse.** Quando l'artefatto modello fa riferimento a un modello ad API chiuse, il campo `vindex_sha256` del manifest è `null`, e il `weight_attestation_class` del manifest è `decision_chain_only`. L'auditor che lo legge sa esattamente cosa viene rivendicato e cosa no.
 
@@ -267,7 +267,7 @@ Per HIPAA, la fase canary è anche dove il logging di audit per richiesta viene 
 
 Questa è la fase che si guadagna la storia di compliance. La fase Observe esegue un replay continuo dei trace attraverso il rilascio attivo, valutato dallo stesso judge ancorato all'umano del Gate, con un quality monitor che triggera un rollback automatico se viene violato.
 
-Ogni decisione di rilascio — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **e ogni applicazione di patch DELETE per l'Articolo 17 GDPR** — emette una ricevuta vindex. Hash-chained alla ricevuta precedente per questo cliente e alla ricevuta precedente per questo rilascio.
+Ogni decisione di rilascio — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **e ogni applicazione di patch DELETE per l'Articolo 17 GDPR** — emette una ricevuta vIndex. Hash-chained alla ricevuta precedente per questo cliente e alla ricevuta precedente per questo rilascio.
 
 Ecco come appare una ricevuta reale per una patch DELETE dell'Articolo 17 GDPR — adattata direttamente dal formato documentato nella [pagina compliance](/it/compliance/):
 
@@ -301,7 +301,7 @@ Ecco come appare una ricevuta reale per una patch DELETE dell'Articolo 17 GDPR �
 }
 ```
 
-Quell'artefatto è verificabile. Un auditor non deve fidarsi dei nostri log. Prende `vindex_sha256_after`, scarica il vindex pubblicato corrispondente da `huggingface.co/Divinci-AI`, e verifica che la feature 11179 nel layer 27 sia strutturalmente assente dalla top-25. Prende la `chain_signature` e la verifica contro la ricevuta precedente. L'intera catena è ancorata esternamente secondo una scheduling configurato dal cliente.
+Quell'artefatto è verificabile. Un auditor non deve fidarsi dei nostri log. Prende `vindex_sha256_after`, scarica il vIndex pubblicato corrispondente da `huggingface.co/Divinci-AI`, e verifica che la feature 11179 nel layer 27 sia strutturalmente assente dalla top-25. Prende la `chain_signature` e la verifica contro la ricevuta precedente. L'intera catena è ancorata esternamente secondo una scheduling configurato dal cliente.
 
 **Stessa operazione contro un modello ad API chiuse.** I campi della ricevuta sopra cambiano in tre modi: `operation.target` diventa `provider_api_endpoint`, `verification` diventa uno schema diverso che copre solo l'evidenza della catena decisionale, e `weight_attestation_class` diventa `decision_chain_only`. Il provider del modello ad API chiuse non ha esposto i pesi, quindi la ricevuta lo dice. Un auditor che vuole prova a livello di pesi ora sa che deve fare escalation al provider, non a noi.
 
@@ -315,7 +315,7 @@ Un esercizio utile: scorrere le domande che un vero auditor farà, e quale artef
 |---|---|
 | *"Quale versione del modello era in esecuzione il 15 marzo alle 14:22 UTC?"* | La ricevuta della fase Observe per quel timestamp, firmata e hash-chained. |
 | *"Quale evaluation ha passato questo rilascio prima del promote?"* | La ricevuta della fase Gate, con la tabella ρ di Spearman per slice e l'SHA del dataset su cui il gate è stato eseguito. |
-| *"Una richiesta di erasure ex Articolo 17 GDPR per il paziente X è stata effettivamente applicata?"* | La ricevuta della patch DELETE sopra. L'auditor verifica `vindex_sha256_after` contro il vindex pubblicato. |
+| *"Una richiesta di erasure ex Articolo 17 GDPR per il paziente X è stata effettivamente applicata?"* | La ricevuta della patch DELETE sopra. L'auditor verifica `vindex_sha256_after` contro il vIndex pubblicato. |
 | *"Chi ha approvato questo rilascio? Qual era la motivazione dichiarata per fare override sul gate della slice IP-licensing?"* | Il blocco `override` della ricevuta della fase Gate, incluso lo user ID e la motivazione testo libero obbligatoria. |
 | *"Quanto velocemente è partito il rollback, e quale lettura del monitor l'ha triggerato?"* | La ricevuta di rollback della fase Observe, con le tre letture consecutive sotto soglia di qualità e il tempo trascorso del rollback. |
 | *"Mostrami l'evidenza di monitoraggio post-market degli ultimi 90 giorni."* | La catena di ricevute della fase Observe. Ancorata esternamente secondo la scheduling configurata dal cliente. |
@@ -330,13 +330,13 @@ Tre limiti onesti:
 
 **La documentazione è necessaria ma non sufficiente.** Una ricevuta che dimostra che un modello ha raggiunto una soglia non dimostra che la soglia fosse quella giusta. Se la tua suite scored-QA non copre la slice che davvero conta per un paziente nel tuo servizio, nessuna quantità di concatenamento di ricevute lo risolve. I regolatori lo capiscono sempre di più; "abbiamo passato la nostra eval" non è più una risposta di compliance sufficiente se l'eval era l'eval sbagliata.
 
-**Il formato vindex è single-vendor.** Lo usiamo perché è la primitiva crittografica più concreta disponibile oggi per la prova a livello di pesi. Se l'industria converge su un formato diverso — model-card-con-hash, schemi di artefatti pubblicati dal NIST — il formato della ricevuta dovrebbe evolvere in quella direzione. La sostanza (hash-chained, verificabile esternamente, consapevole della weight-attestation) è ciò che è vincolante, non il nome specifico dello schema. Ci aspettiamo che cambi man mano che il panorama regolatorio e degli standard matura.
+**Il formato vIndex è single-vendor.** Lo usiamo perché è la primitiva crittografica più concreta disponibile oggi per la prova a livello di pesi. Se l'industria converge su un formato diverso — model-card-con-hash, schemi di artefatti pubblicati dal NIST — il formato della ricevuta dovrebbe evolvere in quella direzione. La sostanza (hash-chained, verificabile esternamente, consapevole della weight-attestation) è ciò che è vincolante, non il nome specifico dello schema. Ci aspettiamo che cambi man mano che il panorama regolatorio e degli standard matura.
 
 ## FAQ
 
 ### Cos'è l'erasure verificabile ai sensi dell'Articolo 17 GDPR per i sistemi AI?
 
-Erasure verificabile significa che una terza parte può verificare che i dati siano stati rimossi senza doversi fidare dei tuoi log. Fare fine-tuning di un modello perché "dimentichi" un'informazione specifica non soddisfa questo standard — l'informazione può riemergere sotto prompting avversariale, e non c'è una primitiva crittografica che un auditor possa controllare. Una patch DELETE a livello di pesi con un hash vindex pubblicato prima/dopo *soddisfa* lo standard, perché l'auditor può ri-eseguire la verifica contro l'artefatto pubblico.
+Erasure verificabile significa che una terza parte può verificare che i dati siano stati rimossi senza doversi fidare dei tuoi log. Fare fine-tuning di un modello perché "dimentichi" un'informazione specifica non soddisfa questo standard — l'informazione può riemergere sotto prompting avversariale, e non c'è una primitiva crittografica che un auditor possa controllare. Una patch DELETE a livello di pesi con un hash vIndex pubblicato prima/dopo *soddisfa* lo standard, perché l'auditor può ri-eseguire la verifica contro l'artefatto pubblico.
 
 ### Perché i modelli ad API chiuse non possono soddisfare l'Articolo 17 GDPR allo stesso modo?
 
@@ -379,7 +379,7 @@ Le quattro funzioni core del NIST AI RMF — Govern, Map, Measure, Manage — co
 <strong>GDPR Article 17 (Right to Erasure).</strong> <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank" rel="noopener">gdpr-info.eu/art-17-gdpr</a>. The data subject's right to obtain erasure of personal data, and the controller's obligation to demonstrate compliance under Article 5(2) accountability. Penalties up to €20M or 4% of annual global turnover.
 </li>
 <li id="ref-8" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>Internal — vindex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/compliance/">compliance page</a> and demonstrated in the <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
+<strong>Internal — vIndex receipt format.</strong> The receipt JSON in this post is adapted from the format documented on the <a href="/compliance/">compliance page</a> and demonstrated in the <a href="/blog/deleting-paris-from-a-language-model/">"Deleting Paris from a Language Model"</a> post. The hash chain is SHA-256 over <code>manifest || prev_manifest || user_id || created_at || prev_chain_signature</code>. Externally anchorable on a customer-configured schedule.
 </li>
 </ol>
 

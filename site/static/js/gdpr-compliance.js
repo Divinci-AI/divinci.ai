@@ -47,23 +47,11 @@ class GDPRCompliance {
   }
 
   async detectUserLocation() {
-    // Method 1: Try timezone-based detection first (privacy-friendly)
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const euTimezones = [
-      'Europe/London', 'Europe/Berlin', 'Europe/Paris', 'Europe/Rome', 
-      'Europe/Madrid', 'Europe/Amsterdam', 'Europe/Brussels', 'Europe/Vienna',
-      'Europe/Warsaw', 'Europe/Prague', 'Europe/Budapest', 'Europe/Stockholm',
-      'Europe/Helsinki', 'Europe/Copenhagen', 'Europe/Athens', 'Europe/Dublin',
-      'Europe/Luxembourg', 'Europe/Zagreb', 'Europe/Sofia', 'Europe/Bucharest'
-    ];
-    
-    if (euTimezones.some(tz => timezone.includes(tz))) {
-      this.isEUUser = true;
-      return;
-    }
-
-    // If not EU timezone, assume non-EU (most websites do this)
-    this.isEUUser = false;
+    // Source of truth lives in templates/base.html (inline head script) so
+    // the Instantly gating script and this module agree on the same list.
+    this.isEUUser = typeof window.divinciIsEUUser === 'function'
+      ? window.divinciIsEUUser()
+      : false;
   }
 
   loadSavedConsent() {
@@ -96,7 +84,14 @@ class GDPRCompliance {
       this.consentGiven = true;
       this.analyticsEnabled = preferences.analytics;
       this.marketingEnabled = preferences.marketing;
-      
+
+      if (preferences.marketing) {
+        try {
+          window.dispatchEvent(new CustomEvent('divinci:marketing-consent-granted'));
+        } catch (e) {
+          // Event dispatch failed silently
+        }
+      }
     } catch (error) {
       // Consent saving failed silently
     }
@@ -405,17 +400,22 @@ class GDPRCompliance {
     // gtag('event', eventName, parameters);
   }
 
-  // Method to revoke consent (for privacy settings page)
+  // Method to revoke consent (for privacy settings page).
+  // Removes the marketing tag from DOM and forces a full page reload so any
+  // in-memory state from leadsy/trovo trackers is cleared. The cookie banner
+  // will reappear on reload because localStorage is now empty.
   revokeConsent() {
     localStorage.removeItem('divinci-gdpr-consent');
     this.consentGiven = false;
     this.analyticsEnabled = false;
     this.marketingEnabled = false;
-    
-    // Consent revoked
-    
-    // Show banner again
-    this.showCookieBanner();
+
+    const tag = document.getElementById('vtag-ai-js');
+    if (tag) tag.remove();
+
+    // Small delay so the localStorage write is committed before reload,
+    // and so the user sees a momentary acknowledgment before the page reloads.
+    setTimeout(() => { window.location.reload(); }, 100);
   }
 
   // Method to check if specific consent type is given

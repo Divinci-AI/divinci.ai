@@ -233,7 +233,7 @@ MTTR — Mean Time To Recovery — 압도적인 차이로, 적어도 LLM 시스�
 <strong>LLM-as-judge calibration.</strong> Zheng et al., <a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener"><em>Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</em></a> (NeurIPS 2023). 보정된 저지가 왜 필요한지, 그리고 슬라이스별 일치가 집계 일치보다 왜 더 중요한지에 대한 앵커. 옵저버의 분당 채점 루프는 이것에 의존합니다.
 </li>
 <li id="ref-2" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-<strong>vindex 가중치 인증.</strong> <a href="/ko/compliance/">Divinci 컴플라이언스 페이지</a>에 문서화되어 있으며 <a href="/ko/blog/validating-and-releasing-custom-lms-in-regulated-fields/">규제 분야 글</a>에서 단계별로 다룹니다. 자동 롤백 영수증의 `vindex_sha256_before/after` 필드는 감사인이 우리 로그를 신뢰하지 않고도 검증할 수 있는 암호학적 앵커입니다.
+<strong>vIndex 가중치 인증.</strong> <a href="/ko/compliance/">Divinci 컴플라이언스 페이지</a>에 문서화되어 있으며 <a href="/ko/blog/validating-and-releasing-custom-lms-in-regulated-fields/">규제 분야 글</a>에서 단계별로 다룹니다. 자동 롤백 영수증의 `vindex_sha256_before/after` 필드는 감사인이 우리 로그를 신뢰하지 않고도 검증할 수 있는 암호학적 앵커입니다.
 </li>
 <li id="ref-3" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
 <strong>Cloudflare 2022년 6월 장애.</strong> <a href="https://blog.cloudflare.com/cloudflare-outage-on-june-21-2022/" target="_blank" rel="noopener">Cloudflare outage on June 21, 2022</a>. "06:58: 근본 원인 발견 및 이해. 문제가 된 변경을 되돌리는 작업 시작… 07:42: 마지막 되돌리기 완료." 인프라 계층에서 되돌리는 데 44분이 걸렸으며, 부분적으로는 엔지니어들이 서로의 되돌리기를 덮어쓴 것이 원인이었습니다. "매니페스트 기반 스왑은 그런 실패 모드를 가질 수 없다"는 주장의 앵커입니다.

@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "divinci-ai",
+  "compatibility_date": "2026-05-26",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "playwright-report"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}

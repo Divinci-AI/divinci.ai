@@ -279,6 +279,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ get_url(path="css/variables.css") }}">
     <link rel="stylesheet" href="{{ get_url(path="css/style.css") }}">
+    <link rel="stylesheet" href="{{ get_url(path="css/divinci-motto.css") }}">
     <link rel="stylesheet" href="{{ get_url(path="css/mobile-fixes.css") }}?v={{ now() | date(format="%s") }}">
     <link rel="stylesheet" href="{{ get_url(path="css/divinci-chat-widget.css") }}">
     
@@ -492,7 +493,7 @@
         <span class="site-research-banner-label">{{ translations.banner.label | default(value='Latest research:') }}</span>
         <a href="/blog/when-the-circuit-dissolves/">{{ translations.banner.link | default(value='When the Circuit Dissolves →') }}</a>
         <span class="site-research-banner-sep" aria-hidden="true">·</span>
-        <a class="site-research-banner-secondary" href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">12 vindexes on <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/brand/huggingface/hf-logo.svg" alt="Hugging Face" class="site-research-banner-hf" width="256" height="256" loading="lazy"></a>
+        <a class="site-research-banner-secondary" href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">12 vIndexes on <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/brand/huggingface/hf-logo.svg" alt="Hugging Face" class="site-research-banner-hf" width="256" height="256" loading="lazy"></a>
       </div>
     </div>
     {% include "partials/header.html" %}
@@ -508,18 +509,15 @@
     <script defer src="{{ get_url(path="js/news-carousel.js") }}"></script>
 
     <!-- Divinci homepage free-chat widget (floating bubble). Bundle built by
-         `npm run build:chat` (esbuild, SDK inlined). Config via data-* attrs.
-         NOTE: data-turnstile-sitekey below is Cloudflare's ALWAYS-PASSES test
-         key — replace with the real PUBLIC site key for production, and point
-         data-api-base at https://api.divinci.app for prod (staging shown for
-         first dogfood; the homepage release lives on staging). -->
+         `npm run build:chat` (esbuild, SDK inlined). Public config from
+         config.toml [extra] — no API keys; freeChatGate is keyless in-browser. -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script defer id="divinci-chat-js"
         src="{{ get_url(path="js/divinci-chat.js") }}"
-        data-api-base="https://api.stage.divinci.app"
-        data-release-id="6a19515fd50388e017a251a3"
-        data-turnstile-sitekey="1x00000000000000000000AA"
-        data-signup-url="https://app.divinci.app"></script>
+        data-api-base="{{ config.extra.divinci_chat_api_base }}"
+        data-release-id="{{ config.extra.divinci_chat_release_id }}"
+        data-turnstile-sitekey="{{ config.extra.divinci_chat_turnstile_sitekey }}"
+        data-signup-url="{{ config.extra.divinci_chat_signup_url }}"></script>
 
     {% block extra_scripts %}{% endblock %}
 </body>

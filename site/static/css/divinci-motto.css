@@ -1,0 +1,279 @@
+/* Divinci motto — liberum intelligentia */
+
+.divinci-motto__inner {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: 0.28em;
+  /* Force LTR word-box order so the Latin "liberum intelligentia" never
+     reverses on RTL pages (e.g. /ar/). RTL-language translations are authored
+     in the matching box order so they still read naturally (see ar.json). */
+  direction: ltr;
+}
+
+.divinci-motto__word {
+  display: inline-block;
+  position: relative;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.divinci-motto__latin,
+.divinci-motto__en {
+  display: inline;
+  white-space: nowrap;
+  transition:
+    opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: var(--word-delay, 0ms);
+}
+
+/* Footer words: Latin sits in-flow, English overlays each word at the same
+   baseline. On hover both swap with the SAME motion as the header reveal —
+   blur + lift on the matching cubic-bezier, staggered per word via --word-delay
+   so the translation waves across left-to-right. */
+.divinci-motto--footer .divinci-motto__latin,
+.divinci-motto--footer .divinci-motto__en {
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--word-delay, 0ms);
+}
+
+.divinci-motto--footer .divinci-motto__en {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateY(3px);
+  pointer-events: none;
+}
+
+/* On hover the pair swaps which word holds the flow, so the shorter English
+   ("free intelligence") reads tightly instead of inheriting the wider Latin
+   word-box. The blur/lift/stagger above still animates the cross-fade. */
+.footer-brand-block:hover .divinci-motto__word .divinci-motto__latin,
+.footer-brand-block:focus-within .divinci-motto__word .divinci-motto__latin {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.footer-brand-block:hover .divinci-motto__word .divinci-motto__en,
+.footer-brand-block:focus-within .divinci-motto__word .divinci-motto__en {
+  position: static;
+}
+
+/* ── Footer: hover logo block + motto; tight English pairing ── */
+.footer-brand-block {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.footer-brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.footer-brand-name {
+  display: block;
+  line-height: 1.1;
+}
+
+.divinci-motto--footer {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #8a7d68;
+  margin: 0;
+  line-height: 1.35;
+  cursor: default;
+  letter-spacing: 0.02em;
+}
+
+.site-footer .divinci-motto--footer,
+.site-footer .divinci-motto--footer .divinci-motto__latin,
+.site-footer .divinci-motto--footer .divinci-motto__en {
+  color: inherit;
+}
+
+.footer-brand-block:hover .divinci-motto__latin,
+.footer-brand-block:focus-within .divinci-motto__latin {
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateY(-3px);
+}
+
+.footer-brand-block:hover .divinci-motto__en,
+.footer-brand-block:focus-within .divinci-motto__en {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* ── Header: absolute motto — no layout bounce ── */
+.logo-link {
+  position: relative;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+  position: relative;
+}
+
+.logo-name {
+  display: block;
+  /* Nudge the wordmark up a touch: the flex-column line-box (line-height 1.1)
+     makes it read smaller beside the 48px robot than the old inline span did. */
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.divinci-motto--header {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 3px);
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 0.28em;
+  direction: ltr; /* keep "liberum intelligentia" in order on RTL pages */
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: #8b7355;
+  line-height: 1.2;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(8px);
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.85s;
+}
+
+/* Invisible bridge keeps hover stable between wordmark and motto */
+.logo-link::after {
+  content: '';
+  position: absolute;
+  left: 3rem;
+  right: 0;
+  top: 55%;
+  bottom: -1.35rem;
+  pointer-events: auto;
+}
+
+.logo-link:hover .divinci-motto--header,
+.logo-link:focus-visible .divinci-motto--header {
+  opacity: 1;
+  visibility: visible;
+  filter: blur(0);
+  transform: translateY(0);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+.divinci-motto--header .divinci-motto__word {
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateY(3px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--word-delay, 0ms);
+}
+
+.logo-link:hover .divinci-motto--header .divinci-motto__word,
+.logo-link:focus-visible .divinci-motto--header .divinci-motto__word {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+.logo-link:hover .divinci-motto--header .divinci-motto__latin,
+.logo-link:focus-visible .divinci-motto--header .divinci-motto__latin {
+  animation: divinciMottoShimmer 2.8s ease-in-out infinite;
+}
+
+@keyframes divinciMottoShimmer {
+  0%,
+  100% {
+    text-shadow: 0 0 0 transparent;
+    color: #8b7355;
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(139, 115, 85, 0.35);
+    color: #6b8f7a;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .divinci-motto__latin,
+  .divinci-motto__en,
+  .divinci-motto--header,
+  .divinci-motto--header .divinci-motto__word {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
+  }
+
+  .footer-brand-block:hover .divinci-motto__latin,
+  .footer-brand-block:focus-within .divinci-motto__latin {
+    opacity: 0;
+    transform: none;
+    filter: none;
+  }
+
+  .footer-brand-block:hover .divinci-motto__en,
+  .footer-brand-block:focus-within .divinci-motto__en {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .logo-link:hover .divinci-motto--header,
+  .logo-link:focus-visible .divinci-motto--header {
+    opacity: 1;
+    visibility: visible;
+    filter: none;
+    transform: none;
+  }
+
+  .logo-link:hover .divinci-motto--header .divinci-motto__word,
+  .logo-link:focus-visible .divinci-motto--header .divinci-motto__word {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .divinci-motto--header {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+
+  .logo-link::after {
+    left: 2.5rem;
+    bottom: -1.2rem;
+  }
+}

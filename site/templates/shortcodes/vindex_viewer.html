@@ -1,5 +1,5 @@
 {#
-  vindex_viewer — embed the interactive LarQL vindex viewer.
+  vindex_viewer — embed the interactive LarQL vIndex viewer.
 
   Params:
     height    — iframe height in px (default 620)
@@ -37,12 +37,12 @@
     width="100%"
     height="{{ height | default(value=620) }}"
     style="display:block; border:none; background:#050510;"
-    title="LarQL Vindex Viewer — Interactive 3D transformer circuit visualization{% if _q %} ({{ _q }} search{% endif %}{% if _model %}, {{ _model }}{% endif %}{% if _q %}){% endif %}"
+    title="LarQL vIndex Viewer — Interactive 3D transformer circuit visualization{% if _q %} ({{ _q }} search{% endif %}{% if _model %}, {{ _model }}{% endif %}{% if _q %}){% endif %}"
     loading="lazy"
     allow="fullscreen"
   ></iframe>
   <div class="vindex-viewer-caption">
-    <span>LarQL Vindex Viewer v2 · drag to orbit · scroll to zoom{% if _q %} · highlighted: <strong>{{ _q }}</strong>{% endif %}{% if _view == "flat" %} · 2D circuit view{% endif %}</span>
+    <span>LarQL vIndex Viewer v2 · drag to orbit · scroll to zoom{% if _q %} · highlighted: <strong>{{ _q }}</strong>{% endif %}{% if _view == "flat" %} · 2D circuit view{% endif %}</span>
   </div>
   {% if show_cta == "true" %}
   <div class="vindex-viewer-cta">

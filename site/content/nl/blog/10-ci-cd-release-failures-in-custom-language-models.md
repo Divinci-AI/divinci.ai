@@ -233,14 +233,14 @@ Als je Divinci niet gebruikt en iets equivalents wilt bouwen, zijn de dragende s
 - **Een per-slice-gate** met drempels gedefinieerd door domeineigenaren, niet platformeigenaren. Dit is wat 4, 5, 6 vangbaar maakt. ([Fase 2](/nl/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-2-gate))
 - **Een canary met kwaliteitsmonitoring bij elk checkpoint**, niet alleen latency en 5xx. Dit is wat 8 vangbaar maakt en wat 9 en 10 *overleefbaar* maakt zodra ze productie raken. ([Fase 3](/nl/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-3-roll))
 - **Een continue observer** die echte productietraces door het actieve model scoort met dezelfde gekalibreerde judge die de gate aandreef. Dit is wat 9 en 10 vangbaar maakt. ([Fase 4](/nl/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/#stage-4-observe-rollback-and-the-receipt))
-- **Een ondertekend audit-bewijs voor elke beslissing.** Hash-chained, extern verankerbaar. Voor open-weights-modelbackings bedt het bewijs een [vindex-weight-attestation](/nl/compliance/) in die bewijst dat de actieve gewichten zijn wat het manifest registreerde. Voor closed-API-backings dekt het bewijs de beslissingsketen maar kan het geen weight-provenance claimen — en het audit trail zegt dat expliciet.
+- **Een ondertekend audit-bewijs voor elke beslissing.** Hash-chained, extern verankerbaar. Voor open-weights-modelbackings bedt het bewijs een [vIndex-weight-attestation](/nl/compliance/) in die bewijst dat de actieve gewichten zijn wat het manifest registreerde. Voor closed-API-backings dekt het bewijs de beslissingsketen maar kan het geen weight-provenance claimen — en het audit trail zegt dat expliciet.
 
 De stukken zijn individueel niet nieuw. Elk MLOps-platform heeft er een of twee van. De combinatie — slice-bewuste gate + productie-trace-observer + atomische rollback + bewijsbaar bonnetje — is het deel dat niemand anders in 2026 levert.
 
 ## Waar je hierna naartoe kunt
 
 - De begeleidende post — **[Een LLM-CI/CD-pipeline bouwen met Divinci AI](/nl/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/)** — behandelt de architectuur en de API.
-- De **[compliancepagina](/nl/compliance/)** documenteert het vindex-bewijsformaat dat onder elke release-beslissing zit en hoe het in kaart wordt gebracht op de EU AI Act, GDPR Artikel 17, HIPAA en NIST AI RMF.
+- De **[compliancepagina](/nl/compliance/)** documenteert het vIndex-bewijsformaat dat onder elke release-beslissing zit en hoe het in kaart wordt gebracht op de EU AI Act, GDPR Artikel 17, HIPAA en NIST AI RMF.
 - De **[AutoRAG-productpagina](/nl/autorag/)** behandelt de RAG-zijdige hallucinatiereductie die natuurlijk samengaat met de gekalibreerde judge die Gate-2 en de Fase-4-observer aandrijft.
 - De **[API-referentie](/nl/api/)** — elk commando dat in deze serie wordt gerefereerd is een echt endpoint.
 
@@ -264,7 +264,7 @@ Niet met infrastructuurmetrieken. Latency, 5xx-rate en tokengebruik vangen hedgi
 
 ### Welke audit trail-eisen gelden voor AI-modeldeployments?
 
-De EU AI Act, GDPR Artikel 17 (recht op vergetelheid), HIPAA en het NIST AI Risk Management Framework eisen allemaal dat organisaties records bijhouden van modelversies, evaluatieresultaten, goedkeuringsbeslissingen en rollouts. De impliciete eis onder alle vier is dat de records *verifieerbaar* moeten zijn — auditable betekent meer dan "we hebben een log." Divinci's vindex-receipts zijn hash-chained en extern anchorbaar, wat betekent dat een auditor de keten kan verifiëren zonder onze logs te vertrouwen. Voor open-weights modelbackings sluit het receipt ook een weight-attestation in; voor closed-API backings noteert het receipt expliciet dat weight provenance niet wordt geclaimd.
+De EU AI Act, GDPR Artikel 17 (recht op vergetelheid), HIPAA en het NIST AI Risk Management Framework eisen allemaal dat organisaties records bijhouden van modelversies, evaluatieresultaten, goedkeuringsbeslissingen en rollouts. De impliciete eis onder alle vier is dat de records *verifieerbaar* moeten zijn — auditable betekent meer dan "we hebben een log." Divinci's vIndex-receipts zijn hash-chained en extern anchorbaar, wat betekent dat een auditor de keten kan verifiëren zonder onze logs te vertrouwen. Voor open-weights modelbackings sluit het receipt ook een weight-attestation in; voor closed-API backings noteert het receipt expliciet dat weight provenance niet wordt geclaimd.
 
 ## Referenties
 
@@ -291,4 +291,4 @@ De EU AI Act, GDPR Artikel 17 (recht op vergetelheid), HIPAA en het NIST AI Risk
 
 ---
 
-*Volgende in deze serie:* **Custom LM's valideren en releasen in gereguleerde domeinen.** De pipeline hierboven is de architectuur. Het compliancepad is de praktijk van het gebruik ervan. EU AI Act, GDPR Artikel 17, HIPAA en NIST AI RMF — wat elk van een releaseproces vraagt, en welke vindex-bewijsvelden welke eis afdekken.
+*Volgende in deze serie:* **Custom LM's valideren en releasen in gereguleerde domeinen.** De pipeline hierboven is de architectuur. Het compliancepad is de praktijk van het gebruik ervan. EU AI Act, GDPR Artikel 17, HIPAA en NIST AI RMF — wat elk van een releaseproces vraagt, en welke vIndex-bewijsvelden welke eis afdekken.

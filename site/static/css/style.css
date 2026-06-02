@@ -1706,7 +1706,7 @@ body:not(.homepage) .site-footer::before {
 /* Column 1 (Brand Section - Left) - Darkest since it's on lightest background */
 body:not(.homepage) .footer-content .footer-section:nth-child(1) h3,
 body:not(.homepage) .footer-content .footer-section:nth-child(1) a,
-body:not(.homepage) .footer-content .footer-section:nth-child(1) .footer-logo span,
+body:not(.homepage) .footer-content .footer-section:nth-child(1) .footer-brand-name,
 body:not(.homepage) .footer-content .footer-section:nth-child(1) .footer-tagline {
   color: var(--color-bg-primary);
 }
@@ -1766,16 +1766,13 @@ body:not(.homepage) .privacy-settings-link:hover {
   color: #d4c4a0 !important; /* Warm gold hover for contrast against cream base */
 }
 
-.brand-section .footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+.footer-brand-block {
   margin-bottom: 1rem;
 }
 
 .footer-logo-link {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   text-decoration: none;
   color: inherit;
@@ -1787,20 +1784,17 @@ body:not(.homepage) .privacy-settings-link:hover {
   text-decoration: none;
 }
 
-.footer-logo-link span {
-  color: inherit;
-}
-
-.brand-section .footer-logo img {
-  height: 2rem;
-  width: auto;
-}
-
-.brand-section .footer-logo span {
+.footer-brand-name {
   font-family: 'Fraunces', serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--color-highlight-blue);
+}
+
+.footer-logo-link img {
+  height: 2rem;
+  width: auto;
+  flex-shrink: 0;
 }
 
 .footer-tagline {
@@ -3675,7 +3669,7 @@ body:not(.homepage) .privacy-settings-link:hover {
   }
   
   /* Make brand section more compact on mobile */
-  .footer-section:first-child .footer-logo span {
+  .footer-section:first-child .footer-brand-name {
     font-size: 1.1rem;
   }
   
@@ -3730,7 +3724,7 @@ body:not(.homepage) .privacy-settings-link:hover {
   .footer-section li,
   .footer-section li a,
   .footer-section ul li a,
-  .footer-logo span,
+  .footer-brand-name,
   .footer-tagline,
   body:not(.homepage) .footer-content .footer-section a,
   body:not(.homepage) .footer-content .footer-section li a {
@@ -5563,13 +5557,6 @@ body:not(.homepage) .privacy-settings-link:hover {
   font-weight: 600;
   color: #2d3c34;
   letter-spacing: -0.01em;
-  opacity: 0.85;
-  transition: opacity 0.18s ease, transform 0.18s ease;
-}
-
-.research-band-logos li:hover {
-  opacity: 1;
-  transform: translateY(-1px);
 }
 
 .research-band-logos li img {
@@ -5581,11 +5568,20 @@ body:not(.homepage) .privacy-settings-link:hover {
   filter: brightness(0) saturate(100%) invert(20%) sepia(28%) saturate(672%) hue-rotate(110deg) brightness(94%) contrast(88%);
 }
 
-/* Google and Microsoft: tint towards the dark forest green while retaining
-   subtle tonal variation between color segments. Skipping brightness(0) so
-   the original hues survive as gentle shade differences, not flat color. */
+/* Microsoft (multi-color wordmark): tint towards dark forest green while
+   retaining subtle tonal variation. Skipping brightness(0) so original hues
+   survive as gentle shade differences, not flat color. */
 .research-band-logos li.research-band-logo-brand-color img {
   filter: saturate(60%) sepia(80%) hue-rotate(110deg) brightness(72%) contrast(90%);
+}
+
+/* Gemma uses fine line art; a slightly larger canvas + contrast keeps visual
+   weight even with the solid-fill logos beside it. */
+.research-band-logos li.research-band-logo-gemma img {
+  height: 28px;
+  width: 28px;
+  filter: brightness(0) saturate(100%) invert(18%) sepia(28%) saturate(720%)
+    hue-rotate(110deg) brightness(98%) contrast(98%);
 }
 
 /* OpenAI ships as a wider wordmark — give it a wider canvas so it doesn't

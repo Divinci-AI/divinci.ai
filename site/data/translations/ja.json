@@ -228,7 +228,12 @@
     "support": "サポート",
     "privacy_settings": "プライバシー設定",
     "cookie_preferences": "Cookieの設定",
-    "cookie_policy": "Cookieポリシー"
+    "cookie_policy": "Cookieポリシー",
+    "motto": {
+      "word_1": "自由な",
+      "word_2": "知性",
+      "phrase": "自由な知性"
+    }
   },
   "language_switcher": {
     "current_language": "日本語",
@@ -651,26 +656,26 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "vindex + LarQL を搭載",
+      "eyebrow": "vIndex + LarQL を搭載",
       "heading": "コンプライアンス、領収書付き。",
-      "tagline": "ほとんどの「AIコンプライアンス」はアクセスログとプロンプトレベルのガードレールで止まっています。Divinciはモデル内部に踏み込みます。すべてのエンティティ関連付けはクエリ可能な特徴量であり、すべての編集はポータブルで監査可能なパッチ — そして<strong>vindex</strong>は、規制当局がまもなく要求し始める技術文書アーティファクトです。",
+      "tagline": "ほとんどの「AIコンプライアンス」はアクセスログとプロンプトレベルのガードレールで止まっています。Divinciはモデル内部に踏み込みます。すべてのエンティティ関連付けはクエリ可能な特徴量であり、すべての編集はポータブルで監査可能なパッチ — そして<strong>vIndex</strong>は、規制当局がまもなく要求し始める技術文書アーティファクトです。",
       "cta_primary": "コンプライアンス担当に相談 →",
       "cta_secondary": "ライブvindexを見る"
     },
     "mapping": {
       "heading": "規制の要求事項 · LarQLが提供するもの",
-      "subheading": "同じアーティファクト — vindex — が、Divinciの顧客が直面する4つの主要なAI規制において、透明性、監督、文書化、消去の要件すべてに応えます。",
+      "subheading": "同じアーティファクト — vIndex — が、Divinciの顧客が直面する4つの主要なAI規制において、透明性、監督、文書化、消去の要件すべてに応えます。",
       "th_regulation": "規制",
       "th_requirement": "要件",
       "th_competitors": "競合の提供内容",
-      "th_larql": "LarQL/vindex の提供内容",
+      "th_larql": "LarQL/vIndex の提供内容",
       "rows": [
         {
           "reg_label": "EU AI法 §13",
           "reg_topic": "透明性",
           "requirement": "「ユーザーが出力を解釈できる十分な透明性」",
           "competitors": "モデルカード、散文的なシステム記述",
-          "larql": "vindexはクエリ可能な透明性アーティファクトそのもの — 事実を担うすべての特徴量を <code>(layer, feature, gate_score)</code> で識別"
+          "larql": "vIndexはクエリ可能な透明性アーティファクトそのもの — 事実を担うすべての特徴量を <code>(layer, feature, gate_score)</code> で識別"
         },
         {
           "reg_label": "EU AI法 §14",
@@ -712,13 +717,13 @@
     "receipt": {
       "heading": "「領収書」とは実際にどのようなものか",
       "para_1": "LarQLパッチはSHA-256チェックサム付きのポータブルJSONファイルです。適用して事実を抑制し、削除すればモデルをビット単位で復元します。パッチは監査ログそのもの — オペレーター、規制当局、下流の利用者が同じ操作を独立して検証できます。",
-      "para_2": "以下:私たちが公開テストスイートで提供している実際のGate-3パッチで、実物のGemma 4 E2B vindex上で「Paris→首都」関連付けの抑制と復元が、測定可能かつ再現可能な効果を持つことを示しています。"
+      "para_2": "以下:私たちが公開テストスイートで提供している実際のGate-3パッチで、実物のGemma 4 E2B vIndex上で「Paris→首都」関連付けの抑制と復元が、測定可能かつ再現可能な効果を持つことを示しています。"
     },
     "cta_band": {
       "heading": "証明できるコンプライアンス。あらゆるオープントランスフォーマー上で。",
       "tagline": "Gemma、Qwen、Llama、Mistral、OpenAI MoE、Microsoft 1-bit にわたり、現在8つのvindexを公開中。あなたのモデルを持ち込んでください — 私たちが領収書を構築します。",
       "cta_primary": "コンプライアンスレビューを予約 →",
-      "cta_secondary": "Hugging Face で vindex を閲覧"
+      "cta_secondary": "Hugging Face で vIndex を閲覧"
     }
   },
   "about": {

@@ -259,7 +259,7 @@ judge:     { sha: d8e21…, rubric: eval/rubrics/v7.yaml }
 dataset:   { sha: a90b1…, file:   eval/datasets/golden-2026-04.jsonl }
 ```
 
-Quando un run CI pubblica un punteggio, il punteggio è taggato con quell'hash del manifest. Quando un punteggio si muove, la domanda "quale input si è mosso" ha una risposta diretta: diffa il manifest, e lo strato che ha fatto scattare ti dice quale dimensione guardare per prima. Questo è il loop che la [pipeline a quattro stadi del post 1](/it/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) e la [ricevuta vindex del post 4](/it/blog/validating-and-releasing-custom-lms-in-regulated-fields/) chiudono insieme: il manifest è la primitiva di audit verso cui tutti e otto questi post, in inquadrature diverse, si sono diretti.
+Quando un run CI pubblica un punteggio, il punteggio è taggato con quell'hash del manifest. Quando un punteggio si muove, la domanda "quale input si è mosso" ha una risposta diretta: diffa il manifest, e lo strato che ha fatto scattare ti dice quale dimensione guardare per prima. Questo è il loop che la [pipeline a quattro stadi del post 1](/it/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) e la [ricevuta vIndex del post 4](/it/blog/validating-and-releasing-custom-lms-in-regulated-fields/) chiudono insieme: il manifest è la primitiva di audit verso cui tutti e otto questi post, in inquadrature diverse, si sono diretti.
 
 ## Cosa questo non risolve
 
@@ -276,13 +276,13 @@ Questo è il post 8 di 8. L'arco completo:
 1. [Come costruire una pipeline CI/CD per LLM con Divinci AI](/it/blog/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai/) — la pipeline a quattro stadi (Register / Gate / Roll / Observe) all'interno della quale tutto il resto è vissuto.
 2. [10 fallimenti di release CI/CD nei modelli linguistici personalizzati](/it/blog/10-ci-cd-release-failures-in-custom-language-models/) — i modi di fallimento del 2026 con nome, ciascuno mappato sullo stadio che avrebbe dovuto catturarlo.
 3. [12 capacità di QA e release management per LLM](/it/blog/12-qa-and-release-management-capabilities-for-llms/) — la matrice di capacità e il Venn a tre campi che colloca Divinci rispetto alle alternative.
-4. [Validare e rilasciare LM personalizzati in campi regolamentati](/it/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — il deep-dive di compliance, la mappatura regolatore-a-stadio, le ricevute vindex.
+4. [Validare e rilasciare LM personalizzati in campi regolamentati](/it/blog/validating-and-releasing-custom-lms-in-regulated-fields/) — il deep-dive di compliance, la mappatura regolatore-a-stadio, le ricevute vIndex.
 5. [Pipeline CI/CD automatizzate per LLM con instant rollback](/it/blog/automated-llm-ci-cd-pipelines-with-instant-rollback/) — lo strato operativo, lo spettro di automazione, la ricevuta di auto-rollback.
 6. [Come diagnosticare i fallimenti QA di LLM personalizzati in 7 step](/it/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) — l'albero decisionale diagnostico; il modello è la risposta giusta all'incirca un allarme su sette.
 7. [Test di regressione automatizzati per LLM personalizzati nel 2026](/it/blog/automated-regression-testing-for-custom-llms-in-2026/) — gate Spearman slice-aware, judge calibrati, replay di trace di produzione a circuito chiuso.
 8. **Questo post.** L'infrastruttura CI che rende trattabile tutto quanto sopra su ogni PR.
 
-I pezzi compongono: il [manifest](/it/api/) è la primitiva di audit, i gate sono lo strato di sicurezza, l'albero diagnostico è il loop di recupero, la [ricevuta vindex](/it/compliance/) è l'ancora esterna, e la torta a strati è ciò che rende l'intero sistema sostenibile su ogni commit. Se il tuo processo di release di LLM personalizzati non ha questi cinque elementi insieme, il gap è ciò di cui questi otto post hanno parlato.
+I pezzi compongono: il [manifest](/it/api/) è la primitiva di audit, i gate sono lo strato di sicurezza, l'albero diagnostico è il loop di recupero, la [ricevuta vIndex](/it/compliance/) è l'ancora esterna, e la torta a strati è ciò che rende l'intero sistema sostenibile su ogni commit. Se il tuo processo di release di LLM personalizzati non ha questi cinque elementi insieme, il gap è ciò di cui questi otto post hanno parlato.
 
 ## FAQ
 

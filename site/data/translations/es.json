@@ -226,7 +226,12 @@
     "support": "Soporte",
     "privacy_settings": "Configuración de Privacidad",
     "cookie_preferences": "Preferencias de Cookies",
-    "cookie_policy": "Política de Cookies"
+    "cookie_policy": "Política de Cookies",
+    "motto": {
+      "word_1": "inteligencia",
+      "word_2": "libre",
+      "phrase": "inteligencia libre"
+    }
   },
   "support": {
     "title": "Centro de Soporte",
@@ -1036,26 +1041,26 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Impulsado por vindex + LarQL",
+      "eyebrow": "Impulsado por vIndex + LarQL",
       "heading": "Cumplimiento, con un comprobante.",
-      "tagline": "La mayoría del \"cumplimiento de IA\" se queda en registros de acceso y barreras a nivel de prompt. Divinci entra en el modelo. Cada asociación de entidad es una característica consultable; cada edición es un parche portátil y auditable — y el <strong>vindex</strong> es el artefacto de documentación técnica que tu regulador está a punto de empezar a exigir.",
+      "tagline": "La mayoría del \"cumplimiento de IA\" se queda en registros de acceso y barreras a nivel de prompt. Divinci entra en el modelo. Cada asociación de entidad es una característica consultable; cada edición es un parche portátil y auditable — y el <strong>vIndex</strong> es el artefacto de documentación técnica que tu regulador está a punto de empezar a exigir.",
       "cta_primary": "Hablar con cumplimiento →",
-      "cta_secondary": "Ver un vindex en vivo"
+      "cta_secondary": "Ver un vIndex en vivo"
     },
     "mapping": {
       "heading": "Lo que exige la regulación · lo que ofrece LarQL",
-      "subheading": "El mismo artefacto — el vindex — responde a los requisitos de transparencia, supervisión, documentación y borrado en las cuatro principales regulaciones de IA que enfrentan los clientes de Divinci.",
+      "subheading": "El mismo artefacto — el vIndex — responde a los requisitos de transparencia, supervisión, documentación y borrado en las cuatro principales regulaciones de IA que enfrentan los clientes de Divinci.",
       "th_regulation": "Regulación",
       "th_requirement": "Requisito",
       "th_competitors": "Lo que ofrece la competencia",
-      "th_larql": "Lo que ofrece LarQL/vindex",
+      "th_larql": "Lo que ofrece LarQL/vIndex",
       "rows": [
         {
           "reg_label": "Ley de IA de la UE §13",
           "reg_topic": "Transparencia",
           "requirement": "\"Transparencia suficiente para permitir a los usuarios interpretar los resultados\"",
           "competitors": "Tarjetas de modelo, descripciones del sistema en prosa",
-          "larql": "El vindex ES un artefacto de transparencia consultable — cada característica portadora de hechos identificada por <code>(layer, feature, gate_score)</code>"
+          "larql": "El vIndex ES un artefacto de transparencia consultable — cada característica portadora de hechos identificada por <code>(layer, feature, gate_score)</code>"
         },
         {
           "reg_label": "Ley de IA de la UE §14",
@@ -1097,13 +1102,13 @@
     "receipt": {
       "heading": "Cómo es realmente un \"comprobante\"",
       "para_1": "Un parche LarQL es un archivo JSON portátil con suma de comprobación SHA-256. Aplícalo para suprimir un hecho; quítalo para restaurar el modelo bit por bit. El parche ES el registro de auditoría — operadores, reguladores y consumidores posteriores pueden verificar la misma operación de forma independiente.",
-      "para_2": "A continuación: el parche Gate-3 real que enviamos en nuestro paquete de pruebas público, mostrando la asociación París→capital suprimida y revertida con efecto medible y repetible en un vindex real de Gemma 4 E2B."
+      "para_2": "A continuación: el parche Gate-3 real que enviamos en nuestro paquete de pruebas público, mostrando la asociación París→capital suprimida y revertida con efecto medible y repetible en un vIndex real de Gemma 4 E2B."
     },
     "cta_band": {
       "heading": "Cumplimiento que puedes demostrar. En cualquier transformer abierto.",
-      "tagline": "Ocho vindexes publicados hoy en Gemma, Qwen, Llama, Mistral, OpenAI MoE y Microsoft 1-bit. Trae tu modelo — nosotros construiremos el comprobante.",
+      "tagline": "Ocho vIndexes publicados hoy en Gemma, Qwen, Llama, Mistral, OpenAI MoE y Microsoft 1-bit. Trae tu modelo — nosotros construiremos el comprobante.",
       "cta_primary": "Reservar revisión de cumplimiento →",
-      "cta_secondary": "Explorar vindexes en Hugging Face"
+      "cta_secondary": "Explorar vIndexes en Hugging Face"
     }
   }
 }

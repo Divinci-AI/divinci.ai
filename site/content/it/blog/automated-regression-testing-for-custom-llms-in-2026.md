@@ -309,9 +309,9 @@ Quando quei due punteggi divergono di più del gap-budget per-slice, il rilascio
 
 Il giudice che valuta la run offline è lo stesso giudice che valuta la run di replay. L'audit log registra entrambi i set di punteggi, entrambe le versioni del giudice, gli ID delle tracce riprodotte e il gap che ha fatto scattare il blocco. Il gap stesso è il segnale diagnostico più utile che abbiamo, ed è ciò che viene consegnato a chiunque prenda in carico [l'albero diagnostico del post 6](/it/blog/how-to-diagnose-custom-llm-qa-failures-in-7-steps/) successivamente.
 
-## Ancora il dataset aureo con una ricevuta vindex
+## Ancora il dataset aureo con una ricevuta vIndex
 
-Ogni punteggio nella suite è privo di significato se non puoi riprodurlo più tardi. Hashiamo il dataset aureo ad ogni rilascio e concateniamo quell'hash in una ricevuta vindex insieme allo SHA del modello, allo SHA del prompt, allo SHA del giudice e al record di calibrazione. La ricevuta è ancorabile esternamente — gli auditor possono riprodurre la nostra esatta run di regressione sei mesi dopo e verificare i punteggi che abbiamo dichiarato.
+Ogni punteggio nella suite è privo di significato se non puoi riprodurlo più tardi. Hashiamo il dataset aureo ad ogni rilascio e concateniamo quell'hash in una ricevuta vIndex insieme allo SHA del modello, allo SHA del prompt, allo SHA del giudice e al record di calibrazione. La ricevuta è ancorabile esternamente — gli auditor possono riprodurre la nostra esatta run di regressione sei mesi dopo e verificare i punteggi che abbiamo dichiarato.
 
 ```json
 {
@@ -324,11 +324,11 @@ Ogni punteggio nella suite è privo di significato se non puoi riprodurlo più t
   "scores": { "aggregate": 0.872, "by_slice": { "/* … */": "/* scalari per-slice */" } },
   "replay": { "trace_window_days": 14, "n_traces": 8430, "max_gap": 0.018 },
   "vindex_anchor": "sha256:f0bfd2…",
-  "verifiable_at": "https://vindex.divinci.ai/rel_3f1a-2026-05-26"
+  "verifiable_at": "https://vIndex.divinci.ai/rel_3f1a-2026-05-26"
 }
 ```
 
-**Avvertenza open-weights.** La ricevuta sopra porta la provenienza dei pesi solo quando il modello è open-weights — vindex ancora i byte effettivi dei pesi. Per i modelli supportati da API closed (modelli gestiti OpenAI / Anthropic / Google), la ricevuta porta comunque la catena decisionale — ogni punteggio dei gate, ogni risultato del giudice, il record di calibrazione — ma il campo dei pesi è vuoto, e non puoi verificare indipendentemente l'artefatto del modello. Lo diciamo nella ricevuta e nella [documentazione di compliance](/it/compliance/) in modo che gli auditor non abbiano una falsa impressione. I rilasci che beneficiano di più di una catena vindex completa sono quelli in cui controlli i pesi.
+**Avvertenza open-weights.** La ricevuta sopra porta la provenienza dei pesi solo quando il modello è open-weights — vIndex ancora i byte effettivi dei pesi. Per i modelli supportati da API closed (modelli gestiti OpenAI / Anthropic / Google), la ricevuta porta comunque la catena decisionale — ogni punteggio dei gate, ogni risultato del giudice, il record di calibrazione — ma il campo dei pesi è vuoto, e non puoi verificare indipendentemente l'artefatto del modello. Lo diciamo nella ricevuta e nella [documentazione di compliance](/it/compliance/) in modo che gli auditor non abbiano una falsa impressione. I rilasci che beneficiano di più di una catena vIndex completa sono quelli in cui controlli i pesi.
 
 ## Una tempistica di implementazione in quattro fasi che abbiamo effettivamente spedito
 
