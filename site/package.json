@@ -89,7 +89,7 @@
     "pre-push": "npm run test:e2e:safe && npm run style:check"
   },
   "dependencies": {
-    "@divinci-ai/client": "^0.4.1",
+    "@divinci-ai/client": "^0.4.3",
     "mimetext": "^3.0.27"
   },
   "devDependencies": {

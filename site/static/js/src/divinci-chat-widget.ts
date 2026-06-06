@@ -132,7 +132,7 @@ class DivinciChatWidget {
   private panel!: HTMLDivElement;
   private bubble!: HTMLButtonElement;
   private body!: HTMLDivElement;
-  private messages: Array<{ role: "user" | "assistant"; text: string; pending?: boolean }> = [];
+  private messages: Array<{ role: "user" | "assistant"; text: string; pending?: boolean; rating?: -1 | 1; ratingDone?: boolean; isError?: boolean }> = [];
 
   constructor(cfg: WidgetConfig) {
     this.cfg = cfg;
@@ -284,6 +284,10 @@ class DivinciChatWidget {
   private renderChat(): void {
     const wrap = el("div", "dvc-chat");
     const list = el("div", "dvc-messages");
+    // Gate transcript index of the current assistant reply. The SDK's signed
+    // transcript grows by one per SUCCESSFUL send, so the k-th completed,
+    // non-error assistant message maps to transcript index k.
+    let gateIdx = -1;
     for (const m of this.messages) {
       const node = el("div", `dvc-msg dvc-msg-${m.role}`);
       if (m.pending) {
@@ -298,6 +302,11 @@ class DivinciChatWidget {
         node.textContent = m.text; // user input → textContent, never innerHTML
       }
       list.appendChild(node);
+      // Thumbs/feedback only on real (completed, non-error) assistant replies.
+      if (m.role === "assistant" && !m.pending && !m.isError) {
+        gateIdx += 1;
+        list.appendChild(this.buildRating(m, gateIdx));
+      }
     }
     if (this.messages.length === 0) {
       list.appendChild(el("div", "dvc-msg dvc-msg-assistant", "👋 Ask me anything about Divinci — custom AIs on your own data, our API/SDK/CLI/MCP, voice, or TrustBench."));
@@ -329,12 +338,79 @@ class DivinciChatWidget {
       } catch (e) {
         this.messages.pop(); // drop the "…" placeholder
         if (this.isQuota(e)) { this.setView("exhausted"); return; }
-        this.messages.push({ role: "assistant", text: this.errText(e, "Something went wrong. Please try again.") });
+        this.messages.push({ role: "assistant", text: this.errText(e, "Something went wrong. Please try again."), isError: true });
         this.render();
       }
     };
     send.addEventListener("click", submit);
     input.addEventListener("keydown", (ev) => { if ((ev as KeyboardEvent).key === "Enter") submit(); });
+  }
+
+  /**
+   * Thumbs-up/down + optional feedback for one assistant reply. Routes through
+   * the new SDK method client.freeChatGate.submitFeedback(messageIndex, …),
+   * which reuses the gate's signed transcript. Positive votes are a local ack
+   * (the server's negative-only gate would no-op them); thumbs-down reveals an
+   * optional "what was wrong?" box and submits sentiment -1 + the text.
+   */
+  private buildRating(
+    m: { rating?: -1 | 1; ratingDone?: boolean },
+    gateIdx: number,
+  ): HTMLElement {
+    const row = el("div", "dvc-rating");
+    if (m.ratingDone) {
+      const done = el("span", "dvc-rating-thanks");
+      done.textContent = "Thanks for your feedback";
+      row.appendChild(done);
+      return row;
+    }
+    const up = el("button", "dvc-thumb" + (m.rating === 1 ? " dvc-thumb-on" : ""), "👍");
+    const down = el("button", "dvc-thumb" + (m.rating === -1 ? " dvc-thumb-on" : ""), "👎");
+    up.type = "button";
+    down.type = "button";
+    row.append(up, down);
+
+    up.addEventListener("click", () => {
+      // Positive votes are a server-side no-op for the gate (negative-only),
+      // so this is a local acknowledgement only.
+      m.rating = 1;
+      this.render();
+    });
+
+    down.addEventListener("click", () => {
+      m.rating = -1;
+      // Reveal the optional box inline (no full re-render, so typed text isn't
+      // lost). Idempotent — a second click won't stack boxes.
+      if (row.querySelector(".dvc-feedback-box")) return;
+      down.classList.add("dvc-thumb-on");
+      up.classList.remove("dvc-thumb-on");
+      const box = el("div", "dvc-feedback-box");
+      const ta = el("textarea", "dvc-feedback-input");
+      ta.placeholder = "What was wrong? (optional)";
+      ta.maxLength = 2000;
+      const submitBtn = el("button", "dvc-feedback-submit", "Send feedback");
+      submitBtn.type = "button";
+      box.append(ta, submitBtn);
+      row.appendChild(box);
+      ta.focus();
+      submitBtn.addEventListener("click", async () => {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+        try {
+          await this.client.freeChatGate.submitFeedback(gateIdx, {
+            sentiment: -1,
+            feedback: ta.value.trim() || undefined,
+          });
+          m.ratingDone = true;
+          this.render();
+        } catch {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send feedback";
+        }
+      });
+    });
+
+    return row;
   }
 
   private renderExhausted(): void {
