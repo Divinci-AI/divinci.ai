@@ -489,8 +489,8 @@ template = "feature.html"
 <h3>Embed Client</h3>
 </div>
 <div class="pkg-name">embed-script.js</div>
-<p>Drop-in chat widget for any website. White-label customization, conversation starters, RAG context display, and product recommendations.</p>
-<div class="install-cmd">&lt;script src="https://assets.divinci.app/embed-script.js"&gt;&lt;/script&gt;</div>
+<p>Drop-in chat widget for any website. White-label customization, conversation starters, RAG context display, product recommendations, and message feedback (thumbs up/down). Opt into ratings with <code>data-message-feedback="true"</code> (or <code>new DivinciChat({ messageFeedback: true })</code>).</p>
+<div class="install-cmd">&lt;script src="https://assets.divinci.app/embed-script.js" data-message-feedback="true"&gt;&lt;/script&gt;</div>
 <a href="https://sdk.divinci.ai" class="card-link" target="_blank">View reference &rarr;</a>
 </div>
 
@@ -559,7 +559,10 @@ template = "feature.html"
 <span class="comment">// Stream a response</span>
 <span class="keyword">for await</span> (<span class="keyword">const</span> chunk <span class="keyword">of</span> client.chat.<span class="func">stream</span>(<span class="string">"Tell me about your products"</span>)) {
   process.stdout.<span class="func">write</span>(chunk.content);
-}</pre>
+}
+
+<span class="comment">// Thumbs up/down + feedback on an assistant reply</span>
+<span class="keyword">await</span> client.chat.<span class="func">submitMessageFeedback</span>(chatId, messageId, { sentiment: -<span class="number">1</span>, feedback: <span class="string">"missed the warranty terms"</span> });</pre>
 </div>
 
 <div class="code-block">
