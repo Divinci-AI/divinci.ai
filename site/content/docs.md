@@ -458,7 +458,7 @@ template = "feature.html"
 <div class="pkg-name">@divinci-ai/server</div>
 <p>Full Node.js platform access — workspaces, releases, RAG operations, API key management, and x402 blockchain payments.</p>
 <div class="install-cmd">npm install @divinci-ai/server</div>
-<a href="https://sdk.divinci.ai" class="card-link" target="_blank">View reference &rarr;</a>
+<a href="https://sdk.divinci.ai/server/overview" class="card-link" target="_blank">View reference &rarr;</a>
 </div>
 
 <div class="tool-card" id="client-sdk">
@@ -469,7 +469,7 @@ template = "feature.html"
 <div class="pkg-name">@divinci-ai/client</div>
 <p>Browser SDK for headless chat integration. Streaming responses, RAG context bubbles, thread management, and external user auth.</p>
 <div class="install-cmd">npm install @divinci-ai/client</div>
-<a href="https://sdk.divinci.ai" class="card-link" target="_blank">View reference &rarr;</a>
+<a href="https://sdk.divinci.ai/client/overview" class="card-link" target="_blank">View reference &rarr;</a>
 </div>
 
 <div class="tool-card" id="mcp-sdk">
@@ -480,7 +480,7 @@ template = "feature.html"
 <div class="pkg-name">@divinci-ai/mcp</div>
 <p>Model Context Protocol integration for Claude Desktop, Cursor, and other AI assistants. SSE transport, tool invocation, and x402 payments.</p>
 <div class="install-cmd">npm install @divinci-ai/mcp</div>
-<a href="https://sdk.divinci.ai" class="card-link" target="_blank">View reference &rarr;</a>
+<a href="https://sdk.divinci.ai/mcp/overview" class="card-link" target="_blank">View reference &rarr;</a>
 </div>
 
 <div class="tool-card" id="embed-client">
@@ -489,9 +489,9 @@ template = "feature.html"
 <h3>Embed Client</h3>
 </div>
 <div class="pkg-name">embed-script.js</div>
-<p>Drop-in chat widget for any website. White-label customization, conversation starters, RAG context display, product recommendations, and message feedback (thumbs up/down). Opt into ratings with <code>data-message-feedback="true"</code> (or <code>new DivinciChat({ messageFeedback: true })</code>).</p>
-<div class="install-cmd">&lt;script src="https://assets.divinci.app/embed-script.js" data-message-feedback="true"&gt;&lt;/script&gt;</div>
-<a href="https://sdk.divinci.ai" class="card-link" target="_blank">View reference &rarr;</a>
+<p>Drop-in chat widget for any website. White-label customization, conversation starters, RAG context display, product recommendations, and message feedback (thumbs up/down). Opt into ratings with <code>message-feedback="true"</code> (or <code>new DivinciChat({ messageFeedback: true })</code>).</p>
+<div class="install-cmd">&lt;script src="https://assets.divinci.app/embed-script.js" divinci-release-id="rel_your-release-id" message-feedback="true"&gt;&lt;/script&gt;</div>
+<a href="https://sdk.divinci.ai/embed/overview" class="card-link" target="_blank">View reference &rarr;</a>
 </div>
 
 <div class="tool-card">
