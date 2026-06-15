@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="100%" style="max-width:900px;height:auto;font-family:'DM Sans',-apple-system,sans-serif;">
+  <rect x="0" y="0" width="900" height="420" fill="#faf8f5"/>
+  <text x="450" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1e3a2b">Headroom compression scales with context size</text>
+  <text x="450" y="68" text-anchor="middle" font-size="15" fill="#6b6257">Token reduction on prose, measured on the live staging sidecar. Below ~300 tokens it passes through.</text>
+  <line x1="120" y1="340" x2="850" y2="340" stroke="#b8a080" stroke-width="2"/>
+  <line x1="120" y1="110" x2="120" y2="340" stroke="#b8a080" stroke-width="2"/>
+  <text x="60" y="120" text-anchor="middle" font-size="13" fill="#6b6257">50%</text>
+  <text x="60" y="225" text-anchor="middle" font-size="13" fill="#6b6257">25%</text>
+  <text x="60" y="345" text-anchor="middle" font-size="13" fill="#6b6257">0%</text>
+  <line x1="120" y1="225" x2="850" y2="225" stroke="#e5ddd1" stroke-width="1"/>
+  <line x1="120" y1="120" x2="850" y2="120" stroke="#e5ddd1" stroke-width="1"/>
+  <text x="40" y="225" text-anchor="middle" font-size="14" fill="#2d5a4f" transform="rotate(-90 40 225)">token reduction</text>
+  <rect x="180" y="338" width="120" height="2" fill="#a04848"/>
+  <text x="240" y="332" text-anchor="middle" font-size="17" font-weight="700" fill="#a04848">0%</text>
+  <text x="240" y="362" text-anchor="middle" font-size="14" fill="#3a342c">307 tok</text>
+  <text x="240" y="382" text-anchor="middle" font-size="12" fill="#a04848">passthrough</text>
+  <rect x="340" y="224" width="120" height="116" rx="3" fill="#2d5a4f"/>
+  <text x="400" y="216" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">27.7%</text>
+  <text x="400" y="362" text-anchor="middle" font-size="14" fill="#3a342c">596 tok</text>
+  <rect x="500" y="219" width="120" height="121" rx="3" fill="#2d5a4f"/>
+  <text x="560" y="211" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">28.9%</text>
+  <text x="560" y="362" text-anchor="middle" font-size="14" fill="#3a342c">1,174 tok</text>
+  <rect x="660" y="162" width="120" height="178" rx="3" fill="#1e3a2b"/>
+  <text x="720" y="154" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">42.4%</text>
+  <text x="720" y="362" text-anchor="middle" font-size="14" fill="#3a342c">2,330 tok</text>
+  <text x="450" y="406" text-anchor="middle" font-size="13" fill="#6b6257">context size (tokens) — bigger context, more aggressive compression</text>
+</svg>
