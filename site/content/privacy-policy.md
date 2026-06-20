@@ -72,13 +72,14 @@ Our Services integrate the following third-party services, each with their own p
 
 ### 2.8 Divinci Local Inference Browser Extension
 
-We publish an optional Chrome extension, **Divinci Local Inference**, that runs Google's Gemma 4 model **entirely on your own device** via WebGPU, so chat.divinci.app can offer a local, no-API-cost model option. Its privacy posture is deliberately minimal:
+We publish an optional Chrome extension, **Divinci Local Inference**, that runs Google's Gemma 4 model **on your own device** via WebGPU — usable as an on-page assistant on any site, and as a local, no-API-cost model option for chat.divinci.app. Its privacy posture, in brief:
 
-- **No data collection.** The extension has no analytics, no telemetry, and no remote logging.
-- **No browsing access.** It injects no content scripts and does not read, modify, or monitor the pages you visit. Its only declared permissions are `offscreen` (to host the WebGPU model) and `storage` (to remember your model preference); it requests no host permissions.
-- **Network access is limited to two destinations:** Hugging Face (`huggingface.co` and its CDN `cas-bridge.xethub.hf.co`) to download the model files on first use, subject to the [Hugging Face Privacy Policy](https://huggingface.co/privacy); and same-machine message passing with chat.divinci.app (and our staging/development origins), which is restricted by the extension's `externally_connectable` allowlist — no other website can connect to it.
-- **Your chat messages stay on your device.** When chat.divinci.app sends a message to the extension for inference, the text is processed by the local model and the response is streamed back. The extension does not log, store, transmit, or persist these messages anywhere outside the model's transient on-device computation.
+- **Local-only by default.** Your chats with the on-device model are computed on your GPU and are not logged, stored, or transmitted by the extension. When you are not signed in, the extension sends nothing about your browsing to Divinci.
+- **Optional signed-in features.** If you sign in to your Divinci account, the extension can: receive your basic profile (name, email, avatar) at sign-in; while the side panel is open, send a trimmed page address (origin + path; query/fragment removed) plus a one-way hash of the page's visible text to check Divinci's public-web knowledge index (the page's **content is not sent**, sensitive sites are skipped, and nothing is sent when the panel is closed); and, for page-aware answers or account-mode chat, send your chat message to Divinci. You can turn these off in **Advanced settings → Privacy**.
+- **No selling, no ads, no cross-site tracking.**
 - **Open source.** The extension is Apache-2.0 licensed; source is available at [github.com/Divinci-AI/gemma-gem](https://github.com/Divinci-AI/gemma-gem).
+
+For the full, extension-specific policy — including exactly what each feature sends and your privacy controls — see the [Divinci Local Inference Privacy Policy](/local-inference-privacy/).
 
 ## 3. Legal Basis for Processing (GDPR)
 
