@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470" width="100%" style="max-width:920px;height:auto;font-family:'DM Sans',-apple-system,sans-serif;">
+<rect x="0" y="0" width="920" height="470" fill="#faf8f5"/>
+<text x="460.0" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1e3a2b">Parse time: LiteParse vs OpenParse (same PDF)</text>
+<text x="460.0" y="68" text-anchor="middle" font-size="15" fill="#6b6257">Seconds to parse, identical prod source files. Lower is better. Single warm run.</text>
+<line x1="130" y1="370.0" x2="880" y2="370.0" stroke="#e5ddd1" stroke-width="1"/>
+<text x="116" y="374.0" text-anchor="end" font-size="13" fill="#6b6257">0s</text>
+<line x1="130" y1="332.9" x2="880" y2="332.9" stroke="#e5ddd1" stroke-width="1"/>
+<text x="116" y="336.9" text-anchor="end" font-size="13" fill="#6b6257">10s</text>
+<line x1="130" y1="295.7" x2="880" y2="295.7" stroke="#e5ddd1" stroke-width="1"/>
+<text x="116" y="299.7" text-anchor="end" font-size="13" fill="#6b6257">20s</text>
+<line x1="130" y1="258.6" x2="880" y2="258.6" stroke="#e5ddd1" stroke-width="1"/>
+<text x="116" y="262.6" text-anchor="end" font-size="13" fill="#6b6257">30s</text>
+<line x1="130" y1="221.4" x2="880" y2="221.4" stroke="#e5ddd1" stroke-width="1"/>
+<text x="116" y="225.4" text-anchor="end" font-size="13" fill="#6b6257">40s</text>
+<line x1="130" y1="184.3" x2="880" y2="184.3" stroke="#e5ddd1" stroke-width="1"/>
+<text x="116" y="188.3" text-anchor="end" font-size="13" fill="#6b6257">50s</text>
+<line x1="130" y1="147.1" x2="880" y2="147.1" stroke="#e5ddd1" stroke-width="1"/>
+<text x="116" y="151.1" text-anchor="end" font-size="13" fill="#6b6257">60s</text>
+<line x1="130" y1="110.0" x2="880" y2="110.0" stroke="#e5ddd1" stroke-width="1"/>
+<text x="116" y="114.0" text-anchor="end" font-size="13" fill="#6b6257">70s</text>
+<line x1="130" y1="370" x2="880" y2="370" stroke="#b8a080" stroke-width="2"/>
+<line x1="130" y1="110" x2="130" y2="370" stroke="#b8a080" stroke-width="2"/>
+<text x="40" y="240.0" text-anchor="middle" font-size="14" fill="#2d5a4f" transform="rotate(-90 40 240.0)">parse time (s)</text>
+<rect x="195.5" y="305.7" width="34" height="64.3" rx="2" fill="#a04848"/>
+<text x="212.5" y="298.7" text-anchor="middle" font-size="13" font-weight="700" fill="#a04848">17.3s</text>
+<rect x="155.5" y="368.5" width="34" height="1.5" rx="2" fill="#2d5a4f"/>
+<text x="172.5" y="361.5" text-anchor="middle" font-size="13" font-weight="700" fill="#2d5a4f">0.4s</text>
+<text x="192.5" y="392.0" text-anchor="middle" font-size="12.5" fill="#3a342c">Preventing-</text>
+<text x="192.5" y="407.0" text-anchor="middle" font-size="12.5" fill="#3a342c">Cancer</text>
+<rect x="320.5" y="298.7" width="34" height="71.3" rx="2" fill="#a04848"/>
+<text x="337.5" y="291.7" text-anchor="middle" font-size="13" font-weight="700" fill="#a04848">19.2s</text>
+<rect x="280.5" y="368.4" width="34" height="1.6" rx="2" fill="#2d5a4f"/>
+<text x="297.5" y="361.4" text-anchor="middle" font-size="13" font-weight="700" fill="#2d5a4f">0.42s</text>
+<text x="317.5" y="392.0" text-anchor="middle" font-size="12.5" fill="#3a342c">Folate PP</text>
+<rect x="445.5" y="280.1" width="34" height="89.9" rx="2" fill="#a04848"/>
+<text x="462.5" y="273.1" text-anchor="middle" font-size="13" font-weight="700" fill="#a04848">24.2s</text>
+<rect x="405.5" y="368.3" width="34" height="1.7" rx="2" fill="#2d5a4f"/>
+<text x="422.5" y="361.3" text-anchor="middle" font-size="13" font-weight="700" fill="#2d5a4f">0.46s</text>
+<text x="442.5" y="392.0" text-anchor="middle" font-size="12.5" fill="#3a342c">Multivit PP</text>
+<rect x="570.5" y="241.9" width="34" height="128.1" rx="2" fill="#a04848"/>
+<text x="587.5" y="234.9" text-anchor="middle" font-size="13" font-weight="700" fill="#a04848">34.5s</text>
+<rect x="530.5" y="363.7" width="34" height="6.3" rx="2" fill="#2d5a4f"/>
+<text x="547.5" y="356.7" text-anchor="middle" font-size="13" font-weight="700" fill="#2d5a4f">1.7s</text>
+<text x="567.5" y="392.0" text-anchor="middle" font-size="12.5" fill="#3a342c">Immunity 2P</text>
+<rect x="695.5" y="224.0" width="34" height="146.0" rx="2" fill="#a04848"/>
+<text x="712.5" y="217.0" text-anchor="middle" font-size="13" font-weight="700" fill="#a04848">39.3s</text>
+<rect x="655.5" y="361.5" width="34" height="8.5" rx="2" fill="#2d5a4f"/>
+<text x="672.5" y="354.5" text-anchor="middle" font-size="13" font-weight="700" fill="#2d5a4f">2.3s</text>
+<text x="692.5" y="392.0" text-anchor="middle" font-size="12.5" fill="#3a342c">Fast Food</text>
+<text x="692.5" y="407.0" text-anchor="middle" font-size="12.5" fill="#3a342c">Genocide</text>
+<rect x="820.5" y="115.2" width="34" height="254.8" rx="2" fill="#a04848"/>
+<text x="837.5" y="108.2" text-anchor="middle" font-size="13" font-weight="700" fill="#a04848">68.6s</text>
+<rect x="780.5" y="346.2" width="34" height="23.8" rx="2" fill="#2d5a4f"/>
+<text x="797.5" y="339.2" text-anchor="middle" font-size="13" font-weight="700" fill="#2d5a4f">6.4s</text>
+<text x="817.5" y="392.0" text-anchor="middle" font-size="12.5" fill="#3a342c">Eat to Live</text>
+<text x="817.5" y="407.0" text-anchor="middle" font-size="12.5" fill="#3a342c">(405 pp)</text>
+<rect x="130" y="433" width="16" height="16" rx="2" fill="#2d5a4f"/><text x="152" y="446" font-size="14" fill="#3a342c">LiteParse (Rust/pdfium, in-process Node)</text>
+<rect x="460" y="433" width="16" height="16" rx="2" fill="#a04848"/><text x="482" y="446" font-size="14" fill="#3a342c">OpenParse (remote Python service)</text>
+</svg>
