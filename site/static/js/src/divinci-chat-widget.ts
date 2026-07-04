@@ -12,7 +12,7 @@
  */
 import { DivinciClient } from "@divinci-ai/client";
 
-type View = "loading" | "email" | "otp" | "chat" | "exhausted" | "error" | "blocked";
+type View = "loading" | "email" | "otp" | "chat" | "error" | "blocked";
 
 // Mirrors @divinci-ai/client's FreeChatGateMode — declared locally to avoid
 // depending on the SDK's exported type surface for one string union.
@@ -180,6 +180,10 @@ class DivinciChatWidget {
   private tsMount!: HTMLDivElement;
   private marketingConsent = false; // GDPR opt-in (optional); wired to CRM in #3
   private remaining: number | null = null;
+  // Quota exhausted: keep the conversation history on screen (per-tab memory,
+  // not persisted) and disable sending, rather than replacing the whole panel
+  // with a bare "sign up" screen that discards what was just discussed.
+  private exhausted = false;
   private errorMsg = "";
   // Learned async from getConfig(); null while unknown (treated as OTP mode,
   // the pre-existing default, so the widget degrades gracefully offline).
@@ -343,7 +347,6 @@ class DivinciChatWidget {
       case "email": return this.renderEmail();
       case "otp": return this.renderOtp();
       case "chat": return this.renderChat();
-      case "exhausted": return this.renderExhausted();
       case "error": return this.renderError();
       case "blocked": return this.renderBlocked();
     }
@@ -480,7 +483,7 @@ class DivinciChatWidget {
         list.appendChild(this.buildRating(m, gateIdx));
       }
     }
-    if (this.messages.length === 0) {
+    if (this.messages.length === 0 && !this.exhausted) {
       list.appendChild(el("div", "dvc-msg dvc-msg-assistant",
         "👋 Hi, I'm Divinci! Ask me anything — what the platform does, how to get started, our API/SDK/CLI/MCP, or how to connect Claude, Grok, Perplexity, or Mistral."));
       const starters = el("div", "dvc-starters");
@@ -491,6 +494,25 @@ class DivinciChatWidget {
       }
       list.appendChild(starters);
     }
+
+    // Quota exhausted: keep the conversation on screen, swap the input row
+    // for a sign-up CTA instead of wiping the panel down to a bare message.
+    if (this.exhausted) {
+      const exhaustedBox = el("div", "dvc-pad dvc-center");
+      exhaustedBox.appendChild(el("p", "dvc-lead", "You've used your free messages 🎉"));
+      exhaustedBox.appendChild(el("p", "dvc-muted", "Sign up free to keep chatting, build your own custom AI, and get an API key."));
+      const cta = el("a", "dvc-btn dvc-cta");
+      (cta as HTMLAnchorElement).href = this.cfg.signupUrl;
+      (cta as HTMLAnchorElement).target = "_blank";
+      (cta as HTMLAnchorElement).rel = "noopener";
+      cta.textContent = "Sign up free";
+      exhaustedBox.appendChild(cta);
+      wrap.append(list, exhaustedBox);
+      this.body.appendChild(wrap);
+      list.scrollTop = list.scrollHeight;
+      return;
+    }
+
     const form = el("div", "dvc-inputrow");
     const input = el("input", "dvc-input");
     input.type = "text"; input.placeholder = "Ask Divinci…";
@@ -528,10 +550,12 @@ class DivinciChatWidget {
         this.messages[this.messages.length - 1] = { role: "assistant", text: reply };
         this.remaining = remaining;
         this.render();
-        if (remaining <= 0) setTimeout(() => this.setView("exhausted"), 1500);
+        // Lock input in place after the reply renders, rather than replacing
+        // the whole panel — the conversation just had stays on screen.
+        if (remaining <= 0) setTimeout(() => { this.exhausted = true; this.render(); }, 1500);
       } catch (e) {
         this.messages.pop(); // drop the "…" placeholder
-        if (this.isQuota(e)) { this.setView("exhausted"); return; }
+        if (this.isQuota(e)) { this.exhausted = true; this.render(); return; }
         if (this.looksLikeBotRejection(e)) { this.setView("blocked"); return; }
         const msg = e instanceof Error && e.message === "turnstile-pending"
           ? "Still verifying — please try sending that again in a moment."
@@ -609,19 +633,6 @@ class DivinciChatWidget {
     });
 
     return row;
-  }
-
-  private renderExhausted(): void {
-    const wrap = el("div", "dvc-pad dvc-center");
-    wrap.appendChild(el("p", "dvc-lead", "You've used your free messages 🎉"));
-    wrap.appendChild(el("p", "dvc-muted", "Sign up free to keep chatting, build your own custom AI, and get an API key."));
-    const cta = el("a", "dvc-btn dvc-cta");
-    (cta as HTMLAnchorElement).href = this.cfg.signupUrl;
-    (cta as HTMLAnchorElement).target = "_blank";
-    (cta as HTMLAnchorElement).rel = "noopener";
-    cta.textContent = "Sign up free";
-    wrap.appendChild(cta);
-    this.body.appendChild(wrap);
   }
 
   private renderError(): void {
