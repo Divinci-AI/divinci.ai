@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="www-rag-hero">
+    <div class="container">
+        <h1 class="www-rag-title">{{ page.title }}</h1>
+        {% if page.description %}
+        <p class="www-rag-subtitle">{{ page.description }}</p>
+        {% endif %}
+        <div class="www-rag-stats" id="www-rag-stats" aria-live="polite"></div>
+        <input
+            type="search"
+            id="www-rag-search"
+            class="www-rag-search"
+            placeholder="Search by site name or topic…"
+            aria-label="Search the WWW-RAG directory"
+        />
+    </div>
+</section>
+
+<section class="www-rag-grid-section">
+    <div class="container">
+        <div id="www-rag-status" class="www-rag-status">Loading catalog…</div>
+        <div id="www-rag-grid" class="www-rag-grid"></div>
+    </div>
+</section>
+
+<style>
+.www-rag-hero {
+    padding: 96px 0 32px;
+    text-align: center;
+    background: linear-gradient(135deg, #0b0b14 0%, #161629 60%, #1f1f3a 100%);
+    color: #fff;
+}
+.www-rag-title {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    margin: 0 0 16px;
+    color: #fff !important;
+}
+.www-rag-subtitle {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 20px;
+    color: #c9c9e0;
+    max-width: 640px;
+    margin: 0 auto 24px;
+}
+.www-rag-stats {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    color: #9d9db8;
+    margin-bottom: 24px;
+}
+.www-rag-search {
+    width: 100%;
+    max-width: 480px;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-family: 'Source Sans 3', sans-serif;
+}
+.www-rag-search::placeholder { color: #9d9db8; }
+.www-rag-grid-section {
+    padding: 48px 0 96px;
+    background: #f7f7fb;
+}
+.www-rag-status {
+    text-align: center;
+    color: #666;
+    font-family: 'Source Sans 3', sans-serif;
+    padding: 24px 0;
+}
+.www-rag-status.hidden { display: none; }
+.www-rag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+.www-rag-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e5e5f0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.www-rag-card:hover {
+    box-shadow: 0 8px 24px rgba(30,30,60,0.12);
+    transform: translateY(-2px);
+}
+.www-rag-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.www-rag-card-favicon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    object-fit: cover;
+    background: #eee;
+}
+.www-rag-card-host {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a2e;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.www-rag-card-desc {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.www-rag-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: #888;
+}
+.www-rag-card-chat {
+    color: #5b5bf0;
+    font-weight: 600;
+}
+</style>
+
+<script defer src="{{ get_url(path="js/www-rag-directory.js") }}"></script>
+{% endblock %}
