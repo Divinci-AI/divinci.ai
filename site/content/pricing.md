@@ -834,7 +834,7 @@ input:checked + .toggle-slider:before {
 <li class="unavailable">Priority support</li>
 </ul>
 
-<a href="https://app.divinci.app" class="pricing-cta" target="_blank" rel="noopener">Sign up free</a>
+<a href="https://chat.divinci.app" class="pricing-cta" target="_blank" rel="noopener">Sign up free</a>
 </div>
 
 <!-- Starter Plan -->
@@ -867,7 +867,7 @@ input:checked + .toggle-slider:before {
 <li class="unavailable">Priority support</li>
 </ul>
 
-<a href="https://app.divinci.app/user/wallet/subscription" class="pricing-cta" target="_blank" rel="noopener">Get Started</a>
+<a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">Get Started</a>
 </div>
 
 <!-- Pro Plan -->
@@ -902,7 +902,7 @@ input:checked + .toggle-slider:before {
 <li>Priority support</li>
 </ul>
 
-<a href="https://app.divinci.app/user/wallet/subscription" class="pricing-cta featured" target="_blank" rel="noopener">Get Started</a>
+<a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">Get Started</a>
 </div>
 
 </div>
@@ -934,7 +934,7 @@ input:checked + .toggle-slider:before {
 </div>
 
 <div class="ep-cta-wrap">
-<a href="https://app.divinci.app/user/wallet/subscription" class="pricing-cta" target="_blank" rel="noopener">Get Started</a>
+<a href="https://chat.divinci.app/user/wallet/subscription?plan=enterprise&billing=monthly" class="pricing-cta" data-plan="enterprise" target="_blank" rel="noopener">Get Started</a>
 </div>
 </div>
 
@@ -1050,6 +1050,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const monthlyPrices = document.querySelectorAll('.pricing-amount.monthly');
     const annualPrices = document.querySelectorAll('.pricing-amount.annual');
 
+    // Keep each paid tier's "Get Started" deep link (?plan=X&billing=Y) in sync
+    // with whichever billing cycle is currently toggled, so a visitor who
+    // switches to Annual and clicks through lands on Stripe checkout for the
+    // annual price, not monthly.
+    const planCtaLinks = document.querySelectorAll('.pricing-cta[data-plan]');
+    function syncPlanCtaBilling(cycle) {
+        planCtaLinks.forEach(function(link) {
+            try {
+                const url = new URL(link.href);
+                url.searchParams.set('billing', cycle);
+                link.href = url.toString();
+            } catch (e) { /* malformed href — leave as-is */ }
+        });
+    }
+
     pricingToggle.addEventListener('change', function() {
         if (this.checked) {
             // Annual pricing
@@ -1058,6 +1073,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             monthlyPrices.forEach(price => price.classList.remove('active'));
             annualPrices.forEach(price => price.classList.add('active'));
+            syncPlanCtaBilling('annual');
         } else {
             // Monthly pricing
             monthlySpan.classList.add('active');
@@ -1065,6 +1081,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             monthlyPrices.forEach(price => price.classList.add('active'));
             annualPrices.forEach(price => price.classList.remove('active'));
+            syncPlanCtaBilling('monthly');
         }
     });
 
