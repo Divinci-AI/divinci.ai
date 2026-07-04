@@ -260,13 +260,14 @@ input:checked + .toggle-slider:before {
     border: 1px solid var(--color-border-light);
 }
 
-/* Pricing cards container */
-.pricing-cards {
+/* Coming-soon overlay: scoped to individual PAID cards (checkout isn't wired
+   to a live Stripe price yet), not the whole grid — Free sign-up is real and
+   working today, so it stays uncovered. */
+.pricing-card.coming-soon {
     position: relative;
 }
 
-/* Coming soon overlay on Starter, Pro, Business cards (not Enterprise) */
-.pricing-cards::after {
+.pricing-card.coming-soon::after {
     content: "Coming Soon — Contact Us for Early Access";
     position: absolute;
     top: 0;
@@ -295,8 +296,11 @@ input:checked + .toggle-slider:before {
 }
 
 .pricing-card.featured {
-    border-top: 5px solid var(--color-accent-primary);
+    border-top: 4px solid var(--color-accent-primary);
     transform: scale(1.05);
+    /* The "Most Popular" badge floats above the top edge — needs the card's
+       own overflow to NOT clip it (unlike the other cards' corner circle). */
+    overflow: visible;
 }
 
 .pricing-card.featured:hover {
@@ -314,6 +318,13 @@ input:checked + .toggle-slider:before {
     border: 1px solid var(--color-accent-primary-10);
     opacity: 0.08;
     z-index: 0;
+}
+
+/* Skip the decorative corner circle on the featured card — it would render
+   fully visible (not corner-clipped) now that overflow is visible there,
+   and the card already has the top accent border + badge for visual interest. */
+.pricing-card.featured::before {
+    display: none;
 }
 
 .pricing-plan {
@@ -349,16 +360,29 @@ input:checked + .toggle-slider:before {
     font-weight: 400;
 }
 
-.pricing-popular {
+/* Floating pill badge, centered on the card's top edge — replaces the old
+   diagonal corner-ribbon (magic-number geometry that only fit one specific
+   card width and looked clipped/off-center at this card's actual size).
+   Specificity + !important are required here: style.css has a broad
+   `[class*="card"] > div { background-image: none !important; }` rule
+   (anti-double-texture guard) that otherwise strips this badge's background
+   — it's a direct-child div of .pricing-card and matches that selector. */
+.pricing-card .pricing-popular {
     position: absolute;
-    top: 15px;
-    right: -30px;
-    background: var(--gradient-secondary);
-    color: white;
-    padding: 5px 40px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transform: rotate(45deg);
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient-secondary, var(--color-accent-primary)) !important;
+    color: #fff;
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    z-index: 3;
 }
 
 .pricing-features {
@@ -667,6 +691,71 @@ input:checked + .toggle-slider:before {
     display: block;
 }
 
+/* Wide Enterprise panel — a horizontal card spanning the row instead of
+   wrapping onto its own centered column (which is what a 4th flex item does
+   when only 3 fit per row). Sits between the 3-card comparison and the
+   "Need something bigger?" custom-deal banner: same light-card styling as
+   the cards above (still reads as a real self-serve tier, priced) but full
+   width, escalating naturally into the bolder gradient CTA below it. */
+.pricing-enterprise-panel {
+    width: 100%;
+    max-width: 1100px;
+    margin: 2.5rem auto 0;
+    background: var(--color-bg-primary, #f8f4f0);
+    border-radius: 12px;
+    box-shadow: var(--shadow-large);
+    border: 1px solid var(--color-border-light);
+    padding: 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.ep-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding-bottom: 1.75rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.ep-title-group {
+    flex: 1 1 240px;
+}
+
+.ep-title-group .pricing-description {
+    margin-bottom: 0;
+    min-height: 0;
+}
+
+.ep-price-group {
+    flex: 0 0 auto;
+}
+
+.ep-price-group .pricing-price {
+    margin-bottom: 0.25rem;
+}
+
+.ep-cta-wrap {
+    flex: 0 0 auto;
+    align-self: center;
+}
+
+.ep-cta-wrap .pricing-cta {
+    display: inline-block;
+    width: auto;
+    white-space: nowrap;
+    padding: 1rem 2rem;
+}
+
+.pricing-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 0 2rem;
+}
+
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .pricing-card {
@@ -684,6 +773,18 @@ input:checked + .toggle-slider:before {
 
     .enterprise-card {
         padding: 2rem;
+    }
+
+    .pricing-enterprise-panel {
+        padding: 1.75rem;
+    }
+
+    .ep-cta-wrap {
+        width: 100%;
+    }
+
+    .ep-cta-wrap .pricing-cta {
+        width: 100%;
     }
 }
 </style>
@@ -705,6 +806,37 @@ input:checked + .toggle-slider:before {
 </div>
 
 <div class="pricing-cards">
+<!-- Free Plan — real, working sign-up today (not gated behind Stripe) -->
+<div class="pricing-card">
+<h2 class="pricing-plan">Free</h2>
+<p class="pricing-description">Start building with Divinci at no cost</p>
+
+<div class="pricing-amount monthly active">
+<div class="pricing-price">
+<span class="currency">$</span>0<span class="period">/mo</span>
+</div>
+</div>
+
+<div class="pricing-amount annual">
+<div class="pricing-price">
+<span class="currency">$</span>0<span class="period">/mo</span>
+</div>
+<div class="pricing-billed">Free, forever</div>
+</div>
+
+<ul class="pricing-features">
+<li>1 white-label release</li>
+<li>Community AI models (GPT, Gemini, Claude, Llama & more)</li>
+<li>Basic RAG — ground answers on your own documents</li>
+<li class="unavailable">Scored QA evaluation suites</li>
+<li class="unavailable">Fine-tuning</li>
+<li class="unavailable">Remove Divinci branding</li>
+<li class="unavailable">Priority support</li>
+</ul>
+
+<a href="https://app.divinci.app" class="pricing-cta" target="_blank" rel="noopener">Sign up free</a>
+</div>
+
 <!-- Starter Plan -->
 <div class="pricing-card">
 <h2 class="pricing-plan">Starter</h2>
@@ -712,51 +844,30 @@ input:checked + .toggle-slider:before {
 
 <div class="pricing-amount monthly active">
 <div class="pricing-price">
-<span class="currency">$</span>20<span class="period">/mo</span>
+<span class="currency">$</span>29<span class="period">/mo</span>
 </div>
 </div>
 
 <div class="pricing-amount annual">
 <div class="pricing-price">
-<span class="currency">$</span>16<span class="period">/mo</span>
+<span class="currency">$</span>24.17<span class="period">/mo</span>
 </div>
-<div class="pricing-billed">Billed annually ($192)</div>
+<div class="pricing-billed">Billed annually ($290)</div>
 </div>
 
 <ul class="pricing-features">
-<li>Up to 3 users</li>
-<li class="feature-dropdown" data-feature="basic-rag">
-<span class="feature-main">Basic RAG capabilities <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Document ingestion and indexing</div>
-<div class="feature-detail">Basic semantic search</div>
-<div class="feature-detail">Simple Q&A functionality</div>
-<div class="feature-detail">PDF and text file support</div>
-</div>
-</div>
-</li>
-<li class="feature-dropdown" data-feature="basic-fine-tuning">
-<span class="feature-main">Fine tuning <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Basic model customization</div>
-<div class="feature-detail">Pre-built templates</div>
-<div class="feature-detail">Standard training datasets</div>
-<div class="feature-detail">Community model library access</div>
-</div>
-</div>
-</li>
-<li>10GB document storage</li>
-<li>100K tokens/day</li>
-<li>Basic analytics</li>
-<li>Email support</li>
-<li class="unavailable">Advanced security features</li>
-<li class="unavailable">API access</li>
-<li class="unavailable">Custom integrations</li>
+<li>Multiple white-label releases</li>
+<li>$5/month in included usage credits</li>
+<li>Community + premium AI models</li>
+<li>Basic RAG — ground answers on your own documents</li>
+<li>Scored QA evaluation suites</li>
+<li>Remove Divinci branding</li>
+<li class="unavailable">Advanced RAG (multi-index, reranking)</li>
+<li class="unavailable">Fine-tuning</li>
+<li class="unavailable">Priority support</li>
 </ul>
 
-<a href="/contact/" class="pricing-cta">Get Started</a>
+<a href="https://app.divinci.app/user/wallet/subscription" class="pricing-cta" target="_blank" rel="noopener">Get Started</a>
 </div>
 
 <!-- Pro Plan -->
@@ -767,118 +878,85 @@ input:checked + .toggle-slider:before {
 
 <div class="pricing-amount monthly active">
 <div class="pricing-price">
-<span class="currency">$</span>100<span class="period">/mo</span>
+<span class="currency">$</span>99<span class="period">/mo</span>
 </div>
 </div>
 
 <div class="pricing-amount annual">
 <div class="pricing-price">
-<span class="currency">$</span>80<span class="period">/mo</span>
+<span class="currency">$</span>82.50<span class="period">/mo</span>
 </div>
-<div class="pricing-billed">Billed annually ($960)</div>
+<div class="pricing-billed">Billed annually ($990)</div>
 </div>
 
 <ul class="pricing-features">
-<li>Up to 10 users</li>
-<li class="feature-dropdown" data-feature="advanced-rag">
-<span class="feature-main">Advanced RAG capabilities <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Multi-modal document processing</div>
-<div class="feature-detail">Advanced semantic search with filters</div>
-<div class="feature-detail">Context-aware responses</div>
-<div class="feature-detail">Custom embeddings</div>
-<div class="feature-detail">Real-time data syncing</div>
-</div>
-</div>
-</li>
-<li class="feature-dropdown" data-feature="advanced-fine-tuning">
-<span class="feature-main">Advanced fine tuning <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Custom model architectures</div>
-<div class="feature-detail">Advanced training parameters</div>
-<div class="feature-detail">Custom dataset upload</div>
-<div class="feature-detail">Model versioning and rollback</div>
-<div class="feature-detail">Performance optimization tools</div>
-</div>
-</div>
-</li>
-<li>50GB document storage</li>
-<li>500K tokens/day</li>
-<li>Full analytics dashboard</li>
+<li>Multiple white-label releases</li>
+<li>$25/month in included usage credits</li>
+<li>Community + premium AI models</li>
+<li>Advanced RAG (multi-index, reranking, higher limits)</li>
+<li>Scored QA evaluation suites</li>
+<li>A/B release testing</li>
+<li>RAG Arena — side-by-side model comparison</li>
+<li>Fine-tuning</li>
+<li>Remove Divinci branding</li>
 <li>Priority support</li>
-<li>Advanced security features</li>
-<li>API access</li>
-<li class="unavailable">Custom integrations</li>
 </ul>
 
-<a href="/contact/" class="pricing-cta featured">Get Started</a>
+<a href="https://app.divinci.app/user/wallet/subscription" class="pricing-cta featured" target="_blank" rel="noopener">Get Started</a>
 </div>
 
-<!-- Business Plan -->
-<div class="pricing-card">
-<h2 class="pricing-plan">Business</h2>
-<p class="pricing-description">For larger teams with advanced needs</p>
+</div>
 
+<!-- Enterprise Plan — a wide panel (not a 4th grid card) so it doesn't wrap
+     onto its own orphaned column below a 3-across row. Self-serve, priced,
+     still "Get Started" (not a contact-sales flow) — see the custom-deal
+     callout below for anything beyond this tier. -->
+<div class="pricing-enterprise-panel">
+<div class="ep-header">
+<div class="ep-title-group">
+<h2 class="pricing-plan">Enterprise</h2>
+<p class="pricing-description">For larger teams with advanced needs</p>
+</div>
+
+<div class="ep-price-group">
 <div class="pricing-amount monthly active">
 <div class="pricing-price">
-<span class="currency">$</span>200<span class="period">/mo</span>
+<span class="currency">$</span>499<span class="period">/mo</span>
 </div>
 </div>
 
 <div class="pricing-amount annual">
 <div class="pricing-price">
-<span class="currency">$</span>160<span class="period">/mo</span>
+<span class="currency">$</span>415.83<span class="period">/mo</span>
 </div>
-<div class="pricing-billed">Billed annually ($1,920)</div>
+<div class="pricing-billed">Billed annually ($4,990)</div>
+</div>
 </div>
 
-<ul class="pricing-features">
-<li>Up to 25 users</li>
-<li class="feature-dropdown" data-feature="premium-rag">
-<span class="feature-main">Premium RAG capabilities <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Enterprise-grade document processing</div>
-<div class="feature-detail">Advanced AI reasoning and inference</div>
-<div class="feature-detail">Multi-language support</div>
-<div class="feature-detail">Custom knowledge graphs</div>
-<div class="feature-detail">Real-time collaboration features</div>
-<div class="feature-detail">Advanced security and compliance</div>
+<div class="ep-cta-wrap">
+<a href="https://app.divinci.app/user/wallet/subscription" class="pricing-cta" target="_blank" rel="noopener">Get Started</a>
 </div>
 </div>
-</li>
-<li class="feature-dropdown" data-feature="premium-fine-tuning">
-<span class="feature-main">Premium fine tuning <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Enterprise model development</div>
-<div class="feature-detail">Custom training pipelines</div>
-<div class="feature-detail">Advanced hyperparameter optimization</div>
-<div class="feature-detail">Multi-GPU training support</div>
-<div class="feature-detail">Federated learning capabilities</div>
-<div class="feature-detail">Dedicated model infrastructure</div>
-</div>
-</div>
-</li>
-<li>200GB document storage</li>
-<li>2M tokens/day</li>
-<li>Advanced analytics & reporting</li>
-<li>24/7 priority support</li>
-<li>Enterprise-grade security</li>
-<li>Full API access</li>
-<li>Standard integrations</li>
+
+<ul class="pricing-features pricing-features-grid">
+<li>Unlimited white-label releases</li>
+<li>$150/month in included usage credits</li>
+<li>Community + premium AI models</li>
+<li>Advanced RAG (multi-index, reranking, higher limits)</li>
+<li>Scored QA, A/B testing, RAG Arena, fine-tuning</li>
+<li>Remove Divinci branding</li>
+<li>Priority support</li>
+<li>Bring your own API keys (BYOK)</li>
+<li>Single sign-on (SSO)</li>
+<li>Custom domain</li>
+<li>Dedicated support</li>
 </ul>
-
-<a href="/contact/" class="pricing-cta">Get Started</a>
-</div>
 </div>
 
-<!-- Enterprise Section -->
+<!-- Custom-deal callout — for needs beyond the priced Enterprise tier above -->
 <div class="enterprise-card">
-<h2 class="enterprise-title">Enterprise</h2>
-<p class="enterprise-text">Need a custom solution for your large organization? Our Enterprise plan includes custom AI model development, dedicated support, SSO, custom security policies, and more.</p>
+<h2 class="enterprise-title">Need something bigger?</h2>
+<p class="enterprise-text">For organizations that need more than the Enterprise plan — custom AI model development, on-premise or dedicated infrastructure, custom security policies, and negotiated terms — let's talk.</p>
 <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="enterprise-cta" target="_blank" rel="noopener">Schedule Demo</a>
 </div>
 </div>
@@ -902,12 +980,12 @@ What's included in all plans?
 
 <div class="faq-item">
 <button class="faq-question">
-How does token usage work?
+How does usage-based billing work?
 <span class="faq-icon">+</span>
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Tokens are the units of text processing for AI models. Each plan includes a daily token allowance that resets every 24 hours. Token usage is calculated for both input (prompts, documents) and output (AI responses). If you exceed your daily limit, you can purchase additional tokens or upgrade to a higher plan.</p>
+<p>Paid plans include a monthly credit allowance (shown on each plan above) that covers AI model usage, RAG retrieval, and other metered platform costs. Once your included credits are used, usage is billed pay-as-you-go from your wallet balance at the same metered rates.</p>
 </div>
 </div>
 </div>
@@ -943,7 +1021,7 @@ Is there a free trial available?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Yes, we offer a 14-day free trial on our Starter and Pro plans. No credit card is required to start your trial. You'll have full access to all features included in the plan during your trial period.</p>
+<p>Yes — our Free plan lets you start building with Divinci at no cost and no credit card required, so you can try the platform before choosing a paid plan.</p>
 </div>
 </div>
 </div>

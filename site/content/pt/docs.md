@@ -378,7 +378,7 @@ template = "feature.html"
 <div class="pkg-name">@divinci-ai/cli</div>
 <p>Manage workspaces, chat with AI, search knowledge bases, and control releases from your terminal. Supports profiles, scripting, and CI/CD.</p>
 <div class="install-cmd">npm install -g @divinci-ai/cli</div>
-<a href="/cli/" class="card-link">View CLI docs &rarr;</a>
+<a href="https://sdk.divinci.ai/cli/overview" class="card-link" target="_blank">View CLI docs &rarr;</a>
 </div>
 
 <div class="tool-card" id="server-sdk">

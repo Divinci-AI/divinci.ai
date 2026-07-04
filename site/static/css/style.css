@@ -876,6 +876,7 @@ p {
 
 .cta-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1.5rem;
 }
@@ -918,34 +919,69 @@ p {
   transform: translateY(-1px);
 }
 
-/* "Connect <AI app> to Divinci" hero button — outline style + provider icon that
-   rotates between MCP-capable AI apps. */
-.connect-ai-button {
+/* "Connect <AI app> to Divinci" hero chips — one real link per MCP-capable
+   AI app, always visible as a small icon pill. The active chip auto-rotates
+   and expands in place to reveal the full label; the others stay icon-only. */
+.connect-ai-group {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: nowrap;
+  /* Never let the flex parent (.cta-buttons) compress this group below its
+     natural width — that's what forced the 3 chips to wrap into a vertical
+     stack. If the whole group doesn't fit next to the other two buttons, it
+     drops to its own line (.cta-buttons has flex-wrap: wrap) instead. */
+  flex-shrink: 0;
 }
 
-.connect-ai-button img {
+.connect-ai-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgb(45 60 52);
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: padding 0.6s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease-out, transform 0.15s ease-out;
+}
+
+.connect-ai-chip:hover {
+  background-color: rgba(45, 60, 52, 0.05);
+  transform: translateY(-1px);
+}
+
+.connect-ai-chip-icon {
   width: 20px;
   height: 20px;
   object-fit: contain;
-  transition: opacity 0.18s ease-out;
+  flex: 0 0 auto;
+  display: block;
 }
 
-.connect-ai-button #connect-ai-label {
-  transition: opacity 0.18s ease-out;
-}
-
-.connect-ai-button.connect-ai-swap img,
-.connect-ai-button.connect-ai-swap #connect-ai-label {
+.connect-ai-chip-label {
+  display: inline-block;
+  max-width: 0;
   opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 0;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-neutral-primary);
+  transition: max-width 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-out, margin-left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (max-width: 640px) {
-  .cta-buttons {
-    flex-wrap: wrap;
-  }
+.connect-ai-chip-active {
+  padding: 0.75rem 1.25rem;
+}
+
+.connect-ai-chip-active .connect-ai-chip-label {
+  max-width: 260px;
+  opacity: 1;
+  margin-left: 0.55rem;
 }
 
 /* Enterprise AI section styles */

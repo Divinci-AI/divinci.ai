@@ -12,7 +12,11 @@
  */
 import { DivinciClient } from "@divinci-ai/client";
 
-type View = "email" | "otp" | "chat" | "exhausted" | "error" | "blocked";
+type View = "email" | "otp" | "captcha" | "chat" | "exhausted" | "error" | "blocked";
+
+// Mirrors @divinci-ai/client's FreeChatGateMode — declared locally to avoid
+// depending on the SDK's exported type surface for one string union.
+type GateMode = "none" | "captcha-only" | "captcha+otp" | "captcha+magic-link";
 
 interface WidgetConfig {
   apiBase: string;
@@ -61,6 +65,16 @@ function readConfig(): WidgetConfig | null {
     signupUrl: d.signupUrl || "https://app.divinci.app",
   };
 }
+
+// Mirrors the release's server-side conversationStarter config (set via
+// `divinci release update --conversation-starters`) — kept in sync manually
+// since this vanilla-JS widget doesn't fetch it (see sdk.divinci.ai's
+// DocsAssistant for the page-aware, server-driven version of this idea).
+const CONVERSATION_STARTERS: Array<{ label: string; message: string }> = [
+  { label: "What is Divinci?", message: "What is Divinci AI?" },
+  { label: "Connect an AI via MCP", message: "How do I connect Claude or Grok to Divinci over MCP?" },
+  { label: "Compare pricing plans", message: "What's the difference between the Free, Starter, Pro, and Enterprise plans?" },
+];
 
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, html?: string): HTMLElementTagNameMap[K] {
   const node = document.createElement(tag);
@@ -159,6 +173,9 @@ class DivinciChatWidget {
   private marketingConsent = false; // GDPR opt-in (optional); wired to CRM in #3
   private remaining: number | null = null;
   private errorMsg = "";
+  // Learned async from getConfig(); null while unknown (treated as OTP mode,
+  // the pre-existing default, so the widget degrades gracefully offline).
+  private mode: GateMode | null = null;
 
   private root!: HTMLDivElement;
   private panel!: HTMLDivElement;
@@ -172,6 +189,23 @@ class DivinciChatWidget {
     // Returning visitor: skip straight to chat if a verification token persists.
     if (this.client.freeChatGate.loadStoredToken(this.cfg.releaseId)) this.view = "chat";
     this.mount();
+    this.loadGateMode();
+  }
+
+  /**
+   * Learn the release's actual gate mode so captcha-only releases skip the
+   * email/OTP screens entirely (that flow is otp/magic-link only). Fetched
+   * async so the bubble mounts instantly; if this resolves after the panel
+   * is already open on the default "email" view, flip it live.
+   */
+  private async loadGateMode(): Promise<void> {
+    try {
+      const { mode } = await this.client.freeChatGate.getConfig(this.cfg.releaseId);
+      this.mode = mode;
+      if (this.view === "email" && mode === "captcha-only") this.setView("captcha");
+    } catch {
+      // Network hiccup — falls back to the pre-existing email/OTP flow.
+    }
   }
 
   private mount(): void {
@@ -242,6 +276,7 @@ class DivinciChatWidget {
     switch (this.view) {
       case "email": return this.renderEmail();
       case "otp": return this.renderOtp();
+      case "captcha": return this.renderCaptcha();
       case "chat": return this.renderChat();
       case "exhausted": return this.renderExhausted();
       case "error": return this.renderError();
@@ -314,6 +349,50 @@ class DivinciChatWidget {
     });
   }
 
+  /**
+   * captcha-only mode: no email/OTP at all — a Turnstile pass is the whole
+   * gate. start() (no email arg) returns a token immediately on success.
+   */
+  private renderCaptcha(): void {
+    const wrap = el("div", "dvc-pad");
+    wrap.appendChild(el("p", "dvc-lead", "Hi! I'm Divinci. Complete the quick check below to start chatting — no email needed."));
+    const ts = el("div", "dvc-turnstile");
+    const btn = el("button", "dvc-btn", "Start chatting");
+    const err = el("p", "dvc-err");
+    wrap.append(ts, btn, err);
+    this.body.appendChild(wrap);
+
+    this.turnstileToken = null;
+    if (window.turnstile) {
+      this.turnstileId = window.turnstile.render(ts, {
+        sitekey: this.cfg.turnstileSiteKey,
+        theme: "light",
+        appearance: "interaction-only",
+        callback: (token: string) => { this.turnstileToken = token; },
+        "error-callback": () => { this.turnstileToken = null; },
+        "expired-callback": () => { this.turnstileToken = null; },
+      });
+    } else {
+      ts.innerHTML = `<small class="dvc-muted">Loading verification…</small>`;
+    }
+
+    btn.addEventListener("click", async () => {
+      const token = this.turnstileToken ?? window.turnstile?.getResponse(this.turnstileId ?? undefined);
+      if (!token) { err.textContent = "Please complete the verification check."; return; }
+      btn.disabled = true; btn.textContent = "Verifying…"; err.textContent = "";
+      try {
+        await this.client.freeChatGate.start({ releaseId: this.cfg.releaseId, turnstileToken: token });
+        this.messages = [];
+        this.setView("chat");
+      } catch (e) {
+        if (this.looksLikeBotRejection(e)) { this.setView("blocked"); return; }
+        err.textContent = this.errText(e, "Couldn't verify. Please try again.");
+        btn.disabled = false; btn.textContent = "Start chatting";
+        if (window.turnstile && this.turnstileId) window.turnstile.reset(this.turnstileId);
+      }
+    });
+  }
+
   private renderOtp(): void {
     const wrap = el("div", "dvc-pad");
     const lead = el("p", "dvc-lead", "We emailed a 6-digit code to ");
@@ -373,7 +452,15 @@ class DivinciChatWidget {
       }
     }
     if (this.messages.length === 0) {
-      list.appendChild(el("div", "dvc-msg dvc-msg-assistant", "👋 Ask me anything about Divinci — custom AIs on your own data, our API/SDK/CLI/MCP, voice, or TrustBench."));
+      list.appendChild(el("div", "dvc-msg dvc-msg-assistant",
+        "👋 Hi, I'm Divinci! Ask me anything — what the platform does, how to get started, our API/SDK/CLI/MCP, or how to connect Claude, Grok, Perplexity, or Mistral."));
+      const starters = el("div", "dvc-starters");
+      for (const s of CONVERSATION_STARTERS) {
+        const btn = el("button", "dvc-starter-btn", s.label);
+        btn.addEventListener("click", () => submitPrompt(s.message));
+        starters.appendChild(btn);
+      }
+      list.appendChild(starters);
     }
     const form = el("div", "dvc-inputrow");
     const input = el("input", "dvc-input");
@@ -386,8 +473,8 @@ class DivinciChatWidget {
     list.scrollTop = list.scrollHeight;
     input.focus();
 
-    const submit = async () => {
-      const prompt = input.value.trim();
+    const submitPrompt = async (prompt: string) => {
+      prompt = prompt.trim();
       if (!prompt) return;
       input.value = "";
       this.messages.push({ role: "user", text: prompt });
@@ -406,8 +493,8 @@ class DivinciChatWidget {
         this.render();
       }
     };
-    send.addEventListener("click", submit);
-    input.addEventListener("keydown", (ev) => { if ((ev as KeyboardEvent).key === "Enter") submit(); });
+    send.addEventListener("click", () => submitPrompt(input.value));
+    input.addEventListener("keydown", (ev) => { if ((ev as KeyboardEvent).key === "Enter") submitPrompt(input.value); });
   }
 
   /**
@@ -495,7 +582,9 @@ class DivinciChatWidget {
     const e = el("p", "dvc-err"); e.textContent = this.errorMsg || "Something went wrong."; // dynamic → textContent
     wrap.appendChild(e);
     const retry = el("button", "dvc-btn", "Try again");
-    retry.addEventListener("click", () => this.setView(this.client.freeChatGate.isVerified() ? "chat" : "email"));
+    retry.addEventListener("click", () => this.setView(
+      this.client.freeChatGate.isVerified() ? "chat" : this.mode === "captcha-only" ? "captcha" : "email",
+    ));
     wrap.appendChild(retry);
     this.body.appendChild(wrap);
   }

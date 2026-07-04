@@ -22,7 +22,29 @@
   width: 76px; height: 76px;
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at 30% 25%, #3a3f6e, var(--color-neutral-inverse, #2d5a4f));
+  border: 2px solid transparent;
+  /* Layered backgrounds fake a gradient border on a circle (border-image
+     doesn't respect border-radius). The padding-box layer is the robot's
+     backdrop; the border-box layer only shows through the 2px ring, so
+     the rim itself carries a highlight → shadow sweep along the SAME
+     diagonal as the radial glow's light source (circle at 30% 25%, i.e.
+     upper-left) — a bright, slightly-lighter edge facing the light, and
+     a darker edge on the far side, like light catching a physical lip. */
+  background:
+    radial-gradient(circle at 30% 25%, #3a3f6e, var(--color-neutral-inverse, #2d5a4f)) padding-box,
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.45) 30%,
+      rgba(0, 0, 0, 0.25) 65%,
+      rgba(0, 0, 0, 0.55) 100%) border-box;
+  /* "Portal" depth: outer ambient shadow (matches the plain bubble) + a
+     tighter outer contact shadow, then two inset shadows so the rim reads
+     as a physical lip the robot sits behind rather than a flat sticker. */
+  box-shadow:
+    0 6px 20px rgba(30, 58, 43, 0.35),
+    0 2px 5px rgba(0, 0, 0, 0.35),
+    inset 0 3px 8px rgba(0, 0, 0, 0.6),
+    inset 0 -2px 5px rgba(255, 255, 255, 0.15);
 }
 .dvc-bubble-robot-holder {
   position: absolute; inset: 0;
@@ -82,6 +104,13 @@
 .dvc-msg { max-width: 85%; padding: 9px 12px; border-radius: 12px; font-size: 14px; line-height: 1.4; white-space: pre-wrap; word-wrap: break-word; }
 .dvc-msg-user { align-self: flex-end; background: var(--color-neutral-inverse, #2d5a4f); color: #fff; border-bottom-right-radius: 4px; }
 .dvc-msg-assistant { align-self: flex-start; background: var(--color-bg-accent, #e8ddc7); color: var(--color-text-primary, #2d3c34); border-bottom-left-radius: 4px; }
+.dvc-starters { display: flex; flex-direction: column; gap: 6px; align-self: stretch; }
+.dvc-starter-btn {
+  text-align: left; padding: 9px 12px; border-radius: 10px; font-size: 13px; line-height: 1.3;
+  border: 1px solid var(--color-bg-accent, #e8ddc7); background: #fff; color: var(--color-neutral-inverse, #2d5a4f);
+  cursor: pointer; transition: background-color .15s ease-out, border-color .15s ease-out;
+}
+.dvc-starter-btn:hover { background: var(--color-bg-accent, #e8ddc7); border-color: var(--color-neutral-inverse, #2d5a4f); }
 .dvc-meta { padding: 0 14px; }
 .dvc-inputrow { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--color-bg-accent, #e8ddc7); }
 .dvc-send { flex: 0 0 auto; width: 40px; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; color: #fff; background: var(--color-neutral-inverse, #2d5a4f); }
