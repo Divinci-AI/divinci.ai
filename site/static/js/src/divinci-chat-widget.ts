@@ -12,7 +12,7 @@
  */
 import { DivinciClient } from "@divinci-ai/client";
 
-type View = "email" | "otp" | "captcha" | "chat" | "exhausted" | "error" | "blocked";
+type View = "loading" | "email" | "otp" | "captcha" | "chat" | "exhausted" | "error" | "blocked";
 
 // Mirrors @divinci-ai/client's FreeChatGateMode — declared locally to avoid
 // depending on the SDK's exported type surface for one string union.
@@ -32,6 +32,7 @@ declare global {
       render: (el: HTMLElement, opts: Record<string, unknown>) => string;
       getResponse: (id?: string) => string | undefined;
       reset: (id?: string) => void;
+      remove: (id?: string) => void;
     };
     __divinciChatBooted?: boolean;
     DivinciRobotLauncher?: {
@@ -165,7 +166,7 @@ function renderMarkdown(src: string): string {
 class DivinciChatWidget {
   private readonly cfg: WidgetConfig;
   private readonly client: DivinciClient;
-  private view: View = "email";
+  private view: View = "loading";
   private email = "";
   private open = false;
   private turnstileId: string | null = null;
@@ -193,19 +194,26 @@ class DivinciChatWidget {
   }
 
   /**
-   * Learn the release's actual gate mode so captcha-only releases skip the
-   * email/OTP screens entirely (that flow is otp/magic-link only). Fetched
-   * async so the bubble mounts instantly; if this resolves after the panel
-   * is already open on the default "email" view, flip it live.
+   * Learn the release's actual gate mode before rendering the first
+   * "please verify" screen. The panel opens on a plain "loading" state (no
+   * Turnstile) until this resolves — deliberately NOT a guess-then-correct
+   * flow: rendering "email" first (its own Turnstile widget) and later
+   * swapping to "captcha" (a second widget) left the first widget's iframe
+   * torn out of the DOM without `turnstile.remove()`, and Cloudflare's script
+   * doesn't tolerate that — every widget after the first silently stopped
+   * verifying ("Cannot find Widget" in the console, "Start chatting" doing
+   * nothing). Rendering exactly one view, once, with the mode already known,
+   * avoids the double-render entirely.
    */
   private async loadGateMode(): Promise<void> {
+    if (this.view !== "loading") return; // already on "chat" via a stored token
     try {
       const { mode } = await this.client.freeChatGate.getConfig(this.cfg.releaseId);
       this.mode = mode;
-      if (this.view === "email" && mode === "captcha-only") this.setView("captcha");
     } catch {
-      // Network hiccup — falls back to the pre-existing email/OTP flow.
+      // Network hiccup — fall back to the pre-existing email/OTP flow.
     }
+    if (this.view === "loading") this.setView(this.mode === "captcha-only" ? "captcha" : "email");
   }
 
   private mount(): void {
@@ -272,8 +280,19 @@ class DivinciChatWidget {
   private setView(v: View): void { this.view = v; this.render(); }
 
   private render(): void {
+    // Dispose of any live Turnstile widget before wiping its container —
+    // render() re-fires on every view change AND every panel reopen
+    // (toggle()), and ripping the widget's iframe out of the DOM without
+    // this leaves Cloudflare's script tracking a dead widget ("Cannot find
+    // Widget" in the console) — the NEXT widget it renders then silently
+    // fails to verify, which is why "Start chatting" could do nothing.
+    if (this.turnstileId && window.turnstile) {
+      try { window.turnstile.remove(this.turnstileId); } catch { /* already gone */ }
+    }
+    this.turnstileId = null;
     this.body.innerHTML = "";
     switch (this.view) {
+      case "loading": return this.renderLoading();
       case "email": return this.renderEmail();
       case "otp": return this.renderOtp();
       case "captcha": return this.renderCaptcha();
@@ -282,6 +301,14 @@ class DivinciChatWidget {
       case "error": return this.renderError();
       case "blocked": return this.renderBlocked();
     }
+  }
+
+  /** Brief placeholder shown only until loadGateMode() resolves — no Turnstile
+   * widget yet, since we don't know which screen (email vs captcha) to render. */
+  private renderLoading(): void {
+    const wrap = el("div", "dvc-pad dvc-center");
+    wrap.appendChild(el("p", "dvc-muted", "Loading…"));
+    this.body.appendChild(wrap);
   }
 
   private renderEmail(): void {
