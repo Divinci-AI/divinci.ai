@@ -12,7 +12,7 @@
  */
 import { DivinciClient } from "@divinci-ai/client";
 
-type View = "loading" | "email" | "otp" | "captcha" | "chat" | "exhausted" | "error" | "blocked";
+type View = "loading" | "email" | "otp" | "chat" | "exhausted" | "error" | "blocked";
 
 // Mirrors @divinci-ai/client's FreeChatGateMode — declared locally to avoid
 // depending on the SDK's exported type surface for one string union.
@@ -171,6 +171,13 @@ class DivinciChatWidget {
   private open = false;
   private turnstileId: string | null = null;
   private turnstileToken: string | null = null; // captured via Turnstile success callback
+  // Invisible captcha-only gate widget — separate from turnstileId/turnstileToken
+  // above (the "email" view's own visible widget). Lives in the persistent
+  // tsMount container (never wiped by render()) so it survives every chat
+  // re-render instead of being torn down and recreated per message.
+  private gateTurnstileId: string | null = null;
+  private gateTurnstileToken: string | null = null;
+  private tsMount!: HTMLDivElement;
   private marketingConsent = false; // GDPR opt-in (optional); wired to CRM in #3
   private remaining: number | null = null;
   private errorMsg = "";
@@ -194,16 +201,18 @@ class DivinciChatWidget {
   }
 
   /**
-   * Learn the release's actual gate mode before rendering the first
-   * "please verify" screen. The panel opens on a plain "loading" state (no
-   * Turnstile) until this resolves — deliberately NOT a guess-then-correct
-   * flow: rendering "email" first (its own Turnstile widget) and later
-   * swapping to "captcha" (a second widget) left the first widget's iframe
-   * torn out of the DOM without `turnstile.remove()`, and Cloudflare's script
-   * doesn't tolerate that — every widget after the first silently stopped
-   * verifying ("Cannot find Widget" in the console, "Start chatting" doing
-   * nothing). Rendering exactly one view, once, with the mode already known,
-   * avoids the double-render entirely.
+   * Learn the release's actual gate mode before rendering the first screen.
+   * The panel opens on a plain "loading" state until this resolves —
+   * deliberately NOT a guess-then-correct flow: rendering "email" first (its
+   * own Turnstile widget) and later swapping views left the first widget's
+   * iframe torn out of the DOM without `turnstile.remove()`, and Cloudflare's
+   * script doesn't tolerate that. Rendering exactly one view, once, with the
+   * mode already known, avoids the double-render entirely.
+   *
+   * captcha-only releases skip straight to "chat" (matching the sdk.divinci.ai
+   * docs assistant's UX — no separate "Start chatting" gate screen): Turnstile
+   * runs invisibly in the background via ensureTurnstileRendered(), and the
+   * gate session is only established lazily at first-send time.
    */
   private async loadGateMode(): Promise<void> {
     if (this.view !== "loading") return; // already on "chat" via a stored token
@@ -213,7 +222,42 @@ class DivinciChatWidget {
     } catch {
       // Network hiccup — fall back to the pre-existing email/OTP flow.
     }
-    if (this.view === "loading") this.setView(this.mode === "captcha-only" ? "captcha" : "email");
+    if (this.view !== "loading") return;
+    if (this.mode === "captcha-only") {
+      this.messages = [];
+      this.setView("chat");
+      this.ensureTurnstileRendered();
+    } else {
+      this.setView("email");
+    }
+  }
+
+  /** Idempotent: renders the invisible captcha-only gate widget once into the
+   * persistent tsMount container, so a token is warm by the time the visitor
+   * actually sends a message. No-ops outside captcha-only mode. */
+  private ensureTurnstileRendered(): void {
+    if (this.mode !== "captcha-only" || this.gateTurnstileId !== null) return;
+    if (!window.turnstile) return; // script not loaded yet — retried from ensureGateStarted()
+    this.gateTurnstileId = window.turnstile.render(this.tsMount, {
+      sitekey: this.cfg.turnstileSiteKey,
+      appearance: "interaction-only",
+      callback: (token: string) => { this.gateTurnstileToken = token; },
+      "error-callback": () => { this.gateTurnstileToken = null; },
+      "expired-callback": () => { this.gateTurnstileToken = null; },
+    });
+  }
+
+  /** Establishes the freeChatGate session once, consuming one invisible-widget
+   * token — called lazily on first send rather than behind an explicit button.
+   * Throws "turnstile-pending" if the token isn't ready yet; callers retry. */
+  private async ensureGateStarted(): Promise<void> {
+    if (this.mode !== "captcha-only" || this.client.freeChatGate.isVerified()) return;
+    this.ensureTurnstileRendered();
+    const token = this.gateTurnstileToken
+      ?? (this.gateTurnstileId ? window.turnstile?.getResponse(this.gateTurnstileId) : undefined);
+    if (!token) throw new Error("turnstile-pending");
+    await this.client.freeChatGate.start({ releaseId: this.cfg.releaseId, turnstileToken: token });
+    this.gateTurnstileToken = null; // single-use; the session token carries subsequent sends
   }
 
   private mount(): void {
@@ -230,8 +274,11 @@ class DivinciChatWidget {
     header.appendChild(close);
 
     this.body = el("div", "dvc-body");
+    this.tsMount = el("div", "dvc-turnstile-invisible");
+    this.tsMount.style.display = "none";
     this.panel.appendChild(header);
     this.panel.appendChild(this.body);
+    this.panel.appendChild(this.tsMount);
     this.root.appendChild(this.panel);
     this.root.appendChild(this.bubble);
     document.body.appendChild(this.root);
@@ -295,7 +342,6 @@ class DivinciChatWidget {
       case "loading": return this.renderLoading();
       case "email": return this.renderEmail();
       case "otp": return this.renderOtp();
-      case "captcha": return this.renderCaptcha();
       case "chat": return this.renderChat();
       case "exhausted": return this.renderExhausted();
       case "error": return this.renderError();
@@ -371,50 +417,6 @@ class DivinciChatWidget {
         if (this.looksLikeBotRejection(e)) { this.setView("blocked"); return; }
         err.textContent = this.errText(e, "Couldn't send the code. Please try again.");
         btn.disabled = false; btn.textContent = "Get my code";
-        if (window.turnstile && this.turnstileId) window.turnstile.reset(this.turnstileId);
-      }
-    });
-  }
-
-  /**
-   * captcha-only mode: no email/OTP at all — a Turnstile pass is the whole
-   * gate. start() (no email arg) returns a token immediately on success.
-   */
-  private renderCaptcha(): void {
-    const wrap = el("div", "dvc-pad");
-    wrap.appendChild(el("p", "dvc-lead", "Hi! I'm Divinci. Complete the quick check below to start chatting — no email needed."));
-    const ts = el("div", "dvc-turnstile");
-    const btn = el("button", "dvc-btn", "Start chatting");
-    const err = el("p", "dvc-err");
-    wrap.append(ts, btn, err);
-    this.body.appendChild(wrap);
-
-    this.turnstileToken = null;
-    if (window.turnstile) {
-      this.turnstileId = window.turnstile.render(ts, {
-        sitekey: this.cfg.turnstileSiteKey,
-        theme: "light",
-        appearance: "interaction-only",
-        callback: (token: string) => { this.turnstileToken = token; },
-        "error-callback": () => { this.turnstileToken = null; },
-        "expired-callback": () => { this.turnstileToken = null; },
-      });
-    } else {
-      ts.innerHTML = `<small class="dvc-muted">Loading verification…</small>`;
-    }
-
-    btn.addEventListener("click", async () => {
-      const token = this.turnstileToken ?? window.turnstile?.getResponse(this.turnstileId ?? undefined);
-      if (!token) { err.textContent = "Please complete the verification check."; return; }
-      btn.disabled = true; btn.textContent = "Verifying…"; err.textContent = "";
-      try {
-        await this.client.freeChatGate.start({ releaseId: this.cfg.releaseId, turnstileToken: token });
-        this.messages = [];
-        this.setView("chat");
-      } catch (e) {
-        if (this.looksLikeBotRejection(e)) { this.setView("blocked"); return; }
-        err.textContent = this.errText(e, "Couldn't verify. Please try again.");
-        btn.disabled = false; btn.textContent = "Start chatting";
         if (window.turnstile && this.turnstileId) window.turnstile.reset(this.turnstileId);
       }
     });
@@ -508,6 +510,20 @@ class DivinciChatWidget {
       this.messages.push({ role: "assistant", text: "", pending: true });
       this.render();
       try {
+        // captcha-only mode: the invisible widget warmed up when the panel
+        // opened, but the gate session itself is only established here, on
+        // first send — no separate "Start chatting" click. If the token
+        // isn't ready yet (rare — interaction-only usually resolves in well
+        // under a second), give it one brief retry before surfacing an error.
+        if (!this.client.freeChatGate.isVerified()) {
+          try {
+            await this.ensureGateStarted();
+          } catch (e) {
+            if (!(e instanceof Error) || e.message !== "turnstile-pending") throw e;
+            await new Promise((r) => setTimeout(r, 800));
+            await this.ensureGateStarted();
+          }
+        }
         const { reply, remaining } = await this.client.freeChatGate.send(prompt);
         this.messages[this.messages.length - 1] = { role: "assistant", text: reply };
         this.remaining = remaining;
@@ -516,7 +532,11 @@ class DivinciChatWidget {
       } catch (e) {
         this.messages.pop(); // drop the "…" placeholder
         if (this.isQuota(e)) { this.setView("exhausted"); return; }
-        this.messages.push({ role: "assistant", text: this.errText(e, "Something went wrong. Please try again."), isError: true });
+        if (this.looksLikeBotRejection(e)) { this.setView("blocked"); return; }
+        const msg = e instanceof Error && e.message === "turnstile-pending"
+          ? "Still verifying — please try sending that again in a moment."
+          : this.errText(e, "Something went wrong. Please try again.");
+        this.messages.push({ role: "assistant", text: msg, isError: true });
         this.render();
       }
     };
@@ -610,7 +630,7 @@ class DivinciChatWidget {
     wrap.appendChild(e);
     const retry = el("button", "dvc-btn", "Try again");
     retry.addEventListener("click", () => this.setView(
-      this.client.freeChatGate.isVerified() ? "chat" : this.mode === "captcha-only" ? "captcha" : "email",
+      this.client.freeChatGate.isVerified() || this.mode === "captcha-only" ? "chat" : "email",
     ));
     wrap.appendChild(retry);
     this.body.appendChild(wrap);
