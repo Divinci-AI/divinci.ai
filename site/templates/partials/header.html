@@ -17,7 +17,7 @@
     <!-- Mobile-first navigation layout -->
     <div class="header-actions">
         {% include "language-switcher.html" %}
-        <a href="https://app.divinci.app" class="cta-button mobile-demo-button" target="_blank" rel="noopener">{{ translations.navigation.sign_up | default(value="Sign up") }}</a>
+        <a href="https://app.divinci.app/signup" class="cta-button mobile-demo-button" target="_blank" rel="noopener">{{ translations.navigation.sign_up | default(value="Sign up") }}</a>
     </div>
     
     <button class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav-links">
@@ -53,7 +53,7 @@
             </li>
             <!-- Sign up as navigation item on mobile -->
             <li class="mobile-only">
-                <a href="https://app.divinci.app" target="_blank" rel="noopener">{{ translations.navigation.sign_up | default(value="Sign up") }}</a>
+                <a href="https://app.divinci.app/signup" target="_blank" rel="noopener">{{ translations.navigation.sign_up | default(value="Sign up") }}</a>
             </li>
         </ul>
     </nav>

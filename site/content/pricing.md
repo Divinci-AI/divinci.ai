@@ -834,7 +834,7 @@ input:checked + .toggle-slider:before {
 <li class="unavailable">Priority support</li>
 </ul>
 
-<a href="https://chat.divinci.app" class="pricing-cta" target="_blank" rel="noopener">Sign up free</a>
+<a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Sign up free</a>
 </div>
 
 <!-- Starter Plan -->
