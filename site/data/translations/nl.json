@@ -20,7 +20,8 @@
     "terms_of_service": "Servicevoorwaarden",
     "privacy_policy": "Privacybeleid",
     "quality_assurance": "Kwaliteitsborging",
-    "release_management": "Releasebeheer"
+    "release_management": "Releasebeheer",
+    "sign_up": "Aanmelden"
   },
   "hero": {
     "heading": "AI releases.",
@@ -33,7 +34,8 @@
     },
     "cta": {
       "primary": "Demo aanvragen",
-      "secondary": "Platform verkennen"
+      "secondary": "Platform verkennen",
+      "connect_provider": "Verbind {provider} met Divinci"
     },
     "sound_unmute": "Geluid inschakelen",
     "sound_mute": "Geluid uitschakelen"

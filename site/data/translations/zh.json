@@ -20,7 +20,8 @@
     "terms_of_service": "服务条款",
     "privacy_policy": "隐私政策",
     "quality_assurance": "质量保证",
-    "release_management": "发布管理"
+    "release_management": "发布管理",
+    "sign_up": "注册"
   },
   "hero": {
     "heading": "AI发布。",
@@ -33,7 +34,8 @@
     },
     "cta": {
       "primary": "申请演示",
-      "secondary": "探索平台"
+      "secondary": "探索平台",
+      "connect_provider": "将 {provider} 连接到 Divinci"
     },
     "sound_unmute": "取消静音",
     "sound_mute": "静音"

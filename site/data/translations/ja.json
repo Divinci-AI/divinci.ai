@@ -20,7 +20,8 @@
     "terms_of_service": "利用規約",
     "privacy_policy": "プライバシーポリシー",
     "quality_assurance": "品質保証",
-    "release_management": "リリース管理"
+    "release_management": "リリース管理",
+    "sign_up": "新規登録"
   },
   "hero": {
     "heading": "AIリリース。",
@@ -33,7 +34,8 @@
     },
     "cta": {
       "primary": "デモをリクエスト",
-      "secondary": "プラットフォームを探索"
+      "secondary": "プラットフォームを探索",
+      "connect_provider": "{provider}をDivinciに接続"
     },
     "sound_unmute": "ミュート解除",
     "sound_mute": "ミュート"

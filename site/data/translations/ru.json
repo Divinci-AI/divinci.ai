@@ -20,7 +20,8 @@
     "terms_of_service": "Условия использования",
     "privacy_policy": "Политика конфиденциальности",
     "quality_assurance": "Обеспечение качества",
-    "release_management": "Управление релизами"
+    "release_management": "Управление релизами",
+    "sign_up": "Регистрация"
   },
   "hero": {
     "heading": "Релизы ИИ.",
@@ -33,7 +34,8 @@
     },
     "cta": {
       "primary": "Запросить демо",
-      "secondary": "Изучить платформу"
+      "secondary": "Изучить платформу",
+      "connect_provider": "Подключить {provider} к Divinci"
     },
     "sound_unmute": "Включить звук",
     "sound_mute": "Отключить звук"

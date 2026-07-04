@@ -918,6 +918,36 @@ p {
   transform: translateY(-1px);
 }
 
+/* "Connect <AI app> to Divinci" hero button — outline style + provider icon that
+   rotates between MCP-capable AI apps. */
+.connect-ai-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.connect-ai-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: opacity 0.18s ease-out;
+}
+
+.connect-ai-button #connect-ai-label {
+  transition: opacity 0.18s ease-out;
+}
+
+.connect-ai-button.connect-ai-swap img,
+.connect-ai-button.connect-ai-swap #connect-ai-label {
+  opacity: 0;
+}
+
+@media (max-width: 640px) {
+  .cta-buttons {
+    flex-wrap: wrap;
+  }
+}
+
 /* Enterprise AI section styles */
 .enterprise-ai {
   padding: 6rem 4rem 0 4rem;

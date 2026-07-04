@@ -21,7 +21,8 @@
     "terms_of_service": "Terms of Service",
     "privacy_policy": "Privacy Policy",
     "quality_assurance": "Quality Assurance",
-    "release_management": "Release Management"
+    "release_management": "Release Management",
+    "sign_up": "Sign up"
   },
   "hero": {
     "heading": "Custom AI releases.",
@@ -34,7 +35,8 @@
     },
     "cta": {
       "primary": "Request demo",
-      "secondary": "Explore platform"
+      "secondary": "Explore platform",
+      "connect_provider": "Connect {provider} to Divinci"
     },
     "sound_unmute": "Unmute",
     "sound_mute": "Mute"

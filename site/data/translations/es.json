@@ -20,7 +20,8 @@
     "terms_of_service": "Términos de servicio",
     "privacy_policy": "Política de privacidad",
     "quality_assurance": "Control de calidad",
-    "release_management": "Gestión de versiones"
+    "release_management": "Gestión de versiones",
+    "sign_up": "Regístrate"
   },
   "hero": {
     "heading": "Lanzamientos de IA.",
@@ -33,7 +34,8 @@
     },
     "cta": {
       "primary": "Solicitar demo",
-      "secondary": "Explorar plataforma"
+      "secondary": "Explorar plataforma",
+      "connect_provider": "Conecta {provider} a Divinci"
     },
     "sound_unmute": "Activar sonido",
     "sound_mute": "Silenciar"

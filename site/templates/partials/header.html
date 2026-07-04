@@ -17,7 +17,7 @@
     <!-- Mobile-first navigation layout -->
     <div class="header-actions">
         {% include "language-switcher.html" %}
-        <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="cta-button mobile-demo-button" target="_blank" rel="noopener">{{ translations.navigation.request_demo | default(value="Request demo") }}</a>
+        <a href="https://app.divinci.app" class="cta-button mobile-demo-button" target="_blank" rel="noopener">{{ translations.navigation.sign_up | default(value="Sign up") }}</a>
     </div>
     
     <button class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav-links">
@@ -51,9 +51,9 @@
                     <a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}">{{ translations.navigation.privacy_policy | default(value="Privacy Policy") }}</a>
                 </div>
             </li>
-            <!-- Request Demo as navigation item on mobile -->
+            <!-- Sign up as navigation item on mobile -->
             <li class="mobile-only">
-                <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener">{{ translations.navigation.request_demo | default(value="Request demo") }}</a>
+                <a href="https://app.divinci.app" target="_blank" rel="noopener">{{ translations.navigation.sign_up | default(value="Sign up") }}</a>
             </li>
         </ul>
     </nav>

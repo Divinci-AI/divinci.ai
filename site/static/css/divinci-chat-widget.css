@@ -14,6 +14,25 @@
 .dvc-bubble:hover { transform: translateY(-2px); background: var(--color-accent-tertiary, #3d6b4f); }
 .dvc-bubble-open { background: var(--color-accent-secondary, #8b7659); }
 
+/* 3D robot launcher upgrade (capability-gated; emoji is the fallback).
+   font-size: 0 hides the emoji glyph while the WebGL canvas fills the bubble;
+   removing the class restores it instantly on any failure. */
+.dvc-bubble-robot {
+  font-size: 0;
+  width: 76px; height: 76px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 30% 25%, #3a3f6e, var(--color-neutral-inverse, #2d5a4f));
+}
+.dvc-bubble-robot-holder {
+  position: absolute; inset: 0;
+  pointer-events: none; /* clicks land on the button itself */
+}
+.dvc-bubble-robot-holder canvas { width: 100% !important; height: 100% !important; }
+/* Taller launcher → lift the panel so it clears the robot bubble.
+   :has() is safe here: the robot only mounts on modern engines anyway. */
+.dvc-root:has(.dvc-bubble-robot) .dvc-panel { bottom: 92px; }
+
 .dvc-panel {
   position: absolute; right: 0; bottom: 72px; width: 360px; max-width: calc(100vw - 40px);
   height: 480px; max-height: calc(100vh - 120px); display: flex; flex-direction: column;

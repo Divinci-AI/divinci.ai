@@ -20,7 +20,8 @@
     "terms_of_service": "Termini di Servizio",
     "privacy_policy": "Informativa sulla Privacy",
     "quality_assurance": "Garanzia della Qualità",
-    "release_management": "Gestione dei Rilasci"
+    "release_management": "Gestione dei Rilasci",
+    "sign_up": "Registrati"
   },
   "hero": {
     "heading": "Rilasci AI.",
@@ -33,7 +34,8 @@
     },
     "cta": {
       "primary": "Richiedi demo",
-      "secondary": "Esplora piattaforma"
+      "secondary": "Esplora piattaforma",
+      "connect_provider": "Collega {provider} a Divinci"
     },
     "sound_unmute": "Riattiva audio",
     "sound_mute": "Disattiva audio"

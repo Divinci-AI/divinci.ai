@@ -20,7 +20,8 @@
     "terms_of_service": "सेवा की शर्तें",
     "privacy_policy": "गोपनीयता नीति",
     "quality_assurance": "गुणवत्ता आश्वासन",
-    "release_management": "रिलीज़ प्रबंधन"
+    "release_management": "रिलीज़ प्रबंधन",
+    "sign_up": "साइन अप करें"
   },
   "hero": {
     "heading": "AI रिलीज़।",
@@ -33,7 +34,8 @@
     },
     "cta": {
       "primary": "डेमो का अनुरोध",
-      "secondary": "प्लेटफॉर्म का अन्वेषण"
+      "secondary": "प्लेटफॉर्म का अन्वेषण",
+      "connect_provider": "{provider} को Divinci से जोड़ें"
     },
     "sound_unmute": "ध्वनि चालू करें",
     "sound_mute": "ध्वनि बंद करें"

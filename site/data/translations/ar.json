@@ -20,7 +20,8 @@
     "terms_of_service": "شروط الخدمة",
     "privacy_policy": "سياسة الخصوصية",
     "quality_assurance": "ضمان الجودة",
-    "release_management": "إدارة الإصدارات"
+    "release_management": "إدارة الإصدارات",
+    "sign_up": "إنشاء حساب"
   },
   "hero": {
     "heading": "إصدارات الذكاء الاصطناعي.",
@@ -33,7 +34,8 @@
     },
     "cta": {
       "primary": "طلب عرض تجريبي",
-      "secondary": "استكشف المنصة"
+      "secondary": "استكشف المنصة",
+      "connect_provider": "اربط {provider} بـ Divinci"
     },
     "sound_unmute": "تفعيل الصوت",
     "sound_mute": "كتم الصوت"

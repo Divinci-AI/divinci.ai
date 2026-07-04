@@ -20,7 +20,8 @@
     "terms_of_service": "Conditions d'utilisation",
     "privacy_policy": "Politique de confidentialité",
     "quality_assurance": "Assurance qualité",
-    "release_management": "Gestion des versions"
+    "release_management": "Gestion des versions",
+    "sign_up": "S'inscrire"
   },
   "hero": {
     "heading": "Versions d'IA.",
@@ -33,7 +34,8 @@
     },
     "cta": {
       "primary": "Demander une démo",
-      "secondary": "Explorer la plateforme"
+      "secondary": "Explorer la plateforme",
+      "connect_provider": "Connecter {provider} à Divinci"
     },
     "sound_unmute": "Activer le son",
     "sound_mute": "Couper le son"

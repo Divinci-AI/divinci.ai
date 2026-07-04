@@ -20,7 +20,8 @@
     "terms_of_service": "서비스 약관",
     "privacy_policy": "개인정보 처리방침",
     "quality_assurance": "품질 보증",
-    "release_management": "릴리즈 관리"
+    "release_management": "릴리즈 관리",
+    "sign_up": "회원가입"
   },
   "hero": {
     "heading": "AI 릴리스.",
@@ -33,7 +34,8 @@
     },
     "cta": {
       "primary": "데모 요청",
-      "secondary": "플랫폼 탐색"
+      "secondary": "플랫폼 탐색",
+      "connect_provider": "{provider}를 Divinci에 연결"
     },
     "sound_unmute": "음소거 해제",
     "sound_mute": "음소거"

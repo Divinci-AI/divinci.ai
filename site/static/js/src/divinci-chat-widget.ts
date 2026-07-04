@@ -30,6 +30,9 @@ declare global {
       reset: (id?: string) => void;
     };
     __divinciChatBooted?: boolean;
+    DivinciRobotLauncher?: {
+      mount: (el: HTMLElement, opts: { onFail: () => void }) => () => void;
+    };
   }
 }
 
@@ -64,6 +67,35 @@ function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, html?: 
   if (cls) node.className = cls;
   if (html !== undefined) node.innerHTML = html;
   return node;
+}
+
+/**
+ * Can this browser comfortably run the 3D robot launcher?
+ * Conservative: any signal of a weak device keeps the emoji bubble.
+ * The heavy bundle (react + three.js) is only fetched when this passes.
+ */
+function probeRobotCapability(): boolean {
+  try {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+    const nav = navigator as Navigator & {
+      deviceMemory?: number;
+      connection?: { saveData?: boolean; effectiveType?: string };
+    };
+    if (nav.connection?.saveData) return false;
+    if (nav.connection?.effectiveType && /(^|-)2g$/.test(nav.connection.effectiveType)) return false;
+    if (typeof nav.deviceMemory === "number" && nav.deviceMemory < 4) return false;
+    if (typeof nav.hardwareConcurrency === "number" && nav.hardwareConcurrency < 4) return false;
+    // Same guard the robot scene itself uses: refuse software WebGL.
+    const canvas = document.createElement("canvas");
+    const gl =
+      canvas.getContext("webgl2", { failIfMajorPerformanceCaveat: true }) ||
+      canvas.getContext("webgl", { failIfMajorPerformanceCaveat: true });
+    if (!gl) return false;
+    (gl as WebGLRenderingContext).getExtension("WEBGL_lose_context")?.loseContext();
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function escapeHtml(s: string): string {
@@ -161,7 +193,39 @@ class DivinciChatWidget {
     this.root.appendChild(this.panel);
     this.root.appendChild(this.bubble);
     document.body.appendChild(this.root);
+    this.upgradeBubbleToRobot();
     this.render();
+  }
+
+  /**
+   * Swap the emoji bubble for the 3D Divinci robot (the SDK-docs hero mascot)
+   * when the device can handle it. The robot bundle is heavy, so it loads
+   * lazily and only after probeRobotCapability() passes; any failure at any
+   * stage (script 404, WebGL init, GL context loss) reverts to the emoji.
+   */
+  private upgradeBubbleToRobot(): void {
+    if (!probeRobotCapability()) return;
+    const script = document.createElement("script");
+    script.src = "/js/divinci-robot.js";
+    script.defer = true;
+    script.onload = () => {
+      const launcher = window.DivinciRobotLauncher;
+      if (!launcher) return;
+      const holder = el("div", "dvc-bubble-robot-holder");
+      const revert = (): void => {
+        this.bubble.classList.remove("dvc-bubble-robot");
+        holder.remove();
+      };
+      try {
+        launcher.mount(holder, { onFail: revert });
+        this.bubble.classList.add("dvc-bubble-robot");
+        this.bubble.appendChild(holder);
+      } catch {
+        revert();
+      }
+    };
+    script.onerror = () => script.remove();
+    document.head.appendChild(script);
   }
 
   private toggle(force?: boolean): void {

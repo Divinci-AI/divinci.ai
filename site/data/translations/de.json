@@ -20,7 +20,8 @@
     "terms_of_service": "Nutzungsbedingungen",
     "privacy_policy": "Datenschutzrichtlinie",
     "quality_assurance": "Qualitätssicherung",
-    "release_management": "Release-Management"
+    "release_management": "Release-Management",
+    "sign_up": "Registrieren"
   },
   "hero": {
     "heading": "KI-Releases.",
@@ -33,7 +34,8 @@
     },
     "cta": {
       "primary": "Demo anfordern",
-      "secondary": "Plattform erkunden"
+      "secondary": "Plattform erkunden",
+      "connect_provider": "{provider} mit Divinci verbinden"
     },
     "sound_unmute": "Stummschaltung aufheben",
     "sound_mute": "Stummschalten"
