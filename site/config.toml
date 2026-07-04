@@ -111,6 +111,10 @@ tagline = "AI releases. Excellence, every time."
 # Release lives on staging API until production workspace cutover (P6).
 divinci_chat_api_base = "https://api.stage.divinci.app"
 divinci_chat_release_id = "6a1d7d1f790fc5da3b7a0ef0"
-# Cloudflare Turnstile *site* key (public). Secret stays in Worker env (wrangler secret).
-divinci_chat_turnstile_sitekey = "0x4AAAAAABrD5FFS3p4pusZl"
+# Cloudflare Turnstile *site* key (public) — MUST match whatever sitekey the API's
+# TURNSTILE_PLATFORM_SITEKEY (staging Infisical) is paired with, since siteverify
+# validates token+secret+sitekey together; a mismatch here fails EVERY token with
+# "Bot verification failed" regardless of the widget's hostname allowlist. This is
+# the "Divinci Embed Platform" widget, not the "divinci.ai contact form" one.
+divinci_chat_turnstile_sitekey = "0x4AAAAAADpf5cq58Uvc2Drx"
 divinci_chat_signup_url = "https://app.divinci.app"
