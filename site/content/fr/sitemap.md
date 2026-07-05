@@ -6,41 +6,48 @@ template = "page.html"
 
 # Plan du site
 
-# Sitemap
+## Pages principales
+- [Accueil](/fr/)
+- [À propos](/fr/about/)
+- [Contact](/fr/contact/)
+- [Tarifs](/fr/pricing/)
 
-## Main Pages
-- [Home](/)
-- [About Us](/about/)
-- [Contact](/contact/)
-- [Pricing](/pricing/)
+## Fonctionnalités
+- [AutoRAG](/fr/autorag/)
+- [Assurance qualité](/fr/quality-assurance/)
+- [Gestion des versions](/fr/release-management/)
 
-## Features
-- [AutoRAG](/autorag/)
-- [Quality Assurance](/quality-assurance/)
-- [Release Management](/release-management/)
+## Ressources
+- [Documentation](/fr/docs/)
+- [Blog](/fr/blog/)
+- [Tutoriels](/fr/tutorials/)
+- [API](/fr/api/)
 
-## Resources
-- [Documentation](/docs/)
-- [Blog](/blog/)
-- [Tutorials](/tutorials/)
-- [API](/api/)
+## Entreprise
+- [Carrières](/fr/careers/)
+- [Presse](/fr/press/)
+- [Feuille de route](/fr/roadmap/)
+- [Journal des modifications](/fr/changelog/)
 
-## Company
-- [Careers](/careers/)
-- [Press](/press/)
-- [Roadmap](/roadmap/)
-- [Changelog](/changelog/)
+## Mentions légales
+- [Conditions d'utilisation](/fr/terms-of-service/)
+- [Politique de Confidentialité](/fr/privacy-policy/)
+- [Sécurité et éthique de l'IA](/fr/ai-safety/)
+- [Sécurité](/fr/security/)
+- [Accessibilité](/fr/accessibility/)
+- [Politique de cookies](/fr/cookies/)
 
-## Legal
-- [Terms of Service](/terms-of-service/)
-- [Privacy Policy](/privacy-policy/)
-- [AI Safety & Ethics](/ai-safety/)
-- [Security](/security/)
-- [Accessibility](/accessibility/)
-- [Cookie Policy](/cookies/)
-
-## Language Versions
-- [English](/)
-- [Spanish](/es/)
-- [French](/fr/)
-- [Arabic](/ar/)
+## Versions linguistiques
+- [Anglais](/)
+- [Espagnol](/es/)
+- [Français](/fr/)
+- [Arabe](/ar/)
+- [Japonais](/ja/)
+- [Chinois](/zh/)
+- [Italien](/it/)
+- [Russe](/ru/)
+- [Allemand](/de/)
+- [Portugais](/pt/)
+- [Coréen](/ko/)
+- [Néerlandais](/nl/)
+- [Hindi](/hi/)

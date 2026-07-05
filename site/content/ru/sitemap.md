@@ -6,41 +6,48 @@ template = "page.html"
 
 # Карта сайта
 
-# Sitemap
+## Основные страницы
+- [Главная](/ru/)
+- [О нас](/ru/about/)
+- [Контакты](/ru/contact/)
+- [Тарифы](/ru/pricing/)
 
-## Main Pages
-- [Home](/)
-- [About Us](/about/)
-- [Contact](/contact/)
-- [Pricing](/pricing/)
+## Возможности
+- [AutoRAG](/ru/autorag/)
+- [Контроль качества](/ru/quality-assurance/)
+- [Управление релизами](/ru/release-management/)
 
-## Features
-- [AutoRAG](/autorag/)
-- [Quality Assurance](/quality-assurance/)
-- [Release Management](/release-management/)
+## Ресурсы
+- [Документация](/ru/docs/)
+- [Блог](/ru/blog/)
+- [Руководства](/ru/tutorials/)
+- [API](/ru/api/)
 
-## Resources
-- [Documentation](/docs/)
-- [Blog](/blog/)
-- [Tutorials](/tutorials/)
-- [API](/api/)
+## Компания
+- [Карьера](/ru/careers/)
+- [Пресса](/ru/press/)
+- [Дорожная карта](/ru/roadmap/)
+- [Журнал изменений](/ru/changelog/)
 
-## Company
-- [Careers](/careers/)
-- [Press](/press/)
-- [Roadmap](/roadmap/)
-- [Changelog](/changelog/)
+## Правовая информация
+- [Условия обслуживания](/ru/terms-of-service/)
+- [Политика конфиденциальности](/ru/privacy-policy/)
+- [Безопасность и этика ИИ](/ru/ai-safety/)
+- [Безопасность](/ru/security/)
+- [Доступность](/ru/accessibility/)
+- [Политика использования файлов cookie](/ru/cookies/)
 
-## Legal
-- [Terms of Service](/terms-of-service/)
-- [Privacy Policy](/privacy-policy/)
-- [AI Safety & Ethics](/ai-safety/)
-- [Security](/security/)
-- [Accessibility](/accessibility/)
-- [Cookie Policy](/cookies/)
-
-## Language Versions
-- [English](/)
-- [Spanish](/es/)
-- [French](/fr/)
-- [Arabic](/ar/)
+## Языковые версии
+- [Английский](/)
+- [Испанский](/es/)
+- [Французский](/fr/)
+- [Арабский](/ar/)
+- [Японский](/ja/)
+- [Китайский](/zh/)
+- [Итальянский](/it/)
+- [Русский](/ru/)
+- [Немецкий](/de/)
+- [Португальский](/pt/)
+- [Корейский](/ko/)
+- [Нидерландский](/nl/)
+- [Хинди](/hi/)

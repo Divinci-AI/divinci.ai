@@ -1,46 +1,53 @@
 +++
 title = "Mapa do Site"
-description = "Mapa de navegação completo do site Divinci AI"
+description = "Mapa de navegação completo do site da Divinci AI"
 template = "page.html"
 +++
 
 # Mapa do Site
 
-# Sitemap
+## Páginas principais
+- [Início](/pt/)
+- [Sobre nós](/pt/about/)
+- [Contacto](/pt/contact/)
+- [Preços](/pt/pricing/)
 
-## Main Pages
-- [Home](/)
-- [About Us](/about/)
-- [Contact](/contact/)
-- [Pricing](/pricing/)
+## Funcionalidades
+- [AutoRAG](/pt/autorag/)
+- [Garantia de qualidade](/pt/quality-assurance/)
+- [Gestão de versões](/pt/release-management/)
 
-## Features
-- [AutoRAG](/autorag/)
-- [Quality Assurance](/quality-assurance/)
-- [Release Management](/release-management/)
+## Recursos
+- [Documentação](/pt/docs/)
+- [Blog](/pt/blog/)
+- [Tutoriais](/pt/tutorials/)
+- [API](/pt/api/)
 
-## Resources
-- [Documentation](/docs/)
-- [Blog](/blog/)
-- [Tutorials](/tutorials/)
-- [API](/api/)
-
-## Company
-- [Careers](/careers/)
-- [Press](/press/)
-- [Roadmap](/roadmap/)
-- [Changelog](/changelog/)
+## Empresa
+- [Carreiras](/pt/careers/)
+- [Imprensa](/pt/press/)
+- [Roteiro](/pt/roadmap/)
+- [Registo de alterações](/pt/changelog/)
 
 ## Legal
-- [Terms of Service](/terms-of-service/)
-- [Privacy Policy](/privacy-policy/)
-- [AI Safety & Ethics](/ai-safety/)
-- [Security](/security/)
-- [Accessibility](/accessibility/)
-- [Cookie Policy](/cookies/)
+- [Termos de Serviço](/pt/terms-of-service/)
+- [Política de Privacidade](/pt/privacy-policy/)
+- [Segurança e Ética da IA](/pt/ai-safety/)
+- [Segurança](/pt/security/)
+- [Acessibilidade](/pt/accessibility/)
+- [Política de Cookies](/pt/cookies/)
 
-## Language Versions
-- [English](/)
-- [Spanish](/es/)
-- [French](/fr/)
-- [Arabic](/ar/)
+## Versões de idioma
+- [Inglês](/)
+- [Espanhol](/es/)
+- [Francês](/fr/)
+- [Árabe](/ar/)
+- [Japonês](/ja/)
+- [Chinês](/zh/)
+- [Italiano](/it/)
+- [Russo](/ru/)
+- [Alemão](/de/)
+- [Português](/pt/)
+- [Coreano](/ko/)
+- [Neerlandês](/nl/)
+- [Hindi](/hi/)

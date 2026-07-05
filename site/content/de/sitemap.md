@@ -1,46 +1,53 @@
 +++
 title = "Sitemap"
-description = "Vollständige Navigationsübersicht der Divinci-AI-Website"
+description = "Vollständige Navigationskarte der Divinci-AI-Website"
 template = "page.html"
 +++
 
 # Sitemap
 
-# Sitemap
+## Hauptseiten
+- [Startseite](/de/)
+- [Über uns](/de/about/)
+- [Kontakt](/de/contact/)
+- [Preise](/de/pricing/)
 
-## Main Pages
-- [Home](/)
-- [About Us](/about/)
-- [Contact](/contact/)
-- [Pricing](/pricing/)
+## Funktionen
+- [AutoRAG](/de/autorag/)
+- [Qualitätssicherung](/de/quality-assurance/)
+- [Release-Management](/de/release-management/)
 
-## Features
-- [AutoRAG](/autorag/)
-- [Quality Assurance](/quality-assurance/)
-- [Release Management](/release-management/)
+## Ressourcen
+- [Dokumentation](/de/docs/)
+- [Blog](/de/blog/)
+- [Tutorials](/de/tutorials/)
+- [API](/de/api/)
 
-## Resources
-- [Documentation](/docs/)
-- [Blog](/blog/)
-- [Tutorials](/tutorials/)
-- [API](/api/)
+## Unternehmen
+- [Karriere](/de/careers/)
+- [Presse](/de/press/)
+- [Roadmap](/de/roadmap/)
+- [Änderungsprotokoll](/de/changelog/)
 
-## Company
-- [Careers](/careers/)
-- [Press](/press/)
-- [Roadmap](/roadmap/)
-- [Changelog](/changelog/)
+## Rechtliches
+- [Nutzungsbedingungen](/de/terms-of-service/)
+- [Datenschutzrichtlinie](/de/privacy-policy/)
+- [KI-Sicherheit und Ethik](/de/ai-safety/)
+- [Sicherheit](/de/security/)
+- [Barrierefreiheit](/de/accessibility/)
+- [Cookie-Richtlinie](/de/cookies/)
 
-## Legal
-- [Terms of Service](/terms-of-service/)
-- [Privacy Policy](/privacy-policy/)
-- [AI Safety & Ethics](/ai-safety/)
-- [Security](/security/)
-- [Accessibility](/accessibility/)
-- [Cookie Policy](/cookies/)
-
-## Language Versions
-- [English](/)
-- [Spanish](/es/)
-- [French](/fr/)
-- [Arabic](/ar/)
+## Sprachversionen
+- [Englisch](/)
+- [Spanisch](/es/)
+- [Französisch](/fr/)
+- [Arabisch](/ar/)
+- [Japanisch](/ja/)
+- [Chinesisch](/zh/)
+- [Italienisch](/it/)
+- [Russisch](/ru/)
+- [Deutsch](/de/)
+- [Portugiesisch](/pt/)
+- [Koreanisch](/ko/)
+- [Niederländisch](/nl/)
+- [Hindi](/hi/)

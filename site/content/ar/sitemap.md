@@ -6,41 +6,48 @@ template = "page.html"
 
 # خريطة الموقع
 
-# Sitemap
+## الصفحات الرئيسية
+- [الرئيسية](/ar/)
+- [من نحن](/ar/about/)
+- [اتصل بنا](/ar/contact/)
+- [الأسعار](/ar/pricing/)
 
-## Main Pages
-- [Home](/)
-- [About Us](/about/)
-- [Contact](/contact/)
-- [Pricing](/pricing/)
+## الميزات
+- [AutoRAG](/ar/autorag/)
+- [ضمان الجودة](/ar/quality-assurance/)
+- [إدارة الإصدارات](/ar/release-management/)
 
-## Features
-- [AutoRAG](/autorag/)
-- [Quality Assurance](/quality-assurance/)
-- [Release Management](/release-management/)
+## الموارد
+- [التوثيق](/ar/docs/)
+- [المدونة](/ar/blog/)
+- [الدروس التعليمية](/ar/tutorials/)
+- [API](/ar/api/)
 
-## Resources
-- [Documentation](/docs/)
-- [Blog](/blog/)
-- [Tutorials](/tutorials/)
-- [API](/api/)
+## الشركة
+- [الوظائف](/ar/careers/)
+- [الصحافة](/ar/press/)
+- [خارطة الطريق](/ar/roadmap/)
+- [سجل التغييرات](/ar/changelog/)
 
-## Company
-- [Careers](/careers/)
-- [Press](/press/)
-- [Roadmap](/roadmap/)
-- [Changelog](/changelog/)
+## قانوني
+- [شروط الخدمة](/ar/terms-of-service/)
+- [سياسة الخصوصية](/ar/privacy-policy/)
+- [سلامة وأخلاقيات الذكاء الاصطناعي](/ar/ai-safety/)
+- [الأمان](/ar/security/)
+- [إمكانية الوصول](/ar/accessibility/)
+- [سياسة ملفات تعريف الارتباط](/ar/cookies/)
 
-## Legal
-- [Terms of Service](/terms-of-service/)
-- [Privacy Policy](/privacy-policy/)
-- [AI Safety & Ethics](/ai-safety/)
-- [Security](/security/)
-- [Accessibility](/accessibility/)
-- [Cookie Policy](/cookies/)
-
-## Language Versions
-- [English](/)
-- [Spanish](/es/)
-- [French](/fr/)
-- [Arabic](/ar/)
+## إصدارات اللغة
+- [الإنجليزية](/)
+- [الإسبانية](/es/)
+- [الفرنسية](/fr/)
+- [العربية](/ar/)
+- [اليابانية](/ja/)
+- [الصينية](/zh/)
+- [الإيطالية](/it/)
+- [الروسية](/ru/)
+- [الألمانية](/de/)
+- [البرتغالية](/pt/)
+- [الكورية](/ko/)
+- [الهولندية](/nl/)
+- [الهندية](/hi/)

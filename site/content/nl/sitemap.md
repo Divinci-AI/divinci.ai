@@ -1,46 +1,53 @@
 +++
 title = "Sitemap"
-description = "Volledige navigatiekaart van de Divinci-AI-website"
+description = "Volledige navigatiekaart van de Divinci AI-website"
 template = "page.html"
 +++
 
 # Sitemap
 
-# Sitemap
+## Hoofdpagina's
+- [Home](/nl/)
+- [Over ons](/nl/about/)
+- [Contact](/nl/contact/)
+- [Prijzen](/nl/pricing/)
 
-## Main Pages
-- [Home](/)
-- [About Us](/about/)
-- [Contact](/contact/)
-- [Pricing](/pricing/)
+## Functies
+- [AutoRAG](/nl/autorag/)
+- [Kwaliteitsborging](/nl/quality-assurance/)
+- [Releasebeheer](/nl/release-management/)
 
-## Features
-- [AutoRAG](/autorag/)
-- [Quality Assurance](/quality-assurance/)
-- [Release Management](/release-management/)
+## Bronnen
+- [Documentatie](/nl/docs/)
+- [Blog](/nl/blog/)
+- [Tutorials](/nl/tutorials/)
+- [API](/nl/api/)
 
-## Resources
-- [Documentation](/docs/)
-- [Blog](/blog/)
-- [Tutorials](/tutorials/)
-- [API](/api/)
+## Bedrijf
+- [Vacatures](/nl/careers/)
+- [Pers](/nl/press/)
+- [Routekaart](/nl/roadmap/)
+- [Wijzigingslogboek](/nl/changelog/)
 
-## Company
-- [Careers](/careers/)
-- [Press](/press/)
-- [Roadmap](/roadmap/)
-- [Changelog](/changelog/)
+## Juridisch
+- [Servicevoorwaarden](/nl/terms-of-service/)
+- [Privacybeleid](/nl/privacy-policy/)
+- [AI-veiligheid en -ethiek](/nl/ai-safety/)
+- [Beveiliging](/nl/security/)
+- [Toegankelijkheid](/nl/accessibility/)
+- [Cookiebeleid](/nl/cookies/)
 
-## Legal
-- [Terms of Service](/terms-of-service/)
-- [Privacy Policy](/privacy-policy/)
-- [AI Safety & Ethics](/ai-safety/)
-- [Security](/security/)
-- [Accessibility](/accessibility/)
-- [Cookie Policy](/cookies/)
-
-## Language Versions
-- [English](/)
-- [Spanish](/es/)
-- [French](/fr/)
-- [Arabic](/ar/)
+## Taalversies
+- [Engels](/)
+- [Spaans](/es/)
+- [Frans](/fr/)
+- [Arabisch](/ar/)
+- [Japans](/ja/)
+- [Chinees](/zh/)
+- [Italiaans](/it/)
+- [Russisch](/ru/)
+- [Duits](/de/)
+- [Portugees](/pt/)
+- [Koreaans](/ko/)
+- [Nederlands](/nl/)
+- [Hindi](/hi/)
