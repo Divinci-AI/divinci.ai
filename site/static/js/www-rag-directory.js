@@ -6,12 +6,20 @@
  * for that site's release — no sign-up required, mirroring the same
  * click-target pattern used by the logged-in directory at
  * chat.divinci.app/www-rag (PATH_WHITELABEL_RELEASE_ITEM = /ai-release/:releaseId).
+ *
+ * Each card also links to "Build with this" — deep-links into the signed-in
+ * directory at chat.divinci.app/www-rag?copy=<host>, which auto-opens the
+ * copy-to-workspace modal for that host (copies chunks + embeddings into a
+ * new RAG vector the visitor owns, to build their own assistant on it). This
+ * static site has no auth session of its own, so the actual copy action
+ * always happens on the signed-in app.
  */
 (function () {
   "use strict";
 
   var API_URL = "https://api.divinci.app/api/v1/www-rag-directory";
   var CHAT_BASE = "https://chat.divinci.app/ai-release/";
+  var BUILD_BASE = "https://chat.divinci.app/www-rag?copy=";
 
   var statusEl = document.getElementById("www-rag-status");
   var gridEl = document.getElementById("www-rag-grid");
@@ -38,13 +46,11 @@
   // (textContent / attribute setters) rather than innerHTML so nothing a
   // crawled page's title/meta tags contain can ever be parsed as markup.
   function renderCard(site) {
-    var card = document.createElement(site.releaseId ? "a" : "div");
+    // The card itself is a plain container now (not the chat link) — it
+    // holds two independent actions (Chat / Build with this) in the footer,
+    // so it can't itself be an <a> without nesting anchors.
+    var card = document.createElement("div");
     card.className = "www-rag-card";
-    if (site.releaseId) {
-      card.href = CHAT_BASE + encodeURIComponent(site.releaseId);
-      card.target = "_blank";
-      card.rel = "noopener";
-    }
 
     var header = el("div", "www-rag-card-header");
     if (site.faviconUrl) {
@@ -64,15 +70,29 @@
     card.appendChild(header);
 
     card.appendChild(el("div", "www-rag-card-desc", site.description || ""));
+    card.appendChild(el("div", "www-rag-card-meta", formatCount(site.chunkCount) + " chunks"));
 
-    var footer = el("div", "www-rag-card-footer");
-    footer.appendChild(el("span", null, formatCount(site.chunkCount) + " chunks"));
-    footer.appendChild(
-      site.releaseId
-        ? el("span", "www-rag-card-chat", "Chat →")
-        : el("span", null, "Not yet chat-enabled"),
-    );
-    card.appendChild(footer);
+    var actions = el("div", "www-rag-card-actions");
+    if (site.releaseId) {
+      var chatLink = document.createElement("a");
+      chatLink.className = "www-rag-card-action www-rag-card-chat";
+      chatLink.href = CHAT_BASE + encodeURIComponent(site.releaseId);
+      chatLink.target = "_blank";
+      chatLink.rel = "noopener";
+      chatLink.textContent = "Chat →";
+      actions.appendChild(chatLink);
+    } else {
+      actions.appendChild(el("span", "www-rag-card-pending", "Not yet chat-enabled"));
+    }
+    var buildLink = document.createElement("a");
+    buildLink.className = "www-rag-card-action www-rag-card-build";
+    buildLink.href = BUILD_BASE + encodeURIComponent(site.host);
+    buildLink.target = "_blank";
+    buildLink.rel = "noopener";
+    buildLink.title = "Copy this site's chunks + embeddings into your own workspace and build an assistant on top of it";
+    buildLink.textContent = "🛠️ Build with this";
+    actions.appendChild(buildLink);
+    card.appendChild(actions);
 
     return card;
   }
