@@ -7,12 +7,13 @@
  * click-target pattern used by the logged-in directory at
  * chat.divinci.app/www-rag (PATH_WHITELABEL_RELEASE_ITEM = /ai-release/:releaseId).
  *
- * Each card also links to "Build with this" — deep-links into the signed-in
- * directory at chat.divinci.app/www-rag?copy=<host>, which auto-opens the
- * copy-to-workspace modal for that host (copies chunks + embeddings into a
- * new RAG vector the visitor owns, to build their own assistant on it). This
- * static site has no auth session of its own, so the actual copy action
- * always happens on the signed-in app.
+ * Each card also has "Build" and "Claim" — both deep-link into the signed-in
+ * directory (chat.divinci.app/www-rag?copy=<host> / ?claim=<host>), which
+ * auto-opens the matching modal for that host: Build copies chunks +
+ * embeddings into a new RAG vector the visitor owns, to build their own
+ * assistant on top of it; Claim starts DNS/file ownership verification to
+ * take over the site's existing assistant. This static site has no auth
+ * session of its own, so both actions always happen on the signed-in app.
  */
 (function () {
   "use strict";
@@ -20,6 +21,7 @@
   var API_URL = "https://api.divinci.app/api/v1/www-rag-directory";
   var CHAT_BASE = "https://chat.divinci.app/ai-release/";
   var BUILD_BASE = "https://chat.divinci.app/www-rag?copy=";
+  var CLAIM_BASE = "https://chat.divinci.app/www-rag?claim=";
 
   var statusEl = document.getElementById("www-rag-status");
   var gridEl = document.getElementById("www-rag-grid");
@@ -47,7 +49,7 @@
   // crawled page's title/meta tags contain can ever be parsed as markup.
   function renderCard(site) {
     // The card itself is a plain container now (not the chat link) — it
-    // holds two independent actions (Chat / Build with this) in the footer,
+    // holds independent action links (Chat / Build / Claim) in the footer,
     // so it can't itself be an <a> without nesting anchors.
     var card = document.createElement("div");
     card.className = "www-rag-card";
@@ -79,19 +81,31 @@
       chatLink.href = CHAT_BASE + encodeURIComponent(site.releaseId);
       chatLink.target = "_blank";
       chatLink.rel = "noopener";
-      chatLink.textContent = "Chat →";
+      chatLink.textContent = "Chat";
       actions.appendChild(chatLink);
     } else {
-      actions.appendChild(el("span", "www-rag-card-pending", "Not yet chat-enabled"));
+      actions.appendChild(el("span", "www-rag-card-pending", "Not chat-enabled"));
     }
+
     var buildLink = document.createElement("a");
     buildLink.className = "www-rag-card-action www-rag-card-build";
     buildLink.href = BUILD_BASE + encodeURIComponent(site.host);
     buildLink.target = "_blank";
     buildLink.rel = "noopener";
     buildLink.title = "Copy this site's chunks + embeddings into your own workspace and build an assistant on top of it";
-    buildLink.textContent = "🛠️ Build with this";
+    buildLink.textContent = "Build";
     actions.appendChild(buildLink);
+
+    if (!site.claimed) {
+      var claimLink = document.createElement("a");
+      claimLink.className = "www-rag-card-action www-rag-card-claim";
+      claimLink.href = CLAIM_BASE + encodeURIComponent(site.host);
+      claimLink.target = "_blank";
+      claimLink.rel = "noopener";
+      claimLink.title = "Prove you own this site (DNS or file verification) and take over its assistant";
+      claimLink.textContent = "Claim";
+      actions.appendChild(claimLink);
+    }
     card.appendChild(actions);
 
     return card;
