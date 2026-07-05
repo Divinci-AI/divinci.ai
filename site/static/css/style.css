@@ -1493,6 +1493,17 @@ p {
   color: var(--color-neutral-dark);
 }
 
+.language-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.language-flag {
+  font-size: 16px;
+  line-height: 1;
+}
+
 .language-name {
   font-size: 14px;
   font-weight: 500;
