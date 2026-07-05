@@ -6,7 +6,7 @@ template = "page.html"
 
 # Privacy Policy
 
-**Last updated:** May 2026
+**Last updated:** June 2026
 
 ## Our Commitment to Privacy
 

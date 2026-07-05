@@ -1,6 +1,6 @@
 +++
 title = "요금제"
-description = "Divinci AI는 모든 규모의 비즈니스를 위한 유연한 요금제를 제공합니다. Starter, Pro, Enterprise 중에서 선택하여 맞춤형 AI 솔루션을 만드세요."
+description = "Divinci AI는 모든 규모의 비즈니스를 위한 유연한 요금제를 제공합니다. Starter, Pro, Enterprise 플랜 중에서 선택하여 우리 조직에 맞는 맞춤형 AI 솔루션을 만들어 보세요."
 template = "feature.html"
 +++
 
@@ -260,14 +260,15 @@ input:checked + .toggle-slider:before {
     border: 1px solid var(--color-border-light);
 }
 
-/* Pricing cards container */
-.pricing-cards {
+/* Coming-soon overlay: scoped to individual PAID cards (checkout isn't wired
+   to a live Stripe price yet), not the whole grid — Free sign-up is real and
+   working today, so it stays uncovered. */
+.pricing-card.coming-soon {
     position: relative;
 }
 
-/* Coming soon overlay on Starter, Pro, Business cards (not Enterprise) */
-.pricing-cards::after {
-    content: "Coming Soon — Contact Us for Early Access";
+.pricing-card.coming-soon::after {
+    content: "곧 출시 예정 — 얼리 액세스 문의하기";
     position: absolute;
     top: 0;
     left: 0;
@@ -295,8 +296,11 @@ input:checked + .toggle-slider:before {
 }
 
 .pricing-card.featured {
-    border-top: 5px solid var(--color-accent-primary);
+    border-top: 4px solid var(--color-accent-primary);
     transform: scale(1.05);
+    /* The "Most Popular" badge floats above the top edge — needs the card's
+       own overflow to NOT clip it (unlike the other cards' corner circle). */
+    overflow: visible;
 }
 
 .pricing-card.featured:hover {
@@ -314,6 +318,13 @@ input:checked + .toggle-slider:before {
     border: 1px solid var(--color-accent-primary-10);
     opacity: 0.08;
     z-index: 0;
+}
+
+/* Skip the decorative corner circle on the featured card — it would render
+   fully visible (not corner-clipped) now that overflow is visible there,
+   and the card already has the top accent border + badge for visual interest. */
+.pricing-card.featured::before {
+    display: none;
 }
 
 .pricing-plan {
@@ -349,16 +360,29 @@ input:checked + .toggle-slider:before {
     font-weight: 400;
 }
 
-.pricing-popular {
+/* Floating pill badge, centered on the card's top edge — replaces the old
+   diagonal corner-ribbon (magic-number geometry that only fit one specific
+   card width and looked clipped/off-center at this card's actual size).
+   Specificity + !important are required here: style.css has a broad
+   `[class*="card"] > div { background-image: none !important; }` rule
+   (anti-double-texture guard) that otherwise strips this badge's background
+   — it's a direct-child div of .pricing-card and matches that selector. */
+.pricing-card .pricing-popular {
     position: absolute;
-    top: 15px;
-    right: -30px;
-    background: var(--gradient-secondary);
-    color: white;
-    padding: 5px 40px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transform: rotate(45deg);
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient-secondary, var(--color-accent-primary)) !important;
+    color: #fff;
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    z-index: 3;
 }
 
 .pricing-features {
@@ -667,6 +691,71 @@ input:checked + .toggle-slider:before {
     display: block;
 }
 
+/* Wide Enterprise panel — a horizontal card spanning the row instead of
+   wrapping onto its own centered column (which is what a 4th flex item does
+   when only 3 fit per row). Sits between the 3-card comparison and the
+   "Need something bigger?" custom-deal banner: same light-card styling as
+   the cards above (still reads as a real self-serve tier, priced) but full
+   width, escalating naturally into the bolder gradient CTA below it. */
+.pricing-enterprise-panel {
+    width: 100%;
+    max-width: 1100px;
+    margin: 2.5rem auto 0;
+    background: var(--color-bg-primary, #f8f4f0);
+    border-radius: 12px;
+    box-shadow: var(--shadow-large);
+    border: 1px solid var(--color-border-light);
+    padding: 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.ep-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding-bottom: 1.75rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.ep-title-group {
+    flex: 1 1 240px;
+}
+
+.ep-title-group .pricing-description {
+    margin-bottom: 0;
+    min-height: 0;
+}
+
+.ep-price-group {
+    flex: 0 0 auto;
+}
+
+.ep-price-group .pricing-price {
+    margin-bottom: 0.25rem;
+}
+
+.ep-cta-wrap {
+    flex: 0 0 auto;
+    align-self: center;
+}
+
+.ep-cta-wrap .pricing-cta {
+    display: inline-block;
+    width: auto;
+    white-space: nowrap;
+    padding: 1rem 2rem;
+}
+
+.pricing-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 0 2rem;
+}
+
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .pricing-card {
@@ -685,277 +774,266 @@ input:checked + .toggle-slider:before {
     .enterprise-card {
         padding: 2rem;
     }
+
+    .pricing-enterprise-panel {
+        padding: 1.75rem;
+    }
+
+    .ep-cta-wrap {
+        width: 100%;
+    }
+
+    .ep-cta-wrap .pricing-cta {
+        width: 100%;
+    }
 }
 </style>
 
 <section class="pricing-section" style="padding-top: 6rem; padding-bottom: 6rem; background-color: #f8f4f0 !important; background-image: none !important;">
 <div class="container">
 <div class="pricing-header">
-<h1 class="pricing-title">Simple, Transparent Pricing</h1>
-<p class="pricing-subtitle">Choose the plan that's right for your business. All plans include core features, updates, and basic support.</p>
+<h1 class="pricing-title">간편하고 투명한 요금제</h1>
+<p class="pricing-subtitle">비즈니스에 맞는 플랜을 선택하세요. 모든 플랜에는 핵심 기능, 업데이트, 기본 지원이 포함됩니다.</p>
 
 <div class="pricing-toggle">
-<span class="monthly active">Monthly</span>
+<span class="monthly active">월간</span>
 <label class="toggle-switch">
 <input type="checkbox" id="pricingToggle">
 <span class="toggle-slider"></span>
 </label>
-<span class="annual">Annual <span class="has-text-success">(Save 20%)</span></span>
+<span class="annual">연간 <span class="has-text-success">(20% 절약)</span></span>
 </div>
 </div>
 
 <div class="pricing-cards">
-<!-- Starter Plan -->
+<!-- Free Plan — real, working sign-up today (not gated behind Stripe) -->
 <div class="pricing-card">
-<h2 class="pricing-plan">Starter</h2>
-<p class="pricing-description">Perfect for small teams and individual projects</p>
+<h2 class="pricing-plan">Free</h2>
+<p class="pricing-description">무료로 Divinci를 시작해 보세요</p>
 
 <div class="pricing-amount monthly active">
 <div class="pricing-price">
-<span class="currency">$</span>20<span class="period">/mo</span>
+<span class="currency">$</span>0<span class="period">/월</span>
 </div>
 </div>
 
 <div class="pricing-amount annual">
 <div class="pricing-price">
-<span class="currency">$</span>16<span class="period">/mo</span>
+<span class="currency">$</span>0<span class="period">/월</span>
 </div>
-<div class="pricing-billed">Billed annually ($192)</div>
+<div class="pricing-billed">영구 무료</div>
 </div>
 
 <ul class="pricing-features">
-<li>Up to 3 users</li>
-<li class="feature-dropdown" data-feature="basic-rag">
-<span class="feature-main">Basic RAG capabilities <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Document ingestion and indexing</div>
-<div class="feature-detail">Basic semantic search</div>
-<div class="feature-detail">Simple Q&A functionality</div>
-<div class="feature-detail">PDF and text file support</div>
-</div>
-</div>
-</li>
-<li class="feature-dropdown" data-feature="basic-fine-tuning">
-<span class="feature-main">Fine tuning <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Basic model customization</div>
-<div class="feature-detail">Pre-built templates</div>
-<div class="feature-detail">Standard training datasets</div>
-<div class="feature-detail">Community model library access</div>
-</div>
-</div>
-</li>
-<li>10GB document storage</li>
-<li>100K tokens/day</li>
-<li>Basic analytics</li>
-<li>Email support</li>
-<li class="unavailable">Advanced security features</li>
-<li class="unavailable">API access</li>
-<li class="unavailable">Custom integrations</li>
+<li>화이트라벨 릴리스 1개</li>
+<li>커뮤니티 AI 모델 (GPT, Gemini, Claude, Llama 등)</li>
+<li>기본 RAG — 자체 문서를 기반으로 답변 생성</li>
+<li class="unavailable">Scored QA 평가 스위트</li>
+<li class="unavailable">파인튜닝</li>
+<li class="unavailable">Divinci 브랜딩 제거</li>
+<li class="unavailable">우선 지원</li>
 </ul>
 
-<a href="/contact/" class="pricing-cta">Get Started</a>
+<a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">무료로 가입하기</a>
+</div>
+
+<!-- Starter Plan -->
+<div class="pricing-card">
+<h2 class="pricing-plan">Starter</h2>
+<p class="pricing-description">소규모 팀과 개인 프로젝트에 적합합니다</p>
+
+<div class="pricing-amount monthly active">
+<div class="pricing-price">
+<span class="currency">$</span>29<span class="period">/월</span>
+</div>
+</div>
+
+<div class="pricing-amount annual">
+<div class="pricing-price">
+<span class="currency">$</span>24.17<span class="period">/월</span>
+</div>
+<div class="pricing-billed">연간 청구 ($290)</div>
+</div>
+
+<ul class="pricing-features">
+<li>다중 화이트라벨 릴리스</li>
+<li>월 $5 상당의 사용 크레딧 포함</li>
+<li>커뮤니티 + 프리미엄 AI 모델</li>
+<li>기본 RAG — 자체 문서를 기반으로 답변 생성</li>
+<li>Scored QA 평가 스위트</li>
+<li>Divinci 브랜딩 제거</li>
+<li class="unavailable">고급 RAG (다중 인덱스, 재순위화)</li>
+<li class="unavailable">파인튜닝</li>
+<li class="unavailable">우선 지원</li>
+</ul>
+
+<a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">시작하기</a>
 </div>
 
 <!-- Pro Plan -->
 <div class="pricing-card featured">
-<div class="pricing-popular">Most Popular</div>
+<div class="pricing-popular">가장 인기</div>
 <h2 class="pricing-plan">Pro</h2>
-<p class="pricing-description">Ideal for growing businesses and teams</p>
+<p class="pricing-description">성장하는 비즈니스와 팀에 이상적입니다</p>
 
 <div class="pricing-amount monthly active">
 <div class="pricing-price">
-<span class="currency">$</span>100<span class="period">/mo</span>
+<span class="currency">$</span>99<span class="period">/월</span>
 </div>
 </div>
 
 <div class="pricing-amount annual">
 <div class="pricing-price">
-<span class="currency">$</span>80<span class="period">/mo</span>
+<span class="currency">$</span>82.50<span class="period">/월</span>
 </div>
-<div class="pricing-billed">Billed annually ($960)</div>
+<div class="pricing-billed">연간 청구 ($990)</div>
 </div>
 
 <ul class="pricing-features">
-<li>Up to 10 users</li>
-<li class="feature-dropdown" data-feature="advanced-rag">
-<span class="feature-main">Advanced RAG capabilities <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Multi-modal document processing</div>
-<div class="feature-detail">Advanced semantic search with filters</div>
-<div class="feature-detail">Context-aware responses</div>
-<div class="feature-detail">Custom embeddings</div>
-<div class="feature-detail">Real-time data syncing</div>
-</div>
-</div>
-</li>
-<li class="feature-dropdown" data-feature="advanced-fine-tuning">
-<span class="feature-main">Advanced fine tuning <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Custom model architectures</div>
-<div class="feature-detail">Advanced training parameters</div>
-<div class="feature-detail">Custom dataset upload</div>
-<div class="feature-detail">Model versioning and rollback</div>
-<div class="feature-detail">Performance optimization tools</div>
-</div>
-</div>
-</li>
-<li>50GB document storage</li>
-<li>500K tokens/day</li>
-<li>Full analytics dashboard</li>
-<li>Priority support</li>
-<li>Advanced security features</li>
-<li>API access</li>
-<li class="unavailable">Custom integrations</li>
+<li>다중 화이트라벨 릴리스</li>
+<li>월 $25 상당의 사용 크레딧 포함</li>
+<li>커뮤니티 + 프리미엄 AI 모델</li>
+<li>고급 RAG (다중 인덱스, 재순위화, 더 높은 한도)</li>
+<li>Scored QA 평가 스위트</li>
+<li>A/B 릴리스 테스트</li>
+<li>RAG Arena — 모델 비교 (사이드바이사이드)</li>
+<li>파인튜닝</li>
+<li>Divinci 브랜딩 제거</li>
+<li>우선 지원</li>
 </ul>
 
-<a href="/contact/" class="pricing-cta featured">Get Started</a>
+<a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">시작하기</a>
 </div>
 
-<!-- Business Plan -->
-<div class="pricing-card">
-<h2 class="pricing-plan">Business</h2>
-<p class="pricing-description">For larger teams with advanced needs</p>
+</div>
 
+<!-- Enterprise Plan — a wide panel (not a 4th grid card) so it doesn't wrap
+     onto its own orphaned column below a 3-across row. Self-serve, priced,
+     still "Get Started" (not a contact-sales flow) — see the custom-deal
+     callout below for anything beyond this tier. -->
+<div class="pricing-enterprise-panel">
+<div class="ep-header">
+<div class="ep-title-group">
+<h2 class="pricing-plan">Enterprise</h2>
+<p class="pricing-description">고급 요구사항이 있는 대규모 팀을 위한 플랜입니다</p>
+</div>
+
+<div class="ep-price-group">
 <div class="pricing-amount monthly active">
 <div class="pricing-price">
-<span class="currency">$</span>200<span class="period">/mo</span>
+<span class="currency">$</span>499<span class="period">/월</span>
 </div>
 </div>
 
 <div class="pricing-amount annual">
 <div class="pricing-price">
-<span class="currency">$</span>160<span class="period">/mo</span>
+<span class="currency">$</span>415.83<span class="period">/월</span>
 </div>
-<div class="pricing-billed">Billed annually ($1,920)</div>
+<div class="pricing-billed">연간 청구 ($4,990)</div>
+</div>
 </div>
 
-<ul class="pricing-features">
-<li>Up to 25 users</li>
-<li class="feature-dropdown" data-feature="premium-rag">
-<span class="feature-main">Premium RAG capabilities <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Enterprise-grade document processing</div>
-<div class="feature-detail">Advanced AI reasoning and inference</div>
-<div class="feature-detail">Multi-language support</div>
-<div class="feature-detail">Custom knowledge graphs</div>
-<div class="feature-detail">Real-time collaboration features</div>
-<div class="feature-detail">Advanced security and compliance</div>
+<div class="ep-cta-wrap">
+<a href="https://chat.divinci.app/user/wallet/subscription?plan=enterprise&billing=monthly" class="pricing-cta" data-plan="enterprise" target="_blank" rel="noopener">시작하기</a>
 </div>
 </div>
-</li>
-<li class="feature-dropdown" data-feature="premium-fine-tuning">
-<span class="feature-main">Premium fine tuning <i class="fas fa-chevron-right feature-arrow"></i></span>
-<div class="feature-details-wrapper">
-<div class="feature-details">
-<div class="feature-detail">Enterprise model development</div>
-<div class="feature-detail">Custom training pipelines</div>
-<div class="feature-detail">Advanced hyperparameter optimization</div>
-<div class="feature-detail">Multi-GPU training support</div>
-<div class="feature-detail">Federated learning capabilities</div>
-<div class="feature-detail">Dedicated model infrastructure</div>
-</div>
-</div>
-</li>
-<li>200GB document storage</li>
-<li>2M tokens/day</li>
-<li>Advanced analytics & reporting</li>
-<li>24/7 priority support</li>
-<li>Enterprise-grade security</li>
-<li>Full API access</li>
-<li>Standard integrations</li>
+
+<ul class="pricing-features pricing-features-grid">
+<li>무제한 화이트라벨 릴리스</li>
+<li>월 $150 상당의 사용 크레딧 포함</li>
+<li>커뮤니티 + 프리미엄 AI 모델</li>
+<li>고급 RAG (다중 인덱스, 재순위화, 더 높은 한도)</li>
+<li>Scored QA, A/B 테스트, RAG Arena, 파인튜닝</li>
+<li>Divinci 브랜딩 제거</li>
+<li>우선 지원</li>
+<li>자체 API 키 사용 (BYOK)</li>
+<li>싱글 사인온 (SSO)</li>
+<li>커스텀 도메인</li>
+<li>전담 지원</li>
 </ul>
-
-<a href="/contact/" class="pricing-cta">Get Started</a>
-</div>
 </div>
 
-<!-- Enterprise Section -->
+<!-- Custom-deal callout — for needs beyond the priced Enterprise tier above -->
 <div class="enterprise-card">
-<h2 class="enterprise-title">Enterprise</h2>
-<p class="enterprise-text">Need a custom solution for your large organization? Our Enterprise plan includes custom AI model development, dedicated support, SSO, custom security policies, and more.</p>
-<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="enterprise-cta" target="_blank" rel="noopener">Schedule Demo</a>
+<h2 class="enterprise-title">더 큰 규모가 필요하신가요?</h2>
+<p class="enterprise-text">Enterprise 플랜 이상의 요구사항이 있는 조직을 위해 — 맞춤형 AI 모델 개발, 온프레미스 또는 전용 인프라, 맞춤형 보안 정책, 협의된 조건까지 상담해 드립니다.</p>
+<a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="enterprise-cta" target="_blank" rel="noopener">데모 예약하기</a>
 </div>
 </div>
 </section>
 
 <section class="faq-section" style="margin-top: 2rem; background-color: #f8f4f0 !important;">
 <div class="container">
-<h2 class="faq-title">Frequently Asked Questions</h2>
+<h2 class="faq-title">자주 묻는 질문</h2>
 <div class="faq-container">
 <div class="faq-item">
 <button class="faq-question">
-What's included in all plans?
+모든 플랜에 무엇이 포함되나요?
 <span class="faq-icon">+</span>
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>All plans include access to our core Divinci AI platform, which enables you to create custom AI solutions. Every plan also includes basic document processing, knowledge extraction capabilities, regular updates, and access to our support resources.</p>
+<p>모든 플랜에는 맞춤형 AI 솔루션을 만들 수 있는 Divinci AI 핵심 플랫폼 이용이 포함됩니다. 또한 모든 플랜은 기본 문서 처리, 지식 추출 기능, 정기 업데이트, 지원 리소스 이용을 제공합니다.</p>
 </div>
 </div>
 </div>
 
 <div class="faq-item">
 <button class="faq-question">
-How does token usage work?
+사용량 기반 요금은 어떻게 청구되나요?
 <span class="faq-icon">+</span>
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Tokens are the units of text processing for AI models. Each plan includes a daily token allowance that resets every 24 hours. Token usage is calculated for both input (prompts, documents) and output (AI responses). If you exceed your daily limit, you can purchase additional tokens or upgrade to a higher plan.</p>
+<p>유료 플랜에는 AI 모델 사용, RAG 검색 등 계량 과금 대상 플랫폼 비용을 충당하는 월간 크레딧 한도(위 각 플랜에 표시됨)가 포함됩니다. 포함된 크레딧을 모두 사용하면 동일한 계량 요율로 지갑 잔액에서 사용한 만큼 청구됩니다.</p>
 </div>
 </div>
 </div>
 
 <div class="faq-item">
 <button class="faq-question">
-Can I upgrade or downgrade my plan?
+플랜을 업그레이드하거나 다운그레이드할 수 있나요?
 <span class="faq-icon">+</span>
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Yes, you can upgrade your plan at any time, and the change will take effect immediately. For downgrades, the change will take effect at the end of your current billing cycle. You'll receive a prorated credit for any unused time on your previous plan when upgrading.</p>
+<p>네, 언제든지 플랜을 업그레이드할 수 있으며 변경 사항은 즉시 적용됩니다. 다운그레이드의 경우 현재 청구 주기가 끝날 때 변경 사항이 적용됩니다. 업그레이드 시 이전 플랜에서 사용하지 않은 기간에 대해 일할 계산된 크레딧을 받게 됩니다.</p>
 </div>
 </div>
 </div>
 
 <div class="faq-item">
 <button class="faq-question">
-What payment methods do you accept?
+어떤 결제 수단을 지원하나요?
 <span class="faq-icon">+</span>
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>We accept all major credit cards (Visa, Mastercard, American Express, Discover) and PayPal. For Enterprise plans, we also offer invoicing options with net-30 terms.</p>
+<p>주요 신용카드(Visa, Mastercard, American Express, Discover)와 PayPal을 모두 지원합니다. Enterprise 플랜의 경우 net-30 조건의 청구서 결제 옵션도 제공합니다.</p>
 </div>
 </div>
 </div>
 
 <div class="faq-item">
 <button class="faq-question">
-Is there a free trial available?
+무료 체험판이 있나요?
 <span class="faq-icon">+</span>
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Yes, we offer a 14-day free trial on our Starter and Pro plans. No credit card is required to start your trial. You'll have full access to all features included in the plan during your trial period.</p>
+<p>네 — Free 플랜을 이용하면 신용카드 없이 무료로 Divinci 사용을 시작할 수 있어, 유료 플랜을 선택하기 전에 플랫폼을 미리 체험해 볼 수 있습니다.</p>
 </div>
 </div>
 </div>
 
 <div class="faq-item">
 <button class="faq-question">
-What happens to my data if I cancel?
+해지하면 제 데이터는 어떻게 되나요?
 <span class="faq-icon">+</span>
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Your data will remain in our system for 30 days after cancellation, giving you time to export anything you need. After 30 days, all data will be permanently deleted from our systems in accordance with our data retention policy.</p>
+<p>해지 후 30일 동안 데이터가 시스템에 보관되어, 필요한 항목을 내보낼 시간을 드립니다. 30일이 지나면 데이터 보존 정책에 따라 모든 데이터가 시스템에서 영구적으로 삭제됩니다.</p>
 </div>
 </div>
 </div>
@@ -972,6 +1050,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const monthlyPrices = document.querySelectorAll('.pricing-amount.monthly');
     const annualPrices = document.querySelectorAll('.pricing-amount.annual');
 
+    // Keep each paid tier's "Get Started" deep link (?plan=X&billing=Y) in sync
+    // with whichever billing cycle is currently toggled, so a visitor who
+    // switches to Annual and clicks through lands on Stripe checkout for the
+    // annual price, not monthly.
+    const planCtaLinks = document.querySelectorAll('.pricing-cta[data-plan]');
+    function syncPlanCtaBilling(cycle) {
+        planCtaLinks.forEach(function(link) {
+            try {
+                const url = new URL(link.href);
+                url.searchParams.set('billing', cycle);
+                link.href = url.toString();
+            } catch (e) { /* malformed href — leave as-is */ }
+        });
+    }
+
     pricingToggle.addEventListener('change', function() {
         if (this.checked) {
             // Annual pricing
@@ -980,6 +1073,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             monthlyPrices.forEach(price => price.classList.remove('active'));
             annualPrices.forEach(price => price.classList.add('active'));
+            syncPlanCtaBilling('annual');
         } else {
             // Monthly pricing
             monthlySpan.classList.add('active');
@@ -987,6 +1081,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             monthlyPrices.forEach(price => price.classList.add('active'));
             annualPrices.forEach(price => price.classList.remove('active'));
+            syncPlanCtaBilling('monthly');
         }
     });
 

@@ -6,7 +6,7 @@ template = "page.html"
 
 # Politique de Confidentialité
 
-**Dernière mise à jour :** Mai 2026
+**Dernière mise à jour :** Juin 2026
 
 ## Notre Engagement en Matière de Confidentialité
 
@@ -18,6 +18,7 @@ Chez Divinci AI, nous nous engageons à protéger votre vie privée et à assure
 - **Informations de compte** : Nom, adresse e-mail et informations de profil lorsque vous créez un compte
 - **Informations de contact** : Nom, adresse e-mail, nom de l'entreprise lorsque vous nous contactez ou demandez des démonstrations
 - **Données de chat et d'interaction IA** : Messages, requêtes et contenus que vous soumettez lors de l'utilisation de nos fonctionnalités de chat IA
+- **E-mail du chat gratuit** : Lorsque vous utilisez l'assistant de chat gratuit sur notre site web, l'adresse e-mail que vous fournissez et validez à l'aide d'un code à usage unique. Nous l'utilisons pour vous transmettre le code de vérification, prévenir les abus et — uniquement si vous y consentez via la case à cocher de consentement — pour vous envoyer occasionnellement des actualités sur nos produits (voir la Section 2.7)
 - **Données de communication** : Messages, retours d'expérience et demandes d'assistance
 - **Fichiers et documents** : Fichiers que vous téléversez pour le traitement par l'IA, y compris les documents ajoutés aux bases de connaissances
 
@@ -66,6 +67,19 @@ Nos Services intègrent les services tiers suivants, chacun ayant ses propres pr
 ### 2.7 Marketing, Identification des Visiteurs et CRM
 - **Instantly.ai / Leadsy.ai** : Nous utilisons la balise d'identification des visiteurs d'Instantly (chargée depuis `r2.leadsy.ai`, qui charge dynamiquement un script de suivi depuis `tag.trovo-tag.com` exploité par le même fournisseur) afin d'identifier l'organisation à laquelle une visite du site web peut être associée (par exemple, l'entreprise liée à l'adresse IP du visiteur). Cela alimente notre prospection marketing B2B sortante. Pour les visiteurs détectés dans l'EEE, le Royaume-Uni ou la Suisse, cette balise se charge **uniquement après que vous ayez accordé votre consentement marketing** via notre bannière de cookies. Pour les visiteurs en dehors de ces juridictions, la balise se charge par défaut et peut être désactivée à tout moment via le contrôle « Préférences des cookies » à la Section 10. [Politique de Confidentialité d'Instantly](https://instantly.ai/privacy-policy)
 - **HubSpot** : Nous utilisons le script de suivi HubSpot (chargé depuis `js.hs-scripts.com`, qui charge dynamiquement des scripts de suivi, de bannière et de capture de formulaires depuis `js.hs-analytics.net`, `js.hs-banner.com` et `js.hscollectedforms.net`) pour enregistrer les pages vues, attribuer la performance des canaux marketing, capturer les soumissions de formulaires et lier l'activité du site web aux fiches de contact HubSpot CRM lorsque vous soumettez un formulaire ou réservez une réunion. Pour les visiteurs détectés dans l'EEE, le Royaume-Uni ou la Suisse, ce script se charge **uniquement après que vous ayez accordé votre consentement marketing** via notre bannière de cookies. Pour les visiteurs en dehors de ces juridictions, le script se charge par défaut et peut être désactivé à tout moment via le contrôle « Préférences des cookies » à la Section 10. [Politique de Confidentialité de HubSpot](https://legal.hubspot.com/privacy-policy)
+- **Attio** : Nous utilisons Attio comme système de gestion de la relation client (CRM) pour organiser nos contacts commerciaux et nos prospects. [Politique de Confidentialité d'Attio](https://attio.com/privacy)
+- **Synchronisation de l'e-mail de l'assistant de chat gratuit** : Lorsque vous validez une adresse e-mail pour utiliser l'assistant de chat gratuit sur notre site web, nous enregistrons cette adresse e-mail en tant que contact dans nos CRM HubSpot et Attio afin de pouvoir assurer un suivi concernant nos produits. Cette synchronisation s'effectue côté serveur après que vous avez terminé la vérification par code à usage unique ; il ne s'agit pas d'un script de suivi et elle ne dépend pas de cookies. Nous ne vous désignons comme **contact marketing** (éligible à recevoir des e-mails marketing) que **si vous cochez la case optionnelle de consentement marketing** dans le chat. Si vous la laissez décochée, nous enregistrons tout de même la fiche de contact mais ne vous envoyons pas d'e-mail marketing. Vous pouvez vous désabonner de tout e-mail marketing ou demander la suppression de votre fiche de contact à tout moment (voir la Section 9).
+
+### 2.8 Extension de Navigateur Divinci Local Inference
+
+Nous publions une extension Chrome optionnelle, **Divinci Local Inference**, qui exécute le modèle Gemma 4 de Google **directement sur votre propre appareil** via WebGPU — utilisable comme assistant intégré à la page sur n'importe quel site, ainsi que comme option de modèle local, sans coût d'API, pour chat.divinci.app. Sa posture en matière de confidentialité, en bref :
+
+- **Local par défaut.** Vos échanges avec le modèle exécuté sur l'appareil sont calculés sur votre GPU et ne sont ni consignés, ni stockés, ni transmis par l'extension. Lorsque vous n'êtes pas connecté, l'extension n'envoie rien concernant votre navigation à Divinci.
+- **Fonctionnalités optionnelles en mode connecté.** Si vous vous connectez à votre compte Divinci, l'extension peut : recevoir votre profil de base (nom, e-mail, avatar) lors de la connexion ; pendant que le panneau latéral est ouvert, envoyer une adresse de page épurée (origine + chemin ; les paramètres de requête/fragment sont supprimés) ainsi qu'un hachage à sens unique du texte visible de la page afin de consulter l'index de connaissances publiques web de Divinci (le **contenu de la page n'est pas envoyé**, les sites sensibles sont ignorés, et rien n'est envoyé lorsque le panneau est fermé) ; et, pour les réponses tenant compte de la page ou le chat en mode compte, envoyer votre message de chat à Divinci. Vous pouvez désactiver ces fonctionnalités dans **Paramètres avancés → Confidentialité**.
+- **Aucune vente, aucune publicité, aucun suivi intersites.**
+- **Open source.** L'extension est publiée sous licence Apache 2.0 ; le code source est disponible sur [github.com/Divinci-AI/gemma-gem](https://github.com/Divinci-AI/gemma-gem).
+
+Pour la politique complète, spécifique à l'extension — précisant exactement ce que chaque fonctionnalité envoie et vos contrôles de confidentialité — consultez la [Politique de Confidentialité de Divinci Local Inference](/fr/local-inference-privacy/).
 
 ## 3. Base Juridique du Traitement (RGPD)
 
@@ -191,6 +205,10 @@ Pour exercer l'un de ces droits, vous pouvez soumettre une demande via notre [po
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .privacy-btn:hover {

@@ -1,175 +1,182 @@
 +++
-
-[extra]
-canonical_to_english = true
 title = "隐私政策"
-description = "Divinci AI 对隐私的承诺以及数据处理详情"
+description = "Divinci AI 致力于按照 GDPR 及国际隐私法保护您的隐私和个人数据"
 template = "page.html"
 +++
 
 # 隐私政策
 
-*本文件完整版本以下为英语版本。中文翻译即将推出。*
+**最后更新时间：** 2026年6月
 
-# Privacy Policy
+## 我们对隐私的承诺
 
-**Last updated:** 2026年5月
+在 Divinci AI，我们致力于保护您的隐私并确保您的个人数据的安全。本隐私政策说明了当您使用我们的网站、移动应用程序（Android 和 iOS）以及服务（统称"服务"）时，我们如何收集、使用、处理和保护您的信息。
 
-## Our Commitment to Privacy
+## 1. 我们收集的信息
 
-At Divinci AI, we are committed to protecting your privacy and ensuring the security of your personal data. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our website, mobile applications (Android and iOS), and services (collectively, the "Services").
+### 1.1 您提供的信息
+- **账户信息**：您创建账户时提供的姓名、电子邮件地址和个人资料信息
+- **联系信息**：您联系我们或申请演示时提供的姓名、电子邮件地址、公司名称
+- **聊天及 AI 交互数据**：您使用我们的 AI 聊天功能时提交的消息、提示词和内容
+- **免费聊天电子邮件**：当您使用我们网站上的免费聊天助手时，您提供并通过一次性验证码验证的电子邮件地址。我们使用该地址发送验证码、防止滥用，并且——仅当您通过同意复选框选择加入时——发送偶发的产品更新（见第 2.7 节）
+- **通信数据**：消息、反馈和支持请求
+- **文件与文档**：您为 AI 处理而上传的文件，包括添加到知识库中的文档
 
-## 1. Information We Collect
+### 1.2 自动收集的信息
+- **网站使用数据**：访问的页面、停留时间、点击模式
+- **应用使用数据**：在我们的移动应用中使用的功能、会话时长、交互模式
+- **技术数据**：IP 地址、浏览器类型、设备信息、操作系统版本、设备标识符
+- **性能数据**：应用和网站性能指标、错误日志和崩溃报告
+- **推送通知令牌**：用于发送推送通知的设备令牌（如果您选择加入）
 
-### 1.1 Information You Provide
-- **Account Information**: Name, email address, and profile information when you create an account
-- **Contact Information**: Name, email address, company name when you contact us or request demos
-- **Chat and AI Interaction Data**: Messages, prompts, and content you submit when using our AI chat features
-- **Communication Data**: Messages, feedback, and support requests
-- **Files and Documents**: Files you upload for AI processing, including documents added to knowledge bases
+### 1.3 来自第三方服务的信息
+当您选择连接第三方服务时，我们可能会收集：
+- **Google 账户数据**：当您使用 Google 登录或连接 Google Drive 和 Gmail 时的姓名、电子邮件和个人资料信息
+- **身份验证数据**：来自我们身份验证提供商的令牌和标识符，用于安全地管理您的账户
 
-### 1.2 Information Automatically Collected
-- **Website Usage Data**: Pages visited, time spent, click patterns
-- **App Usage Data**: Features used, session duration, interaction patterns within our mobile apps
-- **Technical Data**: IP address, browser type, device information, operating system version, device identifiers
-- **Performance Data**: App and website performance metrics, error logs, and crash reports
-- **Push Notification Tokens**: Device tokens for delivering push notifications (if you opt in)
-
-### 1.3 Information from Third-Party Services
-When you choose to connect third-party services, we may collect:
-- **Google Account Data**: Name, email, and profile information when you sign in with Google or connect Google Drive and Gmail
-- **Authentication Data**: Tokens and identifiers from our authentication provider to manage your account securely
-
-### 1.4 Cookies and Tracking Technologies
-We use cookies and similar technologies to:
-- Ensure website functionality
-- Analyze website and app performance
-- Provide personalized experience (with your consent)
+### 1.4 Cookie 和跟踪技术
+我们使用 Cookie 和类似技术来：
+- 确保网站功能正常运行
+- 分析网站和应用性能
+- 提供个性化体验（在获得您同意的情况下）
 - 出于 B2B 营销目的，识别与网站访问相关联的组织（在欧盟/欧洲经济区、英国和瑞士需取得您的同意）
 
-## 2. Third-Party Services and SDKs
+## 2. 第三方服务与 SDK
 
-Our Services integrate the following third-party services, each with their own privacy practices:
+我们的服务集成了以下第三方服务，每项服务均有各自的隐私实践：
 
-### 2.1 Authentication
-- **Auth0** (by Okta): Manages user authentication and account security. Processes email, name, and login credentials. [Auth0 Privacy Policy](https://auth0.com/privacy)
+### 2.1 身份验证
+- **Auth0**（Okta 旗下）：管理用户身份验证和账户安全。处理电子邮件、姓名和登录凭证。[Auth0 隐私政策](https://auth0.com/privacy)
 
-### 2.2 Analytics and Crash Reporting
-- **Firebase Analytics** (by Google): Collects app usage data, device information, and anonymized interaction events to help us improve our Services. [Firebase Privacy Information](https://firebase.google.com/support/privacy)
-- **Firebase Crashlytics** (by Google): Collects crash reports including device state, stack traces, and device identifiers to help us identify and fix issues. Data is retained for 90 days.
+### 2.2 分析与崩溃报告
+- **Firebase Analytics**（Google 旗下）：收集应用使用数据、设备信息以及匿名化的交互事件，以帮助我们改进服务。[Firebase 隐私信息](https://firebase.google.com/support/privacy)
+- **Firebase Crashlytics**（Google 旗下）：收集崩溃报告，包括设备状态、堆栈跟踪和设备标识符，以帮助我们识别并修复问题。数据保留 90 天。
 
-### 2.3 Push Notifications
-- **Firebase Cloud Messaging** (by Google): Processes device tokens to deliver push notifications. You can opt out of notifications through your device settings at any time.
+### 2.3 推送通知
+- **Firebase Cloud Messaging**（Google 旗下）：处理设备令牌以发送推送通知。您可以随时通过设备设置选择退出通知。
 
-### 2.4 App Integrity
-- **Firebase App Check with Play Integrity** (Android) / **App Attest** (iOS): Verifies that requests to our backend come from genuine instances of our app. Does not collect personal data.
+### 2.4 应用完整性
+- **Firebase App Check 与 Play Integrity**（Android）／**App Attest**（iOS）：验证对我们后端的请求是否来自我们应用的真实实例。不收集个人数据。
 
-### 2.5 AI Processing
-- **AI Language Models**: Your chat messages and uploaded content are processed by AI language model providers to generate responses. We do not use your conversations to train AI models. AI-generated content may be inaccurate and should not be relied upon as professional advice.
+### 2.5 AI 处理
+- **AI 语言模型**：您的聊天消息和上传的内容会由 AI 语言模型提供商处理以生成回复。我们不会使用您的对话来训练 AI 模型。AI 生成的内容可能不准确，不应被作为专业建议依赖。
 
-### 2.6 Cloud Infrastructure
-- **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+### 2.6 云基础设施
+- **Google Cloud Platform**：我们的后端服务运行在 Google Cloud 基础设施上，并已签订数据处理协议。
 
 ### 2.7 营销、访客识别和 CRM
-- **Instantly.ai / Leadsy.ai**：我们使用 Instantly 的访客识别标签（从 `r2.leadsy.ai` 加载，该网址会动态加载由同一供应商运营的 `tag.trovo-tag.com` 上的跟踪脚本），以识别网站访问可能关联到的组织（例如，与访客 IP 地址相关联的公司）。这有助于我们的企业对企业（B2B）外向营销工作。对于检测到位于欧盟/欧洲经济区、英国或瑞士的访客，该标签**仅在您通过我们的 Cookie 横幅授予营销同意后**加载。对于这些司法管辖区以外的访客，该标签将默认加载，并可随时通过第 10 节中的"Cookie 偏好设置"控件停用。[Instantly Privacy Policy](https://instantly.ai/privacy-policy)
-- **HubSpot**：我们使用 HubSpot 跟踪脚本（从 `js.hs-scripts.com` 加载，该网址会动态加载来自 `js.hs-analytics.net`、`js.hs-banner.com` 和 `js.hscollectedforms.net` 的跟踪、横幅和表单捕获脚本），以记录页面浏览量、归因营销渠道绩效、捕获表单提交，并在您提交表单或预约会议时将网站活动与 HubSpot CRM 联系人记录相关联。对于检测到位于欧盟/欧洲经济区、英国或瑞士的访客，该脚本**仅在您通过我们的 Cookie 横幅授予营销同意后**加载。对于这些司法管辖区以外的访客，该脚本将默认加载，并可随时通过第 10 节中的"Cookie 偏好设置"控件停用。[HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
+- **Instantly.ai / Leadsy.ai**：我们使用 Instantly 的访客识别标签（从 `r2.leadsy.ai` 加载，该网址会动态加载由同一供应商运营的 `tag.trovo-tag.com` 上的跟踪脚本），以识别网站访问可能关联到的组织（例如，与访客 IP 地址相关联的公司）。这有助于我们的企业对企业（B2B）外向营销工作。对于检测到位于欧盟/欧洲经济区、英国或瑞士的访客，该标签**仅在您通过我们的 Cookie 横幅授予营销同意后**加载。对于这些司法管辖区以外的访客，该标签将默认加载，并可随时通过第 10 节中的"Cookie 偏好设置"控件停用。[Instantly 隐私政策](https://instantly.ai/privacy-policy)
+- **HubSpot**：我们使用 HubSpot 跟踪脚本（从 `js.hs-scripts.com` 加载，该网址会动态加载来自 `js.hs-analytics.net`、`js.hs-banner.com` 和 `js.hscollectedforms.net` 的跟踪、横幅和表单捕获脚本），以记录页面浏览量、归因营销渠道绩效、捕获表单提交，并在您提交表单或预约会议时将网站活动与 HubSpot CRM 联系人记录相关联。对于检测到位于欧盟/欧洲经济区、英国或瑞士的访客，该脚本**仅在您通过我们的 Cookie 横幅授予营销同意后**加载。对于这些司法管辖区以外的访客，该脚本将默认加载，并可随时通过第 10 节中的"Cookie 偏好设置"控件停用。[HubSpot 隐私政策](https://legal.hubspot.com/privacy-policy)
+- **Attio**：我们使用 Attio 作为客户关系管理（CRM）系统，用于整理业务联系人和潜在客户。[Attio 隐私政策](https://attio.com/privacy)
+- **免费聊天助手电子邮件同步**：当您为使用我们网站上的免费聊天助手而验证电子邮件时，我们会将该电子邮件作为联系人存储在我们的 HubSpot 和 Attio CRM 系统中，以便就我们的产品与您跟进。此同步在您完成一次性验证码验证后于服务器端进行；它不是跟踪脚本，也不依赖 Cookie。仅当您在聊天中勾选可选的营销同意复选框时，我们才会将您指定为**营销联系人**（有资格接收营销电子邮件）。如果您未勾选，我们仍会存储该联系人记录，但不会向您发送营销电子邮件。您可以随时取消订阅任何营销电子邮件或请求删除您的联系人记录（见第 9 节）。
 
-## 3. Legal Basis for Processing (GDPR)
+### 2.8 Divinci Local Inference 浏览器扩展程序
 
-We process your personal data based on:
-- **Consent**: For analytics, marketing cookies, and optional integrations
-- **Legitimate Interest**: For app functionality, security, and crash reporting
-- **Contract Performance**: When providing our Services to you
-- **Legal Obligation**: When required by law
+我们发布了一款可选的 Chrome 扩展程序 **Divinci Local Inference**，它通过 WebGPU 在**您自己的设备上**运行 Google 的 Gemma 4 模型——可作为任意网站的页内助手使用，也可作为 chat.divinci.app 的本地、无 API 成本的模型选项使用。其隐私原则概述如下：
 
-## 4. How We Use Your Information
+- **默认仅限本地。** 您与设备端模型的对话在您的 GPU 上计算，扩展程序不会记录、存储或传输这些对话。当您未登录时，扩展程序不会向 Divinci 发送任何有关您浏览活动的信息。
+- **可选的登录后功能。** 如果您登录 Divinci 账户，该扩展程序可以：在登录时接收您的基本个人资料（姓名、电子邮件、头像）；在侧边面板打开期间，发送经过精简的页面地址（源+路径；已移除查询参数/片段）以及页面可见文本的单向哈希值，以便在 Divinci 的公共网络知识索引中进行核对（页面**内容不会被发送**，敏感网站会被跳过，面板关闭时不发送任何内容）；以及在需要感知页面内容的回答或账户模式聊天中，将您的聊天消息发送给 Divinci。您可以在**高级设置 → 隐私**中关闭这些功能。
+- **不出售数据，无广告，不进行跨站跟踪。**
+- **开源。** 该扩展程序采用 Apache-2.0 许可证；源代码可在 [github.com/Divinci-AI/gemma-gem](https://github.com/Divinci-AI/gemma-gem) 获取。
 
-### 4.1 Essential Uses
-- Provide, maintain, and improve our Services
-- Authenticate your identity and manage your account
-- Process your AI chat requests and deliver responses
-- Deliver push notifications you have opted in to
-- Respond to your inquiries and support requests
-- Ensure app and website security and functionality
-- Detect, prevent, and address technical issues
+有关完整的、针对该扩展程序的政策——包括每项功能具体发送的内容以及您的隐私控制选项——请参阅 [Divinci Local Inference 隐私政策](/zh/local-inference-privacy/)。
 
-### 4.2 With Your Consent
-- Analytics to improve our website and apps
-- Marketing communications
-- Personalized content recommendations
-- Third-party service integrations (Google Drive, Gmail)
+## 3. 处理的法律依据（GDPR）
 
-## 5. Data Sharing and Disclosure
+我们基于以下依据处理您的个人数据：
+- **同意**：用于分析、营销 Cookie 和可选集成
+- **合法利益**：用于应用功能、安全性和崩溃报告
+- **合同履行**：在为您提供服务时
+- **法律义务**：法律要求时
 
-We do not sell your personal data. We may share data with:
+## 4. 我们如何使用您的信息
 
-### 5.1 Service Providers
-- Cloud hosting and infrastructure providers (with data processing agreements)
-- Authentication service providers
-- Analytics and crash reporting providers (when you consent or as described above)
+### 4.1 必要用途
+- 提供、维护和改进我们的服务
+- 验证您的身份并管理您的账户
+- 处理您的 AI 聊天请求并提供回复
+- 发送您已选择接收的推送通知
+- 回应您的咨询和支持请求
+- 确保应用和网站的安全性与功能性
+- 检测、预防并解决技术问题
+
+### 4.2 经您同意后
+- 用于改进我们网站和应用的分析
+- 营销通信
+- 个性化内容推荐
+- 第三方服务集成（Google Drive、Gmail）
+
+## 5. 数据共享与披露
+
+我们不会出售您的个人数据。我们可能会与以下各方共享数据：
+
+### 5.1 服务提供商
+- 云托管和基础设施提供商（已签订数据处理协议）
+- 身份验证服务提供商
+- 分析与崩溃报告提供商（在您同意或如上所述的情况下）
 - 营销及 B2B 访客识别服务提供商（在受监管的司法管辖区需取得同意，详见第 2.7 节）
-- AI model providers for processing your requests
-- Customer support tools
+- 用于处理您请求的 AI 模型提供商
+- 客户支持工具
 
-### 5.2 Legal Requirements
-- When required by law or legal process
-- To protect our rights and safety
-- In connection with business transfers (mergers, acquisitions, or asset sales)
+### 5.2 法律要求
+- 法律或法律程序要求时
+- 为保护我们的权利和安全
+- 与业务转让（合并、收购或资产出售）相关时
 
-## 6. Data Retention
+## 6. 数据保留
 
-- **Account Data**: Retained for as long as your account is active. Upon account deletion, your personal data is deleted within 30 days, except where we are required by law to retain it.
-- **Chat and AI Data**: Conversation history is retained while your account is active and deleted upon account deletion.
-- **Crash Reports**: Retained for 90 days by Firebase Crashlytics.
-- **Analytics Data**: Aggregated analytics data is retained for up to 14 months by Firebase Analytics.
-- **Backup Data**: Backup copies may persist for up to 30 days after deletion.
+- **账户数据**：在您的账户处于活跃状态期间保留。账户删除后，您的个人数据将在 30 天内删除，除非法律要求我们保留。
+- **聊天及 AI 数据**：对话历史记录在您的账户处于活跃状态期间保留，并在账户删除时删除。
+- **崩溃报告**：由 Firebase Crashlytics 保留 90 天。
+- **分析数据**：由 Firebase Analytics 保留的汇总分析数据最长保留 14 个月。
+- **备份数据**：备份副本在删除后最多可能保留 30 天。
 
-## 7. Data Security
+## 7. 数据安全
 
-We implement appropriate technical and organizational measures to protect your personal data, including:
-- **Encryption in Transit**: All data transmitted between your device and our servers is encrypted using TLS/SSL.
-- **Encryption at Rest**: Personal data stored on our servers is encrypted at rest.
-- **Access Controls**: Strict access controls limit who within our organization can access personal data.
-- **Regular Audits**: We regularly review our security practices and update them as needed.
+我们实施适当的技术和组织措施来保护您的个人数据，包括：
+- **传输加密**：您的设备与我们服务器之间传输的所有数据均使用 TLS/SSL 加密。
+- **静态加密**：存储在我们服务器上的个人数据在静态时也经过加密。
+- **访问控制**：严格的访问控制限制我们组织内部谁可以访问个人数据。
+- **定期审计**：我们定期审查我们的安全实践并按需更新。
 
-While we strive to protect your data, no method of electronic transmission or storage is 100% secure. We cannot guarantee absolute security.
+尽管我们努力保护您的数据，但没有任何电子传输或存储方法是100%安全的。我们无法保证绝对的安全性。
 
-## 8. Children's Privacy
+## 8. 儿童隐私
 
-Our Services are not directed to children under the age of 13 (or the applicable age of consent in your jurisdiction). We do not knowingly collect personal data from children under 13. If you are a parent or guardian and believe your child has provided us with personal data, please contact us at privacy@divinci.ai and we will take steps to delete such information promptly.
+我们的服务并非面向13岁以下的儿童（或您所在司法管辖区适用的同意年龄）。我们不会在知情的情况下收集13岁以下儿童的个人数据。如果您是家长或监护人，并认为您的孩子向我们提供了个人数据，请通过 privacy@divinci.ai 联系我们，我们将采取措施及时删除该信息。
 
-## 9. Your Rights
+## 9. 您的权利
 
-### 9.1 GDPR Rights (EEA, UK, Switzerland)
-- **Right of Access**: Request information about your personal data
-- **Data Portability**: Receive your data in a structured, machine-readable format
-- **Rectification**: Correct inaccurate personal data
-- **Erasure**: Request deletion of your personal data
-- **Restriction**: Limit how we process your data
-- **Objection**: Object to processing for direct marketing
-- **Withdraw Consent**: Revoke consent at any time
+### 9.1 GDPR 权利（欧洲经济区、英国、瑞士）
+- **访问权**：请求了解有关您个人数据的信息
+- **数据可携权**：以结构化、机器可读的格式接收您的数据
+- **更正权**：更正不准确的个人数据
+- **删除权**：请求删除您的个人数据
+- **限制权**：限制我们处理您数据的方式
+- **反对权**：反对将您的数据用于直接营销目的
+- **撤回同意权**：随时撤回同意
 
-To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+要行使上述任何权利，您可以通过我们的自助式[数据请求门户](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg)提交请求，或通过电子邮件 privacy@divinci.ai 与我们联系。我们将在30天内回复。
 
-### 9.2 CCPA Rights (California Residents)
-- **Right to Know**: What personal information we collect and how it is used
-- **Right to Delete**: Request deletion of your personal information
-- **Right to Opt-Out**: Opt out of the sale of personal information (we do not sell personal information)
-- **Non-Discrimination**: We will not discriminate against you for exercising your rights
+### 9.2 CCPA 权利（加州居民）
+- **知情权**：了解我们收集哪些个人信息以及如何使用
+- **删除权**：请求删除您的个人信息
+- **选择退出权**：选择退出个人信息的出售（我们不出售个人信息）
+- **不歧视权**：我们不会因您行使权利而歧视您
 
-### 9.3 Apple App Store (iOS Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- We comply with Apple's App Store Review Guidelines regarding user privacy and data handling
+### 9.3 Apple App Store（iOS 用户）
+- 您可以直接在应用内或通过联系我们请求删除您的账户及所有相关数据
+- 我们遵守 Apple App Store 审核指南中有关用户隐私和数据处理的规定
 
-### 9.4 Google Play Store (Android Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- Our Data Safety disclosures in the Google Play Store accurately reflect our data practices as described in this policy
+### 9.4 Google Play Store（Android 用户）
+- 您可以直接在应用内或通过联系我们请求删除您的账户及所有相关数据
+- 我们在 Google Play Store 中的数据安全声明准确反映了本政策所述的数据实践
 
-## 10. Your Privacy Controls
+## 10. 您的隐私控制选项
 
 <div class="privacy-controls">
   <button onclick="window.gdprCompliance?.showCookieBanner()" class="privacy-btn">
-    🍪 Cookie Preferences
+    🍪 Cookie 偏好设置
   </button>
 
   <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
@@ -177,7 +184,7 @@ To exercise any of these rights, you can submit a request through our self-servi
   </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
-    ❌ Revoke All Consent
+    ❌ 撤回所有同意
   </button>
 </div>
 
@@ -198,6 +205,10 @@ To exercise any of these rights, you can submit a request through our self-servi
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .privacy-btn:hover {
@@ -216,18 +227,18 @@ To exercise any of these rights, you can submit a request through our self-servi
 }
 </style>
 
-## 11. International Data Transfers
+## 11. 国际数据传输
 
-Your data may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place, including Standard Contractual Clauses where required, to protect your data in accordance with this policy and applicable law.
+您的数据可能会被传输至您所在国家/地区以外的其他国家/地区并在当地进行处理。我们确保采取适当的保障措施，包括在必要时使用标准合同条款，以按照本政策和适用法律保护您的数据。
 
-## 12. Changes to This Policy
+## 12. 本政策的变更
 
-We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on our website and updating the "Last updated" date. Your continued use of our Services after changes constitutes acceptance of the updated policy.
+我们可能会不时更新本隐私政策。我们将通过在网站上发布更新后的政策并更新"最后更新时间"日期，将重大变更通知您。变更后您继续使用我们的服务即表示您接受更新后的政策。
 
-## Contact Information
+## 联系信息
 
 **Divinci AI**
-Email: privacy@divinci.ai
-Data Protection Officer: dpo@divinci.ai
+电子邮件：privacy@divinci.ai
+数据保护官：dpo@divinci.ai
 
-For any privacy-related requests or questions, contact us at privacy@divinci.ai with a response time of within 30 days.
+如有任何隐私相关的请求或问题，请通过 privacy@divinci.ai 与我们联系，我们将在30天内回复。

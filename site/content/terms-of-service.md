@@ -3,7 +3,7 @@ title = "Terms of Service"
 description = "Terms and conditions for using Divinci AI services"
 template = "page.html"
 [extra]
-last_updated = "October 31st, 2024"
+last_updated = "May 27th, 2026"
 +++
 
 <div class="notification is-info">

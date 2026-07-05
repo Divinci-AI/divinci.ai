@@ -1,175 +1,182 @@
 +++
-
-[extra]
-canonical_to_english = true
 title = "गोपनीयता नीति"
-description = "Divinci AI की गोपनीयता प्रतिबद्धता और डेटा हैंडलिंग विवरण"
+description = "GDPR और अंतरराष्ट्रीय गोपनीयता कानूनों के अनुपालन में आपकी गोपनीयता और व्यक्तिगत डेटा की सुरक्षा के प्रति Divinci AI की प्रतिबद्धता"
 template = "page.html"
 +++
 
 # गोपनीयता नीति
 
-*इस दस्तावेज़ का पूर्ण संस्करण नीचे अंग्रेज़ी में उपलब्ध है।*
+**अंतिम अद्यतन:** जून 2026
 
-# Privacy Policy
+## गोपनीयता के प्रति हमारी प्रतिबद्धता
 
-**Last updated:** मई 2026
+Divinci AI में, हम आपकी गोपनीयता की रक्षा करने और आपके व्यक्तिगत डेटा की सुरक्षा सुनिश्चित करने के लिए प्रतिबद्ध हैं। यह गोपनीयता नीति बताती है कि जब आप हमारी वेबसाइट, मोबाइल एप्लिकेशन (Android और iOS), और सेवाओं (सामूहिक रूप से, "सेवाएँ") का उपयोग करते हैं तो हम आपकी जानकारी कैसे एकत्र करते हैं, उपयोग करते हैं, संसाधित करते हैं, और सुरक्षित रखते हैं।
 
-## Our Commitment to Privacy
+## 1. हम जो जानकारी एकत्र करते हैं
 
-At Divinci AI, we are committed to protecting your privacy and ensuring the security of your personal data. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our website, mobile applications (Android and iOS), and services (collectively, the "Services").
+### 1.1 आपके द्वारा प्रदान की गई जानकारी
+- **खाता जानकारी**: जब आप एक खाता बनाते हैं तो नाम, ईमेल पता, और प्रोफ़ाइल जानकारी
+- **संपर्क जानकारी**: जब आप हमसे संपर्क करते हैं या डेमो का अनुरोध करते हैं तो नाम, ईमेल पता, कंपनी का नाम
+- **चैट और AI इंटरैक्शन डेटा**: संदेश, प्रॉम्प्ट, और सामग्री जो आप हमारी AI चैट सुविधाओं का उपयोग करते समय सबमिट करते हैं
+- **फ्री चैट ईमेल**: जब आप हमारी वेबसाइट पर फ्री चैट सहायक का उपयोग करते हैं, तो आपके द्वारा प्रदान किया गया और वन-टाइम कोड से सत्यापित ईमेल पता। हम इसका उपयोग सत्यापन कोड देने, दुरुपयोग को रोकने, और — केवल यदि आप सहमति चेकबॉक्स के माध्यम से ऑप्ट-इन करते हैं — कभी-कभार उत्पाद अपडेट भेजने के लिए करते हैं (धारा 2.7 देखें)
+- **संचार डेटा**: संदेश, प्रतिक्रिया, और सहायता अनुरोध
+- **फाइलें और दस्तावेज़**: AI प्रोसेसिंग के लिए आपके द्वारा अपलोड की गई फाइलें, जिसमें नॉलेज बेस में जोड़े गए दस्तावेज़ शामिल हैं
 
-## 1. Information We Collect
+### 1.2 स्वचालित रूप से एकत्रित जानकारी
+- **वेबसाइट उपयोग डेटा**: देखे गए पृष्ठ, बिताया गया समय, क्लिक पैटर्न
+- **ऐप उपयोग डेटा**: उपयोग की गई सुविधाएँ, सत्र अवधि, हमारे मोबाइल ऐप्स के भीतर इंटरैक्शन पैटर्न
+- **तकनीकी डेटा**: IP पता, ब्राउज़र प्रकार, डिवाइस जानकारी, ऑपरेटिंग सिस्टम संस्करण, डिवाइस पहचानकर्ता
+- **प्रदर्शन डेटा**: ऐप और वेबसाइट प्रदर्शन मेट्रिक्स, त्रुटि लॉग, और क्रैश रिपोर्ट
+- **पुश नोटिफिकेशन टोकन**: पुश नोटिफिकेशन देने के लिए डिवाइस टोकन (यदि आप ऑप्ट-इन करते हैं)
 
-### 1.1 Information You Provide
-- **Account Information**: Name, email address, and profile information when you create an account
-- **Contact Information**: Name, email address, company name when you contact us or request demos
-- **Chat and AI Interaction Data**: Messages, prompts, and content you submit when using our AI chat features
-- **Communication Data**: Messages, feedback, and support requests
-- **Files and Documents**: Files you upload for AI processing, including documents added to knowledge bases
+### 1.3 तृतीय-पक्ष सेवाओं से जानकारी
+जब आप तृतीय-पक्ष सेवाओं को जोड़ना चुनते हैं, तो हम एकत्र कर सकते हैं:
+- **Google खाता डेटा**: जब आप Google से साइन इन करते हैं या Google Drive और Gmail कनेक्ट करते हैं तो नाम, ईमेल, और प्रोफ़ाइल जानकारी
+- **प्रमाणीकरण डेटा**: आपके खाते को सुरक्षित रूप से प्रबंधित करने के लिए हमारे प्रमाणीकरण प्रदाता से टोकन और पहचानकर्ता
 
-### 1.2 Information Automatically Collected
-- **Website Usage Data**: Pages visited, time spent, click patterns
-- **App Usage Data**: Features used, session duration, interaction patterns within our mobile apps
-- **Technical Data**: IP address, browser type, device information, operating system version, device identifiers
-- **Performance Data**: App and website performance metrics, error logs, and crash reports
-- **Push Notification Tokens**: Device tokens for delivering push notifications (if you opt in)
+### 1.4 कुकीज़ और ट्रैकिंग तकनीकें
+हम कुकीज़ और समान तकनीकों का उपयोग निम्नलिखित के लिए करते हैं:
+- वेबसाइट कार्यक्षमता सुनिश्चित करना
+- वेबसाइट और ऐप प्रदर्शन का विश्लेषण करना
+- व्यक्तिगत अनुभव प्रदान करना (आपकी सहमति से)
+- वेबसाइट विज़िट से जुड़े संगठन की पहचान करना, B2B मार्केटिंग उद्देश्यों के लिए (ईयू/ईईए, यूनाइटेड किंगडम, और स्विट्ज़रलैंड में आपकी सहमति के साथ)
 
-### 1.3 Information from Third-Party Services
-When you choose to connect third-party services, we may collect:
-- **Google Account Data**: Name, email, and profile information when you sign in with Google or connect Google Drive and Gmail
-- **Authentication Data**: Tokens and identifiers from our authentication provider to manage your account securely
+## 2. तृतीय-पक्ष सेवाएँ और SDK
 
-### 1.4 Cookies and Tracking Technologies
-We use cookies and similar technologies to:
-- Ensure website functionality
-- Analyze website and app performance
-- Provide personalized experience (with your consent)
-- वेबसाइट विज़िट से जुड़े संगठन की पहचान करना, B2B मार्केटिंग उद्देश्यों के लिए (ईयू/ईईए, यूनाइटेड किंगडम और स्विट्ज़रलैंड में आपकी सहमति के साथ)
+हमारी सेवाएँ निम्नलिखित तृतीय-पक्ष सेवाओं को एकीकृत करती हैं, जिनमें से प्रत्येक की अपनी गोपनीयता प्रथाएँ हैं:
 
-## 2. Third-Party Services and SDKs
+### 2.1 प्रमाणीकरण
+- **Auth0** (Okta द्वारा): उपयोगकर्ता प्रमाणीकरण और खाता सुरक्षा का प्रबंधन करता है। ईमेल, नाम, और लॉगिन क्रेडेंशियल संसाधित करता है। [Auth0 गोपनीयता नीति](https://auth0.com/privacy)
 
-Our Services integrate the following third-party services, each with their own privacy practices:
+### 2.2 विश्लेषण और क्रैश रिपोर्टिंग
+- **Firebase Analytics** (Google द्वारा): हमारी सेवाओं को बेहतर बनाने में मदद के लिए ऐप उपयोग डेटा, डिवाइस जानकारी, और गुमनाम इंटरैक्शन इवेंट एकत्र करता है। [Firebase गोपनीयता जानकारी](https://firebase.google.com/support/privacy)
+- **Firebase Crashlytics** (Google द्वारा): समस्याओं की पहचान और समाधान में मदद के लिए डिवाइस स्थिति, स्टैक ट्रेस, और डिवाइस पहचानकर्ताओं सहित क्रैश रिपोर्ट एकत्र करता है। डेटा 90 दिनों के लिए रखा जाता है।
 
-### 2.1 Authentication
-- **Auth0** (by Okta): Manages user authentication and account security. Processes email, name, and login credentials. [Auth0 Privacy Policy](https://auth0.com/privacy)
+### 2.3 पुश नोटिफिकेशन
+- **Firebase Cloud Messaging** (Google द्वारा): पुश नोटिफिकेशन देने के लिए डिवाइस टोकन संसाधित करता है। आप किसी भी समय अपनी डिवाइस सेटिंग्स के माध्यम से नोटिफिकेशन से ऑप्ट-आउट कर सकते हैं।
 
-### 2.2 Analytics and Crash Reporting
-- **Firebase Analytics** (by Google): Collects app usage data, device information, and anonymized interaction events to help us improve our Services. [Firebase Privacy Information](https://firebase.google.com/support/privacy)
-- **Firebase Crashlytics** (by Google): Collects crash reports including device state, stack traces, and device identifiers to help us identify and fix issues. Data is retained for 90 days.
+### 2.4 ऐप इंटीग्रिटी
+- **Play Integrity के साथ Firebase App Check** (Android) / **App Attest** (iOS): सत्यापित करता है कि हमारे बैकएंड के अनुरोध हमारे ऐप के वास्तविक इंस्टेंस से आते हैं। व्यक्तिगत डेटा एकत्र नहीं करता है।
 
-### 2.3 Push Notifications
-- **Firebase Cloud Messaging** (by Google): Processes device tokens to deliver push notifications. You can opt out of notifications through your device settings at any time.
+### 2.5 AI प्रोसेसिंग
+- **AI भाषा मॉडल**: आपके चैट संदेश और अपलोड की गई सामग्री को प्रतिक्रियाएँ उत्पन्न करने के लिए AI भाषा मॉडल प्रदाताओं द्वारा संसाधित किया जाता है। हम AI मॉडल को प्रशिक्षित करने के लिए आपकी बातचीत का उपयोग नहीं करते हैं। AI-जनित सामग्री गलत हो सकती है और इस पर पेशेवर सलाह के रूप में भरोसा नहीं किया जाना चाहिए।
 
-### 2.4 App Integrity
-- **Firebase App Check with Play Integrity** (Android) / **App Attest** (iOS): Verifies that requests to our backend come from genuine instances of our app. Does not collect personal data.
-
-### 2.5 AI Processing
-- **AI Language Models**: Your chat messages and uploaded content are processed by AI language model providers to generate responses. We do not use your conversations to train AI models. AI-generated content may be inaccurate and should not be relied upon as professional advice.
-
-### 2.6 Cloud Infrastructure
-- **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+### 2.6 क्लाउड इन्फ्रास्ट्रक्चर
+- **Google Cloud Platform**: हमारी बैकएंड सेवाएँ डेटा प्रोसेसिंग समझौतों के साथ Google Cloud इन्फ्रास्ट्रक्चर पर चलती हैं।
 
 ### 2.7 मार्केटिंग, विज़िटर पहचान, और CRM
-- **Instantly.ai / Leadsy.ai**: हम Instantly के विज़िटर पहचान टैग का उपयोग करते हैं (जो `r2.leadsy.ai` से लोड होता है, जो उसी विक्रेता द्वारा संचालित `tag.trovo-tag.com` से एक ट्रैकिंग स्क्रिप्ट को गतिशील रूप से लोड करता है) ताकि उस संगठन की पहचान की जा सके जिससे वेबसाइट विज़िट जुड़ी हो सकती है (उदाहरण के लिए, विज़िटर के IP पते से जुड़ी कंपनी)। यह हमारे बिज़नेस-टू-बिज़नेस आउटबाउंड मार्केटिंग को सूचित करता है। ईयू/ईईए, यूनाइटेड किंगडम, या स्विट्ज़रलैंड में पाए गए विज़िटरों के लिए, यह टैग **केवल तभी लोड होता है जब आप हमारे कुकी बैनर के माध्यम से मार्केटिंग सहमति प्रदान करते हैं**। उन क्षेत्राधिकारों के बाहर के विज़िटरों के लिए, टैग डिफ़ॉल्ट रूप से लोड होता है और इसे धारा 10 में "कुकी प्राथमिकताएँ" नियंत्रण के माध्यम से कभी भी अक्षम किया जा सकता है। [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
-- **HubSpot**: हम HubSpot ट्रैकिंग स्क्रिप्ट का उपयोग करते हैं (जो `js.hs-scripts.com` से लोड होती है, जो `js.hs-analytics.net`, `js.hs-banner.com`, और `js.hscollectedforms.net` से ट्रैकिंग, बैनर, और फॉर्म-कैप्चर स्क्रिप्ट्स को गतिशील रूप से लोड करती है) ताकि पेज व्यू रिकॉर्ड किए जा सकें, मार्केटिंग चैनल प्रदर्शन का श्रेय दिया जा सके, फॉर्म सबमिशन कैप्चर किए जा सकें, और जब आप कोई फॉर्म सबमिट करते हैं या मीटिंग बुक करते हैं तो वेबसाइट गतिविधि को HubSpot CRM संपर्क रिकॉर्ड से जोड़ा जा सके। ईयू/ईईए, यूनाइटेड किंगडम, या स्विट्ज़रलैंड में पाए गए विज़िटरों के लिए, यह स्क्रिप्ट **केवल तभी लोड होती है जब आप हमारे कुकी बैनर के माध्यम से मार्केटिंग सहमति प्रदान करते हैं**। उन क्षेत्राधिकारों के बाहर के विज़िटरों के लिए, स्क्रिप्ट डिफ़ॉल्ट रूप से लोड होती है और इसे धारा 10 में "कुकी प्राथमिकताएँ" नियंत्रण के माध्यम से कभी भी अक्षम किया जा सकता है। [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
+- **Instantly.ai / Leadsy.ai**: हम Instantly के विज़िटर पहचान टैग का उपयोग करते हैं (जो `r2.leadsy.ai` से लोड होता है, जो उसी विक्रेता द्वारा संचालित `tag.trovo-tag.com` से एक ट्रैकिंग स्क्रिप्ट को गतिशील रूप से लोड करता है) ताकि उस संगठन की पहचान की जा सके जिससे वेबसाइट विज़िट जुड़ी हो सकती है (उदाहरण के लिए, विज़िटर के IP पते से जुड़ी कंपनी)। यह हमारे बिज़नेस-टू-बिज़नेस आउटबाउंड मार्केटिंग को सूचित करता है। ईयू/ईईए, यूनाइटेड किंगडम, या स्विट्ज़रलैंड में पाए गए विज़िटरों के लिए, यह टैग **केवल तभी लोड होता है जब आप हमारे कुकी बैनर के माध्यम से मार्केटिंग सहमति प्रदान करते हैं**। उन क्षेत्राधिकारों के बाहर के विज़िटरों के लिए, टैग डिफ़ॉल्ट रूप से लोड होता है और इसे धारा 10 में "कुकी प्राथमिकताएँ" नियंत्रण के माध्यम से कभी भी अक्षम किया जा सकता है। [Instantly गोपनीयता नीति](https://instantly.ai/privacy-policy)
+- **HubSpot**: हम HubSpot ट्रैकिंग स्क्रिप्ट का उपयोग करते हैं (जो `js.hs-scripts.com` से लोड होती है, जो `js.hs-analytics.net`, `js.hs-banner.com`, और `js.hscollectedforms.net` से ट्रैकिंग, बैनर, और फॉर्म-कैप्चर स्क्रिप्ट्स को गतिशील रूप से लोड करती है) ताकि पेज व्यू रिकॉर्ड किए जा सकें, मार्केटिंग चैनल प्रदर्शन का श्रेय दिया जा सके, फॉर्म सबमिशन कैप्चर किए जा सकें, और जब आप कोई फॉर्म सबमिट करते हैं या मीटिंग बुक करते हैं तो वेबसाइट गतिविधि को HubSpot CRM संपर्क रिकॉर्ड से जोड़ा जा सके। ईयू/ईईए, यूनाइटेड किंगडम, या स्विट्ज़रलैंड में पाए गए विज़िटरों के लिए, यह स्क्रिप्ट **केवल तभी लोड होती है जब आप हमारे कुकी बैनर के माध्यम से मार्केटिंग सहमति प्रदान करते हैं**। उन क्षेत्राधिकारों के बाहर के विज़िटरों के लिए, स्क्रिप्ट डिफ़ॉल्ट रूप से लोड होती है और इसे धारा 10 में "कुकी प्राथमिकताएँ" नियंत्रण के माध्यम से कभी भी अक्षम किया जा सकता है। [HubSpot गोपनीयता नीति](https://legal.hubspot.com/privacy-policy)
+- **Attio**: हम व्यावसायिक संपर्कों और लीड्स को व्यवस्थित करने के लिए Attio का उपयोग एक ग्राहक संबंध प्रबंधन (CRM) प्रणाली के रूप में करते हैं। [Attio गोपनीयता नीति](https://attio.com/privacy)
+- **फ्री चैट सहायक ईमेल सिंक**: जब आप हमारी वेबसाइट पर फ्री चैट सहायक का उपयोग करने के लिए एक ईमेल सत्यापित करते हैं, तो हम उस ईमेल को हमारे HubSpot और Attio CRM में एक संपर्क के रूप में संग्रहीत करते हैं ताकि हम अपने उत्पादों के बारे में फॉलो-अप कर सकें। यह सिंक आपके वन-टाइम-कोड सत्यापन को पूरा करने के बाद सर्वर-साइड पर होता है; यह कोई ट्रैकिंग स्क्रिप्ट नहीं है और कुकीज़ पर निर्भर नहीं करता है। हम आपको **मार्केटिंग संपर्क** (मार्केटिंग ईमेल प्राप्त करने के योग्य) के रूप में **केवल तभी नामित करते हैं जब आप चैट में वैकल्पिक मार्केटिंग-सहमति बॉक्स को चेक करते हैं**। यदि आप इसे अनचेक छोड़ते हैं, तो हम फिर भी संपर्क रिकॉर्ड संग्रहीत करते हैं लेकिन आपको मार्केटिंग ईमेल नहीं भेजते हैं। आप किसी भी समय किसी भी मार्केटिंग ईमेल से अनसब्सक्राइब कर सकते हैं या अपने संपर्क रिकॉर्ड को हटाने का अनुरोध कर सकते हैं (धारा 9 देखें)।
 
-## 3. Legal Basis for Processing (GDPR)
+### 2.8 Divinci Local Inference ब्राउज़र एक्सटेंशन
 
-We process your personal data based on:
-- **Consent**: For analytics, marketing cookies, and optional integrations
-- **Legitimate Interest**: For app functionality, security, and crash reporting
-- **Contract Performance**: When providing our Services to you
-- **Legal Obligation**: When required by law
+हम एक वैकल्पिक Chrome एक्सटेंशन, **Divinci Local Inference**, प्रकाशित करते हैं, जो Google के Gemma 4 मॉडल को WebGPU के माध्यम से **आपके अपने डिवाइस पर** चलाता है — जिसका उपयोग किसी भी साइट पर ऑन-पेज सहायक के रूप में, और chat.divinci.app के लिए एक स्थानीय, बिना-API-लागत वाले मॉडल विकल्प के रूप में किया जा सकता है। इसकी गोपनीयता स्थिति, संक्षेप में:
 
-## 4. How We Use Your Information
+- **डिफ़ॉल्ट रूप से केवल-स्थानीय।** ऑन-डिवाइस मॉडल के साथ आपकी चैट आपके GPU पर कंप्यूट की जाती हैं और एक्सटेंशन द्वारा लॉग, संग्रहीत, या प्रसारित नहीं की जाती हैं। जब आप साइन इन नहीं होते हैं, तो एक्सटेंशन आपकी ब्राउज़िंग के बारे में Divinci को कुछ भी नहीं भेजता है।
+- **वैकल्पिक साइन-इन सुविधाएँ।** यदि आप अपने Divinci खाते में साइन इन करते हैं, तो एक्सटेंशन ये कर सकता है: साइन-इन पर आपकी बुनियादी प्रोफ़ाइल (नाम, ईमेल, अवतार) प्राप्त करना; जब साइड पैनल खुला हो, Divinci के सार्वजनिक-वेब नॉलेज इंडेक्स की जाँच के लिए एक ट्रिम किया गया पेज पता (origin + path; क्वेरी/फ्रैगमेंट हटाया गया) साथ ही पेज के दृश्यमान टेक्स्ट का एक वन-वे हैश भेजना (पेज की **सामग्री नहीं भेजी जाती है**, संवेदनशील साइटों को छोड़ दिया जाता है, और पैनल बंद होने पर कुछ भी नहीं भेजा जाता है); और, पेज-अवेयर उत्तरों या खाता-मोड चैट के लिए, आपका चैट संदेश Divinci को भेजना। आप इन्हें **उन्नत सेटिंग्स → गोपनीयता** में बंद कर सकते हैं।
+- **कोई बिक्री नहीं, कोई विज्ञापन नहीं, कोई क्रॉस-साइट ट्रैकिंग नहीं।**
+- **ओपन सोर्स।** एक्सटेंशन Apache-2.0 लाइसेंस प्राप्त है; स्रोत [github.com/Divinci-AI/gemma-gem](https://github.com/Divinci-AI/gemma-gem) पर उपलब्ध है।
 
-### 4.1 Essential Uses
-- Provide, maintain, and improve our Services
-- Authenticate your identity and manage your account
-- Process your AI chat requests and deliver responses
-- Deliver push notifications you have opted in to
-- Respond to your inquiries and support requests
-- Ensure app and website security and functionality
-- Detect, prevent, and address technical issues
+पूर्ण, एक्सटेंशन-विशिष्ट नीति के लिए — जिसमें शामिल है कि प्रत्येक सुविधा वास्तव में क्या भेजती है और आपके गोपनीयता नियंत्रण — देखें [Divinci Local Inference गोपनीयता नीति](/hi/local-inference-privacy/)।
 
-### 4.2 With Your Consent
-- Analytics to improve our website and apps
-- Marketing communications
-- Personalized content recommendations
-- Third-party service integrations (Google Drive, Gmail)
+## 3. प्रोसेसिंग के लिए कानूनी आधार (GDPR)
 
-## 5. Data Sharing and Disclosure
+हम आपके व्यक्तिगत डेटा को निम्न के आधार पर संसाधित करते हैं:
+- **सहमति**: विश्लेषण, मार्केटिंग कुकीज़, और वैकल्पिक एकीकरणों के लिए
+- **वैध हित**: ऐप कार्यक्षमता, सुरक्षा, और क्रैश रिपोर्टिंग के लिए
+- **अनुबंध निष्पादन**: जब आपको हमारी सेवाएँ प्रदान की जाती हैं
+- **कानूनी दायित्व**: जब कानून द्वारा आवश्यक हो
 
-We do not sell your personal data. We may share data with:
+## 4. हम आपकी जानकारी का उपयोग कैसे करते हैं
 
-### 5.1 Service Providers
-- Cloud hosting and infrastructure providers (with data processing agreements)
-- Authentication service providers
-- Analytics and crash reporting providers (when you consent or as described above)
+### 4.1 आवश्यक उपयोग
+- हमारी सेवाओं को प्रदान करना, बनाए रखना, और बेहतर बनाना
+- आपकी पहचान प्रमाणित करना और आपके खाते का प्रबंधन करना
+- आपके AI चैट अनुरोधों को संसाधित करना और प्रतिक्रियाएँ देना
+- आपके द्वारा ऑप्ट-इन किए गए पुश नोटिफिकेशन देना
+- आपकी पूछताछ और सहायता अनुरोधों का जवाब देना
+- ऐप और वेबसाइट सुरक्षा और कार्यक्षमता सुनिश्चित करना
+- तकनीकी समस्याओं का पता लगाना, रोकना, और उनका समाधान करना
+
+### 4.2 आपकी सहमति से
+- हमारी वेबसाइट और ऐप्स को बेहतर बनाने के लिए विश्लेषण
+- मार्केटिंग संचार
+- व्यक्तिगत सामग्री अनुशंसाएँ
+- तृतीय-पक्ष सेवा एकीकरण (Google Drive, Gmail)
+
+## 5. डेटा साझाकरण और प्रकटीकरण
+
+हम आपका व्यक्तिगत डेटा नहीं बेचते हैं। हम डेटा साझा कर सकते हैं:
+
+### 5.1 सेवा प्रदाताओं के साथ
+- क्लाउड होस्टिंग और इन्फ्रास्ट्रक्चर प्रदाता (डेटा प्रोसेसिंग समझौतों के साथ)
+- प्रमाणीकरण सेवा प्रदाता
+- विश्लेषण और क्रैश रिपोर्टिंग प्रदाता (जब आप सहमति देते हैं या जैसा ऊपर वर्णित है)
 - मार्केटिंग और B2B विज़िटर पहचान प्रदाता (विनियमित क्षेत्राधिकारों में सहमति के अधीन, जैसा कि धारा 2.7 में वर्णित है)
-- AI model providers for processing your requests
-- Customer support tools
+- आपके अनुरोधों को संसाधित करने के लिए AI मॉडल प्रदाता
+- ग्राहक सहायता उपकरण
 
-### 5.2 Legal Requirements
-- When required by law or legal process
-- To protect our rights and safety
-- In connection with business transfers (mergers, acquisitions, or asset sales)
+### 5.2 कानूनी आवश्यकताएँ
+- जब कानून या कानूनी प्रक्रिया द्वारा आवश्यक हो
+- हमारे अधिकारों और सुरक्षा की रक्षा के लिए
+- व्यावसायिक हस्तांतरण (विलय, अधिग्रहण, या संपत्ति बिक्री) के संबंध में
 
-## 6. Data Retention
+## 6. डेटा प्रतिधारण
 
-- **Account Data**: Retained for as long as your account is active. Upon account deletion, your personal data is deleted within 30 days, except where we are required by law to retain it.
-- **Chat and AI Data**: Conversation history is retained while your account is active and deleted upon account deletion.
-- **Crash Reports**: Retained for 90 days by Firebase Crashlytics.
-- **Analytics Data**: Aggregated analytics data is retained for up to 14 months by Firebase Analytics.
-- **Backup Data**: Backup copies may persist for up to 30 days after deletion.
+- **खाता डेटा**: जब तक आपका खाता सक्रिय है, तब तक रखा जाता है। खाता हटाने पर, आपका व्यक्तिगत डेटा 30 दिनों के भीतर हटा दिया जाता है, सिवाय उन मामलों के जहाँ हमें कानून द्वारा इसे बनाए रखना आवश्यक है।
+- **चैट और AI डेटा**: वार्तालाप इतिहास आपके खाते के सक्रिय रहने तक रखा जाता है और खाता हटाने पर हटा दिया जाता है।
+- **क्रैश रिपोर्ट**: Firebase Crashlytics द्वारा 90 दिनों के लिए रखी जाती हैं।
+- **विश्लेषण डेटा**: एकत्रित विश्लेषण डेटा Firebase Analytics द्वारा 14 महीनों तक रखा जाता है।
+- **बैकअप डेटा**: बैकअप प्रतियाँ हटाने के बाद 30 दिनों तक बनी रह सकती हैं।
 
-## 7. Data Security
+## 7. डेटा सुरक्षा
 
-We implement appropriate technical and organizational measures to protect your personal data, including:
-- **Encryption in Transit**: All data transmitted between your device and our servers is encrypted using TLS/SSL.
-- **Encryption at Rest**: Personal data stored on our servers is encrypted at rest.
-- **Access Controls**: Strict access controls limit who within our organization can access personal data.
-- **Regular Audits**: We regularly review our security practices and update them as needed.
+हम आपके व्यक्तिगत डेटा की सुरक्षा के लिए उपयुक्त तकनीकी और संगठनात्मक उपाय लागू करते हैं, जिनमें शामिल हैं:
+- **ट्रांज़िट में एन्क्रिप्शन**: आपके डिवाइस और हमारे सर्वर के बीच प्रसारित सभी डेटा TLS/SSL का उपयोग करके एन्क्रिप्ट किया जाता है।
+- **रेस्ट में एन्क्रिप्शन**: हमारे सर्वर पर संग्रहीत व्यक्तिगत डेटा रेस्ट में एन्क्रिप्ट किया जाता है।
+- **एक्सेस नियंत्रण**: सख्त एक्सेस नियंत्रण यह सीमित करते हैं कि हमारे संगठन के भीतर व्यक्तिगत डेटा तक कौन पहुँच सकता है।
+- **नियमित ऑडिट**: हम नियमित रूप से अपनी सुरक्षा प्रथाओं की समीक्षा करते हैं और आवश्यकतानुसार उन्हें अपडेट करते हैं।
 
-While we strive to protect your data, no method of electronic transmission or storage is 100% secure. We cannot guarantee absolute security.
+जबकि हम आपके डेटा की सुरक्षा के लिए प्रयासरत हैं, इलेक्ट्रॉनिक प्रसारण या भंडारण की कोई भी विधि 100% सुरक्षित नहीं है। हम पूर्ण सुरक्षा की गारंटी नहीं दे सकते।
 
-## 8. Children's Privacy
+## 8. बच्चों की गोपनीयता
 
-Our Services are not directed to children under the age of 13 (or the applicable age of consent in your jurisdiction). We do not knowingly collect personal data from children under 13. If you are a parent or guardian and believe your child has provided us with personal data, please contact us at privacy@divinci.ai and we will take steps to delete such information promptly.
+हमारी सेवाएँ 13 वर्ष से कम आयु के बच्चों (या आपके क्षेत्राधिकार में लागू सहमति की आयु) के लिए निर्देशित नहीं हैं। हम जानबूझकर 13 वर्ष से कम आयु के बच्चों से व्यक्तिगत डेटा एकत्र नहीं करते हैं। यदि आप एक अभिभावक या संरक्षक हैं और मानते हैं कि आपके बच्चे ने हमें व्यक्तिगत डेटा प्रदान किया है, तो कृपया हमसे privacy@divinci.ai पर संपर्क करें और हम ऐसी जानकारी को शीघ्र हटाने के लिए कदम उठाएँगे।
 
-## 9. Your Rights
+## 9. आपके अधिकार
 
-### 9.1 GDPR Rights (EEA, UK, Switzerland)
-- **Right of Access**: Request information about your personal data
-- **Data Portability**: Receive your data in a structured, machine-readable format
-- **Rectification**: Correct inaccurate personal data
-- **Erasure**: Request deletion of your personal data
-- **Restriction**: Limit how we process your data
-- **Objection**: Object to processing for direct marketing
-- **Withdraw Consent**: Revoke consent at any time
+### 9.1 GDPR अधिकार (EEA, UK, स्विट्ज़रलैंड)
+- **पहुँच का अधिकार**: अपने व्यक्तिगत डेटा के बारे में जानकारी का अनुरोध करें
+- **डेटा पोर्टेबिलिटी**: अपना डेटा संरचित, मशीन-पठनीय प्रारूप में प्राप्त करें
+- **सुधार**: गलत व्यक्तिगत डेटा को सही करें
+- **मिटाना**: अपने व्यक्तिगत डेटा को हटाने का अनुरोध करें
+- **प्रतिबंध**: हम आपके डेटा को कैसे संसाधित करते हैं, इसे सीमित करें
+- **आपत्ति**: प्रत्यक्ष मार्केटिंग के लिए प्रोसेसिंग पर आपत्ति करें
+- **सहमति वापस लें**: किसी भी समय सहमति रद्द करें
 
-To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+इनमें से किसी भी अधिकार का प्रयोग करने के लिए, आप हमारे स्व-सेवा [डेटा अनुरोध पोर्टल](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg) के माध्यम से अनुरोध सबमिट कर सकते हैं, या हमें privacy@divinci.ai पर ईमेल कर सकते हैं। हम 30 दिनों के भीतर जवाब देते हैं।
 
-### 9.2 CCPA Rights (California Residents)
-- **Right to Know**: What personal information we collect and how it is used
-- **Right to Delete**: Request deletion of your personal information
-- **Right to Opt-Out**: Opt out of the sale of personal information (we do not sell personal information)
-- **Non-Discrimination**: We will not discriminate against you for exercising your rights
+### 9.2 CCPA अधिकार (कैलिफ़ोर्निया निवासी)
+- **जानने का अधिकार**: हम कौन सी व्यक्तिगत जानकारी एकत्र करते हैं और इसका उपयोग कैसे किया जाता है
+- **हटाने का अधिकार**: अपनी व्यक्तिगत जानकारी को हटाने का अनुरोध करें
+- **ऑप्ट-आउट का अधिकार**: व्यक्तिगत जानकारी की बिक्री से ऑप्ट-आउट करें (हम व्यक्तिगत जानकारी नहीं बेचते हैं)
+- **गैर-भेदभाव**: हम अपने अधिकारों का प्रयोग करने के लिए आपके साथ भेदभाव नहीं करेंगे
 
-### 9.3 Apple App Store (iOS Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- We comply with Apple's App Store Review Guidelines regarding user privacy and data handling
+### 9.3 Apple App Store (iOS उपयोगकर्ता)
+- आप ऐप के भीतर सीधे या हमसे संपर्क करके अपने खाते और सभी संबंधित डेटा को हटाने का अनुरोध कर सकते हैं
+- हम उपयोगकर्ता गोपनीयता और डेटा हैंडलिंग के संबंध में Apple के App Store समीक्षा दिशानिर्देशों का पालन करते हैं
 
-### 9.4 Google Play Store (Android Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- Our Data Safety disclosures in the Google Play Store accurately reflect our data practices as described in this policy
+### 9.4 Google Play Store (Android उपयोगकर्ता)
+- आप ऐप के भीतर सीधे या हमसे संपर्क करके अपने खाते और सभी संबंधित डेटा को हटाने का अनुरोध कर सकते हैं
+- Google Play Store में हमारे डेटा सुरक्षा प्रकटीकरण इस नीति में वर्णित हमारी डेटा प्रथाओं को सटीक रूप से दर्शाते हैं
 
-## 10. Your Privacy Controls
+## 10. आपके गोपनीयता नियंत्रण
 
 <div class="privacy-controls">
   <button onclick="window.gdprCompliance?.showCookieBanner()" class="privacy-btn">
-    🍪 Cookie Preferences
+    🍪 कुकी प्राथमिकताएँ
   </button>
 
   <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
@@ -177,7 +184,7 @@ To exercise any of these rights, you can submit a request through our self-servi
   </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
-    ❌ Revoke All Consent
+    ❌ सभी सहमति रद्द करें
   </button>
 </div>
 
@@ -198,6 +205,10 @@ To exercise any of these rights, you can submit a request through our self-servi
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .privacy-btn:hover {
@@ -216,18 +227,18 @@ To exercise any of these rights, you can submit a request through our self-servi
 }
 </style>
 
-## 11. International Data Transfers
+## 11. अंतरराष्ट्रीय डेटा हस्तांतरण
 
-Your data may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place, including Standard Contractual Clauses where required, to protect your data in accordance with this policy and applicable law.
+आपका डेटा आपके अपने देश के अलावा अन्य देशों में स्थानांतरित और संसाधित किया जा सकता है। हम सुनिश्चित करते हैं कि इस नीति और लागू कानून के अनुसार आपके डेटा की सुरक्षा के लिए उपयुक्त सुरक्षा उपाय मौजूद हैं, जिसमें आवश्यक होने पर मानक संविदात्मक खंड (Standard Contractual Clauses) शामिल हैं।
 
-## 12. Changes to This Policy
+## 12. इस नीति में परिवर्तन
 
-We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on our website and updating the "Last updated" date. Your continued use of our Services after changes constitutes acceptance of the updated policy.
+हम समय-समय पर इस गोपनीयता नीति को अपडेट कर सकते हैं। हम अपनी वेबसाइट पर अपडेट की गई नीति पोस्ट करके और "अंतिम अद्यतन" तिथि को अपडेट करके आपको महत्वपूर्ण परिवर्तनों की सूचना देंगे। परिवर्तनों के बाद हमारी सेवाओं का आपका निरंतर उपयोग अपडेट की गई नीति की स्वीकृति का गठन करता है।
 
-## Contact Information
+## संपर्क जानकारी
 
 **Divinci AI**
-Email: privacy@divinci.ai
-Data Protection Officer: dpo@divinci.ai
+ईमेल: privacy@divinci.ai
+डेटा सुरक्षा अधिकारी (Data Protection Officer): dpo@divinci.ai
 
-For any privacy-related requests or questions, contact us at privacy@divinci.ai with a response time of within 30 days.
+किसी भी गोपनीयता-संबंधित अनुरोध या प्रश्न के लिए, हमसे privacy@divinci.ai पर 30 दिनों के भीतर प्रतिक्रिया समय के साथ संपर्क करें।

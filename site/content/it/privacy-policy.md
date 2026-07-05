@@ -1,183 +1,190 @@
 +++
-
-[extra]
-canonical_to_english = true
 title = "Informativa sulla privacy"
-description = "L'impegno di Divinci AI per la privacy e i dettagli sulla gestione dei dati"
+description = "L'impegno di Divinci AI nella protezione della tua privacy e dei tuoi dati personali in conformità al GDPR e alle normative internazionali sulla privacy"
 template = "page.html"
 +++
 
 # Informativa sulla privacy
 
-*La versione completa di questo documento è in inglese qui sotto.*
+**Ultimo aggiornamento:** giugno 2026
 
-# Privacy Policy
+## Il nostro impegno per la privacy
 
-**Last updated:** Maggio 2026
+In Divinci AI, ci impegniamo a proteggere la tua privacy e a garantire la sicurezza dei tuoi dati personali. La presente Informativa sulla privacy spiega come raccogliamo, utilizziamo, trattiamo e proteggiamo le tue informazioni quando utilizzi il nostro sito web, le applicazioni mobili (Android e iOS) e i servizi (collettivamente, i "Servizi").
 
-## Our Commitment to Privacy
+## 1. Informazioni che raccogliamo
 
-At Divinci AI, we are committed to protecting your privacy and ensuring the security of your personal data. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our website, mobile applications (Android and iOS), and services (collectively, the "Services").
+### 1.1 Informazioni fornite dall'utente
+- **Informazioni sull'account**: nome, indirizzo email e informazioni di profilo quando crei un account
+- **Informazioni di contatto**: nome, indirizzo email, nome dell'azienda quando ci contatti o richiedi demo
+- **Dati di chat e interazione con l'IA**: messaggi, prompt e contenuti che invii utilizzando le nostre funzionalità di chat basate su IA
+- **Email per la Chat gratuita**: quando utilizzi l'assistente di chat gratuita sul nostro sito web, l'indirizzo email che fornisci e verifichi con un codice monouso. Lo utilizziamo per inviare il codice di verifica, prevenire abusi e — solo se acconsenti tramite l'apposita casella di consenso — per inviarti occasionali aggiornamenti sui prodotti (vedi Sezione 2.7)
+- **Dati di comunicazione**: messaggi, feedback e richieste di assistenza
+- **File e documenti**: i file che carichi per l'elaborazione tramite IA, inclusi i documenti aggiunti alle basi di conoscenza
 
-## 1. Information We Collect
+### 1.2 Informazioni raccolte automaticamente
+- **Dati di utilizzo del sito web**: pagine visitate, tempo trascorso, modelli di click
+- **Dati di utilizzo dell'app**: funzionalità utilizzate, durata delle sessioni, modelli di interazione all'interno delle nostre app mobili
+- **Dati tecnici**: indirizzo IP, tipo di browser, informazioni sul dispositivo, versione del sistema operativo, identificatori del dispositivo
+- **Dati sulle prestazioni**: metriche sulle prestazioni dell'app e del sito web, log degli errori e report sugli arresti anomali
+- **Token per le notifiche push**: token del dispositivo per l'invio di notifiche push (se hai attivato questa opzione)
 
-### 1.1 Information You Provide
-- **Account Information**: Name, email address, and profile information when you create an account
-- **Contact Information**: Name, email address, company name when you contact us or request demos
-- **Chat and AI Interaction Data**: Messages, prompts, and content you submit when using our AI chat features
-- **Communication Data**: Messages, feedback, and support requests
-- **Files and Documents**: Files you upload for AI processing, including documents added to knowledge bases
+### 1.3 Informazioni da servizi di terze parti
+Quando scegli di collegare servizi di terze parti, potremmo raccogliere:
+- **Dati dell'account Google**: nome, email e informazioni di profilo quando accedi con Google o colleghi Google Drive e Gmail
+- **Dati di autenticazione**: token e identificatori dal nostro fornitore di autenticazione per gestire il tuo account in modo sicuro
 
-### 1.2 Information Automatically Collected
-- **Website Usage Data**: Pages visited, time spent, click patterns
-- **App Usage Data**: Features used, session duration, interaction patterns within our mobile apps
-- **Technical Data**: IP address, browser type, device information, operating system version, device identifiers
-- **Performance Data**: App and website performance metrics, error logs, and crash reports
-- **Push Notification Tokens**: Device tokens for delivering push notifications (if you opt in)
-
-### 1.3 Information from Third-Party Services
-When you choose to connect third-party services, we may collect:
-- **Google Account Data**: Name, email, and profile information when you sign in with Google or connect Google Drive and Gmail
-- **Authentication Data**: Tokens and identifiers from our authentication provider to manage your account securely
-
-### 1.4 Cookies and Tracking Technologies
-We use cookies and similar technologies to:
-- Ensure website functionality
-- Analyze website and app performance
-- Provide personalized experience (with your consent)
+### 1.4 Cookie e tecnologie di tracciamento
+Utilizziamo cookie e tecnologie simili per:
+- Garantire la funzionalità del sito web
+- Analizzare le prestazioni del sito web e dell'app
+- Fornire un'esperienza personalizzata (con il tuo consenso)
 - Identificare l'organizzazione associata a una visita al sito web, per finalità di marketing B2B (con il tuo consenso nello SEE, nel Regno Unito e in Svizzera)
 
-## 2. Third-Party Services and SDKs
+## 2. Servizi e SDK di terze parti
 
-Our Services integrate the following third-party services, each with their own privacy practices:
+I nostri Servizi integrano i seguenti servizi di terze parti, ciascuno con le proprie prassi in materia di privacy:
 
-### 2.1 Authentication
-- **Auth0** (by Okta): Manages user authentication and account security. Processes email, name, and login credentials. [Auth0 Privacy Policy](https://auth0.com/privacy)
+### 2.1 Autenticazione
+- **Auth0** (di Okta): gestisce l'autenticazione degli utenti e la sicurezza dell'account. Elabora email, nome e credenziali di accesso. [Informativa sulla privacy di Auth0](https://auth0.com/privacy)
 
-### 2.2 Analytics and Crash Reporting
-- **Firebase Analytics** (by Google): Collects app usage data, device information, and anonymized interaction events to help us improve our Services. [Firebase Privacy Information](https://firebase.google.com/support/privacy)
-- **Firebase Crashlytics** (by Google): Collects crash reports including device state, stack traces, and device identifiers to help us identify and fix issues. Data is retained for 90 days.
+### 2.2 Analisi e segnalazione degli arresti anomali
+- **Firebase Analytics** (di Google): raccoglie dati di utilizzo dell'app, informazioni sul dispositivo ed eventi di interazione anonimizzati per aiutarci a migliorare i nostri Servizi. [Informativa sulla privacy di Firebase](https://firebase.google.com/support/privacy)
+- **Firebase Crashlytics** (di Google): raccoglie report sugli arresti anomali, inclusi lo stato del dispositivo, gli stack trace e gli identificatori del dispositivo, per aiutarci a individuare e risolvere i problemi. I dati vengono conservati per 90 giorni.
 
-### 2.3 Push Notifications
-- **Firebase Cloud Messaging** (by Google): Processes device tokens to deliver push notifications. You can opt out of notifications through your device settings at any time.
+### 2.3 Notifiche push
+- **Firebase Cloud Messaging** (di Google): elabora i token del dispositivo per l'invio di notifiche push. Puoi disattivare le notifiche tramite le impostazioni del tuo dispositivo in qualsiasi momento.
 
-### 2.4 App Integrity
-- **Firebase App Check with Play Integrity** (Android) / **App Attest** (iOS): Verifies that requests to our backend come from genuine instances of our app. Does not collect personal data.
+### 2.4 Integrità dell'app
+- **Firebase App Check con Play Integrity** (Android) / **App Attest** (iOS): verifica che le richieste al nostro backend provengano da istanze autentiche della nostra app. Non raccoglie dati personali.
 
-### 2.5 AI Processing
-- **AI Language Models**: Your chat messages and uploaded content are processed by AI language model providers to generate responses. We do not use your conversations to train AI models. AI-generated content may be inaccurate and should not be relied upon as professional advice.
+### 2.5 Elaborazione tramite IA
+- **Modelli linguistici IA**: i tuoi messaggi di chat e i contenuti caricati vengono elaborati da fornitori di modelli linguistici IA per generare le risposte. Non utilizziamo le tue conversazioni per addestrare modelli IA. I contenuti generati dall'IA potrebbero essere inesatti e non dovrebbero essere considerati come consulenza professionale.
 
-### 2.6 Cloud Infrastructure
-- **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+### 2.6 Infrastruttura cloud
+- **Google Cloud Platform**: i nostri servizi backend operano sull'infrastruttura Google Cloud, con accordi di trattamento dei dati in vigore.
 
-### 2.7 Marketing, Identificazione dei Visitatori e CRM
-- **Instantly.ai / Leadsy.ai**: Utilizziamo il tag di identificazione dei visitatori di Instantly (caricato da `r2.leadsy.ai`, che carica dinamicamente uno script di tracciamento da `tag.trovo-tag.com` gestito dallo stesso fornitore) per identificare l'organizzazione a cui una visita al sito web può essere associata (ad esempio, l'azienda collegata all'indirizzo IP del visitatore). Ciò supporta la nostra attività di marketing in uscita business-to-business. Per i visitatori rilevati nello SEE, nel Regno Unito o in Svizzera, questo tag viene caricato **solo dopo che hai concesso il consenso al marketing** tramite il nostro banner dei cookie. Per i visitatori al di fuori di tali giurisdizioni, il tag viene caricato per impostazione predefinita e può essere disattivato in qualsiasi momento tramite il controllo "Preferenze Cookie" nella Sezione 10. [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
-- **HubSpot**: Utilizziamo lo script di tracciamento di HubSpot (caricato da `js.hs-scripts.com`, che carica dinamicamente script di tracciamento, banner e acquisizione moduli da `js.hs-analytics.net`, `js.hs-banner.com` e `js.hscollectedforms.net`) per registrare le visualizzazioni di pagina, attribuire le prestazioni dei canali di marketing, acquisire gli invii dei moduli e collegare l'attività del sito web ai record dei contatti del CRM HubSpot quando invii un modulo o prenoti una riunione. Per i visitatori rilevati nello SEE, nel Regno Unito o in Svizzera, questo script viene caricato **solo dopo che hai concesso il consenso al marketing** tramite il nostro banner dei cookie. Per i visitatori al di fuori di tali giurisdizioni, lo script viene caricato per impostazione predefinita e può essere disattivato in qualsiasi momento tramite il controllo "Preferenze Cookie" nella Sezione 10. [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
+### 2.7 Marketing, identificazione dei visitatori e CRM
+- **Instantly.ai / Leadsy.ai**: utilizziamo il tag di identificazione dei visitatori di Instantly (caricato da `r2.leadsy.ai`, che carica dinamicamente uno script di tracciamento da `tag.trovo-tag.com` gestito dallo stesso fornitore) per identificare l'organizzazione a cui una visita al sito web può essere associata (ad esempio, l'azienda collegata all'indirizzo IP del visitatore). Ciò supporta la nostra attività di marketing in uscita business-to-business. Per i visitatori rilevati nello SEE, nel Regno Unito o in Svizzera, questo tag viene caricato **solo dopo che hai concesso il consenso al marketing** tramite il nostro banner dei cookie. Per i visitatori al di fuori di tali giurisdizioni, il tag viene caricato per impostazione predefinita e può essere disattivato in qualsiasi momento tramite il controllo "Preferenze Cookie" nella Sezione 10. [Informativa sulla privacy di Instantly](https://instantly.ai/privacy-policy)
+- **HubSpot**: utilizziamo lo script di tracciamento di HubSpot (caricato da `js.hs-scripts.com`, che carica dinamicamente script di tracciamento, banner e acquisizione moduli da `js.hs-analytics.net`, `js.hs-banner.com` e `js.hscollectedforms.net`) per registrare le visualizzazioni di pagina, attribuire le prestazioni dei canali di marketing, acquisire gli invii dei moduli e collegare l'attività del sito web ai record dei contatti del CRM HubSpot quando invii un modulo o prenoti una riunione. Per i visitatori rilevati nello SEE, nel Regno Unito o in Svizzera, questo script viene caricato **solo dopo che hai concesso il consenso al marketing** tramite il nostro banner dei cookie. Per i visitatori al di fuori di tali giurisdizioni, lo script viene caricato per impostazione predefinita e può essere disattivato in qualsiasi momento tramite il controllo "Preferenze Cookie" nella Sezione 10. [Informativa sulla privacy di HubSpot](https://legal.hubspot.com/privacy-policy)
+- **Attio**: utilizziamo Attio come sistema di gestione delle relazioni con i clienti (CRM) per organizzare i contatti aziendali e i lead. [Informativa sulla privacy di Attio](https://attio.com/privacy)
+- **Sincronizzazione dell'email dell'assistente di chat gratuita**: quando verifichi un'email per utilizzare l'assistente di chat gratuita sul nostro sito web, memorizziamo tale email come contatto nei nostri CRM HubSpot e Attio, in modo da poterti ricontattare riguardo ai nostri prodotti. Questa sincronizzazione avviene lato server dopo il completamento della verifica tramite codice monouso; non si tratta di uno script di tracciamento e non dipende dai cookie. Ti designiamo come **contatto di marketing** (idoneo a ricevere email di marketing) **solo se selezioni l'apposita casella facoltativa di consenso al marketing** nella chat. Se la lasci deselezionata, memorizziamo comunque il record del contatto ma non ti inviamo email di marketing. Puoi annullare l'iscrizione a qualsiasi email di marketing o richiedere la cancellazione del tuo record di contatto in qualsiasi momento (vedi Sezione 9).
 
-## 3. Legal Basis for Processing (GDPR)
+### 2.8 Estensione browser Divinci Local Inference
 
-We process your personal data based on:
-- **Consent**: For analytics, marketing cookies, and optional integrations
-- **Legitimate Interest**: For app functionality, security, and crash reporting
-- **Contract Performance**: When providing our Services to you
-- **Legal Obligation**: When required by law
+Pubblichiamo un'estensione Chrome facoltativa, **Divinci Local Inference**, che esegue il modello Gemma 4 di Google **direttamente sul tuo dispositivo** tramite WebGPU — utilizzabile come assistente in pagina su qualsiasi sito e come opzione di modello locale, senza costi di API, per la chat su chat.divinci.app. In sintesi, il suo approccio alla privacy:
 
-## 4. How We Use Your Information
+- **Solo locale per impostazione predefinita.** Le tue chat con il modello on-device vengono elaborate sulla tua GPU e non vengono registrate, memorizzate o trasmesse dall'estensione. Quando non hai effettuato l'accesso, l'estensione non invia alcuna informazione sulla tua navigazione a Divinci.
+- **Funzionalità facoltative con accesso effettuato.** Se accedi al tuo account Divinci, l'estensione può: ricevere il tuo profilo di base (nome, email, avatar) al momento dell'accesso; mentre il pannello laterale è aperto, inviare un indirizzo di pagina ridotto (origine + percorso; query/frammento rimossi) più un hash monodirezionale del testo visibile della pagina per verificare l'indice di conoscenza web pubblico di Divinci (il **contenuto della pagina non viene inviato**, i siti sensibili vengono ignorati e non viene inviato nulla quando il pannello è chiuso); e, per le risposte contestuali alla pagina o la chat in modalità account, inviare il tuo messaggio di chat a Divinci. Puoi disattivare queste funzionalità in **Impostazioni avanzate → Privacy**.
+- **Nessuna vendita, nessuna pubblicità, nessun tracciamento cross-site.**
+- **Open source.** L'estensione è concessa in licenza Apache-2.0; il codice sorgente è disponibile su [github.com/Divinci-AI/gemma-gem](https://github.com/Divinci-AI/gemma-gem).
 
-### 4.1 Essential Uses
-- Provide, maintain, and improve our Services
-- Authenticate your identity and manage your account
-- Process your AI chat requests and deliver responses
-- Deliver push notifications you have opted in to
-- Respond to your inquiries and support requests
-- Ensure app and website security and functionality
-- Detect, prevent, and address technical issues
+Per l'informativa completa specifica dell'estensione — inclusi i dettagli esatti su cosa invia ciascuna funzionalità e i tuoi strumenti di controllo della privacy — consulta l'[Informativa sulla privacy di Divinci Local Inference](/it/local-inference-privacy/).
 
-### 4.2 With Your Consent
-- Analytics to improve our website and apps
-- Marketing communications
-- Personalized content recommendations
-- Third-party service integrations (Google Drive, Gmail)
+## 3. Base giuridica del trattamento (GDPR)
 
-## 5. Data Sharing and Disclosure
+Trattiamo i tuoi dati personali sulla base di:
+- **Consenso**: per l'analisi, i cookie di marketing e le integrazioni facoltative
+- **Legittimo interesse**: per la funzionalità dell'app, la sicurezza e la segnalazione degli arresti anomali
+- **Esecuzione del contratto**: quando forniamo i nostri Servizi
+- **Obbligo legale**: quando richiesto dalla legge
 
-We do not sell your personal data. We may share data with:
+## 4. Come utilizziamo le tue informazioni
 
-### 5.1 Service Providers
-- Cloud hosting and infrastructure providers (with data processing agreements)
-- Authentication service providers
-- Analytics and crash reporting providers (when you consent or as described above)
+### 4.1 Usi essenziali
+- Fornire, mantenere e migliorare i nostri Servizi
+- Autenticare la tua identità e gestire il tuo account
+- Elaborare le tue richieste di chat IA e fornire le risposte
+- Inviare le notifiche push per cui hai espresso il consenso
+- Rispondere alle tue richieste e domande di assistenza
+- Garantire la sicurezza e la funzionalità dell'app e del sito web
+- Rilevare, prevenire e risolvere problemi tecnici
+
+### 4.2 Con il tuo consenso
+- Analisi per migliorare il nostro sito web e le nostre app
+- Comunicazioni di marketing
+- Consigli sui contenuti personalizzati
+- Integrazioni con servizi di terze parti (Google Drive, Gmail)
+
+## 5. Condivisione e divulgazione dei dati
+
+Non vendiamo i tuoi dati personali. Potremmo condividere i dati con:
+
+### 5.1 Fornitori di servizi
+- Fornitori di hosting cloud e infrastruttura (con accordi di trattamento dei dati)
+- Fornitori di servizi di autenticazione
+- Fornitori di analisi e segnalazione degli arresti anomali (quando presti il tuo consenso o come descritto sopra)
 - Fornitori di marketing e identificazione dei visitatori B2B (soggetto a consenso nelle giurisdizioni regolamentate, come descritto nella Sezione 2.7)
-- AI model providers for processing your requests
-- Customer support tools
+- Fornitori di modelli IA per l'elaborazione delle tue richieste
+- Strumenti di assistenza clienti
 
-### 5.2 Legal Requirements
-- When required by law or legal process
-- To protect our rights and safety
-- In connection with business transfers (mergers, acquisitions, or asset sales)
+### 5.2 Obblighi legali
+- Quando richiesto dalla legge o da un procedimento giudiziario
+- Per proteggere i nostri diritti e la nostra sicurezza
+- In relazione a trasferimenti aziendali (fusioni, acquisizioni o cessioni di attività)
 
-## 6. Data Retention
+## 6. Conservazione dei dati
 
-- **Account Data**: Retained for as long as your account is active. Upon account deletion, your personal data is deleted within 30 days, except where we are required by law to retain it.
-- **Chat and AI Data**: Conversation history is retained while your account is active and deleted upon account deletion.
-- **Crash Reports**: Retained for 90 days by Firebase Crashlytics.
-- **Analytics Data**: Aggregated analytics data is retained for up to 14 months by Firebase Analytics.
-- **Backup Data**: Backup copies may persist for up to 30 days after deletion.
+- **Dati dell'account**: conservati per tutto il tempo in cui il tuo account è attivo. Alla cancellazione dell'account, i tuoi dati personali vengono eliminati entro 30 giorni, salvo i casi in cui siamo tenuti per legge a conservarli.
+- **Dati di chat e IA**: la cronologia delle conversazioni viene conservata mentre il tuo account è attivo e viene eliminata alla cancellazione dell'account.
+- **Report sugli arresti anomali**: conservati per 90 giorni da Firebase Crashlytics.
+- **Dati di analisi**: i dati di analisi aggregati vengono conservati fino a 14 mesi da Firebase Analytics.
+- **Dati di backup**: le copie di backup possono persistere fino a 30 giorni dopo la cancellazione.
 
-## 7. Data Security
+## 7. Sicurezza dei dati
 
-We implement appropriate technical and organizational measures to protect your personal data, including:
-- **Encryption in Transit**: All data transmitted between your device and our servers is encrypted using TLS/SSL.
-- **Encryption at Rest**: Personal data stored on our servers is encrypted at rest.
-- **Access Controls**: Strict access controls limit who within our organization can access personal data.
-- **Regular Audits**: We regularly review our security practices and update them as needed.
+Adottiamo misure tecniche e organizzative adeguate per proteggere i tuoi dati personali, tra cui:
+- **Crittografia in transito**: tutti i dati trasmessi tra il tuo dispositivo e i nostri server sono crittografati tramite TLS/SSL.
+- **Crittografia a riposo**: i dati personali memorizzati sui nostri server sono crittografati a riposo.
+- **Controlli di accesso**: rigorosi controlli di accesso limitano chi, all'interno della nostra organizzazione, può accedere ai dati personali.
+- **Audit regolari**: rivediamo regolarmente le nostre prassi di sicurezza e le aggiorniamo secondo necessità.
 
-While we strive to protect your data, no method of electronic transmission or storage is 100% secure. We cannot guarantee absolute security.
+Sebbene ci impegniamo a proteggere i tuoi dati, nessun metodo di trasmissione o memorizzazione elettronica è sicuro al 100%. Non possiamo garantire una sicurezza assoluta.
 
-## 8. Children's Privacy
+## 8. Privacy dei minori
 
-Our Services are not directed to children under the age of 13 (or the applicable age of consent in your jurisdiction). We do not knowingly collect personal data from children under 13. If you are a parent or guardian and believe your child has provided us with personal data, please contact us at privacy@divinci.ai and we will take steps to delete such information promptly.
+I nostri Servizi non sono rivolti a minori di 13 anni (o all'età minima applicabile per il consenso nella tua giurisdizione). Non raccogliamo consapevolmente dati personali da minori di 13 anni. Se sei un genitore o tutore e ritieni che tuo figlio ci abbia fornito dati personali, contattaci all'indirizzo privacy@divinci.ai e adotteremo tempestivamente le misure necessarie per eliminare tali informazioni.
 
-## 9. Your Rights
+## 9. I tuoi diritti
 
-### 9.1 GDPR Rights (EEA, UK, Switzerland)
-- **Right of Access**: Request information about your personal data
-- **Data Portability**: Receive your data in a structured, machine-readable format
-- **Rectification**: Correct inaccurate personal data
-- **Erasure**: Request deletion of your personal data
-- **Restriction**: Limit how we process your data
-- **Objection**: Object to processing for direct marketing
-- **Withdraw Consent**: Revoke consent at any time
+### 9.1 Diritti previsti dal GDPR (SEE, Regno Unito, Svizzera)
+- **Diritto di accesso**: richiedere informazioni sui tuoi dati personali
+- **Portabilità dei dati**: ricevere i tuoi dati in un formato strutturato e leggibile da dispositivo automatico
+- **Rettifica**: correggere dati personali inesatti
+- **Cancellazione**: richiedere l'eliminazione dei tuoi dati personali
+- **Limitazione**: limitare le modalità con cui trattiamo i tuoi dati
+- **Opposizione**: opporti al trattamento per finalità di marketing diretto
+- **Revoca del consenso**: revocare il consenso in qualsiasi momento
 
-To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+Per esercitare uno qualsiasi di questi diritti, puoi inviare una richiesta tramite il nostro [portale di richiesta dati](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg) self-service, oppure scriverci all'indirizzo privacy@divinci.ai. Rispondiamo entro 30 giorni.
 
-### 9.2 CCPA Rights (California Residents)
-- **Right to Know**: What personal information we collect and how it is used
-- **Right to Delete**: Request deletion of your personal information
-- **Right to Opt-Out**: Opt out of the sale of personal information (we do not sell personal information)
-- **Non-Discrimination**: We will not discriminate against you for exercising your rights
+### 9.2 Diritti previsti dal CCPA (residenti in California)
+- **Diritto di conoscenza**: quali informazioni personali raccogliamo e come vengono utilizzate
+- **Diritto alla cancellazione**: richiedere l'eliminazione delle tue informazioni personali
+- **Diritto di opt-out**: rinunciare alla vendita delle informazioni personali (non vendiamo informazioni personali)
+- **Non discriminazione**: non ti discrimineremo per aver esercitato i tuoi diritti
 
-### 9.3 Apple App Store (iOS Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- We comply with Apple's App Store Review Guidelines regarding user privacy and data handling
+### 9.3 Apple App Store (utenti iOS)
+- Puoi richiedere l'eliminazione del tuo account e di tutti i dati associati direttamente all'interno dell'app o contattandoci
+- Rispettiamo le App Store Review Guidelines di Apple in materia di privacy degli utenti e gestione dei dati
 
-### 9.4 Google Play Store (Android Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- Our Data Safety disclosures in the Google Play Store accurately reflect our data practices as described in this policy
+### 9.4 Google Play Store (utenti Android)
+- Puoi richiedere l'eliminazione del tuo account e di tutti i dati associati direttamente all'interno dell'app o contattandoci
+- Le nostre dichiarazioni sulla sicurezza dei dati nel Google Play Store riflettono accuratamente le nostre prassi in materia di dati come descritte nella presente informativa
 
-## 10. Your Privacy Controls
+## 10. I tuoi controlli sulla privacy
 
 <div class="privacy-controls">
   <button onclick="window.gdprCompliance?.showCookieBanner()" class="privacy-btn">
-    🍪 Cookie Preferences
+    🍪 Preferenze Cookie
   </button>
 
   <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
-    📥 Invia una Richiesta sui Dati
+    📥 Invia una richiesta sui dati
   </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
-    ❌ Revoke All Consent
+    ❌ Revoca tutti i consensi
   </button>
 </div>
 
@@ -198,6 +205,10 @@ To exercise any of these rights, you can submit a request through our self-servi
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .privacy-btn:hover {
@@ -216,18 +227,18 @@ To exercise any of these rights, you can submit a request through our self-servi
 }
 </style>
 
-## 11. International Data Transfers
+## 11. Trasferimenti internazionali dei dati
 
-Your data may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place, including Standard Contractual Clauses where required, to protect your data in accordance with this policy and applicable law.
+I tuoi dati potrebbero essere trasferiti ed elaborati in paesi diversi dal tuo. Garantiamo l'adozione di adeguate misure di salvaguardia, incluse le Clausole Contrattuali Standard ove richiesto, per proteggere i tuoi dati in conformità con la presente informativa e con la legge applicabile.
 
-## 12. Changes to This Policy
+## 12. Modifiche alla presente informativa
 
-We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on our website and updating the "Last updated" date. Your continued use of our Services after changes constitutes acceptance of the updated policy.
+Potremmo aggiornare periodicamente la presente Informativa sulla privacy. Ti informeremo delle modifiche sostanziali pubblicando l'informativa aggiornata sul nostro sito web e aggiornando la data di "Ultimo aggiornamento". L'uso continuato dei nostri Servizi dopo tali modifiche costituisce accettazione dell'informativa aggiornata.
 
-## Contact Information
+## Informazioni di contatto
 
 **Divinci AI**
 Email: privacy@divinci.ai
-Data Protection Officer: dpo@divinci.ai
+Responsabile della protezione dei dati: dpo@divinci.ai
 
-For any privacy-related requests or questions, contact us at privacy@divinci.ai with a response time of within 30 days.
+Per qualsiasi richiesta o domanda relativa alla privacy, contattaci all'indirizzo privacy@divinci.ai; il tempo di risposta è di 30 giorni.

@@ -6,7 +6,7 @@ template = "page.html"
 
 # Política de Privacidad
 
-**Última actualización:** Mayo 2026
+**Última actualización:** Junio 2026
 
 ## Nuestro Compromiso con la Privacidad
 
@@ -18,6 +18,7 @@ En Divinci AI, estamos comprometidos con la protección de su privacidad y la se
 - **Información de la Cuenta**: Nombre, dirección de correo electrónico e información de perfil cuando crea una cuenta
 - **Información de Contacto**: Nombre, dirección de correo electrónico, nombre de la empresa cuando se comunica con nosotros o solicita demostraciones
 - **Datos de Chat e Interacción con IA**: Mensajes, indicaciones y contenido que envía al utilizar nuestras funciones de chat con IA
+- **Correo Electrónico del Chat Gratuito**: Cuando utiliza el asistente de chat gratuito en nuestro sitio web, la dirección de correo electrónico que proporciona y verifica con un código de un solo uso. La utilizamos para enviar el código de verificación, prevenir abusos y — únicamente si opta por ello mediante la casilla de consentimiento — para enviarle actualizaciones ocasionales de nuestros productos (véase la Sección 2.7)
 - **Datos de Comunicación**: Mensajes, comentarios y solicitudes de soporte
 - **Archivos y Documentos**: Archivos que carga para el procesamiento de IA, incluidos documentos añadidos a bases de conocimiento
 
@@ -66,6 +67,19 @@ Nuestros Servicios integran los siguientes servicios de terceros, cada uno con s
 ### 2.7 Marketing, Identificación de Visitantes y CRM
 - **Instantly.ai / Leadsy.ai**: Utilizamos la etiqueta de identificación de visitantes de Instantly (cargada desde `r2.leadsy.ai`, que carga dinámicamente un script de seguimiento desde `tag.trovo-tag.com` operado por el mismo proveedor) para identificar la organización con la que puede estar asociada una visita al sitio web (por ejemplo, la empresa vinculada a la dirección IP del visitante). Esto informa nuestro marketing saliente B2B. Para los visitantes detectados en el EEE, el Reino Unido o Suiza, esta etiqueta se carga **solo después de que usted otorgue su consentimiento de marketing** a través de nuestro banner de cookies. Para los visitantes fuera de esas jurisdicciones, la etiqueta se carga de forma predeterminada y puede desactivarse en cualquier momento mediante el control "Preferencias de Cookies" en la Sección 10. [Política de Privacidad de Instantly](https://instantly.ai/privacy-policy)
 - **HubSpot**: Utilizamos el script de seguimiento de HubSpot (cargado desde `js.hs-scripts.com`, que carga dinámicamente scripts de seguimiento, banner y captura de formularios desde `js.hs-analytics.net`, `js.hs-banner.com` y `js.hscollectedforms.net`) para registrar las visitas a las páginas, atribuir el rendimiento de los canales de marketing, capturar los envíos de formularios y vincular la actividad del sitio web con los registros de contactos de HubSpot CRM cuando usted envía un formulario o reserva una reunión. Para los visitantes detectados en el EEE, el Reino Unido o Suiza, este script se carga **solo después de que usted otorgue su consentimiento de marketing** a través de nuestro banner de cookies. Para los visitantes fuera de esas jurisdicciones, el script se carga de forma predeterminada y puede desactivarse en cualquier momento mediante el control "Preferencias de Cookies" en la Sección 10. [Política de Privacidad de HubSpot](https://legal.hubspot.com/privacy-policy)
+- **Attio**: Utilizamos Attio como sistema de gestión de relaciones con clientes (CRM) para organizar contactos y prospectos comerciales. [Política de Privacidad de Attio](https://attio.com/privacy)
+- **Sincronización de correo electrónico del asistente de chat gratuito**: Cuando verifica un correo electrónico para utilizar el asistente de chat gratuito en nuestro sitio web, almacenamos ese correo electrónico como contacto en nuestros CRM de HubSpot y Attio para poder darle seguimiento sobre nuestros productos. Esta sincronización ocurre en el servidor después de que complete la verificación del código de un solo uso; no es un script de seguimiento y no depende de cookies. Le designamos como **contacto de marketing** (elegible para recibir correo electrónico de marketing) **únicamente si marca la casilla opcional de consentimiento de marketing** en el chat. Si la deja sin marcar, igualmente almacenamos el registro de contacto pero no le enviamos correo electrónico de marketing. Puede darse de baja de cualquier correo electrónico de marketing o solicitar la eliminación de su registro de contacto en cualquier momento (véase la Sección 9).
+
+### 2.8 Extensión de Navegador Divinci Local Inference
+
+Publicamos una extensión opcional de Chrome, **Divinci Local Inference**, que ejecuta el modelo Gemma 4 de Google **en su propio dispositivo** mediante WebGPU — utilizable como asistente en cualquier página y como opción de modelo local, sin costo de API, para chat.divinci.app. Su postura de privacidad, en resumen:
+
+- **Solo local de forma predeterminada.** Sus chats con el modelo en el dispositivo se calculan en su GPU y la extensión no los registra, almacena ni transmite. Cuando no ha iniciado sesión, la extensión no envía nada sobre su navegación a Divinci.
+- **Funciones opcionales con sesión iniciada.** Si inicia sesión en su cuenta de Divinci, la extensión puede: recibir su perfil básico (nombre, correo electrónico, avatar) al iniciar sesión; mientras el panel lateral está abierto, enviar una dirección de página reducida (origen + ruta; sin parámetros de consulta ni fragmento) junto con un hash unidireccional del texto visible de la página para consultar el índice de conocimiento público web de Divinci (el **contenido de la página no se envía**, los sitios sensibles se omiten y no se envía nada cuando el panel está cerrado); y, para respuestas conscientes de la página o chat en modo de cuenta, enviar su mensaje de chat a Divinci. Puede desactivar estas funciones en **Configuración avanzada → Privacidad**.
+- **Sin venta, sin publicidad, sin seguimiento entre sitios.**
+- **Código abierto.** La extensión tiene licencia Apache-2.0; el código fuente está disponible en [github.com/Divinci-AI/gemma-gem](https://github.com/Divinci-AI/gemma-gem).
+
+Para conocer la política completa y específica de la extensión — incluyendo exactamente qué envía cada función y sus controles de privacidad — consulte la [Política de Privacidad de Divinci Local Inference](/es/local-inference-privacy/).
 
 ## 3. Base Legal para el Procesamiento (RGPD)
 
@@ -162,7 +176,7 @@ Para ejercer cualquiera de estos derechos, puede enviar una solicitud a través 
 
 <div class="privacy-controls">
   <button onclick="window.gdprCompliance?.showCookieBanner()" class="privacy-btn">
-    🍪 Cookie Preferences
+    🍪 Preferencias de Cookies
   </button>
 
   <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
@@ -170,7 +184,7 @@ Para ejercer cualquiera de estos derechos, puede enviar una solicitud a través 
   </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
-    ❌ Revoke All Consent
+    ❌ Revocar Todo el Consentimiento
   </button>
 </div>
 
@@ -191,6 +205,10 @@ Para ejercer cualquiera de estos derechos, puede enviar una solicitud a través 
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .privacy-btn:hover {

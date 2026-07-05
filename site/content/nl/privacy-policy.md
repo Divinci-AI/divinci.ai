@@ -1,183 +1,190 @@
 +++
-
-[extra]
-canonical_to_english = true
 title = "Privacybeleid"
-description = "Divinci AI's privacytoewijding en details over gegevensverwerking"
+description = "Divinci AI's toewijding aan het beschermen van uw privacy en persoonsgegevens in overeenstemming met de AVG en internationale privacywetgeving"
 template = "page.html"
 +++
 
 # Privacybeleid
 
-*De volledige versie van dit document staat hieronder in het Engels.*
+**Laatst bijgewerkt:** juni 2026
 
-# Privacy Policy
+## Onze toewijding aan privacy
 
-**Last updated:** Mei 2026
+Bij Divinci AI zetten wij ons in om uw privacy te beschermen en de beveiliging van uw persoonsgegevens te waarborgen. Dit Privacybeleid legt uit hoe wij uw informatie verzamelen, gebruiken, verwerken en beveiligen wanneer u onze website, mobiele applicaties (Android en iOS) en diensten (gezamenlijk de "Diensten") gebruikt.
 
-## Our Commitment to Privacy
+## 1. Informatie die wij verzamelen
 
-At Divinci AI, we are committed to protecting your privacy and ensuring the security of your personal data. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our website, mobile applications (Android and iOS), and services (collectively, the "Services").
+### 1.1 Informatie die u verstrekt
+- **Accountinformatie**: Naam, e-mailadres en profielinformatie wanneer u een account aanmaakt
+- **Contactinformatie**: Naam, e-mailadres, bedrijfsnaam wanneer u contact met ons opneemt of een demo aanvraagt
+- **Chat- en AI-interactiegegevens**: Berichten, prompts en content die u indient bij het gebruik van onze AI-chatfuncties
+- **E-mailadres voor gratis chat**: Wanneer u de gratis chatassistent op onze website gebruikt, het e-mailadres dat u opgeeft en verifieert met een eenmalige code. Wij gebruiken dit om de verificatiecode te bezorgen, misbruik te voorkomen en — alleen als u dit opt-in doet via het toestemmingsvakje — om af en toe productupdates te versturen (zie Sectie 2.7)
+- **Communicatiegegevens**: Berichten, feedback en ondersteuningsverzoeken
+- **Bestanden en documenten**: Bestanden die u uploadt voor AI-verwerking, inclusief documenten die aan kennisbanken worden toegevoegd
 
-## 1. Information We Collect
+### 1.2 Automatisch verzamelde informatie
+- **Websitegebruiksgegevens**: Bezochte pagina's, bestede tijd, klikpatronen
+- **App-gebruiksgegevens**: Gebruikte functies, sessieduur, interactiepatronen binnen onze mobiele apps
+- **Technische gegevens**: IP-adres, browsertype, apparaatinformatie, versie van het besturingssysteem, apparaat-identificatoren
+- **Prestatiegegevens**: Prestatiemetingen van app en website, foutlogs en crashrapporten
+- **Pushmeldingstokens**: Apparaattokens voor het bezorgen van pushmeldingen (indien u zich hiervoor heeft aangemeld)
 
-### 1.1 Information You Provide
-- **Account Information**: Name, email address, and profile information when you create an account
-- **Contact Information**: Name, email address, company name when you contact us or request demos
-- **Chat and AI Interaction Data**: Messages, prompts, and content you submit when using our AI chat features
-- **Communication Data**: Messages, feedback, and support requests
-- **Files and Documents**: Files you upload for AI processing, including documents added to knowledge bases
+### 1.3 Informatie van externe diensten
+Wanneer u ervoor kiest externe diensten te koppelen, kunnen wij het volgende verzamelen:
+- **Google-accountgegevens**: Naam, e-mail en profielinformatie wanneer u inlogt met Google of Google Drive en Gmail koppelt
+- **Authenticatiegegevens**: Tokens en identificatoren van onze authenticatieprovider om uw account veilig te beheren
 
-### 1.2 Information Automatically Collected
-- **Website Usage Data**: Pages visited, time spent, click patterns
-- **App Usage Data**: Features used, session duration, interaction patterns within our mobile apps
-- **Technical Data**: IP address, browser type, device information, operating system version, device identifiers
-- **Performance Data**: App and website performance metrics, error logs, and crash reports
-- **Push Notification Tokens**: Device tokens for delivering push notifications (if you opt in)
+### 1.4 Cookies en trackingtechnologieën
+Wij gebruiken cookies en vergelijkbare technologieën om:
+- De functionaliteit van de website te waarborgen
+- De prestaties van website en app te analyseren
+- Een gepersonaliseerde ervaring te bieden (met uw toestemming)
+- De organisatie te identificeren die met een websitebezoek wordt geassocieerd, voor B2B-marketingdoeleinden (met uw toestemming in de EER, het Verenigd Koninkrijk en Zwitserland)
 
-### 1.3 Information from Third-Party Services
-When you choose to connect third-party services, we may collect:
-- **Google Account Data**: Name, email, and profile information when you sign in with Google or connect Google Drive and Gmail
-- **Authentication Data**: Tokens and identifiers from our authentication provider to manage your account securely
+## 2. Diensten en SDK's van derden
 
-### 1.4 Cookies and Tracking Technologies
-We use cookies and similar technologies to:
-- Ensure website functionality
-- Analyze website and app performance
-- Provide personalized experience (with your consent)
-- De organisatie identificeren die met een websitebezoek wordt geassocieerd, voor B2B-marketingdoeleinden (met uw toestemming in de EER, het Verenigd Koninkrijk en Zwitserland)
+Onze Diensten integreren de volgende diensten van derden, elk met hun eigen privacypraktijken:
 
-## 2. Third-Party Services and SDKs
+### 2.1 Authenticatie
+- **Auth0** (van Okta): Beheert gebruikersauthenticatie en accountbeveiliging. Verwerkt e-mail, naam en inloggegevens. [Privacybeleid van Auth0](https://auth0.com/privacy)
 
-Our Services integrate the following third-party services, each with their own privacy practices:
+### 2.2 Analyse en crashrapportage
+- **Firebase Analytics** (van Google): Verzamelt app-gebruiksgegevens, apparaatinformatie en geanonimiseerde interactiegebeurtenissen om ons te helpen onze Diensten te verbeteren. [Privacy-informatie van Firebase](https://firebase.google.com/support/privacy)
+- **Firebase Crashlytics** (van Google): Verzamelt crashrapporten, waaronder apparaatstatus, stack traces en apparaat-identificatoren, om ons te helpen problemen te identificeren en op te lossen. Gegevens worden 90 dagen bewaard.
 
-### 2.1 Authentication
-- **Auth0** (by Okta): Manages user authentication and account security. Processes email, name, and login credentials. [Auth0 Privacy Policy](https://auth0.com/privacy)
+### 2.3 Pushmeldingen
+- **Firebase Cloud Messaging** (van Google): Verwerkt apparaattokens om pushmeldingen te bezorgen. U kunt zich op elk moment afmelden voor meldingen via uw apparaatinstellingen.
 
-### 2.2 Analytics and Crash Reporting
-- **Firebase Analytics** (by Google): Collects app usage data, device information, and anonymized interaction events to help us improve our Services. [Firebase Privacy Information](https://firebase.google.com/support/privacy)
-- **Firebase Crashlytics** (by Google): Collects crash reports including device state, stack traces, and device identifiers to help us identify and fix issues. Data is retained for 90 days.
+### 2.4 App-integriteit
+- **Firebase App Check met Play Integrity** (Android) / **App Attest** (iOS): Verifieert dat verzoeken aan onze backend afkomstig zijn van echte instanties van onze app. Verzamelt geen persoonsgegevens.
 
-### 2.3 Push Notifications
-- **Firebase Cloud Messaging** (by Google): Processes device tokens to deliver push notifications. You can opt out of notifications through your device settings at any time.
+### 2.5 AI-verwerking
+- **AI-taalmodellen**: Uw chatberichten en geüploade content worden verwerkt door aanbieders van AI-taalmodellen om antwoorden te genereren. Wij gebruiken uw gesprekken niet om AI-modellen te trainen. Door AI gegenereerde content kan onnauwkeurig zijn en dient niet te worden beschouwd als professioneel advies.
 
-### 2.4 App Integrity
-- **Firebase App Check with Play Integrity** (Android) / **App Attest** (iOS): Verifies that requests to our backend come from genuine instances of our app. Does not collect personal data.
+### 2.6 Cloudinfrastructuur
+- **Google Cloud Platform**: Onze backend-diensten draaien op Google Cloud-infrastructuur, met verwerkersovereenkomsten (data processing agreements) op hun plaats.
 
-### 2.5 AI Processing
-- **AI Language Models**: Your chat messages and uploaded content are processed by AI language model providers to generate responses. We do not use your conversations to train AI models. AI-generated content may be inaccurate and should not be relied upon as professional advice.
+### 2.7 Marketing, bezoekersidentificatie en CRM
+- **Instantly.ai / Leadsy.ai**: Wij gebruiken de bezoekersidentificatie-tag van Instantly (geladen vanaf `r2.leadsy.ai`, die dynamisch een trackingscript laadt van `tag.trovo-tag.com`, beheerd door dezelfde leverancier) om de organisatie te identificeren waaraan een websitebezoek mogelijk kan worden gekoppeld (bijvoorbeeld het bedrijf dat is gekoppeld aan het IP-adres van de bezoeker). Dit informeert onze business-to-business outbound-marketing. Voor bezoekers die worden gedetecteerd als zich bevindend in de EER, het Verenigd Koninkrijk of Zwitserland wordt deze tag **pas geladen nadat u marketingtoestemming heeft verleend** via onze cookiebanner. Voor bezoekers buiten die rechtsgebieden wordt de tag standaard geladen en kan deze op elk moment worden uitgeschakeld via de bediening "Cookievoorkeuren" in Sectie 10. [Privacybeleid van Instantly](https://instantly.ai/privacy-policy)
+- **HubSpot**: Wij gebruiken het HubSpot-trackingscript (geladen vanaf `js.hs-scripts.com`, dat dynamisch tracking-, banner- en formuliervastleggingsscripts laadt van `js.hs-analytics.net`, `js.hs-banner.com` en `js.hscollectedforms.net`) om paginaweergaven vast te leggen, de prestaties van marketingkanalen toe te schrijven, formulierinzendingen vast te leggen en website-activiteit te koppelen aan contactrecords in HubSpot CRM wanneer u een formulier indient of een afspraak boekt. Voor bezoekers die worden gedetecteerd als zich bevindend in de EER, het Verenigd Koninkrijk of Zwitserland wordt dit script **pas geladen nadat u marketingtoestemming heeft verleend** via onze cookiebanner. Voor bezoekers buiten die rechtsgebieden wordt het script standaard geladen en kan het op elk moment worden uitgeschakeld via de bediening "Cookievoorkeuren" in Sectie 10. [Privacybeleid van HubSpot](https://legal.hubspot.com/privacy-policy)
+- **Attio**: Wij gebruiken Attio als customer relationship management (CRM)-systeem om zakelijke contacten en leads te organiseren. [Privacybeleid van Attio](https://attio.com/privacy)
+- **Synchronisatie van e-mailadres via de gratis chatassistent**: Wanneer u een e-mailadres verifieert om de gratis chatassistent op onze website te gebruiken, slaan wij dat e-mailadres op als contactpersoon in onze HubSpot- en Attio-CRM's, zodat wij contact met u kunnen opnemen over onze producten. Deze synchronisatie vindt server-side plaats nadat u de verificatie met de eenmalige code heeft voltooid; het betreft geen trackingscript en is niet afhankelijk van cookies. Wij wijzen u alleen aan als **marketingcontact** (in aanmerking komend om marketing-e-mail te ontvangen) **als u het optionele toestemmingsvakje voor marketing** in de chat aanvinkt. Als u dit niet aanvinkt, slaan wij het contactrecord nog steeds op, maar sturen wij u geen marketing-e-mail. U kunt zich op elk moment afmelden voor marketing-e-mail of verzoeken om verwijdering van uw contactrecord (zie Sectie 9).
 
-### 2.6 Cloud Infrastructure
-- **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+### 2.8 Divinci Local Inference browserextensie
 
-### 2.7 Marketing, Bezoekersidentificatie en CRM
-- **Instantly.ai / Leadsy.ai**: Wij gebruiken de bezoekersidentificatie-tag van Instantly (geladen vanaf `r2.leadsy.ai`, die dynamisch een trackingscript laadt van `tag.trovo-tag.com` dat door dezelfde leverancier wordt beheerd) om de organisatie te identificeren waaraan een websitebezoek kan worden gekoppeld (bijvoorbeeld het bedrijf dat is gekoppeld aan het IP-adres van de bezoeker). Dit ondersteunt onze business-to-business outbound-marketing. Voor bezoekers die worden gedetecteerd in de EER, het Verenigd Koninkrijk of Zwitserland wordt deze tag **pas geladen nadat u marketingtoestemming heeft verleend** via onze cookiebanner. Voor bezoekers buiten die rechtsgebieden wordt de tag standaard geladen en kan deze op elk moment worden uitgeschakeld via de bediening "Cookievoorkeuren" in Sectie 10. [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
-- **HubSpot**: Wij gebruiken het HubSpot-trackingscript (geladen vanaf `js.hs-scripts.com`, dat dynamisch tracking-, banner- en formuliervastleggingsscripts laadt van `js.hs-analytics.net`, `js.hs-banner.com` en `js.hscollectedforms.net`) om paginaweergaven vast te leggen, de prestaties van marketingkanalen toe te schrijven, formulierinzendingen vast te leggen en website-activiteit te koppelen aan contactrecords in HubSpot CRM wanneer u een formulier indient of een afspraak boekt. Voor bezoekers die worden gedetecteerd in de EER, het Verenigd Koninkrijk of Zwitserland wordt dit script **pas geladen nadat u marketingtoestemming heeft verleend** via onze cookiebanner. Voor bezoekers buiten die rechtsgebieden wordt het script standaard geladen en kan het op elk moment worden uitgeschakeld via de bediening "Cookievoorkeuren" in Sectie 10. [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
+Wij publiceren een optionele Chrome-extensie, **Divinci Local Inference**, die het Gemma 4-model van Google **op uw eigen apparaat** uitvoert via WebGPU — bruikbaar als assistent op elke pagina van elke website, en als een lokale, kosteloze modeloptie (zonder API-kosten) voor chat.divinci.app. De privacyhouding hiervan, in het kort:
 
-## 3. Legal Basis for Processing (GDPR)
+- **Standaard alleen lokaal.** Uw chats met het model op het apparaat worden berekend op uw GPU en worden niet gelogd, opgeslagen of verzonden door de extensie. Wanneer u niet bent ingelogd, verzendt de extensie niets over uw surfgedrag naar Divinci.
+- **Optionele functies bij inloggen.** Als u inlogt op uw Divinci-account, kan de extensie: uw basisprofiel (naam, e-mail, avatar) ontvangen bij het inloggen; terwijl het zijpaneel geopend is, een ingekort pagina-adres (oorsprong + pad; query/fragment verwijderd) plus een eenrichtingshash van de zichtbare tekst van de pagina verzenden om de openbare-webkennisindex van Divinci te controleren (de **inhoud van de pagina wordt niet verzonden**, gevoelige websites worden overgeslagen, en er wordt niets verzonden wanneer het paneel gesloten is); en, voor pagina-bewuste antwoorden of chat in accountmodus, uw chatbericht naar Divinci verzenden. U kunt deze functies uitschakelen bij **Geavanceerde instellingen → Privacy**.
+- **Geen verkoop, geen advertenties, geen cross-site tracking.**
+- **Open source.** De extensie is gelicentieerd onder Apache-2.0; de broncode is beschikbaar op [github.com/Divinci-AI/gemma-gem](https://github.com/Divinci-AI/gemma-gem).
 
-We process your personal data based on:
-- **Consent**: For analytics, marketing cookies, and optional integrations
-- **Legitimate Interest**: For app functionality, security, and crash reporting
-- **Contract Performance**: When providing our Services to you
-- **Legal Obligation**: When required by law
+Voor het volledige, extensie-specifieke beleid — inclusief precies wat elke functie verzendt en uw privacyinstellingen — zie het [Privacybeleid van Divinci Local Inference](/nl/local-inference-privacy/).
 
-## 4. How We Use Your Information
+## 3. Rechtsgrondslag voor verwerking (AVG)
 
-### 4.1 Essential Uses
-- Provide, maintain, and improve our Services
-- Authenticate your identity and manage your account
-- Process your AI chat requests and deliver responses
-- Deliver push notifications you have opted in to
-- Respond to your inquiries and support requests
-- Ensure app and website security and functionality
-- Detect, prevent, and address technical issues
+Wij verwerken uw persoonsgegevens op basis van:
+- **Toestemming**: Voor analyse, marketingcookies en optionele integraties
+- **Gerechtvaardigd belang**: Voor app-functionaliteit, beveiliging en crashrapportage
+- **Uitvoering van een overeenkomst**: Bij het leveren van onze Diensten aan u
+- **Wettelijke verplichting**: Wanneer dit wettelijk vereist is
 
-### 4.2 With Your Consent
-- Analytics to improve our website and apps
-- Marketing communications
-- Personalized content recommendations
-- Third-party service integrations (Google Drive, Gmail)
+## 4. Hoe wij uw informatie gebruiken
 
-## 5. Data Sharing and Disclosure
+### 4.1 Essentieel gebruik
+- Het leveren, onderhouden en verbeteren van onze Diensten
+- Het authenticeren van uw identiteit en het beheren van uw account
+- Het verwerken van uw AI-chatverzoeken en het leveren van antwoorden
+- Het bezorgen van pushmeldingen waarvoor u zich heeft aangemeld
+- Het beantwoorden van uw vragen en ondersteuningsverzoeken
+- Het waarborgen van de beveiliging en functionaliteit van app en website
+- Het opsporen, voorkomen en verhelpen van technische problemen
 
-We do not sell your personal data. We may share data with:
+### 4.2 Met uw toestemming
+- Analyse ter verbetering van onze website en apps
+- Marketingcommunicatie
+- Gepersonaliseerde content-aanbevelingen
+- Integraties met diensten van derden (Google Drive, Gmail)
 
-### 5.1 Service Providers
-- Cloud hosting and infrastructure providers (with data processing agreements)
-- Authentication service providers
-- Analytics and crash reporting providers (when you consent or as described above)
+## 5. Delen en openbaarmaking van gegevens
+
+Wij verkopen uw persoonsgegevens niet. Wij kunnen gegevens delen met:
+
+### 5.1 Dienstverleners
+- Aanbieders van cloudhosting en -infrastructuur (met verwerkersovereenkomsten)
+- Aanbieders van authenticatiediensten
+- Aanbieders van analyse- en crashrapportagediensten (wanneer u toestemming geeft of zoals hierboven beschreven)
 - Aanbieders van marketing en B2B-bezoekersidentificatie (onderworpen aan toestemming in gereguleerde rechtsgebieden, zoals beschreven in Sectie 2.7)
-- AI model providers for processing your requests
-- Customer support tools
+- Aanbieders van AI-modellen voor het verwerken van uw verzoeken
+- Klantenondersteuningstools
 
-### 5.2 Legal Requirements
-- When required by law or legal process
-- To protect our rights and safety
-- In connection with business transfers (mergers, acquisitions, or asset sales)
+### 5.2 Wettelijke vereisten
+- Wanneer dit wettelijk of gerechtelijk vereist is
+- Om onze rechten en veiligheid te beschermen
+- In verband met bedrijfsoverdrachten (fusies, overnames of verkoop van activa)
 
-## 6. Data Retention
+## 6. Gegevensbewaring
 
-- **Account Data**: Retained for as long as your account is active. Upon account deletion, your personal data is deleted within 30 days, except where we are required by law to retain it.
-- **Chat and AI Data**: Conversation history is retained while your account is active and deleted upon account deletion.
-- **Crash Reports**: Retained for 90 days by Firebase Crashlytics.
-- **Analytics Data**: Aggregated analytics data is retained for up to 14 months by Firebase Analytics.
-- **Backup Data**: Backup copies may persist for up to 30 days after deletion.
+- **Accountgegevens**: Bewaard zolang uw account actief is. Na verwijdering van uw account worden uw persoonsgegevens binnen 30 dagen verwijderd, behalve wanneer wij wettelijk verplicht zijn deze te bewaren.
+- **Chat- en AI-gegevens**: Gespreksgeschiedenis wordt bewaard zolang uw account actief is en wordt verwijderd bij verwijdering van uw account.
+- **Crashrapporten**: 90 dagen bewaard door Firebase Crashlytics.
+- **Analysegegevens**: Geaggregeerde analysegegevens worden tot 14 maanden bewaard door Firebase Analytics.
+- **Back-upgegevens**: Back-upkopieën kunnen tot 30 dagen na verwijdering blijven bestaan.
 
-## 7. Data Security
+## 7. Gegevensbeveiliging
 
-We implement appropriate technical and organizational measures to protect your personal data, including:
-- **Encryption in Transit**: All data transmitted between your device and our servers is encrypted using TLS/SSL.
-- **Encryption at Rest**: Personal data stored on our servers is encrypted at rest.
-- **Access Controls**: Strict access controls limit who within our organization can access personal data.
-- **Regular Audits**: We regularly review our security practices and update them as needed.
+Wij implementeren passende technische en organisatorische maatregelen om uw persoonsgegevens te beschermen, waaronder:
+- **Versleuteling tijdens overdracht**: Alle gegevens die tussen uw apparaat en onze servers worden verzonden, worden versleuteld met TLS/SSL.
+- **Versleuteling in rust**: Persoonsgegevens die op onze servers zijn opgeslagen, worden in rust versleuteld.
+- **Toegangscontroles**: Strikte toegangscontroles beperken wie binnen onze organisatie toegang heeft tot persoonsgegevens.
+- **Regelmatige audits**: Wij evalueren regelmatig onze beveiligingspraktijken en werken deze indien nodig bij.
 
-While we strive to protect your data, no method of electronic transmission or storage is 100% secure. We cannot guarantee absolute security.
+Hoewel wij ernaar streven uw gegevens te beschermen, is geen enkele methode van elektronische overdracht of opslag 100% veilig. Wij kunnen absolute beveiliging niet garanderen.
 
-## 8. Children's Privacy
+## 8. Privacy van kinderen
 
-Our Services are not directed to children under the age of 13 (or the applicable age of consent in your jurisdiction). We do not knowingly collect personal data from children under 13. If you are a parent or guardian and believe your child has provided us with personal data, please contact us at privacy@divinci.ai and we will take steps to delete such information promptly.
+Onze Diensten zijn niet gericht op kinderen onder de 13 jaar (of de toepasselijke leeftijd voor toestemming in uw rechtsgebied). Wij verzamelen niet bewust persoonsgegevens van kinderen onder de 13 jaar. Als u een ouder of voogd bent en van mening bent dat uw kind ons persoonsgegevens heeft verstrekt, neem dan contact met ons op via privacy@divinci.ai en wij zullen stappen ondernemen om dergelijke informatie onverwijld te verwijderen.
 
-## 9. Your Rights
+## 9. Uw rechten
 
-### 9.1 GDPR Rights (EEA, UK, Switzerland)
-- **Right of Access**: Request information about your personal data
-- **Data Portability**: Receive your data in a structured, machine-readable format
-- **Rectification**: Correct inaccurate personal data
-- **Erasure**: Request deletion of your personal data
-- **Restriction**: Limit how we process your data
-- **Objection**: Object to processing for direct marketing
-- **Withdraw Consent**: Revoke consent at any time
+### 9.1 AVG-rechten (EER, VK, Zwitserland)
+- **Recht op inzage**: Informatie opvragen over uw persoonsgegevens
+- **Gegevensoverdraagbaarheid**: Uw gegevens ontvangen in een gestructureerd, machineleesbaar formaat
+- **Rectificatie**: Onjuiste persoonsgegevens corrigeren
+- **Verwijdering**: Verzoeken om verwijdering van uw persoonsgegevens
+- **Beperking**: De manier waarop wij uw gegevens verwerken beperken
+- **Bezwaar**: Bezwaar maken tegen verwerking voor direct marketing
+- **Intrekken van toestemming**: Toestemming op elk moment intrekken
 
-To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+Om een van deze rechten uit te oefenen, kunt u een verzoek indienen via ons zelfbedienings-[gegevensverzoekportaal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), of ons e-mailen op privacy@divinci.ai. Wij reageren binnen 30 dagen.
 
-### 9.2 CCPA Rights (California Residents)
-- **Right to Know**: What personal information we collect and how it is used
-- **Right to Delete**: Request deletion of your personal information
-- **Right to Opt-Out**: Opt out of the sale of personal information (we do not sell personal information)
-- **Non-Discrimination**: We will not discriminate against you for exercising your rights
+### 9.2 CCPA-rechten (inwoners van Californië)
+- **Recht om te weten**: Welke persoonsgegevens wij verzamelen en hoe deze worden gebruikt
+- **Recht op verwijdering**: Verzoeken om verwijdering van uw persoonsgegevens
+- **Recht om af te zien van verkoop (Opt-Out)**: Afzien van de verkoop van persoonsgegevens (wij verkopen geen persoonsgegevens)
+- **Non-discriminatie**: Wij zullen u niet discrimineren omdat u uw rechten uitoefent
 
-### 9.3 Apple App Store (iOS Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- We comply with Apple's App Store Review Guidelines regarding user privacy and data handling
+### 9.3 Apple App Store (iOS-gebruikers)
+- U kunt verwijdering van uw account en alle bijbehorende gegevens rechtstreeks in de app of door contact met ons op te nemen aanvragen
+- Wij houden ons aan de App Store Review Guidelines van Apple met betrekking tot gebruikersprivacy en gegevensverwerking
 
-### 9.4 Google Play Store (Android Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- Our Data Safety disclosures in the Google Play Store accurately reflect our data practices as described in this policy
+### 9.4 Google Play Store (Android-gebruikers)
+- U kunt verwijdering van uw account en alle bijbehorende gegevens rechtstreeks in de app of door contact met ons op te nemen aanvragen
+- Onze Data Safety-verklaringen in de Google Play Store weerspiegelen nauwkeurig onze gegevenspraktijken zoals beschreven in dit beleid
 
-## 10. Your Privacy Controls
+## 10. Uw privacy-instellingen
 
 <div class="privacy-controls">
   <button onclick="window.gdprCompliance?.showCookieBanner()" class="privacy-btn">
-    🍪 Cookie Preferences
+    🍪 Cookievoorkeuren
   </button>
 
   <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
-    📥 Een Gegevensverzoek Indienen
+    📥 Een gegevensverzoek indienen
   </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
-    ❌ Revoke All Consent
+    ❌ Alle toestemming intrekken
   </button>
 </div>
 
@@ -198,6 +205,10 @@ To exercise any of these rights, you can submit a request through our self-servi
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .privacy-btn:hover {
@@ -216,18 +227,18 @@ To exercise any of these rights, you can submit a request through our self-servi
 }
 </style>
 
-## 11. International Data Transfers
+## 11. Internationale gegevensoverdrachten
 
-Your data may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place, including Standard Contractual Clauses where required, to protect your data in accordance with this policy and applicable law.
+Uw gegevens kunnen worden overgedragen naar en verwerkt in landen anders dan uw eigen land. Wij zorgen ervoor dat passende waarborgen aanwezig zijn, waaronder Standard Contractual Clauses (modelcontractbepalingen) waar vereist, om uw gegevens te beschermen in overeenstemming met dit beleid en het toepasselijke recht.
 
-## 12. Changes to This Policy
+## 12. Wijzigingen in dit beleid
 
-We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on our website and updating the "Last updated" date. Your continued use of our Services after changes constitutes acceptance of the updated policy.
+Wij kunnen dit Privacybeleid van tijd tot tijd bijwerken. Wij zullen u op de hoogte stellen van materiële wijzigingen door het bijgewerkte beleid op onze website te plaatsen en de datum "Laatst bijgewerkt" bij te werken. Uw voortgezette gebruik van onze Diensten na wijzigingen houdt aanvaarding van het bijgewerkte beleid in.
 
-## Contact Information
+## Contactinformatie
 
 **Divinci AI**
-Email: privacy@divinci.ai
-Data Protection Officer: dpo@divinci.ai
+E-mail: privacy@divinci.ai
+Functionaris voor gegevensbescherming: dpo@divinci.ai
 
-For any privacy-related requests or questions, contact us at privacy@divinci.ai with a response time of within 30 days.
+Voor privacygerelateerde verzoeken of vragen kunt u contact met ons opnemen via privacy@divinci.ai, met een reactietijd van binnen 30 dagen.

@@ -1,175 +1,182 @@
 +++
-
-[extra]
-canonical_to_english = true
 title = "개인정보 처리방침"
-description = "Divinci AI의 개인정보 보호 약속 및 데이터 처리 세부 정보"
+description = "GDPR 및 국제 개인정보 보호법을 준수하여 귀하의 개인정보와 데이터를 보호하기 위한 Divinci AI의 약속"
 template = "page.html"
 +++
 
 # 개인정보 처리방침
 
-*이 문서의 전체 버전은 아래 영어로 제공됩니다.*
+**최종 업데이트:** 2026년 6월
 
-# Privacy Policy
+## 개인정보 보호에 대한 우리의 약속
 
-**Last updated:** 2026년 5월
+Divinci AI는 귀하의 개인정보를 보호하고 개인 데이터의 보안을 보장하기 위해 최선을 다하고 있습니다. 본 개인정보 처리방침은 귀하가 당사의 웹사이트, 모바일 애플리케이션(Android 및 iOS), 그리고 서비스(이하 총칭하여 "서비스")를 이용할 때 당사가 귀하의 정보를 수집, 이용, 처리 및 보호하는 방법을 설명합니다.
 
-## Our Commitment to Privacy
+## 1. 당사가 수집하는 정보
 
-At Divinci AI, we are committed to protecting your privacy and ensuring the security of your personal data. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our website, mobile applications (Android and iOS), and services (collectively, the "Services").
+### 1.1 귀하가 제공하는 정보
+- **계정 정보**: 계정을 생성할 때 제공하는 이름, 이메일 주소 및 프로필 정보
+- **연락처 정보**: 당사에 문의하거나 데모를 요청할 때 제공하는 이름, 이메일 주소, 회사명
+- **채팅 및 AI 상호작용 데이터**: 당사의 AI 채팅 기능을 이용할 때 제출하는 메시지, 프롬프트 및 콘텐츠
+- **무료 채팅 이메일**: 당사 웹사이트의 무료 채팅 어시스턴트를 이용할 때 제공하고 일회용 코드로 인증하는 이메일 주소. 당사는 이를 인증 코드 전달, 남용 방지 목적으로 사용하며, 동의 체크박스를 통해 **옵트인한 경우에만** 간헐적인 제품 업데이트 발송에도 사용합니다(섹션 2.7 참조)
+- **커뮤니케이션 데이터**: 메시지, 피드백 및 지원 요청
+- **파일 및 문서**: 지식 베이스에 추가된 문서를 포함하여 AI 처리를 위해 업로드하는 파일
 
-## 1. Information We Collect
+### 1.2 자동으로 수집되는 정보
+- **웹사이트 이용 데이터**: 방문한 페이지, 체류 시간, 클릭 패턴
+- **앱 이용 데이터**: 모바일 앱 내에서 사용한 기능, 세션 지속 시간, 상호작용 패턴
+- **기술 데이터**: IP 주소, 브라우저 유형, 기기 정보, 운영체제 버전, 기기 식별자
+- **성능 데이터**: 앱 및 웹사이트 성능 지표, 오류 로그 및 충돌 보고서
+- **푸시 알림 토큰**: 푸시 알림 전달을 위한 기기 토큰(옵트인한 경우)
 
-### 1.1 Information You Provide
-- **Account Information**: Name, email address, and profile information when you create an account
-- **Contact Information**: Name, email address, company name when you contact us or request demos
-- **Chat and AI Interaction Data**: Messages, prompts, and content you submit when using our AI chat features
-- **Communication Data**: Messages, feedback, and support requests
-- **Files and Documents**: Files you upload for AI processing, including documents added to knowledge bases
+### 1.3 제3자 서비스로부터 수집되는 정보
+제3자 서비스를 연결하기로 선택한 경우, 당사는 다음을 수집할 수 있습니다:
+- **Google 계정 데이터**: Google로 로그인하거나 Google Drive 및 Gmail을 연결할 때의 이름, 이메일 및 프로필 정보
+- **인증 데이터**: 계정을 안전하게 관리하기 위해 당사의 인증 제공업체로부터 받는 토큰 및 식별자
 
-### 1.2 Information Automatically Collected
-- **Website Usage Data**: Pages visited, time spent, click patterns
-- **App Usage Data**: Features used, session duration, interaction patterns within our mobile apps
-- **Technical Data**: IP address, browser type, device information, operating system version, device identifiers
-- **Performance Data**: App and website performance metrics, error logs, and crash reports
-- **Push Notification Tokens**: Device tokens for delivering push notifications (if you opt in)
-
-### 1.3 Information from Third-Party Services
-When you choose to connect third-party services, we may collect:
-- **Google Account Data**: Name, email, and profile information when you sign in with Google or connect Google Drive and Gmail
-- **Authentication Data**: Tokens and identifiers from our authentication provider to manage your account securely
-
-### 1.4 Cookies and Tracking Technologies
-We use cookies and similar technologies to:
-- Ensure website functionality
-- Analyze website and app performance
-- Provide personalized experience (with your consent)
+### 1.4 쿠키 및 추적 기술
+당사는 다음 목적을 위해 쿠키 및 유사한 기술을 사용합니다:
+- 웹사이트 기능 보장
+- 웹사이트 및 앱 성능 분석
+- 맞춤형 경험 제공(귀하의 동의 하에)
 - B2B 마케팅 목적으로 웹사이트 방문과 관련된 조직을 식별합니다(EU/EEA, 영국 및 스위스에서는 귀하의 동의를 받아 진행됩니다)
 
-## 2. Third-Party Services and SDKs
+## 2. 제3자 서비스 및 SDK
 
-Our Services integrate the following third-party services, each with their own privacy practices:
+당사의 서비스는 각기 고유한 개인정보 보호 관행을 가진 다음 제3자 서비스를 통합합니다:
 
-### 2.1 Authentication
-- **Auth0** (by Okta): Manages user authentication and account security. Processes email, name, and login credentials. [Auth0 Privacy Policy](https://auth0.com/privacy)
+### 2.1 인증
+- **Auth0**(Okta 제공): 사용자 인증 및 계정 보안을 관리합니다. 이메일, 이름 및 로그인 자격 증명을 처리합니다. [Auth0 개인정보 처리방침](https://auth0.com/privacy)
 
-### 2.2 Analytics and Crash Reporting
-- **Firebase Analytics** (by Google): Collects app usage data, device information, and anonymized interaction events to help us improve our Services. [Firebase Privacy Information](https://firebase.google.com/support/privacy)
-- **Firebase Crashlytics** (by Google): Collects crash reports including device state, stack traces, and device identifiers to help us identify and fix issues. Data is retained for 90 days.
+### 2.2 분석 및 충돌 보고
+- **Firebase Analytics**(Google 제공): 서비스 개선을 위해 앱 이용 데이터, 기기 정보 및 익명화된 상호작용 이벤트를 수집합니다. [Firebase 개인정보 보호 정보](https://firebase.google.com/support/privacy)
+- **Firebase Crashlytics**(Google 제공): 문제를 식별하고 해결하기 위해 기기 상태, 스택 추적 및 기기 식별자를 포함한 충돌 보고서를 수집합니다. 데이터는 90일간 보관됩니다.
 
-### 2.3 Push Notifications
-- **Firebase Cloud Messaging** (by Google): Processes device tokens to deliver push notifications. You can opt out of notifications through your device settings at any time.
+### 2.3 푸시 알림
+- **Firebase Cloud Messaging**(Google 제공): 푸시 알림 전달을 위해 기기 토큰을 처리합니다. 기기 설정에서 언제든지 알림을 수신 거부할 수 있습니다.
 
-### 2.4 App Integrity
-- **Firebase App Check with Play Integrity** (Android) / **App Attest** (iOS): Verifies that requests to our backend come from genuine instances of our app. Does not collect personal data.
+### 2.4 앱 무결성
+- **Play Integrity를 사용하는 Firebase App Check**(Android) / **App Attest**(iOS): 당사 백엔드로의 요청이 당사 앱의 정품 인스턴스에서 발생했는지 확인합니다. 개인정보를 수집하지 않습니다.
 
-### 2.5 AI Processing
-- **AI Language Models**: Your chat messages and uploaded content are processed by AI language model providers to generate responses. We do not use your conversations to train AI models. AI-generated content may be inaccurate and should not be relied upon as professional advice.
+### 2.5 AI 처리
+- **AI 언어 모델**: 귀하의 채팅 메시지와 업로드된 콘텐츠는 응답 생성을 위해 AI 언어 모델 제공업체에 의해 처리됩니다. 당사는 귀하의 대화를 AI 모델 학습에 사용하지 않습니다. AI가 생성한 콘텐츠는 부정확할 수 있으며 전문적인 조언으로 신뢰해서는 안 됩니다.
 
-### 2.6 Cloud Infrastructure
-- **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+### 2.6 클라우드 인프라
+- **Google Cloud Platform**: 당사의 백엔드 서비스는 데이터 처리 계약이 체결된 Google Cloud 인프라에서 운영됩니다.
 
 ### 2.7 마케팅, 방문자 식별 및 CRM
 - **Instantly.ai / Leadsy.ai**: 당사는 Instantly의 방문자 식별 태그(동일 공급업체가 운영하는 `tag.trovo-tag.com`에서 추적 스크립트를 동적으로 로드하는 `r2.leadsy.ai`에서 로드됨)를 사용하여 웹사이트 방문이 연관될 수 있는 조직(예: 방문자의 IP 주소에 연결된 회사)을 식별합니다. 이는 당사의 기업 간(B2B) 아웃바운드 마케팅에 활용됩니다. EU/EEA, 영국 또는 스위스에 있는 것으로 감지된 방문자의 경우, 이 태그는 당사의 쿠키 배너를 통해 **마케팅 동의를 부여한 후에만** 로드됩니다. 해당 관할권 외부의 방문자의 경우, 태그는 기본적으로 로드되며 섹션 10의 "쿠키 설정" 컨트롤을 통해 언제든지 비활성화할 수 있습니다. [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
 - **HubSpot**: 당사는 HubSpot 추적 스크립트(`js.hs-scripts.com`에서 로드되며, 이는 `js.hs-analytics.net`, `js.hs-banner.com` 및 `js.hscollectedforms.net`에서 추적, 배너 및 양식 캡처 스크립트를 동적으로 로드함)를 사용하여 페이지 조회를 기록하고, 마케팅 채널 성과를 귀속시키며, 양식 제출을 캡처하고, 양식을 제출하거나 미팅을 예약할 때 웹사이트 활동을 HubSpot CRM 연락처 기록에 연결합니다. EU/EEA, 영국 또는 스위스에 있는 것으로 감지된 방문자의 경우, 이 스크립트는 당사의 쿠키 배너를 통해 **마케팅 동의를 부여한 후에만** 로드됩니다. 해당 관할권 외부의 방문자의 경우, 스크립트는 기본적으로 로드되며 섹션 10의 "쿠키 설정" 컨트롤을 통해 언제든지 비활성화할 수 있습니다. [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
+- **Attio**: 당사는 비즈니스 연락처와 리드를 정리하기 위해 Attio를 고객관계관리(CRM) 시스템으로 사용합니다. [Attio 개인정보 처리방침](https://attio.com/privacy)
+- **무료 채팅 어시스턴트 이메일 동기화**: 당사 웹사이트의 무료 채팅 어시스턴트를 이용하기 위해 이메일을 인증하면, 당사는 후속 조치를 위해 해당 이메일을 당사의 HubSpot 및 Attio CRM에 연락처로 저장합니다. 이 동기화는 일회용 코드 인증을 완료한 후 서버 측에서 이루어지며, 추적 스크립트가 아니고 쿠키에 의존하지 않습니다. 당사는 채팅에서 **선택적 마케팅 동의 체크박스를 선택한 경우에만** 귀하를 **마케팅 연락처**(마케팅 이메일 수신 대상)로 지정합니다. 체크박스를 선택하지 않은 경우에도 연락처 기록은 저장하지만 마케팅 이메일은 발송하지 않습니다. 귀하는 언제든지 마케팅 이메일 수신을 거부하거나 연락처 기록의 삭제를 요청할 수 있습니다(섹션 9 참조).
 
-## 3. Legal Basis for Processing (GDPR)
+### 2.8 Divinci Local Inference 브라우저 확장 프로그램
 
-We process your personal data based on:
-- **Consent**: For analytics, marketing cookies, and optional integrations
-- **Legitimate Interest**: For app functionality, security, and crash reporting
-- **Contract Performance**: When providing our Services to you
-- **Legal Obligation**: When required by law
+당사는 WebGPU를 통해 **귀하 자신의 기기에서** Google의 Gemma 4 모델을 실행하는 선택적 Chrome 확장 프로그램인 **Divinci Local Inference**를 제공합니다 — 모든 사이트에서 페이지 내 어시스턴트로 사용할 수 있으며, chat.divinci.app의 채팅 기능을 위한 API 비용이 없는 로컬 모델 옵션으로도 사용할 수 있습니다. 이 확장 프로그램의 개인정보 보호 방침은 간략히 다음과 같습니다:
 
-## 4. How We Use Your Information
+- **기본적으로 로컬 전용입니다.** 온디바이스 모델과의 채팅은 귀하의 GPU에서 연산되며, 확장 프로그램에 의해 기록, 저장 또는 전송되지 않습니다. 로그인하지 않은 경우, 확장 프로그램은 귀하의 브라우징에 관한 어떠한 정보도 Divinci로 전송하지 않습니다.
+- **선택적 로그인 기능.** Divinci 계정에 로그인하면, 확장 프로그램은 다음을 수행할 수 있습니다: 로그인 시 귀하의 기본 프로필(이름, 이메일, 아바타)을 수신; 사이드 패널이 열려 있는 동안, Divinci의 공개 웹 지식 색인을 확인하기 위해 축약된 페이지 주소(출처 + 경로; 쿼리/프래그먼트 제외)와 페이지의 표시된 텍스트에 대한 단방향 해시를 전송(페이지의 **콘텐츠 자체는 전송되지 않으며**, 민감한 사이트는 건너뛰고, 패널이 닫혀 있을 때는 아무것도 전송되지 않음); 그리고 페이지 인식 답변이나 계정 모드 채팅의 경우, 귀하의 채팅 메시지를 Divinci로 전송. 이러한 기능은 **고급 설정 → 개인정보 보호**에서 끌 수 있습니다.
+- **판매, 광고, 사이트 간 추적이 없습니다.**
+- **오픈 소스입니다.** 이 확장 프로그램은 Apache-2.0 라이선스를 따르며, 소스 코드는 [github.com/Divinci-AI/gemma-gem](https://github.com/Divinci-AI/gemma-gem)에서 확인할 수 있습니다.
 
-### 4.1 Essential Uses
-- Provide, maintain, and improve our Services
-- Authenticate your identity and manage your account
-- Process your AI chat requests and deliver responses
-- Deliver push notifications you have opted in to
-- Respond to your inquiries and support requests
-- Ensure app and website security and functionality
-- Detect, prevent, and address technical issues
+전체 확장 프로그램별 정책 — 각 기능이 정확히 무엇을 전송하는지와 귀하의 개인정보 보호 설정을 포함 — 은 [Divinci Local Inference 개인정보 처리방침](/ko/local-inference-privacy/)을 참조하십시오.
 
-### 4.2 With Your Consent
-- Analytics to improve our website and apps
-- Marketing communications
-- Personalized content recommendations
-- Third-party service integrations (Google Drive, Gmail)
+## 3. 처리의 법적 근거(GDPR)
 
-## 5. Data Sharing and Disclosure
+당사는 다음을 근거로 귀하의 개인정보를 처리합니다:
+- **동의**: 분석, 마케팅 쿠키 및 선택적 통합을 위해
+- **정당한 이익**: 앱 기능, 보안 및 충돌 보고를 위해
+- **계약 이행**: 귀하에게 서비스를 제공할 때
+- **법적 의무**: 법률상 요구되는 경우
 
-We do not sell your personal data. We may share data with:
+## 4. 당사가 귀하의 정보를 사용하는 방법
 
-### 5.1 Service Providers
-- Cloud hosting and infrastructure providers (with data processing agreements)
-- Authentication service providers
-- Analytics and crash reporting providers (when you consent or as described above)
+### 4.1 필수적인 사용
+- 당사 서비스를 제공, 유지 및 개선
+- 귀하의 신원 인증 및 계정 관리
+- AI 채팅 요청 처리 및 응답 전달
+- 옵트인한 푸시 알림 전달
+- 문의 및 지원 요청에 응답
+- 앱 및 웹사이트의 보안과 기능 보장
+- 기술적 문제 감지, 예방 및 해결
+
+### 4.2 귀하의 동의 하에
+- 웹사이트 및 앱 개선을 위한 분석
+- 마케팅 커뮤니케이션
+- 맞춤형 콘텐츠 추천
+- 제3자 서비스 통합(Google Drive, Gmail)
+
+## 5. 데이터 공유 및 공개
+
+당사는 귀하의 개인정보를 판매하지 않습니다. 당사는 다음과 데이터를 공유할 수 있습니다:
+
+### 5.1 서비스 제공업체
+- 클라우드 호스팅 및 인프라 제공업체(데이터 처리 계약 체결)
+- 인증 서비스 제공업체
+- 분석 및 충돌 보고 제공업체(귀하의 동의 시 또는 위에서 설명한 대로)
 - 마케팅 및 B2B 방문자 식별 제공업체(규제 관할권에서의 동의 대상, 섹션 2.7에 설명된 바와 같음)
-- AI model providers for processing your requests
-- Customer support tools
+- 귀하의 요청 처리를 위한 AI 모델 제공업체
+- 고객 지원 도구
 
-### 5.2 Legal Requirements
-- When required by law or legal process
-- To protect our rights and safety
-- In connection with business transfers (mergers, acquisitions, or asset sales)
+### 5.2 법적 요건
+- 법률 또는 법적 절차상 요구되는 경우
+- 당사의 권리와 안전을 보호하기 위해
+- 사업 이전(합병, 인수 또는 자산 매각)과 관련하여
 
-## 6. Data Retention
+## 6. 데이터 보관
 
-- **Account Data**: Retained for as long as your account is active. Upon account deletion, your personal data is deleted within 30 days, except where we are required by law to retain it.
-- **Chat and AI Data**: Conversation history is retained while your account is active and deleted upon account deletion.
-- **Crash Reports**: Retained for 90 days by Firebase Crashlytics.
-- **Analytics Data**: Aggregated analytics data is retained for up to 14 months by Firebase Analytics.
-- **Backup Data**: Backup copies may persist for up to 30 days after deletion.
+- **계정 데이터**: 계정이 활성 상태인 동안 보관됩니다. 계정 삭제 시, 법률상 보관이 요구되는 경우를 제외하고 귀하의 개인정보는 30일 이내에 삭제됩니다.
+- **채팅 및 AI 데이터**: 대화 기록은 계정이 활성 상태인 동안 보관되며 계정 삭제 시 삭제됩니다.
+- **충돌 보고서**: Firebase Crashlytics에서 90일간 보관됩니다.
+- **분석 데이터**: 집계된 분석 데이터는 Firebase Analytics에서 최대 14개월간 보관됩니다.
+- **백업 데이터**: 백업 사본은 삭제 후 최대 30일간 유지될 수 있습니다.
 
-## 7. Data Security
+## 7. 데이터 보안
 
-We implement appropriate technical and organizational measures to protect your personal data, including:
-- **Encryption in Transit**: All data transmitted between your device and our servers is encrypted using TLS/SSL.
-- **Encryption at Rest**: Personal data stored on our servers is encrypted at rest.
-- **Access Controls**: Strict access controls limit who within our organization can access personal data.
-- **Regular Audits**: We regularly review our security practices and update them as needed.
+당사는 귀하의 개인정보를 보호하기 위해 다음을 포함한 적절한 기술적, 관리적 조치를 시행합니다:
+- **전송 중 암호화**: 귀하의 기기와 당사 서버 간에 전송되는 모든 데이터는 TLS/SSL을 사용하여 암호화됩니다.
+- **저장 시 암호화**: 당사 서버에 저장된 개인정보는 저장 시 암호화됩니다.
+- **접근 통제**: 엄격한 접근 통제를 통해 당사 조직 내에서 개인정보에 접근할 수 있는 대상을 제한합니다.
+- **정기 감사**: 당사는 보안 관행을 정기적으로 검토하고 필요에 따라 업데이트합니다.
 
-While we strive to protect your data, no method of electronic transmission or storage is 100% secure. We cannot guarantee absolute security.
+당사는 귀하의 데이터를 보호하기 위해 노력하지만, 전자 전송이나 저장 방식 중 100% 안전한 방법은 없습니다. 당사는 절대적인 보안을 보장할 수 없습니다.
 
-## 8. Children's Privacy
+## 8. 아동의 개인정보 보호
 
-Our Services are not directed to children under the age of 13 (or the applicable age of consent in your jurisdiction). We do not knowingly collect personal data from children under 13. If you are a parent or guardian and believe your child has provided us with personal data, please contact us at privacy@divinci.ai and we will take steps to delete such information promptly.
+당사의 서비스는 13세 미만 아동(또는 귀하의 관할권에서 적용되는 동의 연령 미만 아동)을 대상으로 하지 않습니다. 당사는 13세 미만 아동으로부터 고의로 개인정보를 수집하지 않습니다. 귀하가 부모 또는 법정대리인이며 자녀가 당사에 개인정보를 제공했다고 판단되는 경우, privacy@divinci.ai로 문의해 주시기 바라며, 당사는 해당 정보를 신속히 삭제하기 위한 조치를 취하겠습니다.
 
-## 9. Your Rights
+## 9. 귀하의 권리
 
-### 9.1 GDPR Rights (EEA, UK, Switzerland)
-- **Right of Access**: Request information about your personal data
-- **Data Portability**: Receive your data in a structured, machine-readable format
-- **Rectification**: Correct inaccurate personal data
-- **Erasure**: Request deletion of your personal data
-- **Restriction**: Limit how we process your data
-- **Objection**: Object to processing for direct marketing
-- **Withdraw Consent**: Revoke consent at any time
+### 9.1 GDPR 권리(EEA, 영국, 스위스)
+- **접근권**: 귀하의 개인정보에 관한 정보 요청
+- **데이터 이동권**: 귀하의 데이터를 구조화되고 기계가 읽을 수 있는 형식으로 수령
+- **정정권**: 부정확한 개인정보 정정
+- **삭제권**: 귀하의 개인정보 삭제 요청
+- **처리 제한권**: 당사의 데이터 처리 방식 제한
+- **이의제기권**: 직접 마케팅을 위한 처리에 이의 제기
+- **동의 철회권**: 언제든지 동의 철회
 
-To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+이러한 권리를 행사하려면, 당사의 셀프서비스 [데이터 요청 포털](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg)을 통해 요청을 제출하거나 privacy@divinci.ai로 이메일을 보내주십시오. 당사는 30일 이내에 응답합니다.
 
-### 9.2 CCPA Rights (California Residents)
-- **Right to Know**: What personal information we collect and how it is used
-- **Right to Delete**: Request deletion of your personal information
-- **Right to Opt-Out**: Opt out of the sale of personal information (we do not sell personal information)
-- **Non-Discrimination**: We will not discriminate against you for exercising your rights
+### 9.2 CCPA 권리(캘리포니아 거주자)
+- **알 권리**: 당사가 수집하는 개인정보와 그 사용 방법
+- **삭제 요청권**: 귀하의 개인정보 삭제 요청
+- **옵트아웃권**: 개인정보 판매 거부(당사는 개인정보를 판매하지 않습니다)
+- **비차별**: 당사는 귀하가 권리를 행사했다는 이유로 차별하지 않습니다
 
-### 9.3 Apple App Store (iOS Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- We comply with Apple's App Store Review Guidelines regarding user privacy and data handling
+### 9.3 Apple App Store(iOS 사용자)
+- 앱 내에서 직접 또는 당사에 문의하여 계정 및 관련된 모든 데이터의 삭제를 요청할 수 있습니다
+- 당사는 사용자 개인정보 및 데이터 처리에 관한 Apple의 App Store 심사 지침을 준수합니다
 
-### 9.4 Google Play Store (Android Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- Our Data Safety disclosures in the Google Play Store accurately reflect our data practices as described in this policy
+### 9.4 Google Play Store(Android 사용자)
+- 앱 내에서 직접 또는 당사에 문의하여 계정 및 관련된 모든 데이터의 삭제를 요청할 수 있습니다
+- Google Play 스토어의 당사 데이터 안전 공개 내용은 본 방침에 설명된 당사의 데이터 처리 관행을 정확하게 반영합니다
 
-## 10. Your Privacy Controls
+## 10. 귀하의 개인정보 보호 설정
 
 <div class="privacy-controls">
   <button onclick="window.gdprCompliance?.showCookieBanner()" class="privacy-btn">
-    🍪 Cookie Preferences
+    🍪 쿠키 설정
   </button>
 
   <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
@@ -177,7 +184,7 @@ To exercise any of these rights, you can submit a request through our self-servi
   </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
-    ❌ Revoke All Consent
+    ❌ 모든 동의 철회
   </button>
 </div>
 
@@ -198,6 +205,10 @@ To exercise any of these rights, you can submit a request through our self-servi
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .privacy-btn:hover {
@@ -216,18 +227,18 @@ To exercise any of these rights, you can submit a request through our self-servi
 }
 </style>
 
-## 11. International Data Transfers
+## 11. 국제 데이터 이전
 
-Your data may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place, including Standard Contractual Clauses where required, to protect your data in accordance with this policy and applicable law.
+귀하의 데이터는 귀하의 국가가 아닌 다른 국가로 이전되어 처리될 수 있습니다. 당사는 본 방침 및 관련 법률에 따라 귀하의 데이터를 보호하기 위해 필요한 경우 표준 계약 조항을 포함한 적절한 안전장치를 마련합니다.
 
-## 12. Changes to This Policy
+## 12. 본 방침의 변경
 
-We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on our website and updating the "Last updated" date. Your continued use of our Services after changes constitutes acceptance of the updated policy.
+당사는 수시로 본 개인정보 처리방침을 업데이트할 수 있습니다. 중대한 변경 사항이 있는 경우, 당사 웹사이트에 업데이트된 방침을 게시하고 "최종 업데이트" 날짜를 갱신하여 귀하에게 알립니다. 변경 후에도 당사 서비스를 계속 이용하는 것은 업데이트된 방침에 대한 동의로 간주됩니다.
 
-## Contact Information
+## 연락처 정보
 
 **Divinci AI**
-Email: privacy@divinci.ai
-Data Protection Officer: dpo@divinci.ai
+이메일: privacy@divinci.ai
+개인정보 보호 책임자(DPO): dpo@divinci.ai
 
-For any privacy-related requests or questions, contact us at privacy@divinci.ai with a response time of within 30 days.
+개인정보 관련 요청이나 문의는 privacy@divinci.ai로 연락해 주시기 바라며, 응답 시간은 30일 이내입니다.

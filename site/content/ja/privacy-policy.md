@@ -1,171 +1,178 @@
 +++
-
-[extra]
-canonical_to_english = true
 title = "プライバシーポリシー"
-description = "Divinci AI のプライバシーへの取り組みとデータの取り扱いに関する詳細"
+description = "GDPRおよび国際的なプライバシー法に準拠した、お客様のプライバシーおよび個人データの保護に対するDivinci AIの取り組み"
 template = "page.html"
 +++
 
 # プライバシーポリシー
 
-*本書面の完全版は以下に英語で記載されています。日本語訳は近日公開予定です。*
+**最終更新日:** 2026年6月
 
-# Privacy Policy
+## プライバシーへの取り組み
 
-**Last updated:** 2026年5月
+Divinci AIは、お客様のプライバシーを保護し、個人データの安全性を確保することに全力を尽くしています。本プライバシーポリシーは、お客様が当社のウェブサイト、モバイルアプリケーション（AndroidおよびiOS）、ならびにサービス（総称して「本サービス」）をご利用になる際に、当社がお客様の情報をどのように収集、利用、処理、および保護するかについて説明するものです。
 
-## Our Commitment to Privacy
+## 1. 当社が収集する情報
 
-At Divinci AI, we are committed to protecting your privacy and ensuring the security of your personal data. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our website, mobile applications (Android and iOS), and services (collectively, the "Services").
+### 1.1 お客様が提供する情報
+- **アカウント情報**: アカウント作成時のお名前、メールアドレス、プロフィール情報
+- **連絡先情報**: お問い合わせやデモのご依頼をいただく際のお名前、メールアドレス、会社名
+- **チャットおよびAIインタラクションデータ**: AIチャット機能をご利用の際に送信されるメッセージ、プロンプト、およびコンテンツ
+- **フリーチャットのメールアドレス**: 当社ウェブサイト上の無料チャットアシスタントをご利用の際に、お客様が提供し、ワンタイムコードで確認いただくメールアドレス。当社は、確認コードの送付、不正利用の防止のためにこれを使用し、また同意チェックボックスを通じてお客様がオプトインされた場合に限り、随時の製品アップデートの送付にも使用します（セクション2.7を参照）
+- **コミュニケーションデータ**: メッセージ、フィードバック、サポート依頼
+- **ファイルおよび文書**: ナレッジベースに追加される文書を含む、AI処理のためにアップロードされるファイル
 
-## 1. Information We Collect
+### 1.2 自動的に収集される情報
+- **ウェブサイト利用データ**: 閲覧ページ、滞在時間、クリックパターン
+- **アプリ利用データ**: 使用機能、セッション時間、モバイルアプリ内での操作パターン
+- **技術データ**: IPアドレス、ブラウザの種類、デバイス情報、オペレーティングシステムのバージョン、デバイス識別子
+- **パフォーマンスデータ**: アプリおよびウェブサイトのパフォーマンス指標、エラーログ、クラッシュレポート
+- **プッシュ通知トークン**: プッシュ通知配信のためのデバイストークン（オプトインされた場合）
 
-### 1.1 Information You Provide
-- **Account Information**: Name, email address, and profile information when you create an account
-- **Contact Information**: Name, email address, company name when you contact us or request demos
-- **Chat and AI Interaction Data**: Messages, prompts, and content you submit when using our AI chat features
-- **Communication Data**: Messages, feedback, and support requests
-- **Files and Documents**: Files you upload for AI processing, including documents added to knowledge bases
+### 1.3 第三者サービスからの情報
+お客様が第三者サービスとの連携を選択された場合、当社は以下を収集することがあります。
+- **Googleアカウントデータ**: Googleでサインインする際、またはGoogleドライブおよびGmailを連携する際のお名前、メールアドレス、プロフィール情報
+- **認証データ**: アカウントを安全に管理するための、当社の認証プロバイダーからのトークンおよび識別子
 
-### 1.2 Information Automatically Collected
-- **Website Usage Data**: Pages visited, time spent, click patterns
-- **App Usage Data**: Features used, session duration, interaction patterns within our mobile apps
-- **Technical Data**: IP address, browser type, device information, operating system version, device identifiers
-- **Performance Data**: App and website performance metrics, error logs, and crash reports
-- **Push Notification Tokens**: Device tokens for delivering push notifications (if you opt in)
+### 1.4 クッキーおよびトラッキング技術
+当社は、以下の目的でクッキーおよび類似の技術を使用します。
+- ウェブサイトの機能を確保するため
+- ウェブサイトおよびアプリのパフォーマンスを分析するため
+- パーソナライズされた体験を提供するため（お客様の同意を得たうえで）
+- B2Bマーケティング目的で、ウェブサイト訪問に関連する組織を特定するため（EU/EEA、英国、およびスイスにおいては、お客様の同意を得たうえで実施します）
 
-### 1.3 Information from Third-Party Services
-When you choose to connect third-party services, we may collect:
-- **Google Account Data**: Name, email, and profile information when you sign in with Google or connect Google Drive and Gmail
-- **Authentication Data**: Tokens and identifiers from our authentication provider to manage your account securely
+## 2. 第三者サービスおよびSDK
 
-### 1.4 Cookies and Tracking Technologies
-We use cookies and similar technologies to:
-- Ensure website functionality
-- Analyze website and app performance
-- Provide personalized experience (with your consent)
-- B2Bマーケティング目的で、ウェブサイト訪問に関連する組織を特定します（EU/EEA、英国、およびスイスにおいては、お客様の同意を得たうえで実施します）
+当社の本サービスは、それぞれ独自のプライバシー慣行を持つ以下の第三者サービスと連携しています。
 
-## 2. Third-Party Services and SDKs
+### 2.1 認証
+- **Auth0**（Okta社）: ユーザー認証およびアカウントセキュリティを管理します。メールアドレス、氏名、ログイン認証情報を処理します。[Auth0 プライバシーポリシー](https://auth0.com/privacy)
 
-Our Services integrate the following third-party services, each with their own privacy practices:
+### 2.2 分析およびクラッシュレポート
+- **Firebase Analytics**（Google社）: 本サービスの改善に役立てるため、アプリ利用データ、デバイス情報、および匿名化された操作イベントを収集します。[Firebase プライバシー情報](https://firebase.google.com/support/privacy)
+- **Firebase Crashlytics**（Google社）: 問題の特定と修正に役立てるため、デバイスの状態、スタックトレース、デバイス識別子を含むクラッシュレポートを収集します。データは90日間保持されます。
 
-### 2.1 Authentication
-- **Auth0** (by Okta): Manages user authentication and account security. Processes email, name, and login credentials. [Auth0 Privacy Policy](https://auth0.com/privacy)
+### 2.3 プッシュ通知
+- **Firebase Cloud Messaging**（Google社）: プッシュ通知を配信するためにデバイストークンを処理します。お客様はいつでもデバイスの設定から通知をオプトアウトできます。
 
-### 2.2 Analytics and Crash Reporting
-- **Firebase Analytics** (by Google): Collects app usage data, device information, and anonymized interaction events to help us improve our Services. [Firebase Privacy Information](https://firebase.google.com/support/privacy)
-- **Firebase Crashlytics** (by Google): Collects crash reports including device state, stack traces, and device identifiers to help us identify and fix issues. Data is retained for 90 days.
+### 2.4 アプリの完全性
+- **Firebase App Check with Play Integrity**（Android）/ **App Attest**（iOS）: 当社のバックエンドへのリクエストが本アプリの正規のインスタンスから送信されたものであることを検証します。個人データは収集しません。
 
-### 2.3 Push Notifications
-- **Firebase Cloud Messaging** (by Google): Processes device tokens to deliver push notifications. You can opt out of notifications through your device settings at any time.
+### 2.5 AI処理
+- **AI言語モデル**: お客様のチャットメッセージおよびアップロードされたコンテンツは、応答を生成するためにAI言語モデルプロバイダーによって処理されます。当社は、お客様との会話をAIモデルの学習に使用することはありません。AIが生成したコンテンツは不正確な場合があり、専門的な助言として依拠すべきではありません。
 
-### 2.4 App Integrity
-- **Firebase App Check with Play Integrity** (Android) / **App Attest** (iOS): Verifies that requests to our backend come from genuine instances of our app. Does not collect personal data.
-
-### 2.5 AI Processing
-- **AI Language Models**: Your chat messages and uploaded content are processed by AI language model providers to generate responses. We do not use your conversations to train AI models. AI-generated content may be inaccurate and should not be relied upon as professional advice.
-
-### 2.6 Cloud Infrastructure
-- **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+### 2.6 クラウドインフラストラクチャ
+- **Google Cloud Platform**: 当社のバックエンドサービスは、データ処理契約が締結されたGoogle Cloudのインフラストラクチャ上で稼働しています。
 
 ### 2.7 マーケティング、訪問者識別、およびCRM
-- **Instantly.ai / Leadsy.ai**: 当社は、ウェブサイトへの訪問が関連付けられる可能性のある組織（例：訪問者のIPアドレスに紐づく企業）を特定するために、Instantlyの訪問者識別タグ（`r2.leadsy.ai` から読み込まれ、同社が運営する `tag.trovo-tag.com` から動的にトラッキングスクリプトを読み込みます）を使用しています。これは当社のB2B（企業間）アウトバウンドマーケティングに活用されます。EU/EEA、英国、またはスイスにいると検出された訪問者に対しては、当社のクッキーバナーを通じて**マーケティング同意を付与された後にのみ**このタグが読み込まれます。これらの管轄区域外の訪問者に対しては、タグはデフォルトで読み込まれ、セクション10の「クッキー設定」コントロールからいつでも無効化できます。[Instantly Privacy Policy](https://instantly.ai/privacy-policy)
-- **HubSpot**: 当社は、ページビューの記録、マーケティングチャネルのパフォーマンスの貢献度の特定、フォーム送信の取得、ならびにフォーム送信時やミーティング予約時のウェブサイト上の行動をHubSpot CRMの連絡先レコードに紐付けるために、HubSpotトラッキングスクリプト（`js.hs-scripts.com` から読み込まれ、`js.hs-analytics.net`、`js.hs-banner.com`、および `js.hscollectedforms.net` からトラッキング、バナー、およびフォームキャプチャのスクリプトを動的に読み込みます）を使用しています。EU/EEA、英国、またはスイスにいると検出された訪問者に対しては、当社のクッキーバナーを通じて**マーケティング同意を付与された後にのみ**このスクリプトが読み込まれます。これらの管轄区域外の訪問者に対しては、スクリプトはデフォルトで読み込まれ、セクション10の「クッキー設定」コントロールからいつでも無効化できます。[HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
+- **Instantly.ai / Leadsy.ai**: 当社は、ウェブサイトへの訪問が関連付けられる可能性のある組織（例：訪問者のIPアドレスに紐づく企業）を特定するために、Instantlyの訪問者識別タグ（`r2.leadsy.ai` から読み込まれ、同社が運営する `tag.trovo-tag.com` から動的にトラッキングスクリプトを読み込みます）を使用しています。これは当社のB2B（企業間）アウトバウンドマーケティングに活用されます。EU/EEA、英国、またはスイスにいると検出された訪問者に対しては、当社のクッキーバナーを通じて**マーケティング同意を付与された後にのみ**このタグが読み込まれます。これらの管轄区域外の訪問者に対しては、タグはデフォルトで読み込まれ、セクション10の「クッキー設定」コントロールからいつでも無効化できます。[Instantly プライバシーポリシー](https://instantly.ai/privacy-policy)
+- **HubSpot**: 当社は、ページビューの記録、マーケティングチャネルのパフォーマンスの帰属分析、フォーム送信の取得、ならびにお客様がフォームを送信またはミーティングを予約した際のウェブサイト上の行動をHubSpot CRMの連絡先レコードに紐付けるために、HubSpotトラッキングスクリプト（`js.hs-scripts.com` から読み込まれ、`js.hs-analytics.net`、`js.hs-banner.com`、および `js.hscollectedforms.net` からトラッキング、バナー、フォームキャプチャの各スクリプトを動的に読み込みます）を使用しています。EU/EEA、英国、またはスイスにいると検出された訪問者に対しては、当社のクッキーバナーを通じて**マーケティング同意を付与された後にのみ**このスクリプトが読み込まれます。これらの管轄区域外の訪問者に対しては、スクリプトはデフォルトで読み込まれ、セクション10の「クッキー設定」コントロールからいつでも無効化できます。[HubSpot プライバシーポリシー](https://legal.hubspot.com/privacy-policy)
+- **Attio**: 当社は、ビジネス上の連絡先およびリードを整理するための顧客関係管理（CRM）システムとしてAttioを使用しています。[Attio プライバシーポリシー](https://attio.com/privacy)
+- **フリーチャットアシスタントのメール同期**: 当社ウェブサイト上の無料チャットアシスタントを利用するためにメールアドレスを確認いただいた場合、当社は製品に関するフォローアップを行うため、そのメールアドレスを当社のHubSpotおよびAttio CRMに連絡先として保存します。この同期処理は、ワンタイムコードによる確認完了後にサーバー側で行われるものであり、トラッキングスクリプトではなく、クッキーにも依存しません。当社は、チャット内の任意のマーケティング同意チェックボックスに**チェックを入れた場合に限り**、お客様を（マーケティングメールの受信対象となる）**マーケティング連絡先**として登録します。チェックを入れなかった場合でも、連絡先レコードは保存されますが、マーケティングメールは送信されません。お客様は、いつでもマーケティングメールの配信を停止したり、連絡先レコードの削除を請求したりすることができます（セクション9を参照）。
 
-## 3. Legal Basis for Processing (GDPR)
+### 2.8 Divinci Local Inference ブラウザ拡張機能
 
-We process your personal data based on:
-- **Consent**: For analytics, marketing cookies, and optional integrations
-- **Legitimate Interest**: For app functionality, security, and crash reporting
-- **Contract Performance**: When providing our Services to you
-- **Legal Obligation**: When required by law
+当社は、GoogleのGemma 4モデルをWebGPU経由で**お客様ご自身のデバイス上で**実行するオプションのChrome拡張機能「**Divinci Local Inference**」を提供しています。この拡張機能は、任意のサイト上でのオンページアシスタントとして、また chat.divinci.app のAPIコストが発生しないローカルモデルの選択肢として利用できます。そのプライバシー上の取り扱いの概要は以下のとおりです。
 
-## 4. How We Use Your Information
+- **既定でローカル処理のみ**: オンデバイスモデルとのチャットはお客様のGPU上で計算され、拡張機能によってログ記録、保存、または送信されることはありません。サインインしていない場合、拡張機能はお客様の閲覧に関する情報をDivinciに一切送信しません。
+- **サインイン時のオプション機能**: Divinciアカウントにサインインした場合、拡張機能は以下を行うことができます。サインイン時に基本的なプロフィール（氏名、メールアドレス、アバター）を受け取ること、サイドパネルが開いている間、簡略化されたページアドレス（オリジン＋パス。クエリ／フラグメントは削除されます）とページの表示テキストの一方向ハッシュをDivinciの公開ウェブ知識インデックスと照合するために送信すること（ページの**コンテンツ自体は送信されず**、機密性の高いサイトは対象外とされ、パネルが閉じている間は何も送信されません）、およびページ内容を踏まえた回答やアカウントモードでのチャットのために、お客様のチャットメッセージをDivinciに送信すること。これらは**「詳細設定 → プライバシー」**でオフにすることができます。
+- **販売、広告、およびクロスサイトトラッキングは一切行いません。**
+- **オープンソース**: 本拡張機能はApache-2.0ライセンスの下で提供されており、ソースコードは [github.com/Divinci-AI/gemma-gem](https://github.com/Divinci-AI/gemma-gem) で公開されています。
 
-### 4.1 Essential Uses
-- Provide, maintain, and improve our Services
-- Authenticate your identity and manage your account
-- Process your AI chat requests and deliver responses
-- Deliver push notifications you have opted in to
-- Respond to your inquiries and support requests
-- Ensure app and website security and functionality
-- Detect, prevent, and address technical issues
+各機能が具体的に何を送信するかや、お客様が利用できるプライバシー管理機能を含む、拡張機能専用の完全なポリシーについては、[Divinci Local Inference プライバシーポリシー](/ja/local-inference-privacy/)をご覧ください。
 
-### 4.2 With Your Consent
-- Analytics to improve our website and apps
-- Marketing communications
-- Personalized content recommendations
-- Third-party service integrations (Google Drive, Gmail)
+## 3. 処理の法的根拠（GDPR）
 
-## 5. Data Sharing and Disclosure
+当社は、以下に基づきお客様の個人データを処理します。
+- **同意**: 分析、マーケティングクッキー、およびオプションの連携機能について
+- **正当な利益**: アプリの機能、セキュリティ、およびクラッシュレポートについて
+- **契約の履行**: 本サービスをお客様に提供する場合
+- **法的義務**: 法律により求められる場合
 
-We do not sell your personal data. We may share data with:
+## 4. お客様の情報の利用方法
 
-### 5.1 Service Providers
-- Cloud hosting and infrastructure providers (with data processing agreements)
-- Authentication service providers
-- Analytics and crash reporting providers (when you consent or as described above)
+### 4.1 必須の利用目的
+- 本サービスの提供、維持、および改善
+- お客様の本人確認およびアカウント管理
+- AIチャットリクエストの処理および応答の提供
+- オプトインいただいたプッシュ通知の配信
+- お問い合わせおよびサポート依頼への対応
+- アプリおよびウェブサイトのセキュリティおよび機能の確保
+- 技術的な問題の検出、防止、および対処
+
+### 4.2 お客様の同意に基づく利用目的
+- ウェブサイトおよびアプリを改善するための分析
+- マーケティングコミュニケーション
+- パーソナライズされたコンテンツの推奨
+- 第三者サービスとの連携（Googleドライブ、Gmail）
+
+## 5. データの共有および開示
+
+当社はお客様の個人データを販売することはありません。当社は以下とデータを共有することがあります。
+
+### 5.1 サービス提供事業者
+- クラウドホスティングおよびインフラストラクチャ提供事業者（データ処理契約を締結済み）
+- 認証サービス提供事業者
+- 分析およびクラッシュレポート提供事業者（お客様の同意がある場合、または上記のとおり）
 - マーケティングおよびB2B訪問者識別の提供事業者（規制対象の管轄区域における同意を条件とします。セクション2.7に記載のとおり）
-- AI model providers for processing your requests
-- Customer support tools
+- お客様のリクエストを処理するためのAIモデル提供事業者
+- カスタマーサポートツール
 
-### 5.2 Legal Requirements
-- When required by law or legal process
-- To protect our rights and safety
-- In connection with business transfers (mergers, acquisitions, or asset sales)
+### 5.2 法的要請
+- 法律または法的手続により求められる場合
+- 当社の権利および安全を保護するため
+- 事業譲渡（合併、買収、または資産売却）に関連する場合
 
-## 6. Data Retention
+## 6. データの保持
 
-- **Account Data**: Retained for as long as your account is active. Upon account deletion, your personal data is deleted within 30 days, except where we are required by law to retain it.
-- **Chat and AI Data**: Conversation history is retained while your account is active and deleted upon account deletion.
-- **Crash Reports**: Retained for 90 days by Firebase Crashlytics.
-- **Analytics Data**: Aggregated analytics data is retained for up to 14 months by Firebase Analytics.
-- **Backup Data**: Backup copies may persist for up to 30 days after deletion.
+- **アカウントデータ**: お客様のアカウントが有効である限り保持されます。アカウント削除後、法律により保持が義務付けられる場合を除き、個人データは30日以内に削除されます。
+- **チャットおよびAIデータ**: 会話履歴は、お客様のアカウントが有効である間は保持され、アカウント削除時に削除されます。
+- **クラッシュレポート**: Firebase Crashlyticsにより90日間保持されます。
+- **分析データ**: 集計された分析データは、Firebase Analyticsにより最長14か月間保持されます。
+- **バックアップデータ**: バックアップの複製は、削除後最長30日間残存する場合があります。
 
-## 7. Data Security
+## 7. データセキュリティ
 
-We implement appropriate technical and organizational measures to protect your personal data, including:
-- **Encryption in Transit**: All data transmitted between your device and our servers is encrypted using TLS/SSL.
-- **Encryption at Rest**: Personal data stored on our servers is encrypted at rest.
-- **Access Controls**: Strict access controls limit who within our organization can access personal data.
-- **Regular Audits**: We regularly review our security practices and update them as needed.
+当社は、お客様の個人データを保護するため、以下を含む適切な技術的および組織的措置を実施しています。
+- **転送時の暗号化**: お客様のデバイスと当社サーバーとの間で送受信されるすべてのデータは、TLS/SSLにより暗号化されます。
+- **保存時の暗号化**: 当社サーバーに保存される個人データは、保存時に暗号化されます。
+- **アクセス制御**: 厳格なアクセス制御により、当社組織内で個人データにアクセスできる者を制限しています。
+- **定期的な監査**: 当社は、セキュリティ慣行を定期的に見直し、必要に応じて更新しています。
 
-While we strive to protect your data, no method of electronic transmission or storage is 100% secure. We cannot guarantee absolute security.
+当社はお客様のデータの保護に努めていますが、電子的な送信または保存の方法で100%安全なものはありません。当社は絶対的なセキュリティを保証することはできません。
 
-## 8. Children's Privacy
+## 8. 児童のプライバシー
 
-Our Services are not directed to children under the age of 13 (or the applicable age of consent in your jurisdiction). We do not knowingly collect personal data from children under 13. If you are a parent or guardian and believe your child has provided us with personal data, please contact us at privacy@divinci.ai and we will take steps to delete such information promptly.
+本サービスは、13歳未満（またはお客様の管轄区域における該当する同意年齢未満）の児童を対象としたものではありません。当社は、13歳未満の児童から意図的に個人データを収集することはありません。お客様が保護者であり、お子様が当社に個人データを提供したとお考えの場合は、privacy@divinci.ai までご連絡ください。当社は速やかに当該情報を削除するための措置を講じます。
 
-## 9. Your Rights
+## 9. お客様の権利
 
-### 9.1 GDPR Rights (EEA, UK, Switzerland)
-- **Right of Access**: Request information about your personal data
-- **Data Portability**: Receive your data in a structured, machine-readable format
-- **Rectification**: Correct inaccurate personal data
-- **Erasure**: Request deletion of your personal data
-- **Restriction**: Limit how we process your data
-- **Objection**: Object to processing for direct marketing
-- **Withdraw Consent**: Revoke consent at any time
+### 9.1 GDPRに基づく権利（EEA、英国、スイス）
+- **アクセス権**: お客様の個人データに関する情報の開示を請求する権利
+- **データポータビリティの権利**: 構造化され、機械可読な形式でお客様のデータの提供を受ける権利
+- **訂正権**: 不正確な個人データの訂正を求める権利
+- **消去権**: お客様の個人データの削除を請求する権利
+- **処理の制限を求める権利**: 当社によるデータ処理方法を制限する権利
+- **異議を述べる権利**: ダイレクトマーケティングのための処理に異議を述べる権利
+- **同意の撤回**: いつでも同意を撤回する権利
 
-To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+これらの権利を行使される場合は、当社のセルフサービス[データリクエストポータル](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg)からリクエストを送信いただくか、privacy@divinci.ai までメールにてご連絡ください。当社は30日以内に対応いたします。
 
-### 9.2 CCPA Rights (California Residents)
-- **Right to Know**: What personal information we collect and how it is used
-- **Right to Delete**: Request deletion of your personal information
-- **Right to Opt-Out**: Opt out of the sale of personal information (we do not sell personal information)
-- **Non-Discrimination**: We will not discriminate against you for exercising your rights
+### 9.2 CCPAに基づく権利（カリフォルニア州居住者）
+- **知る権利**: 当社が収集する個人情報の内容およびその利用方法について
+- **削除権**: 個人情報の削除を請求する権利
+- **オプトアウトする権利**: 個人情報の販売をオプトアウトする権利（当社は個人情報を販売していません）
+- **非差別の原則**: 当社は、お客様が権利を行使されたことを理由に差別的な取り扱いを行うことはありません
 
-### 9.3 Apple App Store (iOS Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- We comply with Apple's App Store Review Guidelines regarding user privacy and data handling
+### 9.3 Apple App Store（iOSユーザー）
+- お客様は、アプリ内で直接、または当社への連絡により、アカウントおよびすべての関連データの削除を請求できます
+- 当社は、ユーザーのプライバシーおよびデータの取り扱いに関するAppleのApp Storeレビューガイドラインを遵守します
 
-### 9.4 Google Play Store (Android Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- Our Data Safety disclosures in the Google Play Store accurately reflect our data practices as described in this policy
+### 9.4 Google Playストア（Androidユーザー）
+- お客様は、アプリ内で直接、または当社への連絡により、アカウントおよびすべての関連データの削除を請求できます
+- Google Playストアにおける当社のデータセーフティに関する開示は、本ポリシーに記載された当社のデータ取り扱いを正確に反映しています
 
-## 10. Your Privacy Controls
+## 10. お客様のプライバシー管理機能
 
 <div class="privacy-controls">
   <button onclick="window.gdprCompliance?.showCookieBanner()" class="privacy-btn">
@@ -173,7 +180,7 @@ To exercise any of these rights, you can submit a request through our self-servi
   </button>
 
   <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
-    📥 データリクエストを送信
+    📥 Submit a Data Request
   </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
@@ -198,6 +205,10 @@ To exercise any of these rights, you can submit a request through our self-servi
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .privacy-btn:hover {
@@ -216,18 +227,20 @@ To exercise any of these rights, you can submit a request through our self-servi
 }
 </style>
 
-## 11. International Data Transfers
+## 11. 国際的なデータ移転
 
-Your data may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place, including Standard Contractual Clauses where required, to protect your data in accordance with this policy and applicable law.
+お客様のデータは、お客様の居住国以外の国に移転され、処理されることがあります。当社は、本ポリシーおよび適用法に従ってお客様のデータを保護するため、必要に応じて標準契約条項を含む適切な保護措置を講じています。
 
-## 12. Changes to This Policy
+## 12. 本ポリシーの変更
 
-We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on our website and updating the "Last updated" date. Your continued use of our Services after changes constitutes acceptance of the updated policy.
+当社は、本プライバシーポリシーを随時更新することがあります。重要な変更がある場合は、更新後のポリシーを当社ウェブサイトに掲載し、「最終更新日」を更新することにより、お客様に通知いたします。変更後も本サービスの利用を継続された場合、お客様は更新後のポリシーに同意したものとみなされます。
 
-## Contact Information
+## お問い合わせ先
 
 **Divinci AI**
-Email: privacy@divinci.ai
-Data Protection Officer: dpo@divinci.ai
+メール: privacy@divinci.ai
+データ保護責任者（DPO）: dpo@divinci.ai
 
-For any privacy-related requests or questions, contact us at privacy@divinci.ai with a response time of within 30 days.
+プライバシーに関するご請求またはご質問については、privacy@divinci.ai までご連絡ください。対応時間は30日以内です。
+</content>
+</invoke>

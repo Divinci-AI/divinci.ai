@@ -1,175 +1,182 @@
 +++
-
-[extra]
-canonical_to_english = true
 title = "Политика конфиденциальности"
-description = "Обязательства Divinci AI в отношении конфиденциальности и детали обработки данных"
+description = "Приверженность Divinci AI защите вашей конфиденциальности и персональных данных в соответствии с GDPR и международным законодательством о защите данных"
 template = "page.html"
 +++
 
 # Политика конфиденциальности
 
-*Полная версия этого документа представлена на английском языке ниже.*
+**Дата последнего обновления:** Июнь 2026
 
-# Privacy Policy
+## Наши обязательства в отношении конфиденциальности
 
-**Last updated:** Май 2026
+В компании Divinci AI мы стремимся защищать вашу конфиденциальность и обеспечивать безопасность ваших персональных данных. Настоящая Политика конфиденциальности объясняет, как мы собираем, используем, обрабатываем и защищаем вашу информацию при использовании вами нашего веб-сайта, мобильных приложений (Android и iOS) и сервисов (совместно именуемых «Сервисы»).
 
-## Our Commitment to Privacy
+## 1. Информация, которую мы собираем
 
-At Divinci AI, we are committed to protecting your privacy and ensuring the security of your personal data. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our website, mobile applications (Android and iOS), and services (collectively, the "Services").
+### 1.1 Информация, предоставляемая вами
+- **Информация об учётной записи**: имя, адрес электронной почты и информация профиля при создании учётной записи
+- **Контактная информация**: имя, адрес электронной почты, название компании, когда вы обращаетесь к нам или запрашиваете демонстрацию
+- **Данные чата и взаимодействия с ИИ**: сообщения, запросы (промпты) и контент, которые вы отправляете при использовании функций чата с ИИ
+- **Электронная почта для бесплатного чата**: при использовании бесплатного чат-ассистента на нашем веб-сайте — адрес электронной почты, который вы предоставляете и подтверждаете с помощью одноразового кода. Мы используем его для отправки кода подтверждения, предотвращения злоупотреблений и — только если вы дали согласие, установив соответствующий флажок согласия — для отправки периодических обновлений о продукте (см. Раздел 2.7)
+- **Данные коммуникации**: сообщения, отзывы и обращения в службу поддержки
+- **Файлы и документы**: файлы, загружаемые вами для обработки ИИ, включая документы, добавляемые в базы знаний
 
-## 1. Information We Collect
+### 1.2 Информация, собираемая автоматически
+- **Данные об использовании веб-сайта**: посещённые страницы, время, проведённое на сайте, характер кликов
+- **Данные об использовании приложения**: используемые функции, продолжительность сеанса, характер взаимодействия в наших мобильных приложениях
+- **Технические данные**: IP-адрес, тип браузера, информация об устройстве, версия операционной системы, идентификаторы устройства
+- **Данные о производительности**: показатели производительности приложения и веб-сайта, журналы ошибок и отчёты о сбоях
+- **Токены push-уведомлений**: токены устройства для доставки push-уведомлений (если вы дали на это согласие)
 
-### 1.1 Information You Provide
-- **Account Information**: Name, email address, and profile information when you create an account
-- **Contact Information**: Name, email address, company name when you contact us or request demos
-- **Chat and AI Interaction Data**: Messages, prompts, and content you submit when using our AI chat features
-- **Communication Data**: Messages, feedback, and support requests
-- **Files and Documents**: Files you upload for AI processing, including documents added to knowledge bases
+### 1.3 Информация от сторонних сервисов
+При подключении сторонних сервисов по вашему выбору мы можем собирать:
+- **Данные учётной записи Google**: имя, адрес электронной почты и информация профиля при входе через Google или подключении Google Drive и Gmail
+- **Данные аутентификации**: токены и идентификаторы от нашего поставщика услуг аутентификации для безопасного управления вашей учётной записью
 
-### 1.2 Information Automatically Collected
-- **Website Usage Data**: Pages visited, time spent, click patterns
-- **App Usage Data**: Features used, session duration, interaction patterns within our mobile apps
-- **Technical Data**: IP address, browser type, device information, operating system version, device identifiers
-- **Performance Data**: App and website performance metrics, error logs, and crash reports
-- **Push Notification Tokens**: Device tokens for delivering push notifications (if you opt in)
+### 1.4 Файлы cookie и технологии отслеживания
+Мы используем файлы cookie и аналогичные технологии для того, чтобы:
+- обеспечивать функциональность веб-сайта
+- анализировать производительность веб-сайта и приложения
+- предоставлять персонализированный опыт (с вашего согласия)
+- идентифицировать организацию, связанную с посещением веб-сайта, в целях B2B-маркетинга (с вашего согласия в ЕС/ЕЭЗ, Великобритании и Швейцарии)
 
-### 1.3 Information from Third-Party Services
-When you choose to connect third-party services, we may collect:
-- **Google Account Data**: Name, email, and profile information when you sign in with Google or connect Google Drive and Gmail
-- **Authentication Data**: Tokens and identifiers from our authentication provider to manage your account securely
+## 2. Сторонние сервисы и SDK
 
-### 1.4 Cookies and Tracking Technologies
-We use cookies and similar technologies to:
-- Ensure website functionality
-- Analyze website and app performance
-- Provide personalized experience (with your consent)
-- Идентифицировать организацию, связанную с посещением сайта, для целей B2B-маркетинга (с вашего согласия в ЕЭЗ, Великобритании и Швейцарии)
+Наши Сервисы интегрируют следующие сторонние сервисы, каждый из которых имеет собственную политику конфиденциальности:
 
-## 2. Third-Party Services and SDKs
+### 2.1 Аутентификация
+- **Auth0** (компания Okta): управляет аутентификацией пользователей и безопасностью учётных записей. Обрабатывает адрес электронной почты, имя и учётные данные для входа. [Политика конфиденциальности Auth0](https://auth0.com/privacy)
 
-Our Services integrate the following third-party services, each with their own privacy practices:
+### 2.2 Аналитика и отчёты о сбоях
+- **Firebase Analytics** (компания Google): собирает данные об использовании приложения, информацию об устройстве и обезличенные события взаимодействия, чтобы помочь нам улучшить наши Сервисы. [Информация о конфиденциальности Firebase](https://firebase.google.com/support/privacy)
+- **Firebase Crashlytics** (компания Google): собирает отчёты о сбоях, включая состояние устройства, трассировки стека и идентификаторы устройства, чтобы помочь нам выявлять и устранять проблемы. Данные хранятся в течение 90 дней.
 
-### 2.1 Authentication
-- **Auth0** (by Okta): Manages user authentication and account security. Processes email, name, and login credentials. [Auth0 Privacy Policy](https://auth0.com/privacy)
+### 2.3 Push-уведомления
+- **Firebase Cloud Messaging** (компания Google): обрабатывает токены устройства для доставки push-уведомлений. Вы можете отказаться от уведомлений в любое время через настройки своего устройства.
 
-### 2.2 Analytics and Crash Reporting
-- **Firebase Analytics** (by Google): Collects app usage data, device information, and anonymized interaction events to help us improve our Services. [Firebase Privacy Information](https://firebase.google.com/support/privacy)
-- **Firebase Crashlytics** (by Google): Collects crash reports including device state, stack traces, and device identifiers to help us identify and fix issues. Data is retained for 90 days.
+### 2.4 Целостность приложения
+- **Firebase App Check с Play Integrity** (Android) / **App Attest** (iOS): проверяет, что запросы к нашему серверному обеспечению исходят от подлинных экземпляров нашего приложения. Не собирает персональные данные.
 
-### 2.3 Push Notifications
-- **Firebase Cloud Messaging** (by Google): Processes device tokens to deliver push notifications. You can opt out of notifications through your device settings at any time.
+### 2.5 Обработка данных ИИ
+- **Языковые модели ИИ**: ваши сообщения в чате и загруженный контент обрабатываются поставщиками языковых моделей ИИ для генерации ответов. Мы не используем ваши беседы для обучения моделей ИИ. Контент, созданный ИИ, может быть неточным, и на него не следует полагаться как на профессиональную консультацию.
 
-### 2.4 App Integrity
-- **Firebase App Check with Play Integrity** (Android) / **App Attest** (iOS): Verifies that requests to our backend come from genuine instances of our app. Does not collect personal data.
-
-### 2.5 AI Processing
-- **AI Language Models**: Your chat messages and uploaded content are processed by AI language model providers to generate responses. We do not use your conversations to train AI models. AI-generated content may be inaccurate and should not be relied upon as professional advice.
-
-### 2.6 Cloud Infrastructure
-- **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
+### 2.6 Облачная инфраструктура
+- **Google Cloud Platform**: наши серверные сервисы работают на инфраструктуре Google Cloud в рамках заключённых соглашений об обработке данных.
 
 ### 2.7 Маркетинг, идентификация посетителей и CRM
 - **Instantly.ai / Leadsy.ai**: Мы используем тег идентификации посетителей Instantly (загружаемый с `r2.leadsy.ai`, который динамически загружает скрипт отслеживания с `tag.trovo-tag.com`, управляемого тем же поставщиком) для идентификации организации, с которой может быть связано посещение сайта (например, компании, привязанной к IP-адресу посетителя). Это используется в нашем исходящем B2B-маркетинге. Для посетителей, обнаруженных в ЕЭЗ, Великобритании или Швейцарии, этот тег загружается **только после того, как вы предоставите маркетинговое согласие** через наш баннер cookie. Для посетителей за пределами этих юрисдикций тег загружается по умолчанию и может быть отключён в любое время через элемент управления «Настройки cookie» в Разделе 10. [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
 - **HubSpot**: Мы используем скрипт отслеживания HubSpot (загружаемый с `js.hs-scripts.com`, который динамически загружает скрипты отслеживания, баннера и сбора форм с `js.hs-analytics.net`, `js.hs-banner.com` и `js.hscollectedforms.net`) для регистрации просмотров страниц, атрибуции эффективности маркетинговых каналов, сбора отправленных форм и связывания активности на сайте с записями контактов в HubSpot CRM, когда вы отправляете форму или бронируете встречу. Для посетителей, обнаруженных в ЕЭЗ, Великобритании или Швейцарии, этот скрипт загружается **только после того, как вы предоставите маркетинговое согласие** через наш баннер cookie. Для посетителей за пределами этих юрисдикций скрипт загружается по умолчанию и может быть отключён в любое время через элемент управления «Настройки cookie» в Разделе 10. [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
+- **Attio**: Мы используем Attio в качестве системы управления взаимоотношениями с клиентами (CRM) для организации деловых контактов и потенциальных клиентов. [Attio Privacy Policy](https://attio.com/privacy)
+- **Синхронизация email бесплатного чат-ассистента**: при подтверждении адреса электронной почты для использования бесплатного чат-ассистента на нашем веб-сайте мы сохраняем этот адрес в качестве контакта в наших CRM-системах HubSpot и Attio, чтобы иметь возможность связаться с вами по поводу наших продуктов. Эта синхронизация происходит на стороне сервера после того, как вы завершите подтверждение по одноразовому коду; это не скрипт отслеживания, и она не зависит от файлов cookie. Мы присваиваем вам статус **маркетингового контакта** (имеющего право на получение маркетинговых писем) **только если вы отметите необязательный флажок согласия на маркетинг** в чате. Если вы оставите его неотмеченным, мы всё равно сохраним запись контакта, но не будем отправлять вам маркетинговые письма. Вы можете отписаться от любых маркетинговых писем или запросить удаление записи о своём контакте в любое время (см. Раздел 9).
 
-## 3. Legal Basis for Processing (GDPR)
+### 2.8 Расширение браузера Divinci Local Inference
 
-We process your personal data based on:
-- **Consent**: For analytics, marketing cookies, and optional integrations
-- **Legitimate Interest**: For app functionality, security, and crash reporting
-- **Contract Performance**: When providing our Services to you
-- **Legal Obligation**: When required by law
+Мы публикуем необязательное расширение для Chrome, **Divinci Local Inference**, которое запускает модель Google Gemma 4 **на вашем собственном устройстве** через WebGPU — его можно использовать как ассистента на странице любого сайта, а также как локальный вариант модели без затрат на API для chat.divinci.app. Вкратце о подходе к конфиденциальности:
 
-## 4. How We Use Your Information
+- **По умолчанию — только локально.** Ваши беседы с моделью на устройстве вычисляются на вашем GPU и не регистрируются, не сохраняются и не передаются расширением. Когда вы не выполнили вход в систему, расширение не отправляет компании Divinci никакой информации о вашей истории просмотра.
+- **Необязательные функции при входе в систему.** Если вы вошли в свою учётную запись Divinci, расширение может: получать ваш базовый профиль (имя, адрес электронной почты, аватар) при входе; пока боковая панель открыта — отправлять сокращённый адрес страницы (источник + путь; параметры запроса и фрагмент удаляются), а также одностороннюю хеш-сумму видимого текста страницы для проверки по публичному веб-индексу знаний Divinci (**содержимое страницы не отправляется**, конфиденциальные сайты пропускаются, и ничего не отправляется, когда панель закрыта); а также — для ответов с учётом контекста страницы или чата в режиме учётной записи — отправлять ваше сообщение в чате компании Divinci. Вы можете отключить эти функции в разделе **Дополнительные настройки → Конфиденциальность**.
+- **Никакой продажи данных, никакой рекламы, никакого межсайтового отслеживания.**
+- **Открытый исходный код.** Расширение распространяется по лицензии Apache-2.0; исходный код доступен по адресу [github.com/Divinci-AI/gemma-gem](https://github.com/Divinci-AI/gemma-gem).
 
-### 4.1 Essential Uses
-- Provide, maintain, and improve our Services
-- Authenticate your identity and manage your account
-- Process your AI chat requests and deliver responses
-- Deliver push notifications you have opted in to
-- Respond to your inquiries and support requests
-- Ensure app and website security and functionality
-- Detect, prevent, and address technical issues
+Полную политику, относящуюся конкретно к расширению, — включая точные сведения о том, что именно отправляет каждая функция, и элементы управления конфиденциальностью — см. в [Политике конфиденциальности Divinci Local Inference](/ru/local-inference-privacy/).
 
-### 4.2 With Your Consent
-- Analytics to improve our website and apps
-- Marketing communications
-- Personalized content recommendations
-- Third-party service integrations (Google Drive, Gmail)
+## 3. Правовые основания обработки данных (GDPR)
 
-## 5. Data Sharing and Disclosure
+Мы обрабатываем ваши персональные данные на основании:
+- **Согласие**: для аналитики, маркетинговых файлов cookie и необязательных интеграций
+- **Законный интерес**: для функциональности приложения, безопасности и отчётов о сбоях
+- **Исполнение договора**: при предоставлении вам наших Сервисов
+- **Юридическое обязательство**: когда это требуется законом
 
-We do not sell your personal data. We may share data with:
+## 4. Как мы используем вашу информацию
 
-### 5.1 Service Providers
-- Cloud hosting and infrastructure providers (with data processing agreements)
-- Authentication service providers
-- Analytics and crash reporting providers (when you consent or as described above)
-- Поставщики маркетинговых услуг и услуг по идентификации B2B-посетителей (при условии согласия в регулируемых юрисдикциях, как описано в Разделе 2.7)
-- AI model providers for processing your requests
-- Customer support tools
+### 4.1 Основные цели использования
+- Предоставление, поддержка и улучшение наших Сервисов
+- Аутентификация вашей личности и управление вашей учётной записью
+- Обработка ваших запросов в чате с ИИ и предоставление ответов
+- Доставка push-уведомлений, на которые вы дали согласие
+- Ответы на ваши запросы и обращения в службу поддержки
+- Обеспечение безопасности и функциональности приложения и веб-сайта
+- Выявление, предотвращение и устранение технических проблем
 
-### 5.2 Legal Requirements
-- When required by law or legal process
-- To protect our rights and safety
-- In connection with business transfers (mergers, acquisitions, or asset sales)
+### 4.2 С вашего согласия
+- Аналитика для улучшения нашего веб-сайта и приложений
+- Маркетинговые коммуникации
+- Персонализированные рекомендации контента
+- Интеграции со сторонними сервисами (Google Drive, Gmail)
 
-## 6. Data Retention
+## 5. Передача и раскрытие данных
 
-- **Account Data**: Retained for as long as your account is active. Upon account deletion, your personal data is deleted within 30 days, except where we are required by law to retain it.
-- **Chat and AI Data**: Conversation history is retained while your account is active and deleted upon account deletion.
-- **Crash Reports**: Retained for 90 days by Firebase Crashlytics.
-- **Analytics Data**: Aggregated analytics data is retained for up to 14 months by Firebase Analytics.
-- **Backup Data**: Backup copies may persist for up to 30 days after deletion.
+Мы не продаём ваши персональные данные. Мы можем передавать данные:
 
-## 7. Data Security
+### 5.1 Поставщикам услуг
+- Поставщикам облачного хостинга и инфраструктуры (в рамках соглашений об обработке данных)
+- Поставщикам услуг аутентификации
+- Поставщикам услуг аналитики и отчётов о сбоях (с вашего согласия или как описано выше)
+- Поставщикам маркетинговых услуг и услуг идентификации B2B-посетителей (при условии согласия в регулируемых юрисдикциях, как описано в Разделе 2.7)
+- Поставщикам моделей ИИ для обработки ваших запросов
+- Инструментам поддержки клиентов
 
-We implement appropriate technical and organizational measures to protect your personal data, including:
-- **Encryption in Transit**: All data transmitted between your device and our servers is encrypted using TLS/SSL.
-- **Encryption at Rest**: Personal data stored on our servers is encrypted at rest.
-- **Access Controls**: Strict access controls limit who within our organization can access personal data.
-- **Regular Audits**: We regularly review our security practices and update them as needed.
+### 5.2 По юридическим требованиям
+- Когда это требуется законом или в рамках судебного разбирательства
+- Для защиты наших прав и безопасности
+- В связи с передачей бизнеса (слияния, поглощения или продажа активов)
 
-While we strive to protect your data, no method of electronic transmission or storage is 100% secure. We cannot guarantee absolute security.
+## 6. Хранение данных
 
-## 8. Children's Privacy
+- **Данные учётной записи**: хранятся до тех пор, пока ваша учётная запись активна. После удаления учётной записи ваши персональные данные удаляются в течение 30 дней, за исключением случаев, когда закон обязывает нас сохранять их.
+- **Данные чата и ИИ**: история переписки хранится, пока ваша учётная запись активна, и удаляется при удалении учётной записи.
+- **Отчёты о сбоях**: хранятся сервисом Firebase Crashlytics в течение 90 дней.
+- **Данные аналитики**: агрегированные данные аналитики хранятся сервисом Firebase Analytics до 14 месяцев.
+- **Резервные данные**: резервные копии могут сохраняться до 30 дней после удаления.
 
-Our Services are not directed to children under the age of 13 (or the applicable age of consent in your jurisdiction). We do not knowingly collect personal data from children under 13. If you are a parent or guardian and believe your child has provided us with personal data, please contact us at privacy@divinci.ai and we will take steps to delete such information promptly.
+## 7. Безопасность данных
 
-## 9. Your Rights
+Мы применяем соответствующие технические и организационные меры для защиты ваших персональных данных, включая:
+- **Шифрование при передаче**: все данные, передаваемые между вашим устройством и нашими серверами, шифруются с использованием TLS/SSL.
+- **Шифрование при хранении**: персональные данные, хранящиеся на наших серверах, шифруются в состоянии покоя.
+- **Контроль доступа**: строгий контроль доступа ограничивает круг сотрудников нашей организации, имеющих доступ к персональным данным.
+- **Регулярные аудиты**: мы регулярно проверяем наши методы обеспечения безопасности и обновляем их по мере необходимости.
 
-### 9.1 GDPR Rights (EEA, UK, Switzerland)
-- **Right of Access**: Request information about your personal data
-- **Data Portability**: Receive your data in a structured, machine-readable format
-- **Rectification**: Correct inaccurate personal data
-- **Erasure**: Request deletion of your personal data
-- **Restriction**: Limit how we process your data
-- **Objection**: Object to processing for direct marketing
-- **Withdraw Consent**: Revoke consent at any time
+Несмотря на то, что мы стремимся защитить ваши данные, ни один метод электронной передачи или хранения не является на 100% безопасным. Мы не можем гарантировать абсолютную безопасность.
 
-To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
+## 8. Конфиденциальность данных детей
 
-### 9.2 CCPA Rights (California Residents)
-- **Right to Know**: What personal information we collect and how it is used
-- **Right to Delete**: Request deletion of your personal information
-- **Right to Opt-Out**: Opt out of the sale of personal information (we do not sell personal information)
-- **Non-Discrimination**: We will not discriminate against you for exercising your rights
+Наши Сервисы не предназначены для детей младше 13 лет (или применимого возраста согласия в вашей юрисдикции). Мы сознательно не собираем персональные данные детей младше 13 лет. Если вы являетесь родителем или законным представителем и считаете, что ваш ребёнок предоставил нам персональные данные, пожалуйста, свяжитесь с нами по адресу privacy@divinci.ai, и мы незамедлительно предпримем меры для удаления такой информации.
 
-### 9.3 Apple App Store (iOS Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- We comply with Apple's App Store Review Guidelines regarding user privacy and data handling
+## 9. Ваши права
 
-### 9.4 Google Play Store (Android Users)
-- You may request deletion of your account and all associated data directly within the app or by contacting us
-- Our Data Safety disclosures in the Google Play Store accurately reflect our data practices as described in this policy
+### 9.1 Права по GDPR (ЕЭЗ, Великобритания, Швейцария)
+- **Право на доступ**: запросить информацию о ваших персональных данных
+- **Право на переносимость данных**: получить свои данные в структурированном, машиночитаемом формате
+- **Право на исправление**: исправить неточные персональные данные
+- **Право на удаление**: запросить удаление ваших персональных данных
+- **Право на ограничение**: ограничить порядок обработки ваших данных
+- **Право на возражение**: возразить против обработки данных в целях прямого маркетинга
+- **Право на отзыв согласия**: отозвать согласие в любое время
 
-## 10. Your Privacy Controls
+Чтобы воспользоваться любым из этих прав, вы можете подать запрос через наш [портал самостоятельной подачи запросов о данных](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg) или написать нам на privacy@divinci.ai. Мы отвечаем в течение 30 дней.
+
+### 9.2 Права по CCPA (для жителей Калифорнии)
+- **Право на информацию**: какую персональную информацию мы собираем и как она используется
+- **Право на удаление**: запросить удаление вашей персональной информации
+- **Право на отказ**: отказаться от продажи персональной информации (мы не продаём персональную информацию)
+- **Недискриминация**: мы не будем допускать дискриминации в отношении вас за осуществление своих прав
+
+### 9.3 Apple App Store (пользователи iOS)
+- Вы можете запросить удаление своей учётной записи и всех связанных данных непосредственно в приложении или связавшись с нами
+- Мы соблюдаем Правила проверки App Store компании Apple в отношении конфиденциальности пользователей и обработки данных
+
+### 9.4 Google Play Store (пользователи Android)
+- Вы можете запросить удаление своей учётной записи и всех связанных данных непосредственно в приложении или связавшись с нами
+- Наши сведения о безопасности данных (Data Safety) в Google Play Store точно отражают наши методы работы с данными, как описано в настоящей политике
+
+## 10. Управление вашей конфиденциальностью
 
 <div class="privacy-controls">
   <button onclick="window.gdprCompliance?.showCookieBanner()" class="privacy-btn">
-    🍪 Cookie Preferences
+    🍪 Настройки cookie
   </button>
 
   <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
@@ -177,7 +184,7 @@ To exercise any of these rights, you can submit a request through our self-servi
   </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
-    ❌ Revoke All Consent
+    ❌ Отозвать всё согласие
   </button>
 </div>
 
@@ -198,6 +205,10 @@ To exercise any of these rights, you can submit a request through our self-servi
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .privacy-btn:hover {
@@ -216,18 +227,18 @@ To exercise any of these rights, you can submit a request through our self-servi
 }
 </style>
 
-## 11. International Data Transfers
+## 11. Международная передача данных
 
-Your data may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place, including Standard Contractual Clauses where required, to protect your data in accordance with this policy and applicable law.
+Ваши данные могут передаваться и обрабатываться в странах, отличных от страны вашего проживания. Мы обеспечиваем наличие соответствующих гарантий, включая, при необходимости, Стандартные договорные оговорки, для защиты ваших данных в соответствии с настоящей политикой и применимым законодательством.
 
-## 12. Changes to This Policy
+## 12. Изменения в настоящей политике
 
-We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on our website and updating the "Last updated" date. Your continued use of our Services after changes constitutes acceptance of the updated policy.
+Мы можем периодически обновлять настоящую Политику конфиденциальности. Мы будем уведомлять вас о существенных изменениях, публикуя обновлённую политику на нашем веб-сайте и обновляя дату «Последнее обновление». Продолжение использования вами наших Сервисов после внесения изменений означает принятие обновлённой политики.
 
-## Contact Information
+## Контактная информация
 
 **Divinci AI**
 Email: privacy@divinci.ai
-Data Protection Officer: dpo@divinci.ai
+Сотрудник по защите данных (DPO): dpo@divinci.ai
 
-For any privacy-related requests or questions, contact us at privacy@divinci.ai with a response time of within 30 days.
+По любым вопросам или запросам, связанным с конфиденциальностью, свяжитесь с нами по адресу privacy@divinci.ai; срок ответа — в течение 30 дней.
