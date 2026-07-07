@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "New Divinci AI Zola Site",
   "scripts": {
-    "build": "npm run build:chat && npm run build:robot && zola build",
+    "build": "npm run build:chat && npm run build:robot && python3 scripts/build-search-index.py && zola build",
     "build:chat": "esbuild static/js/src/divinci-chat-widget.ts --bundle --format=iife --minify --target=es2020 --outfile=static/js/divinci-chat.js",
     "build:robot": "esbuild static/js/src/divinci-robot-launcher.tsx --bundle --format=iife --minify --target=es2020 --jsx=automatic --outfile=static/js/divinci-robot.js",
     "serve": "zola serve --port 1111",

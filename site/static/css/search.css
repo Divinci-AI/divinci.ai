@@ -1,0 +1,143 @@
+/* Site-wide search: header trigger + Cmd/Ctrl+K modal + blog inline filter.
+   Matches the Divinci AI design system (Source Sans 3 UI / Fraunces headings,
+   Renaissance forest + parchment palette — see static/css/variables.css). */
+
+/* ── Header search trigger ───────────────────────────────────────────── */
+.site-search-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: var(--color-neutral-primary, #2d3c34);
+  background: rgba(248, 244, 240, 0.7);
+  border: 1px solid var(--color-border-accent, rgba(184, 160, 128, 0.35));
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.site-search-trigger:hover,
+.site-search-trigger:focus-visible {
+  background: rgba(232, 221, 199, 0.9);
+  border-color: var(--color-accent-secondary, #8b7659);
+  outline: none;
+}
+.site-search-trigger svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.site-search-trigger .search-trigger-label {
+  line-height: 1;
+}
+.site-search-trigger kbd {
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: 0.7rem;
+  opacity: 0.6;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  padding: 0 0.3rem;
+  line-height: 1.4;
+}
+
+/* ── Modal ───────────────────────────────────────────────────────────── */
+.search-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  background: rgba(20, 28, 24, 0.45);
+  backdrop-filter: blur(2px);
+}
+.search-modal.open {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12vh;
+}
+.search-modal-inner {
+  width: min(640px, 92vw);
+  background: var(--color-surface-light, #faf8f5);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+}
+.search-modal input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--color-border-accent, rgba(184, 160, 128, 0.3));
+  padding: 1rem 1.2rem;
+  font-size: 1.05rem;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  color: var(--color-neutral-primary, #1e3a2b);
+  outline: none;
+  background: transparent;
+}
+.search-modal input::placeholder {
+  color: var(--color-text-tertiary, #999);
+}
+.search-results {
+  max-height: 60vh;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem;
+}
+.search-results li a {
+  display: block;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--color-neutral-dark, #1e3a2b);
+}
+.search-results li a:hover,
+.search-results li.active a {
+  background: var(--color-neutral-inverse-10, rgba(45, 90, 79, 0.1));
+}
+.search-results .r-title {
+  font-weight: 600;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.02rem;
+}
+.search-results .r-excerpt {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary, #4a5a50);
+  margin-top: 0.2rem;
+}
+.search-results .r-section {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent-secondary, #8b7659);
+}
+.search-empty {
+  padding: 1rem 1.2rem;
+  color: var(--color-text-tertiary, #6b5d4f);
+}
+
+/* ── Blog inline filter ──────────────────────────────────────────────── */
+.blog-search {
+  margin: 0 auto 2rem;
+  max-width: 520px;
+}
+.blog-search input {
+  width: 100%;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--color-border-medium, #e0e0e0);
+  border-radius: var(--radius-medium, 8px);
+  background: var(--color-surface-light, #fff);
+  color: var(--color-neutral-primary, #2d3c34);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.blog-search input::placeholder {
+  color: var(--color-text-tertiary, #999);
+}
+.blog-search input:focus {
+  border-color: var(--color-accent-secondary, #8b7659);
+  box-shadow: 0 0 0 3px var(--color-neutral-inverse-10, rgba(45, 90, 79, 0.1));
+}

@@ -34,7 +34,7 @@
   },
   "compatibility_flags": ["nodejs_compat"],
   "build": {
-    "command": "zola build"
+    "command": "python3 scripts/build-search-index.py && zola build"
   },
   "limits": {
     "cpu_ms": 50
@@ -55,7 +55,7 @@
       ],
       "workers_dev": true,
       "build": {
-        "command": "zola build --base-url https://dev.divinci.ai"
+        "command": "python3 scripts/build-search-index.py && zola build --base-url https://dev.divinci.ai"
       }
     },
     "staging": {
@@ -71,7 +71,7 @@
       ],
       "workers_dev": true,
       "build": {
-        "command": "zola build --base-url https://staging.divinci.ai"
+        "command": "python3 scripts/build-search-index.py && zola build --base-url https://staging.divinci.ai"
       }
     }
   }

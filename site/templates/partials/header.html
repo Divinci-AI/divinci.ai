@@ -17,6 +17,10 @@
     <!-- Mobile-first navigation layout -->
     <div class="header-actions">
         {% include "language-switcher.html" %}
+        <button class="site-search-trigger" id="site-search-trigger" type="button" aria-label="Search site" aria-keyshortcuts="Meta+K Control+K">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <span class="search-trigger-label">Search</span><kbd>⌘K</kbd>
+        </button>
         <a href="https://app.divinci.app/signup" class="cta-button mobile-demo-button" target="_blank" rel="noopener">{{ translations.navigation.sign_up | default(value="Sign up") }}</a>
     </div>
     
@@ -69,3 +73,14 @@ document.querySelector('.hamburger-menu')?.addEventListener('click', function() 
     this.classList.toggle('is-active');
 });
 </script>
+
+{# ── Site-wide search: Cmd/Ctrl+K command-palette modal ── #}
+<div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-label="Site search">
+    <div class="search-modal-inner">
+        <input type="search" id="search-input" placeholder="Search the site…" aria-label="Search query" autocomplete="off">
+        <ul class="search-results" id="search-results"></ul>
+        <div class="search-empty" id="search-empty" hidden>No results found.</div>
+    </div>
+</div>
+<script src="/js/vendor/fuse.min.js" defer></script>
+<script src="/js/search.js" defer></script>
