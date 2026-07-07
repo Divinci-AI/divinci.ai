@@ -193,15 +193,34 @@ class DivinciChatWidget {
   private panel!: HTMLDivElement;
   private bubble!: HTMLButtonElement;
   private body!: HTMLDivElement;
-  private messages: Array<{ role: "user" | "assistant"; text: string; pending?: boolean; rating?: -1 | 1; ratingDone?: boolean; isError?: boolean }> = [];
+  private messages: Array<{ role: "user" | "assistant"; text: string; pending?: boolean; rating?: -1 | 1; ratingDone?: boolean; isError?: boolean; ratingEmoji?: string }> = [];
 
   constructor(cfg: WidgetConfig) {
     this.cfg = cfg;
     this.client = new DivinciClient({ releaseId: cfg.releaseId, baseUrl: cfg.apiBase });
+    
+    // Load persisted chat history
+    const stored = localStorage.getItem("divinci-chat-history:" + cfg.releaseId);
+    if (stored) {
+      try {
+        this.messages = JSON.parse(stored);
+      } catch {
+        this.messages = [];
+      }
+    }
+    
     // Returning visitor: skip straight to chat if a verification token persists.
     if (this.client.freeChatGate.loadStoredToken(this.cfg.releaseId)) this.view = "chat";
     this.mount();
     this.loadGateMode();
+  }
+
+  private saveMessages(): void {
+    try {
+      localStorage.setItem("divinci-chat-history:" + this.cfg.releaseId, JSON.stringify(this.messages));
+    } catch {
+      // ignore full storage
+    }
   }
 
   /**
@@ -228,7 +247,9 @@ class DivinciChatWidget {
     }
     if (this.view !== "loading") return;
     if (this.mode === "captcha-only") {
-      this.messages = [];
+      if (!this.messages || this.messages.length === 0) {
+        this.messages = [];
+      }
       this.setView("chat");
       this.ensureTurnstileRendered();
     } else {
@@ -272,10 +293,74 @@ class DivinciChatWidget {
 
     this.panel = el("div", "dvc-panel dvc-hidden");
     const header = el("div", "dvc-header", `<span>Ask Divinci</span>`);
+    const headerActions = el("div", "dvc-header-actions");
+    
+    // Handoff to Web App
+    const handoffBtn = el("button", "dvc-clear", "↗️");
+    handoffBtn.setAttribute("aria-label", "Continue in app");
+    handoffBtn.title = "Continue this conversation in the full Divinci web app";
+    handoffBtn.addEventListener("click", async () => {
+      if (handoffBtn.disabled) return;
+      if (this.messages.length === 0) {
+        alert("Start a conversation first before continuing in the app!");
+        return;
+      }
+      const orig = handoffBtn.textContent;
+      handoffBtn.textContent = "⏳";
+      handoffBtn.disabled = true;
+      const appTab = window.open("about:blank", "_blank");
+      try {
+        const ns = this.client.freeChatGate;
+        const { transcript, signiture } = ns.getState();
+        const res = await fetch(`${this.cfg.apiBase.replace(/\/+$/, "")}/ai-chat/handoff`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ releaseId: this.cfg.releaseId, prevSigniture: signiture, transcript }),
+        });
+        if (!res.ok) throw new Error("handoff failed");
+        const { token } = await res.json() as { token?: string };
+        if (!token) throw new Error("no token");
+        
+        const webAppUrl = this.cfg.apiBase.includes("stage") 
+          ? "https://chat.stage.divinci.app" 
+          : "https://chat.divinci.app";
+          
+        const url = `${webAppUrl}/ai-chat?divinciHandoff=${encodeURIComponent(token)}`;
+        if (appTab) appTab.location.href = url;
+        else window.open(url, "_blank", "noopener,noreferrer");
+        handoffBtn.textContent = "✅";
+      } catch (err) {
+        if (appTab) appTab.close();
+        handoffBtn.textContent = "❌";
+        console.error("Handoff failed:", err);
+      } finally {
+        setTimeout(() => {
+          handoffBtn.textContent = "↗️";
+          handoffBtn.disabled = false;
+        }, 2000);
+      }
+    });
+
+    // Clear / Reset
+    const clearBtn = el("button", "dvc-clear", "⧇");
+    clearBtn.setAttribute("aria-label", "Clear conversation");
+    clearBtn.title = "Start over";
+    clearBtn.addEventListener("click", () => {
+      if (confirm("Clear this conversation history?")) {
+        this.messages = [];
+        localStorage.removeItem("divinci-chat-history:" + this.cfg.releaseId);
+        this.client.freeChatGate.reset();
+        this.setView("chat");
+        this.render();
+      }
+    });
+
     const close = el("button", "dvc-close", "×");
     close.setAttribute("aria-label", "Close chat");
     close.addEventListener("click", () => this.toggle(false));
-    header.appendChild(close);
+    
+    headerActions.append(handoffBtn, clearBtn, close);
+    header.appendChild(headerActions);
 
     this.body = el("div", "dvc-body");
     this.tsMount = el("div", "dvc-turnstile-invisible");
@@ -530,6 +615,7 @@ class DivinciChatWidget {
       input.value = "";
       this.messages.push({ role: "user", text: prompt });
       this.messages.push({ role: "assistant", text: "", pending: true });
+      this.saveMessages();
       this.render();
       try {
         // captcha-only mode: the invisible widget warmed up when the panel
@@ -549,18 +635,41 @@ class DivinciChatWidget {
         const { reply, remaining } = await this.client.freeChatGate.send(prompt);
         this.messages[this.messages.length - 1] = { role: "assistant", text: reply };
         this.remaining = remaining;
+        this.saveMessages();
         this.render();
         // Lock input in place after the reply renders, rather than replacing
         // the whole panel — the conversation just had stays on screen.
         if (remaining <= 0) setTimeout(() => { this.exhausted = true; this.render(); }, 1500);
       } catch (e) {
         this.messages.pop(); // drop the "…" placeholder
+        const status = (e as { status?: number })?.status;
+        if (status === 401) {
+          this.client.freeChatGate.reset();
+          if (this.mode === "captcha-only") {
+            try {
+              this.messages.push({ role: "assistant", text: "", pending: true });
+              this.render();
+              await this.ensureGateStarted();
+              const { reply, remaining } = await this.client.freeChatGate.send(prompt);
+              this.messages[this.messages.length - 1] = { role: "assistant", text: reply };
+              this.remaining = remaining;
+              this.saveMessages();
+              this.render();
+              return;
+            } catch (retryError) {
+              this.messages.pop();
+              this.saveMessages();
+              e = retryError;
+            }
+          }
+        }
         if (this.isQuota(e)) { this.exhausted = true; this.render(); return; }
         if (this.looksLikeBotRejection(e)) { this.setView("blocked"); return; }
         const msg = e instanceof Error && e.message === "turnstile-pending"
           ? "Still verifying — please try sending that again in a moment."
           : this.errText(e, "Something went wrong. Please try again.");
         this.messages.push({ role: "assistant", text: msg, isError: true });
+        this.saveMessages();
         this.render();
       }
     };
@@ -576,10 +685,23 @@ class DivinciChatWidget {
    * optional "what was wrong?" box and submits sentiment -1 + the text.
    */
   private buildRating(
-    m: { rating?: -1 | 1; ratingDone?: boolean },
+    m: { text: string; rating?: -1 | 1; ratingDone?: boolean; ratingEmoji?: string },
     gateIdx: number,
   ): HTMLElement {
     const row = el("div", "dvc-rating");
+
+    // Render active emoji reaction chip if present
+    if (m.ratingEmoji) {
+      const chip = el("span", "dvc-emoji-chip", m.ratingEmoji);
+      chip.title = "Click to remove reaction";
+      chip.addEventListener("click", () => {
+        delete m.ratingEmoji;
+        this.saveMessages();
+        this.render();
+      });
+      row.appendChild(chip);
+    }
+
     if (m.ratingDone) {
       const done = el("span", "dvc-rating-thanks");
       done.textContent = "Thanks for your feedback";
@@ -592,17 +714,72 @@ class DivinciChatWidget {
     down.type = "button";
     row.append(up, down);
 
+    // COPY MESSAGE CONTENT BUTTON
+    const copy = el("button", "dvc-thumb", "📋");
+    copy.type = "button";
+    copy.title = "Copy message";
+    copy.addEventListener("click", () => {
+      navigator.clipboard.writeText(m.text).then(() => {
+        copy.textContent = "✅";
+        setTimeout(() => { copy.textContent = "📋"; }, 1500);
+      });
+    });
+
+    // READ ALOUD (TTS) BUTTON
+    const speak = el("button", "dvc-thumb", "🔊");
+    speak.type = "button";
+    speak.title = "Read aloud";
+    speak.addEventListener("click", () => {
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        speak.textContent = "🔊";
+        return;
+      }
+      speak.textContent = "🛑";
+      const utterance = new SpeechSynthesisUtterance(m.text);
+      utterance.onend = () => { speak.textContent = "🔊"; };
+      utterance.onerror = () => { speak.textContent = "🔊"; };
+      window.speechSynthesis.speak(utterance);
+    });
+
+    // EMOJI REACTION POPUP BUTTON
+    const react = el("button", "dvc-thumb", "😊");
+    react.type = "button";
+    react.title = "React with emoji";
+    react.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      const existingPop = row.querySelector(".dvc-emoji-pop");
+      if (existingPop) {
+        existingPop.remove();
+        return;
+      }
+      const pop = el("div", "dvc-emoji-pop");
+      const emojis = ["❤️", "👏", "🔥", "💡", "🎉"];
+      for (const emoji of emojis) {
+        const btn = el("button", "dvc-emoji-pop-btn", emoji);
+        btn.type = "button";
+        btn.addEventListener("click", () => {
+          m.ratingEmoji = emoji;
+          this.saveMessages();
+          pop.remove();
+          this.render();
+        });
+        pop.appendChild(btn);
+      }
+      row.appendChild(pop);
+    });
+
+    row.append(copy, speak, react);
+
     up.addEventListener("click", () => {
-      // Positive votes are a server-side no-op for the gate (negative-only),
-      // so this is a local acknowledgement only.
       m.rating = 1;
+      this.saveMessages();
       this.render();
     });
 
     down.addEventListener("click", () => {
       m.rating = -1;
-      // Reveal the optional box inline (no full re-render, so typed text isn't
-      // lost). Idempotent — a second click won't stack boxes.
+      this.saveMessages();
       if (row.querySelector(".dvc-feedback-box")) return;
       down.classList.add("dvc-thumb-on");
       up.classList.remove("dvc-thumb-on");
@@ -624,6 +801,7 @@ class DivinciChatWidget {
             feedback: ta.value.trim() || undefined,
           });
           m.ratingDone = true;
+          this.saveMessages();
           this.render();
         } catch {
           submitBtn.disabled = false;

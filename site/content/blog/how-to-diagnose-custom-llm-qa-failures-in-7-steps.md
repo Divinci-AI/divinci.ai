@@ -7,8 +7,9 @@ template = "blog-post.html"
 [taxonomies]
 categories = ["Product"]
 tags = ["QA", "Diagnostics", "Postmortems", "LLM Ops", "Evaluation", "Debugging"]
-
 [extra]
+math = true
+pinned = true
 author = "Mike Mooring"
 author_avatar = "images/Michael-Mooring.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-diagnose-custom-llm-qa-failures-in-7-steps-veo31.webm"

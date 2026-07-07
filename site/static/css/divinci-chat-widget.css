@@ -1,7 +1,7 @@
 /* Divinci homepage free-chat widget — floating bubble + panel.
    Uses the site's brand tokens (variables.css) so it matches divinci.ai. */
 
-.dvc-root { position: fixed; right: 20px; bottom: 20px; z-index: 9999;
+.dvc-root { position: fixed; right: 20px; bottom: 20px; z-index: 100002;
   font-family: "Source Sans 3", system-ui, -apple-system, sans-serif; }
 
 .dvc-bubble {
@@ -9,15 +9,24 @@
   font-size: 24px; line-height: 1; color: #fff;
   background: var(--color-neutral-inverse, #2d5a4f);
   box-shadow: 0 6px 20px rgba(30, 58, 43, 0.35);
-  transition: transform .15s ease, background .15s ease;
+  transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1), background .15s ease;
 }
 .dvc-bubble:hover { transform: translateY(-2px); background: var(--color-accent-tertiary, #3d6b4f); }
-.dvc-bubble-open { background: var(--color-accent-secondary, #8b7659); }
+.dvc-bubble-open {
+  background: var(--color-accent-secondary, #8b7659);
+  transform: translateY(-46px) !important;
+  z-index: 10001;
+}
+
+.dvc-bubble-robot.dvc-bubble-open {
+  transform: translateY(-52px) !important;
+}
 
 /* 3D robot launcher upgrade (capability-gated; emoji is the fallback).
    font-size: 0 hides the emoji glyph while the WebGL canvas fills the bubble;
    removing the class restores it instantly on any failure. */
 .dvc-bubble-robot {
+  transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1), background .15s ease;
   font-size: 0;
   width: 76px; height: 76px;
   position: relative;
@@ -53,14 +62,14 @@
 .dvc-bubble-robot-holder canvas { width: 100% !important; height: 100% !important; }
 /* Taller launcher → lift the panel so it clears the robot bubble.
    :has() is safe here: the robot only mounts on modern engines anyway. */
-.dvc-root:has(.dvc-bubble-robot) .dvc-panel { bottom: 92px; }
+.dvc-root:has(.dvc-bubble-robot) .dvc-panel { bottom: 0; }
 
 .dvc-panel {
-  position: absolute; right: 0; bottom: 72px; width: 360px; max-width: calc(100vw - 40px);
-  height: 480px; max-height: calc(100vh - 120px); display: flex; flex-direction: column;
+  position: fixed; right: 0; top: 100px; bottom: 0; width: 380px; max-width: 100vw;
+  display: flex; flex-direction: column;
   background: var(--color-bg-primary, #f8f4f0);
-  border: 1px solid var(--color-bg-accent, #e8ddc7); border-radius: 14px; overflow: hidden;
-  box-shadow: 0 12px 40px rgba(30, 58, 43, 0.28);
+  border-left: 1px solid var(--color-bg-accent, #e8ddc7); border-radius: 14px 0 0 0; overflow: hidden;
+  box-shadow: -5px 0 35px rgba(30, 58, 43, 0.15);
 }
 .dvc-hidden { display: none; }
 
@@ -121,6 +130,10 @@
 .dvc-msg.dvc-md { white-space: normal; }
 .dvc-md > :first-child { margin-top: 0; }
 .dvc-md > :last-child { margin-bottom: 0; }
+.dvc-msg p, .dvc-msg li, .dvc-msg span, .dvc-msg ul, .dvc-msg ol {
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+}
 .dvc-md p { margin: 0 0 8px; }
 .dvc-md h1, .dvc-md h2, .dvc-md h3, .dvc-md h4, .dvc-md h5, .dvc-md h6 {
   margin: 10px 0 5px; font-size: 14px; font-weight: 700; line-height: 1.3;
@@ -154,7 +167,15 @@
 }
 
 @media (max-width: 480px) {
-  .dvc-panel { width: calc(100vw - 24px); right: -4px; height: 70vh; }
+  .dvc-panel {
+    width: calc(100vw - 24px); right: -4px;
+    top: auto; bottom: 92px; height: 60vh; max-height: 60vh;
+    border: 1px solid var(--color-bg-accent, #e8ddc7);
+    border-radius: 14px;
+  }
+  .dvc-bubble-open, .dvc-bubble-robot.dvc-bubble-open {
+    transform: none !important;
+  }
 }
 
 /* ── Message rating (thumbs up/down + feedback) ─────────────────────────── */
@@ -180,3 +201,25 @@
 }
 .dvc-feedback-submit:hover { background: var(--color-accent-tertiary, #3d6b4f); }
 .dvc-feedback-submit:disabled { opacity: .6; cursor: default; }
+
+/* ── Header actions & utility buttons ────────────────────────── */
+.dvc-header-actions { display: flex; align-items: center; gap: 8px; }
+.dvc-clear { background: none; border: none; color: #fff; font-size: 16px; cursor: pointer; opacity: 0.7; padding: 0 4px; transition: opacity 0.15s; }
+.dvc-clear:hover { opacity: 1; }
+
+.dvc-emoji-chip {
+  background: var(--color-bg-accent, #e8ddc7); border: 1px solid var(--color-neutral-inverse, #2d5a4f);
+  padding: 2px 6px; border-radius: 12px; font-size: 13px; line-height: 1.4; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  margin-right: 4px;
+}
+.dvc-emoji-chip:hover { background: #fff; }
+
+.dvc-emoji-pop {
+  position: absolute; background: #fff; border: 1px solid var(--color-bg-accent, #e8ddc7);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); border-radius: 8px; padding: 4px; display: flex; gap: 4px;
+  z-index: 10002; transform: translateY(-40px);
+}
+.dvc-emoji-pop-btn {
+  background: none; border: none; font-size: 16px; cursor: pointer; padding: 4px; border-radius: 4px; transition: background 0.15s;
+}
+.dvc-emoji-pop-btn:hover { background: var(--color-bg-accent, #e8ddc7); }

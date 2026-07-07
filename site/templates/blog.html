@@ -140,24 +140,20 @@
                         {% endif %}
                     {% endfor %}
 
-                    {# Reorder so pinned posts surface near the top while
-                       keeping the newest post in the featured slot:
-                       [newest, ...pinned (excluding newest), ...non-pinned (excluding newest)]
-                       Date-desc order is preserved within each group. #}
+                    {# Reorder so pinned posts own the featured slot on page 1
+                       and otherwise stay near the top. Date-desc order is
+                       preserved within each group. #}
                     {% if all_visible %}
-                        {% set newest_post = all_visible | first %}
-                        {% set newest_permalink = newest_post.permalink %}
-                        {% set_global ordered_posts = [newest_post] %}
+                        {% set_global pinned_posts = [] %}
+                        {% set_global non_pinned_posts = [] %}
                         {% for post in all_visible %}
-                            {% if post.extra.pinned and post.permalink != newest_permalink %}
-                                {% set_global ordered_posts = ordered_posts | concat(with=post) %}
+                            {% if post.extra.pinned %}
+                                {% set_global pinned_posts = pinned_posts | concat(with=post) %}
+                            {% else %}
+                                {% set_global non_pinned_posts = non_pinned_posts | concat(with=post) %}
                             {% endif %}
                         {% endfor %}
-                        {% for post in all_visible %}
-                            {% if not post.extra.pinned and post.permalink != newest_permalink %}
-                                {% set_global ordered_posts = ordered_posts | concat(with=post) %}
-                            {% endif %}
-                        {% endfor %}
+                        {% set_global ordered_posts = pinned_posts | concat(with=non_pinned_posts) %}
 
                         {# Slice ordered_posts to the current paginator page.
                            Use the section's configured paginate_by so the
