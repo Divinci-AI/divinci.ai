@@ -117,10 +117,6 @@
 <!-- Blog Content Section -->
 <section class="blog-section">
     <div class="container">
-        <!-- Inline blog filter (live narrows the post grid below) -->
-        <div class="blog-search">
-            <input type="search" id="blog-search-input" placeholder="Filter posts…" aria-label="Filter blog posts">
-        </div>
         <div class="blog-main-full">
             <div class="blog-container-full">
                 {% if paginator.pages %}
@@ -1306,22 +1302,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
-</script>
-
-<script>
-// Blog inline filter: narrow visible post cards as the user types.
-document.addEventListener('DOMContentLoaded', function () {
-  var input = document.getElementById('blog-search-input');
-  if (!input) return;
-  input.addEventListener('input', function (e) {
-    var q = (e.target.value || '').toLowerCase().trim();
-    var cards = document.querySelectorAll('.post-card');
-    cards.forEach(function (c) {
-      var text = (c.textContent || '').toLowerCase();
-      c.style.display = (!q || text.indexOf(q) !== -1) ? '' : 'none';
-    });
-  });
 });
 </script>
 {% endblock %}
