@@ -45,7 +45,7 @@
 .search-modal {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 100002;
   display: none;
   background: rgba(20, 28, 24, 0.45);
   backdrop-filter: blur(2px);
