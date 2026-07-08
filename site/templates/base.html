@@ -534,7 +534,8 @@
               <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}" aria-haspopup="true" aria-expanded="false">Documentation <span class="dropdown-arrow">▾</span></a>
               <div class="dropdown-menu">
                 <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">Overview</a>
-                <a href="{% if current_lang == 'en' %}/tutorials/{% else %}/{{ current_lang }}/tutorials/{% endif %}">Tutorials</a>
+                {# Tutorials link removed from primary nav until each card is a
+                   complete walkthrough — the page stays live at /tutorials/. #}
                 <a href="{% if current_lang == 'en' %}/api/{% else %}/{{ current_lang }}/api/{% endif %}">API</a>
                 <a href="https://sdk.divinci.ai" target="_blank" rel="noopener">SDK</a>
                 <a href="{% if current_lang == 'en' %}/cli/{% else %}/{{ current_lang }}/cli/{% endif %}">CLI</a>
