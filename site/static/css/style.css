@@ -5410,7 +5410,12 @@ body:not(.homepage) .privacy-settings-link:hover {
   top: 0;
   height: 100%;
   width: auto;                     /* sized by content, not a fixed fraction */
-  max-width: 62%;
+  /* Ceiling only — width:auto shrink-to-fits its actual content (nav labels /
+     Search+Sign up+Language are both comfortably under 45% at any supported
+     viewport), so the two islands don't reach 62% simultaneously in
+     practice. Kept well under 50% each so even an unusually long translated
+     label can't make them visually overlap in the center. */
+  max-width: 45%;
   display: flex;
   align-items: center;
   transition: opacity 0.28s ease, background 0.4s ease,
@@ -5777,6 +5782,12 @@ body:not(.homepage) .privacy-settings-link:hover {
     position: absolute;
     top: 0;
     height: 100%;
+    width: auto;
+    max-width: 78%;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    padding-left: 0.5rem;
+    padding-right: 0.85rem;
   }
   .site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-search,
   .site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-signup,
