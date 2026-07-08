@@ -5409,7 +5409,7 @@ body:not(.homepage) .privacy-settings-link:hover {
   position: absolute;
   top: 0;
   height: 100%;
-  width: calc(50% - 60px);          /* 120px central drape gap */
+  width: 30%;                      /* ~30% wide each; ~40% central gap */
   display: flex;
   align-items: center;
   opacity: 0;
@@ -5421,14 +5421,15 @@ body:not(.homepage) .privacy-settings-link:hover {
 .site-research-banner-glass-left {
   left: 0;
   justify-content: flex-start;
-  gap: 0.6rem;
+  gap: 0.5rem;
   padding-left: 1.5rem;
   border-bottom-right-radius: 18px; /* inner-facing corner beveled */
 }
 .site-research-banner-glass-right {
   right: 0;
-  justify-content: flex-start;
-  gap: 0.6rem;
+  justify-content: flex-start;      /* content sits at the island's left edge */
+  gap: 0.5rem;
+  padding-left: 0.75rem;            /* language sits just outside, to the left */
   padding-right: 1.5rem;
   border-bottom-left-radius: 18px;  /* inner-facing corner beveled */
 }
@@ -5608,6 +5609,33 @@ body:not(.homepage) .privacy-settings-link:hover {
   cursor: pointer;
 }
 .scrolled-search:hover { background: rgba(255, 255, 255, 0.28); }
+/* ── Legible text on the frosted-glass header ──
+   The glass is light/translucent, so every label must be DARK (deep blue/green),
+   not the light-blue used on the solid-blue top bar. The glass state now fires
+   the instant you scroll (is-scrolled + is-glass in the same frame), so this
+   scope is always active once scrolled — no light-on-light text. */
+.site-research-banner.is-glass .scrolled-logo,
+.site-research-banner.is-glass .scrolled-logo-text,
+.site-research-banner.is-glass .banner-nav-list > li > a,
+.site-research-banner.is-glass .banner-nav-list > li > a .dropdown-arrow {
+  color: #143b5e;                 /* deep blue — reads on frosted glass */
+}
+.site-research-banner.is-glass .banner-nav-list > li > a:hover {
+  background: rgba(20, 59, 94, 0.10);
+  color: #0f2d48;
+}
+/* Search pill: dark icon/text on a translucent light fill */
+.site-research-banner.is-glass .scrolled-search {
+  color: #143b5e;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(20, 59, 94, 0.22);
+}
+.site-research-banner.is-glass .scrolled-search:hover { background: rgba(255, 255, 255, 0.7); }
+/* Language picker plain text -> dark on glass */
+.site-research-banner.is-glass .language-switcher-current {
+  color: #143b5e;
+}
+.site-research-banner.is-glass .language-switcher-current:hover { color: #0f2d48; }
 /* Scoped (.site-research-banner .scrolled-signup) so it beats the banner's
    generic `.site-research-banner a { color: #a8d8f5 }` rule — otherwise the
    Sign up text renders light-blue on the near-white pill (illegible). */
@@ -5651,12 +5679,14 @@ body:not(.homepage) .privacy-settings-link:hover {
   margin-left: 0;
   z-index: 100003; /* above the glass sections so it's always clickable */
 }
-/* In the draped state, float the selector into the central gap just LEFT of
-   the right island's inner edge (so it reads as part of the right-hand group:
-   language · search · sign up), matching the design. */
+/* In the draped/glass state, float the selector into the central gap just
+   LEFT of the right island's left edge. The right island (30% wide, at
+   right:0) has its left edge at right:70%; placing the language's right edge
+   at right:30% sits it flush against that inner edge, so the right-hand cluster
+   reads: [language] · [30% right island: search + sign up], all flush right. */
 .site-research-banner.is-scrolled .language-switcher,
 .site-research-banner.is-glass .language-switcher {
-  right: calc(50% - 36px);
+  right: calc(30% + 0.4rem);
 }
 /* Plain-text look — NOT a button */
 .site-research-banner .language-switcher-current {
