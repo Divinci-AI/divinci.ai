@@ -5383,58 +5383,65 @@ body:not(.homepage) .privacy-settings-link:hover {
               border-color 0.4s ease, box-shadow 0.4s ease, border-radius 0.4s ease;
 }
 
-/* Apple-glass state: translucent frosted glass over page content. Applied by
-   JS after the scroll transition finishes, so the user sees blue -> glass. */
-.site-research-banner.is-glass {
-  background: rgba(255, 255, 255, 0.14);
-  -webkit-backdrop-filter: blur(18px) saturate(170%);
-  backdrop-filter: blur(18px) saturate(170%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: 0 8px 32px rgba(20, 40, 64, 0.18);
-  /* Read as a floating card: inset 8px from the screen edges and round the
-     bottom corners so the two-section split reads clearly. */
-  top: 8px;
-  left: 8px;
-  right: 8px;
-  border-radius: 0 0 18px 18px;
+/* ── Draped / glass state ──
+   On scroll the solid blue bar disappears and the banner SPLITS into two
+   separate, equal floating glass "islands" (left + right) like drapes
+   opening, with a central gap between them. Each island is flush to the
+   screen edge (no outer margin) and is its OWN card — only the inner-facing
+   bottom corner is beveled (left: bottom-right; right: bottom-left). The
+   islands start blue, then frost over to Apple-glass once scroll settles. */
+.site-research-banner.is-scrolled {
+  background: transparent;          /* the blue bar is gone; islands take over */
+  border-bottom-color: transparent;
 }
-
-/* ── Two-section split in the scrolled/glass state ──
-   Left section: rounded bottom-RIGHT corner. Right section: rounded bottom-LEFT. */
 .site-research-banner-glass-left,
 .site-research-banner-glass-right {
   position: absolute;
   top: 0;
   height: 100%;
+  width: calc(50% - 60px);          /* 120px central drape gap */
   display: flex;
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.28s ease;
+  transition: opacity 0.28s ease, background 0.4s ease,
+              backdrop-filter 0.4s ease, box-shadow 0.4s ease,
+              border-color 0.4s ease, border-radius 0.4s ease;
 }
 .site-research-banner-glass-left {
   left: 0;
+  justify-content: flex-start;
+  gap: 0.6rem;
   padding-left: 1.5rem;
-  border-bottom-right-radius: 18px;
+  border-bottom-right-radius: 18px; /* inner-facing corner beveled */
 }
 .site-research-banner-glass-right {
   right: 0;
+  justify-content: flex-start;
+  gap: 0.6rem;
   padding-right: 1.5rem;
-  border-bottom-left-radius: 18px;
+  border-bottom-left-radius: 18px;  /* inner-facing corner beveled */
 }
-/* In the glass state the two sections fade in and carry the rounded corners. */
+/* Scrolled: drapes have opened — two solid BLUE islands. */
+.site-research-banner.is-scrolled .site-research-banner-glass-left,
+.site-research-banner.is-scrolled .site-research-banner-glass-right {
+  opacity: 1;
+  pointer-events: auto;
+  background: linear-gradient(90deg, #2d4d6a 0%, #3d6888 100%);
+}
+/* Settled: the islands frost over to Apple-glass, each its own floating card. */
 .site-research-banner.is-glass .site-research-banner-glass-left,
 .site-research-banner.is-glass .site-research-banner-glass-right {
   opacity: 1;
   pointer-events: auto;
+  background: rgba(255, 255, 255, 0.14);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(18px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 8px 32px rgba(20, 40, 64, 0.18);
 }
-/* Very subtle separator seam between the two rounded corners. */
-.site-research-banner.is-glass .site-research-banner-glass-left {
-  background: rgba(255, 255, 255, 0.05);
-}
-.site-research-banner.is-glass .site-research-banner-glass-right {
-  background: rgba(255, 255, 255, 0.02);
-}
+/* keep the logo + Search together at the inner edge of the left island */
+.site-research-banner-glass-left .scrolled-search { margin-left: 0; }
 
 .site-research-banner-inner {
   max-width: 1400px;
@@ -5500,22 +5507,7 @@ body:not(.homepage) .privacy-settings-link:hover {
 
 @keyframes site-research-banner-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(122, 184, 224, 0.55); }
-  50%      { box-shadow: 0 0 8px rgba(122, 184, 224, 0); }
-}
-
-/* ── Glass two-section content (logo + Search | Sign up) ──
-   The single set of compact controls. Visible as soon as the page scrolls
-   (is-scrolled); the frosted card + rounded corners arrive with is-glass. */
-.site-research-banner-glass-left,
-.site-research-banner-glass-right {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.28s ease;
-}
-.site-research-banner.is-scrolled .site-research-banner-glass-left,
-.site-research-banner.is-scrolled .site-research-banner-glass-right {
-  opacity: 1;
-  pointer-events: auto;
+  box-shadow: 0 0 8px rgba(122, 184, 224, 0);
 }
 
 .scrolled-logo {
@@ -5590,9 +5582,11 @@ body:not(.homepage) .privacy-settings-link:hover {
   margin-left: 0;
   z-index: 100003; /* above the glass sections so it's always clickable */
 }
-/* When the banner morphs to glass it's inset 8px from the right edge. */
+/* In the draped state, float the selector into the central gap at the inner
+   edge of the right island (just left of "Sign up"), matching the design. */
+.site-research-banner.is-scrolled .language-switcher,
 .site-research-banner.is-glass .language-switcher {
-  right: calc(1.5rem + 8px);
+  right: calc(50% + 60px + 1.5rem);
 }
 /* Plain-text look — NOT a button */
 .site-research-banner .language-switcher-current {
