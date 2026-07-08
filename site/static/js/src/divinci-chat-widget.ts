@@ -84,6 +84,29 @@ function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, html?: 
   return node;
 }
 
+/** Inline SVG path data from Lucide (https://lucide.dev, ISC license).
+ * Emoji glyphs render differently per platform; a single stroke-based set
+ * keeps the widget chrome uniform everywhere. */
+const ICONS: Record<string, string> = {
+  "external-link": '<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+  "loader": '<path d="M21 12a9 9 0 1 1-6.219-8.56"/>',
+  "check": '<path d="M20 6 9 17l-5-5"/>',
+  "alert": '<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>',
+  "rotate-ccw": '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
+  "x": '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  "send": '<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>',
+  "thumbs-up": '<path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/>',
+  "thumbs-down": '<path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/>',
+  "copy": '<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>',
+  "volume": '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>',
+  "stop": '<rect width="14" height="14" x="5" y="5" rx="2"/>',
+  "smile": '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/>',
+};
+
+function icon(name: keyof typeof ICONS, extraCls = ""): string {
+  return `<svg class="dvc-icon${extraCls ? " " + extraCls : ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ICONS[name]}</svg>`;
+}
+
 /**
  * Can this browser comfortably run the 3D robot launcher?
  * Conservative: any signal of a weak device keeps the emoji bubble.
@@ -296,7 +319,7 @@ class DivinciChatWidget {
     const headerActions = el("div", "dvc-header-actions");
     
     // Handoff to Web App
-    const handoffBtn = el("button", "dvc-clear", "↗️");
+    const handoffBtn = el("button", "dvc-clear", icon("external-link"));
     handoffBtn.setAttribute("aria-label", "Continue in app");
     handoffBtn.title = "Continue this conversation in the full Divinci web app";
     handoffBtn.addEventListener("click", async () => {
@@ -305,8 +328,7 @@ class DivinciChatWidget {
         alert("Start a conversation first before continuing in the app!");
         return;
       }
-      const orig = handoffBtn.textContent;
-      handoffBtn.textContent = "⏳";
+      handoffBtn.innerHTML = icon("loader", "dvc-icon-spin");
       handoffBtn.disabled = true;
       const appTab = window.open("about:blank", "_blank");
       try {
@@ -328,21 +350,21 @@ class DivinciChatWidget {
         const url = `${webAppUrl}/ai-chat?divinciHandoff=${encodeURIComponent(token)}`;
         if (appTab) appTab.location.href = url;
         else window.open(url, "_blank", "noopener,noreferrer");
-        handoffBtn.textContent = "✅";
+        handoffBtn.innerHTML = icon("check");
       } catch (err) {
         if (appTab) appTab.close();
-        handoffBtn.textContent = "❌";
+        handoffBtn.innerHTML = icon("alert");
         console.error("Handoff failed:", err);
       } finally {
         setTimeout(() => {
-          handoffBtn.textContent = "↗️";
+          handoffBtn.innerHTML = icon("external-link");
           handoffBtn.disabled = false;
         }, 2000);
       }
     });
 
     // Clear / Reset
-    const clearBtn = el("button", "dvc-clear", "⧇");
+    const clearBtn = el("button", "dvc-clear", icon("rotate-ccw"));
     clearBtn.setAttribute("aria-label", "Clear conversation");
     clearBtn.title = "Start over";
     clearBtn.addEventListener("click", () => {
@@ -355,7 +377,7 @@ class DivinciChatWidget {
       }
     });
 
-    const close = el("button", "dvc-close", "×");
+    const close = el("button", "dvc-close", icon("x"));
     close.setAttribute("aria-label", "Close chat");
     close.addEventListener("click", () => this.toggle(false));
     
@@ -601,7 +623,9 @@ class DivinciChatWidget {
     const form = el("div", "dvc-inputrow");
     const input = el("input", "dvc-input");
     input.type = "text"; input.placeholder = "Ask Divinci…";
-    const send = el("button", "dvc-send", "→");
+    const send = el("button", "dvc-send", icon("send"));
+    send.setAttribute("aria-label", "Send message");
+    send.title = "Send";
     form.append(input, send);
     const meta = el("p", "dvc-muted dvc-meta", this.remaining !== null ? `${this.remaining} free message${this.remaining === 1 ? "" : "s"} left` : "");
     wrap.append(list, meta, form);
@@ -708,44 +732,51 @@ class DivinciChatWidget {
       row.appendChild(done);
       return row;
     }
-    const up = el("button", "dvc-thumb" + (m.rating === 1 ? " dvc-thumb-on" : ""), "👍");
-    const down = el("button", "dvc-thumb" + (m.rating === -1 ? " dvc-thumb-on" : ""), "👎");
+    const up = el("button", "dvc-thumb" + (m.rating === 1 ? " dvc-thumb-on" : ""), icon("thumbs-up"));
+    const down = el("button", "dvc-thumb" + (m.rating === -1 ? " dvc-thumb-on" : ""), icon("thumbs-down"));
     up.type = "button";
+    up.title = "Good response";
+    up.setAttribute("aria-label", "Good response");
     down.type = "button";
+    down.title = "Bad response";
+    down.setAttribute("aria-label", "Bad response");
     row.append(up, down);
 
     // COPY MESSAGE CONTENT BUTTON
-    const copy = el("button", "dvc-thumb", "📋");
+    const copy = el("button", "dvc-thumb", icon("copy"));
     copy.type = "button";
     copy.title = "Copy message";
+    copy.setAttribute("aria-label", "Copy message");
     copy.addEventListener("click", () => {
       navigator.clipboard.writeText(m.text).then(() => {
-        copy.textContent = "✅";
-        setTimeout(() => { copy.textContent = "📋"; }, 1500);
+        copy.innerHTML = icon("check");
+        setTimeout(() => { copy.innerHTML = icon("copy"); }, 1500);
       });
     });
 
     // READ ALOUD (TTS) BUTTON
-    const speak = el("button", "dvc-thumb", "🔊");
+    const speak = el("button", "dvc-thumb", icon("volume"));
     speak.type = "button";
     speak.title = "Read aloud";
+    speak.setAttribute("aria-label", "Read aloud");
     speak.addEventListener("click", () => {
       if (window.speechSynthesis.speaking) {
         window.speechSynthesis.cancel();
-        speak.textContent = "🔊";
+        speak.innerHTML = icon("volume");
         return;
       }
-      speak.textContent = "🛑";
+      speak.innerHTML = icon("stop");
       const utterance = new SpeechSynthesisUtterance(m.text);
-      utterance.onend = () => { speak.textContent = "🔊"; };
-      utterance.onerror = () => { speak.textContent = "🔊"; };
+      utterance.onend = () => { speak.innerHTML = icon("volume"); };
+      utterance.onerror = () => { speak.innerHTML = icon("volume"); };
       window.speechSynthesis.speak(utterance);
     });
 
     // EMOJI REACTION POPUP BUTTON
-    const react = el("button", "dvc-thumb", "😊");
+    const react = el("button", "dvc-thumb", icon("smile"));
     react.type = "button";
     react.title = "React with emoji";
+    react.setAttribute("aria-label", "React with emoji");
     react.addEventListener("click", (ev) => {
       ev.stopPropagation();
       const existingPop = row.querySelector(".dvc-emoji-pop");

@@ -78,7 +78,18 @@
   padding: 12px 16px; background: var(--color-neutral-inverse, #2d5a4f); color: #fff;
   font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 16px;
 }
-.dvc-close { background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; line-height: 1; padding: 0 4px; }
+.dvc-close {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; padding: 0; border-radius: 6px;
+  background: none; border: none; color: #fff; cursor: pointer;
+  opacity: 0.85; transition: opacity 0.15s;
+}
+.dvc-close:hover { opacity: 1; }
+
+/* Inline SVG icon set (Lucide) — uniform stroke chrome across the widget */
+.dvc-icon { display: block; width: 16px; height: 16px; }
+.dvc-icon-spin { animation: dvc-spin 0.9s linear infinite; }
+@keyframes dvc-spin { to { transform: rotate(360deg); } }
 
 .dvc-body { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 .dvc-pad { padding: 18px 16px; display: flex; flex-direction: column; gap: 12px; }
@@ -122,7 +133,11 @@
 .dvc-starter-btn:hover { background: var(--color-bg-accent, #e8ddc7); border-color: var(--color-neutral-inverse, #2d5a4f); }
 .dvc-meta { padding: 0 14px; }
 .dvc-inputrow { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--color-bg-accent, #e8ddc7); }
-.dvc-send { flex: 0 0 auto; width: 40px; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; color: #fff; background: var(--color-neutral-inverse, #2d5a4f); }
+.dvc-send {
+  flex: 0 0 auto; width: 40px; display: inline-flex; align-items: center; justify-content: center;
+  border: none; border-radius: 8px; cursor: pointer; color: #fff;
+  background: var(--color-neutral-inverse, #2d5a4f);
+}
 .dvc-send:hover { background: var(--color-accent-tertiary, #3d6b4f); }
 
 /* Markdown-rendered AI replies (assistant bubbles). Override the bubble's
@@ -181,12 +196,15 @@
 /* ── Message rating (thumbs up/down + feedback) ─────────────────────────── */
 .dvc-rating { align-self: flex-start; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: -2px 0 6px 2px; max-width: 85%; }
 .dvc-thumb {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 24px; padding: 0;
   border: 1px solid var(--color-bg-accent, #e8ddc7); background: #fff; cursor: pointer;
-  border-radius: 8px; padding: 2px 7px; font-size: 13px; line-height: 1.4; opacity: .65;
+  border-radius: 8px; color: var(--color-text-primary, #2d3c34); opacity: .65;
   transition: opacity .15s ease, border-color .15s ease, background .15s ease;
 }
+.dvc-thumb .dvc-icon { width: 14px; height: 14px; }
 .dvc-thumb:hover { opacity: 1; border-color: var(--color-accent-primary, #b8a080); }
-.dvc-thumb-on { opacity: 1; background: var(--color-neutral-inverse, #2d5a4f); border-color: var(--color-neutral-inverse, #2d5a4f); }
+.dvc-thumb-on { opacity: 1; background: var(--color-neutral-inverse, #2d5a4f); border-color: var(--color-neutral-inverse, #2d5a4f); color: #fff; }
 .dvc-rating-thanks { color: var(--color-text-secondary, #7e8d95); font-size: 12px; }
 .dvc-feedback-box { flex: 1 1 100%; display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
 .dvc-feedback-input {
@@ -204,8 +222,14 @@
 
 /* ── Header actions & utility buttons ────────────────────────── */
 .dvc-header-actions { display: flex; align-items: center; gap: 8px; }
-.dvc-clear { background: none; border: none; color: #fff; font-size: 16px; cursor: pointer; opacity: 0.7; padding: 0 4px; transition: opacity 0.15s; }
+.dvc-clear {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; padding: 0; border-radius: 6px;
+  background: none; border: none; color: #fff; cursor: pointer;
+  opacity: 0.7; transition: opacity 0.15s;
+}
 .dvc-clear:hover { opacity: 1; }
+.dvc-clear:disabled { cursor: default; }
 
 .dvc-emoji-chip {
   background: var(--color-bg-accent, #e8ddc7); border: 1px solid var(--color-neutral-inverse, #2d5a4f);
