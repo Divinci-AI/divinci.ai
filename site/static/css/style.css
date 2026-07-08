@@ -5410,12 +5410,6 @@ body:not(.homepage) .privacy-settings-link:hover {
   top: 0;
   height: 100%;
   width: auto;                     /* sized by content, not a fixed fraction */
-  /* Ceiling only — width:auto shrink-to-fits its actual content (nav labels /
-     Search+Sign up+Language are both comfortably under 45% at any supported
-     viewport), so the two islands don't reach 62% simultaneously in
-     practice. Kept well under 50% each so even an unusually long translated
-     label can't make them visually overlap in the center. */
-  max-width: 45%;
   display: flex;
   align-items: center;
   transition: opacity 0.28s ease, background 0.4s ease,
@@ -5424,19 +5418,33 @@ body:not(.homepage) .privacy-settings-link:hover {
 }
 .site-research-banner-glass-left {
   left: 0;
-  justify-content: flex-start;
+  /* space-between (not flex-start): the pill's own resolved width can be
+     wider than the logo+nav's tight content width, and flex-start bunched
+     both at the left edge, stranding the leftover as dead space after
+     "Documentation". space-between spreads that leftover between the logo
+     and the nav instead, so the nav reads with real breathing room and
+     extends toward the pill's own right edge. */
+  justify-content: space-between;
   gap: 0.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   border-bottom-right-radius: 18px; /* inner-facing corner beveled */
   opacity: 0;
   pointer-events: none;
+  /* Ceiling only — real width is still content-driven (measured ~513px for
+     logo + Features/Support/Documentation). 58% keeps that content
+     unclamped down to ~1024px viewports (513/1024 ≈ 50%) while still
+     capping runaway growth on very wide screens or long translated labels.
+     Left + right ceilings sum to 98%, so the two islands can't visually
+     meet even if both hit their cap at once (they won't in practice — see
+     right below). */
+  max-width: 58%;
 }
 .site-research-banner-glass-right {
   right: 0;
   justify-content: flex-end;        /* content sits flush against the right edge */
-  gap: 0.75rem;
-  padding-left: 0.75rem;
+  gap: 1.1rem;
+  padding-left: 1rem;
   padding-right: 1.5rem;
   border-bottom-left-radius: 18px;  /* inner-facing corner beveled */
   /* Always visible (not opacity:0 like the left island): the language
@@ -5444,6 +5452,12 @@ body:not(.homepage) .privacy-settings-link:hover {
      even before scroll — Search/Sign up (below) fade in on their own. */
   opacity: 1;
   pointer-events: auto;
+  /* Real content (Search/Sign up pills + language switcher) measures
+     ~345px, well under 40% down to ~1024px viewports — no need for as
+     generous a ceiling as the left island. Combined with the left island's
+     58% that's 98% total, so there's no viewport width at which both
+     could reach their cap and overlap. */
+  max-width: 40%;
 }
 /* Scrolled: drapes have opened — two solid BLUE islands. */
 .site-research-banner.is-scrolled .site-research-banner-glass-left,
