@@ -5497,24 +5497,33 @@ body:not(.homepage) .privacy-settings-link:hover {
   border: 1px solid rgba(238, 245, 251, 0.35);
   color: #eef5fb;
   border-radius: 999px;
-  padding: 0.3rem 0.9rem;
+  padding: 0 0.9rem;            /* vertical height set explicitly below */
+  height: 30px;
+  box-sizing: border-box;
   font-size: 0.82rem;
   cursor: pointer;
   margin-left: auto;            /* push search + signup to the right */
 }
 .scrolled-search:hover { background: rgba(255, 255, 255, 0.22); }
-.scrolled-signup {
+/* Scoped (.site-research-banner .scrolled-signup) so it beats the banner's
+   generic `.site-research-banner a { color: #a8d8f5 }` rule — otherwise the
+   Sign up text renders light-blue on the near-white pill (illegible). */
+.site-research-banner .scrolled-signup {
   display: inline-flex;
   align-items: center;
   background: #eef5fb;
-  color: #2d4d6a;
+  color: #1f3a52;                 /* dark slate on the light pill — legible */
+  border: 1px solid transparent;  /* matches .scrolled-search border box → equal height */
   border-radius: 999px;
-  padding: 0.3rem 0.9rem;
+  padding: 0 0.9rem;             /* vertical height set explicitly below */
+  height: 30px;
+  box-sizing: border-box;
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
+  white-space: nowrap;
 }
-.scrolled-signup:hover { background: #fff; }
+.site-research-banner .scrolled-signup:hover { background: #ffffff; }
 
 /* ── Language switcher relocated into the research banner (top-right) ──
    Goal: the banner keeps its ORIGINAL height, and the "Latest research"
