@@ -830,9 +830,13 @@ p {
 
 .features {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* minmax(0, 1fr) lets each track shrink below the label's min-content width,
+     so the row never overflows its container (which pushed "Instant version
+     recovery" past the paragraph on narrower viewports). */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2rem;
   margin-top: 1rem;
+  max-width: 100%;
 }
 
 .feature {
@@ -840,6 +844,12 @@ p {
   grid-template-columns: 3rem 1fr;
   gap: 1rem;
   align-items: start;
+  min-width: 0;             /* allow the column to shrink instead of overflow */
+}
+
+.feature-text {
+  overflow-wrap: break-word;  /* long words wrap rather than spill past the edge */
+  word-break: break-word;
 }
 
 .feature-icon {
