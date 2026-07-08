@@ -68,7 +68,8 @@
                 </div>
             </div>
             <div class="cta-buttons">
-                <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="primary-button" target="_blank" rel="noopener">{{ translations.hero.cta.primary | default(value="Request demo") }}</a>
+                {# "Request demo" moved to the Support dropdown in the nav; the
+                   connect-AI chips are now the hero's sole CTA row. #}
                 <div class="connect-ai-group" id="connect-ai-group"
                      data-label-template="{{ translations.hero.cta.connect_provider | default(value="Connect {provider} to Divinci") }}">
                     <a href="https://claude.ai" id="connect-ai-chip-claude" class="connect-ai-chip" data-provider="claude" data-name="Claude" target="_blank" rel="noopener">

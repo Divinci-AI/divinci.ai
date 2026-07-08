@@ -5572,6 +5572,9 @@ body:not(.homepage) .privacy-settings-link:hover {
   color: #f4f8fb;
   text-decoration: none;
   font-weight: 700;
+  /* Match the pre-scroll header logo's visual left inset — the pill's 24px
+     padding alone leaves the mark ~2px shy of the top-of-page position. */
+  margin-left: 2px;
 }
 .scrolled-logo img {
   /* Slightly smaller than the 28px HTML attribute size — the robot read
@@ -5589,7 +5592,12 @@ body:not(.homepage) .privacy-settings-link:hover {
   filter: brightness(0) saturate(100%) invert(19%) sepia(30%) saturate(1600%) hue-rotate(184deg) brightness(95%) contrast(92%);
 }
 .scrolled-logo-text {
+  /* Same brand mark as the page-header .logo (Fraunces), just smaller.
+     Fraunces is already loaded globally with display=optional, so this
+     falls back to serif without layout shift if the font hasn't arrived. */
+  font-family: 'Fraunces', serif;
   font-size: 0.95rem;
+  font-weight: 600;
   letter-spacing: 0.01em;
 }
 /* Left-island primary nav (Features / Support / Documentation dropdowns). */
