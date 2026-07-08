@@ -5439,6 +5439,83 @@ body:not(.homepage) .privacy-settings-link:hover {
   50%      { box-shadow: 0 0 8px rgba(122, 184, 224, 0); }
 }
 
+/* Scrolled state: the "Latest research" message + language switcher fade out,
+   and a compact [logo] [Search] [Sign up] row fades in — riding the already-fixed
+   blue banner. The white header has scrolled away underneath by this point. */
+.site-research-banner-inner,
+.site-research-banner > .language-switcher {
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+.site-research-banner.is-scrolled .site-research-banner-inner {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+.site-research-banner.is-scrolled > .language-switcher {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.site-research-banner-scrolled {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+.site-research-banner.is-scrolled .site-research-banner-scrolled {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scrolled-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #eef5fb;
+  text-decoration: none;
+  font-weight: 700;
+}
+.scrolled-logo-text {
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+.scrolled-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(238, 245, 251, 0.35);
+  color: #eef5fb;
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  margin-left: auto;            /* push search + signup to the right */
+}
+.scrolled-search:hover { background: rgba(255, 255, 255, 0.22); }
+.scrolled-signup {
+  display: inline-flex;
+  align-items: center;
+  background: #eef5fb;
+  color: #2d4d6a;
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.scrolled-signup:hover { background: #fff; }
+
 /* ── Language switcher relocated into the research banner (top-right) ──
    Goal: the banner keeps its ORIGINAL height, and the "Latest research"
    message stays perfectly centered in the bar. So the selector is rendered

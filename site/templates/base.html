@@ -497,6 +497,19 @@
         <a class="site-research-banner-secondary" href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">12 vIndexes on <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/brand/huggingface/hf-logo.svg" alt="Hugging Face" class="site-research-banner-hf" width="256" height="256" loading="lazy"></a>
       </div>
       {% include "language-switcher.html" %}
+      {# Compact scrolled-state content: fades in when the page scrolls. The
+         white header scrolls away; logo + search + sign-up migrate here. #}
+      <div class="site-research-banner-scrolled" aria-hidden="true">
+        <a href="/" class="scrolled-logo" aria-label="Divinci — liberum intelligentia">
+          <img src="/cdn-cgi/image/width=48,height=48,format=auto,quality=90,fit=contain/images/divinci-renaissance_no-bg.png" alt="Divinci AI Logo" width="28" height="28" decoding="async">
+          <span class="scrolled-logo-text">Divinci</span>
+        </a>
+        <button class="scrolled-search" id="site-search-trigger" type="button" aria-label="Search site" aria-keyshortcuts="Meta+K Control+K">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <span>Search</span>
+        </button>
+        <a href="https://app.divinci.app/signup" class="scrolled-signup" target="_blank" rel="noopener">Sign up</a>
+      </div>
     </div>
     {% include "partials/header.html" %}
     <main id="main-content">
@@ -522,5 +535,24 @@
         data-signup-url="{{ config.extra.divinci_chat_signup_url }}"></script>
 
     {% block extra_scripts %}{% endblock %}
+    <script>
+      // Banner scrolled-state: once the page scrolls past the white header,
+      // the "Latest research" message fades out and the compact logo + search +
+      // sign-up row fades into the fixed blue banner.
+      (function () {
+        var banner = document.querySelector('.site-research-banner');
+        if (!banner) return;
+        var THRESHOLD = 80;
+        var ticking = false;
+        function update() {
+          banner.classList.toggle('is-scrolled', window.scrollY > THRESHOLD);
+          ticking = false;
+        }
+        window.addEventListener('scroll', function () {
+          if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+        }, { passive: true });
+        update();
+      })();
+    </script>
 </body>
 </html>
