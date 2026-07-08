@@ -47,8 +47,9 @@
                 <div class="dropdown-menu">
                     <a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}">{{ translations.navigation.support_center | default(value="Support Center") }}</a>
                     <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">{{ translations.navigation.documentation | default(value="Documentation") }}</a>
-                    <a href="{% if current_lang == 'en' %}/terms-of-service/{% else %}/{{ current_lang }}/terms-of-service/{% endif %}">{{ translations.navigation.terms_of_service | default(value="Terms of Service") }}</a>
-                    <a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}">{{ translations.navigation.privacy_policy | default(value="Privacy Policy") }}</a>
+                    <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener">{{ translations.navigation.request_demo | default(value="Request demo") }}</a>
+                    {# Terms of Service / Privacy Policy removed from this menu —
+                       they remain linked in the footer's Legal section. #}
                 </div>
             </li>
             <!-- Sign up as navigation item on mobile -->

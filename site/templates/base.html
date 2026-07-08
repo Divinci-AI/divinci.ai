@@ -496,16 +496,15 @@
         <span class="site-research-banner-sep" aria-hidden="true">·</span>
         <a class="site-research-banner-secondary" href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">12 vIndexes on <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/brand/huggingface/hf-logo.svg" alt="Hugging Face" class="site-research-banner-hf" width="256" height="256" loading="lazy"></a>
       </div>
-      {% include "language-switcher.html" %}
       {# Glass two-section split: the two floating islands appear as soon as the
          page scrolls (is-scrolled) and frost to Apple-glass (is-glass) in the
          same frame — the blue->glass change is a CSS transition, not a snap.
          Left island rounds its bottom-RIGHT corner; right island its bottom-LEFT.
-         The language switcher (included above) stays visible across all states
-         and floats into the central gap at the inner edge of the right island. #}
+         The language switcher lives inline at the end of the right island's
+         flex flow (Search, Sign up, Language) across all states. #}
       <div class="site-research-banner-glass-left" aria-hidden="true">
         <a href="/" class="scrolled-logo" aria-label="Divinci — liberum intelligentia">
-          <img src="/cdn-cgi/image/width=48,height=48,format=auto,quality=90,fit=contain/images/divinci-renaissance_no-bg.png" alt="Divinci AI Logo" width="28" height="28" decoding="async">
+          <img src="{{ get_url(path="images/divinci_logo_inverted.svg") }}" alt="Divinci AI Logo" width="28" height="28" decoding="async">
           <span class="scrolled-logo-text">Divinci</span>
         </a>
         <nav class="banner-nav" aria-label="Primary">
@@ -526,28 +525,32 @@
               <div class="dropdown-menu">
                 <a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}">Support Center</a>
                 <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">Documentation</a>
-                <a href="{% if current_lang == 'en' %}/terms-of-service/{% else %}/{{ current_lang }}/terms-of-service/{% endif %}">Terms of Service</a>
-                <a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}">Privacy Policy</a>
+                <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener">{{ translations.navigation.request_demo | default(value="Request demo") }}</a>
+                {# Terms of Service / Privacy Policy removed from this menu —
+                   they remain linked in the footer's Legal section. #}
               </div>
             </li>
             <li class="dropdown">
               <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}" aria-haspopup="true" aria-expanded="false">Documentation <span class="dropdown-arrow">▾</span></a>
               <div class="dropdown-menu">
-                <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">Docs Overview</a>
+                <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">Overview</a>
                 <a href="{% if current_lang == 'en' %}/tutorials/{% else %}/{{ current_lang }}/tutorials/{% endif %}">Tutorials</a>
-                <a href="{% if current_lang == 'en' %}/quality-assurance/{% else %}/{{ current_lang }}/quality-assurance/{% endif %}">Quality Assurance</a>
-                <a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">Release Management</a>
+                <a href="{% if current_lang == 'en' %}/api/{% else %}/{{ current_lang }}/api/{% endif %}">API</a>
+                <a href="https://sdk.divinci.ai" target="_blank" rel="noopener">SDK</a>
+                <a href="{% if current_lang == 'en' %}/cli/{% else %}/{{ current_lang }}/cli/{% endif %}">CLI</a>
+                <a href="https://sdk.divinci.ai/mcp/overview" target="_blank" rel="noopener">MCP</a>
               </div>
             </li>
           </ul>
         </nav>
       </div>
-      <div class="site-research-banner-glass-right" aria-hidden="true">
+      <div class="site-research-banner-glass-right">
         <button class="scrolled-search site-search-trigger" type="button" aria-label="Search site" aria-keyshortcuts="Meta+K Control+K">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
           <span>Search</span>
         </button>
         <a href="https://app.divinci.app/signup" class="scrolled-signup" target="_blank" rel="noopener">Sign up</a>
+        {% include "language-switcher.html" %}
       </div>
     </div>
     {% include "partials/header.html" %}

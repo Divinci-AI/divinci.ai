@@ -5409,29 +5409,58 @@ body:not(.homepage) .privacy-settings-link:hover {
   position: absolute;
   top: 0;
   height: 100%;
-  width: 30%;                      /* ~30% wide each; ~40% central gap */
+  width: auto;                     /* sized by content, not a fixed fraction */
   display: flex;
   align-items: center;
-  opacity: 0;
-  pointer-events: none;
   transition: opacity 0.28s ease, background 0.4s ease,
               backdrop-filter 0.4s ease, box-shadow 0.4s ease,
               border-color 0.4s ease, border-radius 0.4s ease;
 }
 .site-research-banner-glass-left {
   left: 0;
-  justify-content: flex-start;
-  gap: 0.5rem;
+  /* space-between (not flex-start): the pill's own resolved width can be
+     wider than the logo+nav's tight content width, and flex-start bunched
+     both at the left edge, stranding the leftover as dead space after
+     "Documentation". space-between spreads that leftover between the logo
+     and the nav instead, so the nav reads with real breathing room and
+     extends toward the pill's own right edge. */
+  justify-content: space-between;
+  /* The pill is content-sized (width:auto), so space-between alone has no
+     leftover to distribute — the breathing room comes from this gap (logo →
+     Features) and the nav list's own item gap. */
+  gap: 1.5rem;
   padding-left: 1.5rem;
+  padding-right: 1.5rem;
   border-bottom-right-radius: 18px; /* inner-facing corner beveled */
+  opacity: 0;
+  pointer-events: none;
+  /* Ceiling only — real width is still content-driven (measured ~513px for
+     logo + Features/Support/Documentation). 58% keeps that content
+     unclamped down to ~1024px viewports (513/1024 ≈ 50%) while still
+     capping runaway growth on very wide screens or long translated labels.
+     Left + right ceilings sum to 98%, so the two islands can't visually
+     meet even if both hit their cap at once (they won't in practice — see
+     right below). */
+  max-width: 58%;
 }
 .site-research-banner-glass-right {
   right: 0;
-  justify-content: flex-start;      /* content sits at the island's left edge */
-  gap: 0.5rem;
-  padding-left: 0.75rem;            /* language sits just outside, to the left */
-  padding-right: 1.5rem;
+  justify-content: flex-end;        /* content sits flush against the right edge */
+  gap: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.75rem;
   border-bottom-left-radius: 18px;  /* inner-facing corner beveled */
+  /* Always visible (not opacity:0 like the left island): the language
+     switcher lives inline as this island's last child and must stay visible
+     even before scroll — Search/Sign up (below) fade in on their own. */
+  opacity: 1;
+  pointer-events: auto;
+  /* Real content (Search/Sign up pills + language switcher) measures
+     ~370px with the roomier gap/padding, well under 42% down to ~1024px
+     viewports — no need for as generous a ceiling as the left island.
+     Combined with the left island's 58% that's 100% total; verified no
+     collision at 1024px (content widths leave a real gutter). */
+  max-width: 42%;
 }
 /* Scrolled: drapes have opened — two solid BLUE islands. */
 .site-research-banner.is-scrolled .site-research-banner-glass-left,
@@ -5453,6 +5482,21 @@ body:not(.homepage) .privacy-settings-link:hover {
 }
 /* keep the logo + Search together at the inner edge of the left island */
 .site-research-banner-glass-left .scrolled-search { margin-left: 0; }
+/* Search / Sign up only appear once scrolled — pre-scroll the right island
+   shows just the language switcher, matching the original blue-bar state. */
+.site-research-banner-glass-right .scrolled-search,
+.site-research-banner-glass-right .scrolled-signup {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+.site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-search,
+.site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-signup,
+.site-research-banner.is-glass .site-research-banner-glass-right .scrolled-search,
+.site-research-banner.is-glass .site-research-banner-glass-right .scrolled-signup {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 .site-research-banner-inner {
   max-width: 1400px;
@@ -5528,17 +5572,48 @@ body:not(.homepage) .privacy-settings-link:hover {
   color: #f4f8fb;
   text-decoration: none;
   font-weight: 700;
+  /* Match the pre-scroll header logo's visual left inset — the pill's 24px
+     padding alone leaves the mark ~2px shy of the top-of-page position. */
+  margin-left: 2px;
+}
+.scrolled-logo img {
+  /* Slightly smaller than the 28px HTML attribute size — the robot read
+     oversized next to the 0.92rem nav labels in the scrolled pill. */
+  width: 23px;
+  height: 23px;
+  transition: filter 0.3s ease;
+}
+/* The inverted-robot SVG is solid white — legible on the blue bar/islands,
+   but invisible on the frosted white glass. An <img> ignores `color`, so
+   tint it via filter: brightness(0) gives a black silhouette, then the
+   invert/sepia/saturate/hue-rotate chain re-tints it to #143b5e — the same
+   deep blue as the nav labels — so logo and nav read as one set. */
+.site-research-banner.is-glass .scrolled-logo img {
+  filter: brightness(0) saturate(100%) invert(19%) sepia(30%) saturate(1600%) hue-rotate(184deg) brightness(95%) contrast(92%);
 }
 .scrolled-logo-text {
+  /* Same brand mark as the page-header .logo (Fraunces), just smaller.
+     Fraunces is already loaded globally with display=optional, so this
+     falls back to serif without layout shift if the font hasn't arrived. */
+  font-family: 'Fraunces', serif;
   font-size: 0.95rem;
+  font-weight: 600;
   letter-spacing: 0.01em;
 }
 /* Left-island primary nav (Features / Support / Documentation dropdowns). */
-.banner-nav { display: inline-flex; align-items: center; }
+.banner-nav {
+  display: inline-flex;
+  align-items: center;
+  /* mobile-fixes.css has a bare `nav { margin: 0 2.5rem 0 0 }` rule (for the
+     page-header nav) that leaks onto this nav too. That 40px phantom margin
+     sat INSIDE the island's flex line, eating the space-between end slot and
+     leaving dead space after "Documentation". Zero it here. */
+  margin: 0;
+}
 .banner-nav-list {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 1.1rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -5642,9 +5717,17 @@ body:not(.homepage) .privacy-settings-link:hover {
 .site-research-banner .scrolled-signup {
   display: inline-flex;
   align-items: center;
-  background: #eef5fb;
-  color: #1f3a52;                 /* dark slate on the light pill — legible */
-  border: 1px solid transparent;  /* matches .scrolled-search border box → equal height */
+  /* Colorized Apple-glass, matching the islands' frost treatment (see
+     .is-glass island rule) but tinted with the brand blue so it still reads
+     as a button. The tint is light enough that the dark slate text keeps
+     contrast over BOTH backdrops: the solid blue is-scrolled island and the
+     frosted is-glass one. */
+  background: rgba(190, 218, 245, 0.55);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  backdrop-filter: blur(14px) saturate(170%);
+  color: #123a5e;                 /* dark slate on the tinted glass — legible */
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 2px 10px rgba(20, 40, 64, 0.16);
   border-radius: 999px;
   padding: 0 0.9rem;
   height: 30px;
@@ -5652,14 +5735,25 @@ body:not(.homepage) .privacy-settings-link:hover {
   font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
+  transition: background 0.18s ease, border-color 0.18s ease;
 }
-.site-research-banner .scrolled-signup:hover { background: #fff; }
+.site-research-banner .scrolled-signup:hover {
+  background: rgba(214, 233, 252, 0.75);
+  border-color: rgba(255, 255, 255, 0.65);
+  /* Re-assert the dark text: the generic `.site-research-banner a:hover`
+     rule (higher specificity than the base rule here) would otherwise flip
+     it to near-white — illegible on this light glass pill. */
+  color: #0f2d48;
+  border-bottom-color: rgba(255, 255, 255, 0.65);
+}
 
-/* ── Language switcher relocated into the research banner (top-right) ──
-   Goal: the banner keeps its ORIGINAL height, and the "Latest research"
-   message stays perfectly centered in the bar. So the selector is rendered
-   as plain text (no button pill) and absolutely positioned at the top-right,
-   taking no part in the row's height or the centering math. */
+/* ── Language switcher lives inline in the right-hand glass island ──
+   It's the last flex child of .site-research-banner-glass-right — after
+   Search and Sign up — in every state (pre-scroll, scrolled, glass). The
+   right island stays visible pre-scroll (see above) so the switcher reads
+   the same as it always did: plain text, flush against the right edge. The
+   "Latest research" message in .site-research-banner-inner is unaffected
+   since the switcher no longer shares its centering math. */
 .site-research-banner {
   display: block;
   padding: 0;
@@ -5670,23 +5764,10 @@ body:not(.homepage) .privacy-settings-link:hover {
   justify-content: center;
   padding: 0.55rem 1.5rem;   /* original banner height */
 }
-/* Language switcher stays visible in BOTH states (top + scrolled/glass). */
 .site-research-banner .language-switcher {
-  position: absolute;
-  top: 50%;
-  right: 1.5rem;
-  transform: translateY(-50%);
+  position: relative;
   margin-left: 0;
   z-index: 100003; /* above the glass sections so it's always clickable */
-}
-/* In the draped/glass state, float the selector into the central gap just
-   LEFT of the right island's left edge. The right island (30% wide, at
-   right:0) has its left edge at right:70%; placing the language's right edge
-   at right:30% sits it flush against that inner edge, so the right-hand cluster
-   reads: [language] · [30% right island: search + sign up], all flush right. */
-.site-research-banner.is-scrolled .language-switcher,
-.site-research-banner.is-glass .language-switcher {
-  right: calc(30% + 0.4rem);
 }
 /* Plain-text look — NOT a button */
 .site-research-banner .language-switcher-current {
@@ -5709,8 +5790,10 @@ body:not(.homepage) .privacy-settings-link:hover {
 .site-research-banner .language-switcher-current .language-icon {
   opacity: 0.85;
 }
-/* keep dropdown aligned under its trigger (it floats into the central gap in
-   the scrolled state, so it must anchor to the switcher, not the viewport) */
+/* The dropdown is portalled to <body> by language-switcher.js with inline
+   position:fixed coordinates computed from the trigger's bounding rect, so
+   it isn't affected by the island's backdrop-filter stacking context. This
+   rule only matters for the brief pre-JS paint. */
 .site-research-banner .language-switcher-dropdown {
   position: absolute;
   top: calc(100% + 8px);
@@ -5732,6 +5815,41 @@ body:not(.homepage) .privacy-settings-link:hover {
     position: static;
     transform: none;
     margin-top: 0.1rem;
+  }
+  /* Pre-scroll: the right island must join the column flow (like the
+     switcher used to on its own) instead of sitting absolutely over the
+     banner message — otherwise it overlaps the "Latest research" text.
+     Search/Sign up stay hidden here; they only matter once scrolled, where
+     the island reverts to its normal absolute glass positioning. */
+  .site-research-banner-glass-right {
+    position: static;
+    height: auto;
+    width: auto;
+    max-width: none;
+    justify-content: center;
+    padding: 0;
+  }
+  .site-research-banner-glass-right .scrolled-search,
+  .site-research-banner-glass-right .scrolled-signup {
+    display: none;
+  }
+  .site-research-banner.is-scrolled .site-research-banner-glass-right,
+  .site-research-banner.is-glass .site-research-banner-glass-right {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: auto;
+    max-width: 78%;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    padding-left: 0.5rem;
+    padding-right: 0.85rem;
+  }
+  .site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-search,
+  .site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-signup,
+  .site-research-banner.is-glass .site-research-banner-glass-right .scrolled-search,
+  .site-research-banner.is-glass .site-research-banner-glass-right .scrolled-signup {
+    display: inline-flex;
   }
 }
 
