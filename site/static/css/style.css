@@ -25,6 +25,9 @@ body {
   color: var(--color-neutral-primary);
   line-height: 1.5;
   position: relative;
+  /* Reserve space for the fixed blue announcement banner (40px) so no
+     content hides underneath it. */
+  padding-top: 40px;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -5368,8 +5371,12 @@ body:not(.homepage) .privacy-settings-link:hover {
   color: #eef5fb;
   font-size: 0.85rem;
   border-bottom: 1px solid rgba(168, 212, 240, 0.2);
-  position: relative;
-  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100002; /* above .site-header (10000) so header slides under on scroll;
+                      equal to .search-modal (100002) but earlier in DOM, so modal wins */
 }
 
 .site-research-banner-inner {
@@ -5432,49 +5439,69 @@ body:not(.homepage) .privacy-settings-link:hover {
   50%      { box-shadow: 0 0 8px rgba(122, 184, 224, 0); }
 }
 
-/* ── Language switcher relocated into the research banner (top-right) ── */
+/* ── Language switcher relocated into the research banner (top-right) ──
+   Goal: the banner keeps its ORIGINAL height, and the "Latest research"
+   message stays perfectly centered in the bar. So the selector is rendered
+   as plain text (no button pill) and absolutely positioned at the top-right,
+   taking no part in the row's height or the centering math. */
 .site-research-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.4rem 1.5rem;
-}
-.site-research-banner-inner {
-  flex: 1 1 auto;
-  justify-content: center;
+  display: block;
   padding: 0;
 }
+.site-research-banner-inner {
+  width: 100%;
+  flex: none;
+  justify-content: center;
+  padding: 0.55rem 1.5rem;   /* original banner height */
+}
 .site-research-banner .language-switcher {
-  position: static;
-  transform: none;
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
   margin-left: 0;
-  flex: 0 0 auto;
 }
+/* Plain-text look — NOT a button */
 .site-research-banner .language-switcher-current {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
-  padding: 5px 10px;
-}
-.site-research-banner .current-language,
-.site-research-banner .language-icon,
-.site-research-banner .dropdown-icon {
-  color: #eef5fb;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  color: #cfe5f4;
+  font: inherit;
+  line-height: 1;
 }
 .site-research-banner .language-switcher-current:hover {
-  background-color: rgba(255, 255, 255, 0.22);
+  background: none;
+  color: #ffffff;
+}
+.site-research-banner .current-language,
+.site-research-banner .language-icon {
+  color: inherit;
+}
+.site-research-banner .language-switcher-current .language-icon {
+  opacity: 0.85;
+}
+/* keep dropdown aligned under its trigger at the right edge */
+.site-research-banner .language-switcher-dropdown {
+  left: auto;
+  right: 0;
 }
 @media (max-width: 640px) {
   .site-research-banner {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.4rem 1rem 0.5rem;
   }
   .site-research-banner-inner {
-    flex-basis: 100%;
+    width: auto;
+    padding: 0.3rem 0;
   }
   .site-research-banner .language-switcher {
-    margin: 0.15rem auto 0.25rem;
+    position: static;
+    transform: none;
+    margin-top: 0.1rem;
   }
 }
 
