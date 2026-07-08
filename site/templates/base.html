@@ -497,21 +497,56 @@
         <a class="site-research-banner-secondary" href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">12 vIndexes on <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/brand/huggingface/hf-logo.svg" alt="Hugging Face" class="site-research-banner-hf" width="256" height="256" loading="lazy"></a>
       </div>
       {% include "language-switcher.html" %}
-      {# Glass two-section split: visible only once the banner has morphed to
-         Apple-glass (is-glass). Left section rounds its bottom-RIGHT corner;
-         right section rounds its bottom-LEFT corner. The language switcher
-         (included above) stays visible across all states. #}
+      {# Glass two-section split: the two floating islands appear as soon as the
+         page scrolls (is-scrolled) and frost to Apple-glass (is-glass) in the
+         same frame — the blue->glass change is a CSS transition, not a snap.
+         Left island rounds its bottom-RIGHT corner; right island its bottom-LEFT.
+         The language switcher (included above) stays visible across all states
+         and floats into the central gap at the inner edge of the right island. #}
       <div class="site-research-banner-glass-left" aria-hidden="true">
         <a href="/" class="scrolled-logo" aria-label="Divinci — liberum intelligentia">
           <img src="/cdn-cgi/image/width=48,height=48,format=auto,quality=90,fit=contain/images/divinci-renaissance_no-bg.png" alt="Divinci AI Logo" width="28" height="28" decoding="async">
           <span class="scrolled-logo-text">Divinci</span>
         </a>
+        <nav class="banner-nav" aria-label="Primary">
+          <ul class="banner-nav-list">
+            <li class="dropdown">
+              <a href="{% if current_lang == 'en' %}/#features{% else %}/{{ current_lang }}/#features{% endif %}" aria-haspopup="true" aria-expanded="false">Features <span class="dropdown-arrow">▾</span></a>
+              <div class="dropdown-menu">
+                <a href="{% if current_lang == 'en' %}/autorag/{% else %}/{{ current_lang }}/autorag/{% endif %}">AutoRAG</a>
+                <a href="{% if current_lang == 'en' %}/rag-routing/{% else %}/{{ current_lang }}/rag-routing/{% endif %}">RAG Routing</a>
+                <a href="{% if current_lang == 'en' %}/rag-arena/{% else %}/{{ current_lang }}/rag-arena/{% endif %}">RAG Arena</a>
+                <a href="{% if current_lang == 'en' %}/quality-assurance/{% else %}/{{ current_lang }}/quality-assurance/{% endif %}">Quality Assurance</a>
+                <a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">Release Management</a>
+                <a href="/www-rag/">WWW-RAG Directory</a>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}" aria-haspopup="true" aria-expanded="false">Support <span class="dropdown-arrow">▾</span></a>
+              <div class="dropdown-menu">
+                <a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}">Support Center</a>
+                <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">Documentation</a>
+                <a href="{% if current_lang == 'en' %}/terms-of-service/{% else %}/{{ current_lang }}/terms-of-service/{% endif %}">Terms of Service</a>
+                <a href="{% if current_lang == 'en' %}/privacy-policy/{% else %}/{{ current_lang }}/privacy-policy/{% endif %}">Privacy Policy</a>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}" aria-haspopup="true" aria-expanded="false">Documentation <span class="dropdown-arrow">▾</span></a>
+              <div class="dropdown-menu">
+                <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">Docs Overview</a>
+                <a href="{% if current_lang == 'en' %}/tutorials/{% else %}/{{ current_lang }}/tutorials/{% endif %}">Tutorials</a>
+                <a href="{% if current_lang == 'en' %}/quality-assurance/{% else %}/{{ current_lang }}/quality-assurance/{% endif %}">Quality Assurance</a>
+                <a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">Release Management</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-research-banner-glass-right" aria-hidden="true">
         <button class="scrolled-search site-search-trigger" type="button" aria-label="Search site" aria-keyshortcuts="Meta+K Control+K">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
           <span>Search</span>
         </button>
-      </div>
-      <div class="site-research-banner-glass-right" aria-hidden="true">
         <a href="https://app.divinci.app/signup" class="scrolled-signup" target="_blank" rel="noopener">Sign up</a>
       </div>
     </div>
@@ -540,32 +575,22 @@
 
     {% block extra_scripts %}{% endblock %}
     <script>
-      // Banner scroll behaviour (two phases):
-      //   1) Past the white header (~80px): add .is-scrolled -> the "Latest
-      //      research" message fades out and the compact logo+Search+Sign up
-      //      row fades in on the (still blue) fixed banner.
-      //   2) Once the scroll transition settles: add .is-glass -> the banner
-      //      morphs from solid blue to Apple-glass (frosted, translucent) and
-      //      the two rounded corner sections appear. Scrolling back up reverses
-      //      both so it returns to solid blue at the top.
+      // Banner scroll behaviour: as SOON as the page scrolls past the white
+      // header (~80px) we toggle BOTH .is-scrolled and .is-glass in the same
+      // frame. The blue bar splits into two frosted-glass islands immediately;
+      // the blue -> glass change is a CSS transition (background / backdrop /
+      // shadow / radius all transition), so it morphs smoothly rather than
+      // snapping. Scrolling back to the top removes both and it returns to the
+      // solid blue message bar.
       (function () {
         var banner = document.querySelector('.site-research-banner');
         if (!banner) return;
         var THRESHOLD = 80;
-        var GLASS_DELAY = 320; // let the scrolled fade finish before morphing
-        var glassTimer = null;
         var ticking = false;
         function update() {
           var scrolled = window.scrollY > THRESHOLD;
           banner.classList.toggle('is-scrolled', scrolled);
-          if (glassTimer) { clearTimeout(glassTimer); glassTimer = null; }
-          if (scrolled) {
-            glassTimer = setTimeout(function () {
-              banner.classList.add('is-glass');
-            }, GLASS_DELAY);
-          } else {
-            banner.classList.remove('is-glass');
-          }
+          banner.classList.toggle('is-glass', scrolled);
           ticking = false;
         }
         window.addEventListener('scroll', function () {

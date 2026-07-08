@@ -5514,7 +5514,7 @@ body:not(.homepage) .privacy-settings-link:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  color: #eef5fb;
+  color: #f4f8fb;
   text-decoration: none;
   font-weight: 700;
 }
@@ -5522,22 +5522,82 @@ body:not(.homepage) .privacy-settings-link:hover {
   font-size: 0.95rem;
   letter-spacing: 0.01em;
 }
+/* Left-island primary nav (Features / Support / Documentation dropdowns). */
+.banner-nav { display: inline-flex; align-items: center; }
+.banner-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.banner-nav-list > li { position: relative; display: flex; align-items: center; }
+.banner-nav-list > li > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #f4f8fb;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+.banner-nav-list > li > a:hover { background: rgba(255,255,255,0.16); color: #fff; }
+/* Dropdowns open DOWNWARD from the 40px banner; anchor them to the banner
+   (not the global `nav`), lift above the blue message bar, no clipping margin. */
+.site-research-banner .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  min-width: 210px;
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(20, 40, 64, 0.22);
+  padding: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 100003;
+}
+.site-research-banner .dropdown:hover .dropdown-menu,
+.site-research-banner .dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.site-research-banner .dropdown-menu a {
+  color: #1f3a52;
+  font-size: 0.9rem;
+  padding: 9px 14px;
+  border-radius: 8px;
+}
+.site-research-banner .dropdown-menu a:hover {
+  background: rgba(31, 58, 82, 0.08);
+  color: #16304a;
+}
 .scrolled-search {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(238, 245, 251, 0.35);
-  color: #eef5fb;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #f4f8fb;
   border-radius: 999px;
-  padding: 0 0.9rem;            /* vertical height set explicitly below */
+  padding: 0 0.9rem;
   height: 30px;
   box-sizing: border-box;
   font-size: 0.82rem;
   cursor: pointer;
-  margin-left: auto;            /* push search + signup to the right */
 }
-.scrolled-search:hover { background: rgba(255, 255, 255, 0.22); }
+.scrolled-search:hover { background: rgba(255, 255, 255, 0.28); }
 /* Scoped (.site-research-banner .scrolled-signup) so it beats the banner's
    generic `.site-research-banner a { color: #a8d8f5 }` rule — otherwise the
    Sign up text renders light-blue on the near-white pill (illegible). */
@@ -5548,15 +5608,14 @@ body:not(.homepage) .privacy-settings-link:hover {
   color: #1f3a52;                 /* dark slate on the light pill — legible */
   border: 1px solid transparent;  /* matches .scrolled-search border box → equal height */
   border-radius: 999px;
-  padding: 0 0.9rem;             /* vertical height set explicitly below */
+  padding: 0 0.9rem;
   height: 30px;
   box-sizing: border-box;
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
-  white-space: nowrap;
 }
-.site-research-banner .scrolled-signup:hover { background: #ffffff; }
+.site-research-banner .scrolled-signup:hover { background: #fff; }
 
 /* ── Language switcher relocated into the research banner (top-right) ──
    Goal: the banner keeps its ORIGINAL height, and the "Latest research"
@@ -5582,11 +5641,12 @@ body:not(.homepage) .privacy-settings-link:hover {
   margin-left: 0;
   z-index: 100003; /* above the glass sections so it's always clickable */
 }
-/* In the draped state, float the selector into the central gap at the inner
-   edge of the right island (just left of "Sign up"), matching the design. */
+/* In the draped state, float the selector into the central gap just LEFT of
+   the right island's inner edge (so it reads as part of the right-hand group:
+   language · search · sign up), matching the design. */
 .site-research-banner.is-scrolled .language-switcher,
 .site-research-banner.is-glass .language-switcher {
-  right: calc(50% + 60px + 1.5rem);
+  right: calc(50% - 36px);
 }
 /* Plain-text look — NOT a button */
 .site-research-banner .language-switcher-current {
@@ -5609,10 +5669,13 @@ body:not(.homepage) .privacy-settings-link:hover {
 .site-research-banner .language-switcher-current .language-icon {
   opacity: 0.85;
 }
-/* keep dropdown aligned under its trigger at the right edge */
+/* keep dropdown aligned under its trigger (it floats into the central gap in
+   the scrolled state, so it must anchor to the switcher, not the viewport) */
 .site-research-banner .language-switcher-dropdown {
-  left: auto;
+  position: absolute;
+  top: calc(100% + 8px);
   right: 0;
+  left: auto;
 }
 @media (max-width: 640px) {
   .site-research-banner {
