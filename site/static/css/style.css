@@ -5409,11 +5409,10 @@ body:not(.homepage) .privacy-settings-link:hover {
   position: absolute;
   top: 0;
   height: 100%;
-  width: 30%;                      /* ~30% wide each; ~40% central gap */
+  width: auto;                     /* sized by content, not a fixed fraction */
+  max-width: 62%;
   display: flex;
   align-items: center;
-  opacity: 0;
-  pointer-events: none;
   transition: opacity 0.28s ease, background 0.4s ease,
               backdrop-filter 0.4s ease, box-shadow 0.4s ease,
               border-color 0.4s ease, border-radius 0.4s ease;
@@ -5423,15 +5422,23 @@ body:not(.homepage) .privacy-settings-link:hover {
   justify-content: flex-start;
   gap: 0.5rem;
   padding-left: 1.5rem;
+  padding-right: 1.5rem;
   border-bottom-right-radius: 18px; /* inner-facing corner beveled */
+  opacity: 0;
+  pointer-events: none;
 }
 .site-research-banner-glass-right {
   right: 0;
-  justify-content: flex-start;      /* content sits at the island's left edge */
-  gap: 0.5rem;
-  padding-left: 0.75rem;            /* language sits just outside, to the left */
+  justify-content: flex-end;        /* content sits flush against the right edge */
+  gap: 0.75rem;
+  padding-left: 0.75rem;
   padding-right: 1.5rem;
   border-bottom-left-radius: 18px;  /* inner-facing corner beveled */
+  /* Always visible (not opacity:0 like the left island): the language
+     switcher lives inline as this island's last child and must stay visible
+     even before scroll — Search/Sign up (below) fade in on their own. */
+  opacity: 1;
+  pointer-events: auto;
 }
 /* Scrolled: drapes have opened — two solid BLUE islands. */
 .site-research-banner.is-scrolled .site-research-banner-glass-left,
@@ -5453,6 +5460,21 @@ body:not(.homepage) .privacy-settings-link:hover {
 }
 /* keep the logo + Search together at the inner edge of the left island */
 .site-research-banner-glass-left .scrolled-search { margin-left: 0; }
+/* Search / Sign up only appear once scrolled — pre-scroll the right island
+   shows just the language switcher, matching the original blue-bar state. */
+.site-research-banner-glass-right .scrolled-search,
+.site-research-banner-glass-right .scrolled-signup {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+.site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-search,
+.site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-signup,
+.site-research-banner.is-glass .site-research-banner-glass-right .scrolled-search,
+.site-research-banner.is-glass .site-research-banner-glass-right .scrolled-signup {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 .site-research-banner-inner {
   max-width: 1400px;
@@ -5528,6 +5550,15 @@ body:not(.homepage) .privacy-settings-link:hover {
   color: #f4f8fb;
   text-decoration: none;
   font-weight: 700;
+}
+.scrolled-logo img {
+  transition: filter 0.3s ease;
+}
+/* The inverted-robot SVG is solid white — legible on the blue bar/islands,
+   but invisible on the frosted white glass. Force it to a dark silhouette
+   there instead of relying on `color` (an <img> ignores it). */
+.site-research-banner.is-glass .scrolled-logo img {
+  filter: brightness(0) saturate(100%);
 }
 .scrolled-logo-text {
   font-size: 0.95rem;
@@ -5655,11 +5686,13 @@ body:not(.homepage) .privacy-settings-link:hover {
 }
 .site-research-banner .scrolled-signup:hover { background: #fff; }
 
-/* ── Language switcher relocated into the research banner (top-right) ──
-   Goal: the banner keeps its ORIGINAL height, and the "Latest research"
-   message stays perfectly centered in the bar. So the selector is rendered
-   as plain text (no button pill) and absolutely positioned at the top-right,
-   taking no part in the row's height or the centering math. */
+/* ── Language switcher lives inline in the right-hand glass island ──
+   It's the last flex child of .site-research-banner-glass-right — after
+   Search and Sign up — in every state (pre-scroll, scrolled, glass). The
+   right island stays visible pre-scroll (see above) so the switcher reads
+   the same as it always did: plain text, flush against the right edge. The
+   "Latest research" message in .site-research-banner-inner is unaffected
+   since the switcher no longer shares its centering math. */
 .site-research-banner {
   display: block;
   padding: 0;
@@ -5670,23 +5703,10 @@ body:not(.homepage) .privacy-settings-link:hover {
   justify-content: center;
   padding: 0.55rem 1.5rem;   /* original banner height */
 }
-/* Language switcher stays visible in BOTH states (top + scrolled/glass). */
 .site-research-banner .language-switcher {
-  position: absolute;
-  top: 50%;
-  right: 1.5rem;
-  transform: translateY(-50%);
+  position: relative;
   margin-left: 0;
   z-index: 100003; /* above the glass sections so it's always clickable */
-}
-/* In the draped/glass state, float the selector into the central gap just
-   LEFT of the right island's left edge. The right island (30% wide, at
-   right:0) has its left edge at right:70%; placing the language's right edge
-   at right:30% sits it flush against that inner edge, so the right-hand cluster
-   reads: [language] · [30% right island: search + sign up], all flush right. */
-.site-research-banner.is-scrolled .language-switcher,
-.site-research-banner.is-glass .language-switcher {
-  right: calc(30% + 0.4rem);
 }
 /* Plain-text look — NOT a button */
 .site-research-banner .language-switcher-current {
@@ -5709,8 +5729,10 @@ body:not(.homepage) .privacy-settings-link:hover {
 .site-research-banner .language-switcher-current .language-icon {
   opacity: 0.85;
 }
-/* keep dropdown aligned under its trigger (it floats into the central gap in
-   the scrolled state, so it must anchor to the switcher, not the viewport) */
+/* The dropdown is portalled to <body> by language-switcher.js with inline
+   position:fixed coordinates computed from the trigger's bounding rect, so
+   it isn't affected by the island's backdrop-filter stacking context. This
+   rule only matters for the brief pre-JS paint. */
 .site-research-banner .language-switcher-dropdown {
   position: absolute;
   top: calc(100% + 8px);
@@ -5732,6 +5754,35 @@ body:not(.homepage) .privacy-settings-link:hover {
     position: static;
     transform: none;
     margin-top: 0.1rem;
+  }
+  /* Pre-scroll: the right island must join the column flow (like the
+     switcher used to on its own) instead of sitting absolutely over the
+     banner message — otherwise it overlaps the "Latest research" text.
+     Search/Sign up stay hidden here; they only matter once scrolled, where
+     the island reverts to its normal absolute glass positioning. */
+  .site-research-banner-glass-right {
+    position: static;
+    height: auto;
+    width: auto;
+    max-width: none;
+    justify-content: center;
+    padding: 0;
+  }
+  .site-research-banner-glass-right .scrolled-search,
+  .site-research-banner-glass-right .scrolled-signup {
+    display: none;
+  }
+  .site-research-banner.is-scrolled .site-research-banner-glass-right,
+  .site-research-banner.is-glass .site-research-banner-glass-right {
+    position: absolute;
+    top: 0;
+    height: 100%;
+  }
+  .site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-search,
+  .site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-signup,
+  .site-research-banner.is-glass .site-research-banner-glass-right .scrolled-search,
+  .site-research-banner.is-glass .site-research-banner-glass-right .scrolled-signup {
+    display: inline-flex;
   }
 }
 
