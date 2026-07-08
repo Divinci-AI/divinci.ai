@@ -4,12 +4,12 @@
 (function () {
   'use strict';
 
-  var TRIGGER = document.getElementById('site-search-trigger');
+  var TRIGGERS = document.querySelectorAll('.site-search-trigger');
   var MODAL = document.getElementById('search-modal');
   var INPUT = document.getElementById('search-input');
   var RESULTS = document.getElementById('search-results');
   var EMPTY = document.getElementById('search-empty');
-  if (!TRIGGER || !MODAL || !INPUT || !RESULTS || !EMPTY) return;
+  if (!TRIGGERS.length || !MODAL || !INPUT || !RESULTS || !EMPTY) return;
 
   // Active language from <html lang>; falls back to EN.
   var lang = (document.documentElement.getAttribute('lang') || 'en').toLowerCase();
@@ -89,7 +89,7 @@
     if (active >= 0 && items[active]) items[active].scrollIntoView({ block: 'nearest' });
   }
 
-  TRIGGER.addEventListener('click', openModal);
+  Array.prototype.forEach.call(TRIGGERS, function (t) { t.addEventListener('click', openModal); });
   MODAL.addEventListener('click', function (e) { if (e.target === MODAL) closeModal(); });
   INPUT.addEventListener('input', function (e) { render(e.target.value); });
 

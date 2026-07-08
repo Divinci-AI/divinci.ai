@@ -5367,6 +5367,8 @@ body:not(.homepage) .privacy-settings-link:hover {
 
 /* ── Site-wide research banner (above the nav header) ────────── */
 .site-research-banner {
+  /* Starts BLUE. Once scrolled and settled it morphs to Apple-glass (see
+     .is-glass). The blue->glass transition is on background/backdrop/border. */
   background: linear-gradient(90deg, #2d4d6a 0%, #3d6888 100%);
   color: #eef5fb;
   font-size: 0.85rem;
@@ -5377,6 +5379,61 @@ body:not(.homepage) .privacy-settings-link:hover {
   right: 0;
   z-index: 100002; /* above .site-header (10000) so header slides under on scroll;
                       equal to .search-modal (100002) but earlier in DOM, so modal wins */
+  transition: background 0.4s ease, backdrop-filter 0.4s ease,
+              border-color 0.4s ease, box-shadow 0.4s ease, border-radius 0.4s ease;
+}
+
+/* Apple-glass state: translucent frosted glass over page content. Applied by
+   JS after the scroll transition finishes, so the user sees blue -> glass. */
+.site-research-banner.is-glass {
+  background: rgba(255, 255, 255, 0.14);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(18px) saturate(170%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 8px 32px rgba(20, 40, 64, 0.18);
+  /* Read as a floating card: inset 8px from the screen edges and round the
+     bottom corners so the two-section split reads clearly. */
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  border-radius: 0 0 18px 18px;
+}
+
+/* ── Two-section split in the scrolled/glass state ──
+   Left section: rounded bottom-RIGHT corner. Right section: rounded bottom-LEFT. */
+.site-research-banner-glass-left,
+.site-research-banner-glass-right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+.site-research-banner-glass-left {
+  left: 0;
+  padding-left: 1.5rem;
+  border-bottom-right-radius: 18px;
+}
+.site-research-banner-glass-right {
+  right: 0;
+  padding-right: 1.5rem;
+  border-bottom-left-radius: 18px;
+}
+/* In the glass state the two sections fade in and carry the rounded corners. */
+.site-research-banner.is-glass .site-research-banner-glass-left,
+.site-research-banner.is-glass .site-research-banner-glass-right {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* Very subtle separator seam between the two rounded corners. */
+.site-research-banner.is-glass .site-research-banner-glass-left {
+  background: rgba(255, 255, 255, 0.05);
+}
+.site-research-banner.is-glass .site-research-banner-glass-right {
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .site-research-banner-inner {
@@ -5389,6 +5446,13 @@ body:not(.homepage) .privacy-settings-link:hover {
   gap: 0.55rem;
   flex-wrap: wrap;
   text-align: center;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+/* In the glass state the message is gone (sections take over). */
+.site-research-banner.is-glass .site-research-banner-inner {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
 }
 
 .site-research-banner-label {
@@ -5439,40 +5503,17 @@ body:not(.homepage) .privacy-settings-link:hover {
   50%      { box-shadow: 0 0 8px rgba(122, 184, 224, 0); }
 }
 
-/* Scrolled state: the "Latest research" message + language switcher fade out,
-   and a compact [logo] [Search] [Sign up] row fades in — riding the already-fixed
-   blue banner. The white header has scrolled away underneath by this point. */
-.site-research-banner-inner,
-.site-research-banner > .language-switcher {
-  transition: opacity 0.28s ease, transform 0.28s ease;
-}
-.site-research-banner.is-scrolled .site-research-banner-inner {
-  opacity: 0;
-  transform: translateY(-6px);
-  pointer-events: none;
-}
-.site-research-banner.is-scrolled > .language-switcher {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.site-research-banner-scrolled {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0 1.5rem;
-  max-width: 1400px;
-  margin: 0 auto;
+/* ── Glass two-section content (logo + Search | Sign up) ──
+   The single set of compact controls. Visible as soon as the page scrolls
+   (is-scrolled); the frosted card + rounded corners arrive with is-glass. */
+.site-research-banner-glass-left,
+.site-research-banner-glass-right {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.28s ease;
 }
-.site-research-banner.is-scrolled .site-research-banner-scrolled {
+.site-research-banner.is-scrolled .site-research-banner-glass-left,
+.site-research-banner.is-scrolled .site-research-banner-glass-right {
   opacity: 1;
   pointer-events: auto;
 }
@@ -5540,12 +5581,18 @@ body:not(.homepage) .privacy-settings-link:hover {
   justify-content: center;
   padding: 0.55rem 1.5rem;   /* original banner height */
 }
+/* Language switcher stays visible in BOTH states (top + scrolled/glass). */
 .site-research-banner .language-switcher {
   position: absolute;
   top: 50%;
   right: 1.5rem;
   transform: translateY(-50%);
   margin-left: 0;
+  z-index: 100003; /* above the glass sections so it's always clickable */
+}
+/* When the banner morphs to glass it's inset 8px from the right edge. */
+.site-research-banner.is-glass .language-switcher {
+  right: calc(1.5rem + 8px);
 }
 /* Plain-text look — NOT a button */
 .site-research-banner .language-switcher-current {
