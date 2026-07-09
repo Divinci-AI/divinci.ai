@@ -178,6 +178,49 @@
           }
         }
 
+        // Lazy hero videos (data-lazy-video / data-hero-video) — the homepage
+        // #hero-video, feature-page heroes, blog-post heroes — are NOT
+        // intercepted by defang() (they have no `autoplay`, so it returns
+        // early) and are instead driven by page scripts (main.js /
+        // blog-post.js). Those scripts call v.play() but swallow EVERY
+        // rejection with play().catch(() => {}), so a transient R2 429,
+        // network blip, or iOS Low Power Mode block leaves the poster
+        // frozen forever with zero console evidence — the same class of
+        // failure b6192a4 fixed for the autoplay/body videos.
+        //
+        // We arm the SAME self-heal on them WITHOUT stripping their sources
+        // or re-observing them: main.js still owns when they play and the
+        // cycling state machine, we only (a) listen for transport failures
+        // (error / stalled / source-error) and (b) forward rejected play()
+        // promises to handleFailure. Recovery (retry once, then on first
+        // interaction) is identical to the autoplay path.
+        function armOneLazy(v) {
+          armFailureHandlers(v);
+          if (v.dataset.lazyHealWrapped) return;
+          v.dataset.lazyHealWrapped = '1';
+          // Wrap play() so a rejected promise (NotAllowedError — autoplay
+          // blocked, Low Power Mode) reaches handleFailure. We return the
+          // original promise so existing callers' own .catch() still work.
+          var origPlay = v.play.bind(v);
+          v.play = function () {
+            var p = origPlay();
+            if (p && p.catch) p.catch(function (err) {
+              handleFailure(v, err && err.name ? err.name : 'play-rejected');
+            });
+            return p;
+          };
+        }
+
+        function armLazySelfHeal(root) {
+          root = root || document;
+          if (root.nodeName === 'VIDEO') {
+            if (root.hasAttribute('data-lazy-video') || root.hasAttribute('data-hero-video')) armOneLazy(root);
+            return;
+          }
+          var vs = root.querySelectorAll('video[data-lazy-video], video[data-hero-video]');
+          for (var i = 0; i < vs.length; i++) armOneLazy(vs[i]);
+        }
+
         var io = ('IntersectionObserver' in window)
           ? new IntersectionObserver(function (entries, obs) {
               entries.forEach(function (entry) {
@@ -218,16 +261,19 @@
             var added = mutations[i].addedNodes;
             for (var j = 0; j < added.length; j++) {
               var n = added[j];
-              if (n.nodeName === 'VIDEO') defang(n);
+              if (n.nodeName === 'VIDEO') { defang(n); armLazySelfHeal(n); }
               else if (n.querySelectorAll) {
                 var vs = n.querySelectorAll('video[autoplay]');
                 for (var k = 0; k < vs.length; k++) defang(vs[k]);
+                armLazySelfHeal(n);
               }
             }
           }
         });
         domObserver.observe(document.documentElement, { childList: true, subtree: true });
         // Stop watching the DOM once the page is parsed — all videos are caught.
+        // Arm lazy-video self-heal on whatever is already in the DOM now.
+        armLazySelfHeal(document);
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
           // setTimeout so we still catch any pending mutations during current tick
           setTimeout(function () { domObserver.disconnect(); }, 0);
