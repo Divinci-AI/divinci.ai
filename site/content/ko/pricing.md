@@ -828,10 +828,10 @@ input:checked + .toggle-slider:before {
 <li>화이트라벨 릴리스 1개</li>
 <li>커뮤니티 AI 모델 (GPT, Gemini, Claude, Llama 등)</li>
 <li>기본 RAG — 자체 문서를 기반으로 답변 생성</li>
+<li>자체 API 키 사용 (BYOK)</li>
 <li class="unavailable">Scored QA 평가 스위트</li>
 <li class="unavailable">파인튜닝</li>
-<li class="unavailable">Divinci 브랜딩 제거</li>
-<li class="unavailable">우선 지원</li>
+<li class="unavailable">우선 이메일 지원</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">무료로 가입하기</a>
@@ -860,11 +860,11 @@ input:checked + .toggle-slider:before {
 <li>월 $5 상당의 사용 크레딧 포함</li>
 <li>커뮤니티 + 프리미엄 AI 모델</li>
 <li>기본 RAG — 자체 문서를 기반으로 답변 생성</li>
+<li>자체 API 키 사용 (BYOK)</li>
 <li>Scored QA 평가 스위트</li>
-<li>Divinci 브랜딩 제거</li>
 <li class="unavailable">고급 RAG (다중 인덱스, 재순위화)</li>
 <li class="unavailable">파인튜닝</li>
-<li class="unavailable">우선 지원</li>
+<li class="unavailable">우선 이메일 지원</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">시작하기</a>
@@ -894,12 +894,12 @@ input:checked + .toggle-slider:before {
 <li>월 $25 상당의 사용 크레딧 포함</li>
 <li>커뮤니티 + 프리미엄 AI 모델</li>
 <li>고급 RAG (다중 인덱스, 재순위화, 더 높은 한도)</li>
+<li>자체 API 키 사용 (BYOK)</li>
 <li>Scored QA 평가 스위트</li>
 <li>A/B 릴리스 테스트</li>
-<li>RAG Arena — 모델 비교 (사이드바이사이드)</li>
+<li>Arena — 모델 비교 (사이드바이사이드)</li>
 <li>파인튜닝</li>
-<li>Divinci 브랜딩 제거</li>
-<li>우선 지원</li>
+<li>우선 이메일 지원</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">시작하기</a>
@@ -943,13 +943,12 @@ input:checked + .toggle-slider:before {
 <li>월 $150 상당의 사용 크레딧 포함</li>
 <li>커뮤니티 + 프리미엄 AI 모델</li>
 <li>고급 RAG (다중 인덱스, 재순위화, 더 높은 한도)</li>
-<li>Scored QA, A/B 테스트, RAG Arena, 파인튜닝</li>
-<li>Divinci 브랜딩 제거</li>
-<li>우선 지원</li>
+<li>Scored QA, A/B 테스트, Arena, 파인튜닝</li>
+<li>우선 이메일 지원</li>
 <li>자체 API 키 사용 (BYOK)</li>
 <li>싱글 사인온 (SSO)</li>
-<li>커스텀 도메인</li>
-<li>전담 지원</li>
+<li>커스텀 도메인 — 얼리 액세스는 문의해 주세요</li>
+<li>전담 지원 — 문의해 주세요</li>
 </ul>
 </div>
 
@@ -1009,7 +1008,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>주요 신용카드(Visa, Mastercard, American Express, Discover)와 PayPal을 모두 지원합니다. Enterprise 플랜의 경우 net-30 조건의 청구서 결제 옵션도 제공합니다.</p>
+<p>안전한 Stripe 결제를 통해 주요 신용카드(Visa, Mastercard, American Express, Discover)를 모두 지원합니다. Enterprise 플랜의 경우 net-30 조건의 청구서 결제가 가능합니다 — 설정을 원하시면 문의해 주세요.</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1032,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>해지 후 30일 동안 데이터가 시스템에 보관되어, 필요한 항목을 내보낼 시간을 드립니다. 30일이 지나면 데이터 보존 정책에 따라 모든 데이터가 시스템에서 영구적으로 삭제됩니다.</p>
+<p>해지 후 30일 동안 데이터를 내보낼 수 있습니다. 또한 언제든지 영구 삭제를 요청하실 수 있으며, 데이터 보존 정책에 따라 데이터를 삭제해 드립니다.</p>
 </div>
 </div>
 </div>

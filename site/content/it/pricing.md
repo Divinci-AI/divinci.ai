@@ -828,10 +828,10 @@ input:checked + .toggle-slider:before {
 <li>1 release white-label</li>
 <li>Modelli IA della community (GPT, Gemini, Claude, Llama e altri)</li>
 <li>RAG di base — risposte fondate sui tuoi documenti</li>
+<li>Porta le tue chiavi API (BYOK)</li>
 <li class="unavailable">Suite di valutazione QA con punteggio</li>
 <li class="unavailable">Fine-tuning</li>
-<li class="unavailable">Rimozione del branding Divinci</li>
-<li class="unavailable">Supporto prioritario</li>
+<li class="unavailable">Supporto prioritario via email</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Registrati gratis</a>
@@ -860,11 +860,11 @@ input:checked + .toggle-slider:before {
 <li>$5/mese di crediti di utilizzo inclusi</li>
 <li>Modelli IA community + premium</li>
 <li>RAG di base — risposte fondate sui tuoi documenti</li>
+<li>Porta le tue chiavi API (BYOK)</li>
 <li>Suite di valutazione QA con punteggio</li>
-<li>Rimozione del branding Divinci</li>
 <li class="unavailable">RAG avanzato (multi-indice, reranking)</li>
 <li class="unavailable">Fine-tuning</li>
-<li class="unavailable">Supporto prioritario</li>
+<li class="unavailable">Supporto prioritario via email</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">Inizia ora</a>
@@ -894,12 +894,12 @@ input:checked + .toggle-slider:before {
 <li>$25/mese di crediti di utilizzo inclusi</li>
 <li>Modelli IA community + premium</li>
 <li>RAG avanzato (multi-indice, reranking, limiti più alti)</li>
+<li>Porta le tue chiavi API (BYOK)</li>
 <li>Suite di valutazione QA con punteggio</li>
 <li>Test A/B delle release</li>
-<li>RAG Arena — confronto diretto tra modelli</li>
+<li>Arena — confronto diretto tra modelli</li>
 <li>Fine-tuning</li>
-<li>Rimozione del branding Divinci</li>
-<li>Supporto prioritario</li>
+<li>Supporto prioritario via email</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">Inizia ora</a>
@@ -943,13 +943,12 @@ input:checked + .toggle-slider:before {
 <li>$150/mese di crediti di utilizzo inclusi</li>
 <li>Modelli IA community + premium</li>
 <li>RAG avanzato (multi-indice, reranking, limiti più alti)</li>
-<li>QA con punteggio, test A/B, RAG Arena, fine-tuning</li>
-<li>Rimozione del branding Divinci</li>
-<li>Supporto prioritario</li>
+<li>QA con punteggio, test A/B, Arena, fine-tuning</li>
+<li>Supporto prioritario via email</li>
 <li>Porta le tue chiavi API (BYOK)</li>
 <li>Single sign-on (SSO)</li>
-<li>Dominio personalizzato</li>
-<li>Supporto dedicato</li>
+<li>Domini personalizzati — contattaci per l'accesso anticipato</li>
+<li>Supporto dedicato — contattaci</li>
 </ul>
 </div>
 
@@ -1009,7 +1008,7 @@ Quali metodi di pagamento accettate?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Accettiamo tutte le principali carte di credito (Visa, Mastercard, American Express, Discover) e PayPal. Per i piani Enterprise, offriamo anche opzioni di fatturazione con termini net-30.</p>
+<p>Accettiamo tutte le principali carte di credito (Visa, Mastercard, American Express, Discover) tramite il nostro checkout sicuro Stripe. Per i piani Enterprise è disponibile la fatturazione con termini net-30 — contattaci per attivarla.</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1032,7 @@ Cosa succede ai miei dati se annullo l'abbonamento?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>I tuoi dati rimarranno nel nostro sistema per 30 giorni dopo la cancellazione, dandoti il tempo di esportare tutto ciò di cui hai bisogno. Trascorsi 30 giorni, tutti i dati verranno eliminati definitivamente dai nostri sistemi in conformità con la nostra politica di conservazione dei dati.</p>
+<p>I tuoi dati rimangono disponibili per l'esportazione per 30 giorni dopo la cancellazione. Puoi anche richiedere l'eliminazione definitiva in qualsiasi momento e rimuoveremo i tuoi dati in conformità con la nostra politica di conservazione dei dati.</p>
 </div>
 </div>
 </div>

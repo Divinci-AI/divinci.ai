@@ -828,10 +828,10 @@ input:checked + .toggle-slider:before {
 <li>1 white-label-релиз</li>
 <li>Модели ИИ от сообщества (GPT, Gemini, Claude, Llama и другие)</li>
 <li>Базовый RAG — ответы на основе ваших собственных документов</li>
+<li>Использование собственных API-ключей (BYOK)</li>
 <li class="unavailable">Наборы оценки Scored QA</li>
 <li class="unavailable">Тонкая настройка (fine-tuning)</li>
-<li class="unavailable">Удаление брендинга Divinci</li>
-<li class="unavailable">Приоритетная поддержка</li>
+<li class="unavailable">Приоритетная поддержка по электронной почте</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Зарегистрироваться бесплатно</a>
@@ -860,11 +860,11 @@ input:checked + .toggle-slider:before {
 <li>$5 в месяц включённых кредитов на использование</li>
 <li>Модели ИИ от сообщества и премиум-модели</li>
 <li>Базовый RAG — ответы на основе ваших собственных документов</li>
+<li>Использование собственных API-ключей (BYOK)</li>
 <li>Наборы оценки Scored QA</li>
-<li>Удаление брендинга Divinci</li>
 <li class="unavailable">Расширенный RAG (мульти-индекс, reranking)</li>
 <li class="unavailable">Тонкая настройка (fine-tuning)</li>
-<li class="unavailable">Приоритетная поддержка</li>
+<li class="unavailable">Приоритетная поддержка по электронной почте</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">Начать</a>
@@ -894,12 +894,12 @@ input:checked + .toggle-slider:before {
 <li>$25 в месяц включённых кредитов на использование</li>
 <li>Модели ИИ от сообщества и премиум-модели</li>
 <li>Расширенный RAG (мульти-индекс, reranking, повышенные лимиты)</li>
+<li>Использование собственных API-ключей (BYOK)</li>
 <li>Наборы оценки Scored QA</li>
 <li>A/B-тестирование релизов</li>
-<li>RAG Arena — сравнение моделей бок о бок</li>
+<li>Arena — сравнение моделей бок о бок</li>
 <li>Тонкая настройка (fine-tuning)</li>
-<li>Удаление брендинга Divinci</li>
-<li>Приоритетная поддержка</li>
+<li>Приоритетная поддержка по электронной почте</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">Начать</a>
@@ -943,13 +943,12 @@ input:checked + .toggle-slider:before {
 <li>$150 в месяц включённых кредитов на использование</li>
 <li>Модели ИИ от сообщества и премиум-модели</li>
 <li>Расширенный RAG (мульти-индекс, reranking, повышенные лимиты)</li>
-<li>Scored QA, A/B-тестирование, RAG Arena, тонкая настройка</li>
-<li>Удаление брендинга Divinci</li>
-<li>Приоритетная поддержка</li>
+<li>Scored QA, A/B-тестирование, Arena, тонкая настройка</li>
+<li>Приоритетная поддержка по электронной почте</li>
 <li>Использование собственных API-ключей (BYOK)</li>
 <li>Единый вход (SSO)</li>
-<li>Собственный домен</li>
-<li>Выделенная поддержка</li>
+<li>Собственные домены — свяжитесь с нами для раннего доступа</li>
+<li>Выделенная поддержка — свяжитесь с нами</li>
 </ul>
 </div>
 
@@ -1009,7 +1008,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Мы принимаем все основные кредитные карты (Visa, Mastercard, American Express, Discover) и PayPal. Для планов Enterprise также доступна оплата по счёту с отсрочкой платежа 30 дней.</p>
+<p>Мы принимаем все основные кредитные карты (Visa, Mastercard, American Express, Discover) через нашу защищённую систему оплаты Stripe. Для планов Enterprise доступна оплата по счёту с отсрочкой платежа 30 дней (net-30) — свяжитесь с нами, чтобы её настроить.</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1032,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Ваши данные останутся в нашей системе в течение 30 дней после отмены подписки, чтобы у вас было время экспортировать всё необходимое. По истечении 30 дней все данные будут безвозвратно удалены из наших систем в соответствии с политикой хранения данных.</p>
+<p>После отмены подписки ваши данные остаются доступными для экспорта в течение 30 дней. Вы также можете в любой момент запросить безвозвратное удаление — мы удалим ваши данные в соответствии с нашей политикой хранения данных.</p>
 </div>
 </div>
 </div>

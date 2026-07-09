@@ -828,10 +828,10 @@ input:checked + .toggle-slider:before {
 <li>1 white-label release</li>
 <li>Community AI-modellen (GPT, Gemini, Claude, Llama en meer)</li>
 <li>Basis-RAG — baseer antwoorden op uw eigen documenten</li>
+<li>Gebruik uw eigen API-sleutels (BYOK)</li>
 <li class="unavailable">Scored QA-evaluatiesuites</li>
 <li class="unavailable">Fine-tuning</li>
-<li class="unavailable">Divinci-branding verwijderen</li>
-<li class="unavailable">Prioriteitsondersteuning</li>
+<li class="unavailable">Prioriteitsondersteuning per e-mail</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Gratis aanmelden</a>
@@ -860,11 +860,11 @@ input:checked + .toggle-slider:before {
 <li>$5/maand aan inbegrepen gebruikstegoed</li>
 <li>Community- en premium AI-modellen</li>
 <li>Basis-RAG — baseer antwoorden op uw eigen documenten</li>
+<li>Gebruik uw eigen API-sleutels (BYOK)</li>
 <li>Scored QA-evaluatiesuites</li>
-<li>Divinci-branding verwijderen</li>
 <li class="unavailable">Geavanceerde RAG (multi-index, reranking)</li>
 <li class="unavailable">Fine-tuning</li>
-<li class="unavailable">Prioriteitsondersteuning</li>
+<li class="unavailable">Prioriteitsondersteuning per e-mail</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">Aan de slag</a>
@@ -894,12 +894,12 @@ input:checked + .toggle-slider:before {
 <li>$25/maand aan inbegrepen gebruikstegoed</li>
 <li>Community- en premium AI-modellen</li>
 <li>Geavanceerde RAG (multi-index, reranking, hogere limieten)</li>
+<li>Gebruik uw eigen API-sleutels (BYOK)</li>
 <li>Scored QA-evaluatiesuites</li>
 <li>A/B-tests voor releases</li>
-<li>RAG Arena — modellen naast elkaar vergelijken</li>
+<li>Arena — modellen naast elkaar vergelijken</li>
 <li>Fine-tuning</li>
-<li>Divinci-branding verwijderen</li>
-<li>Prioriteitsondersteuning</li>
+<li>Prioriteitsondersteuning per e-mail</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">Aan de slag</a>
@@ -943,13 +943,12 @@ input:checked + .toggle-slider:before {
 <li>$150/maand aan inbegrepen gebruikstegoed</li>
 <li>Community- en premium AI-modellen</li>
 <li>Geavanceerde RAG (multi-index, reranking, hogere limieten)</li>
-<li>Scored QA, A/B-tests, RAG Arena, fine-tuning</li>
-<li>Divinci-branding verwijderen</li>
-<li>Prioriteitsondersteuning</li>
+<li>Scored QA, A/B-tests, Arena, fine-tuning</li>
+<li>Prioriteitsondersteuning per e-mail</li>
 <li>Gebruik uw eigen API-sleutels (BYOK)</li>
 <li>Single sign-on (SSO)</li>
-<li>Aangepast domein</li>
-<li>Toegewijde ondersteuning</li>
+<li>Aangepaste domeinen — neem contact met ons op voor vroege toegang</li>
+<li>Toegewijde ondersteuning — neem contact met ons op</li>
 </ul>
 </div>
 
@@ -1009,7 +1008,7 @@ Welke betaalmethoden accepteert u?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>We accepteren alle gangbare creditcards (Visa, Mastercard, American Express, Discover) en PayPal. Voor Enterprise-plannen bieden we ook factureringsopties met een betalingstermijn van 30 dagen.</p>
+<p>We accepteren alle gangbare creditcards (Visa, Mastercard, American Express, Discover) via onze beveiligde Stripe-checkout. Voor Enterprise-plannen is facturering met een betalingstermijn van 30 dagen (net-30) beschikbaar — neem contact met ons op om dit in te stellen.</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1032,7 @@ Wat gebeurt er met mijn gegevens als ik opzeg?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Uw gegevens blijven na opzegging 30 dagen in ons systeem bewaard, zodat u de tijd heeft om te exporteren wat u nodig heeft. Na 30 dagen worden alle gegevens permanent en definitief verwijderd uit onze systemen, in overeenstemming met ons gegevensbewaarbeleid.</p>
+<p>Uw gegevens blijven na opzegging 30 dagen beschikbaar voor export. U kunt ook op elk moment om permanente verwijdering vragen; wij verwijderen uw gegevens dan in overeenstemming met ons gegevensbewaarbeleid.</p>
 </div>
 </div>
 </div>

@@ -828,10 +828,10 @@ input:checked + .toggle-slider:before {
 <li>1 White-Label-Release</li>
 <li>Community-KI-Modelle (GPT, Gemini, Claude, Llama u. v. m.)</li>
 <li>Basis-RAG – Antworten auf Basis Ihrer eigenen Dokumente</li>
+<li>Eigene API-Schlüssel nutzen (BYOK)</li>
 <li class="unavailable">Bewertete QA-Testsuiten</li>
 <li class="unavailable">Fine-Tuning</li>
-<li class="unavailable">Divinci-Branding entfernen</li>
-<li class="unavailable">Priorisierter Support</li>
+<li class="unavailable">Priorisierter E-Mail-Support</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Kostenlos registrieren</a>
@@ -860,11 +860,11 @@ input:checked + .toggle-slider:before {
 <li>5 $/Monat an enthaltenem Nutzungsguthaben</li>
 <li>Community- und Premium-KI-Modelle</li>
 <li>Basis-RAG – Antworten auf Basis Ihrer eigenen Dokumente</li>
+<li>Eigene API-Schlüssel nutzen (BYOK)</li>
 <li>Bewertete QA-Testsuiten</li>
-<li>Divinci-Branding entfernen</li>
 <li class="unavailable">Erweitertes RAG (Multi-Index, Reranking)</li>
 <li class="unavailable">Fine-Tuning</li>
-<li class="unavailable">Priorisierter Support</li>
+<li class="unavailable">Priorisierter E-Mail-Support</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">Jetzt starten</a>
@@ -894,12 +894,12 @@ input:checked + .toggle-slider:before {
 <li>25 $/Monat an enthaltenem Nutzungsguthaben</li>
 <li>Community- und Premium-KI-Modelle</li>
 <li>Erweitertes RAG (Multi-Index, Reranking, höhere Limits)</li>
+<li>Eigene API-Schlüssel nutzen (BYOK)</li>
 <li>Bewertete QA-Testsuiten</li>
 <li>A/B-Release-Tests</li>
-<li>RAG Arena – Modelle im direkten Vergleich</li>
+<li>Arena – Modelle im direkten Vergleich</li>
 <li>Fine-Tuning</li>
-<li>Divinci-Branding entfernen</li>
-<li>Priorisierter Support</li>
+<li>Priorisierter E-Mail-Support</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">Jetzt starten</a>
@@ -943,13 +943,12 @@ input:checked + .toggle-slider:before {
 <li>150 $/Monat an enthaltenem Nutzungsguthaben</li>
 <li>Community- und Premium-KI-Modelle</li>
 <li>Erweitertes RAG (Multi-Index, Reranking, höhere Limits)</li>
-<li>Bewertete QA, A/B-Tests, RAG Arena, Fine-Tuning</li>
-<li>Divinci-Branding entfernen</li>
-<li>Priorisierter Support</li>
+<li>Bewertete QA, A/B-Tests, Arena, Fine-Tuning</li>
+<li>Priorisierter E-Mail-Support</li>
 <li>Eigene API-Schlüssel nutzen (BYOK)</li>
 <li>Single Sign-On (SSO)</li>
-<li>Eigene Domain</li>
-<li>Dedizierter Support</li>
+<li>Eigene Domains – kontaktieren Sie uns für frühzeitigen Zugang</li>
+<li>Dedizierter Support – kontaktieren Sie uns</li>
 </ul>
 </div>
 
@@ -1009,7 +1008,7 @@ Welche Zahlungsmethoden akzeptieren Sie?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Wir akzeptieren alle gängigen Kreditkarten (Visa, Mastercard, American Express, Discover) sowie PayPal. Für Enterprise-Pläne bieten wir zusätzlich Rechnungsstellung mit einem Zahlungsziel von 30 Tagen an.</p>
+<p>Wir akzeptieren alle gängigen Kreditkarten (Visa, Mastercard, American Express, Discover) über unseren sicheren Stripe-Checkout. Für Enterprise-Pläne ist Rechnungsstellung mit einem Zahlungsziel von 30 Tagen verfügbar – kontaktieren Sie uns, um dies einzurichten.</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1032,7 @@ Was passiert mit meinen Daten, wenn ich kündige?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Ihre Daten verbleiben nach der Kündigung 30 Tage lang in unserem System, sodass Sie Zeit haben, alles Benötigte zu exportieren. Nach Ablauf dieser 30 Tage werden alle Daten gemäß unserer Datenaufbewahrungsrichtlinie dauerhaft aus unseren Systemen gelöscht.</p>
+<p>Ihre Daten bleiben nach der Kündigung 30 Tage lang für den Export verfügbar. Sie können außerdem jederzeit die dauerhafte Löschung beantragen, und wir entfernen Ihre Daten gemäß unserer Datenaufbewahrungsrichtlinie.</p>
 </div>
 </div>
 </div>

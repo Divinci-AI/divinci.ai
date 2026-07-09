@@ -828,10 +828,10 @@ input:checked + .toggle-slider:before {
 <li>ホワイトレーベルリリース 1件</li>
 <li>コミュニティAIモデル(GPT、Gemini、Claude、Llama など)</li>
 <li>ベーシックRAG — 自社ドキュメントに基づく回答</li>
+<li>独自のAPIキーを利用可能(BYOK)</li>
 <li class="unavailable">スコア付きQA評価スイート</li>
 <li class="unavailable">ファインチューニング</li>
-<li class="unavailable">Divinciブランディングの削除</li>
-<li class="unavailable">優先サポート</li>
+<li class="unavailable">優先メールサポート</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">無料で登録</a>
@@ -860,11 +860,11 @@ input:checked + .toggle-slider:before {
 <li>月額$5分の利用クレジット付き</li>
 <li>コミュニティ+プレミアムAIモデル</li>
 <li>ベーシックRAG — 自社ドキュメントに基づく回答</li>
+<li>独自のAPIキーを利用可能(BYOK)</li>
 <li>スコア付きQA評価スイート</li>
-<li>Divinciブランディングの削除</li>
 <li class="unavailable">アドバンストRAG(マルチインデックス、リランキング)</li>
 <li class="unavailable">ファインチューニング</li>
-<li class="unavailable">優先サポート</li>
+<li class="unavailable">優先メールサポート</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">今すぐ始める</a>
@@ -894,12 +894,12 @@ input:checked + .toggle-slider:before {
 <li>月額$25分の利用クレジット付き</li>
 <li>コミュニティ+プレミアムAIモデル</li>
 <li>アドバンストRAG(マルチインデックス、リランキング、上限拡張)</li>
+<li>独自のAPIキーを利用可能(BYOK)</li>
 <li>スコア付きQA評価スイート</li>
 <li>A/Bリリーステスト</li>
-<li>RAG Arena — モデルの比較検証</li>
+<li>Arena — モデルの比較検証</li>
 <li>ファインチューニング</li>
-<li>Divinciブランディングの削除</li>
-<li>優先サポート</li>
+<li>優先メールサポート</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">今すぐ始める</a>
@@ -943,13 +943,12 @@ input:checked + .toggle-slider:before {
 <li>月額$150分の利用クレジット付き</li>
 <li>コミュニティ+プレミアムAIモデル</li>
 <li>アドバンストRAG(マルチインデックス、リランキング、上限拡張)</li>
-<li>スコア付きQA、A/Bテスト、RAG Arena、ファインチューニング</li>
-<li>Divinciブランディングの削除</li>
-<li>優先サポート</li>
+<li>スコア付きQA、A/Bテスト、Arena、ファインチューニング</li>
+<li>優先メールサポート</li>
 <li>独自のAPIキーを利用可能(BYOK)</li>
 <li>シングルサインオン(SSO)</li>
-<li>カスタムドメイン</li>
-<li>専任サポート</li>
+<li>カスタムドメイン — 早期アクセスをご希望の方はお問い合わせください</li>
+<li>専任サポート — お問い合わせください</li>
 </ul>
 </div>
 
@@ -1009,7 +1008,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>主要なクレジットカード(Visa、Mastercard、American Express、Discover)およびPayPalに対応しています。Enterpriseプランでは、支払期限30日の請求書払いもご利用いただけます。</p>
+<p>主要なクレジットカード(Visa、Mastercard、American Express、Discover)を、安全なStripeチェックアウトを通じてご利用いただけます。Enterpriseプランでは、支払期限30日(net-30)の請求書払いもご利用可能です — 設定をご希望の場合はお問い合わせください。</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1032,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>解約後もデータは30日間システムに保持され、その間に必要なデータをエクスポートいただけます。30日経過後は、データ保持ポリシーに従いすべてのデータがシステムから完全に削除されます。</p>
+<p>解約後30日間は、データのエクスポートが可能です。また、いつでも完全削除をリクエストしていただけます。その場合、データ保持ポリシーに従ってお客様のデータを削除いたします。</p>
 </div>
 </div>
 </div>

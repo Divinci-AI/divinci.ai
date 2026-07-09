@@ -828,10 +828,10 @@ input:checked + .toggle-slider:before {
 <li>1 white-label release</li>
 <li>Community AI models (GPT, Gemini, Claude, Llama & more)</li>
 <li>Basic RAG — ground answers on your own documents</li>
+<li>Bring your own API keys (BYOK)</li>
 <li class="unavailable">Scored QA evaluation suites</li>
 <li class="unavailable">Fine-tuning</li>
-<li class="unavailable">Remove Divinci branding</li>
-<li class="unavailable">Priority support</li>
+<li class="unavailable">Priority email support</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Sign up free</a>
@@ -860,11 +860,11 @@ input:checked + .toggle-slider:before {
 <li>$5/month in included usage credits</li>
 <li>Community + premium AI models</li>
 <li>Basic RAG — ground answers on your own documents</li>
+<li>Bring your own API keys (BYOK)</li>
 <li>Scored QA evaluation suites</li>
-<li>Remove Divinci branding</li>
 <li class="unavailable">Advanced RAG (multi-index, reranking)</li>
 <li class="unavailable">Fine-tuning</li>
-<li class="unavailable">Priority support</li>
+<li class="unavailable">Priority email support</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">Get Started</a>
@@ -894,12 +894,12 @@ input:checked + .toggle-slider:before {
 <li>$25/month in included usage credits</li>
 <li>Community + premium AI models</li>
 <li>Advanced RAG (multi-index, reranking, higher limits)</li>
+<li>Bring your own API keys (BYOK)</li>
 <li>Scored QA evaluation suites</li>
 <li>A/B release testing</li>
-<li>RAG Arena — side-by-side model comparison</li>
+<li>Arena — side-by-side model comparison</li>
 <li>Fine-tuning</li>
-<li>Remove Divinci branding</li>
-<li>Priority support</li>
+<li>Priority email support</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">Get Started</a>
@@ -943,13 +943,12 @@ input:checked + .toggle-slider:before {
 <li>$150/month in included usage credits</li>
 <li>Community + premium AI models</li>
 <li>Advanced RAG (multi-index, reranking, higher limits)</li>
-<li>Scored QA, A/B testing, RAG Arena, fine-tuning</li>
-<li>Remove Divinci branding</li>
-<li>Priority support</li>
+<li>Scored QA, A/B testing, Arena, fine-tuning</li>
+<li>Priority email support</li>
 <li>Bring your own API keys (BYOK)</li>
 <li>Single sign-on (SSO)</li>
-<li>Custom domain</li>
-<li>Dedicated support</li>
+<li>Custom domains — contact us for early access</li>
+<li>Dedicated support — contact us</li>
 </ul>
 </div>
 
@@ -1009,7 +1008,7 @@ What payment methods do you accept?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>We accept all major credit cards (Visa, Mastercard, American Express, Discover) and PayPal. For Enterprise plans, we also offer invoicing options with net-30 terms.</p>
+<p>We accept all major credit cards (Visa, Mastercard, American Express, Discover) through our secure Stripe checkout. For Enterprise plans, invoicing with net-30 terms is available — contact us to set it up.</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1032,7 @@ What happens to my data if I cancel?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Your data will remain in our system for 30 days after cancellation, giving you time to export anything you need. After 30 days, all data will be permanently deleted from our systems in accordance with our data retention policy.</p>
+<p>Your data remains available for export for 30 days after cancellation. You can also request permanent deletion at any time and we'll remove your data in accordance with our data retention policy.</p>
 </div>
 </div>
 </div>

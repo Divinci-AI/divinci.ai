@@ -828,10 +828,10 @@ input:checked + .toggle-slider:before {
 <li>1 व्हाइट-लेबल रिलीज़</li>
 <li>कम्युनिटी AI मॉडल (GPT, Gemini, Claude, Llama और अन्य)</li>
 <li>बेसिक RAG — अपने स्वयं के दस्तावेज़ों पर आधारित उत्तर</li>
+<li>अपनी स्वयं की API कुंजियाँ लाएं (BYOK)</li>
 <li class="unavailable">स्कोर्ड QA मूल्यांकन सुइट</li>
 <li class="unavailable">फाइन-ट्यूनिंग</li>
-<li class="unavailable">Divinci ब्रांडिंग हटाएं</li>
-<li class="unavailable">प्राथमिकता सहायता</li>
+<li class="unavailable">प्राथमिकता ईमेल सहायता</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">मुफ़्त में साइन अप करें</a>
@@ -860,11 +860,11 @@ input:checked + .toggle-slider:before {
 <li>$5/माह की शामिल उपयोग क्रेडिट</li>
 <li>कम्युनिटी + प्रीमियम AI मॉडल</li>
 <li>बेसिक RAG — अपने स्वयं के दस्तावेज़ों पर आधारित उत्तर</li>
+<li>अपनी स्वयं की API कुंजियाँ लाएं (BYOK)</li>
 <li>स्कोर्ड QA मूल्यांकन सुइट</li>
-<li>Divinci ब्रांडिंग हटाएं</li>
 <li class="unavailable">एडवांस्ड RAG (मल्टी-इंडेक्स, रीरैंकिंग)</li>
 <li class="unavailable">फाइन-ट्यूनिंग</li>
-<li class="unavailable">प्राथमिकता सहायता</li>
+<li class="unavailable">प्राथमिकता ईमेल सहायता</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">शुरू करें</a>
@@ -894,12 +894,12 @@ input:checked + .toggle-slider:before {
 <li>$25/माह की शामिल उपयोग क्रेडिट</li>
 <li>कम्युनिटी + प्रीमियम AI मॉडल</li>
 <li>एडवांस्ड RAG (मल्टी-इंडेक्स, रीरैंकिंग, उच्च सीमाएं)</li>
+<li>अपनी स्वयं की API कुंजियाँ लाएं (BYOK)</li>
 <li>स्कोर्ड QA मूल्यांकन सुइट</li>
 <li>A/B रिलीज़ परीक्षण</li>
-<li>RAG Arena — साथ-साथ मॉडल तुलना</li>
+<li>Arena — साथ-साथ मॉडल तुलना</li>
 <li>फाइन-ट्यूनिंग</li>
-<li>Divinci ब्रांडिंग हटाएं</li>
-<li>प्राथमिकता सहायता</li>
+<li>प्राथमिकता ईमेल सहायता</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">शुरू करें</a>
@@ -943,13 +943,12 @@ input:checked + .toggle-slider:before {
 <li>$150/माह की शामिल उपयोग क्रेडिट</li>
 <li>कम्युनिटी + प्रीमियम AI मॉडल</li>
 <li>एडवांस्ड RAG (मल्टी-इंडेक्स, रीरैंकिंग, उच्च सीमाएं)</li>
-<li>Scored QA, A/B परीक्षण, RAG Arena, फाइन-ट्यूनिंग</li>
-<li>Divinci ब्रांडिंग हटाएं</li>
-<li>प्राथमिकता सहायता</li>
+<li>Scored QA, A/B परीक्षण, Arena, फाइन-ट्यूनिंग</li>
+<li>प्राथमिकता ईमेल सहायता</li>
 <li>अपनी स्वयं की API कुंजियाँ लाएं (BYOK)</li>
 <li>सिंगल साइन-ऑन (SSO)</li>
-<li>कस्टम डोमेन</li>
-<li>समर्पित सहायता</li>
+<li>कस्टम डोमेन — अर्ली एक्सेस के लिए हमसे संपर्क करें</li>
+<li>समर्पित सहायता — हमसे संपर्क करें</li>
 </ul>
 </div>
 
@@ -1009,7 +1008,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>हम सभी प्रमुख क्रेडिट कार्ड (Visa, Mastercard, American Express, Discover) और PayPal स्वीकार करते हैं। Enterprise योजनाओं के लिए, हम net-30 शर्तों के साथ इनवॉइसिंग विकल्प भी प्रदान करते हैं।</p>
+<p>हम अपने सुरक्षित Stripe चेकआउट के माध्यम से सभी प्रमुख क्रेडिट कार्ड (Visa, Mastercard, American Express, Discover) स्वीकार करते हैं। Enterprise योजनाओं के लिए, net-30 शर्तों के साथ इनवॉइसिंग उपलब्ध है — इसे सेट करने के लिए हमसे संपर्क करें।</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1032,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>रद्द करने के बाद आपका डेटा हमारे सिस्टम में 30 दिनों तक बना रहेगा, जिससे आपको जो भी चाहिए उसे एक्सपोर्ट करने का समय मिल जाएगा। 30 दिनों के बाद, हमारी डेटा रिटेंशन नीति के अनुसार सभी डेटा हमारे सिस्टम से स्थायी रूप से हटा दिया जाएगा।</p>
+<p>रद्द करने के बाद आपका डेटा 30 दिनों तक एक्सपोर्ट के लिए उपलब्ध रहता है। आप किसी भी समय स्थायी रूप से हटाने का अनुरोध भी कर सकते हैं, और हम अपनी डेटा रिटेंशन नीति के अनुसार आपका डेटा हटा देंगे।</p>
 </div>
 </div>
 </div>
