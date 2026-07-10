@@ -831,6 +831,7 @@ input:checked + .toggle-slider:before {
 <li>独自のAPIキーを利用可能(BYOK)</li>
 <li class="unavailable">スコア付きQA評価スイート</li>
 <li class="unavailable">ファインチューニング</li>
+<li class="unavailable">Divinciブランディングの削除</li>
 <li class="unavailable">優先メールサポート</li>
 </ul>
 
@@ -862,6 +863,7 @@ input:checked + .toggle-slider:before {
 <li>ベーシックRAG — 自社ドキュメントに基づく回答</li>
 <li>独自のAPIキーを利用可能(BYOK)</li>
 <li>スコア付きQA評価スイート</li>
+<li>Divinciブランディングの削除</li>
 <li class="unavailable">アドバンストRAG(マルチインデックス、リランキング)</li>
 <li class="unavailable">ファインチューニング</li>
 <li class="unavailable">優先メールサポート</li>
@@ -899,6 +901,7 @@ input:checked + .toggle-slider:before {
 <li>A/Bリリーステスト</li>
 <li>Arena — モデルの比較検証</li>
 <li>ファインチューニング</li>
+<li>Divinciブランディングの削除</li>
 <li>優先メールサポート</li>
 </ul>
 
@@ -944,6 +947,7 @@ input:checked + .toggle-slider:before {
 <li>コミュニティ+プレミアムAIモデル</li>
 <li>アドバンストRAG(マルチインデックス、リランキング、上限拡張)</li>
 <li>スコア付きQA、A/Bテスト、Arena、ファインチューニング</li>
+<li>Divinciブランディングの削除</li>
 <li>優先メールサポート</li>
 <li>独自のAPIキーを利用可能(BYOK)</li>
 <li>シングルサインオン(SSO)</li>

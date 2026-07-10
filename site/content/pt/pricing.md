@@ -831,6 +831,7 @@ input:checked + .toggle-slider:before {
 <li>Traga as suas próprias chaves de API (BYOK)</li>
 <li class="unavailable">Suites de avaliação Scored QA</li>
 <li class="unavailable">Fine-tuning</li>
+<li class="unavailable">Remover a marca Divinci</li>
 <li class="unavailable">Suporte prioritário por e-mail</li>
 </ul>
 
@@ -862,6 +863,7 @@ input:checked + .toggle-slider:before {
 <li>RAG básico — baseie as respostas nos seus próprios documentos</li>
 <li>Traga as suas próprias chaves de API (BYOK)</li>
 <li>Suites de avaliação Scored QA</li>
+<li>Remover a marca Divinci</li>
 <li class="unavailable">RAG avançado (multi-índice, reranking)</li>
 <li class="unavailable">Fine-tuning</li>
 <li class="unavailable">Suporte prioritário por e-mail</li>
@@ -899,6 +901,7 @@ input:checked + .toggle-slider:before {
 <li>Testes A/B de lançamentos</li>
 <li>Arena — comparação de modelos lado a lado</li>
 <li>Fine-tuning</li>
+<li>Remover a marca Divinci</li>
 <li>Suporte prioritário por e-mail</li>
 </ul>
 
@@ -944,6 +947,7 @@ input:checked + .toggle-slider:before {
 <li>Modelos de IA da comunidade + premium</li>
 <li>RAG avançado (multi-índice, reranking, limites mais elevados)</li>
 <li>Scored QA, testes A/B, Arena, fine-tuning</li>
+<li>Remover a marca Divinci</li>
 <li>Suporte prioritário por e-mail</li>
 <li>Traga as suas próprias chaves de API (BYOK)</li>
 <li>Single sign-on (SSO)</li>

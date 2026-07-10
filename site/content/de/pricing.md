@@ -831,6 +831,7 @@ input:checked + .toggle-slider:before {
 <li>Eigene API-Schlüssel nutzen (BYOK)</li>
 <li class="unavailable">Bewertete QA-Testsuiten</li>
 <li class="unavailable">Fine-Tuning</li>
+<li class="unavailable">Divinci-Branding entfernen</li>
 <li class="unavailable">Priorisierter E-Mail-Support</li>
 </ul>
 
@@ -862,6 +863,7 @@ input:checked + .toggle-slider:before {
 <li>Basis-RAG – Antworten auf Basis Ihrer eigenen Dokumente</li>
 <li>Eigene API-Schlüssel nutzen (BYOK)</li>
 <li>Bewertete QA-Testsuiten</li>
+<li>Divinci-Branding entfernen</li>
 <li class="unavailable">Erweitertes RAG (Multi-Index, Reranking)</li>
 <li class="unavailable">Fine-Tuning</li>
 <li class="unavailable">Priorisierter E-Mail-Support</li>
@@ -899,6 +901,7 @@ input:checked + .toggle-slider:before {
 <li>A/B-Release-Tests</li>
 <li>Arena – Modelle im direkten Vergleich</li>
 <li>Fine-Tuning</li>
+<li>Divinci-Branding entfernen</li>
 <li>Priorisierter E-Mail-Support</li>
 </ul>
 
@@ -944,6 +947,7 @@ input:checked + .toggle-slider:before {
 <li>Community- und Premium-KI-Modelle</li>
 <li>Erweitertes RAG (Multi-Index, Reranking, höhere Limits)</li>
 <li>Bewertete QA, A/B-Tests, Arena, Fine-Tuning</li>
+<li>Divinci-Branding entfernen</li>
 <li>Priorisierter E-Mail-Support</li>
 <li>Eigene API-Schlüssel nutzen (BYOK)</li>
 <li>Single Sign-On (SSO)</li>

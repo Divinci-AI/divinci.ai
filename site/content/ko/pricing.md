@@ -831,6 +831,7 @@ input:checked + .toggle-slider:before {
 <li>자체 API 키 사용 (BYOK)</li>
 <li class="unavailable">Scored QA 평가 스위트</li>
 <li class="unavailable">파인튜닝</li>
+<li class="unavailable">Divinci 브랜딩 제거</li>
 <li class="unavailable">우선 이메일 지원</li>
 </ul>
 
@@ -862,6 +863,7 @@ input:checked + .toggle-slider:before {
 <li>기본 RAG — 자체 문서를 기반으로 답변 생성</li>
 <li>자체 API 키 사용 (BYOK)</li>
 <li>Scored QA 평가 스위트</li>
+<li>Divinci 브랜딩 제거</li>
 <li class="unavailable">고급 RAG (다중 인덱스, 재순위화)</li>
 <li class="unavailable">파인튜닝</li>
 <li class="unavailable">우선 이메일 지원</li>
@@ -899,6 +901,7 @@ input:checked + .toggle-slider:before {
 <li>A/B 릴리스 테스트</li>
 <li>Arena — 모델 비교 (사이드바이사이드)</li>
 <li>파인튜닝</li>
+<li>Divinci 브랜딩 제거</li>
 <li>우선 이메일 지원</li>
 </ul>
 
@@ -944,6 +947,7 @@ input:checked + .toggle-slider:before {
 <li>커뮤니티 + 프리미엄 AI 모델</li>
 <li>고급 RAG (다중 인덱스, 재순위화, 더 높은 한도)</li>
 <li>Scored QA, A/B 테스트, Arena, 파인튜닝</li>
+<li>Divinci 브랜딩 제거</li>
 <li>우선 이메일 지원</li>
 <li>자체 API 키 사용 (BYOK)</li>
 <li>싱글 사인온 (SSO)</li>

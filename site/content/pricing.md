@@ -831,6 +831,7 @@ input:checked + .toggle-slider:before {
 <li>Bring your own API keys (BYOK)</li>
 <li class="unavailable">Scored QA evaluation suites</li>
 <li class="unavailable">Fine-tuning</li>
+<li class="unavailable">Remove Divinci branding</li>
 <li class="unavailable">Priority email support</li>
 </ul>
 
@@ -862,6 +863,7 @@ input:checked + .toggle-slider:before {
 <li>Basic RAG — ground answers on your own documents</li>
 <li>Bring your own API keys (BYOK)</li>
 <li>Scored QA evaluation suites</li>
+<li>Remove Divinci branding</li>
 <li class="unavailable">Advanced RAG (multi-index, reranking)</li>
 <li class="unavailable">Fine-tuning</li>
 <li class="unavailable">Priority email support</li>
@@ -899,6 +901,7 @@ input:checked + .toggle-slider:before {
 <li>A/B release testing</li>
 <li>Arena — side-by-side model comparison</li>
 <li>Fine-tuning</li>
+<li>Remove Divinci branding</li>
 <li>Priority email support</li>
 </ul>
 
@@ -944,6 +947,7 @@ input:checked + .toggle-slider:before {
 <li>Community + premium AI models</li>
 <li>Advanced RAG (multi-index, reranking, higher limits)</li>
 <li>Scored QA, A/B testing, Arena, fine-tuning</li>
+<li>Remove Divinci branding</li>
 <li>Priority email support</li>
 <li>Bring your own API keys (BYOK)</li>
 <li>Single sign-on (SSO)</li>

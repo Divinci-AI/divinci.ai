@@ -831,6 +831,7 @@ input:checked + .toggle-slider:before {
 <li>Использование собственных API-ключей (BYOK)</li>
 <li class="unavailable">Наборы оценки Scored QA</li>
 <li class="unavailable">Тонкая настройка (fine-tuning)</li>
+<li class="unavailable">Удаление брендинга Divinci</li>
 <li class="unavailable">Приоритетная поддержка по электронной почте</li>
 </ul>
 
@@ -862,6 +863,7 @@ input:checked + .toggle-slider:before {
 <li>Базовый RAG — ответы на основе ваших собственных документов</li>
 <li>Использование собственных API-ключей (BYOK)</li>
 <li>Наборы оценки Scored QA</li>
+<li>Удаление брендинга Divinci</li>
 <li class="unavailable">Расширенный RAG (мульти-индекс, reranking)</li>
 <li class="unavailable">Тонкая настройка (fine-tuning)</li>
 <li class="unavailable">Приоритетная поддержка по электронной почте</li>
@@ -899,6 +901,7 @@ input:checked + .toggle-slider:before {
 <li>A/B-тестирование релизов</li>
 <li>Arena — сравнение моделей бок о бок</li>
 <li>Тонкая настройка (fine-tuning)</li>
+<li>Удаление брендинга Divinci</li>
 <li>Приоритетная поддержка по электронной почте</li>
 </ul>
 
@@ -944,6 +947,7 @@ input:checked + .toggle-slider:before {
 <li>Модели ИИ от сообщества и премиум-модели</li>
 <li>Расширенный RAG (мульти-индекс, reranking, повышенные лимиты)</li>
 <li>Scored QA, A/B-тестирование, Arena, тонкая настройка</li>
+<li>Удаление брендинга Divinci</li>
 <li>Приоритетная поддержка по электронной почте</li>
 <li>Использование собственных API-ключей (BYOK)</li>
 <li>Единый вход (SSO)</li>

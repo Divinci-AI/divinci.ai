@@ -831,6 +831,7 @@ input:checked + .toggle-slider:before {
 <li>أحضر مفاتيح API الخاصة بك (BYOK)</li>
 <li class="unavailable">مجموعات تقييم الجودة المُقيَّمة (Scored QA)</li>
 <li class="unavailable">الضبط الدقيق (Fine-tuning)</li>
+<li class="unavailable">إزالة علامة Divinci التجارية</li>
 <li class="unavailable">دعم ذو أولوية عبر البريد الإلكتروني</li>
 </ul>
 
@@ -862,6 +863,7 @@ input:checked + .toggle-slider:before {
 <li>RAG أساسي — استند في الإجابات إلى مستنداتك الخاصة</li>
 <li>أحضر مفاتيح API الخاصة بك (BYOK)</li>
 <li>مجموعات تقييم الجودة المُقيَّمة (Scored QA)</li>
+<li>إزالة علامة Divinci التجارية</li>
 <li class="unavailable">RAG متقدّم (فهارس متعددة، إعادة الترتيب)</li>
 <li class="unavailable">الضبط الدقيق (Fine-tuning)</li>
 <li class="unavailable">دعم ذو أولوية عبر البريد الإلكتروني</li>
@@ -899,6 +901,7 @@ input:checked + .toggle-slider:before {
 <li>اختبار الإصدارات A/B</li>
 <li>Arena — مقارنة النماذج جنبًا إلى جنب</li>
 <li>الضبط الدقيق (Fine-tuning)</li>
+<li>إزالة علامة Divinci التجارية</li>
 <li>دعم ذو أولوية عبر البريد الإلكتروني</li>
 </ul>
 
@@ -944,6 +947,7 @@ input:checked + .toggle-slider:before {
 <li>نماذج ذكاء اصطناعي مجتمعية ومتميزة</li>
 <li>RAG متقدّم (فهارس متعددة، إعادة الترتيب، حدود أعلى)</li>
 <li>تقييم الجودة (Scored QA)، اختبار A/B، Arena، الضبط الدقيق</li>
+<li>إزالة علامة Divinci التجارية</li>
 <li>دعم ذو أولوية عبر البريد الإلكتروني</li>
 <li>أحضر مفاتيح API الخاصة بك (BYOK)</li>
 <li>تسجيل الدخول الموحّد (SSO)</li>

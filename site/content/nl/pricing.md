@@ -831,6 +831,7 @@ input:checked + .toggle-slider:before {
 <li>Gebruik uw eigen API-sleutels (BYOK)</li>
 <li class="unavailable">Scored QA-evaluatiesuites</li>
 <li class="unavailable">Fine-tuning</li>
+<li class="unavailable">Divinci-branding verwijderen</li>
 <li class="unavailable">Prioriteitsondersteuning per e-mail</li>
 </ul>
 
@@ -862,6 +863,7 @@ input:checked + .toggle-slider:before {
 <li>Basis-RAG — baseer antwoorden op uw eigen documenten</li>
 <li>Gebruik uw eigen API-sleutels (BYOK)</li>
 <li>Scored QA-evaluatiesuites</li>
+<li>Divinci-branding verwijderen</li>
 <li class="unavailable">Geavanceerde RAG (multi-index, reranking)</li>
 <li class="unavailable">Fine-tuning</li>
 <li class="unavailable">Prioriteitsondersteuning per e-mail</li>
@@ -899,6 +901,7 @@ input:checked + .toggle-slider:before {
 <li>A/B-tests voor releases</li>
 <li>Arena — modellen naast elkaar vergelijken</li>
 <li>Fine-tuning</li>
+<li>Divinci-branding verwijderen</li>
 <li>Prioriteitsondersteuning per e-mail</li>
 </ul>
 
@@ -944,6 +947,7 @@ input:checked + .toggle-slider:before {
 <li>Community- en premium AI-modellen</li>
 <li>Geavanceerde RAG (multi-index, reranking, hogere limieten)</li>
 <li>Scored QA, A/B-tests, Arena, fine-tuning</li>
+<li>Divinci-branding verwijderen</li>
 <li>Prioriteitsondersteuning per e-mail</li>
 <li>Gebruik uw eigen API-sleutels (BYOK)</li>
 <li>Single sign-on (SSO)</li>

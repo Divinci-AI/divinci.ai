@@ -831,6 +831,7 @@ input:checked + .toggle-slider:before {
 <li>自带 API 密钥(BYOK)</li>
 <li class="unavailable">评分 QA 评估套件</li>
 <li class="unavailable">微调</li>
+<li class="unavailable">移除 Divinci 品牌标识</li>
 <li class="unavailable">优先电子邮件支持</li>
 </ul>
 
@@ -862,6 +863,7 @@ input:checked + .toggle-slider:before {
 <li>基础 RAG —— 基于您自己的文档生成答案</li>
 <li>自带 API 密钥(BYOK)</li>
 <li>评分 QA 评估套件</li>
+<li>移除 Divinci 品牌标识</li>
 <li class="unavailable">高级 RAG(多索引、重排序)</li>
 <li class="unavailable">微调</li>
 <li class="unavailable">优先电子邮件支持</li>
@@ -899,6 +901,7 @@ input:checked + .toggle-slider:before {
 <li>A/B 发布测试</li>
 <li>Arena —— 模型并排对比</li>
 <li>微调</li>
+<li>移除 Divinci 品牌标识</li>
 <li>优先电子邮件支持</li>
 </ul>
 
@@ -944,6 +947,7 @@ input:checked + .toggle-slider:before {
 <li>社区 + 高级 AI 模型</li>
 <li>高级 RAG(多索引、重排序、更高限额)</li>
 <li>评分 QA、A/B 测试、Arena、微调</li>
+<li>移除 Divinci 品牌标识</li>
 <li>优先电子邮件支持</li>
 <li>自带 API 密钥(BYOK)</li>
 <li>单点登录(SSO)</li>

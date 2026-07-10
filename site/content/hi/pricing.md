@@ -831,6 +831,7 @@ input:checked + .toggle-slider:before {
 <li>अपनी स्वयं की API कुंजियाँ लाएं (BYOK)</li>
 <li class="unavailable">स्कोर्ड QA मूल्यांकन सुइट</li>
 <li class="unavailable">फाइन-ट्यूनिंग</li>
+<li class="unavailable">Divinci ब्रांडिंग हटाएं</li>
 <li class="unavailable">प्राथमिकता ईमेल सहायता</li>
 </ul>
 
@@ -862,6 +863,7 @@ input:checked + .toggle-slider:before {
 <li>बेसिक RAG — अपने स्वयं के दस्तावेज़ों पर आधारित उत्तर</li>
 <li>अपनी स्वयं की API कुंजियाँ लाएं (BYOK)</li>
 <li>स्कोर्ड QA मूल्यांकन सुइट</li>
+<li>Divinci ब्रांडिंग हटाएं</li>
 <li class="unavailable">एडवांस्ड RAG (मल्टी-इंडेक्स, रीरैंकिंग)</li>
 <li class="unavailable">फाइन-ट्यूनिंग</li>
 <li class="unavailable">प्राथमिकता ईमेल सहायता</li>
@@ -899,6 +901,7 @@ input:checked + .toggle-slider:before {
 <li>A/B रिलीज़ परीक्षण</li>
 <li>Arena — साथ-साथ मॉडल तुलना</li>
 <li>फाइन-ट्यूनिंग</li>
+<li>Divinci ब्रांडिंग हटाएं</li>
 <li>प्राथमिकता ईमेल सहायता</li>
 </ul>
 
@@ -944,6 +947,7 @@ input:checked + .toggle-slider:before {
 <li>कम्युनिटी + प्रीमियम AI मॉडल</li>
 <li>एडवांस्ड RAG (मल्टी-इंडेक्स, रीरैंकिंग, उच्च सीमाएं)</li>
 <li>Scored QA, A/B परीक्षण, Arena, फाइन-ट्यूनिंग</li>
+<li>Divinci ब्रांडिंग हटाएं</li>
 <li>प्राथमिकता ईमेल सहायता</li>
 <li>अपनी स्वयं की API कुंजियाँ लाएं (BYOK)</li>
 <li>सिंगल साइन-ऑन (SSO)</li>
