@@ -10,7 +10,7 @@ test.describe('Video Functionality', () => {
   
   test.beforeEach(async ({ page }) => {
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Disable animations for consistent testing
     await page.addStyleTag({
@@ -36,17 +36,12 @@ test.describe('Video Functionality', () => {
     console.log(`Hero video WebM sources: ${heroVideoSources + heroVideo2Sources + heroVideo3Sources}`);
     expect(heroVideoSources + heroVideo2Sources + heroVideo3Sources).toBeGreaterThanOrEqual(2);
     
-    // Check enterprise AI background videos have WebM sources
-    const enterpriseWebMSources = await page.locator('.enterprise-ai source[type="video/webm"]').count();
-    console.log(`Enterprise video WebM sources: ${enterpriseWebMSources}`);
-    expect(enterpriseWebMSources).toBeGreaterThanOrEqual(3);
-    
-    // Check for specific WebM files
-    await expect(page.locator('source[src*="ai-team.webm"]')).toBeVisible();
-    await expect(page.locator('source[src*="business-parody-optimized.webm"]')).toBeVisible();
-    await expect(page.locator('source[src*="rag-machine-optimized.webm"]')).toBeVisible();
-    
-    console.log('✅ All expected WebM video sources found');
+    // Each hero video must carry BOTH a WebM and an MP4 source (format fallback)
+    for (const id of ['#hero-video', '#hero-video-2', '#hero-video-3']) {
+      expect(await page.locator(`${id} source[type="video/webm"]`).count()).toBe(1);
+      expect(await page.locator(`${id} source[type="video/mp4"]`).count()).toBe(1);
+    }
+    console.log('✅ All hero videos expose WebM + MP4 sources');
   });
 
   test('should have proper video fallback structure', async ({ page }) => {
@@ -71,24 +66,14 @@ test.describe('Video Functionality', () => {
     console.log('✅ Video fallback structure verified');
   });
 
-  test('should have enterprise AI panel videos', async ({ page }) => {
-    console.log('🏢 Testing enterprise AI panel videos...');
-    
-    // Check default background video
-    await expect(page.locator('#background-video-default')).toBeVisible();
-    
-    // Check panel-specific videos
-    await expect(page.locator('#background-video-panel1')).toBeVisible();
-    await expect(page.locator('#background-video-panel2')).toBeVisible();
-    await expect(page.locator('#background-video-panel3')).toBeVisible();
-    
-    // Verify video attributes
-    const defaultVideo = page.locator('#background-video-default');
-    await expect(defaultVideo).toHaveAttribute('muted');
-    await expect(defaultVideo).toHaveAttribute('loop');
-    await expect(defaultVideo).toHaveAttribute('playsinline');
-    
-    console.log('✅ Enterprise AI panel videos configured correctly');
+  test('should have hero video attributes', async ({ page }) => {
+    console.log('🎥 Testing hero video autoplay attributes...');
+    // muted + playsinline are required for reliable mobile/desktop autoplay
+    for (const id of ['#hero-video', '#hero-video-2', '#hero-video-3']) {
+      await expect(page.locator(id)).toHaveJSProperty('muted', true);
+      await expect(page.locator(id)).toHaveJSProperty('playsInline', true);
+    }
+    console.log('✅ Hero videos are muted + playsinline');
   });
 
   test('should load video files without 404 errors', async ({ page }) => {

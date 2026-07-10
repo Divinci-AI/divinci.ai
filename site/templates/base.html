@@ -142,6 +142,14 @@
         }
 
         function handleFailure(v, reason) {
+          // Respect user preferences: don't force-restart playback when
+          // reduced-motion is active, and don't re-fetch video on metered
+          // connections.
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+              (navigator.connection && navigator.connection.saveData === true)) {
+            console.info('Video failure skipped (reduced-motion or saveData):', reason);
+            return;
+          }
           if (!v.paused && v.readyState >= 3) return; // playing fine — spurious event
           if (!v.dataset.videoRetried) {
             v.dataset.videoRetried = '1';
