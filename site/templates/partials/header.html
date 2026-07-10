@@ -42,6 +42,7 @@
                     <a href="/www-rag/">{{ translations.navigation.www_rag_directory | default(value="WWW-RAG Directory") }}</a>
                 </div>
             </li>
+            <li><a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}">{{ translations.navigation.blog | default(value="Blog") }}</a></li>
             <li class="dropdown">
                 <a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}" aria-haspopup="true" aria-expanded="false">{{ translations.navigation.support | default(value="Support") }}</a>
                 <div class="dropdown-menu">
