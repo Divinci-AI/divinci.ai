@@ -828,10 +828,11 @@ input:checked + .toggle-slider:before {
 <li>1 release de marca blanca</li>
 <li>Modelos de IA de la comunidad (GPT, Gemini, Claude, Llama y más)</li>
 <li>RAG básico — fundamenta las respuestas en tus propios documentos</li>
+<li>Trae tus propias claves de API (BYOK)</li>
 <li class="unavailable">Suites de evaluación Scored QA</li>
 <li class="unavailable">Ajuste fino (fine-tuning)</li>
 <li class="unavailable">Eliminar la marca Divinci</li>
-<li class="unavailable">Soporte prioritario</li>
+<li class="unavailable">Soporte prioritario por correo electrónico</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Regístrate gratis</a>
@@ -860,11 +861,12 @@ input:checked + .toggle-slider:before {
 <li>$5/mes en créditos de uso incluidos</li>
 <li>Modelos de IA de la comunidad + premium</li>
 <li>RAG básico — fundamenta las respuestas en tus propios documentos</li>
+<li>Trae tus propias claves de API (BYOK)</li>
 <li>Suites de evaluación Scored QA</li>
 <li>Eliminar la marca Divinci</li>
 <li class="unavailable">RAG avanzado (multi-índice, reranking)</li>
 <li class="unavailable">Ajuste fino (fine-tuning)</li>
-<li class="unavailable">Soporte prioritario</li>
+<li class="unavailable">Soporte prioritario por correo electrónico</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">Comenzar</a>
@@ -894,12 +896,13 @@ input:checked + .toggle-slider:before {
 <li>$25/mes en créditos de uso incluidos</li>
 <li>Modelos de IA de la comunidad + premium</li>
 <li>RAG avanzado (multi-índice, reranking, límites más altos)</li>
+<li>Trae tus propias claves de API (BYOK)</li>
 <li>Suites de evaluación Scored QA</li>
 <li>Pruebas A/B de releases</li>
-<li>RAG Arena — comparación de modelos lado a lado</li>
+<li>Arena — comparación de modelos lado a lado</li>
 <li>Ajuste fino (fine-tuning)</li>
 <li>Eliminar la marca Divinci</li>
-<li>Soporte prioritario</li>
+<li>Soporte prioritario por correo electrónico</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">Comenzar</a>
@@ -943,13 +946,13 @@ input:checked + .toggle-slider:before {
 <li>$150/mes en créditos de uso incluidos</li>
 <li>Modelos de IA de la comunidad + premium</li>
 <li>RAG avanzado (multi-índice, reranking, límites más altos)</li>
-<li>Scored QA, pruebas A/B, RAG Arena, ajuste fino</li>
+<li>Scored QA, pruebas A/B, Arena, ajuste fino</li>
 <li>Eliminar la marca Divinci</li>
-<li>Soporte prioritario</li>
+<li>Soporte prioritario por correo electrónico</li>
 <li>Trae tus propias claves de API (BYOK)</li>
 <li>Inicio de sesión único (SSO)</li>
-<li>Dominio personalizado</li>
-<li>Soporte dedicado</li>
+<li>Dominios personalizados — contáctanos para acceso anticipado</li>
+<li>Soporte dedicado — contáctanos</li>
 </ul>
 </div>
 
@@ -1009,7 +1012,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Aceptamos todas las tarjetas de crédito principales (Visa, Mastercard, American Express, Discover) y PayPal. Para los planes Enterprise, también ofrecemos opciones de facturación con condiciones a 30 días.</p>
+<p>Aceptamos todas las tarjetas de crédito principales (Visa, Mastercard, American Express, Discover) a través de nuestro pago seguro con Stripe. Para los planes Enterprise, hay facturación con condiciones de pago a 30 días disponible — contáctanos para configurarla.</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1036,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Tus datos permanecerán en nuestro sistema durante 30 días después de la cancelación, dándote tiempo para exportar lo que necesites. Después de 30 días, todos los datos se eliminarán permanentemente de nuestros sistemas de acuerdo con nuestra política de retención de datos.</p>
+<p>Tus datos permanecen disponibles para exportación durante 30 días después de la cancelación. También puedes solicitar la eliminación permanente en cualquier momento y eliminaremos tus datos de acuerdo con nuestra política de retención de datos.</p>
 </div>
 </div>
 </div>

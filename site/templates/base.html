@@ -117,18 +117,126 @@
       // Skips videos with `data-lazy-video` (page-managed elsewhere).
       (function () {
         var ROOT_MARGIN = '300px'; // start loading 300px before entering viewport
+        var RETRY_DELAY_MS = 2000; // backoff before the single automatic retry
+
+        // Self-healing playback. A transient failure (network blip, R2 429 —
+        // the pub-*.r2.dev domain is rate-limited, iOS Low Power Mode play()
+        // rejection, data-saver) used to leave the poster forever with zero
+        // console evidence. Strategy: retry once after a short backoff; if
+        // that also fails, arm a one-shot retry on first user interaction.
+        // Poster stays visible throughout — no visual glitching for users.
+        function restoreSrc(v) {
+          if (v.dataset.videoSrc) v.setAttribute('src', v.dataset.videoSrc);
+          Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
+            if (s.dataset.videoSrc) s.setAttribute('src', s.dataset.videoSrc);
+          });
+        }
+
+        function startPlayback(v) {
+          restoreSrc(v);
+          try { v.load(); } catch (e) {}
+          var p = v.play();
+          if (p && p.catch) p.catch(function (err) {
+            handleFailure(v, err && err.name ? err.name : 'play-rejected');
+          });
+        }
+
+        function handleFailure(v, reason) {
+          // Respect user preferences: don't force-restart playback when
+          // reduced-motion is active, and don't re-fetch video on metered
+          // connections.
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+              (navigator.connection && navigator.connection.saveData === true)) {
+            console.info('Video failure skipped (reduced-motion or saveData):', reason);
+            return;
+          }
+          if (!v.paused && v.readyState >= 3) return; // playing fine — spurious event
+          if (!v.dataset.videoRetried) {
+            v.dataset.videoRetried = '1';
+            console.warn('Deferred video failed (' + reason + '), retrying in ' + RETRY_DELAY_MS + 'ms:', v.currentSrc || v.dataset.videoSrc || '');
+            setTimeout(function () {
+              if (!v.paused && v.readyState >= 3) return; // recovered on its own
+              startPlayback(v);
+            }, RETRY_DELAY_MS);
+            return;
+          }
+          if (v.dataset.videoRetryArmed) return;
+          v.dataset.videoRetryArmed = '1';
+          console.warn('Deferred video retry failed (' + reason + '); will retry on user interaction:', v.currentSrc || v.dataset.videoSrc || '');
+          var fired = false;
+          var retryOnInteraction = function () {
+            if (fired) return;
+            fired = true;
+            startPlayback(v);
+          };
+          window.addEventListener('pointerdown', retryOnInteraction, { once: true, passive: true });
+          window.addEventListener('scroll', retryOnInteraction, { once: true, passive: true });
+        }
+
+        function armFailureHandlers(v) {
+          if (v.dataset.videoFailureArmed) return;
+          v.dataset.videoFailureArmed = '1';
+          v.addEventListener('error', function () { handleFailure(v, 'error'); });
+          v.addEventListener('stalled', function () { handleFailure(v, 'stalled'); });
+          // A failed <source> fires `error` on the source element (doesn't
+          // bubble); the last source failing means the video gave up.
+          var sources = v.querySelectorAll('source');
+          if (sources.length) {
+            sources[sources.length - 1].addEventListener('error', function () { handleFailure(v, 'source-error'); });
+          }
+        }
+
+        // Lazy hero videos (data-lazy-video / data-hero-video) — the homepage
+        // #hero-video, feature-page heroes, blog-post heroes — are NOT
+        // intercepted by defang() (they have no `autoplay`, so it returns
+        // early) and are instead driven by page scripts (main.js /
+        // blog-post.js). Those scripts call v.play() but swallow EVERY
+        // rejection with play().catch(() => {}), so a transient R2 429,
+        // network blip, or iOS Low Power Mode block leaves the poster
+        // frozen forever with zero console evidence — the same class of
+        // failure b6192a4 fixed for the autoplay/body videos.
+        //
+        // We arm the SAME self-heal on them WITHOUT stripping their sources
+        // or re-observing them: main.js still owns when they play and the
+        // cycling state machine, we only (a) listen for transport failures
+        // (error / stalled / source-error) and (b) forward rejected play()
+        // promises to handleFailure. Recovery (retry once, then on first
+        // interaction) is identical to the autoplay path.
+        function armOneLazy(v) {
+          armFailureHandlers(v);
+          if (v.dataset.lazyHealWrapped) return;
+          v.dataset.lazyHealWrapped = '1';
+          // Wrap play() so a rejected promise (NotAllowedError — autoplay
+          // blocked, Low Power Mode) reaches handleFailure. We return the
+          // original promise so existing callers' own .catch() still work.
+          var origPlay = v.play.bind(v);
+          v.play = function () {
+            var p = origPlay();
+            if (p && p.catch) p.catch(function (err) {
+              handleFailure(v, err && err.name ? err.name : 'play-rejected');
+            });
+            return p;
+          };
+        }
+
+        function armLazySelfHeal(root) {
+          root = root || document;
+          if (root.nodeName === 'VIDEO') {
+            if (root.hasAttribute('data-lazy-video') || root.hasAttribute('data-hero-video')) armOneLazy(root);
+            return;
+          }
+          var vs = root.querySelectorAll('video[data-lazy-video], video[data-hero-video]');
+          for (var i = 0; i < vs.length; i++) armOneLazy(vs[i]);
+        }
+
         var io = ('IntersectionObserver' in window)
           ? new IntersectionObserver(function (entries, obs) {
               entries.forEach(function (entry) {
                 if (!entry.isIntersecting) return;
                 var v = entry.target;
                 obs.unobserve(v);
-                if (v.dataset.videoSrc) v.setAttribute('src', v.dataset.videoSrc);
-                Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
-                  if (s.dataset.videoSrc) s.setAttribute('src', s.dataset.videoSrc);
-                });
-                try { v.load(); } catch (e) {}
-                v.play().catch(function () { /* autoplay denied — leave poster visible */ });
+                armFailureHandlers(v);
+                startPlayback(v);
               });
             }, { rootMargin: ROOT_MARGIN, threshold: 0.01 })
           : null;
@@ -150,12 +258,8 @@
             // Fallback for older browsers — restore immediately after load + 1.5s
             window.addEventListener('load', function () {
               setTimeout(function () {
-                if (v.dataset.videoSrc) v.setAttribute('src', v.dataset.videoSrc);
-                Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
-                  if (s.dataset.videoSrc) s.setAttribute('src', s.dataset.videoSrc);
-                });
-                try { v.load(); } catch (e) {}
-                v.play().catch(function () {});
+                armFailureHandlers(v);
+                startPlayback(v);
               }, 1500);
             }, { once: true });
           }
@@ -165,16 +269,19 @@
             var added = mutations[i].addedNodes;
             for (var j = 0; j < added.length; j++) {
               var n = added[j];
-              if (n.nodeName === 'VIDEO') defang(n);
+              if (n.nodeName === 'VIDEO') { defang(n); armLazySelfHeal(n); }
               else if (n.querySelectorAll) {
                 var vs = n.querySelectorAll('video[autoplay]');
                 for (var k = 0; k < vs.length; k++) defang(vs[k]);
+                armLazySelfHeal(n);
               }
             }
           }
         });
         domObserver.observe(document.documentElement, { childList: true, subtree: true });
         // Stop watching the DOM once the page is parsed — all videos are caught.
+        // Arm lazy-video self-heal on whatever is already in the DOM now.
+        armLazySelfHeal(document);
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
           // setTimeout so we still catch any pending mutations during current tick
           setTimeout(function () { domObserver.disconnect(); }, 0);

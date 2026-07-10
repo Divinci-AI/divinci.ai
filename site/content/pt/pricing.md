@@ -828,10 +828,11 @@ input:checked + .toggle-slider:before {
 <li>1 lançamento white-label</li>
 <li>Modelos de IA da comunidade (GPT, Gemini, Claude, Llama e outros)</li>
 <li>RAG básico — baseie as respostas nos seus próprios documentos</li>
+<li>Traga as suas próprias chaves de API (BYOK)</li>
 <li class="unavailable">Suites de avaliação Scored QA</li>
 <li class="unavailable">Fine-tuning</li>
 <li class="unavailable">Remover a marca Divinci</li>
-<li class="unavailable">Suporte prioritário</li>
+<li class="unavailable">Suporte prioritário por e-mail</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Registar gratuitamente</a>
@@ -860,11 +861,12 @@ input:checked + .toggle-slider:before {
 <li>$5/mês em créditos de utilização incluídos</li>
 <li>Modelos de IA da comunidade + premium</li>
 <li>RAG básico — baseie as respostas nos seus próprios documentos</li>
+<li>Traga as suas próprias chaves de API (BYOK)</li>
 <li>Suites de avaliação Scored QA</li>
 <li>Remover a marca Divinci</li>
 <li class="unavailable">RAG avançado (multi-índice, reranking)</li>
 <li class="unavailable">Fine-tuning</li>
-<li class="unavailable">Suporte prioritário</li>
+<li class="unavailable">Suporte prioritário por e-mail</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">Começar</a>
@@ -894,12 +896,13 @@ input:checked + .toggle-slider:before {
 <li>$25/mês em créditos de utilização incluídos</li>
 <li>Modelos de IA da comunidade + premium</li>
 <li>RAG avançado (multi-índice, reranking, limites mais elevados)</li>
+<li>Traga as suas próprias chaves de API (BYOK)</li>
 <li>Suites de avaliação Scored QA</li>
 <li>Testes A/B de lançamentos</li>
-<li>RAG Arena — comparação de modelos lado a lado</li>
+<li>Arena — comparação de modelos lado a lado</li>
 <li>Fine-tuning</li>
 <li>Remover a marca Divinci</li>
-<li>Suporte prioritário</li>
+<li>Suporte prioritário por e-mail</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">Começar</a>
@@ -943,13 +946,13 @@ input:checked + .toggle-slider:before {
 <li>$150/mês em créditos de utilização incluídos</li>
 <li>Modelos de IA da comunidade + premium</li>
 <li>RAG avançado (multi-índice, reranking, limites mais elevados)</li>
-<li>Scored QA, testes A/B, RAG Arena, fine-tuning</li>
+<li>Scored QA, testes A/B, Arena, fine-tuning</li>
 <li>Remover a marca Divinci</li>
-<li>Suporte prioritário</li>
+<li>Suporte prioritário por e-mail</li>
 <li>Traga as suas próprias chaves de API (BYOK)</li>
 <li>Single sign-on (SSO)</li>
-<li>Domínio personalizado</li>
-<li>Suporte dedicado</li>
+<li>Domínios personalizados — contacte-nos para acesso antecipado</li>
+<li>Suporte dedicado — contacte-nos</li>
 </ul>
 </div>
 
@@ -1009,7 +1012,7 @@ Que métodos de pagamento aceitam?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Aceitamos todos os principais cartões de crédito (Visa, Mastercard, American Express, Discover) e PayPal. Para os planos Enterprise, também oferecemos opções de faturação com condições net-30.</p>
+<p>Aceitamos todos os principais cartões de crédito (Visa, Mastercard, American Express, Discover) através do nosso checkout seguro Stripe. Para os planos Enterprise, está disponível faturação com condições net-30 — contacte-nos para a configurar.</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1036,7 @@ O que acontece aos meus dados se cancelar?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Os seus dados permanecerão no nosso sistema durante 30 dias após o cancelamento, dando-lhe tempo para exportar tudo o que precisar. Após 30 dias, todos os dados serão permanentemente eliminados dos nossos sistemas de acordo com a nossa política de retenção de dados.</p>
+<p>Os seus dados permanecem disponíveis para exportação durante 30 dias após o cancelamento. Também pode solicitar a eliminação permanente a qualquer momento e removeremos os seus dados de acordo com a nossa política de retenção de dados.</p>
 </div>
 </div>
 </div>

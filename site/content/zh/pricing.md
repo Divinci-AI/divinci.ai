@@ -828,10 +828,11 @@ input:checked + .toggle-slider:before {
 <li>1 个白标发布版本</li>
 <li>社区 AI 模型(GPT、Gemini、Claude、Llama 等)</li>
 <li>基础 RAG —— 基于您自己的文档生成答案</li>
+<li>自带 API 密钥(BYOK)</li>
 <li class="unavailable">评分 QA 评估套件</li>
 <li class="unavailable">微调</li>
 <li class="unavailable">移除 Divinci 品牌标识</li>
-<li class="unavailable">优先支持</li>
+<li class="unavailable">优先电子邮件支持</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">免费注册</a>
@@ -860,11 +861,12 @@ input:checked + .toggle-slider:before {
 <li>每月包含 5 美元使用额度</li>
 <li>社区 + 高级 AI 模型</li>
 <li>基础 RAG —— 基于您自己的文档生成答案</li>
+<li>自带 API 密钥(BYOK)</li>
 <li>评分 QA 评估套件</li>
 <li>移除 Divinci 品牌标识</li>
 <li class="unavailable">高级 RAG(多索引、重排序)</li>
 <li class="unavailable">微调</li>
-<li class="unavailable">优先支持</li>
+<li class="unavailable">优先电子邮件支持</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">立即开始</a>
@@ -894,12 +896,13 @@ input:checked + .toggle-slider:before {
 <li>每月包含 25 美元使用额度</li>
 <li>社区 + 高级 AI 模型</li>
 <li>高级 RAG(多索引、重排序、更高限额)</li>
+<li>自带 API 密钥(BYOK)</li>
 <li>评分 QA 评估套件</li>
 <li>A/B 发布测试</li>
-<li>RAG Arena —— 模型并排对比</li>
+<li>Arena —— 模型并排对比</li>
 <li>微调</li>
 <li>移除 Divinci 品牌标识</li>
-<li>优先支持</li>
+<li>优先电子邮件支持</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">立即开始</a>
@@ -943,13 +946,13 @@ input:checked + .toggle-slider:before {
 <li>每月包含 150 美元使用额度</li>
 <li>社区 + 高级 AI 模型</li>
 <li>高级 RAG(多索引、重排序、更高限额)</li>
-<li>评分 QA、A/B 测试、RAG Arena、微调</li>
+<li>评分 QA、A/B 测试、Arena、微调</li>
 <li>移除 Divinci 品牌标识</li>
-<li>优先支持</li>
+<li>优先电子邮件支持</li>
 <li>自带 API 密钥(BYOK)</li>
 <li>单点登录(SSO)</li>
-<li>自定义域名</li>
-<li>专属支持</li>
+<li>自定义域名 —— 请联系我们获取抢先体验</li>
+<li>专属支持 —— 请联系我们</li>
 </ul>
 </div>
 
@@ -1009,7 +1012,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>我们接受所有主流信用卡(Visa、Mastercard、American Express、Discover)以及 PayPal。对于 Enterprise 方案,我们还提供账期为 30 天的发票付款选项。</p>
+<p>我们通过安全的 Stripe 结账系统接受所有主流信用卡(Visa、Mastercard、American Express、Discover)。对于 Enterprise 方案,我们提供账期为 30 天(net-30)的发票付款 —— 请联系我们进行设置。</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1036,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>取消订阅后,您的数据将在我们的系统中保留 30 天,以便您导出所需内容。30 天后,根据我们的数据保留政策,所有数据将从我们的系统中永久删除。</p>
+<p>取消订阅后,您的数据在 30 天内仍可导出。您也可以随时申请永久删除,我们将根据数据保留政策移除您的数据。</p>
 </div>
 </div>
 </div>

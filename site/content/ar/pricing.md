@@ -828,10 +828,11 @@ input:checked + .toggle-slider:before {
 <li>إصدار واحد بعلامة بيضاء (White-Label)</li>
 <li>نماذج ذكاء اصطناعي مجتمعية (GPT، Gemini، Claude، Llama والمزيد)</li>
 <li>RAG أساسي — استند في الإجابات إلى مستنداتك الخاصة</li>
+<li>أحضر مفاتيح API الخاصة بك (BYOK)</li>
 <li class="unavailable">مجموعات تقييم الجودة المُقيَّمة (Scored QA)</li>
 <li class="unavailable">الضبط الدقيق (Fine-tuning)</li>
 <li class="unavailable">إزالة علامة Divinci التجارية</li>
-<li class="unavailable">دعم ذو أولوية</li>
+<li class="unavailable">دعم ذو أولوية عبر البريد الإلكتروني</li>
 </ul>
 
 <a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">التسجيل مجانًا</a>
@@ -860,11 +861,12 @@ input:checked + .toggle-slider:before {
 <li>رصيد استخدام مُضمَّن بقيمة 5$ شهريًا</li>
 <li>نماذج ذكاء اصطناعي مجتمعية ومتميزة</li>
 <li>RAG أساسي — استند في الإجابات إلى مستنداتك الخاصة</li>
+<li>أحضر مفاتيح API الخاصة بك (BYOK)</li>
 <li>مجموعات تقييم الجودة المُقيَّمة (Scored QA)</li>
 <li>إزالة علامة Divinci التجارية</li>
 <li class="unavailable">RAG متقدّم (فهارس متعددة، إعادة الترتيب)</li>
 <li class="unavailable">الضبط الدقيق (Fine-tuning)</li>
-<li class="unavailable">دعم ذو أولوية</li>
+<li class="unavailable">دعم ذو أولوية عبر البريد الإلكتروني</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=starter&billing=monthly" class="pricing-cta" data-plan="starter" target="_blank" rel="noopener">ابدأ الآن</a>
@@ -894,12 +896,13 @@ input:checked + .toggle-slider:before {
 <li>رصيد استخدام مُضمَّن بقيمة 25$ شهريًا</li>
 <li>نماذج ذكاء اصطناعي مجتمعية ومتميزة</li>
 <li>RAG متقدّم (فهارس متعددة، إعادة الترتيب، حدود أعلى)</li>
+<li>أحضر مفاتيح API الخاصة بك (BYOK)</li>
 <li>مجموعات تقييم الجودة المُقيَّمة (Scored QA)</li>
 <li>اختبار الإصدارات A/B</li>
-<li>RAG Arena — مقارنة النماذج جنبًا إلى جنب</li>
+<li>Arena — مقارنة النماذج جنبًا إلى جنب</li>
 <li>الضبط الدقيق (Fine-tuning)</li>
 <li>إزالة علامة Divinci التجارية</li>
-<li>دعم ذو أولوية</li>
+<li>دعم ذو أولوية عبر البريد الإلكتروني</li>
 </ul>
 
 <a href="https://chat.divinci.app/user/wallet/subscription?plan=pro&billing=monthly" class="pricing-cta featured" data-plan="pro" target="_blank" rel="noopener">ابدأ الآن</a>
@@ -943,13 +946,13 @@ input:checked + .toggle-slider:before {
 <li>رصيد استخدام مُضمَّن بقيمة 150$ شهريًا</li>
 <li>نماذج ذكاء اصطناعي مجتمعية ومتميزة</li>
 <li>RAG متقدّم (فهارس متعددة، إعادة الترتيب، حدود أعلى)</li>
-<li>تقييم الجودة (Scored QA)، اختبار A/B، RAG Arena، الضبط الدقيق</li>
+<li>تقييم الجودة (Scored QA)، اختبار A/B، Arena، الضبط الدقيق</li>
 <li>إزالة علامة Divinci التجارية</li>
-<li>دعم ذو أولوية</li>
+<li>دعم ذو أولوية عبر البريد الإلكتروني</li>
 <li>أحضر مفاتيح API الخاصة بك (BYOK)</li>
 <li>تسجيل الدخول الموحّد (SSO)</li>
-<li>نطاق مخصّص</li>
-<li>دعم مخصّص</li>
+<li>نطاقات مخصّصة — تواصل معنا للوصول المبكر</li>
+<li>دعم مخصّص — تواصل معنا</li>
 </ul>
 </div>
 
@@ -1009,7 +1012,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>نقبل جميع بطاقات الائتمان الرئيسية (Visa وMastercard وAmerican Express وDiscover) بالإضافة إلى PayPal. كما نوفر لخطط Enterprise خيارات الفوترة بشروط سداد خلال 30 يومًا.</p>
+<p>نقبل جميع بطاقات الائتمان الرئيسية (Visa وMastercard وAmerican Express وDiscover) عبر نظام الدفع الآمن من Stripe. ولخطط Enterprise، تتوفر الفوترة بشروط سداد خلال 30 يومًا — تواصل معنا لإعدادها.</p>
 </div>
 </div>
 </div>
@@ -1033,7 +1036,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>ستبقى بياناتك في نظامنا لمدة 30 يومًا بعد الإلغاء، مما يمنحك الوقت الكافي لتصدير أي شيء تحتاجه. وبعد 30 يومًا، سيتم حذف جميع البيانات نهائيًا من أنظمتنا وفقًا لسياسة الاحتفاظ بالبيانات لدينا.</p>
+<p>تبقى بياناتك متاحة للتصدير لمدة 30 يومًا بعد الإلغاء. كما يمكنك طلب الحذف النهائي في أي وقت، وسنقوم بإزالة بياناتك وفقًا لسياسة الاحتفاظ بالبيانات لدينا.</p>
 </div>
 </div>
 </div>
