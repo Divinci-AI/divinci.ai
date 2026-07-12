@@ -14,28 +14,34 @@
     "team": "チーム",
     "signup": "サインアップ",
     "support": "サポート",
-    "request_demo": "デモをリクエスト",
     "support_center": "サポートセンター",
+    "documentation": "ドキュメント",
+    "request_demo": "デモをリクエスト",
     "blog": "ブログ",
     "terms_of_service": "利用規約",
     "privacy_policy": "プライバシーポリシー",
     "quality_assurance": "品質保証",
     "release_management": "リリース管理",
-    "sign_up": "新規登録"
+    "sign_up": "新規登録",
+    "www_rag_directory": "WWW-RAG ディレクトリ"
   },
   "hero": {
     "heading": "AIリリース。",
     "subheading": "常に\n優秀。",
+    "heading_mobile": "あなたのB2C AI。",
+    "subheading_mobile": "常に卓越した品質を。",
     "description": "カスタム言語モデルの高度なリリース管理と厳格な品質保証でビジネスを強化。運用信頼性、規制遵守、最適なパフォーマンスを実現します。",
     "features": {
       "test_automation": "インテリジェントテスト自動化",
       "compliance_records": "詳細なコンプライアンス記録",
+      "compliance_records_mobile": "コンプライアンス記録",
       "version_recovery": "インスタントバージョン復旧"
     },
     "cta": {
       "primary": "デモをリクエスト",
       "secondary": "プラットフォームを探索",
-      "connect_provider": "{provider}をDivinciに接続"
+      "connect_provider": "{provider}をDivinciに接続",
+      "connect_provider_mobile": "{provider}に接続"
     },
     "sound_unmute": "ミュート解除",
     "sound_mute": "ミュート"
@@ -67,6 +73,7 @@
   "features": {
     "title": "AIでワークフローを強化",
     "description": "信頼性とスケーラビリティのあるAIコラボレーションが必要な企業チーム向けに設計された機能をご覧ください。",
+    "journal_title": "レオナルドの手帳",
     "list": {
       "multiplayer": {
         "title": "マルチプレイヤー",
@@ -109,7 +116,6 @@
         "description": "自動スケールするインフラストラクチャで小規模チームから企業組織まで拡張。"
       }
     },
-    "journal_title": "レオナルドの手帳",
     "autorag": {
       "title": "AutoRAG"
     },
@@ -123,22 +129,16 @@
     "description": "人間とAIのコラボレーションの未来を形作るイノベーターたちをご紹介します。",
     "members": {
       "connect": "接続",
-      "michael_bio": "会話型AI革命をリードする、エンタープライズ技術15年以上の経験を持つビジョナリー。",
-      "duane_bio": "スケーラブルなAIインフラと自然言語処理の専門知識を持つシステムアーキテクト。",
-      "sam_bio": "企業チーム向けユーザー中心のAIソリューション提供の実績を持つプロダクト戦略家。",
-      "abdul_bio": "AIシステムのモデル最適化とパフォーマンス分析を専門とする機械学習エキスパート。",
       "sierra_bio": "コーネル大学卒。金融サービスと起業の豊富な経験を持ち、AIスケーリングに戦略的ビジネス開発の専門知識を活かす。",
-      "sean_bio": "機械学習とPython開発を専門とする、10年以上のプログラミング経験を持つデータサイエンティスト。",
+      "michael_bio": "会話型AI革命をリードする、エンタープライズ技術15年以上の経験を持つビジョナリー。",
       "samuel_bio": "エンタープライズチーム向けユーザー中心のAIソリューションを提供するプロダクトストラテジスト。",
+      "duane_bio": "スケーラブルなAIインフラと自然言語処理の専門知識を持つシステムアーキテクト。",
+      "sean_bio": "機械学習とPython開発を専門とする、10年以上のプログラミング経験を持つデータサイエンティスト。",
       "paul_marie_bio": "AIガバナンスリーダー。AI LA Responsible AI Groupの創設者。Google AI、Deloitte、CVS Healthの経験を持つ。"
     },
     "roles": {
       "ceo_founder": "CEO兼創設者",
       "cto_cofounder": "CTO兼共同創設者",
-      "head_product": "プロダクト責任者",
-      "senior_data_scientist": "シニアデータサイエンティスト",
-      "ux_ui_designer": "UX/UIデザイナー",
-      "software_engineer": "ソフトウェアエンジニア",
       "cpo": "プロダクト責任者",
       "coo": "運営責任者",
       "data_scientist": "データサイエンティスト",
@@ -170,6 +170,95 @@
       }
     }
   },
+  "expert_answers": {
+    "title": "専門家の回答",
+    "description": "大規模言語モデルのリリース管理と品質保証に関するプラットフォームの包括的な洞察を見つけてください。最も差し迫った質問に対する詳細で専門的な回答を探索してください。",
+    "faqs": {
+      "model_reliability": {
+        "question": "モデルの信頼性をどのように保証しますか？",
+        "answer": "私たちは、自動化された回帰テスト、パフォーマンステスト、セキュリティテストと専門家による手動レビューを組み合わせた多層検証プロセスを実装しています。各モデルリリースは、精度、安定性、コンプライアンスに関する企業グレードの基準を一貫して満たすよう厳格に評価されます。"
+      },
+      "language_models": {
+        "question": "どの言語モデルが対応していますか？",
+        "answer": "当社のプラットフォームは、オープンソースから独自アーキテクチャまで、幅広い大規模言語モデルをサポートします。柔軟な統合により、多様なフレームワークと企業環境でのシームレスなデプロイメントが可能で、進化するビジネスニーズへの適応性を保証します。",
+        "model_compat_link": "モデル互換性リストを見る"
+      },
+      "quality_assurance": {
+        "question": "継続的な品質保証はどのように実現されますか？",
+        "answer": "継続的な監視、定期的な監査、リアルタイムでのパフォーマンス追跡により品質を維持しています。ユーザーフィードバックと新たなリスクを分析することで、長期にわたって厳格な品質基準を維持するため、モデルとプロセスを積極的に改善しています。"
+      },
+      "workflow_integration": {
+        "question": "プラットフォームは既存のワークフローに適合しますか？",
+        "answer": "当社のソリューションは、企業システムとのシームレスな統合のために設計されています。堅牢なAPIと構成可能なオプションにより、現在のリリース管理および開発パイプラインとの簡単な連携が可能で、中断を最小化し効率性を最大化します。"
+      }
+    },
+    "view_complete_list": "完全なモデル互換性リストを表示"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "私たちのチームにご連絡ください",
+    "get_in_touch": "お問い合わせ",
+    "email_specialists": {
+      "title": "専門家にメールする",
+      "description": "技術的およびビジネス上のお問い合わせに対する詳細で思慮深い回答を受け取ります。",
+      "email": "デモをスケジュール"
+    },
+    "speak_consultant": {
+      "title": "ライブデモを予約",
+      "description": "Divinci AIの動作方法をお見せする30分間のパーソナライズされたデモをご利用いただけます。",
+      "phone": "デモを予約"
+    },
+    "schedule_demo": "デモをスケジュール",
+    "book_demo": "ライブデモを予約",
+    "demo_availability": "Divinci AIの動作方法をお見せする30分間のパーソナライズされたデモをご利用いただけます。",
+    "page_title": "お問い合わせ",
+    "page_subtitle": "プラットフォームに関するご質問や、導入に関するサポートが必要ですか？私たちがお手伝いします。",
+    "form": {
+      "title": "メッセージを送信",
+      "name_label": "お名前",
+      "name_placeholder": "お名前を入力してください",
+      "email_label": "メールアドレス",
+      "email_placeholder": "メールアドレスを入力してください",
+      "subject_label": "件名",
+      "subject_placeholder": "件名を選択してください",
+      "inquiry_options": {
+        "general": "一般的なご質問",
+        "sales": "販売に関するお問い合わせ",
+        "demo": "デモのリクエスト",
+        "support": "テクニカルサポート",
+        "partnership": "パートナーシップのご提案"
+      },
+      "company_label": "会社名（任意）",
+      "company_placeholder": "貴社名",
+      "message_label": "メッセージ",
+      "message_placeholder": "どのようなご用件でしょうか？",
+      "privacy_label": "プライバシーポリシーおよび利用規約に同意します",
+      "submit_button": "メッセージを送信",
+      "success_message": "メッセージをお送りいただきありがとうございます。できるだけ早くご返信いたします。",
+      "error_message": "エラーが発生しました。後ほど再度お試しいただくか、直接お問い合わせください。",
+      "verification_required": "セキュリティ認証を完了してください。",
+      "sending": "送信中...",
+      "error_occurred": "エラーが発生しました。もう一度お試しください。",
+      "network_error": "ネットワークエラーです。接続を確認してから、もう一度お試しください。"
+    },
+    "info": {
+      "email": {
+        "title": "メールでのお問い合わせ",
+        "value": "hello@divinci.ai"
+      },
+      "address": {
+        "title": "所在地",
+        "value": "312 Arizona Ave, Santa Monica, CA 90401"
+      },
+      "hours": {
+        "title": "営業時間",
+        "value": "月〜金：午前9時〜午後6時（PST）"
+      }
+    },
+    "map": {
+      "click_message": "クリックして地図を操作"
+    }
+  },
   "footer": {
     "tagline": "人間とAIのコラボレーションを支援",
     "sections": {
@@ -188,10 +277,11 @@
       "resources": {
         "title": "リソース",
         "links": {
-          "documentation": "ドキュメンテーション",
-          "blog": "ブログ",
-          "tutorials": "チュートリアル",
           "api": "API",
+          "blog": "ブログ",
+          "brand": "リソース",
+          "documentation": "ドキュメンテーション",
+          "tutorials": "チュートリアル",
           "support": "サポート"
         }
       },
@@ -224,53 +314,18 @@
       "privacy_settings": "プライバシー設定",
       "cookie_policy": "Cookieポリシー",
       "cookie_preferences": "Cookie設定",
-      "rights_reserved": "全著作権所有。"
+      "rights_reserved": "全著作権所有。",
+      "data_request": "データリクエスト"
     },
     "api": "API",
     "support": "サポート",
     "privacy_settings": "プライバシー設定",
-    "cookie_preferences": "Cookieの設定",
     "cookie_policy": "Cookieポリシー",
+    "cookie_preferences": "Cookieの設定",
     "motto": {
+      "phrase": "自由な知性",
       "word_1": "自由な",
-      "word_2": "知性",
-      "phrase": "自由な知性"
-    }
-  },
-  "language_switcher": {
-    "current_language": "日本語",
-    "languages": {
-      "en": "English",
-      "es": "Español",
-      "fr": "Français",
-      "ar": "العربية",
-      "ja": "日本語",
-      "zh": "中文",
-      "it": "Italiano",
-      "ru": "Русский",
-      "de": "Deutsch",
-      "pt": "Português",
-      "ko": "한국어",
-      "nl": "Nederlands",
-      "hi": "हिन्दी"
-    }
-  },
-  "contact": {
-    "title": "お問い合わせ",
-    "subtitle": "私たちのチームにご連絡ください",
-    "get_in_touch": "お問い合わせ",
-    "email_specialists": {
-      "title": "専門家にメールする",
-      "description": "技術的およびビジネス上のお問い合わせに対する詳細で思慮深い回答を受け取ります。",
-      "email": "デモをスケジュール"
-    },
-    "schedule_demo": "デモをスケジュール",
-    "book_demo": "ライブデモを予約",
-    "demo_availability": "Divinci AIの動作方法をお見せする30分間のパーソナライズされたデモをご利用いただけます。",
-    "speak_consultant": {
-      "title": "ライブデモを予約",
-      "description": "Divinci AIの動作方法をお見せする30分間のパーソナライズされたデモをご利用いただけます。",
-      "phone": "デモを予約"
+      "word_2": "知性"
     }
   },
   "support": {
@@ -623,109 +678,102 @@
       }
     }
   },
-  "expert_answers": {
-    "title": "専門家の回答",
-    "subtitle": "スペシャリストからの指導",
-    "description": "大規模言語モデルのリリース管理と品質保証に関するプラットフォームの包括的な洞察を見つけてください。最も差し迫った質問に対する詳細で専門的な回答を探索してください。",
-    "faqs": {
-      "model_reliability": {
-        "question": "モデルの信頼性をどのように保証しますか？",
-        "answer": "私たちは、自動化された回帰テスト、パフォーマンステスト、セキュリティテストと専門家による手動レビューを組み合わせた多層検証プロセスを実装しています。各モデルリリースは、精度、安定性、コンプライアンスに関する企業グレードの基準を一貫して満たすよう厳格に評価されます。"
+  "language_switcher": {
+    "current_language": "日本語",
+    "languages": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands",
+      "hi": "हिन्दी"
+    }
+  },
+  "press": {
+    "title": "プレス向けリソース",
+    "subtitle": "Divinci AIに関する最新のニュース、メディア掲載、リソースをご覧いただけます。プレスに関するお問い合わせは、メディアリレーションズチームまでご連絡ください。",
+    "contact": {
+      "title": "プレスお問い合わせ先",
+      "email": "press@divinci.ai",
+      "phone": "+1 (800) 555-1234",
+      "media_relations": "Sierra Hooshiari, COO - Chief Operations Officer",
+      "description": "私たちのメディアリレーションズチームは、ジャーナリスト、業界アナリスト、コンテンツクリエイターの皆さまに対し、Divinci AIおよびAI業界に関する当社の見解について、情報提供、インタビュー、リソースのご提供を行っています。",
+      "email_label": "メール",
+      "media_label": "メディアリレーションズ"
+    },
+    "releases": {
+      "title": "プレスリリース",
+      "items": {
+        "platform_launch": {
+          "date": "May 1, 2025",
+          "title": "Divinci AI、企業向けカスタムAIソリューションを民主化するプラットフォームを提供開始",
+          "excerpt": "Divinci AIは本日、専門的な機械学習の知識を必要とせず、あらゆる規模の企業がカスタムAIソリューションを利用できるよう設計されたプラットフォームの一般提供開始を発表しました。"
+        },
+        "autorag_launch": {
+          "date": "April 15, 2025",
+          "title": "Divinci AI、AutoRAGを発表し、検索拡張生成をすべての人が利用可能に",
+          "excerpt": "新しいAutoRAG機能は、検索拡張生成（RAG）システムの実装という複雑なプロセスを自動化し、企業が自社の独自ナレッジを活用したAIを簡単に構築できるようにします。"
+        },
+        "standards_hub": {
+          "date": "March 10, 2025",
+          "title": "Divinci AI、責任あるAI開発を推進するためAI Standards Hubに参画",
+          "excerpt": "倫理的なAIへの取り組みの一環として、Divinci AIは安全で責任ある透明性の高い人工知能に関する標準策定に貢献するため、AI Standards Hubに参画しました。"
+        }
       },
-      "language_models": {
-        "question": "どの言語モデルが対応していますか？",
-        "answer": "当社のプラットフォームは、オープンソースから独自アーキテクチャまで、幅広い大規模言語モデルをサポートします。柔軟な統合により、多様なフレームワークと企業環境でのシームレスなデプロイメントが可能で、進化するビジネスニーズへの適応性を保証します。",
-        "model_compat_link": "モデル互換性リストを見る"
-      },
-      "quality_assurance": {
-        "question": "継続的な品質保証はどのように実現されますか？",
-        "answer": "継続的な監視、定期的な監査、リアルタイムでのパフォーマンス追跡により品質を維持しています。ユーザーフィードバックと新たなリスクを分析することで、長期にわたって厳格な品質基準を維持するため、モデルとプロセスを積極的に改善しています。"
-      },
-      "workflow_integration": {
-        "question": "プラットフォームは既存のワークフローに適合しますか？",
-        "answer": "当社のソリューションは、企業システムとのシームレスな統合のために設計されています。堅牢なAPIと構成可能なオプションにより、現在のリリース管理および開発パイプラインとの簡単な連携が可能で、中断を最小化し効率性を最大化します。"
+      "empty_state": "プレスリリースは、公開され次第こちらに掲載されます。メディアに関するお問い合わせは、プレスチームまでご連絡ください。"
+    },
+    "coverage": {
+      "title": "メディア掲載",
+      "items": {
+        "techcrunch": {
+          "date": "May 3, 2025",
+          "title": "Divinci AI、カスタムAIソリューションを中小企業でも利用可能に",
+          "excerpt": "TechCrunchが、Divinci AIの新プラットフォームと、エンタープライズグレードのAI機能を中小企業に提供する仕組みをレビューしています。"
+        },
+        "venturebeat": {
+          "date": "April 18, 2025",
+          "title": "Divinci AIのAutoRAG機能が、ドキュメントベースAIの常識を変える",
+          "excerpt": "VentureBeatが、Divinci AIのAutoRAG技術が、ドキュメント対応AIシステムの実装という複雑なプロセスをいかに簡素化するかを探ります。"
+        },
+        "forbes": {
+          "date": "March 15, 2025",
+          "title": "2025年注目のAIスタートアップ10社：Divinci AIがリスト入り",
+          "excerpt": "Forbesが、企業の人工知能ソリューションの実装方法を変革する有望なAIスタートアップの年次リストにDivinci AIを選出しました。"
+        }
       }
     },
-    "view_complete_list": "完全なモデル互換性リストを表示"
-  },
-  "news": {
-    "read_more": "続きを読む →",
-    "learn_more": "詳細を見る →",
-    "ai_for_good_tag": "善のためのAI",
-    "cloudflare_date": "2025年10月5日",
-    "cloudflare_title": "Divinci AIがCloudflare Workers Launchpadコホート#6に参加",
-    "cloudflare_excerpt": "CloudflareのプレスティジャスWorkers Launchpadアクセラレータープログラムへの採択を発表します。EdgeコンピューティングプラットフォームでRAGパイプラインを構築する方法をご覧ください。"
-  },
-  "compliance": {
-    "hero": {
-      "eyebrow": "vIndex + LarQL を搭載",
-      "heading": "コンプライアンス、領収書付き。",
-      "tagline": "ほとんどの「AIコンプライアンス」はアクセスログとプロンプトレベルのガードレールで止まっています。Divinciはモデル内部に踏み込みます。すべてのエンティティ関連付けはクエリ可能な特徴量であり、すべての編集はポータブルで監査可能なパッチ — そして<strong>vIndex</strong>は、規制当局がまもなく要求し始める技術文書アーティファクトです。",
-      "cta_primary": "コンプライアンス担当に相談 →",
-      "cta_secondary": "ライブvindexを見る"
+    "assets": {
+      "title": "ブランドアセット",
+      "description": "メディア利用向けに、Divinci AIの公式ロゴ、製品スクリーンショット、創業者の写真をダウンロードいただけます。すべてのアセットは高解像度で提供され、複数のフォーマットでご利用いただけます。",
+      "logos": "ロゴ",
+      "screenshots": "製品スクリーンショット",
+      "team_photos": "チーム写真",
+      "press_kit": {
+        "title": "完全版プレスキット",
+        "description": "すべてのロゴ、スクリーンショット、チーム写真、製品ファクトシート、会社概要を一つのパッケージにまとめた完全版プレスキットをダウンロードいただけます。",
+        "button": "プレスキットをダウンロード（ZIP、25MB）"
+      },
+      "logo_primary": "プライマリロゴ",
+      "logo_inverted": "反転ロゴ",
+      "logo_animated": "アニメーションロゴ",
+      "autorag_dashboard": "AutoRAG ダッシュボード",
+      "qa_pipeline": "QA パイプライン",
+      "release_cycle": "リリースサイクルマネージャー",
+      "michael_mooring": "Michael Mooring, CEO",
+      "samuel_tobia": "Samuel Tobia, CTO",
+      "sierra_hooshiari": "Sierra Hooshiari, COO"
     },
-    "mapping": {
-      "heading": "規制の要求事項 · LarQLが提供するもの",
-      "subheading": "同じアーティファクト — vIndex — が、Divinciの顧客が直面する4つの主要なAI規制において、透明性、監督、文書化、消去の要件すべてに応えます。",
-      "th_regulation": "規制",
-      "th_requirement": "要件",
-      "th_competitors": "競合の提供内容",
-      "th_larql": "LarQL/vIndex の提供内容",
-      "rows": [
-        {
-          "reg_label": "EU AI法 §13",
-          "reg_topic": "透明性",
-          "requirement": "「ユーザーが出力を解釈できる十分な透明性」",
-          "competitors": "モデルカード、散文的なシステム記述",
-          "larql": "vIndexはクエリ可能な透明性アーティファクトそのもの — 事実を担うすべての特徴量を <code>(layer, feature, gate_score)</code> で識別"
-        },
-        {
-          "reg_label": "EU AI法 §14",
-          "reg_topic": "人間による監督",
-          "requirement": "オペレーターは意味のある介入を行わなければならない",
-          "competitors": "プロンプトレベルのガードレール(脱獄可能)",
-          "larql": "プロンプトではなく特徴量に対する重みレベルのDELETEパッチ — 脱獄では回避できない"
-        },
-        {
-          "reg_label": "EU AI法 附属書IV",
-          "reg_topic": "技術文書",
-          "requirement": "「AIシステムの一般的なロジック」",
-          "competitors": "アーキテクチャ図 + 訓練データの要約",
-          "larql": "ビット精度の機構的文書化:すべての特徴量の射影語彙、すべての層の構造メトリック (C1–C5)"
-        },
-        {
-          "reg_label": "GDPR 第17条",
-          "reg_topic": "消去権",
-          "requirement": "個人データの検証可能な削除",
-          "competitors": "「忘却」のためのファインチューニング — <em>検証不可</em>;データが敵対的に再出現する可能性",
-          "larql": "監査証跡付きのDELETEパッチ = +0.02%のパープレキシティで特定の名前付きエンティティ関連付けの<strong>証明可能な抑制</strong>。パッチファイルが領収書です。"
-        },
-        {
-          "reg_label": "HIPAA · PCI · GDPR",
-          "reg_topic": "非識別化",
-          "requirement": "データプロダクトからPIIを削除",
-          "competitors": "I/Oでのトークンフィルタリング(漏洩の可能性)",
-          "larql": "PIIをエンコードする方向の特徴量レベルでの識別;重み層での外科的除去"
-        },
-        {
-          "reg_label": "NIST AI RMF",
-          "reg_topic": "管理",
-          "requirement": "残存リスクの定量化と管理",
-          "competitors": "感覚的なリスク評価",
-          "larql": "C1–C5 のユニバーサル定数が測定可能な構造ベースラインを提供;すべてのパッチ後に再検証"
-        }
-      ]
-    },
-    "receipt": {
-      "heading": "「領収書」とは実際にどのようなものか",
-      "para_1": "LarQLパッチはSHA-256チェックサム付きのポータブルJSONファイルです。適用して事実を抑制し、削除すればモデルをビット単位で復元します。パッチは監査ログそのもの — オペレーター、規制当局、下流の利用者が同じ操作を独立して検証できます。",
-      "para_2": "以下:私たちが公開テストスイートで提供している実際のGate-3パッチで、実物のGemma 4 E2B vIndex上で「Paris→首都」関連付けの抑制と復元が、測定可能かつ再現可能な効果を持つことを示しています。"
-    },
-    "cta_band": {
-      "heading": "証明できるコンプライアンス。あらゆるオープントランスフォーマー上で。",
-      "tagline": "Gemma、Qwen、Llama、Mistral、OpenAI MoE、Microsoft 1-bit にわたり、現在8つのvindexを公開中。あなたのモデルを持ち込んでください — 私たちが領収書を構築します。",
-      "cta_primary": "コンプライアンスレビューを予約 →",
-      "cta_secondary": "Hugging Face で vIndex を閲覧"
+    "common": {
+      "read_more": "続きを読む",
+      "read_article": "記事を読む",
+      "download": "ダウンロード"
     }
   },
   "about": {
@@ -776,6 +824,32 @@
     "join_title": "チームに参加しよう",
     "join_desc": "AIの未来を形作る手助けをする準備はできていますか?私たちは常に優れた人材を求めています。",
     "join_cta": "募集中のポジションを見る"
+  },
+  "blog": {
+    "hero_title": "Divinci AI ブログ",
+    "hero_subtitle": "人工知能、RAG システム、エンタープライズ AI 管理に関する洞察、更新情報、そして思考のリーダーシップ。",
+    "by": "著者:",
+    "read_article": "記事を読む",
+    "recent_articles": "最新記事",
+    "read_more": "続きを読む",
+    "share_tag": "シェア",
+    "share_title": "友達とシェアしよう",
+    "share_desc": "これらのトピックに興味を持たれた方は、友人や同僚にシェアしてください。",
+    "coming_soon_title": "ブログ近日公開",
+    "coming_soon_message": "AI テクノロジー、実装戦略、業界動向についての洞察を含むブログを現在構築中です。アップデートをお待ちいただくか、新しいコンテンツが利用可能になった際の通知を購読してください。",
+    "notify_me": "更新を通知する",
+    "featured_tag_default": "人工知能",
+    "post_tag_default": "AI インサイト",
+    "intro": {
+      "heading": "Divinci AIチームによる研究ノート",
+      "p1": "Divinci AIのブログでは、規制産業向けのプロダクション対応の検索拡張生成（RAG）システム構築における、独自の研究、エンジニアリングの詳細解説、現場からのフィールドノートを公開しています。",
+      "p2": "私たちの発信は3つのテーマにわたります。まず技術的な取り組みとして、Hugging Faceで公開しているオープンなvIndexesライブラリをどのように構築・スコアリング・ルーティングしているか、AIジャッジを人間のグラウンドトゥルースに対してどのように較正しているか、投機的デコーディングとFP8量子化をプロダクションに投入して得た学びについて紹介します。",
+      "p3": "ほとんどの記事は、すでにAIエンジニアリングに精通した読者、つまりエンジニア、研究者、技術購買担当者を対象としていますが、組織内でAIに関する意思決定を担うすべての方にとって理解しやすいよう、フレーミングにも配慮しています。"
+    },
+    "newer": "新しい投稿",
+    "older": "過去の投稿",
+    "page_of": "ページ",
+    "pagination_label": "過去のブログ投稿"
   },
   "careers": {
     "hero_title": "チームに参加しよう",
@@ -871,20 +945,181 @@
     "benefits_title": "福利厚生と特典",
     "benefits_intro": "私たちはチームを大切にすることを信じています。Divinci AI の従業員に提供する福利厚生と特典の一部はこちらです:"
   },
-  "blog": {
-    "hero_title": "Divinci AI ブログ",
-    "hero_subtitle": "人工知能、RAG システム、エンタープライズ AI 管理に関する洞察、更新情報、そして思考のリーダーシップ。",
-    "by": "著者:",
-    "read_article": "記事を読む",
-    "recent_articles": "最新記事",
-    "read_more": "続きを読む",
-    "share_tag": "シェア",
-    "share_title": "友達とシェアしよう",
-    "share_desc": "これらのトピックに興味を持たれた方は、友人や同僚にシェアしてください。",
-    "coming_soon_title": "ブログ近日公開",
-    "coming_soon_message": "AI テクノロジー、実装戦略、業界動向についての洞察を含むブログを現在構築中です。アップデートをお待ちいただくか、新しいコンテンツが利用可能になった際の通知を購読してください。",
-    "notify_me": "更新を通知する",
-    "featured_tag_default": "人工知能",
-    "post_tag_default": "AI インサイト"
+  "blog_post": {
+    "min_read": "分で読めます",
+    "by": "投稿者",
+    "join_conversation": "ディスカッションに参加",
+    "join_conversation_desc": "このトピックについてのご意見をぜひお聞かせください。お好きなプラットフォームでディスカッションにご参加ください：",
+    "discuss_on_x": "Xで議論する",
+    "comment_on_linkedin": "LinkedInでコメントする",
+    "chat_on_discord": "Discordでチャットする",
+    "view_on_instagram": "Instagramで見る",
+    "back_to_top": "トップに戻る",
+    "copy_link": "リンクをコピー",
+    "focus_mode": "集中モード",
+    "export": "エクスポート",
+    "copy_as_markdown": "Markdownとしてコピー",
+    "download_markdown": "Markdownをダウンロード",
+    "copy_as_text": "テキストとしてコピー",
+    "download_text": "テキストをダウンロード",
+    "full_white_paper": "ホワイトペーパー全文（50ページ）",
+    "quick_summary": "簡易サマリー（1ページ）",
+    "related_articles": "関連記事",
+    "share_with_friends": "友人に共有する",
+    "share_desc": "これらのトピックに興味を持たれた方は、同じく興味を持ちそうなご友人や同僚にぜひ共有してください。",
+    "cta_title": "カスタムAIソリューションを構築する準備はできましたか？",
+    "cta_desc": "Divinci AIがRAGシステムの実装、品質保証の自動化、AI開発プロセスの効率化をどのように支援できるかをご覧ください。",
+    "cta_button": "今すぐ始める"
+  },
+  "roadmap": {
+    "vision_title": "私たちが描く未来のビジョン",
+    "vision_desc": "Divinci AIプラットフォームの今後の展開をご覧ください。私たちは継続的なイノベーションと、お客様が最も必要とする機能の提供に取り組んでいます。",
+    "status_development": "開発中",
+    "status_planned": "計画中",
+    "status_completed": "完了",
+    "status_future": "将来予定",
+    "recently_released": "最近リリースされた機能",
+    "request_features": "機能をリクエスト",
+    "request_features_desc": "ご希望の機能はありますか？ぜひお聞かせください！",
+    "submit_ideas": "アイデアを送信",
+    "q1_title": "2025年 第1四半期",
+    "q2_title": "2025年 第2四半期",
+    "q34_title": "2025年 第3〜第4四半期",
+    "q1_item1_name": "高度な分析ダッシュボード",
+    "q1_item1_desc": "強化されたレポートとインサイト",
+    "q1_item2_name": "マルチクラウド対応",
+    "q1_item2_desc": "AWS、Azure、GCPをまたいだデプロイ",
+    "q1_item3_name": "カスタムコンプライアンスフレームワーク",
+    "q1_item3_desc": "業界別のコンプライアンステンプレート",
+    "q2_item1_name": "APIゲートウェイ統合",
+    "q2_item1_desc": "API管理のネイティブサポート",
+    "q2_item2_name": "高度なテストスイート",
+    "q2_item2_desc": "包括的なAIモデル検証ツール",
+    "q2_item3_name": "コラボレーションツール",
+    "q2_item3_desc": "強化されたチームワークフローと権限管理",
+    "released_item1_name": "インテリジェントなリリースオーケストレーション",
+    "released_item1_desc": "自動化されたデプロイパイプライン",
+    "released_item2_name": "リアルタイムパフォーマンス監視",
+    "released_item2_desc": "モデルパフォーマンスのライブ追跡",
+    "released_item3_name": "強化されたセキュリティ機能",
+    "released_item3_desc": "高度なアクセス制御と監査ログ",
+    "q34_item1_name": "AIによる最適化",
+    "q34_item1_desc": "自動パフォーマンスチューニング",
+    "q34_item2_name": "高度な統合機能",
+    "q34_item2_desc": "より多くのAIフレームワークやツールへの対応",
+    "q34_item3_name": "モバイル管理アプリ",
+    "q34_item3_desc": "外出先でもAIシステムを監視"
+  },
+  "page": {
+    "last_updated": "最終更新日"
+  },
+  "taxonomy": {
+    "browse_by": "以下の分類でコンテンツを閲覧",
+    "posts_in": "以下の投稿：",
+    "post_singular": "件の投稿",
+    "post_plural": "件の投稿",
+    "read_more": "続きを読む"
+  },
+  "ai_safety": {
+    "official_document": "公式ドキュメント",
+    "certification_text": "標準準拠 · NIST Framework 準拠 · ISO/IEC 準拠",
+    "contributors": "貢献者",
+    "ceo_title": "共同創業者 兼 CEO",
+    "ethics_advisor_title": "AI安全性・倫理アドバイザー",
+    "best_practice_title": "ベストプラクティスフレームワーク",
+    "last_updated_label": "最終更新日",
+    "version_label": "バージョン",
+    "document_id_label": "ドキュメントID"
+  },
+  "news": {
+    "read_more": "続きを読む →",
+    "learn_more": "詳細を見る →",
+    "ai_for_good_tag": "善のためのAI",
+    "cloudflare_date": "2025年10月5日",
+    "cloudflare_title": "Divinci AIがCloudflare Workers Launchpadコホート#6に参加",
+    "cloudflare_excerpt": "CloudflareのプレスティジャスWorkers Launchpadアクセラレータープログラムへの採択を発表します。EdgeコンピューティングプラットフォームでRAGパイプラインを構築する方法をご覧ください。"
+  },
+  "not_found": {
+    "title": "ページが見つかりません",
+    "message": "お探しのページは存在しないか、移動された可能性があります。元の場所にお戻りください。",
+    "go_home": "ホームページへ",
+    "view_docs": "ドキュメントを見る"
+  },
+  "accessibility": {
+    "skip_to_content": "メインコンテンツへスキップ"
+  },
+  "compliance": {
+    "hero": {
+      "eyebrow": "vIndex + LarQL を搭載",
+      "heading": "コンプライアンス、領収書付き。",
+      "tagline": "ほとんどの「AIコンプライアンス」はアクセスログとプロンプトレベルのガードレールで止まっています。Divinciはモデル内部に踏み込みます。すべてのエンティティ関連付けはクエリ可能な特徴量であり、すべての編集はポータブルで監査可能なパッチ — そして<strong>vIndex</strong>は、規制当局がまもなく要求し始める技術文書アーティファクトです。",
+      "cta_primary": "コンプライアンス担当に相談 →",
+      "cta_secondary": "ライブvindexを見る"
+    },
+    "mapping": {
+      "rows": [
+        {
+          "reg_label": "EU AI法 §13",
+          "reg_topic": "透明性",
+          "requirement": "「ユーザーが出力を解釈できる十分な透明性」",
+          "competitors": "モデルカード、散文的なシステム記述",
+          "larql": "vIndexはクエリ可能な透明性アーティファクトそのもの — 事実を担うすべての特徴量を <code>(layer, feature, gate_score)</code> で識別"
+        },
+        {
+          "reg_label": "EU AI法 §14",
+          "reg_topic": "人間による監督",
+          "requirement": "オペレーターは意味のある介入を行わなければならない",
+          "competitors": "プロンプトレベルのガードレール(脱獄可能)",
+          "larql": "プロンプトではなく特徴量に対する重みレベルのDELETEパッチ — 脱獄では回避できない"
+        },
+        {
+          "reg_label": "EU AI法 附属書IV",
+          "reg_topic": "技術文書",
+          "requirement": "「AIシステムの一般的なロジック」",
+          "competitors": "アーキテクチャ図 + 訓練データの要約",
+          "larql": "ビット精度の機構的文書化:すべての特徴量の射影語彙、すべての層の構造メトリック (C1–C5)"
+        },
+        {
+          "reg_label": "GDPR 第17条",
+          "reg_topic": "消去権",
+          "requirement": "個人データの検証可能な削除",
+          "competitors": "「忘却」のためのファインチューニング — <em>検証不可</em>;データが敵対的に再出現する可能性",
+          "larql": "監査証跡付きのDELETEパッチ = +0.02%のパープレキシティで特定の名前付きエンティティ関連付けの<strong>証明可能な抑制</strong>。パッチファイルが領収書です。"
+        },
+        {
+          "reg_label": "HIPAA · PCI · GDPR",
+          "reg_topic": "非識別化",
+          "requirement": "データプロダクトからPIIを削除",
+          "competitors": "I/Oでのトークンフィルタリング(漏洩の可能性)",
+          "larql": "PIIをエンコードする方向の特徴量レベルでの識別;重み層での外科的除去"
+        },
+        {
+          "reg_label": "NIST AI RMF",
+          "reg_topic": "管理",
+          "requirement": "残存リスクの定量化と管理",
+          "competitors": "感覚的なリスク評価",
+          "larql": "C1–C5 のユニバーサル定数が測定可能な構造ベースラインを提供;すべてのパッチ後に再検証"
+        }
+      ]
+    },
+    "receipt": {
+      "heading": "「領収書」とは実際にどのようなものか",
+      "para_1": "LarQLパッチはSHA-256チェックサム付きのポータブルJSONファイルです。適用して事実を抑制し、削除すればモデルをビット単位で復元します。パッチは監査ログそのもの — オペレーター、規制当局、下流の利用者が同じ操作を独立して検証できます。",
+      "para_2": "以下:私たちが公開テストスイートで提供している実際のGate-3パッチで、実物のGemma 4 E2B vIndex上で「Paris→首都」関連付けの抑制と復元が、測定可能かつ再現可能な効果を持つことを示しています。"
+    },
+    "cta_band": {
+      "heading": "証明できるコンプライアンス。あらゆるオープントランスフォーマー上で。",
+      "tagline": "Gemma、Qwen、Llama、Mistral、OpenAI MoE、Microsoft 1-bit にわたり、現在8つのvindexを公開中。あなたのモデルを持ち込んでください — 私たちが領収書を構築します。",
+      "cta_primary": "コンプライアンスレビューを予約 →",
+      "cta_secondary": "Hugging Face で vIndex を閲覧"
+    }
+  },
+  "research_band": {
+    "eyebrow": "オープンリサーチ",
+    "title": "オープンな重み、オープンなパッチ、オープンなvIndexes。",
+    "body_1": "私たちは、使用するすべてのモデルについてvIndexes（オープンなトランスフォーマーから抽出したクエリ可能な特徴データベース）を公開しています。現在、Hugging Face上で12個が公開されており、4つのモデルファミリーと4つの組織にまたがり、さらにネイティブに学習された2つの1-bit dissolutionコントロールも含まれています。",
+    "body_2": "ビューアーでは、FFN特徴空間を3Dでオービット表示できます。ブログシリーズでは、普遍的な定数から外科的な編集までを解説しています。LarQLはオープンソースです：github.com/Divinci-AI/larql",
+    "cta_primary": "研究内容を読む →",
+    "cta_secondary": "Hugging Faceで閲覧"
   }
 }

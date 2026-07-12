@@ -14,28 +14,34 @@
     "team": "Equipe",
     "signup": "Cadastrar",
     "support": "Suporte",
-    "request_demo": "Solicitar demo",
     "support_center": "Centro de Suporte",
+    "documentation": "Documentação",
+    "request_demo": "Solicitar demo",
     "blog": "Blog",
     "terms_of_service": "Termos de Serviço",
     "privacy_policy": "Política de Privacidade",
     "quality_assurance": "Garantia de Qualidade",
     "release_management": "Gestão de Lançamentos",
-    "sign_up": "Cadastre-se"
+    "sign_up": "Cadastre-se",
+    "www_rag_directory": "Diretório WWW-RAG"
   },
   "hero": {
     "heading": "Releases de IA.",
     "subheading": "Excelência\nsempre.",
+    "heading_mobile": "A sua IA B2C.",
+    "subheading_mobile": "Excelência, sempre.",
     "description": "Capacite seu negócio com gerenciamento avançado de releases e garantia rigorosa de qualidade para modelos de linguagem personalizados. Alcance confiabilidade operacional, conformidade regulatória e desempenho otimizado através de um processo estruturado de implementação de ponta a ponta.",
     "features": {
       "test_automation": "Automação inteligente de testes",
       "compliance_records": "Registros detalhados de conformidade",
+      "compliance_records_mobile": "Registos de conformidade",
       "version_recovery": "Recuperação instantânea de versão"
     },
     "cta": {
       "primary": "Solicitar demo",
       "secondary": "Explorar plataforma",
-      "connect_provider": "Conecte o {provider} ao Divinci"
+      "connect_provider": "Conecte o {provider} ao Divinci",
+      "connect_provider_mobile": "Conectar {provider}"
     },
     "sound_unmute": "Ativar som",
     "sound_mute": "Silenciar"
@@ -67,6 +73,7 @@
   "features": {
     "title": "Turbine seu fluxo de trabalho com IA",
     "description": "Descubra recursos projetados para equipes empresariais que precisam de colaboração de IA confiável e escalável.",
+    "journal_title": "Diário de Leonardo",
     "list": {
       "multiplayer": {
         "title": "Multijogador",
@@ -109,7 +116,6 @@
         "description": "Escale de pequenas equipes para organizações empresariais com infraestrutura que escala automaticamente."
       }
     },
-    "journal_title": "Diário de Leonardo",
     "autorag": {
       "title": "AutoRAG"
     },
@@ -123,20 +129,16 @@
     "description": "Conheça os inovadores que estão moldando o futuro da colaboração humano-IA.",
     "members": {
       "connect": "Conectar",
+      "sierra_bio": "Formada pela Cornell University com ampla experiência em serviços financeiros e empreendedorismo. Traz expertise em desenvolvimento estratégico de negócios para escalar projetos de IA.",
       "michael_bio": "Visionário com mais de 15 anos em tecnologia empresarial, liderando a revolução da IA conversacional.",
       "samuel_bio": "Estrategista de produto com histórico de soluções de IA centradas no usuário para equipes empresariais.",
       "duane_bio": "Arquiteto de sistemas com expertise em infraestrutura de IA escalável e processamento de linguagem natural.",
-      "sierra_bio": "Formada pela Cornell University com ampla experiência em serviços financeiros e empreendedorismo. Traz expertise em desenvolvimento estratégico de negócios para escalar projetos de IA.",
       "sean_bio": "Cientista de dados com mais de 10 anos de experiência em programação, especializado em machine learning e Python.",
       "paul_marie_bio": "Líder em governança de IA e consultor independente. Fundador do AI LA Responsible AI Group com experiência no Google AI, Deloitte e CVS Health."
     },
     "roles": {
       "ceo_founder": "CEO e Fundador",
       "cto_cofounder": "CTO e Cofundador",
-      "head_product": "Chefe de Produto",
-      "senior_data_scientist": "Cientista de Dados Sênior",
-      "ux_ui_designer": "Designer UX/UI",
-      "software_engineer": "Engenheiro de Software",
       "cpo": "Diretor de Produto",
       "coo": "Diretor de Operações",
       "data_scientist": "Cientista de Dados",
@@ -168,6 +170,95 @@
       }
     }
   },
+  "expert_answers": {
+    "title": "Respostas de Especialistas",
+    "description": "Encontre insights abrangentes sobre o gerenciamento de lançamentos e garantia de qualidade da nossa plataforma para modelos de linguagem grandes. Explore respostas detalhadas e profissionais para suas perguntas mais urgentes.",
+    "faqs": {
+      "model_reliability": {
+        "question": "Como vocês garantem a confiabilidade do modelo?",
+        "answer": "Implementamos um processo de validação multicamadas, combinando testes automatizados de regressão, performance e segurança com revisões manuais de especialistas. Cada lançamento de modelo é rigorosamente avaliado para garantir que atenda consistentemente aos padrões de nível empresarial para precisão, estabilidade e conformidade."
+      },
+      "language_models": {
+        "question": "Quais modelos de linguagem são compatíveis?",
+        "answer": "Nossa plataforma suporta um amplo espectro de modelos de linguagem grandes, de arquiteturas de código aberto a proprietárias. A integração flexível permite implantação perfeita em diversas estruturas e ambientes empresariais, garantindo adaptabilidade às necessidades comerciais em evolução.",
+        "model_compat_link": "Ver lista completa de compatibilidade de modelos"
+      },
+      "quality_assurance": {
+        "question": "Como é alcançada a garantia de qualidade contínua?",
+        "answer": "Mantemos a qualidade através de monitoramento contínuo, auditorias programadas e rastreamento de desempenho em tempo real. Ao analisar feedback do usuário e riscos emergentes, refinamos proativamente modelos e processos para manter padrões de qualidade rigorosos ao longo do tempo."
+      },
+      "workflow_integration": {
+        "question": "A plataforma se adapta aos fluxos de trabalho existentes?",
+        "answer": "Nossa solução é projetada para integração perfeita com sistemas empresariais. APIs robustas e opções configuráveis permitem alinhamento sem esforço com seus pipelines atuais de gerenciamento de lançamentos e desenvolvimento, minimizando interrupções e maximizando eficiência."
+      }
+    },
+    "view_complete_list": "Ver lista completa de compatibilidade de modelos"
+  },
+  "contact": {
+    "title": "Contato",
+    "subtitle": "Entre em contato com nossa equipe",
+    "get_in_touch": "ENTRE EM CONTATO",
+    "email_specialists": {
+      "title": "Envie um e-mail para nossos especialistas",
+      "description": "Receba respostas detalhadas e ponderadas para suas consultas técnicas e comerciais.",
+      "email": "Agendar Demo"
+    },
+    "speak_consultant": {
+      "title": "Reservar uma demonstração ao vivo",
+      "description": "Disponível para demonstrações personalizadas de 30 minutos para mostrar como o Divinci AI funciona.",
+      "phone": "Reservar Demo"
+    },
+    "schedule_demo": "Agendar Demo",
+    "book_demo": "Reservar uma demonstração ao vivo",
+    "demo_availability": "Disponível para demonstrações personalizadas de 30 minutos para mostrar como o Divinci AI funciona.",
+    "page_title": "Entre em Contacto",
+    "page_subtitle": "Tem dúvidas sobre a nossa plataforma ou precisa de ajuda para começar? Estamos aqui para ajudar.",
+    "form": {
+      "title": "Envie-nos uma Mensagem",
+      "name_label": "O seu Nome",
+      "name_placeholder": "Introduza o seu nome",
+      "email_label": "Endereço de Email",
+      "email_placeholder": "Introduza o seu email",
+      "subject_label": "Assunto",
+      "subject_placeholder": "Selecione um assunto",
+      "inquiry_options": {
+        "general": "Questão Geral",
+        "sales": "Consulta Comercial",
+        "demo": "Solicitar uma Demonstração",
+        "support": "Suporte Técnico",
+        "partnership": "Oportunidade de Parceria"
+      },
+      "company_label": "Empresa (Opcional)",
+      "company_placeholder": "O nome da sua empresa",
+      "message_label": "A sua Mensagem",
+      "message_placeholder": "Como podemos ajudar?",
+      "privacy_label": "Concordo com a Política de Privacidade e os Termos de Serviço",
+      "submit_button": "Enviar Mensagem",
+      "success_message": "Obrigado pela sua mensagem! Entraremos em contacto consigo o mais brevemente possível.",
+      "error_message": "Ups! Algo correu mal. Por favor, tente novamente mais tarde ou contacte-nos diretamente.",
+      "verification_required": "Por favor, conclua a verificação de segurança.",
+      "sending": "A enviar...",
+      "error_occurred": "Ocorreu um erro. Por favor, tente novamente.",
+      "network_error": "Erro de rede. Por favor, verifique a sua ligação e tente novamente."
+    },
+    "info": {
+      "email": {
+        "title": "Envie-nos Email",
+        "value": "hello@divinci.ai"
+      },
+      "address": {
+        "title": "Visite-nos",
+        "value": "312 Arizona Ave, Santa Monica, CA 90401"
+      },
+      "hours": {
+        "title": "Horário Comercial",
+        "value": "Mon–Fri: 9am–6pm PST"
+      }
+    },
+    "map": {
+      "click_message": "Clique para interagir com o mapa"
+    }
+  },
   "footer": {
     "tagline": "Capacitando a colaboração humano-IA",
     "sections": {
@@ -186,10 +277,11 @@
       "resources": {
         "title": "Recursos",
         "links": {
-          "documentation": "Documentação",
-          "blog": "Blog",
-          "tutorials": "Tutoriais",
           "api": "API",
+          "blog": "Blog",
+          "brand": "Recursos",
+          "documentation": "Documentação",
+          "tutorials": "Tutoriais",
           "support": "Suporte"
         }
       },
@@ -222,53 +314,18 @@
       "privacy_settings": "Configurações de Privacidade",
       "cookie_policy": "Política de Cookies",
       "cookie_preferences": "Preferências de Cookies",
-      "rights_reserved": "Todos os direitos reservados."
+      "rights_reserved": "Todos os direitos reservados.",
+      "data_request": "Pedido de Dados"
     },
     "api": "API",
     "support": "Suporte",
     "privacy_settings": "Configurações de Privacidade",
-    "cookie_preferences": "Preferências de Cookies",
     "cookie_policy": "Política de Cookies",
+    "cookie_preferences": "Preferências de Cookies",
     "motto": {
+      "phrase": "inteligência livre",
       "word_1": "inteligência",
-      "word_2": "livre",
-      "phrase": "inteligência livre"
-    }
-  },
-  "language_switcher": {
-    "current_language": "Português",
-    "languages": {
-      "en": "English",
-      "es": "Español",
-      "fr": "Français",
-      "ar": "العربية",
-      "ja": "日本語",
-      "zh": "中文",
-      "it": "Italiano",
-      "ru": "Русский",
-      "de": "Deutsch",
-      "pt": "Português",
-      "ko": "한국어",
-      "nl": "Nederlands",
-      "hi": "हिन्दी"
-    }
-  },
-  "contact": {
-    "title": "Contato",
-    "subtitle": "Entre em contato com nossa equipe",
-    "get_in_touch": "ENTRE EM CONTATO",
-    "email_specialists": {
-      "title": "Envie um e-mail para nossos especialistas",
-      "description": "Receba respostas detalhadas e ponderadas para suas consultas técnicas e comerciais.",
-      "email": "Agendar Demo"
-    },
-    "schedule_demo": "Agendar Demo",
-    "book_demo": "Reservar uma demonstração ao vivo",
-    "demo_availability": "Disponível para demonstrações personalizadas de 30 minutos para mostrar como o Divinci AI funciona.",
-    "speak_consultant": {
-      "title": "Reservar uma demonstração ao vivo",
-      "description": "Disponível para demonstrações personalizadas de 30 minutos para mostrar como o Divinci AI funciona.",
-      "phone": "Reservar Demo"
+      "word_2": "livre"
     }
   },
   "support": {
@@ -621,109 +678,102 @@
       }
     }
   },
-  "expert_answers": {
-    "title": "Respostas de Especialistas",
-    "subtitle": "Orientação de especialistas",
-    "description": "Encontre insights abrangentes sobre o gerenciamento de lançamentos e garantia de qualidade da nossa plataforma para modelos de linguagem grandes. Explore respostas detalhadas e profissionais para suas perguntas mais urgentes.",
-    "faqs": {
-      "model_reliability": {
-        "question": "Como vocês garantem a confiabilidade do modelo?",
-        "answer": "Implementamos um processo de validação multicamadas, combinando testes automatizados de regressão, performance e segurança com revisões manuais de especialistas. Cada lançamento de modelo é rigorosamente avaliado para garantir que atenda consistentemente aos padrões de nível empresarial para precisão, estabilidade e conformidade."
+  "language_switcher": {
+    "current_language": "Português",
+    "languages": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands",
+      "hi": "हिन्दी"
+    }
+  },
+  "press": {
+    "title": "Recursos de Imprensa",
+    "subtitle": "Encontre as últimas notícias, cobertura mediática e recursos sobre a Divinci AI. Para questões de imprensa, por favor, contacte a nossa equipa de relações com a comunicação social.",
+    "contact": {
+      "title": "Contacto de Imprensa",
+      "email": "press@divinci.ai",
+      "phone": "+1 (800) 555-1234",
+      "media_relations": "Sierra Hooshiari, COO — Diretora de Operações",
+      "description": "A nossa equipa de relações com a comunicação social está disponível para auxiliar jornalistas, analistas da indústria e criadores de conteúdos com informações, entrevistas e recursos sobre a Divinci AI e a nossa perspetiva sobre a indústria da IA.",
+      "email_label": "Email",
+      "media_label": "Relações com a Comunicação Social"
+    },
+    "releases": {
+      "title": "Comunicados de Imprensa",
+      "items": {
+        "platform_launch": {
+          "date": "May 1, 2025",
+          "title": "A Divinci AI Lança Plataforma para Democratizar Soluções de IA Personalizadas para Empresas",
+          "excerpt": "A Divinci AI anunciou hoje a disponibilidade geral da sua plataforma concebida para tornar soluções de IA personalizadas acessíveis a empresas de todas as dimensões, sem exigir conhecimentos especializados em machine learning."
+        },
+        "autorag_launch": {
+          "date": "April 15, 2025",
+          "title": "A Divinci AI Revela o AutoRAG, Tornando a Retrieval-Augmented Generation Acessível a Todos",
+          "excerpt": "A nova funcionalidade AutoRAG automatiza o complexo processo de implementação de sistemas de Retrieval-Augmented Generation, permitindo às empresas criar facilmente IA que aproveita o seu conhecimento proprietário."
+        },
+        "standards_hub": {
+          "date": "March 10, 2025",
+          "title": "A Divinci AI Adere ao AI Standards Hub para Promover o Desenvolvimento Responsável de IA",
+          "excerpt": "Como parte do seu compromisso com a IA ética, a Divinci AI aderiu ao AI Standards Hub para contribuir para o desenvolvimento de normas para uma inteligência artificial segura, responsável e transparente."
+        }
       },
-      "language_models": {
-        "question": "Quais modelos de linguagem são compatíveis?",
-        "answer": "Nossa plataforma suporta um amplo espectro de modelos de linguagem grandes, de arquiteturas de código aberto a proprietárias. A integração flexível permite implantação perfeita em diversas estruturas e ambientes empresariais, garantindo adaptabilidade às necessidades comerciais em evolução.",
-        "model_compat_link": "Ver lista completa de compatibilidade de modelos"
-      },
-      "quality_assurance": {
-        "question": "Como é alcançada a garantia de qualidade contínua?",
-        "answer": "Mantemos a qualidade através de monitoramento contínuo, auditorias programadas e rastreamento de desempenho em tempo real. Ao analisar feedback do usuário e riscos emergentes, refinamos proativamente modelos e processos para manter padrões de qualidade rigorosos ao longo do tempo."
-      },
-      "workflow_integration": {
-        "question": "A plataforma se adapta aos fluxos de trabalho existentes?",
-        "answer": "Nossa solução é projetada para integração perfeita com sistemas empresariais. APIs robustas e opções configuráveis permitem alinhamento sem esforço com seus pipelines atuais de gerenciamento de lançamentos e desenvolvimento, minimizando interrupções e maximizando eficiência."
+      "empty_state": "Os comunicados de imprensa serão publicados aqui à medida que ficarem disponíveis. Para questões de imprensa, por favor, contacte a nossa equipa de imprensa."
+    },
+    "coverage": {
+      "title": "Cobertura Mediática",
+      "items": {
+        "techcrunch": {
+          "date": "May 3, 2025",
+          "title": "A Divinci AI Torna as Soluções de IA Personalizadas Acessíveis às PMEs",
+          "excerpt": "A TechCrunch analisa a nova plataforma da Divinci AI e como está a levar capacidades de IA de nível empresarial a pequenas e médias empresas."
+        },
+        "venturebeat": {
+          "date": "April 18, 2025",
+          "title": "Como a Funcionalidade AutoRAG da Divinci AI Muda as Regras do Jogo para a IA Baseada em Documentos",
+          "excerpt": "A VentureBeat explora como a tecnologia AutoRAG da Divinci AI simplifica o complexo processo de implementação de sistemas de IA com reconhecimento de documentos."
+        },
+        "forbes": {
+          "date": "March 15, 2025",
+          "title": "10 Startups de IA a Observar em 2025: A Divinci AI Entra na Lista",
+          "excerpt": "A Forbes inclui a Divinci AI na sua lista anual de startups de IA promissoras que estão a transformar a forma como as empresas implementam soluções de inteligência artificial."
+        }
       }
     },
-    "view_complete_list": "Ver lista completa de compatibilidade de modelos"
-  },
-  "news": {
-    "read_more": "Leia mais →",
-    "learn_more": "Saiba mais →",
-    "ai_for_good_tag": "IA para o Bem",
-    "cloudflare_date": "5 de outubro de 2025",
-    "cloudflare_title": "Divinci AI entra no Cloudflare Workers Launchpad Coorte #6",
-    "cloudflare_excerpt": "Estamos animados em anunciar nossa aceitação no prestigioso programa acelerador Workers Launchpad da Cloudflare. Saiba como aproveitamos a plataforma de computação de borda da Cloudflare para construir pipelines RAG sofisticados."
-  },
-  "compliance": {
-    "hero": {
-      "eyebrow": "Impulsionado por vIndex + LarQL",
-      "heading": "Conformidade, com comprovante.",
-      "tagline": "A maior parte da \"conformidade de IA\" para nos logs de acesso e nas barreiras a nível de prompt. A Divinci entra dentro do modelo. Cada associação de entidade é uma característica consultável; cada edição é um patch portátil e auditável — e o <strong>vIndex</strong> é o artefato de documentação técnica que o seu regulador está prestes a começar a exigir.",
-      "cta_primary": "Falar com conformidade →",
-      "cta_secondary": "Ver um vIndex ao vivo"
+    "assets": {
+      "title": "Ativos de Marca",
+      "description": "Descarregue logótipos oficiais da Divinci AI, capturas de ecrã dos produtos e fotografias dos fundadores para uso mediático. Todos os ativos são fornecidos em alta resolução e estão disponíveis em múltiplos formatos.",
+      "logos": "Logótipos",
+      "screenshots": "Capturas de Ecrã dos Produtos",
+      "team_photos": "Fotografias da Equipa",
+      "press_kit": {
+        "title": "Kit de Imprensa Completo",
+        "description": "Descarregue o nosso kit de imprensa completo, que inclui todos os logótipos, capturas de ecrã, fotografias da equipa, fichas técnicas dos produtos e informações sobre a empresa num único pacote.",
+        "button": "Descarregar Kit de Imprensa (ZIP, 25MB)"
+      },
+      "logo_primary": "Logótipo Principal",
+      "logo_inverted": "Logótipo Invertido",
+      "logo_animated": "Logótipo Animado",
+      "autorag_dashboard": "Painel AutoRAG",
+      "qa_pipeline": "Pipeline de QA",
+      "release_cycle": "Gestor do Ciclo de Lançamento",
+      "michael_mooring": "Michael Mooring, CEO",
+      "samuel_tobia": "Samuel Tobia, CTO",
+      "sierra_hooshiari": "Sierra Hooshiari, COO"
     },
-    "mapping": {
-      "heading": "O que a regulamentação exige · o que a LarQL entrega",
-      "subheading": "O mesmo artefato — o vIndex — atende aos requisitos de transparência, supervisão, documentação e apagamento nas quatro principais regulamentações de IA enfrentadas pelos clientes da Divinci.",
-      "th_regulation": "Regulamentação",
-      "th_requirement": "Requisito",
-      "th_competitors": "O que os concorrentes oferecem",
-      "th_larql": "O que LarQL/vIndex oferece",
-      "rows": [
-        {
-          "reg_label": "Regulamento de IA da UE §13",
-          "reg_topic": "Transparência",
-          "requirement": "\"Transparência suficiente para permitir que os usuários interpretem as saídas\"",
-          "competitors": "Model cards, descrições de sistema em prosa",
-          "larql": "O vIndex É um artefato de transparência consultável — cada característica portadora de fatos identificada por <code>(layer, feature, gate_score)</code>"
-        },
-        {
-          "reg_label": "Regulamento de IA da UE §14",
-          "reg_topic": "Supervisão humana",
-          "requirement": "Os operadores devem intervir de forma significativa",
-          "competitors": "Barreiras a nível de prompt (vulneráveis a jailbreak)",
-          "larql": "Patches DELETE a nível de pesos na característica, não no prompt — não podem ser contornados por jailbreak"
-        },
-        {
-          "reg_label": "Regulamento de IA da UE Anexo IV",
-          "reg_topic": "Documentação técnica",
-          "requirement": "\"Lógica geral do sistema de IA\"",
-          "competitors": "Diagramas de arquitetura + resumos de dados de treinamento",
-          "larql": "Documentação mecanicista bit-exata: o vocabulário projetado de cada característica, a métrica estrutural de cada camada (C1–C5)"
-        },
-        {
-          "reg_label": "RGPD Artigo 17",
-          "reg_topic": "Direito ao apagamento",
-          "requirement": "Remoção verificável de dados pessoais",
-          "competitors": "Fine-tuning para \"esquecer\" — <em>não verificável</em>; os dados podem reaparecer de forma adversarial",
-          "larql": "Patch DELETE com trilha de auditoria = <strong>supressão comprovável</strong> de uma associação específica de entidade nomeada a +0,02% de perplexidade. O arquivo do patch é o comprovante."
-        },
-        {
-          "reg_label": "HIPAA · PCI · RGPD",
-          "reg_topic": "Desidentificação",
-          "requirement": "Remover PII de produtos de dados",
-          "competitors": "Filtragem de tokens em E/S (vazamentos possíveis)",
-          "larql": "Identificação a nível de característica das direções que codificam PII; remoção cirúrgica na camada de pesos"
-        },
-        {
-          "reg_label": "NIST AI RMF",
-          "reg_topic": "Gerenciar",
-          "requirement": "Quantificar e gerenciar o risco residual",
-          "competitors": "Avaliações de risco baseadas na intuição",
-          "larql": "As constantes universais C1–C5 oferecem uma linha de base estrutural mensurável; reverifique após cada patch"
-        }
-      ]
-    },
-    "receipt": {
-      "heading": "Como é, na prática, um \"comprovante\"",
-      "para_1": "Um patch LarQL é um arquivo JSON portátil com checksum SHA-256. Aplique-o para suprimir um fato; remova-o para restaurar o modelo bit a bit. O patch É o log de auditoria — operadores, reguladores e consumidores a jusante podem verificar a mesma operação de forma independente.",
-      "para_2": "Abaixo: o patch Gate-3 real que entregamos no nosso conjunto público de testes, mostrando a associação Paris→capital suprimida e revertida com efeito mensurável e repetível em um vIndex real de Gemma 4 E2B."
-    },
-    "cta_band": {
-      "heading": "Conformidade que você pode comprovar. Em qualquer transformer aberto.",
-      "tagline": "Oito vIndexes publicados hoje em Gemma, Qwen, Llama, Mistral, OpenAI MoE e Microsoft 1-bit. Traga seu modelo — nós construímos o comprovante.",
-      "cta_primary": "Agendar revisão de conformidade →",
-      "cta_secondary": "Explorar vIndexes no Hugging Face"
+    "common": {
+      "read_more": "Ler mais",
+      "read_article": "Ler artigo",
+      "download": "Descarregar"
     }
   },
   "about": {
@@ -774,6 +824,32 @@
     "join_title": "Junte-se ao Nosso Time",
     "join_desc": "Pronto para ajudar a moldar o futuro da IA? Estamos sempre em busca de talentos excepcionais.",
     "join_cta": "Ver vagas abertas"
+  },
+  "blog": {
+    "hero_title": "Blog da Divinci AI",
+    "hero_subtitle": "Insights, atualizações e liderança de pensamento sobre inteligência artificial, sistemas RAG e gestão de IA corporativa.",
+    "by": "Por",
+    "read_article": "Ler artigo",
+    "recent_articles": "Artigos recentes",
+    "read_more": "Leia mais",
+    "share_tag": "Compartilhar",
+    "share_title": "Compartilhe com amigos",
+    "share_desc": "Se você acha esses tópicos interessantes, compartilhe com amigos e colegas.",
+    "coming_soon_title": "Blog em breve",
+    "coming_soon_message": "Estamos construindo nosso blog com insights sobre tecnologia de IA, estratégias de implementação e tendências do setor. Volte em breve para atualizações ou inscreva-se para ser notificado quando houver novo conteúdo.",
+    "notify_me": "Avisar-me sobre atualizações",
+    "featured_tag_default": "Inteligência Artificial",
+    "post_tag_default": "Insights de IA",
+    "intro": {
+      "heading": "Notas de investigação da equipa da Divinci AI",
+      "p1": "O blogue da Divinci AI publica investigação original, análises técnicas aprofundadas e notas de campo do nosso trabalho a construir sistemas de retrieval-augmented generation em produção para indústrias reguladas.",
+      "p2": "A nossa cobertura abrange três linhas. Primeiro, trabalho técnico: como construímos, pontuamos e encaminhamos através da nossa biblioteca aberta de vIndexes publicada no Hugging Face; como calibramos juízes de IA face à verdade fundamental humana; o que aprendemos ao colocar em produção a descodificação especulativa e a quantização FP8.",
+      "p3": "A maioria dos artigos destina-se a um público já familiarizado com engenharia de IA — engenheiros, investigadores e compradores técnicos — embora tentemos manter a abordagem acessível a qualquer pessoa responsável por decisões de IA na sua organização."
+    },
+    "newer": "Artigos mais recentes",
+    "older": "Artigos anteriores",
+    "page_of": "Página",
+    "pagination_label": "Artigos de blogue anteriores"
   },
   "careers": {
     "hero_title": "Junte-se ao Nosso Time",
@@ -869,20 +945,181 @@
     "benefits_title": "Benefícios & Vantagens",
     "benefits_intro": "Acreditamos em cuidar do nosso time. Aqui estão alguns dos benefícios e vantagens que oferecemos aos colaboradores Divinci AI:"
   },
-  "blog": {
-    "hero_title": "Blog da Divinci AI",
-    "hero_subtitle": "Insights, atualizações e liderança de pensamento sobre inteligência artificial, sistemas RAG e gestão de IA corporativa.",
+  "blog_post": {
+    "min_read": "min de leitura",
     "by": "Por",
-    "read_article": "Ler artigo",
-    "recent_articles": "Artigos recentes",
-    "read_more": "Leia mais",
-    "share_tag": "Compartilhar",
-    "share_title": "Compartilhe com amigos",
-    "share_desc": "Se você acha esses tópicos interessantes, compartilhe com amigos e colegas.",
-    "coming_soon_title": "Blog em breve",
-    "coming_soon_message": "Estamos construindo nosso blog com insights sobre tecnologia de IA, estratégias de implementação e tendências do setor. Volte em breve para atualizações ou inscreva-se para ser notificado quando houver novo conteúdo.",
-    "notify_me": "Avisar-me sobre atualizações",
-    "featured_tag_default": "Inteligência Artificial",
-    "post_tag_default": "Insights de IA"
+    "join_conversation": "Junte-se à Conversa",
+    "join_conversation_desc": "Adoraríamos ouvir as suas opiniões sobre este tema. Junte-se à discussão na sua plataforma favorita:",
+    "discuss_on_x": "Discutir no X",
+    "comment_on_linkedin": "Comentar no LinkedIn",
+    "chat_on_discord": "Conversar no Discord",
+    "view_on_instagram": "Ver no Instagram",
+    "back_to_top": "Voltar ao Topo",
+    "copy_link": "Copiar Ligação",
+    "focus_mode": "Modo Foco",
+    "export": "Exportar",
+    "copy_as_markdown": "Copiar como Markdown",
+    "download_markdown": "Descarregar Markdown",
+    "copy_as_text": "Copiar como Texto",
+    "download_text": "Descarregar Texto",
+    "full_white_paper": "White Paper Completo (50 páginas)",
+    "quick_summary": "Resumo Rápido (1 página)",
+    "related_articles": "Artigos Relacionados",
+    "share_with_friends": "Partilhar com Amigos",
+    "share_desc": "Se achar estes temas interessantes, por favor partilhe com os seus amigos e colegas que também possam achar-nos interessantes.",
+    "cta_title": "Pronto para Construir a sua Solução de IA Personalizada?",
+    "cta_desc": "Descubra como a Divinci AI pode ajudar a implementar sistemas RAG, automatizar a garantia de qualidade e simplificar o seu processo de desenvolvimento de IA.",
+    "cta_button": "Comece Hoje"
+  },
+  "roadmap": {
+    "vision_title": "A Nossa Visão para o Futuro",
+    "vision_desc": "Descubra o que vem a seguir para a plataforma Divinci AI. Estamos empenhados na inovação contínua e em disponibilizar as funcionalidades que os nossos clientes mais necessitam.",
+    "status_development": "Em Desenvolvimento",
+    "status_planned": "Planeado",
+    "status_completed": "Concluído",
+    "status_future": "Futuro",
+    "recently_released": "Lançado Recentemente",
+    "request_features": "Solicitar Funcionalidades",
+    "request_features_desc": "Tem um pedido de funcionalidade? Adoraríamos ouvir de si!",
+    "submit_ideas": "Submeta as suas Ideias",
+    "q1_title": "Q1 2025",
+    "q2_title": "Q2 2025",
+    "q34_title": "Q3-Q4 2025",
+    "q1_item1_name": "Painel de Analítica Avançada",
+    "q1_item1_desc": "Relatórios e insights melhorados",
+    "q1_item2_name": "Suporte Multi-Cloud",
+    "q1_item2_desc": "Implementar em AWS, Azure e GCP",
+    "q1_item3_name": "Estruturas de Conformidade Personalizadas",
+    "q1_item3_desc": "Modelos de conformidade específicos do setor",
+    "q2_item1_name": "Integração de API Gateway",
+    "q2_item1_desc": "Suporte nativo para gestão de API",
+    "q2_item2_name": "Suíte de Testes Avançada",
+    "q2_item2_desc": "Ferramentas abrangentes de validação de modelos de IA",
+    "q2_item3_name": "Ferramentas de Colaboração",
+    "q2_item3_desc": "Fluxos de trabalho e permissões de equipa melhorados",
+    "released_item1_name": "Orquestração Inteligente de Lançamentos",
+    "released_item1_desc": "Pipelines de implementação automatizados",
+    "released_item2_name": "Monitorização de Desempenho em Tempo Real",
+    "released_item2_desc": "Acompanhamento de desempenho de modelos em direto",
+    "released_item3_name": "Funcionalidades de Segurança Melhoradas",
+    "released_item3_desc": "Controlos de acesso avançados e registo de auditoria",
+    "q34_item1_name": "Otimização por IA",
+    "q34_item1_desc": "Afinação automática de desempenho",
+    "q34_item2_name": "Integrações Avançadas",
+    "q34_item2_desc": "Suporte para mais estruturas e ferramentas de IA",
+    "q34_item3_name": "Aplicação de Gestão Móvel",
+    "q34_item3_desc": "Monitorize os seus sistemas de IA em qualquer lugar"
+  },
+  "page": {
+    "last_updated": "Última atualização"
+  },
+  "taxonomy": {
+    "browse_by": "Navegue por conteúdo organizado por",
+    "posts_in": "Artigos em",
+    "post_singular": "artigo",
+    "post_plural": "artigos",
+    "read_more": "Ler Mais"
+  },
+  "ai_safety": {
+    "official_document": "DOCUMENTO OFICIAL",
+    "certification_text": "Conforme com Normas · Alinhado com o NIST Framework · Informado por ISO/IEC",
+    "contributors": "Contribuidores",
+    "ceo_title": "Co-Fundador & CEO",
+    "ethics_advisor_title": "Consultor de Segurança e Ética em IA",
+    "best_practice_title": "Estrutura de Boas Práticas",
+    "last_updated_label": "Última Atualização",
+    "version_label": "Versão",
+    "document_id_label": "ID do Documento"
+  },
+  "news": {
+    "read_more": "Leia mais →",
+    "learn_more": "Saiba mais →",
+    "ai_for_good_tag": "IA para o Bem",
+    "cloudflare_date": "5 de outubro de 2025",
+    "cloudflare_title": "Divinci AI entra no Cloudflare Workers Launchpad Coorte #6",
+    "cloudflare_excerpt": "Estamos animados em anunciar nossa aceitação no prestigioso programa acelerador Workers Launchpad da Cloudflare. Saiba como aproveitamos a plataforma de computação de borda da Cloudflare para construir pipelines RAG sofisticados."
+  },
+  "not_found": {
+    "title": "Página não encontrada",
+    "message": "A página que procura não existe ou foi movida. Vamos pô-lo de volta no caminho certo.",
+    "go_home": "Ir para a página inicial",
+    "view_docs": "Ver documentação"
+  },
+  "accessibility": {
+    "skip_to_content": "Saltar para o conteúdo principal"
+  },
+  "compliance": {
+    "hero": {
+      "eyebrow": "Impulsionado por vIndex + LarQL",
+      "heading": "Conformidade, com comprovante.",
+      "tagline": "A maior parte da \"conformidade de IA\" para nos logs de acesso e nas barreiras a nível de prompt. A Divinci entra dentro do modelo. Cada associação de entidade é uma característica consultável; cada edição é um patch portátil e auditável — e o <strong>vIndex</strong> é o artefato de documentação técnica que o seu regulador está prestes a começar a exigir.",
+      "cta_primary": "Falar com conformidade →",
+      "cta_secondary": "Ver um vIndex ao vivo"
+    },
+    "mapping": {
+      "rows": [
+        {
+          "reg_label": "Regulamento de IA da UE §13",
+          "reg_topic": "Transparência",
+          "requirement": "\"Transparência suficiente para permitir que os usuários interpretem as saídas\"",
+          "competitors": "Model cards, descrições de sistema em prosa",
+          "larql": "O vIndex É um artefato de transparência consultável — cada característica portadora de fatos identificada por <code>(layer, feature, gate_score)</code>"
+        },
+        {
+          "reg_label": "Regulamento de IA da UE §14",
+          "reg_topic": "Supervisão humana",
+          "requirement": "Os operadores devem intervir de forma significativa",
+          "competitors": "Barreiras a nível de prompt (vulneráveis a jailbreak)",
+          "larql": "Patches DELETE a nível de pesos na característica, não no prompt — não podem ser contornados por jailbreak"
+        },
+        {
+          "reg_label": "Regulamento de IA da UE Anexo IV",
+          "reg_topic": "Documentação técnica",
+          "requirement": "\"Lógica geral do sistema de IA\"",
+          "competitors": "Diagramas de arquitetura + resumos de dados de treinamento",
+          "larql": "Documentação mecanicista bit-exata: o vocabulário projetado de cada característica, a métrica estrutural de cada camada (C1–C5)"
+        },
+        {
+          "reg_label": "RGPD Artigo 17",
+          "reg_topic": "Direito ao apagamento",
+          "requirement": "Remoção verificável de dados pessoais",
+          "competitors": "Fine-tuning para \"esquecer\" — <em>não verificável</em>; os dados podem reaparecer de forma adversarial",
+          "larql": "Patch DELETE com trilha de auditoria = <strong>supressão comprovável</strong> de uma associação específica de entidade nomeada a +0,02% de perplexidade. O arquivo do patch é o comprovante."
+        },
+        {
+          "reg_label": "HIPAA · PCI · RGPD",
+          "reg_topic": "Desidentificação",
+          "requirement": "Remover PII de produtos de dados",
+          "competitors": "Filtragem de tokens em E/S (vazamentos possíveis)",
+          "larql": "Identificação a nível de característica das direções que codificam PII; remoção cirúrgica na camada de pesos"
+        },
+        {
+          "reg_label": "NIST AI RMF",
+          "reg_topic": "Gerenciar",
+          "requirement": "Quantificar e gerenciar o risco residual",
+          "competitors": "Avaliações de risco baseadas na intuição",
+          "larql": "As constantes universais C1–C5 oferecem uma linha de base estrutural mensurável; reverifique após cada patch"
+        }
+      ]
+    },
+    "receipt": {
+      "heading": "Como é, na prática, um \"comprovante\"",
+      "para_1": "Um patch LarQL é um arquivo JSON portátil com checksum SHA-256. Aplique-o para suprimir um fato; remova-o para restaurar o modelo bit a bit. O patch É o log de auditoria — operadores, reguladores e consumidores a jusante podem verificar a mesma operação de forma independente.",
+      "para_2": "Abaixo: o patch Gate-3 real que entregamos no nosso conjunto público de testes, mostrando a associação Paris→capital suprimida e revertida com efeito mensurável e repetível em um vIndex real de Gemma 4 E2B."
+    },
+    "cta_band": {
+      "heading": "Conformidade que você pode comprovar. Em qualquer transformer aberto.",
+      "tagline": "Oito vIndexes publicados hoje em Gemma, Qwen, Llama, Mistral, OpenAI MoE e Microsoft 1-bit. Traga seu modelo — nós construímos o comprovante.",
+      "cta_primary": "Agendar revisão de conformidade →",
+      "cta_secondary": "Explorar vIndexes no Hugging Face"
+    }
+  },
+  "research_band": {
+    "eyebrow": "Investigação Aberta",
+    "title": "Pesos abertos, patches abertos, vIndexes abertos.",
+    "body_1": "Publicamos vIndexes — bases de dados de características consultáveis extraídas de transformers abertos — para cada modelo que utilizamos. Doze estão disponíveis no Hugging Face hoje, abrangendo quatro famílias de modelos e quatro organizações, além de dois controlos de dissolução 1-bit treinados nativamente.",
+    "body_2": "O visualizador permite-lhe orbitar o espaço de características FFN em 3D. A série de blogues percorre das constantes universais às edições cirúrgicas. O LarQL é de código aberto: github.com/Divinci-AI/larql",
+    "cta_primary": "Ler a investigação →",
+    "cta_secondary": "Navegar no Hugging Face"
   }
 }

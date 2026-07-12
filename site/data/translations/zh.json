@@ -14,28 +14,34 @@
     "team": "团队",
     "signup": "注册",
     "support": "支持",
-    "request_demo": "申请演示",
     "support_center": "支持中心",
+    "documentation": "文档",
+    "request_demo": "申请演示",
     "blog": "博客",
     "terms_of_service": "服务条款",
     "privacy_policy": "隐私政策",
     "quality_assurance": "质量保证",
     "release_management": "发布管理",
-    "sign_up": "注册"
+    "sign_up": "注册",
+    "www_rag_directory": "WWW-RAG 目录"
   },
   "hero": {
     "heading": "AI发布。",
     "subheading": "卓越，\n始终如一。",
+    "heading_mobile": "您的 B2C AI。",
+    "subheading_mobile": "每次皆卓越。",
     "description": "通过先进的发布管理和严格的质量保证为定制语言模型增强您的业务。通过结构化的端到端部署流程实现运营可靠性、法规合规性和最佳性能。",
     "features": {
       "test_automation": "智能测试自动化",
       "compliance_records": "详细合规记录",
+      "compliance_records_mobile": "合规记录",
       "version_recovery": "即时版本恢复"
     },
     "cta": {
       "primary": "申请演示",
       "secondary": "探索平台",
-      "connect_provider": "将 {provider} 连接到 Divinci"
+      "connect_provider": "将 {provider} 连接到 Divinci",
+      "connect_provider_mobile": "连接 {provider}"
     },
     "sound_unmute": "取消静音",
     "sound_mute": "静音"
@@ -67,6 +73,7 @@
   "features": {
     "title": "用AI增强您的工作流程",
     "description": "发现为需要可靠、可扩展AI协作的企业团队设计的功能。",
+    "journal_title": "列奥纳多日记",
     "list": {
       "multiplayer": {
         "title": "多人协作",
@@ -109,7 +116,6 @@
         "description": "通过自动扩展的基础设施从小团队扩展到企业组织。"
       }
     },
-    "journal_title": "列奥纳多日记",
     "autorag": {
       "title": "AutoRAG"
     },
@@ -123,20 +129,16 @@
     "description": "认识塑造人类-AI协作未来的创新者。",
     "members": {
       "connect": "连接",
+      "sierra_bio": "康奈尔大学毕业，在金融服务和创业方面有丰富经验，将战略业务发展专业知识带入AI扩展。",
       "michael_bio": "拥有15年以上企业技术经验的远见者，引领对话式AI革命。",
       "samuel_bio": "产品战略家，有交付以用户为中心的企业AI解决方案的成功记录。",
       "duane_bio": "系统架构师，专精可扩展AI基础设施和自然语言处理。",
-      "sierra_bio": "康奈尔大学毕业，在金融服务和创业方面有丰富经验，将战略业务发展专业知识带入AI扩展。",
       "sean_bio": "数据科学家，拥有10年以上编程经验，专注于机器学习和Python开发。",
       "paul_marie_bio": "AI治理领导者，AI LA负责任AI小组创始人，具有Google AI、德勤和CVS Health的丰富经验。"
     },
     "roles": {
       "ceo_founder": "首席执行官兼创始人",
       "cto_cofounder": "首席技术官兼联合创始人",
-      "head_product": "产品负责人",
-      "senior_data_scientist": "高级数据科学家",
-      "ux_ui_designer": "UX/UI设计师",
-      "software_engineer": "软件工程师",
       "cpo": "产品总监",
       "coo": "运营总监",
       "data_scientist": "数据科学家",
@@ -168,6 +170,95 @@
       }
     }
   },
+  "expert_answers": {
+    "title": "专家答案",
+    "description": "在我们平台上找到关于大型语言模型发布管理和质量保证的全面见解。探索针对您最紧迫问题的详细专业回答。",
+    "faqs": {
+      "model_reliability": {
+        "question": "您如何保证模型可靠性？",
+        "answer": "我们实施多层验证流程，将自动化回归、性能和安全测试与专家手动审查相结合。每个模型发布都经过严格评估，确保始终满足准确性、稳定性和合规性的企业级标准。"
+      },
+      "language_models": {
+        "question": "支持哪些语言模型？",
+        "answer": "我们的平台支持广泛的大型语言模型，从开源到专有架构。灵活的集成支持跨多种框架和企业环境的无缝部署，确保适应不断发展的业务需求。",
+        "model_compat_link": "查看完整模型兼容性列表"
+      },
+      "quality_assurance": {
+        "question": "如何实现持续质量保证？",
+        "answer": "我们通过持续监控、定期审计和实时性能跟踪来维持质量。通过分析用户反馈和新兴风险，我们主动改进模型和流程，以长期维持严格的质量基准。"
+      },
+      "workflow_integration": {
+        "question": "该平台是否适合现有工作流程？",
+        "answer": "我们的解决方案专为与企业系统无缝集成而设计。强大的API和可配置选项允许与您当前的发布管理和开发管道轻松对齐，最大限度地减少中断并最大化效率。"
+      }
+    },
+    "view_complete_list": "查看完整模型兼容性列表"
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "联系我们的团队",
+    "get_in_touch": "联系我们",
+    "email_specialists": {
+      "title": "联系我们的专家",
+      "description": "获得针对您的技术和业务询问的详细、周到的回复。",
+      "email": "安排演示"
+    },
+    "speak_consultant": {
+      "title": "预订现场演示",
+      "description": "提供30分钟个性化演示，向您展示Divinci AI的工作原理。",
+      "phone": "预订演示"
+    },
+    "schedule_demo": "安排演示",
+    "book_demo": "预订现场演示",
+    "demo_availability": "提供30分钟个性化演示，向您展示Divinci AI的工作原理。",
+    "page_title": "联系我们",
+    "page_subtitle": "对我们的平台有疑问或需要帮助开始使用？我们随时为您提供帮助。",
+    "form": {
+      "title": "给我们留言",
+      "name_label": "您的姓名",
+      "name_placeholder": "请输入您的姓名",
+      "email_label": "电子邮箱",
+      "email_placeholder": "请输入您的邮箱",
+      "subject_label": "主题",
+      "subject_placeholder": "请选择主题",
+      "inquiry_options": {
+        "general": "一般咨询",
+        "sales": "销售咨询",
+        "demo": "申请演示",
+        "support": "技术支持",
+        "partnership": "合作机会"
+      },
+      "company_label": "公司（选填）",
+      "company_placeholder": "请输入您的公司名称",
+      "message_label": "您的留言",
+      "message_placeholder": "我们如何能帮助您？",
+      "privacy_label": "我同意隐私政策和服务条款",
+      "submit_button": "发送消息",
+      "success_message": "感谢您的留言！我们会尽快与您联系。",
+      "error_message": "糟糕！出现了一些问题。请稍后重试或直接联系我们。",
+      "verification_required": "请完成安全验证。",
+      "sending": "发送中…",
+      "error_occurred": "发生错误，请重试。",
+      "network_error": "网络错误。请检查您的网络连接后重试。"
+    },
+    "info": {
+      "email": {
+        "title": "发送邮件",
+        "value": "hello@divinci.ai"
+      },
+      "address": {
+        "title": "访问我们",
+        "value": "312 Arizona Ave, Santa Monica, CA 90401"
+      },
+      "hours": {
+        "title": "营业时间",
+        "value": "周一至周五：上午 9:00–下午 6:00（太平洋时间）"
+      }
+    },
+    "map": {
+      "click_message": "点击以与地图互动"
+    }
+  },
   "footer": {
     "tagline": "赋能人类-AI协作",
     "sections": {
@@ -186,10 +277,11 @@
       "resources": {
         "title": "资源",
         "links": {
-          "documentation": "文档",
-          "blog": "博客",
-          "tutorials": "教程",
           "api": "API",
+          "blog": "博客",
+          "brand": "资源",
+          "documentation": "文档",
+          "tutorials": "教程",
           "support": "支持"
         }
       },
@@ -222,53 +314,18 @@
       "privacy_settings": "隐私设置",
       "cookie_policy": "Cookie政策",
       "cookie_preferences": "Cookie偏好",
-      "rights_reserved": "保留所有权利。"
+      "rights_reserved": "保留所有权利。",
+      "data_request": "数据请求"
     },
     "api": "API",
     "support": "支持",
     "privacy_settings": "隐私设置",
-    "cookie_preferences": "Cookie偏好设置",
     "cookie_policy": "Cookie政策",
+    "cookie_preferences": "Cookie偏好设置",
     "motto": {
+      "phrase": "自由智能",
       "word_1": "自由",
-      "word_2": "智能",
-      "phrase": "自由智能"
-    }
-  },
-  "language_switcher": {
-    "current_language": "中文",
-    "languages": {
-      "en": "English",
-      "es": "Español",
-      "fr": "Français",
-      "ar": "العربية",
-      "ja": "日本語",
-      "zh": "中文",
-      "it": "Italiano",
-      "ru": "Русский",
-      "de": "Deutsch",
-      "pt": "Português",
-      "ko": "한국어",
-      "nl": "Nederlands",
-      "hi": "हिन्दी"
-    }
-  },
-  "contact": {
-    "title": "联系我们",
-    "subtitle": "联系我们的团队",
-    "get_in_touch": "联系我们",
-    "email_specialists": {
-      "title": "联系我们的专家",
-      "description": "获得针对您的技术和业务询问的详细、周到的回复。",
-      "email": "安排演示"
-    },
-    "schedule_demo": "安排演示",
-    "book_demo": "预订现场演示",
-    "demo_availability": "提供30分钟个性化演示，向您展示Divinci AI的工作原理。",
-    "speak_consultant": {
-      "title": "预订现场演示",
-      "description": "提供30分钟个性化演示，向您展示Divinci AI的工作原理。",
-      "phone": "预订演示"
+      "word_2": "智能"
     }
   },
   "support": {
@@ -621,109 +678,102 @@
       }
     }
   },
-  "expert_answers": {
-    "title": "专家答案",
-    "subtitle": "专家指导",
-    "description": "在我们平台上找到关于大型语言模型发布管理和质量保证的全面见解。探索针对您最紧迫问题的详细专业回答。",
-    "faqs": {
-      "model_reliability": {
-        "question": "您如何保证模型可靠性？",
-        "answer": "我们实施多层验证流程，将自动化回归、性能和安全测试与专家手动审查相结合。每个模型发布都经过严格评估，确保始终满足准确性、稳定性和合规性的企业级标准。"
+  "language_switcher": {
+    "current_language": "中文",
+    "languages": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands",
+      "hi": "हिन्दी"
+    }
+  },
+  "press": {
+    "title": "新闻资源",
+    "subtitle": "查阅有关 Divinci AI 的最新新闻、媒体报道和资源。媒体垂询请联系我们的媒体关系团队。",
+    "contact": {
+      "title": "媒体联系",
+      "email": "press@divinci.ai",
+      "phone": "+1 (800) 555-1234",
+      "media_relations": "Sierra Hooshiari，首席运营官（COO）",
+      "description": "我们的媒体关系团队可协助记者、行业分析师和内容创作者获取有关 Divinci AI 的信息、采访机会和资源，以及我们对 AI 行业的见解。",
+      "email_label": "邮箱",
+      "media_label": "媒体关系"
+    },
+    "releases": {
+      "title": "新闻稿",
+      "items": {
+        "platform_launch": {
+          "date": "2025年5月1日",
+          "title": "Divinci AI 发布平台，让企业可轻松构建定制化 AI 解决方案",
+          "excerpt": "Divinci AI 今日宣布其平台正式全面可用，该平台旨在让各种规模的企业无需专业机器学习知识即可使用定制化 AI 解决方案。"
+        },
+        "autorag_launch": {
+          "date": "2025年4月15日",
+          "title": "Divinci AI 发布 AutoRAG，让检索增强生成人人可用",
+          "excerpt": "全新的 AutoRAG 功能可自动化实现检索增强生成（RAG）系统的复杂流程，帮助企业轻松构建能够利用自有知识的 AI。"
+        },
+        "standards_hub": {
+          "date": "2025年3月10日",
+          "title": "Divinci AI 加入 AI 标准中心，推动负责任的 AI 发展",
+          "excerpt": "作为对符合伦理的 AI 承诺的一部分，Divinci AI 已加入 AI 标准中心，参与制定安全、负责任且透明的 AI 标准。"
+        }
       },
-      "language_models": {
-        "question": "支持哪些语言模型？",
-        "answer": "我们的平台支持广泛的大型语言模型，从开源到专有架构。灵活的集成支持跨多种框架和企业环境的无缝部署，确保适应不断发展的业务需求。",
-        "model_compat_link": "查看完整模型兼容性列表"
-      },
-      "quality_assurance": {
-        "question": "如何实现持续质量保证？",
-        "answer": "我们通过持续监控、定期审计和实时性能跟踪来维持质量。通过分析用户反馈和新兴风险，我们主动改进模型和流程，以长期维持严格的质量基准。"
-      },
-      "workflow_integration": {
-        "question": "该平台是否适合现有工作流程？",
-        "answer": "我们的解决方案专为与企业系统无缝集成而设计。强大的API和可配置选项允许与您当前的发布管理和开发管道轻松对齐，最大限度地减少中断并最大化效率。"
+      "empty_state": "新闻稿将在发布后刊登于此。媒体垂询请联系我们的新闻团队。"
+    },
+    "coverage": {
+      "title": "媒体报道",
+      "items": {
+        "techcrunch": {
+          "date": "2025年5月3日",
+          "title": "Divinci AI 让中小企业也能轻松使用定制化 AI 解决方案",
+          "excerpt": "TechCrunch 评测了 Divinci AI 的新平台，以及它如何将企业级 AI 能力带给中小企业。"
+        },
+        "venturebeat": {
+          "date": "2025年4月18日",
+          "title": "Divinci AI 的 AutoRAG 功能如何改变基于文档的 AI 格局",
+          "excerpt": "VentureBeat 探讨了 Divinci AI 的 AutoRAG 技术如何简化实现文档感知 AI 系统的复杂流程。"
+        },
+        "forbes": {
+          "date": "2025年3月15日",
+          "title": "2025 年值得关注的 10 家 AI 初创企业：Divinci AI 入选榜单",
+          "excerpt": "Forbes 将 Divinci AI 列入其年度榜单，表彰正在改变企业实施 AI 解决方案方式的潜力 AI 初创企业。"
+        }
       }
     },
-    "view_complete_list": "查看完整模型兼容性列表"
-  },
-  "news": {
-    "read_more": "阅读更多 →",
-    "learn_more": "了解更多 →",
-    "ai_for_good_tag": "AI向善",
-    "cloudflare_date": "2025年10月5日",
-    "cloudflare_title": "Divinci AI加入Cloudflare Workers Launchpad第6期",
-    "cloudflare_excerpt": "我们很高兴宣布加入Cloudflare享有盛誉的Workers Launchpad加速器计划。了解我们如何利用Cloudflare的边缘计算平台构建复杂的RAG管道。"
-  },
-  "compliance": {
-    "hero": {
-      "eyebrow": "由 vIndex + LarQL 提供支持",
-      "heading": "合规,带凭证。",
-      "tagline": "大多数\"AI合规\"止步于访问日志和提示级护栏。Divinci 深入到模型内部。每一个实体关联都是可查询的特征;每一次编辑都是可移植、可审计的补丁 — <strong>vIndex</strong> 就是监管机构即将开始索取的技术文档制品。",
-      "cta_primary": "联系合规团队 →",
-      "cta_secondary": "查看实时 vIndex"
+    "assets": {
+      "title": "品牌素材",
+      "description": "下载 Divinci AI 官方标识、产品截图和创始人照片以供媒体使用。所有素材均为高分辨率，并提供多种格式。",
+      "logos": "标识",
+      "screenshots": "产品截图",
+      "team_photos": "团队照片",
+      "press_kit": {
+        "title": "完整新闻资料包",
+        "description": "下载我们的完整新闻资料包，其中包含全部标识、截图、团队照片、产品资料表以及公司背景介绍，所有内容整合于一个包中。",
+        "button": "下载新闻资料包（ZIP，25MB）"
+      },
+      "logo_primary": "主标识",
+      "logo_inverted": "反色标识",
+      "logo_animated": "动态标识",
+      "autorag_dashboard": "AutoRAG 仪表盘",
+      "qa_pipeline": "QA 流水线",
+      "release_cycle": "发布周期管理器",
+      "michael_mooring": "Michael Mooring，首席执行官（CEO）",
+      "samuel_tobia": "Samuel Tobia，首席技术官（CTO）",
+      "sierra_hooshiari": "Sierra Hooshiari，首席运营官（COO）"
     },
-    "mapping": {
-      "heading": "法规要求什么 · LarQL 交付什么",
-      "subheading": "同一个制品 — vIndex — 在 Divinci 客户面对的四大主要 AI 法规中,同时满足透明度、监督、文档和擦除的要求。",
-      "th_regulation": "法规",
-      "th_requirement": "要求",
-      "th_competitors": "竞品提供",
-      "th_larql": "LarQL/vIndex 提供",
-      "rows": [
-        {
-          "reg_label": "欧盟人工智能法案 §13",
-          "reg_topic": "透明度",
-          "requirement": "\"足以让用户解读输出结果的透明度\"",
-          "competitors": "模型卡片、文字化系统描述",
-          "larql": "vIndex 本身就是一个可查询的透明度制品 — 每一个承载事实的特征都通过 <code>(layer, feature, gate_score)</code> 标识"
-        },
-        {
-          "reg_label": "欧盟人工智能法案 §14",
-          "reg_topic": "人类监督",
-          "requirement": "运营方必须进行实质性介入",
-          "competitors": "提示级护栏(可被越狱绕过)",
-          "larql": "在特征上而非提示上的权重级 DELETE 补丁 — 无法通过越狱绕过"
-        },
-        {
-          "reg_label": "欧盟人工智能法案 附录 IV",
-          "reg_topic": "技术文档",
-          "requirement": "\"AI 系统的一般逻辑\"",
-          "competitors": "架构图 + 训练数据摘要",
-          "larql": "比特级精确的机制文档:每个特征的投影词汇、每一层的结构指标 (C1–C5)"
-        },
-        {
-          "reg_label": "GDPR 第 17 条",
-          "reg_topic": "被遗忘权",
-          "requirement": "可验证地删除个人数据",
-          "competitors": "为\"遗忘\"而做的微调 — <em>不可验证</em>;数据可能在对抗性条件下重新浮现",
-          "larql": "带审计跟踪的 DELETE 补丁 = 在 +0.02% 困惑度下,对特定命名实体关联的<strong>可证明的抑制</strong>。补丁文件就是凭证。"
-        },
-        {
-          "reg_label": "HIPAA · PCI · GDPR",
-          "reg_topic": "去标识化",
-          "requirement": "从数据产品中移除 PII",
-          "competitors": "I/O 处的 token 过滤(可能泄漏)",
-          "larql": "在特征级识别编码 PII 的方向;在权重层进行外科式移除"
-        },
-        {
-          "reg_label": "NIST AI RMF",
-          "reg_topic": "管理",
-          "requirement": "量化并管理残留风险",
-          "competitors": "凭感觉的风险评估",
-          "larql": "C1–C5 通用常量为你提供可测量的结构基线;每次打补丁后重新验证"
-        }
-      ]
-    },
-    "receipt": {
-      "heading": "\"凭证\"实际是什么样",
-      "para_1": "LarQL 补丁是一个带 SHA-256 校验和的可移植 JSON 文件。应用它来压制一个事实;移除它则让模型逐位恢复。补丁本身就是审计日志 — 运营方、监管者和下游消费者都可以独立验证同一次操作。",
-      "para_2": "下面是我们在公开测试套件中实际提供的 Gate-3 补丁,展示了在真实的 Gemma 4 E2B vIndex 上对 Paris→capital 关联的抑制与还原,具有可测量、可重复的效果。"
-    },
-    "cta_band": {
-      "heading": "可证明的合规。在任何开放 transformer 上。",
-      "tagline": "目前已发布八个 vIndex,覆盖 Gemma、Qwen、Llama、Mistral、OpenAI MoE 和 Microsoft 1-bit。带上你的模型 — 我们来构建凭证。",
-      "cta_primary": "预约合规评审 →",
-      "cta_secondary": "在 Hugging Face 浏览 vIndex"
+    "common": {
+      "read_more": "阅读更多",
+      "read_article": "阅读全文",
+      "download": "下载"
     }
   },
   "about": {
@@ -774,6 +824,32 @@
     "join_title": "加入我们的团队",
     "join_desc": "准备好帮助塑造AI的未来了吗?我们一直在寻找杰出的人才。",
     "join_cta": "查看开放职位"
+  },
+  "blog": {
+    "hero_title": "Divinci AI 博客",
+    "hero_subtitle": "关于人工智能、RAG 系统和企业 AI 管理的见解、更新和思想领导力。",
+    "by": "作者:",
+    "read_article": "阅读文章",
+    "recent_articles": "最新文章",
+    "read_more": "阅读更多",
+    "share_tag": "分享",
+    "share_title": "与朋友分享",
+    "share_desc": "如果您觉得这些话题有趣,请与您的朋友和同事分享。",
+    "coming_soon_title": "博客即将上线",
+    "coming_soon_message": "我们正在构建博客,分享有关 AI 技术、实施策略和行业趋势的见解。请稍后查看更新,或订阅以便在新内容可用时获得通知。",
+    "notify_me": "通知我有更新",
+    "featured_tag_default": "人工智能",
+    "post_tag_default": "AI 洞察",
+    "intro": {
+      "heading": "来自 Divinci AI 团队的研究笔记",
+      "p1": "Divinci AI 博客发布原创研究、工程深度解析，以及我们在为受监管行业构建生产级检索增强生成（RAG）系统过程中的实战笔记。",
+      "p2": "我们的内容涵盖三条主线。其一为技术工作：我们如何在 Hugging Face 上发布并构建、评分和路由开放的 vIndexes 库；我们如何依据人工基准真值校准 AI 评判器；以及我们在将推测解码和 FP8 量化投入生产环境过程中所学到的经验。",
+      "p3": "多数文章面向已精通 AI 工程的读者——工程师、研究人员和技术采购者——尽管如此，我们仍力求让组织中任何负责 AI 决策的读者都能轻松理解。"
+    },
+    "newer": "较新文章",
+    "older": "较早文章",
+    "page_of": "第",
+    "pagination_label": "更早的博客文章"
   },
   "careers": {
     "hero_title": "加入我们的团队",
@@ -869,20 +945,181 @@
     "benefits_title": "福利与特权",
     "benefits_intro": "我们相信关爱我们的团队。以下是我们为 Divinci AI 员工提供的部分福利与特权:"
   },
-  "blog": {
-    "hero_title": "Divinci AI 博客",
-    "hero_subtitle": "关于人工智能、RAG 系统和企业 AI 管理的见解、更新和思想领导力。",
-    "by": "作者:",
-    "read_article": "阅读文章",
-    "recent_articles": "最新文章",
-    "read_more": "阅读更多",
-    "share_tag": "分享",
-    "share_title": "与朋友分享",
-    "share_desc": "如果您觉得这些话题有趣,请与您的朋友和同事分享。",
-    "coming_soon_title": "博客即将上线",
-    "coming_soon_message": "我们正在构建博客,分享有关 AI 技术、实施策略和行业趋势的见解。请稍后查看更新,或订阅以便在新内容可用时获得通知。",
-    "notify_me": "通知我有更新",
-    "featured_tag_default": "人工智能",
-    "post_tag_default": "AI 洞察"
+  "blog_post": {
+    "min_read": "分钟阅读",
+    "by": "作者",
+    "join_conversation": "加入讨论",
+    "join_conversation_desc": "我们很乐意倾听您对这一主题的看法。在您喜欢的平台上参与讨论：",
+    "discuss_on_x": "在 X 上讨论",
+    "comment_on_linkedin": "在 LinkedIn 上评论",
+    "chat_on_discord": "在 Discord 上交流",
+    "view_on_instagram": "在 Instagram 上查看",
+    "back_to_top": "返回顶部",
+    "copy_link": "复制链接",
+    "focus_mode": "专注模式",
+    "export": "导出",
+    "copy_as_markdown": "复制为 Markdown",
+    "download_markdown": "下载 Markdown",
+    "copy_as_text": "复制为文本",
+    "download_text": "下载文本",
+    "full_white_paper": "完整白皮书（50 页）",
+    "quick_summary": "快速摘要（1 页）",
+    "related_articles": "相关文章",
+    "share_with_friends": "与好友分享",
+    "share_desc": "如果您觉得这些主题有趣，请分享给可能同样感兴趣的朋友和同事。",
+    "cta_title": "准备好构建您的定制化 AI 解决方案了吗？",
+    "cta_desc": "了解 Divinci AI 如何帮助您实施 RAG 系统、自动化质量保证，并简化 AI 开发流程。",
+    "cta_button": "立即开始"
+  },
+  "roadmap": {
+    "vision_title": "我们的未来愿景",
+    "vision_desc": "了解 Divinci AI 平台即将推出的新功能。我们致力于持续创新，交付客户最需要的特性。",
+    "status_development": "开发中",
+    "status_planned": "计划中",
+    "status_completed": "已完成",
+    "status_future": "未来",
+    "recently_released": "近期发布",
+    "request_features": "功能需求",
+    "request_features_desc": "有功能需求？我们很乐意听取您的建议！",
+    "submit_ideas": "提交您的想法",
+    "q1_title": "2025 年第一季度",
+    "q2_title": "2025 年第二季度",
+    "q34_title": "2025 年第三至第四季度",
+    "q1_item1_name": "高级分析仪表盘",
+    "q1_item1_desc": "增强的报告与洞察",
+    "q1_item2_name": "多云支持",
+    "q1_item2_desc": "支持跨 AWS、Azure 和 GCP 部署",
+    "q1_item3_name": "自定义合规框架",
+    "q1_item3_desc": "针对特定行业的合规模板",
+    "q2_item1_name": "API 网关集成",
+    "q2_item1_desc": "原生支持 API 管理",
+    "q2_item2_name": "高级测试套件",
+    "q2_item2_desc": "全面的 AI 模型验证工具",
+    "q2_item3_name": "协作工具",
+    "q2_item3_desc": "增强的团队工作流与权限管理",
+    "released_item1_name": "智能发布编排",
+    "released_item1_desc": "自动化部署流水线",
+    "released_item2_name": "实时性能监控",
+    "released_item2_desc": "实时的模型性能追踪",
+    "released_item3_name": "增强的安全特性",
+    "released_item3_desc": "高级访问控制与审计日志",
+    "q34_item1_name": "AI 驱动的优化",
+    "q34_item1_desc": "自动性能调优",
+    "q34_item2_name": "高级集成",
+    "q34_item2_desc": "支持更多 AI 框架与工具",
+    "q34_item3_name": "移动管理应用",
+    "q34_item3_desc": "随时随地监控您的 AI 系统"
+  },
+  "page": {
+    "last_updated": "最后更新"
+  },
+  "taxonomy": {
+    "browse_by": "按以下方式浏览内容",
+    "posts_in": "所属分类文章",
+    "post_singular": "篇文章",
+    "post_plural": "篇文章",
+    "read_more": "阅读更多"
+  },
+  "ai_safety": {
+    "official_document": "官方文件",
+    "certification_text": "标准合规 · 对齐 NIST 框架 · 参照 ISO/IEC",
+    "contributors": "贡献者",
+    "ceo_title": "联合创始人兼首席执行官",
+    "ethics_advisor_title": "AI 安全与伦理顾问",
+    "best_practice_title": "最佳实践框架",
+    "last_updated_label": "最后更新",
+    "version_label": "版本",
+    "document_id_label": "文件编号"
+  },
+  "news": {
+    "read_more": "阅读更多 →",
+    "learn_more": "了解更多 →",
+    "ai_for_good_tag": "AI向善",
+    "cloudflare_date": "2025年10月5日",
+    "cloudflare_title": "Divinci AI加入Cloudflare Workers Launchpad第6期",
+    "cloudflare_excerpt": "我们很高兴宣布加入Cloudflare享有盛誉的Workers Launchpad加速器计划。了解我们如何利用Cloudflare的边缘计算平台构建复杂的RAG管道。"
+  },
+  "not_found": {
+    "title": "页面未找到",
+    "message": "您要查找的页面不存在或已被移动。让我们带您回到正轨。",
+    "go_home": "返回首页",
+    "view_docs": "查看文档"
+  },
+  "accessibility": {
+    "skip_to_content": "跳至主要内容"
+  },
+  "compliance": {
+    "hero": {
+      "eyebrow": "由 vIndex + LarQL 提供支持",
+      "heading": "合规,带凭证。",
+      "tagline": "大多数\"AI合规\"止步于访问日志和提示级护栏。Divinci 深入到模型内部。每一个实体关联都是可查询的特征;每一次编辑都是可移植、可审计的补丁 — <strong>vIndex</strong> 就是监管机构即将开始索取的技术文档制品。",
+      "cta_primary": "联系合规团队 →",
+      "cta_secondary": "查看实时 vIndex"
+    },
+    "mapping": {
+      "rows": [
+        {
+          "reg_label": "欧盟人工智能法案 §13",
+          "reg_topic": "透明度",
+          "requirement": "\"足以让用户解读输出结果的透明度\"",
+          "competitors": "模型卡片、文字化系统描述",
+          "larql": "vIndex 本身就是一个可查询的透明度制品 — 每一个承载事实的特征都通过 <code>(layer, feature, gate_score)</code> 标识"
+        },
+        {
+          "reg_label": "欧盟人工智能法案 §14",
+          "reg_topic": "人类监督",
+          "requirement": "运营方必须进行实质性介入",
+          "competitors": "提示级护栏(可被越狱绕过)",
+          "larql": "在特征上而非提示上的权重级 DELETE 补丁 — 无法通过越狱绕过"
+        },
+        {
+          "reg_label": "欧盟人工智能法案 附录 IV",
+          "reg_topic": "技术文档",
+          "requirement": "\"AI 系统的一般逻辑\"",
+          "competitors": "架构图 + 训练数据摘要",
+          "larql": "比特级精确的机制文档:每个特征的投影词汇、每一层的结构指标 (C1–C5)"
+        },
+        {
+          "reg_label": "GDPR 第 17 条",
+          "reg_topic": "被遗忘权",
+          "requirement": "可验证地删除个人数据",
+          "competitors": "为\"遗忘\"而做的微调 — <em>不可验证</em>;数据可能在对抗性条件下重新浮现",
+          "larql": "带审计跟踪的 DELETE 补丁 = 在 +0.02% 困惑度下,对特定命名实体关联的<strong>可证明的抑制</strong>。补丁文件就是凭证。"
+        },
+        {
+          "reg_label": "HIPAA · PCI · GDPR",
+          "reg_topic": "去标识化",
+          "requirement": "从数据产品中移除 PII",
+          "competitors": "I/O 处的 token 过滤(可能泄漏)",
+          "larql": "在特征级识别编码 PII 的方向;在权重层进行外科式移除"
+        },
+        {
+          "reg_label": "NIST AI RMF",
+          "reg_topic": "管理",
+          "requirement": "量化并管理残留风险",
+          "competitors": "凭感觉的风险评估",
+          "larql": "C1–C5 通用常量为你提供可测量的结构基线;每次打补丁后重新验证"
+        }
+      ]
+    },
+    "receipt": {
+      "heading": "\"凭证\"实际是什么样",
+      "para_1": "LarQL 补丁是一个带 SHA-256 校验和的可移植 JSON 文件。应用它来压制一个事实;移除它则让模型逐位恢复。补丁本身就是审计日志 — 运营方、监管者和下游消费者都可以独立验证同一次操作。",
+      "para_2": "下面是我们在公开测试套件中实际提供的 Gate-3 补丁,展示了在真实的 Gemma 4 E2B vIndex 上对 Paris→capital 关联的抑制与还原,具有可测量、可重复的效果。"
+    },
+    "cta_band": {
+      "heading": "可证明的合规。在任何开放 transformer 上。",
+      "tagline": "目前已发布八个 vIndex,覆盖 Gemma、Qwen、Llama、Mistral、OpenAI MoE 和 Microsoft 1-bit。带上你的模型 — 我们来构建凭证。",
+      "cta_primary": "预约合规评审 →",
+      "cta_secondary": "在 Hugging Face 浏览 vIndex"
+    }
+  },
+  "research_band": {
+    "eyebrow": "开放研究",
+    "title": "开放权重、开放补丁、开放 vIndexes。",
+    "body_1": "我们为所使用的每一个模型发布 vIndexes——从开放 transformers 中提取的可查询特征数据库。目前已有十二个在 Hugging Face 上线，涵盖四个模型家族和四个组织，外加两个原生训练的 1-bit 消解控制。",
+    "body_2": "查看器可让您在 3D 中环绕 FFN 特征空间进行观察。博客系列从通用常数讲解到手术式精确修改。LarQL 为开源项目：github.com/Divinci-AI/larql",
+    "cta_primary": "阅读研究 →",
+    "cta_secondary": "在 Hugging Face 上浏览"
   }
 }

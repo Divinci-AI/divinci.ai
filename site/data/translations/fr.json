@@ -15,27 +15,33 @@
     "signup": "S'inscrire",
     "support": "Support",
     "support_center": "Centre de Support",
+    "documentation": "Documentation",
     "request_demo": "Demander une démo",
     "blog": "Blog",
     "terms_of_service": "Conditions d'utilisation",
     "privacy_policy": "Politique de confidentialité",
     "quality_assurance": "Assurance qualité",
     "release_management": "Gestion des versions",
-    "sign_up": "S'inscrire"
+    "sign_up": "S'inscrire",
+    "www_rag_directory": "Répertoire WWW-RAG"
   },
   "hero": {
     "heading": "Versions d'IA.",
     "subheading": "Excellence,\nà chaque fois.",
+    "heading_mobile": "Votre IA B2C.",
+    "subheading_mobile": "L'excellence, à chaque fois.",
     "description": "Renforcez votre entreprise avec une gestion avancée des versions et une assurance qualité rigoureuse pour les modèles de langage personnalisés. Obtenez fiabilité opérationnelle, conformité réglementaire et performance optimale grâce à un processus de déploiement structuré de bout en bout.",
     "features": {
       "test_automation": "Automatisation intelligente des tests",
       "compliance_records": "Enregistrements de conformité détaillés",
+      "compliance_records_mobile": "Registres de conformité",
       "version_recovery": "Récupération instantanée de version"
     },
     "cta": {
       "primary": "Demander une démo",
       "secondary": "Explorer la plateforme",
-      "connect_provider": "Connecter {provider} à Divinci"
+      "connect_provider": "Connecter {provider} à Divinci",
+      "connect_provider_mobile": "Connecter {provider}"
     },
     "sound_unmute": "Activer le son",
     "sound_mute": "Couper le son"
@@ -67,6 +73,7 @@
   "features": {
     "title": "Renforcez votre flux de travail avec l'IA",
     "description": "Découvrez des fonctionnalités conçues pour les équipes d'entreprise qui ont besoin d'une collaboration IA fiable et évolutive.",
+    "journal_title": "Journal de Léonard",
     "list": {
       "multiplayer": {
         "title": "Multijoueur",
@@ -109,7 +116,6 @@
         "description": "Évoluez des petites équipes aux organisations d'entreprise avec une infrastructure qui évolue automatiquement."
       }
     },
-    "journal_title": "Journal de Léonard",
     "autorag": {
       "title": "AutoRAG"
     },
@@ -123,20 +129,16 @@
     "description": "Rencontrez les innovateurs qui façonnent l'avenir de la collaboration humain-IA.",
     "members": {
       "connect": "Se connecter",
+      "sierra_bio": "Diplômée de l'Université Cornell avec une vaste expérience dans les services financiers et l'entrepreneuriat. Ancienne directrice de fusions-acquisitions et fondatrice de BrainPOP Clean Energy, elle apporte une expertise en développement stratégique des affaires et en opérations d'entreprise à la croissance de projets d'IA.",
       "michael_bio": "Visionnaire avec plus de 15 ans dans la technologie d'entreprise, à la tête de la révolution de l'IA conversationnelle.",
       "samuel_bio": "Stratège produit avec un palmarès de solutions IA centrées sur l'utilisateur pour les équipes d'entreprise.",
       "duane_bio": "Architecte systèmes spécialisé dans l'infrastructure IA évolutive et le traitement du langage naturel.",
       "sean_bio": "Data scientist avec plus de 10 ans d'expérience en programmation, spécialisé en apprentissage automatique et développement Python.",
-      "paul_marie_bio": "Leader en gouvernance IA et conseiller indépendant spécialisé en gestion des fournisseurs et des risques. Fondateur du AI LA Responsible AI Group avec expertise chez Google AI, Deloitte et CVS Health.",
-      "sierra_bio": "Diplômée de l'Université Cornell avec une vaste expérience dans les services financiers et l'entrepreneuriat. Ancienne directrice de fusions-acquisitions et fondatrice de BrainPOP Clean Energy, elle apporte une expertise en développement stratégique des affaires et en opérations d'entreprise à la croissance de projets d'IA."
+      "paul_marie_bio": "Leader en gouvernance IA et conseiller indépendant spécialisé en gestion des fournisseurs et des risques. Fondateur du AI LA Responsible AI Group avec expertise chez Google AI, Deloitte et CVS Health."
     },
     "roles": {
       "ceo_founder": "PDG et Fondateur",
       "cto_cofounder": "CTO et Cofondateur",
-      "head_product": "Directeur Produit",
-      "senior_data_scientist": "Scientifique de Données Senior",
-      "ux_ui_designer": "Conceptrice UX/UI",
-      "software_engineer": "Ingénieur Logiciel",
       "cpo": "Directeur Produit",
       "coo": "Directeur des Opérations",
       "data_scientist": "Data Scientist",
@@ -168,6 +170,95 @@
       }
     }
   },
+  "expert_answers": {
+    "title": "Réponses d'Experts",
+    "description": "Trouvez des informations complètes sur la gestion des versions et l'assurance qualité de notre plateforme pour les grands modèles de langage. Explorez des réponses détaillées et professionnelles à vos questions les plus pressantes.",
+    "faqs": {
+      "model_reliability": {
+        "question": "Comment garantissez-vous la fiabilité du modèle ?",
+        "answer": "Nous implémentons un processus de validation multicouche, combinant des tests automatisés de régression, de performance et de sécurité avec des revues manuelles d'experts. Chaque version de modèle est rigoureusement évaluée pour s'assurer qu'elle répond systématiquement aux normes de niveau entreprise pour la précision, la stabilité et la conformité."
+      },
+      "language_models": {
+        "question": "Quels modèles de langage sont compatibles ?",
+        "answer": "Notre plateforme prend en charge un large spectre de grands modèles de langage, des architectures open source aux architectures propriétaires. L'intégration flexible permet un déploiement transparent dans divers cadres et environnements d'entreprise, garantissant l'adaptabilité aux besoins commerciaux en évolution.",
+        "model_compat_link": "Voir la liste complète de compatibilité des modèles"
+      },
+      "quality_assurance": {
+        "question": "Comment l'assurance qualité continue est-elle obtenue ?",
+        "answer": "Nous maintenons la qualité grâce à une surveillance continue, des audits programmés et un suivi des performances en temps réel. En analysant les retours des utilisateurs et les risques émergents, nous affinons proactivement les modèles et processus pour maintenir des références de qualité strictes dans le temps."
+      },
+      "workflow_integration": {
+        "question": "La plateforme s'adapte-t-elle aux flux de travail existants ?",
+        "answer": "Notre solution est conçue pour une intégration transparente avec les systèmes d'entreprise. Des API robustes et des options configurables permettent un alignement sans effort avec vos pipelines actuels de gestion des versions et de développement, minimisant les perturbations et maximisant l'efficacité."
+      }
+    },
+    "view_complete_list": "Voir la liste complète de compatibilité des modèles"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Contactez notre équipe",
+    "get_in_touch": "ENTRER EN CONTACT",
+    "email_specialists": {
+      "title": "Envoyez un e-mail à nos spécialistes",
+      "description": "Recevez des réponses détaillées et réfléchies à vos questions techniques et commerciales.",
+      "email": "Planifier une Démo"
+    },
+    "speak_consultant": {
+      "title": "Réserver une démo en direct",
+      "description": "Disponible pour des démos personnalisées de 30 minutes pour vous montrer comment fonctionne Divinci AI.",
+      "phone": "Réserver une Démo"
+    },
+    "schedule_demo": "Planifier une Démo",
+    "book_demo": "Réserver une démo en direct",
+    "demo_availability": "Disponible pour des démos personnalisées de 30 minutes pour vous montrer comment fonctionne Divinci AI.",
+    "page_title": "Prendre Contact",
+    "page_subtitle": "Vous avez des questions sur notre plateforme ou besoin d'aide pour démarrer ? Nous sommes là pour vous aider.",
+    "form": {
+      "title": "Envoyez-nous un Message",
+      "name_label": "Votre Nom",
+      "name_placeholder": "Entrez votre nom",
+      "email_label": "Adresse Email",
+      "email_placeholder": "Entrez votre email",
+      "subject_label": "Sujet",
+      "subject_placeholder": "Sélectionner un sujet",
+      "inquiry_options": {
+        "general": "Question Générale",
+        "sales": "Demande Commerciale",
+        "demo": "Demander une Démo",
+        "support": "Support Technique",
+        "partnership": "Opportunité de Partenariat"
+      },
+      "company_label": "Entreprise (Facultatif)",
+      "company_placeholder": "Nom de votre entreprise",
+      "message_label": "Votre Message",
+      "message_placeholder": "Comment pouvons-nous vous aider ?",
+      "privacy_label": "J'accepte la Politique de Confidentialité et les Conditions d'Utilisation",
+      "submit_button": "Envoyer le Message",
+      "success_message": "Merci pour votre message ! Nous vous répondrons dès que possible.",
+      "error_message": "Oups ! Quelque chose s'est mal passé. Veuillez réessayer plus tard ou contactez-nous directement.",
+      "verification_required": "Veuillez completer la verification de securite.",
+      "sending": "Envoi en cours...",
+      "error_occurred": "Une erreur s'est produite. Veuillez reessayer.",
+      "network_error": "Erreur reseau. Veuillez verifier votre connexion et reessayer."
+    },
+    "info": {
+      "email": {
+        "title": "Écrivez-nous",
+        "value": "hello@divinci.ai"
+      },
+      "address": {
+        "title": "Visitez-nous",
+        "value": "312 Arizona Ave, Santa Monica, CA 90401"
+      },
+      "hours": {
+        "title": "Heures d'Ouverture",
+        "value": "Lun–Ven: 9h–18h PST"
+      }
+    },
+    "map": {
+      "click_message": "Cliquez pour interagir avec la carte"
+    }
+  },
   "footer": {
     "tagline": "Autonomiser la collaboration humain-IA",
     "sections": {
@@ -186,10 +277,11 @@
       "resources": {
         "title": "Ressources",
         "links": {
-          "documentation": "Documentation",
-          "blog": "Blog",
-          "tutorials": "Tutoriels",
           "api": "API",
+          "blog": "Blog",
+          "brand": "Ressources",
+          "documentation": "Documentation",
+          "tutorials": "Tutoriels",
           "support": "Support"
         }
       },
@@ -222,17 +314,18 @@
       "privacy_settings": "Paramètres de Confidentialité",
       "cookie_policy": "Politique de Cookies",
       "cookie_preferences": "Préférences de Cookies",
-      "rights_reserved": "Tous droits réservés."
+      "rights_reserved": "Tous droits réservés.",
+      "data_request": "Demande de données"
     },
     "api": "API",
     "support": "Support",
     "privacy_settings": "Paramètres de Confidentialité",
-    "cookie_preferences": "Préférences de Cookies",
     "cookie_policy": "Politique de Cookies",
+    "cookie_preferences": "Préférences de Cookies",
     "motto": {
+      "phrase": "intelligence libre",
       "word_1": "intelligence",
-      "word_2": "libre",
-      "phrase": "intelligence libre"
+      "word_2": "libre"
     }
   },
   "support": {
@@ -603,96 +696,6 @@
       "hi": "हिन्दी"
     }
   },
-  "contact": {
-    "title": "Contact",
-    "subtitle": "Contactez notre équipe",
-    "get_in_touch": "ENTRER EN CONTACT",
-    "email_specialists": {
-      "title": "Envoyez un e-mail à nos spécialistes",
-      "description": "Recevez des réponses détaillées et réfléchies à vos questions techniques et commerciales.",
-      "email": "Planifier une Démo"
-    },
-    "schedule_demo": "Planifier une Démo",
-    "book_demo": "Réserver une démo en direct",
-    "demo_availability": "Disponible pour des démos personnalisées de 30 minutes pour vous montrer comment fonctionne Divinci AI.",
-    "speak_consultant": {
-      "title": "Réserver une démo en direct",
-      "description": "Disponible pour des démos personnalisées de 30 minutes pour vous montrer comment fonctionne Divinci AI.",
-      "phone": "Réserver une Démo"
-    },
-    "page_title": "Prendre Contact",
-    "page_subtitle": "Vous avez des questions sur notre plateforme ou besoin d'aide pour démarrer ? Nous sommes là pour vous aider.",
-    "form": {
-      "title": "Envoyez-nous un Message",
-      "name_label": "Votre Nom",
-      "name_placeholder": "Entrez votre nom",
-      "email_label": "Adresse Email",
-      "email_placeholder": "Entrez votre email",
-      "subject_label": "Sujet",
-      "subject_placeholder": "Sélectionner un sujet",
-      "inquiry_options": {
-        "general": "Question Générale",
-        "sales": "Demande Commerciale",
-        "demo": "Demander une Démo",
-        "support": "Support Technique",
-        "partnership": "Opportunité de Partenariat"
-      },
-      "company_label": "Entreprise (Facultatif)",
-      "company_placeholder": "Nom de votre entreprise",
-      "message_label": "Votre Message",
-      "message_placeholder": "Comment pouvons-nous vous aider ?",
-      "privacy_label": "J'accepte la Politique de Confidentialité et les Conditions d'Utilisation",
-      "submit_button": "Envoyer le Message",
-      "success_message": "Merci pour votre message ! Nous vous répondrons dès que possible.",
-      "error_message": "Oups ! Quelque chose s'est mal passé. Veuillez réessayer plus tard ou contactez-nous directement.",
-      "verification_required": "Veuillez completer la verification de securite.",
-      "sending": "Envoi en cours...",
-      "error_occurred": "Une erreur s'est produite. Veuillez reessayer.",
-      "network_error": "Erreur reseau. Veuillez verifier votre connexion et reessayer."
-    },
-    "info": {
-      "email": {
-        "title": "Écrivez-nous",
-        "value": "hello@divinci.ai"
-      },
-      "address": {
-        "title": "Visitez-nous",
-        "value": "312 Arizona Ave, Santa Monica, CA 90401"
-      },
-      "hours": {
-        "title": "Heures d'Ouverture",
-        "value": "Lun–Ven: 9h–18h PST"
-      }
-    },
-    "map": {
-      "click_message": "Cliquez pour interagir avec la carte"
-    }
-  },
-  "expert_answers": {
-    "title": "Réponses d'Experts",
-    "subtitle": "Conseils de spécialistes",
-    "description": "Trouvez des informations complètes sur la gestion des versions et l'assurance qualité de notre plateforme pour les grands modèles de langage. Explorez des réponses détaillées et professionnelles à vos questions les plus pressantes.",
-    "faqs": {
-      "model_reliability": {
-        "question": "Comment garantissez-vous la fiabilité du modèle ?",
-        "answer": "Nous implémentons un processus de validation multicouche, combinant des tests automatisés de régression, de performance et de sécurité avec des revues manuelles d'experts. Chaque version de modèle est rigoureusement évaluée pour s'assurer qu'elle répond systématiquement aux normes de niveau entreprise pour la précision, la stabilité et la conformité."
-      },
-      "language_models": {
-        "question": "Quels modèles de langage sont compatibles ?",
-        "answer": "Notre plateforme prend en charge un large spectre de grands modèles de langage, des architectures open source aux architectures propriétaires. L'intégration flexible permet un déploiement transparent dans divers cadres et environnements d'entreprise, garantissant l'adaptabilité aux besoins commerciaux en évolution.",
-        "model_compat_link": "Voir la liste complète de compatibilité des modèles"
-      },
-      "quality_assurance": {
-        "question": "Comment l'assurance qualité continue est-elle obtenue ?",
-        "answer": "Nous maintenons la qualité grâce à une surveillance continue, des audits programmés et un suivi des performances en temps réel. En analysant les retours des utilisateurs et les risques émergents, nous affinons proactivement les modèles et processus pour maintenir des références de qualité strictes dans le temps."
-      },
-      "workflow_integration": {
-        "question": "La plateforme s'adapte-t-elle aux flux de travail existants ?",
-        "answer": "Notre solution est conçue pour une intégration transparente avec les systèmes d'entreprise. Des API robustes et des options configurables permettent un alignement sans effort avec vos pipelines actuels de gestion des versions et de développement, minimisant les perturbations et maximisant l'efficacité."
-      }
-    },
-    "view_complete_list": "Voir la liste complète de compatibilité des modèles"
-  },
   "press": {
     "title": "Ressources de Presse",
     "subtitle": "Trouvez les dernières actualités, la couverture médiatique et les ressources concernant Divinci AI. Pour les demandes de presse, veuillez contacter notre équipe de relations avec les médias.",
@@ -766,6 +769,11 @@
       "michael_mooring": "Michael Mooring, CEO",
       "samuel_tobia": "Samuel Tobia, CTO",
       "sierra_hooshiari": "Sierra Hooshiari, COO"
+    },
+    "common": {
+      "read_more": "Lire la suite",
+      "read_article": "Lire l'article",
+      "download": "Télécharger"
     }
   },
   "about": {
@@ -831,7 +839,17 @@
     "coming_soon_message": "Nous développons actuellement notre blog avec des informations sur la technologie IA, les stratégies d'implémentation et les tendances du secteur. Revenez bientôt ou abonnez-vous pour être notifié.",
     "notify_me": "Me notifier des mises à jour",
     "featured_tag_default": "Intelligence Artificielle",
-    "post_tag_default": "Perspectives IA"
+    "post_tag_default": "Perspectives IA",
+    "intro": {
+      "heading": "Notes de recherche de l'équipe Divinci AI",
+      "p1": "Le blog Divinci AI publie des recherches originales, des analyses techniques approfondies et des notes de terrain issues de notre travail de conception de systèmes de génération augmentée par récupération en production pour les secteurs réglementés.",
+      "p2": "Notre couverture s'articule autour de trois axes. Premièrement, les travaux techniques : comment nous construisons, évaluons et routons au sein de notre bibliothèque ouverte de vIndexes publiés sur Hugging Face ; comment nous calibrons les juges IA par rapport à la vérité terrain humaine ; ce que nous avons appris en déployant le décodage spéculatif et la quantification FP8 en production.",
+      "p3": "La plupart de nos articles s'adressent à un public déjà à l'aise avec l'ingénierie de l'IA — ingénieurs, chercheurs et acheteurs techniques — même si nous essayons de garder un cadre accessible à toute personne responsable des décisions liées à l'IA au sein de son organisation."
+    },
+    "newer": "Articles plus récents",
+    "older": "Articles plus anciens",
+    "page_of": "Page",
+    "pagination_label": "Articles de blog plus anciens"
   },
   "careers": {
     "hero_title": "Rejoignez Notre Équipe",
@@ -926,11 +944,6 @@
     "value4_desc": "Nous sommes motivés par l'opportunité d'avoir un impact significatif sur la façon dont les entreprises exploitent l'IA.",
     "benefits_title": "Avantages et Bénéfices",
     "benefits_intro": "Nous croyons en prendre soin de notre équipe. Voici quelques-uns des avantages que nous offrons aux employés de Divinci AI :"
-  },
-  "common": {
-    "read_more": "Lire la suite",
-    "read_article": "Lire l'article",
-    "download": "Télécharger"
   },
   "blog_post": {
     "min_read": "min de lecture",
@@ -1044,12 +1057,6 @@
       "cta_secondary": "Voir un vIndex en direct"
     },
     "mapping": {
-      "heading": "Ce que la réglementation exige · ce que LarQL livre",
-      "subheading": "Le même artefact — le vIndex — répond aux exigences de transparence, de surveillance, de documentation et d'effacement dans les quatre grandes réglementations d'IA auxquelles font face les clients de Divinci.",
-      "th_regulation": "Réglementation",
-      "th_requirement": "Exigence",
-      "th_competitors": "Ce que les concurrents proposent",
-      "th_larql": "Ce que LarQL/vIndex propose",
       "rows": [
         {
           "reg_label": "Règlement IA UE §13",
@@ -1106,5 +1113,13 @@
       "cta_primary": "Réserver une revue de conformité →",
       "cta_secondary": "Parcourir les vIndexes sur Hugging Face"
     }
+  },
+  "research_band": {
+    "eyebrow": "Recherche ouverte",
+    "title": "Poids ouverts, correctifs ouverts, vIndexes ouverts.",
+    "body_1": "Nous publions des vIndexes — des bases de données de caractéristiques interrogeables extraites de transformers ouverts — pour chaque modèle que nous utilisons. Douze sont disponibles sur Hugging Face aujourd'hui, couvrant quatre familles de modèles et quatre organisations, auxquels s'ajoutent deux contrôles de dissolution 1-bit entraînés nativement.",
+    "body_2": "La visionneuse vous permet d'orbiter dans l'espace de caractéristiques FFN en 3D. La série de blogs parcourt des constantes universelles aux modifications chirurgicales. LarQL est open-source : github.com/Divinci-AI/larql",
+    "cta_primary": "Lire la recherche →",
+    "cta_secondary": "Parcourir sur Hugging Face"
   }
 }

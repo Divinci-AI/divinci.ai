@@ -14,28 +14,34 @@
     "team": "Team",
     "signup": "Aanmelden",
     "support": "Ondersteuning",
-    "request_demo": "Demo aanvragen",
     "support_center": "Ondersteuningscentrum",
+    "documentation": "Documentatie",
+    "request_demo": "Demo aanvragen",
     "blog": "Blog",
     "terms_of_service": "Servicevoorwaarden",
     "privacy_policy": "Privacybeleid",
     "quality_assurance": "Kwaliteitsborging",
     "release_management": "Releasebeheer",
-    "sign_up": "Aanmelden"
+    "sign_up": "Aanmelden",
+    "www_rag_directory": "WWW-RAG Directory"
   },
   "hero": {
     "heading": "AI releases.",
     "subheading": "Excellentie\nelke keer.",
+    "heading_mobile": "Uw B2C-AI.",
+    "subheading_mobile": "Excellentie, elke keer.",
     "description": "Versterk uw bedrijf met geavanceerd release management en rigoureuze kwaliteitsborging voor aangepaste taalmodellen. Bereik operationele betrouwbaarheid, regulatoire compliance en optimale prestaties door een gestructureerd, end-to-end implementatieproces.",
     "features": {
       "test_automation": "Intelligente testautomatisering",
       "compliance_records": "Gedetailleerde compliance records",
+      "compliance_records_mobile": "Compliance records",
       "version_recovery": "Onmiddellijk versie herstel"
     },
     "cta": {
       "primary": "Demo aanvragen",
       "secondary": "Platform verkennen",
-      "connect_provider": "Verbind {provider} met Divinci"
+      "connect_provider": "Verbind {provider} met Divinci",
+      "connect_provider_mobile": "Verbind {provider}"
     },
     "sound_unmute": "Geluid inschakelen",
     "sound_mute": "Geluid uitschakelen"
@@ -67,6 +73,7 @@
   "features": {
     "title": "Geef uw workflow meer kracht met AI",
     "description": "Ontdek functies ontworpen voor enterprise teams die betrouwbare, schaalbare AI-samenwerking nodig hebben.",
+    "journal_title": "Leonardo's Dagboek",
     "list": {
       "multiplayer": {
         "title": "Multiplayer",
@@ -109,7 +116,6 @@
         "description": "Schaal van kleine teams naar enterprise organisaties met infrastructuur die automatisch schaalt."
       }
     },
-    "journal_title": "Leonardo's Dagboek",
     "autorag": {
       "title": "AutoRAG"
     },
@@ -123,20 +129,16 @@
     "description": "Ontmoet de innovators die de toekomst van mens-AI samenwerking vormgeven.",
     "members": {
       "connect": "Verbinden",
+      "sierra_bio": "Afgestudeerd aan Cornell University met uitgebreide ervaring in financiële dienstverlening en ondernemerschap. Brengt strategische businessontwikkeling mee voor AI-schaling.",
       "michael_bio": "Visionair met meer dan 15 jaar ervaring in bedrijfstechnologie, leidend in de conversationele AI-revolutie.",
       "samuel_bio": "Productstrateg met een staat van dienst in gebruikersgericht AI-oplossingen voor enterprise teams.",
       "duane_bio": "Systeemarchitect met expertise in schaalbare AI-infrastructuur en natuurlijke taalverwerking.",
-      "sierra_bio": "Afgestudeerd aan Cornell University met uitgebreide ervaring in financiële dienstverlening en ondernemerschap. Brengt strategische businessontwikkeling mee voor AI-schaling.",
       "sean_bio": "Data scientist met meer dan 10 jaar programmeerervaring, gespecialiseerd in machine learning en Python-ontwikkeling.",
       "paul_marie_bio": "AI-governance leider en onafhankelijk adviseur. Oprichter van AI LA Responsible AI Group met ervaring bij Google AI, Deloitte en CVS Health."
     },
     "roles": {
       "ceo_founder": "CEO & Oprichter",
       "cto_cofounder": "CTO & Medeoprichter",
-      "head_product": "Hoofd Product",
-      "senior_data_scientist": "Senior Data Scientist",
-      "ux_ui_designer": "UX/UI Designer",
-      "software_engineer": "Software Engineer",
       "cpo": "Productdirecteur",
       "coo": "Operationeel Directeur",
       "data_scientist": "Data Scientist",
@@ -168,6 +170,95 @@
       }
     }
   },
+  "expert_answers": {
+    "title": "Expert Antwoorden",
+    "description": "Vind uitgebreide inzichten over release management en kwaliteitsborging van ons platform voor grote taalmodellen. Ontdek gedetailleerde, professionele reacties op uw meest urgente vragen.",
+    "faqs": {
+      "model_reliability": {
+        "question": "Hoe garandeert u de betrouwbaarheid van het model?",
+        "answer": "We implementeren een meerlagig validatieproces, dat geautomatiseerde regressie-, prestatie- en beveiligingstests combineert met handmatige expertrecensies. Elke modelrelease wordt rigoureus beoordeeld om ervoor te zorgen dat deze consistent voldoet aan bedrijfsnormen voor nauwkeurigheid, stabiliteit en compliance."
+      },
+      "language_models": {
+        "question": "Welke taalmodellen zijn compatibel?",
+        "answer": "Ons platform ondersteunt een breed spectrum van grote taalmodellen, van open-source tot eigendomsarchitecturen. Flexibele integratie maakt naadloze implementatie mogelijk in diverse frameworks en bedrijfsomgevingen, wat aanpasbaarheid aan evoluerende zakelijke behoeften garandeert.",
+        "model_compat_link": "Volledig modelcompatibiliteitsoverzicht bekijken"
+      },
+      "quality_assurance": {
+        "question": "Hoe wordt continue kwaliteitsborging bereikt?",
+        "answer": "We behouden kwaliteit door continue monitoring, geplande audits en realtime prestatietracking. Door gebruikersfeedback en opkomende risico's te analyseren, verfijnen we proactief modellen en processen om strenge kwaliteitsnormen in de tijd te handhaven."
+      },
+      "workflow_integration": {
+        "question": "Past het platform bij bestaande workflows?",
+        "answer": "Onze oplossing is ontworpen voor naadloze integratie met bedrijfssystemen. Robuuste API's en configureerbare opties maken moeiteloze afstemming mogelijk met uw huidige release management en ontwikkelingspijplijnen, waardoor verstoring wordt geminimaliseerd en efficiëntie wordt gemaximaliseerd."
+      }
+    },
+    "view_complete_list": "Bekijk volledige modelcompatibiliteitslijst"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Neem contact op met ons team",
+    "get_in_touch": "NEEM CONTACT OP",
+    "email_specialists": {
+      "title": "E-mail onze specialisten",
+      "description": "Ontvang gedetailleerde, doordachte reacties op uw technische en zakelijke vragen.",
+      "email": "Demo inplannen"
+    },
+    "speak_consultant": {
+      "title": "Boek een live demo",
+      "description": "Beschikbaar voor gepersonaliseerde 30-minuten demo's om te laten zien hoe Divinci AI werkt.",
+      "phone": "Demo boeken"
+    },
+    "schedule_demo": "Demo inplannen",
+    "book_demo": "Boek een live demo",
+    "demo_availability": "Beschikbaar voor gepersonaliseerde 30-minuten demo's om te laten zien hoe Divinci AI werkt.",
+    "page_title": "Neem contact op",
+    "page_subtitle": "Heeft u vragen over ons platform of heeft u hulp nodig om aan de slag te gaan? Wij staan voor u klaar.",
+    "form": {
+      "title": "Stuur ons een bericht",
+      "name_label": "Uw naam",
+      "name_placeholder": "Voer uw naam in",
+      "email_label": "E-mailadres",
+      "email_placeholder": "Voer uw e-mailadres in",
+      "subject_label": "Onderwerp",
+      "subject_placeholder": "Selecteer een onderwerp",
+      "inquiry_options": {
+        "general": "Algemene vraag",
+        "sales": "Verkoopaanvraag",
+        "demo": "Demo aanvragen",
+        "support": "Technische ondersteuning",
+        "partnership": "Partnerschapsmogelijkheid"
+      },
+      "company_label": "Bedrijf (optioneel)",
+      "company_placeholder": "Uw bedrijfsnaam",
+      "message_label": "Uw bericht",
+      "message_placeholder": "Hoe kunnen we u helpen?",
+      "privacy_label": "Ik ga akkoord met het Privacybeleid en de Servicevoorwaarden",
+      "submit_button": "Verstuur bericht",
+      "success_message": "Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.",
+      "error_message": "Oeps! Er is iets misgegaan. Probeer het later opnieuw of neem rechtstreeks contact met ons op.",
+      "verification_required": "Voltooi alstublieft de beveiligingsverificatie.",
+      "sending": "Verzenden...",
+      "error_occurred": "Er is een fout opgetreden. Probeer het opnieuw.",
+      "network_error": "Netwerkfout. Controleer uw verbinding en probeer het opnieuw."
+    },
+    "info": {
+      "email": {
+        "title": "E-mail ons",
+        "value": "hello@divinci.ai"
+      },
+      "address": {
+        "title": "Bezoek ons",
+        "value": "312 Arizona Ave, Santa Monica, CA 90401"
+      },
+      "hours": {
+        "title": "Kantooruren",
+        "value": "Mon–Fri: 9am–6pm PST"
+      }
+    },
+    "map": {
+      "click_message": "Klik om met de kaart te interacteren"
+    }
+  },
   "footer": {
     "tagline": "Versterking van mens-AI samenwerking",
     "sections": {
@@ -186,10 +277,11 @@
       "resources": {
         "title": "Bronnen",
         "links": {
-          "documentation": "Documentatie",
-          "blog": "Blog",
-          "tutorials": "Tutorials",
           "api": "API",
+          "blog": "Blog",
+          "brand": "Bronnen",
+          "documentation": "Documentatie",
+          "tutorials": "Tutorials",
           "support": "Ondersteuning"
         }
       },
@@ -222,53 +314,18 @@
       "privacy_settings": "Privacy-instellingen",
       "cookie_policy": "Cookiebeleid",
       "cookie_preferences": "Cookie-voorkeuren",
-      "rights_reserved": "Alle rechten voorbehouden."
+      "rights_reserved": "Alle rechten voorbehouden.",
+      "data_request": "Gegevensverzoek"
     },
     "api": "API",
     "support": "Ondersteuning",
     "privacy_settings": "Privacy-instellingen",
-    "cookie_preferences": "Cookie-voorkeuren",
     "cookie_policy": "Cookiebeleid",
+    "cookie_preferences": "Cookie-voorkeuren",
     "motto": {
+      "phrase": "vrije intelligentie",
       "word_1": "vrije",
-      "word_2": "intelligentie",
-      "phrase": "vrije intelligentie"
-    }
-  },
-  "language_switcher": {
-    "current_language": "Nederlands",
-    "languages": {
-      "en": "English",
-      "es": "Español",
-      "fr": "Français",
-      "ar": "العربية",
-      "ja": "日本語",
-      "zh": "中文",
-      "it": "Italiano",
-      "ru": "Русский",
-      "de": "Deutsch",
-      "pt": "Português",
-      "ko": "한국어",
-      "nl": "Nederlands",
-      "hi": "हिन्दी"
-    }
-  },
-  "contact": {
-    "title": "Contact",
-    "subtitle": "Neem contact op met ons team",
-    "get_in_touch": "NEEM CONTACT OP",
-    "email_specialists": {
-      "title": "E-mail onze specialisten",
-      "description": "Ontvang gedetailleerde, doordachte reacties op uw technische en zakelijke vragen.",
-      "email": "Demo inplannen"
-    },
-    "schedule_demo": "Demo inplannen",
-    "book_demo": "Boek een live demo",
-    "demo_availability": "Beschikbaar voor gepersonaliseerde 30-minuten demo's om te laten zien hoe Divinci AI werkt.",
-    "speak_consultant": {
-      "title": "Boek een live demo",
-      "description": "Beschikbaar voor gepersonaliseerde 30-minuten demo's om te laten zien hoe Divinci AI werkt.",
-      "phone": "Demo boeken"
+      "word_2": "intelligentie"
     }
   },
   "support": {
@@ -621,109 +678,102 @@
       }
     }
   },
-  "expert_answers": {
-    "title": "Expert Antwoorden",
-    "subtitle": "Specialistenbegeleiding",
-    "description": "Vind uitgebreide inzichten over release management en kwaliteitsborging van ons platform voor grote taalmodellen. Ontdek gedetailleerde, professionele reacties op uw meest urgente vragen.",
-    "faqs": {
-      "model_reliability": {
-        "question": "Hoe garandeert u de betrouwbaarheid van het model?",
-        "answer": "We implementeren een meerlagig validatieproces, dat geautomatiseerde regressie-, prestatie- en beveiligingstests combineert met handmatige expertrecensies. Elke modelrelease wordt rigoureus beoordeeld om ervoor te zorgen dat deze consistent voldoet aan bedrijfsnormen voor nauwkeurigheid, stabiliteit en compliance."
+  "language_switcher": {
+    "current_language": "Nederlands",
+    "languages": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands",
+      "hi": "हिन्दी"
+    }
+  },
+  "press": {
+    "title": "Persbronnen",
+    "subtitle": "Vind het laatste nieuws, media-aandacht en bronnen over Divinci AI. Voor persaanvragen kunt u contact opnemen met ons mediarelatieteam.",
+    "contact": {
+      "title": "Perscontact",
+      "email": "press@divinci.ai",
+      "phone": "+1 (800) 555-1234",
+      "media_relations": "Sierra Hooshiari, COO - Chief Operations Officer",
+      "description": "Ons mediarelatieteam helpt journalisten, industrieanalisten en contentmakers graag met informatie, interviews en bronnen over Divinci AI en onze visie op de AI-industrie.",
+      "email_label": "E-mail",
+      "media_label": "Mediarelaties"
+    },
+    "releases": {
+      "title": "Persberichten",
+      "items": {
+        "platform_launch": {
+          "date": "May 1, 2025",
+          "title": "Divinci AI lanceert platform om aangepaste AI-oplossingen voor bedrijven te democratiseren",
+          "excerpt": "Divinci AI heeft vandaag de algemene beschikbaarheid aangekondigd van haar platform dat is ontworpen om aangepaste AI-oplossingen toegankelijk te maken voor bedrijven van elke omvang, zonder gespecialiseerde machine-learningexpertise te vereisen."
+        },
+        "autorag_launch": {
+          "date": "April 15, 2025",
+          "title": "Divinci AI onthult AutoRAG, dat Retrieval-Augmented Generation voor iedereen toegankelijk maakt",
+          "excerpt": "De nieuwe AutoRAG-functie automatiseert het complexe proces van het implementeren van Retrieval-Augmented Generation-systemen, waardoor bedrijven eenvoudig AI kunnen creëren die gebruikmaakt van hun eigendomskennis."
+        },
+        "standards_hub": {
+          "date": "March 10, 2025",
+          "title": "Divinci AI sluit zich aan bij AI Standards Hub om verantwoorde AI-ontwikkeling te bevorderen",
+          "excerpt": "Als onderdeel van haar inzet voor ethische AI, is Divinci AI toegetreden tot de AI Standards Hub om bij te dragen aan de ontwikkeling van standaarden voor veilige, verantwoordelijke en transparante kunstmatige intelligentie."
+        }
       },
-      "language_models": {
-        "question": "Welke taalmodellen zijn compatibel?",
-        "answer": "Ons platform ondersteunt een breed spectrum van grote taalmodellen, van open-source tot eigendomsarchitecturen. Flexibele integratie maakt naadloze implementatie mogelijk in diverse frameworks en bedrijfsomgevingen, wat aanpasbaarheid aan evoluerende zakelijke behoeften garandeert.",
-        "model_compat_link": "Volledig modelcompatibiliteitsoverzicht bekijken"
-      },
-      "quality_assurance": {
-        "question": "Hoe wordt continue kwaliteitsborging bereikt?",
-        "answer": "We behouden kwaliteit door continue monitoring, geplande audits en realtime prestatietracking. Door gebruikersfeedback en opkomende risico's te analyseren, verfijnen we proactief modellen en processen om strenge kwaliteitsnormen in de tijd te handhaven."
-      },
-      "workflow_integration": {
-        "question": "Past het platform bij bestaande workflows?",
-        "answer": "Onze oplossing is ontworpen voor naadloze integratie met bedrijfssystemen. Robuuste API's en configureerbare opties maken moeiteloze afstemming mogelijk met uw huidige release management en ontwikkelingspijplijnen, waardoor verstoring wordt geminimaliseerd en efficiëntie wordt gemaximaliseerd."
+      "empty_state": "Persberichten worden hier gepubliceerd zodra ze beschikbaar zijn. Neem voor mediavragen contact op met ons persteam."
+    },
+    "coverage": {
+      "title": "Media-aandacht",
+      "items": {
+        "techcrunch": {
+          "date": "May 3, 2025",
+          "title": "Divinci AI maakt aangepaste AI-oplossingen toegankelijk voor het MKB",
+          "excerpt": "TechCrunch bespreekt het nieuwe platform van Divinci AI en hoe het enterprise-niveau AI-mogelijkheden naar kleine en middelgrote bedrijven brengt."
+        },
+        "venturebeat": {
+          "date": "April 18, 2025",
+          "title": "Hoe de AutoRAG-functie van Divinci AI het spel verandert voor documentgebaseerde AI",
+          "excerpt": "VentureBeat onderzoekt hoe de AutoRAG-technologie van Divinci AI het complexe proces van het implementeren van documentbewuste AI-systemen vereenvoudigt."
+        },
+        "forbes": {
+          "date": "March 15, 2025",
+          "title": "10 AI-startups om in 2025 in de gaten te houden: Divinci AI staat op de lijst",
+          "excerpt": "Forbes neemt Divinci AI op in zijn jaarlijkse lijst van veelbelovende AI-startups die veranderen hoe bedrijven kunstmatige-intelligentieoplossingen implementeren."
+        }
       }
     },
-    "view_complete_list": "Bekijk volledige modelcompatibiliteitslijst"
-  },
-  "news": {
-    "read_more": "Lees meer →",
-    "learn_more": "Meer informatie →",
-    "ai_for_good_tag": "AI voor het Goede",
-    "cloudflare_date": "5 oktober 2025",
-    "cloudflare_title": "Divinci AI treedt toe tot Cloudflare Workers Launchpad Cohort #6",
-    "cloudflare_excerpt": "We zijn verheugd onze acceptatie in het prestigieuze Workers Launchpad acceleratorprogramma van Cloudflare aan te kondigen. Ontdek hoe we het edge computing-platform van Cloudflare gebruiken om geavanceerde RAG-pijplijnen te bouwen."
-  },
-  "compliance": {
-    "hero": {
-      "eyebrow": "Aangedreven door vIndex + LarQL",
-      "heading": "Compliance, met een bonnetje.",
-      "tagline": "De meeste „AI-compliance\" stopt bij toegangslogs en prompt-niveau guardrails. Divinci gaat ín het model. Elke entiteitsassociatie is een doorzoekbare feature; elke wijziging is een draagbare, controleerbare patch — en de <strong>vIndex</strong> is het technische documentatie-artefact dat uw toezichthouder zo gaat opvragen.",
-      "cta_primary": "Praat met compliance →",
-      "cta_secondary": "Bekijk een live vIndex"
+    "assets": {
+      "title": "Merkassets",
+      "description": "Download officiële Divinci AI-logo's, productscreenshots en oprichtersfoto's voor mediagebruik. Alle assets worden in hoge resolutie aangeboden en zijn beschikbaar in meerdere formaten.",
+      "logos": "Logo's",
+      "screenshots": "Productscreenshots",
+      "team_photos": "Teamfoto's",
+      "press_kit": {
+        "title": "Volledige perskit",
+        "description": "Download onze volledige perskit, met daarin alle logo's, screenshots, teamfoto's, product-factsheets en bedrijfsachtergronden in één pakket.",
+        "button": "Download perskit (ZIP, 25MB)"
+      },
+      "logo_primary": "Primair logo",
+      "logo_inverted": "Omgekeerd logo",
+      "logo_animated": "Geanimeerd logo",
+      "autorag_dashboard": "AutoRAG-dashboard",
+      "qa_pipeline": "QA-pijplijn",
+      "release_cycle": "Release Cycle Manager",
+      "michael_mooring": "Michael Mooring, CEO",
+      "samuel_tobia": "Samuel Tobia, CTO",
+      "sierra_hooshiari": "Sierra Hooshiari, COO"
     },
-    "mapping": {
-      "heading": "Wat de regelgeving vraagt · wat LarQL levert",
-      "subheading": "Hetzelfde artefact — de vIndex — beantwoordt eisen rond transparantie, toezicht, documentatie en verwijdering in de vier grote AI-regelgevingen waar Divinci-klanten mee te maken hebben.",
-      "th_regulation": "Regelgeving",
-      "th_requirement": "Eis",
-      "th_competitors": "Wat concurrenten bieden",
-      "th_larql": "Wat LarQL/vIndex biedt",
-      "rows": [
-        {
-          "reg_label": "EU AI Act §13",
-          "reg_topic": "Transparantie",
-          "requirement": "„Voldoende transparantie zodat gebruikers de uitvoer kunnen interpreteren\"",
-          "competitors": "Model cards, prozaïsche systeembeschrijvingen",
-          "larql": "De vIndex IS een doorzoekbaar transparantie-artefact — elk feiten­dragend feature geïdentificeerd via <code>(layer, feature, gate_score)</code>"
-        },
-        {
-          "reg_label": "EU AI Act §14",
-          "reg_topic": "Menselijk toezicht",
-          "requirement": "Operators moeten zinvol kunnen ingrijpen",
-          "competitors": "Prompt-niveau guardrails (te omzeilen via jailbreak)",
-          "larql": "DELETE-patches op gewichtsniveau op het feature, niet op de prompt — niet te omzeilen via jailbreak"
-        },
-        {
-          "reg_label": "EU AI Act Bijlage IV",
-          "reg_topic": "Technische documentatie",
-          "requirement": "„Algemene logica van het AI-systeem\"",
-          "competitors": "Architectuurdiagrammen + samenvattingen van trainingsdata",
-          "larql": "Bit-exacte mechanistische documentatie: het geprojecteerde vocabulaire van elk feature, de structurele metriek van elke laag (C1–C5)"
-        },
-        {
-          "reg_label": "AVG Artikel 17",
-          "reg_topic": "Recht op gegevenswissing",
-          "requirement": "Verifieerbare verwijdering van persoonsgegevens",
-          "competitors": "Fine-tuning om te „vergeten\" — <em>niet verifieerbaar</em>; data kan adversarieel weer opduiken",
-          "larql": "DELETE-patch met audit-trail = <strong>aantoonbare onderdrukking</strong> van een specifieke named-entity-associatie tegen +0,02% perplexiteit. Het patch-bestand is het bonnetje."
-        },
-        {
-          "reg_label": "HIPAA · PCI · AVG",
-          "reg_topic": "De-identificatie",
-          "requirement": "PII uit dataproducten verwijderen",
-          "competitors": "Tokenfiltering bij I/O (lekken mogelijk)",
-          "larql": "Feature-niveau identificatie van richtingen die PII coderen; chirurgische verwijdering op de gewichtenlaag"
-        },
-        {
-          "reg_label": "NIST AI RMF",
-          "reg_topic": "Beheren",
-          "requirement": "Restrisico kwantificeren en beheren",
-          "competitors": "Risicobeoordelingen op gevoel",
-          "larql": "De universele constanten C1–C5 geven u een meetbare structurele basislijn; verifieer opnieuw na elke patch"
-        }
-      ]
-    },
-    "receipt": {
-      "heading": "Hoe een „bonnetje\" er werkelijk uitziet",
-      "para_1": "Een LarQL-patch is een draagbaar JSON-bestand met SHA-256-checksum. Pas hem toe om een feit te onderdrukken; verwijder hem om het model bit voor bit te herstellen. De patch IS het auditlog — operators, toezichthouders en downstream-consumenten kunnen dezelfde operatie onafhankelijk verifiëren.",
-      "para_2": "Hieronder: de echte Gate-3 patch die we leveren in onze publieke testsuite, met de Paris→capital-associatie onderdrukt en hersteld met meetbaar, herhaalbaar effect op een echte Gemma 4 E2B vIndex."
-    },
-    "cta_band": {
-      "heading": "Compliance die u kunt bewijzen. Op elke open transformer.",
-      "tagline": "Vandaag acht gepubliceerde vIndexes over Gemma, Qwen, Llama, Mistral, OpenAI MoE en Microsoft 1-bit. Breng uw model — wij bouwen het bonnetje.",
-      "cta_primary": "Boek een compliance-review →",
-      "cta_secondary": "Blader door vIndexes op Hugging Face"
+    "common": {
+      "read_more": "Lees meer",
+      "read_article": "Lees artikel",
+      "download": "Download"
     }
   },
   "about": {
@@ -774,6 +824,32 @@
     "join_title": "Word lid van ons team",
     "join_desc": "Klaar om de toekomst van AI mee vorm te geven? We zijn altijd op zoek naar uitzonderlijk talent.",
     "join_cta": "Bekijk openstaande vacatures"
+  },
+  "blog": {
+    "hero_title": "Divinci AI Blog",
+    "hero_subtitle": "Inzichten, updates en thought leadership over kunstmatige intelligentie, RAG-systemen en enterprise AI-management.",
+    "by": "Door",
+    "read_article": "Artikel lezen",
+    "recent_articles": "Recente artikelen",
+    "read_more": "Lees meer",
+    "share_tag": "Delen",
+    "share_title": "Deel met vrienden",
+    "share_desc": "Als u deze onderwerpen interessant vindt, deel ze dan met vrienden en collega's.",
+    "coming_soon_title": "Blog komt eraan",
+    "coming_soon_message": "We bouwen momenteel aan onze blog met inzichten over AI-technologie, implementatiestrategieën en sectortrends. Kom later terug voor updates of abonneer u om een melding te krijgen wanneer nieuwe content beschikbaar is.",
+    "notify_me": "Meld me bij updates",
+    "featured_tag_default": "Kunstmatige intelligentie",
+    "post_tag_default": "AI-inzichten",
+    "intro": {
+      "heading": "Onderzoeksnotities van het Divinci AI-team",
+      "p1": "De Divinci AI-blog publiceert origineel onderzoek, technische diepgangsanalyses en veldnotities van ons werk aan het bouwen van productie-retrieval-augmented generation-systemen voor gereguleerde industrieën.",
+      "p2": "Onze berichtgeving beslaat drie thema's. Ten eerste technisch werk: hoe we bouwen, scoren en routeren via onze open bibliotheek van vIndexes gepubliceerd op Hugging Face; hoe we AI-jury's calibreren ten opzichte van menselijke grondwaarheid; wat we hebben geleerd bij het naar productie brengen van speculative decoding en FP8-quantisatie.",
+      "p3": "De meeste berichten richten zich op een publiek dat al thuis is in AI-engineering — engineers, onderzoekers en technische inkopers — hoewel we proberen de kadering toegankelijk te houden voor iedereen die binnen zijn organisatie verantwoordelijk is voor AI-beslissingen."
+    },
+    "newer": "Nieuwere berichten",
+    "older": "Oudere berichten",
+    "page_of": "Pagina",
+    "pagination_label": "Oudere blogberichten"
   },
   "careers": {
     "hero_title": "Word lid van ons team",
@@ -869,20 +945,181 @@
     "benefits_title": "Voordelen & extra's",
     "benefits_intro": "We geloven in goed zorgen voor ons team. Hier zijn enkele voordelen en extra's voor Divinci-AI-medewerkers:"
   },
-  "blog": {
-    "hero_title": "Divinci AI Blog",
-    "hero_subtitle": "Inzichten, updates en thought leadership over kunstmatige intelligentie, RAG-systemen en enterprise AI-management.",
+  "blog_post": {
+    "min_read": "min lezen",
     "by": "Door",
-    "read_article": "Artikel lezen",
-    "recent_articles": "Recente artikelen",
-    "read_more": "Lees meer",
-    "share_tag": "Delen",
-    "share_title": "Deel met vrienden",
-    "share_desc": "Als u deze onderwerpen interessant vindt, deel ze dan met vrienden en collega's.",
-    "coming_soon_title": "Blog komt eraan",
-    "coming_soon_message": "We bouwen momenteel aan onze blog met inzichten over AI-technologie, implementatiestrategieën en sectortrends. Kom later terug voor updates of abonneer u om een melding te krijgen wanneer nieuwe content beschikbaar is.",
-    "notify_me": "Meld me bij updates",
-    "featured_tag_default": "Kunstmatige intelligentie",
-    "post_tag_default": "AI-inzichten"
+    "join_conversation": "Doe mee met het gesprek",
+    "join_conversation_desc": "We horen graag uw gedachten over dit onderwerp. Doe mee met de discussie op uw favoriete platform:",
+    "discuss_on_x": "Bespreek op X",
+    "comment_on_linkedin": "Reageer op LinkedIn",
+    "chat_on_discord": "Chat op Discord",
+    "view_on_instagram": "Bekijk op Instagram",
+    "back_to_top": "Terug naar boven",
+    "copy_link": "Kopieer link",
+    "focus_mode": "Focusmodus",
+    "export": "Exporteren",
+    "copy_as_markdown": "Kopieer als Markdown",
+    "download_markdown": "Download Markdown",
+    "copy_as_text": "Kopieer als tekst",
+    "download_text": "Download tekst",
+    "full_white_paper": "Volledig white paper (50 pagina's)",
+    "quick_summary": "Snelle samenvatting (1 pagina)",
+    "related_articles": "Gerelateerde artikelen",
+    "share_with_friends": "Deel met vrienden",
+    "share_desc": "Als u deze onderwerpen interessant vindt, deel ze dan met uw vrienden en collega's die ze mogelijk ook interessant vinden.",
+    "cta_title": "Klaar om uw aangepaste AI-oplossing te bouwen?",
+    "cta_desc": "Ontdek hoe Divinci AI u kan helpen bij het implementeren van RAG-systemen, het automatiseren van kwaliteitsborging en het stroomlijnen van uw AI-ontwikkelingsproces.",
+    "cta_button": "Begin vandaag nog"
+  },
+  "roadmap": {
+    "vision_title": "Onze visie voor de toekomst",
+    "vision_desc": "Ontdek wat er nog meer komt voor het Divinci AI-platform. Wij zetten ons in voor continue innovatie en het leveren van de functies die onze klanten het meest nodig hebben.",
+    "status_development": "In ontwikkeling",
+    "status_planned": "Gepland",
+    "status_completed": "Voltooid",
+    "status_future": "Toekomstig",
+    "recently_released": "Onlangs uitgebracht",
+    "request_features": "Functies aanvragen",
+    "request_features_desc": "Heeft u een functieverzoek? We horen graag van u!",
+    "submit_ideas": "Dien uw ideeën in",
+    "q1_title": "Q1 2025",
+    "q2_title": "Q2 2025",
+    "q34_title": "Q3-Q4 2025",
+    "q1_item1_name": "Geavanceerd analytics-dashboard",
+    "q1_item1_desc": "Verbeterde rapportage en inzichten",
+    "q1_item2_name": "Multi-cloudondersteuning",
+    "q1_item2_desc": "Implementeer via AWS, Azure en GCP",
+    "q1_item3_name": "Aangepaste compliance-frameworks",
+    "q1_item3_desc": "Branchespecifieke compliance-sjablonen",
+    "q2_item1_name": "API Gateway-integratie",
+    "q2_item1_desc": "Systeemeigen ondersteuning voor API-beheer",
+    "q2_item2_name": "Geavanceerde test suite",
+    "q2_item2_desc": "Uitgebreide validatietools voor AI-modellen",
+    "q2_item3_name": "Samenwerkingstools",
+    "q2_item3_desc": "Verbeterde teamworkflows en machtigingen",
+    "released_item1_name": "Intelligente release-orchestratie",
+    "released_item1_desc": "Geautomatiseerde implementatiepijplijnen",
+    "released_item2_name": "Realtime prestatiebewaking",
+    "released_item2_desc": "Live modelprestatiemonitoring",
+    "released_item3_name": "Verbeterde beveiligingsfuncties",
+    "released_item3_desc": "Geavanceerde toegangscontroles en auditlogboeken",
+    "q34_item1_name": "AI-gestuurde optimalisatie",
+    "q34_item1_desc": "Automatische prestatie-afstemming",
+    "q34_item2_name": "Geavanceerde integraties",
+    "q34_item2_desc": "Ondersteuning voor meer AI-frameworks en tools",
+    "q34_item3_name": "Mobiele beheer-app",
+    "q34_item3_desc": "Monitor uw AI-systemen onderweg"
+  },
+  "page": {
+    "last_updated": "Laatst bijgewerkt"
+  },
+  "taxonomy": {
+    "browse_by": "Blader door inhoud georganiseerd op",
+    "posts_in": "Berichten in",
+    "post_singular": "bericht",
+    "post_plural": "berichten",
+    "read_more": "Lees meer"
+  },
+  "ai_safety": {
+    "official_document": "OFFICIEEL DOCUMENT",
+    "certification_text": "Conform standaarden · Afgestemd op NIST Framework · Op de hoogte van ISO/IEC",
+    "contributors": "Bijdragers",
+    "ceo_title": "Mede-oprichter & CEO",
+    "ethics_advisor_title": "AI-veiligheids- en ethiekadviseur",
+    "best_practice_title": "Best Practice-kader",
+    "last_updated_label": "Laatst bijgewerkt",
+    "version_label": "Versie",
+    "document_id_label": "Document-ID"
+  },
+  "news": {
+    "read_more": "Lees meer →",
+    "learn_more": "Meer informatie →",
+    "ai_for_good_tag": "AI voor het Goede",
+    "cloudflare_date": "5 oktober 2025",
+    "cloudflare_title": "Divinci AI treedt toe tot Cloudflare Workers Launchpad Cohort #6",
+    "cloudflare_excerpt": "We zijn verheugd onze acceptatie in het prestigieuze Workers Launchpad acceleratorprogramma van Cloudflare aan te kondigen. Ontdek hoe we het edge computing-platform van Cloudflare gebruiken om geavanceerde RAG-pijplijnen te bouwen."
+  },
+  "not_found": {
+    "title": "Pagina niet gevonden",
+    "message": "De pagina die u zoekt bestaat niet of is verplaatst. We brengen u weer op het juiste spoor.",
+    "go_home": "Ga naar homepage",
+    "view_docs": "Bekijk documentatie"
+  },
+  "accessibility": {
+    "skip_to_content": "Ga naar hoofdinhoud"
+  },
+  "compliance": {
+    "hero": {
+      "eyebrow": "Aangedreven door vIndex + LarQL",
+      "heading": "Compliance, met een bonnetje.",
+      "tagline": "De meeste „AI-compliance\" stopt bij toegangslogs en prompt-niveau guardrails. Divinci gaat ín het model. Elke entiteitsassociatie is een doorzoekbare feature; elke wijziging is een draagbare, controleerbare patch — en de <strong>vIndex</strong> is het technische documentatie-artefact dat uw toezichthouder zo gaat opvragen.",
+      "cta_primary": "Praat met compliance →",
+      "cta_secondary": "Bekijk een live vIndex"
+    },
+    "mapping": {
+      "rows": [
+        {
+          "reg_label": "EU AI Act §13",
+          "reg_topic": "Transparantie",
+          "requirement": "„Voldoende transparantie zodat gebruikers de uitvoer kunnen interpreteren\"",
+          "competitors": "Model cards, prozaïsche systeembeschrijvingen",
+          "larql": "De vIndex IS een doorzoekbaar transparantie-artefact — elk feiten­dragend feature geïdentificeerd via <code>(layer, feature, gate_score)</code>"
+        },
+        {
+          "reg_label": "EU AI Act §14",
+          "reg_topic": "Menselijk toezicht",
+          "requirement": "Operators moeten zinvol kunnen ingrijpen",
+          "competitors": "Prompt-niveau guardrails (te omzeilen via jailbreak)",
+          "larql": "DELETE-patches op gewichtsniveau op het feature, niet op de prompt — niet te omzeilen via jailbreak"
+        },
+        {
+          "reg_label": "EU AI Act Bijlage IV",
+          "reg_topic": "Technische documentatie",
+          "requirement": "„Algemene logica van het AI-systeem\"",
+          "competitors": "Architectuurdiagrammen + samenvattingen van trainingsdata",
+          "larql": "Bit-exacte mechanistische documentatie: het geprojecteerde vocabulaire van elk feature, de structurele metriek van elke laag (C1–C5)"
+        },
+        {
+          "reg_label": "AVG Artikel 17",
+          "reg_topic": "Recht op gegevenswissing",
+          "requirement": "Verifieerbare verwijdering van persoonsgegevens",
+          "competitors": "Fine-tuning om te „vergeten\" — <em>niet verifieerbaar</em>; data kan adversarieel weer opduiken",
+          "larql": "DELETE-patch met audit-trail = <strong>aantoonbare onderdrukking</strong> van een specifieke named-entity-associatie tegen +0,02% perplexiteit. Het patch-bestand is het bonnetje."
+        },
+        {
+          "reg_label": "HIPAA · PCI · AVG",
+          "reg_topic": "De-identificatie",
+          "requirement": "PII uit dataproducten verwijderen",
+          "competitors": "Tokenfiltering bij I/O (lekken mogelijk)",
+          "larql": "Feature-niveau identificatie van richtingen die PII coderen; chirurgische verwijdering op de gewichtenlaag"
+        },
+        {
+          "reg_label": "NIST AI RMF",
+          "reg_topic": "Beheren",
+          "requirement": "Restrisico kwantificeren en beheren",
+          "competitors": "Risicobeoordelingen op gevoel",
+          "larql": "De universele constanten C1–C5 geven u een meetbare structurele basislijn; verifieer opnieuw na elke patch"
+        }
+      ]
+    },
+    "receipt": {
+      "heading": "Hoe een „bonnetje\" er werkelijk uitziet",
+      "para_1": "Een LarQL-patch is een draagbaar JSON-bestand met SHA-256-checksum. Pas hem toe om een feit te onderdrukken; verwijder hem om het model bit voor bit te herstellen. De patch IS het auditlog — operators, toezichthouders en downstream-consumenten kunnen dezelfde operatie onafhankelijk verifiëren.",
+      "para_2": "Hieronder: de echte Gate-3 patch die we leveren in onze publieke testsuite, met de Paris→capital-associatie onderdrukt en hersteld met meetbaar, herhaalbaar effect op een echte Gemma 4 E2B vIndex."
+    },
+    "cta_band": {
+      "heading": "Compliance die u kunt bewijzen. Op elke open transformer.",
+      "tagline": "Vandaag acht gepubliceerde vIndexes over Gemma, Qwen, Llama, Mistral, OpenAI MoE en Microsoft 1-bit. Breng uw model — wij bouwen het bonnetje.",
+      "cta_primary": "Boek een compliance-review →",
+      "cta_secondary": "Blader door vIndexes op Hugging Face"
+    }
+  },
+  "research_band": {
+    "eyebrow": "Open onderzoek",
+    "title": "Open weights, open patches, open vIndexes.",
+    "body_1": "We publiceren vIndexes — doorzoekbare feature-databases geëxtraheerd uit open transformers — voor elk model dat we gebruiken. Twaalf staan vandaag live op Hugging Face, verdeeld over vier modelfamilies en vier organisaties, plus twee native getrainde 1-bit oplossingscontroles.",
+    "body_2": "De viewer laat u om de FFN-featureruimte in 3D draaien. De blogserie loopt van universele constanten naar chirurgische bewerkingen. LarQL is open-source: github.com/Divinci-AI/larql",
+    "cta_primary": "Lees het onderzoek →",
+    "cta_secondary": "Blader op Hugging Face"
   }
 }

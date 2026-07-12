@@ -14,28 +14,34 @@
     "team": "Team",
     "signup": "Anmelden",
     "support": "Unterstützung",
-    "request_demo": "Demo anfordern",
     "support_center": "Support-Center",
+    "documentation": "Dokumentation",
+    "request_demo": "Demo anfordern",
     "blog": "Blog",
     "terms_of_service": "Nutzungsbedingungen",
     "privacy_policy": "Datenschutzrichtlinie",
     "quality_assurance": "Qualitätssicherung",
     "release_management": "Release-Management",
-    "sign_up": "Registrieren"
+    "sign_up": "Registrieren",
+    "www_rag_directory": "WWW-RAG-Verzeichnis"
   },
   "hero": {
     "heading": "KI-Releases.",
     "subheading": "Exzellenz\njedes Mal.",
+    "heading_mobile": "Ihre B2C-KI.",
+    "subheading_mobile": "Exzellenz jedes Mal.",
     "description": "Stärken Sie Ihr Unternehmen mit fortschrittlichem Release-Management und rigoroser Qualitätssicherung für benutzerdefinierte Sprachmodelle. Erreichen Sie operative Zuverlässigkeit, regulatorische Compliance und optimale Leistung durch einen strukturierten, durchgängigen Bereitstellungsprozess.",
     "features": {
       "test_automation": "Intelligente Testautomatisierung",
       "compliance_records": "Detaillierte Compliance-Aufzeichnungen",
+      "compliance_records_mobile": "Compliance-Aufzeichnungen",
       "version_recovery": "Sofortige Versionserholung"
     },
     "cta": {
       "primary": "Demo anfordern",
       "secondary": "Plattform erkunden",
-      "connect_provider": "{provider} mit Divinci verbinden"
+      "connect_provider": "{provider} mit Divinci verbinden",
+      "connect_provider_mobile": "{provider} verbinden"
     },
     "sound_unmute": "Stummschaltung aufheben",
     "sound_mute": "Stummschalten"
@@ -67,6 +73,7 @@
   "features": {
     "title": "Turboladen Sie Ihren Workflow mit KI",
     "description": "Entdecken Sie Features, die für Unternehmensteams entwickelt wurden, die zuverlässige, skalierbare KI-Zusammenarbeit benötigen.",
+    "journal_title": "Leonardos Tagebuch",
     "list": {
       "multiplayer": {
         "title": "Multiplayer",
@@ -109,7 +116,6 @@
         "description": "Skalieren Sie von kleinen Teams zu Unternehmensorganisationen mit Infrastruktur, die automatisch skaliert."
       }
     },
-    "journal_title": "Leonardos Tagebuch",
     "autorag": {
       "title": "AutoRAG"
     },
@@ -123,20 +129,16 @@
     "description": "Lernen Sie die Innovatoren kennen, die die Zukunft der Mensch-KI-Zusammenarbeit gestalten.",
     "members": {
       "connect": "Verbinden",
+      "sierra_bio": "Cornell-Absolventin mit umfassender Erfahrung in Finanzdienstleistungen und Unternehmertum. Bringt strategische Geschäftsentwicklung und KI-Skalierungsexpertise mit.",
       "michael_bio": "Visionär mit über 15 Jahren Erfahrung in der Unternehmenstechnologie und Pionier der KI-Revolution.",
       "samuel_bio": "Produktstratege mit nachgewiesener Erfolgsbilanz bei der Entwicklung nutzerzentrierter KI-Lösungen.",
       "duane_bio": "Systemarchitekt mit Expertise in skalierbarer KI-Infrastruktur und natürlicher Sprachverarbeitung.",
-      "sierra_bio": "Cornell-Absolventin mit umfassender Erfahrung in Finanzdienstleistungen und Unternehmertum. Bringt strategische Geschäftsentwicklung und KI-Skalierungsexpertise mit.",
       "sean_bio": "Datenwissenschaftler mit über 10 Jahren Programmiererfahrung, spezialisiert auf maschinelles Lernen und Python.",
       "paul_marie_bio": "KI-Governance-Experte und unabhängiger Berater. Gründer der AI LA Responsible AI Group mit Erfahrung bei Google AI, Deloitte und CVS Health."
     },
     "roles": {
       "ceo_founder": "CEO & Gründer",
       "cto_cofounder": "CTO & Mitgründer",
-      "head_product": "Produktleiter",
-      "senior_data_scientist": "Senior Data Scientist",
-      "ux_ui_designer": "UX/UI Designer",
-      "software_engineer": "Software-Ingenieur",
       "cpo": "Produktdirektor",
       "coo": "Betriebsleiter",
       "data_scientist": "Datenwissenschaftler",
@@ -168,6 +170,95 @@
       }
     }
   },
+  "expert_answers": {
+    "title": "Expertenantworten",
+    "description": "Finden Sie umfassende Einblicke in das Release-Management und die Qualitätssicherung unserer Plattform für große Sprachmodelle. Erkunden Sie detaillierte, professionelle Antworten auf Ihre dringendsten Fragen.",
+    "faqs": {
+      "model_reliability": {
+        "question": "Wie garantieren Sie die Modellzuverlässigkeit?",
+        "answer": "Wir implementieren einen vielschichtigen Validierungsprozess, der automatisierte Regressions-, Leistungs- und Sicherheitstests mit manuellen Expertenüberprüfungen kombiniert. Jede Modellversion wird rigoros bewertet, um sicherzustellen, dass sie konsistent die Unternehmensstandards für Genauigkeit, Stabilität und Compliance erfüllt."
+      },
+      "language_models": {
+        "question": "Welche Sprachmodelle sind kompatibel?",
+        "answer": "Unsere Plattform unterstützt ein breites Spektrum großer Sprachmodelle, von Open-Source- bis hin zu proprietären Architekturen. Flexible Integration ermöglicht nahtlose Bereitstellung in verschiedenen Frameworks und Unternehmensumgebungen und gewährleistet Anpassungsfähigkeit an sich entwickelnde Geschäftsanforderungen.",
+        "model_compat_link": "Vollständige Modellkompatibilitätsliste anzeigen"
+      },
+      "quality_assurance": {
+        "question": "Wie wird kontinuierliche Qualitätssicherung erreicht?",
+        "answer": "Wir erhalten die Qualität durch kontinuierliche Überwachung, geplante Audits und Echtzeit-Leistungsverfolgung. Durch die Analyse von Nutzerfeedback und aufkommenden Risiken verfeinern wir proaktiv Modelle und Prozesse, um strenge Qualitätsmaßstäbe über die Zeit aufrechtzuerhalten."
+      },
+      "workflow_integration": {
+        "question": "Passt die Plattform zu bestehenden Arbeitsabläufen?",
+        "answer": "Unsere Lösung ist für nahtlose Integration mit Unternehmenssystemen entwickelt. Robuste APIs und konfigurierbare Optionen ermöglichen mühelose Ausrichtung mit Ihren aktuellen Release-Management- und Entwicklungs-Pipelines, minimieren Störungen und maximieren Effizienz."
+      }
+    },
+    "view_complete_list": "Vollständige Modellkompatibilitätsliste anzeigen"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Kontaktieren Sie unser Team",
+    "get_in_touch": "KONTAKT AUFNEHMEN",
+    "email_specialists": {
+      "title": "Schreiben Sie unseren Spezialisten",
+      "description": "Erhalten Sie detaillierte, durchdachte Antworten auf Ihre technischen und geschäftlichen Anfragen.",
+      "email": "Demo planen"
+    },
+    "speak_consultant": {
+      "title": "Live-Demo buchen",
+      "description": "Verfügbar für 30-minütige personalisierte Demos, um Ihnen zu zeigen, wie Divinci AI funktioniert.",
+      "phone": "Demo buchen"
+    },
+    "schedule_demo": "Demo planen",
+    "book_demo": "Live-Demo buchen",
+    "demo_availability": "Verfügbar für 30-minütige personalisierte Demos, um Ihnen zu zeigen, wie Divinci AI funktioniert.",
+    "page_title": "Kontakt aufnehmen",
+    "page_subtitle": "Haben Sie Fragen zu unserer Plattform oder benötigen Sie Hilfe bei den ersten Schritten? Wir sind für Sie da.",
+    "form": {
+      "title": "Senden Sie uns eine Nachricht",
+      "name_label": "Ihr Name",
+      "name_placeholder": "Geben Sie Ihren Namen ein",
+      "email_label": "E-Mail-Adresse",
+      "email_placeholder": "Geben Sie Ihre E-Mail ein",
+      "subject_label": "Betreff",
+      "subject_placeholder": "Betreff auswählen",
+      "inquiry_options": {
+        "general": "Allgemeine Frage",
+        "sales": "Vertriebsanfrage",
+        "demo": "Demo anfordern",
+        "support": "Technischer Support",
+        "partnership": "Partnerschaftsmöglichkeit"
+      },
+      "company_label": "Unternehmen (optional)",
+      "company_placeholder": "Ihr Firmenname",
+      "message_label": "Ihre Nachricht",
+      "message_placeholder": "Wie können wir Ihnen helfen?",
+      "privacy_label": "Ich stimme der Datenschutzrichtlinie und den Nutzungsbedingungen zu",
+      "submit_button": "Nachricht senden",
+      "success_message": "Vielen Dank für Ihre Nachricht! Wir melden uns so schnell wie möglich bei Ihnen.",
+      "error_message": "Hoppla! Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.",
+      "verification_required": "Bitte schließen Sie die Sicherheitsüberprüfung ab.",
+      "sending": "Wird gesendet...",
+      "error_occurred": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+      "network_error": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut."
+    },
+    "info": {
+      "email": {
+        "title": "Schreiben Sie uns",
+        "value": "hello@divinci.ai"
+      },
+      "address": {
+        "title": "Besuchen Sie uns",
+        "value": "312 Arizona Ave, Santa Monica, CA 90401"
+      },
+      "hours": {
+        "title": "Geschäftszeiten",
+        "value": "Mo–Fr: 9–18 Uhr PST"
+      }
+    },
+    "map": {
+      "click_message": "Klicken Sie, um mit der Karte zu interagieren"
+    }
+  },
   "footer": {
     "tagline": "Befähigung der Mensch-KI-Zusammenarbeit",
     "sections": {
@@ -186,10 +277,11 @@
       "resources": {
         "title": "Ressourcen",
         "links": {
-          "documentation": "Dokumentation",
-          "blog": "Blog",
-          "tutorials": "Tutorials",
           "api": "API",
+          "blog": "Blog",
+          "brand": "Ressourcen",
+          "documentation": "Dokumentation",
+          "tutorials": "Tutorials",
           "support": "Support"
         }
       },
@@ -222,53 +314,18 @@
       "privacy_settings": "Datenschutz-Einstellungen",
       "cookie_policy": "Cookie-Richtlinie",
       "cookie_preferences": "Cookie-Einstellungen",
-      "rights_reserved": "Alle Rechte vorbehalten."
+      "rights_reserved": "Alle Rechte vorbehalten.",
+      "data_request": "Datenanfrage"
     },
     "api": "API",
     "support": "Support",
     "privacy_settings": "Datenschutz-Einstellungen",
-    "cookie_preferences": "Cookie-Einstellungen",
     "cookie_policy": "Cookie-Richtlinie",
+    "cookie_preferences": "Cookie-Einstellungen",
     "motto": {
+      "phrase": "freie Intelligenz",
       "word_1": "freie",
-      "word_2": "Intelligenz",
-      "phrase": "freie Intelligenz"
-    }
-  },
-  "language_switcher": {
-    "current_language": "Deutsch",
-    "languages": {
-      "en": "English",
-      "es": "Español",
-      "fr": "Français",
-      "ar": "العربية",
-      "ja": "日本語",
-      "zh": "中文",
-      "it": "Italiano",
-      "ru": "Русский",
-      "de": "Deutsch",
-      "pt": "Português",
-      "ko": "한국어",
-      "nl": "Nederlands",
-      "hi": "हिन्दी"
-    }
-  },
-  "contact": {
-    "title": "Kontakt",
-    "subtitle": "Kontaktieren Sie unser Team",
-    "get_in_touch": "KONTAKT AUFNEHMEN",
-    "email_specialists": {
-      "title": "Schreiben Sie unseren Spezialisten",
-      "description": "Erhalten Sie detaillierte, durchdachte Antworten auf Ihre technischen und geschäftlichen Anfragen.",
-      "email": "Demo planen"
-    },
-    "schedule_demo": "Demo planen",
-    "book_demo": "Live-Demo buchen",
-    "demo_availability": "Verfügbar für 30-minütige personalisierte Demos, um Ihnen zu zeigen, wie Divinci AI funktioniert.",
-    "speak_consultant": {
-      "title": "Live-Demo buchen",
-      "description": "Verfügbar für 30-minütige personalisierte Demos, um Ihnen zu zeigen, wie Divinci AI funktioniert.",
-      "phone": "Demo buchen"
+      "word_2": "Intelligenz"
     }
   },
   "support": {
@@ -621,109 +678,102 @@
       }
     }
   },
-  "expert_answers": {
-    "title": "Expertenantworten",
-    "subtitle": "Spezialistenführung",
-    "description": "Finden Sie umfassende Einblicke in das Release-Management und die Qualitätssicherung unserer Plattform für große Sprachmodelle. Erkunden Sie detaillierte, professionelle Antworten auf Ihre dringendsten Fragen.",
-    "faqs": {
-      "model_reliability": {
-        "question": "Wie garantieren Sie die Modellzuverlässigkeit?",
-        "answer": "Wir implementieren einen vielschichtigen Validierungsprozess, der automatisierte Regressions-, Leistungs- und Sicherheitstests mit manuellen Expertenüberprüfungen kombiniert. Jede Modellversion wird rigoros bewertet, um sicherzustellen, dass sie konsistent die Unternehmensstandards für Genauigkeit, Stabilität und Compliance erfüllt."
+  "language_switcher": {
+    "current_language": "Deutsch",
+    "languages": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "ar": "العربية",
+      "ja": "日本語",
+      "zh": "中文",
+      "it": "Italiano",
+      "ru": "Русский",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ko": "한국어",
+      "nl": "Nederlands",
+      "hi": "हिन्दी"
+    }
+  },
+  "press": {
+    "title": "Presseressourcen",
+    "subtitle": "Finden Sie die neuesten Nachrichten, Medienberichte und Ressourcen rund um Divinci AI. Für Presseanfragen kontaktieren Sie bitte unser Medienrelations-Team.",
+    "contact": {
+      "title": "Pressekontakt",
+      "email": "press@divinci.ai",
+      "phone": "+1 (800) 555-1234",
+      "media_relations": "Sierra Hooshiari, COO - Chief Operations Officer",
+      "description": "Unser Medienrelations-Team steht Journalisten, Branchenanalysten und Content-Erstellern für Informationen, Interviews und Ressourcen rund um Divinci AI sowie unsere Sichtweise auf die KI-Branche zur Verfügung.",
+      "email_label": "E-Mail",
+      "media_label": "Medienrelations"
+    },
+    "releases": {
+      "title": "Pressemitteilungen",
+      "items": {
+        "platform_launch": {
+          "date": "1. Mai 2025",
+          "title": "Divinci AI startet Plattform, um maßgeschneiderte KI-Lösungen für Unternehmen zu demokratisieren",
+          "excerpt": "Divinci AI hat heute die allgemeine Verfügbarkeit seiner Plattform bekannt gegeben, die darauf ausgelegt ist, maßgeschneiderte KI-Lösungen für Unternehmen jeder Größe zugänglich zu machen – ohne spezialisiertes Machine-Learning-Fachwissen."
+        },
+        "autorag_launch": {
+          "date": "15. April 2025",
+          "title": "Divinci AI enthüllt AutoRAG und macht Retrieval-Augmented Generation für alle zugänglich",
+          "excerpt": "Das neue AutoRAG-Feature automatisiert den komplexen Prozess der Implementierung von Retrieval-Augmented-Generation-Systemen und ermöglicht es Unternehmen, mühelos KI zu erstellen, die ihr proprietäres Wissen nutzt."
+        },
+        "standards_hub": {
+          "date": "10. März 2025",
+          "title": "Divinci AI tritt dem AI Standards Hub bei, um verantwortungsvolle KI-Entwicklung zu fördern",
+          "excerpt": "Im Rahmen seines Engagements für ethische KI ist Divinci AI dem AI Standards Hub beigetreten, um zur Entwicklung von Standards für sichere, verantwortungsvolle und transparente künstliche Intelligenz beizutragen."
+        }
       },
-      "language_models": {
-        "question": "Welche Sprachmodelle sind kompatibel?",
-        "answer": "Unsere Plattform unterstützt ein breites Spektrum großer Sprachmodelle, von Open-Source- bis hin zu proprietären Architekturen. Flexible Integration ermöglicht nahtlose Bereitstellung in verschiedenen Frameworks und Unternehmensumgebungen und gewährleistet Anpassungsfähigkeit an sich entwickelnde Geschäftsanforderungen.",
-        "model_compat_link": "Vollständige Modellkompatibilitätsliste anzeigen"
-      },
-      "quality_assurance": {
-        "question": "Wie wird kontinuierliche Qualitätssicherung erreicht?",
-        "answer": "Wir erhalten die Qualität durch kontinuierliche Überwachung, geplante Audits und Echtzeit-Leistungsverfolgung. Durch die Analyse von Nutzerfeedback und aufkommenden Risiken verfeinern wir proaktiv Modelle und Prozesse, um strenge Qualitätsmaßstäbe über die Zeit aufrechtzuerhalten."
-      },
-      "workflow_integration": {
-        "question": "Passt die Plattform zu bestehenden Arbeitsabläufen?",
-        "answer": "Unsere Lösung ist für nahtlose Integration mit Unternehmenssystemen entwickelt. Robuste APIs und konfigurierbare Optionen ermöglichen mühelose Ausrichtung mit Ihren aktuellen Release-Management- und Entwicklungs-Pipelines, minimieren Störungen und maximieren Effizienz."
+      "empty_state": "Pressemitteilungen werden hier veröffentlicht, sobald sie verfügbar sind. Für Medienanfragen kontaktieren Sie bitte unser Presse-Team."
+    },
+    "coverage": {
+      "title": "Medienberichterstattung",
+      "items": {
+        "techcrunch": {
+          "date": "3. Mai 2025",
+          "title": "Divinci AI macht maßgeschneiderte KI-Lösungen für KMU zugänglich",
+          "excerpt": "TechCrunch testet die neue Plattform von Divinci AI und wie sie unternehmensgerechte KI-Funktionen für kleine und mittlere Unternehmen bereitstellt."
+        },
+        "venturebeat": {
+          "date": "18. April 2025",
+          "title": "Wie Divinci AIs AutoRAG-Feature das Spiel für dokumentenbasierte KI verändert",
+          "excerpt": "VentureBeat untersucht, wie Divinci AIs AutoRAG-Technologie den komplexen Prozess der Implementierung von dokumentenbewussten KI-Systemen vereinfacht."
+        },
+        "forbes": {
+          "date": "15. März 2025",
+          "title": "10 KI-Startups, die man 2025 im Blick behalten sollte: Divinci AI schafft es auf die Liste",
+          "excerpt": "Forbes führt Divinci AI in seiner jährlichen Liste vielversprechender KI-Startups, die verändern, wie Unternehmen KI-Lösungen implementieren."
+        }
       }
     },
-    "view_complete_list": "Vollständige Modellkompatibilitätsliste anzeigen"
-  },
-  "news": {
-    "read_more": "Mehr lesen →",
-    "learn_more": "Mehr erfahren →",
-    "ai_for_good_tag": "KI für das Gute",
-    "cloudflare_date": "5. Oktober 2025",
-    "cloudflare_title": "Divinci AI tritt Cloudflares Workers Launchpad Kohorte #6 bei",
-    "cloudflare_excerpt": "Wir freuen uns, unsere Aufnahme in Cloudflares renommierten Workers Launchpad-Beschleuniger bekannt zu geben. Erfahren Sie, wie wir Cloudflares Edge-Computing-Plattform nutzen, um ausgefeilte RAG-Pipelines zu entwickeln."
-  },
-  "compliance": {
-    "hero": {
-      "eyebrow": "Powered by vIndex + LarQL",
-      "heading": "Compliance — mit Quittung.",
-      "tagline": "Die meiste „AI-Compliance\" hört bei Zugriffsprotokollen und Prompt-Level-Leitplanken auf. Divinci geht ins Modell hinein. Jede Entitätsverknüpfung ist ein abfragbares Feature; jede Änderung ist ein portabler, prüfbarer Patch — und der <strong>vIndex</strong> ist das technische Dokumentationsartefakt, das Ihr Regulator gleich verlangen wird.",
-      "cta_primary": "Mit Compliance sprechen →",
-      "cta_secondary": "Live-vIndex ansehen"
+    "assets": {
+      "title": "Marken-Assets",
+      "description": "Laden Sie offizielle Divinci AI-Logos, Produkt-Screenshots und Gründerfotos für Medienzwecke herunter. Alle Assets werden in hoher Auflösung bereitgestellt und in mehreren Formaten angeboten.",
+      "logos": "Logos",
+      "screenshots": "Produkt-Screenshots",
+      "team_photos": "Team-Fotos",
+      "press_kit": {
+        "title": "Vollständiges Pressekit",
+        "description": "Laden Sie unser vollständiges Pressekit herunter, das alle Logos, Screenshots, Team-Fotos, Produktdatenblätter und Unternehmenshintergründe in einem Paket vereint.",
+        "button": "Pressekit herunterladen (ZIP, 25 MB)"
+      },
+      "logo_primary": "Primäres Logo",
+      "logo_inverted": "Invertiertes Logo",
+      "logo_animated": "Animiertes Logo",
+      "autorag_dashboard": "AutoRAG-Dashboard",
+      "qa_pipeline": "QA-Pipeline",
+      "release_cycle": "Release-Zyklus-Manager",
+      "michael_mooring": "Michael Mooring, CEO",
+      "samuel_tobia": "Samuel Tobia, CTO",
+      "sierra_hooshiari": "Sierra Hooshiari, COO"
     },
-    "mapping": {
-      "heading": "Was die Regulierung fordert · was LarQL liefert",
-      "subheading": "Dasselbe Artefakt — der vIndex — erfüllt Anforderungen an Transparenz, Aufsicht, Dokumentation und Löschung in den vier großen KI-Regularien, denen Divinci-Kunden gegenüberstehen.",
-      "th_regulation": "Regulierung",
-      "th_requirement": "Anforderung",
-      "th_competitors": "Was Wettbewerber bieten",
-      "th_larql": "Was LarQL/vIndex bietet",
-      "rows": [
-        {
-          "reg_label": "EU AI Act §13",
-          "reg_topic": "Transparenz",
-          "requirement": "„Ausreichende Transparenz, damit Nutzer Ausgaben interpretieren können\"",
-          "competitors": "Model Cards, prosa-basierte Systembeschreibungen",
-          "larql": "Der vIndex IST ein abfragbares Transparenzartefakt — jedes faktentragende Feature identifiziert über <code>(layer, feature, gate_score)</code>"
-        },
-        {
-          "reg_label": "EU AI Act §14",
-          "reg_topic": "Menschliche Aufsicht",
-          "requirement": "Betreiber müssen sinnvoll eingreifen können",
-          "competitors": "Prompt-Level-Leitplanken (jailbreak-anfällig)",
-          "larql": "DELETE-Patches auf Gewichts­ebene am Feature, nicht am Prompt — Jailbreaks umgehen sie nicht"
-        },
-        {
-          "reg_label": "EU AI Act Anhang IV",
-          "reg_topic": "Technische Doku",
-          "requirement": "„Allgemeine Logik des KI-Systems\"",
-          "competitors": "Architekturdiagramme + Trainingsdaten-Zusammenfassungen",
-          "larql": "Bitgenaue mechanistische Dokumentation: das projizierte Vokabular jedes Features, die strukturelle Metrik jeder Schicht (C1–C5)"
-        },
-        {
-          "reg_label": "DSGVO Artikel 17",
-          "reg_topic": "Recht auf Löschung",
-          "requirement": "Nachweisbare Entfernung personenbezogener Daten",
-          "competitors": "Feintuning zum „Vergessen\" — <em>nicht überprüfbar</em>; Daten können adversariell wieder auftauchen",
-          "larql": "DELETE-Patch mit Audit-Trail = <strong>nachweisbare Unterdrückung</strong> einer spezifischen Named-Entity-Verknüpfung bei +0,02 % Perplexität. Die Patch-Datei ist die Quittung."
-        },
-        {
-          "reg_label": "HIPAA · PCI · DSGVO",
-          "reg_topic": "De-Identifikation",
-          "requirement": "PII aus Datenprodukten entfernen",
-          "competitors": "Token-Filterung an I/O (Lecks möglich)",
-          "larql": "Feature-Level-Identifikation der PII-kodierenden Richtungen; chirurgische Entfernung auf der Gewichtsschicht"
-        },
-        {
-          "reg_label": "NIST AI RMF",
-          "reg_topic": "Verwalten",
-          "requirement": "Restrisiko quantifizieren und steuern",
-          "competitors": "Risikobewertungen aus dem Bauch heraus",
-          "larql": "Die universellen Konstanten C1–C5 liefern eine messbare strukturelle Baseline; nach jedem Patch erneut verifizieren"
-        }
-      ]
-    },
-    "receipt": {
-      "heading": "Wie eine „Quittung\" tatsächlich aussieht",
-      "para_1": "Ein LarQL-Patch ist eine portable JSON-Datei mit SHA-256-Prüfsumme. Anwenden, um einen Fakt zu unterdrücken; entfernen, um das Modell bitgenau wiederherzustellen. Der Patch IST das Audit-Log — Betreiber, Regulatoren und nachgelagerte Konsumenten können dieselbe Operation unabhängig verifizieren.",
-      "para_2": "Unten: der echte Gate-3-Patch aus unserer öffentlichen Test-Suite, der die Paris→Hauptstadt-Verknüpfung unterdrückt und wiederherstellt, mit messbarer, wiederholbarer Wirkung auf einem echten Gemma 4 E2B vIndex."
-    },
-    "cta_band": {
-      "heading": "Compliance, die Sie beweisen können. Auf jedem offenen Transformer.",
-      "tagline": "Heute acht veröffentlichte vIndexes über Gemma, Qwen, Llama, Mistral, OpenAI MoE und Microsoft 1-bit. Bringen Sie Ihr Modell — wir bauen die Quittung.",
-      "cta_primary": "Compliance-Review buchen →",
-      "cta_secondary": "vIndexes auf Hugging Face durchstöbern"
+    "common": {
+      "read_more": "Mehr lesen",
+      "read_article": "Artikel lesen",
+      "download": "Herunterladen"
     }
   },
   "about": {
@@ -774,6 +824,32 @@
     "join_title": "Werden Sie Teil unseres Teams",
     "join_desc": "Bereit, die Zukunft der KI mitzugestalten? Wir suchen ständig außergewöhnliche Talente.",
     "join_cta": "Offene Stellen ansehen"
+  },
+  "blog": {
+    "hero_title": "Divinci AI Blog",
+    "hero_subtitle": "Einblicke, Updates und Thought Leadership zu künstlicher Intelligenz, RAG-Systemen und Enterprise-KI-Management.",
+    "by": "Von",
+    "read_article": "Artikel lesen",
+    "recent_articles": "Aktuelle Artikel",
+    "read_more": "Mehr lesen",
+    "share_tag": "Teilen",
+    "share_title": "Mit Freunden teilen",
+    "share_desc": "Wenn Sie diese Themen interessant finden, teilen Sie sie mit Freunden und Kollegen.",
+    "coming_soon_title": "Blog kommt bald",
+    "coming_soon_message": "Wir bauen gerade unseren Blog mit Einblicken in KI-Technologie, Implementierungsstrategien und Branchentrends. Schauen Sie bald wieder vorbei oder abonnieren Sie, um benachrichtigt zu werden, wenn neue Inhalte verfügbar sind.",
+    "notify_me": "Über Updates benachrichtigen",
+    "featured_tag_default": "Künstliche Intelligenz",
+    "post_tag_default": "KI-Einblicke",
+    "intro": {
+      "heading": "Forschungsnotizen des Divinci AI-Teams",
+      "p1": "Der Divinci AI-Blog veröffentlicht originale Forschung, technische Deep-Dives und Feldbriefe aus unserer Arbeit beim Aufbau produktiver Retrieval-Augmented-Generation-Systeme für regulierte Branchen.",
+      "p2": "Unsere Berichterstattung umfasst drei Stränge. Erstens technische Arbeit: wie wir unsere offene Bibliothek von auf Hugging Face veröffentlichten vIndexes aufbauen, bewerten und routen; wie wir KI-Richter gegen menschliche Ground-Truth kalibrieren; was wir beim Einsatz von spekulativem Decoding und FP8-Quantisierung in der Produktion gelernt haben.",
+      "p3": "Die meisten Beiträge richten sich an ein Publikum, das bereits mit KI-Engineering vertraut ist – Ingenieure, Forscher und technische Entscheider –, wenngleich wir versuchen, die Darstellung für alle zugänglich zu halten, die in ihrer Organisation für KI-Entscheidungen verantwortlich sind."
+    },
+    "newer": "Neuere Beiträge",
+    "older": "Ältere Beiträge",
+    "page_of": "Seite",
+    "pagination_label": "Ältere Blogbeiträge"
   },
   "careers": {
     "hero_title": "Werden Sie Teil unseres Teams",
@@ -869,20 +945,181 @@
     "benefits_title": "Vorteile & Benefits",
     "benefits_intro": "Wir kümmern uns um unser Team. Hier einige Vorteile und Benefits, die wir Divinci-AI-Mitarbeitenden bieten:"
   },
-  "blog": {
-    "hero_title": "Divinci AI Blog",
-    "hero_subtitle": "Einblicke, Updates und Thought Leadership zu künstlicher Intelligenz, RAG-Systemen und Enterprise-KI-Management.",
+  "blog_post": {
+    "min_read": "Min. Lesezeit",
     "by": "Von",
-    "read_article": "Artikel lesen",
-    "recent_articles": "Aktuelle Artikel",
-    "read_more": "Mehr lesen",
-    "share_tag": "Teilen",
-    "share_title": "Mit Freunden teilen",
-    "share_desc": "Wenn Sie diese Themen interessant finden, teilen Sie sie mit Freunden und Kollegen.",
-    "coming_soon_title": "Blog kommt bald",
-    "coming_soon_message": "Wir bauen gerade unseren Blog mit Einblicken in KI-Technologie, Implementierungsstrategien und Branchentrends. Schauen Sie bald wieder vorbei oder abonnieren Sie, um benachrichtigt zu werden, wenn neue Inhalte verfügbar sind.",
-    "notify_me": "Über Updates benachrichtigen",
-    "featured_tag_default": "Künstliche Intelligenz",
-    "post_tag_default": "KI-Einblicke"
+    "join_conversation": "Nehmen Sie an der Unterhaltung teil",
+    "join_conversation_desc": "Wir würden uns freuen, Ihre Gedanken zu diesem Thema zu hören. Nehmen Sie die Diskussion auf Ihrer Lieblingsplattform auf:",
+    "discuss_on_x": "Auf X diskutieren",
+    "comment_on_linkedin": "Auf LinkedIn kommentieren",
+    "chat_on_discord": "Auf Discord chatten",
+    "view_on_instagram": "Auf Instagram ansehen",
+    "back_to_top": "Zurück nach oben",
+    "copy_link": "Link kopieren",
+    "focus_mode": "Fokus-Modus",
+    "export": "Exportieren",
+    "copy_as_markdown": "Als Markdown kopieren",
+    "download_markdown": "Markdown herunterladen",
+    "copy_as_text": "Als Text kopieren",
+    "download_text": "Text herunterladen",
+    "full_white_paper": "Vollständiges White Paper (50 Seiten)",
+    "quick_summary": "Kurze Zusammenfassung (1 Seite)",
+    "related_articles": "Verwandte Artikel",
+    "share_with_friends": "Mit Freunden teilen",
+    "share_desc": "Falls Sie diese Themen interessant finden, teilen Sie sie bitte mit Freunden und Kollegen, die sie ebenfalls interessant finden könnten.",
+    "cta_title": "Bereit, Ihre maßgeschneiderte KI-Lösung zu bauen?",
+    "cta_desc": "Entdecken Sie, wie Divinci AI Ihnen hilft, RAG-Systeme zu implementieren, die Qualitätssicherung zu automatisieren und Ihren KI-Entwicklungsprozess zu optimieren.",
+    "cta_button": "Jetzt starten"
+  },
+  "roadmap": {
+    "vision_title": "Unsere Vision für die Zukunft",
+    "vision_desc": "Entdecken Sie, was als Nächstes für die Divinci AI-Plattform kommt. Wir setzen uns für kontinuierliche Innovation ein und liefern die Funktionen, die unsere Kunden am meisten benötigen.",
+    "status_development": "In Entwicklung",
+    "status_planned": "Geplant",
+    "status_completed": "Abgeschlossen",
+    "status_future": "Zukünftig",
+    "recently_released": "Kürzlich veröffentlicht",
+    "request_features": "Funktionen anfragen",
+    "request_features_desc": "Haben Sie eine Funktionsanfrage? Wir würden uns freuen, von Ihnen zu hören!",
+    "submit_ideas": "Ihre Ideen einreichen",
+    "q1_title": "Q1 2025",
+    "q2_title": "Q2 2025",
+    "q34_title": "Q3–Q4 2025",
+    "q1_item1_name": "Erweitertes Analytik-Dashboard",
+    "q1_item1_desc": "Verbesserte Berichterstattung und Erkenntnisse",
+    "q1_item2_name": "Multi-Cloud-Unterstützung",
+    "q1_item2_desc": "Bereitstellung über AWS, Azure und GCP",
+    "q1_item3_name": "Maßgeschneiderte Compliance-Frameworks",
+    "q1_item3_desc": "Branchenspezifische Compliance-Vorlagen",
+    "q2_item1_name": "API-Gateway-Integration",
+    "q2_item1_desc": "Native Unterstützung für API-Management",
+    "q2_item2_name": "Erweiterte Test-Suite",
+    "q2_item2_desc": "Umfassende Validierungswerkzeuge für KI-Modelle",
+    "q2_item3_name": "Kollaborations-Tools",
+    "q2_item3_desc": "Verbesserte Team-Workflows und Berechtigungen",
+    "released_item1_name": "Intelligente Release-Orchestrierung",
+    "released_item1_desc": "Automatisierte Bereitstellungs-Pipelines",
+    "released_item2_name": "Echtzeit-Leistungsüberwachung",
+    "released_item2_desc": "Live-Leistungsverfolgung der Modelle",
+    "released_item3_name": "Erweiterte Sicherheitsfunktionen",
+    "released_item3_desc": "Erweiterte Zugriffskontrollen und Audit-Logging",
+    "q34_item1_name": "KI-gestützte Optimierung",
+    "q34_item1_desc": "Automatische Leistungsoptimierung",
+    "q34_item2_name": "Erweiterte Integrationen",
+    "q34_item2_desc": "Unterstützung für weitere KI-Frameworks und Tools",
+    "q34_item3_name": "Mobile Management-App",
+    "q34_item3_desc": "Überwachen Sie Ihre KI-Systeme unterwegs"
+  },
+  "page": {
+    "last_updated": "Zuletzt aktualisiert"
+  },
+  "taxonomy": {
+    "browse_by": "Inhalte durchsuchen, geordnet nach",
+    "posts_in": "Beiträge in",
+    "post_singular": "Beitrag",
+    "post_plural": "Beiträge",
+    "read_more": "Mehr lesen"
+  },
+  "ai_safety": {
+    "official_document": "OFFIZIELLES DOKUMENT",
+    "certification_text": "Standards konform · NIST-Framework orientiert · ISO/IEC informiert",
+    "contributors": "Mitwirkende",
+    "ceo_title": "Mitgründer & CEO",
+    "ethics_advisor_title": "Berater für KI-Sicherheit und Ethik",
+    "best_practice_title": "Best-Practice-Rahmenwerk",
+    "last_updated_label": "Zuletzt aktualisiert",
+    "version_label": "Version",
+    "document_id_label": "Dokument-ID"
+  },
+  "news": {
+    "read_more": "Mehr lesen →",
+    "learn_more": "Mehr erfahren →",
+    "ai_for_good_tag": "KI für das Gute",
+    "cloudflare_date": "5. Oktober 2025",
+    "cloudflare_title": "Divinci AI tritt Cloudflares Workers Launchpad Kohorte #6 bei",
+    "cloudflare_excerpt": "Wir freuen uns, unsere Aufnahme in Cloudflares renommierten Workers Launchpad-Beschleuniger bekannt zu geben. Erfahren Sie, wie wir Cloudflares Edge-Computing-Plattform nutzen, um ausgefeilte RAG-Pipelines zu entwickeln."
+  },
+  "not_found": {
+    "title": "Seite nicht gefunden",
+    "message": "Die von Ihnen gesuchte Seite existiert nicht oder wurde verschoben. Wir bringen Sie wieder auf Kurs.",
+    "go_home": "Zur Startseite",
+    "view_docs": "Dokumentation ansehen"
+  },
+  "accessibility": {
+    "skip_to_content": "Zum Hauptinhalt springen"
+  },
+  "compliance": {
+    "hero": {
+      "eyebrow": "Powered by vIndex + LarQL",
+      "heading": "Compliance — mit Quittung.",
+      "tagline": "Die meiste „AI-Compliance\" hört bei Zugriffsprotokollen und Prompt-Level-Leitplanken auf. Divinci geht ins Modell hinein. Jede Entitätsverknüpfung ist ein abfragbares Feature; jede Änderung ist ein portabler, prüfbarer Patch — und der <strong>vIndex</strong> ist das technische Dokumentationsartefakt, das Ihr Regulator gleich verlangen wird.",
+      "cta_primary": "Mit Compliance sprechen →",
+      "cta_secondary": "Live-vIndex ansehen"
+    },
+    "mapping": {
+      "rows": [
+        {
+          "reg_label": "EU AI Act §13",
+          "reg_topic": "Transparenz",
+          "requirement": "„Ausreichende Transparenz, damit Nutzer Ausgaben interpretieren können\"",
+          "competitors": "Model Cards, prosa-basierte Systembeschreibungen",
+          "larql": "Der vIndex IST ein abfragbares Transparenzartefakt — jedes faktentragende Feature identifiziert über <code>(layer, feature, gate_score)</code>"
+        },
+        {
+          "reg_label": "EU AI Act §14",
+          "reg_topic": "Menschliche Aufsicht",
+          "requirement": "Betreiber müssen sinnvoll eingreifen können",
+          "competitors": "Prompt-Level-Leitplanken (jailbreak-anfällig)",
+          "larql": "DELETE-Patches auf Gewichts­ebene am Feature, nicht am Prompt — Jailbreaks umgehen sie nicht"
+        },
+        {
+          "reg_label": "EU AI Act Anhang IV",
+          "reg_topic": "Technische Doku",
+          "requirement": "„Allgemeine Logik des KI-Systems\"",
+          "competitors": "Architekturdiagramme + Trainingsdaten-Zusammenfassungen",
+          "larql": "Bitgenaue mechanistische Dokumentation: das projizierte Vokabular jedes Features, die strukturelle Metrik jeder Schicht (C1–C5)"
+        },
+        {
+          "reg_label": "DSGVO Artikel 17",
+          "reg_topic": "Recht auf Löschung",
+          "requirement": "Nachweisbare Entfernung personenbezogener Daten",
+          "competitors": "Feintuning zum „Vergessen\" — <em>nicht überprüfbar</em>; Daten können adversariell wieder auftauchen",
+          "larql": "DELETE-Patch mit Audit-Trail = <strong>nachweisbare Unterdrückung</strong> einer spezifischen Named-Entity-Verknüpfung bei +0,02 % Perplexität. Die Patch-Datei ist die Quittung."
+        },
+        {
+          "reg_label": "HIPAA · PCI · DSGVO",
+          "reg_topic": "De-Identifikation",
+          "requirement": "PII aus Datenprodukten entfernen",
+          "competitors": "Token-Filterung an I/O (Lecks möglich)",
+          "larql": "Feature-Level-Identifikation der PII-kodierenden Richtungen; chirurgische Entfernung auf der Gewichtsschicht"
+        },
+        {
+          "reg_label": "NIST AI RMF",
+          "reg_topic": "Verwalten",
+          "requirement": "Restrisiko quantifizieren und steuern",
+          "competitors": "Risikobewertungen aus dem Bauch heraus",
+          "larql": "Die universellen Konstanten C1–C5 liefern eine messbare strukturelle Baseline; nach jedem Patch erneut verifizieren"
+        }
+      ]
+    },
+    "receipt": {
+      "heading": "Wie eine „Quittung\" tatsächlich aussieht",
+      "para_1": "Ein LarQL-Patch ist eine portable JSON-Datei mit SHA-256-Prüfsumme. Anwenden, um einen Fakt zu unterdrücken; entfernen, um das Modell bitgenau wiederherzustellen. Der Patch IST das Audit-Log — Betreiber, Regulatoren und nachgelagerte Konsumenten können dieselbe Operation unabhängig verifizieren.",
+      "para_2": "Unten: der echte Gate-3-Patch aus unserer öffentlichen Test-Suite, der die Paris→Hauptstadt-Verknüpfung unterdrückt und wiederherstellt, mit messbarer, wiederholbarer Wirkung auf einem echten Gemma 4 E2B vIndex."
+    },
+    "cta_band": {
+      "heading": "Compliance, die Sie beweisen können. Auf jedem offenen Transformer.",
+      "tagline": "Heute acht veröffentlichte vIndexes über Gemma, Qwen, Llama, Mistral, OpenAI MoE und Microsoft 1-bit. Bringen Sie Ihr Modell — wir bauen die Quittung.",
+      "cta_primary": "Compliance-Review buchen →",
+      "cta_secondary": "vIndexes auf Hugging Face durchstöbern"
+    }
+  },
+  "research_band": {
+    "eyebrow": "Offene Forschung",
+    "title": "Offene Gewichte, offene Patches, offene vIndexes.",
+    "body_1": "Wir veröffentlichen vIndexes – abfragbare Feature-Datenbanken, die aus offenen Transformern extrahiert wurden – für jedes von uns genutzte Modell. Zwölf sind heute auf Hugging Face live, verteilt über vier Modellfamilien und vier Organisationen, plus zwei nativ trainierte 1-bit-Auflösungs-Kontrollen.",
+    "body_2": "Der Viewer ermöglicht es Ihnen, den FFN-Feature-Raum in 3D zu umkreisen. Die Blogreihe führt von den universellen Konstanten zu chirurgischen Edits. LarQL ist Open Source: github.com/Divinci-AI/larql",
+    "cta_primary": "Forschung lesen →",
+    "cta_secondary": "Auf Hugging Face stöbern"
   }
 }
