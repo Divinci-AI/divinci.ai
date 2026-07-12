@@ -47,8 +47,14 @@
         </div>
         <div class="hero-text">
             <h1>
-                {{ translations.hero.heading | default(value="AI releases.") }}<br>
-                {{ translations.hero.subheading | default(value="Excellence, every time.") }}
+                <span class="hero-title-desktop">
+                    {{ translations.hero.heading | default(value="Custom AI releases.") }}<br>
+                    {{ translations.hero.subheading | default(value="Excellence, every time.") }}
+                </span>
+                <span class="hero-title-mobile">
+                    {{ translations.hero.heading_mobile | default(value="Your B2C AI.") }}<br>
+                    {{ translations.hero.subheading_mobile | default(value=translations.hero.subheading) | default(value="Excellence, every time.") }}
+                </span>
             </h1>
             <p>
                 {{ translations.hero.description | default(value="Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance through a structured, end-to-end deployment process.") }}
@@ -60,7 +66,8 @@
                 </div>
                 <div class="feature">
                     <span class="feature-icon feature-icon-rotate">↻</span>
-                    <span class="feature-text">{{ translations.hero.features.compliance_records | default(value="Detailed compliance records") }}</span>
+                    <span class="feature-text feature-text-desktop">{{ translations.hero.features.compliance_records | default(value="Detailed compliance records") }}</span>
+                    <span class="feature-text feature-text-mobile">{{ translations.hero.features.compliance_records_mobile | default(value=translations.hero.features.compliance_records) | default(value="Compliance records") }}</span>
                 </div>
                 <div class="feature">
                     <span class="feature-icon feature-icon-heart">♡</span>
@@ -70,7 +77,8 @@
             <div class="cta-buttons">
                 <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" class="primary-button" target="_blank" rel="noopener">{{ translations.hero.cta.primary | default(value="Request demo") }}</a>
                 <div class="connect-ai-group" id="connect-ai-group"
-                     data-label-template="{{ translations.hero.cta.connect_provider | default(value="Connect {provider} to Divinci") }}">
+                     data-label-template="{{ translations.hero.cta.connect_provider | default(value="Connect {provider} to Divinci") }}"
+                     data-label-template-mobile="{{ translations.hero.cta.connect_provider_mobile | default(value="Connect {provider}") }}">
                     <a href="https://claude.ai" id="connect-ai-chip-claude" class="connect-ai-chip" data-provider="claude" data-name="Claude" target="_blank" rel="noopener">
                         <img class="connect-ai-chip-icon" src="/images/claude-ai-icon-transparent.png" alt="" width="20" height="20" decoding="async">
                         <span class="connect-ai-chip-label"></span>
@@ -93,7 +101,22 @@
             (function() {
                 var group = document.getElementById("connect-ai-group");
                 if (!group) return;
-                var template = group.getAttribute("data-label-template") || "Connect {provider} to Divinci";
+                var templateDesktop = group.getAttribute("data-label-template") || "Connect {provider} to Divinci";
+                var templateMobile = group.getAttribute("data-label-template-mobile") || "Connect {provider}";
+                function labelTemplate() {
+                    return (window.matchMedia && window.matchMedia("(max-width: 768px)").matches)
+                        ? templateMobile
+                        : templateDesktop;
+                }
+                function applyLabels() {
+                    var template = labelTemplate();
+                    chips.forEach(function(chip) {
+                        var name = chip.getAttribute("data-name");
+                        var label = template.replace("{provider}", name);
+                        chip.querySelector(".connect-ai-chip-label").textContent = label;
+                        chip.setAttribute("aria-label", label);
+                    });
+                }
                 // Prompt sent to the AI app: instructs it to connect to the Divinci MCP server.
                 var MCP_PROMPT = [
                     "Connect me to the Divinci AI platform over MCP.",
@@ -129,11 +152,14 @@
                 // only which one is EXPANDED (icon + full label) rotates automatically.
                 chips.forEach(function(chip) {
                     var id = chip.getAttribute("data-provider");
-                    var name = chip.getAttribute("data-name");
                     chip.href = URLS[id] || chip.href;
-                    chip.querySelector(".connect-ai-chip-label").textContent = template.replace("{provider}", name);
-                    chip.setAttribute("aria-label", template.replace("{provider}", name));
                 });
+                applyLabels();
+                if (window.matchMedia) {
+                    var mq = window.matchMedia("(max-width: 768px)");
+                    if (mq.addEventListener) mq.addEventListener("change", applyLabels);
+                    else if (mq.addListener) mq.addListener(applyLabels);
+                }
                 var idx = 0;
                 chips[0].classList.add("connect-ai-chip-active");
                 if (chips.length < 2) return;
@@ -166,10 +192,11 @@
 .compare-diptych-a2b3 .edition-line a.nm:hover,.compare-diptych-a2b3 .edition-line a.nm:focus-visible{background-size:100% 1.5px}
 .compare-diptych-a2b3 .edition-line a.nm:focus-visible{outline:2px solid #2d5a4f;outline-offset:4px;border-radius:2px}
 .compare-diptych-a2b3 .compare-prompt .eyebrow{font-family:'Source Sans 3',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#8b7659;margin:0 auto .5rem;background:rgba(245,240,230,.4);padding:.18em .65em;border-radius:3px;width:fit-content}
-.compare-diptych-a2b3 .compare-prompt h2{font-family:'Fraunces',serif;font-size:clamp(2.5rem,4vw,3.5rem);color:#1e3a2b;margin:.25rem 0 .75rem;font-weight:500;line-height:1.05;letter-spacing:-.005em}
+.compare-diptych-a2b3 .compare-prompt h2{font-family:'Fraunces',serif;font-size:clamp(2.5rem,4vw,3.5rem);color:#1e3a2b;margin:.25rem 0 .75rem;font-weight:500;line-height:1.05;letter-spacing:-.005em;text-align:center}
 .compare-diptych-a2b3 .compare-prompt h2{display:flex;flex-direction:column;align-items:center;gap:.15em}
-.compare-diptych-a2b3 .compare-prompt h2 .hl-line,.compare-diptych-a2b3 .compare-prompt h2 .em{display:inline-block;background:rgba(245,240,230,.5);padding:.04em .35em;border-radius:5px}
+.compare-diptych-a2b3 .compare-prompt h2 .hl-line,.compare-diptych-a2b3 .compare-prompt h2 .em{display:inline-block;background:rgba(245,240,230,.5);padding:.04em .35em;border-radius:5px;text-align:center}
 .compare-diptych-a2b3 .compare-prompt h2 .em{font-style:italic;font-weight:400}
+.compare-diptych-a2b3 .compare-prompt h2 .em-br{display:none}
 .compare-diptych-a2b3 .compare-prompt h2 a.em{color:inherit;text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-size:0 1.5px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .4s ease,color .25s ease;padding-bottom:.06em}
 .compare-diptych-a2b3 .compare-prompt h2 a.em:hover,.compare-diptych-a2b3 .compare-prompt h2 a.em:focus-visible{background-size:100% 1.5px;color:#2d5a4f}
 .compare-diptych-a2b3 .compare-prompt h2 a.em:focus-visible{outline:2px solid #2d5a4f;outline-offset:6px;border-radius:2px}
@@ -283,6 +310,13 @@
 }
 
 @media(max-width:1100px){.compare-diptych-a2b3 .diptych-pages{grid-template-columns:1fr}.compare-diptych-a2b3 .reviewer-col{order:99;flex-direction:row;flex-wrap:wrap;gap:.5rem;padding:1rem 0}.compare-diptych-a2b3 .review-note{flex:1 1 220px;border-left:2px solid currentColor !important;border-right:none !important;padding-left:.6rem !important;padding-right:0 !important;text-align:left !important}.compare-diptych-a2b3 .diptych-spine{display:none}.compare-diptych-a2b3 .page.left,.compare-diptych-a2b3 .page.right{transform:none;border-radius:6px;border:1px solid rgba(212,196,160,.5)}}
+@media(max-width:768px){
+  /* Mirror hero bottom spacing: padding inside the beige + a modest margin. */
+  .compare-diptych-a2b3{padding-top:2.75rem;margin-top:1.75rem}
+  .compare-diptych-a2b3 .compare-prompt h2{text-align:center}
+  .compare-diptych-a2b3 .compare-prompt h2 .em{display:block;width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;text-align:center}
+  .compare-diptych-a2b3 .compare-prompt h2 .em-br{display:block}
+}
 </style>
 
 <svg class="sacred-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width=".4" aria-hidden="true">
@@ -296,7 +330,7 @@
 <div class="compare-prompt">
   <div class="edition-line">Edition <a class="nm" href="/blog/inside-the-rag-arena-scored-qa-routing/">N&ordm; 042</a> &middot; 11 May 2026 &middot; Fuhrman 50 arena run</div>
   <div class="eyebrow">side-by-side · same prompt, two systems</div>
-  <h2 id="compare-a2b3-title"><span class="hl-line">Same question.</span><a class="em" href="/blog/inside-the-rag-arena-scored-qa-routing/">Different answers.</a></h2>
+  <h2 id="compare-a2b3-title"><span class="hl-line">Same question.</span><a class="em" href="/blog/inside-the-rag-arena-scored-qa-routing/">Different<span class="em-br" aria-hidden="true"></span> answers.</a></h2>
   <p class="question">&ldquo;Is chicken healthy?&rdquo;</p>
 </div>
 
@@ -1470,13 +1504,13 @@
 <section class="research-band" aria-labelledby="research-band-title">
   <div class="research-band-content">
     <div class="research-band-text">
-      <span class="research-band-eyebrow">Open Research</span>
-      <h2 id="research-band-title">Open weights, open patches,<br>open vIndexes.</h2>
-      <p>We publish <strong>vIndexes</strong> — queryable feature databases extracted from open transformers — for every model we use. <strong>Twelve live on Hugging Face today</strong>, spanning four model families and four organizations, plus two natively-trained 1-bit dissolution controls.</p>
-      <p>The viewer lets you orbit the FFN feature space in 3D. The blog series walks the universal-constants → surgical-edits. <a href="https://github.com/Divinci-AI/larql">LarQL</a> is open-source.</p>
-      <div class="research-band-cta">
-        <a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}" class="research-cta-primary">Read the research →</a>
-        <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener" class="research-cta-secondary">Browse on Hugging Face</a>
+      <span class="research-band-eyebrow">{{ translations.research_band.eyebrow | default(value="Open Research") }}</span>
+      <h2 id="research-band-title">{{ translations.research_band.title | default(value="Open weights, open patches, open vIndexes.") }}</h2>
+      <p>{{ translations.research_band.body_1 | default(value="We publish vIndexes — queryable feature databases extracted from open transformers — for every model we use. Twelve live on Hugging Face today, spanning four model families and four organizations, plus two natively-trained 1-bit dissolution controls.") }}</p>
+      <p>{{ translations.research_band.body_2 | default(value="The viewer lets you orbit the FFN feature space in 3D. The blog series walks the universal-constants to surgical-edits. LarQL is open-source: github.com/Divinci-AI/larql") }}</p>
+            <div class="research-band-cta">
+        <a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}" class="research-cta-primary">{{ translations.research_band.cta_primary | default(value="Read the research →") }}</a>
+        <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener" class="research-cta-secondary">{{ translations.research_band.cta_secondary | default(value="Browse on Hugging Face") }}</a>
       </div>
     </div>
     <div class="research-band-visual">

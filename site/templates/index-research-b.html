@@ -46,7 +46,7 @@
                 </div>
                 <div class="feature">
                     <span class="feature-icon feature-icon-rotate">↻</span>
-                    <span class="feature-text">{{ translations.hero.features.compliance_records | default(value="Detailed compliance records") }}</span>
+                    <span class="feature-text">{{ translations.hero.features.compliance_records | default(value="Compliance records") }}</span>
                 </div>
                 <div class="feature">
                     <span class="feature-icon feature-icon-heart">♡</span>
@@ -1199,8 +1199,8 @@
 <!-- ▼ VARIANT B — Research showcase with embedded live viewer ▼ -->
 <section class="research-showcase" aria-labelledby="research-showcase-title">
   <div class="research-showcase-header">
-    <span class="research-band-eyebrow">Open Research</span>
-    <h2 id="research-showcase-title">The model IS the database.</h2>
+    <span class="research-band-eyebrow">{{ translations.research_band.eyebrow | default(value="Open Research") }}</span>
+    <h2 id="research-showcase-title">{{ translations.research_band.showcase_title | default(value="The model IS the database.") }}</h2>
     <p class="research-showcase-sub">12 published vIndexes · 4 model families · 4 organizations · live in your browser, no GPU required.</p>
   </div>
   <div class="research-showcase-viewer">

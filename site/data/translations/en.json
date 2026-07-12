@@ -22,21 +22,26 @@
     "privacy_policy": "Privacy Policy",
     "quality_assurance": "Quality Assurance",
     "release_management": "Release Management",
-    "sign_up": "Sign up"
+    "sign_up": "Sign up",
+    "www_rag_directory": "WWW-RAG Directory"
   },
   "hero": {
     "heading": "Custom AI releases.",
-    "subheading": "Excellence,\nevery time.",
+    "subheading": "Excellence, every time.",
+    "heading_mobile": "Your B2C AI.",
+    "subheading_mobile": "Excellence, every time.",
     "description": "Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance through a structured, end-to-end deployment process.",
     "features": {
       "test_automation": "Intelligent test automation",
       "compliance_records": "Detailed compliance records",
+      "compliance_records_mobile": "Compliance records",
       "version_recovery": "Instant version recovery"
     },
     "cta": {
       "primary": "Request demo",
       "secondary": "Explore platform",
-      "connect_provider": "Connect {provider} to Divinci"
+      "connect_provider": "Connect {provider} to Divinci",
+      "connect_provider_mobile": "Connect {provider}"
     },
     "sound_unmute": "Unmute",
     "sound_mute": "Mute"
@@ -309,7 +314,8 @@
       "privacy_settings": "Privacy Settings",
       "cookie_policy": "Cookie Policy",
       "cookie_preferences": "Cookie Preferences",
-      "rights_reserved": "All rights reserved."
+      "rights_reserved": "All rights reserved.",
+      "data_request": "Data Request"
     },
     "api": "API",
     "support": "Support",
@@ -317,9 +323,9 @@
     "cookie_policy": "Cookie Policy",
     "cookie_preferences": "Cookie Preferences",
     "motto": {
+      "phrase": "free intelligence",
       "word_1": "free",
-      "word_2": "intelligence",
-      "phrase": "free intelligence"
+      "word_2": "intelligence"
     }
   },
   "support": {
@@ -833,7 +839,17 @@
     "coming_soon_message": "We're currently building our blog with insights on AI technology, implementation strategies, and industry trends. Check back soon for updates or subscribe to be notified when new content is available.",
     "notify_me": "Notify me of updates",
     "featured_tag_default": "Artificial Intelligence",
-    "post_tag_default": "AI Insights"
+    "post_tag_default": "AI Insights",
+    "intro": {
+      "heading": "Research notes from the Divinci AI team",
+      "p1": "The Divinci AI blog publishes original research, engineering deep-dives, and field notes from our work building production retrieval-augmented generation systems for regulated industries.",
+      "p2": "Our coverage spans three threads. First, technical work: how we build, score, and route across our open library of vIndexes published on Hugging Face; how we calibrate AI judges against human ground truth; what we learned shipping speculative decoding and FP8 quantization to production.",
+      "p3": "Most posts target an audience already fluent in AI engineering — engineers, researchers, and technical buyers — though we try to keep the framing accessible to anyone responsible for AI decisions at their organization."
+    },
+    "newer": "Newer posts",
+    "older": "Older posts",
+    "page_of": "Page",
+    "pagination_label": "Older blog posts"
   },
   "careers": {
     "hero_title": "Join Our Team",
@@ -1041,54 +1057,48 @@
       "cta_secondary": "See a live vIndex"
     },
     "mapping": {
-      "heading": "What the regulation requires · what LarQL ships",
-      "subheading": "The same artifact — the vIndex — answers transparency, oversight, documentation, and erasure requirements across the four major AI regulations Divinci customers face.",
-      "th_regulation": "Regulation",
-      "th_requirement": "Requirement",
-      "th_competitors": "What competitors offer",
-      "th_larql": "What LarQL/vIndex offers",
       "rows": [
         {
-          "reg_label": "EU AI Act §13",
-          "reg_topic": "Transparency",
-          "requirement": "\"Sufficient transparency to enable users to interpret outputs\"",
-          "competitors": "Model cards, prose system descriptions",
-          "larql": "The vIndex IS a queryable transparency artifact — every fact-bearing feature identified by <code>(layer, feature, gate_score)</code>"
+          "reg_label": "EU AI Act",
+          "reg_topic": "Annex IV",
+          "requirement": "Technical documentation auto-generated from the vIndex",
+          "competitors": "Access logs + prompt guardrails only",
+          "larql": "Generated from the vIndex itself"
         },
         {
-          "reg_label": "EU AI Act §14",
-          "reg_topic": "Human Oversight",
-          "requirement": "Operators must intervene meaningfully",
-          "competitors": "Prompt-level guardrails (jailbreakable)",
-          "larql": "Weight-level DELETE patches at the feature, not the prompt — cannot be jailbroken around"
+          "reg_label": "GDPR",
+          "reg_topic": "Art. 17",
+          "requirement": "Right-to-erasure with verifiable proof",
+          "competitors": "Soft-delete, no proof",
+          "larql": "Rank-1 patch erases the association; receipt issued"
         },
         {
-          "reg_label": "EU AI Act Annex IV",
-          "reg_topic": "Tech Docs",
-          "requirement": "\"General logic of the AI system\"",
-          "competitors": "Architecture diagrams + training-data summaries",
-          "larql": "Bit-exact mechanistic documentation: every feature's projected vocabulary, every layer's structural metric (C1–C5)"
-        },
-        {
-          "reg_label": "GDPR Article 17",
-          "reg_topic": "Right to Erasure",
-          "requirement": "Verifiable removal of personal data",
-          "competitors": "Fine-tuning to \"forget\" — <em>not verifiable</em>; data may resurface adversarially",
-          "larql": "DELETE patch with audit trail = <strong>provable suppression</strong> of a specific named-entity association at +0.02% perplexity. The patch file is the receipt."
-        },
-        {
-          "reg_label": "HIPAA · PCI · GDPR",
-          "reg_topic": "De-identification",
-          "requirement": "Remove PII from data products",
-          "competitors": "Token filtering at I/O (leaks possible)",
-          "larql": "Feature-level identification of PII-encoding directions; surgical removal at the weight layer"
+          "reg_label": "HIPAA",
+          "reg_topic": "§164.312",
+          "requirement": "Audit trails for protected health information",
+          "competitors": "Manual audit logging",
+          "larql": "Every entity association is a queryable feature"
         },
         {
           "reg_label": "NIST AI RMF",
-          "reg_topic": "Manage",
-          "requirement": "Quantify and manage residual risk",
-          "competitors": "Vibe-based risk assessments",
-          "larql": "C1–C5 universal constants give you a measurable structural baseline; re-verify after every patch"
+          "reg_topic": "MAP/MEASURE",
+          "requirement": "Risk management framework mapping",
+          "competitors": "Static controls checklist",
+          "larql": "Continuous, model-native evidence"
+        },
+        {
+          "reg_label": "SOC 2",
+          "reg_topic": "Trust Services",
+          "requirement": "Security, availability, confidentiality",
+          "competitors": "Point-in-time audit",
+          "larql": "Live attestation from deployment telemetry"
+        },
+        {
+          "reg_label": "ISO/IEC 42001",
+          "reg_topic": "AI Management",
+          "requirement": "AI management system standard",
+          "competitors": "Document-only conformity",
+          "larql": "vIndex as the system of record"
         }
       ]
     },
@@ -1103,5 +1113,13 @@
       "cta_primary": "Book a compliance review →",
       "cta_secondary": "Browse vIndexes on Hugging Face"
     }
+  },
+  "research_band": {
+    "eyebrow": "Open Research",
+    "title": "Open weights, open patches, open vIndexes.",
+    "body_1": "We publish vIndexes — queryable feature databases extracted from open transformers — for every model we use. Twelve live on Hugging Face today, spanning four model families and four organizations, plus two natively-trained 1-bit dissolution controls.",
+    "body_2": "The viewer lets you orbit the FFN feature space in 3D. The blog series walks the universal-constants to surgical-edits. LarQL is open-source: github.com/Divinci-AI/larql",
+    "cta_primary": "Read the research →",
+    "cta_secondary": "Browse on Hugging Face"
   }
 }
