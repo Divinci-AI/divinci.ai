@@ -1159,5 +1159,20 @@
     "footnote": "[tk] valores placeholder; substituídos por números medidos de uma avaliação vanilla-vs-DFO de 10 perguntas antes da publicação.",
     "verdict_meta": "Spearman ρ · exaustividade tolerante ao comprimento · fundamentação de citações · adequação de voz",
     "cta": "A metodologia por trás desta medição"
+  },
+  "research_cards": {
+    "logos_label": "A trabalhar com",
+    "card1_title": "A Arquitetura para a Qual Todos os Modelos de Linguagem Convergem",
+    "card1_desc": "Três números que se mantêm dentro de ±15% em 8 modelos de 4 organizações. Um desaparece no momento em que passa a pesos 1-bit.",
+    "card1_alt": "Gráfico de temperatura de atenção por camada",
+    "card1_meta": "Parte I · 7 min de leitura",
+    "card2_title": "Apagar Paris de um Modelo de Linguagem",
+    "card2_desc": "Uma única correcção de peso rank-1 suprime um facto a +0.02% de perplexity. Registo de auditoria incluído.",
+    "card2_alt": "Gráfico de benchmark de edição cirúrgica de conhecimento",
+    "card2_meta": "Parte II · 8 min de leitura",
+    "card3_title": "Quando o Circuito se Dissolve",
+    "card3_desc": "Dois modelos 1-bit treinados nativamente, duas organizações, mesma anomalia: estrutura desaparecida, comportamento sobreviveu.",
+    "card3_alt": "Gráfico de dissolução de quantização 1-bit",
+    "card3_meta": "Parte III · 7 min de leitura"
   }
 }

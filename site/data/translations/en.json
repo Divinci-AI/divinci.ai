@@ -1159,5 +1159,20 @@
     "footnote": "[tk] placeholder values; replaced with measured numbers from a 10-question vanilla-vs-DFO eval before publish.",
     "verdict_meta": "Spearman ρ · length-tolerant completeness · citation grounding · voice fit",
     "cta": "The methodology behind this measurement"
+  },
+  "research_cards": {
+    "logos_label": "Working across",
+    "card1_title": "The Architecture Every Language Model Converges To",
+    "card1_desc": "Three numbers that hold within ±15% across 8 models from 4 organizations. One vanishes the moment you go to 1-bit weights.",
+    "card1_alt": "Per-layer attention temperature chart",
+    "card1_meta": "Part I · 7 min read",
+    "card2_title": "Deleting Paris from a Language Model",
+    "card2_desc": "A single rank-1 weight patch suppresses one fact at +0.02% perplexity. Audit-trail included.",
+    "card2_alt": "Surgical knowledge-edit benchmark chart",
+    "card2_meta": "Part II · 8 min read",
+    "card3_title": "When the Circuit Dissolves",
+    "card3_desc": "Two natively-trained 1-bit models, two organizations, same anomaly: structure gone, behavior survived.",
+    "card3_alt": "1-bit quantization dissolution chart",
+    "card3_meta": "Part III · 7 min read"
   }
 }

@@ -1159,5 +1159,20 @@
     "footnote": "[tk] valeurs provisoires ; remplacées par des chiffres mesurés issus d’une évaluation de 10 questions vanilla-vs-DFO avant publication.",
     "verdict_meta": "ρ de Spearman · exhaustivité tolérante à la longueur · ancrage des citations · adéquation de ton",
     "cta": "La méthodologie derrière cette mesure"
+  },
+  "research_cards": {
+    "logos_label": "Compatible avec",
+    "card1_title": "L'architecture vers laquelle converge tout modèle de langage",
+    "card1_desc": "Trois nombres qui se maintiennent à ±15% près sur 8 modèles issus de 4 organisations. L'un disparaît dès que vous passez aux poids 1-bit.",
+    "card1_alt": "Graphique de la température d'attention par couche",
+    "card1_meta": "Part I · 7 min de lecture",
+    "card2_title": "Effacer Paris d'un modèle de langage",
+    "card2_desc": "Un simple correctif de poids rank-1 supprime un fait avec une perplexity de +0.02%. Piste d'audit incluse.",
+    "card2_alt": "Graphique de référence d'édition chirurgicale des connaissances",
+    "card2_meta": "Part II · 8 min de lecture",
+    "card3_title": "Quand le circuit se dissout",
+    "card3_desc": "Deux modèles 1-bit entraînés nativement, deux organisations, même anomalie : la structure disparue, le comportement préservé.",
+    "card3_alt": "Graphique de dissolution de la quantification 1-bit",
+    "card3_meta": "Part III · 7 min de lecture"
   }
 }

@@ -1159,5 +1159,20 @@
     "footnote": "[tk] valori segnaposto; sostituiti con numeri misurati da una valutazione vanilla-vs-DFO di 10 domande prima della pubblicazione.",
     "verdict_meta": "ρ di Spearman · completezza tollerante alla lunghezza · ancoraggio delle citazioni · corrispondenza di voce",
     "cta": "La metodologia alla base di questa misurazione"
+  },
+  "research_cards": {
+    "logos_label": "Operativo su",
+    "card1_title": "L'architettura verso cui converge ogni modello linguistico",
+    "card1_desc": "Tre numeri che si mantengono entro ±15% su 8 modelli di 4 organizzazioni. Uno scompare nel momento in cui si passa a pesi 1-bit.",
+    "card1_alt": "Grafico della temperatura di attenzione per layer",
+    "card1_meta": "Part I · 7 min di lettura",
+    "card2_title": "Cancellare Parigi da un modello linguistico",
+    "card2_desc": "Una singola patch di pesi rank-1 sopprime un fatto con una perplexity di +0.02%. Tracciabilità completa inclusa.",
+    "card2_alt": "Grafico di benchmark per la modifica chirurgica della conoscenza",
+    "card2_meta": "Part II · 8 min di lettura",
+    "card3_title": "Quando il circuito si dissolve",
+    "card3_desc": "Due modelli 1-bit addestrati nativamente, due organizzazioni, la stessa anomalia: struttura scomparsa, comportamento sopravvissuto.",
+    "card3_alt": "Grafico di dissoluzione della quantizzazione 1-bit",
+    "card3_meta": "Part III · 7 min di lettura"
   }
 }

@@ -1159,5 +1159,20 @@
     "footnote": "[tk] 占位数值；在发布前将替换为来自 10 题 vanilla 与 DFO 对照评测的测量数据。",
     "verdict_meta": "Spearman ρ · 长度容差完整性 · 引用依据度 · 声音契合度",
     "cta": "该测量背后的方法论"
+  },
+  "research_cards": {
+    "logos_label": "研究覆盖",
+    "card1_title": "所有语言模型趋同的架构",
+    "card1_desc": "在来自 4 家机构的 8 个模型中，三项指标始终保持在 ±15% 以内。一旦切换至 1-bit 权重，其中一项便即刻消失。",
+    "card1_alt": "逐层注意力温度图表",
+    "card1_meta": "Part I · 7 分钟阅读",
+    "card2_title": "从语言模型中删除巴黎",
+    "card2_desc": "一个 rank-1 权重补丁以 +0.02% 的 perplexity 抑制了一项事实。附审计追踪记录。",
+    "card2_alt": "精准知识编辑基准图表",
+    "card2_meta": "Part II · 8 分钟阅读",
+    "card3_title": "当回路消融时",
+    "card3_desc": "两个原生训练的 1-bit 模型，两家机构，同一异常：结构消失，行为犹存。",
+    "card3_alt": "1-bit 量化消融图表",
+    "card3_meta": "Part III · 7 分钟阅读"
   }
 }

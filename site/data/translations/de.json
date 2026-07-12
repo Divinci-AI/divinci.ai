@@ -1159,5 +1159,20 @@
     "footnote": "[tk] Platzhalterwerte; werden vor der Veröffentlichung durch gemessene Zahlen aus einem 10-Fragen-Vanilla-vs-DFO-Eval ersetzt.",
     "verdict_meta": "Spearman ρ · längentolerante Vollständigkeit · Zitationsbegründung · Voice-Fit",
     "cta": "Die Methodik hinter dieser Messung"
+  },
+  "research_cards": {
+    "logos_label": "Über alle hinweg im Einsatz",
+    "card1_title": "Die Architektur, auf die jedes Sprachmodell konvergiert",
+    "card1_desc": "Drei Zahlen, die innerhalb von ±15% über 8 Modelle von 4 Organisationen hinweg konstant bleiben. Eine verschwindet in dem Moment, in dem Sie zu 1-bit-Gewichten wechseln.",
+    "card1_alt": "Diagramm zur Aufmerksamkeits-Temperatur pro Schicht",
+    "card1_meta": "Part I · 7 Min. Lesezeit",
+    "card2_title": "Paris aus einem Sprachmodell löschen",
+    "card2_desc": "Ein einzelner rank-1-Gewichts-Patch unterdrückt eine Tatsache bei +0.02% perplexity. Inklusive Audit-Trail.",
+    "card2_alt": "Diagramm zum chirurgischen Wissens-Edit-Benchmark",
+    "card2_meta": "Part II · 8 Min. Lesezeit",
+    "card3_title": "Wenn sich der Schaltkreis auflöst",
+    "card3_desc": "Zwei nativ trainierte 1-bit-Modelle, zwei Organisationen, dieselbe Anomalie: Struktur verschwunden, Verhalten überlebt.",
+    "card3_alt": "Diagramm zur Auflösung der 1-bit-Quantisierung",
+    "card3_meta": "Part III · 7 Min. Lesezeit"
   }
 }

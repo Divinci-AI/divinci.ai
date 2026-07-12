@@ -1159,5 +1159,20 @@
     "footnote": "[tk] tijdelijke waarden; vervangen door gemeten getallen uit een 10-vragen vanilla-vs-DFO-evaluatie vóór publicatie.",
     "verdict_meta": "Spearman ρ · lengte-tolerante volledigheid · citaatverankering · stemovereenkomst",
     "cta": "De methodologie achter deze meting"
+  },
+  "research_cards": {
+    "logos_label": "Werken met",
+    "card1_title": "De architectuur waar elk taalmodel naartoe convergeert",
+    "card1_desc": "Drie getallen die binnen ±15% standhouden over 8 modellen van 4 organisaties. Eén verdwijnt op het moment dat u naar 1-bit gewichten gaat.",
+    "card1_alt": "Grafiek van de aandachtstemperatuur per laag",
+    "card1_meta": "Part I · 7 min lezen",
+    "card2_title": "Parijs verwijderen uit een taalmodel",
+    "card2_desc": "Eén enkele rank-1 weight-patch onderdrukt één feit bij +0.02% perplexity. Audit-trail inbegrepen.",
+    "card2_alt": "Grafiek van de chirurgische kennis-edit-benchmark",
+    "card2_meta": "Part II · 8 min lezen",
+    "card3_title": "Wanneer het circuit oplost",
+    "card3_desc": "Twee natively getrainde 1-bit modellen, twee organisaties, dezelfde anomalie: structuur weg, gedrag overleefd.",
+    "card3_alt": "Grafiek van de 1-bit-quantiseringsoplossing",
+    "card3_meta": "Part III · 7 min lezen"
   }
 }

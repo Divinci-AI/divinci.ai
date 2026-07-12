@@ -1159,5 +1159,20 @@
     "footnote": "[tk] valores de marcador de posición; sustituidos por cifras medidas de una evaluación de 10 preguntas vanilla frente a DFO antes de la publicación.",
     "verdict_meta": "Spearman ρ · completitud tolerante a la longitud · fundamentación de citas · ajuste de voz",
     "cta": "La metodología detrás de esta medición"
+  },
+  "research_cards": {
+    "logos_label": "Trabajando con",
+    "card1_title": "La arquitectura a la que converge todo modelo de lenguaje",
+    "card1_desc": "Tres números que se mantienen dentro de ±15% en 8 modelos de 4 organizaciones. Uno desaparece en el momento en que se pasa a pesos de 1-bit.",
+    "card1_alt": "Gráfico de temperatura de atención por capa",
+    "card1_meta": "Parte I · 7 min de lectura",
+    "card2_title": "Borrar París de un modelo de lenguaje",
+    "card2_desc": "Un único parche de pesos rank-1 suprime un hecho con +0.02% de perplexity. Registro de auditoría incluido.",
+    "card2_alt": "Gráfico de referencia de edición de conocimiento quirúrgica",
+    "card2_meta": "Parte II · 8 min de lectura",
+    "card3_title": "Cuando el circuito se disuelve",
+    "card3_desc": "Dos modelos de 1-bit entrenados de forma nativa, dos organizaciones, la misma anomalía: la estructura desapareció, el comportamiento sobrevivió.",
+    "card3_alt": "Gráfico de disolución de cuantización de 1-bit",
+    "card3_meta": "Parte III · 7 min de lectura"
   }
 }
