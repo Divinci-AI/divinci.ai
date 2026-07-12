@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Vorher-nachher Gate-Scores für fünf Probes. Das gezielte Paris→Hauptstadt-Merkmal bricht von 18.10 auf nicht vorhanden zusammen, während vier unverwandte Probes innerhalb des Messrauschens unverändert bleiben.">
+  <title>DELETE-Patch — Chirurgisch vs. Kollateral</title>
+  <rect width="760" height="420" fill="#faf8f5"/>
+
+  <!-- Title -->
+  <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">Vorher vs. nachher: rank-1 DELETE-Patch</text>
+  <text x="40" y="56" font-size="12" fill="#6b5d4f">Ein Merkmal bricht 18.10 → nicht vorhanden zusammen. Jede andere Probe bleibt innerhalb ~1 Punkt unberührt.</text>
+
+  <!-- Axis & legend -->
+  <g stroke="#d4c8b0" font-size="10" fill="#3a2818">
+    <line x1="260" y1="80" x2="260" y2="340" stroke="#2d3c34" stroke-width="1.2"/>
+    <line x1="260" y1="340" x2="700" y2="340" stroke="#2d3c34" stroke-width="1.2"/>
+    <!-- Gridlines: 0, 5, 10, 15, 20 -->
+    <line x1="260" y1="340" x2="260" y2="342"/>
+    <text stroke="none" x="260" y="356" text-anchor="middle">0</text>
+    <line x1="370" y1="340" x2="370" y2="342"/>
+    <text stroke="none" x="370" y="356" text-anchor="middle">5</text>
+    <line x1="480" y1="340" x2="480" y2="342"/>
+    <text stroke="none" x="480" y="356" text-anchor="middle">10</text>
+    <line x1="590" y1="340" x2="590" y2="342"/>
+    <text stroke="none" x="590" y="356" text-anchor="middle">15</text>
+    <line x1="700" y1="340" x2="700" y2="342"/>
+    <text stroke="none" x="700" y="356" text-anchor="middle">20</text>
+    <text stroke="none" x="480" y="376" text-anchor="middle" font-size="11" fill="#6b5d4f" font-style="italic">Gate-Score / Stärke der Probe-Assoziation →</text>
+  </g>
+
+  <!-- Mapping: 0 → 260, 20 → 700, so px(v) = 260 + v * 22 -->
+  <!-- Bar height 14, pair height 34, group y-start 92 -->
+
+  <g font-size="11">
+    <!-- Row 1: The capital of France is — THE TARGET -->
+    <text x="252" y="110" text-anchor="end" fill="#2d3c34" font-weight="600">"Die Hauptstadt von Frankreich ist"</text>
+    <!-- Before (dark/muted) -->
+    <rect x="260" y="98" width="398" height="12" fill="#2d5a4f"/>
+    <text x="665" y="108" fill="#1e3a2b" font-size="10" font-weight="600">18.10</text>
+    <!-- After (amber = edit target) -->
+    <rect x="260" y="112" width="0" height="12" fill="#a04848" stroke="#a04848" stroke-width="1.5"/>
+    <line x1="260" y1="118" x2="270" y2="118" stroke="#a04848" stroke-width="2"/>
+    <text x="278" y="122" fill="#7a2828" font-size="10" font-weight="700">ABWESEND (100% unterdrückt)</text>
+
+    <!-- Row 2: The Eiffel Tower is in — unchanged -->
+    <text x="252" y="160" text-anchor="end" fill="#4a3a2a">"Der Eiffel-Turm steht in"</text>
+    <rect x="260" y="148" width="330" height="12" fill="#2d5a4f" opacity="0.55"/>
+    <text x="597" y="158" fill="#6b5d4f" font-size="10">15.0</text>
+    <rect x="260" y="162" width="330" height="12" fill="#5a8a7f"/>
+    <text x="597" y="172" fill="#2d5a4f" font-size="10">15.0</text>
+
+    <!-- Row 3: Seoul is the capital of — unchanged (different feature) -->
+    <text x="252" y="210" text-anchor="end" fill="#4a3a2a">"Seoul ist die Hauptstadt von"</text>
+    <rect x="260" y="198" width="396" height="12" fill="#2d5a4f" opacity="0.55"/>
+    <text x="663" y="208" fill="#6b5d4f" font-size="10">18.0</text>
+    <rect x="260" y="212" width="396" height="12" fill="#5a8a7f"/>
+    <text x="663" y="222" fill="#2d5a4f" font-size="10">17.9</text>
+
+    <!-- Row 4: France is famous for — unchanged -->
+    <text x="252" y="260" text-anchor="end" fill="#4a3a2a">"Frankreich ist bekannt für"</text>
+    <rect x="260" y="248" width="220" height="12" fill="#2d5a4f" opacity="0.55"/>
+    <text x="487" y="258" fill="#6b5d4f" font-size="10">10.0</text>
+    <rect x="260" y="262" width="220" height="12" fill="#5a8a7f"/>
+    <text x="487" y="272" fill="#2d5a4f" font-size="10">10.0</text>
+
+    <!-- Row 5: WikiText-103 perplexity -->
+    <text x="252" y="310" text-anchor="end" fill="#4a3a2a" font-style="italic">WikiText-103 perplexity</text>
+    <rect x="260" y="298" width="300" height="12" fill="#2d5a4f" opacity="0.55"/>
+    <text x="565" y="308" fill="#6b5d4f" font-size="10">Baseline</text>
+    <rect x="260" y="312" width="301" height="12" fill="#5a8a7f"/>
+    <text x="567" y="322" fill="#2d5a4f" font-size="10">+0.02%</text>
+  </g>
+
+  <!-- Legend -->
+  <g font-size="11" fill="#4a3a2a">
+    <rect x="260" y="390" width="14" height="10" fill="#2d5a4f" opacity="0.55"/>
+    <text x="280" y="399">vor Patch</text>
+    <rect x="390" y="390" width="14" height="10" fill="#5a8a7f"/>
+    <text x="410" y="399">nach Patch (unberührt)</text>
+    <rect x="570" y="390" width="14" height="10" fill="#a04848"/>
+    <text x="590" y="399">nach Patch (Ziel)</text>
+  </g>
+</svg>

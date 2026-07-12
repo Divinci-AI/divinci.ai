@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="var@64 عبر نماذج fp16 (0.84–0.87) مقابل نماذج 1-bit (0.079–0.147، قرب أرضية Marchenko-Pastur للمصفوفة العشوائية 0.09).">
+  <title>var@64 — الفجوة البنيوية بين fp16 و1-bit</title>
+  <rect width="760" height="440" fill="#faf8f5"/>
+
+  <!-- Title -->
+  <text x="40" y="36" font-size="16" font-weight="700" fill="#1e3a2b">var@64 — كسر تباين أعلى 64 قيمة مفردة</text>
+  <text x="40" y="56" font-size="12" fill="#6b5d4f">تركّز محوّلات fp16 نحو ≈85% من التباين في 64 اتجاهًا. تنهار نماذج 1-bit إلى أرضية المصفوفة العشوائية.</text>
+
+  <!-- Marchenko-Pastur reference band (shading) -->
+  <rect x="220" y="76" width="24" height="290" fill="#a04848" opacity="0.08"/>
+  <line x1="232" y1="76" x2="232" y2="366" stroke="#a04848" stroke-width="1" stroke-dasharray="4 3" opacity="0.6"/>
+  <text x="232" y="70" text-anchor="middle" font-size="10" fill="#a04848" font-style="italic">أرضية Marchenko-Pastur ≈ 0.09</text>
+
+  <!-- Axis: x = 0.00 → 1.00. px(v) = 200 + v * 500 -->
+  <g stroke="#d4c8b0" font-size="10" fill="#3a2818">
+    <line x1="200" y1="366" x2="700" y2="366" stroke="#2d3c34" stroke-width="1.2"/>
+    <line x1="200" y1="76" x2="200" y2="366" stroke="#2d3c34" stroke-width="1.2"/>
+    <!-- Gridlines at 0.0, 0.2, 0.4, 0.6, 0.8, 1.0 -->
+    <line x1="200" y1="366" x2="200" y2="370"/>
+    <text stroke="none" x="200" y="384" text-anchor="middle">0.00</text>
+    <line x1="300" y1="366" x2="300" y2="370"/>
+    <text stroke="none" x="300" y="384" text-anchor="middle">0.20</text>
+    <line x1="400" y1="366" x2="400" y2="370"/>
+    <text stroke="none" x="400" y="384" text-anchor="middle">0.40</text>
+    <line x1="500" y1="366" x2="500" y2="370"/>
+    <text stroke="none" x="500" y="384" text-anchor="middle">0.60</text>
+    <line x1="600" y1="366" x2="600" y2="370"/>
+    <text stroke="none" x="600" y="384" text-anchor="middle">0.80</text>
+    <line x1="700" y1="366" x2="700" y2="370"/>
+    <text stroke="none" x="700" y="384" text-anchor="middle">1.00</text>
+    <text stroke="none" x="450" y="408" text-anchor="middle" font-size="11" fill="#6b5d4f" font-style="italic">var@64 (كسر تباين أوزان FFN في أعلى 64 اتجاهًا مفردًا) →</text>
+  </g>
+
+  <!-- Bars. Height 24, gap 10 -->
+  <g font-size="11">
+    <!-- 1. Gemma 4 E2B — fp16 0.865 -->
+    <text x="192" y="104" text-anchor="end" fill="#1e3a2b" font-weight="600">Gemma 4 E2B · fp16</text>
+    <rect x="200" y="92" width="432" height="24" fill="#2d5a4f"/>
+    <text x="638" y="108" fill="#1e3a2b" font-weight="600">0.865</text>
+
+    <!-- 2. Qwen3-8B bf16 — 0.852 -->
+    <text x="192" y="138" text-anchor="end" fill="#1e3a2b" font-weight="600">Qwen3-8B · bf16</text>
+    <rect x="200" y="126" width="426" height="24" fill="#2d5a4f"/>
+    <text x="632" y="142" fill="#1e3a2b" font-weight="600">0.852</text>
+
+    <!-- 3. Llama 3.1-8B — 0.843 -->
+    <text x="192" y="172" text-anchor="end" fill="#1e3a2b" font-weight="600">Llama 3.1-8B · bf16</text>
+    <rect x="200" y="160" width="421" height="24" fill="#2d5a4f"/>
+    <text x="627" y="176" fill="#1e3a2b" font-weight="600">0.843</text>
+
+    <!-- 4. Ministral-3B — 0.820 -->
+    <text x="192" y="206" text-anchor="end" fill="#1e3a2b" font-weight="600">Ministral-3B · bf16</text>
+    <rect x="200" y="194" width="410" height="24" fill="#2d5a4f"/>
+    <text x="616" y="210" fill="#1e3a2b" font-weight="600">0.820</text>
+
+    <!-- fp16 cluster annotation -->
+    <line x1="200" y1="232" x2="700" y2="232" stroke="#2d5a4f" stroke-width="1" opacity="0.25"/>
+
+    <!-- 5. BitNet b1.58-2B-4T — 0.111 mean (range 0.079-0.147) — 1-bit -->
+    <text x="192" y="260" text-anchor="end" fill="#8a5a20" font-weight="600">BitNet b1.58-2B-4T · 1-bit</text>
+    <rect x="200" y="248" width="55.5" height="24" fill="#c08850"/>
+    <!-- Error bar for range 0.079-0.147 -->
+    <line x1="239.5" y1="260" x2="273.5" y2="260" stroke="#8a5a20" stroke-width="2"/>
+    <line x1="239.5" y1="255" x2="239.5" y2="265" stroke="#8a5a20" stroke-width="2"/>
+    <line x1="273.5" y1="255" x2="273.5" y2="265" stroke="#8a5a20" stroke-width="2"/>
+    <text x="285" y="264" fill="#8a5a20" font-weight="600">0.111 (0.079–0.147)</text>
+
+    <!-- 6. Bonsai 8B — 0.093 — 1-bit -->
+    <text x="192" y="294" text-anchor="end" fill="#8a5a20" font-weight="600">Bonsai 8B · 1-bit</text>
+    <rect x="200" y="282" width="46.5" height="24" fill="#c08850"/>
+    <text x="252" y="298" fill="#8a5a20" font-weight="600">0.093</text>
+
+    <!-- Random matrix -->
+    <text x="192" y="328" text-anchor="end" fill="#a04848" font-style="italic">مصفوفة عشوائية (Marchenko-Pastur)</text>
+    <rect x="200" y="316" width="45" height="24" fill="#a04848" opacity="0.7" stroke-dasharray="3 3" stroke="#a04848" stroke-width="1"/>
+    <text x="252" y="332" fill="#a04848" font-weight="600" font-style="italic">≈ 0.090</text>
+  </g>
+
+  <!-- Legend -->
+  <g font-size="11" fill="#4a3a2a">
+    <rect x="200" y="418" width="14" height="10" fill="#2d5a4f"/>
+    <text x="220" y="426">fp16 / bf16 (مُهيكلة)</text>
+    <rect x="360" y="418" width="14" height="10" fill="#c08850"/>
+    <text x="380" y="426">1-bit / ثلاثية (مذابة)</text>
+    <rect x="530" y="418" width="14" height="10" fill="#a04848" opacity="0.7"/>
+    <text x="550" y="426">تنبؤ المصفوفة العشوائية</text>
+  </g>
+</svg>
