@@ -1121,5 +1121,43 @@
     "body_2": "Der Viewer ermöglicht es Ihnen, den FFN-Feature-Raum in 3D zu umkreisen. Die Blogreihe führt von den universellen Konstanten zu chirurgischen Edits. LarQL ist Open Source: github.com/Divinci-AI/larql",
     "cta_primary": "Forschung lesen →",
     "cta_secondary": "Auf Hugging Face stöbern"
+  },
+  "compare_band": {
+    "edition_prefix": "Ausgabe",
+    "arena_run": "Arena-Lauf",
+    "eyebrow": "nebeneinander · gleicher Prompt, zwei Systeme",
+    "title_same": "Dieselbe Frage.",
+    "title_diff_word": "Unterschiedliche",
+    "title_answers": "Antworten.",
+    "question": "Ist Hähnchen gesund?",
+    "reviewer_vanilla": [
+      "„ausgewogene Ernährung“ — gegen welches Framework? nicht zitiert.",
+      "„die meisten Menschen“ — der bereitgestellte Experte widerspricht.",
+      "„mäßiger Verzehr“ — vage, keine konkrete Anleitung.",
+      "ignoriert oxidierte Lipide / IGF-1-Achse völlig."
+    ],
+    "vanilla_label": "Vanilla Claude · generisches LLM",
+    "bubble_claude_sender": "Claude (ohne RAG)",
+    "bubble_claude_body": "Hähnchen kann Teil einer <span class='uline issue' style='--draw-delay:.3s'>ausgewogenen Ernährung</span> sein und liefert mageres Protein sowie essenzielle Nährstoffe wie B-Vitamine und Selen. Für <span class='uline issue' style='--draw-delay:.45s'>die meisten Menschen</span> gilt <span class='uline issue' style='--draw-delay:.6s'>mäßiger Verzehr</span> von hautlosem, richtig zubereitetem Hähnchen zusammen mit Gemüse und Vollkornprodukten als gesund.",
+    "annotation_vanilla": "keine Quelle · generische Rahmung · keine Voice-Übereinstimmung · vage Anleitung",
+    "badge_specificity": "Spezifität",
+    "badge_citations": "Zitate",
+    "badge_voice_fit": "Voice-Fit",
+    "badge_expert": "Experte",
+    "divinci_label": "Divinci DFO + RAG · experten-kalibriert",
+    "bubble_divinci_sender": "Divinci · Fuhrman-Release",
+    "bubble_divinci_body": "Gemäß dem <span class='uline win' style='--draw-delay:1.1s'>„Eat-to-Live“-Framework</span>, nein. Hähnchen enthält <span class='uline win' style='--draw-delay:1.25s'>oxidierte Lipide</span> und <span class='uline win' style='--draw-delay:1.4s'>erhöhtes IGF-1</span> und verdrängt nährstoffdichte Pflanzenlebensmittel, die die Beschwerden umkehren, die Sie wahrscheinlich behandeln wollen. Wenn Sie sich im Übergang befinden, betrachten Sie es als <span class='uline win' style='--draw-delay:1.55s'>gelegentliches Würzmittel, nicht als Grundnahrungsmittel</span>. [Source: Fuhrman § 3.2]",
+    "annotation_divinci": "zitiert Fuhrman-Korpus · domänenspezifisches Framework angewendet · Voice-Match · konkrete Anleitung",
+    "reviewer_divinci": [
+      "wendet das tatsächliche Framework des bereitgestellten Experten an.",
+      "zitiert das Korpus-Segment; nachvollziehbare Herkunft.",
+      "konkrete, spezifische Anleitung — keine vage Empfehlung.",
+      "entspricht der etablierten Stimme & Prioritäten des Experten."
+    ],
+    "verdict_prefix": "Gewinnt",
+    "verdict_suffix": "Bewertungsraster",
+    "footnote": "[tk] Platzhalterwerte; werden vor der Veröffentlichung durch gemessene Zahlen aus einem 10-Fragen-Vanilla-vs-DFO-Eval ersetzt.",
+    "verdict_meta": "Spearman ρ · längentolerante Vollständigkeit · Zitationsbegründung · Voice-Fit",
+    "cta": "Die Methodik hinter dieser Messung"
   }
 }

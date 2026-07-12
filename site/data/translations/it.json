@@ -1121,5 +1121,43 @@
     "body_2": "Il viewer ti permette di orbitare lo spazio delle feature FFN in 3D. La serie di blog percorre dalle costanti universali alle modifiche chirurgiche. LarQL è open-source: github.com/Divinci-AI/larql",
     "cta_primary": "Leggi la ricerca →",
     "cta_secondary": "Sfoglia su Hugging Face"
+  },
+  "compare_band": {
+    "edition_prefix": "Edizione",
+    "arena_run": "sessione arena",
+    "eyebrow": "affiancato · stesso prompt, due sistemi",
+    "title_same": "Stessa domanda.",
+    "title_diff_word": "Diverse",
+    "title_answers": "risposte.",
+    "question": "Il pollo è salutare?",
+    "reviewer_vanilla": [
+      "«dieta equilibrata» — rispetto a quale quadro di riferimento? non citata.",
+      "«la maggior parte delle persone» — l'esperto distribuito in produzione dissent.",
+      "«consumo moderato» — vago, nessuna indicazione concreta.",
+      "ignora del tutto i lipidi ossidati / l'asse IGF-1."
+    ],
+    "vanilla_label": "Vanilla Claude · LLM generico",
+    "bubble_claude_sender": "Claude (senza RAG)",
+    "bubble_claude_body": "Il pollo può far parte di una <span class='uline issue' style='--draw-delay:.3s'>dieta equilibrata</span>, fornendo proteine magre e nutrienti essenziali come le vitamine del gruppo B e il selenio. Per <span class='uline issue' style='--draw-delay:.45s'>la maggior parte delle persone</span>, un <span class='uline issue' style='--draw-delay:.6s'>consumo moderato</span> di pollo senza pelle, cotto adeguatamente, insieme a verdure e cereali integrali è considerato salutare.",
+    "annotation_vanilla": "nessuna fonte · quadro generico · nessuna corrispondenza di voce · indicazioni vaghe",
+    "badge_specificity": "Specificità",
+    "badge_citations": "Citazioni",
+    "badge_voice_fit": "Corrispondenza di voce",
+    "badge_expert": "Esperto",
+    "divinci_label": "Divinci DFO + RAG · calibrato sull'esperto",
+    "bubble_divinci_sender": "Divinci · release Fuhrman",
+    "bubble_divinci_body": "In base al <span class='uline win' style='--draw-delay:1.1s'>quadro eat-to-live</span>, no. Il pollo contiene <span class='uline win' style='--draw-delay:1.25s'>lipidi ossidati</span> e <span class='uline win' style='--draw-delay:1.4s'>IGF-1 elevato</span>, e sostituisce alimenti vegetali ricchi di nutrienti che contrastano le condizioni che è probabile voglia affrontare. Se è in fase di transizione, lo consideri una <span class='uline win' style='--draw-delay:1.55s'>condimento occasionale, non un alimento base della dieta</span>. [Source: Fuhrman § 3.2]",
+    "annotation_divinci": "cita il corpus Fuhrman · quadro di dominio applicato · corrispondenza di voce · indicazioni specifiche",
+    "reviewer_divinci": [
+      "applica il quadro reale dell'esperto distribuito in produzione.",
+      "cita il segmento del corpus; provenienza verificabile.",
+      "indicazioni concrete e specifiche — non consigli vaghi.",
+      "corrisponde alla voce e alle priorità consolidate dell'esperto."
+    ],
+    "verdict_prefix": "Vince",
+    "verdict_suffix": "griglie",
+    "footnote": "[tk] valori segnaposto; sostituiti con numeri misurati da una valutazione vanilla-vs-DFO di 10 domande prima della pubblicazione.",
+    "verdict_meta": "ρ di Spearman · completezza tollerante alla lunghezza · ancoraggio delle citazioni · corrispondenza di voce",
+    "cta": "La metodologia alla base di questa misurazione"
   }
 }

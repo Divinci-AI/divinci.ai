@@ -1121,5 +1121,43 @@
     "body_2": "ビューアーでは、FFN特徴空間を3Dでオービット表示できます。ブログシリーズでは、普遍的な定数から外科的な編集までを解説しています。LarQLはオープンソースです：github.com/Divinci-AI/larql",
     "cta_primary": "研究内容を読む →",
     "cta_secondary": "Hugging Faceで閲覧"
+  },
+  "compare_band": {
+    "edition_prefix": "エディション",
+    "arena_run": "アリーナ・ラン",
+    "eyebrow": "並べて比較 · 同じプロンプト、2つのシステム",
+    "title_same": "同じ質問。",
+    "title_diff_word": "異なる",
+    "title_answers": "回答。",
+    "question": "鶏肉は健康的ですか？",
+    "reviewer_vanilla": [
+      "「バランスの取れた食事」— どのフレームワークに基づくのか？ 引用されていません。",
+      "「多くの人」— 導入された専門家は異論を唱えています。",
+      "「適度な摂取」— 曖昧で、具体的な指針がありません。",
+      "酸化脂質 / IGF-1 経路を完全に無視しています。"
+    ],
+    "vanilla_label": "Vanilla Claude · 汎用LLM",
+    "bubble_claude_sender": "Claude (RAGなし)",
+    "bubble_claude_body": "鶏肉は<span class='uline issue' style='--draw-delay:.3s'>バランスの取れた食事</span>の一部となり得ます。これは、B群ビタミンやセレンなどの除脂肪タンパク質と必須栄養素を提供します。<span class='uline issue' style='--draw-delay:.45s'>多くの人</span>にとって、皮なしで適切に調理された鶏肉を野菜や全粒穀物と共に<span class='uline issue' style='--draw-delay:.6s'>適度に摂取</span>することは、健康的であると考えられています。",
+    "annotation_vanilla": "出典なし · 一般的な枠組み · 声の一致なし · 曖昧な指針",
+    "badge_specificity": "具体性",
+    "badge_citations": "引用",
+    "badge_voice_fit": "声の適合",
+    "badge_expert": "専門家",
+    "divinci_label": "Divinci DFO + RAG · 専門家校正済み",
+    "bubble_divinci_sender": "Divinci · Fuhrmanリリース",
+    "bubble_divinci_body": "<span class='uline win' style='--draw-delay:1.1s'>食べて生きるフレームワーク</span>に基づくと、いいえ。鶏肉には<span class='uline win' style='--draw-delay:1.25s'>酸化脂質</span>と<span class='uline win' style='--draw-delay:1.4s'>上昇したIGF-1</span>が含まれ、おそらく解消しようとしている状態を改善する栄養密度の高い植物性食品を排除します。移行期にある場合は、それを<span class='uline win' style='--draw-delay:1.55s'>時折の調味料として、主食ではなく</span>扱ってください。[Source: Fuhrman § 3.2]",
+    "annotation_divinci": "Fuhrmanコーパスを引用 · ドメインフレームワークを適用 · 声の一致 · 具体的な指針",
+    "reviewer_divinci": [
+      "導入された専門家の実際のフレームワークを適用しています。",
+      "コーパスチャンクを引用しており、監査可能な出所です。",
+      "具体的で明確な指針 — 曖昧な助言ではありません。",
+      "専門家の確立された声と優先順位に一致しています。"
+    ],
+    "verdict_prefix": "獲得",
+    "verdict_suffix": "ルーブリック",
+    "footnote": "[tk] プレースホルダーの値。公開前に、バニラ対DFOの10問評価から測定された数値に置き換えられます。",
+    "verdict_meta": "Spearman ρ · 長さ許容型完全性 · 引用の根拠 · 声の適合",
+    "cta": "この測定の背後にある手法"
   }
 }

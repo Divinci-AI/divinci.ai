@@ -1121,5 +1121,43 @@
     "body_2": "La visionneuse vous permet d'orbiter dans l'espace de caractéristiques FFN en 3D. La série de blogs parcourt des constantes universelles aux modifications chirurgicales. LarQL est open-source : github.com/Divinci-AI/larql",
     "cta_primary": "Lire la recherche →",
     "cta_secondary": "Parcourir sur Hugging Face"
+  },
+  "compare_band": {
+    "edition_prefix": "Édition",
+    "arena_run": "test comparatif",
+    "eyebrow": "côte à côte · même invite, deux systèmes",
+    "title_same": "Même question.",
+    "title_diff_word": "Différentes",
+    "title_answers": "réponses.",
+    "question": "Le poulet est-il bon pour la santé ?",
+    "reviewer_vanilla": [
+      "« régime équilibré » — selon quel référentiel ? non cité.",
+      "« la plupart des gens » — l’expert déployé n’est pas d’accord.",
+      "« consommation modérée » — vague, aucune consigne concrète.",
+      "ignore totalement les lipides oxydés / l’axe IGF-1."
+    ],
+    "vanilla_label": "Vanilla Claude · LLM générique",
+    "bubble_claude_sender": "Claude (sans RAG)",
+    "bubble_claude_body": "Le poulet peut faire partie d’un <span class='uline issue' style='--draw-delay:.3s'>régime équilibré</span>, apportant des protéines maigres et des nutriments essentiels tels que les vitamines B et le sélénium. Pour <span class='uline issue' style='--draw-delay:.45s'>la plupart des gens</span>, une <span class='uline issue' style='--draw-delay:.6s'>consommation modérée</span> de poulet sans peau et correctement cuit, accompagné de légumes et de céréales complètes, est considérée comme saine.",
+    "annotation_vanilla": "aucune source · cadrage générique · aucune adéquation de ton · consignes vagues",
+    "badge_specificity": "Spécificité",
+    "badge_citations": "Citations",
+    "badge_voice_fit": "Adéquation de ton",
+    "badge_expert": "Expert",
+    "divinci_label": "Divinci DFO + RAG · calibré par des experts",
+    "bubble_divinci_sender": "Divinci · version Fuhrman",
+    "bubble_divinci_body": "Selon le <span class='uline win' style='--draw-delay:1.1s'>cadre « manger pour vivre »</span>, non. Le poulet contient des <span class='uline win' style='--draw-delay:1.25s'>lipides oxydés</span> et un <span class='uline win' style='--draw-delay:1.4s'>taux élevé d’IGF-1</span>, et remplace des aliments végétaux riches en nutriments qui inversent les affections que vous cherchez probablement à traiter. Si vous êtes en transition, considérez-le comme un <span class='uline win' style='--draw-delay:1.55s'>assaisonnement occasionnel, et non comme un aliment de base</span>. [Source: Fuhrman § 3.2]",
+    "annotation_divinci": "cite le corpus Fuhrman · cadre métier appliqué · adéquation de ton · consignes précises",
+    "reviewer_divinci": [
+      "applique le cadre réel de l’expert déployé.",
+      "cite le fragment du corpus ; provenance auditable.",
+      "consignes concrètes et précises — pas de conseils vagues.",
+      "correspond au ton et aux priorités établis de l’expert."
+    ],
+    "verdict_prefix": "Remporte",
+    "verdict_suffix": "grilles",
+    "footnote": "[tk] valeurs provisoires ; remplacées par des chiffres mesurés issus d’une évaluation de 10 questions vanilla-vs-DFO avant publication.",
+    "verdict_meta": "ρ de Spearman · exhaustivité tolérante à la longueur · ancrage des citations · adéquation de ton",
+    "cta": "La méthodologie derrière cette mesure"
   }
 }

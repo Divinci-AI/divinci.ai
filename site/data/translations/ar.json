@@ -1132,5 +1132,43 @@
     "cta_secondary": "تصفّح على Hugging Face",
     "eyebrow": "أبحاث مفتوحة",
     "title": "أوزان مفتوحة، تصحيحات مفتوحة، vIndexes مفتوحة."
+  },
+  "compare_band": {
+    "edition_prefix": "الإصدار",
+    "arena_run": "تشغيل الساحة",
+    "eyebrow": "وجهًا لوجه · نفس المُحفّز، نظامان",
+    "title_same": "نفس السؤال.",
+    "title_diff_word": "مختلفة",
+    "title_answers": "الإجابات.",
+    "question": "هل الدجاج صحي؟",
+    "reviewer_vanilla": [
+      "«نظام غذائي متوازن» — مقابل أي إطار؟ لم يُستشهد بمصدر.",
+      "«معظم الناس» — يختلف الخبير المنشور في الرأي.",
+      "«استهلاك معتدل» — غامض، بلا توجيه ملموس.",
+      "يتجاهل الدهون المؤكسدة / محور IGF-1 كليًا."
+    ],
+    "vanilla_label": "Vanilla Claude · نموذج لغوي عام",
+    "bubble_claude_sender": "Claude (بدون RAG)",
+    "bubble_claude_body": "يمكن أن يكون الدجاج جزءًا من <span class='uline issue' style='--draw-delay:.3s'>نظام غذائي متوازن</span>، إذ يوفّر بروتينًا خاليًا من الدهون وعناصر غذائية أساسية مثل فيتامينات B والسيلينيوم. وبالنسبة لـ<span class='uline issue' style='--draw-delay:.45s'>معظم الناس</span>، يُعدّ <span class='uline issue' style='--draw-delay:.6s'>استهلاك معتدل</span> للدجاج منزوع الجلد والمطهوّ جيدًا إلى جانب الخضروات والحبوب الكاملة أمرًا صحيًا.",
+    "annotation_vanilla": "بلا مصدر · تأطير عام · عدم تطابق الصوت · توجيه غامض",
+    "badge_specificity": "التحديد",
+    "badge_citations": "الاستشهادات",
+    "badge_voice_fit": "تطابق الصوت",
+    "badge_expert": "خبير",
+    "divinci_label": "Divinci DFO + RAG · معايرة خبيرة",
+    "bubble_divinci_sender": "Divinci · إصدار Fuhrman",
+    "bubble_divinci_body": "وفقًا <span class='uline win' style='--draw-delay:1.1s'>لإطار الأكل من أجل الحياة</span>، لا. يحمل الدجاج <span class='uline win' style='--draw-delay:1.25s'>دهونًا مؤكسدة</span> و<span class='uline win' style='--draw-delay:1.4s'>مستويات مرتفعة من IGF-1</span>، ويزيح الأطعمة النباتية الكثيفة العناصر الغذائية والتي تعكس الحالات التي تحاول على الأرجح معالجتها. وإذا كنت تنتقل تدريجيًا، تعامل معه كـ<span class='uline win' style='--draw-delay:1.55s'>نكهة عرضية، لا كعنصر أساسي في النظام الغذائي</span>. [Source: Fuhrman § 3.2]",
+    "annotation_divinci": "يستشهد بمجموعة Fuhrman · تطبيق إطار المجال · تطابق الصوت · توجيه محدد",
+    "reviewer_divinci": [
+      "يطبّق الإطار الفعلي للخبير المنشور.",
+      "يستشهد بجزء المجموعة؛ أصل قابل للتدقيق.",
+      "توجيه ملموس ومحدد — لا نصيحة غامضة.",
+      "يتطابق مع صوت وأولويات الخبير المعتمدة."
+    ],
+    "verdict_prefix": "يتفوّق في",
+    "verdict_suffix": "معايير",
+    "footnote": "[tk] قيم مؤقّتة؛ تُستبدل بأرقام مقاسة من تقييم من 10 أسئلة بين Vanilla Claude وDFO قبل النشر.",
+    "verdict_meta": "Spearman ρ · اكتمال متسامح مع الطول · تأصيل الاستشهاد · تطابق الصوت",
+    "cta": "المنهجية وراء هذا القياس"
   }
 }

@@ -1121,5 +1121,43 @@
     "body_2": "查看器可让您在 3D 中环绕 FFN 特征空间进行观察。博客系列从通用常数讲解到手术式精确修改。LarQL 为开源项目：github.com/Divinci-AI/larql",
     "cta_primary": "阅读研究 →",
     "cta_secondary": "在 Hugging Face 上浏览"
+  },
+  "compare_band": {
+    "edition_prefix": "版本",
+    "arena_run": "竞技场评测",
+    "eyebrow": "并排对比 · 同一提示词，两套系统",
+    "title_same": "同一个问题。",
+    "title_diff_word": "不同的",
+    "title_answers": "回答。",
+    "question": "吃鸡肉健康吗？",
+    "reviewer_vanilla": [
+      "“均衡饮食” —— 依据哪套框架？未注明出处。",
+      "“大多数人” —— 已部署的专家并不同意。",
+      "“适量食用” —— 含糊，无具体指导。",
+      "完全忽略了氧化脂质 / IGF-1 轴。"
+    ],
+    "vanilla_label": "Vanilla Claude · 通用型 LLM",
+    "bubble_claude_sender": "Claude（无 RAG）",
+    "bubble_claude_body": "鸡肉可以是<span class='uline issue' style='--draw-delay:.3s'>均衡饮食</span>的一部分，能够提供瘦肉蛋白以及 B 族维生素、硒等必需营养素。对<span class='uline issue' style='--draw-delay:.45s'>大多数人</span>而言，将去皮、烹制得当的鸡肉与蔬菜和全谷物搭配，<span class='uline issue' style='--draw-delay:.6s'>适量食用</span>通常被认为是健康的。",
+    "annotation_vanilla": "无来源 · 通用化表述 · 声音不匹配 · 指导性模糊",
+    "badge_specificity": "具体性",
+    "badge_citations": "引用",
+    "badge_voice_fit": "声音契合度",
+    "badge_expert": "专家级",
+    "divinci_label": "Divinci DFO + RAG · 专家校准",
+    "bubble_divinci_sender": "Divinci · Fuhrman 版本",
+    "bubble_divinci_body": "依据<span class='uline win' style='--draw-delay:1.1s'>养生饮食框架</span>，答案是否定的。鸡肉含有<span class='uline win' style='--draw-delay:1.25s'>氧化脂质</span>和<span class='uline win' style='--draw-delay:1.4s'>升高的 IGF-1</span>，并且会挤占能够逆转你可能正试图改善之健康问题的营养密集型植物性食物。如果你正处于过渡期，应将其视为<span class='uline win' style='--draw-delay:1.55s'>偶尔的调味，而非饮食主食</span>。[Source: Fuhrman § 3.2]",
+    "annotation_divinci": "引用 Fuhrman 语料库 · 应用领域框架 · 声音匹配 · 具体指导",
+    "reviewer_divinci": [
+      "应用了已部署专家的实际框架。",
+      "引用语料库片段；来源可审计。",
+      "具体、明确的指导 —— 而非含糊的建议。",
+      "契合专家既有的声音与优先事项。"
+    ],
+    "verdict_prefix": "胜出",
+    "verdict_suffix": "项评分维度",
+    "footnote": "[tk] 占位数值；在发布前将替换为来自 10 题 vanilla 与 DFO 对照评测的测量数据。",
+    "verdict_meta": "Spearman ρ · 长度容差完整性 · 引用依据度 · 声音契合度",
+    "cta": "该测量背后的方法论"
   }
 }

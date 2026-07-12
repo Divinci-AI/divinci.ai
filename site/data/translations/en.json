@@ -1121,5 +1121,43 @@
     "body_2": "The viewer lets you orbit the FFN feature space in 3D. The blog series walks the universal-constants to surgical-edits. LarQL is open-source: github.com/Divinci-AI/larql",
     "cta_primary": "Read the research →",
     "cta_secondary": "Browse on Hugging Face"
+  },
+  "compare_band": {
+    "edition_prefix": "Edition",
+    "arena_run": "arena run",
+    "eyebrow": "side-by-side · same prompt, two systems",
+    "title_same": "Same question.",
+    "title_diff_word": "Different",
+    "title_answers": "answers.",
+    "question": "Is chicken healthy?",
+    "reviewer_vanilla": [
+      "“balanced diet” — against which framework? not cited.",
+      "“most people” — the deployed expert disagrees.",
+      "“moderate consumption” — vague, no concrete guidance.",
+      "ignores oxidized lipids / IGF-1 axis entirely."
+    ],
+    "vanilla_label": "Vanilla Claude · generic LLM",
+    "bubble_claude_sender": "Claude (no RAG)",
+    "bubble_claude_body": "Chicken can be part of a <span class='uline issue' style='--draw-delay:.3s'>balanced diet</span>, providing lean protein and essential nutrients like B vitamins and selenium. For <span class='uline issue' style='--draw-delay:.45s'>most people</span>, <span class='uline issue' style='--draw-delay:.6s'>moderate consumption</span> of skinless, properly cooked chicken alongside vegetables and whole grains is considered healthy.",
+    "annotation_vanilla": "no source · generic framing · no voice match · vague guidance",
+    "badge_specificity": "Specificity",
+    "badge_citations": "Citations",
+    "badge_voice_fit": "Voice fit",
+    "badge_expert": "Expert",
+    "divinci_label": "Divinci DFO + RAG · expert-calibrated",
+    "bubble_divinci_sender": "Divinci · Fuhrman release",
+    "bubble_divinci_body": "By the <span class='uline win' style='--draw-delay:1.1s'>eating-to-live framework</span>, no. Chicken carries <span class='uline win' style='--draw-delay:1.25s'>oxidized lipids</span> and <span class='uline win' style='--draw-delay:1.4s'>elevated IGF-1</span>, and displaces nutrient-dense plant foods that reverse the conditions you’re likely trying to address. If you’re transitioning, treat it as an <span class='uline win' style='--draw-delay:1.55s'>occasional flavoring, not a dietary staple</span>. [Source: Fuhrman § 3.2]",
+    "annotation_divinci": "cites Fuhrman corpus · domain framework applied · voice match · specific guidance",
+    "reviewer_divinci": [
+      "applies the deployed expert’s actual framework.",
+      "cites the corpus chunk; auditable provenance.",
+      "concrete, specific guidance — not vague advice.",
+      "matches the expert’s established voice & priorities."
+    ],
+    "verdict_prefix": "Wins",
+    "verdict_suffix": "rubrics",
+    "footnote": "[tk] placeholder values; replaced with measured numbers from a 10-question vanilla-vs-DFO eval before publish.",
+    "verdict_meta": "Spearman ρ · length-tolerant completeness · citation grounding · voice fit",
+    "cta": "The methodology behind this measurement"
   }
 }

@@ -1121,5 +1121,43 @@
     "body_2": "뷰어를 통해 FFN 특징 공간을 3D로 둘러볼 수 있습니다. 블로그 시리즈는 범용 상수에서 정밀 편집까지 안내합니다. LarQL은 오픈소스입니다: github.com/Divinci-AI/larql",
     "cta_primary": "연구 자료 보기 →",
     "cta_secondary": "Hugging Face에서 보기"
+  },
+  "compare_band": {
+    "edition_prefix": "에디션",
+    "arena_run": "아레나 실행",
+    "eyebrow": "나란히 비교 · 동일한 프롬프트, 두 시스템",
+    "title_same": "같은 질문.",
+    "title_diff_word": "다른",
+    "title_answers": "답변.",
+    "question": "닭고기가 건강에 좋을까요?",
+    "reviewer_vanilla": [
+      "“균형 잡힌 식단” — 어떤 프레임워크 기준인가요? 출처 없음.",
+      "“대부분의 사람들” — 배포된 전문가는 동의하지 않습니다.",
+      "“적당한 섭취” — 모호하며 구체적인 가이드가 없습니다.",
+      "산화 지질 / IGF-1 축을 완전히 무시합니다."
+    ],
+    "vanilla_label": "Vanilla Claude · 일반 LLM",
+    "bubble_claude_sender": "Claude (RAG 없음)",
+    "bubble_claude_body": "닭고기는 <span class='uline issue' style='--draw-delay:.3s'>균형 잡힌 식단</span>의 일부가 될 수 있으며, 저지방 단백질과 비타민 B군, 셀레늄과 같은 필수 영양소를 제공합니다. <span class='uline issue' style='--draw-delay:.45s'>대부분의 사람들</span>에게는, 채소와 통곡물과 함께 껍질을 제거하고 올바르게 조리한 닭고기의 <span class='uline issue' style='--draw-delay:.6s'>적당한 섭취</span>는 건강에 이로운 것으로 간주됩니다.",
+    "annotation_vanilla": "출처 없음 · 일반적 프레이밍 · 음성 일치 없음 · 모호한 가이드",
+    "badge_specificity": "구체성",
+    "badge_citations": "인용",
+    "badge_voice_fit": "음성 일치",
+    "badge_expert": "전문가",
+    "divinci_label": "Divinci DFO + RAG · 전문가 보정",
+    "bubble_divinci_sender": "Divinci · Fuhrman 릴리스",
+    "bubble_divinci_body": "‘먹어서 사는’ 프레임워크에 따르면, 아닙니다. 닭고기는 <span class='uline win' style='--draw-delay:1.1s'>산화 지질</span>과 <span class='uline win' style='--draw-delay:1.4s'>상승된 IGF-1</span>을 함유하고 있으며, 해결하고자 하는 상태를 역전시키는 영양 밀도가 높은 식물성 식품을 대체합니다. 전환 중이라면, 이를 <span class='uline win' style='--draw-delay:1.55s'>가끔 사용하는 조미료로, 주식이 아니라</span> 취급하세요. [Source: Fuhrman § 3.2]",
+    "annotation_divinci": "Fuhrman 말뭉치 인용 · 도메인 프레임워크 적용 · 음성 일치 · 구체적 가이드",
+    "reviewer_divinci": [
+      "배포된 전문가의 실제 프레임워크를 적용합니다.",
+      "말뭉치 청크를 인용하며, 감사 가능한 출처를 제공합니다.",
+      "구체적이고 명확한 가이드 — 모호한 조언이 아닙니다.",
+      "전문가의 확립된 어조와 우선순위와 일치합니다."
+    ],
+    "verdict_prefix": "승리",
+    "verdict_suffix": "루브릭",
+    "footnote": "[tk] 자리표시자 값; 게시 전 바닐라 대 DFO 10문항 평가에서 측정된 수치로 교체됩니다.",
+    "verdict_meta": "Spearman ρ · 길이 허용 완전성 · 인용 근거 · 음성 일치",
+    "cta": "이 측정의 방법론"
   }
 }

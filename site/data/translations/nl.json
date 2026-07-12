@@ -1121,5 +1121,43 @@
     "body_2": "De viewer laat u om de FFN-featureruimte in 3D draaien. De blogserie loopt van universele constanten naar chirurgische bewerkingen. LarQL is open-source: github.com/Divinci-AI/larql",
     "cta_primary": "Lees het onderzoek →",
     "cta_secondary": "Blader op Hugging Face"
+  },
+  "compare_band": {
+    "edition_prefix": "Editie",
+    "arena_run": "arena-ronde",
+    "eyebrow": "naast elkaar · dezelfde prompt, twee systemen",
+    "title_same": "Dezelfde vraag.",
+    "title_diff_word": "Verschillende",
+    "title_answers": "antwoorden.",
+    "question": "Is kip gezond?",
+    "reviewer_vanilla": [
+      "“gebalanceerd dieet” — ten opzichte van welk kader? niet geciteerd.",
+      "“de meeste mensen” — de ingezette expert is het oneens.",
+      "“matige consumptie” — vaag, geen concrete richtlijn.",
+      "negeert geoxideerde lipiden / de IGF-1-as volledig."
+    ],
+    "vanilla_label": "Vanilla Claude · generieke LLM",
+    "bubble_claude_sender": "Claude (geen RAG)",
+    "bubble_claude_body": "Kip kan deel uitmaken van een <span class='uline issue' style='--draw-delay:.3s'>gebalanceerd dieet</span>, met magere eiwitten en essentiële voedingsstoffen zoals B-vitaminen en selenium. Voor <span class='uline issue' style='--draw-delay:.45s'>de meeste mensen</span> wordt <span class='uline issue' style='--draw-delay:.6s'>matige consumptie</span> van skinloze, correct gegaarde kip naast groenten en volkoren granen als gezond beschouwd.",
+    "annotation_vanilla": "geen bron · generieke kadering · geen stemovereenkomst · vage richtlijn",
+    "badge_specificity": "Specificiteit",
+    "badge_citations": "Bronvermeldingen",
+    "badge_voice_fit": "Stemovereenkomst",
+    "badge_expert": "Expert",
+    "divinci_label": "Divinci DFO + RAG · expert-gekalibreerd",
+    "bubble_divinci_sender": "Divinci · Fuhrman-release",
+    "bubble_divinci_body": "Volgens het <span class='uline win' style='--draw-delay:1.1s'>eating-to-live-kader</span>, nee. Kip bevat <span class='uline win' style='--draw-delay:1.25s'>geoxideerde lipiden</span> en <span class='uline win' style='--draw-delay:1.4s'>verhoogde IGF-1</span>, en verdringt voedingsstofrijke plantaardige voeding die de aandoeningen omkeert die u waarschijnlijk probeert aan te pakken. Als u de overstap maakt, behandel het dan als een <span class='uline win' style='--draw-delay:1.55s'>incidenteel smaakmaker, geen voedingsbasis</span>. [Source: Fuhrman § 3.2]",
+    "annotation_divinci": "citeert Fuhrman-corpus · domeinkader toegepast · stemovereenkomst · specifieke richtlijn",
+    "reviewer_divinci": [
+      "past het daadwerkelijke kader van de ingezette expert toe.",
+      "citeert het corpus-fragment; controleerbare herkomst.",
+      "concrete, specifieke richtlijn — geen vaag advies.",
+      "sluit aan bij de gevestigde stem & prioriteiten van de expert."
+    ],
+    "verdict_prefix": "Winsten",
+    "verdict_suffix": "rubrieken",
+    "footnote": "[tk] tijdelijke waarden; vervangen door gemeten getallen uit een 10-vragen vanilla-vs-DFO-evaluatie vóór publicatie.",
+    "verdict_meta": "Spearman ρ · lengte-tolerante volledigheid · citaatverankering · stemovereenkomst",
+    "cta": "De methodologie achter deze meting"
   }
 }

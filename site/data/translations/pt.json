@@ -1121,5 +1121,43 @@
     "body_2": "O visualizador permite-lhe orbitar o espaço de características FFN em 3D. A série de blogues percorre das constantes universais às edições cirúrgicas. O LarQL é de código aberto: github.com/Divinci-AI/larql",
     "cta_primary": "Ler a investigação →",
     "cta_secondary": "Navegar no Hugging Face"
+  },
+  "compare_band": {
+    "edition_prefix": "Edição",
+    "arena_run": "corrida na arena",
+    "eyebrow": "lado a lado · mesmo prompt, dois sistemas",
+    "title_same": "Mesma pergunta.",
+    "title_diff_word": "Diferentes",
+    "title_answers": "respostas.",
+    "question": "O frango é saudável?",
+    "reviewer_vanilla": [
+      "«dieta equilibrada» — face a que enquadramento? não citado.",
+      "«a maioria das pessoas» — o perito implementado discorda.",
+      "«consumo moderado» — vago, sem orientação concreta.",
+      "ignora completamente os lípidos oxidados / eixo IGF-1."
+    ],
+    "vanilla_label": "Vanilla Claude · LLM genérico",
+    "bubble_claude_sender": "Claude (sem RAG)",
+    "bubble_claude_body": "O frango pode fazer parte de uma <span class='uline issue' style='--draw-delay:.3s'>dieta equilibrada</span>, fornecendo proteína magra e nutrientes essenciais como vitaminas B e selénio. Para <span class='uline issue' style='--draw-delay:.45s'>a maioria das pessoas</span>, o <span class='uline issue' style='--draw-delay:.6s'>consumo moderado</span> de frango sem pele, devidamente cozinhado, acompanhado de vegetais e cereais integrais, é considerado saudável.",
+    "annotation_vanilla": "sem fonte · enquadramento genérico · sem correspondência de voz · orientação vaga",
+    "badge_specificity": "Especificidade",
+    "badge_citations": "Citações",
+    "badge_voice_fit": "Adequação de voz",
+    "badge_expert": "Perito",
+    "divinci_label": "Divinci DFO + RAG · calibrado por perito",
+    "bubble_divinci_sender": "Divinci · release Fuhrman",
+    "bubble_divinci_body": "Pelo <span class='uline win' style='--draw-delay:1.1s'>enquadramento comer para viver</span>, não. O frango contém <span class='uline win' style='--draw-delay:1.25s'>lípidos oxidados</span> e <span class='uline win' style='--draw-delay:1.4s'>IGF-1 elevado</span>, e desloca alimentos vegetais densos em nutrientes que revertem as condições que provavelmente procura tratar. Se está em transição, considere-o como <span class='uline win' style='--draw-delay:1.55s'>tempero ocasional, não um alimento básico da dieta</span>. [Source: Fuhrman § 3.2]",
+    "annotation_divinci": "cita o corpus Fuhrman · enquadramento de domínio aplicado · correspondência de voz · orientação específica",
+    "reviewer_divinci": [
+      "aplica o enquadramento real do perito implementado.",
+      "cita o fragmento do corpus; proveniência audítável.",
+      "orientação concreta e específica — não conselhos vagos.",
+      "corresponde à voz e às prioridades estabelecidas do perito."
+    ],
+    "verdict_prefix": "Vitórias",
+    "verdict_suffix": "rúbricas",
+    "footnote": "[tk] valores placeholder; substituídos por números medidos de uma avaliação vanilla-vs-DFO de 10 perguntas antes da publicação.",
+    "verdict_meta": "Spearman ρ · exaustividade tolerante ao comprimento · fundamentação de citações · adequação de voz",
+    "cta": "A metodologia por trás desta medição"
   }
 }
