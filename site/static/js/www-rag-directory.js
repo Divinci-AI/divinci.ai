@@ -33,7 +33,16 @@
   var allSites = [];
 
   function formatCount(n) {
-    return Number(n || 0).toLocaleString("en-US");
+    if (n === null || n === undefined) return "—";
+    return Number(n).toLocaleString("en-US");
+  }
+
+  function formatMeta(site) {
+    return [
+      formatCount(site.pageCount) + " pages",
+      formatCount(site.fileCount) + " files",
+      formatCount(site.chunkCount) + " chunks",
+    ].join(" · ");
   }
 
   function el(tag, className, text) {
@@ -72,7 +81,7 @@
     card.appendChild(header);
 
     card.appendChild(el("div", "www-rag-card-desc", site.description || ""));
-    card.appendChild(el("div", "www-rag-card-meta", formatCount(site.chunkCount) + " chunks"));
+    card.appendChild(el("div", "www-rag-card-meta", formatMeta(site)));
 
     var actions = el("div", "www-rag-card-actions");
     if (site.releaseId) {
@@ -161,7 +170,10 @@
       allSites = data.sites || [];
       if (statsEl) {
         statsEl.textContent =
-          formatCount(data.totalSites) + " curated sites · " + formatCount(data.totalChunks) + " searchable chunks";
+          formatCount(data.totalSites) + " curated sites · " +
+          formatCount(data.totalPages) + " pages · " +
+          formatCount(data.totalFiles) + " files · " +
+          formatCount(data.totalChunks) + " searchable chunks";
       }
       renderGrid(allSites);
     })
