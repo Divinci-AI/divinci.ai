@@ -39,6 +39,7 @@
                     <a href="{% if current_lang == 'en' %}/rag-arena/{% else %}/{{ current_lang }}/rag-arena/{% endif %}">RAG Arena</a>
                     <a href="{% if current_lang == 'en' %}/quality-assurance/{% else %}/{{ current_lang }}/quality-assurance/{% endif %}">{{ translations.navigation.quality_assurance | default(value="Quality Assurance") }}</a>
                     <a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">{{ translations.navigation.release_management | default(value="Release Management") }}</a>
+                    <a href="{% if current_lang == 'en' %}/hermes-agents/{% else %}/{{ current_lang }}/hermes-agents/{% endif %}">Hermes Agents</a>
                     <a href="/www-rag/">{{ translations.navigation.www_rag_directory | default(value="WWW-RAG Directory") }}</a>
                 </div>
             </li>
