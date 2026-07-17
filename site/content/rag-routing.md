@@ -359,8 +359,9 @@ feature_category = "data-management"
 <h3>The lookup algorithm — what runs on every query</h3>
 <ol>
   <li><strong>Hash the question</strong> with SHA-256, truncated to a 16-character key, and check the per-customer routing store in Cloudflare KV for an exact prior match. If it's been answered before, dispatch immediately to the backend that did best last time.</li>
-  <li><strong>On miss, embed the question</strong> and cosine-search against the cached index of historical question embeddings. If the nearest neighbour's similarity exceeds <strong>0.88</strong>, dispatch to its associated backend.</li>
-  <li><strong>On no match above threshold,</strong> fall back to the customer's default backend for that corpus.</li>
+  <li><strong>On miss, embed the question</strong> and cosine-search against the cached index of historical question embeddings — a single Cloudflare KV read holds the whole index with embeddings inline, so the comparison is local math rather than one lookup per stored question.</li>
+  <li><strong>Top-K vote, not nearest-neighbour.</strong> Every stored question above the <strong>0.88</strong> similarity threshold is a candidate; the five closest vote by the backend that won them, and the majority winner takes the route (similarity-sum breaks ties). A single noisy near-match can't hijack its neighbourhood — the decision reflects the local consensus of measured winners.</li>
+  <li><strong>On no candidate above threshold,</strong> fall back to the customer's default backend for that corpus.</li>
   <li><strong>After the answer is rendered,</strong> the (question hash, backend, quality score) tuple is written back into the per-customer routing-history store, seeding future lookups.</li>
 </ol>
 <div class="rr-note">
@@ -487,6 +488,18 @@ curl -X POST https://api.divinci.app/v1/rag/query \
 </ol>
 <div class="rr-note">
   <strong>Where this is genuinely production-grade vs roadmap:</strong> Steps 1 and 2 ship today. Step 3's automatic feedback loop is partially shipped — successful queries write back, but tier-2 (BM25 + RRF + reranker) is currently composed as a workflow node rather than auto-routed. We'll fold Tier 2 into the auto-router as the routing data shows clear win conditions for it.
+</div>
+</div>
+
+<h2 class="section-heading">What the numbers say</h2>
+
+<p class="section-subheading">We measured routing against its alternative on a production knowledge base — a nutrition assistant with six architecturally distinct backends (audio transcripts, a product catalog, a Q&amp;A corpus, recipes, PDFs, and full books) — using a 50-question benchmark scored by three independent evaluation frameworks.</p>
+
+<div class="rr-mechanism">
+<p style="font-size: 1.02rem; color: #2d3c34; line-height: 1.7;">The comparison was <strong>learned routing vs. querying all six backends and fusing the results</strong>. For questions the router recognized, context came from a <em>single</em> measured-winner backend — yet answer quality held even or better: faithfulness rose from <strong>0.90 to 0.94</strong> and context recall from <strong>0.61 to 0.63</strong>, with overall quality within a point (0.771 vs 0.763). Same answers, a fraction of the retrieval work.</p>
+<p style="font-size: 1.02rem; color: #2d3c34; line-height: 1.7;">The lesson we took from it is precise: routing is a <strong>cost and efficiency win, not a magic quality lever</strong>. It buys you the right backend's answer without paying to query every backend — which is exactly the point when your corpora are heterogeneous and most questions only need one of them.</p>
+<div class="rr-note">
+  <strong>Honest scope:</strong> these are single-tenant benchmark figures on one production release, not a universal guarantee. Whether routing helps <em>you</em> depends on how mixed your corpora and query shapes are — which is why the router learns from your traffic rather than shipping with baked-in assumptions.
 </div>
 </div>
 

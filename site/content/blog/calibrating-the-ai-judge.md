@@ -2,6 +2,7 @@
 title = "Calibrating the Judge: The Grader get Graded"
 description = "ScoredQA Calibration: a domain expert rates 50 answers, we compute Spearman ρ vs each LLM judge, and pick the judge that actually agrees."
 date = 2026-04-27T20:00:00+00:00
+updated = 2026-07-17T09:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -245,6 +246,8 @@ There are three failure modes for AI evaluation that this calibration step is de
 We built ScoredQA Calibration so Dr. Fuhrman's AI can be measurably good *by Dr. Fuhrman's standard* — and so the same template can be applied for the next domain expert who joins the platform. The math is Spearman ρ on a small sample with a documented threshold. The product hypothesis is that this step should be a default, not a research project.
 
 When the ratings come back, we'll publish the per-judge ρ table here as an addendum. Until then: the product is shipped, the test set is loaded, and the doctor has the link.
+
+**Update, July 2026:** the ratings haven't come back yet — and that's now a load-bearing fact rather than a placeholder. We ran a full third-party evaluation gauntlet (RAGAS + DeepEval, judged via Cloudflare Workers AI) against the production nutrition assistant's suite and pulled the live calibration report before scoring anything: it read *"no scorers are calibrated yet — none cleared ρ ≥ 0.85 with n ≥ 30 ratings."* Every score in that gauntlet — and every RAG-routing decision this platform makes today — is a judge-relative number until a human anchor lands. We built the aggregator to *weight* by ρ automatically the moment a judge clears the bar; right now it's honestly falling back to unweighted means, exactly as designed for the un-calibrated case. The infrastructure this post describes is proven end-to-end; the anchor step is the one piece still waiting on a human in the seat.
 
 ## References
 

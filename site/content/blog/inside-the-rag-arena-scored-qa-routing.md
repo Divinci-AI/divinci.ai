@@ -2,7 +2,7 @@
 title = "Inside the RAG Arena: When the Judges Don't Agree"
 description = "A 200-item RAG arena tied at the mean, but two LLM judges only agreed at Spearman ρ=0.55. They aren't measuring the same thing."
 date = 2026-04-26T18:00:00+00:00
-updated = 2026-05-11T10:30:00+00:00
+updated = 2026-07-17T09:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -233,6 +233,16 @@ The arena also answered a question we didn't ask and would have preferred to kee
 When that anchor lands, the same calibration session pays for itself twice: the LLM judges get blessed (or not) for scoring the rest of the suite, and the production routing layer learns which RAG vector group the human prefers for each question class. One human session, two systems improved.
 
 The scaffolding to make this work is shipped: a unified calibration session that accepts ratings from web, CLI, MCP, or agent surfaces; the multi-scorer arena; the dynamic aggregator; the error-pattern filter. The remaining piece is the human anchor.
+
+## Postscript (July 2026): the automated half, measured in production
+
+Since this post first ran, the *automated* half of the routing loop — the part that doesn't need a human in the seat — went live and got measured on a production nutrition assistant with six architecturally distinct backends (audio transcripts, a product catalog, a Q&A corpus, recipes, PDFs, full books). Three things came out of it worth reporting.
+
+**The judge-pluggable claim is now literal.** The arena runs RAGAS and DeepEval as first-class scorers alongside our internal judges — and it runs them on Cloudflare Workers AI (Kimi K2.6 for judgment-heavy metrics, Llama 3.3 for the decomposition-heavy ones), with no hosted OpenAI key anywhere in the path. Third-party RAG-eval frameworks now score every arena run, on infrastructure a customer's own key can transparently override. That was the "plug your own judge in" promise; it's plumbed end to end.
+
+**Learned routing buys efficiency, not magic.** We A/B-tested it the honest way: learned routing (answer from the single measured-winner backend) versus querying all six and fusing the results. For recognized questions, quality held even-or-better from *one* backend — faithfulness rose from 0.90 to 0.94, context recall from 0.61 to 0.63, overall within a point (0.771 fusion vs 0.763 routed). The lesson is precise and worth stating plainly: routing is a **cost and efficiency win**, not a quality lever. It buys you the right backend's answer without paying to query every backend — exactly the point when your corpora are heterogeneous and most questions only need one of them. When we tried to squeeze *quality* out of the retrieval knobs instead, the measurements pushed back: trimming the context cap lowered precision, and swapping the source mix left it flat. The bottleneck lives in *within-index* chunk ranking, not in how many chunks or which index — a genuinely useful thing to have learned by measurement rather than assumption.
+
+**The human anchor is still the open piece — and we re-confirmed why.** Running the full third-party gauntlet against a live release, the calibration-weighted aggregator still fell back to unweighted means: zero scorers had yet cleared the ρ ≥ 0.85 human-agreement bar. That's not a regression; it's the same finding this post opened with, now independently reproduced by a different measurement path. Every arena number here remains judge-relative until a human session blesses a scorer. The automated half is proven; the anchor is what turns "which answer did the judges prefer" into "which answer was actually right."
 
 ## References
 

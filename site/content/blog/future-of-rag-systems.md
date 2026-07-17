@@ -2,7 +2,7 @@
 title = "The Future of RAG Systems: Beyond Simple Document Retrieval"
 description = "Where RAG is heading: scored-QA routing, vector arenas, live competitive evaluation. May 2026 — RAG is now a routing problem, not a pipeline one."
 date = 2025-05-01T09:00:00+00:00
-updated = 2026-05-27T10:00:00+00:00
+updated = 2026-07-17T09:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -255,10 +255,13 @@ The version of this router that ships today does *not* use hand-coded query-shap
 
 1. **Hash the incoming question** (SHA-256, truncated to a 16-char key).
 2. **Exact-match KV lookup** against the per-customer routing store — if this exact question has been answered before, dispatch immediately to the backend that did best last time.
-3. **On miss, embed the question and cosine-search** against a cached index of historical question embeddings. If the nearest neighbour exceeds a **0.88 cosine threshold**, dispatch to its backend.
-4. **On no match above threshold, fall back** to the default backend configured for the corpus.
+3. **On miss, embed the question and cosine-search** against a cached index of historical question embeddings — held inline in a single Cloudflare KV read, so the comparison is local math, not one lookup per stored question.
+4. **Vote, don't just nearest-neighbour.** Every stored question above a **0.88 cosine threshold** is a candidate; the five closest vote by the backend that won them, and the majority takes the route (ties break on similarity sum). One noisy near-match can't hijack its neighbourhood — the router follows local consensus among *measured* winners, not a single closest match.
+5. **On no candidate above threshold, fall back** to the default backend configured for the corpus.
 
 Routing entries carry a **30-day TTL**; stale entries trigger re-benchmarking on the next lookup, which is how the routing model stays fresh as the corpus and traffic mix evolve. The "what performed best last time" signal is seeded from two upstream sources: explicit arena-style A/B selections by the customer, and our internal auto-fix output that compares retrievals across backends on representative queries. Both write into the per-customer routing-history store; the router consumes either.
+
+Put in the terms information theory already gives us: the routing table is a set of **latent-space anchors labeled with observable-space outcomes**. The embeddings are inferred geometry — nobody directly observes "semantic closeness." The winning backend attached to each anchor is measured — a benchmark score, an arena pick, a calibrated rating. Every lookup is the same two-step handoff: geometry nominates a neighborhood of similar-enough past questions, then the *evidence* attached to that neighborhood elects the backend. That's also why routes expire after 30 days — the geometry is stable, but the evidence rots as the corpus and the world it describes drift.
 
 This is meaningfully different from the published academic routers ([Adaptive-RAG](https://aclanthology.org/2024.naacl-long.389/) and follow-ups), which classify the query *upfront* by complexity. Our learned approach **trusts historical evidence over query-shape heuristics**, because empirically the same query shape behaves differently on different corpora — a "compare X across Y" query on legal contracts wants Tier 3 page-index traversal; the same query shape on a flat FAQ corpus is fine on Tier 1. Letting the routing model learn that distinction per-corpus, rather than guessing it from query syntax, is the design choice that actually shipped.
 
@@ -271,6 +274,8 @@ The router's decision is logged today and surfaced via the audit trail; full rou
 A customer with a homogeneous corpus and uniform query shape gets one optimal tier and benefits little from routing — they could pick Tier 2 manually and be done. The wedge is enterprises with **mixed corpora and mixed query shapes**: a legal team that asks both "what is the definition of force majeure in our standard contract?" (Tier 1) and "across our 47 vendor contracts, which ones have non-standard termination clauses and what are the patterns?" (Tier 3). Routing across architectures is what lets one endpoint serve both well without paying Tier 3 costs on the Tier 1 query.
 
 That's the case where one managed endpoint with three architecturally distinct stacks behind it earns its keep.
+
+**What we measured when we tested that claim.** We ran the honest A/B on a production release with six architecturally distinct backends: learned routing (answer from one measured-winner backend) against querying all six and fusing the results. For recognized questions, quality held even-or-better from a single backend — faithfulness rose from 0.90 to 0.94, context recall from 0.61 to 0.63, overall score within a point. The finding worth stating precisely: **routing is a cost and efficiency win, not a quality lever.** It buys the right backend's answer without paying to query every backend — which is exactly the case above, not a magic accuracy boost. When we went looking for a quality lever in the retrieval knobs instead — a smaller context cap, a different source mix — the numbers pushed back both times; the real bottleneck turned out to live in *within-index* chunk ranking, not in which backend answers or how much of it survives. Measuring beats assuming, including when the assumption is our own pitch.
 
 ## The Promise and Limitations of First-Generation RAG
 
