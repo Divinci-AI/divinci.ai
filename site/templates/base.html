@@ -609,8 +609,8 @@
          Left island rounds its bottom-RIGHT corner; right island its bottom-LEFT.
          The language switcher lives inline at the end of the right island's
          flex flow (Search, Sign up, Language) across all states. #}
-      <div class="site-research-banner-glass-left" aria-hidden="true">
-        <a href="/" class="scrolled-logo" aria-label="Divinci — liberum intelligentia">
+      <div class="site-research-banner-glass-left">
+        <a href="{% if current_lang == 'en' %}/{% else %}/{{ current_lang }}/{% endif %}" class="scrolled-logo" aria-label="Divinci — liberum intelligentia">
           <img src="{{ get_url(path="images/divinci_logo_inverted.svg") }}" alt="Divinci AI Logo" width="28" height="28" decoding="async">
           <span class="scrolled-logo-text">Divinci</span>
         </a>
@@ -624,6 +624,7 @@
                 <a href="{% if current_lang == 'en' %}/rag-arena/{% else %}/{{ current_lang }}/rag-arena/{% endif %}">RAG Arena</a>
                 <a href="{% if current_lang == 'en' %}/quality-assurance/{% else %}/{{ current_lang }}/quality-assurance/{% endif %}">Quality Assurance</a>
                 <a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">Release Management</a>
+                <a href="{% if current_lang == 'en' %}/squarespace-to-cloudflare/{% else %}/{{ current_lang }}/squarespace-to-cloudflare/{% endif %}">Site Converter</a>
                 <a href="/www-rag/">WWW-RAG Directory</a>
               </div>
             </li>
@@ -650,6 +651,15 @@
             </li>
           </ul>
         </nav>
+        {# Mobile scrolled header actions: Sign up + hamburger. #}
+        <div class="scrolled-mobile-actions">
+          <a href="https://app.divinci.app/signup" class="scrolled-mobile-signup" target="_blank" rel="noopener">{{ translations.navigation.sign_up | default(value="Sign up") }}</a>
+          <button class="scrolled-hamburger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="banner-mobile-drawer">
+            <span class="scrolled-hamburger-line" aria-hidden="true"></span>
+            <span class="scrolled-hamburger-line" aria-hidden="true"></span>
+            <span class="scrolled-hamburger-line" aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
       <div class="site-research-banner-glass-right">
         <button class="scrolled-search site-search-trigger" type="button" aria-label="Search site" aria-keyshortcuts="Meta+K Control+K">
@@ -659,6 +669,20 @@
         <a href="https://app.divinci.app/signup" class="scrolled-signup" target="_blank" rel="noopener">Sign up</a>
         {% include "language-switcher.html" %}
       </div>
+      <nav class="banner-mobile-drawer" id="banner-mobile-drawer" aria-label="Mobile menu" hidden>
+        <ul class="banner-mobile-drawer-list">
+          <li>
+            <button class="banner-mobile-search site-search-trigger" type="button" aria-label="Search site">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+              Search
+            </button>
+          </li>
+          <li><a href="{% if current_lang == 'en' %}/#features{% else %}/{{ current_lang }}/#features{% endif %}">{{ translations.navigation.features | default(value="Features") }}</a></li>
+          <li><a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}">{{ translations.navigation.blog | default(value="Blog") }}</a></li>
+          <li><a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}">{{ translations.navigation.support | default(value="Support") }}</a></li>
+          <li><a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">{{ translations.navigation.documentation | default(value="Documentation") }}</a></li>
+        </ul>
+      </nav>
     </div>
     {% include "partials/header.html" %}
     <main id="main-content">
@@ -697,16 +721,64 @@
         if (!banner) return;
         var THRESHOLD = 80;
         var ticking = false;
+        var hamburger = banner.querySelector('.scrolled-hamburger');
+        var drawer = document.getElementById('banner-mobile-drawer');
+
+        // Keep body padding in sync with the fixed banner's real height so
+        // the page-header logo/search never sit underneath it (mobile used
+        // to stack language under the research link and blow past 40px).
+        function syncBannerPad() {
+          if (banner.classList.contains('is-scrolled')) return;
+          // +4px breathing room so logo/search never kiss the blue bar.
+          document.documentElement.style.setProperty(
+            '--site-banner-height',
+            (banner.offsetHeight + 4) + 'px'
+          );
+        }
+
+        function closeDrawer() {
+          if (!drawer || !hamburger) return;
+          drawer.hidden = true;
+          hamburger.classList.remove('is-active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          banner.classList.remove('drawer-open');
+        }
+
         function update() {
           var scrolled = window.scrollY > THRESHOLD;
           banner.classList.toggle('is-scrolled', scrolled);
           banner.classList.toggle('is-glass', scrolled);
+          if (!scrolled) {
+            closeDrawer();
+            syncBannerPad();
+          }
           ticking = false;
         }
         window.addEventListener('scroll', function () {
           if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
         }, { passive: true });
+        window.addEventListener('resize', syncBannerPad, { passive: true });
         update();
+        syncBannerPad();
+
+        if (hamburger && drawer) {
+          hamburger.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var open = drawer.hidden;
+            drawer.hidden = !open;
+            hamburger.classList.toggle('is-active', open);
+            hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            banner.classList.toggle('drawer-open', open);
+          });
+          drawer.addEventListener('click', function (e) {
+            // Close after choosing a nav link or opening search.
+            var t = e.target;
+            if (t.closest('a') || t.closest('.site-search-trigger')) closeDrawer();
+          });
+          document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeDrawer();
+          });
+        }
       })();
     </script>
 </body>
