@@ -11,7 +11,7 @@ tags = ["Hermes", "NousResearch", "Cloudflare", "Durable Objects", "Sandbox Cont
 [extra]
 author = "Mike Mooring"
 author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/hero-autorag.webp"
+featured_image = "images/hosted-hermes-on-cloudflare-hero.png"
 title_display = "Hosted Hermes on Cloudflare:<br>One Agent, One Sandbox."
 reading_time = 8
 summary = "You can now run your own NousResearch Hermes agent inside Divinci — isolated in its own Cloudflare Sandbox container, chattable in-app, and connectable from a local Hermes or any OpenAI-compatible client via a per-agent proxy URL. This post covers the product and then the architecture: DO-per-agent isolation, two trust boundaries, bring-your-own-key, and the hardening underneath."
@@ -31,6 +31,13 @@ Hosted Hermes Agents remove that tail. Give an agent a name, a model, and a pers
 No servers to manage, no keys sitting on a VM, and — the part we spent the most care on — no way for one agent to reach another.
 
 This post is in two halves: what it does, then how it works.
+
+<div style="max-width:820px;margin:2rem auto;">
+  <div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(30,58,43,0.15);background:#0f1c17;">
+    <iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="https://www.youtube-nocookie.com/embed/Y3NDtqk6ags" title="Nous Research's Hermes Agent: The Case for Open Models in Production" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <p style="text-align:center;color:#5a6862;font-size:0.85rem;margin-top:0.6rem;">New to Hermes? "The Case for Open Models in Production" — Arize Observe 2026. Video © NousResearch.</p>
+</div>
 
 ## Who it's for
 
@@ -107,8 +114,26 @@ Or drop the same URL and key into a local Hermes gateway as its `GATEWAY_PROXY_U
 
 If you'd rather not touch config, the in-app **Divinci Agent** is now context-aware on the Hermes Agents page and can create one for you. Ask it to "create a Hermes agent," confirm, and it mints the agent and hands you the proxy key to connect your clients.
 
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     HOW WE USE HERMES — narrative stories, awaiting Hermes-drafted content from
+     the team. When they arrive, add a section here, e.g.:
+
+## How we use Hermes at Divinci
+
+<story 1 — a real workflow we run on a hosted Hermes agent>
+<story 2 …>
+<story 3 …>
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
 ## What's next
 
 Today you get isolated hosting, in-app chat, the OpenAI-compatible proxy, and bring-your-own-key. On the roadmap: richer per-agent dashboards, finer-grained tool permissions, and deeper wiring into the Divinci Agent so setup is entirely conversational.
 
 If you run Hermes — or want to — and you'd like it hosted, isolated, and reachable from anywhere without operating it yourself, [talk to us](https://meetings.hubspot.com/michael-mooring/divinci-ai). We'd love to get your Hermes into the cloud.
+
+<div style="text-align:center;margin:2.5rem 0 1rem;">
+  <a href="https://app.divinci.app/signup" style="display:inline-block;background:#2d5a4f;color:#faf8f5;padding:0.85rem 2rem;border-radius:50px;font-weight:700;text-decoration:none;margin:0.35rem;">Create your Hermes agent →</a>
+  <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/Divinci-AI/hermesworkers" style="display:inline-flex;align-items:center;gap:0.5rem;background:#f6821f;color:#fff;padding:0.85rem 2rem;border-radius:50px;font-weight:700;text-decoration:none;margin:0.35rem;">⚡ Deploy your own on Cloudflare</a>
+</div>
+
+<p style="text-align:center;color:#5a6862;font-size:0.82rem;max-width:620px;margin:0 auto;line-height:1.5;">Self-hosting is built on our open-source <a href="https://github.com/Divinci-AI/hermesworkers" style="color:#2d5a4f;">hermesworkers</a> Worker. The container runtime needs Cloudflare Containers and a few secrets — see the repo README.</p>
