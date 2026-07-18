@@ -116,16 +116,17 @@ Or drop the same URL and key into a local Hermes gateway as its `GATEWAY_PROXY_U
 
 If you'd rather not touch config, the in-app **Divinci Agent** is now context-aware on the Hermes Agents page and can create one for you. Ask it to "create a Hermes agent," confirm, and it mints the agent and hands you the proxy key to connect your clients.
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     HOW WE USE HERMES — narrative stories, awaiting Hermes-drafted content from
-     the team. When they arrive, add a section here, e.g.:
-
 ## How we use Hermes at Divinci
 
-<story 1 — a real workflow we run on a hosted Hermes agent>
-<story 2 …>
-<story 3 …>
-     ═══════════════════════════════════════════════════════════════════════════ -->
+We didn't build hosted Hermes for a launch video — we built it because we already run on Hermes, and we wanted it to never have to go home.
+
+**We're our own first user.** Hermes is wired into our Divinci CLI and our orchestration layer, so it's the first thing to run every new capability we ship — running commands, poking at the edges, breaking things so our customers don't have to. It's the difference between "we think this works" and "Hermes ran it all afternoon, here's the log."
+
+**It keeps the queue calm while we sleep.** Hermes monitors our configured Slack channels: on a fresh thread it pulls the relevant docs and past resolutions, drafts a reply, and flags the one thing that genuinely needs a founder's eyes. By morning the thread is already calm and the only decision left is "yes, send it."
+
+**It runs the unglamorous conveyor.** Behind every tutorial and staged demo is a pipeline — spin up the staging app, record the walkthrough, check the Cloudflare Access gate, assemble the cuts. Hermes runs it end to end and hands us a finished asset. Things that used to block us just… don't anymore.
+
+The moral is always the same: Hermes does the work, not just the demo. Hosting it on Cloudflare through Divinci is what lets it keep doing that work around the clock — which is exactly what this post has been about.
 
 ## What's next
 

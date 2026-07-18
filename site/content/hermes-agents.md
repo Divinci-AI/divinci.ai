@@ -287,19 +287,26 @@ export GATEWAY_PROXY_URL=<span class="k">"https://api.divinci.app/api/v1/hermes-
   <div class="hs-sec-chip"><strong>Metered &amp; attributed</strong><span>Every turn escrows against your workspace wallet and reverses cleanly on failure — attributed to the acting user.</span></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     HOW WE USE HERMES — stories section. Awaiting Hermes-drafted stories from
-     the team. When they land, drop them into the grid below (one card each) and
-     delete this comment wrapper:
-
 <h2 class="hs-heading">How we use Hermes at Divinci</h2>
-<p class="hs-sub">Real ways our own team puts hosted Hermes agents to work.</p>
+<p class="hs-sub">We didn't build hosted Hermes for a launch video — we already run on it. Here's the kind of work it does for us, now around the clock in the cloud.</p>
+
 <div class="hs-grid">
-  <div class="hs-card"><h3>STORY TITLE</h3><p>STORY BODY…</p></div>
-  <div class="hs-card"><h3>STORY TITLE</h3><p>STORY BODY…</p></div>
-  <div class="hs-card"><h3>STORY TITLE</h3><p>STORY BODY…</p></div>
+  <div class="hs-card">
+    <div class="hs-icon">🐕</div>
+    <h3>We're our own first user</h3>
+    <p>Hermes is wired into our own CLI and orchestration layer, so it's the first thing to run every new capability we ship — poking at the edges and breaking things before customers ever see them. If it survives Hermes, it's ready.</p>
+  </div>
+  <div class="hs-card">
+    <div class="hs-icon">🌙</div>
+    <h3>Nothing falls through at 2am</h3>
+    <p>Hermes monitors our configured Slack channels: on a fresh thread it pulls the relevant docs and past resolutions, drafts a reply, and flags the one thing that needs a human. The humans sleep; the queue stays calm.</p>
+  </div>
+  <div class="hs-card">
+    <div class="hs-icon">🎬</div>
+    <h3>It runs the boring conveyor</h3>
+    <p>Spinning up the staging app, recording a walkthrough, checking the Cloudflare Access gate, assembling the cuts — Hermes runs the pipeline end-to-end. What used to be a half-day of context-switching is now a command and a coffee.</p>
+  </div>
 </div>
-     ═══════════════════════════════════════════════════════════════════════════ -->
 
 <section class="hs-section" style="text-align: center;">
   <h2 class="hs-heading" style="margin-bottom: 1.25rem;">Bring your own Hermes to the cloud</h2>
