@@ -49,6 +49,8 @@
                 {# release-management — translated in ES, FR, AR #}
                 <li><a href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">{{ translations.footer.sections.product.links.release_management | default(value="Release Management") }}</a></li>
                 <li><a href="{% if current_lang == 'en' %}/compliance/{% else %}/{{ current_lang }}/compliance/{% endif %}">{{ translations.footer.sections.product.links.ai_compliance | default(value="AI Compliance") }}</a></li>
+                {# voice-agents — EN only for now (translations pending) #}
+                <li><a href="/voice-agents/">Voice Agents</a></li>
             </ul>
         </div>
 
