@@ -1,0 +1,37 @@
+{
+  // divinci.app funnel — single-page "Turn your website into an AI" checkout.
+  // Pure Workers Static Assets, no worker script needed.
+  //
+  // Deploy (same OAuth pattern as site/):
+  //   cd app && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env staging
+  //   cd app && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env=""
+  //
+  // Production routes take over the divinci.app apex from the legacy static
+  // page (zone worker routes run ahead of whatever serves it today; deleting
+  // the routes restores the old page — snapshot kept in the server repo
+  // scratchpad from 2026-07-18).
+  "name": "divinci-app-funnel",
+  "compatibility_date": "2026-05-26",
+  "assets": {
+    "directory": "./public/",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    { "pattern": "divinci.app/*", "zone_name": "divinci.app" },
+    { "pattern": "www.divinci.app/*", "zone_name": "divinci.app" }
+  ],
+  "workers_dev": false,
+  "env": {
+    "staging": {
+      "name": "divinci-app-funnel-staging",
+      "workers_dev": true,
+      // IMPORTANT: environments INHERIT top-level routes unless overridden —
+      // an empty list keeps staging off the production apex.
+      "routes": [],
+      "assets": {
+        "directory": "./public/",
+        "not_found_handling": "single-page-application"
+      }
+    }
+  }
+}
