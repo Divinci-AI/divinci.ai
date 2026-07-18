@@ -23,7 +23,7 @@ feature_category = "ai-config"
     font-size: 2.6rem;
     color: #1e3a2b;
     text-align: center;
-    margin: 3.5rem 0 1rem;
+    margin: 6rem 0 1rem;
     line-height: 1.2;
 }
 .hs-sub {
@@ -147,10 +147,12 @@ feature_category = "ai-config"
     text-decoration: none;
     margin: 0.35rem 0.35rem;
 }
-.hs-btn-primary { background: #2d5a4f; color: #faf8f5; }
-.hs-btn-ghost { background: transparent; color: #2d5a4f; border: 2px solid #2d5a4f; }
+/* color !important: the feature-page global `a` rule (green) otherwise wins on
+   specificity and paints the button text green-on-green (invisible). */
+.hs-btn-primary { background: #2d5a4f; color: #faf8f5 !important; }
+.hs-btn-ghost { background: transparent; color: #2d5a4f !important; border: 2px solid #2d5a4f; }
 .hs-btn-deploy {
-    background: #f6821f; color: #fff;
+    background: #f6821f; color: #fff !important;
     display: inline-flex; align-items: center; gap: 0.5rem;
 }
 .hs-deploy-note { color: #5a6862; font-size: 0.82rem; max-width: 620px; margin: 0.75rem auto 0; line-height: 1.5; }
@@ -159,6 +161,7 @@ feature_category = "ai-config"
 <section class="hs-section">
   <h1 style="font-family: 'Fraunces', serif; font-size: 3.4rem; color: #1e3a2b; text-align: center; margin: 0 0 1.25rem; line-height: 1.1;">Hosted Hermes Agents</h1>
   <p style="font-family: 'DM Sans', sans-serif; font-size: 1.25rem; color: #5a6862; text-align: center; max-width: 840px; margin: 0 auto 2rem; line-height: 1.55;">Run your own <strong>NousResearch Hermes</strong> agent inside Divinci — each one isolated in its own Cloudflare Sandbox container. Chat with it in the app, or connect a local Hermes, the desktop app, or any OpenAI-compatible client through a per-agent proxy URL. Bring your own provider key.</p>
+  <img src="/images/hosted-hermes-on-cloudflare-hero.png" alt="A da Vinci notebook illustration: Hermes the messenger delivering a sealed scroll to a row of four isolated, walled study-cells — one agent per sandbox — beneath a cloud, with an hsk- key and padlock in the margin." width="1376" height="768" loading="eager" decoding="async" style="display:block; width:100%; max-width:940px; height:auto; margin:0 auto 2.5rem; border-radius:14px; border:1.5px solid rgba(139,118,89,0.3); box-shadow:0 14px 40px rgba(30,58,43,0.15);">
   <p style="text-align: center; margin: 0 0 1rem;">
     <a class="hs-btn hs-btn-primary" href="https://app.divinci.app/signup">Create your Hermes agent →</a>
     <a class="hs-btn hs-btn-ghost" href="https://meetings.hubspot.com/michael-mooring/divinci-ai">Talk to us</a>
@@ -168,11 +171,6 @@ feature_category = "ai-config"
   </p>
   <p class="hs-deploy-note">Prefer to self-host? Hermes Agents are built on our open-source <a href="https://github.com/Divinci-AI/hermesworkers" style="color:#2d5a4f;">hermesworkers</a> Worker — deploy it to your own Cloudflare account. (Advanced: the container runtime needs Cloudflare Containers and a few secrets; see the repo README.)</p>
 </section>
-
-<figure style="max-width: 1000px; margin: 2.5rem auto 0; padding: 0 1rem;">
-  <img src="/cdn-cgi/image/width=1000,format=auto,quality=82/images/hosted-hermes-on-cloudflare-hero.png" alt="A da Vinci notebook illustration: Hermes the messenger delivering a sealed scroll to a row of four isolated, walled study-cells — one agent per sandbox — beneath a cloud, with an hsk- key and padlock in the margin." width="1376" height="768" loading="eager" decoding="async" style="width:100%; height:auto; border-radius:12px; border:1.5px solid rgba(139,118,89,0.3); box-shadow:0 10px 30px rgba(30,58,43,0.12);" onerror="this.onerror=null;this.src='/images/hosted-hermes-on-cloudflare-hero.png';">
-  <figcaption style="text-align:center; color:#5a6862; font-size:0.85rem; margin-top:0.75rem;">One agent, one sandbox — Hermes routes each request to its own isolated container.</figcaption>
-</figure>
 
 <h2 class="hs-heading">One agent, one sandbox</h2>
 <p class="hs-sub">Every hosted agent is its own tenant. There is no shared process, no shared filesystem, and no way for one agent's traffic to reach another's container.</p>
@@ -199,9 +197,9 @@ feature_category = "ai-config"
 <p class="hs-sub">Hermes is NousResearch's open, tool-using agent — the open-weight models are the brain, the Hermes Agent CLI is the body. Here's the team behind it on running open models in production.</p>
 <div class="hs-video">
   <div class="hs-video-frame">
-    <iframe src="https://www.youtube-nocookie.com/embed/Y3NDtqk6ags" title="Nous Research's Hermes Agent: The Case for Open Models in Production" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe src="https://www.youtube-nocookie.com/embed/QQEgIo4Juxg" title="Hermes — NousResearch" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
-  <p class="hs-video-cap">"Nous Research's Hermes Agent: The Case for Open Models in Production" — Arize&nbsp;Observe&nbsp;2026. Video&nbsp;© NousResearch.</p>
+  <p class="hs-video-cap">Meet Hermes — NousResearch. Video&nbsp;© NousResearch.</p>
 </div>
 
 <h2 class="hs-heading">How it works</h2>
