@@ -204,6 +204,7 @@ feature_category = "ai-config"
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hosted-hermes-hero.webm" type="video/webm">
   </video>
   <div class="hs-hero-panel">
+    <span style="display:inline-block; background:rgba(45,90,79,0.12); color:#2d5a4f; font-weight:700; font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; padding:0.3rem 0.9rem; border-radius:50px; margin-bottom:1rem;">Early access</span>
     <h1 style="font-family: 'Fraunces', serif; font-size: 3.1rem; color: #1e3a2b; margin: 0 0 1rem; line-height: 1.1;">Hosted Hermes Agents</h1>
     <p style="font-family: 'DM Sans', sans-serif; font-size: 1.15rem; color: #3a4a42; max-width: 640px; margin: 0 auto 1.75rem; line-height: 1.55;">Run your own <strong>NousResearch Hermes</strong> agent inside Divinci — each one isolated in its own Cloudflare Sandbox container. Chat with it in the app, or connect a local Hermes, the desktop app, or any OpenAI-compatible client through a per-agent proxy URL. Bring your own provider key.</p>
     <p style="margin: 0 0 0.75rem;">

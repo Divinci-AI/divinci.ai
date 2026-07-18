@@ -21,7 +21,7 @@ summary = "You can now run your own NousResearch Hermes agent inside Divinci —
 
 ## The short version
 
-You can now create a **hosted Hermes agent** inside Divinci.
+You can now create a **hosted Hermes agent** inside Divinci — currently in **early access**.
 
 [Hermes](https://nousresearch.com/) — NousResearch's open agent — is a favorite for people who want a capable, tool-using assistant they actually control. The catch has always been the operational tail: you have to run it somewhere, keep a provider key on it, and expose it safely if you want to reach it from more than one place.
 
