@@ -118,7 +118,7 @@ If you'd rather not touch config, the in-app **Divinci Agent** is now context-aw
 
 ## How we use Hermes at Divinci
 
-We didn't build hosted Hermes for a launch video — we built it because we already run on Hermes, and we wanted it to never have to go home.
+We didn't build hosted Hermes for a launch video — we built it because we already run on Hermes, and we wanted it running on real infrastructure instead of tied to a laptop that sleeps.
 
 **We're our own first user.** Hermes is wired into our Divinci CLI and our orchestration layer, so it's the first thing to run every new capability we ship — running commands, poking at the edges, breaking things so our customers don't have to. It's the difference between "we think this works" and "Hermes ran it all afternoon, here's the log."
 
@@ -126,7 +126,7 @@ We didn't build hosted Hermes for a launch video — we built it because we alre
 
 **It runs the unglamorous conveyor.** Behind every tutorial and staged demo is a pipeline — spin up the staging app, record the walkthrough, check the Cloudflare Access gate, assemble the cuts. Hermes runs it end to end and hands us a finished asset. Things that used to block us just… don't anymore.
 
-The moral is always the same: Hermes does the work, not just the demo. Hosting it on Cloudflare through Divinci is what lets it keep doing that work around the clock — which is exactly what this post has been about.
+The moral is always the same: Hermes does the work, not just the demo. Hosting it on Cloudflare through Divinci is what takes it off a laptop and onto managed infrastructure that wakes on demand — no server to babysit, no idle cost — which is exactly what this post has been about.
 
 ## What's next
 

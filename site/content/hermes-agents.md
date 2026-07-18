@@ -288,7 +288,7 @@ export GATEWAY_PROXY_URL=<span class="k">"https://api.divinci.app/api/v1/hermes-
 </div>
 
 <h2 class="hs-heading">How we use Hermes at Divinci</h2>
-<p class="hs-sub">We didn't build hosted Hermes for a launch video — we already run on it. Here's the kind of work it does for us, now around the clock in the cloud.</p>
+<p class="hs-sub">We didn't build hosted Hermes for a launch video — we already run on it. Here's the kind of work it does for us — now hosted on Cloudflare instead of tied to a laptop.</p>
 
 <div class="hs-grid">
   <div class="hs-card">
