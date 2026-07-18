@@ -201,7 +201,7 @@ feature_category = "ai-config"
 
 <div class="hs-hero-wrap">
   <video class="hs-hero-video" autoplay muted loop playsinline preload="auto" poster="/images/hosted-hermes-hero-poster.webp" aria-label="Animated da Vinci illustration: Hermes delivering scrolls to isolated sandbox cells">
-    <source src="/images/hosted-hermes-hero.webm" type="video/webm">
+    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hosted-hermes-hero.webm" type="video/webm">
   </video>
   <div class="hs-hero-panel">
     <h1 style="font-family: 'Fraunces', serif; font-size: 3.1rem; color: #1e3a2b; margin: 0 0 1rem; line-height: 1.1;">Hosted Hermes Agents</h1>
