@@ -12,6 +12,8 @@ tags = ["Hermes", "NousResearch", "Cloudflare", "Durable Objects", "Sandbox Cont
 author = "Mike Mooring"
 author_avatar = "images/Michael-Mooring.png"
 featured_image = "images/hosted-hermes-on-cloudflare-hero.png"
+hero_video = "/images/hosted-hermes-hero.webm"
+hero_video_poster = "/images/hosted-hermes-hero-poster.webp"
 title_display = "Hosted Hermes on Cloudflare:<br>One Agent, One Sandbox."
 reading_time = 8
 summary = "You can now run your own NousResearch Hermes agent inside Divinci — isolated in its own Cloudflare Sandbox container, chattable in-app, and connectable from a local Hermes or any OpenAI-compatible client via a per-agent proxy URL. This post covers the product and then the architecture: DO-per-agent isolation, two trust boundaries, bring-your-own-key, and the hardening underneath."
@@ -132,7 +134,7 @@ Today you get isolated hosting, in-app chat, the OpenAI-compatible proxy, and br
 If you run Hermes — or want to — and you'd like it hosted, isolated, and reachable from anywhere without operating it yourself, [talk to us](https://meetings.hubspot.com/michael-mooring/divinci-ai). We'd love to get your Hermes into the cloud.
 
 <div style="text-align:center;margin:2.5rem 0 1rem;">
-  <a href="https://app.divinci.app/signup" style="display:inline-block;background:#2d5a4f;color:#faf8f5;padding:0.85rem 2rem;border-radius:50px;font-weight:700;text-decoration:none;margin:0.35rem;">Create your Hermes agent →</a>
+  <a href="https://chat.divinci.app/start/hermes-agents" style="display:inline-block;background:#2d5a4f;color:#faf8f5;padding:0.85rem 2rem;border-radius:50px;font-weight:700;text-decoration:none;margin:0.35rem;">Create your Hermes agent →</a>
   <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/Divinci-AI/hermesworkers" style="display:inline-flex;align-items:center;gap:0.5rem;background:#f6821f;color:#fff;padding:0.85rem 2rem;border-radius:50px;font-weight:700;text-decoration:none;margin:0.35rem;">⚡ Deploy your own on Cloudflare</a>
 </div>
 

@@ -156,21 +156,66 @@ feature_category = "ai-config"
     display: inline-flex; align-items: center; gap: 0.5rem;
 }
 .hs-deploy-note { color: #5a6862; font-size: 0.82rem; max-width: 620px; margin: 0.75rem auto 0; line-height: 1.5; }
+
+/* Video-background hero with a frosted-glass text panel (so copy stays legible
+   over the busy moving illustration). */
+.hs-hero-wrap {
+    position: relative;
+    max-width: 1140px;
+    margin: 1rem auto 2rem;
+    border-radius: 22px;
+    overflow: hidden;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 55px rgba(30, 58, 43, 0.22);
+}
+.hs-hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+.hs-hero-panel {
+    position: relative;
+    z-index: 1;
+    background: rgba(250, 248, 245, 0.74);
+    backdrop-filter: blur(12px) saturate(1.1);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+    padding: 2.5rem 2.25rem;
+    margin: 1.75rem;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(30, 58, 43, 0.14);
+}
+@media (max-width: 720px) {
+    .hs-hero-wrap { min-height: 0; border-radius: 16px; }
+    .hs-hero-panel { padding: 1.75rem 1.25rem; margin: 1rem; }
+}
 </style>
 
-<section class="hs-section">
-  <h1 style="font-family: 'Fraunces', serif; font-size: 3.4rem; color: #1e3a2b; text-align: center; margin: 0 0 1.25rem; line-height: 1.1;">Hosted Hermes Agents</h1>
-  <p style="font-family: 'DM Sans', sans-serif; font-size: 1.25rem; color: #5a6862; text-align: center; max-width: 840px; margin: 0 auto 2rem; line-height: 1.55;">Run your own <strong>NousResearch Hermes</strong> agent inside Divinci — each one isolated in its own Cloudflare Sandbox container. Chat with it in the app, or connect a local Hermes, the desktop app, or any OpenAI-compatible client through a per-agent proxy URL. Bring your own provider key.</p>
-  <img src="/images/hosted-hermes-on-cloudflare-hero.png" alt="A da Vinci notebook illustration: Hermes the messenger delivering a sealed scroll to a row of four isolated, walled study-cells — one agent per sandbox — beneath a cloud, with an hsk- key and padlock in the margin." width="1376" height="768" loading="eager" decoding="async" style="display:block; width:100%; max-width:940px; height:auto; margin:0 auto 2.5rem; border-radius:14px; border:1.5px solid rgba(139,118,89,0.3); box-shadow:0 14px 40px rgba(30,58,43,0.15);">
-  <p style="text-align: center; margin: 0 0 1rem;">
-    <a class="hs-btn hs-btn-primary" href="https://app.divinci.app/signup">Create your Hermes agent →</a>
-    <a class="hs-btn hs-btn-ghost" href="https://meetings.hubspot.com/michael-mooring/divinci-ai">Talk to us</a>
-  </p>
-  <p style="text-align: center; margin: 0 0 3rem;">
-    <a class="hs-btn hs-btn-deploy" href="https://deploy.workers.cloudflare.com/?url=https://github.com/Divinci-AI/hermesworkers">⚡ Deploy your own on Cloudflare</a>
-  </p>
-  <p class="hs-deploy-note">Prefer to self-host? Hermes Agents are built on our open-source <a href="https://github.com/Divinci-AI/hermesworkers" style="color:#2d5a4f;">hermesworkers</a> Worker — deploy it to your own Cloudflare account. (Advanced: the container runtime needs Cloudflare Containers and a few secrets; see the repo README.)</p>
-</section>
+<div class="hs-hero-wrap">
+  <video class="hs-hero-video" autoplay muted loop playsinline preload="auto" poster="/images/hosted-hermes-hero-poster.webp" aria-label="Animated da Vinci illustration: Hermes delivering scrolls to isolated sandbox cells">
+    <source src="/images/hosted-hermes-hero.webm" type="video/webm">
+  </video>
+  <div class="hs-hero-panel">
+    <h1 style="font-family: 'Fraunces', serif; font-size: 3.1rem; color: #1e3a2b; margin: 0 0 1rem; line-height: 1.1;">Hosted Hermes Agents</h1>
+    <p style="font-family: 'DM Sans', sans-serif; font-size: 1.15rem; color: #3a4a42; max-width: 640px; margin: 0 auto 1.75rem; line-height: 1.55;">Run your own <strong>NousResearch Hermes</strong> agent inside Divinci — each one isolated in its own Cloudflare Sandbox container. Chat with it in the app, or connect a local Hermes, the desktop app, or any OpenAI-compatible client through a per-agent proxy URL. Bring your own provider key.</p>
+    <p style="margin: 0 0 0.75rem;">
+      <a class="hs-btn hs-btn-primary" href="https://chat.divinci.app/start/hermes-agents">Create your Hermes agent →</a>
+      <a class="hs-btn hs-btn-ghost" href="https://meetings.hubspot.com/michael-mooring/divinci-ai">Talk to us</a>
+    </p>
+    <p style="margin: 0 0 0.75rem;">
+      <a class="hs-btn hs-btn-deploy" href="https://deploy.workers.cloudflare.com/?url=https://github.com/Divinci-AI/hermesworkers">⚡ Deploy your own on Cloudflare</a>
+    </p>
+    <p class="hs-deploy-note" style="margin: 0 auto;">Prefer to self-host? Hermes Agents are built on our open-source <a href="https://github.com/Divinci-AI/hermesworkers" style="color:#2d5a4f;">hermesworkers</a> Worker — deploy it to your own Cloudflare account. (Advanced: the container runtime needs Cloudflare Containers and a few secrets; see the repo README.)</p>
+  </div>
+</div>
 
 <h2 class="hs-heading">One agent, one sandbox</h2>
 <p class="hs-sub">Every hosted agent is its own tenant. There is no shared process, no shared filesystem, and no way for one agent's traffic to reach another's container.</p>
@@ -259,7 +304,7 @@ export GATEWAY_PROXY_URL=<span class="k">"https://api.divinci.app/api/v1/hermes-
 <section class="hs-section" style="text-align: center;">
   <h2 class="hs-heading" style="margin-bottom: 1.25rem;">Bring your own Hermes to the cloud</h2>
   <p style="text-align: center; margin: 0 0 1rem;">
-    <a class="hs-btn hs-btn-primary" href="https://app.divinci.app/signup">Create your Hermes agent →</a>
+    <a class="hs-btn hs-btn-primary" href="https://chat.divinci.app/start/hermes-agents">Create your Hermes agent →</a>
     <a class="hs-btn hs-btn-ghost" href="https://meetings.hubspot.com/michael-mooring/divinci-ai">Talk to us</a>
   </p>
   <p style="text-align: center; margin: 0;">
