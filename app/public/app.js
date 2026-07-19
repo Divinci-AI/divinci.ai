@@ -50,7 +50,7 @@
       .catch(function () { return null; });
   }
 
-  function showAlreadyListed(form, host) {
+  function showAlreadyListed(form, host, claimed) {
     var existing = form.querySelector(".scan-directory-alert");
     if (existing) existing.remove();
     var alert = document.createElement("div");
@@ -59,17 +59,29 @@
 
     var span = document.createElement("span");
     span.textContent = host + " is already in the Divinci directory.";
-
-    var link = document.createElement("a");
-    var directoryOrigin = isStaging ? "https://staging.divinci.ai" : "https://divinci.ai";
-    var url = new URL(directoryOrigin + "/www-rag/");
-    url.searchParams.set("q", host);
-    link.href = url.href;
-    link.textContent = "View listing & claim it →";
-
     alert.appendChild(span);
-    alert.appendChild(document.createTextNode(" "));
-    alert.appendChild(link);
+
+    var actions = document.createElement("div");
+    actions.className = "scan-directory-actions";
+    var directoryOrigin = isStaging ? "https://staging.divinci.ai" : "https://divinci.ai";
+
+    var buildLink = document.createElement("a");
+    var buildUrl = new URL(directoryOrigin + "/www-rag/");
+    buildUrl.searchParams.set("copy", host);
+    buildLink.href = buildUrl.href;
+    buildLink.textContent = "Build on it →";
+    actions.appendChild(buildLink);
+
+    if (!claimed) {
+      var claimLink = document.createElement("a");
+      var claimUrl = new URL(directoryOrigin + "/www-rag/");
+      claimUrl.searchParams.set("claim", host);
+      claimLink.href = claimUrl.href;
+      claimLink.textContent = "Claim it →";
+      actions.appendChild(claimLink);
+    }
+
+    alert.appendChild(actions);
     form.insertBefore(alert, form.firstChild);
   }
 
@@ -86,9 +98,12 @@
       return checkDirectory(host).then(function (site) {
         if (button) { button.disabled = false; button.textContent = button.dataset.origLabel; }
         lastCheckedHost = host;
-        lastCheckedListed = !!(site && site.listed !== false);
+        // Only block on a PUBLICLY PUBLISHED listing — a still-draft release
+        // (mid-crawl via the broader corpus pipeline) isn't "already
+        // processed" from a visitor's point of view.
+        lastCheckedListed = !!(site && site.published !== false);
         if (lastCheckedListed) {
-          showAlreadyListed(form, site.host || host);
+          showAlreadyListed(form, site.host || host, !!site.claimed);
         } else {
           var existingAlert = form.querySelector(".scan-directory-alert");
           if (existingAlert) existingAlert.remove();
@@ -166,4 +181,61 @@
       btn.setAttribute("aria-expanded", "false");
     }
   });
+})();
+
+/* "Ask Divinci" FAQ CTA — opens the chat panel via the widget's own bubble
+   click handler (no public API on the widget; a synthetic click on the
+   real button is the least-invasive way to trigger its internal toggle). */
+(function () {
+  "use strict";
+  var cta = document.querySelector("[data-ask-divinci]");
+  if (!cta) return;
+  cta.addEventListener("click", function () {
+    var bubble = document.querySelector(".dvc-bubble");
+    if (bubble) bubble.click();
+  });
+})();
+
+/* Scatter the hero proof-logo chips so they float at varied positions
+   instead of sitting in a row. Each chip gets a random x and a random y
+   inside its own vertical band (bands prevent overlap). */
+(function () {
+  "use strict";
+  document.querySelectorAll(".hero-proof").forEach(function (zone) {
+    var chips = zone.querySelectorAll("li");
+    var band = 100 / chips.length;
+    chips.forEach(function (chip, i) {
+      var x = Math.random() * 65;                       // % of zone width
+      var y = i * band + Math.random() * (band - 22);   // % within band, chip ≈22% tall
+      chip.style.setProperty("--x", x.toFixed(1) + "%");
+      chip.style.setProperty("--y", y.toFixed(1) + "%");
+    });
+  });
+})();
+
+/* Fixed ask bar → opens the Divinci chat panel (same mechanism as the FAQ
+   CTA: click the widget's own bubble). The bar hides whenever the panel is
+   open — watched via the widget root's dvc-chat-open class. */
+(function () {
+  "use strict";
+  var bar = document.getElementById("ask-bar");
+  if (!bar) return;
+
+  function openPanel() {
+    var bubble = document.querySelector(".dvc-bubble");
+    if (bubble) bubble.click();
+  }
+  bar.addEventListener("click", openPanel);
+  bar.querySelector("input").addEventListener("focus", openPanel);
+
+  function watchRoot() {
+    var root = document.querySelector(".dvc-root");
+    if (!root) { setTimeout(watchRoot, 500); return; }
+    var sync = function () {
+      bar.classList.toggle("ask-bar-hidden", root.classList.contains("dvc-chat-open"));
+    };
+    new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ["class"] });
+    sync();
+  }
+  watchRoot();
 })();
