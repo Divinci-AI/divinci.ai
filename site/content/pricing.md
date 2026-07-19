@@ -793,7 +793,7 @@ input:checked + .toggle-slider:before {
 <div class="container">
 <div class="pricing-header">
 <h1 class="pricing-title">Simple, Transparent Pricing</h1>
-<p class="pricing-subtitle">Choose the plan that's right for your business. All plans include core features, updates, and basic support.</p>
+<p class="pricing-subtitle">Every plan unlocks every feature — RAG, fine-tuning, Scored QA, A/B testing, Arena, BYOK, all of it. Plans are just monthly credit packs for usage: bigger pack, more AI calls covered before pay-as-you-go kicks in.</p>
 
 <div class="pricing-toggle">
 <span class="monthly active">Monthly</span>
@@ -825,13 +825,11 @@ input:checked + .toggle-slider:before {
 </div>
 
 <ul class="pricing-features">
+<li>Every Divinci feature — RAG, fine-tuning, Scored QA, A/B testing, Arena, BYOK</li>
 <li>1 white-label release</li>
+<li>$1/month in included usage credits</li>
 <li>Community AI models (GPT, Gemini, Claude, Llama & more)</li>
-<li>Basic RAG — ground answers on your own documents</li>
-<li>Bring your own API keys (BYOK)</li>
-<li class="unavailable">Scored QA evaluation suites</li>
-<li class="unavailable">Fine-tuning</li>
-<li class="unavailable">Remove Divinci branding</li>
+<li class="unavailable">Divinci branding removed</li>
 <li class="unavailable">Priority email support</li>
 </ul>
 
@@ -841,7 +839,7 @@ input:checked + .toggle-slider:before {
 <!-- Starter Plan -->
 <div class="pricing-card">
 <h2 class="pricing-plan">Starter</h2>
-<p class="pricing-description">Perfect for small teams and individual projects</p>
+<p class="pricing-description">A bigger credit pack for small teams and individual projects</p>
 
 <div class="pricing-amount monthly active">
 <div class="pricing-price">
@@ -857,15 +855,11 @@ input:checked + .toggle-slider:before {
 </div>
 
 <ul class="pricing-features">
+<li>Every Divinci feature — RAG, fine-tuning, Scored QA, A/B testing, Arena, BYOK</li>
 <li>Multiple white-label releases</li>
-<li>$5/month in included usage credits</li>
+<li>$25/month in included usage credits</li>
 <li>Community + premium AI models</li>
-<li>Basic RAG — ground answers on your own documents</li>
-<li>Bring your own API keys (BYOK)</li>
-<li>Scored QA evaluation suites</li>
-<li>Remove Divinci branding</li>
-<li class="unavailable">Advanced RAG (multi-index, reranking)</li>
-<li class="unavailable">Fine-tuning</li>
+<li>Divinci branding removed</li>
 <li class="unavailable">Priority email support</li>
 </ul>
 
@@ -876,7 +870,7 @@ input:checked + .toggle-slider:before {
 <div class="pricing-card featured">
 <div class="pricing-popular">Most Popular</div>
 <h2 class="pricing-plan">Pro</h2>
-<p class="pricing-description">Ideal for growing businesses and teams</p>
+<p class="pricing-description">The credit pack for growing businesses and teams</p>
 
 <div class="pricing-amount monthly active">
 <div class="pricing-price">
@@ -892,16 +886,11 @@ input:checked + .toggle-slider:before {
 </div>
 
 <ul class="pricing-features">
+<li>Every Divinci feature — RAG, fine-tuning, Scored QA, A/B testing, Arena, BYOK</li>
 <li>Multiple white-label releases</li>
-<li>$25/month in included usage credits</li>
+<li>$100/month in included usage credits</li>
 <li>Community + premium AI models</li>
-<li>Advanced RAG (multi-index, reranking, higher limits)</li>
-<li>Bring your own API keys (BYOK)</li>
-<li>Scored QA evaluation suites</li>
-<li>A/B release testing</li>
-<li>Arena — side-by-side model comparison</li>
-<li>Fine-tuning</li>
-<li>Remove Divinci branding</li>
+<li>Divinci branding removed</li>
 <li>Priority email support</li>
 </ul>
 
@@ -918,7 +907,7 @@ input:checked + .toggle-slider:before {
 <div class="ep-header">
 <div class="ep-title-group">
 <h2 class="pricing-plan">Enterprise</h2>
-<p class="pricing-description">For larger teams with advanced needs</p>
+<p class="pricing-description">Everything in Pro, our largest credit pack, plus organization-scale extras</p>
 </div>
 
 <div class="ep-price-group">
@@ -942,17 +931,15 @@ input:checked + .toggle-slider:before {
 </div>
 
 <ul class="pricing-features pricing-features-grid">
+<li>Every Divinci feature — RAG, fine-tuning, Scored QA, A/B testing, Arena, BYOK</li>
 <li>Unlimited white-label releases</li>
-<li>$150/month in included usage credits</li>
+<li>$500/month in included usage credits</li>
 <li>Community + premium AI models</li>
-<li>Advanced RAG (multi-index, reranking, higher limits)</li>
-<li>Scored QA, A/B testing, Arena, fine-tuning</li>
-<li>Remove Divinci branding</li>
+<li>Divinci branding removed</li>
 <li>Priority email support</li>
-<li>Bring your own API keys (BYOK)</li>
-<li>Single sign-on (SSO)</li>
-<li>Custom domains — contact us for early access</li>
-<li>Dedicated support — contact us</li>
+<li>Single sign-on (SSO) — Enterprise-only</li>
+<li>Custom domains — Enterprise-only, contact us for early access</li>
+<li>Dedicated support engineer — Enterprise-only</li>
 </ul>
 </div>
 
@@ -971,12 +958,12 @@ input:checked + .toggle-slider:before {
 <div class="faq-container">
 <div class="faq-item">
 <button class="faq-question">
-What's included in all plans?
+Why do all plans have the same features?
 <span class="faq-icon">+</span>
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>All plans include access to our core Divinci AI platform, which enables you to create custom AI solutions. Every plan also includes basic document processing, knowledge extraction capabilities, regular updates, and access to our support resources.</p>
+<p>Because Divinci is priced on usage, not features. Every plan gets RAG, fine-tuning, Scored QA, A/B testing, Arena, BYOK, and everything else the platform can do — there's no "upgrade to unlock" wall. Plans differ in how many monthly usage credits they include (and Enterprise adds a handful of org-scale extras like SSO and a dedicated support engineer, which aren't usage costs, they're operational commitments). Pick a plan based on how much you expect to use, not which features you're missing.</p>
 </div>
 </div>
 </div>
@@ -988,7 +975,7 @@ How does usage-based billing work?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Paid plans include a monthly credit allowance (shown on each plan above) that covers AI model usage, RAG retrieval, and other metered platform costs. Once your included credits are used, usage is billed pay-as-you-go from your wallet balance at the same metered rates.</p>
+<p>Every plan includes a monthly credit allowance (shown on each plan above) that covers AI model usage, RAG retrieval, and other metered platform costs — think of it as a prepaid wallet top-up bundled into your subscription. Once your included credits are used, usage is billed pay-as-you-go from your wallet balance at the same metered rates. Need more headroom? Move to a bigger credit pack anytime, or just top up your wallet directly.</p>
 </div>
 </div>
 </div>
