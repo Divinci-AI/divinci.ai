@@ -228,14 +228,29 @@
   bar.addEventListener("click", openPanel);
   bar.querySelector("input").addEventListener("focus", openPanel);
 
+  // The bar stays hidden until the visitor scrolls past the hero section,
+  // and whenever the chat panel is open.
+  var hero = document.querySelector(".hero");
+  var chatOpen = false;
+  function pastHero() {
+    if (!hero) return true;
+    return window.scrollY > hero.offsetTop + hero.offsetHeight - 80;
+  }
+  function sync() {
+    bar.classList.toggle("ask-bar-hidden", chatOpen || !pastHero());
+  }
+  window.addEventListener("scroll", sync, { passive: true });
+
   function watchRoot() {
     var root = document.querySelector(".dvc-root");
     if (!root) { setTimeout(watchRoot, 500); return; }
-    var sync = function () {
-      bar.classList.toggle("ask-bar-hidden", root.classList.contains("dvc-chat-open"));
+    var update = function () {
+      chatOpen = root.classList.contains("dvc-chat-open");
+      sync();
     };
-    new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ["class"] });
-    sync();
+    new MutationObserver(update).observe(root, { attributes: true, attributeFilter: ["class"] });
+    update();
   }
   watchRoot();
+  sync();
 })();
