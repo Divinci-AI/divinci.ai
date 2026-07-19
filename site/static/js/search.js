@@ -9,6 +9,7 @@
   var INPUT = document.getElementById('search-input');
   var RESULTS = document.getElementById('search-results');
   var EMPTY = document.getElementById('search-empty');
+  var HINT = document.getElementById('search-hint');
   if (!TRIGGERS.length || !MODAL || !INPUT || !RESULTS || !EMPTY) return;
 
   // Active language from <html lang>; falls back to EN.
@@ -43,18 +44,30 @@
     while (RESULTS.firstChild) RESULTS.removeChild(RESULTS.firstChild);
   }
 
+  // Root-absolute hrefs only — relative paths concatenate onto the current URL.
+  function absoluteUrl(url) {
+    if (!url) return '/';
+    if (/^(https?:)?\/\//i.test(url) || url.charAt(0) === '/') return url;
+    return '/' + url;
+  }
+
   function render(q) {
     clearResults();
     active = -1;
-    if (!q || !fuse) { EMPTY.hidden = true; return; }
+    if (!q || !fuse) {
+      EMPTY.hidden = true;
+      if (HINT) HINT.hidden = false;
+      return;
+    }
     var hits = fuse.search(q).slice(0, 12);
+    if (HINT) HINT.hidden = true;
     if (!hits.length) { EMPTY.hidden = false; return; }
     EMPTY.hidden = true;
     hits.forEach(function (h) {
       var item = h.item;
       var li = document.createElement('li');
       var a = document.createElement('a');
-      a.setAttribute('href', item.url);
+      a.setAttribute('href', absoluteUrl(item.url));
       var section = document.createElement('div');
       section.className = 'r-section';
       section.textContent = item.section;

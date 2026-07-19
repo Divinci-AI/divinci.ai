@@ -1,0 +1,341 @@
+/* Divinci homepage free-chat widget — floating bubble + panel.
+   Uses the site's brand tokens (variables.css) so it matches divinci.ai. */
+
+.dvc-root {
+  position: fixed; right: 20px; bottom: 20px; z-index: 100002;
+  font-family: "Source Sans 3", system-ui, -apple-system, sans-serif;
+  overflow: visible;
+  opacity: 1;
+  visibility: visible;
+  /* Opacity/visibility only — never transform/filter/perspective on .dvc-root.
+     Those create a containing block that traps .dvc-panel's position:fixed
+     inside the tiny launcher box, so the chat "opens" (robot lifts) but the
+     panel never appears on screen. */
+  transition: opacity .55s ease, visibility .55s ease;
+}
+/* Homepage hero: hide until the second section enters view (JS toggles class). */
+.dvc-root.dvc-hero-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dvc-root { transition: opacity .2s ease, visibility .2s; }
+}
+
+/* Ambient section blurbs above the launcher (web-app RobotChatBubble pattern).
+   Explicit width (not just max-width): .dvc-root shrink-wraps to the launcher,
+   so absolute children otherwise shrink-to-fit that narrow box and stack
+   every word on its own line. */
+.dvc-speech {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
+  z-index: 5;
+  pointer-events: none;
+  width: min(280px, calc(100vw - 48px));
+  max-width: min(280px, calc(100vw - 48px));
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px) scale(0.94);
+  transition: opacity .45s ease, transform .45s cubic-bezier(.2, 1.4, .4, 1), visibility .45s;
+}
+.dvc-speech.dvc-speech-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+.dvc-root.dvc-chat-open .dvc-speech {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(8px) scale(0.94);
+  transition: none;
+}
+.dvc-speech-inner {
+  position: relative;
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #faf8f5 0%, #f0ebe3 100%);
+  color: var(--color-neutral-inverse, #2d5a4f);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(30, 58, 43, 0.18), 0 2px 4px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(45, 90, 79, 0.16);
+}
+.dvc-speech-tail {
+  position: absolute;
+  bottom: -7px;
+  right: 28px;
+  width: 14px;
+  height: 14px;
+  background: #f0ebe3;
+  border-right: 1px solid rgba(45, 90, 79, 0.16);
+  border-bottom: 1px solid rgba(45, 90, 79, 0.16);
+  transform: rotate(45deg);
+  border-radius: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dvc-speech {
+    transition: opacity .2s ease, visibility .2s;
+    transform: none;
+  }
+  .dvc-speech.dvc-speech-visible { transform: none; }
+}
+
+.dvc-bubble {
+  width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer;
+  font-size: 24px; line-height: 1; color: #fff;
+  background: var(--color-neutral-inverse, #2d5a4f);
+  box-shadow: 0 6px 20px rgba(30, 58, 43, 0.35);
+  transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1), background .15s ease;
+}
+.dvc-bubble:hover { transform: translateY(-2px); background: var(--color-accent-tertiary, #3d6b4f); }
+.dvc-bubble-open {
+  background: var(--color-accent-secondary, #8b7659);
+  transform: translateY(-46px) !important;
+  z-index: 10001;
+}
+
+.dvc-bubble-robot.dvc-bubble-open {
+  transform: translateY(-52px) !important;
+}
+
+/* 3D robot launcher upgrade (capability-gated; emoji is the fallback).
+   font-size: 0 hides the emoji glyph while the WebGL canvas fills the bubble;
+   removing the class restores it instantly on any failure. */
+.dvc-bubble-robot {
+  transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1), background .15s ease;
+  font-size: 0;
+  width: 76px; height: 76px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  /* Layered backgrounds fake a gradient border on a circle (border-image
+     doesn't respect border-radius). The padding-box layer is the robot's
+     backdrop; the border-box layer only shows through the 2px ring, so
+     the rim itself carries a highlight → shadow sweep along the SAME
+     diagonal as the radial glow's light source (circle at 30% 25%, i.e.
+     upper-left) — a bright, slightly-lighter edge facing the light, and
+     a darker edge on the far side, like light catching a physical lip. */
+  background:
+    radial-gradient(circle at 30% 25%, #3a3f6e, var(--color-neutral-inverse, #2d5a4f)) padding-box,
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.45) 30%,
+      rgba(0, 0, 0, 0.25) 65%,
+      rgba(0, 0, 0, 0.55) 100%) border-box;
+  /* "Portal" depth: outer ambient shadow (matches the plain bubble) + a
+     tighter outer contact shadow, then two inset shadows so the rim reads
+     as a physical lip the robot sits behind rather than a flat sticker. */
+  box-shadow:
+    0 6px 20px rgba(30, 58, 43, 0.35),
+    0 2px 5px rgba(0, 0, 0, 0.35),
+    inset 0 3px 8px rgba(0, 0, 0, 0.6),
+    inset 0 -2px 5px rgba(255, 255, 255, 0.15);
+}
+.dvc-bubble-robot-holder {
+  position: absolute; inset: 0;
+  pointer-events: none; /* clicks land on the button itself */
+}
+.dvc-bubble-robot-holder canvas { width: 100% !important; height: 100% !important; }
+/* Taller launcher → lift the panel so it clears the robot bubble.
+   :has() is safe here: the robot only mounts on modern engines anyway. */
+.dvc-root:has(.dvc-bubble-robot) .dvc-panel { bottom: 0; }
+
+.dvc-panel {
+  position: fixed; right: 0; top: 100px; bottom: 0; width: 380px; max-width: 100vw;
+  display: flex; flex-direction: column;
+  background: var(--color-bg-primary, #f8f4f0);
+  border-left: 1px solid var(--color-bg-accent, #e8ddc7); border-radius: 14px 0 0 0; overflow: hidden;
+  box-shadow: -5px 0 35px rgba(30, 58, 43, 0.15);
+}
+.dvc-hidden { display: none; }
+
+.dvc-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; background: var(--color-neutral-inverse, #2d5a4f); color: #fff;
+  font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 16px;
+}
+.dvc-close {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; padding: 0; border-radius: 6px;
+  background: none; border: none; color: #fff; cursor: pointer;
+  opacity: 0.85; transition: opacity 0.15s;
+}
+.dvc-close:hover { opacity: 1; }
+
+/* Inline SVG icon set (Lucide) — uniform stroke chrome across the widget */
+.dvc-icon { display: block; width: 16px; height: 16px; }
+.dvc-icon-spin { animation: dvc-spin 0.9s linear infinite; }
+@keyframes dvc-spin { to { transform: rotate(360deg); } }
+
+.dvc-body { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.dvc-pad { padding: 18px 16px; display: flex; flex-direction: column; gap: 12px; }
+.dvc-center { align-items: center; text-align: center; justify-content: center; flex: 1; }
+
+.dvc-lead { margin: 0; color: var(--color-text-primary, #2d3c34); font-size: 14px; line-height: 1.45; }
+.dvc-muted { margin: 0; color: var(--color-text-secondary, #7e8d95); font-size: 12px; }
+.dvc-err { margin: 0; color: #b00020; font-size: 13px; min-height: 16px; }
+
+.dvc-input {
+  width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 14px;
+  border: 1px solid var(--color-bg-accent, #e8ddc7); border-radius: 8px;
+  background: #fff; color: var(--color-text-primary, #2d3c34);
+}
+.dvc-input:focus { outline: none; border-color: var(--color-accent-primary, #b8a080); }
+.dvc-code { letter-spacing: 6px; font-size: 18px; text-align: center; }
+
+.dvc-btn {
+  display: inline-block; text-align: center; text-decoration: none; padding: 10px 14px;
+  border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600;
+  color: #fff; background: var(--color-neutral-inverse, #2d5a4f);
+}
+.dvc-btn:hover { background: var(--color-accent-tertiary, #3d6b4f); }
+.dvc-btn:disabled { opacity: .6; cursor: default; }
+.dvc-cta { background: var(--color-accent-primary, #b8a080); }
+.dvc-cta:hover { background: var(--color-accent-primary-hover, #a6946b); }
+.dvc-link { background: none; border: none; color: var(--color-text-secondary, #7e8d95); font-size: 12px; cursor: pointer; text-decoration: underline; padding: 0; }
+.dvc-turnstile { min-height: 65px; }
+
+.dvc-chat { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.dvc-messages { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.dvc-msg { max-width: 85%; padding: 9px 12px; border-radius: 12px; font-size: 14px; line-height: 1.4; white-space: pre-wrap; word-wrap: break-word; }
+.dvc-msg-user { align-self: flex-end; background: var(--color-neutral-inverse, #2d5a4f); color: #fff; border-bottom-right-radius: 4px; }
+.dvc-msg-assistant { align-self: flex-start; background: var(--color-bg-accent, #e8ddc7); color: var(--color-text-primary, #2d3c34); border-bottom-left-radius: 4px; }
+.dvc-starters { display: flex; flex-direction: column; gap: 6px; align-self: stretch; }
+.dvc-starter-btn {
+  text-align: left; padding: 9px 12px; border-radius: 10px; font-size: 13px; line-height: 1.3;
+  border: 1px solid var(--color-bg-accent, #e8ddc7); background: #fff; color: var(--color-neutral-inverse, #2d5a4f);
+  cursor: pointer; transition: background-color .15s ease-out, border-color .15s ease-out;
+}
+.dvc-starter-btn:hover { background: var(--color-bg-accent, #e8ddc7); border-color: var(--color-neutral-inverse, #2d5a4f); }
+.dvc-meta { padding: 0 14px; }
+.dvc-inputrow { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--color-bg-accent, #e8ddc7); }
+.dvc-send {
+  flex: 0 0 auto; width: 40px; display: inline-flex; align-items: center; justify-content: center;
+  border: none; border-radius: 8px; cursor: pointer; color: #fff;
+  background: var(--color-neutral-inverse, #2d5a4f);
+}
+.dvc-send:hover { background: var(--color-accent-tertiary, #3d6b4f); }
+
+/* Markdown-rendered AI replies (assistant bubbles). Override the bubble's
+   pre-wrap so block elements lay out normally; keep margins tight. */
+.dvc-msg.dvc-md { white-space: normal; }
+.dvc-md > :first-child { margin-top: 0; }
+.dvc-md > :last-child { margin-bottom: 0; }
+.dvc-msg p, .dvc-msg li, .dvc-msg span, .dvc-msg ul, .dvc-msg ol {
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+}
+.dvc-md p { margin: 0 0 8px; }
+.dvc-md h1, .dvc-md h2, .dvc-md h3, .dvc-md h4, .dvc-md h5, .dvc-md h6 {
+  margin: 10px 0 5px; font-size: 14px; font-weight: 700; line-height: 1.3;
+}
+.dvc-md ul, .dvc-md ol { margin: 0 0 8px; padding-left: 20px; }
+.dvc-md li { margin: 2px 0; }
+.dvc-md a { color: var(--color-neutral-inverse, #2d5a4f); text-decoration: underline; }
+.dvc-md code { background: rgba(0, 0, 0, 0.06); padding: 1px 4px; border-radius: 4px; font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.dvc-md pre { background: rgba(0, 0, 0, 0.06); padding: 8px 10px; border-radius: 8px; overflow-x: auto; margin: 0 0 8px; }
+.dvc-md pre code { background: none; padding: 0; }
+
+/* Marketing opt-in row (optional, GDPR). */
+.dvc-consent { display: flex; align-items: flex-start; gap: 8px; margin: 10px 0 0; cursor: pointer; }
+.dvc-consent input[type="checkbox"] { margin: 2px 0 0; flex: 0 0 auto; accent-color: var(--color-neutral-inverse, #2d5a4f); }
+.dvc-consent-text { font-size: 12px; line-height: 1.4; color: var(--color-text-secondary, #5a6b62); }
+.dvc-consent-text a { color: var(--color-neutral-inverse, #2d5a4f); text-decoration: underline; }
+
+/* Typing indicator — three dots bounce in a wave (iPhone-style). */
+.dvc-msg.dvc-typing { display: inline-flex; gap: 4px; align-items: center; padding: 12px 14px; }
+.dvc-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.4; animation: dvc-bounce 1.4s infinite ease-in-out both; }
+.dvc-dot:nth-child(1) { animation-delay: -0.32s; }
+.dvc-dot:nth-child(2) { animation-delay: -0.16s; }
+.dvc-dot:nth-child(3) { animation-delay: 0s; }
+@keyframes dvc-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-5px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dvc-dot { animation: dvc-pulse 1.4s infinite ease-in-out both; }
+  @keyframes dvc-pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+}
+
+@media (max-width: 480px) {
+  .dvc-panel,
+  .dvc-root:has(.dvc-bubble-robot) .dvc-panel {
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100vw;
+    top: 0;
+    bottom: 0;
+    height: auto;
+    max-height: none;
+    border: none;
+    border-radius: 0;
+  }
+  /* Hide launcher while chat is open — panel is full-screen */
+  .dvc-bubble-open,
+  .dvc-bubble-robot.dvc-bubble-open {
+    transform: none !important;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* ── Message rating (thumbs up/down + feedback) ─────────────────────────── */
+.dvc-rating { align-self: flex-start; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: -2px 0 6px 2px; max-width: 85%; }
+.dvc-thumb {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 24px; padding: 0;
+  border: 1px solid var(--color-bg-accent, #e8ddc7); background: #fff; cursor: pointer;
+  border-radius: 8px; color: var(--color-text-primary, #2d3c34); opacity: .65;
+  transition: opacity .15s ease, border-color .15s ease, background .15s ease;
+}
+.dvc-thumb .dvc-icon { width: 14px; height: 14px; }
+.dvc-thumb:hover { opacity: 1; border-color: var(--color-accent-primary, #b8a080); }
+.dvc-thumb-on { opacity: 1; background: var(--color-neutral-inverse, #2d5a4f); border-color: var(--color-neutral-inverse, #2d5a4f); color: #fff; }
+.dvc-rating-thanks { color: var(--color-text-secondary, #7e8d95); font-size: 12px; }
+.dvc-feedback-box { flex: 1 1 100%; display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.dvc-feedback-input {
+  width: 100%; box-sizing: border-box; padding: 8px 10px; font-size: 13px; resize: vertical; min-height: 48px;
+  border: 1px solid var(--color-bg-accent, #e8ddc7); border-radius: 8px;
+  background: #fff; color: var(--color-text-primary, #2d3c34); font-family: inherit;
+}
+.dvc-feedback-input:focus { outline: none; border-color: var(--color-accent-primary, #b8a080); }
+.dvc-feedback-submit {
+  align-self: flex-start; border: none; border-radius: 8px; cursor: pointer; padding: 6px 12px;
+  font-size: 13px; font-weight: 600; color: #fff; background: var(--color-neutral-inverse, #2d5a4f);
+}
+.dvc-feedback-submit:hover { background: var(--color-accent-tertiary, #3d6b4f); }
+.dvc-feedback-submit:disabled { opacity: .6; cursor: default; }
+
+/* ── Header actions & utility buttons ────────────────────────── */
+.dvc-header-actions { display: flex; align-items: center; gap: 8px; }
+.dvc-clear {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; padding: 0; border-radius: 6px;
+  background: none; border: none; color: #fff; cursor: pointer;
+  opacity: 0.7; transition: opacity 0.15s;
+}
+.dvc-clear:hover { opacity: 1; }
+.dvc-clear:disabled { cursor: default; }
+
+.dvc-emoji-chip {
+  background: var(--color-bg-accent, #e8ddc7); border: 1px solid var(--color-neutral-inverse, #2d5a4f);
+  padding: 2px 6px; border-radius: 12px; font-size: 13px; line-height: 1.4; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  margin-right: 4px;
+}
+.dvc-emoji-chip:hover { background: #fff; }
+
+.dvc-emoji-pop {
+  position: absolute; background: #fff; border: 1px solid var(--color-bg-accent, #e8ddc7);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); border-radius: 8px; padding: 4px; display: flex; gap: 4px;
+  z-index: 10002; transform: translateY(-40px);
+}
+.dvc-emoji-pop-btn {
+  background: none; border: none; font-size: 16px; cursor: pointer; padding: 4px; border-radius: 4px; transition: background 0.15s;
+}
+.dvc-emoji-pop-btn:hover { background: var(--color-bg-accent, #e8ddc7); }

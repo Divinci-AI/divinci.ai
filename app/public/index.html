@@ -33,6 +33,7 @@
   <link rel="alternate" hreflang="x-default" href="https://divinci.app/">
   <!-- /i18n:alternates -->
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/css/divinci-chat-widget.css">
 </head>
 <body>
 
@@ -223,5 +224,26 @@
   </footer>
 
   <script src="/app.js" defer></script>
+  <!-- Divinci free-chat widget (same 3D-robot launcher as divinci.ai),
+       pointed at the divinci.app-specific "Divinci App Guide" release. -->
+  <script type="application/json" id="divinci-chat-starters">[
+    {"label":"What do I get?","message":"What do I get when I turn my website into an AI?"},
+    {"label":"Squarespace / WordPress / Wix","message":"How do I put my AI on Squarespace, WordPress, or Wix?"},
+    {"label":"Get paid for my AI","message":"How can I get paid when other AIs use mine (MCP + x402)?"}
+  ]</script>
+  <script type="application/json" id="divinci-chat-blurbs">[
+    {"selector":".steps","blurb":"Three steps — ask me for the details."},
+    {"selector":".menu","blurb":"Ask me about notifications, analytics, or joining chats."},
+    {"selector":".trust","blurb":"It cites its sources — ask me how."},
+    {"selector":".faq","blurb":"Didn't find your question? Just ask."},
+    {"selector":".bottom-cta","blurb":"Ready when you are — or ask me anything."}
+  ]</script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script defer id="divinci-chat-js"
+      src="/js/divinci-chat.js"
+      data-api-base="https://api.stage.divinci.app"
+      data-release-id="6a5ca95770de8721213872b6"
+      data-turnstile-sitekey="0x4AAAAAADpf5cq58Uvc2Drx"
+      data-signup-url="https://chat.divinci.app/"></script>
 </body>
 </html>

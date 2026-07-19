@@ -71,11 +71,34 @@ function readConfig(): WidgetConfig | null {
 // `divinci release update --conversation-starters`) — kept in sync manually
 // since this vanilla-JS widget doesn't fetch it (see sdk.divinci.ai's
 // DocsAssistant for the page-aware, server-driven version of this idea).
-const CONVERSATION_STARTERS: Array<{ label: string; message: string }> = [
+function readJsonConfig<T>(id: string, fallback: T): T {
+  const el = document.getElementById(id);
+  if (!el) return fallback;
+  try { return JSON.parse(el.textContent || "") as T; } catch { return fallback; }
+}
+
+const CONVERSATION_STARTERS: Array<{ label: string; message: string }> = readJsonConfig("divinci-chat-starters", [
   { label: "What is Divinci?", message: "What is Divinci AI?" },
   { label: "Connect an AI via MCP", message: "How do I connect Claude or Grok to Divinci over MCP?" },
   { label: "Compare pricing plans", message: "What's the difference between the Free, Starter, Pro, and Enterprise plans?" },
-];
+]);
+
+/** Homepage section blurbs for the ambient speech bubble above the robot.
+ *  Hero is omitted — the launcher stays hidden until the second section. */
+const SECTION_BLURBS: Array<{ selector: string; blurb: string }> = readJsonConfig("divinci-chat-blurbs", [
+  { selector: "#solutions, .compare-section", blurb: "Same prompt, two systems — want the methodology?" },
+  { selector: "#features, .features-section", blurb: "I can walk you through compliance, testing, or recovery." },
+  { selector: ".research-band", blurb: "Open weights, open patches — ask about vIndexes." },
+  { selector: "#team, .team-section", blurb: "Meet the people behind Divinci." },
+  { selector: "#signup, .signup-section", blurb: "Ready to start? I can point you to a demo." },
+  { selector: ".expert-answers-section", blurb: "Got a reliability or workflow question? Ask me." },
+  { selector: ".contact-section", blurb: "Want to talk to a human? I can help you reach us." },
+]);
+const SPEECH_FALLBACK = "👋 Hi! I'm Divinci — ask me anything.";
+const SPEECH_DWELL_MS = 2500;
+const SPEECH_DEBOUNCE_MS = 300;
+/** Hero bottom must clear this fraction of the viewport before the launcher fades in. */
+const HERO_HIDE_BOTTOM_RATIO = 0.72;
 
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, html?: string): HTMLElementTagNameMap[K] {
   const node = document.createElement(tag);
@@ -216,6 +239,15 @@ class DivinciChatWidget {
   private panel!: HTMLDivElement;
   private bubble!: HTMLButtonElement;
   private body!: HTMLDivElement;
+  private speech!: HTMLDivElement;
+  private speechText!: HTMLSpanElement;
+  private speechObserver: IntersectionObserver | null = null;
+  private speechSectionId: string | null = null;
+  private speechShownAt = 0;
+  private speechDebounce: ReturnType<typeof setTimeout> | null = null;
+  private speechPendingId: string | null = null;
+  private heroEl: Element | null = null;
+  private heroScrollRaf = 0;
   private messages: Array<{ role: "user" | "assistant"; text: string; pending?: boolean; rating?: -1 | 1; ratingDone?: boolean; isError?: boolean; ratingEmoji?: string }> = [];
 
   constructor(cfg: WidgetConfig) {
@@ -392,9 +424,162 @@ class DivinciChatWidget {
     this.panel.appendChild(this.tsMount);
     this.root.appendChild(this.panel);
     this.root.appendChild(this.bubble);
+    this.mountSpeechBubble();
     document.body.appendChild(this.root);
+    this.startHeroScrollGate();
     this.upgradeBubbleToRobot();
     this.render();
+  }
+
+  /**
+   * On pages with a hero, keep the launcher hidden at the top so it doesn't
+   * compete with the hero composition — then fade it in once the second
+   * section enters view. Pages without a hero show the robot immediately.
+   */
+  private startHeroScrollGate(): void {
+    this.heroEl = document.querySelector("section.hero");
+    if (!this.heroEl) return;
+
+    this.root.classList.add("dvc-hero-hidden");
+    this.root.setAttribute("aria-hidden", "true");
+    this.bubble.tabIndex = -1;
+    this.syncHeroScrollGate();
+
+    const onScrollOrResize = (): void => {
+      if (this.heroScrollRaf) return;
+      this.heroScrollRaf = requestAnimationFrame(() => {
+        this.heroScrollRaf = 0;
+        this.syncHeroScrollGate();
+      });
+    };
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
+  }
+
+  private syncHeroScrollGate(): void {
+    if (!this.heroEl) return;
+    // Stay visible while the panel is open so closing at the top doesn't
+    // yank the chat away mid-conversation.
+    if (this.open) {
+      this.root.classList.remove("dvc-hero-hidden");
+      this.root.removeAttribute("aria-hidden");
+      this.bubble.tabIndex = 0;
+      return;
+    }
+    const bottom = this.heroEl.getBoundingClientRect().bottom;
+    const pastHero = bottom < window.innerHeight * HERO_HIDE_BOTTOM_RATIO;
+    const wasHidden = this.root.classList.contains("dvc-hero-hidden");
+    this.root.classList.toggle("dvc-hero-hidden", !pastHero);
+    if (pastHero) {
+      this.root.removeAttribute("aria-hidden");
+      this.bubble.tabIndex = 0;
+      if (wasHidden) this.revealSpeechIfReady();
+    } else {
+      this.root.setAttribute("aria-hidden", "true");
+      this.bubble.tabIndex = -1;
+      this.speech?.classList.remove("dvc-speech-visible");
+    }
+  }
+
+  /** Ambient speech bubble above the launcher — section-aware blurbs. */
+  private mountSpeechBubble(): void {
+    this.speech = el("div", "dvc-speech");
+    this.speech.setAttribute("aria-hidden", "true");
+    const inner = el("div", "dvc-speech-inner");
+    this.speechText = el("span", "dvc-speech-text");
+    this.speechText.textContent = SPEECH_FALLBACK;
+    inner.appendChild(this.speechText);
+    inner.appendChild(el("span", "dvc-speech-tail"));
+    this.speech.appendChild(inner);
+    this.root.appendChild(this.speech);
+
+    // Brief delay so the page settles, then start observing. Speech itself
+    // only becomes visible once the launcher is past the hero (see below).
+    window.setTimeout(() => {
+      this.startSpeechObserver();
+      this.revealSpeechIfReady();
+    }, 1000);
+  }
+
+  /** Show the ambient blurb only when the launcher itself is on-screen. */
+  private revealSpeechIfReady(): void {
+    if (this.root.classList.contains("dvc-hero-hidden")) return;
+    if (this.root.classList.contains("dvc-chat-open")) return;
+    if (this.speech.classList.contains("dvc-speech-visible")) return;
+    this.speech.classList.add("dvc-speech-visible");
+    this.speechShownAt = Date.now();
+  }
+
+  private startSpeechObserver(): void {
+    const targets: Array<{ id: string; el: Element; blurb: string }> = [];
+    for (const { selector, blurb } of SECTION_BLURBS) {
+      const node = document.querySelector(selector);
+      if (node) targets.push({ id: selector, el: node, blurb });
+    }
+    if (!targets.length) return;
+
+    this.speechObserver = new IntersectionObserver(
+      () => {
+        let best: { id: string; blurb: string; ratio: number } | null = null;
+        for (const t of targets) {
+          const ratio = this.sectionVisibilityRatio(t.el);
+          if (ratio <= 0) continue;
+          if (!best || ratio > best.ratio) best = { id: t.id, blurb: t.blurb, ratio };
+        }
+        if (!best) return;
+        this.queueSpeechBlurb(best.id, best.blurb);
+      },
+      { root: null, rootMargin: "-35% 0px -45% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] },
+    );
+    for (const t of targets) this.speechObserver.observe(t.el);
+  }
+
+  /** Rough mid-viewport visibility score for a section. */
+  private sectionVisibilityRatio(node: Element): number {
+    const rect = node.getBoundingClientRect();
+    const vh = window.innerHeight || 1;
+    const top = Math.max(rect.top, vh * 0.35);
+    const bottom = Math.min(rect.bottom, vh * 0.55);
+    if (bottom <= top) return 0;
+    return (bottom - top) / Math.max(rect.height, 1);
+  }
+
+  private queueSpeechBlurb(id: string, blurb: string): void {
+    if (id === this.speechSectionId) return;
+    this.speechPendingId = id;
+    if (this.speechDebounce) clearTimeout(this.speechDebounce);
+    this.speechDebounce = setTimeout(() => {
+      this.speechDebounce = null;
+      if (this.speechPendingId !== id) return;
+      const elapsed = Date.now() - this.speechShownAt;
+      const wait = Math.max(0, SPEECH_DWELL_MS - elapsed);
+      if (wait > 0) {
+        this.speechDebounce = setTimeout(() => {
+          this.speechDebounce = null;
+          if (this.speechPendingId === id) this.applySpeechBlurb(id, blurb);
+        }, wait);
+        return;
+      }
+      this.applySpeechBlurb(id, blurb);
+    }, SPEECH_DEBOUNCE_MS);
+  }
+
+  private applySpeechBlurb(id: string, blurb: string): void {
+    if (id === this.speechSectionId) return;
+    this.speechSectionId = id;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      this.speechText.textContent = blurb;
+      this.speech.classList.add("dvc-speech-visible");
+      this.speechShownAt = Date.now();
+      return;
+    }
+    this.speech.classList.remove("dvc-speech-visible");
+    window.setTimeout(() => {
+      this.speechText.textContent = blurb;
+      this.speech.classList.add("dvc-speech-visible");
+      this.speechShownAt = Date.now();
+    }, 280);
   }
 
   /**
@@ -432,7 +617,10 @@ class DivinciChatWidget {
     this.open = force ?? !this.open;
     this.panel.classList.toggle("dvc-hidden", !this.open);
     this.bubble.classList.toggle("dvc-bubble-open", this.open);
+    this.root.classList.toggle("dvc-chat-open", this.open);
     if (this.open) this.render();
+    // Closing at the hero top should re-hide the launcher.
+    this.syncHeroScrollGate();
   }
 
   private setView(v: View): void { this.view = v; this.render(); }

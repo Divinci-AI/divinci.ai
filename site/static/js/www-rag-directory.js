@@ -135,8 +135,35 @@
     gridEl.appendChild(frag);
   }
 
+  /** Prefer ?q=, accept ?search= as an alias (web app deep-links use q). */
+  function readQueryFromUrl() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      return (params.get("q") || params.get("search") || "").trim();
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function writeQueryToUrl(q) {
+    try {
+      var url = new URL(window.location.href);
+      if (q) {
+        url.searchParams.set("q", q);
+        url.searchParams.delete("search");
+      } else {
+        url.searchParams.delete("q");
+        url.searchParams.delete("search");
+      }
+      window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+    } catch (e) {
+      // ignore — history API unavailable
+    }
+  }
+
   function applySearch() {
-    var q = (searchEl.value || "").trim().toLowerCase();
+    var q = (searchEl && searchEl.value ? searchEl.value : "").trim().toLowerCase();
+    writeQueryToUrl(q);
     if (!q) {
       renderGrid(allSites);
       return;
@@ -152,6 +179,8 @@
   }
 
   if (searchEl) {
+    var initialQ = readQueryFromUrl();
+    if (initialQ) searchEl.value = initialQ;
     searchEl.addEventListener("input", applySearch);
   }
 
@@ -175,7 +204,7 @@
           formatCount(data.totalFiles) + " files · " +
           formatCount(data.totalChunks) + " searchable chunks";
       }
-      renderGrid(allSites);
+      applySearch();
     })
     .catch(function (err) {
       statusEl.textContent = "Couldn't load the directory right now. Please try again shortly.";
