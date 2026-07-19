@@ -92,10 +92,11 @@
           <li style="--i:3"><img src="https://chat-uploads.divinci.app/www-rag/assets/developer.mozilla.org/favicon.png" alt="" loading="lazy" width="28" height="28"></li>
         </ul>
 
-        <form id="scan-form" class="scan-form" autocomplete="url">
+        <form id="scan-form" class="scan-form scan-form-shine" autocomplete="url">
           <input
             id="scan-url"
             type="text"
+            autofocus
             inputmode="url"
             placeholder="yourwebsite.com"
             aria-label="Your website address"
@@ -118,31 +119,25 @@
 
       <div class="hero-videos" aria-label="Divinci in action">
         <div class="hero-video hero-video-left">
-          <iframe
-            src="https://www.youtube.com/embed/SNIc4xkJLcw?mute=1&loop=1&playlist=SNIc4xkJLcw&playsinline=1&rel=0&modestbranding=1"
-            title="Divinci demo short"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="encrypted-media; picture-in-picture"
-            allowfullscreen></iframe>
+          <button type="button" class="yt-facade" data-yt-id="SNIc4xkJLcw" data-yt-title="Divinci demo short"
+            style="background-image:url('https://i.ytimg.com/vi/SNIc4xkJLcw/hqdefault.jpg')"
+            aria-label="Play: Divinci demo short">
+            <span class="yt-play" aria-hidden="true"></span>
+          </button>
         </div>
         <div class="hero-video hero-video-center">
-          <iframe
-            src="https://www.youtube.com/embed/sD5oNZ5WlGU?mute=1&loop=1&playlist=sD5oNZ5WlGU&playsinline=1&rel=0&modestbranding=1"
-            title="Divinci demo video"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="encrypted-media; picture-in-picture"
-            allowfullscreen></iframe>
+          <button type="button" class="yt-facade" data-yt-id="sD5oNZ5WlGU" data-yt-title="Divinci demo video"
+            style="background-image:url('https://i.ytimg.com/vi/sD5oNZ5WlGU/hqdefault.jpg')"
+            aria-label="Play: Divinci demo video">
+            <span class="yt-play" aria-hidden="true"></span>
+          </button>
         </div>
         <div class="hero-video hero-video-right">
-          <iframe
-            src="https://www.youtube.com/embed/CH_Y5h5Mkiw?mute=1&loop=1&playlist=CH_Y5h5Mkiw&playsinline=1&rel=0&modestbranding=1"
-            title="Divinci — turn your website into an AI"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="encrypted-media; picture-in-picture"
-            allowfullscreen></iframe>
+          <button type="button" class="yt-facade" data-yt-id="CH_Y5h5Mkiw" data-yt-title="Divinci — turn your website into an AI"
+            style="background-image:url('https://i.ytimg.com/vi/CH_Y5h5Mkiw/hqdefault.jpg')"
+            aria-label="Play: Divinci — turn your website into an AI">
+            <span class="yt-play" aria-hidden="true"></span>
+          </button>
         </div>
       </div>
     </section>

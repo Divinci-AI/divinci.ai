@@ -260,3 +260,24 @@
   watchRoot();
   sync();
 })();
+
+/* Lite YouTube embeds: each .yt-facade is a thumbnail with our own play
+   button; clicking swaps in the real iframe (autoplay so the click both
+   loads and starts the video). */
+(function () {
+  "use strict";
+  document.querySelectorAll(".yt-facade").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var id = btn.dataset.ytId;
+      if (!id) return;
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube.com/embed/" + id +
+        "?autoplay=1&loop=1&playlist=" + id + "&playsinline=1&rel=0&modestbranding=1";
+      iframe.title = btn.dataset.ytTitle || "Divinci video";
+      iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
+      iframe.setAttribute("allowfullscreen", "");
+      btn.replaceWith(iframe);
+    });
+  });
+})();

@@ -82,7 +82,8 @@ a { color: var(--denim); }
     linear-gradient(to bottom, rgba(248, 244, 240, 0) 72%, var(--parchment) 100%),
     url("/images/davinci-painter-robot-800w.webp");
   background-size: cover, cover, cover;
-  background-position: center, center, 50% calc(50% - 75px);
+  /* Top-align the artwork's crop so the subject's head is in frame. */
+  background-position: center, center, 50% top;
   background-repeat: no-repeat;
 }
 .topbar, main, .footer { position: relative; z-index: 1; }
@@ -518,3 +519,67 @@ html[dir="rtl"] .card-art { right: auto; left: -8px; transform: scaleX(-1); }
 }
 .ask-bar button:hover { background: var(--denim-dark); }
 .ask-bar-hidden { opacity: 0; transform: translateX(-50%) translateY(70px); pointer-events: none; }
+
+/* Lite YouTube facade — thumbnail + our own denim play button (the native
+   iframe's red button can't be styled). The real player is injected on
+   click by the yt-facade IIFE in app.js. */
+.yt-facade {
+  display: block; width: 100%; height: 100%;
+  border: 0; padding: 0; cursor: pointer;
+  background-size: cover; background-position: center;
+  position: relative;
+}
+.yt-play {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px; height: 64px; border-radius: 50%;
+  background: color-mix(in srgb, var(--denim) 88%, transparent);
+  box-shadow: 0 4px 18px rgba(45, 60, 52, 0.35);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.yt-play::after {
+  content: "";
+  position: absolute; top: 50%; left: 54%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent var(--white);
+}
+.yt-facade:hover .yt-play {
+  background: var(--denim-dark);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.hero-video-left .yt-play,
+.hero-video-right .yt-play { width: 48px; height: 48px; }
+.hero-video-left .yt-play::after,
+.hero-video-right .yt-play::after { border-width: 9px 0 9px 15px; }
+
+/* Rotating shimmer on the hero URL form — recycled from the web app's
+   /start/scan input (conic-gradient border sweep). Runs until the field
+   has focus-within or content, then the plain border returns. */
+@property --shine-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.scan-form-shine {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--white), var(--white)) padding-box,
+    conic-gradient(
+        from var(--shine-angle, 0deg),
+        transparent,
+        var(--blue) 5%,
+        var(--denim) 10%,
+        var(--blue) 15%,
+        transparent 20%
+      )
+      border-box;
+  animation: scan-shine-rotate 3s linear infinite;
+}
+@keyframes scan-shine-rotate {
+  to { --shine-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scan-form-shine { animation: none; border-color: var(--border); }
+}
