@@ -231,13 +231,19 @@
   // The bar stays hidden until the visitor scrolls past the hero section,
   // and whenever the chat panel is open.
   var hero = document.querySelector(".hero");
+  var footer = document.querySelector(".footer");
   var chatOpen = false;
   function pastHero() {
     if (!hero) return true;
     return window.scrollY > hero.offsetTop + hero.offsetHeight - 80;
   }
+  function nearFooter() {
+    if (!footer) return false;
+    // Fade out once the footer starts entering the viewport.
+    return footer.getBoundingClientRect().top < window.innerHeight;
+  }
   function sync() {
-    bar.classList.toggle("ask-bar-hidden", chatOpen || !pastHero());
+    bar.classList.toggle("ask-bar-hidden", chatOpen || !pastHero() || nearFooter());
   }
   window.addEventListener("scroll", sync, { passive: true });
 

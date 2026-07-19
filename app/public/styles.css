@@ -65,23 +65,27 @@ a { color: var(--denim); }
      clipping) and the floating proof-logo chips intentionally extend
      past the content column on wide viewports. */
 }
-/* Full-bleed ambient video behind the header + hero: spans the entire first
-   viewport (100vh), fading out at the bottom edge. Header and content sit
-   above it via z-index. */
-.hero-bg-video {
+/* Full-bleed ambient artwork behind the header + hero: spans the entire
+   first viewport (100vh). Layer order (top→bottom): a radial parchment
+   overlay that is MOST opaque at the hero's center (keeps headline/form
+   legible) and thins toward the edges; a bottom fade into the page bg;
+   the artwork itself, crop shifted ~75px toward the top of the source. */
+.hero-bg {
   position: absolute; top: 0; left: 0; z-index: 0;
-  width: 100%; height: 100vh; object-fit: cover;
-  /* Shift the visible crop ~75px toward the top of the source so more of
-     the video's upper region shows. */
-  object-position: 50% calc(50% - 75px);
-  opacity: 0.14; pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, black 78%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 78%, transparent 100%);
+  width: 100%; height: 100vh;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 70% 60% at 50% 42%,
+      rgba(248, 244, 240, 0.96) 0%,
+      rgba(248, 244, 240, 0.88) 55%,
+      rgba(248, 244, 240, 0.74) 100%),
+    linear-gradient(to bottom, rgba(248, 244, 240, 0) 72%, var(--parchment) 100%),
+    url("/images/davinci-painter-robot-800w.webp");
+  background-size: cover, cover, cover;
+  background-position: center, center, 50% calc(50% - 75px);
+  background-repeat: no-repeat;
 }
 .topbar, main, .footer { position: relative; z-index: 1; }
-@media (prefers-reduced-motion: reduce) {
-  .hero-bg-video { display: none; }
-}
 .hero h1 {
   font-family: 'Fraunces', Georgia, serif;
   /* Max sized so the full English line fits without orphaning "AI." onto

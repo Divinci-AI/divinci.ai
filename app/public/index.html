@@ -38,10 +38,9 @@
 </head>
 <body>
 
-  <!-- Full-bleed ambient video behind the header + hero (first viewport). -->
-  <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-    <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready.webm" type="video/webm">
-  </video>
+  <!-- Full-bleed ambient artwork behind the header + hero (first viewport).
+       Radial parchment overlay keeps the center legible. -->
+  <div class="hero-bg" aria-hidden="true"></div>
 
   <header class="topbar">
     <a class="brand" href="/">
@@ -120,29 +119,29 @@
       <div class="hero-videos" aria-label="Divinci in action">
         <div class="hero-video hero-video-left">
           <iframe
-            src="https://www.youtube.com/embed/sD5oNZ5WlGU?autoplay=1&mute=1&loop=1&playlist=sD5oNZ5WlGU&controls=0&playsinline=1&rel=0&modestbranding=1"
-            title="Divinci demo video"
+            src="https://www.youtube.com/embed/SNIc4xkJLcw?mute=1&loop=1&playlist=SNIc4xkJLcw&playsinline=1&rel=0&modestbranding=1"
+            title="Divinci demo short"
             loading="lazy"
             referrerpolicy="strict-origin-when-cross-origin"
-            allow="autoplay; encrypted-media; picture-in-picture"
+            allow="encrypted-media; picture-in-picture"
             allowfullscreen></iframe>
         </div>
         <div class="hero-video hero-video-center">
           <iframe
-            src="https://www.youtube.com/embed/CH_Y5h5Mkiw?autoplay=1&mute=1&loop=1&playlist=CH_Y5h5Mkiw&controls=0&playsinline=1&rel=0&modestbranding=1"
-            title="Divinci — turn your website into an AI"
+            src="https://www.youtube.com/embed/sD5oNZ5WlGU?mute=1&loop=1&playlist=sD5oNZ5WlGU&playsinline=1&rel=0&modestbranding=1"
+            title="Divinci demo video"
             loading="lazy"
             referrerpolicy="strict-origin-when-cross-origin"
-            allow="autoplay; encrypted-media; picture-in-picture"
+            allow="encrypted-media; picture-in-picture"
             allowfullscreen></iframe>
         </div>
         <div class="hero-video hero-video-right">
           <iframe
-            src="https://www.youtube.com/embed/SNIc4xkJLcw?autoplay=1&mute=1&loop=1&playlist=SNIc4xkJLcw&controls=0&playsinline=1&rel=0&modestbranding=1"
-            title="Divinci demo short"
+            src="https://www.youtube.com/embed/CH_Y5h5Mkiw?mute=1&loop=1&playlist=CH_Y5h5Mkiw&playsinline=1&rel=0&modestbranding=1"
+            title="Divinci — turn your website into an AI"
             loading="lazy"
             referrerpolicy="strict-origin-when-cross-origin"
-            allow="autoplay; encrypted-media; picture-in-picture"
+            allow="encrypted-media; picture-in-picture"
             allowfullscreen></iframe>
         </div>
       </div>
@@ -248,6 +247,7 @@
 
     <!-- ── Example transcript ───────────────────────────────────────── -->
     <section class="demo-transcript">
+      <h2>An example chat from the NutritionFacts.org AI</h2>
       <div class="chat-card">
         <div class="chat-card-header">
           <span class="chat-avatar" aria-hidden="true">N</span>
