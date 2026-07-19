@@ -54,13 +54,17 @@ a { color: var(--green); }
 
 /* ── Hero ────────────────────────────────────────────────── */
 .hero {
-  max-width: 760px; margin: 0 auto; padding: 56px 22px 40px;
+  max-width: 860px; margin: 0 auto; padding: 56px 22px 40px;
   text-align: center;
 }
 .hero h1 {
   font-family: 'Fraunces', Georgia, serif;
-  font-size: clamp(2.1rem, 6vw, 3.4rem);
-  line-height: 1.12; font-weight: 800; letter-spacing: -0.02em;
+  /* Max sized so the full English line fits without orphaning "AI." onto
+     its own line; text-wrap: balance keeps other languages from orphaning
+     a single short word when they do wrap. */
+  font-size: clamp(2rem, 4.8vw, 2.6rem);
+  line-height: 1.14; font-weight: 800; letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 .hero h1 em { font-style: normal; color: var(--green); }
 .hero-sub {
