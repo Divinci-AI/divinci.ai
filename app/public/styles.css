@@ -247,4 +247,4 @@ html[dir="rtl"] .language-switcher-dropdown { right: auto; left: 0; }
   stroke-linecap: round; stroke-linejoin: round;
 }
 html[dir="rtl"] .card-art { right: auto; left: -8px; transform: scaleX(-1); }
-.title-emoji { font-style: normal; margin-left: 2px; }
+.title-emoji { font-style: normal; margin-right: 6px; }
