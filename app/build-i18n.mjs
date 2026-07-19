@@ -27,6 +27,17 @@ const NATIVE = {
   hi: "हिन्दी", ja: "日本語", ko: "한국어", zh: "中文",
 };
 const RTL = new Set(["ar"]);
+const FLAG = {
+  en: "\u{1F1FA}\u{1F1F8}", es: "\u{1F1EA}\u{1F1F8}", fr: "\u{1F1EB}\u{1F1F7}",
+  de: "\u{1F1E9}\u{1F1EA}", it: "\u{1F1EE}\u{1F1F9}", nl: "\u{1F1F3}\u{1F1F1}",
+  pt: "\u{1F1F5}\u{1F1F9}", ru: "\u{1F1F7}\u{1F1FA}", ar: "\u{1F1F8}\u{1F1E6}",
+  hi: "\u{1F1EE}\u{1F1F3}", ja: "\u{1F1EF}\u{1F1F5}", ko: "\u{1F1F0}\u{1F1F7}", zh: "\u{1F1E8}\u{1F1F3}",
+};
+const EN_NAME = {
+  en: "English", es: "Spanish", fr: "French", de: "German", it: "Italian",
+  nl: "Dutch", pt: "Portuguese", ru: "Russian", ar: "Arabic",
+  hi: "Hindi", ja: "Japanese", ko: "Korean", zh: "Chinese",
+};
 
 // One JSON file per language in i18n/ (es.json, fr.json, ...): a flat map of
 // exact English source string -> translation.
@@ -43,6 +54,25 @@ function alternatesBlock() {
   });
   lines.push('  <link rel="alternate" hreflang="x-default" href="https://divinci.app/">');
   return `<!-- i18n:alternates -->\n${lines.join("\n")}\n  <!-- /i18n:alternates -->`;
+}
+
+// Header dropdown, recycled from divinci.ai's language-switcher partial.
+function headerLangBlock(current) {
+  const options = ALL.map((l) => {
+    const href = l === "en" ? "/" : `/${l}/`;
+    const cur = l === current ? ' aria-current="true"' : "";
+    return `        <a href="${href}" class="language-option" data-lang="${l}" lang="${l}"${cur}><span class="language-label"><span class="language-flag" aria-hidden="true">${FLAG[l]}</span><span class="language-name">${EN_NAME[l]}</span></span><span class="language-native">${NATIVE[l]}</span></a>`;
+  }).join("\n");
+  return `<!-- i18n:header-lang --><div class="language-switcher">
+      <button type="button" class="language-switcher-current" aria-haspopup="listbox" aria-expanded="false">
+        <span class="language-flag" aria-hidden="true">${FLAG[current]}</span>
+        <span class="current-language">${NATIVE[current]}</span>
+        <span class="dropdown-icon" aria-hidden="true">\u25BE</span>
+      </button>
+      <div class="language-switcher-dropdown" role="listbox">
+${options}
+      </div>
+    </div><!-- /i18n:header-lang -->`;
 }
 
 function switcherBlock(current) {
@@ -69,6 +99,9 @@ if (en.includes("<!-- i18n:alternates -->")) {
 } else {
   en = en.replace('  <link rel="stylesheet" href="/styles.css">', `${alternatesBlock()}\n  <link rel="stylesheet" href="/styles.css">`);
 }
+if (en.includes("<!-- i18n:header-lang -->")) {
+  en = en.replace(/<!-- i18n:header-lang -->[\s\S]*?<!-- \/i18n:header-lang -->/, headerLangBlock("en"));
+}
 if (en.includes("<!-- i18n:switch -->")) {
   en = en.replace(/<!-- i18n:switch -->[\s\S]*?<!-- \/i18n:switch -->/, switcherBlock("en"));
 } else {
@@ -89,6 +122,7 @@ for (const [lang, table] of Object.entries(langs)) {
   html = html.replace('<html lang="en">', `<html lang="${lang}"${RTL.has(lang) ? ' dir="rtl"' : ""}>`);
   html = html.replace('<link rel="canonical" href="https://divinci.app/">', `<link rel="canonical" href="https://divinci.app/${lang}/">`);
   html = html.replace('<meta property="og:url" content="https://divinci.app/">', `<meta property="og:url" content="https://divinci.app/${lang}/">`);
+  html = html.replace(/<!-- i18n:header-lang -->[\s\S]*?<!-- \/i18n:header-lang -->/, headerLangBlock(lang));
   html = html.replace(/<!-- i18n:switch -->[\s\S]*?<!-- \/i18n:switch -->/, switcherBlock(lang));
   mkdirSync(join(PUB, lang), { recursive: true });
   writeFileSync(join(PUB, lang, "index.html"), html);

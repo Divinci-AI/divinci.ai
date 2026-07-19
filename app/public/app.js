@@ -55,3 +55,29 @@
   if (hero) wireForm(hero);
   document.querySelectorAll("[data-scan-form]").forEach(wireForm);
 })();
+
+/* Header language switcher (recycled from divinci.ai's language-switcher.js,
+   simplified: absolute-positioned dropdown, toggle + outside-click close). */
+(function () {
+  "use strict";
+  var sw = document.querySelector(".language-switcher");
+  if (!sw) return;
+  var btn = sw.querySelector(".language-switcher-current");
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    var open = sw.classList.toggle("active");
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  document.addEventListener("click", function (e) {
+    if (!sw.contains(e.target)) {
+      sw.classList.remove("active");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      sw.classList.remove("active");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  });
+})();
