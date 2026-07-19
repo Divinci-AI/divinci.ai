@@ -76,6 +76,40 @@
   function wireForm(form) {
     var input = form.querySelector("input");
     var button = form.querySelector("button[type=submit], button:not([type])");
+    // Per-form memo so blur (fires first) and a follow-up submit don't both
+    // hit the network for the same host — submit reuses blur's verdict.
+    var lastCheckedHost = "";
+    var lastCheckedListed = false;
+
+    function runCheck(host) {
+      if (button) { button.disabled = true; button.dataset.origLabel = button.dataset.origLabel || button.textContent; button.textContent = "Checking…"; }
+      return checkDirectory(host).then(function (site) {
+        if (button) { button.disabled = false; button.textContent = button.dataset.origLabel; }
+        lastCheckedHost = host;
+        lastCheckedListed = !!(site && site.listed !== false);
+        if (lastCheckedListed) {
+          showAlreadyListed(form, site.host || host);
+        } else {
+          var existingAlert = form.querySelector(".scan-directory-alert");
+          if (existingAlert) existingAlert.remove();
+        }
+        return lastCheckedListed;
+      });
+    }
+
+    input.addEventListener("blur", function () {
+      var normalized = normalizeUrl(input.value);
+      if (!normalized) return;
+      var host = new URL(normalized).hostname;
+      if (host === lastCheckedHost) return;
+      void runCheck(host);
+    });
+    input.addEventListener("input", function () {
+      // Host changed since the last check — clear the memo so blur/submit
+      // re-checks instead of trusting a stale verdict.
+      lastCheckedHost = "";
+    });
+
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
       var normalized = normalizeUrl(input.value);
@@ -88,21 +122,17 @@
         });
         return;
       }
-      var existingAlert = form.querySelector(".scan-directory-alert");
-      if (existingAlert) existingAlert.remove();
       var host = new URL(normalized).hostname;
       var proceed = function () {
         window.location.href =
           APP_ORIGIN + "/start/scan?url=" + encodeURIComponent(normalized);
       };
-      if (button) { button.disabled = true; button.dataset.origLabel = button.textContent; button.textContent = "Checking…"; }
-      checkDirectory(host).then(function (site) {
-        if (button) { button.disabled = false; button.textContent = button.dataset.origLabel; }
-        if (site && site.listed !== false) {
-          showAlreadyListed(form, site.host || host);
-          return;
-        }
-        proceed();
+      if (host === lastCheckedHost) {
+        if (!lastCheckedListed) proceed();
+        return;
+      }
+      runCheck(host).then(function (listed) {
+        if (!listed) proceed();
       });
     });
   }
