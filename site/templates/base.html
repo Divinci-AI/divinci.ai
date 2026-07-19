@@ -593,6 +593,17 @@
         left: 50%; top: 0;
         transform: translateX(-50%);
       }
+      /* Bug fix 2026-07-18: mobile-fixes.css declares a bare `nav { display: flex }`
+         rule at desktop widths. Author-origin CSS always beats the UA `[hidden]`
+         rule regardless of specificity, so #banner-mobile-drawer (a <nav> with the
+         `hidden` attribute and no display rule of its own anywhere in style.css)
+         was rendering inline in the blue banner on every page load — a visible
+         duplicate of the header nav (Search/Features/Blog/Support/Documentation).
+         !important guarantees this wins over that bare `nav{}` rule regardless of
+         stylesheet load order. */
+      .banner-mobile-drawer[hidden] {
+        display: none !important;
+      }
     </style>
     {# Site-wide research banner — appears above the nav header on every page. #}
     <div class="site-research-banner" role="region" aria-label="{{ translations.banner.label | default(value='Latest research') }}">
