@@ -20,7 +20,8 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Same faces as divinci.ai: Fraunces for headings, Source Sans 3 for body. */
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background: var(--parchment);
   color: var(--ink);
   line-height: 1.55;
@@ -36,6 +37,7 @@ a { color: var(--green); }
   padding: 14px 22px; max-width: 1080px; margin: 0 auto;
 }
 .brand {
+  font-family: 'Fraunces', Georgia, serif;
   display: flex; align-items: center; gap: 10px;
   text-decoration: none; color: var(--ink);
   font-weight: 700; font-size: 1.15rem; letter-spacing: 0.01em;
@@ -53,6 +55,7 @@ a { color: var(--green); }
   text-align: center;
 }
 .hero h1 {
+  font-family: 'Fraunces', Georgia, serif;
   font-size: clamp(2.1rem, 6vw, 3.4rem);
   line-height: 1.12; font-weight: 800; letter-spacing: -0.02em;
 }
@@ -90,6 +93,7 @@ a { color: var(--green); }
 /* ── Sections shared ─────────────────────────────────────── */
 main section { padding: 52px 22px; }
 main h2 {
+  font-family: 'Fraunces', Georgia, serif;
   text-align: center; font-size: clamp(1.5rem, 4vw, 2.1rem);
   font-weight: 800; letter-spacing: -0.01em; margin-bottom: 30px;
 }
@@ -176,3 +180,13 @@ main h2 {
   .scan-form button { width: 100%; padding: 14px; }
   .hero { padding-top: 36px; }
 }
+
+/* ── RTL (Arabic build sets dir="rtl") ── */
+html[dir="rtl"] body { direction: rtl; }
+html[dir="rtl"] .scan-form button { white-space: nowrap; }
+
+/* ── Footer language switcher ── */
+.lang-switch { margin-top: 14px; font-size: 0.88rem; }
+.lang-switch a { margin: 0 5px; color: var(--ink-soft); text-decoration: none; }
+.lang-switch a:hover { text-decoration: underline; }
+.lang-switch a[aria-current="true"] { color: var(--green); font-weight: 700; }
