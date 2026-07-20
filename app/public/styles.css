@@ -263,7 +263,12 @@ main h2 {
 .trust-more { text-align: center; margin-top: 22px; color: var(--ink-soft); }
 
 /* ── FAQ ─────────────────────────────────────────────────── */
-.faq { max-width: 680px; margin: 0 auto; }
+.faq { max-width: 980px; margin: 0 auto; }
+.faq-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px;
+  align-items: start;
+}
+@media (max-width: 760px) { .faq-grid { grid-template-columns: 1fr; } }
 .faq details {
   background: var(--white); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
@@ -494,9 +499,20 @@ html[dir="rtl"] .card-art { right: auto; left: -8px; transform: scaleX(-1); }
 /* Team (recycled from divinci.ai homepage) */
 .team { background: var(--parchment-deep); }
 .team-sub { text-align: center; color: var(--ink-soft); margin: -18px auto 30px; }
+/* One full-bleed row: cards scroll horizontally and overflow past both
+   page edges like a carousel; scroll-snap keeps a card centered. */
 .team-grid {
-  display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  max-width: 980px; margin: 0 auto;
+  display: flex; gap: 18px;
+  width: 100vw; margin-left: calc(50% - 50vw);
+  padding: 6px max(24px, calc(50vw - 490px));
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.team-grid .team-card {
+  flex: 0 0 280px;
+  scroll-snap-align: center;
 }
 .team-card {
   background: var(--white); border: 1px solid var(--border);
