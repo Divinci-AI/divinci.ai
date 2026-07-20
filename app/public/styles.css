@@ -288,10 +288,12 @@ main h2 {
 .faq details p { margin-top: 10px; color: var(--ink-soft); }
 
 .faq-ask-cta {
+  /* Sits as the last cell of .faq-grid, so it must match a <details>
+     box exactly: same padding, radius, border and bottom margin. */
   display: block; width: 100%; text-align: left;
   background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 14px 18px;
-  font: inherit; font-size: 1.02rem; color: var(--ink-soft);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
+  font: inherit; font-size: 1.02rem; font-weight: 700; color: var(--ink-soft);
   cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease;
 }
 .faq-ask-cta strong { color: var(--denim); font-weight: 700; }
@@ -504,7 +506,10 @@ html[dir="rtl"] .card-art { right: auto; left: -8px; transform: scaleX(-1); }
 .team-grid {
   display: flex; gap: 18px;
   width: 100vw; margin-left: calc(50% - 50vw);
-  padding: 6px max(24px, calc(50vw - 490px));
+  /* Symmetric padding lets the row CENTER when the cards fit, and still
+     overflow past both page edges when they don't. */
+  padding: 6px 24px;
+  justify-content: safe center;
   overflow-x: auto;
   scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
@@ -675,3 +680,10 @@ html[dir="rtl"] .promo-banner .language-switcher-dropdown { right: auto; left: 0
   /* Keep the strip single-row on phones: message left, language right. */
   .promo-banner .language-switcher .current-language { display: none; }
 }
+
+/* Pricing text link beside Sign in */
+.top-pricing {
+  text-decoration: none; color: var(--denim); font-weight: 600;
+  padding: 8px 4px;
+}
+.top-pricing:hover { color: var(--denim-dark); text-decoration: underline; }
