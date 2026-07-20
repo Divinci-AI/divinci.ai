@@ -261,24 +261,56 @@
   sync();
 })();
 
-/* Lite YouTube embeds: each .yt-facade is a thumbnail with our own play
-   button; clicking swaps in the real iframe (autoplay so the click both
-   loads and starts the video). */
+/* Lite YouTube embeds with promote-to-center: clicking any facade moves
+   that video to the center slot, expands the trio to ~80% of the hero
+   width (the other two peek from the sides), and starts playback. A
+   previously playing video reverts to its thumbnail when demoted. */
 (function () {
   "use strict";
-  document.querySelectorAll(".yt-facade").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var id = btn.dataset.ytId;
-      if (!id) return;
-      var iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube.com/embed/" + id +
-        "?autoplay=1&loop=1&playlist=" + id + "&playsinline=1&rel=0&modestbranding=1";
-      iframe.title = btn.dataset.ytTitle || "Divinci video";
-      iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
-      iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
-      iframe.setAttribute("allowfullscreen", "");
-      btn.replaceWith(iframe);
-    });
+  var container = document.querySelector(".hero-videos");
+  if (!container) return;
+  var POS = ["hero-video-left", "hero-video-center", "hero-video-right"];
+  var wrappers = Array.prototype.slice.call(container.querySelectorAll(".hero-video"));
+  wrappers.forEach(function (w) { w.__facade = w.querySelector(".yt-facade"); });
+
+  function restoreFacade(w) {
+    var iframe = w.querySelector("iframe");
+    if (iframe) {
+      iframe.remove();
+      w.appendChild(w.__facade);
+    }
+  }
+
+  function play(w) {
+    var btn = w.__facade;
+    var id = btn && btn.dataset.ytId;
+    if (!id || w.querySelector("iframe")) return;
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube.com/embed/" + id +
+      "?autoplay=1&loop=1&playlist=" + id + "&playsinline=1&rel=0&modestbranding=1";
+    iframe.title = btn.dataset.ytTitle || "Divinci video";
+    iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+    iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
+    iframe.setAttribute("allowfullscreen", "");
+    btn.remove();
+    w.appendChild(iframe);
+  }
+
+  container.addEventListener("click", function (ev) {
+    if (!ev.target.closest(".yt-facade")) return;
+    var w = ev.target.closest(".hero-video");
+    if (!w) return;
+    var center = container.querySelector(".hero-video-center");
+    if (w !== center) {
+      var pos = POS.filter(function (c) { return w.classList.contains(c); })[0];
+      w.classList.remove(pos);
+      w.classList.add("hero-video-center");
+      center.classList.remove("hero-video-center");
+      center.classList.add(pos);
+      restoreFacade(center);
+    }
+    container.classList.add("hero-videos-expanded");
+    play(w);
   });
 })();
 
@@ -289,6 +321,7 @@
   "use strict";
   var banner = document.querySelector(".promo-banner");
   if (!banner) return;
+  var slidesWrap = banner.querySelector(".promo-slides") || banner;
   var host = window.location.hostname;
   var isStaging = host.endsWith(".workers.dev") || host.indexOf("stage") !== -1 ||
     host === "localhost" || host === "127.0.0.1";
@@ -317,7 +350,7 @@
         var label = document.createElement("span");
         label.textContent = site.host + " is already an AI — " + (i + 1) + " of " + sites.length + " scanned sites";
         slide.appendChild(label);
-        banner.appendChild(slide);
+        slidesWrap.appendChild(slide);
         slides.push(slide);
       });
 

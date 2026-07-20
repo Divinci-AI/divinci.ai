@@ -192,9 +192,21 @@ a { color: var(--denim); }
 }
 .hero-video-left { left: -46%; }
 .hero-video-right { right: -46%; }
+.hero-video,
+.hero-videos {
+  transition: width 0.4s ease, left 0.4s ease, right 0.4s ease, opacity 0.4s ease;
+}
+/* Playing state: the clicked video takes the center at ~80% of the hero's
+   width; the other two shrink to slim layers peeking from the sides. */
+.hero-videos-expanded { width: 80%; }
+.hero-videos-expanded .hero-video-left,
+.hero-videos-expanded .hero-video-right { width: 26%; opacity: 0.85; }
+.hero-videos-expanded .hero-video-left { left: -16%; }
+.hero-videos-expanded .hero-video-right { right: -16%; }
 @media (max-width: 900px) {
   /* Not enough side room — stack just the center video. */
   .hero-video-left, .hero-video-right { display: none; }
+  .hero-videos-expanded { width: 90vw; }
 }
 
 /* ── Sections shared ─────────────────────────────────────── */
@@ -592,8 +604,10 @@ html[dir="rtl"] .card-art { right: auto; left: -8px; transform: scaleX(-1); }
   font-size: 0.85rem;
   border-bottom: 1px solid rgba(168, 212, 240, 0.2);
   height: 36px;
-  overflow: hidden;
+  /* No overflow:hidden here — it would clip the language dropdown. The
+     sliding carousel is clipped by .promo-slides instead. */
 }
+.promo-slides { position: absolute; inset: 0; overflow: hidden; }
 .promo-slide {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center; gap: 8px;
