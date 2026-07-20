@@ -604,6 +604,8 @@ html[dir="rtl"] .card-art { right: auto; left: -8px; transform: scaleX(-1); }
 }
 .promo-slide-active { opacity: 1; transform: translateY(0); }
 .promo-slide-leaving { opacity: 0; transform: translateY(-100%); }
+a.promo-slide { color: #eef5fb; text-decoration: none; }
+a.promo-slide:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 2px; }
 .promo-slide a { color: #ffffff; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 .promo-ask {
   background: none; border: 0; padding: 0; cursor: pointer;
@@ -614,16 +616,6 @@ html[dir="rtl"] .card-art { right: auto; left: -8px; transform: scaleX(-1); }
   width: 16px; height: 16px; border-radius: 4px; object-fit: contain;
   background: #ffffff; flex-shrink: 0;
 }
-.promo-pulse {
-  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-  background: #8fd8a0;
-  animation: promo-pulse 2s ease-in-out infinite;
-}
-@keyframes promo-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(143, 216, 160, 0.6); }
-  50% { box-shadow: 0 0 0 5px rgba(143, 216, 160, 0); }
-}
 @media (prefers-reduced-motion: reduce) {
   .promo-slide { transition: none; }
-  .promo-pulse { animation: none; }
 }
