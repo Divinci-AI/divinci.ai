@@ -619,3 +619,29 @@ a.promo-slide:hover { color: #ffffff; text-decoration: underline; text-underline
 @media (prefers-reduced-motion: reduce) {
   .promo-slide { transition: none; }
 }
+
+/* ── Language switcher tucked into the blue banner (recycled 1:1 from
+   divinci.ai's .site-research-banner switcher: plain-text trigger, light
+   color, dropdown hanging below-right). Overrides the header-pill styles
+   above when the switcher lives inside .promo-banner. */
+.promo-banner .language-switcher {
+  position: absolute; right: 1rem; top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+.promo-banner .language-switcher-current {
+  background: none; border: none; border-radius: 0; padding: 0;
+  color: #cfe5f4; font: inherit; line-height: 1; font-weight: 500;
+}
+.promo-banner .language-switcher-current:hover {
+  background: none; color: #ffffff;
+}
+.promo-banner .language-switcher-dropdown {
+  top: calc(100% + 10px); right: 0; left: auto;
+}
+html[dir="rtl"] .promo-banner .language-switcher { right: auto; left: 1rem; }
+html[dir="rtl"] .promo-banner .language-switcher-dropdown { right: auto; left: 0; }
+@media (max-width: 640px) {
+  /* Keep the strip single-row on phones: message left, language right. */
+  .promo-banner .language-switcher .current-language { display: none; }
+}

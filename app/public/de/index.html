@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Divinci — Machen Sie aus Ihrer Website eine KI. Kostenlos.</title>
   <meta name="description" content="Link einfügen. Erhalten Sie eine maßgeschneiderte KI, die Sie oder Ihr Unternehmen kennt — sie antwortet mit Ihren eigenen Inhalten, mit Ihrem Logo, in etwa 2 Minuten. Kostenlos starten, ohne Kreditkarte.">
-  <link rel="icon" type="image/svg+xml" href="/images/divinci_logo.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
   <link rel="canonical" href="https://divinci.app/de/">
   <meta property="og:title" content="Machen Sie aus Ihrer Website eine KI. Kostenlos.">
   <meta property="og:description" content="Link einfügen. Erhalten Sie eine maßgeschneiderte KI, die Sie oder Ihr Unternehmen kennt — in etwa 2 Minuten. Kostenlos starten, ohne Kreditkarte.">
   <meta property="og:url" content="https://divinci.app/de/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://divinci.app/images/davinci-painter-robot-800w.webp">
-  <link rel="preload" as="image" href="/images/davinci-painter-robot-600w.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Source+Sans+3:wght@400;500;700&display=swap">
@@ -37,13 +38,17 @@
 </head>
 <body>
 
-  <header class="topbar">
-    <a class="brand" href="/">
-      <img src="/images/divinci_logo_ink.svg" alt="Divinci logo" width="34" height="34">
-      <span>Divinci</span>
-    </a>
-    <div class="top-actions">
-      <!-- i18n:header-lang --><div class="language-switcher">
+  <!-- Full-bleed ambient artwork behind the header + hero (first viewport).
+       Radial parchment overlay keeps the center legible. -->
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <!-- Blue promo strip (recycled from divinci.ai's research banner):
+       coupon message carousels through the 100+ scanned sites (app.js). -->
+  <div class="promo-banner" role="region" aria-label="Announcements">
+    <div class="promo-slide promo-slide-active" data-promo-coupon>
+      <span>🎟️ Coupon discounts available — <button type="button" class="promo-ask" data-ask-divinci>ask Divinci for this month's code →</button></span>
+    </div>
+    <!-- i18n:header-lang --><div class="language-switcher">
       <button type="button" class="language-switcher-current" aria-haspopup="listbox" aria-expanded="false">
         <span class="language-flag" aria-hidden="true">🇩🇪</span>
         <span class="current-language">Deutsch</span>
@@ -65,6 +70,15 @@
         <a href="/zh/" class="language-option" data-lang="zh" lang="zh"><span class="language-label"><span class="language-flag" aria-hidden="true">🇨🇳</span><span class="language-name">Chinese</span></span><span class="language-native">中文</span></a>
       </div>
     </div><!-- /i18n:header-lang -->
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="/">
+      <img src="/images/divinci_logo_ink.svg" alt="Divinci logo" width="34" height="34">
+      <span>Divinci</span>
+    </a>
+    <div class="top-actions">
+      
       <a class="signin" href="https://chat.divinci.app/" data-app-link="/">Anmelden</a>
     </div>
   </header>
@@ -78,27 +92,62 @@
         Link einfügen. Erhalten Sie eine maßgeschneiderte KI, die Sie oder Ihr Unternehmen kennt — in etwa 2 Minuten. Ohne Kreditkarte.
       </p>
 
-      <form id="scan-form" class="scan-form" autocomplete="url">
-        <input
-          id="scan-url"
-          type="text"
-          inputmode="url"
-          placeholder="yourwebsite.com"
-          aria-label="Ihre Website-Adresse"
-          required
-        >
-        <button type="submit">Meine KI erstellen →</button>
-      </form>
-      <p class="hero-note">Funktioniert mit jeder öffentlichen Website. Sie geben alles frei, bevor es live geht.</p>
+      <div class="scan-form-wrap">
+        <ul class="hero-proof hero-proof-left" aria-hidden="true">
+          <li style="--i:0"><img src="https://chat-uploads.divinci.app/www-rag/assets/nasa.gov/favicon.png" alt="" loading="lazy" width="28" height="28"></li>
+          <li style="--i:1"><img src="https://chat-uploads.divinci.app/www-rag/assets/www.supremecourt.gov/favicon.png" alt="" loading="lazy" width="28" height="28"></li>
+          <li style="--i:2"><img src="https://chat-uploads.divinci.app/www-rag/assets/www.loc.gov/favicon.png" alt="" loading="lazy" width="28" height="28"></li>
+          <li style="--i:3"><img src="https://chat-uploads.divinci.app/www-rag/assets/developer.mozilla.org/favicon.png" alt="" loading="lazy" width="28" height="28"></li>
+        </ul>
 
-      <img
-        class="hero-art"
-        src="/images/davinci-painter-robot-600w.webp"
-        srcset="/images/davinci-painter-robot-600w.webp 600w, /images/davinci-painter-robot-800w.webp 800w"
-        sizes="(max-width: 640px) 90vw, 480px"
-        alt="Leonardo da Vinci malt einen freundlichen Roboter"
-        width="600" height="600"
-        fetchpriority="high" decoding="async">
+        <form id="scan-form" class="scan-form scan-form-shine" autocomplete="url">
+          <input
+            id="scan-url"
+            type="text"
+            autofocus
+            inputmode="url"
+            placeholder="yourwebsite.com"
+            aria-label="Ihre Website-Adresse"
+            required
+          >
+          <button type="submit">Meine KI erstellen →</button>
+        </form>
+
+        <ul class="hero-proof hero-proof-right" aria-hidden="true">
+          <li style="--i:0"><img src="https://chat-uploads.divinci.app/www-rag/assets/www.noaa.gov/favicon.png" alt="" loading="lazy" width="28" height="28"></li>
+          <li style="--i:1"><img src="https://chat-uploads.divinci.app/www-rag/assets/www.nps.gov/favicon.png" alt="" loading="lazy" width="28" height="28"></li>
+          <li style="--i:2"><img src="https://chat-uploads.divinci.app/www-rag/assets/arxiv.org/favicon.png" alt="" loading="lazy" width="28" height="28"></li>
+          <li style="--i:3"><img src="https://chat-uploads.divinci.app/www-rag/assets/plato.stanford.edu/favicon.png" alt="" loading="lazy" width="28" height="28"></li>
+        </ul>
+      </div>
+      <p class="hero-note">
+        Funktioniert mit jeder öffentlichen Website. Sie geben alles frei, bevor es live geht.
+        <span class="hero-note-proof">Already built for NASA, the Supreme Court, and 100+ other sites.</span>
+      </p>
+
+      <div class="hero-videos" aria-label="Divinci in action">
+        <div class="hero-video hero-video-left">
+          <button type="button" class="yt-facade" data-yt-id="SNIc4xkJLcw" data-yt-title="Divinci demo short"
+            style="background-image:url('https://i.ytimg.com/vi/SNIc4xkJLcw/hqdefault.jpg')"
+            aria-label="Play: Divinci demo short">
+            <span class="yt-play" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="hero-video hero-video-center">
+          <button type="button" class="yt-facade" data-yt-id="sD5oNZ5WlGU" data-yt-title="Divinci demo video"
+            style="background-image:url('https://i.ytimg.com/vi/sD5oNZ5WlGU/hqdefault.jpg')"
+            aria-label="Play: Divinci demo video">
+            <span class="yt-play" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="hero-video hero-video-right">
+          <button type="button" class="yt-facade" data-yt-id="CH_Y5h5Mkiw" data-yt-title="Divinci — turn your website into an AI"
+            style="background-image:url('https://i.ytimg.com/vi/CH_Y5h5Mkiw/hqdefault.jpg')"
+            aria-label="Play: Divinci — turn your website into an AI">
+            <span class="yt-play" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
     </section>
 
     <!-- ── So funktioniert es ─────────────────────────────────────────────── -->
@@ -174,6 +223,141 @@
       <p class="trust-more"><a href="https://divinci.ai/pricing/">Preise ansehen</a> · <a href="https://divinci.ai/security/">Sicherheit</a> · <a href="https://divinci.ai/ai-safety/">KI-Sicherheit</a></p>
     </section>
 
+    <!-- ── Example: NutritionFacts.org AI (recycled from the demo landing) ── -->
+    <section class="demo-corpus">
+      <p class="section-eyebrow">A real example — the NutritionFacts.org AI</p>
+      <div class="demo-corpus-grid">
+        <div class="demo-corpus-media">
+          <video src="https://pub-f4df7b63e90642deba26c7b9fd78ebb0.r2.dev/nutritionfacts/corpus.mp4"
+            autoplay loop muted playsinline preload="metadata"
+            aria-label="Animation of documents connecting into a knowledge network"></video>
+        </div>
+        <div class="demo-corpus-copy">
+          <h2>Built on NutritionFacts.org's evidence-based library.</h2>
+          <p>The NutritionFacts.org AI doesn't guess — it explains the science from their real, published, peer-reviewed-sourced work. Yours will do the same with your content.</p>
+        </div>
+      </div>
+      <div class="demo-stats">
+        <article><p class="stat-value">80</p><p class="stat-label">Pages indexed</p></article>
+        <article><p class="stat-value">24/7</p><p class="stat-label">Availability</p></article>
+        <article><p class="stat-value">100%</p><p class="stat-label">Cited answers</p></article>
+      </div>
+      <div class="demo-langs">
+        <p class="demo-langs-title">Available in every language the model supports</p>
+        <p class="demo-langs-list">English · Español · Français · Deutsch · Italiano · Português <span>· +30 more</span></p>
+      </div>
+    </section>
+
+    <!-- ── Example transcript ───────────────────────────────────────── -->
+    <section class="demo-transcript">
+      <h2>An example chat from the NutritionFacts.org AI</h2>
+      <div class="chat-card">
+        <div class="chat-card-header">
+          <span class="chat-avatar" aria-hidden="true">N</span>
+          <span class="chat-title">NutritionFacts.org AI</span>
+          <span class="chat-status"><span class="chat-status-dot" aria-hidden="true"></span> Online</span>
+        </div>
+        <div class="chat-card-body">
+          <div class="chat-msg chat-msg-user">In one sentence, what is the Daily Dozen?</div>
+          <div class="chat-msg chat-msg-ai">
+            In one sentence: the <em>Daily Dozen</em> is Dr.&nbsp;Greger's checklist of the foods and habits
+            the research suggests are worth fitting into your daily routine — things like beans, greens,
+            berries, whole grains, and exercise <sup class="chat-cite">2</sup>.
+          </div>
+          <p class="chat-meta">Assistant · NutritionFacts.org AI</p>
+          <div class="chat-suggestion">💡 I noticed you might be interested in <strong>About NutritionFacts.org →</strong></div>
+          <div class="chat-msg chat-msg-user">Name three diet changes the research links to better heart health.</div>
+        </div>
+        <div class="chat-card-input" aria-hidden="true">
+          <span>Ask the NutritionFacts.org AI your own question…</span>
+          <span class="chat-send">➤</span>
+        </div>
+      </div>
+      <p class="demo-caption">Real responses from the live <a href="https://demo-nutritionfacts-landing.divinci-ai.workers.dev/" target="_blank" rel="noopener">NutritionFacts.org AI</a></p>
+    </section>
+
+    <!-- ── Example questions ────────────────────────────────────────── -->
+    <section class="demo-examples">
+      <h2>Try asking the NutritionFacts.org AI a real question.</h2>
+      <p class="demo-examples-sub">Click any question to open the live demo and ask it yourself.</p>
+      <div class="demo-example-cards">
+        <a class="demo-example-card" href="https://demo-nutritionfacts-landing.divinci-ai.workers.dev/" target="_blank" rel="noopener">
+          <p><span aria-hidden="true">💬</span> What does the evidence say about a whole-food plant-based diet?</p>
+          <span class="demo-example-hint">Try it live →</span>
+        </a>
+        <a class="demo-example-card" href="https://demo-nutritionfacts-landing.divinci-ai.workers.dev/" target="_blank" rel="noopener">
+          <p><span aria-hidden="true">❓</span> How can diet help prevent chronic disease?</p>
+          <span class="demo-example-hint">Try it live →</span>
+        </a>
+        <a class="demo-example-card" href="https://demo-nutritionfacts-landing.divinci-ai.workers.dev/" target="_blank" rel="noopener">
+          <p><span aria-hidden="true">💡</span> What foods are best for heart health?</p>
+          <span class="demo-example-hint">Try it live →</span>
+        </a>
+        <a class="demo-example-card" href="https://demo-nutritionfacts-landing.divinci-ai.workers.dev/" target="_blank" rel="noopener">
+          <p><span aria-hidden="true">📅</span> What is Dr. Greger's Daily Dozen?</p>
+          <span class="demo-example-hint">Try it live →</span>
+        </a>
+        <a class="demo-example-card" href="https://demo-nutritionfacts-landing.divinci-ai.workers.dev/" target="_blank" rel="noopener">
+          <p><span aria-hidden="true">✨</span> What does the research say about longevity and diet?</p>
+          <span class="demo-example-hint">Try it live →</span>
+        </a>
+        <a class="demo-example-card" href="https://demo-nutritionfacts-landing.divinci-ai.workers.dev/" target="_blank" rel="noopener">
+          <p><span aria-hidden="true">📚</span> Where can I find more from NutritionFacts.org?</p>
+          <span class="demo-example-hint">Try it live →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Team (recycled from divinci.ai) ──────────────────────────── -->
+    <section class="team">
+      <h2>The team behind Divinci</h2>
+      <p class="team-sub">The people building the platform your AI runs on.</p>
+      <div class="team-grid">
+        <article class="team-card">
+          <img src="/images/team-michael-mooring.jpg" alt="Michael Mooring" width="94" height="94" loading="lazy">
+          <h3>Michael Mooring</h3>
+          <p class="team-role">Co-Founder &amp; CEO</p>
+          <p class="team-bio">Visionary with 15+ years in enterprise technology, leading the conversational AI revolution.</p>
+          <a href="https://linkedin.com/in/michaelmooring" target="_blank" rel="noopener">Connect →</a>
+        </article>
+        <article class="team-card">
+          <img src="/images/team-sam-tobia.jpg" alt="Samuel Tobia" width="94" height="94" loading="lazy">
+          <h3>Samuel Tobia</h3>
+          <p class="team-role">Co-Founder &amp; CTO</p>
+          <p class="team-bio">Product strategist with a track record of delivering user-centric AI solutions for enterprise teams.</p>
+          <a href="https://www.linkedin.com/in/sam-tobia-1aa2762b/" target="_blank" rel="noopener">Connect →</a>
+        </article>
+        <article class="team-card">
+          <img src="/images/team-duane-mooring.jpg" alt="Duane Mooring" width="94" height="94" loading="lazy">
+          <h3>Duane Mooring</h3>
+          <p class="team-role">CPO — Chief Project Officer</p>
+          <p class="team-bio">Systems architect with expertise in scalable AI infrastructure and natural language processing.</p>
+          <a href="https://linkedin.com/in/duanemooring" target="_blank" rel="noopener">Connect →</a>
+        </article>
+        <article class="team-card">
+          <img src="/images/team-sierra-hooshiari.jpg" alt="Sierra Hooshiari" width="94" height="94" loading="lazy">
+          <h3>Sierra Hooshiari</h3>
+          <p class="team-role">Co-Founder &amp; CMO</p>
+          <p class="team-bio">Cornell graduate with deep experience in financial services and entrepreneurship, scaling AI ventures.</p>
+          <a href="https://linkedin.com/in/sierrahooshiari" target="_blank" rel="noopener">Connect →</a>
+        </article>
+        <article class="team-card">
+          <img src="/images/team-sean-fuhrman.jpg" alt="Sean Fuhrman" width="94" height="94" loading="lazy">
+          <h3>Sean Fuhrman</h3>
+          <p class="team-role">Data Scientist</p>
+          <p class="team-bio">Data scientist with 10+ years programming experience, specializing in machine learning.</p>
+          <a href="https://www.linkedin.com/in/sean-fuhrman/" target="_blank" rel="noopener">Connect →</a>
+        </article>
+        <article class="team-card">
+          <img src="/images/team-paul-marie-carfantan.jpg" alt="Paul-Marie Carfantan" width="94" height="94" loading="lazy">
+          <h3>Paul-Marie Carfantan</h3>
+          <p class="team-role">AI Safety &amp; Ethics Advisor</p>
+          <p class="team-bio">AI governance leader — Google AI, Deloitte, CVS Health. Founded AI LA's Responsible AI Group.</p>
+          <a href="https://www.linkedin.com/in/paul-marie-carfantan/" target="_blank" rel="noopener">Connect →</a>
+        </article>
+      </div>
+    </section>
+
     <!-- ── FAQ ──────────────────────────────────────────────────────── -->
     <section class="faq">
       <h2>Häufige Fragen</h2>
@@ -197,6 +381,9 @@
         <summary>Was ist mit der Privatsphäre meiner Kunden?</summary>
         <p>Gespräche bleiben privat in Ihrem Unternehmen. Wir verkaufen keine Daten, und Sie können Ihre KI samt Daten jederzeit löschen. <a href="https://divinci.ai/privacy-policy/">Datenschutzerklärung</a>.</p>
       </details>
+      <button type="button" class="faq-ask-cta" data-ask-divinci>
+        Got another question? <strong>Ask Divinci →</strong>
+      </button>
     </section>
 
     <!-- ── Bottom CTA ───────────────────────────────────────────────── -->
@@ -210,6 +397,12 @@
     </section>
 
   </main>
+
+  <!-- Fixed ask bar — opens the Divinci chat panel; hidden while it's open. -->
+  <div class="ask-bar" id="ask-bar">
+    <input type="text" readonly placeholder="Ask Divinci anything…" aria-label="Ask Divinci anything">
+    <button type="button">Ask</button>
+  </div>
 
   <footer class="footer">
     <p>
