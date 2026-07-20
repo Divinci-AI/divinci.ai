@@ -281,3 +281,67 @@
     });
   });
 })();
+
+/* Promo banner carousel: the coupon slide rotates through the 100+
+   scanned WWW-RAG sites (favicon + host from the public directory API),
+   re-surfacing the coupon message every few sites. */
+(function () {
+  "use strict";
+  var banner = document.querySelector(".promo-banner");
+  if (!banner) return;
+  var host = window.location.hostname;
+  var isStaging = host.endsWith(".workers.dev") || host.indexOf("stage") !== -1 ||
+    host === "localhost" || host === "127.0.0.1";
+  var API_ORIGIN = isStaging ? "https://api.stage.divinci.app" : "https://api.divinci.app";
+  var DIR_ORIGIN = isStaging ? "https://staging.divinci.ai" : "https://divinci.ai";
+
+  fetch(API_ORIGIN + "/api/v1/www-rag-directory?limit=150", { headers: { Accept: "application/json" } })
+    .then(function (res) { return res.ok ? res.json() : null; })
+    .then(function (data) {
+      var sites = (data && data.sites) || [];
+      if (!sites.length) return;
+
+      var slides = [banner.querySelector("[data-promo-coupon]")];
+      sites.forEach(function (site, i) {
+        var slide = document.createElement("a");
+        slide.className = "promo-slide";
+        slide.href = DIR_ORIGIN + "/www-rag/?q=" + encodeURIComponent(site.host);
+        if (site.faviconUrl) {
+          var img = document.createElement("img");
+          img.className = "promo-site-icon";
+          img.src = site.faviconUrl;
+          img.alt = "";
+          img.loading = "lazy";
+          slide.appendChild(img);
+        }
+        var label = document.createElement("span");
+        label.textContent = site.host + " is already an AI — " + (i + 1) + " of " + sites.length + " scanned sites";
+        slide.appendChild(label);
+        banner.appendChild(slide);
+        slides.push(slide);
+      });
+
+      var current = 0;   // index into slides[] of the visible slide
+      var siteIdx = 0;   // next site slide to show (1-based into slides[])
+      var tick = 0;
+      setInterval(function () {
+        tick++;
+        var prev = slides[current];
+        // Every 7th tick re-surface the coupon; otherwise advance through
+        // the full site list in order, wrapping.
+        if (tick % 7 === 0) {
+          current = 0;
+        } else {
+          siteIdx = (siteIdx % (slides.length - 1)) + 1;
+          current = siteIdx;
+        }
+        var next = slides[current];
+        if (next === prev) return;
+        prev.classList.remove("promo-slide-active");
+        prev.classList.add("promo-slide-leaving");
+        setTimeout(function () { prev.classList.remove("promo-slide-leaving"); }, 500);
+        next.classList.add("promo-slide-active");
+      }, 3800);
+    })
+    .catch(function () { /* banner stays on the coupon slide */ });
+})();

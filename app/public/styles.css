@@ -583,3 +583,47 @@ html[dir="rtl"] .card-art { right: auto; left: -8px; transform: scaleX(-1); }
 @media (prefers-reduced-motion: reduce) {
   .scan-form-shine { animation: none; border-color: var(--border); }
 }
+
+/* ── Blue promo strip (recycled from divinci.ai's .site-research-banner) ── */
+.promo-banner {
+  position: relative; z-index: 2;
+  background: linear-gradient(90deg, #2d4d6a 0%, #3d6888 100%);
+  color: #eef5fb;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(168, 212, 240, 0.2);
+  height: 36px;
+  overflow: hidden;
+}
+.promo-slide {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 0 1.5rem;
+  opacity: 0; transform: translateY(100%);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  white-space: nowrap;
+}
+.promo-slide-active { opacity: 1; transform: translateY(0); }
+.promo-slide-leaving { opacity: 0; transform: translateY(-100%); }
+.promo-slide a { color: #ffffff; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.promo-ask {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font: inherit; color: #ffffff; font-weight: 600;
+  text-decoration: underline; text-underline-offset: 2px;
+}
+.promo-site-icon {
+  width: 16px; height: 16px; border-radius: 4px; object-fit: contain;
+  background: #ffffff; flex-shrink: 0;
+}
+.promo-pulse {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  background: #8fd8a0;
+  animation: promo-pulse 2s ease-in-out infinite;
+}
+@keyframes promo-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(143, 216, 160, 0.6); }
+  50% { box-shadow: 0 0 0 5px rgba(143, 216, 160, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .promo-slide { transition: none; }
+  .promo-pulse { animation: none; }
+}
