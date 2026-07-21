@@ -2,9 +2,11 @@
   // divinci.app funnel — single-page "Turn your website into an AI" checkout.
   // Pure Workers Static Assets, no worker script needed.
   //
-  // Deploy (same OAuth pattern as site/):
-  //   cd app && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env staging
-  //   cd app && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env=""
+  // Deploy via the package.json scripts (they run check-pinned-assets.mjs,
+  // which guards assets external systems hardcode — e.g. the Auth0 login
+  // logo at /images/divinci_logo.png; skipping it broke Auth0 on 2026-07-20):
+  //   cd app && pnpm deploy:staging
+  //   cd app && pnpm deploy          # prod apex (also verifies live URLs after)
   //
   // Production routes take over the divinci.app apex from the legacy static
   // page (zone worker routes run ahead of whatever serves it today; deleting
