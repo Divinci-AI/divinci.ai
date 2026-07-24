@@ -6,7 +6,7 @@ template = "page.html"
 
 # Privacy Policy
 
-**Last updated:** June 2026
+**Last updated:** July 2026
 
 ## Our Commitment to Privacy
 
@@ -21,6 +21,7 @@ At Divinci AI, we are committed to protecting your privacy and ensuring the secu
 - **Free Chat Email**: When you use the free chat assistant on our website, the email address you provide and verify with a one-time code. We use it to deliver the verification code, prevent abuse, and — only if you opt in via the consent checkbox — to send occasional product updates (see Section 2.7)
 - **Communication Data**: Messages, feedback, and support requests
 - **Files and Documents**: Files you upload for AI processing, including documents added to knowledge bases
+- **Voice and SMS Data**: If you interact with an AI assistant by phone, we store text transcripts of the conversation and call metadata (phone numbers, call duration, and cost). We do not store raw call audio recordings. If you interact by SMS, we store the message content and phone numbers involved
 
 ### 1.2 Information Automatically Collected
 - **Website Usage Data**: Pages visited, time spent, click patterns
@@ -65,10 +66,10 @@ Our Services integrate the following third-party services, each with their own p
 - **Google Cloud Platform**: Our backend services run on Google Cloud infrastructure with data processing agreements in place.
 
 ### 2.7 Marketing, Visitor Identification, and CRM
-- **Instantly.ai / Leadsy.ai**: We use Instantly's visitor identification tag (loaded from `r2.leadsy.ai`, which dynamically loads a tracking script from `tag.trovo-tag.com` operated by the same vendor) to identify the organization a website visit may be associated with (e.g., the company linked to the visitor's IP address). This informs our business-to-business outbound marketing. For visitors detected as being in the EU/EEA, the United Kingdom, or Switzerland, this tag loads **only after you grant marketing consent** through our cookie banner. For visitors outside those jurisdictions, the tag loads by default and can be disabled at any time via the "Cookie Preferences" control in Section 10. [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
-- **HubSpot**: We use the HubSpot tracking script (loaded from `js.hs-scripts.com`, which dynamically loads tracking, banner, and form-capture scripts from `js.hs-analytics.net`, `js.hs-banner.com`, and `js.hscollectedforms.net`) to record page views, attribute marketing channel performance, capture form submissions, and link website activity to HubSpot CRM contact records when you submit a form or book a meeting. For visitors detected as being in the EU/EEA, the United Kingdom, or Switzerland, this script loads **only after you grant marketing consent** through our cookie banner. For visitors outside those jurisdictions, the script loads by default and can be disabled at any time via the "Cookie Preferences" control in Section 10. [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
+- **Instantly.ai / Leadsy.ai**: We use Instantly's visitor identification tag (loaded from `r2.leadsy.ai`, which dynamically loads a tracking script from `tag.trovo-tag.com` operated by the same vendor) to identify the organization a website visit may be associated with (e.g., the company linked to the visitor's IP address). This informs our business-to-business outbound marketing. For visitors detected as being in the EU/EEA, the United Kingdom, or Switzerland, this tag loads **only after you grant marketing consent** through our cookie banner. For visitors outside those jurisdictions, the tag loads by default and can be disabled at any time via the "Cookie Preferences" control in Section 11. [Instantly Privacy Policy](https://instantly.ai/privacy-policy)
+- **HubSpot**: We use the HubSpot tracking script (loaded from `js.hs-scripts.com`, which dynamically loads tracking, banner, and form-capture scripts from `js.hs-analytics.net`, `js.hs-banner.com`, and `js.hscollectedforms.net`) to record page views, attribute marketing channel performance, capture form submissions, and link website activity to HubSpot CRM contact records when you submit a form or book a meeting. For visitors detected as being in the EU/EEA, the United Kingdom, or Switzerland, this script loads **only after you grant marketing consent** through our cookie banner. For visitors outside those jurisdictions, the script loads by default and can be disabled at any time via the "Cookie Preferences" control in Section 11. [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy)
 - **Attio**: We use Attio as a customer relationship management (CRM) system to organize business contacts and leads. [Attio Privacy Policy](https://attio.com/privacy)
-- **Free chat assistant email sync**: When you verify an email to use the free chat assistant on our website, we store that email as a contact in our HubSpot and Attio CRMs so we can follow up about our products. This sync happens server-side after you complete the one-time-code verification; it is not a tracking script and does not depend on cookies. We designate you a **marketing contact** (eligible to receive marketing email) **only if you check the optional marketing-consent box** in the chat. If you leave it unchecked, we still store the contact record but do not send you marketing email. You can unsubscribe from any marketing email or request deletion of your contact record at any time (see Section 9).
+- **Free chat assistant email sync**: When you verify an email to use the free chat assistant on our website, we store that email as a contact in our HubSpot and Attio CRMs so we can follow up about our products. This sync happens server-side after you complete the one-time-code verification; it is not a tracking script and does not depend on cookies. We designate you a **marketing contact** (eligible to receive marketing email) **only if you check the optional marketing-consent box** in the chat. If you leave it unchecked, we still store the contact record but do not send you marketing email. You can unsubscribe from any marketing email or request deletion of your contact record at any time (see Section 10).
 
 ### 2.8 Divinci Local Inference Browser Extension
 
@@ -81,7 +82,18 @@ We publish an optional Chrome extension, **Divinci Local Inference**, that runs 
 
 For the full, extension-specific policy — including exactly what each feature sends and your privacy controls — see the [Divinci Local Inference Privacy Policy](/local-inference-privacy/).
 
-## 3. Legal Basis for Processing (GDPR)
+### 2.9 Voice and SMS (Telephony)
+- **Twilio**: When you speak with an AI assistant by phone or interact by SMS, Twilio carries the call or message and processes call audio in real time for speech-to-text and text-to-speech. Divinci receives and stores the resulting text transcript and call/message metadata; we do not store raw call audio. [Twilio Privacy Policy](https://www.twilio.com/en-us/legal/privacy)
+
+### 2.10 Payments
+- **Stripe**: Processes card payments for subscriptions and wallet deposits. Your card details are held by Stripe, not by Divinci; we store payment metadata (amounts, timestamps, transaction identifiers) and your wallet balance. [Stripe Privacy Policy](https://stripe.com/privacy)
+- **On-Chain Payments (x402)**: Some API resources accept USDC stablecoin payments over supported blockchain networks. If you pay this way, your wallet address and transaction details are recorded on a public blockchain, which Divinci does not control and from which data cannot be deleted. On-chain payments are final once settled.
+
+## 3. Embedded Assistants on Customer Websites
+
+Some businesses ("Customers") use Divinci to power AI assistants under their own brand — for example, a chat widget on a Customer's website or a Customer-branded phone number. If you interact with such an assistant, the Customer decides what the assistant does and what data it collects, and Divinci processes your conversation data **on the Customer's behalf** to provide the service. The Customer's own privacy policy applies to that relationship. For questions or data requests about a conversation you had with a Customer's assistant, contact that Customer; you can also reach us at privacy@divinci.ai and we will assist or route your request as appropriate.
+
+## 4. Legal Basis for Processing (GDPR)
 
 We process your personal data based on:
 - **Consent**: For analytics, marketing cookies, and optional integrations
@@ -89,9 +101,9 @@ We process your personal data based on:
 - **Contract Performance**: When providing our Services to you
 - **Legal Obligation**: When required by law
 
-## 4. How We Use Your Information
+## 5. How We Use Your Information
 
-### 4.1 Essential Uses
+### 5.1 Essential Uses
 - Provide, maintain, and improve our Services
 - Authenticate your identity and manage your account
 - Process your AI chat requests and deliver responses
@@ -100,38 +112,41 @@ We process your personal data based on:
 - Ensure app and website security and functionality
 - Detect, prevent, and address technical issues
 
-### 4.2 With Your Consent
+### 5.2 With Your Consent
 - Analytics to improve our website and apps
 - Marketing communications
 - Personalized content recommendations
 - Third-party service integrations (Google Drive, Gmail)
 
-## 5. Data Sharing and Disclosure
+## 6. Data Sharing and Disclosure
 
 We do not sell your personal data. We may share data with:
 
-### 5.1 Service Providers
+### 6.1 Service Providers
 - Cloud hosting and infrastructure providers (with data processing agreements)
 - Authentication service providers
 - Analytics and crash reporting providers (when you consent or as described above)
 - Marketing and B2B visitor identification providers (subject to consent in regulated jurisdictions, as described in Section 2.7)
 - AI model providers for processing your requests
+- Telephony providers (for voice and SMS features)
+- Payment processors
 - Customer support tools
 
-### 5.2 Legal Requirements
+### 6.2 Legal Requirements
 - When required by law or legal process
 - To protect our rights and safety
 - In connection with business transfers (mergers, acquisitions, or asset sales)
 
-## 6. Data Retention
+## 7. Data Retention
 
 - **Account Data**: Retained for as long as your account is active. Upon account deletion, your personal data is deleted within 30 days, except where we are required by law to retain it.
 - **Chat and AI Data**: Conversation history is retained while your account is active and deleted upon account deletion.
+- **Voice and SMS Data**: Call transcripts are handled like other conversation history. Call and message metadata (phone numbers, duration, cost) may be retained longer as required for billing, accounting, and fraud-prevention purposes.
 - **Crash Reports**: Retained for 90 days by Firebase Crashlytics.
 - **Analytics Data**: Aggregated analytics data is retained for up to 14 months by Firebase Analytics.
 - **Backup Data**: Backup copies may persist for up to 30 days after deletion.
 
-## 7. Data Security
+## 8. Data Security
 
 We implement appropriate technical and organizational measures to protect your personal data, including:
 - **Encryption in Transit**: All data transmitted between your device and our servers is encrypted using TLS/SSL.
@@ -141,13 +156,13 @@ We implement appropriate technical and organizational measures to protect your p
 
 While we strive to protect your data, no method of electronic transmission or storage is 100% secure. We cannot guarantee absolute security.
 
-## 8. Children's Privacy
+## 9. Children's Privacy
 
 Our Services are not directed to children under the age of 13 (or the applicable age of consent in your jurisdiction). We do not knowingly collect personal data from children under 13. If you are a parent or guardian and believe your child has provided us with personal data, please contact us at privacy@divinci.ai and we will take steps to delete such information promptly.
 
-## 9. Your Rights
+## 10. Your Rights
 
-### 9.1 GDPR Rights (EEA, UK, Switzerland)
+### 10.1 GDPR Rights (EEA, UK, Switzerland)
 - **Right of Access**: Request information about your personal data
 - **Data Portability**: Receive your data in a structured, machine-readable format
 - **Rectification**: Correct inaccurate personal data
@@ -158,21 +173,21 @@ Our Services are not directed to children under the age of 13 (or the applicable
 
 To exercise any of these rights, you can submit a request through our self-service [data request portal](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg), or email us at privacy@divinci.ai. We respond within 30 days.
 
-### 9.2 CCPA Rights (California Residents)
+### 10.2 CCPA Rights (California Residents)
 - **Right to Know**: What personal information we collect and how it is used
 - **Right to Delete**: Request deletion of your personal information
 - **Right to Opt-Out**: Opt out of the sale of personal information (we do not sell personal information)
 - **Non-Discrimination**: We will not discriminate against you for exercising your rights
 
-### 9.3 Apple App Store (iOS Users)
+### 10.3 Apple App Store (iOS Users)
 - You may request deletion of your account and all associated data directly within the app or by contacting us
 - We comply with Apple's App Store Review Guidelines regarding user privacy and data handling
 
-### 9.4 Google Play Store (Android Users)
+### 10.4 Google Play Store (Android Users)
 - You may request deletion of your account and all associated data directly within the app or by contacting us
 - Our Data Safety disclosures in the Google Play Store accurately reflect our data practices as described in this policy
 
-## 10. Your Privacy Controls
+## 11. Your Privacy Controls
 
 <div class="privacy-controls">
   <button onclick="window.gdprCompliance?.showCookieBanner()" class="privacy-btn">
@@ -227,11 +242,11 @@ To exercise any of these rights, you can submit a request through our self-servi
 }
 </style>
 
-## 11. International Data Transfers
+## 12. International Data Transfers
 
 Your data may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place, including Standard Contractual Clauses where required, to protect your data in accordance with this policy and applicable law.
 
-## 12. Changes to This Policy
+## 13. Changes to This Policy
 
 We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on our website and updating the "Last updated" date. Your continued use of our Services after changes constitutes acceptance of the updated policy.
 
