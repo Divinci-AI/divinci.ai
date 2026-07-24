@@ -6,7 +6,7 @@ template = "page.html"
 
 # Politique de Confidentialité
 
-**Dernière mise à jour :** Juin 2026
+**Dernière mise à jour :** Juillet 2026
 
 ## Notre Engagement en Matière de Confidentialité
 
@@ -21,6 +21,7 @@ Chez Divinci AI, nous nous engageons à protéger votre vie privée et à assure
 - **E-mail du chat gratuit** : Lorsque vous utilisez l'assistant de chat gratuit sur notre site web, l'adresse e-mail que vous fournissez et validez à l'aide d'un code à usage unique. Nous l'utilisons pour vous transmettre le code de vérification, prévenir les abus et — uniquement si vous y consentez via la case à cocher de consentement — pour vous envoyer occasionnellement des actualités sur nos produits (voir la Section 2.7)
 - **Données de communication** : Messages, retours d'expérience et demandes d'assistance
 - **Fichiers et documents** : Fichiers que vous téléversez pour le traitement par l'IA, y compris les documents ajoutés aux bases de connaissances
+- **Données Vocales et SMS** : Si vous interagissez avec un assistant IA par téléphone, nous conservons des transcriptions textuelles de la conversation ainsi que des métadonnées d'appel (numéros de téléphone, durée de l'appel et coût). Nous ne conservons pas d'enregistrements audio bruts des appels. Si vous interagissez par SMS, nous conservons le contenu des messages et les numéros de téléphone concernés
 
 ### 1.2 Informations Collectées Automatiquement
 - **Données d'utilisation du site web** : Pages visitées, temps passé, schémas de clics
@@ -65,10 +66,10 @@ Nos Services intègrent les services tiers suivants, chacun ayant ses propres pr
 - **Google Cloud Platform** : Nos services backend fonctionnent sur l'infrastructure Google Cloud avec des accords de traitement des données en place.
 
 ### 2.7 Marketing, Identification des Visiteurs et CRM
-- **Instantly.ai / Leadsy.ai** : Nous utilisons la balise d'identification des visiteurs d'Instantly (chargée depuis `r2.leadsy.ai`, qui charge dynamiquement un script de suivi depuis `tag.trovo-tag.com` exploité par le même fournisseur) afin d'identifier l'organisation à laquelle une visite du site web peut être associée (par exemple, l'entreprise liée à l'adresse IP du visiteur). Cela alimente notre prospection marketing B2B sortante. Pour les visiteurs détectés dans l'EEE, le Royaume-Uni ou la Suisse, cette balise se charge **uniquement après que vous ayez accordé votre consentement marketing** via notre bannière de cookies. Pour les visiteurs en dehors de ces juridictions, la balise se charge par défaut et peut être désactivée à tout moment via le contrôle « Préférences des cookies » à la Section 10. [Politique de Confidentialité d'Instantly](https://instantly.ai/privacy-policy)
-- **HubSpot** : Nous utilisons le script de suivi HubSpot (chargé depuis `js.hs-scripts.com`, qui charge dynamiquement des scripts de suivi, de bannière et de capture de formulaires depuis `js.hs-analytics.net`, `js.hs-banner.com` et `js.hscollectedforms.net`) pour enregistrer les pages vues, attribuer la performance des canaux marketing, capturer les soumissions de formulaires et lier l'activité du site web aux fiches de contact HubSpot CRM lorsque vous soumettez un formulaire ou réservez une réunion. Pour les visiteurs détectés dans l'EEE, le Royaume-Uni ou la Suisse, ce script se charge **uniquement après que vous ayez accordé votre consentement marketing** via notre bannière de cookies. Pour les visiteurs en dehors de ces juridictions, le script se charge par défaut et peut être désactivé à tout moment via le contrôle « Préférences des cookies » à la Section 10. [Politique de Confidentialité de HubSpot](https://legal.hubspot.com/privacy-policy)
+- **Instantly.ai / Leadsy.ai** : Nous utilisons la balise d'identification des visiteurs d'Instantly (chargée depuis `r2.leadsy.ai`, qui charge dynamiquement un script de suivi depuis `tag.trovo-tag.com` exploité par le même fournisseur) afin d'identifier l'organisation à laquelle une visite du site web peut être associée (par exemple, l'entreprise liée à l'adresse IP du visiteur). Cela alimente notre prospection marketing B2B sortante. Pour les visiteurs détectés dans l'EEE, le Royaume-Uni ou la Suisse, cette balise se charge **uniquement après que vous ayez accordé votre consentement marketing** via notre bannière de cookies. Pour les visiteurs en dehors de ces juridictions, la balise se charge par défaut et peut être désactivée à tout moment via le contrôle « Préférences des cookies » à la Section 11. [Politique de Confidentialité d'Instantly](https://instantly.ai/privacy-policy)
+- **HubSpot** : Nous utilisons le script de suivi HubSpot (chargé depuis `js.hs-scripts.com`, qui charge dynamiquement des scripts de suivi, de bannière et de capture de formulaires depuis `js.hs-analytics.net`, `js.hs-banner.com` et `js.hscollectedforms.net`) pour enregistrer les pages vues, attribuer la performance des canaux marketing, capturer les soumissions de formulaires et lier l'activité du site web aux fiches de contact HubSpot CRM lorsque vous soumettez un formulaire ou réservez une réunion. Pour les visiteurs détectés dans l'EEE, le Royaume-Uni ou la Suisse, ce script se charge **uniquement après que vous ayez accordé votre consentement marketing** via notre bannière de cookies. Pour les visiteurs en dehors de ces juridictions, le script se charge par défaut et peut être désactivé à tout moment via le contrôle « Préférences des cookies » à la Section 11. [Politique de Confidentialité de HubSpot](https://legal.hubspot.com/privacy-policy)
 - **Attio** : Nous utilisons Attio comme système de gestion de la relation client (CRM) pour organiser nos contacts commerciaux et nos prospects. [Politique de Confidentialité d'Attio](https://attio.com/privacy)
-- **Synchronisation de l'e-mail de l'assistant de chat gratuit** : Lorsque vous validez une adresse e-mail pour utiliser l'assistant de chat gratuit sur notre site web, nous enregistrons cette adresse e-mail en tant que contact dans nos CRM HubSpot et Attio afin de pouvoir assurer un suivi concernant nos produits. Cette synchronisation s'effectue côté serveur après que vous avez terminé la vérification par code à usage unique ; il ne s'agit pas d'un script de suivi et elle ne dépend pas de cookies. Nous ne vous désignons comme **contact marketing** (éligible à recevoir des e-mails marketing) que **si vous cochez la case optionnelle de consentement marketing** dans le chat. Si vous la laissez décochée, nous enregistrons tout de même la fiche de contact mais ne vous envoyons pas d'e-mail marketing. Vous pouvez vous désabonner de tout e-mail marketing ou demander la suppression de votre fiche de contact à tout moment (voir la Section 9).
+- **Synchronisation de l'e-mail de l'assistant de chat gratuit** : Lorsque vous validez une adresse e-mail pour utiliser l'assistant de chat gratuit sur notre site web, nous enregistrons cette adresse e-mail en tant que contact dans nos CRM HubSpot et Attio afin de pouvoir assurer un suivi concernant nos produits. Cette synchronisation s'effectue côté serveur après que vous avez terminé la vérification par code à usage unique ; il ne s'agit pas d'un script de suivi et elle ne dépend pas de cookies. Nous ne vous désignons comme **contact marketing** (éligible à recevoir des e-mails marketing) que **si vous cochez la case optionnelle de consentement marketing** dans le chat. Si vous la laissez décochée, nous enregistrons tout de même la fiche de contact mais ne vous envoyons pas d'e-mail marketing. Vous pouvez vous désabonner de tout e-mail marketing ou demander la suppression de votre fiche de contact à tout moment (voir la Section 10).
 
 ### 2.8 Extension de Navigateur Divinci Local Inference
 
@@ -81,7 +82,18 @@ Nous publions une extension Chrome optionnelle, **Divinci Local Inference**, qui
 
 Pour la politique complète, spécifique à l'extension — précisant exactement ce que chaque fonctionnalité envoie et vos contrôles de confidentialité — consultez la [Politique de Confidentialité de Divinci Local Inference](/fr/local-inference-privacy/).
 
-## 3. Base Juridique du Traitement (RGPD)
+### 2.9 Voix et SMS (Téléphonie)
+- **Twilio** : Lorsque vous parlez avec un assistant IA par téléphone ou interagissez par SMS, Twilio achemine l'appel ou le message et traite l'audio de l'appel en temps réel pour la conversion voix-texte et texte-voix. Divinci reçoit et conserve la transcription textuelle résultante ainsi que les métadonnées d'appel/de message ; nous ne conservons pas l'audio brut de l'appel. [Politique de Confidentialité de Twilio](https://www.twilio.com/en-us/legal/privacy)
+
+### 2.10 Paiements
+- **Stripe** : Traite les paiements par carte pour les abonnements et les dépôts sur le portefeuille. Vos coordonnées de carte sont détenues par Stripe, et non par Divinci ; nous conservons les métadonnées de paiement (montants, horodatages, identifiants de transaction) et le solde de votre portefeuille. [Politique de Confidentialité de Stripe](https://stripe.com/privacy)
+- **Paiements On-Chain (x402)** : Certaines ressources d'API acceptent les paiements en stablecoin USDC sur des réseaux blockchain pris en charge. Si vous payez de cette manière, l'adresse de votre portefeuille et les détails de la transaction sont enregistrés sur une blockchain publique, que Divinci ne contrôle pas et dont les données ne peuvent pas être supprimées. Les paiements on-chain sont définitifs une fois réglés.
+
+## 3. Assistants Intégrés sur les Sites Web des Clients
+
+Certaines entreprises (« Clients ») utilisent Divinci pour propulser des assistants IA sous leur propre marque — par exemple, un widget de chat sur le site web d'un Client ou un numéro de téléphone à la marque d'un Client. Si vous interagissez avec un tel assistant, le Client décide de ce que fait l'assistant et des données qu'il collecte, et Divinci traite vos données de conversation **pour le compte du Client** afin de fournir le service. La propre politique de confidentialité du Client s'applique à cette relation. Pour toute question ou demande de données concernant une conversation que vous avez eue avec l'assistant d'un Client, contactez ce Client ; vous pouvez également nous contacter à privacy@divinci.ai et nous vous aiderons ou orienterons votre demande de manière appropriée.
+
+## 4. Base Juridique du Traitement (RGPD)
 
 Nous traitons vos données personnelles sur la base de :
 - **Consentement** : Pour les analyses, les cookies marketing et les intégrations optionnelles
@@ -89,9 +101,9 @@ Nous traitons vos données personnelles sur la base de :
 - **Exécution du contrat** : Lorsque nous vous fournissons nos Services
 - **Obligation légale** : Lorsque la loi l'exige
 
-## 4. Comment Nous Utilisons Vos Informations
+## 5. Comment Nous Utilisons Vos Informations
 
-### 4.1 Utilisations Essentielles
+### 5.1 Utilisations Essentielles
 - Fournir, maintenir et améliorer nos Services
 - Authentifier votre identité et gérer votre compte
 - Traiter vos requêtes de chat IA et fournir des réponses
@@ -100,38 +112,41 @@ Nous traitons vos données personnelles sur la base de :
 - Assurer la sécurité et le fonctionnement de l'application et du site web
 - Détecter, prévenir et résoudre les problèmes techniques
 
-### 4.2 Avec Votre Consentement
+### 5.2 Avec Votre Consentement
 - Analyses pour améliorer notre site web et nos applications
 - Communications marketing
 - Recommandations de contenu personnalisées
 - Intégrations de services tiers (Google Drive, Gmail)
 
-## 5. Partage et Divulgation des Données
+## 6. Partage et Divulgation des Données
 
 Nous ne vendons pas vos données personnelles. Nous pouvons partager des données avec :
 
-### 5.1 Fournisseurs de Services
+### 6.1 Fournisseurs de Services
 - Fournisseurs d'hébergement cloud et d'infrastructure (avec des accords de traitement des données)
 - Fournisseurs de services d'authentification
 - Fournisseurs d'analyses et de rapports de plantage (lorsque vous y consentez ou comme décrit ci-dessus)
 - Fournisseurs de marketing et d'identification des visiteurs B2B (sous réserve de consentement dans les juridictions réglementées, comme décrit à la Section 2.7)
 - Fournisseurs de modèles d'IA pour le traitement de vos requêtes
+- Fournisseurs de téléphonie (pour les fonctionnalités vocales et SMS)
+- Prestataires de services de paiement
 - Outils de support client
 
-### 5.2 Exigences Légales
+### 6.2 Exigences Légales
 - Lorsque la loi ou une procédure judiciaire l'exige
 - Pour protéger nos droits et notre sécurité
 - Dans le cadre de transferts d'entreprise (fusions, acquisitions ou ventes d'actifs)
 
-## 6. Conservation des Données
+## 7. Conservation des Données
 
 - **Données de compte** : Conservées tant que votre compte est actif. Lors de la suppression du compte, vos données personnelles sont supprimées dans un délai de 30 jours, sauf si la loi nous oblige à les conserver.
 - **Données de chat et d'IA** : L'historique des conversations est conservé tant que votre compte est actif et supprimé lors de la suppression du compte.
+- **Données Vocales et SMS** : Les transcriptions d'appels sont traitées comme le reste de l'historique des conversations. Les métadonnées d'appel et de message (numéros de téléphone, durée, coût) peuvent être conservées plus longtemps si nécessaire à des fins de facturation, de comptabilité et de prévention de la fraude.
 - **Rapports de plantage** : Conservés pendant 90 jours par Firebase Crashlytics.
 - **Données d'analyse** : Les données d'analyse agrégées sont conservées jusqu'à 14 mois par Firebase Analytics.
 - **Données de sauvegarde** : Les copies de sauvegarde peuvent persister jusqu'à 30 jours après la suppression.
 
-## 7. Sécurité des Données
+## 8. Sécurité des Données
 
 Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles, notamment :
 - **Chiffrement en transit** : Toutes les données transmises entre votre appareil et nos serveurs sont chiffrées à l'aide de TLS/SSL.
@@ -141,13 +156,13 @@ Nous mettons en œuvre des mesures techniques et organisationnelles appropriées
 
 Bien que nous nous efforcions de protéger vos données, aucune méthode de transmission électronique ou de stockage n'est sécurisée à 100 %. Nous ne pouvons pas garantir une sécurité absolue.
 
-## 8. Confidentialité des Enfants
+## 9. Confidentialité des Enfants
 
 Nos Services ne s'adressent pas aux enfants de moins de 13 ans (ou l'âge de consentement applicable dans votre juridiction). Nous ne collectons pas sciemment de données personnelles auprès d'enfants de moins de 13 ans. Si vous êtes un parent ou un tuteur et pensez que votre enfant nous a fourni des données personnelles, veuillez nous contacter à privacy@divinci.ai et nous prendrons les mesures nécessaires pour supprimer ces informations rapidement.
 
-## 9. Vos Droits
+## 10. Vos Droits
 
-### 9.1 Droits RGPD (EEE, Royaume-Uni, Suisse)
+### 10.1 Droits RGPD (EEE, Royaume-Uni, Suisse)
 - **Droit d'accès** : Demander des informations sur vos données personnelles
 - **Portabilité des données** : Recevoir vos données dans un format structuré et lisible par machine
 - **Rectification** : Corriger les données personnelles inexactes
@@ -158,25 +173,25 @@ Nos Services ne s'adressent pas aux enfants de moins de 13 ans (ou l'âge de con
 
 Pour exercer l'un de ces droits, vous pouvez soumettre une demande via notre [portail de demande de données](https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg) en libre-service, ou nous écrire à privacy@divinci.ai. Nous répondons sous 30 jours.
 
-### 9.2 Droits CCPA (Résidents de Californie)
+### 10.2 Droits CCPA (Résidents de Californie)
 - **Droit de savoir** : Quelles informations personnelles nous collectons et comment elles sont utilisées
 - **Droit de suppression** : Demander la suppression de vos informations personnelles
 - **Droit de refus** : Refuser la vente d'informations personnelles (nous ne vendons pas d'informations personnelles)
 - **Non-discrimination** : Nous ne vous discriminerons pas pour l'exercice de vos droits
 
-### 9.3 Apple App Store (Utilisateurs iOS)
+### 10.3 Apple App Store (Utilisateurs iOS)
 - Vous pouvez demander la suppression de votre compte et de toutes les données associées directement dans l'application ou en nous contactant
 - Nous respectons les Directives d'Examen de l'App Store d'Apple concernant la confidentialité des utilisateurs et le traitement des données
 
-### 9.4 Google Play Store (Utilisateurs Android)
+### 10.4 Google Play Store (Utilisateurs Android)
 - Vous pouvez demander la suppression de votre compte et de toutes les données associées directement dans l'application ou en nous contactant
 - Nos déclarations de Sécurité des Données dans le Google Play Store reflètent fidèlement nos pratiques en matière de données telles que décrites dans cette politique
 
-## 10. Vos Contrôles de Confidentialité
+## 11. Vos Contrôles de Confidentialité
 
 <div class="privacy-controls">
   <button onclick="window.gdprCompliance?.showCookieBanner()" class="privacy-btn">
-    🍪 Cookie Preferences
+    🍪 Préférences des Cookies
   </button>
 
   <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer" class="privacy-btn">
@@ -184,7 +199,7 @@ Pour exercer l'un de ces droits, vous pouvez soumettre une demande via notre [po
   </a>
 
   <button onclick="window.gdprCompliance?.revokeConsent()" class="privacy-btn">
-    ❌ Revoke All Consent
+    ❌ Révoquer Tout Consentement
   </button>
 </div>
 
@@ -227,11 +242,11 @@ Pour exercer l'un de ces droits, vous pouvez soumettre une demande via notre [po
 }
 </style>
 
-## 11. Transferts Internationaux de Données
+## 12. Transferts Internationaux de Données
 
 Vos données peuvent être transférées et traitées dans des pays autres que le vôtre. Nous veillons à ce que des garanties appropriées soient en place, y compris des Clauses Contractuelles Types lorsque cela est requis, pour protéger vos données conformément à la présente politique et à la législation applicable.
 
-## 12. Modifications de Cette Politique
+## 13. Modifications de Cette Politique
 
 Nous pouvons mettre à jour cette Politique de Confidentialité de temps à autre. Nous vous informerons des modifications importantes en publiant la politique mise à jour sur notre site web et en actualisant la date de « Dernière mise à jour ». Votre utilisation continue de nos Services après les modifications constitue une acceptation de la politique mise à jour.
 

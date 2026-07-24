@@ -34,7 +34,7 @@ You are responsible for maintaining the confidentiality of your account credenti
 
 Some of our customers ("**Customers**") use the Services to offer AI assistants under their own brand — for example, an AI chat widget embedded on a Customer's website, or a Customer-branded mobile application or phone number.
 
-- If you are a **Customer**, you are responsible for your own end users: for providing them with legally required notices and terms, for obtaining any consents required for the data you collect through your assistant, and for the instructions, knowledge bases, and configurations you supply to your assistant. You must not configure your assistant to violate these Terms or applicable law.
+- If you are a **Customer**, you are responsible for your own end users: for providing them with legally required notices and terms, for obtaining any consents required for the data you collect through your assistant, and for the instructions, knowledge bases, and configurations you supply to your assistant. You must not configure your assistant to violate these Terms or applicable law. Our [Data Processing Agreement](/data-processing-agreement/) governs how we process your end users' data on your behalf and applies automatically to your use of whitelabel features.
 - If you are an **end user** interacting with a Customer's branded assistant, your relationship is primarily with that Customer. Divinci processes your interaction data on the Customer's behalf, as described in our [Privacy Policy](/privacy-policy/). The Customer's own terms and privacy policy also apply.
 
 ## 6. Fees, Billing, Wallet, and Refunds

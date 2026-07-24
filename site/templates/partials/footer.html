@@ -95,6 +95,8 @@
                 <li><a href="{% if current_lang == 'en' %}/ai-safety/{% else %}/{{ current_lang }}/ai-safety/{% endif %}">{{ translations.footer.sections.legal.links.ai_safety | default(value="AI Safety & Ethics") }}</a></li>
                 {# security — translated in ES only #}
                 <li><a href="{% if current_lang == 'en' %}/security/{% else %}/{{ current_lang }}/security/{% endif %}">{{ translations.footer.sections.legal.links.security | default(value="Security") }}</a></li>
+                {# data-processing-agreement — English only #}
+                <li><a href="/data-processing-agreement/">{{ translations.footer.sections.legal.links.dpa | default(value="Data Processing Agreement") }}</a></li>
             </ul>
         </div>
 
