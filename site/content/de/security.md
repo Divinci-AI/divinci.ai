@@ -10,202 +10,123 @@ template = "page.html"
 
 # Security
 
-At Divinci AI, security is fundamental to everything we do. We implement comprehensive security measures to protect your data, ensure system integrity, and maintain the highest standards of privacy and compliance.
+Security is core to how we build. This page describes what's actually true
+about our architecture and practices today — not a marketing checklist. Where
+we haven't finished something (a formal audit, a certification), we say so
+plainly rather than implying otherwise.
 
-## Data security
+## HIPAA-ready architecture
+
+![HIPAA-Ready Architecture](/brand/badges/hipaa-ready.svg)
+
+We've built the technical safeguards a HIPAA-covered workflow needs into the
+platform by default:
+
+- **De-identification before storage or AI processing.** Chat content can be
+  routed through an automatic PII/PHI redaction step (Microsoft Presidio,
+  with a clinical-text-tuned model available for medical contexts) before it
+  touches our database, our AI providers, or search/retrieval — detecting
+  all 18 identifier categories in HIPAA's Safe Harbor method. This step
+  fails closed: if redaction can't run, the message is rejected rather than
+  silently stored unredacted.
+- **Tamper-evident audit logging.** Access to sensitive records is recorded
+  in a hash-chained log designed so entries can't be silently altered after
+  the fact.
+- **Role-based and resource-level access control.** Both platform-wide roles
+  and per-resource permissions gate who can see what.
+- **Encryption in transit and at rest**, with field-level encryption
+  available for designated sensitive data.
+
+**What this is not:** a HIPAA compliance certification. There is no
+government-issued HIPAA certificate — compliance is a combination of
+technical safeguards (above), written administrative policies, and signed
+Business Associate Agreements with every vendor in the data path, evaluated
+case-by-case for a given customer relationship. If you need to process
+Protected Health Information with us under a Business Associate Agreement,
+[talk to us](https://meetings.hubspot.com/michael-mooring/divinci-ai) — we'll
+work through what's needed for your specific use case.
+
+## Data protection
 
 ### Encryption
 
-- **End-to-end encryption**: All data is encrypted in transit using TLS 1.3
-- **At-rest encryption**: Data stored using AES-256 encryption
-- **Key management**: Hardware security modules (HSMs) for cryptographic key protection
-- **Perfect forward secrecy**: Session keys are not stored and cannot be recovered
+- **In transit**: TLS everywhere between clients, our edge, and our origin
+  infrastructure.
+- **At rest**: provider-level encryption on our primary datastore and object
+  storage, plus a dedicated field-level encryption layer for designated
+  sensitive fields.
+- **Secrets management**: credentials and API keys are managed through a
+  centralized secrets manager, not hardcoded or stored in plaintext config.
+  Production is configured to fail closed rather than silently fall back to
+  stale credentials if the secrets service is unreachable.
 
-### Data handling
+### Data minimization
 
-- **Data minimization**: We collect and retain only necessary data
-- **Secure deletion**: Cryptographic erasure of deleted data
-- **Data segregation**: Customer data isolated using strict access controls
-- **Backup security**: Encrypted backups with separate access controls
+- De-identification (above) means original PII/PHI is discarded, not
+  retained, wherever that pipeline runs — the smallest possible footprint if
+  a downstream system is ever compromised.
+- Logs are metadata-only by policy: we don't write message content, emails,
+  or other personal data into application logs or error messages.
 
 ### Access controls
 
-- **Zero-trust architecture**: No implicit trust for any user or system
-- **Multi-factor authentication**: Required for all administrative access
-- **Role-based permissions**: Least privilege access principles
-- **Regular access reviews**: Quarterly audits of user permissions
+- **Authentication** via Auth0.
+- **Role-based access control** (platform-level) plus **per-resource
+  permissions** (document/workspace-level) — least-privilege by default.
+- **Quarterly access and configuration reviews** of production services.
 
-## Infrastructure security
+## Application security
 
-### Cloud security
+- **XSS defense at the render boundary**: user-generated and AI-generated
+  content is sanitized (DOMPurify) wherever it's rendered as HTML; raw HTML
+  injection from untrusted sources is not permitted.
+- **Authorization testing**: we run our own AI-assisted and manual security
+  testing against staging and production, including authenticated
+  authorization/IDOR probes — not (yet) a recurring third-party penetration
+  testing program, and we're not going to claim one until it exists.
+- **Dependency and code review**: standard code review on all changes;
+  dependency updates tracked through our normal build tooling.
 
-- **SOC 2 Type II compliance**: Annual third-party security audits
-- **ISO 27001 certified**: International security management standards
-- **Multi-region deployment**: Geographic distribution for resilience
-- **DDoS protection**: Advanced threat detection and mitigation
+## Availability & monitoring
 
-### Network security
+- **Synthetic monitoring** on customer-facing endpoints, alerting on-call via
+  PagerDuty within minutes of a real outage, not just on server errors —
+  content-verified checks, not just "did it return 200."
+- **Multi-region infrastructure** (Cloudflare edge + Google Cloud origin)
+  with automated backups on our primary datastore.
+- We do not currently publish a contractual uptime SLA. If your use case
+  needs one, ask — we can talk through what's realistic for your deployment.
 
-- **Network segmentation**: Isolated security zones for different functions
-- **Intrusion detection**: Real-time monitoring and alerting
-- **Firewall protection**: Multi-layered network filtering
-- **VPN access**: Secure remote access for authorized personnel
+## Incident response
 
-### Application security
+We maintain a documented incident response process: detection and
+classification, containment, an honest assessment of whether an incident
+rises to a reportable breach, remediation, and a blameless post-mortem that
+feeds back into what we monitor for next. If you're a customer under a
+Business Associate Agreement with us, that agreement specifies our
+notification obligations to you — those terms govern, not this page.
 
-- **Secure development**: Security integrated throughout development lifecycle
-- **Code scanning**: Automated vulnerability detection in code
-- **Penetration testing**: Regular third-party security assessments
-- **Dependency management**: Continuous monitoring of third-party components
+To report a security concern or a suspected vulnerability, email
+**security@divinci.ai**. We don't currently run a formal bug bounty program;
+we do take reports seriously and will work with you in good faith.
 
-## Privacy protection
+## Where we are on formal certifications
 
-### Data privacy
+Being direct about this, since a lot of security pages aren't:
 
-- **Privacy by design**: Privacy considerations built into system architecture
-- **Data anonymization**: Personal identifiers removed or pseudonymized
-- **Consent management**: Clear, granular control over data usage
-- **Data portability**: Easy export of customer data
+- **HIPAA**: see "HIPAA-ready architecture" above. Whether a Business
+  Associate Agreement applies depends on your specific relationship with us
+  — we evaluate this per customer, not as a blanket claim.
+- **SOC 2**: not yet started. It's on our roadmap; we'll update this page
+  when there's something real to report — not before.
+- **ISO 27001, FedRAMP, PCI DSS**: we don't hold these certifications. Card
+  payments are processed through Stripe; Divinci does not store cardholder
+  data directly.
 
-### Compliance
+We'd rather under-claim here and be trusted than over-claim and have to walk
+it back.
 
-We comply with major privacy regulations:
-- **GDPR**: European General Data Protection Regulation
-- **CCPA**: California Consumer Privacy Act
-- **PIPEDA**: Canadian Personal Information Protection Act
-- **Industry standards**: Sector-specific privacy requirements
+### Contact
 
-### User rights
-
-- **Access**: View all data we have about you
-- **Correction**: Update or correct inaccurate information
-- **Deletion**: Request removal of your personal data
-- **Portability**: Export your data in standard formats
-
-## Operational security
-
-### Incident response
-
-- **24/7 monitoring**: Continuous security operations center
-- **Rapid response**: Incident containment within 1 hour
-- **Communication**: Transparent updates during incidents
-- **Post-incident review**: Analysis and improvement after each incident
-
-### Business continuity
-
-- **Backup systems**: Multiple redundant backups across regions
-- **Disaster recovery**: Tested recovery procedures with RTO < 4 hours
-- **High availability**: 99.9% uptime SLA with automatic failover
-- **Regular testing**: Quarterly disaster recovery exercises
-
-### Vendor management
-
-- **Security assessments**: All vendors undergo security reviews
-- **Contractual requirements**: Security obligations in all vendor contracts
-- **Regular audits**: Ongoing monitoring of vendor security practices
-- **Incident coordination**: Shared responsibility for security incidents
-
-## AI-specific security
-
-### Model security
-
-- **Model protection**: Proprietary algorithms protected from extraction
-- **Input validation**: Sanitization of all inputs to prevent attacks
-- **Output filtering**: Content screening to prevent harmful outputs
-- **Version control**: Secure model deployment and rollback capabilities
-
-### Data protection in AI
-
-- **Differential privacy**: Mathematical privacy guarantees in model training
-- **Federated learning**: Training without centralizing sensitive data
-- **Data poisoning prevention**: Detection of malicious training data
-- **Model interpretability**: Understanding AI decision-making processes
-
-## Compliance and certifications
-
-### Security certifications
-
-- **SOC 2 Type II**: Annual security and availability audits
-- **ISO 27001**: Information security management certification
-- **PCI DSS**: Payment card industry data security standards
-- **FedRAMP**: Federal government cloud security requirements
-
-### Industry compliance
-
-- **HIPAA**: Healthcare information privacy and security
-- **FERPA**: Educational records privacy protection
-- **GLBA**: Financial services privacy requirements
-- **Industry-specific**: Sector compliance as required
-
-### Regular audits
-
-- **Annual security audits**: Comprehensive third-party assessments
-- **Quarterly reviews**: Internal security posture evaluations
-- **Continuous monitoring**: Automated compliance checking
-- **Penetration testing**: Bi-annual ethical hacking assessments
-
-## Security training and awareness
-
-### Employee training
-
-- **Security onboarding**: Mandatory training for all new employees
-- **Regular updates**: Quarterly security awareness sessions
-- **Phishing simulation**: Regular testing of email security awareness
-- **Incident response training**: Specialized training for response teams
-
-### Customer education
-
-- **Best practices**: Guidance on secure usage of our platform
-- **Security updates**: Regular communication about security improvements
-- **Threat intelligence**: Sharing relevant security threats and mitigations
-- **Training resources**: Educational materials on AI security
-
-## Transparency and reporting
-
-### Security communications
-
-- **Regular updates**: Quarterly security bulletins
-- **Incident notifications**: Prompt disclosure of security incidents
-- **Compliance reports**: Annual security posture summaries
-- **Research sharing**: Publication of relevant security research
-
-### Contact information
-
-For security concerns or to report vulnerabilities:
-
-**Security team**: security@divinci.ai  
-**Bug bounty**: Report vulnerabilities through our responsible disclosure program  
-**Emergency contact**: Available 24/7 for critical security issues
-
-### Responsible disclosure
-
-We welcome security researchers and offer:
-- **Bug bounty program**: Rewards for responsibly disclosed vulnerabilities
-- **Safe harbor**: Legal protection for good-faith security research
-- **Recognition**: Public acknowledgment for significant contributions
-- **Collaboration**: Work together to improve security for everyone
-
-## Continuous improvement
-
-Security is an ongoing process. We continuously:
-
-- **Monitor threats**: Stay current with evolving security landscape
-- **Update defenses**: Regular security enhancements and patches
-- **Review practices**: Annual assessment of security procedures
-- **Invest in security**: Ongoing investment in security technologies and training
-
-## Emergency procedures
-
-In case of a security incident:
-
-1. **Immediate containment**: Automated and manual response procedures
-2. **Assessment**: Rapid evaluation of impact and scope
-3. **Communication**: Notification of affected parties within 72 hours
-4. **Recovery**: Systematic restoration of normal operations
-5. **Lessons learned**: Post-incident analysis and improvement
-
----
-
-*Last updated: January 20, 2025*
-
-Security is not just a feature—it's fundamental to how we operate. We're committed to maintaining the highest security standards to protect your data and maintain your trust.
+Security questions, vulnerability reports, or compliance questions for a
+specific deal: **security@divinci.ai**
