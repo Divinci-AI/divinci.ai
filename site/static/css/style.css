@@ -1928,6 +1928,25 @@ body:not(.homepage) .privacy-settings-link:hover {
   filter: invert(1);
 }
 
+.footer-hipaa-badge {
+  display: inline-block;
+  margin-top: 1.25rem;
+  opacity: 0.92;
+  transition: opacity 0.3s ease;
+}
+
+.footer-hipaa-badge:hover,
+.footer-hipaa-badge:focus-visible {
+  opacity: 1;
+}
+
+.footer-hipaa-badge img {
+  display: block;
+  width: 11.25rem;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
 /* Brand page — /brand */
 .brand-page {
   padding: 4rem 0 6rem;

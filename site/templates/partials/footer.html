@@ -35,6 +35,9 @@
                     <i class="fab fa-discord" aria-hidden="true"></i>
                 </a>
             </div>
+            <a href="{% if current_lang == 'en' %}/security/{% else %}/{{ current_lang }}/security/{% endif %}" class="footer-hipaa-badge" title="{{ translations.footer.hipaa_badge_title | default(value='HIPAA-Ready Architecture — see our security page') }}">
+                <img src="{{ get_url(path='brand/badges/hipaa-ready.svg') }}" alt="HIPAA-Ready Architecture badge" width="180" height="50" loading="lazy">
+            </a>
         </div>
 
         <div class="footer-section">
