@@ -1,132 +1,151 @@
 +++
 title = "Sicherheit"
-description = "Umfassende Sicherheitsmaßnahmen und -praktiken zum Schutz Ihrer Daten und Privatsphäre"
+description = "Wie Divinci AI Ihre Daten schützt — De-Identifikation, Zugriffskontrolle, Audit-Protokollierung und ehrliche Antworten dazu, wo wir bei formellen Zertifizierungen stehen."
 template = "page.html"
 +++
 
 # Sicherheit
 
-*Die vollständige Version dieses Dokuments ist unten auf Englisch verfügbar.*
+Sicherheit ist ein Kernbestandteil unserer Entwicklungsarbeit. Diese Seite
+beschreibt, was heute tatsächlich auf unsere Architektur und unsere Praktiken
+zutrifft — keine Marketing-Checkliste. Wo wir etwas noch nicht abgeschlossen
+haben (ein formelles Audit, eine Zertifizierung), sagen wir das klar, statt
+etwas anderes anzudeuten.
 
-# Security
+## Für HIPAA vorbereitete Architektur
 
-Security is core to how we build. This page describes what's actually true
-about our architecture and practices today — not a marketing checklist. Where
-we haven't finished something (a formal audit, a certification), we say so
-plainly rather than implying otherwise.
+![Für HIPAA vorbereitete Architektur](/brand/badges/hipaa-ready.svg)
 
-## HIPAA-ready architecture
+Die technischen Schutzmaßnahmen, die ein HIPAA-relevanter Arbeitsablauf
+benötigt, sind bei uns standardmäßig in die Plattform eingebaut:
 
-![HIPAA-Ready Architecture](/brand/badges/hipaa-ready.svg)
+- **De-Identifikation vor Speicherung oder KI-Verarbeitung.** Chat-Inhalte
+  können durch eine automatische PII/PHI-Schwärzung (Microsoft Presidio, mit
+  einem für klinische Texte optimierten Modell für medizinische Kontexte)
+  geleitet werden, bevor sie unsere Datenbank, unsere KI-Anbieter oder die
+  Suche/Retrieval erreichen — dabei werden alle 18 Identifikator-Kategorien
+  der Safe-Harbor-Methode (Verfahren zur Anonymisierung) von HIPAA erkannt.
+  Dieser Schritt ist „fail closed" ausgelegt: Wenn die Schwärzung nicht
+  ausgeführt werden kann, wird die Nachricht abgewiesen, statt unbemerkt
+  ungeschwärzt gespeichert zu werden.
+- **Manipulationssichere Audit-Protokollierung.** Zugriffe auf sensible
+  Datensätze werden in einem Hash-verketteten Protokoll erfasst, das so
+  konzipiert ist, dass Einträge nachträglich nicht unbemerkt verändert werden
+  können.
+- **Rollenbasierte Zugriffskontrolle und Zugriffskontrolle auf
+  Ressourcenebene.** Sowohl plattformweite Rollen als auch Berechtigungen pro
+  Ressource regeln, wer was sehen darf.
+- **Verschlüsselung bei der Übertragung und im Ruhezustand**, mit
+  Feldverschlüsselung für als sensibel gekennzeichnete Daten.
 
-We've built the technical safeguards a HIPAA-covered workflow needs into the
-platform by default:
+**Was dies nicht ist:** eine HIPAA-Compliance-Zertifizierung. Es gibt kein
+staatlich ausgestelltes HIPAA-Zertifikat — Compliance ergibt sich aus dem
+Zusammenspiel technischer Schutzmaßnahmen (siehe oben), schriftlicher
+administrativer Richtlinien und unterzeichneter Auftragsverarbeitungsverträge
+für Geschäftspartner (Business Associate Agreement, BAA) mit jedem Anbieter im
+Datenpfad, jeweils einzelfallbezogen für eine konkrete Kundenbeziehung
+bewertet. Wenn Sie mit uns geschützte Gesundheitsdaten (Protected Health
+Information) im Rahmen eines Business Associate Agreement verarbeiten möchten,
+[sprechen Sie mit uns](https://meetings.hubspot.com/michael-mooring/divinci-ai)
+— wir klären gemeinsam, was für Ihren konkreten Anwendungsfall nötig ist.
 
-- **De-identification before storage or AI processing.** Chat content can be
-  routed through an automatic PII/PHI redaction step (Microsoft Presidio,
-  with a clinical-text-tuned model available for medical contexts) before it
-  touches our database, our AI providers, or search/retrieval — detecting
-  all 18 identifier categories in HIPAA's Safe Harbor method. This step
-  fails closed: if redaction can't run, the message is rejected rather than
-  silently stored unredacted.
-- **Tamper-evident audit logging.** Access to sensitive records is recorded
-  in a hash-chained log designed so entries can't be silently altered after
-  the fact.
-- **Role-based and resource-level access control.** Both platform-wide roles
-  and per-resource permissions gate who can see what.
-- **Encryption in transit and at rest**, with field-level encryption
-  available for designated sensitive data.
+## Datenschutz
 
-**What this is not:** a HIPAA compliance certification. There is no
-government-issued HIPAA certificate — compliance is a combination of
-technical safeguards (above), written administrative policies, and signed
-Business Associate Agreements with every vendor in the data path, evaluated
-case-by-case for a given customer relationship. If you need to process
-Protected Health Information with us under a Business Associate Agreement,
-[talk to us](https://meetings.hubspot.com/michael-mooring/divinci-ai) — we'll
-work through what's needed for your specific use case.
+### Verschlüsselung
 
-## Data protection
+- **Bei der Übertragung**: TLS durchgängig zwischen Clients, unserem Edge und
+  unserer Origin-Infrastruktur.
+- **Im Ruhezustand**: Verschlüsselung auf Anbieterebene für unseren primären
+  Datenspeicher und unseren Objektspeicher, ergänzt um eine eigene
+  Feldverschlüsselungsebene für als sensibel gekennzeichnete Felder.
+- **Verwaltung von Geheimnissen**: Zugangsdaten und API-Schlüssel werden über
+  einen zentralen Secrets-Manager verwaltet, nicht fest im Code hinterlegt
+  oder im Klartext in Konfigurationen gespeichert. Die Produktionsumgebung ist
+  so konfiguriert, dass sie „fail closed" reagiert, statt bei nicht
+  erreichbarem Secrets-Dienst unbemerkt auf veraltete Zugangsdaten
+  zurückzufallen.
 
-### Encryption
+### Datenminimierung
 
-- **In transit**: TLS everywhere between clients, our edge, and our origin
-  infrastructure.
-- **At rest**: provider-level encryption on our primary datastore and object
-  storage, plus a dedicated field-level encryption layer for designated
-  sensitive fields.
-- **Secrets management**: credentials and API keys are managed through a
-  centralized secrets manager, not hardcoded or stored in plaintext config.
-  Production is configured to fail closed rather than silently fall back to
-  stale credentials if the secrets service is unreachable.
+- De-Identifikation (siehe oben) bedeutet, dass ursprüngliche PII/PHI
+  verworfen und nicht aufbewahrt werden, überall dort, wo diese Pipeline
+  läuft — der kleinstmögliche Fußabdruck, falls ein nachgelagertes System
+  jemals kompromittiert wird.
+- Protokolle enthalten laut Richtlinie ausschließlich Metadaten: Wir schreiben
+  keine Nachrichteninhalte, E-Mail-Adressen oder sonstigen personenbezogenen
+  Daten in Anwendungsprotokolle oder Fehlermeldungen.
 
-### Data minimization
+### Zugriffskontrollen
 
-- De-identification (above) means original PII/PHI is discarded, not
-  retained, wherever that pipeline runs — the smallest possible footprint if
-  a downstream system is ever compromised.
-- Logs are metadata-only by policy: we don't write message content, emails,
-  or other personal data into application logs or error messages.
+- **Authentifizierung** über Auth0.
+- **Rollenbasierte Zugriffskontrolle** (auf Plattformebene) plus
+  **Berechtigungen pro Ressource** (auf Dokument-/Workspace-Ebene) —
+  standardmäßig nach dem Prinzip der geringsten Rechte.
+- **Vierteljährliche Überprüfungen von Zugriffen und Konfigurationen** der
+  Produktionsdienste.
 
-### Access controls
+## Anwendungssicherheit
 
-- **Authentication** via Auth0.
-- **Role-based access control** (platform-level) plus **per-resource
-  permissions** (document/workspace-level) — least-privilege by default.
-- **Quarterly access and configuration reviews** of production services.
+- **XSS-Abwehr an der Rendering-Grenze**: von Nutzern und von KI erzeugte
+  Inhalte werden überall dort bereinigt (DOMPurify), wo sie als HTML
+  gerendert werden; das Einschleusen von rohem HTML aus nicht
+  vertrauenswürdigen Quellen ist nicht zulässig.
+- **Autorisierungstests**: Wir führen eigene KI-gestützte und manuelle
+  Sicherheitstests gegen Staging und Produktion durch, einschließlich
+  authentifizierter Autorisierungs-/IDOR-Prüfungen — das ist (noch) kein
+  wiederkehrendes Programm für Penetrationstests durch Dritte, und wir werden
+  ein solches auch nicht behaupten, solange es nicht existiert.
+- **Abhängigkeits- und Code-Review**: reguläres Code-Review für alle
+  Änderungen; Aktualisierungen von Abhängigkeiten werden über unser normales
+  Build-Tooling nachverfolgt.
 
-## Application security
+## Verfügbarkeit & Überwachung
 
-- **XSS defense at the render boundary**: user-generated and AI-generated
-  content is sanitized (DOMPurify) wherever it's rendered as HTML; raw HTML
-  injection from untrusted sources is not permitted.
-- **Authorization testing**: we run our own AI-assisted and manual security
-  testing against staging and production, including authenticated
-  authorization/IDOR probes — not (yet) a recurring third-party penetration
-  testing program, and we're not going to claim one until it exists.
-- **Dependency and code review**: standard code review on all changes;
-  dependency updates tracked through our normal build tooling.
+- **Synthetisches Monitoring** kundenseitiger Endpunkte, das den
+  Bereitschaftsdienst innerhalb von Minuten nach einem echten Ausfall über
+  PagerDuty alarmiert — und nicht erst bei Serverfehlern; die Prüfungen
+  verifizieren den Inhalt, nicht nur „kam ein 200 zurück".
+- **Multi-Region-Infrastruktur** (Cloudflare Edge + Google Cloud Origin) mit
+  automatisierten Backups unseres primären Datenspeichers.
+- Wir veröffentlichen derzeit keine vertragliche Verfügbarkeitszusage (Uptime
+  SLA). Wenn Ihr Anwendungsfall eine benötigt, fragen Sie uns — wir können
+  besprechen, was für Ihre Bereitstellung realistisch ist.
 
-## Availability & monitoring
+## Reaktion auf Sicherheitsvorfälle
 
-- **Synthetic monitoring** on customer-facing endpoints, alerting on-call via
-  PagerDuty within minutes of a real outage, not just on server errors —
-  content-verified checks, not just "did it return 200."
-- **Multi-region infrastructure** (Cloudflare edge + Google Cloud origin)
-  with automated backups on our primary datastore.
-- We do not currently publish a contractual uptime SLA. If your use case
-  needs one, ask — we can talk through what's realistic for your deployment.
+Wir unterhalten einen dokumentierten Prozess zur Reaktion auf
+Sicherheitsvorfälle: Erkennung und Klassifizierung, Eindämmung, eine ehrliche
+Bewertung, ob ein Vorfall die Schwelle zu einer meldepflichtigen
+Datenschutzverletzung erreicht, Behebung sowie eine schuldfreie Nachbetrachtung
+(Post-Mortem), die in unsere künftige Überwachung einfließt. Wenn Sie Kunde mit
+einem Business Associate Agreement mit uns sind, legt dieser Vertrag unsere
+Benachrichtigungspflichten Ihnen gegenüber fest — es gelten diese
+Vertragsbedingungen, nicht diese Seite.
 
-## Incident response
+Um ein Sicherheitsproblem oder eine vermutete Schwachstelle zu melden, schreiben
+Sie an **security@divinci.ai**. Wir betreiben derzeit kein formelles
+Bug-Bounty-Programm; wir nehmen Meldungen jedoch ernst und arbeiten nach Treu
+und Glauben mit Ihnen zusammen.
 
-We maintain a documented incident response process: detection and
-classification, containment, an honest assessment of whether an incident
-rises to a reportable breach, remediation, and a blameless post-mortem that
-feeds back into what we monitor for next. If you're a customer under a
-Business Associate Agreement with us, that agreement specifies our
-notification obligations to you — those terms govern, not this page.
+## Wo wir bei formellen Zertifizierungen stehen
 
-To report a security concern or a suspected vulnerability, email
-**security@divinci.ai**. We don't currently run a formal bug bounty program;
-we do take reports seriously and will work with you in good faith.
+Wir sagen es direkt, da viele Sicherheitsseiten das nicht tun:
 
-## Where we are on formal certifications
+- **HIPAA**: siehe „Für HIPAA vorbereitete Architektur" weiter oben. Ob ein
+  Business Associate Agreement zur Anwendung kommt, hängt von Ihrer konkreten
+  Beziehung zu uns ab — wir bewerten das pro Kunde und nicht als pauschale
+  Aussage.
+- **SOC 2**: noch nicht begonnen. Es steht auf unserer Roadmap; wir
+  aktualisieren diese Seite, sobald es etwas Belastbares zu berichten gibt —
+  nicht früher.
+- **ISO 27001, FedRAMP, PCI DSS**: Diese Zertifizierungen besitzen wir nicht.
+  Kartenzahlungen werden über Stripe abgewickelt; Divinci speichert
+  Karteninhaberdaten nicht selbst.
 
-Being direct about this, since a lot of security pages aren't:
+Uns ist es lieber, hier zu wenig zu behaupten und dafür Vertrauen zu genießen,
+als zu viel zu behaupten und es später zurücknehmen zu müssen.
 
-- **HIPAA**: see "HIPAA-ready architecture" above. Whether a Business
-  Associate Agreement applies depends on your specific relationship with us
-  — we evaluate this per customer, not as a blanket claim.
-- **SOC 2**: not yet started. It's on our roadmap; we'll update this page
-  when there's something real to report — not before.
-- **ISO 27001, FedRAMP, PCI DSS**: we don't hold these certifications. Card
-  payments are processed through Stripe; Divinci does not store cardholder
-  data directly.
+### Kontakt
 
-We'd rather under-claim here and be trusted than over-claim and have to walk
-it back.
-
-### Contact
-
-Security questions, vulnerability reports, or compliance questions for a
-specific deal: **security@divinci.ai**
+Sicherheitsfragen, Schwachstellenmeldungen oder Compliance-Fragen zu einem
+konkreten Geschäft: **security@divinci.ai**

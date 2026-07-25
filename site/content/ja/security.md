@@ -1,132 +1,135 @@
 +++
 title = "セキュリティ"
-description = "あなたのデータとプライバシーを保護する包括的なセキュリティ対策と慣行"
+description = "Divinci AI がお客様のデータをどのように保護しているか — 非識別化、アクセス制御、監査ログ、そして正式な認証取得状況についての正直な回答。"
 template = "page.html"
 +++
 
 # セキュリティ
 
-*本文書の完全版は以下に英語で記載されています。*
+セキュリティは私たちのものづくりの中核です。このページは、マーケティング用の
+チェックリストではなく、現時点で私たちのアーキテクチャと運用について実際に
+事実であることを記載しています。まだ完了していないこと（正式な監査、認証など）
+については、そうでないかのようにほのめかすのではなく、率直にそう述べます。
 
-# Security
+## HIPAA 対応アーキテクチャ
 
-Security is core to how we build. This page describes what's actually true
-about our architecture and practices today — not a marketing checklist. Where
-we haven't finished something (a formal audit, a certification), we say so
-plainly rather than implying otherwise.
+![HIPAA 対応アーキテクチャ](/brand/badges/hipaa-ready.svg)
 
-## HIPAA-ready architecture
+HIPAA の対象となるワークフローに必要な技術的セーフガードを、プラットフォームに
+既定で組み込んでいます。
 
-![HIPAA-Ready Architecture](/brand/badges/hipaa-ready.svg)
+- **保存および AI 処理の前に非識別化を実施。** チャットの内容は、当社の
+  データベース、AI プロバイダー、検索・検索取得（リトリーバル）に到達する前に、
+  自動的な PII/PHI 秘匿化ステップ（Microsoft Presidio、医療分野向けには
+  臨床テキストに調整されたモデルも利用可能）を通すことができます。これにより
+  HIPAA の Safe Harbor 方式（セーフハーバー方式）に定義された 18 種類すべての
+  識別子カテゴリを検出します。このステップはフェイルクローズ設計です。秘匿化を
+  実行できない場合、メッセージは秘匿化されないまま黙って保存されるのではなく、
+  拒否されます。
+- **改ざん検知可能な監査ログ。** 機微なレコードへのアクセスは、事後に
+  エントリを密かに改変できないよう設計されたハッシュチェーン型のログに
+  記録されます。
+- **ロールベースおよびリソース単位のアクセス制御。** プラットフォーム全体の
+  ロールと、リソースごとの権限の両方によって、誰が何を閲覧できるかを制御します。
+- **転送中および保存時の暗号化。** 指定された機微データにはフィールドレベルの
+  暗号化も利用できます。
 
-We've built the technical safeguards a HIPAA-covered workflow needs into the
-platform by default:
+**これが何ではないか：** これは HIPAA コンプライアンス認証ではありません。
+政府が発行する HIPAA 認証というものは存在しません。コンプライアンスとは、
+（上記の）技術的セーフガード、文書化された管理的ポリシー、そしてデータ経路上の
+すべてのベンダーと締結した事業提携者契約（Business Associate Agreement, BAA）の
+組み合わせであり、個々の顧客との関係ごとに case-by-case で評価されるものです。
+事業提携者契約（BAA）のもとで当社と保護対象保健情報（PHI）を扱う必要がある場合は、
+[ご相談ください](https://meetings.hubspot.com/michael-mooring/divinci-ai)。
+お客様固有のユースケースに何が必要かを一緒に整理します。
 
-- **De-identification before storage or AI processing.** Chat content can be
-  routed through an automatic PII/PHI redaction step (Microsoft Presidio,
-  with a clinical-text-tuned model available for medical contexts) before it
-  touches our database, our AI providers, or search/retrieval — detecting
-  all 18 identifier categories in HIPAA's Safe Harbor method. This step
-  fails closed: if redaction can't run, the message is rejected rather than
-  silently stored unredacted.
-- **Tamper-evident audit logging.** Access to sensitive records is recorded
-  in a hash-chained log designed so entries can't be silently altered after
-  the fact.
-- **Role-based and resource-level access control.** Both platform-wide roles
-  and per-resource permissions gate who can see what.
-- **Encryption in transit and at rest**, with field-level encryption
-  available for designated sensitive data.
+## データ保護
 
-**What this is not:** a HIPAA compliance certification. There is no
-government-issued HIPAA certificate — compliance is a combination of
-technical safeguards (above), written administrative policies, and signed
-Business Associate Agreements with every vendor in the data path, evaluated
-case-by-case for a given customer relationship. If you need to process
-Protected Health Information with us under a Business Associate Agreement,
-[talk to us](https://meetings.hubspot.com/michael-mooring/divinci-ai) — we'll
-work through what's needed for your specific use case.
+### 暗号化
 
-## Data protection
+- **転送中**：クライアント、当社のエッジ、オリジンインフラの間はすべて TLS で
+  保護しています。
+- **保存時**：主要データストアとオブジェクトストレージにおけるプロバイダー
+  レベルの暗号化に加え、指定された機微フィールド向けの専用フィールドレベル
+  暗号化レイヤーを備えています。
+- **シークレット管理**：認証情報や API キーは、ハードコードや平文の設定ファイル
+  への保存ではなく、集中管理型のシークレットマネージャーを通じて管理しています。
+  本番環境は、シークレットサービスに到達できない場合に古い認証情報へ黙って
+  フォールバックするのではなく、フェイルクローズするよう構成されています。
 
-### Encryption
+### データ最小化
 
-- **In transit**: TLS everywhere between clients, our edge, and our origin
-  infrastructure.
-- **At rest**: provider-level encryption on our primary datastore and object
-  storage, plus a dedicated field-level encryption layer for designated
-  sensitive fields.
-- **Secrets management**: credentials and API keys are managed through a
-  centralized secrets manager, not hardcoded or stored in plaintext config.
-  Production is configured to fail closed rather than silently fall back to
-  stale credentials if the secrets service is unreachable.
+- 上記の非識別化により、そのパイプラインが動作する範囲では、元の PII/PHI は
+  保持されず破棄されます。これにより、下流のシステムが万一侵害された場合でも
+  影響範囲を可能な限り小さく抑えられます。
+- ログはポリシーとしてメタデータのみです。メッセージ本文、メールアドレス、
+  その他の個人データを、アプリケーションログやエラーメッセージに書き込むことは
+  ありません。
 
-### Data minimization
+### アクセス制御
 
-- De-identification (above) means original PII/PHI is discarded, not
-  retained, wherever that pipeline runs — the smallest possible footprint if
-  a downstream system is ever compromised.
-- Logs are metadata-only by policy: we don't write message content, emails,
-  or other personal data into application logs or error messages.
+- **認証**は Auth0 を利用しています。
+- **ロールベースアクセス制御**（プラットフォームレベル）に加え、
+  **リソース単位の権限**（ドキュメント／ワークスペースレベル）を備え、
+  既定で最小権限の原則を適用しています。
+- 本番サービスに対する**四半期ごとのアクセスおよび構成レビュー**。
 
-### Access controls
+## アプリケーションセキュリティ
 
-- **Authentication** via Auth0.
-- **Role-based access control** (platform-level) plus **per-resource
-  permissions** (document/workspace-level) — least-privilege by default.
-- **Quarterly access and configuration reviews** of production services.
+- **レンダリング境界での XSS 防御**：ユーザー生成コンテンツおよび AI 生成
+  コンテンツは、HTML としてレンダリングされる箇所すべてでサニタイズ
+  （DOMPurify）されます。信頼できないソースからの生 HTML の挿入は
+  許可されていません。
+- **認可テスト**：当社は、認証済みの認可／IDOR 検査を含む、AI 支援および手動の
+  セキュリティテストをステージングおよび本番環境に対して自社で実施しています。
+  これは（今のところ）継続的な第三者ペネトレーションテストのプログラムでは
+  ありません。そして、実際に存在するようになるまで、そのようなものがあると
+  主張するつもりもありません。
+- **依存関係とコードレビュー**：すべての変更に対して標準的なコードレビューを
+  実施し、依存関係の更新は通常のビルドツールを通じて追跡しています。
 
-## Application security
+## 可用性と監視
 
-- **XSS defense at the render boundary**: user-generated and AI-generated
-  content is sanitized (DOMPurify) wherever it's rendered as HTML; raw HTML
-  injection from untrusted sources is not permitted.
-- **Authorization testing**: we run our own AI-assisted and manual security
-  testing against staging and production, including authenticated
-  authorization/IDOR probes — not (yet) a recurring third-party penetration
-  testing program, and we're not going to claim one until it exists.
-- **Dependency and code review**: standard code review on all changes;
-  dependency updates tracked through our normal build tooling.
+- **合成監視（シンセティックモニタリング）**を顧客向けエンドポイントに対して
+  実施しています。サーバーエラーのみを対象とするのではなく、実際の障害発生から
+  数分以内に PagerDuty でオンコール担当へ通知します。単に「200 が返ったか」
+  ではなく、内容まで検証するチェックです。
+- **マルチリージョン構成のインフラ**（Cloudflare のエッジ＋Google Cloud の
+  オリジン）と、主要データストアの自動バックアップ。
+- 契約上の稼働率 SLA は現時点では公開していません。お客様のユースケースで
+  必要な場合はご相談ください。そのデプロイにとって現実的な水準を一緒に
+  検討できます。
 
-## Availability & monitoring
+## インシデント対応
 
-- **Synthetic monitoring** on customer-facing endpoints, alerting on-call via
-  PagerDuty within minutes of a real outage, not just on server errors —
-  content-verified checks, not just "did it return 200."
-- **Multi-region infrastructure** (Cloudflare edge + Google Cloud origin)
-  with automated backups on our primary datastore.
-- We do not currently publish a contractual uptime SLA. If your use case
-  needs one, ask — we can talk through what's realistic for your deployment.
+当社は、文書化されたインシデント対応プロセスを運用しています。検知と分類、
+封じ込め、そのインシデントが報告義務のある侵害に該当するかどうかの誠実な評価、
+是正、そして次に何を監視すべきかへとフィードバックされる非難を伴わない
+ポストモーテムです。当社と事業提携者契約（BAA）を締結しているお客様については、
+当社の通知義務はその契約に定められています。このページではなく、その契約条項が
+適用されます。
 
-## Incident response
+セキュリティ上の懸念や脆弱性の疑いを報告するには、**security@divinci.ai** まで
+メールをお送りください。現時点では正式なバグバウンティプログラムは実施して
+いません。ただし、報告は真摯に受け止め、誠意をもって対応いたします。
 
-We maintain a documented incident response process: detection and
-classification, containment, an honest assessment of whether an incident
-rises to a reportable breach, remediation, and a blameless post-mortem that
-feeds back into what we monitor for next. If you're a customer under a
-Business Associate Agreement with us, that agreement specifies our
-notification obligations to you — those terms govern, not this page.
+## 正式な認証取得の現状
 
-To report a security concern or a suspected vulnerability, email
-**security@divinci.ai**. We don't currently run a formal bug bounty program;
-we do take reports seriously and will work with you in good faith.
+多くのセキュリティページがそうしていないため、この点については率直に記します。
 
-## Where we are on formal certifications
+- **HIPAA**：上記「HIPAA 対応アーキテクチャ」をご覧ください。事業提携者契約
+  （BAA）が適用されるかどうかは、お客様と当社との具体的な関係によります。
+  一律の主張としてではなく、顧客ごとに評価しています。
+- **SOC 2**：まだ着手していません。ロードマップには入っており、実際に報告できる
+  ことが出てきた時点でこのページを更新します。それより前に更新することはありません。
+- **ISO 27001、FedRAMP、PCI DSS**：これらの認証は取得していません。カード決済は
+  Stripe を通じて処理されており、Divinci がカード保有者データを直接保存する
+  ことはありません。
 
-Being direct about this, since a lot of security pages aren't:
+私たちは、過大に主張して後から撤回することになるよりも、控えめに述べて
+信頼していただくほうを選びます。
 
-- **HIPAA**: see "HIPAA-ready architecture" above. Whether a Business
-  Associate Agreement applies depends on your specific relationship with us
-  — we evaluate this per customer, not as a blanket claim.
-- **SOC 2**: not yet started. It's on our roadmap; we'll update this page
-  when there's something real to report — not before.
-- **ISO 27001, FedRAMP, PCI DSS**: we don't hold these certifications. Card
-  payments are processed through Stripe; Divinci does not store cardholder
-  data directly.
+### お問い合わせ
 
-We'd rather under-claim here and be trusted than over-claim and have to walk
-it back.
-
-### Contact
-
-Security questions, vulnerability reports, or compliance questions for a
-specific deal: **security@divinci.ai**
+セキュリティに関するご質問、脆弱性のご報告、個別の商談におけるコンプライアンスの
+ご確認：**security@divinci.ai**

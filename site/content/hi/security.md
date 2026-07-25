@@ -1,132 +1,136 @@
 +++
 title = "सुरक्षा"
-description = "आपके डेटा और गोपनीयता की रक्षा करने वाले व्यापक सुरक्षा उपाय और अभ्यास"
+description = "Divinci AI आपके डेटा की रक्षा कैसे करता है — डी-आइडेंटिफिकेशन, एक्सेस नियंत्रण, ऑडिट लॉगिंग, और औपचारिक प्रमाणनों के मामले में हम कहाँ खड़े हैं, इस पर ईमानदार जवाब।"
 template = "page.html"
 +++
 
 # सुरक्षा
 
-*इस दस्तावेज़ का पूर्ण संस्करण नीचे अंग्रेज़ी में उपलब्ध है।*
+सुरक्षा हमारे निर्माण के तरीके का मूल हिस्सा है। यह पृष्ठ बताता है कि आज हमारे
+आर्किटेक्चर और व्यवहारों के बारे में वास्तव में क्या सच है — यह कोई मार्केटिंग
+चेकलिस्ट नहीं है। जहाँ हमने कुछ पूरा नहीं किया है (कोई औपचारिक ऑडिट, कोई
+प्रमाणन), वहाँ हम इसे साफ़-साफ़ कह देते हैं, न कि इसके उलट संकेत देते हैं।
 
-# Security
+## HIPAA के लिए तैयार आर्किटेक्चर
 
-Security is core to how we build. This page describes what's actually true
-about our architecture and practices today — not a marketing checklist. Where
-we haven't finished something (a formal audit, a certification), we say so
-plainly rather than implying otherwise.
+![HIPAA के लिए तैयार आर्किटेक्चर](/brand/badges/hipaa-ready.svg)
 
-## HIPAA-ready architecture
+HIPAA के दायरे में आने वाले वर्कफ़्लो को जिन तकनीकी सुरक्षा उपायों की ज़रूरत
+होती है, उन्हें हमने डिफ़ॉल्ट रूप से प्लेटफ़ॉर्म में बनाया है:
 
-![HIPAA-Ready Architecture](/brand/badges/hipaa-ready.svg)
+- **भंडारण या AI प्रोसेसिंग से पहले डी-आइडेंटिफिकेशन।** चैट सामग्री को हमारे
+  डेटाबेस, हमारे AI प्रदाताओं, या सर्च/रिट्रीवल तक पहुँचने से पहले एक स्वचालित
+  PII/PHI रिडैक्शन चरण (Microsoft Presidio, चिकित्सा संदर्भों के लिए
+  क्लिनिकल-टेक्स्ट पर ट्यून किया गया मॉडल उपलब्ध) से गुज़ारा जा सकता है — जो
+  HIPAA की Safe Harbor (सुरक्षित आश्रय) पद्धति की सभी 18 पहचानकर्ता श्रेणियों
+  का पता लगाता है। यह चरण फ़ेल-क्लोज़्ड है: अगर रिडैक्शन नहीं चल पाता, तो संदेश
+  को बिना रिडैक्ट किए चुपचाप संग्रहीत करने के बजाय अस्वीकार कर दिया जाता है।
+- **छेड़छाड़ उजागर करने वाली ऑडिट लॉगिंग।** संवेदनशील रिकॉर्ड तक पहुँच को एक
+  हैश-चेन वाले लॉग में दर्ज किया जाता है, जिसे इस तरह डिज़ाइन किया गया है कि
+  प्रविष्टियाँ बाद में चुपचाप बदली न जा सकें।
+- **भूमिका-आधारित और संसाधन-स्तरीय एक्सेस नियंत्रण।** कौन क्या देख सकता है, इसे
+  प्लेटफ़ॉर्म-व्यापी भूमिकाएँ और प्रति-संसाधन अनुमतियाँ दोनों नियंत्रित करती हैं।
+- **ट्रांज़िट में और रेस्ट पर एन्क्रिप्शन**, साथ ही निर्दिष्ट संवेदनशील डेटा के
+  लिए फ़ील्ड-स्तरीय एन्क्रिप्शन उपलब्ध है।
 
-We've built the technical safeguards a HIPAA-covered workflow needs into the
-platform by default:
+**यह क्या नहीं है:** यह HIPAA अनुपालन प्रमाणन नहीं है। सरकार द्वारा जारी किया
+गया कोई HIPAA प्रमाणपत्र होता ही नहीं है — अनुपालन तकनीकी सुरक्षा उपायों (ऊपर
+वर्णित), लिखित प्रशासनिक नीतियों, और डेटा पथ के हर विक्रेता के साथ हस्ताक्षरित
+व्यावसायिक सहयोगी समझौतों (Business Associate Agreement, BAA) का संयोजन है,
+जिसका मूल्यांकन किसी दिए गए ग्राहक संबंध के लिए हर मामले में अलग-अलग किया जाता
+है। अगर आपको हमारे साथ किसी व्यावसायिक सहयोगी समझौते (Business Associate
+Agreement) के तहत संरक्षित स्वास्थ्य जानकारी (PHI) प्रोसेस करनी है, तो
+[हमसे बात करें](https://meetings.hubspot.com/michael-mooring/divinci-ai) — हम
+मिलकर तय करेंगे कि आपके विशिष्ट उपयोग के लिए क्या ज़रूरी है।
 
-- **De-identification before storage or AI processing.** Chat content can be
-  routed through an automatic PII/PHI redaction step (Microsoft Presidio,
-  with a clinical-text-tuned model available for medical contexts) before it
-  touches our database, our AI providers, or search/retrieval — detecting
-  all 18 identifier categories in HIPAA's Safe Harbor method. This step
-  fails closed: if redaction can't run, the message is rejected rather than
-  silently stored unredacted.
-- **Tamper-evident audit logging.** Access to sensitive records is recorded
-  in a hash-chained log designed so entries can't be silently altered after
-  the fact.
-- **Role-based and resource-level access control.** Both platform-wide roles
-  and per-resource permissions gate who can see what.
-- **Encryption in transit and at rest**, with field-level encryption
-  available for designated sensitive data.
+## डेटा सुरक्षा
 
-**What this is not:** a HIPAA compliance certification. There is no
-government-issued HIPAA certificate — compliance is a combination of
-technical safeguards (above), written administrative policies, and signed
-Business Associate Agreements with every vendor in the data path, evaluated
-case-by-case for a given customer relationship. If you need to process
-Protected Health Information with us under a Business Associate Agreement,
-[talk to us](https://meetings.hubspot.com/michael-mooring/divinci-ai) — we'll
-work through what's needed for your specific use case.
+### एन्क्रिप्शन
 
-## Data protection
+- **ट्रांज़िट में**: क्लाइंट्स, हमारे edge, और हमारे ओरिजिन इंफ़्रास्ट्रक्चर के
+  बीच हर जगह TLS।
+- **रेस्ट पर**: हमारे प्राथमिक डेटास्टोर और ऑब्जेक्ट स्टोरेज पर प्रदाता-स्तरीय
+  एन्क्रिप्शन, साथ ही निर्दिष्ट संवेदनशील फ़ील्ड्स के लिए एक समर्पित
+  फ़ील्ड-स्तरीय एन्क्रिप्शन परत।
+- **सीक्रेट्स प्रबंधन**: क्रेडेंशियल्स और API कुंजियाँ एक केंद्रीकृत सीक्रेट्स
+  मैनेजर के ज़रिए प्रबंधित की जाती हैं — न कोड में हार्डकोड की जाती हैं, न
+  प्लेनटेक्स्ट कॉन्फ़िग में संग्रहीत। प्रोडक्शन को इस तरह कॉन्फ़िगर किया गया है
+  कि अगर सीक्रेट्स सेवा तक पहुँच न हो, तो वह चुपचाप पुराने क्रेडेंशियल्स पर
+  लौटने के बजाय फ़ेल-क्लोज़्ड हो जाए।
 
-### Encryption
+### डेटा न्यूनीकरण
 
-- **In transit**: TLS everywhere between clients, our edge, and our origin
-  infrastructure.
-- **At rest**: provider-level encryption on our primary datastore and object
-  storage, plus a dedicated field-level encryption layer for designated
-  sensitive fields.
-- **Secrets management**: credentials and API keys are managed through a
-  centralized secrets manager, not hardcoded or stored in plaintext config.
-  Production is configured to fail closed rather than silently fall back to
-  stale credentials if the secrets service is unreachable.
+- डी-आइडेंटिफिकेशन (ऊपर) का अर्थ है कि जहाँ भी वह पाइपलाइन चलती है, वहाँ मूल
+  PII/PHI को रखा नहीं जाता, बल्कि हटा दिया जाता है — ताकि अगर कभी कोई
+  डाउनस्ट्रीम सिस्टम असुरक्षित हो जाए तो उसका दायरा न्यूनतम रहे।
+- लॉग नीतिगत रूप से केवल मेटाडेटा तक सीमित हैं: हम संदेश सामग्री, ईमेल, या अन्य
+  व्यक्तिगत डेटा को एप्लिकेशन लॉग या त्रुटि संदेशों में नहीं लिखते।
 
-### Data minimization
+### एक्सेस नियंत्रण
 
-- De-identification (above) means original PII/PHI is discarded, not
-  retained, wherever that pipeline runs — the smallest possible footprint if
-  a downstream system is ever compromised.
-- Logs are metadata-only by policy: we don't write message content, emails,
-  or other personal data into application logs or error messages.
+- **प्रमाणीकरण** Auth0 के माध्यम से।
+- **भूमिका-आधारित एक्सेस नियंत्रण** (प्लेटफ़ॉर्म-स्तर) के साथ **प्रति-संसाधन
+  अनुमतियाँ** (दस्तावेज़/वर्कस्पेस-स्तर) — डिफ़ॉल्ट रूप से न्यूनतम-विशेषाधिकार।
+- प्रोडक्शन सेवाओं की **त्रैमासिक एक्सेस और कॉन्फ़िगरेशन समीक्षाएँ**।
 
-### Access controls
+## एप्लिकेशन सुरक्षा
 
-- **Authentication** via Auth0.
-- **Role-based access control** (platform-level) plus **per-resource
-  permissions** (document/workspace-level) — least-privilege by default.
-- **Quarterly access and configuration reviews** of production services.
+- **रेंडर सीमा पर XSS बचाव**: उपयोगकर्ता-निर्मित और AI-निर्मित सामग्री को जहाँ
+  भी HTML के रूप में रेंडर किया जाता है, वहाँ सैनिटाइज़ किया जाता है
+  (DOMPurify); अविश्वसनीय स्रोतों से कच्चे HTML का इंजेक्शन अनुमत नहीं है।
+- **प्राधिकरण परीक्षण**: हम स्टेजिंग और प्रोडक्शन के विरुद्ध अपना स्वयं का
+  AI-सहायित और मैनुअल सुरक्षा परीक्षण चलाते हैं, जिसमें प्रमाणित
+  प्राधिकरण/IDOR जाँचें शामिल हैं — यह (अभी तक) कोई नियमित तृतीय-पक्ष पेनिट्रेशन
+  टेस्टिंग कार्यक्रम नहीं है, और जब तक ऐसा कार्यक्रम वास्तव में मौजूद नहीं हो
+  जाता, हम इसका दावा नहीं करेंगे।
+- **निर्भरता और कोड समीक्षा**: सभी बदलावों पर मानक कोड समीक्षा; निर्भरताओं के
+  अपडेट हमारे सामान्य बिल्ड टूलिंग के ज़रिए ट्रैक किए जाते हैं।
 
-## Application security
+## उपलब्धता और निगरानी
 
-- **XSS defense at the render boundary**: user-generated and AI-generated
-  content is sanitized (DOMPurify) wherever it's rendered as HTML; raw HTML
-  injection from untrusted sources is not permitted.
-- **Authorization testing**: we run our own AI-assisted and manual security
-  testing against staging and production, including authenticated
-  authorization/IDOR probes — not (yet) a recurring third-party penetration
-  testing program, and we're not going to claim one until it exists.
-- **Dependency and code review**: standard code review on all changes;
-  dependency updates tracked through our normal build tooling.
+- ग्राहक-सामने वाले एंडपॉइंट्स पर **सिंथेटिक मॉनिटरिंग**, जो वास्तविक आउटेज के
+  कुछ ही मिनटों के भीतर PagerDuty के ज़रिए ऑन-कॉल टीम को अलर्ट करती है — केवल
+  सर्वर त्रुटियों पर नहीं; ये सामग्री-सत्यापित जाँचें हैं, केवल "क्या 200 लौटा"
+  तक सीमित नहीं।
+- **बहु-क्षेत्रीय इंफ़्रास्ट्रक्चर** (Cloudflare edge + Google Cloud ओरिजिन),
+  हमारे प्राथमिक डेटास्टोर पर स्वचालित बैकअप के साथ।
+- हम वर्तमान में कोई संविदात्मक अपटाइम SLA प्रकाशित नहीं करते। अगर आपके उपयोग
+  के लिए ऐसा ज़रूरी है, तो पूछें — हम बात कर सकते हैं कि आपकी तैनाती के लिए क्या
+  व्यावहारिक है।
 
-## Availability & monitoring
+## घटना प्रतिक्रिया
 
-- **Synthetic monitoring** on customer-facing endpoints, alerting on-call via
-  PagerDuty within minutes of a real outage, not just on server errors —
-  content-verified checks, not just "did it return 200."
-- **Multi-region infrastructure** (Cloudflare edge + Google Cloud origin)
-  with automated backups on our primary datastore.
-- We do not currently publish a contractual uptime SLA. If your use case
-  needs one, ask — we can talk through what's realistic for your deployment.
+हम एक प्रलेखित घटना प्रतिक्रिया प्रक्रिया बनाए रखते हैं: पहचान और वर्गीकरण,
+नियंत्रण, इस बात का ईमानदार आकलन कि क्या कोई घटना रिपोर्ट-योग्य उल्लंघन के स्तर
+तक पहुँचती है, उपचार, और एक दोषारोपण-रहित पोस्ट-मॉर्टम जो यह तय करने में मदद
+करता है कि आगे हम किन चीज़ों की निगरानी करें। अगर आप हमारे साथ किसी व्यावसायिक
+सहयोगी समझौते (Business Associate Agreement) के तहत ग्राहक हैं, तो वह समझौता
+आपके प्रति हमारी सूचना देने की बाध्यताओं को निर्दिष्ट करता है — वही शर्तें लागू
+होती हैं, यह पृष्ठ नहीं।
 
-## Incident response
+किसी सुरक्षा चिंता या संदिग्ध भेद्यता की रिपोर्ट करने के लिए
+**security@divinci.ai** पर ईमेल करें। हम वर्तमान में कोई औपचारिक बग बाउंटी
+कार्यक्रम नहीं चलाते; हम रिपोर्ट्स को गंभीरता से लेते हैं और सद्भावना के साथ
+आपके साथ काम करेंगे।
 
-We maintain a documented incident response process: detection and
-classification, containment, an honest assessment of whether an incident
-rises to a reportable breach, remediation, and a blameless post-mortem that
-feeds back into what we monitor for next. If you're a customer under a
-Business Associate Agreement with us, that agreement specifies our
-notification obligations to you — those terms govern, not this page.
+## औपचारिक प्रमाणनों के मामले में हम कहाँ हैं
 
-To report a security concern or a suspected vulnerability, email
-**security@divinci.ai**. We don't currently run a formal bug bounty program;
-we do take reports seriously and will work with you in good faith.
+इस बारे में हम सीधी बात कर रहे हैं, क्योंकि बहुत से सुरक्षा पृष्ठ ऐसा नहीं करते:
 
-## Where we are on formal certifications
+- **HIPAA**: ऊपर "HIPAA के लिए तैयार आर्किटेक्चर" देखें। कोई व्यावसायिक सहयोगी
+  समझौता (Business Associate Agreement) लागू होता है या नहीं, यह हमारे साथ
+  आपके विशिष्ट संबंध पर निर्भर करता है — हम इसका मूल्यांकन प्रति ग्राहक करते
+  हैं, किसी सर्वव्यापी दावे के रूप में नहीं।
+- **SOC 2**: अभी शुरू ही नहीं किया गया है। यह हमारे रोडमैप पर है; जब रिपोर्ट
+  करने लायक कुछ वास्तविक होगा, तभी हम यह पृष्ठ अपडेट करेंगे — उससे पहले नहीं।
+- **ISO 27001, FedRAMP, PCI DSS**: ये प्रमाणन हमारे पास नहीं हैं। कार्ड भुगतान
+  Stripe के माध्यम से प्रोसेस किए जाते हैं; Divinci कार्डधारक डेटा सीधे तौर पर
+  संग्रहीत नहीं करता।
 
-Being direct about this, since a lot of security pages aren't:
+हम यहाँ ज़्यादा दावा करके बाद में पीछे हटने के बजाय कम दावा करके भरोसेमंद बने
+रहना पसंद करेंगे।
 
-- **HIPAA**: see "HIPAA-ready architecture" above. Whether a Business
-  Associate Agreement applies depends on your specific relationship with us
-  — we evaluate this per customer, not as a blanket claim.
-- **SOC 2**: not yet started. It's on our roadmap; we'll update this page
-  when there's something real to report — not before.
-- **ISO 27001, FedRAMP, PCI DSS**: we don't hold these certifications. Card
-  payments are processed through Stripe; Divinci does not store cardholder
-  data directly.
+### संपर्क
 
-We'd rather under-claim here and be trusted than over-claim and have to walk
-it back.
-
-### Contact
-
-Security questions, vulnerability reports, or compliance questions for a
-specific deal: **security@divinci.ai**
+सुरक्षा से जुड़े सवाल, भेद्यता रिपोर्ट, या किसी विशिष्ट सौदे के लिए अनुपालन
+संबंधी प्रश्न: **security@divinci.ai**

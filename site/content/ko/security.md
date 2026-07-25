@@ -1,132 +1,130 @@
 +++
 title = "보안"
-description = "귀하의 데이터와 개인정보를 보호하는 포괄적인 보안 조치 및 관행"
+description = "Divinci AI가 귀하의 데이터를 보호하는 방식 — 비식별화, 접근 제어, 감사 로깅, 그리고 공식 인증에 관한 현재 상태에 대한 정직한 답변."
 template = "page.html"
 +++
 
 # 보안
 
-*이 문서의 전체 버전은 아래 영어로 제공됩니다.*
+보안은 저희가 제품을 만드는 방식의 핵심입니다. 이 페이지는 마케팅용 체크리스트가
+아니라, 현재 저희 아키텍처와 운영 관행에 대해 실제로 사실인 내용을 설명합니다.
+아직 완료하지 못한 부분(공식 감사, 인증 등)이 있다면, 다른 뜻으로 비치도록
+에둘러 말하지 않고 있는 그대로 밝힙니다.
 
-# Security
+## HIPAA 대응 준비를 갖춘 아키텍처
 
-Security is core to how we build. This page describes what's actually true
-about our architecture and practices today — not a marketing checklist. Where
-we haven't finished something (a formal audit, a certification), we say so
-plainly rather than implying otherwise.
+![HIPAA 대응 준비를 갖춘 아키텍처](/brand/badges/hipaa-ready.svg)
 
-## HIPAA-ready architecture
+HIPAA가 적용되는 업무 흐름에 필요한 기술적 보호 조치를 플랫폼에 기본으로
+내장해 두었습니다:
 
-![HIPAA-Ready Architecture](/brand/badges/hipaa-ready.svg)
+- **저장 또는 AI 처리 이전 단계의 비식별화.** 채팅 내용은 저희 데이터베이스,
+  AI 제공업체, 또는 검색/검색증강(retrieval) 단계에 닿기 전에 자동 PII/PHI
+  마스킹 단계(Microsoft Presidio, 의료 맥락에는 임상 텍스트에 맞춰 튜닝된
+  모델 사용 가능)를 거치도록 설정할 수 있습니다 — HIPAA의 Safe Harbor(세이프
+  하버) 방식에서 규정한 18개 식별자 범주를 모두 탐지합니다. 이 단계는 실패 시
+  차단(fail closed)으로 동작합니다: 마스킹을 수행할 수 없으면, 메시지는
+  마스킹되지 않은 채로 조용히 저장되는 것이 아니라 거부됩니다.
+- **변조 감지가 가능한 감사 로깅.** 민감 기록에 대한 접근은 해시 체인으로
+  연결된 로그에 기록되며, 이후에 항목이 몰래 변경될 수 없도록 설계되어
+  있습니다.
+- **역할 기반 및 리소스 단위 접근 제어.** 플랫폼 전역 역할과 리소스별 권한이
+  함께 누가 무엇을 볼 수 있는지를 통제합니다.
+- **전송 중 및 저장 시 암호화**, 그리고 지정된 민감 데이터에 대해 사용
+  가능한 필드 단위 암호화.
 
-We've built the technical safeguards a HIPAA-covered workflow needs into the
-platform by default:
+**이것이 아닌 것:** 이것은 HIPAA 규정 준수 인증이 아닙니다. 정부가 발급하는
+HIPAA 인증서라는 것은 존재하지 않습니다 — 규정 준수란 위에서 설명한 기술적
+보호 조치, 문서화된 관리적 정책, 그리고 데이터 경로상의 모든 벤더와 체결한
+비즈니스 제휴 계약(Business Associate Agreement, BAA)의 조합이며, 특정 고객
+관계에 대해 사안별로 평가됩니다. 저희와 비즈니스 제휴 계약(BAA)을 맺고 보호
+대상 건강 정보(PHI)를 처리해야 하신다면,
+[저희에게 문의해 주세요](https://meetings.hubspot.com/michael-mooring/divinci-ai)
+— 귀사의 구체적인 활용 사례에 무엇이 필요한지 함께 검토하겠습니다.
 
-- **De-identification before storage or AI processing.** Chat content can be
-  routed through an automatic PII/PHI redaction step (Microsoft Presidio,
-  with a clinical-text-tuned model available for medical contexts) before it
-  touches our database, our AI providers, or search/retrieval — detecting
-  all 18 identifier categories in HIPAA's Safe Harbor method. This step
-  fails closed: if redaction can't run, the message is rejected rather than
-  silently stored unredacted.
-- **Tamper-evident audit logging.** Access to sensitive records is recorded
-  in a hash-chained log designed so entries can't be silently altered after
-  the fact.
-- **Role-based and resource-level access control.** Both platform-wide roles
-  and per-resource permissions gate who can see what.
-- **Encryption in transit and at rest**, with field-level encryption
-  available for designated sensitive data.
+## 데이터 보호
 
-**What this is not:** a HIPAA compliance certification. There is no
-government-issued HIPAA certificate — compliance is a combination of
-technical safeguards (above), written administrative policies, and signed
-Business Associate Agreements with every vendor in the data path, evaluated
-case-by-case for a given customer relationship. If you need to process
-Protected Health Information with us under a Business Associate Agreement,
-[talk to us](https://meetings.hubspot.com/michael-mooring/divinci-ai) — we'll
-work through what's needed for your specific use case.
+### 암호화
 
-## Data protection
+- **전송 중**: 클라이언트, 저희 엣지, 오리진 인프라 사이의 모든 구간에서 TLS를
+  사용합니다.
+- **저장 시**: 주요 데이터스토어와 오브젝트 스토리지에 제공업체 수준의 암호화가
+  적용되며, 지정된 민감 필드에는 별도의 필드 단위 암호화 계층이 추가됩니다.
+- **비밀 정보 관리**: 자격 증명과 API 키는 중앙화된 시크릿 매니저를 통해
+  관리되며, 코드에 하드코딩하거나 평문 설정 파일에 저장하지 않습니다. 프로덕션
+  환경은 시크릿 서비스에 연결할 수 없을 때 오래된 자격 증명으로 조용히
+  대체되지 않고 실패 시 차단(fail closed)되도록 구성되어 있습니다.
 
-### Encryption
+### 데이터 최소화
 
-- **In transit**: TLS everywhere between clients, our edge, and our origin
-  infrastructure.
-- **At rest**: provider-level encryption on our primary datastore and object
-  storage, plus a dedicated field-level encryption layer for designated
-  sensitive fields.
-- **Secrets management**: credentials and API keys are managed through a
-  centralized secrets manager, not hardcoded or stored in plaintext config.
-  Production is configured to fail closed rather than silently fall back to
-  stale credentials if the secrets service is unreachable.
+- 위에서 설명한 비식별화는, 해당 파이프라인이 동작하는 모든 곳에서 원본
+  PII/PHI가 보관되지 않고 폐기된다는 뜻입니다 — 하위 시스템이 침해되더라도
+  노출 범위가 최소화됩니다.
+- 로그는 정책상 메타데이터만 남깁니다: 저희는 메시지 내용, 이메일 주소, 기타
+  개인 데이터를 애플리케이션 로그나 오류 메시지에 기록하지 않습니다.
 
-### Data minimization
+### 접근 통제
 
-- De-identification (above) means original PII/PHI is discarded, not
-  retained, wherever that pipeline runs — the smallest possible footprint if
-  a downstream system is ever compromised.
-- Logs are metadata-only by policy: we don't write message content, emails,
-  or other personal data into application logs or error messages.
+- Auth0를 통한 **인증**.
+- **역할 기반 접근 제어**(플랫폼 수준)와 **리소스별 권한**(문서/워크스페이스
+  수준) — 기본값은 최소 권한 원칙입니다.
+- 프로덕션 서비스에 대한 **분기별 접근 권한 및 구성 검토**.
 
-### Access controls
+## 애플리케이션 보안
 
-- **Authentication** via Auth0.
-- **Role-based access control** (platform-level) plus **per-resource
-  permissions** (document/workspace-level) — least-privilege by default.
-- **Quarterly access and configuration reviews** of production services.
+- **렌더링 경계에서의 XSS 방어**: 사용자 생성 콘텐츠와 AI 생성 콘텐츠는 HTML로
+  렌더링되는 모든 지점에서 정제(DOMPurify)됩니다. 신뢰할 수 없는 출처로부터의
+  원시(raw) HTML 삽입은 허용되지 않습니다.
+- **인가(Authorization) 테스트**: 저희는 스테이징과 프로덕션을 대상으로 자체
+  AI 보조 및 수동 보안 테스트를 수행하며, 여기에는 인증된 상태에서의
+  인가/IDOR 점검이 포함됩니다 — 이것은 (아직) 정기적인 제3자 침투 테스트
+  프로그램이 아니며, 그러한 프로그램이 실제로 갖춰지기 전까지는 있다고
+  주장하지 않을 것입니다.
+- **의존성 및 코드 검토**: 모든 변경 사항에 표준 코드 리뷰를 적용하며, 의존성
+  업데이트는 일반 빌드 도구 체계를 통해 추적합니다.
 
-## Application security
+## 가용성 및 모니터링
 
-- **XSS defense at the render boundary**: user-generated and AI-generated
-  content is sanitized (DOMPurify) wherever it's rendered as HTML; raw HTML
-  injection from untrusted sources is not permitted.
-- **Authorization testing**: we run our own AI-assisted and manual security
-  testing against staging and production, including authenticated
-  authorization/IDOR probes — not (yet) a recurring third-party penetration
-  testing program, and we're not going to claim one until it exists.
-- **Dependency and code review**: standard code review on all changes;
-  dependency updates tracked through our normal build tooling.
+- 고객이 실제로 사용하는 엔드포인트에 대한 **신서틱(합성) 모니터링**으로,
+  단순한 서버 오류뿐 아니라 실제 장애 발생 시 몇 분 이내에 PagerDuty를 통해
+  온콜 담당자에게 알립니다 — "200을 반환했는가"만 보는 것이 아니라 응답 내용을
+  검증하는 점검입니다.
+- 주요 데이터스토어의 자동 백업을 포함한 **멀티 리전 인프라**(Cloudflare 엣지 +
+  Google Cloud 오리진).
+- 저희는 현재 계약상의 가동률 SLA를 공개하지 않습니다. 귀사의 활용 사례에 SLA가
+  필요하다면 문의해 주세요 — 해당 배포 환경에서 무엇이 현실적으로 가능한지 함께
+  논의할 수 있습니다.
 
-## Availability & monitoring
+## 인시던트 대응
 
-- **Synthetic monitoring** on customer-facing endpoints, alerting on-call via
-  PagerDuty within minutes of a real outage, not just on server errors —
-  content-verified checks, not just "did it return 200."
-- **Multi-region infrastructure** (Cloudflare edge + Google Cloud origin)
-  with automated backups on our primary datastore.
-- We do not currently publish a contractual uptime SLA. If your use case
-  needs one, ask — we can talk through what's realistic for your deployment.
+저희는 문서화된 인시던트 대응 절차를 유지하고 있습니다: 탐지 및 분류, 확산 차단,
+해당 인시던트가 신고 대상 침해 사고에 해당하는지에 대한 정직한 평가, 조치, 그리고
+다음에 무엇을 모니터링할지에 다시 반영되는 무비난(blameless) 사후 분석입니다.
+저희와 비즈니스 제휴 계약(BAA)을 체결한 고객이라면, 저희의 통지 의무는 이 페이지가
+아니라 해당 계약에 명시된 조건이 규율합니다.
 
-## Incident response
+보안 관련 우려 사항이나 취약점으로 의심되는 내용을 신고하시려면
+**security@divinci.ai** 로 이메일을 보내주세요. 저희는 현재 공식적인 버그 바운티
+프로그램을 운영하지 않습니다. 다만 제보는 진지하게 받아들이며 성실하게 협력하여
+대응합니다.
 
-We maintain a documented incident response process: detection and
-classification, containment, an honest assessment of whether an incident
-rises to a reportable breach, remediation, and a blameless post-mortem that
-feeds back into what we monitor for next. If you're a customer under a
-Business Associate Agreement with us, that agreement specifies our
-notification obligations to you — those terms govern, not this page.
+## 공식 인증에 관한 현재 상태
 
-To report a security concern or a suspected vulnerability, email
-**security@divinci.ai**. We don't currently run a formal bug bounty program;
-we do take reports seriously and will work with you in good faith.
+많은 보안 페이지가 그렇게 하지 않기에, 저희는 이 부분을 솔직하게 밝힙니다:
 
-## Where we are on formal certifications
+- **HIPAA**: 위의 "HIPAA 대응 준비를 갖춘 아키텍처"를 참고하세요. 비즈니스 제휴
+  계약(BAA)이 적용되는지 여부는 저희와의 구체적인 관계에 따라 달라집니다 —
+  일괄적인 주장이 아니라 고객별로 평가합니다.
+- **SOC 2**: 아직 시작하지 않았습니다. 로드맵에는 올라 있으며, 실제로 보고할
+  만한 내용이 생기면 이 페이지를 갱신하겠습니다 — 그전에는 하지 않습니다.
+- **ISO 27001, FedRAMP, PCI DSS**: 저희는 이 인증들을 보유하고 있지 않습니다.
+  카드 결제는 Stripe를 통해 처리되며, Divinci는 카드 소지자 데이터를 직접
+  저장하지 않습니다.
 
-Being direct about this, since a lot of security pages aren't:
+저희는 과장해서 주장했다가 나중에 번복하기보다는, 오히려 덜 주장하고 신뢰를 얻는
+쪽을 택하겠습니다.
 
-- **HIPAA**: see "HIPAA-ready architecture" above. Whether a Business
-  Associate Agreement applies depends on your specific relationship with us
-  — we evaluate this per customer, not as a blanket claim.
-- **SOC 2**: not yet started. It's on our roadmap; we'll update this page
-  when there's something real to report — not before.
-- **ISO 27001, FedRAMP, PCI DSS**: we don't hold these certifications. Card
-  payments are processed through Stripe; Divinci does not store cardholder
-  data directly.
+### 연락처
 
-We'd rather under-claim here and be trusted than over-claim and have to walk
-it back.
-
-### Contact
-
-Security questions, vulnerability reports, or compliance questions for a
-specific deal: **security@divinci.ai**
+보안 문의, 취약점 제보, 또는 특정 거래와 관련된 규정 준수 문의:
+**security@divinci.ai**

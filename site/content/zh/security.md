@@ -1,132 +1,73 @@
 +++
 title = "安全"
-description = "保护您的数据和隐私的全面安全措施和做法"
+description = "Divinci AI 如何保护您的数据——去标识化、访问控制、审计日志，以及关于我们在正式认证方面进展的坦诚说明。"
 template = "page.html"
 +++
 
 # 安全
 
-*本文件的完整版本以下为英语版本。*
+安全是我们构建产品的核心。本页描述的是我们当前架构与实践中真实存在的情况——而不是一份营销清单。凡是我们尚未完成的事项（正式审计、某项认证），我们都会直说，而不会暗示相反的情况。
 
-# Security
+## 面向 HIPAA 的架构准备
 
-Security is core to how we build. This page describes what's actually true
-about our architecture and practices today — not a marketing checklist. Where
-we haven't finished something (a formal audit, a certification), we say so
-plainly rather than implying otherwise.
+![为 HIPAA 做好准备的架构](/brand/badges/hipaa-ready.svg)
 
-## HIPAA-ready architecture
+我们已将 HIPAA 适用工作流所需的技术保障措施默认内置到平台中：
 
-![HIPAA-Ready Architecture](/brand/badges/hipaa-ready.svg)
+- **在存储或 AI 处理之前进行去标识化。** 聊天内容可以先经过自动的 PII/PHI 脱敏环节（Microsoft Presidio，并可为医疗场景选用针对临床文本调优的模型），然后才会接触我们的数据库、我们的 AI 提供商或搜索/检索环节——该环节可检测 HIPAA Safe Harbor（安全港）方法中全部 18 类标识符。此环节采用「失败即拒绝」（fail closed）策略：如果脱敏无法运行，该消息会被拒绝，而不会在未脱敏的情况下被悄悄存储。
+- **防篡改的审计日志。** 对敏感记录的访问会被记录在哈希链式日志中，其设计确保条目无法在事后被悄悄篡改。
+- **基于角色以及基于资源的访问控制。** 平台级角色与逐资源权限共同决定谁可以看到什么。
+- **传输中与静态存储的加密**，并可对指定的敏感数据启用字段级加密。
 
-We've built the technical safeguards a HIPAA-covered workflow needs into the
-platform by default:
+**这不是什么：** 这不是 HIPAA 合规认证。不存在由政府颁发的 HIPAA 证书——合规性是技术保障措施（如上）、成文的管理制度，以及与数据链路中每一家供应商签署的业务伙伴协议（Business Associate Agreement, BAA）三者的组合，并且需要针对具体的客户关系逐案评估。如果您需要在业务伙伴协议（BAA）下与我们一起处理受保护健康信息（PHI），请[与我们联系](https://meetings.hubspot.com/michael-mooring/divinci-ai)——我们会与您一起厘清您的具体使用场景需要哪些条件。
 
-- **De-identification before storage or AI processing.** Chat content can be
-  routed through an automatic PII/PHI redaction step (Microsoft Presidio,
-  with a clinical-text-tuned model available for medical contexts) before it
-  touches our database, our AI providers, or search/retrieval — detecting
-  all 18 identifier categories in HIPAA's Safe Harbor method. This step
-  fails closed: if redaction can't run, the message is rejected rather than
-  silently stored unredacted.
-- **Tamper-evident audit logging.** Access to sensitive records is recorded
-  in a hash-chained log designed so entries can't be silently altered after
-  the fact.
-- **Role-based and resource-level access control.** Both platform-wide roles
-  and per-resource permissions gate who can see what.
-- **Encryption in transit and at rest**, with field-level encryption
-  available for designated sensitive data.
+## 数据保护
 
-**What this is not:** a HIPAA compliance certification. There is no
-government-issued HIPAA certificate — compliance is a combination of
-technical safeguards (above), written administrative policies, and signed
-Business Associate Agreements with every vendor in the data path, evaluated
-case-by-case for a given customer relationship. If you need to process
-Protected Health Information with us under a Business Associate Agreement,
-[talk to us](https://meetings.hubspot.com/michael-mooring/divinci-ai) — we'll
-work through what's needed for your specific use case.
+### 加密
 
-## Data protection
+- **传输中**：客户端、我们的边缘节点与源站基础设施之间全程使用 TLS。
+- **静态存储**：主数据存储与对象存储启用了服务商级别的加密，并针对指定的敏感字段设有专门的字段级加密层。
+- **密钥与凭据管理**：凭据和 API 密钥通过集中式的密钥管理服务管理，不会硬编码，也不会以明文形式存放在配置中。生产环境被配置为在密钥服务不可达时采取「失败即停止」（fail closed）策略，而不是悄悄退回到过期的凭据。
 
-### Encryption
+### 数据最小化
 
-- **In transit**: TLS everywhere between clients, our edge, and our origin
-  infrastructure.
-- **At rest**: provider-level encryption on our primary datastore and object
-  storage, plus a dedicated field-level encryption layer for designated
-  sensitive fields.
-- **Secrets management**: credentials and API keys are managed through a
-  centralized secrets manager, not hardcoded or stored in plaintext config.
-  Production is configured to fail closed rather than silently fall back to
-  stale credentials if the secrets service is unreachable.
+- 上述去标识化意味着：在该流水线运行的环节，原始的 PII/PHI 会被丢弃而不是被保留——万一下游系统被攻破，暴露面也降到最小。
+- 日志按策略只记录元数据：我们不会把消息内容、电子邮件地址或其他个人数据写入应用日志或错误信息中。
 
-### Data minimization
+### 访问控制
 
-- De-identification (above) means original PII/PHI is discarded, not
-  retained, wherever that pipeline runs — the smallest possible footprint if
-  a downstream system is ever compromised.
-- Logs are metadata-only by policy: we don't write message content, emails,
-  or other personal data into application logs or error messages.
+- 通过 Auth0 进行**身份认证**。
+- **基于角色的访问控制**（平台级）加上**逐资源权限**（文档/工作区级）——默认遵循最小权限原则。
+- 对生产服务进行**季度性的访问与配置审查**。
 
-### Access controls
+## 应用安全
 
-- **Authentication** via Auth0.
-- **Role-based access control** (platform-level) plus **per-resource
-  permissions** (document/workspace-level) — least-privilege by default.
-- **Quarterly access and configuration reviews** of production services.
+- **在渲染边界防御 XSS**：用户生成和 AI 生成的内容在以 HTML 形式渲染时都会经过净化处理（DOMPurify）；不允许来自不受信任来源的原始 HTML 注入。
+- **授权测试**：我们针对预发布环境和生产环境开展自有的 AI 辅助测试与人工安全测试，包括已认证状态下的授权/IDOR 探测——但这（目前）还不是一个周期性的第三方渗透测试计划，在它真正存在之前，我们不会声称拥有这样的计划。
+- **依赖与代码审查**：所有变更都执行标准的代码审查；依赖更新通过我们常规的构建工具链进行跟踪。
 
-## Application security
+## 可用性与监控
 
-- **XSS defense at the render boundary**: user-generated and AI-generated
-  content is sanitized (DOMPurify) wherever it's rendered as HTML; raw HTML
-  injection from untrusted sources is not permitted.
-- **Authorization testing**: we run our own AI-assisted and manual security
-  testing against staging and production, including authenticated
-  authorization/IDOR probes — not (yet) a recurring third-party penetration
-  testing program, and we're not going to claim one until it exists.
-- **Dependency and code review**: standard code review on all changes;
-  dependency updates tracked through our normal build tooling.
+- 对面向客户的端点进行**合成监控**，在真实故障发生后数分钟内通过 PagerDuty 呼叫值班人员，而不仅仅在服务器报错时才告警——检查会校验返回内容，而不只是看「是否返回了 200」。
+- **多区域基础设施**（Cloudflare 边缘 + Google Cloud 源站），并对主数据存储进行自动备份。
+- 我们目前不提供具有合同效力的正常运行时间服务等级协议（SLA）。如果您的使用场景需要，请告诉我们——我们可以就您的部署讨论怎样的承诺是切合实际的。
 
-## Availability & monitoring
+## 事件响应
 
-- **Synthetic monitoring** on customer-facing endpoints, alerting on-call via
-  PagerDuty within minutes of a real outage, not just on server errors —
-  content-verified checks, not just "did it return 200."
-- **Multi-region infrastructure** (Cloudflare edge + Google Cloud origin)
-  with automated backups on our primary datastore.
-- We do not currently publish a contractual uptime SLA. If your use case
-  needs one, ask — we can talk through what's realistic for your deployment.
+我们维护着一套成文的安全事件响应流程：检测与分级、遏制、对该事件是否构成需上报的数据泄露作出诚实评估、修复，以及一次不追责的事后复盘，并将结论反馈到我们后续的监控中。如果您是与我们签有业务伙伴协议（BAA）的客户，该协议规定了我们对您的通知义务——以该协议条款为准，而非本页面。
 
-## Incident response
+如需报告安全问题或疑似漏洞，请发送邮件至 **security@divinci.ai**。我们目前没有运行正式的漏洞赏金计划；但我们会认真对待每一份报告，并本着诚信与您协作。
 
-We maintain a documented incident response process: detection and
-classification, containment, an honest assessment of whether an incident
-rises to a reportable breach, remediation, and a blameless post-mortem that
-feeds back into what we monitor for next. If you're a customer under a
-Business Associate Agreement with us, that agreement specifies our
-notification obligations to you — those terms govern, not this page.
+## 我们在正式认证方面的进展
 
-To report a security concern or a suspected vulnerability, email
-**security@divinci.ai**. We don't currently run a formal bug bounty program;
-we do take reports seriously and will work with you in good faith.
+在这一点上我们选择直说，因为很多安全页面并不这么做：
 
-## Where we are on formal certifications
+- **HIPAA**：请参见上文「面向 HIPAA 的架构准备」。是否适用业务伙伴协议（BAA）取决于您与我们之间的具体关系——我们按客户逐一评估，而不是作出笼统的声明。
+- **SOC 2**：尚未启动。它在我们的路线图上；等到有真正可汇报的进展时，我们会更新本页面——在那之前不会。
+- **ISO 27001、FedRAMP、PCI DSS**：我们并不持有这些认证。银行卡支付通过 Stripe 处理；Divinci 不会直接存储持卡人数据。
 
-Being direct about this, since a lot of security pages aren't:
+我们宁愿在此少说一点而赢得信任，也不愿夸大其词、日后不得不收回。
 
-- **HIPAA**: see "HIPAA-ready architecture" above. Whether a Business
-  Associate Agreement applies depends on your specific relationship with us
-  — we evaluate this per customer, not as a blanket claim.
-- **SOC 2**: not yet started. It's on our roadmap; we'll update this page
-  when there's something real to report — not before.
-- **ISO 27001, FedRAMP, PCI DSS**: we don't hold these certifications. Card
-  payments are processed through Stripe; Divinci does not store cardholder
-  data directly.
+### 联系方式
 
-We'd rather under-claim here and be trusted than over-claim and have to walk
-it back.
-
-### Contact
-
-Security questions, vulnerability reports, or compliance questions for a
-specific deal: **security@divinci.ai**
+安全相关问题、漏洞报告，或针对具体合作的合规问题：**security@divinci.ai**

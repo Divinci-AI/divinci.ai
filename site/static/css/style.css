@@ -1942,9 +1942,9 @@ body:not(.homepage) .privacy-settings-link:hover {
 
 .footer-hipaa-badge img {
   display: block;
-  width: 11.25rem;
-  height: auto;
-  border-radius: 0.5rem;
+  width: 5rem;
+  height: 5rem;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
 }
 
 /* Brand page — /brand */
