@@ -1,10 +1,11 @@
 +++
 title = "Security"
 description = "How Divinci AI protects your data — de-identification, access control, audit logging, and honest answers about where we are on formal certifications."
-template = "page.html"
-+++
+template = "legal-document.html"
 
-# Security
+[extra]
+last_updated = "2026-07-25"
++++
 
 Security is core to how we build. This page describes what's actually true
 about our architecture and practices today — not a marketing checklist. Where

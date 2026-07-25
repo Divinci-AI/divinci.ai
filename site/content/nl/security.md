@@ -1,10 +1,11 @@
 +++
 title = "Beveiliging"
 description = "Hoe Divinci AI uw gegevens beschermt — de-identificatie, toegangsbeheer, auditlogging en eerlijke antwoorden over waar wij staan met formele certificeringen."
-template = "page.html"
-+++
+template = "legal-document.html"
 
-# Beveiliging
+[extra]
+last_updated = "2026-07-25"
++++
 
 Beveiliging is een kernonderdeel van hoe wij bouwen. Deze pagina beschrijft wat
 er vandaag daadwerkelijk waar is over onze architectuur en werkwijze — geen

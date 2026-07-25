@@ -1,10 +1,11 @@
 +++
 title = "보안"
 description = "Divinci AI가 귀하의 데이터를 보호하는 방식 — 비식별화, 접근 제어, 감사 로깅, 그리고 공식 인증에 관한 현재 상태에 대한 정직한 답변."
-template = "page.html"
-+++
+template = "legal-document.html"
 
-# 보안
+[extra]
+last_updated = "2026-07-25"
++++
 
 보안은 저희가 제품을 만드는 방식의 핵심입니다. 이 페이지는 마케팅용 체크리스트가
 아니라, 현재 저희 아키텍처와 운영 관행에 대해 실제로 사실인 내용을 설명합니다.

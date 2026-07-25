@@ -1,10 +1,8 @@
 +++
 title = "Informativa sulla privacy"
 description = "L'impegno di Divinci AI nella protezione della tua privacy e dei tuoi dati personali in conformità al GDPR e alle normative internazionali sulla privacy"
-template = "page.html"
+template = "legal-document.html"
 +++
-
-# Informativa sulla privacy
 
 **Ultimo aggiornamento:** luglio 2026
 

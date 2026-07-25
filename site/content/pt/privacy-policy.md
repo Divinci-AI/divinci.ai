@@ -1,10 +1,8 @@
 +++
 title = "Política de Privacidade"
 description = "O compromisso da Divinci AI com a proteção da sua privacidade e dos seus dados pessoais, em conformidade com o RGPD e as leis internacionais de privacidade"
-template = "page.html"
+template = "legal-document.html"
 +++
-
-# Política de Privacidade
 
 **Última atualização:** Julho de 2026
 

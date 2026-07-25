@@ -1,13 +1,12 @@
 +++
 title = "Seguridad"
 description = "Cómo Divinci AI protege sus datos: desidentificación, control de acceso, registro de auditoría y respuestas honestas sobre en qué punto estamos respecto a las certificaciones formales."
-template = "page.html"
+template = "legal-document.html"
 
 [extra]
+last_updated = "2026-07-25"
 lang = "es"
 +++
-
-# Seguridad
 
 La seguridad es parte esencial de cómo construimos. Esta página describe lo que
 es realmente cierto sobre nuestra arquitectura y nuestras prácticas hoy — no es

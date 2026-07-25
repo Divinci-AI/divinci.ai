@@ -1,10 +1,8 @@
 +++
 title = "Privacybeleid"
 description = "Divinci AI's toewijding aan het beschermen van uw privacy en persoonsgegevens in overeenstemming met de AVG en internationale privacywetgeving"
-template = "page.html"
+template = "legal-document.html"
 +++
-
-# Privacybeleid
 
 **Laatst bijgewerkt:** juli 2026
 

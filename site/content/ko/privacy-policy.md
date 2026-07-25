@@ -1,10 +1,8 @@
 +++
 title = "개인정보 처리방침"
 description = "GDPR 및 국제 개인정보 보호법을 준수하여 귀하의 개인정보와 데이터를 보호하기 위한 Divinci AI의 약속"
-template = "page.html"
+template = "legal-document.html"
 +++
-
-# 개인정보 처리방침
 
 **최종 업데이트:** 2026년 7월
 

@@ -1,10 +1,8 @@
 +++
 title = "Datenschutzrichtlinie"
 description = "Das Engagement von Divinci AI für den Schutz Ihrer Privatsphäre und personenbezogenen Daten in Übereinstimmung mit der DSGVO und internationalen Datenschutzgesetzen"
-template = "page.html"
+template = "legal-document.html"
 +++
-
-# Datenschutzrichtlinie
 
 **Zuletzt aktualisiert:** Juli 2026
 

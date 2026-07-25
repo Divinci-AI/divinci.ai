@@ -1,10 +1,11 @@
 +++
 title = "Sicurezza"
 description = "Come Divinci AI protegge i tuoi dati — de-identificazione, controllo degli accessi, registrazione di audit e risposte oneste su dove ci troviamo riguardo alle certificazioni formali."
-template = "page.html"
-+++
+template = "legal-document.html"
 
-# Sicurezza
+[extra]
+last_updated = "2026-07-25"
++++
 
 La sicurezza è al centro del nostro modo di costruire. Questa pagina descrive
 ciò che è davvero vero oggi sulla nostra architettura e sulle nostre pratiche

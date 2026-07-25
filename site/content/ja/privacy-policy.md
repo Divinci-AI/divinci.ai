@@ -1,10 +1,8 @@
 +++
 title = "プライバシーポリシー"
 description = "GDPRおよび国際的なプライバシー法に準拠した、お客様のプライバシーおよび個人データの保護に対するDivinci AIの取り組み"
-template = "page.html"
+template = "legal-document.html"
 +++
-
-# プライバシーポリシー
 
 **最終更新日:** 2026年7月
 

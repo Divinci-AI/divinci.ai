@@ -1,10 +1,8 @@
 +++
 title = "Privacy Policy"
 description = "Divinci AI's commitment to protecting your privacy and personal data in compliance with GDPR and international privacy laws"
-template = "page.html"
+template = "legal-document.html"
 +++
-
-# Privacy Policy
 
 **Last updated:** July 2026
 
