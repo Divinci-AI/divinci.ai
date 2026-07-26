@@ -426,14 +426,8 @@
   </div>
 
   <footer class="footer">
-    <p>
-            <a href="https://divinci.ai/pricing/">价格</a> ·
-      <a href="https://divinci.ai/docs/">文档</a> ·
-      <a href="https://divinci.ai/privacy-policy/">隐私</a> ·
-      <a href="https://divinci.ai/contact/">联系我们</a>
-    </p>
-    <!-- i18n:switch --><p class="lang-switch"><a href="/" lang="en">English</a> <a href="/ar/" lang="ar">العربية</a> <a href="/de/" lang="de">Deutsch</a> <a href="/es/" lang="es">Español</a> <a href="/fr/" lang="fr">Français</a> <a href="/hi/" lang="hi">हिन्दी</a> <a href="/it/" lang="it">Italiano</a> <a href="/ja/" lang="ja">日本語</a> <a href="/ko/" lang="ko">한국어</a> <a href="/nl/" lang="nl">Nederlands</a> <a href="/pt/" lang="pt">Português</a> <a href="/ru/" lang="ru">Русский</a> <a href="/zh/" lang="zh" aria-current="true">中文</a></p><!-- /i18n:switch -->
-    <!-- Live system status, mirroring the divinci.ai footer indicator.
+    <!-- Live system status, mirroring the divinci.ai footer indicator, sitting
+         inline at the head of the footer link row.
          Ships neutral-grey with a plain "系统状态" label; JS upgrades it
          only once divinci.ai/api/status answers. If that fetch fails (offline,
          CORS, divinci.ai down) it stays neutral — it must NEVER render green
@@ -441,7 +435,7 @@
          The four state labels live in data-* attributes so build-i18n.mjs
          translates them like any other page string; the script never holds
          user-visible English. -->
-    <p class="footer-status-row">
+    <p>
       <a href="https://divinci.ai/status/" class="footer-status" id="footer-status" data-state="unknown"
          data-label-operational="所有系统正常运行"
          data-label-degraded="性能下降"
@@ -449,8 +443,13 @@
          data-label-major-outage="重大服务中断">
         <span class="footer-status-dot" aria-hidden="true"></span>
         <span class="footer-status-label" id="footer-status-label">系统状态</span>
-      </a>
+      </a> ·
+      <a href="https://divinci.ai/pricing/">价格</a> ·
+      <a href="https://divinci.ai/docs/">文档</a> ·
+      <a href="https://divinci.ai/privacy-policy/">隐私</a> ·
+      <a href="https://divinci.ai/contact/">联系我们</a>
     </p>
+    <!-- i18n:switch --><p class="lang-switch"><a href="/" lang="en">English</a> <a href="/ar/" lang="ar">العربية</a> <a href="/de/" lang="de">Deutsch</a> <a href="/es/" lang="es">Español</a> <a href="/fr/" lang="fr">Français</a> <a href="/hi/" lang="hi">हिन्दी</a> <a href="/it/" lang="it">Italiano</a> <a href="/ja/" lang="ja">日本語</a> <a href="/ko/" lang="ko">한국어</a> <a href="/nl/" lang="nl">Nederlands</a> <a href="/pt/" lang="pt">Português</a> <a href="/ru/" lang="ru">Русский</a> <a href="/zh/" lang="zh" aria-current="true">中文</a></p><!-- /i18n:switch -->
     <p class="fineprint">© 2026 <a href="https://divinci.ai/">Divinci AI, Inc.</a></p>
   </footer>
 

@@ -320,13 +320,18 @@ main h2 {
 /* Footer system-status indicator — mirrors the divinci.ai footer widget, but
    restyled for this footer's light, centered layout instead of the marketing
    site's dark bar. Default (and failure) state is neutral grey; it only turns
-   green once /api/status confirms it. */
-.footer-status-row { margin-top: 14px; }
+   green once /api/status confirms it.
+
+   Sits INLINE at the head of the "Pricing · Docs · Privacy · Contact" row, so
+   it must behave like the sibling text links: inherit their font-size (0.95rem)
+   rather than setting its own, and use vertical-align: middle — an inline-flex
+   box otherwise aligns on its own baseline and rides a couple of px low against
+   the neighbouring anchors. */
 .footer-status {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  font-size: 0.85rem;
+  vertical-align: middle;
+  gap: 0.4rem;
   color: var(--ink-soft);
   text-decoration: none;
   opacity: 0.9;
