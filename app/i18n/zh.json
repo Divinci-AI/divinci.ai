@@ -56,5 +56,10 @@
   "Pricing": "价格",
   "Privacy": "隐私",
   "Contact": "联系我们",
-  "Docs": "文档"
+  "Docs": "文档",
+  "System status": "系统状态",
+  "All systems operational": "所有系统正常运行",
+  "Degraded performance": "性能下降",
+  "Partial outage": "部分服务中断",
+  "Major outage": "重大服务中断"
 }

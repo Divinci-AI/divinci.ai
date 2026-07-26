@@ -611,6 +611,13 @@ async function handleStatus(request, env, ctx) {
     // stay well inside the Datadog API rate limit under marketing-site traffic.
     'Cache-Control': 'public, max-age=45',
     'X-Content-Type-Options': 'nosniff',
+    // Public, aggregate-only status — deliberately safe to read from anywhere,
+    // and divinci.app's footer indicator is a cross-origin consumer. Kept as
+    // a literal '*' rather than reflecting the Origin header on purpose: the
+    // response is stored in caches.default, so an Origin-dependent value would
+    // be served to the wrong origin on a cache hit (and would need Vary:
+    // Origin, which fragments the cache for no benefit here).
+    'Access-Control-Allow-Origin': '*',
   };
 
   const cache = caches.default;

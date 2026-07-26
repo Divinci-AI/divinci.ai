@@ -56,5 +56,10 @@
   "Pricing": "料金",
   "Privacy": "プライバシー",
   "Contact": "お問い合わせ",
-  "Docs": "ドキュメント"
+  "Docs": "ドキュメント",
+  "System status": "システムステータス",
+  "All systems operational": "すべてのシステムが正常です",
+  "Degraded performance": "パフォーマンス低下",
+  "Partial outage": "一部障害",
+  "Major outage": "重大な障害"
 }

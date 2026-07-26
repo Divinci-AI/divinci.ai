@@ -56,5 +56,10 @@
   "Pricing": "요금",
   "Privacy": "개인정보",
   "Contact": "문의",
-  "Docs": "문서"
+  "Docs": "문서",
+  "System status": "시스템 상태",
+  "All systems operational": "모든 시스템 정상",
+  "Degraded performance": "성능 저하",
+  "Partial outage": "부분 장애",
+  "Major outage": "심각한 장애"
 }

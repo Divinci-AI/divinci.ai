@@ -433,8 +433,58 @@
       <a href="https://divinci.ai/contact/">Contacto</a>
     </p>
     <!-- i18n:switch --><p class="lang-switch"><a href="/" lang="en">English</a> <a href="/ar/" lang="ar">العربية</a> <a href="/de/" lang="de">Deutsch</a> <a href="/es/" lang="es" aria-current="true">Español</a> <a href="/fr/" lang="fr">Français</a> <a href="/hi/" lang="hi">हिन्दी</a> <a href="/it/" lang="it">Italiano</a> <a href="/ja/" lang="ja">日本語</a> <a href="/ko/" lang="ko">한국어</a> <a href="/nl/" lang="nl">Nederlands</a> <a href="/pt/" lang="pt">Português</a> <a href="/ru/" lang="ru">Русский</a> <a href="/zh/" lang="zh">中文</a></p><!-- /i18n:switch -->
+    <!-- Live system status, mirroring the divinci.ai footer indicator.
+         Ships neutral-grey with a plain "Estado del sistema" label; JS upgrades it
+         only once divinci.ai/api/status answers. If that fetch fails (offline,
+         CORS, divinci.ai down) it stays neutral — it must NEVER render green
+         without evidence, which is the whole point of the indicator.
+         The four state labels live in data-* attributes so build-i18n.mjs
+         translates them like any other page string; the script never holds
+         user-visible English. -->
+    <p class="footer-status-row">
+      <a href="https://divinci.ai/status/" class="footer-status" id="footer-status" data-state="unknown"
+         data-label-operational="Todos los sistemas operativos"
+         data-label-degraded="Rendimiento degradado"
+         data-label-partial-outage="Interrupción parcial"
+         data-label-major-outage="Interrupción grave">
+        <span class="footer-status-dot" aria-hidden="true"></span>
+        <span class="footer-status-label" id="footer-status-label">Estado del sistema</span>
+      </a>
+    </p>
     <p class="fineprint">© 2026 <a href="https://divinci.ai/">Divinci AI, Inc.</a></p>
   </footer>
+
+  <script>
+  // Footer status indicator. Cross-origin read of divinci.ai/api/status, which
+  // sets Access-Control-Allow-Origin: * for exactly this consumer.
+  (function () {
+    var el = document.getElementById('footer-status');
+    var label = document.getElementById('footer-status-label');
+    if (!el || !label || !window.fetch) return;
+    // Keys match the API's status values; values come from the translated
+    // data-* attributes so every locale build gets localized text.
+    var TEXT = {
+      operational:    el.dataset.labelOperational,
+      degraded:       el.dataset.labelDegraded,
+      partial_outage: el.dataset.labelPartialOutage,
+      major_outage:   el.dataset.labelMajorOutage
+    };
+    // cache: 'no-store' so the browser can't pin a stale reading across page
+    // loads — a footer dot stuck on green through an outage is precisely the
+    // failure this design guards against. The edge cache (45s) still absorbs
+    // the traffic, so this costs the API nothing.
+    fetch('https://divinci.ai/api/status', { cache: 'no-store', headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        // Unknown/absent status: leave the neutral dot and plain label exactly
+        // as server-rendered.
+        if (!d || !d.status || !TEXT[d.status]) return;
+        el.setAttribute('data-state', d.status);
+        label.textContent = TEXT[d.status];
+      })
+      .catch(function () { /* stay neutral — never assert healthy */ });
+  })();
+  </script>
 
   <script src="/app.js" defer></script>
   <!-- Divinci free-chat widget (same 3D-robot launcher as divinci.ai),

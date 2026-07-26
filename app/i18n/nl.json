@@ -56,5 +56,10 @@
   "Pricing": "Prijzen",
   "Privacy": "Privacy",
   "Contact": "Contact",
-  "Docs": "Documentatie"
+  "Docs": "Documentatie",
+  "System status": "Systeemstatus",
+  "All systems operational": "Alle systemen operationeel",
+  "Degraded performance": "Verminderde prestaties",
+  "Partial outage": "Gedeeltelijke storing",
+  "Major outage": "Grote storing"
 }

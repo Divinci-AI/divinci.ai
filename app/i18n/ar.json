@@ -56,5 +56,10 @@
   "Pricing": "الأسعار",
   "Privacy": "الخصوصية",
   "Contact": "اتصل بنا",
-  "Docs": "المستندات"
+  "Docs": "المستندات",
+  "System status": "حالة النظام",
+  "All systems operational": "جميع الأنظمة تعمل",
+  "Degraded performance": "أداء متدهور",
+  "Partial outage": "انقطاع جزئي",
+  "Major outage": "انقطاع كبير"
 }

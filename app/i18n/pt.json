@@ -56,5 +56,10 @@
   "Pricing": "Preços",
   "Privacy": "Privacidade",
   "Contact": "Contacto",
-  "Docs": "Documentação"
+  "Docs": "Documentação",
+  "System status": "Estado do sistema",
+  "All systems operational": "Todos os sistemas operacionais",
+  "Degraded performance": "Desempenho degradado",
+  "Partial outage": "Interrupção parcial",
+  "Major outage": "Interrupção grave"
 }

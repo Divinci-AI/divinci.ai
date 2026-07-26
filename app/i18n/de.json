@@ -56,5 +56,10 @@
   "Pricing": "Preise",
   "Privacy": "Datenschutz",
   "Contact": "Kontakt",
-  "Docs": "Doku"
+  "Docs": "Doku",
+  "System status": "Systemstatus",
+  "All systems operational": "Alle Systeme betriebsbereit",
+  "Degraded performance": "Beeinträchtigte Leistung",
+  "Partial outage": "Teilausfall",
+  "Major outage": "Schwerer Ausfall"
 }

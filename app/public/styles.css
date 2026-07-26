@@ -317,6 +317,36 @@ main h2 {
 .footer a { color: var(--ink-soft); }
 .fineprint { margin-top: 8px; font-size: 0.85rem; }
 
+/* Footer system-status indicator — mirrors the divinci.ai footer widget, but
+   restyled for this footer's light, centered layout instead of the marketing
+   site's dark bar. Default (and failure) state is neutral grey; it only turns
+   green once /api/status confirms it. */
+.footer-status-row { margin-top: 14px; }
+.footer-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.25s ease;
+  white-space: nowrap;
+}
+.footer-status:hover { opacity: 1; text-decoration: underline; }
+.footer-status-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #9aa7ad;
+  box-shadow: 0 0 0 3px rgba(154, 167, 173, 0.22);
+  flex-shrink: 0;
+}
+.footer-status[data-state="operational"]    .footer-status-dot { background: #51cf66; box-shadow: 0 0 0 3px rgba(81, 207, 102, 0.25); }
+.footer-status[data-state="degraded"]       .footer-status-dot { background: #ffd43b; box-shadow: 0 0 0 3px rgba(255, 212, 59, 0.25); }
+.footer-status[data-state="partial_outage"] .footer-status-dot { background: #ff922b; box-shadow: 0 0 0 3px rgba(255, 146, 43, 0.25); }
+.footer-status[data-state="major_outage"]   .footer-status-dot { background: #ff6b6b; box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.25); }
+
 /* ── Small screens ───────────────────────────────────────── */
 @media (max-width: 520px) {
   .scan-form { flex-direction: column; border-radius: var(--radius); }

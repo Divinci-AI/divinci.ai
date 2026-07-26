@@ -56,5 +56,10 @@
   "Pricing": "Цены",
   "Privacy": "Конфиденциальность",
   "Contact": "Контакты",
-  "Docs": "Документация"
+  "Docs": "Документация",
+  "System status": "Состояние систем",
+  "All systems operational": "Все системы работают",
+  "Degraded performance": "Снижение производительности",
+  "Partial outage": "Частичный сбой",
+  "Major outage": "Серьёзный сбой"
 }

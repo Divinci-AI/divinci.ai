@@ -56,5 +56,10 @@
   "Pricing": "मूल्य",
   "Privacy": "गोपनीयता",
   "Contact": "संपर्क",
-  "Docs": "दस्तावेज़"
+  "Docs": "दस्तावेज़",
+  "System status": "सिस्टम स्थिति",
+  "All systems operational": "सभी सिस्टम चालू हैं",
+  "Degraded performance": "प्रदर्शन में गिरावट",
+  "Partial outage": "आंशिक व्यवधान",
+  "Major outage": "बड़ा व्यवधान"
 }
