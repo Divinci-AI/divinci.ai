@@ -535,8 +535,11 @@ async function handleStatus(request, env, ctx) {
   }));
 
   const apiKey = env.DD_API_KEY;
-  // Prefer a dedicated read-only key; fall back to the general app key.
-  const appKey = env.DD_STATUS_APP_KEY || env.DD_APP_KEY;
+  // DD_MONITOR_TOKEN is the dedicated read-only application key scoped to
+  // `monitors_read` only (it 403s on everything else, verified). Prefer it so
+  // this public Worker never holds a write-capable Datadog credential; the
+  // later names are legacy fallbacks.
+  const appKey = env.DD_MONITOR_TOKEN || env.DD_STATUS_APP_KEY || env.DD_APP_KEY;
   if (!apiKey || !appKey) {
     return new Response(
       statusPayload('unknown', unknownComponents, { configured: false }),
