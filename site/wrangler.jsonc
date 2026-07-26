@@ -27,6 +27,16 @@
       "name": "CONTACT_EMAIL"
     }
   ],
+
+  // Rolling 90-day uptime history for /status. Written opportunistically on
+  // /api/status cache-misses (the footer indicator generates steady traffic),
+  // so no cron trigger is required — see handleStatus() in src/worker.js.
+  "kv_namespaces": [
+    {
+      "binding": "STATUS_HISTORY",
+      "id": "4d3eb9e275804f3090b9c0f96154381d"
+    }
+  ],
   "workers_dev": true,
   "preview_urls": true,
   "placement": {
@@ -68,6 +78,14 @@
       },
       "routes": [
         { "pattern": "staging.divinci.ai/*", "zone_name": "divinci.ai" }
+      ],
+      // Separate namespace so staging samples never pollute the public
+      // production uptime history.
+      "kv_namespaces": [
+        {
+          "binding": "STATUS_HISTORY",
+          "id": "7fcc432e9d2e46fea6d6cf0c6f11f7cb"
+        }
       ],
       "workers_dev": true,
       "build": {

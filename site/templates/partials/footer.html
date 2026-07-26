@@ -124,7 +124,11 @@
         partial_outage: 'Partial outage',
         major_outage:   'Major outage'
       };
-      fetch('/api/status', { headers: { 'Accept': 'application/json' } })
+      // cache: 'no-store' so the browser can't pin a stale reading across
+      // page loads — a footer dot stuck on green through an outage is exactly
+      // the failure this whole design guards against. Edge cache (45s) still
+      // absorbs the traffic.
+      fetch('/api/status', { cache: 'no-store', headers: { 'Accept': 'application/json' } })
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (d) {
           // No data, or a status we don't recognise: leave the neutral dot and

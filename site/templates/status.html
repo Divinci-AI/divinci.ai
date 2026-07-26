@@ -34,6 +34,19 @@
         <p class="status-updated" id="status-updated"></p>
       </div>
 
+      <div class="status-card" id="status-history-card" hidden>
+        <div class="status-history-head">
+          <h2 class="status-card-title">Uptime history</h2>
+          <span class="status-history-pct" id="status-history-pct"></span>
+        </div>
+        <div class="status-history-bars" id="status-history-bars" role="img" aria-label="Daily uptime for the last 90 days"></div>
+        <div class="status-history-axis">
+          <span id="status-history-start">90 days ago</span>
+          <span id="status-history-legend" class="status-history-legend"></span>
+          <span>Today</span>
+        </div>
+      </div>
+
       <div class="status-note">
         <h2>How this page works</h2>
         <p>
@@ -164,6 +177,62 @@ main#status-page.status-page {
   color: var(--color-accent-secondary, #8b7659);
 }
 
+/* ── Uptime history bars ─────────────────────────────────────── */
+.status-history-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.status-history-head .status-card-title { margin-bottom: 0.75rem; }
+
+.status-history-pct {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2d5a4f;
+  font-variant-numeric: tabular-nums;
+}
+
+.status-history-bars {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  height: 40px;
+  margin: 0.35rem 0 0.6rem;
+}
+
+.status-bar {
+  flex: 1 1 0;
+  min-width: 2px;
+  border-radius: 2px;
+  background: #d8dee2;           /* no_data — deliberately neutral, not green */
+  transition: transform 0.12s ease, filter 0.12s ease;
+  position: relative;
+}
+.status-bar:hover { transform: scaleY(1.08); filter: brightness(1.08); }
+
+.status-bar[data-s="operational"]    { background: #2f9e44; }
+.status-bar[data-s="degraded"]       { background: #f0a020; }
+.status-bar[data-s="partial_outage"] { background: #e8590c; }
+.status-bar[data-s="major_outage"]   { background: #c92a2a; }
+.status-bar[data-s="unknown"],
+.status-bar[data-s="no_data"]        { background: #d8dee2; }
+
+.status-history-axis {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--color-neutral-secondary, #7e8d95);
+}
+.status-history-legend { font-size: 0.75rem; text-align: center; flex: 1 1 auto; }
+
+@media screen and (max-width: 600px) {
+  .status-history-bars { height: 32px; gap: 1px; }
+}
+
 .status-note {
   max-width: 52rem;
   margin: 0 auto;
@@ -257,10 +326,52 @@ main#status-page.status-page {
     } else {
       updated.textContent = '';
     }
+
+    renderHistory(data && data.history);
+  }
+
+  function renderHistory(h) {
+    var card = document.getElementById('status-history-card');
+    if (!h || !h.days || !h.days.length) { card.hidden = true; return; }
+    card.hidden = false;
+
+    var bars = document.getElementById('status-history-bars');
+    bars.textContent = '';
+    h.days.forEach(function (day) {
+      var b = document.createElement('span');
+      b.className = 'status-bar';
+      b.setAttribute('data-s', day.status || 'no_data');
+      // Native tooltip: cheap, accessible, no JS popover to maintain.
+      b.title = day.uptimePct === null || day.uptimePct === undefined
+        ? day.date + ' — no data recorded'
+        : day.date + ' — ' + day.uptimePct + '% uptime';
+      bars.appendChild(b);
+    });
+
+    var pct = document.getElementById('status-history-pct');
+    pct.textContent = (h.uptimePct === null || h.uptimePct === undefined)
+      ? '' : h.uptimePct + '% uptime';
+
+    // Be explicit that the window is only partly populated — 90 grey bars must
+    // never be mistaken for 90 days of verified uptime.
+    var legend = document.getElementById('status-history-legend');
+    var withData = h.daysWithData || 0;
+    if (withData === 0) {
+      legend.textContent = 'No history recorded yet';
+    } else if (withData < 90) {
+      legend.textContent = withData + (withData === 1 ? ' day' : ' days') + ' recorded so far'
+        + (h.since ? ' (since ' + h.since + ')' : '');
+    } else {
+      legend.textContent = '';
+    }
   }
 
   function load() {
-    fetch('/api/status', { headers: { 'Accept': 'application/json' } })
+    // cache: 'no-store' — the browser must not serve its own stale copy. The
+    // 45s edge cache still absorbs the load; without this the page can pin a
+    // stale reading indefinitely across reloads, which on a STATUS page is the
+    // worst possible failure (it would keep showing green through an outage).
+    fetch('/api/status', { cache: 'no-store', headers: { 'Accept': 'application/json' } })
       .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
       .then(render)
       .catch(function () { render({ status: 'unknown', components: [] }); });

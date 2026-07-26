@@ -514,6 +514,96 @@ function statusPayload(overall, components, extra) {
   });
 }
 
+// ── 90-day uptime history ────────────────────────────────────────────────
+//
+// Stored as ONE rolled-up KV record (one read + at most one write per sample)
+// rather than a key per day, which would mean 90 reads per request.
+//
+// Sampling is driven by /api/status traffic — the footer indicator on every
+// page view keeps it fed — and rate-limited to one write per SAMPLE_INTERVAL.
+// This avoids depending on a cron trigger (see
+// feedback_cf_worker_schedules_put_fails: the schedules PUT is unreliable on
+// this account, and there's a 3-trigger cap per worker).
+const HISTORY_KEY = 'history:v1';
+const HISTORY_DAYS = 90;
+const SAMPLE_INTERVAL_MS = 5 * 60 * 1000;
+
+const dayKey = (d) => new Date(d).toISOString().slice(0, 10);
+
+async function recordSample(env, status) {
+  if (!env.STATUS_HISTORY) return;
+  try {
+    const now = Date.now();
+    const raw = await env.STATUS_HISTORY.get(HISTORY_KEY, { type: 'json' });
+    const rec = raw && typeof raw === 'object' ? raw : { days: {}, lastSampleAt: 0, since: dayKey(now) };
+    if (!rec.days) rec.days = {};
+
+    // Rate-limit writes; a status CHANGE always samples immediately so a short
+    // outage can't be missed between intervals.
+    const today = rec.days[dayKey(now)];
+    const changed = !today || (today.worst && today.worst !== status && STATUS_RANK[status] > STATUS_RANK[today.worst]);
+    if (!changed && rec.lastSampleAt && now - rec.lastSampleAt < SAMPLE_INTERVAL_MS) return;
+
+    const k = dayKey(now);
+    const d = rec.days[k] || { ok: 0, degraded: 0, outage: 0, unknown: 0, worst: 'operational' };
+    if (status === 'operational') d.ok++;
+    else if (status === 'degraded') d.degraded++;
+    else if (status === 'unknown') d.unknown++;
+    else d.outage++; // partial_outage | major_outage
+    d.worst = worstStatus(d.worst || 'operational', status);
+    rec.days[k] = d;
+    rec.lastSampleAt = now;
+    if (!rec.since) rec.since = k;
+
+    // Prune anything outside the window so the record can't grow unbounded.
+    const cutoff = dayKey(now - HISTORY_DAYS * 86400000);
+    for (const key of Object.keys(rec.days)) if (key < cutoff) delete rec.days[key];
+
+    await env.STATUS_HISTORY.put(HISTORY_KEY, JSON.stringify(rec));
+  } catch (e) {
+    // History is a nice-to-have; never let it break the status response.
+    console.error('[status] history write failed:', e && e.message ? e.message : e);
+  }
+}
+
+async function readHistory(env) {
+  if (!env.STATUS_HISTORY) return null;
+  try {
+    const rec = await env.STATUS_HISTORY.get(HISTORY_KEY, { type: 'json' });
+    if (!rec || !rec.days) return { days: [], since: null, uptimePct: null };
+
+    const out = [];
+    const now = Date.now();
+    for (let i = HISTORY_DAYS - 1; i >= 0; i--) {
+      const k = dayKey(now - i * 86400000);
+      const d = rec.days[k];
+      if (!d) {
+        // No samples that day: explicitly "no data", NOT a green bar.
+        out.push({ date: k, status: 'no_data', uptimePct: null });
+        continue;
+      }
+      // `unknown` samples are excluded from the denominator — they mean we
+      // could not measure, which is not the same as downtime.
+      const measured = d.ok + d.degraded + d.outage;
+      out.push({
+        date: k,
+        status: measured === 0 ? 'no_data' : d.worst,
+        uptimePct: measured === 0 ? null : Math.round((d.ok / measured) * 10000) / 100,
+      });
+    }
+
+    const withData = out.filter(x => x.uptimePct !== null);
+    const overallPct = withData.length
+      ? Math.round((withData.reduce((s, x) => s + x.uptimePct, 0) / withData.length) * 100) / 100
+      : null;
+
+    return { days: out, since: rec.since || null, uptimePct: overallPct, daysWithData: withData.length };
+  } catch (e) {
+    console.error('[status] history read failed:', e && e.message ? e.message : e);
+    return null;
+  }
+}
+
 async function handleStatus(request, env, ctx) {
   const headers = {
     'Content-Type': 'application/json',
@@ -542,7 +632,7 @@ async function handleStatus(request, env, ctx) {
   const appKey = env.DD_MONITOR_TOKEN || env.DD_STATUS_APP_KEY || env.DD_APP_KEY;
   if (!apiKey || !appKey) {
     return new Response(
-      statusPayload('unknown', unknownComponents, { configured: false }),
+      statusPayload('unknown', unknownComponents, { configured: false, history: await readHistory(env) }),
       { status: 200, headers }
     );
   }
@@ -581,17 +671,23 @@ async function handleStatus(request, env, ctx) {
       return { id: c.id, name: c.name, description: c.description, status };
     });
 
+    // Record BEFORE reading back, so today's bar reflects this sample.
+    await recordSample(env, overall);
+
     const response = new Response(
-      statusPayload(overall, components, { configured: true }),
+      statusPayload(overall, components, { configured: true, history: await readHistory(env) }),
       { status: 200, headers }
     );
     ctx.waitUntil(cache.put(cacheKey, response.clone()));
     return response;
   } catch (err) {
     console.error('[status] upstream failed:', err && err.message ? err.message : err);
+    // Record the unknown too — a gap in monitoring is itself worth showing,
+    // and it keeps the denominator honest rather than silently skipping.
+    ctx.waitUntil(recordSample(env, 'unknown'));
     // Degrade to unknown — never assert operational on a failed lookup.
     return new Response(
-      statusPayload('unknown', unknownComponents, { configured: true, error: 'upstream_unavailable' }),
+      statusPayload('unknown', unknownComponents, { configured: true, error: 'upstream_unavailable', history: await readHistory(env) }),
       { status: 200, headers }
     );
   }
