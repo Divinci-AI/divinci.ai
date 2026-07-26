@@ -1950,20 +1950,34 @@ body:not(.homepage) .privacy-settings-link:hover {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
 }
 
-/* Footer system-status indicator. Default (and failure) state is neutral grey
-   with a plain label — it only turns green once /api/status confirms it. */
+/* Footer system-status indicator — lives in the bottom bar, before the
+   copyright. Default (and failure) state is neutral grey with a plain label;
+   it only turns green once /api/status confirms it. */
 .footer-status {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  font-size: 0.82rem;
+  gap: 0.45rem;
+  font-size: 0.85rem;
   color: var(--color-highlight-blue, #cfdcff);
   text-decoration: none;
   opacity: 0.85;
   transition: opacity 0.25s ease;
+  white-space: nowrap;
+  /* The bottom bar is `justify-content: space-between`; keep status and
+     copyright together on the left rather than pushed to opposite ends. */
+  margin-right: 1.25rem;
 }
 .footer-status:hover { opacity: 1; text-decoration: underline; }
+
+/* Status + copyright act as one left-hand group. */
+.footer-bottom-content .copyright { margin-right: auto; }
+
+/* Mobile stacks .footer-bottom-content into a centered column — drop the
+   horizontal spacing so the status line centers with everything else. */
+@media screen and (max-width: 768px) {
+  .footer-status { margin-right: 0; }
+  .footer-bottom-content .copyright { margin-right: 0; }
+}
 
 .footer-status-dot {
   width: 0.55rem;

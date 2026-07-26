@@ -38,14 +38,6 @@
             <a href="{% if current_lang == 'en' %}/security/{% else %}/{{ current_lang }}/security/{% endif %}" class="footer-hipaa-badge" title="{{ translations.footer.hipaa_badge_title | default(value='HIPAA-Ready Architecture — see our security page') }}">
                 <img src="{{ get_url(path='brand/badges/hipaa-ready.svg') }}" alt="HIPAA-Ready Architecture badge" width="80" height="80" loading="lazy">
             </a>
-            {# Live system status. Ships as a plain link with a neutral dot; JS
-               upgrades it once /api/status answers. If that fetch fails the dot
-               stays neutral and the label reads "System status" — it must never
-               render green without evidence. #}
-            <a href="/status/" class="footer-status" id="footer-status" data-state="unknown">
-                <span class="footer-status-dot" aria-hidden="true"></span>
-                <span class="footer-status-label" id="footer-status-label">{{ translations.footer.system_status | default(value="System status") }}</span>
-            </a>
         </div>
 
         <div class="footer-section">
@@ -113,6 +105,38 @@
 
     </div>
 
+
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            {# Live system status. Ships as a plain link with a neutral dot; JS
+               upgrades it once /api/status answers. If that fetch fails the dot
+               stays neutral and the label reads "System status" — it must never
+               render green without evidence. #}
+            <a href="/status/" class="footer-status" id="footer-status" data-state="unknown">
+                <span class="footer-status-dot" aria-hidden="true"></span>
+                <span class="footer-status-label" id="footer-status-label">{{ translations.footer.system_status | default(value="System status") }}</span>
+            </a>
+            <p class="copyright">
+                © 2023-{{ now() | date(format="%Y") }} Divinci AI. {{ translations.footer.bottom.rights_reserved | default(value="All rights reserved.") }}
+            </p>
+            <div class="footer-bottom-links">
+                {# sitemap — translated in ES only #}
+                <a href="{% if current_lang == 'en' %}/sitemap/{% else %}/{{ current_lang }}/sitemap/{% endif %}">{{ translations.footer.bottom.links.sitemap | default(value="Sitemap") }}</a>
+                {# accessibility — translated in ES only #}
+                <a href="{% if current_lang == 'es' %}/es/accessibility/{% else %}/accessibility/{% endif %}">{{ translations.footer.bottom.links.accessibility | default(value="Accessibility") }}</a>
+                <div class="privacy-dropdown">
+                    <button class="privacy-settings-link" aria-expanded="false" aria-haspopup="true">{{ translations.footer.bottom.privacy_settings | default(value="Privacy Settings") }}</button>
+                    <div class="privacy-dropdown-content" role="menu">
+                        {# cookies — translated in ES only #}
+                        <a href="{% if current_lang == 'es' %}/es/cookies/{% else %}/cookies/{% endif %}">{{ translations.footer.bottom.cookie_policy | default(value="Cookie Policy") }}</a>
+                        <button onclick="window.gdprCompliance?.showCookieBanner()">{{ translations.footer.bottom.cookie_preferences | default(value="Cookie Preferences") }}</button>
+                        <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer">{{ translations.footer.bottom.data_request | default(value="Data Request") }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
     (function () {
       var el = document.getElementById('footer-status');
@@ -140,27 +164,4 @@
         .catch(function () { /* stay neutral — never assert healthy */ });
     })();
     </script>
-
-    <div class="footer-bottom">
-        <div class="footer-bottom-content">
-            <p class="copyright">
-                © 2023-{{ now() | date(format="%Y") }} Divinci AI. {{ translations.footer.bottom.rights_reserved | default(value="All rights reserved.") }}
-            </p>
-            <div class="footer-bottom-links">
-                {# sitemap — translated in ES only #}
-                <a href="{% if current_lang == 'en' %}/sitemap/{% else %}/{{ current_lang }}/sitemap/{% endif %}">{{ translations.footer.bottom.links.sitemap | default(value="Sitemap") }}</a>
-                {# accessibility — translated in ES only #}
-                <a href="{% if current_lang == 'es' %}/es/accessibility/{% else %}/accessibility/{% endif %}">{{ translations.footer.bottom.links.accessibility | default(value="Accessibility") }}</a>
-                <div class="privacy-dropdown">
-                    <button class="privacy-settings-link" aria-expanded="false" aria-haspopup="true">{{ translations.footer.bottom.privacy_settings | default(value="Privacy Settings") }}</button>
-                    <div class="privacy-dropdown-content" role="menu">
-                        {# cookies — translated in ES only #}
-                        <a href="{% if current_lang == 'es' %}/es/cookies/{% else %}/cookies/{% endif %}">{{ translations.footer.bottom.cookie_policy | default(value="Cookie Policy") }}</a>
-                        <button onclick="window.gdprCompliance?.showCookieBanner()">{{ translations.footer.bottom.cookie_preferences | default(value="Cookie Preferences") }}</button>
-                        <a href="https://na1.hs-data-privacy.com/request/HQr4EERnsbB56WBPrmypbg" target="_blank" rel="noopener noreferrer">{{ translations.footer.bottom.data_request | default(value="Data Request") }}</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </footer>
