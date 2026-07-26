@@ -23,7 +23,8 @@
     "quality_assurance": "Kwaliteitsborging",
     "release_management": "Releasebeheer",
     "sign_up": "Aanmelden",
-    "www_rag_directory": "WWW-RAG Directory"
+    "www_rag_directory": "WWW-RAG Directory",
+    "system_status": "Systeemstatus"
   },
   "hero": {
     "heading": "AI releases.",
@@ -326,7 +327,8 @@
       "phrase": "vrije intelligentie",
       "word_1": "vrije",
       "word_2": "intelligentie"
-    }
+    },
+    "system_status": "Systeemstatus"
   },
   "support": {
     "title": "Supportcentrum",

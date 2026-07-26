@@ -23,7 +23,8 @@
     "quality_assurance": "Assurance qualité",
     "release_management": "Gestion des versions",
     "sign_up": "S'inscrire",
-    "www_rag_directory": "Répertoire WWW-RAG"
+    "www_rag_directory": "Répertoire WWW-RAG",
+    "system_status": "État du Système"
   },
   "hero": {
     "heading": "Versions d'IA.",
@@ -326,7 +327,8 @@
       "phrase": "intelligence libre",
       "word_1": "intelligence",
       "word_2": "libre"
-    }
+    },
+    "system_status": "État du Système"
   },
   "support": {
     "title": "Centre de Support",

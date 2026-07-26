@@ -23,7 +23,8 @@
     "release_management": "إدارة الإصدارات",
     "sign_up": "إنشاء حساب",
     "documentation": "التوثيق",
-    "www_rag_directory": "دليل WWW-RAG"
+    "www_rag_directory": "دليل WWW-RAG",
+    "system_status": "حالة النظام"
   },
   "hero": {
     "heading": "إصدارات الذكاء الاصطناعي.",
@@ -241,7 +242,8 @@
       "word_1": "حر",
       "word_2": "ذكاء",
       "phrase": "ذكاء حر"
-    }
+    },
+    "system_status": "حالة النظام"
   },
   "language_switcher": {
     "current_language": "العربية",

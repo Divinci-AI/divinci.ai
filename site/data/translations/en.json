@@ -18,12 +18,14 @@
     "documentation": "Documentation",
     "request_demo": "Request demo",
     "blog": "Blog",
+    "pricing": "Pricing",
     "terms_of_service": "Terms of Service",
     "privacy_policy": "Privacy Policy",
     "quality_assurance": "Quality Assurance",
     "release_management": "Release Management",
     "sign_up": "Sign up",
-    "www_rag_directory": "WWW-RAG Directory"
+    "www_rag_directory": "WWW-RAG Directory",
+    "system_status": "System Status"
   },
   "hero": {
     "heading": "Custom AI releases.",
@@ -44,7 +46,9 @@
       "connect_provider_mobile": "Connect {provider}"
     },
     "sound_unmute": "Unmute",
-    "sound_mute": "Mute"
+    "sound_mute": "Mute",
+    "play_video": "Play the Divinci AI film",
+    "close_video": "Close video"
   },
   "enterprise": {
     "title": "Enterprise AI, expertly managed",
@@ -326,7 +330,8 @@
       "phrase": "free intelligence",
       "word_1": "free",
       "word_2": "intelligence"
-    }
+    },
+    "system_status": "System Status"
   },
   "support": {
     "title": "Support Center",
@@ -842,9 +847,9 @@
     "post_tag_default": "AI Insights",
     "intro": {
       "heading": "Research notes from the Divinci AI team",
-      "p1": "The Divinci AI blog publishes original research, engineering deep-dives, and field notes from our work building production retrieval-augmented generation systems for regulated industries.",
-      "p2": "Our coverage spans three threads. First, technical work: how we build, score, and route across our open library of vIndexes published on Hugging Face; how we calibrate AI judges against human ground truth; what we learned shipping speculative decoding and FP8 quantization to production.",
-      "p3": "Most posts target an audience already fluent in AI engineering — engineers, researchers, and technical buyers — though we try to keep the framing accessible to anyone responsible for AI decisions at their organization."
+      "p1": "The Divinci AI blog publishes original research, engineering deep-dives, and field notes from our work building production retrieval-augmented generation systems for regulated industries. We write about the vector indexes — we call them vIndexes — that power our RAG architecture, the routing logic that selects the right one for each question, the evaluation harness we use to benchmark them against frontier LLMs, and the hard-won lessons of deploying these systems where correctness, citations, and audit trails actually matter.",
+      "p2": "Our coverage spans three threads. First, technical work: how we build, score, and route across our open library of vIndexes published on Hugging Face; how we calibrate AI judges against human ground truth; what we learned shipping speculative decoding and FP8 quantization to production. Second, applied research: comparing retrieval strategies head-to-head in the RAG Arena, measuring grounding rates, and the economics of inference on commodity hardware. Third, perspective: where the field is going, what regulators are asking for next, and how teams should think about AI systems as the boundary between training and inference dissolves.",
+      "p3": "Most posts target an audience already fluent in AI engineering — engineers, researchers, and technical buyers — though we try to keep the framing accessible to anyone responsible for AI decisions at their organization. New posts publish irregularly when we have something genuinely worth saying. You can also find our open models, datasets, and vIndexes on our Hugging Face profile, and the source for our research tooling on GitHub."
     },
     "newer": "Newer posts",
     "older": "Older posts",

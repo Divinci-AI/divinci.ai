@@ -23,7 +23,8 @@
     "quality_assurance": "品質保証",
     "release_management": "リリース管理",
     "sign_up": "新規登録",
-    "www_rag_directory": "WWW-RAG ディレクトリ"
+    "www_rag_directory": "WWW-RAG ディレクトリ",
+    "system_status": "システムステータス"
   },
   "hero": {
     "heading": "AIリリース。",
@@ -326,7 +327,8 @@
       "phrase": "自由な知性",
       "word_1": "自由な",
       "word_2": "知性"
-    }
+    },
+    "system_status": "システムステータス"
   },
   "support": {
     "title": "サポートセンター",

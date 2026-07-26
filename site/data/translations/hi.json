@@ -23,7 +23,8 @@
     "release_management": "रिलीज़ प्रबंधन",
     "sign_up": "साइन अप करें",
     "documentation": "दस्तावेज़",
-    "www_rag_directory": "WWW-RAG निर्देशिका"
+    "www_rag_directory": "WWW-RAG निर्देशिका",
+    "system_status": "सिस्टम स्थिति"
   },
   "hero": {
     "heading": "AI रिलीज़।",
@@ -241,7 +242,8 @@
       "word_1": "मुक्त",
       "word_2": "बुद्धि",
       "phrase": "मुक्त बुद्धि"
-    }
+    },
+    "system_status": "सिस्टम स्थिति"
   },
   "language_switcher": {
     "current_language": "हिन्दी",

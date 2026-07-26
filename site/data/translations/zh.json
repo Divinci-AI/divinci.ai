@@ -23,7 +23,8 @@
     "quality_assurance": "质量保证",
     "release_management": "发布管理",
     "sign_up": "注册",
-    "www_rag_directory": "WWW-RAG 目录"
+    "www_rag_directory": "WWW-RAG 目录",
+    "system_status": "系统状态"
   },
   "hero": {
     "heading": "AI发布。",
@@ -326,7 +327,8 @@
       "phrase": "自由智能",
       "word_1": "自由",
       "word_2": "智能"
-    }
+    },
+    "system_status": "系统状态"
   },
   "support": {
     "title": "支持中心",

@@ -23,7 +23,8 @@
     "quality_assurance": "Garanzia della Qualità",
     "release_management": "Gestione dei Rilasci",
     "sign_up": "Registrati",
-    "www_rag_directory": "Directory WWW-RAG"
+    "www_rag_directory": "Directory WWW-RAG",
+    "system_status": "Stato del Sistema"
   },
   "hero": {
     "heading": "Rilasci AI.",
@@ -326,7 +327,8 @@
       "phrase": "intelligenza libera",
       "word_1": "intelligenza",
       "word_2": "libera"
-    }
+    },
+    "system_status": "Stato del Sistema"
   },
   "support": {
     "title": "Centro Assistenza",

@@ -45,11 +45,17 @@
                 </div>
             </li>
             <li><a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}">{{ translations.navigation.blog | default(value="Blog") }}</a></li>
+            <li><a href="{% if current_lang == 'en' %}/pricing/{% else %}/{{ current_lang }}/pricing/{% endif %}">{{ translations.navigation.pricing | default(value="Pricing") }}</a></li>
             <li class="dropdown">
                 <a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}" aria-haspopup="true" aria-expanded="false">{{ translations.navigation.support | default(value="Support") }}</a>
                 <div class="dropdown-menu">
                     <a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}">{{ translations.navigation.support_center | default(value="Support Center") }}</a>
                     <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">{{ translations.navigation.documentation | default(value="Documentation") }}</a>
+                    {# Live system status. Deliberately NOT language-prefixed: there is a
+                       single /status/ page (site/content/status.md) with no per-locale
+                       variants, so /{{ current_lang }}/status/ would 404. Same treatment
+                       as the footer indicator. #}
+                    <a href="/status/">{{ translations.navigation.system_status | default(value="System Status") }}</a>
                     <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener">{{ translations.navigation.request_demo | default(value="Request demo") }}</a>
                     {# Terms of Service / Privacy Policy removed from this menu —
                        they remain linked in the footer's Legal section. #}

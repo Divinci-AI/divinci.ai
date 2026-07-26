@@ -23,7 +23,8 @@
     "quality_assurance": "Control de calidad",
     "release_management": "Gestión de versiones",
     "sign_up": "Regístrate",
-    "www_rag_directory": "Directorio WWW-RAG"
+    "www_rag_directory": "Directorio WWW-RAG",
+    "system_status": "Estado del Sistema"
   },
   "hero": {
     "heading": "Lanzamientos de IA.",
@@ -326,7 +327,8 @@
       "phrase": "inteligencia libre",
       "word_1": "inteligencia",
       "word_2": "libre"
-    }
+    },
+    "system_status": "Estado del Sistema"
   },
   "support": {
     "title": "Centro de Soporte",

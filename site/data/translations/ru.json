@@ -23,7 +23,8 @@
     "quality_assurance": "Обеспечение качества",
     "release_management": "Управление релизами",
     "sign_up": "Регистрация",
-    "www_rag_directory": "Каталог WWW-RAG"
+    "www_rag_directory": "Каталог WWW-RAG",
+    "system_status": "Состояние системы"
   },
   "hero": {
     "heading": "Релизы ИИ.",
@@ -326,7 +327,8 @@
       "phrase": "свободный интеллект",
       "word_1": "свободный",
       "word_2": "интеллект"
-    }
+    },
+    "system_status": "Состояние системы"
   },
   "support": {
     "title": "Центр поддержки",

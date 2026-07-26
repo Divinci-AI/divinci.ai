@@ -23,7 +23,8 @@
     "quality_assurance": "Qualitätssicherung",
     "release_management": "Release-Management",
     "sign_up": "Registrieren",
-    "www_rag_directory": "WWW-RAG-Verzeichnis"
+    "www_rag_directory": "WWW-RAG-Verzeichnis",
+    "system_status": "Systemstatus"
   },
   "hero": {
     "heading": "KI-Releases.",
@@ -326,7 +327,8 @@
       "phrase": "freie Intelligenz",
       "word_1": "freie",
       "word_2": "Intelligenz"
-    }
+    },
+    "system_status": "Systemstatus"
   },
   "support": {
     "title": "Support-Center",

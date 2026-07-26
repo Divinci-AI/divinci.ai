@@ -23,7 +23,8 @@
     "quality_assurance": "품질 보증",
     "release_management": "릴리즈 관리",
     "sign_up": "회원가입",
-    "www_rag_directory": "WWW-RAG 디렉터리"
+    "www_rag_directory": "WWW-RAG 디렉터리",
+    "system_status": "시스템 상태"
   },
   "hero": {
     "heading": "AI 릴리스.",
@@ -326,7 +327,8 @@
       "phrase": "자유로운 지성",
       "word_1": "자유로운",
       "word_2": "지성"
-    }
+    },
+    "system_status": "시스템 상태"
   },
   "support": {
     "title": "지원 센터",
