@@ -1963,14 +1963,24 @@ body:not(.homepage) .privacy-settings-link:hover {
   opacity: 0.85;
   transition: opacity 0.25s ease;
   white-space: nowrap;
+  /* Must match .copyright's line-height. The bar centers boxes, so with equal
+     font-size but different line-heights the two text baselines still sit ~3px
+     apart — the box centers align, the baselines don't. */
+  line-height: 1.6;
   /* The bottom bar is `justify-content: space-between`; keep status and
      copyright together on the left rather than pushed to opposite ends. */
   margin-right: 1.25rem;
 }
 .footer-status:hover { opacity: 1; text-decoration: underline; }
 
-/* Status + copyright act as one left-hand group. */
-.footer-bottom-content .copyright { margin-right: auto; }
+/* Status + copyright act as one left-hand group.
+   margin-bottom must be 0: the bar is `align-items: center`, which centers the
+   MARGIN box — the <p>'s inherited 16px bottom margin therefore lifted the
+   copyright text ~11px above the status text instead of aligning them. */
+.footer-bottom-content .copyright {
+  margin-right: auto;
+  margin-bottom: 0;
+}
 
 /* Mobile stacks .footer-bottom-content into a centered column — drop the
    horizontal spacing so the status line centers with everything else. */
