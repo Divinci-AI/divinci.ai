@@ -47,6 +47,11 @@
         </div>
       </div>
 
+      <div class="status-card" id="status-incidents-card" hidden>
+        <h2 class="status-card-title">Recent incidents</h2>
+        <ul class="status-incidents" id="status-incidents"></ul>
+      </div>
+
       <div class="status-note">
         <h2>How this page works</h2>
         <p>
@@ -233,6 +238,23 @@ main#status-page.status-page {
   .status-history-bars { height: 32px; gap: 1px; }
 }
 
+.status-incidents { list-style: none; margin: 0; padding: 0; }
+.status-incident {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--color-border-accent, rgba(184, 160, 128, 0.3));
+}
+.status-incident:first-child { border-top: none; }
+.status-incident-date { font-weight: 700; color: #2d3c34; font-variant-numeric: tabular-nums; }
+.status-incident-state { font-size: 0.85rem; font-weight: 600; text-transform: capitalize; }
+.status-incident[data-s="degraded"]       .status-incident-state { color: #b47509; }
+.status-incident[data-s="partial_outage"] .status-incident-state { color: #e8590c; }
+.status-incident[data-s="major_outage"]   .status-incident-state { color: #c92a2a; }
+.status-incident-pct { margin-left: auto; font-size: 0.85rem; color: var(--color-neutral-secondary, #7e8d95); font-variant-numeric: tabular-nums; }
+.status-incidents-none { color: var(--color-neutral-secondary, #7e8d95); margin: 0; }
+
 .status-note {
   max-width: 52rem;
   margin: 0 auto;
@@ -364,6 +386,51 @@ main#status-page.status-page {
     } else {
       legend.textContent = '';
     }
+
+    renderIncidents(h, withData);
+  }
+
+  // Derived from the same recorded samples as the bars — not a separate,
+  // hand-maintained list that could drift from what the bars show.
+  function renderIncidents(h, withData) {
+    var card = document.getElementById('status-incidents-card');
+    var list = document.getElementById('status-incidents');
+    if (withData === 0) { card.hidden = true; return; }
+    card.hidden = false;
+    list.textContent = '';
+
+    var bad = h.days.filter(function (d) {
+      return d.status === 'degraded' || d.status === 'partial_outage' || d.status === 'major_outage';
+    }).reverse();
+
+    if (!bad.length) {
+      var none = document.createElement('p');
+      none.className = 'status-incidents-none';
+      // Scope the claim to what we actually recorded — saying "no incidents in
+      // 90 days" when we hold 1 day of data would be a false claim.
+      none.textContent = withData >= 90
+        ? 'No incidents recorded in the last 90 days.'
+        : 'No incidents recorded in the ' + withData + (withData === 1 ? ' day' : ' days') + ' of history collected so far.';
+      list.appendChild(none);
+      return;
+    }
+
+    bad.forEach(function (d) {
+      var li = document.createElement('li');
+      li.className = 'status-incident';
+      li.setAttribute('data-s', d.status);
+      var date = document.createElement('span');
+      date.className = 'status-incident-date';
+      date.textContent = d.date;
+      var st = document.createElement('span');
+      st.className = 'status-incident-state';
+      st.textContent = d.status.replace('_', ' ');
+      var pct = document.createElement('span');
+      pct.className = 'status-incident-pct';
+      pct.textContent = (d.uptimePct === null || d.uptimePct === undefined) ? '' : d.uptimePct + '% uptime';
+      li.appendChild(date); li.appendChild(st); li.appendChild(pct);
+      list.appendChild(li);
+    });
   }
 
   function load() {
