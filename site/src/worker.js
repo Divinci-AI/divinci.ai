@@ -121,6 +121,12 @@ Sitemap: ${url.origin}/sitemap.xml`, {
       return handleContactForm(request, env);
     }
 
+    // Public system status, read from Datadog monitor state. Same-origin, so
+    // the footer indicator and /status page need no CORS proxy.
+    if (url.pathname === '/api/status') {
+      return handleStatus(request, env, ctx);
+    }
+
     // Language redirect logic for non-default languages
     // English content lives at root (Zola default language), so no redirect needed for /
     if (url.pathname === '/') {
@@ -447,6 +453,143 @@ Timestamp: ${new Date().toISOString()}
           'Access-Control-Allow-Origin': corsOrigin
         }
       }
+    );
+  }
+}
+// ─────────────────────────────────────────────────────────────────────────
+// Public system status (/api/status)
+//
+// Reads live Datadog monitor state and maps it to customer-facing components.
+// Same-origin, so /status and the footer indicator consume it directly.
+//
+// DESIGN RULE — do not "fix" this by defaulting to operational: any state we
+// cannot positively verify resolves to `unknown`, never `operational`. A green
+// dot that cannot go red is an unsubstantiated claim, which is exactly what we
+// removed from /security. `unknown` is a correct, honest answer.
+//
+// COMPONENT MAPPING: the backing monitors are Cloudflare zone-wide metrics
+// spanning divinci.app AND divinci.ai together, so they cannot currently
+// distinguish per-service health. One honest component is therefore better
+// than four that would move in lockstep and mislabel the cause. When the
+// content-matched GCP uptime checks are mirrored into Datadog (see
+// docs/ops/STATUS_PAGE_OPTIONS.md in the server repo), add per-service
+// components here — it is a config change, nothing else.
+const STATUS_COMPONENTS = [
+  {
+    id: 'platform',
+    name: 'Platform',
+    description: 'Chat, API, and web — edge and origin availability',
+    monitors: [
+      // Cloudflare cannot reach origin (522/523/524/530) — a real outage.
+      { id: 20807650, onAlert: 'major_outage' },
+      // Elevated 5xx — degraded but generally still serving.
+      { id: 20807649, onAlert: 'degraded' },
+    ],
+  },
+];
+
+// Ranked worst-last. `unknown` deliberately outranks `operational` so missing
+// data never presents as healthy.
+const STATUS_RANK = { operational: 0, unknown: 1, degraded: 2, partial_outage: 3, major_outage: 4 };
+const worstStatus = (a, b) => (STATUS_RANK[b] > STATUS_RANK[a] ? b : a);
+
+function monitorStateToStatus(overallState, onAlert) {
+  switch (overallState) {
+    case 'OK': return 'operational';
+    case 'Alert': return onAlert;
+    case 'Warn': return 'degraded';
+    // 'No Data' / 'Skipped' / 'Unknown' / anything unrecognized: we genuinely
+    // do not know, so say so.
+    default: return 'unknown';
+  }
+}
+
+function statusPayload(overall, components, extra) {
+  return JSON.stringify({
+    status: overall,
+    components,
+    updatedAt: new Date().toISOString(),
+    source: 'datadog-monitors',
+    ...extra,
+  });
+}
+
+async function handleStatus(request, env, ctx) {
+  const headers = {
+    'Content-Type': 'application/json',
+    // Short TTL: fresh enough to be useful during an incident, long enough to
+    // stay well inside the Datadog API rate limit under marketing-site traffic.
+    'Cache-Control': 'public, max-age=45',
+    'X-Content-Type-Options': 'nosniff',
+  };
+
+  const cache = caches.default;
+  const cacheKey = new Request(new URL('/api/status', request.url).toString(), { method: 'GET' });
+  const hit = await cache.match(cacheKey);
+  if (hit) return hit;
+
+  // Never expose which specific monitors back a component — component-level
+  // status is all the public needs.
+  const unknownComponents = STATUS_COMPONENTS.map(c => ({
+    id: c.id, name: c.name, description: c.description, status: 'unknown',
+  }));
+
+  const apiKey = env.DD_API_KEY;
+  // Prefer a dedicated read-only key; fall back to the general app key.
+  const appKey = env.DD_STATUS_APP_KEY || env.DD_APP_KEY;
+  if (!apiKey || !appKey) {
+    return new Response(
+      statusPayload('unknown', unknownComponents, { configured: false }),
+      { status: 200, headers }
+    );
+  }
+
+  try {
+    const site = env.DD_SITE || 'us5.datadoghq.com';
+    const res = await fetch(`https://api.${site}/api/v1/monitor?page_size=100`, {
+      headers: { 'DD-API-KEY': apiKey, 'DD-APPLICATION-KEY': appKey },
+      signal: AbortSignal.timeout(4000),
+    });
+    if (!res.ok) throw new Error(`datadog ${res.status}`);
+
+    // Guard the parse: a non-JSON body (HTML error page, empty) must not throw
+    // an opaque SyntaxError — we want it to land in the catch as `unknown`.
+    const text = await res.text();
+    let monitors;
+    try {
+      monitors = JSON.parse(text);
+    } catch {
+      throw new Error(`datadog returned non-JSON (${res.status})`);
+    }
+    if (!Array.isArray(monitors)) throw new Error('unexpected datadog payload shape');
+
+    const byId = new Map(monitors.map(m => [m.id, m]));
+
+    let overall = 'operational';
+    const components = STATUS_COMPONENTS.map(c => {
+      let status = 'operational';
+      for (const ref of c.monitors) {
+        const mon = byId.get(ref.id);
+        // A monitor we expected but did not get back is an unknown, not an OK —
+        // otherwise a deleted or renamed monitor silently reads as healthy.
+        status = worstStatus(status, mon ? monitorStateToStatus(mon.overall_state, ref.onAlert) : 'unknown');
+      }
+      overall = worstStatus(overall, status);
+      return { id: c.id, name: c.name, description: c.description, status };
+    });
+
+    const response = new Response(
+      statusPayload(overall, components, { configured: true }),
+      { status: 200, headers }
+    );
+    ctx.waitUntil(cache.put(cacheKey, response.clone()));
+    return response;
+  } catch (err) {
+    console.error('[status] upstream failed:', err && err.message ? err.message : err);
+    // Degrade to unknown — never assert operational on a failed lookup.
+    return new Response(
+      statusPayload('unknown', unknownComponents, { configured: true, error: 'upstream_unavailable' }),
+      { status: 200, headers }
     );
   }
 }

@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{#
+  Public system status page. Data comes from same-origin /api/status, which
+  reads live Datadog monitor state (see src/worker.js → handleStatus).
+
+  HONESTY RULE: this page must never render "operational" as a default. The
+  initial server-rendered state is "Checking…" and any fetch failure resolves
+  to "Status unavailable" — not to green. A status page that cannot go red is
+  worse than no status page.
+#}
+
+{% block content %}
+<main id="status-page" class="status-page">
+  <section class="section">
+    <div class="container">
+
+      <div class="status-hero" id="status-hero" data-state="loading">
+        <span class="status-dot" aria-hidden="true"></span>
+        <h1 class="status-headline" id="status-headline">Checking system status…</h1>
+        <p class="status-sub" id="status-sub">Fetching live monitor data.</p>
+      </div>
+
+      <div class="status-card">
+        <h2 class="status-card-title">Components</h2>
+        <ul class="status-components" id="status-components">
+          <li class="status-component" data-state="loading">
+            <span class="status-dot status-dot--sm" aria-hidden="true"></span>
+            <span class="status-component-text">
+              <span class="status-component-name">Loading…</span>
+            </span>
+          </li>
+        </ul>
+        <p class="status-updated" id="status-updated"></p>
+      </div>
+
+      <div class="status-note">
+        <h2>How this page works</h2>
+        <p>
+          Component status is derived from live infrastructure monitors, not set
+          by hand. If we cannot reach our monitoring, this page reports
+          <strong>unknown</strong> rather than assuming everything is fine.
+        </p>
+        <p>
+          Current coverage is edge-and-origin availability across our
+          platform. We are adding per-service checks that verify the customer
+          path end to end; until those land, this page reflects overall
+          availability rather than individual features.
+        </p>
+        <p>
+          Security questions or an incident to report:
+          <a href="mailto:security@divinci.ai">security@divinci.ai</a>.
+          See also our <a href="/security/">security page</a>.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<style>
+main#status-page.status-page {
+  background-color: var(--color-bg-primary, #f8f4f0);
+  padding: 3rem 0 5rem;
+  min-height: 100vh;
+}
+
+.status-hero {
+  max-width: 52rem;
+  margin: 1rem auto 2rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background: var(--color-surface-light, #fff);
+  border: 1px solid var(--color-border-dark, #d4c4a0);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(30, 58, 43, 0.09);
+}
+
+.status-headline {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d5a4f;
+  margin: 0.85rem 0 0.4rem;
+  line-height: 1.2;
+  text-shadow: none;
+}
+
+.status-sub {
+  color: var(--color-neutral-secondary, #7e8d95);
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Status dot — the single source of colour truth for both this page and the
+   footer indicator. Colour is driven by [data-state] on the ancestor. */
+.status-dot {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: #7e8d95;
+  box-shadow: 0 0 0 4px rgba(126, 141, 149, 0.18);
+  vertical-align: middle;
+}
+.status-dot--sm {
+  width: 0.6rem;
+  height: 0.6rem;
+  box-shadow: 0 0 0 3px rgba(126, 141, 149, 0.16);
+  flex-shrink: 0;
+}
+
+[data-state="operational"]   .status-dot { background: #2f9e44; box-shadow: 0 0 0 4px rgba(47, 158, 68, 0.18); }
+[data-state="degraded"]      .status-dot { background: #f0a020; box-shadow: 0 0 0 4px rgba(240, 160, 32, 0.20); }
+[data-state="partial_outage"].status-dot,
+[data-state="partial_outage"] .status-dot { background: #e8590c; box-shadow: 0 0 0 4px rgba(232, 89, 12, 0.20); }
+[data-state="major_outage"]  .status-dot { background: #c92a2a; box-shadow: 0 0 0 4px rgba(201, 42, 42, 0.20); }
+[data-state="unknown"]       .status-dot,
+[data-state="loading"]       .status-dot { background: #7e8d95; box-shadow: 0 0 0 4px rgba(126, 141, 149, 0.18); }
+
+[data-state="loading"] .status-dot { animation: status-pulse 1.4s ease-in-out infinite; }
+@keyframes status-pulse { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-state="loading"] .status-dot { animation: none; }
+}
+
+.status-card {
+  max-width: 52rem;
+  margin: 0 auto 2rem;
+  padding: 2rem 2.25rem;
+  background: var(--color-surface-light, #fff);
+  border: 1px solid var(--color-border-dark, #d4c4a0);
+  border-radius: 14px;
+}
+
+.status-card-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.35rem;
+  color: #2d5a4f;
+  margin: 0 0 1.25rem;
+}
+
+.status-components { list-style: none; margin: 0; padding: 0; }
+
+.status-component {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.95rem 0;
+  border-top: 1px solid var(--color-border-accent, rgba(184, 160, 128, 0.3));
+}
+.status-component:first-child { border-top: none; }
+.status-component .status-dot--sm { margin-top: 0.3rem; }
+
+.status-component-text { display: flex; flex-direction: column; gap: 0.15rem; }
+.status-component-name { font-weight: 700; color: #2d3c34; }
+.status-component-desc { font-size: 0.9rem; color: var(--color-neutral-secondary, #7e8d95); }
+.status-component-state { margin-left: auto; font-size: 0.85rem; font-weight: 600; color: #4a5a50; text-transform: capitalize; }
+
+.status-updated {
+  margin: 1.25rem 0 0;
+  font-size: 0.82rem;
+  color: var(--color-accent-secondary, #8b7659);
+}
+
+.status-note {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+  color: #3a4a41;
+  line-height: 1.7;
+}
+.status-note h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.2rem;
+  color: #2d5a4f;
+  margin: 1.5rem 0 0.6rem;
+}
+.status-note p { margin: 0 0 0.9rem; }
+.status-note a { color: #2d5a4f; border-bottom: 1px solid rgba(45, 90, 79, 0.35); text-decoration: none; }
+
+@media screen and (max-width: 600px) {
+  .status-hero { margin: 0.5rem 1rem 1.5rem; padding: 2rem 1.25rem; }
+  .status-headline { font-size: 1.5rem; }
+  .status-card { margin: 0 1rem 1.5rem; padding: 1.5rem 1.25rem; }
+  .status-note { padding: 0 1rem; }
+  .status-component-state { margin-left: 0; }
+}
+</style>
+
+<script>
+(function () {
+  var LABELS = {
+    operational:    { head: 'All systems operational',       sub: 'All monitored components are healthy.' },
+    degraded:       { head: 'Degraded performance',          sub: 'Some components are reporting problems.' },
+    partial_outage: { head: 'Partial outage',                sub: 'Some components are unavailable.' },
+    major_outage:   { head: 'Major outage',                  sub: 'We are aware of a significant problem and investigating.' },
+    unknown:        { head: 'Status unavailable',            sub: 'We could not reach our monitoring. This does not necessarily mean anything is wrong — but we will not guess.' }
+  };
+
+  function render(data) {
+    var state = (data && data.status) || 'unknown';
+    if (!LABELS[state]) state = 'unknown';
+
+    var hero = document.getElementById('status-hero');
+    hero.setAttribute('data-state', state);
+    document.getElementById('status-headline').textContent = LABELS[state].head;
+    document.getElementById('status-sub').textContent = LABELS[state].sub;
+
+    var list = document.getElementById('status-components');
+    var comps = (data && data.components) || [];
+    list.textContent = '';
+    if (!comps.length) {
+      var empty = document.createElement('li');
+      empty.className = 'status-component';
+      empty.setAttribute('data-state', 'unknown');
+      empty.textContent = 'No component data available.';
+      list.appendChild(empty);
+    }
+    comps.forEach(function (c) {
+      var cs = LABELS[c.status] ? c.status : 'unknown';
+      var li = document.createElement('li');
+      li.className = 'status-component';
+      li.setAttribute('data-state', cs);
+
+      var dot = document.createElement('span');
+      dot.className = 'status-dot status-dot--sm';
+      dot.setAttribute('aria-hidden', 'true');
+
+      var text = document.createElement('span');
+      text.className = 'status-component-text';
+      var name = document.createElement('span');
+      name.className = 'status-component-name';
+      // textContent, never innerHTML — this is remote data.
+      name.textContent = c.name || c.id || 'Component';
+      text.appendChild(name);
+      if (c.description) {
+        var desc = document.createElement('span');
+        desc.className = 'status-component-desc';
+        desc.textContent = c.description;
+        text.appendChild(desc);
+      }
+
+      var st = document.createElement('span');
+      st.className = 'status-component-state';
+      st.textContent = cs.replace('_', ' ');
+
+      li.appendChild(dot); li.appendChild(text); li.appendChild(st);
+      list.appendChild(li);
+    });
+
+    var updated = document.getElementById('status-updated');
+    if (data && data.updatedAt) {
+      var d = new Date(data.updatedAt);
+      updated.textContent = 'Last checked: ' + (isNaN(d) ? data.updatedAt : d.toLocaleString());
+    } else {
+      updated.textContent = '';
+    }
+  }
+
+  function load() {
+    fetch('/api/status', { headers: { 'Accept': 'application/json' } })
+      .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+      .then(render)
+      .catch(function () { render({ status: 'unknown', components: [] }); });
+  }
+
+  load();
+  setInterval(load, 60000);
+})();
+</script>
+{% endblock %}
