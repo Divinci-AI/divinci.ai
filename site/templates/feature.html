@@ -2,16 +2,16 @@
 
 {% block body_class %}feature-page-template{% endblock %}
 
-{# Preload the hero poster image so the browser fetches it during HTML parsing
-   rather than waiting until it sees the <video poster=""> tag. External URLs
-   pass through untouched; local paths are routed through Cloudflare Image
-   Resizing to compress large PNGs to ~150KB WebP. #}
+{# Preload the hero poster so it starts during HTML parse. Use the direct
+   asset URL for local paths — staging's Image Resizing zone is not in the
+   CIR allowed-origins list (ERROR 9401 / 403 on /cdn-cgi/image/), and our
+   feature heroes are already compressed WebP. External URLs pass through. #}
 {% block extra_head %}
 {% if page.extra.hero_poster %}
   {% if page.extra.hero_poster is starting_with("http") %}
 <link rel="preload" as="image" href="{{ page.extra.hero_poster }}" fetchpriority="high">
   {% else %}
-<link rel="preload" as="image" href="/cdn-cgi/image/width=1200,format=auto,quality=82/{{ page.extra.hero_poster | trim_start_matches(pat='/') }}" fetchpriority="high">
+<link rel="preload" as="image" href="/{{ page.extra.hero_poster | trim_start_matches(pat='/') }}" fetchpriority="high">
   {% endif %}
 {% endif %}
 {# Pages that opt in via `extra.noindex = true` (e.g. /api/ which embeds

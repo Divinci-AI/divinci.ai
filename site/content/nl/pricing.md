@@ -134,6 +134,7 @@ html, body, main, .feature-page {
     border-radius: 20px;
     opacity: 0.02;
     z-index: 0;
+    pointer-events: none;
 }
 
 .pricing-header {
@@ -146,13 +147,12 @@ html, body, main, .feature-page {
 .pricing-title {
     font-size: 2.5rem;
     font-weight: 700;
+    line-height: 1.3;
     color: var(--color-neutral-inverse, #2d5a4f);
     margin-bottom: 1rem;
-    background: var(--gradient-primary, linear-gradient(135deg, #2d5a4f, #7ba8d1));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     display: inline-block;
+    /* Kill leonardo-bg cream text-shadow — it washes out Fraunces descenders */
+    text-shadow: none;
 }
 
 .pricing-subtitle {
@@ -167,6 +167,7 @@ html, body, main, .feature-page {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
+    cursor: pointer;
 }
 
 .pricing-toggle span {
@@ -241,6 +242,7 @@ input:checked + .toggle-slider:before {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-end; /* Shared bottom baseline; height grows upward */
     gap: 30px;
     position: relative;
     z-index: 1;
@@ -250,7 +252,7 @@ input:checked + .toggle-slider:before {
     background: var(--color-bg-primary, #f8f4f0);
     border-radius: 12px;
     box-shadow: var(--shadow-large);
-    padding: 2.5rem;
+    padding: 2.5rem; /* bottom matches title-to-top spacing */
     flex: 1;
     min-width: 280px;
     max-width: 350px;
@@ -258,6 +260,23 @@ input:checked + .toggle-slider:before {
     position: relative;
     overflow: hidden;
     border: 1px solid var(--color-border-light);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Pin CTA to the card foot so leftover height doesn't sit under the button */
+.pricing-card > p:has(.pricing-cta),
+.pricing-card > .pricing-cta {
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+/* Stepping-stone heights via extra top padding (grows upward; bottoms stay tight).
+   Desktop only. */
+@media (min-width: 769px) {
+    .pricing-card:nth-child(1) { padding-top: 2.5rem; }
+    .pricing-card:nth-child(2) { padding-top: 3.5rem; }
+    .pricing-card:nth-child(3) { padding-top: 4.5rem; }
 }
 
 /* Coming-soon overlay: scoped to individual PAID cards (checkout isn't wired
@@ -297,14 +316,13 @@ input:checked + .toggle-slider:before {
 
 .pricing-card.featured {
     border-top: 4px solid var(--color-accent-primary);
-    transform: scale(1.05);
     /* The "Most Popular" badge floats above the top edge — needs the card's
        own overflow to NOT clip it (unlike the other cards' corner circle). */
     overflow: visible;
 }
 
 .pricing-card.featured:hover {
-    transform: scale(1.05) translateY(-5px);
+    transform: translateY(-5px);
 }
 
 .pricing-card::before {
@@ -795,14 +813,14 @@ input:checked + .toggle-slider:before {
 <h1 class="pricing-title">Eenvoudige, transparante prijzen</h1>
 <p class="pricing-subtitle">Kies het plan dat bij uw bedrijf past. Alle plannen bevatten de kernfuncties, updates en basisondersteuning.</p>
 
-<div class="pricing-toggle">
+<label class="pricing-toggle" for="pricingToggle">
 <span class="monthly active">Maandelijks</span>
-<label class="toggle-switch">
+<span class="toggle-switch">
 <input type="checkbox" id="pricingToggle">
 <span class="toggle-slider"></span>
-</label>
+</span>
 <span class="annual">Jaarlijks <span class="has-text-success">(Bespaar 20%)</span></span>
-</div>
+</label>
 </div>
 
 <div class="pricing-cards">
@@ -1086,17 +1104,6 @@ document.addEventListener('DOMContentLoaded', function() {
             annualPrices.forEach(price => price.classList.remove('active'));
             syncPlanCtaBilling('monthly');
         }
-    });
-
-    // Monthly/Annual text click also toggles
-    monthlySpan.addEventListener('click', function() {
-        pricingToggle.checked = false;
-        pricingToggle.dispatchEvent(new Event('change'));
-    });
-
-    annualSpan.addEventListener('click', function() {
-        pricingToggle.checked = true;
-        pricingToggle.dispatchEvent(new Event('change'));
     });
 
     // Feature dropdown functionality

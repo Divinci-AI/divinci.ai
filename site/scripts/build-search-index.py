@@ -97,8 +97,10 @@ def collect(lang_dir: Path, lang: str, out: list) -> None:
         excerpt = (summary + " " + plain(body))[:300].strip()
 
         is_blog = p.parent.name == "blog"
-        url = f"/{lang}/" if lang != "en" else ""
-        url += f"blog/{slug}/" if is_blog else f"{slug}/"
+        # Always root-absolute so results don't resolve relative to the
+        # current path (e.g. /blog/foo/ + blog/bar/ → /blog/foo/blog/bar/).
+        prefix = f"/{lang}/" if lang != "en" else "/"
+        url = prefix + (f"blog/{slug}/" if is_blog else f"{slug}/")
 
         taxonomies = fm.get("taxonomies", {})
         if not isinstance(taxonomies, dict):

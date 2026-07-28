@@ -100,6 +100,13 @@ const SPEECH_DEBOUNCE_MS = 300;
 /** Hero bottom must clear this fraction of the viewport before the launcher fades in. */
 const HERO_HIDE_BOTTOM_RATIO = 0.72;
 
+/**
+ * localStorage prefix for the gate's signed transcript + signature. Stored
+ * beside "divinci-chat-history:" and cleared with it — the two must never
+ * diverge (see saveMessages).
+ */
+const GATE_STATE_KEY = "divinci-chat-gate:";
+
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, html?: string): HTMLElementTagNameMap[K] {
   const node = document.createElement(tag);
   if (cls) node.className = cls;
@@ -263,7 +270,25 @@ class DivinciChatWidget {
         this.messages = [];
       }
     }
-    
+
+    // Restore the SIGNED transcript that backs those messages. Without this the
+    // rendered history outlives its signature: the message bubbles come back on
+    // reload but the gate's transcript/signiture are empty, so every operation
+    // that must prove the conversation is authentic — submitFeedback() and the
+    // "continue in app" handoff — fails before it reaches the network.
+    // (That was the "Send feedback does nothing, no console or network error"
+    // bug: submitFeedback threw its no-signed-transcript guard and the catch
+    // below used to swallow it.)
+    const storedGate = localStorage.getItem(GATE_STATE_KEY + cfg.releaseId);
+    if (storedGate) {
+      try {
+        const { transcript, signiture } = JSON.parse(storedGate);
+        this.client.freeChatGate.hydrate(transcript, signiture);
+      } catch {
+        // Unparseable — leave the gate empty; the next send() re-signs.
+      }
+    }
+
     // Returning visitor: skip straight to chat if a verification token persists.
     if (this.client.freeChatGate.loadStoredToken(this.cfg.releaseId)) this.view = "chat";
     this.mount();
@@ -273,6 +298,12 @@ class DivinciChatWidget {
   private saveMessages(): void {
     try {
       localStorage.setItem("divinci-chat-history:" + this.cfg.releaseId, JSON.stringify(this.messages));
+      // Keep the signed transcript in lockstep with the rendered messages —
+      // persisting one without the other is what broke feedback across reloads.
+      localStorage.setItem(
+        GATE_STATE_KEY + this.cfg.releaseId,
+        JSON.stringify(this.client.freeChatGate.getState()),
+      );
     } catch {
       // ignore full storage
     }
@@ -403,6 +434,7 @@ class DivinciChatWidget {
       if (confirm("Clear this conversation history?")) {
         this.messages = [];
         localStorage.removeItem("divinci-chat-history:" + this.cfg.releaseId);
+        localStorage.removeItem(GATE_STATE_KEY + this.cfg.releaseId);
         this.client.freeChatGate.reset();
         this.setView("chat");
         this.render();
@@ -1022,9 +1054,19 @@ class DivinciChatWidget {
           m.ratingDone = true;
           this.saveMessages();
           this.render();
-        } catch {
+        } catch (err) {
+          // NEVER swallow this silently. A bare `catch {}` here is what made the
+          // signed-transcript bug invisible for as long as it lasted: the button
+          // reverted to its idle label with no console error and no network
+          // request, so it read as "the click did nothing".
+          console.error("[Divinci] feedback submission failed:", err);
           submitBtn.disabled = false;
           submitBtn.textContent = "Send feedback";
+          if (!box.querySelector(".dvc-feedback-err")) {
+            const errEl = el("p", "dvc-feedback-err");
+            errEl.textContent = "Couldn't send that — please try again.";
+            box.appendChild(errEl);
+          }
         }
       });
     });

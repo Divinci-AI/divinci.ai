@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="100%" style="max-width:900px;height:auto;font-family:'DM Sans',-apple-system,sans-serif;">
+  <rect x="0" y="0" width="900" height="420" fill="#faf8f5"/>
+  <text x="450" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1e3a2b">How much of a raw crawl is repeated boilerplate</text>
+  <text x="450" y="68" text-anchor="middle" font-size="15" fill="#6b6257">Exact-duplicate chunk share measured per site, before cross-page dedup</text>
+  <line x1="120" y1="340" x2="850" y2="340" stroke="#b8a080" stroke-width="2"/>
+  <line x1="120" y1="110" x2="120" y2="340" stroke="#b8a080" stroke-width="2"/>
+  <text x="95" y="115" text-anchor="end" font-size="13" fill="#6b6257">100%</text>
+  <text x="95" y="230" text-anchor="end" font-size="13" fill="#6b6257">50%</text>
+  <text x="95" y="345" text-anchor="end" font-size="13" fill="#6b6257">0%</text>
+  <line x1="120" y1="225" x2="850" y2="225" stroke="#e5ddd1" stroke-width="1"/>
+  <line x1="120" y1="110" x2="850" y2="110" stroke="#e5ddd1" stroke-width="1"/>
+  <rect x="151" y="145" width="120" height="195" rx="3" fill="#1e3a2b"/>
+  <text x="211" y="137" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">84.9%</text>
+  <text x="211" y="118" text-anchor="middle" font-size="12" fill="#a04848">one footer, repeated 233&#215;</text>
+  <text x="211" y="362" text-anchor="middle" font-size="14" fill="#3a342c">perldoc.perl.org</text>
+  <rect x="334" y="269" width="120" height="71" rx="3" fill="#2d5a4f"/>
+  <text x="394" y="261" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">30.9%</text>
+  <text x="394" y="362" text-anchor="middle" font-size="14" fill="#3a342c">justia.com</text>
+  <rect x="516" y="288" width="120" height="52" rx="3" fill="#2d5a4f"/>
+  <text x="576" y="280" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">22.5%</text>
+  <text x="576" y="362" text-anchor="middle" font-size="14" fill="#3a342c">planet4589.org</text>
+  <rect x="699" y="292" width="120" height="48" rx="3" fill="#2d5a4f"/>
+  <text x="759" y="284" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">21.1%</text>
+  <text x="759" y="362" text-anchor="middle" font-size="14" fill="#3a342c">postgresql.org</text>
+  <text x="450" y="408" text-anchor="middle" font-size="13" fill="#6b6257">dedup keeps the first occurrence &#8212; perldoc.perl.org went from 33,251 chunks to 5,035 with zero information loss</text>
+</svg>

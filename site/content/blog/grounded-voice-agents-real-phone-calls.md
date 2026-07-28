@@ -1,6 +1,6 @@
 +++
-title = "Putting a Grounded RAG Assistant on a Real Phone Number"
-description = "We gave our RAG-grounded, fine-tuned assistant a phone number — and then spent a marathon session cutting first-audio latency from ~7 seconds to ~4.5 while keeping every safety guarantee. The wins came from measuring, not guessing: the model's hidden thinking phase, a TTS stall, a timestamp read aloud as '597 Z', and a cache lookup that had no business being serial."
+title = "Putting a Grounded Assistant on a Real Phone Number"
+description = "We put our grounded assistant on a real phone number, then cut first-audio latency from ~7s to ~4.5s — by measuring the call path, not guessing at it."
 date = 2026-07-18T16:00:00+00:00
 template = "blog-post.html"
 
@@ -12,9 +12,12 @@ tags = ["Voice Agents", "LiveKit", "SIP", "RAG", "Streaming", "Latency", "Gemini
 math = false
 author = "Mike Mooring"
 author_avatar = "images/Michael-Mooring.png"
-title_display = "Putting a Grounded RAG Assistant<br>on a Real Phone Number."
+featured_image = "images/voice-agents-hero.webp"
+hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/voice-agents-hero.webm"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/voice-agents-hero.webp"
+title_display = "Putting a Grounded Assistant<br>on a Real Phone Number"
 reading_time = 9
-summary = "Web chat is a solved surface for grounded assistants. A phone call is not: there's no screen to hide latency behind, no markdown, no citations footer — just a voice that either answers quickly and correctly or doesn't. We wired our release pipeline (RAG + fine-tune + guardrails + signed transcripts) to an ordinary phone number via a SIP trunk and LiveKit, then instrumented every phase of the call path. What we found contradicted most of our assumptions: token streaming alone bought us nothing, the escrow token-count we suspected cost almost nothing, and the two real villains were the model's invisible reasoning phase and a semantic-cache lookup running serially before retrieval. This is the build log — including the bug where the assistant started every second reply by reading a timestamp aloud."
+summary = "Web chat hides latency behind a screen. A phone call doesn't. We wired our grounded release pipeline to an ordinary number, instrumented every phase of the path, and cut first-audio latency from ~7s to ~4.5s without giving up safety. This is the build log."
 +++
 
 ---

@@ -27,9 +27,12 @@
     <div class="hero-content">
         <div class="hero-image">
             <img src="/images/davinci-painter-robot-800w.webp" srcset="/images/davinci-painter-robot-400w.webp 400w, /images/davinci-painter-robot-600w.webp 600w, /images/davinci-painter-robot-800w.webp 800w" sizes="(max-width: 600px) 100vw, (max-width: 900px) 600px, 800px" alt="Leonardo da Vinci drawing a robot" width="800" height="800" class="davinci-image" id="hero-poster" fetchpriority="high" loading="eager" decoding="async" onerror="this.onerror=null;this.src='https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Davinci_the_painter_painting_a_robot_in_a_line_art.webp';">
+            {# Silent encode (`-silent`): the mute/unmute control is gone, replaced by
+               the hover play button below, so the audio track is dead weight. Stripped
+               with `ffmpeg -c:v copy -an` — same VP9/H.264 video bitstream, 7-9% smaller. #}
             <video id="hero-video" muted playsinline preload="metadata" data-lazy-video data-loop-once webkit-playsinline>
-                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready.webm" type="video/webm">
-                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready.mp4" type="video/mp4">
+                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready-silent.webm" type="video/webm">
+                <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready-silent.mp4" type="video/mp4">
             </video>
             {# Poster fallback for videos 2 and 3: use the davinci poster image so
                if the video data stalls or never resolves, the user sees the same
@@ -43,7 +46,19 @@
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-robot-chat-interface.webm" type="video/webm">
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-robot_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__dba81638-02b0-4792-92f5-37ef95f8ceb0_0.mp4" type="video/mp4">
             </video>
-            <button id="sound-toggle">{{ translations.hero.sound_unmute | default(value="Unmute") }}</button>
+            {# Hover-reveal play affordance, in place of the old mute/unmute button.
+               Hovering the circle grows a liquid blob out of the play icon and across
+               the video area; clicking expands the theater below over the whole hero.
+               Only revealed once the cycling videos are actually running — main.js
+               adds .hero-play-ready, so the mobile/slow-connection static-image
+               fallback never shows a play button with nothing behind it. #}
+            <button type="button" id="hero-play" class="hero-play" aria-controls="hero-theater" aria-expanded="false"
+                    aria-label="{{ translations.hero.play_video | default(value='Play the Divinci AI film') }}">
+                <svg class="hero-play-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                    <path d="M12 8.8 23.4 16 12 23.2Z"/>
+                </svg>
+            </button>
+            <div class="hero-liquid" aria-hidden="true"></div>
         </div>
         <div class="hero-text">
             <h1>
@@ -179,6 +194,41 @@
             </script>
         </div>
     </div>
+
+    {# Expanding video theater. A sibling of .hero-content rather than a child so it
+       can span the whole hero section; `left/right: 4rem` mirrors .hero's own
+       horizontal padding, so it fills the section while keeping its margins.
+       The iframe is only created on first open — no YouTube payload on page load.
+       youtube-nocookie.com is already allow-listed in the worker's frame-src CSP. #}
+    <div id="hero-theater" class="hero-theater" hidden
+         data-embed="https://www.youtube-nocookie.com/embed/GlHHy7tcSdw?autoplay=1&amp;rel=0&amp;modestbranding=1&amp;playsinline=1">
+        <div class="hero-theater-stage"></div>
+        <button type="button" class="hero-theater-close"
+                aria-label="{{ translations.hero.close_video | default(value='Close video') }}">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M6 6 18 18M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+        </button>
+    </div>
+
+    {# fractalNoise turbulence displacing the liquid blob's edge. Animating
+       baseFrequency in SMIL keeps the distortion crawling, so the growth reads as
+       organic flow rather than a scaling circle. #}
+    <svg class="svg-hidden" aria-hidden="true" focusable="false">
+        <filter id="hero-liquid-filter" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.011 0.019" numOctaves="3" seed="7" result="rawnoise">
+                <animate attributeName="baseFrequency" dur="11s" repeatCount="indefinite"
+                         values="0.011 0.019;0.021 0.010;0.014 0.024;0.011 0.019"/>
+            </feTurbulence>
+            {# Force the noise opaque before it is used as a displacement map.
+               feTurbulence emits a noisy alpha channel, and the filter pipeline
+               premultiplies R/G by it — which flattens the displacement vectors
+               to near-zero and makes the blob vanish entirely in Chrome. #}
+            <feColorMatrix in="rawnoise" type="matrix" result="noise"
+                           values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0 1"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="46" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+    </svg>
 </section>
 
 <section class="compare-section compare-diptych-a2b3" id="solutions" aria-labelledby="compare-a2b3-title">

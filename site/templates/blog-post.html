@@ -8,14 +8,22 @@
 {# Preload the hero video poster — it's typically the LCP element on blog
    posts that use a hero video. Without this, the browser doesn't fetch the
    poster until it parses the <video> tag in the body, ~6-12s into the load. #}
-{% if page.extra.hero_video %}
-  {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
-  {% if page.extra.hero_video_poster %}{% set poster_url = page.extra.hero_video_poster %}{% else %}{% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}{% endif %}
+{% if page.extra.hero_video or page.extra.hero_youtube %}
+  {% if page.extra.hero_video_poster %}
+    {% set poster_url = page.extra.hero_video_poster %}
+  {% elif page.extra.hero_video %}
+    {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
+    {% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}
+  {% else %}
+    {% set poster_url = "https://i.ytimg.com/vi/" ~ page.extra.hero_youtube ~ "/hqdefault.jpg" %}
+  {% endif %}
 {# Preload the poster directly without CIR. CIR was re-encoding our
    already-optimized 87-245KB WebPs to ~100-220KB JPEG (no size benefit,
    added cold-cache latency that registered as 4-9s LCP on the <video>
    element). Direct serve from /images/ is cached at Cloudflare edge. #}
 <link rel="preload" as="image" href="{{ poster_url }}" fetchpriority="high">
+{% elif page.extra.hero_background %}
+<link rel="preload" as="image" href="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.hero_background }}" fetchpriority="high">
 {% elif page.extra.featured_image %}
 {# Pipe local featured_image through Cloudflare Image Resizing so large PNGs
    (1-2MB) get compressed to ~150-200KB at 1600w. External URLs pass through
@@ -143,39 +151,43 @@ window.MathJax = {
 
 
 <!-- Blog Post Hero Section -->
-<section class="blog-post-hero" {% if page.extra.hero_background and not page.extra.hero_video %}style="background-image: linear-gradient(135deg, rgba(248, 244, 240, 0.95) 0%, rgba(240, 235, 225, 0.95) 100%), url('{{ get_url(path=page.extra.hero_background) }}'); background-size: cover; background-position: center;"{% endif %}>
-    <!-- Video Background (if specified) -->
-    {% if page.extra.hero_video %}
+{# has-hero-background: show the image raw (no cream wash), matching /www-rag/.
+   Video/YouTube heroes keep the cream overlay for title contrast. #}
+<section class="blog-post-hero{% if page.extra.hero_background and not page.extra.hero_video and not page.extra.hero_youtube %} has-hero-background{% elif page.extra.hero_video or page.extra.hero_youtube %} has-hero-video{% endif %}">
+    <!-- Hero media background: webm, silent YouTube loop, or static image -->
+    {% if page.extra.hero_video or page.extra.hero_youtube or page.extra.hero_background %}
     <div class="hero-video-background">
-        {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
-        {% if page.extra.hero_video_poster %}{% set poster_url = page.extra.hero_video_poster %}{% else %}{% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}{% endif %}
-        {# Use the poster directly. CIR re-encode was adding latency
-           without size benefit on our already-optimized WebPs. #}
+        {% if page.extra.hero_video or page.extra.hero_youtube %}
+        {% if page.extra.hero_video_poster %}
+          {% set poster_url = page.extra.hero_video_poster %}
+        {% elif page.extra.hero_video %}
+          {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
+          {% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}
+        {% else %}
+          {% set poster_url = "https://i.ytimg.com/vi/" ~ page.extra.hero_youtube ~ "/hqdefault.jpg" %}
+        {% endif %}
         {% set poster_render = poster_url %}
-        {# Standard <video autoplay> pattern. The universal defer script in
-           base.html catches the autoplay attribute and defers the download
-           until after window.load — so the poster paints immediately and
-           the page weight at load is just the poster, not the video.
-           width/height attrs lock the aspect ratio so the browser reserves
-           layout space before the poster arrives (prevents CLS). #}
-        {# LCP-friendly hero: render the poster as a real <img> so Lighthouse
-           measures LCP off the image (fast), then overlay the <video> on top
-           via CSS. The video stays preload=none + IntersectionObserver-lazy
-           so it only downloads when visible. When the video starts playing,
-           data-hero-video JS fades it in. Saves 3-6s LCP on blog posts. #}
-        {# Responsive srcset via Cloudflare Image Resizing so mobile pulls a
-           600w (~30KB) variant instead of the 1600w (~150KB) original. CIR
-           accepts both local paths and external URLs by prefixing
-           /cdn-cgi/image/<opts>/<url> — so both branches get srcset. #}
         {% if poster_render is starting_with("http") %}
         <img src="{{ poster_render }}" srcset="/cdn-cgi/image/width=600,format=auto,quality=82/{{ poster_render }} 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/{{ poster_render }} 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1280px) 1200px, 1600px" alt="{{ page.title }}" width="1600" height="900" class="hero-bg-poster" loading="eager" fetchpriority="high" decoding="async"{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
         {% else %}
         <img src="{{ poster_render }}" srcset="/cdn-cgi/image/width=600,format=auto,quality=82{{ poster_render }} 600w, /cdn-cgi/image/width=1200,format=auto,quality=82{{ poster_render }} 1200w, {{ poster_render }} 1600w" sizes="(max-width: 768px) 100vw, (max-width: 1280px) 1200px, 1600px" alt="{{ page.title }}" width="1600" height="900" class="hero-bg-poster" loading="eager" fetchpriority="high" decoding="async"{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
         {% endif %}
+        {% if page.extra.hero_youtube %}
+        {# Silent looping YouTube background. pointer-events:none so the
+           iframe never steals clicks; playlist=id is required for loop=1. #}
+        <iframe class="hero-bg-youtube" src="https://www.youtube-nocookie.com/embed/{{ page.extra.hero_youtube }}?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist={{ page.extra.hero_youtube }}&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;disablekb=1&amp;fs=0" title="{{ page.title }}" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" tabindex="-1" aria-hidden="true"></iframe>
+        {% elif page.extra.hero_video %}
         <video autoplay muted loop playsinline webkit-playsinline preload="none" width="1600" height="900" class="hero-bg-video" data-hero-video{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
             <source src="{{ page.extra.hero_video }}" type="video/webm">
         </video>
+        {% endif %}
+        {% elif page.extra.hero_background %}
+        {# Raw cover image — no cream overlay (matches /www-rag/ directory hero). #}
+        <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.hero_background }}" srcset="/cdn-cgi/image/width=600,format=auto,quality=82/{{ page.extra.hero_background }} 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/{{ page.extra.hero_background }} 1200w, /cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.hero_background }} 1600w" sizes="(max-width: 768px) 100vw, (max-width: 1280px) 1200px, 1600px" alt="" width="1600" height="793" class="hero-bg-poster" loading="eager" fetchpriority="high" decoding="async" aria-hidden="true" onerror="this.onerror=null;this.src='{{ get_url(path=page.extra.hero_background) | safe }}';">
+        {% endif %}
+        {% if page.extra.hero_video or page.extra.hero_youtube %}
         <div class="hero-video-overlay"></div>
+        {% endif %}
     </div>
     {% endif %}
 
@@ -242,8 +254,8 @@ window.MathJax = {
 
         <div class="content-wrapper">
             <article class="blog-content">
-                {# Skip in-body featured image when a hero_video is already shown above — avoids duplicating the same visual #}
-                {% if page.extra.featured_image and not page.extra.hero_video %}
+                {# Skip in-body featured image when a hero media background is already shown above — avoids duplicating the same visual #}
+                {% if page.extra.featured_image and not page.extra.hero_video and not page.extra.hero_youtube and not page.extra.hero_background %}
                     {% if page.extra.featured_image is ending_with(".mp4") or page.extra.featured_image is ending_with(".webm") %}
                         <video class="featured-image" muted loop playsinline webkit-playsinline preload="metadata" width="1600" height="900" data-lazy-video>
                             {% if page.extra.featured_image is ending_with(".mp4") %}
@@ -421,6 +433,8 @@ window.MathJax = {
                                         <source src="{{ get_url(path=post.extra.hero_video) }}" type="video/webm">
                                     </video>
                                 {% endif %}
+                            {% elif post.extra.hero_youtube and post.extra.hero_video_poster %}
+                                <img src="/cdn-cgi/image/width=400,format=auto,quality=80{{ post.extra.hero_video_poster }}" alt="{{ post.title }}" width="400" height="225" class="related-image" loading="lazy" decoding="async">
                             {% elif post.extra.featured_image %}
                                 {% if post.extra.featured_image is starting_with("http") %}
                                     <img src="{{ post.extra.featured_image }}" alt="{{ post.title }}" width="400" height="225" class="related-image" loading="lazy" decoding="async">
@@ -491,6 +505,43 @@ window.MathJax = {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Static hero_background: no tan wash — image shows through raw like /www-rag/. */
+.blog-post-hero.has-hero-background {
+    background: transparent;
+}
+.blog-post-hero.has-hero-background .sacred-geometry-bg {
+    display: none;
+}
+
+/*
+ * Dark raw heroes — real frosted glass.
+ *
+ * Backdrop-filter only samples within the nearest Backdrop Root. Two traps
+ * were flattening the plaques into opaque cream fills:
+ *  1. .blog-post-hero-content { z-index: 2 } — stacking context; drop to auto.
+ *  2. .container { overflow: hidden } — creates a Backdrop Root BETWEEN the
+ *     plaques and the sibling .hero-video-background, so blur samples nothing.
+ *     Override overflow to visible so plaques can fog the hero art.
+ */
+.blog-post-hero.has-hero-background > .container {
+    overflow: visible;
+}
+.blog-post-hero.has-hero-background .blog-post-hero-content {
+    z-index: auto;
+}
+.blog-post-hero.has-hero-background .post-title,
+.blog-post-hero.has-hero-background .post-excerpt,
+.blog-post-hero.has-hero-background .post-meta {
+    /* Light cream wash + strong blur so navy/gold art fogs through */
+    background: linear-gradient(
+        135deg,
+        rgba(248, 244, 240, 0.42) 0%,
+        rgba(240, 235, 225, 0.30) 100%
+    );
+    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+    backdrop-filter: blur(28px) saturate(1.5);
 }
 
 /* Sacred Geometry Background */
@@ -569,6 +620,22 @@ window.MathJax = {
     object-fit: cover;
 }
 
+/* Silent YouTube hero: cover the hero box like object-fit:cover on a 16:9
+   iframe. pointer-events none so it never intercepts clicks/scroll. */
+.hero-bg-youtube {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 */
+    min-height: 100%;
+    min-width: 177.78%; /* 16/9 of height */
+    transform: translate(-50%, -50%);
+    border: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
 /* Video starts hidden; data-hero-video JS fades it in once it can play.
    Until then the underlying <img> poster covers the same area so the
    visual experience is identical. Decoupling lets Lighthouse measure
@@ -589,7 +656,7 @@ window.MathJax = {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, rgba(248,244,240,0.8) 0%, rgba(240,235,225,0.4) 90%);
-    z-index: 1;
+    z-index: 2;
 }
 
 .blog-post-hero-content {
@@ -758,6 +825,9 @@ window.MathJax = {
 /* Preserve hero section gradient */
 .blog-post-hero {
     background: linear-gradient(135deg, rgba(248, 244, 240, 0.85) 0%, rgba(240, 235, 225, 0.7) 100%) !important;
+}
+.blog-post-hero.has-hero-background {
+    background: transparent !important;
 }
 
 /* Dark mode media query override */

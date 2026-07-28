@@ -41,6 +41,41 @@
   line-height: 1.4;
 }
 
+/* Page-header search: icon-only on small screens so it fits beside the logo.
+   Match the hamburger's 48px tap target and keep it vertically centered. */
+@media (max-width: 768px) {
+  header {
+    align-items: center;
+  }
+  header .header-actions {
+    position: static;
+    top: auto;
+    right: auto;
+    display: flex;
+    align-items: center;
+    align-self: center;
+  }
+  header .site-search-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    padding: 0;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+  header .site-search-trigger .search-trigger-label,
+  header .site-search-trigger kbd {
+    display: none;
+  }
+  header .hamburger-menu {
+    align-self: center;
+  }
+}
+
 /* ── Modal ───────────────────────────────────────────────────────────── */
 .search-modal {
   position: fixed;
@@ -67,8 +102,7 @@
 .search-modal input {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid var(--color-border-accent, rgba(184, 160, 128, 0.3));
-  padding: 1rem 1.2rem;
+  padding: 1rem 1.2rem 0.35rem;
   font-size: 1.05rem;
   font-family: 'Source Sans 3', system-ui, sans-serif;
   color: var(--color-neutral-primary, #1e3a2b);
@@ -77,6 +111,14 @@
 }
 .search-modal input::placeholder {
   color: var(--color-text-tertiary, #999);
+}
+.search-hint {
+  margin: 0;
+  padding: 0 1.2rem 0.95rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--color-text-secondary, #4a5a50);
+  border-bottom: 1px solid var(--color-border-accent, rgba(184, 160, 128, 0.3));
 }
 .search-results {
   max-height: 60vh;

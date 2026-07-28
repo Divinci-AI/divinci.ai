@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="100%" style="max-width:900px;height:auto;font-family:'DM Sans',-apple-system,sans-serif;">
+  <rect x="0" y="0" width="900" height="420" fill="#faf8f5"/>
+  <text x="450" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1e3a2b">One site&#8217;s vector index, before and after neighbor compression</text>
+  <text x="450" y="68" text-anchor="middle" font-size="15" fill="#6b6257">libSQL DiskANN index size with float1bit neighbor compression &#8212; and retrieval agreement went up, not down</text>
+  <line x1="120" y1="340" x2="850" y2="340" stroke="#b8a080" stroke-width="2"/>
+  <line x1="120" y1="110" x2="120" y2="340" stroke="#b8a080" stroke-width="2"/>
+  <text x="95" y="115" text-anchor="end" font-size="13" fill="#6b6257">1.2 GiB</text>
+  <text x="95" y="230" text-anchor="end" font-size="13" fill="#6b6257">0.6 GiB</text>
+  <text x="95" y="345" text-anchor="end" font-size="13" fill="#6b6257">0</text>
+  <line x1="120" y1="225" x2="850" y2="225" stroke="#e5ddd1" stroke-width="1"/>
+  <line x1="120" y1="110" x2="850" y2="110" stroke="#e5ddd1" stroke-width="1"/>
+  <rect x="245" y="110" width="160" height="230" rx="3" fill="#2d5a4f"/>
+  <text x="325" y="102" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">1.2 GiB</text>
+  <text x="325" y="362" text-anchor="middle" font-size="14" fill="#3a342c">full-precision neighbors</text>
+  <rect x="565" y="315" width="160" height="25" rx="3" fill="#1e3a2b"/>
+  <text x="645" y="307" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">134 MiB</text>
+  <text x="645" y="362" text-anchor="middle" font-size="14" fill="#3a342c">float1bit neighbors</text>
+  <text x="485" y="225" text-anchor="middle" font-size="22" font-weight="700" fill="#2d5a4f">9&#215; smaller &#8594;</text>
+  <text x="450" y="408" text-anchor="middle" font-size="13" fill="#6b6257">quantization only touches graph-traversal copies &#8212; final distances still compare full-precision vectors</text>
+</svg>

@@ -706,6 +706,153 @@ document.addEventListener("DOMContentLoaded", function() {
     mobileVideoObserver.observe(heroVideo);
   }
 
+  // Hero play button -> expanding video theater.
+  // Replaces the old mute/unmute control (hero video 1 is now a silent encode).
+  // CSS owns the hover reveal and the liquid blob growth; this only handles
+  // opening and closing the theater.
+  const heroPlay = document.getElementById('hero-play');
+  const heroTheater = document.getElementById('hero-theater');
+
+  // Runs on touch and on the desktop static-image fallback too, not just when the
+  // cycling videos load: the panel plays a YouTube film the visitor explicitly
+  // asks for, so it is worth offering wherever the hero renders at all.
+  if (heroPlay && heroTheater) {
+    const heroImage = heroPlay.closest('.hero-image');
+    const stage = heroTheater.querySelector('.hero-theater-stage');
+    const closeBtn = heroTheater.querySelector('.hero-theater-close');
+    let isOpen = false;
+    let revealRadius = 0;
+    // Bumped on every open/close so a deferred callback from a superseded
+    // transition can tell it is stale and bail out.
+    let generation = 0;
+
+    // The cycling videos are deliberately left running behind the theater. They
+    // are silent and fully covered by an opaque panel, and the cycle is driven by
+    // `ended` events plus timeout fallbacks — pausing it desyncs currentVideoIndex
+    // from the visible video and the rotation never recovers.
+
+    // Arms the CSS reveal: desktop fades the button in on hover/focus of the video
+    // area, mobile shows it permanently over the static poster. Added from JS so
+    // the button never appears on a page where the handlers did not bind.
+    if (heroImage) heroImage.classList.add('hero-play-ready');
+
+    // Point the reveal circle at the play button and return the radius that
+    // reaches the theater's farthest corner, so the growth covers the whole box.
+    function positionReveal() {
+      const btn = heroPlay.getBoundingClientRect();
+      const box = heroTheater.getBoundingClientRect();
+      const cx = btn.left + btn.width / 2 - box.left;
+      const cy = btn.top + btn.height / 2 - box.top;
+      heroTheater.style.setProperty('--hero-theater-x', cx + 'px');
+      heroTheater.style.setProperty('--hero-theater-y', cy + 'px');
+      return Math.hypot(Math.max(cx, box.width - cx), Math.max(cy, box.height - cy));
+    }
+
+    function onKeydown(e) {
+      if (e.key === 'Escape') closeTheater();
+    }
+
+    // Run fn once the clip-path transition settles, or on a timeout if
+    // transitionend never arrives. Skipped if another open/close superseded us.
+    function afterReveal(token, fn) {
+      let ran = false;
+      const run = function (e) {
+        if (ran) return;
+        // Ignore bubbled transitions from the close button's opacity fade.
+        if (e && (e.target !== heroTheater || e.propertyName !== 'clip-path')) return;
+        ran = true;
+        heroTheater.removeEventListener('transitionend', run);
+        if (token === generation) fn();
+      };
+      heroTheater.addEventListener('transitionend', run);
+      setTimeout(run, 1100);
+    }
+
+    function openTheater() {
+      if (isOpen) return;
+      isOpen = true;
+      const token = ++generation;
+
+      // Mounted synchronously inside the click handler, not after the reveal:
+      // a cross-origin iframe only inherits the user gesture if it is created
+      // during the activation window, and without it YouTube refuses to autoplay
+      // unmuted and just sits on a spinner. Nothing is fetched before this point.
+      if (!stage.firstElementChild) {
+        const frame = document.createElement('iframe');
+        frame.src = heroTheater.dataset.embed;
+        frame.title = heroPlay.getAttribute('aria-label') || 'Video';
+        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        frame.allowFullscreen = true;
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        stage.appendChild(frame);
+      }
+
+      heroTheater.hidden = false;
+      heroTheater.classList.remove('is-revealed');
+      revealRadius = positionReveal();
+      heroTheater.style.setProperty('--hero-theater-r', '0px');
+      // Flush synchronously rather than waiting a frame: requestAnimationFrame is
+      // paused while the tab is backgrounded or occluded, which would leave the
+      // panel unopened until the tab is next painted. Reading offsetWidth commits
+      // the 0px start value so the grow transitions instead of snapping.
+      void heroTheater.offsetWidth;
+      heroTheater.classList.add('is-open');
+      heroTheater.style.setProperty('--hero-theater-r', revealRadius + 'px');
+
+      heroPlay.setAttribute('aria-expanded', 'true');
+      document.addEventListener('keydown', onKeydown);
+      if (closeBtn) closeBtn.focus();
+
+      // Drop the clip once the reveal lands. Chrome renders a stale raster of the
+      // clip circle for a live cross-origin iframe, so leaving clip-path on would
+      // freeze the player as a small circle for the whole watch. During the growth
+      // itself the player is still black, so the clipped frames cost nothing.
+      afterReveal(token, function () {
+        heroTheater.classList.add('is-revealed');
+      });
+    }
+
+    function closeTheater() {
+      if (!isOpen) return;
+      isOpen = false;
+      const token = ++generation;
+
+      // Tear the player down first — it stops playback immediately, and it keeps
+      // the iframe out of the collapsing (clipped) layer for the same reason as
+      // the deferred mount above.
+      stage.textContent = '';
+
+      heroTheater.classList.remove('is-open');
+      // Restore the clip at full radius and commit it before collapsing:
+      // `none` → `circle()` is not interpolable, so without the reflow the panel
+      // would snap out of existence instead of retracting into the play button.
+      heroTheater.classList.remove('is-revealed');
+      heroTheater.style.setProperty('--hero-theater-r', revealRadius + 'px');
+      void heroTheater.offsetWidth;
+      heroTheater.style.setProperty('--hero-theater-r', '0px');
+
+      heroPlay.setAttribute('aria-expanded', 'false');
+      document.removeEventListener('keydown', onKeydown);
+      afterReveal(token, function () { heroTheater.hidden = true; });
+      heroPlay.focus();
+    }
+
+    heroPlay.addEventListener('click', function (e) {
+      e.preventDefault();
+      openTheater();
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeTheater);
+
+    // Keep the collapse target aimed at the play button if the hero reflows
+    // mid-playback. Harmless while .is-revealed has the clip switched off.
+    window.addEventListener('resize', function () {
+      if (!isOpen) return;
+      revealRadius = positionReveal();
+      heroTheater.style.setProperty('--hero-theater-r', revealRadius + 'px');
+    });
+  }
+
   // Preload video when needed
   function preloadVideo(video) {
     if (video.preload === 'none') {

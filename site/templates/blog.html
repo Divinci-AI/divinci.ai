@@ -202,6 +202,10 @@
                             <video autoplay muted loop playsinline webkit-playsinline preload="none" data-hero-video class="featured-image object-cover featured-image-video">
                                 <source src="{{ featured_post.extra.featured_video }}" type="video/webm">
                             </video>
+                        {% elif featured_post.extra.hero_youtube and featured_post.extra.hero_video_poster %}
+                            {% set p = featured_post.extra.hero_video_poster %}
+                            {% set pn = p | trim_start_matches(pat='/') %}
+                            <img src="{{ p }}" srcset="/cdn-cgi/image/width=400,format=auto,quality=82/{{ pn }} 400w, /cdn-cgi/image/width=600,format=auto,quality=82/{{ pn }} 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/{{ pn }} 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image object-cover" loading="eager" fetchpriority="high" decoding="async">
                         {% elif featured_post.extra.featured_image %}
                             {% if featured_post.extra.featured_image is ending_with(".webm") or featured_post.extra.featured_image is ending_with(".mp4") %}
                                 {% if featured_post.extra.featured_image is starting_with("http") %}
@@ -301,6 +305,8 @@
                                                     <source src="{{ get_url(path=vid_src) }}" type="video/webm">
                                                 </video>
                                             {% endif %}
+                                        {% elif post.extra.hero_youtube and post.extra.hero_video_poster %}
+                                            <img src="/cdn-cgi/image/width=600,format=auto,quality=82{{ post.extra.hero_video_poster }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy" decoding="async">
                                         {% elif post.extra.featured_image %}
                                             {% if post.extra.featured_image is starting_with("http") %}
                                                 <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.featured_image }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ post.extra.featured_image }}';">
@@ -563,8 +569,8 @@
 .blog-intro-col {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 0.5rem 0;
+    justify-content: flex-start;
+    padding: 0.25rem 0 0;
 }
 
 .blog-intro-col .blog-intro-heading {

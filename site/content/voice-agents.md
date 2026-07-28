@@ -3,7 +3,7 @@ title = "AI Voice Agents — Your Grounded Assistant, On a Real Phone Number"
 description = "Give your Divinci release a phone number. Callers get the same RAG-grounded, guardrailed, fine-tuned assistant you ship on the web — streaming answers in seconds over an ordinary phone call. No app, no browser, no sign-up."
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "images/voice-agents-hero.webp"
 feature_category = "ai-config"
 +++
 
@@ -17,26 +17,67 @@ feature_category = "ai-config"
     opacity: 1 !important;
 }
 
-.section-padding { padding: 4rem 0; }
+.feature-page .section-padding { padding: clamp(4rem, 8vw, 7rem) 0; }
 
-.section-heading {
+.feature-page .section-heading {
     font-family: 'Fraunces', serif;
-    font-size: 2.6rem;
+    font-size: clamp(2rem, 5vw, 2.6rem);
     color: #1e3a2b;
     text-align: center;
-    margin-top: 4rem;
-    margin-bottom: 2.5rem;
+    margin-top: clamp(3.5rem, 7vw, 6rem);
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
     line-height: 1.2;
 }
 
-.section-subheading {
+.feature-page .section-subheading {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.1rem;
     color: #5a6862;
     text-align: center;
     max-width: 760px;
-    margin: -1.5rem auto 3rem;
+    margin: -0.5rem auto clamp(2rem, 4vw, 3rem);
     line-height: 1.55;
+}
+
+/* Full-bleed hero — same feature-hero template as AutoRAG / blog posts.
+   Direct /images/ poster (already ~105KB WebP). Staging CIR is not in the
+   allowed-origins list (ERROR 9401), so skip /cdn-cgi/image/ srcset here.
+   Video plays first so the phone is visible; glass plaque fades in after 2s. */
+.feature-page .feature-hero {
+    min-height: min(72vh, 720px);
+    padding: 7rem 2rem 5rem;
+}
+.feature-page .feature-hero-bg img,
+.feature-page .feature-hero-bg video {
+    object-position: center 40%;
+}
+/* Hold the global gradient + glass plaque transparent until reveal */
+.feature-page .feature-hero.va-hero-deferred::before {
+    opacity: 0;
+    transition: opacity 1.1s ease;
+}
+.feature-page .feature-hero.va-hero-deferred.va-hero-revealed::before {
+    opacity: 1;
+}
+.feature-page .feature-hero.va-hero-deferred .feature-hero-inner {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 1.1s ease, transform 1.1s ease;
+    pointer-events: none;
+}
+.feature-page .feature-hero.va-hero-deferred.va-hero-revealed .feature-hero-inner {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+    .feature-page .feature-hero.va-hero-deferred::before,
+    .feature-page .feature-hero.va-hero-deferred .feature-hero-inner {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        pointer-events: auto !important;
+    }
 }
 
 .va-pipeline {
@@ -146,14 +187,56 @@ feature_category = "ai-config"
 }
 </style>
 
-<section class="section-padding">
-  <h1 style="font-family: 'Fraunces', serif; font-size: 3.4rem; color: #1e3a2b; text-align: center; margin: 0 0 1.25rem; line-height: 1.1;">AI Voice Agents</h1>
-  <p style="font-family: 'DM Sans', sans-serif; font-size: 1.25rem; color: #5a6862; text-align: center; max-width: 820px; margin: 0 auto 2rem; line-height: 1.55;">Give your Divinci release a phone number. Callers dial an ordinary number and talk to the <strong>same grounded assistant</strong> you ship on the web — your knowledge base, your fine-tune, your guardrails — with streaming answers that start speaking in seconds. No app. No browser. No sign-up.</p>
-  <p style="text-align: center; margin: 0 0 3rem;">
-    <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" style="display: inline-block; background: #2d5a4f; color: #faf8f5; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none; margin-right: 0.5rem;">Talk to us</a>
-    <a href="/blog/grounded-voice-agents-real-phone-calls/" style="display: inline-block; background: transparent; color: #2d5a4f; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none; border: 2px solid #2d5a4f;">Read the engineering deep-dive →</a>
-  </p>
-</section>
+<div class="feature-hero va-hero-deferred" id="va-hero">
+  <div class="feature-hero-bg">
+    <img src="/images/voice-agents-hero.webp" width="1408" height="768" alt="Brass telephone handset with a glowing neural network — Divinci AI Voice Agents" loading="eager" fetchpriority="high" decoding="async">
+    <video autoplay muted loop playsinline webkit-playsinline preload="none" data-hero-video aria-label="Animated brass telephone handset with glowing neural network">
+      <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/voice-agents-hero.webm" type="video/webm">
+    </video>
+  </div>
+  <div class="feature-hero-inner">
+    <div class="feature-hero-card">
+      <h1>AI Voice Agents</h1>
+      <p class="subtitle">Give your Divinci release a phone number. Callers dial an ordinary number and talk to the <strong>same grounded assistant</strong> you ship on the web — your knowledge base, your fine-tune, your guardrails — with streaming answers that start speaking in seconds. No app. No browser. No sign-up.</p>
+      <div class="hero-ctas">
+        <a href="https://chat.divinci.app/signup" class="cta-primary" target="_blank" rel="noopener">Try it out</a>
+        <a href="/blog/grounded-voice-agents-real-phone-calls/" class="cta-secondary">Read the engineering deep-dive →</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var hero = document.getElementById('va-hero');
+  if (!hero) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) {
+    hero.classList.add('va-hero-revealed');
+    return;
+  }
+  var revealed = false;
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
+    hero.classList.add('va-hero-revealed');
+  }
+  // Show the phone for ~2s of video, then fade in the glass plaque + text.
+  var video = hero.querySelector('video[data-hero-video]');
+  var startedAt = null;
+  function armFromPlay() {
+    if (startedAt != null) return;
+    startedAt = Date.now();
+    setTimeout(reveal, 2000);
+  }
+  if (video) {
+    video.addEventListener('playing', armFromPlay, { once: true });
+    // Fallback if autoplay is blocked or video never fires — still reveal.
+    setTimeout(reveal, 4500);
+  } else {
+    setTimeout(reveal, 2000);
+  }
+})();
+</script>
 
 <h2 class="section-heading">What happens when someone calls</h2>
 
@@ -242,6 +325,6 @@ feature_category = "ai-config"
 
 <section class="section-padding" style="text-align: center;">
   <h2 style="font-family: 'Fraunces', serif; font-size: 2.2rem; color: #1e3a2b; margin-bottom: 1rem;">Put your assistant on the line</h2>
-  <p style="font-family: 'DM Sans', sans-serif; color: #5a6862; max-width: 640px; margin: 0 auto 2rem; line-height: 1.55;">Voice Agents are in early access. If you want your knowledge base answering a phone number — grounded, guardrailed, and fast — we'd love to set up a pilot with you.</p>
-  <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" style="display: inline-block; background: #2d5a4f; color: #faf8f5; padding: 0.95rem 2.4rem; border-radius: 50px; font-weight: 700; text-decoration: none;">Book a demo call</a>
+  <p style="font-family: 'DM Sans', sans-serif; color: #5a6862; max-width: 640px; margin: 0 auto 2rem; line-height: 1.55;">Voice Agents are live in the Divinci app. Sign up, attach a number to your release, and let your grounded assistant answer the phone.</p>
+  <a href="https://chat.divinci.app/signup" target="_blank" rel="noopener" style="display: inline-block; background: #2d5a4f; color: #faf8f5; padding: 0.95rem 2.4rem; border-radius: 50px; font-weight: 700; text-decoration: none;">Sign up</a>
 </section>

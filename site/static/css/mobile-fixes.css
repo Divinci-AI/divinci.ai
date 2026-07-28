@@ -147,9 +147,12 @@ html, body {
   }
 
   .hero h1 {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
+    /* Never hyphenate the hero — "releases" was wrapping as "re-leases".
+       Explicit <br>s in the EN template control the line breaks. */
+    word-wrap: normal;
+    overflow-wrap: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
     line-height: 1.2;
   }
 }
@@ -205,6 +208,42 @@ html, body {
     justify-content: center;
     align-items: center;
     gap: 1rem;
+  }
+
+  /* Give feature titles room — avoid mid-word wraps like "Complianc/e" */
+  .feature-details {
+    padding: 0 0.75rem 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .feature-content h3 {
+    font-size: 1.65rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    hyphens: none;
+    -webkit-hyphens: none;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .feature-content p {
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  /* Center compliance "See how it works" CTA above nav arrows */
+  .feature-content-cta {
+    float: none;
+    display: flex;
+    width: fit-content;
+    margin: 1.25rem auto 0;
+    min-height: 0 !important;
+  }
+
+  .feature-content[data-feature="enterprise_security"] .journal-navigation {
+    clear: both;
+    margin-top: 1rem;
   }
 
   .journal-nav-button {
@@ -356,6 +395,48 @@ html, body {
   .contact-header,
   .expert-answers-content,
   section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Wider team cards — less nested padding so they aren't skinny columns */
+  .team-container {
+    padding: 0 0.25rem;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .team-member {
+    padding: 1.5rem 1.35rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Wider FAQ accordion — more room so questions don't hyphenate mid-word */
+  .expert-answers-container {
+    padding: 0 0.25rem;
+  }
+
+  .expert-answers-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .faq-question {
+    padding: 1.25rem 1rem;
+    gap: 0.75rem;
+    hyphens: none;
+    -webkit-hyphens: none;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .faq-answer,
+  .faq-answer.active {
     padding-left: 1rem;
     padding-right: 1rem;
   }
@@ -1076,10 +1157,13 @@ html, body {
     opacity: 1;
   }
 
-  /* Reduce space between header and hero section on mobile */
+  /* Space below hero CTAs — shared with compare-section top spacing so the
+     grid→beige transition feels balanced rather than all-beige padding. */
   .hero {
     padding-top: 1rem;
     margin-top: 0;
+    margin-bottom: 1.75rem;
+    padding-bottom: 2.75rem;
   }
 
   .hero-content {
@@ -1290,11 +1374,13 @@ html, body {
 
 /* iPhone 12 Pro specific fixes (390px width) */
 @media (max-width: 400px) {
-  /* Header positioning fixes */
+  /* Keep header-actions in the flex row — do NOT offset with top/right
+     (that used to drop the search icon below the logo/hamburger). */
   .header-actions {
-    right: 0.5rem;
-    top: 0.8rem;
-    z-index: 1000;
+    position: static;
+    top: auto;
+    right: auto;
+    z-index: 10002;
   }
 
   .language-switcher-current {
@@ -1378,9 +1464,9 @@ html, body {
     flex-shrink: 0;
   }
 
-  /* Make heart icon specifically smaller */
+  /* Heart glyph reads larger optically — pull ~4px to match star/rotate */
   .hero .feature-icon-heart {
-    font-size: 0.75rem !important;
+    font-size: calc(1.5rem - 4px) !important;
   }
 
   /* Disable hyphenation for hero feature text - better mobile readability */
@@ -1448,11 +1534,21 @@ html, body {
     padding: 0.1rem 0;
   }
 
-  /* CTA buttons - more touch-friendly */
+  /* CTA buttons - more touch-friendly; keep centered so Connect matches Request demo */
   .cta-buttons {
     flex-direction: column;
     gap: 0.5rem;
-    align-items: stretch;
+    align-items: center;
+  }
+
+  .hero .cta-buttons {
+    align-items: center;
+  }
+
+  .hero .connect-ai-group {
+    width: 300px;
+    max-width: 85%;
+    margin: 0 auto;
   }
 
   .primary-button,
@@ -1495,8 +1591,8 @@ html, body {
 
   /* Features section title */
   .features-header h2 .mobile-title {
-    font-size: 1.6rem;
-    line-height: 1.1;
+    font-size: 2.45rem;
+    line-height: 1.12;
   }
 
   /* Journal pages - ensure they fit */
@@ -1668,8 +1764,16 @@ html, body {
   /* Improve team section on iPhone 12 Pro */
   .team-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 0 0.5rem;
+    gap: 1.25rem;
+    padding: 0;
+  }
+
+  .team-container {
+    padding: 0 0.15rem;
+  }
+
+  .team-member {
+    padding: 1.35rem 1.2rem;
   }
 
   /* Fix footer width issues */
@@ -1692,7 +1796,7 @@ html, body {
 
   .enterprise-title .mobile-title,
   .features-header h2 .mobile-title {
-    font-size: 1.4rem;
+    font-size: 2.1rem;
   }
 
   .journal-page {

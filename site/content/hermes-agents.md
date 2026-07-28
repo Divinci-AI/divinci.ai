@@ -17,22 +17,22 @@ feature_category = "ai-config"
     opacity: 1 !important;
 }
 
-.hs-section { padding: 3.5rem 0; }
-.hs-heading {
+.feature-page .hs-section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
+.feature-page .hs-heading {
     font-family: 'Fraunces', serif;
-    font-size: 2.6rem;
+    font-size: clamp(2rem, 5vw, 2.6rem);
     color: #1e3a2b;
     text-align: center;
-    margin: 6rem 0 1rem;
+    margin: clamp(3.5rem, 7vw, 6rem) 0 clamp(2rem, 4vw, 3.5rem);
     line-height: 1.2;
 }
-.hs-sub {
+.feature-page .hs-sub {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.1rem;
     color: #5a6862;
     text-align: center;
     max-width: 760px;
-    margin: 0 auto 2.75rem;
+    margin: 0 auto clamp(2rem, 4vw, 3.25rem);
     line-height: 1.6;
 }
 

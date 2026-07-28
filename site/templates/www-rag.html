@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="www-rag-hero">
+<section class="www-rag-hero" id="www-rag-hero">
     <div class="container">
         <h1 class="www-rag-title">{{ page.title }}</h1>
         {% if page.description %}
@@ -15,8 +15,16 @@
             placeholder="Search by site name or topic…"
             aria-label="Search the WWW-RAG directory"
         />
+        <a class="www-rag-scan-cta" href="https://chat.divinci.app/start/crawl" rel="noopener">
+            <span class="www-rag-scan-cta-spark">✦</span> Scan your website
+        </a>
+        <p class="www-rag-scan-hint">Sign in to Divinci and land right in the crawler — we'll set up your workspace automatically.</p>
     </div>
 </section>
+
+<a class="www-rag-scan-fab" id="www-rag-scan-fab" href="https://chat.divinci.app/start/crawl" rel="noopener" aria-label="Scan your website with Divinci">
+    <span class="www-rag-scan-cta-spark">✦</span> Scan your website
+</a>
 
 <section class="www-rag-grid-section">
     <div class="container">
@@ -27,10 +35,19 @@
 
 <style>
 .www-rag-hero {
-    padding: 96px 0 32px;
+    padding: 96px 0 48px;
     text-align: center;
-    background: linear-gradient(135deg, #0b0b14 0%, #161629 60%, #1f1f3a 100%);
+    background:
+        linear-gradient(180deg, rgba(11,11,20,0.20) 0%, rgba(11,11,20,0.35) 70%, rgba(11,11,20,0.65) 100%),
+        url('{{ get_url(path="images/www-rag-directory-hero.webp") }}') center / cover no-repeat,
+        linear-gradient(135deg, #0b0b14 0%, #161629 60%, #1f1f3a 100%);
     color: #fff;
+    overflow: visible;
+}
+/* mobile-fixes.css sets .container { overflow-x: hidden }, which in
+   Chromium also clips overflow-y and chops the search pill's bottom border. */
+.www-rag-hero .container {
+    overflow: visible;
 }
 .www-rag-title {
     font-family: 'Fraunces', serif;
@@ -52,8 +69,11 @@
     margin-bottom: 24px;
 }
 .www-rag-search {
+    display: block;
+    box-sizing: border-box;
     width: 100%;
     max-width: 480px;
+    margin: 0 auto 8px;
     padding: 14px 20px;
     font-size: 16px;
     border-radius: 999px;
@@ -63,6 +83,61 @@
     font-family: 'Source Sans 3', sans-serif;
 }
 .www-rag-search::placeholder { color: #9d9db8; }
+.www-rag-scan-cta {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 28px;
+    border-radius: 999px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #1a1408;
+    background: linear-gradient(135deg, #d9c49a 0%, #b8a080 100%);
+    border: 1px solid rgba(255, 235, 195, 0.6);
+    box-shadow: 0 2px 12px rgba(184, 160, 128, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.www-rag-scan-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 18px rgba(184, 160, 128, 0.5);
+}
+.www-rag-scan-cta-spark { color: #7a5c1e; margin-right: 4px; }
+.www-rag-scan-hint {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: #9d9db8;
+    max-width: 420px;
+    margin: 10px auto 0;
+}
+.www-rag-scan-fab {
+    position: fixed;
+    left: 24px;   /* bottom-right is occupied by the Divinci chat bubble */
+    bottom: 24px;
+    z-index: 60;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #1a1408;
+    background: linear-gradient(135deg, #d9c49a 0%, #b8a080 100%);
+    border: 1px solid rgba(255, 235, 195, 0.7);
+    box-shadow: 0 6px 22px rgba(20, 16, 8, 0.30);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.www-rag-scan-fab.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+@media (max-width: 640px) {
+    .www-rag-scan-fab { left: 14px; bottom: 14px; font-size: 14px; padding: 10px 18px; }
+}
 .www-rag-grid-section {
     padding: 48px 0 96px;
     background: #f7f7fb;
@@ -170,4 +245,16 @@
 </style>
 
 <script defer src="{{ get_url(path="js/www-rag-directory.js") }}"></script>
+<script>
+// Floating "Scan your website" pill: hidden while the hero (which carries the
+// same CTA) is on screen; fades in once the visitor scrolls into the grid.
+(function () {
+    var fab = document.getElementById("www-rag-scan-fab");
+    var hero = document.getElementById("www-rag-hero");
+    if (!fab || !hero || !("IntersectionObserver" in window)) return;
+    new IntersectionObserver(function (entries) {
+        fab.classList.toggle("visible", !entries[0].isIntersecting);
+    }, { threshold: 0.05 }).observe(hero);
+})();
+</script>
 {% endblock %}

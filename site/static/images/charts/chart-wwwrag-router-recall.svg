@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="100%" style="max-width:900px;height:auto;font-family:'DM Sans',-apple-system,sans-serif;">
+  <rect x="0" y="0" width="900" height="420" fill="#faf8f5"/>
+  <text x="450" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1e3a2b">The router finds the right site</text>
+  <text x="450" y="68" text-anchor="middle" font-size="15" fill="#6b6257">% of natural-language test queries where the correct website is among the router&#8217;s picks (21-site corpus)</text>
+  <line x1="120" y1="340" x2="850" y2="340" stroke="#b8a080" stroke-width="2"/>
+  <line x1="120" y1="110" x2="120" y2="340" stroke="#b8a080" stroke-width="2"/>
+  <text x="95" y="115" text-anchor="end" font-size="13" fill="#6b6257">100%</text>
+  <text x="95" y="230" text-anchor="end" font-size="13" fill="#6b6257">50%</text>
+  <text x="95" y="345" text-anchor="end" font-size="13" fill="#6b6257">0%</text>
+  <line x1="120" y1="225" x2="850" y2="225" stroke="#e5ddd1" stroke-width="1"/>
+  <line x1="120" y1="110" x2="850" y2="110" stroke="#e5ddd1" stroke-width="1"/>
+  <rect x="195" y="165" width="140" height="175" rx="3" fill="#2d5a4f"/>
+  <text x="265" y="157" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">76%</text>
+  <text x="265" y="362" text-anchor="middle" font-size="14" fill="#3a342c">top-1 pick</text>
+  <text x="265" y="382" text-anchor="middle" font-size="12" fill="#6b6257">one centroid per site</text>
+  <rect x="415" y="133" width="140" height="207" rx="3" fill="#2d5a4f"/>
+  <text x="485" y="125" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">90%</text>
+  <text x="485" y="362" text-anchor="middle" font-size="14" fill="#3a342c">top-1 pick</text>
+  <text x="485" y="382" text-anchor="middle" font-size="12" fill="#6b6257">k=12 sub-centroids</text>
+  <rect x="635" y="121" width="140" height="219" rx="3" fill="#1e3a2b"/>
+  <text x="705" y="113" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a2b">95%</text>
+  <text x="705" y="362" text-anchor="middle" font-size="14" fill="#3a342c">top-4 fan-out</text>
+  <text x="705" y="382" text-anchor="middle" font-size="12" fill="#6b6257">what production uses</text>
+  <text x="450" y="408" text-anchor="middle" font-size="13" fill="#6b6257">the routing step itself costs ~60&#181;s &#8212; the parallel fan-out is where the accuracy comes from</text>
+</svg>

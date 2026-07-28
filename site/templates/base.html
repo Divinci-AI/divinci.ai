@@ -690,6 +690,7 @@
           </li>
           <li><a href="{% if current_lang == 'en' %}/#features{% else %}/{{ current_lang }}/#features{% endif %}">{{ translations.navigation.features | default(value="Features") }}</a></li>
           <li><a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}">{{ translations.navigation.blog | default(value="Blog") }}</a></li>
+          <li><a href="{% if current_lang == 'en' %}/pricing/{% else %}/{{ current_lang }}/pricing/{% endif %}">{{ translations.navigation.pricing | default(value="Pricing") }}</a></li>
           <li><a href="{% if current_lang == 'en' %}/support/{% else %}/{{ current_lang }}/support/{% endif %}">{{ translations.navigation.support | default(value="Support") }}</a></li>
           <li><a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">{{ translations.navigation.documentation | default(value="Documentation") }}</a></li>
         </ul>

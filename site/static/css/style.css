@@ -25,9 +25,11 @@ body {
   color: var(--color-neutral-primary);
   line-height: 1.5;
   position: relative;
-  /* Reserve space for the fixed blue announcement banner (40px) so no
-     content hides underneath it. */
-  padding-top: 40px;
+  /* Reserve space for the fixed announcement banner. Default matches the
+     desktop single-row height; JS syncs --site-banner-height to the real
+     measured height (mobile can differ) so the page header never slides
+     under the blue bar. */
+  padding-top: var(--site-banner-height, 40px);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -438,7 +440,9 @@ body > * {
   text-shadow: 0 2px 8px rgba(20, 40, 30, 0.5) !important;
 }
 
-/* Remove warm text glow inside white card containers where it washes out text */
+/* Remove warm text glow inside white card containers where it washes out text.
+   Also clear it on .pricing-title — the cream halo eats Fraunces descenders (the "g"). */
+.pricing-title,
 .pricing-card h1, .pricing-card h2, .pricing-card h3, .pricing-card p,
 .sdk-card h1, .sdk-card h2, .sdk-card h3, .sdk-card p,
 .code-example h1, .code-example h2, .code-example h3,
@@ -704,9 +708,12 @@ nav .dropdown-menu a:last-child {
 
 /* Hero section styles */
 .hero {
+  /* Shared with .hero-theater so the expanded player keeps exactly the
+     section's own side margins. Change it here and both follow. */
+  --hero-inline-pad: 4rem;
   max-width: 1400px;
   margin: 3rem auto 1rem auto;
-  padding: 0 4rem;
+  padding: 0 var(--hero-inline-pad);
   position: relative;
 }
 
@@ -776,6 +783,270 @@ nav .dropdown-menu a:last-child {
   z-index: 0;
 }
 
+/* ── Hero play affordance → expanding video theater ──────────────────────────
+   The homepage hero video is a silent encode with no mute control. Instead, a
+   translucent circular play button fades in on hover of the video area; hovering
+   the button itself grows a fractal-displaced liquid blob out of the play icon
+   and across the video; clicking expands .hero-theater over the whole hero.
+   .hero-play-ready is added by main.js only when the cycling videos actually
+   load, so the static-image fallback paths never show the button. */
+
+.hero-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 86px;
+  height: 86px;
+  /* Negative margins rather than translate(): the reveal transition owns
+     `transform`, so the centring must not live there too. */
+  margin: -43px 0 0 -43px;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background-color: rgba(45, 90, 79, 0.3);
+  -webkit-backdrop-filter: blur(6px) saturate(1.25);
+  backdrop-filter: blur(6px) saturate(1.25);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.84);
+  pointer-events: none;
+  transition: opacity 0.35s ease,
+              transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.35s ease,
+              border-color 0.35s ease;
+}
+
+.hero-image.hero-play-ready:hover .hero-play,
+.hero-image.hero-play-ready:focus-within .hero-play {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.hero-play:hover,
+.hero-play:focus-visible {
+  background-color: rgba(45, 90, 79, 0.5);
+  border-color: rgba(255, 255, 255, 0.85);
+  transform: scale(1.06);
+}
+
+.hero-play:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.hero-play-icon {
+  width: 34px;
+  height: 34px;
+  fill: currentColor;
+  /* Optical centring: a triangle's visual mass sits left of its bounding box. */
+  transform: translateX(2px);
+}
+
+/* Grown from the button's centre, sized past the container so it can fill the
+   whole video area — .hero-image's overflow:hidden clips it to the frame. */
+.hero-liquid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Sized so the grown blob fills most of the frame but stops short of the
+     corners — the organic silhouette stays readable against the video instead
+     of flattening into a full-frame wash. */
+  width: 122%;
+  /* mobile-fixes.css sets a global `* { max-width: 100% }`, which would clamp
+     the blob back to the container width. */
+  max-width: none;
+  aspect-ratio: 1;
+  margin: 0;
+  translate: -50% -50%;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: 50% 50%;
+  border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+  /* Straight alpha rather than a blend mode: the hero artwork is near-white, so
+     `screen` washed out to nothing. Luminous core → brand green → brand blue →
+     deep forest, transparent at the rim so the fractal edge stays soft. */
+  background: radial-gradient(circle at 50% 50%,
+              rgba(255, 255, 255, 0.52) 0%,
+              rgba(168, 197, 160, 0.5) 24%,
+              rgba(123, 168, 209, 0.46) 54%,
+              rgba(45, 90, 79, 0.42) 86%,
+              rgba(45, 90, 79, 0) 98%);
+  transition: opacity 0.45s ease,
+              transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-play:hover ~ .hero-liquid,
+.hero-play:focus-visible ~ .hero-liquid {
+  opacity: 1;
+  transform: scale(1);
+  /* Filter applied only while active: no idle displacement-map rasterising. */
+  filter: url(#hero-liquid-filter);
+  animation: hero-liquid-morph 7s ease-in-out infinite;
+}
+
+@keyframes hero-liquid-morph {
+  0%, 100% { border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; }
+  33%      { border-radius: 62% 38% 41% 59% / 57% 63% 37% 43%; }
+  66%      { border-radius: 51% 49% 58% 42% / 38% 52% 48% 62%; }
+}
+
+.hero-theater {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* Inherits .hero's own inline padding — full section, same side margins. */
+  left: var(--hero-inline-pad, 4rem);
+  right: var(--hero-inline-pad, 4rem);
+  z-index: 60;
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: #0b0f0d;
+  box-shadow: 0 24px 60px rgba(20, 32, 27, 0.38);
+  --hero-theater-r: 0px;
+  --hero-theater-x: 50%;
+  --hero-theater-y: 50%;
+  /* Reveal grows as a circle out of the play button, whose centre main.js
+     writes into --hero-theater-x/y. Cheaper and far less janky than animating
+     the box itself, which would reflow the YouTube player every frame. */
+  clip-path: circle(var(--hero-theater-r) at var(--hero-theater-x) var(--hero-theater-y));
+  transition: clip-path 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-theater[hidden] {
+  display: none;
+}
+
+/* Set by main.js once the reveal lands, just before the player is mounted. A
+   live cross-origin iframe inside a clipped layer renders as a stale raster of
+   the clip circle in Chrome, so the clip is dropped for the whole watch. */
+.hero-theater.is-revealed {
+  clip-path: none;
+}
+
+.hero-theater-stage {
+  position: absolute;
+  inset: 0;
+  /* Explicit z-index (not auto) so the iframe gets its own stacking context.
+     Without it Chrome composites the cross-origin player above the close
+     button, which then sits behind YouTube's own controls. */
+  z-index: 0;
+}
+
+.hero-theater-stage iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.hero-theater-close {
+  position: absolute;
+  top: 0.875rem;
+  right: 0.875rem;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background-color: rgba(11, 15, 13, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.25s ease;
+}
+
+.hero-theater.is-open .hero-theater-close {
+  opacity: 1;
+  transition-delay: 0.55s;
+}
+
+.hero-theater-close:hover {
+  background-color: rgba(11, 15, 13, 0.8);
+}
+
+.hero-theater-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-play,
+  .hero-liquid,
+  .hero-theater {
+    transition-duration: 0.01ms;
+  }
+
+  .hero-play:hover ~ .hero-liquid,
+  .hero-play:focus-visible ~ .hero-liquid {
+    animation: none;
+    filter: none;
+  }
+}
+
+/* Touch: tap to play. Mobile serves the static poster instead of the videos
+   (see mobile-fixes.css), and there is no hover state to reveal anything with,
+   so the button sits permanently over the poster. */
+@media (max-width: 768px) {
+  /* Purely a hover affordance — nothing on touch can trigger it. */
+  .hero-liquid {
+    display: none;
+  }
+
+  .hero-play {
+    width: 68px;
+    height: 68px;
+    margin: -34px 0 0 -34px;
+    /* Stronger fill than the desktop hover version: this sits over a static
+       image full-time rather than appearing on intent. */
+    background-color: rgba(45, 90, 79, 0.42);
+  }
+
+  /* Same .hero-play-ready gate as desktop, just with no hover requirement. */
+  .hero-image.hero-play-ready .hero-play {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .hero-play:active {
+    transform: scale(0.94);
+    background-color: rgba(45, 90, 79, 0.6);
+  }
+
+  .hero-play-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* The stacked mobile hero runs ~1000px tall, so filling its full height would
+     letterbox the 16:9 player into a thin band. Cap the panel to the video's own
+     aspect ratio at the top of the section, keeping the section side margins. */
+  .hero-theater {
+    bottom: auto;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .hero-theater-close {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 36px;
+    height: 36px;
+  }
+}
+
 #sound-toggle {
   position: absolute;
   bottom: 1rem;
@@ -811,6 +1082,26 @@ nav .dropdown-menu a:last-child {
   font-size: 3.4rem;
 }
 
+/* Desktop vs mobile hero copy — shorter lines on small screens only.
+   !important: without this, both variants render on desktop (mobile
+   "Your B2C AI" + narrow "Compliance records" stack). */
+.hero-title-mobile,
+.feature-text-mobile {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  .hero-title-desktop,
+  .feature-text-desktop {
+    display: none !important;
+  }
+  .hero-title-mobile {
+    display: inline !important;
+  }
+  .feature-text-mobile {
+    display: inline !important;
+  }
+}
+
 h1 {
   font-family: 'Fraunces', serif;
   font-weight: 400;
@@ -840,10 +1131,9 @@ p {
 }
 
 .feature {
-  display: grid;
-  grid-template-columns: 3rem 1fr;
+  display: flex;
+  align-items: center;
   gap: 1rem;
-  align-items: start;
   min-width: 0;             /* allow the column to shrink instead of overflow */
 }
 
@@ -853,29 +1143,32 @@ p {
 }
 
 .feature-icon {
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.4rem;
+  height: auto;
+  margin: 0;
   font-size: 2.2rem;
   line-height: 1;
   position: relative;
-  top: 0.1rem;
+  top: 0;
 }
 
 .feature-icon-star {
   font-size: 2.2rem;
-  top: 0.05rem;
+  top: 0;
 }
 
 .feature-icon-rotate {
   font-size: 2.2rem;
-  top: 0.05rem;
+  top: 0;
 }
 
 .feature .feature-icon-heart {
-  font-size: 2rem !important;
-  top: 0.15rem !important;
+  font-size: calc(2rem - 4px) !important;
+  top: 0 !important;
 }
 
 .feature-text {
@@ -883,8 +1176,8 @@ p {
   font-weight: 500;
   color: var(--color-neutral-primary);
   line-height: 1.4;
-  align-self: start;
-  padding-top: 0.3rem;
+  align-self: auto;
+  padding-top: 0;
 }
 
 .cta-buttons {
@@ -995,6 +1288,37 @@ p {
   max-width: 260px;
   opacity: 1;
   margin-left: 0.55rem;
+}
+
+/* Mobile: only the expanded chip — icon-only siblings overflow the viewport.
+   Match Request demo width + centering so the two CTAs read as a paired stack. */
+@media (max-width: 768px) {
+  .hero .cta-buttons {
+    align-items: center;
+  }
+  .hero .connect-ai-group {
+    display: flex;
+    width: 300px;
+    max-width: 85%;
+    margin: 0 auto;
+    justify-content: center;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+  .connect-ai-chip:not(.connect-ai-chip-active) {
+    display: none;
+  }
+  .hero .connect-ai-chip.connect-ai-chip-active {
+    display: inline-flex;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+  }
+  .hero .connect-ai-chip-active .connect-ai-chip-label {
+    max-width: none;
+  }
 }
 
 /* Enterprise AI section styles */
@@ -3413,7 +3737,7 @@ body:not(.homepage) .privacy-settings-link:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.feature-icon {
+.feature-card .feature-icon {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   display: block;
@@ -3785,10 +4109,12 @@ body:not(.homepage) .privacy-settings-link:hover {
     padding: 2rem;
   }
   
+  /* Drive the padding through the shared variable, not the longhand, so
+     .hero-theater's inset tracks the narrower section margin too. */
   .hero {
-    padding: 0 2rem;
+    --hero-inline-pad: 2rem;
   }
-  
+
   .hero-content {
     gap: 3rem;
   }
@@ -5543,15 +5869,19 @@ body:not(.homepage) .privacy-settings-link:hover {
   pointer-events: auto;
   background: linear-gradient(90deg, #2d4d6a 0%, #3d6888 100%);
 }
-/* Settled: the islands frost over to Apple-glass, each its own floating card. */
+/* Settled: the islands frost over to Apple-glass, each its own floating card.
+   Opacity must stay high enough that dark page sections (navy heroes, footers)
+   don't show through and wash out the dark nav labels (#143b5e). 0.14 left the
+   islands nearly invisible over dark backgrounds; ~0.82 keeps the frost while
+   holding readable contrast. */
 .site-research-banner.is-glass .site-research-banner-glass-left,
 .site-research-banner.is-glass .site-research-banner-glass-right {
   opacity: 1;
   pointer-events: auto;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(245, 250, 255, 0.82);
   -webkit-backdrop-filter: blur(18px) saturate(170%);
   backdrop-filter: blur(18px) saturate(170%);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   box-shadow: 0 8px 32px rgba(20, 40, 64, 0.18);
 }
 /* keep the logo + Search together at the inner edge of the left island */
@@ -5875,66 +6205,270 @@ body:not(.homepage) .privacy-settings-link:hover {
   left: auto;
 }
 @media (max-width: 640px) {
+  /* Single-row pre-scroll bar: research message + language side-by-side.
+     The old column stack (~100px) overflowed the body's 40px reserve and
+     covered the page-header logo/search underneath. */
   .site-research-banner {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    padding: 0.4rem 1rem 0.5rem;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.45rem 0.85rem;
   }
   .site-research-banner-inner {
+    flex: 1 1 auto;
     width: auto;
-    padding: 0.3rem 0;
+    min-width: 0;
+    justify-content: flex-start;
+    padding: 0;
+    overflow: hidden;
+  }
+  .site-research-banner-inner > a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
   }
   .site-research-banner .language-switcher {
     position: static;
     transform: none;
-    margin-top: 0.1rem;
+    margin-top: 0;
+    flex-shrink: 0;
   }
-  /* Pre-scroll: the right island must join the column flow (like the
-     switcher used to on its own) instead of sitting absolutely over the
-     banner message — otherwise it overlaps the "Latest research" text.
-     Search/Sign up stay hidden here; they only matter once scrolled, where
-     the island reverts to its normal absolute glass positioning. */
+  /* Pre-scroll: language sits inline at the end of the row (not absolute,
+     so it doesn't overlay the research link). Search/Sign up stay hidden
+     until scroll — and on ≤768px the whole right island is hidden once
+     scrolled (logo+hamburger only; see mobile scrolled rules below). */
   .site-research-banner-glass-right {
     position: static;
     height: auto;
     width: auto;
     max-width: none;
-    justify-content: center;
+    justify-content: flex-end;
     padding: 0;
+    flex-shrink: 0;
   }
   .site-research-banner-glass-right .scrolled-search,
   .site-research-banner-glass-right .scrolled-signup {
     display: none;
   }
+}
+
+/* ── Mobile scrolled header: logo + Sign up + hamburger ──
+   At phone/tablet widths the dual-island desktop chrome (nav labels +
+   Search/Sign up/Language) overflows. Collapse to a single full-width
+   island with the brand mark, Sign up, and a hamburger that opens a drawer.
+   Desktop must keep these hidden — the HTML ships in base.html always;
+   without this, the left-island Sign up duplicates the right pill. */
+.scrolled-hamburger,
+.scrolled-mobile-actions,
+.scrolled-mobile-signup,
+.banner-mobile-drawer {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .scrolled-mobile-actions {
+    display: none !important; /* shown once scrolled — see .is-scrolled below */
+    align-items: center;
+    gap: 0.45rem;
+    flex-shrink: 0;
+  }
+  .scrolled-mobile-signup {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    padding: 0 0.85rem;
+    border-radius: 999px;
+    background: transparent;
+    border: 1.5px solid currentColor;
+    box-shadow: none;
+    color: #f4f8fb;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .scrolled-mobile-signup:hover {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+  }
+  .site-research-banner.is-glass .scrolled-mobile-signup {
+    color: #143b5e;
+    border-color: #143b5e;
+  }
+  .site-research-banner.is-glass .scrolled-mobile-signup:hover {
+    background: rgba(20, 59, 94, 0.08);
+    color: #0f2d48;
+  }
+  .scrolled-hamburger {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #f4f8fb;
+    flex-shrink: 0;
+  }
+  .scrolled-hamburger-line {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .scrolled-hamburger.is-active .scrolled-hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .scrolled-hamburger.is-active .scrolled-hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  .scrolled-hamburger.is-active .scrolled-hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .site-research-banner.is-glass .scrolled-hamburger {
+    color: #143b5e;
+  }
+  .site-research-banner.is-glass .scrolled-hamburger:hover {
+    background: rgba(20, 59, 94, 0.08);
+  }
+
+  .site-research-banner.is-scrolled .site-research-banner-glass-left,
+  .site-research-banner.is-glass .site-research-banner-glass-left {
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 0.65rem;
+    border-bottom-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+  }
+  .site-research-banner.is-scrolled .banner-nav,
+  .site-research-banner.is-glass .banner-nav {
+    display: none;
+  }
+  .site-research-banner.is-scrolled .scrolled-mobile-actions,
+  .site-research-banner.is-glass .scrolled-mobile-actions {
+    display: flex !important;
+  }
+  /* Right island (Search / Sign up / Language) — hide when scrolled;
+     Sign up moves into the left island; Search lives in the drawer. */
   .site-research-banner.is-scrolled .site-research-banner-glass-right,
   .site-research-banner.is-glass .site-research-banner-glass-right {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: auto;
-    max-width: 78%;
-    justify-content: flex-end;
-    gap: 0.4rem;
-    padding-left: 0.5rem;
-    padding-right: 0.85rem;
+    display: none !important;
   }
-  .site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-search,
-  .site-research-banner.is-scrolled .site-research-banner-glass-right .scrolled-signup,
-  .site-research-banner.is-glass .site-research-banner-glass-right .scrolled-search,
-  .site-research-banner.is-glass .site-research-banner-glass-right .scrolled-signup {
-    display: inline-flex;
+
+  /* Drawer panel under the fixed bar */
+  .banner-mobile-drawer {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0.5rem;
+    right: 0.5rem;
+    margin-top: 0.35rem;
+    padding: 0.55rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.94);
+    -webkit-backdrop-filter: blur(18px) saturate(170%);
+    backdrop-filter: blur(18px) saturate(170%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 12px 32px rgba(20, 40, 64, 0.2);
+    z-index: 100003;
+  }
+  .site-research-banner.drawer-open .banner-mobile-drawer {
+    display: block !important;
+  }
+  .banner-mobile-drawer[hidden] {
+    display: none !important;
+  }
+  .banner-mobile-drawer-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .banner-mobile-drawer-list > li {
+    width: 100%;
+  }
+  .banner-mobile-drawer-list a,
+  .banner-mobile-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 0.9rem;
+    border-radius: 10px;
+    color: #143b5e;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: none;
+    border: none;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .banner-mobile-drawer-list a:hover,
+  .banner-mobile-search:hover {
+    background: rgba(20, 59, 94, 0.08);
+    color: #0f2d48;
+  }
+  /* Full-width search row at the top of the drawer.
+     Higher specificity beats .site-search-trigger from search.css
+     (inline-flex + short padding) which otherwise keeps it narrow. */
+  .banner-mobile-drawer .banner-mobile-search.site-search-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 48px;
+    box-sizing: border-box;
+    margin: 0 0 0.45rem;
+    padding: 0.85rem 1rem;
+    border-radius: 999px;
+    background: rgba(20, 59, 94, 0.07);
+    border: 1px solid rgba(20, 59, 94, 0.14);
+    color: #143b5e;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-align: center;
+    cursor: pointer;
+  }
+  .banner-mobile-drawer .banner-mobile-search.site-search-trigger:hover {
+    background: rgba(20, 59, 94, 0.12);
+    color: #0f2d48;
   }
 }
 
 @media (max-width: 640px) {
   .site-research-banner-inner {
-    padding: 0.5rem 0.85rem;
-    gap: 0.4rem;
+    padding: 0;
+    gap: 0.35rem;
     font-size: 0.78rem;
     flex-wrap: nowrap;
     white-space: nowrap;
   }
+  .site-research-banner .site-research-banner-label,
   .site-research-banner .site-research-banner-sep,
   .site-research-banner a.site-research-banner-secondary {
     display: none;
