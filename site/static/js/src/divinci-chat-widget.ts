@@ -1037,6 +1037,42 @@ class DivinciChatWidget {
     void this.playMessage(idx);
   }
 
+  /**
+   * Get a fresh gate token WITHOUT calling freeChatGate.reset().
+   *
+   * A stored token outlives its server-side validity, so the first speak()
+   * after a page sits open (or is reloaded into a restored conversation) comes
+   * back 401 even though the conversation itself is perfectly good. send()
+   * survives that because its recovery path re-sends the prompt and rebuilds
+   * the transcript from scratch; speak() cannot, because reset() clears
+   * `transcript` and `signiture` — the exact things it needs.
+   *
+   * The server verifies the token and the transcript signature INDEPENDENTLY
+   * (the signature is checked against the release, not the session), so a new
+   * token paired with the existing signed transcript is valid. start() only
+   * assigns the token and leaves the transcript alone, which is what makes
+   * this safe.
+   *
+   * Only possible in captcha-only mode — an OTP/magic-link release cannot
+   * re-verify without the visitor doing something, so callers fall back to
+   * the browser voice instead.
+   */
+  private async refreshGateToken(): Promise<void> {
+    if (this.mode !== "captcha-only") throw new Error("gate-refresh-unavailable");
+    this.ensureTurnstileRendered();
+    let token = this.gateTurnstileToken
+      ?? (this.gateTurnstileId ? window.turnstile?.getResponse(this.gateTurnstileId) : undefined);
+    if (!token) {
+      // interaction-only Turnstile usually resolves in well under a second.
+      await new Promise((r) => setTimeout(r, 800));
+      token = this.gateTurnstileToken
+        ?? (this.gateTurnstileId ? window.turnstile?.getResponse(this.gateTurnstileId) : undefined);
+    }
+    if (!token) throw new Error("turnstile-pending");
+    await this.client.freeChatGate.start({ releaseId: this.cfg.releaseId, turnstileToken: token });
+    this.gateTurnstileToken = null; // single-use
+  }
+
   /** Halt whatever is speaking, from either engine. */
   private stopPlayback(): void {
     if (this.audio) {
@@ -1070,7 +1106,19 @@ class DivinciChatWidget {
     this.render();
 
     try {
-      const { url } = await this.client.freeChatGate.speak(gateIdx);
+      let result: { url: string };
+      try {
+        result = await this.client.freeChatGate.speak(gateIdx);
+      } catch (err) {
+        // Stale token → refresh in place and retry ONCE. Deliberately not
+        // reset()+start(): reset() would wipe the signed transcript this call
+        // is built on. See refreshGateToken().
+        if ((err as { status?: number })?.status !== 401) throw err;
+        await this.refreshGateToken();
+        if (this.playingIdx !== gateIdx) return;
+        result = await this.client.freeChatGate.speak(gateIdx);
+      }
+      const { url } = result;
       // A stop (or another clip) may have landed while we were awaiting.
       if (this.playingIdx !== gateIdx) return;
       const audio = new Audio(url);
