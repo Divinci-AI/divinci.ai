@@ -326,6 +326,12 @@
 .dvc-clear:hover { opacity: 1; }
 .dvc-clear:disabled { cursor: default; }
 
+/* Sound toggle: the "on" state has to read as a persistent mode, not a
+   momentary press, so it stays fully opaque with a filled pill behind it
+   while every other header action sits at 0.7. */
+.dvc-sound-on { opacity: 1; background: rgba(255, 255, 255, 0.18); }
+.dvc-sound-on:hover { background: rgba(255, 255, 255, 0.26); }
+
 .dvc-emoji-chip {
   background: var(--color-bg-accent, #e8ddc7); border: 1px solid var(--color-neutral-inverse, #2d5a4f);
   padding: 2px 6px; border-radius: 12px; font-size: 13px; line-height: 1.4; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;

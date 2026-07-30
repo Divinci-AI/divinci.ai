@@ -90,7 +90,7 @@
     "pre-push": "npm run test:e2e:safe && npm run style:check"
   },
   "dependencies": {
-    "@divinci-ai/client": "^0.5.0",
+    "@divinci-ai/client": "^0.6.0",
     "@divinci-ai/robot-avatar": "^0.1.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",

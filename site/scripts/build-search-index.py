@@ -13,8 +13,25 @@ from __future__ import annotations
 
 import json
 import re
-import tomllib
 from pathlib import Path
+
+# `tomllib` is stdlib only on Python 3.11+. Both `npm run build` and
+# wrangler.jsonc's custom build command invoke a bare `python3`, which on macOS
+# resolves to Apple's /usr/bin/python3 (3.9) — so a hard `import tomllib` made
+# BOTH the local build and `wrangler deploy` fail with ModuleNotFoundError,
+# regardless of any newer python installed alongside. Fall back to the `tomli`
+# backport (identical API) so the build works on whatever python3 it lands on.
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python < 3.11
+    try:
+        import tomli as tomllib  # type: ignore[no-redef]
+    except ModuleNotFoundError as exc:  # pragma: no cover
+        raise SystemExit(
+            "build-search-index.py needs TOML parsing: either run it with "
+            "Python 3.11+ (which has stdlib tomllib) or install the backport:\n"
+            "    python3 -m pip install --user tomli"
+        ) from exc
 
 ROOT = Path(__file__).resolve().parents[1]          # site/
 CONTENT = ROOT / "content"

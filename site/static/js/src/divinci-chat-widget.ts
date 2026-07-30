@@ -107,6 +107,15 @@ const HERO_HIDE_BOTTOM_RATIO = 0.72;
  */
 const GATE_STATE_KEY = "divinci-chat-gate:";
 
+/**
+ * localStorage prefix for the sound on/off preference. Persisted per release
+ * so a visitor who turned voice on once doesn't have to do it on every visit.
+ * Default is OFF — a marketing site must never make noise unprompted, and
+ * browsers block autoplay until a user gesture anyway (flipping this toggle
+ * IS that gesture, which is why auto-play from it is allowed to work).
+ */
+const SOUND_PREF_KEY = "divinci-chat-sound:";
+
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, html?: string): HTMLElementTagNameMap[K] {
   const node = document.createElement(tag);
   if (cls) node.className = cls;
@@ -129,6 +138,7 @@ const ICONS: Record<string, string> = {
   "thumbs-down": '<path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/>',
   "copy": '<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>',
   "volume": '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>',
+  "volume-off": '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" x2="16" y1="9" y2="15"/><line x1="16" x2="22" y1="9" y2="15"/>',
   "stop": '<rect width="14" height="14" x="5" y="5" rx="2"/>',
   "smile": '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/>',
 };
@@ -257,6 +267,21 @@ class DivinciChatWidget {
   private heroScrollRaf = 0;
   private messages: Array<{ role: "user" | "assistant"; text: string; pending?: boolean; rating?: -1 | 1; ratingDone?: boolean; isError?: boolean; ratingEmoji?: string }> = [];
 
+  // ── Voice playback (Cloudflare Aura-2 via the release SDK) ──
+  /** Whether replies should speak themselves as they arrive. */
+  private soundOn = false;
+  /** The single audio element — one voice at a time, always. */
+  private audio: HTMLAudioElement | null = null;
+  /** Transcript index currently playing, so render() can show a stop button. */
+  private playingIdx: number | null = null;
+  /**
+   * Transcript indices already auto-played. render() runs on every state
+   * change (ratings, emoji, reopening the panel); without this the same reply
+   * would re-speak each time.
+   */
+  private autoSpoken = new Set<number>();
+  private soundBtn!: HTMLButtonElement;
+
   constructor(cfg: WidgetConfig) {
     this.cfg = cfg;
     this.client = new DivinciClient({ releaseId: cfg.releaseId, baseUrl: cfg.apiBase });
@@ -287,6 +312,20 @@ class DivinciChatWidget {
       } catch {
         // Unparseable — leave the gate empty; the next send() re-signs.
       }
+    }
+
+    // Restore the sound preference. Anything but an explicit "1" is off, so a
+    // corrupt/absent value fails silent rather than surprising the visitor.
+    try {
+      this.soundOn = localStorage.getItem(SOUND_PREF_KEY + cfg.releaseId) === "1";
+    } catch {
+      this.soundOn = false;
+    }
+
+    // Replies restored from a previous session must not all speak at once when
+    // the panel opens — mark the whole restored transcript as already played.
+    for (let i = 0; i < this.client.freeChatGate.getTranscript().length; i++) {
+      this.autoSpoken.add(i);
     }
 
     // Returning visitor: skip straight to chat if a verification token persists.
@@ -432,6 +471,8 @@ class DivinciChatWidget {
     clearBtn.title = "Start over";
     clearBtn.addEventListener("click", () => {
       if (confirm("Clear this conversation history?")) {
+        this.stopPlayback();
+        this.autoSpoken.clear();
         this.messages = [];
         localStorage.removeItem("divinci-chat-history:" + this.cfg.releaseId);
         localStorage.removeItem(GATE_STATE_KEY + this.cfg.releaseId);
@@ -441,11 +482,18 @@ class DivinciChatWidget {
       }
     });
 
+    // Sound on/off — the single control for voice. Turning it ON is a user
+    // gesture, which is exactly what browser autoplay policy requires before
+    // subsequent replies may play on their own.
+    this.soundBtn = el("button", "dvc-clear");
+    this.syncSoundButton();
+    this.soundBtn.addEventListener("click", () => this.toggleSound());
+
     const close = el("button", "dvc-close", icon("x"));
     close.setAttribute("aria-label", "Close chat");
     close.addEventListener("click", () => this.toggle(false));
-    
-    headerActions.append(handoffBtn, clearBtn, close);
+
+    headerActions.append(this.soundBtn, handoffBtn, clearBtn, close);
     header.appendChild(headerActions);
 
     this.body = el("div", "dvc-body");
@@ -647,6 +695,9 @@ class DivinciChatWidget {
 
   private toggle(force?: boolean): void {
     this.open = force ?? !this.open;
+    // Closing the panel must silence it — a voice still talking behind a
+    // dismissed widget is the single most annoying failure mode here.
+    if (!this.open) this.stopPlayback();
     this.panel.classList.toggle("dvc-hidden", !this.open);
     this.bubble.classList.toggle("dvc-bubble-open", this.open);
     this.root.classList.toggle("dvc-chat-open", this.open);
@@ -881,6 +932,7 @@ class DivinciChatWidget {
         this.remaining = remaining;
         this.saveMessages();
         this.render();
+        this.autoSpeakLatest();
         // Lock input in place after the reply renders, rather than replacing
         // the whole panel — the conversation just had stays on screen.
         if (remaining <= 0) setTimeout(() => { this.exhausted = true; this.render(); }, 1500);
@@ -899,6 +951,7 @@ class DivinciChatWidget {
               this.remaining = remaining;
               this.saveMessages();
               this.render();
+              this.autoSpeakLatest();
               return;
             } catch (retryError) {
               this.messages.pop();
@@ -919,6 +972,174 @@ class DivinciChatWidget {
     };
     send.addEventListener("click", () => submitPrompt(input.value));
     input.addEventListener("keydown", (ev) => { if ((ev as KeyboardEvent).key === "Enter") submitPrompt(input.value); });
+  }
+
+  // ───────────────────────── Voice playback ─────────────────────────
+  //
+  // Audio comes from the platform's Aura-2 voice (Cloudflare Workers AI,
+  // `@cf/deepgram/aura-2-en`, speaker `phoebe`) via the release SDK's
+  // freeChatGate.speak(). That call takes a transcript INDEX, not text — the
+  // server only speaks replies the release itself signed — so everything here
+  // is keyed on the gate transcript index, the same index the thumbs/feedback
+  // buttons use.
+  //
+  // The browser's own speechSynthesis remains as a fallback. It sounds far
+  // worse, but "no audio at all" is a worse outcome than "robotic audio" when
+  // the network, the gate, or the platform is having a bad day.
+
+  private syncSoundButton(): void {
+    const on = this.soundOn;
+    this.soundBtn.innerHTML = icon(on ? "volume" : "volume-off");
+    this.soundBtn.classList.toggle("dvc-sound-on", on);
+    const label = on ? "Turn voice off" : "Turn voice on";
+    this.soundBtn.title = on
+      ? "Voice is on — replies are read aloud"
+      : "Voice is off — read replies aloud";
+    this.soundBtn.setAttribute("aria-label", label);
+    this.soundBtn.setAttribute("aria-pressed", on ? "true" : "false");
+  }
+
+  private toggleSound(): void {
+    this.soundOn = !this.soundOn;
+    try {
+      localStorage.setItem(SOUND_PREF_KEY + this.cfg.releaseId, this.soundOn ? "1" : "0");
+    } catch {
+      // Private browsing / full storage — the preference just won't persist.
+    }
+    this.syncSoundButton();
+    if (!this.soundOn) {
+      this.stopPlayback();
+      this.render();
+      return;
+    }
+    // Turning sound ON mid-conversation: speak the most recent reply rather
+    // than doing nothing visible. This click is the user gesture that makes
+    // the play() call legal, so it must happen synchronously off the event.
+    const lastIdx = this.client.freeChatGate.getTranscript().length - 1;
+    if (lastIdx >= 0) {
+      this.autoSpoken.add(lastIdx);
+      void this.playMessage(lastIdx);
+    } else {
+      this.render();
+    }
+  }
+
+  /**
+   * With sound on, speak the reply that just arrived. No-op when sound is off
+   * or when this reply has already been played — render() fires on a lot of
+   * unrelated state changes and must never re-trigger audio.
+   */
+  private autoSpeakLatest(): void {
+    if (!this.soundOn) return;
+    const idx = this.client.freeChatGate.getTranscript().length - 1;
+    if (idx < 0 || this.autoSpoken.has(idx)) return;
+    this.autoSpoken.add(idx);
+    void this.playMessage(idx);
+  }
+
+  /** Halt whatever is speaking, from either engine. */
+  private stopPlayback(): void {
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.src = "";
+      this.audio = null;
+    }
+    try {
+      if (window.speechSynthesis?.speaking) window.speechSynthesis.cancel();
+    } catch {
+      // speechSynthesis is absent on some embedded browsers.
+    }
+    this.playingIdx = null;
+  }
+
+  /**
+   * Speak one assistant reply. `gateIdx` is its index in the gate's signed
+   * transcript. Safe to call while something else is playing — the previous
+   * clip is stopped first, so two replies can never overlap.
+   */
+  private async playMessage(gateIdx: number): Promise<void> {
+    const wasPlaying = this.playingIdx;
+    this.stopPlayback();
+    // Clicking the speaker on the clip that's already playing means "stop".
+    if (wasPlaying === gateIdx) {
+      this.render();
+      return;
+    }
+
+    this.playingIdx = gateIdx;
+    this.render();
+
+    try {
+      const { url } = await this.client.freeChatGate.speak(gateIdx);
+      // A stop (or another clip) may have landed while we were awaiting.
+      if (this.playingIdx !== gateIdx) return;
+      const audio = new Audio(url);
+      this.audio = audio;
+      audio.addEventListener("ended", () => {
+        if (this.playingIdx === gateIdx) {
+          this.playingIdx = null;
+          this.audio = null;
+          this.render();
+        }
+      });
+      audio.addEventListener("error", () => {
+        console.warn("[divinci-chat] audio playback failed; falling back to browser voice");
+        this.speakLocally(gateIdx);
+      });
+      await audio.play();
+    } catch (err) {
+      if (this.playingIdx !== gateIdx) return;
+      console.warn("[divinci-chat] Divinci voice unavailable; using browser voice", err);
+      this.speakLocally(gateIdx);
+    }
+  }
+
+  /**
+   * Last-resort playback through the browser's built-in synthesizer. Reads
+   * the rendered message text (the transcript reply and the on-screen message
+   * are the same string) rather than re-requesting anything.
+   */
+  private speakLocally(gateIdx: number): void {
+    this.audio = null;
+    const text = this.assistantTextForGateIdx(gateIdx);
+    if (!text || typeof window.speechSynthesis === "undefined") {
+      this.playingIdx = null;
+      this.render();
+      return;
+    }
+    try {
+      const utterance = new SpeechSynthesisUtterance(text);
+      const done = () => {
+        if (this.playingIdx === gateIdx) {
+          this.playingIdx = null;
+          this.render();
+        }
+      };
+      utterance.onend = done;
+      utterance.onerror = done;
+      this.playingIdx = gateIdx;
+      window.speechSynthesis.speak(utterance);
+      this.render();
+    } catch {
+      this.playingIdx = null;
+      this.render();
+    }
+  }
+
+  /**
+   * Map a gate transcript index back to the rendered message text. The signed
+   * transcript grows by one per SUCCESSFUL send, so the k-th completed,
+   * non-error assistant message is transcript index k — the same mapping
+   * renderChat() uses to attach rating controls.
+   */
+  private assistantTextForGateIdx(gateIdx: number): string | null {
+    let k = -1;
+    for (const m of this.messages) {
+      if (m.role !== "assistant" || m.pending || m.isError) continue;
+      k += 1;
+      if (k === gateIdx) return m.text;
+    }
+    return null;
   }
 
   /**
@@ -974,22 +1195,18 @@ class DivinciChatWidget {
       });
     });
 
-    // READ ALOUD (TTS) BUTTON
-    const speak = el("button", "dvc-thumb", icon("volume"));
+    // READ ALOUD (TTS) BUTTON — Divinci's Aura-2 voice, browser voice as
+    // fallback. Doubles as the stop control while this clip is playing.
+    const playing = this.playingIdx === gateIdx;
+    const speak = el("button", "dvc-thumb" + (playing ? " dvc-thumb-on" : ""), icon(playing ? "stop" : "volume"));
     speak.type = "button";
-    speak.title = "Read aloud";
-    speak.setAttribute("aria-label", "Read aloud");
+    speak.title = playing ? "Stop" : "Read aloud";
+    speak.setAttribute("aria-label", playing ? "Stop reading" : "Read aloud");
     speak.addEventListener("click", () => {
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-        speak.innerHTML = icon("volume");
-        return;
-      }
-      speak.innerHTML = icon("stop");
-      const utterance = new SpeechSynthesisUtterance(m.text);
-      utterance.onend = () => { speak.innerHTML = icon("volume"); };
-      utterance.onerror = () => { speak.innerHTML = icon("volume"); };
-      window.speechSynthesis.speak(utterance);
+      // An explicit play counts as "heard" — don't let sound-on then re-speak
+      // the same reply over the top of it.
+      this.autoSpoken.add(gateIdx);
+      void this.playMessage(gateIdx);
     });
 
     // EMOJI REACTION POPUP BUTTON
