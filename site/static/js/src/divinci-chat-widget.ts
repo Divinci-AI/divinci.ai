@@ -100,6 +100,11 @@ const SPEECH_DEBOUNCE_MS = 300;
 /** Hero bottom must clear this fraction of the viewport before the launcher fades in. */
 const HERO_HIDE_BOTTOM_RATIO = 0.72;
 
+/** How long to wait for Turnstile's success callback after forcing a reset.
+ *  interaction-only normally resolves well under a second; 4s is slack for a
+ *  slow network, not for a visible challenge. */
+const GATE_TOKEN_WAIT_MS = 4000;
+
 /**
  * localStorage prefix for the gate's signed transcript + signature. Stored
  * beside "divinci-chat-history:" and cleared with it — the two must never
@@ -411,15 +416,56 @@ class DivinciChatWidget {
     });
   }
 
+  /**
+   * Obtain a Turnstile token for a gate /start call.
+   *
+   * Turnstile tokens are SINGLE-USE. `getResponse()` keeps returning the last
+   * issued token even after the server has redeemed it, and siteverify
+   * rejects a replay as "timeout-or-duplicate" — which surfaces as a bare 403
+   * "Bot verification failed" and looks indistinguishable from a real bot
+   * rejection. So any RE-verification (a session that expired, a 401 recovery)
+   * must force a brand-new token via reset(); only the very first start may
+   * reuse the token the initial render produced, which nothing has spent yet.
+   *
+   * @param forceFresh discard the current token and wait for a new one.
+   */
+  private async obtainGateTurnstileToken(forceFresh: boolean): Promise<string> {
+    this.ensureTurnstileRendered();
+    if (this.gateTurnstileId === null || !window.turnstile) {
+      throw new Error("turnstile-pending"); // script not loaded yet
+    }
+
+    if (forceFresh) {
+      this.gateTurnstileToken = null;
+      try {
+        window.turnstile.reset(this.gateTurnstileId);
+      } catch {
+        // Widget already torn down — ensureTurnstileRendered() will not
+        // re-create it while gateTurnstileId is set, so surface a retryable
+        // error rather than spinning on a dead widget.
+        throw new Error("turnstile-pending");
+      }
+    } else {
+      const existing = this.gateTurnstileToken
+        ?? window.turnstile.getResponse(this.gateTurnstileId);
+      if (existing) return existing;
+    }
+
+    // Wait for the success callback to repopulate gateTurnstileToken.
+    const deadline = Date.now() + GATE_TOKEN_WAIT_MS;
+    while (Date.now() < deadline) {
+      if (this.gateTurnstileToken) return this.gateTurnstileToken;
+      await new Promise((r) => setTimeout(r, 100));
+    }
+    throw new Error("turnstile-pending");
+  }
+
   /** Establishes the freeChatGate session once, consuming one invisible-widget
    * token — called lazily on first send rather than behind an explicit button.
    * Throws "turnstile-pending" if the token isn't ready yet; callers retry. */
   private async ensureGateStarted(): Promise<void> {
     if (this.mode !== "captcha-only" || this.client.freeChatGate.isVerified()) return;
-    this.ensureTurnstileRendered();
-    const token = this.gateTurnstileToken
-      ?? (this.gateTurnstileId ? window.turnstile?.getResponse(this.gateTurnstileId) : undefined);
-    if (!token) throw new Error("turnstile-pending");
+    const token = await this.obtainGateTurnstileToken(false);
     await this.client.freeChatGate.start({ releaseId: this.cfg.releaseId, turnstileToken: token });
     this.gateTurnstileToken = null; // single-use; the session token carries subsequent sends
   }
@@ -959,7 +1005,12 @@ class DivinciChatWidget {
             try {
               this.messages.push({ role: "assistant", text: "", pending: true });
               this.render();
-              await this.ensureGateStarted();
+              // refreshGateToken(), not ensureGateStarted(): the reset() above
+              // cleared the SDK's session, but the widget still holds the
+              // token that session was built from. Re-presenting it gets a
+              // "timeout-or-duplicate" rejection from siteverify, so this
+              // recovery could never actually recover.
+              await this.refreshGateToken();
               const { reply, remaining } = await this.client.freeChatGate.send(prompt);
               this.messages[this.messages.length - 1] = { role: "assistant", text: reply };
               this.remaining = remaining;
@@ -1073,16 +1124,9 @@ class DivinciChatWidget {
    */
   private async refreshGateToken(): Promise<void> {
     if (this.mode !== "captcha-only") throw new Error("gate-refresh-unavailable");
-    this.ensureTurnstileRendered();
-    let token = this.gateTurnstileToken
-      ?? (this.gateTurnstileId ? window.turnstile?.getResponse(this.gateTurnstileId) : undefined);
-    if (!token) {
-      // interaction-only Turnstile usually resolves in well under a second.
-      await new Promise((r) => setTimeout(r, 800));
-      token = this.gateTurnstileToken
-        ?? (this.gateTurnstileId ? window.turnstile?.getResponse(this.gateTurnstileId) : undefined);
-    }
-    if (!token) throw new Error("turnstile-pending");
+    // forceFresh: we are here BECAUSE a session was rejected, so whatever
+    // token the widget still holds was already spent establishing it.
+    const token = await this.obtainGateTurnstileToken(true);
     await this.client.freeChatGate.start({ releaseId: this.cfg.releaseId, turnstileToken: token });
     this.gateTurnstileToken = null; // single-use
   }
