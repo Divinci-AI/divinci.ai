@@ -363,20 +363,34 @@ class DivinciChatWidget {
    * gate session is only established lazily at first-send time.
    */
   private async loadGateMode(): Promise<void> {
-    if (this.view !== "loading") return; // already on "chat" via a stored token
+    // Learn the mode ALWAYS — not only when we're still on the loading screen.
+    //
+    // This used to bail early when a stored token had already put us on
+    // "chat", which left `this.mode` null for the entire session of every
+    // RETURNING visitor. Everything gated on the mode then silently no-ops:
+    // ensureTurnstileRendered(), ensureGateStarted(), the 401 recovery in
+    // submitPrompt(), and refreshGateToken() for speak(). So the moment a
+    // stored token expired, the visitor could neither send nor hear anything
+    // — and no amount of reloading helped, because reloading is exactly what
+    // restores the token that triggers the early return. Only clearing
+    // localStorage recovered it.
     try {
       const { mode } = await this.client.freeChatGate.getConfig(this.cfg.releaseId);
       this.mode = mode;
     } catch {
-      // Network hiccup — fall back to the pre-existing email/OTP flow.
+      // Network hiccup — leave mode null; the email/OTP flow is the fallback.
     }
-    if (this.view !== "loading") return;
+
+    // Warm an invisible Turnstile token even when the view was already
+    // decided, so a restored session can re-verify without a visible prompt.
+    if (this.mode === "captcha-only") this.ensureTurnstileRendered();
+
+    if (this.view !== "loading") return; // view already decided (stored token)
     if (this.mode === "captcha-only") {
       if (!this.messages || this.messages.length === 0) {
         this.messages = [];
       }
       this.setView("chat");
-      this.ensureTurnstileRendered();
     } else {
       this.setView("email");
     }
