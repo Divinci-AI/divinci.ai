@@ -74,8 +74,43 @@
     return node;
   }
 
+  // Morpho glyphs. Optional by design — if morpho.js failed to load, the
+  // strip must still render its text, so every call site is guarded.
+  var glyphs = [];
+
   function clear(node) {
     while (node.firstChild) node.removeChild(node.firstChild);
+  }
+
+  /** Release the glyphs belonging to a subtree we are about to rebuild. */
+  function releaseGlyphs() {
+    for (var i = 0; i < glyphs.length; i++) {
+      if (glyphs[i] && glyphs[i].destroy) glyphs[i].destroy();
+    }
+    glyphs = [];
+  }
+
+  /**
+   * A morpho glyph for one site: recursive cell division seeded by hostname,
+   * growing while we fetch it. `active` animates; otherwise the structure's
+   * complexity reflects how many pages we actually indexed.
+   */
+  function glyphFor(host, active, pages, color) {
+    if (!window.DivinciMorpho) return null;
+    var canvas = document.createElement("canvas");
+    canvas.className = "www-rag-live-glyph";
+    // Decorative: the hostname sits right beside it as real text.
+    canvas.setAttribute("aria-hidden", "true");
+    var g = window.DivinciMorpho.createGlyph(canvas, {
+      host: host,
+      size: active ? 18 : 16,
+      active: active,
+      growth: active ? 1 : window.DivinciMorpho.growthForPages(pages),
+      color: color,
+    });
+    if (!g) return null;
+    glyphs.push(g);
+    return canvas;
   }
 
   /** Headline detail: progress while working, timing while not. */
@@ -112,7 +147,11 @@
     inFlightEl.appendChild(el("span", "www-rag-live-label", "Fetching"));
     var shown = hosts.slice(0, 6);
     for (var i = 0; i < shown.length; i++) {
-      inFlightEl.appendChild(el("span", "www-rag-live-host", shown[i]));
+      var chip = el("span", "www-rag-live-host");
+      var glyph = glyphFor(shown[i], true, null, "#3ddc84");
+      if (glyph) chip.appendChild(glyph);
+      chip.appendChild(document.createTextNode(shown[i]));
+      inFlightEl.appendChild(chip);
     }
     if (hosts.length > shown.length) {
       inFlightEl.appendChild(
@@ -139,7 +178,11 @@
       var item = recent[i];
       if (!item || typeof item.host !== "string") continue;
       var li = el("li", "www-rag-live-item");
-      li.appendChild(el("span", "www-rag-live-host", item.host));
+      var hostEl = el("span", "www-rag-live-host");
+      var doneGlyph = glyphFor(item.host, false, item.pages, "#9d9db8");
+      if (doneGlyph) hostEl.appendChild(doneGlyph);
+      hostEl.appendChild(document.createTextNode(item.host));
+      li.appendChild(hostEl);
       var bits = [];
       if (item.pages) bits.push(num(item.pages) + (item.pages === 1 ? " page" : " pages"));
       if (item.chunks) bits.push(num(item.chunks) + (item.chunks === 1 ? " chunk" : " chunks"));
@@ -155,6 +198,11 @@
   }
 
   function render(data) {
+    // Every poll rebuilds both lists, so the glyphs they held must leave the
+    // shared animation loop first — otherwise each refresh strands another
+    // set of canvases in it and the loop grows without bound.
+    releaseGlyphs();
+
     var state = STATE_LABELS[data.state] ? data.state : "offline";
 
     // Nothing has ever been reported (fresh deploy, or the record aged out

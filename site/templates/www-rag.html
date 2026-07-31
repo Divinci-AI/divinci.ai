@@ -293,6 +293,20 @@
     font-size: 13px;
     color: #7c7ca0;
 }
+/* Morpho glyph — a growing cell-division structure per site (morpho.js).
+   Sits inside the host chip, so the chip becomes a flex row. */
+.www-rag-live-host {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+.www-rag-live-glyph {
+    flex: none;
+    display: block;
+    /* Nudged down a hair: optically centred against the monospace x-height
+       rather than the full line box. */
+    margin-top: 1px;
+}
 .www-rag-live-recent { margin-top: 14px; }
 .www-rag-live-list {
     list-style: none;
@@ -434,6 +448,10 @@
 </style>
 
 <script defer src="{{ get_url(path="js/www-rag-directory.js") }}"></script>
+{# morpho must be defined before the strip renders; both are deferred, so
+   they execute in document order. The strip degrades to plain text if this
+   one fails to load. #}
+<script defer src="{{ get_url(path="js/morpho.js") }}"></script>
 <script defer src="{{ get_url(path="js/www-rag-live.js") }}"></script>
 <script>
 // Floating "Scan your website" pill: hidden while the hero (which carries the
