@@ -103,7 +103,7 @@
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@types/jest": "^30.0.0",
-    "esbuild": "^0.24.0",
+    "esbuild": "^0.28.1",
     "glob": "^10.5.0",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
