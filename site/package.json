@@ -76,6 +76,7 @@
     "test:all": "npm run test:unit && npm run test:validate && npm run test",
     "pre-deploy": "npm run test:health && npm run test:mobile:comprehensive",
     "dev": "zola serve --port 1111 --watch",
+    "test:worker": "node --test 'tests/worker/*.test.mjs'",
     "test:unit:jest": "jest",
     "test:unit:jest:watch": "jest --watch",
     "test:unit:jest:coverage": "jest --coverage",

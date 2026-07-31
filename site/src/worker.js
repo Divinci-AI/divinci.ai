@@ -5,6 +5,12 @@
 
 import { EmailMessage } from 'cloudflare:email';
 import { createMimeMessage } from 'mimetext';
+import {
+  ACTIVITY_KEY,
+  publicView,
+  sanitizeActivity,
+  timingSafeEqual,
+} from './www-rag-activity.mjs';
 
 /**
  * Inject the Cloudflare-derived ISO country code into the <meta name="cf-country">
@@ -136,6 +142,12 @@ Sitemap: ${url.origin}/sitemap.xml`, {
     // the footer indicator and /status page need no CORS proxy.
     if (url.pathname === '/api/status') {
       return handleStatus(request, env, ctx);
+    }
+
+    // Live WWW-RAG crawl activity: the laptop daemon POSTs snapshots here,
+    // /www-rag polls the GET side.
+    if (url.pathname === '/api/www-rag/activity') {
+      return handleWwwRagActivity(request, env);
     }
 
     // Language redirect logic for non-default languages
@@ -709,4 +721,138 @@ async function handleStatus(request, env, ctx) {
       { status: 200, headers }
     );
   }
+}
+
+// ── Live WWW-RAG crawl activity ──────────────────────────────────────────
+//
+// GET  /api/www-rag/activity  → public snapshot (no auth, short cache)
+// POST /api/www-rag/activity  → reporter push, Bearer WWW_RAG_ACTIVITY_TOKEN
+//
+// Backed by the STATUS_HISTORY KV namespace under its own key. Sharing the
+// namespace is deliberate: it is the same worker with the same lifecycle, and
+// provisioning a second namespace buys isolation we don't need for a record
+// that is rewritten every 20s and never read by the status code path.
+//
+// The daemon runs on a laptop and is frequently offline. Every response
+// therefore carries `stale` + `ageSeconds`, and publicView() downgrades the
+// state to `offline` past STALE_AFTER_MS — the page must never imply a crawl
+// is running because a snapshot from yesterday said so.
+const ACTIVITY_HEADERS = {
+  'Content-Type': 'application/json',
+  'X-Content-Type-Options': 'nosniff',
+  // Public read-only aggregate, same rationale as /api/status. The signed-in
+  // directory at chat.divinci.app is a cross-origin consumer.
+  'Access-Control-Allow-Origin': '*',
+};
+
+async function handleWwwRagActivity(request, env) {
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        ...ACTIVITY_HEADERS,
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Authorization, Content-Type',
+        'Access-Control-Max-Age': '86400',
+      },
+    });
+  }
+
+  if (request.method === 'GET') {
+    // No edge cache here. The record's whole value is freshness, the client
+    // already polls on an interval, and a KV read is cheaper than the cache
+    // round-trip anyway.
+    const headers = { ...ACTIVITY_HEADERS, 'Cache-Control': 'public, max-age=10' };
+    if (!env.STATUS_HISTORY) {
+      return new Response(JSON.stringify(publicView(null)), { status: 200, headers });
+    }
+    try {
+      const record = await env.STATUS_HISTORY.get(ACTIVITY_KEY, { type: 'json' });
+      return new Response(JSON.stringify(publicView(record)), { status: 200, headers });
+    } catch (e) {
+      console.error('[www-rag-activity] read failed:', e && e.message ? e.message : e);
+      // Offline is the honest answer to "we cannot tell" — never 500 a widget.
+      return new Response(JSON.stringify(publicView(null)), { status: 200, headers });
+    }
+  }
+
+  if (request.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'method_not_allowed' }), {
+      status: 405,
+      headers: { ...ACTIVITY_HEADERS, Allow: 'GET, POST, OPTIONS' },
+    });
+  }
+
+  const expected = env.WWW_RAG_ACTIVITY_TOKEN;
+  if (!expected) {
+    // Unconfigured must fail closed: an absent secret cannot become an open
+    // write endpoint on the marketing site.
+    console.error('[www-rag-activity] WWW_RAG_ACTIVITY_TOKEN is not configured');
+    return new Response(JSON.stringify({ error: 'not_configured' }), {
+      status: 503,
+      headers: ACTIVITY_HEADERS,
+    });
+  }
+
+  const auth = request.headers.get('Authorization') || '';
+  const presented = auth.startsWith('Bearer ') ? auth.slice(7) : '';
+  if (!timingSafeEqual(presented, expected)) {
+    return new Response(JSON.stringify({ error: 'unauthorized' }), {
+      status: 401,
+      headers: ACTIVITY_HEADERS,
+    });
+  }
+
+  // Bound the read before parsing — an authenticated client is still a client.
+  let body;
+  try {
+    const text = await request.text();
+    if (text.length > 16384) {
+      return new Response(JSON.stringify({ error: 'payload_too_large' }), {
+        status: 413,
+        headers: ACTIVITY_HEADERS,
+      });
+    }
+    body = JSON.parse(text);
+  } catch (e) {
+    return new Response(JSON.stringify({ error: 'invalid_json' }), {
+      status: 400,
+      headers: ACTIVITY_HEADERS,
+    });
+  }
+
+  const result = sanitizeActivity(body);
+  if (!result.ok) {
+    return new Response(JSON.stringify({ error: 'invalid_payload', detail: result.error }), {
+      status: 400,
+      headers: ACTIVITY_HEADERS,
+    });
+  }
+
+  if (!env.STATUS_HISTORY) {
+    return new Response(JSON.stringify({ error: 'not_configured' }), {
+      status: 503,
+      headers: ACTIVITY_HEADERS,
+    });
+  }
+
+  try {
+    // TTL so a permanently-dead reporter eventually leaves no record at all,
+    // rather than a very old one we keep having to reason about. 24h is well
+    // past any normal gap between passes (~3.5h).
+    await env.STATUS_HISTORY.put(ACTIVITY_KEY, JSON.stringify(result.value), {
+      expirationTtl: 86400,
+    });
+  } catch (e) {
+    console.error('[www-rag-activity] write failed:', e && e.message ? e.message : e);
+    return new Response(JSON.stringify({ error: 'write_failed' }), {
+      status: 502,
+      headers: ACTIVITY_HEADERS,
+    });
+  }
+
+  return new Response(JSON.stringify({ ok: true, state: result.value.state }), {
+    status: 200,
+    headers: ACTIVITY_HEADERS,
+  });
 }

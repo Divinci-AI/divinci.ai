@@ -2,6 +2,19 @@
 
 {% block content %}
 <section class="www-rag-hero" id="www-rag-hero">
+    {# Layered poster + video: the <img> is the LCP element and the <video>
+       fades in over it once it can play (data-hero-video handler in base.html). #}
+    <div class="www-rag-hero-bg" aria-hidden="true">
+        <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/images/www-rag-directory-hero-poster.webp"
+             srcset="/cdn-cgi/image/width=600,format=auto,quality=82/images/www-rag-directory-hero-poster.webp 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/images/www-rag-directory-hero-poster.webp 1200w, /cdn-cgi/image/width=1600,format=auto,quality=82/images/www-rag-directory-hero-poster.webp 1600w"
+             sizes="100vw" alt="" width="1376" height="768" class="www-rag-hero-poster"
+             loading="eager" fetchpriority="high" decoding="async"
+             onerror="this.onerror=null;this.src='{{ get_url(path="images/www-rag-directory-hero-poster.webp") | safe }}';">
+        <video autoplay muted loop playsinline webkit-playsinline preload="none"
+               width="1376" height="768" class="www-rag-hero-video" data-hero-video>
+            <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/www-rag-directory-veo31.webm" type="video/webm">
+        </video>
+    </div>
     <div class="container">
         <h1 class="www-rag-title">{{ page.title }}</h1>
         {% if page.description %}
@@ -26,6 +39,23 @@
     <span class="www-rag-scan-cta-spark">✦</span> Scan your website
 </a>
 
+{# Live crawl strip. Hidden until the activity endpoint answers — the crawl
+   daemon is laptop-local and often idle, and an empty box that says nothing
+   is worse than no box. www-rag-live.js unhides it. #}
+<section class="www-rag-live-section">
+    <div class="container">
+        <div id="www-rag-live" class="www-rag-live" hidden>
+            <div class="www-rag-live-head">
+                <span id="www-rag-live-dot" class="www-rag-live-dot" aria-hidden="true"></span>
+                <span id="www-rag-live-headline" class="www-rag-live-headline" aria-live="polite"></span>
+                <span id="www-rag-live-detail" class="www-rag-live-detail"></span>
+            </div>
+            <div id="www-rag-live-inflight" class="www-rag-live-inflight" hidden></div>
+            <div id="www-rag-live-recent" class="www-rag-live-recent" hidden></div>
+        </div>
+    </div>
+</section>
+
 <section class="www-rag-grid-section">
     <div class="container">
         <div id="www-rag-status" class="www-rag-status">Loading catalog…</div>
@@ -35,18 +65,55 @@
 
 <style>
 .www-rag-hero {
+    position: relative;
     padding: 96px 0 48px;
     text-align: center;
-    background:
-        linear-gradient(180deg, rgba(11,11,20,0.20) 0%, rgba(11,11,20,0.35) 70%, rgba(11,11,20,0.65) 100%),
-        url('{{ get_url(path="images/www-rag-directory-hero.webp") }}') center / cover no-repeat,
-        linear-gradient(135deg, #0b0b14 0%, #161629 60%, #1f1f3a 100%);
+    /* Shows through until the poster paints, and behind any letterboxing. */
+    background: linear-gradient(135deg, #0b0b14 0%, #161629 60%, #1f1f3a 100%);
     color: #fff;
     overflow: visible;
+}
+/* Media layer — its own stacking/clipping context so the section can stay
+   overflow:visible for the search pill's border (see .container note below). */
+.www-rag-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+.www-rag-hero-poster,
+.www-rag-hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+/* Video starts hidden; the data-hero-video handler in base.html adds
+   .is-playing once it can actually play, so LCP measures off the poster. */
+.www-rag-hero-video {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    pointer-events: none;
+}
+.www-rag-hero-video.is-playing { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+    .www-rag-hero-video { display: none; }
+}
+/* Darkening wash that used to be the first layer of the background stack —
+   keeps the title, search pill and CTA legible over the moving image. */
+.www-rag-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(11,11,20,0.20) 0%, rgba(11,11,20,0.35) 70%, rgba(11,11,20,0.65) 100%);
 }
 /* mobile-fixes.css sets .container { overflow-x: hidden }, which in
    Chromium also clips overflow-y and chops the search pill's bottom border. */
 .www-rag-hero .container {
+    position: relative;
+    z-index: 1;
     overflow: visible;
 }
 .www-rag-title {
@@ -138,6 +205,128 @@
 @media (max-width: 640px) {
     .www-rag-scan-fab { left: 14px; bottom: 14px; font-size: 14px; padding: 10px 18px; }
 }
+/* ── Live crawl strip ──────────────────────────────────────────────── */
+.www-rag-live-section {
+    background: #f7f7fb;
+    padding: 28px 0 0;
+}
+.www-rag-live {
+    background: #14142a;
+    border: 1px solid #26264a;
+    border-radius: 16px;
+    padding: 18px 22px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: #c9c9e0;
+}
+.www-rag-live[hidden] { display: none; }
+.www-rag-live-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.www-rag-live-headline {
+    font-weight: 600;
+    font-size: 17px;
+    color: #fff;
+}
+.www-rag-live-detail {
+    font-size: 15px;
+    color: #9d9db8;
+}
+.www-rag-live-detail[hidden] { display: none; }
+.www-rag-live-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #6b6b8c;
+    align-self: center;
+    flex: none;
+}
+.www-rag-live-dot-crawling,
+.www-rag-live-dot-growing,
+.www-rag-live-dot-embedding,
+.www-rag-live-dot-publishing {
+    background: #3ddc84;
+    box-shadow: 0 0 0 0 rgba(61, 220, 132, 0.6);
+    animation: www-rag-live-pulse 2s infinite;
+}
+.www-rag-live-dot-idle { background: #f0b429; }
+.www-rag-live-dot-offline { background: #6b6b8c; }
+@keyframes www-rag-live-pulse {
+    70% { box-shadow: 0 0 0 8px rgba(61, 220, 132, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0); }
+}
+/* A status dot is not worth vestibular discomfort — the colour already
+   carries the state, so drop the animation entirely rather than slow it. */
+@media (prefers-reduced-motion: reduce) {
+    .www-rag-live-dot { animation: none !important; }
+}
+.www-rag-live-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #7c7ca0;
+}
+.www-rag-live-inflight {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+.www-rag-live-inflight[hidden],
+.www-rag-live-recent[hidden] { display: none; }
+.www-rag-live-host {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    color: #e6e6f5;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 999px;
+    padding: 3px 10px;
+    /* Hostnames come from crawled pages; a long one must wrap, not stretch
+       the card. (They're also rendered via textContent, never innerHTML.) */
+    overflow-wrap: anywhere;
+}
+.www-rag-live-more {
+    font-size: 13px;
+    color: #7c7ca0;
+}
+.www-rag-live-recent { margin-top: 14px; }
+.www-rag-live-list {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 6px 20px;
+}
+.www-rag-live-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 14px;
+    min-width: 0;
+}
+.www-rag-live-item .www-rag-live-host {
+    background: none;
+    border: none;
+    padding: 0;
+    min-width: 0;
+}
+.www-rag-live-counts {
+    color: #7c7ca0;
+    font-size: 13px;
+    white-space: nowrap;
+    flex: none;
+}
+@media (max-width: 640px) {
+    .www-rag-live { padding: 16px; }
+    .www-rag-live-headline { font-size: 16px; }
+}
+
 .www-rag-grid-section {
     padding: 48px 0 96px;
     background: #f7f7fb;
@@ -245,6 +434,7 @@
 </style>
 
 <script defer src="{{ get_url(path="js/www-rag-directory.js") }}"></script>
+<script defer src="{{ get_url(path="js/www-rag-live.js") }}"></script>
 <script>
 // Floating "Scan your website" pill: hidden while the hero (which carries the
 // same CTA) is on screen; fades in once the visitor scrolls into the grid.
