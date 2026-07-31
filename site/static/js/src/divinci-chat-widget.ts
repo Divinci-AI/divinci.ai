@@ -159,7 +159,11 @@ const ICONS: Record<string, string> = {
   "copy": '<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>',
   "volume": '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>',
   "volume-off": '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" x2="16" y1="9" y2="15"/><line x1="16" x2="22" y1="9" y2="15"/>',
-  "stop": '<rect width="14" height="14" x="5" y="5" rx="2"/>',
+  // FILLED on purpose. As a stroke-only outline it reads as an empty
+  // placeholder box rather than a stop control (reported 2026-07-30: "the
+  // default empty square icon"). The shared <svg> sets fill="none", so the
+  // fill has to be declared on the shape itself.
+  "stop": '<rect width="12" height="12" x="6" y="6" rx="2" fill="currentColor" stroke="none"/>',
   "smile": '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/>',
 };
 
@@ -292,6 +296,8 @@ class DivinciChatWidget {
   private soundOn = false;
   /** The single audio element — one voice at a time, always. */
   private audio: HTMLAudioElement | null = null;
+  /** Removes the current element's listeners in one shot (see stopPlayback). */
+  private audioEvents: AbortController | null = null;
   /** Transcript index currently playing, so render() can show a stop button. */
   private playingIdx: number | null = null;
   /**
@@ -1149,6 +1155,13 @@ class DivinciChatWidget {
   /** Halt whatever is speaking, from either engine. */
   private stopPlayback(): void {
     if (this.audio) {
+      // Detach listeners BEFORE clearing the source. Assigning src = "" makes
+      // the browser raise MEDIA_ELEMENT_ERROR ("Empty src attribute") on the
+      // element, and the "error" listener attached in playMessage() cannot
+      // tell that apart from a real failure — so pressing STOP used to start
+      // the robotic browser voice, which is the opposite of stopping.
+      this.audioEvents?.abort();
+      this.audioEvents = null;
       this.audio.pause();
       this.audio.src = "";
       this.audio = null;
@@ -1206,17 +1219,22 @@ class DivinciChatWidget {
       await unlocked;
       if (this.playingIdx !== gateIdx) return;
       audio.src = url;
+      // Scoped to a controller so stopPlayback() can detach both handlers
+      // atomically before it clears src (which otherwise fires "error").
+      const events = new AbortController();
+      this.audioEvents = events;
       audio.addEventListener("ended", () => {
         if (this.playingIdx === gateIdx) {
           this.playingIdx = null;
           this.audio = null;
+          this.audioEvents = null;
           this.render();
         }
-      });
+      }, { signal: events.signal });
       audio.addEventListener("error", () => {
         console.warn("[divinci-chat] audio playback failed; falling back to browser voice");
         this.speakLocally(gateIdx);
-      });
+      }, { signal: events.signal });
       await audio.play();
     } catch (err) {
       if (this.playingIdx !== gateIdx) return;
