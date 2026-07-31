@@ -106,6 +106,21 @@ const HERO_HIDE_BOTTOM_RATIO = 0.72;
 const GATE_TOKEN_WAIT_MS = 4000;
 
 /**
+ * 8 samples of silence (8kHz mono 8-bit WAV), used to "unlock" an <audio>
+ * element while the click's user activation is still live.
+ *
+ * Browsers only permit playback that a user gesture initiated, and the
+ * activation is consumed/expires quickly. Synthesizing a reply takes SECONDS
+ * (8.3s measured for a 290-char message), so calling play() after awaiting it
+ * is far too late: it rejects NotAllowedError and the widget falls back to the
+ * robotic browser voice even though the audio is perfectly good. Playing this
+ * clip synchronously on click marks THAT element as user-initiated, so the
+ * later play() with the real URL is allowed.
+ */
+const SILENT_UNLOCK_WAV =
+  "data:audio/wav;base64,UklGRiwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQgAAACAgICAgICAgA==";
+
+/**
  * localStorage prefix for the gate's signed transcript + signature. Stored
  * beside "divinci-chat-history:" and cleared with it — the two must never
  * diverge (see saveMessages).
@@ -1163,6 +1178,13 @@ class DivinciChatWidget {
     this.playingIdx = gateIdx;
     this.render();
 
+    // Claim the element NOW, synchronously, before any await — this call still
+    // sits inside the click's user activation. See SILENT_UNLOCK_WAV.
+    const audio = new Audio();
+    audio.src = SILENT_UNLOCK_WAV;
+    const unlocked = audio.play().then(()=> true).catch(()=> false);
+    this.audio = audio;
+
     try {
       let result: { url: string };
       try {
@@ -1179,8 +1201,11 @@ class DivinciChatWidget {
       const { url } = result;
       // A stop (or another clip) may have landed while we were awaiting.
       if (this.playingIdx !== gateIdx) return;
-      const audio = new Audio(url);
-      this.audio = audio;
+      // Let the unlock settle, then swap the silent clip for the real audio on
+      // the SAME element so it keeps its user-initiated status.
+      await unlocked;
+      if (this.playingIdx !== gateIdx) return;
+      audio.src = url;
       audio.addEventListener("ended", () => {
         if (this.playingIdx === gateIdx) {
           this.playingIdx = null;
