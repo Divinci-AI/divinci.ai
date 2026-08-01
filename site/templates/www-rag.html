@@ -56,6 +56,19 @@
     </div>
 </section>
 
+{# The corpus as a map. Hidden until /api/v1/www-rag-universe answers with a
+   usable graph — the endpoint is not available on every environment, and an
+   empty canvas is worse than no section. www-rag-universe.js unhides it. #}
+<section class="www-rag-universe-section" id="www-rag-universe-section" hidden>
+    <div class="container">
+        <h2 class="www-rag-universe-title">The RAG universe</h2>
+        <canvas id="www-rag-universe-canvas" class="www-rag-universe-canvas"
+                role="img"
+                aria-label="Force-directed map of the crawled website corpus. Sites sit near the sites they resemble; bright arrows are hyperlinks found while crawling."></canvas>
+        <p class="www-rag-universe-caption" id="www-rag-universe-caption"></p>
+    </div>
+</section>
+
 <section class="www-rag-grid-section">
     <div class="container">
         <div id="www-rag-status" class="www-rag-status">Loading catalog…</div>
@@ -445,6 +458,39 @@
     font-size: 12px;
     color: #b45309;
 }
+
+/* --- Universe map ------------------------------------------------------- */
+.www-rag-universe-section {
+    padding: 8px 0 32px;
+}
+.www-rag-universe-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    margin: 0 0 14px;
+    color: #fff;
+}
+.www-rag-universe-canvas {
+    display: block;
+    width: 100%;
+    /* Tall enough that the connected core is legible, capped so it never eats
+       a laptop viewport whole. */
+    height: min(66vh, 620px);
+    background: #0b0b12;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    cursor: pointer;
+}
+.www-rag-universe-caption {
+    margin: 12px 0 0;
+    color: #8a8a94;
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 78ch;
+}
+@media (max-width: 720px) {
+    .www-rag-universe-canvas { height: 52vh; }
+    .www-rag-universe-title { font-size: 23px; }
+}
 </style>
 
 <script defer src="{{ get_url(path="js/www-rag-directory.js") }}"></script>
@@ -453,6 +499,7 @@
    one fails to load. #}
 <script defer src="{{ get_url(path="js/morpho.js") }}"></script>
 <script defer src="{{ get_url(path="js/www-rag-live.js") }}"></script>
+<script defer src="{{ get_url(path="js/www-rag-universe.js") }}"></script>
 <script>
 // Floating "Scan your website" pill: hidden while the hero (which carries the
 // same CTA) is on screen; fades in once the visitor scrolls into the grid.
