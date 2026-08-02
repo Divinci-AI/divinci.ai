@@ -460,14 +460,19 @@
 }
 
 /* --- Universe map ------------------------------------------------------- */
+/* Light band holding a dark canvas — the same shape as .www-rag-live-section
+   above it. The band needs an explicit background: without one it falls
+   through to body (#f8f4f0), and the title below was styled #fff for a dark
+   band that did not exist, rendering it invisible. */
 .www-rag-universe-section {
     padding: 8px 0 32px;
+    background: #f7f7fb;
 }
 .www-rag-universe-title {
     font-family: 'Fraunces', serif;
     font-size: 28px;
     margin: 0 0 14px;
-    color: #fff;
+    color: #1a1a2e;
 }
 .www-rag-universe-canvas {
     display: block;
@@ -482,7 +487,7 @@
 }
 .www-rag-universe-caption {
     margin: 12px 0 0;
-    color: #8a8a94;
+    color: #55555f;
     font-size: 13px;
     line-height: 1.6;
     max-width: 78ch;
