@@ -394,6 +394,14 @@
       canvas.height = Math.floor(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
+    // MUST precede resize(): the section ships `hidden`, and a display:none
+    // element measures 0×0, which silently leaves the canvas backing store at
+    // 0×0 forever — no resize event ever fires to correct it, so the visitor
+    // gets an empty black box. Unhiding first costs nothing visually: the
+    // measure/settle/draw below all run in this same task, so the browser
+    // paints once, already formed.
+    section.hidden = false;
+
     resize();
     window.addEventListener("resize", function () { resize(); fit(sim, w, h); });
 
@@ -402,7 +410,6 @@
     for (var i = 0; i < 600; i++) step(sim);
     fit(sim, w, h);
     draw(sim, w, h);
-    section.hidden = false;
 
     if (reduceMotion) return; // settled still frame is the whole experience
 
