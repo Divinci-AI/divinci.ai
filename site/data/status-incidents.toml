@@ -1,0 +1,77 @@
+# Human-authored incident notes for /status.
+#
+# WHY THIS FILE EXISTS
+# The incident list on /status is DERIVED from recorded uptime samples, which
+# is deliberate — a hand-maintained list can drift from what the bars show.
+# But derived data can only say "degraded, 98.1%". It cannot say what broke,
+# who it affected, or whether it is fixed. That is what visitors actually want
+# from a status page, and it has to be written by a human.
+#
+# It also covers a real blind spot. History sampling is driven by /api/status
+# TRAFFIC (see recordSample() in src/worker.js), so an outage during a
+# low-traffic window can go completely unrecorded — the 2026-08-02 incident
+# below happened overnight and the page recorded "operational / 100%" for that
+# day. A note here surfaces the incident regardless of whether sampling caught
+# it.
+#
+# HOW TO ADD ONE
+#   - `date` must be YYYY-MM-DD (UTC) and is what a note is keyed on. Use the
+#     day the impact STARTED; add a second entry if it spans days.
+#   - `severity` is one of: degraded | partial_outage | major_outage
+#   - `resolved = false` renders the entry as ongoing.
+#   - Keep `summary` plain and factual. This is a public page: no internal
+#     hostnames, customer names, revision IDs, or stack traces.
+#   - Newest first is not required; the template sorts by date descending.
+#
+# Adding a note requires a site deploy (`zola build` + `wrangler deploy`),
+# which is fine — these are written after the fact, not live during an
+# incident.
+
+[[incident]]
+date = "2026-08-02"
+title = "API requests timed out during two deploys"
+severity = "partial_outage"
+window = "00:22–00:30 and 00:52–00:58 PT (07:22–07:58 UTC)"
+resolved = true
+summary = """
+Two deployments left incoming API requests waiting on a newly started server \
+that had not yet been marked ready to receive traffic. Rather than failing \
+quickly, those requests were held open until they timed out. Chat embeds \
+could not load during the two windows, and the platform API was unavailable \
+for roughly eight minutes and then six minutes.
+
+Service recovered on its own in both cases. We have changed how a new server \
+reports readiness so traffic is routed within seconds instead of minutes, \
+added a short time limit to the affected public endpoints so a request fails \
+fast instead of hanging, and shortened our alerting window so we are paged \
+during an incident rather than after it.
+
+This page did not reflect the incident while it was happening: uptime samples \
+are collected as visitors load the site, and there was almost no traffic at \
+that hour. We are addressing that separately.
+"""
+
+[[incident]]
+date = "2026-08-02"
+title = "Chat and API unavailable — database connection limit reached"
+severity = "major_outage"
+window = "02:05–02:45 PT (09:05–09:45 UTC)"
+resolved = true
+summary = """
+Our caching layer reached its maximum number of simultaneous connections and \
+began refusing new ones. Because the API opens a connection as each server \
+starts, and no new connection could be made, the service could not recover by \
+adding capacity. Chat and the API were unavailable for roughly forty minutes. \
+Static health checks continued to pass throughout, which is why this took \
+longer to identify than it should have.
+
+The immediate cause was that connections were not being released when servers \
+shut down, so they accumulated over time until the limit was reached. Earlier \
+deployments that day accelerated this by cycling servers rapidly.
+
+We have quadrupled the connection limit, enabled data persistence, and — the \
+actual fix — changed the API to close its connections on shutdown so they can \
+no longer accumulate. We have also added monitoring on connection usage so we \
+are warned hours before this threshold could be approached again, rather than \
+learning about it from an outage.
+"""

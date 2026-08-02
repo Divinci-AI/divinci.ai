@@ -11,7 +11,25 @@
 #}
 
 {% block content %}
+{#
+  Human-authored incident notes, merged with the DERIVED incident list below.
+
+  The derived list can only say "degraded, 98.1%". It cannot say what broke,
+  who it affected, or whether it is fixed — which is what visitors actually
+  want from a status page, and it has to be written by a person.
+
+  Notes are also the only thing that can surface an incident the sampler
+  missed. History is sampled from /api/status traffic, so an outage in a
+  quiet hour records late and coarse; on 2026-08-02 the page briefly showed
+  "operational / 100%" during a real outage.
+
+  required=false so a missing/renamed file degrades to "no notes" rather than
+  failing the whole site build.
+#}
+{%- set incident_data = load_data(path="data/status-incidents.toml", required=false) -%}
+{%- set incident_notes = incident_data.incident | default(value=[]) -%}
 <main id="status-page" class="status-page">
+  <script type="application/json" id="status-incident-notes">{{ incident_notes | json_encode | safe }}</script>
   <section class="section">
     <div class="container">
 
@@ -255,6 +273,43 @@ main#status-page.status-page {
 .status-incident-pct { margin-left: auto; font-size: 0.85rem; color: var(--color-neutral-secondary, #7e8d95); font-variant-numeric: tabular-nums; }
 .status-incidents-none { color: var(--color-neutral-secondary, #7e8d95); margin: 0; }
 
+/* ── Hand-authored incident notes ─────────────────────────────── */
+.status-incident { flex-wrap: wrap; }
+.status-incident-note {
+  flex: 1 0 100%;
+  margin: 0.6rem 0 0.2rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--color-neutral-border, #dde5e2);
+}
+.status-incident-note p {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-neutral-secondary, #56656d);
+}
+.status-incident-note p:last-child { margin-bottom: 0; }
+.status-incident-note-title {
+  font-weight: 700;
+  color: #2d3c34 !important;
+  font-size: 0.92rem !important;
+}
+.status-incident-note-window {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.82rem !important;
+  opacity: 0.85;
+}
+.status-incident-ongoing {
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: #fff4e0;
+  color: #b47509;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
 .status-note {
   max-width: 52rem;
   margin: 0 auto;
@@ -390,18 +445,51 @@ main#status-page.status-page {
     renderIncidents(h, withData);
   }
 
-  // Derived from the same recorded samples as the bars — not a separate,
-  // hand-maintained list that could drift from what the bars show.
+  // Human-authored notes, keyed by date. Build-time data (see load_data above).
+  var INCIDENT_NOTES = (function () {
+    try {
+      var el = document.getElementById('status-incident-notes');
+      var arr = el ? JSON.parse(el.textContent || '[]') : [];
+      return Array.isArray(arr) ? arr : [];
+    } catch (e) { return []; }
+  })();
+
+  function notesFor(date) {
+    return INCIDENT_NOTES.filter(function (n) { return n.date === date; });
+  }
+
+  // Severity ranking so a hand-written note can RAISE the shown severity. The
+  // sampler can only see what it happened to catch: a total outage in a quiet
+  // hour records as "degraded" because few samples landed. A human who knows
+  // it was a major outage should not be overruled by sparse sampling.
+  var NOTE_RANK = { degraded: 1, partial_outage: 2, major_outage: 3 };
+
+  // Derived from the same recorded samples as the bars — never replaced by the
+  // hand-maintained list, only ANNOTATED by it, so the two cannot silently
+  // drift apart. Notes for a date the sampler recorded as clean are still
+  // shown; that is the case the sampler is worst at.
   function renderIncidents(h, withData) {
     var card = document.getElementById('status-incidents-card');
     var list = document.getElementById('status-incidents');
-    if (withData === 0) { card.hidden = true; return; }
+    if (withData === 0 && !INCIDENT_NOTES.length) { card.hidden = true; return; }
     card.hidden = false;
     list.textContent = '';
 
     var bad = h.days.filter(function (d) {
       return d.status === 'degraded' || d.status === 'partial_outage' || d.status === 'major_outage';
     }).reverse();
+
+    // Surface annotated days the sampler did NOT flag, so a quiet-hour outage
+    // still appears once someone writes it up.
+    var seen = {};
+    bad.forEach(function (d) { seen[d.date] = true; });
+    INCIDENT_NOTES.forEach(function (n) {
+      if (n.date && !seen[n.date]) {
+        seen[n.date] = true;
+        bad.push({ date: n.date, status: n.severity || 'degraded', uptimePct: null });
+      }
+    });
+    bad.sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
 
     if (!bad.length) {
       var none = document.createElement('p');
@@ -428,7 +516,53 @@ main#status-page.status-page {
       var pct = document.createElement('span');
       pct.className = 'status-incident-pct';
       pct.textContent = (d.uptimePct === null || d.uptimePct === undefined) ? '' : d.uptimePct + '% uptime';
+
+      var notes = notesFor(d.date);
+      // A note may know the day was worse than sparse sampling suggests.
+      notes.forEach(function (n) {
+        if (n.severity && (NOTE_RANK[n.severity] || 0) > (NOTE_RANK[d.status] || 0)) {
+          li.setAttribute('data-s', n.severity);
+          st.textContent = n.severity.replace('_', ' ');
+        }
+      });
+
       li.appendChild(date); li.appendChild(st); li.appendChild(pct);
+
+      notes.forEach(function (n) {
+        var body = document.createElement('div');
+        body.className = 'status-incident-note';
+
+        var h3 = document.createElement('p');
+        h3.className = 'status-incident-note-title';
+        // textContent throughout — these are authored by us, but rendering
+        // build-time data as HTML would make the status page an injection
+        // surface for anything that ever edits that file.
+        h3.textContent = n.title || 'Incident';
+        if (n.resolved === false) {
+          var ong = document.createElement('span');
+          ong.className = 'status-incident-ongoing';
+          ong.textContent = 'ongoing';
+          h3.appendChild(ong);
+        }
+        body.appendChild(h3);
+
+        if (n.window) {
+          var w = document.createElement('p');
+          w.className = 'status-incident-note-window';
+          w.textContent = n.window;
+          body.appendChild(w);
+        }
+        if (n.summary) {
+          String(n.summary).split(/\n{2,}/).forEach(function (para) {
+            if (!para.trim()) return;
+            var p = document.createElement('p');
+            p.textContent = para.trim();
+            body.appendChild(p);
+          });
+        }
+        li.appendChild(body);
+      });
+
       list.appendChild(li);
     });
   }
