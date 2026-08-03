@@ -876,7 +876,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Múltiples releases de marca blanca</li>
-<li>$5/mes en créditos de uso incluidos</li>
+<li>$25/mes en créditos de uso incluidos</li>
 <li>Modelos de IA de la comunidad + premium</li>
 <li>RAG básico — fundamenta las respuestas en tus propios documentos</li>
 <li>Trae tus propias claves de API (BYOK)</li>
@@ -911,7 +911,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Múltiples releases de marca blanca</li>
-<li>$25/mes en créditos de uso incluidos</li>
+<li>$100/mes en créditos de uso incluidos</li>
 <li>Modelos de IA de la comunidad + premium</li>
 <li>RAG avanzado (multi-índice, reranking, límites más altos)</li>
 <li>Trae tus propias claves de API (BYOK)</li>
@@ -961,7 +961,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features pricing-features-grid">
 <li>Releases de marca blanca ilimitados</li>
-<li>$150/mes en créditos de uso incluidos</li>
+<li>$500/mes en créditos de uso incluidos</li>
 <li>Modelos de IA de la comunidad + premium</li>
 <li>RAG avanzado (multi-índice, reranking, límites más altos)</li>
 <li>Scored QA, pruebas A/B, Arena, ajuste fino</li>

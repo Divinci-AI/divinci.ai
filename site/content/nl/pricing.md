@@ -876,7 +876,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Meerdere white-label releases</li>
-<li>$5/maand aan inbegrepen gebruikstegoed</li>
+<li>$25/maand aan inbegrepen gebruikstegoed</li>
 <li>Community- en premium AI-modellen</li>
 <li>Basis-RAG — baseer antwoorden op uw eigen documenten</li>
 <li>Gebruik uw eigen API-sleutels (BYOK)</li>
@@ -911,7 +911,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Meerdere white-label releases</li>
-<li>$25/maand aan inbegrepen gebruikstegoed</li>
+<li>$100/maand aan inbegrepen gebruikstegoed</li>
 <li>Community- en premium AI-modellen</li>
 <li>Geavanceerde RAG (multi-index, reranking, hogere limieten)</li>
 <li>Gebruik uw eigen API-sleutels (BYOK)</li>
@@ -961,7 +961,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features pricing-features-grid">
 <li>Onbeperkt aantal white-label releases</li>
-<li>$150/maand aan inbegrepen gebruikstegoed</li>
+<li>$500/maand aan inbegrepen gebruikstegoed</li>
 <li>Community- en premium AI-modellen</li>
 <li>Geavanceerde RAG (multi-index, reranking, hogere limieten)</li>
 <li>Scored QA, A/B-tests, Arena, fine-tuning</li>

@@ -876,7 +876,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Plusieurs déploiements en marque blanche</li>
-<li>5 $/mois de crédits d'utilisation inclus</li>
+<li>25 $/mois de crédits d'utilisation inclus</li>
 <li>Modèles IA communautaires + premium</li>
 <li>RAG de base — ancrez les réponses sur vos propres documents</li>
 <li>Utilisez vos propres clés API (BYOK)</li>
@@ -911,7 +911,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Plusieurs déploiements en marque blanche</li>
-<li>25 $/mois de crédits d'utilisation inclus</li>
+<li>100 $/mois de crédits d'utilisation inclus</li>
 <li>Modèles IA communautaires + premium</li>
 <li>RAG avancé (multi-index, reranking, limites supérieures)</li>
 <li>Utilisez vos propres clés API (BYOK)</li>
@@ -961,7 +961,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features pricing-features-grid">
 <li>Déploiements en marque blanche illimités</li>
-<li>150 $/mois de crédits d'utilisation inclus</li>
+<li>500 $/mois de crédits d'utilisation inclus</li>
 <li>Modèles IA communautaires + premium</li>
 <li>RAG avancé (multi-index, reranking, limites supérieures)</li>
 <li>Scored QA, tests A/B, Arena, fine-tuning</li>

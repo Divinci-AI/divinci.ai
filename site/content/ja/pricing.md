@@ -876,7 +876,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>複数のホワイトレーベルリリース</li>
-<li>月額$5分の利用クレジット付き</li>
+<li>月額$25分の利用クレジット付き</li>
 <li>コミュニティ+プレミアムAIモデル</li>
 <li>ベーシックRAG — 自社ドキュメントに基づく回答</li>
 <li>独自のAPIキーを利用可能(BYOK)</li>
@@ -911,7 +911,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>複数のホワイトレーベルリリース</li>
-<li>月額$25分の利用クレジット付き</li>
+<li>月額$100分の利用クレジット付き</li>
 <li>コミュニティ+プレミアムAIモデル</li>
 <li>アドバンストRAG(マルチインデックス、リランキング、上限拡張)</li>
 <li>独自のAPIキーを利用可能(BYOK)</li>
@@ -961,7 +961,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features pricing-features-grid">
 <li>ホワイトレーベルリリース無制限</li>
-<li>月額$150分の利用クレジット付き</li>
+<li>月額$500分の利用クレジット付き</li>
 <li>コミュニティ+プレミアムAIモデル</li>
 <li>アドバンストRAG(マルチインデックス、リランキング、上限拡張)</li>
 <li>スコア付きQA、A/Bテスト、Arena、ファインチューニング</li>

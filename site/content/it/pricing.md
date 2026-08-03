@@ -876,7 +876,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Release white-label multiple</li>
-<li>$5/mese di crediti di utilizzo inclusi</li>
+<li>$25/mese di crediti di utilizzo inclusi</li>
 <li>Modelli IA community + premium</li>
 <li>RAG di base — risposte fondate sui tuoi documenti</li>
 <li>Porta le tue chiavi API (BYOK)</li>
@@ -911,7 +911,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Release white-label multiple</li>
-<li>$25/mese di crediti di utilizzo inclusi</li>
+<li>$100/mese di crediti di utilizzo inclusi</li>
 <li>Modelli IA community + premium</li>
 <li>RAG avanzato (multi-indice, reranking, limiti più alti)</li>
 <li>Porta le tue chiavi API (BYOK)</li>
@@ -961,7 +961,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features pricing-features-grid">
 <li>Release white-label illimitate</li>
-<li>$150/mese di crediti di utilizzo inclusi</li>
+<li>$500/mese di crediti di utilizzo inclusi</li>
 <li>Modelli IA community + premium</li>
 <li>RAG avanzato (multi-indice, reranking, limiti più alti)</li>
 <li>QA con punteggio, test A/B, Arena, fine-tuning</li>
