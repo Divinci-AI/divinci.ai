@@ -14,6 +14,11 @@
  * assistant on top of it; Claim starts DNS/file ownership verification to
  * take over the site's existing assistant. This static site has no auth
  * session of its own, so both actions always happen on the signed-in app.
+ *
+ * Model-card enrichment (2026-08): primary chips for language model + RAG
+ * memory size, core counts (pages/files/chunks/size), and a "More details"
+ * disclosure for chunking tool, vector DB, conversations, rating, etc.
+ * All fields are optional — older API responses still render cleanly.
  */
 (function () {
   "use strict";
@@ -37,12 +42,46 @@
     return Number(n).toLocaleString("en-US");
   }
 
-  function formatMeta(site) {
-    return [
-      formatCount(site.pageCount) + " pages",
-      formatCount(site.fileCount) + " files",
-      formatCount(site.chunkCount) + " chunks",
-    ].join(" · ");
+  function formatBytes(bytes) {
+    if (bytes === null || bytes === undefined || !isFinite(bytes) || bytes < 0) return null;
+    if (bytes === 0) return "0 B";
+    var units = ["B", "KB", "MB", "GB", "TB"];
+    var value = bytes;
+    var unit = 0;
+    while (value >= 1024 && unit < units.length - 1) {
+      value /= 1024;
+      unit += 1;
+    }
+    var rounded = value >= 10 || unit === 0 ? Math.round(value) : Math.round(value * 10) / 10;
+    return rounded.toLocaleString("en-US") + " " + units[unit];
+  }
+
+  function formatDate(iso) {
+    if (!iso) return "—";
+    try {
+      return new Date(iso).toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
+    } catch (e) {
+      return "—";
+    }
+  }
+
+  function formatRating(rating) {
+    if (!rating) return "—";
+    var total = (rating.up || 0) + (rating.down || 0);
+    if (total === 0) return "—";
+    if (rating.percentPositive === null || rating.percentPositive === undefined) {
+      return rating.up + "↑ " + rating.down + "↓";
+    }
+    return rating.percentPositive + "% positive (" + rating.up + "↑ " + rating.down + "↓)";
+  }
+
+  function joinList(items) {
+    if (!items || !items.length) return "—";
+    return items.join(", ");
   }
 
   function el(tag, className, text) {
@@ -50,6 +89,136 @@
     if (className) node.className = className;
     if (text !== undefined) node.textContent = text;
     return node;
+  }
+
+  function appendDetail(dl, label, value) {
+    var row = el("div", "www-rag-card-detail-row");
+    row.appendChild(el("dt", "www-rag-card-detail-label", label));
+    row.appendChild(el("dd", "www-rag-card-detail-value", value || "—"));
+    dl.appendChild(row);
+  }
+
+  function otherToolsLabel(tools) {
+    if (!tools) return "—";
+    var parts = [];
+    if (tools.webSearch) parts.push("Web search");
+    if (tools.email) parts.push("Email");
+    if (tools.texting) parts.push("Texting");
+    if (tools.other && tools.other.length) {
+      for (var i = 0; i < tools.other.length; i++) parts.push(tools.other[i]);
+    }
+    return parts.length ? parts.join(", ") : "—";
+  }
+
+  function renderModelCard(site) {
+    var mc = site.modelCard || null;
+    var rag = (mc && mc.ragMemory) || {
+      fileCount: site.fileCount,
+      totalBytes: site.totalBytes,
+      chunkCount: site.chunkCount,
+      pageCount: site.pageCount,
+    };
+    var details = (mc && mc.details) || null;
+    var wrap = el("div", "www-rag-card-model");
+
+    // Primary chips: language model + memory size
+    var primary = el("div", "www-rag-card-primary");
+    if (mc && mc.languageModel) {
+      var modelChip = el("div", "www-rag-card-chip");
+      modelChip.appendChild(el("span", "www-rag-card-chip-label", "Model"));
+      modelChip.appendChild(el("span", "www-rag-card-chip-value", mc.languageModel));
+      primary.appendChild(modelChip);
+    }
+    var sizeLabel = formatBytes(rag.totalBytes);
+    if (sizeLabel) {
+      var sizeChip = el("div", "www-rag-card-chip");
+      sizeChip.appendChild(el("span", "www-rag-card-chip-label", "Memory"));
+      sizeChip.appendChild(el("span", "www-rag-card-chip-value", sizeLabel));
+      primary.appendChild(sizeChip);
+    }
+    if (primary.childNodes.length) wrap.appendChild(primary);
+
+    // Core stats
+    var stats = el("div", "www-rag-card-stats");
+    function addStat(value, label) {
+      var s = el("div", "www-rag-card-stat");
+      s.appendChild(el("span", "www-rag-card-stat-value", value));
+      s.appendChild(el("span", "www-rag-card-stat-label", label));
+      stats.appendChild(s);
+    }
+    if (rag.pageCount !== null && rag.pageCount !== undefined) {
+      addStat(formatCount(rag.pageCount), "Pages");
+    }
+    addStat(formatCount(rag.fileCount), "Files");
+    addStat(formatCount(rag.chunkCount), "Chunks");
+    if (sizeLabel) addStat(sizeLabel, "Size");
+    wrap.appendChild(stats);
+
+    // Details disclosure
+    if (details) {
+      var hasDetails =
+        (details.chunkingTools && details.chunkingTools.length) ||
+        (details.documentParsers && details.documentParsers.length) ||
+        details.vectorDatabase ||
+        details.embeddingModel ||
+        details.createdAt ||
+        details.updatedAt ||
+        details.conversationCount !== null ||
+        details.rating ||
+        details.fineTuned ||
+        (details.tools &&
+          (details.tools.voice ||
+            details.tools.speechToText ||
+            details.tools.webSearch ||
+            details.tools.email ||
+            details.tools.texting ||
+            (details.tools.other && details.tools.other.length)));
+
+      if (hasDetails) {
+        var detailsWrap = el("div", "www-rag-card-details");
+        var toggle = el("button", "www-rag-card-details-toggle", "More details ▾");
+        toggle.type = "button";
+        toggle.setAttribute("aria-expanded", "false");
+        var dl = el("dl", "www-rag-card-details-list");
+        dl.hidden = true;
+
+        appendDetail(dl, "Chunking", joinList(details.chunkingTools));
+        appendDetail(dl, "Document parsing", joinList(details.documentParsers));
+        appendDetail(dl, "Vector database", details.vectorDatabase || "—");
+        appendDetail(dl, "Embedding model", details.embeddingModel || "—");
+        appendDetail(dl, "Created", formatDate(details.createdAt));
+        appendDetail(dl, "Updated", formatDate(details.updatedAt));
+        appendDetail(dl, "Conversations", formatCount(details.conversationCount));
+        appendDetail(dl, "Rating", formatRating(details.rating));
+        if (details.fineTuned) {
+          appendDetail(
+            dl,
+            "Fine-tune data",
+            details.fineTuneDatasetSize !== null && details.fineTuneDatasetSize !== undefined
+              ? formatCount(details.fineTuneDatasetSize) + " training files"
+              : "Fine-tuned",
+          );
+        }
+        if (details.tools) {
+          appendDetail(dl, "Voice", details.tools.voice || "—");
+          appendDetail(dl, "Speech-to-text", details.tools.speechToText || "—");
+          appendDetail(dl, "Other tools", otherToolsLabel(details.tools));
+        }
+
+        toggle.addEventListener("click", function () {
+          var open = dl.hidden;
+          dl.hidden = !open;
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.textContent = open ? "Hide details ▴" : "More details ▾";
+        });
+
+        detailsWrap.appendChild(toggle);
+        detailsWrap.appendChild(dl);
+        wrap.appendChild(detailsWrap);
+      }
+    }
+
+    return wrap;
   }
 
   // Site data (host/description/faviconUrl) originates from crawled
@@ -81,7 +250,7 @@
     card.appendChild(header);
 
     card.appendChild(el("div", "www-rag-card-desc", site.description || ""));
-    card.appendChild(el("div", "www-rag-card-meta", formatMeta(site)));
+    card.appendChild(renderModelCard(site));
 
     var actions = el("div", "www-rag-card-actions");
     if (site.releaseId) {
@@ -198,11 +367,13 @@
       }
       allSites = data.sites || [];
       if (statsEl) {
+        var totalSize = formatBytes(data.totalBytes);
         statsEl.textContent =
           formatCount(data.totalSites) + " curated sites · " +
           formatCount(data.totalPages) + " pages · " +
           formatCount(data.totalFiles) + " files · " +
-          formatCount(data.totalChunks) + " searchable chunks";
+          formatCount(data.totalChunks) + " searchable chunks" +
+          (totalSize ? " · " + totalSize + " indexed" : "");
       }
       applySearch();
     })
