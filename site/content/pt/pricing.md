@@ -876,7 +876,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Vários lançamentos white-label</li>
-<li>$5/mês em créditos de utilização incluídos</li>
+<li>$25/mês em créditos de utilização incluídos</li>
 <li>Modelos de IA da comunidade + premium</li>
 <li>RAG básico — baseie as respostas nos seus próprios documentos</li>
 <li>Traga as suas próprias chaves de API (BYOK)</li>
@@ -911,7 +911,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Vários lançamentos white-label</li>
-<li>$25/mês em créditos de utilização incluídos</li>
+<li>$100/mês em créditos de utilização incluídos</li>
 <li>Modelos de IA da comunidade + premium</li>
 <li>RAG avançado (multi-índice, reranking, limites mais elevados)</li>
 <li>Traga as suas próprias chaves de API (BYOK)</li>
@@ -961,7 +961,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features pricing-features-grid">
 <li>Lançamentos white-label ilimitados</li>
-<li>$150/mês em créditos de utilização incluídos</li>
+<li>$500/mês em créditos de utilização incluídos</li>
 <li>Modelos de IA da comunidade + premium</li>
 <li>RAG avançado (multi-índice, reranking, limites mais elevados)</li>
 <li>Scored QA, testes A/B, Arena, fine-tuning</li>

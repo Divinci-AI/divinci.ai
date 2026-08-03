@@ -876,7 +876,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>多个白标发布版本</li>
-<li>每月包含 5 美元使用额度</li>
+<li>每月包含 25 美元使用额度</li>
 <li>社区 + 高级 AI 模型</li>
 <li>基础 RAG —— 基于您自己的文档生成答案</li>
 <li>自带 API 密钥(BYOK)</li>
@@ -911,7 +911,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>多个白标发布版本</li>
-<li>每月包含 25 美元使用额度</li>
+<li>每月包含 100 美元使用额度</li>
 <li>社区 + 高级 AI 模型</li>
 <li>高级 RAG(多索引、重排序、更高限额)</li>
 <li>自带 API 密钥(BYOK)</li>
@@ -961,7 +961,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features pricing-features-grid">
 <li>无限白标发布版本</li>
-<li>每月包含 150 美元使用额度</li>
+<li>每月包含 500 美元使用额度</li>
 <li>社区 + 高级 AI 模型</li>
 <li>高级 RAG(多索引、重排序、更高限额)</li>
 <li>评分 QA、A/B 测试、Arena、微调</li>

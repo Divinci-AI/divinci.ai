@@ -876,7 +876,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>다중 화이트라벨 릴리스</li>
-<li>월 $5 상당의 사용 크레딧 포함</li>
+<li>월 $25 상당의 사용 크레딧 포함</li>
 <li>커뮤니티 + 프리미엄 AI 모델</li>
 <li>기본 RAG — 자체 문서를 기반으로 답변 생성</li>
 <li>자체 API 키 사용 (BYOK)</li>
@@ -911,7 +911,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>다중 화이트라벨 릴리스</li>
-<li>월 $25 상당의 사용 크레딧 포함</li>
+<li>월 $100 상당의 사용 크레딧 포함</li>
 <li>커뮤니티 + 프리미엄 AI 모델</li>
 <li>고급 RAG (다중 인덱스, 재순위화, 더 높은 한도)</li>
 <li>자체 API 키 사용 (BYOK)</li>
@@ -961,7 +961,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features pricing-features-grid">
 <li>무제한 화이트라벨 릴리스</li>
-<li>월 $150 상당의 사용 크레딧 포함</li>
+<li>월 $500 상당의 사용 크레딧 포함</li>
 <li>커뮤니티 + 프리미엄 AI 모델</li>
 <li>고급 RAG (다중 인덱스, 재순위화, 더 높은 한도)</li>
 <li>Scored QA, A/B 테스트, Arena, 파인튜닝</li>

@@ -876,7 +876,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Mehrere White-Label-Releases</li>
-<li>5 $/Monat an enthaltenem Nutzungsguthaben</li>
+<li>25 $/Monat an enthaltenem Nutzungsguthaben</li>
 <li>Community- und Premium-KI-Modelle</li>
 <li>Basis-RAG – Antworten auf Basis Ihrer eigenen Dokumente</li>
 <li>Eigene API-Schlüssel nutzen (BYOK)</li>
@@ -911,7 +911,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features">
 <li>Mehrere White-Label-Releases</li>
-<li>25 $/Monat an enthaltenem Nutzungsguthaben</li>
+<li>100 $/Monat an enthaltenem Nutzungsguthaben</li>
 <li>Community- und Premium-KI-Modelle</li>
 <li>Erweitertes RAG (Multi-Index, Reranking, höhere Limits)</li>
 <li>Eigene API-Schlüssel nutzen (BYOK)</li>
@@ -961,7 +961,7 @@ input:checked + .toggle-slider:before {
 
 <ul class="pricing-features pricing-features-grid">
 <li>Unbegrenzte White-Label-Releases</li>
-<li>150 $/Monat an enthaltenem Nutzungsguthaben</li>
+<li>500 $/Monat an enthaltenem Nutzungsguthaben</li>
 <li>Community- und Premium-KI-Modelle</li>
 <li>Erweitertes RAG (Multi-Index, Reranking, höhere Limits)</li>
 <li>Bewertete QA, A/B-Tests, Arena, Fine-Tuning</li>

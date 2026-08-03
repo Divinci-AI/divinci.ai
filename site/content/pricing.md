@@ -845,7 +845,7 @@ input:checked + .toggle-slider:before {
 <ul class="pricing-features">
 <li>Every Divinci feature — RAG, fine-tuning, Scored QA, A/B testing, Arena, BYOK</li>
 <li>1 white-label release</li>
-<li>$1/month in included usage credits</li>
+<li>$5/month in included usage credits <em>(promotional through 29 September 2026)</em></li>
 <li>Community AI models (GPT, Gemini, Claude, Llama & more)</li>
 <li class="unavailable">Divinci branding removed</li>
 <li class="unavailable">Priority email support</li>
