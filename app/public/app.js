@@ -334,7 +334,14 @@
       var sites = (data && data.sites) || [];
       if (!sites.length) return;
 
-      var slides = [banner.querySelector("[data-promo-coupon]")];
+      // slides[0] is the coupon slide the carousel always returns to. Pages
+      // that ship a different promo banner (e.g. /files/, whose banner is a
+      // single static cross-link) have no [data-promo-coupon], and every tick
+      // would then throw on `prev.classList` — once per 3.8s, forever. Those
+      // pages just keep whatever slide they rendered.
+      var couponSlide = banner.querySelector("[data-promo-coupon]");
+      if (!couponSlide) return;
+      var slides = [couponSlide];
       sites.forEach(function (site, i) {
         var slide = document.createElement("a");
         slide.className = "promo-slide";

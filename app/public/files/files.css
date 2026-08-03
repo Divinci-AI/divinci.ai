@@ -1,0 +1,293 @@
+/* divinci.app/files/ — "Turn any file into an AI" funnel.
+   Additive only: everything else (topbar, hero-bg, steps, menu, cards, trust,
+   team, faq, bottom-cta, ask-bar, footer) comes from /styles.css so the two
+   funnels stay visually identical. This file styles ONLY the pieces that
+   replace the website funnel's URL input: the dropzone, the picked-file list,
+   and the supported-formats strip. */
+
+/* ── Dropzone ────────────────────────────────────────────── */
+.drop-wrap {
+  max-width: 620px;
+  margin: 26px auto 0;
+}
+
+.drop-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.drop-zone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 38px 24px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 2px dashed var(--gold);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+.drop-zone:hover,
+.drop-zone:focus-within {
+  border-color: var(--denim);
+  background: var(--white);
+}
+/* Applied by files.js on dragenter/dragover, removed on dragleave/drop. */
+.drop-zone.is-dragging {
+  border-color: var(--denim);
+  border-style: solid;
+  background: var(--white);
+  transform: scale(1.01);
+}
+
+/* The input stays in the DOM (the <label> wraps it, so clicking the zone
+   opens the picker and keyboard focus reaches it) but is visually hidden. */
+.drop-input {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+/* Keyboard users get a visible ring on the zone when the hidden input
+   has focus — without this, tabbing to the dropzone shows nothing. */
+.drop-zone:focus-within {
+  outline: 2px solid var(--denim);
+  outline-offset: 3px;
+}
+
+.drop-art svg {
+  width: 54px; height: 54px;
+  fill: none;
+  stroke: var(--gold-deep);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.drop-headline {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.drop-sub {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.drop-sub strong {
+  color: var(--denim);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.drop-zone-compact {
+  padding: 26px 22px;
+}
+.drop-zone-compact .drop-headline { font-size: 1.1rem; }
+
+/* ── Picked-file list ────────────────────────────────────── */
+.drop-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+.drop-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.94rem;
+}
+.drop-file-icon { flex: none; font-size: 1.1rem; }
+.drop-file-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--ink);
+}
+.drop-file-size {
+  flex: none;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.86rem;
+}
+.drop-file-remove {
+  flex: none;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: var(--ink-soft);
+  font-size: 1.15rem;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 6px;
+}
+.drop-file-remove:hover { color: var(--ink); background: var(--parchment-deep); }
+
+/* Rejected file (unsupported type / over the size ceiling). */
+.drop-list li.is-rejected {
+  border-color: rgba(166, 90, 74, 0.5);
+  background: rgba(166, 90, 74, 0.06);
+}
+.drop-file-error {
+  flex: 1 1 100%;
+  font-size: 0.85rem;
+  color: #8a4436;
+}
+
+/* ── Submit ──────────────────────────────────────────────── */
+.drop-submit {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--denim);
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: background 0.18s ease, opacity 0.18s ease;
+}
+.drop-submit:hover:not(:disabled) { background: var(--denim-dark); }
+.drop-submit:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ── Supported formats strip ─────────────────────────────── */
+.formats {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 10px;
+  max-width: 640px;
+  margin: 22px auto 0;
+}
+.formats li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+/* ── Bottom CTA variant ──────────────────────────────────── */
+/* .bottom-cta sits on a solid --denim panel. styles.css already inverts the
+   website funnel's button there (`.bottom-cta .scan-form button`), but that
+   selector doesn't match .drop-submit — without these rules the button is
+   denim-on-denim and effectively invisible. */
+.drop-form-bottom {
+  max-width: 520px;
+  margin: 22px auto 0;
+}
+.bottom-cta .drop-zone {
+  border-color: rgba(255, 255, 255, 0.55);
+}
+.bottom-cta .drop-zone:hover,
+.bottom-cta .drop-zone:focus-within {
+  border-color: var(--white);
+}
+.bottom-cta .drop-submit {
+  background: var(--blue);
+  color: var(--denim-dark);
+}
+.bottom-cta .drop-submit:hover:not(:disabled) {
+  background: var(--blue-hover);
+}
+/* A 0.45 alpha pale-blue on denim drops below readable contrast; the button
+   still reads as unavailable at 0.7 because it doesn't respond to hover. */
+.bottom-cta .drop-submit:disabled { opacity: 0.7; }
+.bottom-cta .drop-zone:focus-within { outline-color: var(--white); }
+
+@media (prefers-reduced-motion: reduce) {
+  .drop-zone { transition: none; }
+  .drop-zone.is-dragging { transform: none; }
+}
+
+@media (max-width: 560px) {
+  .drop-zone { padding: 30px 18px; }
+  .drop-headline { font-size: 1.15rem; }
+  .formats { gap: 6px 8px; }
+  .formats li { font-size: 0.82rem; padding: 5px 11px; }
+}
+
+/* ── Consent + Turnstile (shown once a file is picked) ───── */
+.drop-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  text-align: left;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  padding: 0 2px;
+}
+.drop-consent input { margin-top: 3px; flex: none; }
+.bottom-cta .drop-consent { color: rgba(255, 255, 255, 0.88); }
+.bottom-cta .drop-consent a { color: var(--blue); }
+
+.drop-turnstile { display: flex; justify-content: center; }
+
+/* ── Upload progress ─────────────────────────────────────── */
+/* The bar spans the full row under the filename, so a multi-file upload reads
+   as a set of independent transfers rather than one opaque spinner. */
+.drop-file-bar {
+  flex: 1 1 100%;
+  height: 4px;
+  margin-top: 6px;
+  background: var(--parchment-deep);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.drop-file-bar-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--denim);
+  border-radius: 999px;
+  transition: width 0.18s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .drop-file-bar-fill { transition: none; }
+}
+
+/* ── Inline error ────────────────────────────────────────── */
+.drop-error {
+  margin: 0;
+  padding: 9px 13px;
+  background: rgba(166, 90, 74, 0.08);
+  border: 1px solid rgba(166, 90, 74, 0.42);
+  border-radius: 10px;
+  color: #8a4436;
+  font-size: 0.9rem;
+  text-align: left;
+}
+.bottom-cta .drop-error {
+  background: rgba(255, 255, 255, 0.94);
+}
+
+/* The `hidden` ATTRIBUTE is only `display:none` in the UA stylesheet, so any
+   author rule that sets `display` (flex, below) silently defeats it. Without
+   these, the consent row and Turnstile slot render before a file is picked. */
+.drop-consent[hidden],
+.drop-turnstile[hidden],
+.drop-list[hidden] { display: none; }
