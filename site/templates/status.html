@@ -387,6 +387,15 @@ main#status-page.status-page {
         desc.textContent = c.description;
         text.appendChild(desc);
       }
+      // Aggregate detail, e.g. "9 of 9 embed surfaces responding". Composed
+      // server-side from a count — deliberately never a customer name, since
+      // this page is public. textContent, same as everything else here.
+      if (c.detail) {
+        var detail = document.createElement('span');
+        detail.className = 'status-component-desc';
+        detail.textContent = c.detail;
+        text.appendChild(detail);
+      }
 
       var st = document.createElement('span');
       st.className = 'status-component-state';

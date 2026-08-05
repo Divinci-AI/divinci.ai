@@ -18,6 +18,12 @@ import {
   dayKey,
   worstStatus,
 } from './status-history.mjs';
+import {
+  COMPONENTS_KEY,
+  componentsView,
+  sanitizeComponentsPush,
+  worstOf,
+} from './status-components.mjs';
 
 /**
  * Inject the Cloudflare-derived ISO country code into the <meta name="cf-country">
@@ -149,6 +155,12 @@ Sitemap: ${url.origin}/sitemap.xml`, {
     // the footer indicator and /status page need no CORS proxy.
     if (url.pathname === '/api/status') {
       return handleStatus(request, env, ctx);
+    }
+
+    // Per-service component health, pushed from GCP uptime checks by a
+    // scheduled job. Write-only endpoint; readers get it via /api/status.
+    if (url.pathname === '/api/status/components') {
+      return handleStatusComponentsPush(request, env);
     }
 
     // Live WWW-RAG crawl activity: the laptop daemon POSTs snapshots here,
@@ -543,6 +555,99 @@ function statusPayload(overall, components, extra) {
   });
 }
 
+// ── Per-service components push ──────────────────────────────────────────
+//
+// POST /api/status/components — Bearer STATUS_COMPONENTS_TOKEN.
+// Write-only by design: there is no GET here, because readers already get the
+// merged view from /api/status and a second public surface would be a second
+// thing to keep honest. Validation lives in status-components.mjs, which is
+// also where the reasoning about untrusted input on a public page sits.
+
+const COMPONENTS_PUSH_HEADERS = {
+  'Content-Type': 'application/json',
+  'Cache-Control': 'no-store',
+  'X-Content-Type-Options': 'nosniff',
+};
+
+async function handleStatusComponentsPush(request, env) {
+  if (request.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'method_not_allowed' }), {
+      status: 405,
+      headers: { ...COMPONENTS_PUSH_HEADERS, Allow: 'POST' },
+    });
+  }
+
+  const expected = env.STATUS_COMPONENTS_TOKEN;
+  if (!expected) {
+    // Unconfigured must fail closed — an absent secret cannot become an open
+    // write endpoint that paints the public status page.
+    console.error('[status-components] STATUS_COMPONENTS_TOKEN is not configured');
+    return new Response(JSON.stringify({ error: 'not_configured' }), {
+      status: 503,
+      headers: COMPONENTS_PUSH_HEADERS,
+    });
+  }
+
+  const auth = request.headers.get('Authorization') || '';
+  const presented = auth.startsWith('Bearer ') ? auth.slice(7) : '';
+  if (!timingSafeEqual(presented, expected)) {
+    return new Response(JSON.stringify({ error: 'unauthorized' }), {
+      status: 401,
+      headers: COMPONENTS_PUSH_HEADERS,
+    });
+  }
+
+  // Bound the read before parsing — an authenticated client is still a client.
+  let body;
+  try {
+    const text = await request.text();
+    if (text.length > 8192) {
+      return new Response(JSON.stringify({ error: 'payload_too_large' }), {
+        status: 413,
+        headers: COMPONENTS_PUSH_HEADERS,
+      });
+    }
+    body = JSON.parse(text);
+  } catch {
+    return new Response(JSON.stringify({ error: 'invalid_json' }), {
+      status: 400,
+      headers: COMPONENTS_PUSH_HEADERS,
+    });
+  }
+
+  const result = sanitizeComponentsPush(body, Date.now());
+  if (!result.ok) {
+    return new Response(JSON.stringify({ error: 'invalid_payload', detail: result.error }), {
+      status: 400,
+      headers: COMPONENTS_PUSH_HEADERS,
+    });
+  }
+
+  if (!env.STATUS_HISTORY) {
+    return new Response(JSON.stringify({ error: 'not_configured' }), {
+      status: 503,
+      headers: COMPONENTS_PUSH_HEADERS,
+    });
+  }
+  await env.STATUS_HISTORY.put(COMPONENTS_KEY, JSON.stringify(result.value));
+
+  return new Response(JSON.stringify({ ok: true, accepted: result.value.components.length }), {
+    status: 200,
+    headers: COMPONENTS_PUSH_HEADERS,
+  });
+}
+
+async function readPushedComponents(env) {
+  if (!env.STATUS_HISTORY) return componentsView(null, Date.now());
+  try {
+    const rec = await env.STATUS_HISTORY.get(COMPONENTS_KEY, { type: 'json' });
+    return componentsView(rec, Date.now());
+  } catch (e) {
+    console.error('[status-components] read failed:', e && e.message ? e.message : e);
+    return componentsView(null, Date.now());
+  }
+}
+
 // ── 90-day uptime history ────────────────────────────────────────────────
 //
 // Sampling is driven by /api/status traffic — the footer indicator on every
@@ -616,8 +721,11 @@ async function handleStatus(request, env, ctx) {
   // later names are legacy fallbacks.
   const appKey = env.DD_MONITOR_TOKEN || env.DD_STATUS_APP_KEY || env.DD_APP_KEY;
   if (!apiKey || !appKey) {
+    // Datadog unconfigured still leaves the pushed per-service components
+    // meaningful — they come from GCP and know nothing about Datadog.
+    const pushedOnly = [...unknownComponents, ...(await readPushedComponents(env))];
     return new Response(
-      statusPayload('unknown', unknownComponents, { configured: false, history: await readHistory(env) }),
+      statusPayload(worstOf(pushedOnly), pushedOnly, { configured: false, history: await readHistory(env) }),
       { status: 200, headers }
     );
   }
@@ -655,6 +763,13 @@ async function handleStatus(request, env, ctx) {
       overall = worstStatus(overall, status);
       return { id: c.id, name: c.name, description: c.description, status };
     });
+
+    // Per-service components pushed from the GCP uptime checks. They sit
+    // AFTER the zone-wide Platform component: Platform answers "is the edge
+    // reaching us at all", these answer "which service is unhappy".
+    const pushed = await readPushedComponents(env);
+    components.push(...pushed);
+    overall = worstStatus(overall, worstOf(pushed));
 
     // Record BEFORE reading back, so today's bar reflects this sample.
     await recordSample(env, overall);
