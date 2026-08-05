@@ -11,6 +11,13 @@ import {
   sanitizeActivity,
   timingSafeEqual,
 } from './www-rag-activity.mjs';
+import {
+  HISTORY_KEY,
+  applySample,
+  buildHistoryView,
+  dayKey,
+  worstStatus,
+} from './status-history.mjs';
 
 /**
  * Inject the Cloudflare-derived ISO country code into the <meta name="cf-country">
@@ -511,10 +518,9 @@ const STATUS_COMPONENTS = [
   },
 ];
 
-// Ranked worst-last. `unknown` deliberately outranks `operational` so missing
-// data never presents as healthy.
-const STATUS_RANK = { operational: 0, unknown: 1, degraded: 2, partial_outage: 3, major_outage: 4 };
-const worstStatus = (a, b) => (STATUS_RANK[b] > STATUS_RANK[a] ? b : a);
+// STATUS_RANK / worstStatus now live in ./status-history.mjs — the day-rating
+// rules need them and they are the same ordering, so keeping two copies in
+// sync was an invitation to drift.
 
 function monitorStateToStatus(overallState, onAlert) {
   switch (overallState) {
@@ -539,19 +545,15 @@ function statusPayload(overall, components, extra) {
 
 // ── 90-day uptime history ────────────────────────────────────────────────
 //
-// Stored as ONE rolled-up KV record (one read + at most one write per sample)
-// rather than a key per day, which would mean 90 reads per request.
-//
 // Sampling is driven by /api/status traffic — the footer indicator on every
 // page view keeps it fed — and rate-limited to one write per SAMPLE_INTERVAL.
 // This avoids depending on a cron trigger (see
 // feedback_cf_worker_schedules_put_fails: the schedules PUT is unreliable on
 // this account, and there's a 3-trigger cap per worker).
-const HISTORY_KEY = 'history:v1';
-const HISTORY_DAYS = 90;
-const SAMPLE_INTERVAL_MS = 5 * 60 * 1000;
-
-const dayKey = (d) => new Date(d).toISOString().slice(0, 10);
+//
+// The sampling and day-rating RULES live in ./status-history.mjs so they can
+// be tested directly (npm run test:worker). What stays here is only the KV
+// read/write around them.
 
 async function recordSample(env, status) {
   if (!env.STATUS_HISTORY) return;
@@ -559,29 +561,7 @@ async function recordSample(env, status) {
     const now = Date.now();
     const raw = await env.STATUS_HISTORY.get(HISTORY_KEY, { type: 'json' });
     const rec = raw && typeof raw === 'object' ? raw : { days: {}, lastSampleAt: 0, since: dayKey(now) };
-    if (!rec.days) rec.days = {};
-
-    // Rate-limit writes; a status CHANGE always samples immediately so a short
-    // outage can't be missed between intervals.
-    const today = rec.days[dayKey(now)];
-    const changed = !today || (today.worst && today.worst !== status && STATUS_RANK[status] > STATUS_RANK[today.worst]);
-    if (!changed && rec.lastSampleAt && now - rec.lastSampleAt < SAMPLE_INTERVAL_MS) return;
-
-    const k = dayKey(now);
-    const d = rec.days[k] || { ok: 0, degraded: 0, outage: 0, unknown: 0, worst: 'operational' };
-    if (status === 'operational') d.ok++;
-    else if (status === 'degraded') d.degraded++;
-    else if (status === 'unknown') d.unknown++;
-    else d.outage++; // partial_outage | major_outage
-    d.worst = worstStatus(d.worst || 'operational', status);
-    rec.days[k] = d;
-    rec.lastSampleAt = now;
-    if (!rec.since) rec.since = k;
-
-    // Prune anything outside the window so the record can't grow unbounded.
-    const cutoff = dayKey(now - HISTORY_DAYS * 86400000);
-    for (const key of Object.keys(rec.days)) if (key < cutoff) delete rec.days[key];
-
+    if (!applySample(rec, status, now)) return; // rate-limited, nothing to write
     await env.STATUS_HISTORY.put(HISTORY_KEY, JSON.stringify(rec));
   } catch (e) {
     // History is a nice-to-have; never let it break the status response.
@@ -594,38 +574,13 @@ async function readHistory(env) {
   try {
     const rec = await env.STATUS_HISTORY.get(HISTORY_KEY, { type: 'json' });
     if (!rec || !rec.days) return { days: [], since: null, uptimePct: null };
-
-    const out = [];
-    const now = Date.now();
-    for (let i = HISTORY_DAYS - 1; i >= 0; i--) {
-      const k = dayKey(now - i * 86400000);
-      const d = rec.days[k];
-      if (!d) {
-        // No samples that day: explicitly "no data", NOT a green bar.
-        out.push({ date: k, status: 'no_data', uptimePct: null });
-        continue;
-      }
-      // `unknown` samples are excluded from the denominator — they mean we
-      // could not measure, which is not the same as downtime.
-      const measured = d.ok + d.degraded + d.outage;
-      out.push({
-        date: k,
-        status: measured === 0 ? 'no_data' : d.worst,
-        uptimePct: measured === 0 ? null : Math.round((d.ok / measured) * 10000) / 100,
-      });
-    }
-
-    const withData = out.filter(x => x.uptimePct !== null);
-    const overallPct = withData.length
-      ? Math.round((withData.reduce((s, x) => s + x.uptimePct, 0) / withData.length) * 100) / 100
-      : null;
-
-    return { days: out, since: rec.since || null, uptimePct: overallPct, daysWithData: withData.length };
+    return buildHistoryView(rec, Date.now());
   } catch (e) {
     console.error('[status] history read failed:', e && e.message ? e.message : e);
     return null;
   }
 }
+
 
 async function handleStatus(request, env, ctx) {
   const headers = {

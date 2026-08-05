@@ -407,6 +407,77 @@ main#status-page.status-page {
     renderHistory(data && data.history);
   }
 
+  var STATUS_LABEL = {
+    operational: 'Operational',
+    degraded: 'Degraded',
+    partial_outage: 'Partial outage',
+    major_outage: 'Major outage',
+    unknown: 'Unmeasured',
+    no_data: 'No data',
+  };
+
+  // Rendered in the READER's timezone, not ours — this page is public and a
+  // customer in Berlin should not have to convert from PT to know whether the
+  // window overlapped their morning.
+  function clockRange(from, to) {
+    var a = new Date(from), b = new Date(to);
+    if (isNaN(a) || isNaN(b)) return '';
+    var opts = { hour: '2-digit', minute: '2-digit' };
+    var start = a.toLocaleTimeString([], opts);
+    var end = b.toLocaleTimeString([], Object.assign({ timeZoneName: 'short' }, opts));
+    return start === end.slice(0, start.length)
+      ? end               // single sample — one clock time, not a zero-length range
+      : start + '–' + end;
+  }
+
+  /**
+   * What a day's bar says when you hover it. The rule the bar is coloured by
+   * is only defensible if the evidence behind it is right there — especially
+   * on a day rated Operational that nonetheless had a blip. "Nothing to see"
+   * and "a 5-minute wobble we judged not worth alarming you about" are very
+   * different claims, and the page should make the second one out loud.
+   */
+  function dayTooltip(day) {
+    var lines = [];
+    var status = day.status || 'no_data';
+
+    if (status === 'no_data') {
+      lines.push(day.date + ' — no data recorded');
+      lines.push('The sampler recorded nothing this day. Not a claim of uptime.');
+      return lines.join('\n');
+    }
+
+    lines.push(day.date + ' — ' + (STATUS_LABEL[status] || status)
+      + (day.uptimePct === null || day.uptimePct === undefined ? '' : ', ' + day.uptimePct + '% uptime'));
+
+    var windows = day.windows || [];
+    windows.forEach(function (w) {
+      var range = clockRange(w.from, w.to);
+      lines.push('• ' + (STATUS_LABEL[w.status] || w.status)
+        + (range ? ' ' + range : '')
+        + ' (~' + w.minutes + ' min)'
+        + (w.counted ? '' : ' — too brief to rate the day'));
+    });
+
+    // Windows are the sampler's view. A human note is the authoritative one,
+    // and is the only place the CAUSE is ever written down.
+    notesFor(day.date).forEach(function (n) {
+      if (n.title) lines.push('• ' + n.title);
+    });
+
+    if (!windows.length) {
+      lines.push(status === 'operational'
+        ? 'No degradation recorded.'
+        // Recorded before we started tracking WHEN a day went bad. The bar is
+        // still coloured by the worst sample, so say plainly that the timing
+        // is missing rather than leaving a bare severity with no account.
+        : 'Timing not recorded for this day — rated by its worst sample.');
+    } else {
+      lines.push('Times are estimated from 5-minute sampling.');
+    }
+    return lines.join('\n');
+  }
+
   function renderHistory(h) {
     var card = document.getElementById('status-history-card');
     if (!h || !h.days || !h.days.length) { card.hidden = true; return; }
@@ -419,9 +490,11 @@ main#status-page.status-page {
       b.className = 'status-bar';
       b.setAttribute('data-s', day.status || 'no_data');
       // Native tooltip: cheap, accessible, no JS popover to maintain.
-      b.title = day.uptimePct === null || day.uptimePct === undefined
-        ? day.date + ' — no data recorded'
-        : day.date + ' — ' + day.uptimePct + '% uptime';
+      var text = dayTooltip(day);
+      b.title = text;
+      // A title alone is invisible to screen readers on a bare <span>.
+      b.setAttribute('role', 'img');
+      b.setAttribute('aria-label', text.replace(/\n/g, '. '));
       bars.appendChild(b);
     });
 
