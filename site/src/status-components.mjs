@@ -112,15 +112,33 @@ export function sanitizeComponentsPush(input, nowMs) {
 }
 
 /**
- * Project a stored record into the public component list. Always returns one
- * entry per allowlisted component: a component the pusher stopped reporting
- * must read `unknown`, never silently vanish or hold its last good value.
+ * Project a stored record into the public component list.
+ *
+ * ⚠️ NEVER PUSHED and STOPPED BEING PUSHED are different facts, and conflating
+ * them is a visible bug:
+ *
+ *   - No record at all → the feed has not been turned on. Returns [], so
+ *     deploying this code changes NOTHING on the page. Otherwise six
+ *     `unknown` components would appear the moment the Worker shipped, drag
+ *     the overall banner off "All systems operational", and turn the footer
+ *     dot grey — announcing an outage that is really just an unset secret.
+ *     (Measured on staging before this guard existed.)
+ *   - A record that has gone stale → the feed died. That IS news: every
+ *     component reads `unknown` and the banner follows, because a status page
+ *     which keeps saying "operational" from a dead feed is worse than one
+ *     admitting it does not know.
+ *
+ * Once a record exists, ALL allowlisted components are returned every time: a
+ * component the pusher stops reporting reads `unknown` rather than silently
+ * vanishing or holding its last good value.
  */
 export function componentsView(record, nowMs) {
   const at = record && Number.isFinite(Date.parse(record.generatedAt))
     ? Date.parse(record.generatedAt)
     : null;
-  const stale = at === null || nowMs - at > COMPONENTS_STALE_AFTER_MS;
+  // Never configured — say nothing rather than inventing bad news.
+  if (at === null) return [];
+  const stale = nowMs - at > COMPONENTS_STALE_AFTER_MS;
   const pushed = new Map(
     (record && Array.isArray(record.components) ? record.components : []).map((c) => [c.id, c]),
   );

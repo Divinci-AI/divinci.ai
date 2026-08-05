@@ -137,8 +137,21 @@ test('a component the pusher stopped reporting reads unknown, not missing', () =
   assert.equal(view.find((c) => c.id === 'api').status, 'unknown');
 });
 
-test('no record at all reads unknown for every component', () => {
-  const view = componentsView(null, NOW);
+test('no record at all renders NOTHING — never configured is not an outage', () => {
+  // Shipping the Worker before the feed is turned on must change the page by
+  // zero pixels. Returning six `unknown` components here would drag the
+  // overall banner off "All systems operational" and grey the footer dot,
+  // announcing an outage that is really an unset secret. Caught on staging.
+  assert.deepEqual(componentsView(null, NOW), []);
+  assert.deepEqual(componentsView({}, NOW), []);
+  assert.deepEqual(componentsView({ generatedAt: 'nonsense' }, NOW), []);
+});
+
+test('a STALE record still reports unknown — a dead feed IS news', () => {
+  // The other half of the distinction above: once the feed has spoken, its
+  // silence means something and must be shown.
+  const v = ok(push([{ id: 'chat', status: 'operational' }]));
+  const view = componentsView(v, NOW + COMPONENTS_STALE_AFTER_MS + 1000);
   assert.equal(view.length, PUSHED_COMPONENTS.length);
   assert.ok(view.every((c) => c.status === 'unknown'));
 });
