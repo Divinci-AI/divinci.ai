@@ -769,10 +769,24 @@ async function handleStatus(request, env, ctx) {
     // reaching us at all", these answer "which service is unhappy".
     const pushed = await readPushedComponents(env);
     components.push(...pushed);
-    overall = worstStatus(overall, worstOf(pushed));
 
-    // Record BEFORE reading back, so today's bar reflects this sample.
+    // ⚠️ The 90-day history is sampled from the DATADOG-derived status only,
+    // deliberately, even though the banner below reflects everything.
+    //
+    // That history is a published number people compare across days. Folding
+    // the pushed GCP components into it would silently redefine the metric
+    // mid-series — the same "% uptime" would stop meaning what it meant last
+    // week, and no reader could tell. Worse, an external probe flaking in one
+    // region would write a red window into a record that is supposed to
+    // describe US. Both happened on 2026-08-05 before this split existed.
+    //
+    // The components are still fully visible on the page, so a real outage
+    // they catch is never hidden — it just does not retroactively rewrite the
+    // uptime series it was never part of.
     await recordSample(env, overall);
+
+    // The BANNER, by contrast, should reflect current truth from every source.
+    overall = worstStatus(overall, worstOf(pushed));
 
     const response = new Response(
       statusPayload(overall, components, { configured: true, history: await readHistory(env) }),
