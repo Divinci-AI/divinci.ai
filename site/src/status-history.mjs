@@ -66,6 +66,12 @@ export const dayKey = (d) => new Date(d).toISOString().slice(0, 10);
 // over-state a blip than miss one.
 export const MIN_DEGRADED_MS = 10 * 60 * 1000;
 
+/**
+ * How much of a day may go UNMEASURED before the day stops claiming to be
+ * operational. Roughly 2.4 hours — a genuine blind spot, not a missed sample.
+ */
+export const MIN_UNKNOWN_FRACTION = 0.10;
+
 // Windows per day are capped so one flapping day cannot grow the record
 // without bound. Far above any real incident count.
 export const MAX_WINDOWS_PER_DAY = 24;
@@ -82,17 +88,35 @@ export const windowIsRatable = (w) =>
  * raw worst-sample fact; this is the presentation rule on top of it.
  */
 export function rateDay(d) {
-  const windows = Array.isArray(d.windows) ? d.windows : [];
-  if (!windows.length) {
-    // Written before window tracking landed: fall back to the old
-    // worst-sample rule rather than silently claiming a green day we cannot
-    // substantiate.
+  if (!Array.isArray(d.windows)) {
+    // Written before window tracking landed — no duration evidence exists, so
+    // fall back to the old worst-sample rule rather than claiming a green day
+    // we cannot substantiate. Presence of the array is the ONLY reliable
+    // signal here: an empty array means "tracked, nothing bad happened",
+    // which is a completely different claim from "we weren't recording".
     return d.worst || 'operational';
   }
+  const windows = d.windows;
+
   let rated = 'operational';
   for (const w of windows) {
     if (windowIsRatable(w)) rated = worstStatus(rated, w.s);
   }
+
+  // ⚠️ `unknown` never opens a window (not measured is not down), so without
+  // this a day we largely FAILED TO MEASURE would rate `operational` — which
+  // is precisely what STATUS_RANK exists to prevent ("`unknown` deliberately
+  // outranks `operational` so missing data never presents as healthy"). The
+  // window rules alone quietly inverted that.
+  //
+  // Same shape as the degraded rule: it has to clear a bar. One missed sample
+  // is not a blind spot; losing a tenth of the day is. Below the bar the
+  // tooltip still reports the gap via `worstSample`, so nothing is hidden.
+  const total = (d.ok || 0) + (d.degraded || 0) + (d.outage || 0) + (d.unknown || 0);
+  if (total > 0 && (d.unknown || 0) / total >= MIN_UNKNOWN_FRACTION) {
+    rated = worstStatus(rated, 'unknown');
+  }
+
   return rated;
 }
 
@@ -125,6 +149,11 @@ export function applySample(rec, status, now) {
     outage: 0,
     unknown: 0,
     worst: 'operational',
+    // ALWAYS present, even when empty. rateDay uses the presence of this
+    // array to tell "this day was tracked and had no bad windows" from "this
+    // day predates window tracking" — inferring it from an empty/absent array
+    // conflates the two and mis-rates one of them.
+    windows: [],
   };
   if (status === 'operational') d.ok++;
   else if (status === 'degraded') d.degraded++;
@@ -137,6 +166,7 @@ export function applySample(rec, status, now) {
   // one. `unknown` is NOT a window — we did not measure, which is not the
   // same as being down, and the tooltip must not imply otherwise.
   if (status !== 'operational' && status !== 'unknown') {
+    // Defensive for day records loaded from KV that predate window tracking.
     if (!Array.isArray(d.windows)) d.windows = [];
     const last = d.windows[d.windows.length - 1];
     // Allow one missed sample before splitting, so ordinary jitter in the

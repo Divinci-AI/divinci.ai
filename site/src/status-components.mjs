@@ -10,7 +10,7 @@
  * Worker, a scheduled job reads GCP and POSTs a small summary here, exactly
  * like the www-rag activity feed already does.
  *
- *   GH Actions (every 10 min) → POST /api/status/components (Bearer)
+ *   GH Actions (every 30 min) → POST /api/status/components (Bearer)
  *                         → STATUS_HISTORY KV, key components:v1
  *                         → merged into GET /api/status
  *
@@ -40,11 +40,13 @@ export const COMPONENTS_KEY = 'components:v1';
  * keeps saying "operational" because its feed died is worse than one that
  * admits it does not know.
  *
- * Generous relative to the 10-minute cadence: GitHub's scheduled workflows
- * drift, and routinely run several minutes late under load. This tolerates a
- * skipped run, not a dead feed.
+ * Must stay comfortably ABOVE the pusher's cadence, or an ordinary skipped
+ * run reads as a dead feed. The push runs every 30 minutes (a GitHub Actions
+ * budget decision — see status-components-push.yml), and GitHub's scheduler
+ * drifts and skips under load, so this tolerates one missed run plus drift.
+ * If the cadence changes, change this with it.
  */
-export const COMPONENTS_STALE_AFTER_MS = 35 * 60 * 1000;
+export const COMPONENTS_STALE_AFTER_MS = 90 * 60 * 1000;
 
 /**
  * The allowlist. `id` is the ONLY component identity the wire format carries;
@@ -58,9 +60,16 @@ export const PUSHED_COMPONENTS = [
   { id: 'signin', name: 'Sign-in', description: 'Authentication and session bootstrap' },
   {
     id: 'customer-embeds',
-    name: 'Customer embeds',
-    description: 'Deployed customer chat surfaces',
-    // Renders "9 of 9 embed surfaces responding". Deliberately a bare count:
+    name: 'Embedded chat',
+    // ⚠️ NOT all of these are customers. The backing checks cover Divinci's
+    // own docs and sales demos as well as customer sites — CLAUDE.md draws
+    // that line sharply elsewhere (Divinci-owned surfaces deliberately do not
+    // page). Calling the component "Customer embeds" and reporting "8 of 8"
+    // would imply eight customers on a PUBLIC page, which is both inaccurate
+    // and quietly self-flattering. The honest wording costs nothing and needs
+    // no roster to maintain.
+    description: 'Chat widgets embedded on customer and Divinci sites',
+    // Renders "8 of 8 embed surfaces responding". Deliberately a bare count:
     // naming them would publish the customer roster.
     counted: true,
   },

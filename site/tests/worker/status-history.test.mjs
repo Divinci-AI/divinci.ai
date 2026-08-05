@@ -12,6 +12,7 @@ import assert from 'node:assert/strict';
 
 import {
   MIN_DEGRADED_MS,
+  MIN_UNKNOWN_FRACTION,
   MAX_WINDOWS_PER_DAY,
   SAMPLE_INTERVAL_MS,
   applySample,
@@ -74,6 +75,30 @@ test('a record written before window tracking falls back to worst-sample', () =>
   );
 });
 
+test('a day we largely failed to MEASURE does not claim to be operational', () => {
+  // `unknown` opens no window, so the window rules alone would rate a
+  // half-unmeasured day `operational` — inverting the STATUS_RANK principle
+  // that missing data must never present as healthy.
+  const rec = feed(fresh(), 'operational', 5);
+  feed(rec, 'unknown', 20, NOON + 5 * SAMPLE_INTERVAL_MS);
+  assert.equal(rateDay(rec.days[DAY]), 'unknown');
+});
+
+test('a single missed sample is not a blind spot', () => {
+  // The bar exists so ordinary jitter does not repaint the day.
+  const rec = feed(fresh(), 'operational', 40);
+  applySample(rec, 'unknown', NOON + 41 * SAMPLE_INTERVAL_MS);
+  const d = rec.days[DAY];
+  assert.ok(d.unknown / (d.ok + d.unknown) < MIN_UNKNOWN_FRACTION);
+  assert.equal(rateDay(d), 'operational');
+});
+
+test('unmeasured time cannot mask a real outage', () => {
+  const rec = feed(fresh(), 'major_outage', 1);
+  feed(rec, 'unknown', 30, NOON + 5 * SAMPLE_INTERVAL_MS);
+  assert.equal(rateDay(rec.days[DAY]), 'major_outage');
+});
+
 // ── windows ─────────────────────────────────────────────────────────────
 
 test('consecutive same-status samples extend one window, not many', () => {
@@ -91,8 +116,16 @@ test('a gap splits the window so two incidents do not read as one', () => {
 
 test('unknown never opens a window — not measured is not down', () => {
   const rec = feed(fresh(), 'unknown', 3);
-  assert.equal(rec.days[DAY].windows, undefined);
+  assert.deepEqual(rec.days[DAY].windows, [], 'tracked, but no window opened');
   assert.equal(rateDay(rec.days[DAY]), 'unknown');
+});
+
+test('an EMPTY windows array is not the same as no window tracking', () => {
+  // The distinction the legacy fallback hangs on. A tracked-and-clean day
+  // must rate operational; a day with no array at all has no duration
+  // evidence and defers to worst-sample.
+  assert.equal(rateDay({ ok: 100, degraded: 0, outage: 0, unknown: 1, worst: 'unknown', windows: [] }), 'operational');
+  assert.equal(rateDay({ ok: 100, degraded: 0, outage: 0, unknown: 1, worst: 'unknown' }), 'unknown');
 });
 
 test('windows per day are capped', () => {
