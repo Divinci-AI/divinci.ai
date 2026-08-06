@@ -26,6 +26,23 @@ cd site && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env staging
 cd site && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env=""
 ```
 
+### Zola version is pinned to 0.19.2
+
+The templates do not build on Zola 0.23.x (Tera 2). That release rejects positional
+test arguments (`is starting_with("http")` — it wants `pat="http"`) across
+`blog.html` / `base.html` / `blog-post.html` / `feature.html`, and then fails again on
+`{% macro %}` in `macros/img.html`. Migrating is a real project, not a find-and-replace.
+
+So `zola` 0.19.2 lives at `~/.local/bin/zola` (official release binary), and
+`~/.local/bin` sits ahead of `/opt/homebrew/bin` on PATH. Homebrew's 0.23.1 is still in
+the Cellar but unlinked (`brew unlink zola`) so it cannot shadow the pin.
+
+- Check before building/deploying: `zola --version` must print `0.19.2`.
+- If Homebrew relinks it (`brew upgrade`/`brew link zola` restores `/opt/homebrew/bin/zola`),
+  the pin still wins on PATH order — but re-run `brew unlink zola` to be safe.
+- To restore Homebrew's Zola: `brew link zola` and remove `~/.local/bin/zola`. Expect the
+  build to fail until the templates are migrated to Tera 2.
+
 ### Wrangler OAuth recovery
 
 If a deploy fails with `non-interactive environment, it's necessary to set a CLOUDFLARE_API_TOKEN` or `Invalid access token [code: 9109]`, the cached OAuth state is stale (the shell's `CLOUDFLARE_API_TOKEN` is also invalid). Re-auth interactively from your terminal:

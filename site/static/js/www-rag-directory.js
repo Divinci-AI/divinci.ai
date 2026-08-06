@@ -16,9 +16,8 @@
  * session of its own, so both actions always happen on the signed-in app.
  *
  * Model-card enrichment (2026-08): primary chips for language model + RAG
- * memory size, core counts (pages/files/chunks/size), and a "More details"
- * disclosure for chunking tool, vector DB, conversations, rating, etc.
- * All fields are optional — older API responses still render cleanly.
+ * memory size, plus core counts (pages/files/chunks/size). All fields are
+ * optional — older API responses still render cleanly.
  */
 (function () {
   "use strict";
@@ -56,58 +55,11 @@
     return rounded.toLocaleString("en-US") + " " + units[unit];
   }
 
-  function formatDate(iso) {
-    if (!iso) return "—";
-    try {
-      return new Date(iso).toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      });
-    } catch (e) {
-      return "—";
-    }
-  }
-
-  function formatRating(rating) {
-    if (!rating) return "—";
-    var total = (rating.up || 0) + (rating.down || 0);
-    if (total === 0) return "—";
-    if (rating.percentPositive === null || rating.percentPositive === undefined) {
-      return rating.up + "↑ " + rating.down + "↓";
-    }
-    return rating.percentPositive + "% positive (" + rating.up + "↑ " + rating.down + "↓)";
-  }
-
-  function joinList(items) {
-    if (!items || !items.length) return "—";
-    return items.join(", ");
-  }
-
   function el(tag, className, text) {
     var node = document.createElement(tag);
     if (className) node.className = className;
     if (text !== undefined) node.textContent = text;
     return node;
-  }
-
-  function appendDetail(dl, label, value) {
-    var row = el("div", "www-rag-card-detail-row");
-    row.appendChild(el("dt", "www-rag-card-detail-label", label));
-    row.appendChild(el("dd", "www-rag-card-detail-value", value || "—"));
-    dl.appendChild(row);
-  }
-
-  function otherToolsLabel(tools) {
-    if (!tools) return "—";
-    var parts = [];
-    if (tools.webSearch) parts.push("Web search");
-    if (tools.email) parts.push("Email");
-    if (tools.texting) parts.push("Texting");
-    if (tools.other && tools.other.length) {
-      for (var i = 0; i < tools.other.length; i++) parts.push(tools.other[i]);
-    }
-    return parts.length ? parts.join(", ") : "—";
   }
 
   function renderModelCard(site) {
@@ -118,7 +70,6 @@
       chunkCount: site.chunkCount,
       pageCount: site.pageCount,
     };
-    var details = (mc && mc.details) || null;
     var wrap = el("div", "www-rag-card-model");
 
     // Primary chips: language model + memory size
@@ -153,70 +104,6 @@
     addStat(formatCount(rag.chunkCount), "Chunks");
     if (sizeLabel) addStat(sizeLabel, "Size");
     wrap.appendChild(stats);
-
-    // Details disclosure
-    if (details) {
-      var hasDetails =
-        (details.chunkingTools && details.chunkingTools.length) ||
-        (details.documentParsers && details.documentParsers.length) ||
-        details.vectorDatabase ||
-        details.embeddingModel ||
-        details.createdAt ||
-        details.updatedAt ||
-        details.conversationCount !== null ||
-        details.rating ||
-        details.fineTuned ||
-        (details.tools &&
-          (details.tools.voice ||
-            details.tools.speechToText ||
-            details.tools.webSearch ||
-            details.tools.email ||
-            details.tools.texting ||
-            (details.tools.other && details.tools.other.length)));
-
-      if (hasDetails) {
-        var detailsWrap = el("div", "www-rag-card-details");
-        var toggle = el("button", "www-rag-card-details-toggle", "More details ▾");
-        toggle.type = "button";
-        toggle.setAttribute("aria-expanded", "false");
-        var dl = el("dl", "www-rag-card-details-list");
-        dl.hidden = true;
-
-        appendDetail(dl, "Chunking", joinList(details.chunkingTools));
-        appendDetail(dl, "Document parsing", joinList(details.documentParsers));
-        appendDetail(dl, "Vector database", details.vectorDatabase || "—");
-        appendDetail(dl, "Embedding model", details.embeddingModel || "—");
-        appendDetail(dl, "Created", formatDate(details.createdAt));
-        appendDetail(dl, "Updated", formatDate(details.updatedAt));
-        appendDetail(dl, "Conversations", formatCount(details.conversationCount));
-        appendDetail(dl, "Rating", formatRating(details.rating));
-        if (details.fineTuned) {
-          appendDetail(
-            dl,
-            "Fine-tune data",
-            details.fineTuneDatasetSize !== null && details.fineTuneDatasetSize !== undefined
-              ? formatCount(details.fineTuneDatasetSize) + " training files"
-              : "Fine-tuned",
-          );
-        }
-        if (details.tools) {
-          appendDetail(dl, "Voice", details.tools.voice || "—");
-          appendDetail(dl, "Speech-to-text", details.tools.speechToText || "—");
-          appendDetail(dl, "Other tools", otherToolsLabel(details.tools));
-        }
-
-        toggle.addEventListener("click", function () {
-          var open = dl.hidden;
-          dl.hidden = !open;
-          toggle.setAttribute("aria-expanded", open ? "true" : "false");
-          toggle.textContent = open ? "Hide details ▴" : "More details ▾";
-        });
-
-        detailsWrap.appendChild(toggle);
-        detailsWrap.appendChild(dl);
-        wrap.appendChild(detailsWrap);
-      }
-    }
 
     return wrap;
   }
