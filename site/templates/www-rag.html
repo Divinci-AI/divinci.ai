@@ -398,6 +398,43 @@
     object-fit: cover;
     background: #eee;
 }
+/* Generated tile shown for every site — colour and letter derive from the
+   hostname, so it is stable across loads. The real favicon layers on top and
+   is revealed only once it decodes, so a lazy-loaded or failing icon never
+   leaves an empty grey square behind. */
+.www-rag-card-monogram {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    user-select: none;
+}
+.www-rag-card-favicon-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+.www-rag-card-favicon-loaded .www-rag-card-favicon-img {
+    opacity: 1;
+}
+.www-rag-card-favicon-loaded .www-rag-card-monogram-letter {
+    visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+    .www-rag-card-favicon-img {
+        transition: none;
+    }
+}
 .www-rag-card-host {
     font-family: 'Fraunces', serif;
     font-size: 17px;
@@ -489,6 +526,76 @@
     letter-spacing: 0.35px;
     color: #9a9aa8;
     margin-top: 2px;
+}
+/* Collapsed details panel. Native <details> so the disclosure cannot be
+   defeated by a `display` rule on its contents — the previous hand-rolled
+   version toggled [hidden] on a display:grid <dl> and was stuck open. */
+.www-rag-card-details {
+    border-top: 1px solid #f0f0f5;
+    padding-top: 4px;
+}
+.www-rag-card-details-toggle {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #4f46e5;
+    padding: 4px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.www-rag-card-details-toggle::-webkit-details-marker {
+    display: none;
+}
+.www-rag-card-details-toggle::after {
+    content: "\25BE";
+    font-size: 10px;
+    transition: transform 0.15s ease;
+}
+.www-rag-card-details[open] > .www-rag-card-details-toggle::after {
+    transform: rotate(180deg);
+}
+.www-rag-card-details-toggle:hover {
+    color: #4338ca;
+}
+.www-rag-card-details-toggle:focus-visible {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+.www-rag-card-details-list {
+    margin: 8px 0 0;
+    display: grid;
+    gap: 5px;
+}
+.www-rag-card-detail-row {
+    display: grid;
+    grid-template-columns: minmax(90px, 38%) 1fr;
+    gap: 6px;
+}
+.www-rag-card-detail-label {
+    margin: 0;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 10.5px;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #9a9aa8;
+}
+.www-rag-card-detail-value {
+    margin: 0;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12.5px;
+    color: #333;
+    line-height: 1.35;
+    word-break: break-word;
+}
+@media (prefers-reduced-motion: reduce) {
+    .www-rag-card-details-toggle::after {
+        transition: none;
+    }
 }
 .www-rag-card-actions {
     display: flex;
