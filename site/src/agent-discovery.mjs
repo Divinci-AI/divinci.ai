@@ -121,9 +121,8 @@ const API_CATALOG = {
   ],
 };
 
-/* A2A Agent Card. Mirrors mcp.divinci.app/.well-known/agent-card.json and adds
- * `supportedInterfaces`, which the A2A spec expects and the upstream card is
- * currently missing (see the TODO in tests/agent-discovery.spec.js). */
+/* A2A Agent Card. Mirrors mcp.divinci.app/.well-known/agent-card.json,
+ * including `supportedInterfaces` (backported upstream 2026-08-07). */
 const A2A_AGENT_CARD = {
   name: 'DiVinci WhiteLabel AI',
   description:

@@ -100,7 +100,7 @@ test('A2A agent card carries supportedInterfaces and skills', async () => {
     assert.ok(body[field], `missing ${field}`);
   }
   assert.ok(Array.isArray(body.supportedInterfaces) && body.supportedInterfaces.length,
-    'supportedInterfaces is required by the A2A spec and is what upstream is missing');
+    'supportedInterfaces is required by the A2A spec (and mirrored on mcp.divinci.app)');
   for (const iface of body.supportedInterfaces) {
     assert.match(iface.url, /^https:\/\//);
     assert.ok(iface.transport);
@@ -235,26 +235,17 @@ const upstream = process.env.CHECK_UPSTREAM === '1' ? test : test.skip;
 
 /* Fields we KNOWINGLY diverge from upstream on, with the reason.
  *
- * service_documentation / resource_documentation: upstream advertises
- * `https://docs.divinci.app/mcp`, and `docs.divinci.app` has no DNS record —
- * it does not resolve at all (checked 2026-08-07). Copying a dead link into
- * divinci.ai's OAuth metadata would hand every agent a documentation URL that
- * cannot be fetched, so these point at `https://mcp.divinci.app/info`, which
- * is live and describes the same server.
- *
- * DELETE THOSE TWO ENTRIES once the MCP server is fixed — either by pointing it
- * at a URL that resolves, or by standing docs.divinci.app up. Keeping a
- * permanent exemption is how a drift guard rots into decoration.
- *
  * resource: origin-derived BY DESIGN — see the PRM comment in
  * src/agent-discovery.mjs. RFC 9728 requires it to name the origin serving the
  * document, so divinci.ai's copy must say divinci.ai where upstream says
  * mcp.divinci.app. This one is permanent, not a TODO. It is pinned separately
  * by "protected resource metadata identifies the origin it is served from".
+ *
+ * (service_documentation / resource_documentation used to diverge because
+ * upstream advertised the dead docs.divinci.app host. Fixed 2026-08-07 — both
+ * now point at https://mcp.divinci.app/info. Do not re-add them here.)
  */
 const KNOWN_DIVERGENCES = new Set([
-  'service_documentation',
-  'resource_documentation',
   'resource',
 ]);
 
