@@ -126,16 +126,11 @@ test('Web Bot Auth directory refuses unsigned publish in production', async () =
 });
 
 test('Web Bot Auth directory is signed when the private JWK secret is present', async () => {
-  // RFC 9421 Appendix B.1.4 test key — used only to exercise the signing path
-  // when our production private is not available in the unit suite. The public
-  // JWK in the body still has to be OUR published key for the mismatch guard,
-  // so we construct a private JWK that pairs with WEB_BOT_AUTH_PUBLIC_JWK via
-  // env only when DIVINCI_WBA_PRIVATE_JWK is provided (CI/local with vault).
+  // Private material only when DIVINCI_WBA_PRIVATE_JWK is provided (local vault
+  // or CI secret). Shape + prod-refusal tests above still pin the contract
+  // without it.
   const privateRaw = process.env.DIVINCI_WBA_PRIVATE_JWK;
   if (!privateRaw) {
-    // Skip when the operator has not loaded the vault — the shape + refuse
-    // tests above still pin the contract. Signing is verified whenever the
-    // secret is present (local deploys, release checklist).
     return;
   }
   const req = new Request(`https://divinci.ai${WEB_BOT_AUTH_DIRECTORY_PATH}`);
@@ -154,6 +149,16 @@ test('Web Bot Auth directory is signed when the private JWK secret is present', 
     res.headers.get('Signature-Input') || '',
     new RegExp(`keyid="${WEB_BOT_AUTH_PUBLIC_JWK.kid}"`),
   );
+  // Cache TTL must stay under the signature lifetime (see SIGNATURE_TTL_MS).
+  const cc = res.headers.get('Cache-Control') || '';
+  const maxAge = /max-age=(\d+)/.exec(cc);
+  assert.ok(maxAge, `expected max-age in Cache-Control, got ${cc}`);
+  assert.ok(Number(maxAge[1]) <= 30, `max-age ${maxAge[1]} must be ≤ half of 60s signature TTL`);
+  // Never leak the private component in the public JWKS body.
+  const body = JSON.parse(await res.text());
+  for (const key of body.keys) {
+    assert.equal(key.d, undefined);
+  }
 });
 
 test('A2A agent card carries supportedInterfaces and skills', async () => {

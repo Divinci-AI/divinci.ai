@@ -56,9 +56,14 @@ export async function handleWebBotAuthDirectory(request, env = {}) {
   };
   const body = JSON.stringify(bodyObj, null, 2);
 
+  // Signatures expire after SIGNATURE_TTL_MS. Cache lifetime MUST stay shorter
+  // than that, or an edge/browser can re-serve a body whose Signature-Input
+  // `expires` is already in the past and every verifier rejects it. Cap cache
+  // at half the signature TTL.
+  const SIGNATURE_TTL_MS = 60_000;
   const headers = new Headers({
     'Content-Type': MediaType.HTTP_MESSAGE_SIGNATURES_DIRECTORY,
-    'Cache-Control': 'public, max-age=86400',
+    'Cache-Control': `public, max-age=${Math.floor(SIGNATURE_TTL_MS / 1000 / 2)}`,
   });
 
   const privateRaw = env.WEB_BOT_AUTH_PRIVATE_JWK;
@@ -124,7 +129,7 @@ export async function handleWebBotAuthDirectory(request, env = {}) {
   }
 
   const now = new Date();
-  const expires = new Date(now.getTime() + 60_000); // 60s — short-lived directory binding
+  const expires = new Date(now.getTime() + SIGNATURE_TTL_MS);
 
   const url = new URL(request.url);
   const responseLike = {
