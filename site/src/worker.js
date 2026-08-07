@@ -11,6 +11,7 @@ import {
   sanitizeActivity,
   timingSafeEqual,
 } from './www-rag-activity.mjs';
+import { AGENT_LINK_HEADER, handleAgentDiscovery } from './agent-discovery.mjs';
 import {
   HISTORY_KEY,
   applySample,
@@ -129,8 +130,27 @@ export default {
     }
 
     // Handle robots.txt
+    //
+    // Content-Signal (contentsignals.org, draft-romm-aipref-contentsignals)
+    // states what automated systems may DO with content they are allowed to
+    // fetch — it is orthogonal to Allow/Disallow, which only govern fetching.
+    // Our position, and why each value is what it is:
+    //
+    //   search=yes    Be indexed and cited by search and answer engines. This
+    //                 is a marketing site; being found is the entire point.
+    //   ai-input=yes  Be retrieved at inference time to ground an answer, with
+    //                 attribution. Same reasoning — a cited answer is a
+    //                 referral.
+    //   ai-train=no   Do NOT be absorbed into model weights. Training is the
+    //                 one use that takes the content and gives back no path
+    //                 to us, and we sell to customers who care about exactly
+    //                 this distinction for their own content.
+    //
+    // This is a declaration of preference, not an access control. The
+    // enforcement lever is AI Crawl Control in the Cloudflare dashboard.
     if (url.pathname === '/robots.txt') {
       return new Response(`User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 Sitemap: ${url.origin}/sitemap.xml`, {
@@ -139,6 +159,19 @@ Sitemap: ${url.origin}/sitemap.xml`, {
           ...securityHeaders
         }
       });
+    }
+
+    // Agent-readiness discovery documents (/.well-known/api-catalog, the OAuth
+    // metadata, the A2A and MCP cards, the skills index). Returns null for
+    // anything it does not own so /.well-known/security.txt still falls
+    // through to the static-asset handler below.
+    const agentDoc = handleAgentDiscovery(url);
+    if (agentDoc) {
+      Object.entries(securityHeaders).forEach(([k, v]) => agentDoc.headers.set(k, v));
+      // These are cross-origin-read by agent runtimes that are not browsers
+      // and have no same-origin relationship with us.
+      agentDoc.headers.set('Access-Control-Allow-Origin', '*');
+      return agentDoc;
     }
 
     // Handle sitemap.xml redirect
@@ -232,6 +265,17 @@ Sitemap: ${url.origin}/sitemap.xml`, {
           isStaticAsset ? 'public, max-age=31536000, immutable' : 'public, max-age=3600'
         );
         if (earlyHintsLink) newResponse.headers.set('Link', earlyHintsLink);
+
+        // Agent discovery Link relations (RFC 8288, RFC 9727 §3) on HTML pages.
+        // Appended rather than merged into earlyHintsLink so the two concerns
+        // stay separable: Cloudflare's Early Hints only forwards rel=preload /
+        // rel=preconnect, so these ride along on the final 200 and are ignored
+        // by the 103. Agents that never parse HTML can find the API catalog,
+        // the machine-readable service description and llms.txt from headers
+        // alone.
+        if (!url.pathname.match(/\.(css|js|png|jpg|jpeg|gif|svg|webp|woff2?|ttf|eot|ico|webm|mp4|avif|json|xml|txt)$/)) {
+          newResponse.headers.append('Link', AGENT_LINK_HEADER);
+        }
 
         // Inject Cloudflare country code into the cf-country meta tag, then
         // rewrite absolute URLs (no-op in production where origin matches BASE_URL).

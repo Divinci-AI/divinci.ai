@@ -1,0 +1,70 @@
+# Divinci AI
+
+> Release management and quality assurance for custom language models.
+> Divinci gives enterprises a structured path from a fine-tuned or
+> retrieval-augmented model to a production release: automated evaluation,
+> retrieval quality control, compliance evidence, and instant rollback.
+
+Divinci is a platform, not a model vendor. Customers bring their own models and
+content; Divinci handles ingestion, retrieval, evaluation, release gating, and
+the audit record that regulated industries need. Assistants built on it are
+embedded on customer sites, reached by phone, or driven by other agents over
+MCP.
+
+## For agents
+
+- [MCP server description](https://mcp.divinci.app/info): tools, transports and OAuth endpoints
+- [Agent skills index](https://divinci.ai/.well-known/agent-skills/index.json): how to connect, query RAG, and embed an assistant
+- [auth.md](https://divinci.ai/auth.md): how an agent registers and authenticates
+- [API catalog](https://divinci.ai/.well-known/api-catalog): RFC 9727 service directory
+- [A2A agent card](https://divinci.ai/.well-known/agent-card.json): agent-to-agent discovery
+- [SDK and API documentation](https://sdk.divinci.ai/)
+- [Platform status](https://divinci.ai/api/status)
+
+## Product
+
+- [Release management](https://divinci.ai/release-management/): staged rollout, approval gates, rollback
+- [Quality assurance](https://divinci.ai/quality-assurance/): automated evaluation before a model reaches users
+- [WWW-RAG](https://divinci.ai/www-rag/): open-web crawling and retrieval
+- [AutoRAG](https://divinci.ai/autorag/): managed retrieval pipelines
+- [RAG routing](https://divinci.ai/rag-routing/): choosing the right knowledge source per query
+- [RAG Arena](https://divinci.ai/rag-arena/): head-to-head retrieval evaluation
+- [Voice agents](https://divinci.ai/voice-agents/): phone and realtime speech assistants
+- [Hermes agents](https://divinci.ai/hermes-agents/): long-running autonomous agents
+- [Local inference and privacy](https://divinci.ai/local-inference-privacy/): in-browser and on-device models
+- [Pricing](https://divinci.ai/pricing/)
+
+## Trust and compliance
+
+- [Security](https://divinci.ai/security/)
+- [Compliance](https://divinci.ai/compliance/): EU AI Act, GDPR, HIPAA, NIST AI RMF
+- [AI safety](https://divinci.ai/ai-safety/)
+- [Privacy policy](https://divinci.ai/privacy-policy/)
+- [Data processing agreement](https://divinci.ai/data-processing-agreement/)
+- [Terms of service](https://divinci.ai/terms-of-service/)
+- [Accessibility](https://divinci.ai/accessibility/)
+- [security.txt](https://divinci.ai/.well-known/security.txt)
+
+## Developers
+
+- [API overview](https://divinci.ai/api/)
+- [CLI](https://divinci.ai/cli/)
+- [Documentation](https://divinci.ai/docs/)
+- [Tutorials](https://divinci.ai/tutorials/)
+- [Changelog](https://divinci.ai/changelog/)
+- [Roadmap](https://divinci.ai/roadmap/)
+
+## Company
+
+- [About](https://divinci.ai/about/)
+- [Careers](https://divinci.ai/careers/)
+- [Press](https://divinci.ai/press/)
+- [Contact](https://divinci.ai/contact/)
+- [Support](https://divinci.ai/support/)
+- [Blog](https://divinci.ai/blog/)
+
+## Optional
+
+- [Full site content](https://divinci.ai/llms-full.txt): every indexed page with its summary
+- [Sitemap](https://divinci.ai/sitemap.xml): all 700+ URLs including translations
+- [Brand assets](https://divinci.ai/brand/)

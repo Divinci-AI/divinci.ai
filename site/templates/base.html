@@ -793,5 +793,12 @@
         }
       })();
     </script>
+
+    {# WebMCP: registers this site's search, status and endpoint-lookup as
+       tools an in-browser AI agent can call directly. Self-disabling on any
+       browser without navigator.modelContext, which is currently all of them
+       outside Chrome's origin trial — so this is inert for human visitors.
+       Deferred: tool registration has no bearing on first paint. #}
+    <script src="{{ get_url(path='js/webmcp.js') }}" defer></script>
 </body>
 </html>

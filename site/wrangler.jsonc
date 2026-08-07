@@ -10,7 +10,19 @@
     // for API endpoints. Without /api/*, Cloudflare's static asset handler
     // intercepts POSTs and returns 405 before the worker can answer.
     // Static assets (CSS, JS, images) are still served directly for performance.
-    "run_worker_first": ["/", "/*/", "/*/*/", "/*/*/*/", "/*/*/*/*/", "/*.html", "/api/*"]
+    "run_worker_first": ["/", "/*/", "/*/*/", "/*/*/*/", "/*/*/*/*/", "/*.html", "/api/*",
+      // Agent-readiness discovery documents. Most are extensionless, so the
+      // static handler would serve them as application/octet-stream; the
+      // specs require application/linkset+json / application/json. The
+      // worker returns null for paths it does not own, so
+      // /.well-known/security.txt and the agent-skills SKILL.md files
+      // still fall through to ASSETS.
+      // /robots.txt: there was ALSO a static/robots.txt, which shadowed the
+      // worker's handler completely — the handler had been dead code, and the
+      // served file hardcoded divinci.ai's sitemap even on staging. The static
+      // file is deleted; this line makes the worker the single source.
+      "/robots.txt",
+      "/.well-known/*"]
   },
   "vars": {
     "ENVIRONMENT": "production",
@@ -44,7 +56,7 @@
   },
   "compatibility_flags": ["nodejs_compat"],
   "build": {
-    "command": "python3 scripts/build-search-index.py && zola build"
+    "command": "python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build"
   },
   "limits": {
     "cpu_ms": 50
@@ -65,7 +77,7 @@
       ],
       "workers_dev": true,
       "build": {
-        "command": "python3 scripts/build-search-index.py && zola build --base-url https://dev.divinci.ai"
+        "command": "python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build --base-url https://dev.divinci.ai"
       }
     },
     "staging": {
@@ -89,7 +101,7 @@
       ],
       "workers_dev": true,
       "build": {
-        "command": "python3 scripts/build-search-index.py && zola build --base-url https://staging.divinci.ai"
+        "command": "python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build --base-url https://staging.divinci.ai"
       }
     }
   }
