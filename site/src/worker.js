@@ -13,6 +13,10 @@ import {
 } from './www-rag-activity.mjs';
 import { AGENT_LINK_HEADER, handleAgentDiscovery } from './agent-discovery.mjs';
 import {
+  WEB_BOT_AUTH_DIRECTORY_PATH,
+  handleWebBotAuthDirectory,
+} from './web-bot-auth-directory.mjs';
+import {
   HISTORY_KEY,
   applySample,
   buildHistoryView,
@@ -159,6 +163,16 @@ Sitemap: ${url.origin}/sitemap.xml`, {
           ...securityHeaders
         }
       });
+    }
+
+    // Web Bot Auth JWKS directory — async because the response is signed with
+    // the private key from WEB_BOT_AUTH_PRIVATE_JWK. Kept out of the sync
+    // handleAgentDiscovery switch for that reason.
+    if (url.pathname === WEB_BOT_AUTH_DIRECTORY_PATH) {
+      const dir = await handleWebBotAuthDirectory(request, env);
+      Object.entries(securityHeaders).forEach(([k, v]) => dir.headers.set(k, v));
+      dir.headers.set('Access-Control-Allow-Origin', '*');
+      return dir;
     }
 
     // Agent-readiness discovery documents (/.well-known/api-catalog, the OAuth

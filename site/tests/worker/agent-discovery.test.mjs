@@ -21,6 +21,11 @@ import assert from 'node:assert/strict';
 
 import { AGENT_LINK_HEADER, handleAgentDiscovery } from '../../src/agent-discovery.mjs';
 import { SKILLS_INDEX } from '../../src/agent-skills-index.mjs';
+import {
+  WEB_BOT_AUTH_DIRECTORY_PATH,
+  WEB_BOT_AUTH_PUBLIC_JWK,
+  handleWebBotAuthDirectory,
+} from '../../src/web-bot-auth-directory.mjs';
 
 const MCP = 'https://mcp.divinci.app';
 
@@ -92,6 +97,63 @@ test('protected resource metadata identifies the origin it is served from', asyn
     assert.equal(body.resource, origin,
       `PRM served from ${origin} must identify ${origin}, not something else`);
   }
+});
+
+test('Web Bot Auth directory publishes our Ed25519 public JWK', async () => {
+  // No private key → shape-only response (dev/test). Production refuses to
+  // serve unsigned — covered by the signed test below when the secret is set.
+  const req = new Request(`https://divinci.ai${WEB_BOT_AUTH_DIRECTORY_PATH}`);
+  const res = await handleWebBotAuthDirectory(req, { ENVIRONMENT: 'development' });
+  assert.equal(res.status, 200);
+  assert.match(
+    res.headers.get('content-type') || '',
+    /application\/http-message-signatures-directory\+json/,
+  );
+  const body = JSON.parse(await res.text());
+  assert.ok(Array.isArray(body.keys) && body.keys.length === 1);
+  const key = body.keys[0];
+  assert.equal(key.kty, 'OKP');
+  assert.equal(key.crv, 'Ed25519');
+  assert.equal(key.x, WEB_BOT_AUTH_PUBLIC_JWK.x);
+  assert.equal(key.kid, WEB_BOT_AUTH_PUBLIC_JWK.kid);
+  assert.equal(key.d, undefined, 'private key material must never appear in the directory');
+});
+
+test('Web Bot Auth directory refuses unsigned publish in production', async () => {
+  const req = new Request(`https://divinci.ai${WEB_BOT_AUTH_DIRECTORY_PATH}`);
+  const res = await handleWebBotAuthDirectory(req, { ENVIRONMENT: 'production' });
+  assert.equal(res.status, 503);
+});
+
+test('Web Bot Auth directory is signed when the private JWK secret is present', async () => {
+  // RFC 9421 Appendix B.1.4 test key — used only to exercise the signing path
+  // when our production private is not available in the unit suite. The public
+  // JWK in the body still has to be OUR published key for the mismatch guard,
+  // so we construct a private JWK that pairs with WEB_BOT_AUTH_PUBLIC_JWK via
+  // env only when DIVINCI_WBA_PRIVATE_JWK is provided (CI/local with vault).
+  const privateRaw = process.env.DIVINCI_WBA_PRIVATE_JWK;
+  if (!privateRaw) {
+    // Skip when the operator has not loaded the vault — the shape + refuse
+    // tests above still pin the contract. Signing is verified whenever the
+    // secret is present (local deploys, release checklist).
+    return;
+  }
+  const req = new Request(`https://divinci.ai${WEB_BOT_AUTH_DIRECTORY_PATH}`);
+  const res = await handleWebBotAuthDirectory(req, {
+    ENVIRONMENT: 'production',
+    WEB_BOT_AUTH_PRIVATE_JWK: privateRaw,
+  });
+  assert.equal(res.status, 200);
+  assert.ok(res.headers.get('Signature'), 'Signature header required');
+  assert.ok(res.headers.get('Signature-Input'), 'Signature-Input header required');
+  assert.match(
+    res.headers.get('Signature-Input') || '',
+    /tag="http-message-signatures-directory"/,
+  );
+  assert.match(
+    res.headers.get('Signature-Input') || '',
+    new RegExp(`keyid="${WEB_BOT_AUTH_PUBLIC_JWK.kid}"`),
+  );
 });
 
 test('A2A agent card carries supportedInterfaces and skills', async () => {
