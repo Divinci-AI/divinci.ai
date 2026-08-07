@@ -36,12 +36,18 @@ const OAUTH_AUTHORIZATION_SERVER = {
   token_endpoint: `${MCP}/token`,
   registration_endpoint: `${MCP}/register`,
   revocation_endpoint: `${MCP}/revoke`,
+  // Keep in lockstep with mcp.divinci.app/.well-known/oauth-authorization-server
+  // (order matters — CHECK_UPSTREAM deep-equals the array).
   scopes_supported: [
     'openid', 'profile', 'email', 'offline_access',
-    'rag:read', 'rag:write', 'chat:read', 'chat:write',
-    'release:read', 'release:write', 'finetune:read', 'finetune:write',
-    'config:read', 'config:write', 'memory:read', 'memory:write',
+    'rag:read', 'rag:write', 'release:read', 'release:write',
+    'chat:read', 'chat:write', 'finetune:read', 'finetune:write',
+    'memory:read', 'memory:write', 'config:read', 'config:write',
     'audio:read', 'audio:write', 'divinci:read', 'divinci:write',
+    'connector:read', 'connector:write',
+    'notification:read', 'notification:write',
+    'user:read', 'user:write',
+    'trustbench:read', 'trustbench:run',
   ],
   response_types_supported: ['code'],
   grant_types_supported: ['authorization_code', 'refresh_token'],
