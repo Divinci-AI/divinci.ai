@@ -2218,21 +2218,30 @@ body:not(.homepage) .privacy-settings-link:hover {
   line-height: 1.4;
 }
 
+/* The icon row has to fit the brand column's 2fr share of .footer-content:
+   ~315px at the 1200px max-width, minus the section's 16px side padding = 283px
+   of usable width. Six 40px circles at gap:1rem need 320px, so the column
+   overflowed and shoved Product/Resources/Company/Legal to the right. 36px
+   circles at gap:0.5rem need 256px — one row, ~27px of slack for a seventh
+   icon or a zoomed-in viewport. Below 768px mobile-fixes.css takes over and
+   restores 48px circles for touch targets, where the single-column footer has
+   the width to spare. wrap is the safety valve if the slack ever runs out. */
 .footer-social {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .footer-social a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
   background-color: rgba(207, 220, 255, 0.1);
   border-radius: 50%;
   color: var(--color-highlight-blue);
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -2245,8 +2254,8 @@ body:not(.homepage) .privacy-settings-link:hover {
    HF's monochrome mark ships as fill="black"; the footer uses white/blue icons,
    so we invert to match the surrounding icon color. */
 .footer-social-img {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.25rem;
+  height: 1.25rem;
   object-fit: contain;
   display: block;
   filter: invert(1);
