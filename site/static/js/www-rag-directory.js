@@ -36,6 +36,22 @@
   var BUILD_BASE = "https://chat.divinci.app/www-rag?copy=";
   var CLAIM_BASE = "https://chat.divinci.app/www-rag?claim=";
 
+  // The header omits the corpus size below this, for two independent reasons.
+  //
+  // Correctness: the header SUMS per-site totalBytes, and a missing value
+  // contributes 0 rather than "unknown" — so a corpus nobody has measured
+  // renders as a confident "0 B". The per-site chips have no such problem;
+  // they take null and simply hide.
+  //
+  // Presentation: ~1 GB is a true number that undersells 660k chunks, since it
+  // counts extracted text and none of the embeddings (another ~2 GB of float32
+  // at 768 dims). The size is not the headline until it is genuinely large, so
+  // the floor is set where it would start to impress rather than deflate.
+  //
+  // This is a display threshold, never a data one — the value is still
+  // measured on every publish, still on every card, and still in the API.
+  var MIN_HEADER_BYTES = 100 * 1024 * 1024 * 1024; // 100 GB
+
   var statusEl = document.getElementById("www-rag-status");
   var gridEl = document.getElementById("www-rag-grid");
   var statsEl = document.getElementById("www-rag-stats");
@@ -466,7 +482,10 @@
       }
       allSites = data.sites || [];
       if (statsEl) {
-        var totalSize = formatBytes(data.totalBytes);
+        var totalSize =
+          typeof data.totalBytes === "number" && data.totalBytes >= MIN_HEADER_BYTES
+            ? formatBytes(data.totalBytes)
+            : null;
         statsEl.textContent =
           formatCount(data.totalSites) + " curated sites · " +
           formatCount(data.totalPages) + " pages · " +
