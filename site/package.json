@@ -129,5 +129,10 @@
     "setupFilesAfterEnv": [
       "<rootDir>/tests/unit/setup.js"
     ]
+  },
+  "overrides": {
+    "@istanbuljs/load-nyc-config": {
+      "js-yaml": "^3.15.1"
+    }
   }
 }
