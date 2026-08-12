@@ -3,9 +3,10 @@
   "private": true,
   "description": "divinci.app funnel — deploy via these scripts so the pinned-asset guard always runs",
   "scripts": {
-    "check": "node check-pinned-assets.mjs",
-    "check:live": "node check-pinned-assets.mjs --live",
-    "deploy": "node check-pinned-assets.mjs && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env='' && node check-pinned-assets.mjs --live",
-    "deploy:staging": "node check-pinned-assets.mjs && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env staging"
+    "check": "node check-pinned-assets.mjs && node check-funnel-integrity.mjs",
+    "check:live": "node check-pinned-assets.mjs --live && node check-funnel-integrity.mjs --live",
+    "check:selftest": "node check-funnel-integrity.mjs --selftest",
+    "deploy": "node check-pinned-assets.mjs && node check-funnel-integrity.mjs && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env='' && node check-pinned-assets.mjs --live && node check-funnel-integrity.mjs --live",
+    "deploy:staging": "node check-pinned-assets.mjs && node check-funnel-integrity.mjs && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env staging"
   }
 }
