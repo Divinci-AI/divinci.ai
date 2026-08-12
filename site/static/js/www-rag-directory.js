@@ -314,17 +314,10 @@
     var details = (mc && mc.details) || null;
     var wrap = el("div", "www-rag-card-model");
 
-    // The language model moved into the details panel — every site currently
-    // runs the same one, so a chip on every card carried no signal.
-    var primary = el("div", "www-rag-card-primary");
-    var sizeLabel = formatBytes(rag.totalBytes);
-    if (sizeLabel) {
-      var sizeChip = el("div", "www-rag-card-chip");
-      sizeChip.appendChild(el("span", "www-rag-card-chip-label", "Memory"));
-      sizeChip.appendChild(el("span", "www-rag-card-chip-value", sizeLabel));
-      primary.appendChild(sizeChip);
-    }
-    if (primary.childNodes.length) wrap.appendChild(primary);
+    // No chip row: the language model moved into the details panel (every
+    // site runs the same one), and the RAG memory size is not shown at all —
+    // it was duplicated as both a "Memory" chip and a "Size" tile, and the
+    // per-site byte counts are too small to be worth the space.
 
     // Core stats
     var stats = el("div", "www-rag-card-stats");
@@ -339,7 +332,6 @@
     }
     addStat(formatCount(rag.fileCount), "Files");
     addStat(formatCount(rag.chunkCount), "Chunks");
-    if (sizeLabel) addStat(sizeLabel, "Size");
     wrap.appendChild(stats);
 
     var panel = renderDetailsPanel(mc, details);
