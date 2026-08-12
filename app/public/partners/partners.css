@@ -1,0 +1,391 @@
+/* divinci.app/partners/ — "Ship custom AI for every client" funnel.
+
+   Additive only, exactly like /files/files.css: the topbar, hero-bg, steps,
+   menu/cards, trust, team, faq, bottom-cta, ask-bar and footer all come from
+   /styles.css so the three funnels stay visually identical. This file styles
+   ONLY the pieces that have no equivalent on the other two funnels:
+
+     .cta-row      the dual primary/secondary button pair that replaces the
+                   website funnel's URL input and the files funnel's dropzone
+     .audience     "who this is for" chips under the hero
+     .tenancy      the one-console → many-client-workspaces diagram
+     .build-vs     the "build it yourself vs. ship on Divinci" table
+     .surfaces     where a client's assistant can be delivered
+     .economics    margin / packaging panel
+
+   Palette + radius + shadow tokens are inherited from /styles.css :root.
+   Nothing here hardcodes a hex that exists as a token. */
+
+/* ── Hero CTA pair ───────────────────────────────────────── */
+/* The other two funnels put a form in the hero because their conversion IS a
+   form submit. This page's conversion is a signup, so the hero gets buttons.
+   Same visual weight as .scan-form's submit so the three heroes read alike. */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.cta-primary,
+.cta-secondary {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 14px 28px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.cta-primary {
+  color: var(--white);
+  background: var(--denim);
+  border: 2px solid var(--denim);
+}
+.cta-primary:hover {
+  background: var(--denim-dark);
+  border-color: var(--denim-dark);
+}
+
+.cta-secondary {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.82);
+  border: 2px solid var(--border);
+}
+.cta-secondary:hover {
+  border-color: var(--denim);
+  background: var(--white);
+}
+
+.cta-primary:focus-visible,
+.cta-secondary:focus-visible {
+  outline: 2px solid var(--denim);
+  outline-offset: 3px;
+}
+
+/* ── Audience chips ──────────────────────────────────────── */
+/* Mirrors .formats on the files funnel — same pill treatment, so a visitor
+   moving between funnels recognises the strip. */
+.audience {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 10px;
+  max-width: 700px;
+  margin: 22px auto 0;
+}
+.audience li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+/* ── Tenancy diagram ─────────────────────────────────────── */
+/* One organization fanning out to many client workspaces. Built from divs
+   rather than an SVG so the client names stay real text — selectable,
+   translatable, and readable by a screen reader without a <desc> block. */
+.tenancy { background: var(--white); }
+
+.tenancy-diagram {
+  max-width: 860px;
+  margin: 28px auto 0;
+}
+
+.tenancy-root {
+  max-width: 340px;
+  margin: 0 auto;
+  padding: 14px 18px;
+  text-align: center;
+  background: var(--denim);
+  color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.tenancy-root strong { display: block; font-size: 1.05rem; }
+/* 0.92, not the 0.85 used elsewhere on denim panels: at 0.86rem this is normal
+   text, so it needs WCAG AA's 4.5:1 rather than the 3:1 large-text bar.
+   Measured on --denim, 0.85 gives 4.40:1 (fails) and 0.92 gives 4.84:1. */
+.tenancy-root span { font-size: 0.86rem; color: rgba(255, 255, 255, 0.92); }
+
+/* The connector. A single centred stem into a horizontal rule, then one drop
+   per child — drawn with borders so it costs no extra element and reflows
+   with the grid instead of being pinned to fixed coordinates. */
+.tenancy-stem {
+  width: 2px;
+  height: 22px;
+  margin: 0 auto;
+  background: var(--border);
+}
+
+.tenancy-children {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  border-top: 2px solid var(--border);
+  padding-top: 0;
+}
+.tenancy-children li {
+  position: relative;
+  padding: 16px 16px 14px;
+  margin-top: 22px;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: left;
+}
+/* Drop line from the horizontal rule into each card. */
+.tenancy-children li::before {
+  content: "";
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  width: 2px;
+  height: 22px;
+  background: var(--border);
+}
+
+.tenancy-name {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+.tenancy-meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+.tenancy-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+.tenancy-tags li {
+  /* Reset the parent card rules — these are inline pills, not cards. */
+  all: unset;
+  display: inline-flex;
+  padding: 3px 9px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.tenancy-note {
+  max-width: 640px;
+  margin: 24px auto 0;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 780px) {
+  .tenancy-children { grid-template-columns: 1fr; border-top: 0; }
+  .tenancy-children li { margin-top: 12px; }
+  .tenancy-children li::before { display: none; }
+  .tenancy-stem { height: 14px; }
+}
+
+/* ── Build-vs-ship table ─────────────────────────────────── */
+/* A table, not a card grid: the whole point is the row-by-row comparison, and
+   a screen reader should announce "Multi-tenant isolation — build yourself:
+   … — on Divinci: …" as one unit. */
+.build-vs { background: var(--parchment-deep); }
+
+.build-vs-wrap {
+  max-width: 900px;
+  margin: 26px auto 0;
+  overflow-x: auto;               /* long rows scroll the table, not the page */
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--white);
+}
+
+.build-vs table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.build-vs th,
+.build-vs td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.build-vs thead th {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--parchment);
+  white-space: nowrap;
+}
+.build-vs tbody tr:last-child th,
+.build-vs tbody tr:last-child td { border-bottom: 0; }
+.build-vs tbody th {
+  font-weight: 700;
+  color: var(--ink);
+  width: 34%;
+}
+.build-vs .col-diy { color: var(--ink-soft); }
+.build-vs .col-divinci { color: var(--ink); font-weight: 600; }
+.build-vs .col-divinci::before {
+  content: "✓ ";
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* ── Delivery surfaces ───────────────────────────────────── */
+.surfaces { background: var(--white); }
+/* 2×2 rather than a 4-up row: one of these cards carries a code snippet, and
+   at a quarter of the container it wrapped into six cramped lines. Same
+   rhythm as .economics-grid below. */
+.surface-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 880px;
+  margin: 26px auto 0;
+}
+@media (max-width: 620px) {
+  .surface-grid { grid-template-columns: 1fr; }
+}
+.surface {
+  padding: 18px 20px;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.surface h3 {
+  font-size: 1.02rem;
+  margin-bottom: 6px;
+}
+.surface p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+/* Direct child only. A descendant selector here would also capture the inline
+   <code>divinci</code> inside a <p>, turning a word mid-sentence into a
+   full-width block. */
+.surface > code {
+  display: block;
+  margin-top: 10px;
+  padding: 9px 11px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--denim-dark);
+  /* pre-wrap, not pre: the snippet is longer than a narrow card, and a
+     horizontal scrollbar inside a 220px box is worse than a second line. */
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+/* Inline code inside prose — a tinted word, not a box. */
+.surface p code {
+  padding: 1px 5px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-size: 0.86em;
+  color: var(--denim-dark);
+}
+
+/* ── Economics panel ─────────────────────────────────────── */
+.economics { background: var(--parchment-deep); }
+/* Six cards on an explicit 3×2. auto-fit would reflow to 2 columns at some
+   widths and orphan a card on a row of its own — an explicit count can't. */
+.economics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1040px;
+  margin: 26px auto 0;
+}
+@media (max-width: 900px) {
+  .economics-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .economics-grid { grid-template-columns: 1fr; }
+}
+.economics article {
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.economics h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+.economics p { color: var(--ink-soft); font-size: 0.96rem; }
+.economics-note {
+  max-width: 700px;
+  margin: 22px auto 0;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.93rem;
+}
+
+/* ── Bottom CTA variant ──────────────────────────────────── */
+/* .bottom-cta is a solid --denim panel. styles.css inverts the website
+   funnel's .scan-form button there, but that selector can't reach .cta-primary
+   — without these the button is denim-on-denim and effectively invisible
+   (the same trap files.css documents for .drop-submit). */
+.bottom-cta .cta-row { margin-top: 22px; }
+.bottom-cta .cta-primary {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--denim-dark);
+}
+.bottom-cta .cta-primary:hover {
+  background: var(--blue-hover);
+  border-color: var(--blue-hover);
+}
+.bottom-cta .cta-secondary {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+.bottom-cta .cta-secondary:hover {
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+}
+.bottom-cta .cta-primary:focus-visible,
+.bottom-cta .cta-secondary:focus-visible { outline-color: var(--white); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-primary,
+  .cta-secondary { transition: none; }
+}
+
+@media (max-width: 560px) {
+  .cta-row { flex-direction: column; align-items: stretch; }
+  .cta-primary,
+  .cta-secondary { justify-content: center; }
+  .audience { gap: 6px 8px; }
+  .audience li { font-size: 0.82rem; padding: 5px 11px; }
+}

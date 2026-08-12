@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divinci — Ship custom AI for every client. Without building the platform.</title>
+  <meta name="description" content="For software studios and consulting firms: one console, a separate AI workspace per client, your brand on the front. RAG, fine-tuning, evaluation and versioned releases — already built. Free to start.">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="canonical" href="https://divinci.app/partners/">
+  <meta property="og:title" content="Ship custom AI for every client. Without building the platform.">
+  <meta property="og:description" content="One console, a separate AI workspace per client, your brand on the front. RAG, fine-tuning, evaluation and versioned releases — already built.">
+  <meta property="og:url" content="https://divinci.app/partners/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://divinci.app/images/davinci-painter-robot-800w.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Source+Sans+3:wght@400;500;700&display=swap">
+  <!-- NOTE: no i18n:alternates / language switcher here, for the same reason
+       /files/ has none — build-i18n.mjs only reads public/index.html, so /ar/,
+       /de/, … are translations of the HOME page. Linking to them from here
+       would drop visitors off this funnel entirely. -->
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/partners/partners.css">
+  <link rel="stylesheet" href="/css/divinci-chat-widget.css">
+</head>
+<body>
+
+  <!-- Same full-bleed ambient artwork as the other two funnels. -->
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <div class="promo-banner" role="region" aria-label="Announcements">
+    <div class="promo-slides">
+      <div class="promo-slide promo-slide-active">
+        <span>🧩 Building for yourself instead? <a href="/">Turn your website into an AI →</a></span>
+      </div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="/">
+      <img src="/images/divinci_logo_ink.svg" alt="Divinci logo" width="34" height="34">
+      <span>Divinci</span>
+    </a>
+    <div class="top-actions">
+      <a class="signin" href="https://chat.divinci.app/" data-app-link="/">Sign in</a>
+      <a class="top-pricing" href="https://divinci.ai/pricing/">Pricing</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Hero ─────────────────────────────────────────────────────── -->
+    <section class="hero">
+      <h1>Ship custom AI for every client.<br><em>Without building the platform.</em></h1>
+      <p class="hero-sub">
+        One console, a separate AI workspace per client, your brand on the front.
+        Retrieval, fine-tuning, evaluation and versioned releases are already
+        built — you keep the client relationship.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta-primary" href="https://chat.divinci.app/" data-app-link="/">Start a free workspace →</a>
+        <a class="cta-secondary" href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener">Talk to us about partner terms</a>
+      </div>
+
+      <p class="hero-note">
+        Free to start, no credit card. Priced on usage, not per seat — a client
+        workspace costs nothing until it is used.
+        <!-- Deliberately NOT the other funnels' "already built for NASA, the
+             Supreme Court…" line. Those are unclaimed public sites in the
+             WWW-RAG directory (`claimed: false`), not customers — a partner
+             would reasonably repeat that to their own client as a reference.
+             The directory count is the honest, verifiable version. -->
+        <span class="hero-note-proof">300+ public websites and content libraries have already been turned into working AIs on the platform.</span>
+      </p>
+
+      <ul class="audience" aria-label="Who this is for">
+        <li><span aria-hidden="true">💻</span> Software studios</li>
+        <li><span aria-hidden="true">📐</span> Consulting firms</li>
+        <li><span aria-hidden="true">🛰️</span> Systems integrators</li>
+        <li><span aria-hidden="true">🛠️</span> Managed service providers</li>
+        <li><span aria-hidden="true">📣</span> Marketing &amp; AI agencies</li>
+        <li><span aria-hidden="true">🎯</span> Independent consultants</li>
+      </ul>
+    </section>
+
+    <!-- ── How it works ─────────────────────────────────────────────── -->
+    <section class="steps">
+      <h2>How it works</h2>
+      <ol>
+        <li>
+          <span class="step-num">1</span>
+          <h3>Create a workspace per client</h3>
+          <p>Each client gets their own isolated workspace — separate content, separate settings, separate keys. Invite their team into theirs, keep yours in all of them.</p>
+          <svg class="card-art" viewBox="0 0 100 100" aria-hidden="true"><path d="M22 30h22v22H22zM56 30h22v22H56zM39 62h22v18H39z"/><path d="M33 52v6h34v-6M50 58v4"/></svg>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <h3>Feed it what the client knows</h3>
+          <p>Crawl their site, drop in their documents, or connect where the content already lives — WordPress, Google Drive, Dropbox, Notion, S3. Set it to re-sync on a schedule.</p>
+          <svg class="card-art" viewBox="0 0 100 100" aria-hidden="true"><path d="M28 30h26M28 40h30M28 50h18"/><circle cx="60" cy="58" r="14"/><path d="M70 68 82 80"/></svg>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <h3>Ship it under your brand</h3>
+          <p>Publish a release, embed it on their site in one line, or hand it over as an API, an MCP server, or a phone number. Releases are versioned, so the one you trust stays pinned.</p>
+          <svg class="card-art" viewBox="0 0 100 100" aria-hidden="true"><path d="M26 62 50 24l24 38z"/><path d="M38 62v14h24V62"/><circle cx="50" cy="48" r="5"/></svg>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ── Multi-tenancy diagram ────────────────────────────────────── -->
+    <section class="tenancy">
+      <h2>One console. Every client, kept apart.</h2>
+      <div class="tenancy-diagram">
+        <div class="tenancy-root">
+          <strong>Your organization</strong>
+          <span>your team, your roles, your billing</span>
+        </div>
+        <div class="tenancy-stem" aria-hidden="true"></div>
+        <ul class="tenancy-children">
+          <li>
+            <span class="tenancy-name">Client A</span>
+            <span class="tenancy-meta">Their content, their assistant</span>
+            <ul class="tenancy-tags">
+              <li>Own knowledge base</li>
+              <li>Own release</li>
+              <li>Own model keys</li>
+            </ul>
+          </li>
+          <li>
+            <span class="tenancy-name">Client B</span>
+            <span class="tenancy-meta">Their content, their assistant</span>
+            <ul class="tenancy-tags">
+              <li>Own knowledge base</li>
+              <li>Own release</li>
+              <li>Own model keys</li>
+            </ul>
+          </li>
+          <li>
+            <span class="tenancy-name">Client C</span>
+            <span class="tenancy-meta">Their content, their assistant</span>
+            <ul class="tenancy-tags">
+              <li>Own knowledge base</li>
+              <li>Own release</li>
+              <li>Own model keys</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <p class="tenancy-note">
+        A client's content does not reach another client's assistant unless you
+        deliberately connect them — cross-release routing is off by default and
+        fail-closed, and a target has to be on an explicit allowlist before a
+        query can ever reach it. Invite a client's staff into their workspace
+        only, with the permissions you choose, and remove them when the
+        engagement ends.
+      </p>
+    </section>
+
+    <!-- ── Build vs ship ────────────────────────────────────────────── -->
+    <section class="build-vs">
+      <h2>The part you'd spend two quarters building</h2>
+      <div class="build-vs-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">What every client engagement needs</th>
+              <th scope="col">Build it yourself</th>
+              <th scope="col">On Divinci</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Per-client isolation</th>
+              <td class="col-diy">Tenancy model, row-level scoping, an audit of every query path</td>
+              <td class="col-divinci">A workspace per client, isolated by default</td>
+            </tr>
+            <tr>
+              <th scope="row">Retrieval that cites</th>
+              <td class="col-diy">Parsing, chunking, embeddings, a vector store, re-ranking, citation plumbing</td>
+              <td class="col-divinci">Ingest a site, a file or a connector — answers carry their source</td>
+            </tr>
+            <tr>
+              <th scope="row">Model choice &amp; failover</th>
+              <td class="col-diy">A provider abstraction, a fallback chain, and the on-call to notice when it breaks</td>
+              <td class="col-divinci">Multiple providers behind one config, with fallbacks</td>
+            </tr>
+            <tr>
+              <th scope="row">Knowing a change didn't regress</th>
+              <td class="col-diy">A scoring harness, a rated question set, and somewhere to keep the history</td>
+              <td class="col-divinci">Scored QA, A/B testing and Arena, on every plan</td>
+            </tr>
+            <tr>
+              <th scope="row">Shipping a change safely</th>
+              <td class="col-diy">Versioning, a staging path, and a way back to the config that worked</td>
+              <td class="col-divinci">Fork to a draft, publish, pin or deprecate — per client</td>
+            </tr>
+            <tr>
+              <th scope="row">Where the vectors live</th>
+              <td class="col-diy">Picking a vector database once, then living with it for every client</td>
+              <td class="col-divinci">Chosen per workspace, overridable per release — Vectorize, Qdrant, Couchbase, Turso or PageIndex</td>
+            </tr>
+            <tr>
+              <th scope="row">Delivery surfaces</th>
+              <td class="col-diy">A widget, an API, auth for both, then the same again for MCP</td>
+              <td class="col-divinci">Embed, API, SDK, CLI and MCP from the same release</td>
+            </tr>
+            <tr>
+              <th scope="row">Credentials</th>
+              <td class="col-diy">Somewhere safe to hold each client's provider keys, and a rotation story</td>
+              <td class="col-divinci">Bring-your-own-key per workspace, encrypted at rest</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── Delivery surfaces ────────────────────────────────────────── -->
+    <section class="surfaces">
+      <h2>However that client wants it delivered</h2>
+      <div class="surface-grid">
+        <div class="surface">
+          <h3><span class="title-emoji" aria-hidden="true">🔗</span> On their website</h3>
+          <p>One script tag on any site — WordPress, Squarespace, Webflow, a bespoke build. Styled to their brand, not ours.</p>
+          <!-- The real snippet, as shown on /white-label/{id}/integrations. -->
+          <code>&lt;script src="https://embed.divinci.app/embed-script.js"
+  divinci-release-id="…"&gt;&lt;/script&gt;</code>
+        </div>
+        <div class="surface">
+          <h3><span class="title-emoji" aria-hidden="true">🧩</span> Inside their AI tools</h3>
+          <p>Expose the assistant over MCP so their team can reach it from ChatGPT, Claude or Gemini without leaving the tool they already use.</p>
+        </div>
+        <div class="surface">
+          <h3><span class="title-emoji" aria-hidden="true">⚙️</span> In your own product</h3>
+          <p>A REST API, typed SDK packages and a <code>divinci</code> CLI — so provisioning a client can be a step in your deploy pipeline rather than a click-path.</p>
+        </div>
+        <div class="surface">
+          <h3><span class="title-emoji" aria-hidden="true">☎️</span> On the end of a phone line</h3>
+          <p>Adopt a phone number for a release and the same knowledge base answers callers — speech in, speech out — for clients whose customers still ring up.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Economics ────────────────────────────────────────────────── -->
+    <section class="economics">
+      <h2>The economics work for a services business</h2>
+      <div class="economics-grid">
+        <article>
+          <h3><span class="title-emoji" aria-hidden="true">🪄</span> No per-seat tax</h3>
+          <p>Pricing is a monthly credit pack for usage, not a headcount licence. Adding a client workspace — or their whole staff — costs nothing until it is used.</p>
+        </article>
+        <article>
+          <h3><span class="title-emoji" aria-hidden="true">🔓</span> No feature paywall to explain</h3>
+          <p>Every plan unlocks every capability: RAG, fine-tuning, Scored QA, A/B testing, Arena, BYOK. You never have to tell a client a feature needs an upgrade.</p>
+        </article>
+        <article>
+          <h3><span class="title-emoji" aria-hidden="true">🔑</span> Their spend or yours</h3>
+          <p>Point a workspace at the client's own OpenAI, Anthropic, Gemini or xAI key and their model usage bills to them, bypassing your wallet entirely — or keep it on yours and bill it through.</p>
+        </article>
+        <article>
+          <h3><span class="title-emoji" aria-hidden="true">📊</span> Meter your client's own users</h3>
+          <p>Give a client's assistant per-user message and spend limits, in tiers you name yourself — so "gold" and "platinum" can mean whatever their commercial model needs them to mean.</p>
+        </article>
+        <article>
+          <h3><span class="title-emoji" aria-hidden="true">🗄️</span> Their infrastructure, if they insist</h3>
+          <p>A client who requires their vectors in their own Qdrant or Couchbase can have exactly that — the store is chosen per workspace, and can be overridden per release.</p>
+        </article>
+        <article>
+          <h3><span class="title-emoji" aria-hidden="true">📈</span> Room to grow into</h3>
+          <p>Single sign-on — Okta OIDC or SAML — and a dedicated support engineer arrive at the Enterprise plan, for when a client's procurement team starts asking.</p>
+        </article>
+      </div>
+      <p class="economics-note">
+        <a href="https://divinci.ai/pricing/">See the plans</a> — or
+        <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener">talk to us</a>
+        if you are bringing several clients at once.
+      </p>
+    </section>
+
+    <!-- ── Trust ────────────────────────────────────────────────────── -->
+    <section class="trust">
+      <h2>What you can put in front of a client</h2>
+      <ul>
+        <li><strong>📝 It cites its sources.</strong> Every answer points back to the passage it came from, so a subject-matter expert can check it rather than take it on faith.</li>
+        <li><strong>🧪 It can be measured.</strong> Score a change against a rated question set before it reaches the client's visitors — and show them the result.</li>
+        <li><strong>👩‍⚖️ Their expert stays in the loop.</strong> Have the client's subject-matter expert rate answers themselves, and Divinci reports which automated judge actually agrees with them — so "the AI graded it" stops being an article of faith.</li>
+        <li><strong>🩺 Personal data can be stripped before the model sees it.</strong> De-identification runs ahead of generation across 28 identifier categories modelled on HIPAA Safe Harbor, and fails closed rather than open. Whether that satisfies a given client's regulator is a conversation to have with us — the feature is a control, not a certification.</li>
+        <li><strong>🔒 Their data stays theirs.</strong> Content is private to the workspace unless it is explicitly published, and it can be deleted on request.</li>
+      </ul>
+      <p class="trust-more"><a href="https://divinci.ai/security/">Security</a> · <a href="https://divinci.ai/compliance/">Compliance</a> · <a href="https://divinci.ai/ai-safety/">AI safety</a> · <a href="https://divinci.ai/docs/">Docs</a></p>
+    </section>
+
+    <!-- ── Team (shared with the other two funnels) ─────────────────── -->
+    <section class="team">
+      <h2>The team behind Divinci</h2>
+      <p class="team-sub">The people building the platform your client work runs on.</p>
+      <div class="team-grid">
+        <article class="team-card">
+          <img src="/images/team-michael-mooring.jpg" alt="Michael Mooring" width="94" height="94" loading="lazy">
+          <h3>Michael Mooring</h3>
+          <p class="team-role">Co-Founder &amp; CEO</p>
+          <p class="team-bio">Visionary with 15+ years in enterprise technology, leading the conversational AI revolution.</p>
+          <a href="https://linkedin.com/in/michaelmooring" target="_blank" rel="noopener">Connect →</a>
+        </article>
+        <article class="team-card">
+          <img src="/images/team-sam-tobia.jpg" alt="Samuel Tobia" width="94" height="94" loading="lazy">
+          <h3>Samuel Tobia</h3>
+          <p class="team-role">Co-Founder &amp; CTO</p>
+          <p class="team-bio">Product strategist with a track record of delivering user-centric AI solutions for enterprise teams.</p>
+          <a href="https://www.linkedin.com/in/sam-tobia-1aa2762b/" target="_blank" rel="noopener">Connect →</a>
+        </article>
+        <article class="team-card">
+          <img src="/images/team-duane-mooring.jpg" alt="Duane Mooring" width="94" height="94" loading="lazy">
+          <h3>Duane Mooring</h3>
+          <p class="team-role">CPO — Chief Project Officer</p>
+          <p class="team-bio">Systems architect with expertise in scalable AI infrastructure and natural language processing.</p>
+          <a href="https://linkedin.com/in/duanemooring" target="_blank" rel="noopener">Connect →</a>
+        </article>
+        <article class="team-card">
+          <img src="/images/team-sierra-hooshiari.jpg" alt="Sierra Hooshiari" width="94" height="94" loading="lazy">
+          <h3>Sierra Hooshiari</h3>
+          <p class="team-role">Co-Founder &amp; CMO</p>
+          <p class="team-bio">Cornell graduate with deep experience in financial services and entrepreneurship, scaling AI ventures.</p>
+          <a href="https://linkedin.com/in/sierrahooshiari" target="_blank" rel="noopener">Connect →</a>
+        </article>
+        <article class="team-card">
+          <img src="/images/team-sean-fuhrman.jpg" alt="Sean Fuhrman" width="94" height="94" loading="lazy">
+          <h3>Sean Fuhrman</h3>
+          <p class="team-role">Data Scientist</p>
+          <p class="team-bio">Data scientist with 10+ years programming experience, specializing in machine learning.</p>
+          <a href="https://www.linkedin.com/in/sean-fuhrman/" target="_blank" rel="noopener">Connect →</a>
+        </article>
+        <article class="team-card">
+          <img src="/images/team-paul-marie-carfantan.jpg" alt="Paul-Marie Carfantan" width="94" height="94" loading="lazy">
+          <h3>Paul-Marie Carfantan</h3>
+          <p class="team-role">AI Safety &amp; Ethics Advisor</p>
+          <p class="team-bio">AI governance leader — Google AI, Deloitte, CVS Health. Founded AI LA's Responsible AI Group.</p>
+          <a href="https://www.linkedin.com/in/paul-marie-carfantan/" target="_blank" rel="noopener">Connect →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── FAQ ──────────────────────────────────────────────────────── -->
+    <section class="faq">
+      <h2>Questions partners ask</h2>
+      <div class="faq-grid">
+      <details>
+        <summary>Can my clients see each other's content?</summary>
+        <p>Not unless you deliberately wire them together. Each client gets their own workspace, and a workspace's content is only reachable from that workspace — you can invite a client's staff into theirs without giving them any visibility into the others. Routing a query from one release to another is a separate feature that is off by default, fail-closed, and limited to an explicit allowlist of targets.</p>
+      </details>
+      <details>
+        <summary>Whose brand does the client see?</summary>
+        <p>Yours, or theirs. The embedded assistant carries the logo, colours and copy you set per workspace — nothing on the widget says Divinci unless you want it to.</p>
+      </details>
+      <details>
+        <summary>Do I have to resell your subscription?</summary>
+        <p>No. Plans are monthly usage-credit packs, so how you package that into your own retainer or project fee is entirely up to you. If you are bringing several clients at once, talk to us about terms.</p>
+      </details>
+      <details>
+        <summary>Can each client use their own model provider?</summary>
+        <p>Yes — bring-your-own-key is set per workspace, so a client who insists their data goes only to their own OpenAI, Anthropic, Gemini, xAI, Together, Moonshot or Cloudflare account can have exactly that, and their model usage bills to them rather than to you.</p>
+      </details>
+      <details>
+        <summary>Can I automate provisioning?</summary>
+        <p>Yes. There's a REST API, typed SDK packages and a <code>divinci</code> CLI, so creating a workspace, loading content and publishing a release can be steps in your own pipeline rather than a click-path.</p>
+      </details>
+      <details>
+        <summary>How do I know a change didn't make it worse?</summary>
+        <p>Score the assistant against a rated question set, A/B test two configurations, or run them head-to-head in Arena — before the change reaches the client's visitors. These are on every plan, not an upgrade.</p>
+      </details>
+      <details>
+        <summary>What happens when an engagement ends?</summary>
+        <p>Remove your team from the workspace and hand it over, or delete it. Unless you connected it to another release yourself, the client's content was only ever reachable from their own workspace, so there is nothing to untangle.</p>
+      </details>
+      <details>
+        <summary>What if a client's security review asks for SSO?</summary>
+        <p>Single sign-on — Okta OIDC or SAML — is configured per workspace and sits on the Enterprise plan, alongside a dedicated support engineer. Custom domains are Enterprise-only and in early access; ask us where that stands for your timeline.</p>
+      </details>
+      <details>
+        <summary>How long does the first one take?</summary>
+        <p>Ingesting a client's website or document set takes minutes, not weeks — the same funnels anyone else uses. The engagement time goes into tuning and evaluating it, which is the part your clients are paying you for.</p>
+      </details>
+      <button type="button" class="faq-ask-cta" data-ask-divinci>
+        Got another question? <strong>Ask Divinci →</strong>
+      </button>
+      </div>
+    </section>
+
+    <!-- ── Bottom CTA ───────────────────────────────────────────────── -->
+    <section class="bottom-cta">
+      <h2>Your clients are already asking for this.</h2>
+      <p>Have something to show them by the end of the week.</p>
+      <div class="cta-row">
+        <a class="cta-primary" href="https://chat.divinci.app/" data-app-link="/">Start a free workspace →</a>
+        <a class="cta-secondary" href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener">Talk to us about partner terms</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Fixed ask bar — opens the Divinci chat panel; hidden while it's open. -->
+  <div class="ask-bar" id="ask-bar">
+    <input type="text" readonly placeholder="Ask Divinci anything…" aria-label="Ask Divinci anything">
+    <button type="button">Ask</button>
+  </div>
+
+  <footer class="footer">
+    <p>
+      <a href="https://divinci.ai/status/" class="footer-status" id="footer-status" data-state="unknown"
+         data-label-operational="All systems operational"
+         data-label-degraded="Degraded performance"
+         data-label-partial-outage="Partial outage"
+         data-label-major-outage="Major outage">
+        <span class="footer-status-dot" aria-hidden="true"></span>
+        <span class="footer-status-label" id="footer-status-label">System status</span>
+      </a> ·
+      <a href="https://divinci.ai/pricing/">Pricing</a> ·
+      <a href="https://divinci.ai/docs/">Docs</a> ·
+      <a href="https://divinci.ai/privacy-policy/">Privacy</a> ·
+      <a href="https://divinci.ai/contact/">Contact</a>
+    </p>
+    <p class="fineprint">© 2026 <a href="https://divinci.ai/">Divinci AI, Inc.</a></p>
+  </footer>
+
+  <script>
+  // Footer status indicator — identical to the other two funnels'. Cross-origin
+  // read of divinci.ai/api/status, which sets Access-Control-Allow-Origin: *
+  // for exactly this consumer. Stays neutral-grey on any failure: it must
+  // NEVER render green without evidence.
+  (function () {
+    var el = document.getElementById('footer-status');
+    var label = document.getElementById('footer-status-label');
+    if (!el || !label || !window.fetch) return;
+    var TEXT = {
+      operational:    el.dataset.labelOperational,
+      degraded:       el.dataset.labelDegraded,
+      partial_outage: el.dataset.labelPartialOutage,
+      major_outage:   el.dataset.labelMajorOutage
+    };
+    fetch('https://divinci.ai/api/status', { cache: 'no-store', headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.status || !TEXT[d.status]) return;
+        el.setAttribute('data-state', d.status);
+        label.textContent = TEXT[d.status];
+      })
+      .catch(function () { /* stay neutral — never assert healthy */ });
+  })();
+  </script>
+
+  <!-- Shared behaviour (ask bar, sign-in origin, chat panel hooks). Every block
+       in app.js is null-guarded, so the pieces this page doesn't use (scan
+       form, hero videos, language switcher, promo carousel) no-op here.
+       This page ships no JS of its own — its CTAs are links, so there is
+       nothing to wire beyond data-app-link, which app.js already handles. -->
+  <script src="/app.js" defer></script>
+
+  <script type="application/json" id="divinci-chat-starters">[
+    {"label":"How does per-client isolation work?","message":"If I run several client workspaces on Divinci, how are they kept isolated from each other?"},
+    {"label":"Can I white-label it?","message":"Can I put my own agency's branding on the assistants I build for clients?"},
+    {"label":"Automate client setup","message":"How do I use the API or CLI to provision a new client workspace automatically?"}
+  ]</script>
+  <script type="application/json" id="divinci-chat-blurbs">[
+    {"selector":".steps","blurb":"Three steps per client — ask me for the details."},
+    {"selector":".tenancy","blurb":"Ask me how one client's content stays out of another's."},
+    {"selector":".build-vs","blurb":"Ask me what you'd otherwise have to build."},
+    {"selector":".economics","blurb":"Ask me how the credit packs work across clients."},
+    {"selector":".faq","blurb":"Didn't find your question? Just ask."},
+    {"selector":".bottom-cta","blurb":"Ready when you are — or ask me anything."}
+  ]</script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script defer id="divinci-chat-js"
+      src="/js/divinci-chat.js"
+      data-api-base="https://api.stage.divinci.app"
+      data-release-id="6a5ca95770de8721213872b6"
+      data-turnstile-sitekey="0x4AAAAAADpf5cq58Uvc2Drx"
+      data-signup-url="https://chat.divinci.app/"></script>
+</body>
+</html>
