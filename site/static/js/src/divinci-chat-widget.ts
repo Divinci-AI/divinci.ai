@@ -323,6 +323,16 @@ class DivinciChatWidget {
   private soundOn = false;
   /** The single audio element — one voice at a time, always. */
   private audio: HTMLAudioElement | null = null;
+  /**
+   * ONE reusable <audio> element for the whole widget, primed inside a user
+   * gesture. iOS grants playback permission per ELEMENT, not per page: an
+   * element that has played once during a gesture may then be played from
+   * script forever, but a freshly constructed element never can. Building a
+   * `new Audio()` per clip therefore worked for the speaker button (a click)
+   * and silently failed for auto-speak, which runs in an async continuation
+   * after the reply arrives, with no gesture in sight.
+   */
+  private audioEl: HTMLAudioElement | null = null;
   /** Removes the current element's listeners in one shot (see stopPlayback). */
   private audioEvents: AbortController | null = null;
   /** Transcript index currently playing, so render() can show a stop button. */
@@ -1187,6 +1197,11 @@ class DivinciChatWidget {
     const submitPrompt = async (prompt: string) => {
       prompt = prompt.trim();
       if (!prompt) return;
+      // Synchronously, while the click/Enter still counts as user activation:
+      // the reply this send produces will be auto-spoken minutes later from an
+      // async continuation, and iOS will only allow that on an element primed
+      // right here.
+      if (this.soundOn) this.ensureAudioUnlocked();
       input.value = "";
       this.messages.push({ role: "user", text: prompt });
       this.messages.push({ role: "assistant", text: "", pending: true });
@@ -1292,6 +1307,8 @@ class DivinciChatWidget {
       // Private browsing / full storage — the preference just won't persist.
     }
     this.syncSoundButton();
+    // Still inside the toggle's click handler.
+    if (this.soundOn) this.ensureAudioUnlocked();
     if (!this.soundOn) {
       this.stopPlayback();
       this.render();
@@ -1352,6 +1369,45 @@ class DivinciChatWidget {
   }
 
   /** Halt whatever is speaking, from either engine. */
+  /**
+   * Prime audio for iOS. MUST be called synchronously from a user gesture —
+   * every caller is a click or a keydown handler, before any await.
+   *
+   * Two separate iOS problems are handled here:
+   *
+   *  1. Per-element playback permission (see audioEl). The silent WAV is
+   *     played once so the element is blessed for later script-driven use.
+   *
+   *  2. The ring/silent switch. On iOS the default audio session behaves like
+   *     "ambient", which means the hardware mute switch silences HTML5 audio
+   *     outright — the page looks like it is playing, the progress runs, and
+   *     nothing comes out of the speaker. That is why voice can work on a
+   *     laptop and be inaudible on an iPhone sitting on silent. Declaring the
+   *     session as "playback" opts into media semantics and ignores the
+   *     switch, the same way a video or podcast app does.
+   */
+  private ensureAudioUnlocked(): void {
+    type AudioSessionWindow = Navigator & { audioSession?: { type: string } };
+    try {
+      const session = (navigator as AudioSessionWindow).audioSession;
+      if (session) session.type = "playback";
+    } catch {
+      // Safari < 16.4 and every non-WebKit engine: nothing to opt into.
+    }
+    if (this.audioEl) return;
+    const el = new Audio();
+    el.preload = "auto";
+    // Keeps iOS from taking the clip fullscreen or handing it to the native
+    // player, which would tear down the widget's own controls.
+    el.setAttribute("playsinline", "");
+    el.src = SILENT_UNLOCK_WAV;
+    void el.play().catch(() => {
+      // Not fatal: a later in-gesture call gets another attempt, and the
+      // browser-voice fallback is still there.
+    });
+    this.audioEl = el;
+  }
+
   private stopPlayback(): void {
     if (this.audio) {
       // Detach listeners BEFORE clearing the source. Assigning src = "" makes
@@ -1362,7 +1418,11 @@ class DivinciChatWidget {
       this.audioEvents?.abort();
       this.audioEvents = null;
       this.audio.pause();
-      this.audio.src = "";
+      // Deliberately NOT `src = ""` on a shared element and never dropping the
+      // reference in audioEl: recreating it would throw away the iOS playback
+      // permission this element earned inside a user gesture, and auto-speak
+      // would go silent again from the next reply onward.
+      try { this.audio.removeAttribute("src"); this.audio.load(); } catch { /* teardown race */ }
       this.audio = null;
     }
     try {
@@ -1390,11 +1450,15 @@ class DivinciChatWidget {
     this.playingIdx = gateIdx;
     this.render();
 
-    // Claim the element NOW, synchronously, before any await — this call still
-    // sits inside the click's user activation. See SILENT_UNLOCK_WAV.
-    const audio = new Audio();
-    audio.src = SILENT_UNLOCK_WAV;
-    const unlocked = audio.play().then(()=> true).catch(()=> false);
+    // Reuse the primed element rather than constructing one. On iOS only an
+    // element that has already played inside a gesture may be played from
+    // script, and this method is reached BOTH from a click (the speaker
+    // button, the sound toggle) and from an async continuation (auto-speak
+    // after a reply lands). ensureAudioUnlocked() is a no-op once primed, so
+    // the gesture paths still prime it on their first use.
+    this.ensureAudioUnlocked();
+    const audio = this.audioEl as HTMLAudioElement;
+    const unlocked = audio.play().then(() => true).catch(() => false);
     this.audio = audio;
 
     try {
