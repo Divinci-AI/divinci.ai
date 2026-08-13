@@ -637,8 +637,21 @@ class DivinciChatWidget {
         this.stopPlayback();
         this.autoSpoken.clear();
         this.messages = [];
-        localStorage.removeItem("divinci-chat-history:" + this.cfg.releaseId);
-        localStorage.removeItem(GATE_STATE_KEY + this.cfg.releaseId);
+        // Guarded, and BEFORE the gate reset. iOS private browsing can throw
+        // on localStorage access, and every other localStorage call in this
+        // file is already wrapped for that reason — these two were not. An
+        // exception here used to abort the handler part-way through, after the
+        // messages were dropped but before freeChatGate.reset(), leaving the
+        // stale gate session in place. That makes "Clear conversation" appear
+        // to work while the session it exists to clear survives, which is
+        // precisely the state a visitor reaches for it from.
+        try {
+          localStorage.removeItem("divinci-chat-history:" + this.cfg.releaseId);
+          localStorage.removeItem(GATE_STATE_KEY + this.cfg.releaseId);
+        } catch {
+          // Private browsing or full storage — there was nothing persisted to
+          // clear anyway, and the in-memory reset below is what matters.
+        }
         this.client.freeChatGate.reset();
         this.setView("chat");
         this.render();
