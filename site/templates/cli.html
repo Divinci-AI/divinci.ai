@@ -121,6 +121,15 @@ body.cli-docs header {
     border-color: var(--cli-primary);
     box-shadow: 0 0 0 2px rgba(45, 90, 79, 0.15);
 }
+/* 0.85rem (13.6px) keeps the filter compact in the desktop sidebar, but any
+   field under 16px makes iOS zoom the whole page in on focus and never zoom
+   back out. The global floor in mobile-fixes.css loads before this template's
+   styles, so the override has to live here. */
+@media (max-width: 768px) {
+    .cli-sidebar-search input {
+        font-size: 16px;
+    }
+}
 .cli-nav {
     list-style: none;
     padding: 0;

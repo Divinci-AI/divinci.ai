@@ -1916,3 +1916,46 @@ html, body {
     line-height: 1.4;
   }
 }
+
+/* ── iOS zoom guards ──────────────────────────────────────────────────────
+   Two separate WebKit behaviours both present as "the page is zoomed in and
+   I have to pinch back out", and both are fixed here rather than per-page.
+
+   1. Text autosizing. WebKit inflates the font of any block it decides is
+      wider than the viewport, which makes a page render larger than it was
+      designed to and is why a long <pre> or a wide table can blow up the
+      body copy around it. Pinning text-size-adjust to 100% turns it off; the
+      viewport meta in base.html already handles real scaling.
+
+   2. Focus zoom. iOS Safari and every iOS browser built on WebKit (Brave and
+      Chrome on iPhone included) zoom the whole page in when a text field with
+      a computed font-size below 16px receives focus — and never zoom back out
+      when it blurs. 16px is a hard threshold, not a guideline.
+
+   The rule below is written at bare element specificity ON PURPOSE. Its job is
+   only to replace the UA default, which for input/select is around 13.3px in
+   WebKit — that default is what bites unstyled controls like #cli-search on
+   the CLI page. Every deliberate rule in the codebase carries at least a class
+   or an id and so still wins, which is what we want: the site's own fields are
+   already at 1rem or larger, and the widget sets its own 16px in
+   divinci-chat-widget.css. If you ever add a field below 16px, it will zoom —
+   raise it there rather than adding !important here.
+
+   Keep it as a bare type selector. Narrowing it with :not([type=...]) would
+   raise its specificity above every class in the codebase and it would start
+   overriding sizes it has no business touching — the 18px OTP field and the
+   1.05rem search-modal field among them. There is no input[type=submit] on the
+   site (every button is a <button>), and the one checkbox that is styled has
+   explicit dimensions, so a bare selector is safe as-is. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
