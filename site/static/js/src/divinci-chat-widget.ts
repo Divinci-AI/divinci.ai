@@ -1302,7 +1302,19 @@ class DivinciChatWidget {
       } catch (e) {
         this.messages.pop(); // drop the "…" placeholder
         const status = (e as { status?: number })?.status;
-        if (status === 401) {
+        // 403 is recovered on the same path as 401. A single-use Turnstile
+        // token that has already been redeemed is rejected by siteverify as
+        // "timeout-or-duplicate", and the server reports that as a BARE 403
+        // with no context — indistinguishable, from the client, from a real
+        // bot rejection (see obtainGateTurnstileToken). Until now that fell
+        // through every branch and surfaced to the visitor as the word
+        // "Forbidden", with no way forward except clearing the conversation
+        // by hand. A 403 the server did NOT explain is treated as a stale
+        // session and retried once with a genuinely fresh token;
+        // looksLikeBotRejection() still owns the explained ones below.
+        const staleSession = status === 401 ||
+          (status === 403 && !this.looksLikeBotRejection(e));
+        if (staleSession) {
           this.client.freeChatGate.reset();
           if (this.mode === "captcha-only") {
             try {
@@ -1330,9 +1342,16 @@ class DivinciChatWidget {
         }
         if (this.isQuota(e)) { this.exhausted = true; this.render(); return; }
         if (this.looksLikeBotRejection(e)) { this.setView("blocked"); return; }
+        // "Forbidden" tells a visitor nothing and suggests nothing. When the
+        // server declined without explaining, name the likely cause: on
+        // mobile the usual one is a content blocker eating the verification
+        // challenge, which the visitor can actually act on.
+        const explained = typeof (e as { data?: { context?: unknown } })?.data?.context === "string";
         const msg = e instanceof Error && e.message === "turnstile-pending"
           ? "Still verifying — please try sending that again in a moment."
-          : this.errText(e, "Something went wrong. Please try again.");
+          : (status === 401 || status === 403) && !explained
+            ? "Couldn't verify this browser, so that message wasn't sent. If you use a content blocker — Brave Shields, for example — allow challenges.cloudflare.com for this site, then try again."
+            : this.errText(e, "Something went wrong. Please try again.");
         this.messages.push({ role: "assistant", text: msg, isError: true });
         this.saveMessages();
         this.render();
