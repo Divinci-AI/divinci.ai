@@ -40,6 +40,7 @@ module.exports = defineConfig({
         // isMobile is a Chromium-only emulation flag.
         '**/mobile-zoom-guard.spec.js',
         '**/accessibility-axe-wcag.spec.js',
+        '**/mobile-media.spec.js',
         '**/new-divinci-site.spec.js', 
         '**/language-*.spec.js', 
         '**/comprehensive-navigation-test.spec.js',
@@ -148,6 +149,9 @@ module.exports = defineConfig({
       name: 'Mobile-Safari',
       use: { ...devices['iPhone 12'] },
       testMatch: [
+        // WebKit is the point here, not a bonus: the hero-video landscape
+        // overflow and navigator.audioSession are both invisible in Chromium.
+        '**/mobile-media.spec.js',
         '**/new-divinci-site.spec.js', 
         '**/language-*.spec.js', 
         '**/comprehensive-navigation-test.spec.js',
