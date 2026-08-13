@@ -752,7 +752,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // the theater actually cover the page, so only there is it truly modal.
     function isFullScreenTheater() {
       return typeof window.matchMedia === 'function' &&
-             window.matchMedia('(max-width: 768px)').matches;
+             window.matchMedia('(max-width: 768px), (max-height: 480px)').matches;
     }
 
     // Focusable children of the dialog. The cross-origin iframe is included on

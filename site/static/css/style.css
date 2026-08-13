@@ -1030,6 +1030,26 @@ nav .dropdown-menu a:last-child {
     height: 28px;
   }
 
+  .hero-theater-close {
+    /* Notch/Dynamic Island clearance — at inset 0 the button can otherwise sit
+       under the status bar on a landscape phone. */
+    top: calc(0.5rem + env(safe-area-inset-top, 0px));
+    right: calc(0.5rem + env(safe-area-inset-right, 0px));
+    /* 44px, not 36px: this is the only way out of a full-screen overlay, and
+       WCAG 2.5.8 wants at least 24x24 (44 is the comfortable touch size). */
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* The theater gets its own query rather than riding the width-only 768px block
+   above. A phone in LANDSCAPE is 844px wide — wider than 768 — so it fell back
+   to the desktop rule and rendered as an inset panel positioned inside the hero
+   instead of a full-screen player. The `max-height` arm is what catches that,
+   and it mirrors the breakpoint the chat panel already uses. Keep it in sync
+   with isFullScreenTheater() in main.js. The rest of the 768px block above is
+   genuinely width-only (play-button sizing, hiding the hover blob). */
+@media (max-width: 768px), (max-height: 480px) {
   /* On a phone the theater is a full-screen lightbox, not a panel inset into
      the hero. Anchoring it inside the section (absolute + section side margins
      + a 16:9 cap) left a small letterboxed card floating over the page with the
@@ -1052,29 +1072,40 @@ nav .dropdown-menu a:last-child {
     border-radius: 0;
     background-color: #000;
     box-shadow: none;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Backstop. Whatever the stage ends up measuring, nothing escapes the
+       viewport — the failure mode this replaces was a player running off the
+       side of the screen with only its left edge visible. */
+    overflow: hidden;
   }
 
   /* The stage stops being a full-bleed layer and becomes a centred 16:9 box, so
-     the film letterboxes against black instead of being cropped or stretched. */
+     the film letterboxes against black instead of being cropped or stretched.
+     It has to fit on BOTH axes, and `aspect-ratio` + `max-height` does not
+     achieve that: WebKit keeps the height its aspect-ratio implies and lets it
+     overflow the flex line (measured on iPhone landscape — a 750x342 viewport
+     produced a 750x422 stage). So the width is capped by the HEIGHT budget as
+     well, which is what actually bounds the box. */
   .hero-theater-stage {
     position: relative;
     inset: auto;
-    width: 100%;
-    max-height: 100%;
+    flex: 0 0 auto;
+    width: min(100%, calc(100vh * 16 / 9));
+    max-width: 100%;
+    height: auto;
     aspect-ratio: 16 / 9;
+    max-height: 100%;
   }
 
-  .hero-theater-close {
-    /* Notch/Dynamic Island clearance — at inset 0 the button can otherwise sit
-       under the status bar on a landscape phone. */
-    top: calc(0.5rem + env(safe-area-inset-top, 0px));
-    right: calc(0.5rem + env(safe-area-inset-right, 0px));
-    /* 44px, not 36px: this is the only way out of a full-screen overlay, and
-       WCAG 2.5.8 wants at least 24x24 (44 is the comfortable touch size). */
-    width: 44px;
-    height: 44px;
+  /* Dynamic viewport where supported: 100vh on iOS is the LARGE viewport (the
+     one that assumes the toolbars are collapsed), so it over-budgets the height
+     and can still let the box run tall behind the browser chrome. */
+  @supports (height: 100dvh) {
+    .hero-theater-stage {
+      width: min(100%, calc(100dvh * 16 / 9));
+    }
   }
 }
 
