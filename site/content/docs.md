@@ -662,14 +662,22 @@ template = "feature.html"
   }
 
   async function copyBlock(block, btn) {
+    // Optional catch bindings (no `(err)`) are load-bearing here, not style.
+    // Zola's minify_html renames identifiers per script, and it will happily
+    // rename BOTH a catch parameter and a lexical declaration inside that
+    // catch block to the same short name — emitting `catch(a){const a=...}`,
+    // which is a SyntaxError because a catch parameter and a const in the
+    // catch body share one scope. That killed this whole script in production:
+    // no copy buttons, and no keyboard access to the scrollable code blocks.
+    // With no parameter there is nothing for the declaration to collide with.
     try {
       await navigator.clipboard.writeText(getCodeText(block));
-    } catch (_) {
+    } catch {
       const ta = document.createElement('textarea');
       ta.value = getCodeText(block);
       ta.style.position = 'fixed'; ta.style.opacity = '0';
       document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
+      try { document.execCommand('copy'); } catch { /* clipboard unavailable */ }
       document.body.removeChild(ta);
     }
     if (!btn) return;
@@ -696,9 +704,16 @@ template = "feature.html"
     });
     block.appendChild(btn);
 
-    block.setAttribute('role', 'button');
+    // tabindex only — deliberately NOT role="button". These blocks scroll
+    // horizontally, so they must be focusable or a keyboard user cannot reach
+    // the code that overflows (WCAG 2.1.1). But role="button" on a container
+    // that holds a real <button> is nested-interactive (WCAG 4.1.2), and worse,
+    // the button role makes the block's own descendants presentational — the
+    // code itself stops being readable to a screen reader. Naming it would hit
+    // the same problem: an aria-label on the container replaces the code text
+    // in the announcement. The nested .code-copy-btn is the accessible copy
+    // control; click and Enter/Space on the block stay as a convenience.
     block.setAttribute('tabindex', '0');
-    block.setAttribute('aria-label', 'Click to copy code');
     block.addEventListener('click', function (e) {
       if (e.target.closest('.code-copy-btn')) return;
       if (window.getSelection && String(window.getSelection()).length > 0) return;
