@@ -1267,8 +1267,31 @@ class DivinciChatWidget {
       wrap.appendChild(ve);
     }
     if (this.debugVoice && this.voiceDebug) {
-      const vd = el("p", "dvc-voice-debug dvc-meta");
-      vd.textContent = this.voiceDebug;
+      // A button, not a paragraph: this trace exists to be sent to someone,
+      // and selecting 10px monospace on a phone to copy it is its own small
+      // ordeal. One tap puts it on the clipboard.
+      const vd = el("button", "dvc-voice-debug dvc-meta");
+      vd.type = "button";
+      vd.setAttribute("aria-label", "Copy voice diagnostics");
+      const trace = this.voiceDebug;
+      vd.textContent = `📋 ${trace}`;
+      vd.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(trace);
+        } catch {
+          // Clipboard API needs a secure context and a permission iOS does not
+          // always grant; the textarea route works where it does not.
+          const ta = document.createElement("textarea");
+          ta.value = trace;
+          ta.style.cssText = "position:fixed;opacity:0";
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); } catch { /* nothing more to try */ }
+          document.body.removeChild(ta);
+        }
+        vd.textContent = "✅ Copied — paste it into the chat";
+        window.setTimeout(() => { if (vd.isConnected) vd.textContent = `📋 ${trace}`; }, 2500);
+      });
       wrap.appendChild(vd);
     }
     wrap.append(list, meta, form);

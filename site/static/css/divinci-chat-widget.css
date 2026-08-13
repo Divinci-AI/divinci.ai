@@ -441,10 +441,21 @@
 /* Opt-in playback diagnostics (?dvcdebug=1). Deliberately monospace and
    wrapped: it is read off a phone screen, not designed. */
 .dvc-voice-debug {
+  display: block;
+  width: 100%;
+  text-align: left;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 10px;
   line-height: 1.35;
   color: var(--color-text-secondary, #5a6b62);
   word-break: break-word;
   margin: 2px 0 0;
+  padding: 6px 8px;
+  border: 1px dashed var(--color-bg-accent, #e8ddc7);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  /* Full-width block, so the tap target clears WCAG 2.5.8 comfortably. */
+  min-height: 24px;
 }
+.dvc-voice-debug:active { background: rgba(0, 0, 0, 0.07); }
