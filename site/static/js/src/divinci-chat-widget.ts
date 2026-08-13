@@ -1687,7 +1687,23 @@ class DivinciChatWidget {
       if (this.playingIdx !== gateIdx) { this.vlog("superseded before unlock"); return; }
       // Let the unlock settle, then swap the silent clip for the real audio on
       // the SAME element so it keeps its user-initiated status.
-      const unlockOk = await unlocked;
+      // BOUNDED. `unlocked` is the promise from play()-ing the silent primer
+      // clip, and on iOS that promise can stay pending forever: WebKit only
+      // settles it when playback actually begins, and neither resolves nor
+      // rejects when the element quietly does nothing. A bare `await` here
+      // deadlocked the whole method — the clip was fetched and then simply
+      // never played, with no error, no sound, and a trace that stopped dead
+      // at "clip url received". Confirmed from a real iPhone.
+      //
+      // Waiting was only ever a courtesy — to avoid swapping src out from
+      // under an in-flight play() — and the element is already primed by
+      // ensureAudioUnlocked() inside the user gesture, so there is nothing
+      // here worth blocking on. Assigning a new src supersedes the pending
+      // load anyway.
+      const unlockOk = await Promise.race([
+        unlocked,
+        new Promise<"timeout">((resolve) => setTimeout(() => resolve("timeout"), 400)),
+      ]);
       this.vlog(`unlock=${unlockOk}`);
       if (this.playingIdx !== gateIdx) { this.vlog("superseded after unlock"); return; }
       // Scoped to a controller so stopPlayback() can detach the handlers
