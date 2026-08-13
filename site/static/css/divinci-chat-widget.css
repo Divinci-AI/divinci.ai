@@ -437,3 +437,14 @@
   }
   .dvc-panel { z-index: 1; }
 }
+
+/* Opt-in playback diagnostics (?dvcdebug=1). Deliberately monospace and
+   wrapped: it is read off a phone screen, not designed. */
+.dvc-voice-debug {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  line-height: 1.35;
+  color: var(--color-text-secondary, #5a6b62);
+  word-break: break-word;
+  margin: 2px 0 0;
+}

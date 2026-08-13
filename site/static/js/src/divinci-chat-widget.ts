@@ -345,6 +345,28 @@ class DivinciChatWidget {
   private voiceError: string | null = null;
   /** Object URL for a clip we buffered ourselves; revoked on teardown. */
   private blobUrl: string | null = null;
+  /** Opt-in playback diagnostics: append ?dvcdebug=1 to any page URL. */
+  private readonly debugVoice: boolean =
+    typeof location !== "undefined" && /[?&]dvcdebug=1/.test(location.search);
+  private voiceDebug: string | null = null;
+
+  /** Record one step of a playback attempt; shown in-panel under ?dvcdebug=1. */
+  private vlog(step: string): void {
+    // Always console.log — Safari Web Inspector can read it off the phone —
+    // and additionally paint it into the panel when debugging is requested,
+    // which needs no cable and no second machine.
+    console.log("[divinci-voice]", step);
+    if (!this.debugVoice) return;
+    this.voiceDebug = (this.voiceDebug ? this.voiceDebug + " | " : "") + step;
+  }
+
+  /** Everything about the element that determines whether sound comes out. */
+  private audioState(a: HTMLAudioElement): string {
+    return `paused=${a.paused} muted=${a.muted} vol=${a.volume} ` +
+           `ready=${a.readyState} net=${a.networkState} ` +
+           `t=${a.currentTime.toFixed(2)} dur=${Number.isFinite(a.duration) ? a.duration.toFixed(2) : "?"} ` +
+           `err=${a.error?.code ?? "-"}`;
+  }
   /** Removes the current element's listeners in one shot (see stopPlayback). */
   private audioEvents: AbortController | null = null;
   /** Transcript index currently playing, so render() can show a stop button. */
@@ -1224,6 +1246,11 @@ class DivinciChatWidget {
       ve.textContent = this.voiceError;
       wrap.appendChild(ve);
     }
+    if (this.debugVoice && this.voiceDebug) {
+      const vd = el("p", "dvc-voice-debug dvc-meta");
+      vd.textContent = this.voiceDebug;
+      wrap.appendChild(vd);
+    }
     wrap.append(list, meta, form);
     this.body.appendChild(wrap);
     list.scrollTop = list.scrollHeight;
@@ -1441,6 +1468,18 @@ class DivinciChatWidget {
     // Keeps iOS from taking the clip fullscreen or handing it to the native
     // player, which would tear down the widget's own controls.
     el.setAttribute("playsinline", "");
+    // Explicit, not assumed: a muted or zero-volume element plays "successfully"
+    // and emits every event while producing no sound at all, which is exactly
+    // the symptom being chased here.
+    el.muted = false;
+    el.volume = 1;
+    // Attached to the document rather than left detached. iOS is documented to
+    // treat orphaned media elements inconsistently, and a detached element is
+    // one of the few states that can play silently without erroring. Kept
+    // out of layout without display:none, which suppresses media in some
+    // engines.
+    el.style.cssText = "position:absolute;width:0;height:0;opacity:0;pointer-events:none";
+    document.body.appendChild(el);
     el.src = SILENT_UNLOCK_WAV;
     void el.play().catch(() => {
       // Not fatal: a later in-gesture call gets another attempt, and the
@@ -1502,11 +1541,12 @@ class DivinciChatWidget {
       this.audioEvents?.abort();
       this.audioEvents = null;
       this.audio.pause();
-      // Deliberately NOT `src = ""` on a shared element and never dropping the
-      // reference in audioEl: recreating it would throw away the iOS playback
-      // permission this element earned inside a user gesture, and auto-speak
-      // would go silent again from the next reply onward.
-      try { this.audio.removeAttribute("src"); this.audio.load(); } catch { /* teardown race */ }
+      // Pause only. Never clear src and never call load() on the shared
+      // element: load() resets the media element, and on iOS that can revoke
+      // the playback permission it earned inside a user gesture — which would
+      // make the FIRST clip work and every later one fail silently. The next
+      // playSource() assigns a fresh src anyway, so there is nothing to clean.
+      try { this.audio.currentTime = 0; } catch { /* not seekable yet */ }
       this.audio = null;
     }
     this.releaseBlobUrl();
@@ -1534,6 +1574,9 @@ class DivinciChatWidget {
 
     this.playingIdx = gateIdx;
     this.voiceError = null;
+    this.voiceDebug = null;
+    type AudioSessionNav = Navigator & { audioSession?: { type: string } };
+    this.vlog(`session=${(navigator as AudioSessionNav).audioSession?.type ?? "n/a"}`);
     this.render();
 
     // Reuse the primed element rather than constructing one. On iOS only an
@@ -1585,8 +1628,24 @@ class DivinciChatWidget {
         // Attempt 1: stream it straight from the URL. This is what already
         // works everywhere except iOS, and it stays first so the working path
         // is never traded away for the fix.
+        audio.muted = false;
+        audio.volume = 1;
+        this.vlog(`url=${url.slice(0, 60)}`);
         await this.playSource(audio, url, events.signal);
+        this.vlog(`streamed OK ${this.audioState(audio)}`);
+        // "playing" fired, but that only means the pipeline started. Sample it
+        // again shortly after: an element that reports playing while the clock
+        // never advances is producing no sound, and nothing else reports that.
+        window.setTimeout(() => {
+          if (this.playingIdx !== gateIdx) return;
+          this.vlog(`+800ms ${this.audioState(audio)}`);
+          if (audio.currentTime === 0 && !audio.paused) {
+            this.voiceError = "Voice started but produced no sound.";
+          }
+          if (this.debugVoice) this.render();
+        }, 800);
       } catch (streamErr) {
+        this.vlog(`stream failed: ${(streamErr as Error)?.message} ${this.audioState(audio)}`);
         if (this.playingIdx !== gateIdx) return;
         console.warn("[divinci-chat] streamed clip refused; buffering it instead", streamErr);
         // Attempt 2: download it and play a complete local copy. See
@@ -1596,6 +1655,7 @@ class DivinciChatWidget {
         const { blobUrl, type } = await this.bufferToBlobUrl(url);
         if (this.playingIdx !== gateIdx) { try { URL.revokeObjectURL(blobUrl); } catch { /* noop */ } return; }
         this.blobUrl = blobUrl;
+        this.vlog(`buffered type=${type} canPlay=${audio.canPlayType(type) || "no"}`);
         // If the container itself is undecodable here there is no point
         // trying — say which one it was, so it is fixable at the source.
         const playable = type && audio.canPlayType(type);
@@ -1603,6 +1663,7 @@ class DivinciChatWidget {
           throw new Error(`unsupported-codec:${type}`);
         }
         await this.playSource(audio, blobUrl, events.signal);
+        this.vlog(`buffered OK ${this.audioState(audio)}`);
       }
     } catch (err) {
       if (this.playingIdx !== gateIdx) return;
