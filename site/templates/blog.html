@@ -276,7 +276,16 @@
                             {% for post in visible_posts %}
                                 {% if not loop.first %}
                                     <article class="post-card" data-href="{{ post.permalink | safe }}">
-                                        <a href="{{ post.permalink | safe }}" class="post-image-link">
+                                        {# Third link to the same post in this card, after .post-title-link
+                                           and .post-link. It carries no text, so axe reported it as 22
+                                           unnamed links on /blog/ (WCAG 2.4.4 / 4.1.2). Naming it would
+                                           only add a third identical announcement and a third tab stop,
+                                           so it is taken out of the accessibility tree and the tab order
+                                           instead — it stays a mouse/touch affordance, and the title and
+                                           "Read more" links remain the accessible routes. tabindex="-1"
+                                           is required alongside aria-hidden: a focusable element inside
+                                           an aria-hidden subtree is its own violation. #}
+                                        <a href="{{ post.permalink | safe }}" class="post-image-link" aria-hidden="true" tabindex="-1">
                                         {% set vid_filter = post.extra.hero_video_filter | default(value="") %}
                                         {% if post.extra.featured_video %}
                                             {% set vid_src = post.extra.featured_video %}
