@@ -1030,20 +1030,51 @@ nav .dropdown-menu a:last-child {
     height: 28px;
   }
 
-  /* The stacked mobile hero runs ~1000px tall, so filling its full height would
-     letterbox the 16:9 player into a thin band. Cap the panel to the video's own
-     aspect ratio at the top of the section, keeping the section side margins. */
+  /* On a phone the theater is a full-screen lightbox, not a panel inset into
+     the hero. Anchoring it inside the section (absolute + section side margins
+     + a 16:9 cap) left a small letterboxed card floating over the page with the
+     hero still visible around it — the video ended up roughly a third of the
+     screen. Going fixed hands the whole viewport to the player, which is what
+     every other mobile video does and what the small screen actually needs. */
   .hero-theater {
-    bottom: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     height: auto;
+    /* Clear the desktop rule's 16:9 cap — the BOX is now the viewport and the
+       stage inside it keeps the aspect ratio instead. */
+    aspect-ratio: auto;
+    /* Above the sticky header and the chat launcher (.dvc-root is 100002), so
+       nothing floats over the video. */
+    z-index: 100003;
+    border-radius: 0;
+    background-color: #000;
+    box-shadow: none;
+    display: grid;
+    place-items: center;
+  }
+
+  /* The stage stops being a full-bleed layer and becomes a centred 16:9 box, so
+     the film letterboxes against black instead of being cropped or stretched. */
+  .hero-theater-stage {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    max-height: 100%;
     aspect-ratio: 16 / 9;
   }
 
   .hero-theater-close {
-    top: 0.5rem;
-    right: 0.5rem;
-    width: 36px;
-    height: 36px;
+    /* Notch/Dynamic Island clearance — at inset 0 the button can otherwise sit
+       under the status bar on a landscape phone. */
+    top: calc(0.5rem + env(safe-area-inset-top, 0px));
+    right: calc(0.5rem + env(safe-area-inset-right, 0px));
+    /* 44px, not 36px: this is the only way out of a full-screen overlay, and
+       WCAG 2.5.8 wants at least 24x24 (44 is the comfortable touch size). */
+    width: 44px;
+    height: 44px;
   }
 }
 

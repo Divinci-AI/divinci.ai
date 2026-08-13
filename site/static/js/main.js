@@ -748,8 +748,96 @@ document.addEventListener("DOMContentLoaded", function() {
       return Math.hypot(Math.max(cx, box.width - cx), Math.max(cy, box.height - cy));
     }
 
+    // Matches the full-screen breakpoint in style.css. Only in that layout does
+    // the theater actually cover the page, so only there is it truly modal.
+    function isFullScreenTheater() {
+      return typeof window.matchMedia === 'function' &&
+             window.matchMedia('(max-width: 768px)').matches;
+    }
+
+    // Focusable children of the dialog. The cross-origin iframe is included on
+    // purpose: it is where the visitor tabs to reach YouTube's own controls.
+    function theaterFocusables() {
+      return Array.prototype.slice.call(
+        heroTheater.querySelectorAll('button:not([disabled]), iframe, [href], [tabindex]:not([tabindex="-1"])')
+      );
+    }
+
     function onKeydown(e) {
-      if (e.key === 'Escape') closeTheater();
+      if (e.key === 'Escape') { closeTheater(); return; }
+      // role="dialog" is a promise that focus stays inside. Without this, Tab
+      // walks straight out of a full-screen overlay into the page behind it,
+      // which a screen reader or keyboard user cannot see is still there.
+      if (e.key !== 'Tab') return;
+      var items = theaterFocusables();
+      if (!items.length) return;
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (!heroTheater.contains(document.activeElement)) {
+        e.preventDefault();
+        first.focus();
+      } else if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    // Scroll lock for the full-screen layout. Saves the prior inline value
+    // rather than deleting the property, so it composes with anything else that
+    // might lock scroll later. Deliberately overflow-on-body and not the
+    // position:fixed trick, which resets scrollTop and would drop the visitor
+    // back at the top of the page when the video closes.
+    // The lock must go on <html>, not just <body>. The viewport takes its
+    // overflow from the root element and only falls through to <body> when the
+    // root is `overflow: visible` — and mobile-fixes.css sets
+    // `html { overflow-x: hidden }` site-wide, so that fallthrough is off and a
+    // body-only lock does nothing at all here.
+    // The theater lives inside #main-content, which is `position: relative;
+    // z-index: 1` — a stacking context. z-index inside it is only compared
+    // against its siblings, so no value however large can lift the theater
+    // above the fixed banner (z-index 100002) that sits outside it. The only
+    // way out of a stacking context is to leave it, so for the full-screen
+    // layout the dialog is portalled to <body> for the duration.
+    //
+    // The move MUST happen before the iframe is created: re-parenting a node
+    // that contains an iframe reloads that iframe, which would restart the
+    // video (and burn the user-gesture that lets YouTube autoplay with sound).
+    // Closing tears the iframe down first, so the move back is safe too.
+    var originalParent = null;
+    var originalNextSibling = null;
+    function portalToBody() {
+      if (!isFullScreenTheater() || originalParent) return;
+      originalParent = heroTheater.parentNode;
+      originalNextSibling = heroTheater.nextSibling;
+      document.body.appendChild(heroTheater);
+    }
+    function restorePortal() {
+      if (!originalParent) return;
+      originalParent.insertBefore(heroTheater, originalNextSibling);
+      originalParent = null;
+      originalNextSibling = null;
+    }
+
+    var priorOverflow = null;
+    function lockPage() {
+      if (!isFullScreenTheater() || priorOverflow !== null) return;
+      priorOverflow = {
+        root: document.documentElement.style.overflow,
+        body: document.body.style.overflow
+      };
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      heroTheater.setAttribute('aria-modal', 'true');
+    }
+    function unlockPage() {
+      heroTheater.removeAttribute('aria-modal');
+      if (priorOverflow === null) return;
+      document.documentElement.style.overflow = priorOverflow.root;
+      document.body.style.overflow = priorOverflow.body;
+      priorOverflow = null;
     }
 
     // Run fn once the clip-path transition settles, or on a timeout if
@@ -772,6 +860,9 @@ document.addEventListener("DOMContentLoaded", function() {
       if (isOpen) return;
       isOpen = true;
       const token = ++generation;
+
+      // Before the iframe exists — see portalToBody() for why the order matters.
+      portalToBody();
 
       // Mounted synchronously inside the click handler, not after the reveal:
       // a cross-origin iframe only inherits the user gesture if it is created
@@ -801,6 +892,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       heroPlay.setAttribute('aria-expanded', 'true');
       document.addEventListener('keydown', onKeydown);
+      lockPage();
       if (closeBtn) closeBtn.focus();
 
       // Drop the clip once the reveal lands. Chrome renders a stale raster of the
@@ -833,7 +925,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
       heroPlay.setAttribute('aria-expanded', 'false');
       document.removeEventListener('keydown', onKeydown);
-      afterReveal(token, function () { heroTheater.hidden = true; });
+      unlockPage();
+      afterReveal(token, function () {
+        heroTheater.hidden = true;
+        // Only after the collapse has finished and the iframe is long gone.
+        restorePortal();
+      });
       heroPlay.focus();
     }
 

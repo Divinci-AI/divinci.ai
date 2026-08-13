@@ -201,6 +201,12 @@
        The iframe is only created on first open — no YouTube payload on page load.
        youtube-nocookie.com is already allow-listed in the worker's frame-src CSP. #}
     <div id="hero-theater" class="hero-theater" hidden
+         {# aria-modal is set by main.js, and only in the phone layout where the
+            theater really is full-screen. On desktop it is a panel over the hero
+            with the rest of the page still visible and scrollable, and claiming
+            modality there would lie to assistive tech. #}
+         role="dialog"
+         aria-label="{{ translations.hero.video_dialog | default(value='Video player') }}"
          data-embed="https://www.youtube-nocookie.com/embed/GlHHy7tcSdw?autoplay=1&amp;rel=0&amp;modestbranding=1&amp;playsinline=1">
         <div class="hero-theater-stage"></div>
         <button type="button" class="hero-theater-close"
