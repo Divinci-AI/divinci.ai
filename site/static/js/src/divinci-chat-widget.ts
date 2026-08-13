@@ -136,6 +136,26 @@ const GATE_STATE_KEY = "divinci-chat-gate:";
  */
 const SOUND_PREF_KEY = "divinci-chat-sound:";
 
+/**
+ * True when the panel is rendering as the full-screen phone layout. Must stay
+ * in lockstep with the breakpoint in divinci-chat-widget.css — matchMedia with
+ * the identical query is how we keep one source of truth for it.
+ */
+const PHONE_PANEL_QUERY = "(max-width: 600px), (max-height: 480px)";
+function isPhonePanel(): boolean {
+  return typeof window.matchMedia === "function" && window.matchMedia(PHONE_PANEL_QUERY).matches;
+}
+
+/**
+ * Coarse pointer = finger. Used to suppress the composer's autofocus: on a
+ * touch device, focusing an input on open summons the software keyboard, which
+ * covers over half the screen and pushes the greeting and starter prompts out
+ * of view before the visitor has read a word of them.
+ */
+function isTouchLike(): boolean {
+  return typeof window.matchMedia === "function" && window.matchMedia("(pointer: coarse)").matches;
+}
+
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, html?: string): HTMLElementTagNameMap[K] {
   const node = document.createElement(tag);
   if (cls) node.className = cls;
@@ -288,6 +308,13 @@ class DivinciChatWidget {
   private speechDebounce: ReturnType<typeof setTimeout> | null = null;
   private speechPendingId: string | null = null;
   private heroEl: Element | null = null;
+  // Detach handle for the visualViewport listeners installed while the
+  // full-screen mobile panel is open; null when nothing is attached.
+  private viewportDetach: (() => void) | null = null;
+  // Whether the composer held focus at the moment render() tore the body down.
+  // Lets renderChat() restore focus mid-conversation without stealing it on a
+  // cold open — see the autofocus note in renderChat().
+  private composerWasFocused = false;
   private heroScrollRaf = 0;
   private messages: Array<{ role: "user" | "assistant"; text: string; pending?: boolean; rating?: -1 | 1; ratingDone?: boolean; isError?: boolean; ratingEmoji?: string }> = [];
 
@@ -495,10 +522,21 @@ class DivinciChatWidget {
     this.root = el("div", "dvc-root");
     this.bubble = el("button", "dvc-bubble", "💬");
     this.bubble.setAttribute("aria-label", "Chat with Divinci");
+    this.bubble.setAttribute("aria-expanded", "false");
+    this.bubble.setAttribute("aria-controls", "dvc-panel");
     this.bubble.addEventListener("click", () => this.toggle());
 
     this.panel = el("div", "dvc-panel dvc-hidden");
-    const header = el("div", "dvc-header", `<span>Ask Divinci</span>`);
+    // Declared a dialog so assistive tech announces it as one and can find its
+    // boundaries. aria-modal is NOT set here — it is applied only in the
+    // full-screen phone layout (see syncViewport), because on desktop this is a
+    // side sheet with the rest of the page still visible and operable, and
+    // claiming modality there would hide the page from screen readers that
+    // honour it while sighted users can still see and use it.
+    this.panel.id = "dvc-panel";
+    this.panel.setAttribute("role", "dialog");
+    this.panel.setAttribute("aria-labelledby", "dvc-panel-title");
+    const header = el("div", "dvc-header", `<span id="dvc-panel-title">Ask Divinci</span>`);
     const headerActions = el("div", "dvc-header-actions");
     
     // Handoff to Web App
@@ -774,7 +812,45 @@ class DivinciChatWidget {
     document.head.appendChild(script);
   }
 
+  /** Focusable children of the open dialog, in DOM order. */
+  private dialogFocusables(): HTMLElement[] {
+    return Array.from(this.panel.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), [href], input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    )).filter((n) => n.offsetParent !== null || n === document.activeElement);
+  }
+
+  /**
+   * Keyboard contract for the dialog: Escape closes it, and Tab cannot leave
+   * it. Both are obligations that come with role="dialog" — without the trap,
+   * Tab walks out of a panel that covers the entire phone screen and into a
+   * page the visitor cannot see, with no indication anything moved.
+   */
+  private onDialogKeydown = (e: KeyboardEvent): void => {
+    if (e.key === "Escape") {
+      e.stopPropagation();
+      this.toggle(false);
+      return;
+    }
+    if (e.key !== "Tab") return;
+    const items = this.dialogFocusables();
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    const active = document.activeElement as HTMLElement | null;
+    if (!active || !this.panel.contains(active)) {
+      e.preventDefault();
+      first.focus();
+    } else if (e.shiftKey && active === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && active === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
   private toggle(force?: boolean): void {
+    const wasOpen = this.open;
     this.open = force ?? !this.open;
     // Closing the panel must silence it — a voice still talking behind a
     // dismissed widget is the single most annoying failure mode here.
@@ -782,9 +858,112 @@ class DivinciChatWidget {
     this.panel.classList.toggle("dvc-hidden", !this.open);
     this.bubble.classList.toggle("dvc-bubble-open", this.open);
     this.root.classList.toggle("dvc-chat-open", this.open);
+    this.bubble.setAttribute("aria-expanded", this.open ? "true" : "false");
+    if (this.open) this.syncViewport(); else this.releaseViewport();
     if (this.open) this.render();
+
+    if (this.open && !wasOpen) {
+      document.addEventListener("keydown", this.onDialogKeydown, true);
+    } else if (!this.open && wasOpen) {
+      document.removeEventListener("keydown", this.onDialogKeydown, true);
+      // Return focus to the control that opened the dialog. Without this,
+      // focus is left on a node that has just been hidden, and the next Tab
+      // starts over from the top of the document — the visitor loses their
+      // place entirely.
+      if (this.bubble.isConnected) this.bubble.focus();
+    }
+
     // Closing at the hero top should re-hide the launcher.
     this.syncHeroScrollGate();
+  }
+
+  /**
+   * Pins the full-screen phone panel to the VISUAL viewport.
+   *
+   * A `position: fixed` element is laid out against the layout viewport, which
+   * on iOS does not shrink when the software keyboard appears. The panel
+   * therefore stays full-height, its composer ends up behind the keyboard, and
+   * WebKit "helpfully" pans the whole page up to reveal the focused field —
+   * which is what drags the header and the opening messages off the top of the
+   * screen. Writing visualViewport.height into `--dvc-vh` makes the panel
+   * shrink to the space the keyboard actually leaves, so nothing has to pan.
+   *
+   * Also locks the document behind the panel: without it, a drag that starts
+   * on the header or the composer scrolls the page underneath, and closing the
+   * chat leaves the visitor somewhere they never navigated to.
+   */
+  private syncViewport(): void {
+    if (this.viewportDetach) return;
+    const vv = window.visualViewport;
+    const root = document.documentElement;
+    const body = document.body;
+    // The lock has to go on <html>, not just <body>. The viewport takes its
+    // overflow from the root element and only falls through to <body> when the
+    // root is `overflow: visible` — and mobile-fixes.css sets
+    // `html { overflow-x: hidden }` site-wide, which disables that fallthrough.
+    // A body-only lock is silently a no-op here (verified: a wheel over a
+    // body-only lock still scrolls the page; over a root lock it does not).
+    //
+    // Capture the prior inline values so closing restores them verbatim: "" and
+    // "hidden" are not interchangeable to restore, and a future drawer or modal
+    // must not be silently unlocked by our close.
+    const priorRootOverflow = root.style.overflow;
+    const priorOverflow = body.style.overflow;
+
+    const apply = () => {
+      if (!isPhonePanel()) {
+        // Desktop/tablet layout: the panel is a fixed-width side sheet and the
+        // page behind it stays scrollable, so leave all of it alone.
+        root.style.removeProperty("--dvc-vh");
+        root.style.overflow = priorRootOverflow;
+        body.style.overflow = priorOverflow;
+        // Side-sheet layout: the page behind stays visible and operable, so
+        // the dialog is emphatically not modal.
+        this.panel.removeAttribute("aria-modal");
+        return;
+      }
+      root.style.overflow = "hidden";
+      body.style.overflow = "hidden";
+      // Full-screen layout: the panel really does cover everything, so the
+      // modality claim is true and assistive tech should scope to it.
+      this.panel.setAttribute("aria-modal", "true");
+      // Deliberately overflow-on-body rather than the position:fixed body
+      // trick: the latter resets scrollTop, so closing the chat would dump the
+      // visitor back at the top of the page they were reading.
+      if (vv) root.style.setProperty("--dvc-vh", `${vv.height}px`);
+    };
+
+    // Install the escape hatch BEFORE anything can lock the page. If apply()
+    // or addEventListener threw after the lock went on but before the handle
+    // existed, the visitor would be left on a permanently unscrollable page
+    // with no way back — a self-inflicted denial of the whole site.
+    this.viewportDetach = () => {
+      vv?.removeEventListener("resize", apply);
+      vv?.removeEventListener("scroll", apply);
+      window.removeEventListener("orientationchange", apply);
+      root.style.removeProperty("--dvc-vh");
+      root.style.overflow = priorRootOverflow;
+      body.style.overflow = priorOverflow;
+      this.panel.removeAttribute("aria-modal");
+    };
+
+    apply();
+    // `scroll` matters as much as `resize`: iOS reports the software keyboard
+    // by scrolling the visual viewport as often as by resizing it, and
+    // vv.height is what we actually need off either event.
+    vv?.addEventListener("resize", apply);
+    vv?.addEventListener("scroll", apply);
+    // Rotating the device crosses the (max-height: 480px) arm of the query.
+    window.addEventListener("orientationchange", apply);
+  }
+
+  private releaseViewport(): void {
+    const detach = this.viewportDetach;
+    // Clear first: if detach() throws, the stale handle would otherwise make
+    // the `if (this.viewportDetach) return` guard in syncViewport() refuse to
+    // ever re-arm, and the panel would stop tracking the keyboard.
+    this.viewportDetach = null;
+    detach?.();
   }
 
   private setView(v: View): void { this.view = v; this.render(); }
@@ -800,6 +979,9 @@ class DivinciChatWidget {
       try { window.turnstile.remove(this.turnstileId); } catch { /* already gone */ }
     }
     this.turnstileId = null;
+    // Read before the teardown below destroys the element that holds focus.
+    const active = document.activeElement;
+    this.composerWasFocused = !!active && (active as HTMLElement).classList?.contains("dvc-input");
     this.body.innerHTML = "";
     switch (this.view) {
       case "loading": return this.renderLoading();
@@ -918,6 +1100,12 @@ class DivinciChatWidget {
   private renderChat(): void {
     const wrap = el("div", "dvc-chat");
     const list = el("div", "dvc-messages");
+    // role="log" + polite: replies stream in without any focus change, so
+    // without this a screen reader user gets silence after pressing send.
+    // Polite (not assertive) so it waits for a pause instead of interrupting.
+    list.setAttribute("role", "log");
+    list.setAttribute("aria-live", "polite");
+    list.setAttribute("aria-relevant", "additions text");
     // Gate transcript index of the current assistant reply. The SDK's signed
     // transcript grows by one per SUCCESSFUL send, so the k-th completed,
     // non-error assistant message maps to transcript index k.
@@ -927,7 +1115,12 @@ class DivinciChatWidget {
       if (m.pending) {
         // animated "typing…" indicator — three dots bounce in a wave
         node.classList.add("dvc-typing");
-        node.innerHTML = `<span class="dvc-dot"></span><span class="dvc-dot"></span><span class="dvc-dot"></span>`;
+        // Three bouncing dots convey "thinking" visually and nothing at all
+        // otherwise, so give the node a text equivalent and hide the dots
+        // themselves from the accessibility tree.
+        node.setAttribute("role", "status");
+        node.setAttribute("aria-label", "Divinci is typing");
+        node.innerHTML = `<span class="dvc-dot" aria-hidden="true"></span><span class="dvc-dot" aria-hidden="true"></span><span class="dvc-dot" aria-hidden="true"></span>`;
       } else if (m.role === "assistant") {
         // AI reply → markdown rendered to sanitized HTML (escape-first)
         node.classList.add("dvc-md");
@@ -983,7 +1176,13 @@ class DivinciChatWidget {
     wrap.append(list, meta, form);
     this.body.appendChild(wrap);
     list.scrollTop = list.scrollHeight;
-    input.focus();
+    // On a touch device, only focus if the composer ALREADY had focus before
+    // this re-render — i.e. the visitor is mid-conversation and the keyboard
+    // is up, so we hand it back and typing continues. Focusing unconditionally
+    // means opening the panel summons the keyboard immediately, which covers
+    // the greeting and the starter prompts (and, before the 16px input rule,
+    // fired iOS's focus zoom every single time the widget was opened).
+    if (!isTouchLike() || this.composerWasFocused) input.focus();
 
     const submitPrompt = async (prompt: string) => {
       prompt = prompt.trim();

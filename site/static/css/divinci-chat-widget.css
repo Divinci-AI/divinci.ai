@@ -200,7 +200,11 @@
 .dvc-turnstile { min-height: 65px; }
 
 .dvc-chat { display: flex; flex-direction: column; flex: 1; min-height: 0; }
-.dvc-messages { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+/* overscroll-behavior: reaching the top or bottom of the transcript must not
+   start scrolling the page behind the panel (scroll chaining) — on a phone
+   that silently moves the document under a full-screen sheet, so closing the
+   chat drops you somewhere you never navigated to. */
+.dvc-messages { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
 .dvc-msg { max-width: 85%; padding: 9px 12px; border-radius: 12px; font-size: 14px; line-height: 1.4; white-space: pre-wrap; word-wrap: break-word; }
 .dvc-msg-user { align-self: flex-end; background: var(--color-neutral-inverse, #2d5a4f); color: #fff; border-bottom-right-radius: 4px; }
 .dvc-msg-assistant { align-self: flex-start; background: var(--color-bg-accent, #e8ddc7); color: var(--color-text-primary, #2d3c34); border-bottom-left-radius: 4px; }
@@ -261,20 +265,71 @@
   @keyframes dvc-pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 }
 
-@media (max-width: 480px) {
+/* Full-screen panel on phones. The breakpoint is 600px (not 480px) so the
+   large-phone class — iPhone Pro Max, Pixel XL — gets the full-screen layout
+   too; the extra `max-height` arm catches phones in landscape, where a 380px
+   side panel anchored 100px from the top has almost no room left.
+
+   Height: measured, rather than `top:0; bottom:0`, because iOS/Brave resolve
+   `bottom: 0` against the LARGE viewport — the one that assumes the browser
+   toolbars are collapsed — so the composer row sits underneath the toolbar
+   until you scroll. `--dvc-vh` is the visualViewport height, written by the
+   widget while the panel is open (see syncViewport() in the .ts), which is
+   also what keeps the composer above the software keyboard.
+
+   The fallback is split across an @supports block deliberately. `var()` is
+   NOT a progressive-enhancement mechanism: if the substituted value is
+   invalid for the property, the declaration is invalid at computed-value time
+   and the property falls back to its INITIAL value, not to the preceding
+   declaration in the cascade. So `height: var(--dvc-vh, 100dvh)` on an engine
+   without `dvh` (Safari < 15.4) would silently compute to `height: auto` and
+   collapse the panel to its content — the earlier `height: 100vh` would not
+   save it. Gating the dvh spelling on @supports keeps every engine on a unit
+   it actually understands. */
+@media (max-width: 600px), (max-height: 480px) {
   .dvc-panel,
   .dvc-root:has(.dvc-bubble-robot) .dvc-panel {
     left: 0;
     right: 0;
     width: 100%;
-    max-width: 100vw;
+    max-width: 100%;
     top: 0;
-    bottom: 0;
-    height: auto;
+    bottom: auto;
+    height: 100vh;
+    height: var(--dvc-vh, 100vh);
     max-height: none;
     border: none;
     border-radius: 0;
+    /* Stop a drag inside the panel from chaining through to the document
+       once the messages list hits its end — the scroll lock in syncViewport()
+       handles the rest. */
+    overscroll-behavior: contain;
   }
+
+  @supports (height: 100dvh) {
+    .dvc-panel,
+    .dvc-root:has(.dvc-bubble-robot) .dvc-panel {
+      height: var(--dvc-vh, 100dvh);
+    }
+  }
+
+  /* iOS/WebKit auto-zooms the whole page when a text field with a computed
+     font-size under 16px receives focus, and it never zooms back out — that
+     is the "everything is huge and I have to pinch out" bug. 16px is the
+     threshold, so every focusable field in the widget sits at exactly 16px
+     on phones. Do not lower these. (.dvc-code is excluded — the OTP field is
+     already 18px, and this block would otherwise shrink it.) */
+  .dvc-input:not(.dvc-code),
+  .dvc-feedback-input {
+    font-size: 16px;
+  }
+
+  /* Home-indicator / gesture-bar clearance so the composer isn't half-eaten
+     on notched devices. */
+  .dvc-inputrow {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+
   /* Hide launcher while chat is open — panel is full-screen */
   .dvc-bubble-open,
   .dvc-bubble-robot.dvc-bubble-open {
