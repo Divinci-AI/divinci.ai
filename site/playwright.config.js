@@ -29,11 +29,17 @@ module.exports = defineConfig({
     // Desktop E2E Testing
     {
       name: 'Desktop-Chrome',
-      use: { 
+      use: {
         ...devices['Desktop Chrome'],
         viewport: { width: 1920, height: 1080 },
       },
       testMatch: [
+        // These two run under Chromium rather than the Mobile-* projects on
+        // purpose: each sets its own viewport AND its own isMobile/hasTouch per
+        // describe (both assert phone AND desktop behaviour in one file), and
+        // isMobile is a Chromium-only emulation flag.
+        '**/mobile-zoom-guard.spec.js',
+        '**/accessibility-axe-wcag.spec.js',
         '**/new-divinci-site.spec.js', 
         '**/language-*.spec.js', 
         '**/comprehensive-navigation-test.spec.js',
@@ -297,9 +303,13 @@ module.exports = defineConfig({
     },
   },
 
-  // Start Zola server before running tests
+  // Start Zola server before running tests.
+  // No `cd` and no absolute path: Playwright runs webServer.command from the
+  // config's own directory, so hardcoding one developer's checkout only ever
+  // breaks on every other machine. It used to point at a path that no longer
+  // exists, which `reuseExistingServer` hid locally and CI could not.
   webServer: {
-    command: 'cd /Users/mikeumus/Documents/divinci.ai/new-divinci-zola-site && zola serve --port 1111',
+    command: 'zola serve --port 1111',
     port: 1111,
     reuseExistingServer: !process.env.CI,
     timeout: 60000,
