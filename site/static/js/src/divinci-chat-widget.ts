@@ -343,8 +343,6 @@ class DivinciChatWidget {
    * nothing. If it cannot be played, it has to be said.
    */
   private voiceError: string | null = null;
-  /** Object URL for a clip we buffered ourselves; revoked on teardown. */
-  private blobUrl: string | null = null;
   /** Opt-in playback diagnostics: append ?dvcdebug=1 to any page URL. */
   private readonly debugVoice: boolean =
     typeof location !== "undefined" && /[?&]dvcdebug=1/.test(location.search);
@@ -355,8 +353,10 @@ class DivinciChatWidget {
     // Always console.log — Safari Web Inspector can read it off the phone —
     // and additionally paint it into the panel when debugging is requested,
     // which needs no cable and no second machine.
-    console.log("[divinci-voice]", step);
+    // Debug mode only. This trace carries the clip URL, and printing it into
+    // every visitor's console is noise at best.
     if (!this.debugVoice) return;
+    console.log("[divinci-voice]", step);
     this.voiceDebug = (this.voiceDebug ? this.voiceDebug + " | " : "") + step;
     // Repaint. Without this the panel only ever showed the FIRST entry: every
     // later step accumulated into the string but nothing put it on screen
@@ -1558,33 +1558,23 @@ class DivinciChatWidget {
    */
   private playSource(audio: HTMLAudioElement, src: string, signal: AbortSignal): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      const fail = () => reject(new Error(`media-error-${audio.error?.code ?? 0}`));
-      audio.addEventListener("error", fail, { once: true, signal });
-      audio.addEventListener("playing", () => resolve(), { once: true, signal });
+      // Bounded for the same reason the unlock wait is: this races "playing"
+      // against "error", and iOS can deliver NEITHER — the element simply sits
+      // there, play() never settles, and the promise is left pending forever.
+      // That was the whole bug. Any wait on a media element has to have a
+      // floor under it. 20s is generous enough to cover downloading a long
+      // clip on mobile data.
+      const timer = window.setTimeout(
+        () => reject(new Error("playback-start-timeout")), 20000);
+      const settle = <T>(fn: (v: T) => void) => (v: T) => { window.clearTimeout(timer); fn(v); };
+      const ok = settle<void>(resolve);
+      const fail = settle<Error>(reject);
+      audio.addEventListener("error", () => fail(new Error(`media-error-${audio.error?.code ?? 0}`)),
+        { once: true, signal });
+      audio.addEventListener("playing", () => ok(undefined), { once: true, signal });
       audio.src = src;
-      audio.play().catch(reject);
+      audio.play().catch(fail);
     });
-  }
-
-  /**
-   * Download the clip and hand the element a complete, local copy.
-   *
-   * iOS is far stricter than desktop about streamed media: it issues a byte
-   * RANGE request and gives up if the server answers 200 instead of 206, and
-   * it will not sniff a container whose Content-Type is wrong or generic.
-   * Desktop engines tolerate both, which is exactly the shape of "the natural
-   * Deepgram voice plays on the laptop and nothing plays on the iPhone".
-   *
-   * A blob: URL has neither problem — it is local, complete, and typed. The
-   * cost is that fetch() is CORS-governed where an <audio src> is not, so this
-   * is only ever a RETRY: the direct URL is attempted first and this never
-   * runs when that works.
-   */
-  private async bufferToBlobUrl(url: string): Promise<{ blobUrl: string; type: string }> {
-    const res = await fetch(url, { mode: "cors", credentials: "omit" });
-    if (!res.ok) throw new Error(`tts-fetch-${res.status}`);
-    const blob = await res.blob();
-    return { blobUrl: URL.createObjectURL(blob), type: blob.type || "unknown" };
   }
 
   /**
@@ -1599,12 +1589,6 @@ class DivinciChatWidget {
       new Promise<T>((_, reject) =>
         setTimeout(() => reject(new Error(`${label}-timeout-${ms}ms`)), ms)),
     ]);
-  }
-
-  private releaseBlobUrl(): void {
-    if (!this.blobUrl) return;
-    try { URL.revokeObjectURL(this.blobUrl); } catch { /* already gone */ }
-    this.blobUrl = null;
   }
 
   private stopPlayback(): void {
@@ -1625,7 +1609,6 @@ class DivinciChatWidget {
       try { this.audio.currentTime = 0; } catch { /* not seekable yet */ }
       this.audio = null;
     }
-    this.releaseBlobUrl();
     try {
       if (window.speechSynthesis?.speaking) window.speechSynthesis.cancel();
     } catch {
@@ -1677,7 +1660,9 @@ class DivinciChatWidget {
         // is built on. See refreshGateToken().
         if ((err as { status?: number })?.status !== 401) throw err;
         this.vlog("401 — refreshing gate token");
-        await this.refreshGateToken();
+        // Bounded: refreshGateToken() waits on a Turnstile token (itself
+        // deadline-limited) and then a network start() call that is not.
+        await this.withTimeout(this.refreshGateToken(), 20000, "gate-refresh");
         if (this.playingIdx !== gateIdx) { this.vlog("superseded during refresh"); return; }
         result = await this.withTimeout(this.client.freeChatGate.speak(gateIdx), 20000, "speak-retry");
       }
@@ -1715,62 +1700,48 @@ class DivinciChatWidget {
           this.playingIdx = null;
           this.audio = null;
           this.audioEvents = null;
-          this.releaseBlobUrl();
           this.render();
         }
       }, { signal: events.signal });
 
-      try {
-        // Attempt 1: stream it straight from the URL. This is what already
-        // works everywhere except iOS, and it stays first so the working path
-        // is never traded away for the fix.
-        audio.muted = false;
-        audio.volume = 1;
-        this.vlog(`url=${url.slice(0, 60)}`);
-        await this.playSource(audio, url, events.signal);
-        this.vlog(`streamed OK ${this.audioState(audio)}`);
+      // Streamed straight from the URL. A buffered blob: retry used to sit
+      // behind this, on the theory that iOS was refusing the clip over byte
+      // ranges or Content-Type. The device disproved that: playback succeeds
+      // on the first attempt (`streamed OK … ready=4 net=1 err=-`), the real
+      // fault was the unlock deadlock above, and the retry never once ran. It
+      // is gone rather than left as an untested path that also required
+      // loosening media-src to allow blob:.
+      audio.muted = false;
+      audio.volume = 1;
+      this.vlog(`url=${url.slice(0, 60)}`);
+      await this.playSource(audio, url, events.signal);
+      this.vlog(`streamed OK ${this.audioState(audio)}`);
         // "playing" fired, but that only means the pipeline started. Sample it
         // again shortly after: an element that reports playing while the clock
         // never advances is producing no sound, and nothing else reports that.
-        window.setTimeout(() => {
-          if (this.playingIdx !== gateIdx) return;
-          this.vlog(`+800ms ${this.audioState(audio)}`);
-          if (audio.currentTime === 0 && !audio.paused) {
-            this.voiceError = "Voice started but produced no sound.";
-          }
-          if (this.debugVoice) this.render();
-        }, 800);
-      } catch (streamErr) {
-        this.vlog(`stream failed: ${(streamErr as Error)?.message} ${this.audioState(audio)}`);
+      // "playing" fired, but that only means the pipeline started. Sample it
+      // again shortly after: an element that reports playing while the clock
+      // never advances is producing no sound, and nothing else reports that.
+      window.setTimeout(() => {
         if (this.playingIdx !== gateIdx) return;
-        console.warn("[divinci-chat] streamed clip refused; buffering it instead", streamErr);
-        // Attempt 2: download it and play a complete local copy. See
-        // bufferToBlobUrl() — this is the byte-range / Content-Type escape
-        // hatch that iOS needs and desktop never asks for.
-        this.releaseBlobUrl();
-        const { blobUrl, type } = await this.bufferToBlobUrl(url);
-        if (this.playingIdx !== gateIdx) { try { URL.revokeObjectURL(blobUrl); } catch { /* noop */ } return; }
-        this.blobUrl = blobUrl;
-        this.vlog(`buffered type=${type} canPlay=${audio.canPlayType(type) || "no"}`);
-        // If the container itself is undecodable here there is no point
-        // trying — say which one it was, so it is fixable at the source.
-        const playable = type && audio.canPlayType(type);
-        if (type !== "unknown" && playable === "") {
-          throw new Error(`unsupported-codec:${type}`);
-        }
-        await this.playSource(audio, blobUrl, events.signal);
-        this.vlog(`buffered OK ${this.audioState(audio)}`);
-      }
+        this.vlog(`+800ms ${this.audioState(audio)}`);
+        const stalled = audio.currentTime === 0 && !audio.paused;
+        if (stalled) this.voiceError = "Voice started but produced no sound.";
+        // Repaint whenever there is something new to show. Gating this on
+        // debug mode alone meant the stall notice was set and never painted
+        // for ordinary visitors — an error message nobody could see.
+        if (stalled || this.debugVoice) this.render();
+      }, 800);
     } catch (err) {
       if (this.playingIdx !== gateIdx) return;
       console.warn("[divinci-chat] Divinci voice unavailable; using browser voice", err);
       const name = (err as { name?: string })?.name;
       const msg = (err as { message?: string })?.message ?? "";
-      const codec = msg.startsWith("unsupported-codec:") ? msg.slice(18) : null;
       this.speakLocally(gateIdx,
-        codec ? `this browser cannot play ${codec}`
-        : name === "NotAllowedError" ? "the browser blocked audio playback"
-        : msg.startsWith("tts-fetch-") ? `the clip could not be downloaded (${msg.slice(10)})`
+        name === "NotAllowedError" ? "the browser blocked audio playback"
+        : msg.startsWith("speak-timeout") ? "the voice service timed out"
+        : msg.startsWith("playback-start-timeout") ? "playback never started"
+        : msg.startsWith("gate-refresh-timeout") ? "the session could not be renewed"
         : msg.startsWith("media-error-") ? "the audio clip could not be decoded"
         : "the Divinci voice service did not respond");
     }
