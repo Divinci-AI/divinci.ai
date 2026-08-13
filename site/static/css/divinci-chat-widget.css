@@ -293,7 +293,12 @@
     right: 0;
     width: 100%;
     max-width: 100%;
-    top: 0;
+    /* Anchored to the VISUAL viewport, not the layout one. --dvc-vt is
+       visualViewport.offsetTop, which is non-zero while the iOS keyboard is up
+       (see syncViewport) — without it the panel stays where the layout
+       viewport thinks the top is, drifts out of alignment with the screen, and
+       lets the page show through the gap. */
+    top: var(--dvc-vt, 0px);
     bottom: auto;
     height: 100vh;
     height: var(--dvc-vh, 100vh);
@@ -411,4 +416,24 @@
 .dvc-voice-err {
   color: #b3261e;
   margin: 2px 0 0;
+}
+
+/* Opaque layer behind the full-screen panel. The panel is sized from
+   visualViewport, and iOS keyboard geometry is not perfectly predictable, so
+   this guarantees that a few stray pixels of mismatch expose the widget's own
+   surface rather than the page scrolling behind a modal. Hidden entirely in
+   the desktop side-sheet layout, where the page behind is meant to be seen. */
+.dvc-backdrop { display: none; }
+
+@media (max-width: 600px), (max-height: 480px) {
+  .dvc-root.dvc-chat-open .dvc-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: var(--color-bg-primary, #f8f4f0);
+    /* Below .dvc-panel, above nothing else — both are children of .dvc-root,
+       which already owns a stacking context at z-index 100002. */
+    z-index: 0;
+  }
+  .dvc-panel { z-index: 1; }
 }

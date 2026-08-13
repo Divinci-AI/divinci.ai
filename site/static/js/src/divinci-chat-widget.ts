@@ -298,6 +298,7 @@ class DivinciChatWidget {
 
   private root!: HTMLDivElement;
   private panel!: HTMLDivElement;
+  private backdrop!: HTMLDivElement;
   private bubble!: HTMLButtonElement;
   private body!: HTMLDivElement;
   private speech!: HTMLDivElement;
@@ -636,12 +637,21 @@ class DivinciChatWidget {
     headerActions.append(this.soundBtn, handoffBtn, clearBtn, close);
     header.appendChild(headerActions);
 
+    // Insurance behind the panel. Keyboard geometry on iOS is not fully
+    // predictable — this is the second real-device gap of this kind — so even
+    // if the panel ends up a few pixels short of the screen, what shows
+    // through is the widget's own surface rather than the marketing page
+    // sliding around behind a modal.
+    this.backdrop = el("div", "dvc-backdrop");
+    this.backdrop.setAttribute("aria-hidden", "true");
+
     this.body = el("div", "dvc-body");
     this.tsMount = el("div", "dvc-turnstile-invisible");
     this.tsMount.style.display = "none";
     this.panel.appendChild(header);
     this.panel.appendChild(this.body);
     this.panel.appendChild(this.tsMount);
+    this.root.appendChild(this.backdrop);
     this.root.appendChild(this.panel);
     this.root.appendChild(this.bubble);
     this.mountSpeechBubble();
@@ -936,6 +946,7 @@ class DivinciChatWidget {
         // Desktop/tablet layout: the panel is a fixed-width side sheet and the
         // page behind it stays scrollable, so leave all of it alone.
         root.style.removeProperty("--dvc-vh");
+        root.style.removeProperty("--dvc-vt");
         root.style.overflow = priorRootOverflow;
         body.style.overflow = priorOverflow;
         // Side-sheet layout: the page behind stays visible and operable, so
@@ -951,7 +962,19 @@ class DivinciChatWidget {
       // Deliberately overflow-on-body rather than the position:fixed body
       // trick: the latter resets scrollTop, so closing the chat would dump the
       // visitor back at the top of the page they were reading.
-      if (vv) root.style.setProperty("--dvc-vh", `${vv.height}px`);
+      if (vv) {
+        root.style.setProperty("--dvc-vh", `${vv.height}px`);
+        // Height alone is not enough. When the software keyboard opens, iOS
+        // SCROLLS the visual viewport as well as shrinking it, while a
+        // position:fixed element stays pinned to the LAYOUT viewport — which
+        // does not move. The panel therefore slides out of alignment with what
+        // is actually on screen and the page shows through the gap.
+        // offsetTop is how far the visual viewport has scrolled inside the
+        // layout viewport, so re-adding it puts the panel back under the
+        // visitor's eyes. Rounded because iOS reports sub-pixel values mid
+        // animation and a fractional top produces a shimmering 1px seam.
+        root.style.setProperty("--dvc-vt", `${Math.max(0, Math.round(vv.offsetTop))}px`);
+      }
     };
 
     // Install the escape hatch BEFORE anything can lock the page. If apply()
@@ -963,6 +986,7 @@ class DivinciChatWidget {
       vv?.removeEventListener("scroll", apply);
       window.removeEventListener("orientationchange", apply);
       root.style.removeProperty("--dvc-vh");
+      root.style.removeProperty("--dvc-vt");
       root.style.overflow = priorRootOverflow;
       body.style.overflow = priorOverflow;
       this.panel.removeAttribute("aria-modal");

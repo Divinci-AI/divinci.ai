@@ -160,6 +160,48 @@ test.describe('Chat widget on a phone', () => {
     expect(shrunk.composerBottom).toBeLessThanOrEqual(shrunk.expected + 1);
   });
 
+  test('the panel follows the visual viewport when the keyboard scrolls it', async ({ page }) => {
+    await page.goto('/docs/', { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('.dvc-bubble', { timeout: 15000 });
+    await page.evaluate(() => document.querySelector('.dvc-bubble').click());
+    await page.waitForSelector('.dvc-input');
+
+    // iOS does not merely SHRINK the visual viewport for the keyboard, it also
+    // SCROLLS it inside the layout viewport — and a position:fixed panel is
+    // pinned to the layout viewport, which does not move. Shadow both
+    // properties the way the real keyboard reports them.
+    const KEYBOARD = 336;
+    await page.evaluate((kb) => {
+      const vv = window.visualViewport;
+      Object.defineProperty(vv, 'height', { value: window.innerHeight - kb, configurable: true });
+      Object.defineProperty(vv, 'offsetTop', { value: kb, configurable: true });
+      vv.dispatchEvent(new Event('resize'));
+    }, KEYBOARD);
+    await page.waitForTimeout(120);
+
+    const s = await page.evaluate(() => {
+      const p = document.querySelector('.dvc-panel');
+      const r = p.getBoundingClientRect();
+      return {
+        vt: document.documentElement.style.getPropertyValue('--dvc-vt'),
+        vh: document.documentElement.style.getPropertyValue('--dvc-vh'),
+        top: Math.round(r.top),
+        height: Math.round(r.height),
+        expectedTop: window.visualViewport.offsetTop,
+        expectedHeight: window.visualViewport.height,
+        backdropShown: getComputedStyle(document.querySelector('.dvc-backdrop')).display,
+      };
+    });
+
+    // The panel must sit where the visitor is actually looking.
+    expect(s.vt).toBe(`${s.expectedTop}px`);
+    expect(s.top).toBe(s.expectedTop);
+    expect(s.height).toBe(s.expectedHeight);
+    // And the layer behind it is opaque, so any residual mismatch shows the
+    // widget's own surface rather than the page.
+    expect(s.backdropShown).toBe('block');
+  });
+
   test('rotating to landscape keeps the panel full-screen', async ({ page }) => {
     await page.goto('/docs/', { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('.dvc-bubble', { timeout: 15000 });
