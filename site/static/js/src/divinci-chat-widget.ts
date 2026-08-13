@@ -333,6 +333,15 @@ class DivinciChatWidget {
    * after the reply arrives, with no gesture in sight.
    */
   private audioEl: HTMLAudioElement | null = null;
+  /**
+   * Why voice last failed, shown in the panel. Voice has two fallbacks behind
+   * it and both can fail silently — the Divinci clip can be blocked by the
+   * platform and speechSynthesis can simply refuse to start (iOS will not run
+   * it outside a user gesture, and reports no error when it declines). The
+   * result was a speaker button that looked like it worked and produced
+   * nothing. If it cannot be played, it has to be said.
+   */
+  private voiceError: string | null = null;
   /** Removes the current element's listeners in one shot (see stopPlayback). */
   private audioEvents: AbortController | null = null;
   /** Transcript index currently playing, so render() can show a stop button. */
@@ -1183,6 +1192,12 @@ class DivinciChatWidget {
     send.title = "Send";
     form.append(input, send);
     const meta = el("p", "dvc-muted dvc-meta", this.remaining !== null ? `${this.remaining} free message${this.remaining === 1 ? "" : "s"} left` : "");
+    if (this.voiceError) {
+      const ve = el("p", "dvc-voice-err dvc-meta");
+      ve.setAttribute("role", "status");
+      ve.textContent = this.voiceError;
+      wrap.appendChild(ve);
+    }
     wrap.append(list, meta, form);
     this.body.appendChild(wrap);
     list.scrollTop = list.scrollHeight;
@@ -1448,6 +1463,7 @@ class DivinciChatWidget {
     }
 
     this.playingIdx = gateIdx;
+    this.voiceError = null;
     this.render();
 
     // Reuse the primed element rather than constructing one. On iOS only an
@@ -1495,14 +1511,22 @@ class DivinciChatWidget {
         }
       }, { signal: events.signal });
       audio.addEventListener("error", () => {
-        console.warn("[divinci-chat] audio playback failed; falling back to browser voice");
-        this.speakLocally(gateIdx);
+        const code = audio.error?.code;
+        console.warn("[divinci-chat] audio playback failed; falling back to browser voice", code);
+        // MEDIA_ERR_SRC_NOT_SUPPORTED is what a CSP media-src block, a missing
+        // Range handler, or a cross-origin refusal all surface as.
+        this.speakLocally(gateIdx, code === 4
+          ? "the audio clip could not be loaded"
+          : "audio playback was interrupted");
       }, { signal: events.signal });
       await audio.play();
     } catch (err) {
       if (this.playingIdx !== gateIdx) return;
       console.warn("[divinci-chat] Divinci voice unavailable; using browser voice", err);
-      this.speakLocally(gateIdx);
+      const name = (err as { name?: string })?.name;
+      this.speakLocally(gateIdx, name === "NotAllowedError"
+        ? "the browser blocked audio playback"
+        : "the Divinci voice service did not respond");
     }
   }
 
@@ -1511,14 +1535,31 @@ class DivinciChatWidget {
    * the rendered message text (the transcript reply and the on-screen message
    * are the same string) rather than re-requesting anything.
    */
-  private speakLocally(gateIdx: number): void {
+  private speakLocally(gateIdx: number, reason?: string): void {
     this.audio = null;
     const text = this.assistantTextForGateIdx(gateIdx);
     if (!text || typeof window.speechSynthesis === "undefined") {
       this.playingIdx = null;
+      this.voiceError = reason ? `Voice unavailable — ${reason}.` : "Voice unavailable on this device.";
       this.render();
       return;
     }
+    // iOS refuses speechSynthesis outside a user gesture and reports nothing
+    // when it does — speak() returns, no event fires, no sound is produced.
+    // Every path that reaches this fallback has already awaited a network
+    // call, so the gesture is long gone. Check whether it actually started
+    // and say so if it did not, rather than leaving a dead speaker button.
+    window.setTimeout(() => {
+      if (this.playingIdx !== gateIdx) return;
+      let started = false;
+      try { started = !!(window.speechSynthesis.speaking || window.speechSynthesis.pending); } catch { /* absent */ }
+      if (started) return;
+      this.playingIdx = null;
+      this.voiceError = reason
+        ? `Voice unavailable — ${reason}.`
+        : "Voice unavailable — this browser blocked playback.";
+      this.render();
+    }, 600);
     try {
       const utterance = new SpeechSynthesisUtterance(text);
       const done = () => {

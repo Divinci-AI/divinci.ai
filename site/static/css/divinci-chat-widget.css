@@ -403,3 +403,12 @@
   background: none; border: none; font-size: 16px; cursor: pointer; padding: 4px; border-radius: 4px; transition: background 0.15s;
 }
 .dvc-emoji-pop-btn:hover { background: var(--color-bg-accent, #e8ddc7); }
+
+/* Voice failure notice. Voice has two fallbacks behind it and both can fail
+   without raising anything — a blocked clip, or a speechSynthesis call the
+   platform quietly declines. Saying so beats a speaker button that looks like
+   it worked and produced silence. */
+.dvc-voice-err {
+  color: #b3261e;
+  margin: 2px 0 0;
+}
