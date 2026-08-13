@@ -342,6 +342,8 @@ class DivinciChatWidget {
    * nothing. If it cannot be played, it has to be said.
    */
   private voiceError: string | null = null;
+  /** Object URL for a clip we buffered ourselves; revoked on teardown. */
+  private blobUrl: string | null = null;
   /** Removes the current element's listeners in one shot (see stopPlayback). */
   private audioEvents: AbortController | null = null;
   /** Transcript index currently playing, so render() can show a stop button. */
@@ -1423,6 +1425,49 @@ class DivinciChatWidget {
     this.audioEl = el;
   }
 
+  /**
+   * Point the element at a source and resolve once sound is actually coming
+   * out. `play()` resolving is not sufficient — a media element can accept
+   * play() and then fail to decode, which arrives as an "error" event, so both
+   * outcomes are raced here.
+   */
+  private playSource(audio: HTMLAudioElement, src: string, signal: AbortSignal): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const fail = () => reject(new Error(`media-error-${audio.error?.code ?? 0}`));
+      audio.addEventListener("error", fail, { once: true, signal });
+      audio.addEventListener("playing", () => resolve(), { once: true, signal });
+      audio.src = src;
+      audio.play().catch(reject);
+    });
+  }
+
+  /**
+   * Download the clip and hand the element a complete, local copy.
+   *
+   * iOS is far stricter than desktop about streamed media: it issues a byte
+   * RANGE request and gives up if the server answers 200 instead of 206, and
+   * it will not sniff a container whose Content-Type is wrong or generic.
+   * Desktop engines tolerate both, which is exactly the shape of "the natural
+   * Deepgram voice plays on the laptop and nothing plays on the iPhone".
+   *
+   * A blob: URL has neither problem — it is local, complete, and typed. The
+   * cost is that fetch() is CORS-governed where an <audio src> is not, so this
+   * is only ever a RETRY: the direct URL is attempted first and this never
+   * runs when that works.
+   */
+  private async bufferToBlobUrl(url: string): Promise<{ blobUrl: string; type: string }> {
+    const res = await fetch(url, { mode: "cors", credentials: "omit" });
+    if (!res.ok) throw new Error(`tts-fetch-${res.status}`);
+    const blob = await res.blob();
+    return { blobUrl: URL.createObjectURL(blob), type: blob.type || "unknown" };
+  }
+
+  private releaseBlobUrl(): void {
+    if (!this.blobUrl) return;
+    try { URL.revokeObjectURL(this.blobUrl); } catch { /* already gone */ }
+    this.blobUrl = null;
+  }
+
   private stopPlayback(): void {
     if (this.audio) {
       // Detach listeners BEFORE clearing the source. Assigning src = "" makes
@@ -1440,6 +1485,7 @@ class DivinciChatWidget {
       try { this.audio.removeAttribute("src"); this.audio.load(); } catch { /* teardown race */ }
       this.audio = null;
     }
+    this.releaseBlobUrl();
     try {
       if (window.speechSynthesis?.speaking) window.speechSynthesis.cancel();
     } catch {
@@ -1497,8 +1543,7 @@ class DivinciChatWidget {
       // the SAME element so it keeps its user-initiated status.
       await unlocked;
       if (this.playingIdx !== gateIdx) return;
-      audio.src = url;
-      // Scoped to a controller so stopPlayback() can detach both handlers
+      // Scoped to a controller so stopPlayback() can detach the handlers
       // atomically before it clears src (which otherwise fires "error").
       const events = new AbortController();
       this.audioEvents = events;
@@ -1507,25 +1552,45 @@ class DivinciChatWidget {
           this.playingIdx = null;
           this.audio = null;
           this.audioEvents = null;
+          this.releaseBlobUrl();
           this.render();
         }
       }, { signal: events.signal });
-      audio.addEventListener("error", () => {
-        const code = audio.error?.code;
-        console.warn("[divinci-chat] audio playback failed; falling back to browser voice", code);
-        // MEDIA_ERR_SRC_NOT_SUPPORTED is what a CSP media-src block, a missing
-        // Range handler, or a cross-origin refusal all surface as.
-        this.speakLocally(gateIdx, code === 4
-          ? "the audio clip could not be loaded"
-          : "audio playback was interrupted");
-      }, { signal: events.signal });
-      await audio.play();
+
+      try {
+        // Attempt 1: stream it straight from the URL. This is what already
+        // works everywhere except iOS, and it stays first so the working path
+        // is never traded away for the fix.
+        await this.playSource(audio, url, events.signal);
+      } catch (streamErr) {
+        if (this.playingIdx !== gateIdx) return;
+        console.warn("[divinci-chat] streamed clip refused; buffering it instead", streamErr);
+        // Attempt 2: download it and play a complete local copy. See
+        // bufferToBlobUrl() — this is the byte-range / Content-Type escape
+        // hatch that iOS needs and desktop never asks for.
+        this.releaseBlobUrl();
+        const { blobUrl, type } = await this.bufferToBlobUrl(url);
+        if (this.playingIdx !== gateIdx) { try { URL.revokeObjectURL(blobUrl); } catch { /* noop */ } return; }
+        this.blobUrl = blobUrl;
+        // If the container itself is undecodable here there is no point
+        // trying — say which one it was, so it is fixable at the source.
+        const playable = type && audio.canPlayType(type);
+        if (type !== "unknown" && playable === "") {
+          throw new Error(`unsupported-codec:${type}`);
+        }
+        await this.playSource(audio, blobUrl, events.signal);
+      }
     } catch (err) {
       if (this.playingIdx !== gateIdx) return;
       console.warn("[divinci-chat] Divinci voice unavailable; using browser voice", err);
       const name = (err as { name?: string })?.name;
-      this.speakLocally(gateIdx, name === "NotAllowedError"
-        ? "the browser blocked audio playback"
+      const msg = (err as { message?: string })?.message ?? "";
+      const codec = msg.startsWith("unsupported-codec:") ? msg.slice(18) : null;
+      this.speakLocally(gateIdx,
+        codec ? `this browser cannot play ${codec}`
+        : name === "NotAllowedError" ? "the browser blocked audio playback"
+        : msg.startsWith("tts-fetch-") ? `the clip could not be downloaded (${msg.slice(10)})`
+        : msg.startsWith("media-error-") ? "the audio clip could not be decoded"
         : "the Divinci voice service did not respond");
     }
   }
