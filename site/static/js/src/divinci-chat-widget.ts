@@ -358,6 +358,13 @@ class DivinciChatWidget {
     console.log("[divinci-voice]", step);
     if (!this.debugVoice) return;
     this.voiceDebug = (this.voiceDebug ? this.voiceDebug + " | " : "") + step;
+    // Repaint. Without this the panel only ever showed the FIRST entry: every
+    // later step accumulated into the string but nothing put it on screen
+    // until some unrelated render happened. That made "the trace stopped at
+    // step one" indistinguishable from "execution stopped at step one", which
+    // is exactly the wrong ambiguity for a diagnostic to carry. Debug mode
+    // only, so the normal path is untouched.
+    if (this.view === "chat") this.render();
   }
 
   /** Everything about the element that determines whether sound comes out. */
@@ -1557,6 +1564,20 @@ class DivinciChatWidget {
     return { blobUrl: URL.createObjectURL(blob), type: blob.type || "unknown" };
   }
 
+  /**
+   * Reject rather than hang. A request that never settles leaves the widget
+   * sitting in "playing" forever with no error and no sound — which from the
+   * outside is indistinguishable from audio that plays silently, and those two
+   * need completely different fixes.
+   */
+  private withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
+    return Promise.race([
+      p,
+      new Promise<T>((_, reject) =>
+        setTimeout(() => reject(new Error(`${label}-timeout-${ms}ms`)), ms)),
+    ]);
+  }
+
   private releaseBlobUrl(): void {
     if (!this.blobUrl) return;
     try { URL.revokeObjectURL(this.blobUrl); } catch { /* already gone */ }
@@ -1624,24 +1645,28 @@ class DivinciChatWidget {
 
     try {
       let result: { url: string };
+      this.vlog(`requesting clip idx=${gateIdx}`);
       try {
-        result = await this.client.freeChatGate.speak(gateIdx);
+        result = await this.withTimeout(this.client.freeChatGate.speak(gateIdx), 20000, "speak");
       } catch (err) {
         // Stale token → refresh in place and retry ONCE. Deliberately not
         // reset()+start(): reset() would wipe the signed transcript this call
         // is built on. See refreshGateToken().
         if ((err as { status?: number })?.status !== 401) throw err;
+        this.vlog("401 — refreshing gate token");
         await this.refreshGateToken();
-        if (this.playingIdx !== gateIdx) return;
-        result = await this.client.freeChatGate.speak(gateIdx);
+        if (this.playingIdx !== gateIdx) { this.vlog("superseded during refresh"); return; }
+        result = await this.withTimeout(this.client.freeChatGate.speak(gateIdx), 20000, "speak-retry");
       }
       const { url } = result;
+      this.vlog("clip url received");
       // A stop (or another clip) may have landed while we were awaiting.
-      if (this.playingIdx !== gateIdx) return;
+      if (this.playingIdx !== gateIdx) { this.vlog("superseded before unlock"); return; }
       // Let the unlock settle, then swap the silent clip for the real audio on
       // the SAME element so it keeps its user-initiated status.
-      await unlocked;
-      if (this.playingIdx !== gateIdx) return;
+      const unlockOk = await unlocked;
+      this.vlog(`unlock=${unlockOk}`);
+      if (this.playingIdx !== gateIdx) { this.vlog("superseded after unlock"); return; }
       // Scoped to a controller so stopPlayback() can detach the handlers
       // atomically before it clears src (which otherwise fires "error").
       const events = new AbortController();
