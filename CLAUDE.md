@@ -11,11 +11,18 @@ All site work happens inside that folder.
 ## Build & Development Commands
 
 ```bash
-# Development server (hot-reload)
+# Development server
 cd site && zola serve
 
 # Production build
 cd site && zola build
+
+# Rebuild the chat widget bundle — REQUIRED after editing
+# static/js/src/divinci-chat-widget.ts
+cd site && npm run build:chat
+
+# Guards: source integrity + every inline script in public/ must parse
+cd site && zola build && npm run test:guards
 
 # Deploy to staging
 cd site && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env staging
@@ -25,6 +32,27 @@ cd site && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env staging
 # when multiple environments are defined; otherwise it errors with "no target environment".
 cd site && env -u CLOUDFLARE_API_TOKEN wrangler deploy --env=""
 ```
+
+### `static/js/divinci-chat.js` is a committed build artifact
+
+None of the `wrangler.jsonc` build commands run `npm run build:chat` — they run
+the Python index scripts and `zola build` only. So the **committed** bundle is
+what deploys. Editing `static/js/src/divinci-chat-widget.ts` without rebuilding
+ships nothing, silently, and every browser test still passes against the stale
+bundle. `npm run test:guards` fails if the two drift.
+
+The bundle is minified by esbuild, whose identifier mangling is not stable
+across versions, so a rebuild on a drifted `node_modules` produces a huge but
+meaningless diff. Compare string literals rather than bytes when reviewing it —
+they survive minification verbatim.
+
+### `zola serve` does not reliably pick up `static/` or `templates/` edits
+
+The watcher misses changes often enough that a stale file will be served while
+the source on disk is correct — which reads exactly like a broken fix. Restart
+`zola serve` after editing anything outside `content/`, and when a change seems
+not to have applied, verify what is actually being served
+(`curl -s localhost:1111/js/main.js | grep …`) before debugging the source.
 
 ### Zola version is pinned to 0.19.2
 
