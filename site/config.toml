@@ -109,13 +109,19 @@ tagline = "AI releases. Excellence, every time."
 
 # Homepage free-chat widget (@divinci-ai/client, keyless freeChatGate).
 # Public IDs only — never put API keys or Turnstile secrets here.
-# Release lives on staging API until production workspace cutover (P6).
-divinci_chat_api_base = "https://api.stage.divinci.app"
-divinci_chat_release_id = "6a1d7d1f790fc5da3b7a0ef0"
+# P6 cutover done: this is the production workspace release (divinci.ai,
+# 6a706ffe4a0941d6dceeb416), published and serving the 29-file prod RAG index.
+divinci_chat_api_base = "https://api.divinci.app"
+divinci_chat_release_id = "6a5c825a4be54800a5349d53"
 # Cloudflare Turnstile *site* key (public) — MUST match whatever sitekey the API's
-# TURNSTILE_PLATFORM_SITEKEY (staging Infisical) is paired with, since siteverify
+# TURNSTILE_PLATFORM_SITEKEY (prod Infisical) is paired with, since siteverify
 # validates token+secret+sitekey together; a mismatch here fails EVERY token with
 # "Bot verification failed" regardless of the widget's hostname allowlist. This is
 # the "Divinci Embed Platform" widget, not the "divinci.ai contact form" one.
+# Verify rather than assume after an API-base change — the gate publishes the key
+# the API will actually verify against:
+#   curl "$API/ai-chat/free-chat-gate/config?releaseId=$RELEASE" | jq .turnstileSiteKey
+# Prod and staging both return this same platform sitekey, which is why the P6
+# cutover did not need to touch it.
 divinci_chat_turnstile_sitekey = "0x4AAAAAADpf5cq58Uvc2Drx"
 divinci_chat_signup_url = "https://app.divinci.app"
