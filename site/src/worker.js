@@ -592,15 +592,11 @@ const STATUS_COMPONENTS = [
 // rules need them and they are the same ordering, so keeping two copies in
 // sync was an invitation to drift.
 
-function monitorStateToStatus(overallState, onAlert) {
-  switch (overallState) {
-    case 'OK': return 'operational';
-    case 'Alert': return onAlert;
-    case 'Warn': return 'degraded';
-    // 'No Data' / 'Skipped' / 'Unknown' / anything unrecognized: we genuinely
-    // do not know, so say so.
-    default: return 'unknown';
-  }
+// Duration-aware mapping now lives in ./monitor-status.mjs so it can be tested
+// directly. See that module for why a two-minute Alert must not read as a
+// MAJOR OUTAGE — and why it is softened rather than ignored.
+function monitorStateToStatus(overallState, onAlert, stateModifiedAt, now) {
+  return monitorStatus(overallState, onAlert, stateModifiedAt, now);
 }
 
 function statusPayload(overall, components, extra) {
@@ -809,6 +805,9 @@ async function handleStatus(request, env, ctx) {
 
     const byId = new Map(monitors.map(m => [m.id, m]));
 
+    // One clock for the whole evaluation — two components computed against
+    // different `now`s could straddle a sustain boundary and disagree.
+    const now = Date.now();
     let overall = 'operational';
     const components = STATUS_COMPONENTS.map(c => {
       let status = 'operational';
@@ -816,7 +815,12 @@ async function handleStatus(request, env, ctx) {
         const mon = byId.get(ref.id);
         // A monitor we expected but did not get back is an unknown, not an OK —
         // otherwise a deleted or renamed monitor silently reads as healthy.
-        status = worstStatus(status, mon ? monitorStateToStatus(mon.overall_state, ref.onAlert) : 'unknown');
+        // `overall_state_modified` is when the monitor last CHANGED state, i.e.
+        // exactly how long the current state has held. Without it the page
+        // cannot tell a 2-minute flap from a real outage.
+        status = worstStatus(status, mon
+          ? monitorStateToStatus(mon.overall_state, ref.onAlert, mon.overall_state_modified, now)
+          : 'unknown');
       }
       overall = worstStatus(overall, status);
       return { id: c.id, name: c.name, description: c.description, status };
