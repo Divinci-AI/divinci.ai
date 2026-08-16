@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+{% block og_image %}{{ get_url(path="images/og/blog.jpg") }}{% endblock %}
+{% block twitter_image %}{{ get_url(path="images/og/blog.jpg") }}{% endblock %}
+
 {% block content %}
 {# current_lang is inherited from base template #}
 

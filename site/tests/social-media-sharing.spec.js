@@ -24,7 +24,7 @@ test.describe('Social Media Sharing Meta Tags', () => {
       expect(ogDescription).toContain('AI releases');
       
       const ogImage = await page.getAttribute('meta[property="og:image"]', 'content');
-      expect(ogImage).toContain('social-preview.png');
+      expect(ogImage).toContain('/images/og/index.jpg');
       
       // Check image dimensions
       const ogImageWidth = await page.getAttribute('meta[property="og:image:width"]', 'content');
@@ -34,7 +34,7 @@ test.describe('Social Media Sharing Meta Tags', () => {
       expect(ogImageHeight).toBe('630');
       
       const ogImageAlt = await page.getAttribute('meta[property="og:image:alt"]', 'content');
-      expect(ogImageAlt).toContain('Leonardo da Vinci');
+      expect(ogImageAlt).toContain('Divinci');
       
       const ogSiteName = await page.getAttribute('meta[property="og:site_name"]', 'content');
       expect(ogSiteName).toBe('Divinci AI');
@@ -65,10 +65,10 @@ test.describe('Social Media Sharing Meta Tags', () => {
       expect(twitterDescription).toContain('AI releases');
       
       const twitterImage = await page.getAttribute('meta[name="twitter:image"]', 'content');
-      expect(twitterImage).toContain('social-preview.png');
+      expect(twitterImage).toContain('/images/og/index.jpg');
       
       const twitterImageAlt = await page.getAttribute('meta[name="twitter:image:alt"]', 'content');
-      expect(twitterImageAlt).toContain('Leonardo da Vinci');
+      expect(twitterImageAlt).toContain('Divinci');
       
       const twitterSite = await page.getAttribute('meta[name="twitter:site"]', 'content');
       expect(twitterSite).toBe('@DivinciAI');
@@ -123,8 +123,19 @@ test.describe('Social Media Sharing Meta Tags', () => {
       
       const ogDescription = await page.getAttribute('meta[property="og:description"]', 'content');
       expect(ogDescription).toBeTruthy();
+
+      const ogImage = await page.getAttribute('meta[property="og:image"]', 'content');
+      expect(ogImage).toContain('/images/og/quality-assurance.jpg');
       
       console.log('✅ Quality assurance page meta tags test passed');
+    });
+
+    test('should use a distinct OG card on a translated feature page', async ({ page }) => {
+      await page.goto('/es/autorag/');
+      await page.waitForLoadState('networkidle');
+
+      const ogImage = await page.getAttribute('meta[property="og:image"]', 'content');
+      expect(ogImage).toContain('/images/og/autorag.jpg');
     });
   });
 

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "New Divinci AI Zola Site",
   "scripts": {
-    "build": "npm run build:chat && npm run build:robot && python3 scripts/build-search-index.py && zola build",
+    "og": "node scripts/gen-og-images.mjs",
+    "build": "npm run og && npm run build:chat && npm run build:robot && python3 scripts/build-search-index.py && zola build",
     "build:chat": "esbuild static/js/src/divinci-chat-widget.ts --bundle --format=iife --minify --target=es2020 --outfile=static/js/divinci-chat.js",
     "build:robot": "esbuild static/js/src/divinci-robot-launcher.tsx --bundle --format=iife --minify --target=es2020 --jsx=automatic --outfile=static/js/divinci-robot.js",
     "serve": "zola serve --port 1111",
@@ -111,7 +112,8 @@
     "glob": "^10.5.0",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
-    "jsdom": "^26.1.0"
+    "jsdom": "^26.1.0",
+    "sharp": "^0.34.5"
   },
   "jest": {
     "testEnvironment": "jsdom",
@@ -137,5 +139,8 @@
     "@istanbuljs/load-nyc-config": {
       "js-yaml": "^3.15.1"
     }
+  },
+  "allowScripts": {
+    "sharp@0.34.5": true
   }
 }

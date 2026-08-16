@@ -103,7 +103,7 @@ youtube = "https://www.youtube.com/@divinci-ai"
 description = "AI releases. Excellence, every time."
 
 # SEO settings
-default_image = "/images/divinci-social-unfurl.png"
+default_image = "/images/og/index.jpg"
 favicon = "/images/favicon-32x32.png"
 tagline = "AI releases. Excellence, every time."
 
