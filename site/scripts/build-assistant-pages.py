@@ -124,6 +124,23 @@ def parse_allowlist(path: pathlib.Path):
     return entries
 
 
+def neutralise_html(value: str) -> str:
+    """Escape raw HTML in generated answers.
+
+    The API escapes this at generation time now, but content generated BEFORE
+    that fix is stored unescaped, and this script reads whatever the endpoint
+    serves. Zola passes raw HTML in Markdown straight through — verified by
+    building a probe page where `<img src=x onerror=...>` and `<script>` both
+    survived into the output — so an unescaped stored answer would become live
+    markup on divinci.ai.
+
+    Idempotent in the way that matters: text the API already escaped contains no
+    `<` or `>`, so this is a no-op on it. `&` is deliberately NOT escaped here —
+    doing so would double-escape the API's own `&lt;` into a visible `&amp;lt;`.
+    """
+    return value.replace("<", "&lt;").replace(">", "&gt;")
+
+
 def escape_toml(value: str) -> str:
     """Escape a value for a TOML basic string in generated front matter."""
     return value.replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ").strip()
@@ -161,7 +178,8 @@ def render_page(entry, release, content) -> str:
     lines.append("faq = [")
     for pair in content["faq"]:
         lines.append("  { question = \"%s\", answer = \"%s\" }," % (
-            escape_toml(pair["question"]), escape_toml(pair["answer"]),
+            escape_toml(neutralise_html(pair["question"])),
+            escape_toml(neutralise_html(pair["answer"])),
         ))
     lines.append("]")
     lines.append("+++")
@@ -174,9 +192,9 @@ def render_page(entry, release, content) -> str:
     lines.append(f"## {content.get('heading') or 'Common questions'}")
     lines.append("")
     for pair in content["faq"]:
-        lines.append(f"### {pair['question'].strip()}")
+        lines.append(f"### {neutralise_html(pair['question'].strip())}")
         lines.append("")
-        lines.append(pair["answer"].strip())
+        lines.append(neutralise_html(pair["answer"].strip()))
         lines.append("")
 
     return "\n".join(lines)
