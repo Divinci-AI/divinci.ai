@@ -25,3 +25,7 @@ site/public/
 # what the assistant says).
 site/content/a/*.md
 !site/content/a/_index.md
+
+# Python bytecode from the build-time generators and their tests.
+__pycache__/
+*.pyc
