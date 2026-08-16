@@ -12,6 +12,7 @@ import {
   timingSafeEqual,
 } from './www-rag-activity.mjs';
 import { AGENT_LINK_HEADER, handleAgentDiscovery } from './agent-discovery.mjs';
+import { monitorStatus } from './monitor-status.mjs';
 import {
   WEB_BOT_AUTH_DIRECTORY_PATH,
   handleWebBotAuthDirectory,
