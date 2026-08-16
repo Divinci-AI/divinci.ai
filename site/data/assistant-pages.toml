@@ -1,0 +1,41 @@
+# Assistants that get a public page at divinci.ai/a/<slug>/
+#
+# THIS FILE IS THE ELIGIBILITY GATE. A page exists because a person added a
+# block here in a reviewable commit — never because a heuristic matched.
+#
+# That is deliberate. The public release catalog has ~496 entries, of which 383
+# are auto-crawled `wwwrag-*` corpora ABOUT THIRD-PARTY WEBSITES and most of the
+# rest are sales demos or dated test releases. Generating a page each would be
+# scaled content abuse aimed at the domain our marketing site ranks on, and
+# filtering by title pattern would publish someone's private assistant the first
+# time a real customer named theirs "Demo — Acme".
+#
+# Before adding an entry, confirm all four:
+#
+#   1. The assistant is ours to publish, or the customer has agreed to be
+#      listed. A wwwrag corpus for someone else's site is NOT ours to publish.
+#   2. It is a real, maintained assistant — not a demo, fork, or test release.
+#   3. It allows anonymous chat, so a visitor arriving from search can use it.
+#   4. Its release has published seo-content. The build checks this and skips
+#      the entry otherwise; it will not emit a thin page.
+#
+# Generate the Q&A first (server repo):
+#   POST /assistant/_admin/generate-seo-content  {"releaseIds":["<id>"]}
+#
+# Fields:
+#   slug         required, kebab-case — becomes /a/<slug>/
+#   release_id   required, 24-hex release ObjectId
+#   title        optional, overrides the release title
+#   description  optional, overrides the release description
+#   site         optional, the assistant's own site, shown as a link
+
+# --- Examples, intentionally commented out ------------------------------------
+# Nothing is listed yet: no PRODUCTION release has published seo-content, so an
+# entry today would only ever be skipped. Uncomment once its Q&A is generated.
+#
+# [[assistant]]
+# slug = "dr-fuhrman-ai"
+# release_id = "6a63c46da22bc8b1467d85f9"
+# title = "Dr. Fuhrman AI"
+# description = "Ask about nutritarian eating, nutrient density, and reversing disease with food."
+# site = "https://www.drfuhrman.com"
