@@ -581,9 +581,20 @@ const STATUS_COMPONENTS = [
     name: 'Platform',
     description: 'Chat, API, and web — edge and origin availability',
     monitors: [
-      // Cloudflare cannot reach origin (522/523/524/530) — a real outage.
-      { id: 20807650, onAlert: 'major_outage' },
       // Elevated 5xx — degraded but generally still serving.
+      //
+      // ⚠️ Monitor 20807650 ([CF] Origin unreachable 52x/530) was DELETED on
+      // 2026-08-16 as redundant: its status codes (522/523/524/530) are a
+      // strict subset of this monitor's, on the same zones, and it was paging
+      // twice for every origin event. Its id MUST be removed here as well — a
+      // monitor this list references but Datadog no longer returns maps to
+      // `unknown` (see the fetch loop), which would pin the public Platform
+      // component to `unknown` permanently.
+      //
+      // Consequence worth knowing: Platform can no longer report
+      // `major_outage` from Cloudflare, because "5xx elevated" is a degraded
+      // signal by nature. A genuine outage still reaches the banner through the
+      // GCP-derived components below, which probe the customer path directly.
       { id: 20807649, onAlert: 'degraded' },
     ],
   },
