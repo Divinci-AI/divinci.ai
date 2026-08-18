@@ -53,7 +53,9 @@ failure.
 import json
 import pathlib
 import re
+import ssl
 import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -75,6 +77,26 @@ OBJECTID_RE = re.compile(r"^[a-f0-9]{24}$")
 GENERATED_MARKER = "generated_by = \"build-assistant-pages.py\""
 
 
+def _certifi_context():
+    """An SSL context backed by certifi's bundle, or None if unavailable.
+
+    Mirrors build-open-web-vectors-data.py, where the reasoning is written out:
+    a python.org install on macOS trusts no CAs until "Install
+    Certificates.command" has been run, and every HTTPS fetch here fails with
+    CERTIFICATE_VERIFY_FAILED. Failure in this script is quiet by design — a
+    fetch that returns None just skips one assistant — so on a stock Python the
+    whole generator would emit nothing and still exit 0.
+
+    A safety net, not a fix: run that installer once and every build script is
+    repaired at the same time.
+    """
+    try:
+        import certifi
+    except ImportError:
+        return None
+    return ssl.create_default_context(cafile=certifi.where())
+
+
 def fetch_json(url: str):
     """GET and parse JSON.
 
@@ -87,6 +109,22 @@ def fetch_json(url: str):
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             body = resp.read().decode("utf-8", "replace")
+    except urllib.error.URLError as exc:
+        if not isinstance(getattr(exc, "reason", None), ssl.SSLError):
+            print(f"    ! fetch failed: {exc}", file=sys.stderr)
+            return None
+        context = _certifi_context()
+        if context is None:
+            print(f"    ! fetch failed: {exc}", file=sys.stderr)
+            print("      (this Python trusts no CAs; run Install Certificates.command)", file=sys.stderr)
+            return None
+        print("    · system trust store rejected the certificate; retrying with certifi")
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT, context=context) as resp:
+                body = resp.read().decode("utf-8", "replace")
+        except Exception as retry_exc:  # noqa: BLE001 - skip this one
+            print(f"    ! fetch failed: {retry_exc}", file=sys.stderr)
+            return None
     except Exception as exc:  # noqa: BLE001 - any failure is "skip this one"
         print(f"    ! fetch failed: {exc}", file=sys.stderr)
         return None
