@@ -1,0 +1,858 @@
+{% extends "base.html" %}
+
+{# ── Page-scoped Divinci agent ────────────────────────────────────────────
+   Same mechanism as /www-rag/ (see base.html's chat_config block): the
+   bubble runs the site-wide Release, and this re-points it at the
+   initiative — the permission gate, the corpus, and the dataset staging. #}
+{% block chat_config %}
+<script type="application/json" id="divinci-chat-starters">
+[
+  {"label": "How does the gate work?", "message": "How does the Open Web Vector Initiative decide whether it is allowed to crawl a site?"},
+  {"label": "Do you train on it?", "message": "Does Divinci train AI models on the pages it crawls for the Open Web Vector Initiative?"},
+  {"label": "What's in the dataset?", "message": "What will the Open Web Vectors dataset contain, and what will it deliberately leave out?"},
+  {"label": "Index my site", "message": "How do I get my own website indexed, and how do I claim it afterwards?"}
+]
+</script>
+<script type="application/json" id="divinci-chat-blurbs">
+[
+  {"selector": ".owv-ask", "blurb": "Half the sites we looked at said no. Ask me what happens then."},
+  {"selector": ".owv-how", "blurb": "One vector database per site — ask me why that matters."},
+  {"selector": ".owv-dataset", "blurb": "Manifest first, text only where permitted. Ask me why."},
+  {"selector": ".owv-see", "blurb": "Every site here has a live, cited chat endpoint."}
+]
+</script>
+<script type="text/plain" id="divinci-chat-speech">🛡️ We ask before we crawl. Ask me how.</script>
+<script type="text/plain" id="divinci-chat-greeting">👋 This is the Open Web Vector Initiative — a public, per-site retrieval index for the open web. Ask me how the permission gate works, what's in the corpus, or how to get your own site indexed.</script>
+<script type="text/plain" id="divinci-chat-context">Context: the visitor is on the Open Web Vector Initiative page (divinci.ai/open-web-vectors). The initiative builds a public, per-site retrieval index of the open web: every crawled site gets its own vector database (EmbeddingGemma 300M, 768-dim, cosine, DiskANN, Turso/libSQL) and a chat endpoint grounded in that site's own pages, with citations. Nothing is trained on. The permission gate runs BEFORE the crawler: robots.txt and Cloudflare Content Signals are read first, training refusal and inference refusal are honoured as different things, a robots.txt we could not read is treated as a refusal rather than as consent, and the crawler declares its purposes ("search", "ai-input") in the request. Refused hosts cost zero browser-seconds. The corpus is browsable at divinci.ai/www-rag, where a site owner can also claim their site. A public dataset is planned in stages: index manifest first, embeddings without text next, and full text only for hosts with no training reservation. Answer in that context. This page is served in the language with BCP-47 code "{{ current_lang }}"; reply in that language unless the visitor writes in another one.</script>
+{% endblock %}
+
+{% block content %}
+<section class="owv-hero">
+    <div class="container">
+        <p class="owv-eyebrow">The Open Web Vector Initiative</p>
+        <h1 class="owv-title">The web is only legible to AI if someone already swallowed it.</h1>
+        <p class="owv-lead">
+            We are building the other thing: a <strong>public, per-site retrieval index</strong>.
+            Every site gets its own vector database, its own embeddings, and a chat endpoint
+            grounded in its own words, with citations back to the page. Nothing is trained on.
+            The corpus stays attributable to the site it came from — and any site owner can
+            claim theirs.
+        </p>
+
+        {# Server-rendered from the 2026-08-17 snapshot so the page means
+           something without JS; open-web-vectors.js refreshes every value
+           from the same public directory API the /www-rag/ grid uses. #}
+        <div class="owv-stats" id="owv-stats">
+            <div class="owv-stat">
+                <span class="owv-stat-value" data-owv-stat="sites">472</span>
+                <span class="owv-stat-label">sites indexed</span>
+            </div>
+            <div class="owv-stat">
+                <span class="owv-stat-value" data-owv-stat="pages">219,248</span>
+                <span class="owv-stat-label">pages crawled</span>
+            </div>
+            <div class="owv-stat">
+                <span class="owv-stat-value" data-owv-stat="chunks">1,106,599</span>
+                <span class="owv-stat-label">chunks embedded</span>
+            </div>
+            <div class="owv-stat">
+                <span class="owv-stat-value" data-owv-stat="bytes">1.3 GB</span>
+                <span class="owv-stat-label">of extracted text</span>
+            </div>
+            <div class="owv-stat">
+                <span class="owv-stat-value" data-owv-stat="endpoints">410</span>
+                <span class="owv-stat-label">live chat endpoints</span>
+            </div>
+            <div class="owv-stat">
+                <span class="owv-stat-value" data-owv-stat="median">117</span>
+                <span class="owv-stat-label">pages, median site</span>
+            </div>
+        </div>
+        <p class="owv-asof">
+            Measured, not projected — read live from the public directory API.
+            <span class="owv-asof-stamp" data-owv-asof>Snapshot: 17 August 2026.</span>
+        </p>
+
+        <div class="owv-cta-row">
+            <a class="owv-btn owv-btn-primary" href="/www-rag/">Browse the directory</a>
+            <a class="owv-btn owv-btn-ghost" href="https://chat.divinci.app/start/crawl" rel="noopener">Index your site</a>
+        </div>
+    </div>
+</section>
+
+<section class="owv-band owv-composition">
+    <div class="container">
+        <h2 class="owv-h2">It reads like public infrastructure, because that's what's in it</h2>
+        <p class="owv-p">
+            <span data-owv-public-share>55%</span> of the index is
+            <code>.gov</code>, <code>.edu</code> and <code>.org</code>. That is not a
+            filter we applied for the look of it — it is what happens when you follow
+            citations and documentation links rather than commercial traffic.
+        </p>
+
+        <div class="owv-bar" role="img" aria-label="Composition of the index by top-level domain" data-owv-bar>
+            <span class="owv-bar-seg owv-seg-org" data-owv-seg="org" style="width:30.9%"></span>
+            <span class="owv-bar-seg owv-seg-gov" data-owv-seg="gov" style="width:15.7%"></span>
+            <span class="owv-bar-seg owv-seg-edu" data-owv-seg="edu" style="width:8.1%"></span>
+            <span class="owv-bar-seg owv-seg-com" data-owv-seg="com" style="width:33.3%"></span>
+            <span class="owv-bar-seg owv-seg-other" data-owv-seg="other" style="width:12.0%"></span>
+        </div>
+        <ul class="owv-legend">
+            <li><span class="owv-dot owv-seg-org"></span>.org <b data-owv-count="org">146</b></li>
+            <li><span class="owv-dot owv-seg-gov"></span>.gov <b data-owv-count="gov">74</b></li>
+            <li><span class="owv-dot owv-seg-edu"></span>.edu <b data-owv-count="edu">38</b></li>
+            <li><span class="owv-dot owv-seg-com"></span>.com <b data-owv-count="com">157</b></li>
+            <li><span class="owv-dot owv-seg-other"></span>everything else <b data-owv-count="other">57</b></li>
+        </ul>
+
+        <div class="owv-facts">
+            <div class="owv-fact">
+                <h3 class="owv-fact-title">Deepest crawls</h3>
+                <p class="owv-fact-body" data-owv-fact="deepest">
+                    diff.wikimedia.org, ipac.caltech.edu and blog.mozilla.org run past
+                    7,000 pages each.
+                </p>
+            </div>
+            <div class="owv-fact">
+                <h3 class="owv-fact-title">Largest single corpus</h3>
+                <p class="owv-fact-body" data-owv-fact="largest">
+                    exoplanetarchive.ipac.caltech.edu — 929 pages, but 176 MB of
+                    extracted text, more than any site with ten times the page count.
+                </p>
+            </div>
+            <div class="owv-fact">
+                <h3 class="owv-fact-title">Typical site</h3>
+                <p class="owv-fact-body">
+                    A few hundred pages and a few thousand chunks. The index is wide
+                    rather than deep — the point is coverage of the open web, not a
+                    handful of giants.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="owv-band owv-how">
+    <div class="container">
+        <h2 class="owv-h2">How it works</h2>
+
+        <ol class="owv-pipe">
+            <li class="owv-pipe-node owv-pipe-gate">
+                <span class="owv-pipe-step">01</span>
+                <span class="owv-pipe-name">Permission gate</span>
+                <span class="owv-pipe-note">robots.txt + Content Signals — read <em>first</em></span>
+            </li>
+            <li class="owv-pipe-arrow" aria-hidden="true"></li>
+            <li class="owv-pipe-node">
+                <span class="owv-pipe-step">02</span>
+                <span class="owv-pipe-name">Crawl</span>
+                <span class="owv-pipe-note">Cloudflare Browser Rendering</span>
+            </li>
+            <li class="owv-pipe-arrow" aria-hidden="true"></li>
+            <li class="owv-pipe-node">
+                <span class="owv-pipe-step">03</span>
+                <span class="owv-pipe-name">Chunk</span>
+                <span class="owv-pipe-note">text extracted, split, offsets kept</span>
+            </li>
+            <li class="owv-pipe-arrow" aria-hidden="true"></li>
+            <li class="owv-pipe-node">
+                <span class="owv-pipe-step">04</span>
+                <span class="owv-pipe-name">Embed</span>
+                <span class="owv-pipe-note">EmbeddingGemma 300M, 768-dim</span>
+            </li>
+            <li class="owv-pipe-arrow" aria-hidden="true"></li>
+            <li class="owv-pipe-node">
+                <span class="owv-pipe-step">05</span>
+                <span class="owv-pipe-name">Per-site vector DB</span>
+                <span class="owv-pipe-note">Turso (libSQL), cosine, DiskANN</span>
+            </li>
+            <li class="owv-pipe-arrow" aria-hidden="true"></li>
+            <li class="owv-pipe-node owv-pipe-end">
+                <span class="owv-pipe-step">06</span>
+                <span class="owv-pipe-name">Cited chat</span>
+                <span class="owv-pipe-note">answers link back to the page</span>
+            </li>
+        </ol>
+        <p class="owv-pipe-branch">
+            <span class="owv-pipe-branch-mark" aria-hidden="true">↳</span>
+            A host that refuses stops at step 01 and costs us zero browser-seconds.
+            Nothing is fetched, so there is nothing to delete later.
+        </p>
+
+        <div class="owv-grid2">
+            <div class="owv-note">
+                <h3 class="owv-note-title">One database per site. Not one giant index.</h3>
+                <p>
+                    A site's content is never blended with another's, so retrieval cannot
+                    cite the wrong source — and a site owner can be handed exactly their
+                    own data, with nothing of anyone else's mixed in.
+                </p>
+            </div>
+            <div class="owv-note">
+                <h3 class="owv-note-title">It feeds itself.</h3>
+                <p>
+                    The pipeline discovers its next targets from the outbound links of the
+                    corpus it just built. Crawl, chunk, embed and serve all run on
+                    Cloudflare — Workers, Workflows, Browser Rendering and Workers AI —
+                    with Turso as the vector store.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="owv-band owv-ask">
+    <div class="container">
+        <p class="owv-eyebrow owv-eyebrow-dark">The part that makes this different</p>
+        <h2 class="owv-h2 owv-h2-dark">We ask first — and the asking runs before the crawler, not after</h2>
+        <p class="owv-p owv-p-dark">
+            Asking permission after you have taken the content is not asking permission.
+            So the gate is the first thing in the pipeline, and a refusal costs us nothing
+            to honour. This is engineering, not a values statement bolted on afterwards.
+        </p>
+
+        <div class="owv-principles">
+            <article class="owv-principle">
+                <h3 class="owv-principle-title">Training refusal and inference refusal are different things</h3>
+                <p>
+                    A site declaring <code>search=yes, ai-train=no, ai-input=yes</code> has
+                    permitted precisely what we do and forbidden precisely what we don't.
+                    We honour that distinction instead of collapsing every AI signal into a
+                    blanket no — so sites that block <em>training</em> crawlers are still
+                    indexed for retrieval. That is the point.
+                </p>
+            </article>
+            <article class="owv-principle">
+                <h3 class="owv-principle-title">A refusal we couldn't read is not consent</h3>
+                <p>
+                    If <code>robots.txt</code> answers 403, 405 or 429, we do not treat
+                    "no restriction found" as "no restriction exists". Those hosts are
+                    retried, and then dropped — never quietly published on the assumption
+                    that silence meant yes.
+                </p>
+            </article>
+            <article class="owv-principle">
+                <h3 class="owv-principle-title">We declare our purpose in the request itself</h3>
+                <p>
+                    Every fetch carries <code>crawlPurposes: ["search", "ai-input"]</code>,
+                    so publishers can see what we are doing in their own Cloudflare
+                    analytics rather than having to take our word for it here.
+                </p>
+            </article>
+        </div>
+
+        <div class="owv-callout">
+            <p class="owv-callout-stat">6 of 12</p>
+            <div class="owv-callout-body">
+                <p>
+                    In a screened sample of candidate hosts, <strong>half refused</strong>,
+                    and we listened. One of them blocks
+                    <code>cloudflarebrowserrenderingcrawler</code> by name — the exact
+                    renderer we use — so we skipped it. That is the honest hit rate, and a
+                    project that only reports the sites it did index is not reporting the
+                    interesting half.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="owv-band owv-dataset">
+    <div class="container">
+        <h2 class="owv-h2">The dataset, in the order we can honestly ship it</h2>
+        <p class="owv-p">
+            The output belongs in public, so the work compounds for people who aren't us.
+            But a Hugging Face dataset of raw page text is, in practice, a training
+            corpus — that is the single most common use of the format. Publishing one
+            would take content from sites that explicitly set <code>ai-train=no</code> and
+            hand it to exactly the use they refused. So this ships in stages, and the
+            stages are the whole point.
+        </p>
+
+        <ol class="owv-stages">
+            <li class="owv-stage owv-stage-now">
+                <span class="owv-stage-tag">Shipping first</span>
+                <h3 class="owv-stage-title">The index manifest</h3>
+                <p>
+                    One row per site: host, page and chunk counts, corpus bytes, crawl
+                    date, embedding model, the site's declared AI signals, and our gate
+                    verdict. No content. Nobody has published a measured, per-host map of
+                    who permits what — that alone is worth having.
+                </p>
+                <p class="owv-stage-meta">CC-BY-4.0</p>
+            </li>
+            <li class="owv-stage owv-stage-next">
+                <span class="owv-stage-tag">Next</span>
+                <h3 class="owv-stage-title">Embeddings without text</h3>
+                <p>
+                    The vectors, plus source URL and offsets, with no reconstructable page
+                    content. Useful for retrieval research and embedding benchmarks; not a
+                    training corpus.
+                </p>
+                <p class="owv-stage-meta">CC-BY-4.0</p>
+            </li>
+            <li class="owv-stage owv-stage-later">
+                <span class="owv-stage-tag">Only where permitted</span>
+                <h3 class="owv-stage-title">Full text, per-host</h3>
+                <p>
+                    Restricted to hosts carrying no training reservation, plus public-domain
+                    material — with an explicit way for a site owner to say yes, which no
+                    comparable dataset offers. It waits on one piece of engineering: the
+                    gate verdict has to be stored durably per host alongside the crawl
+                    before any text-bearing release can be filtered correctly. That work
+                    comes first.
+                </p>
+                <p class="owv-stage-meta">No blanket licence — per-host, source URL on every row</p>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<section class="owv-band owv-see">
+    <div class="container">
+        <h2 class="owv-h2">See it working</h2>
+        <p class="owv-p">
+            Every indexed host has a working chat endpoint that answers out of that
+            host's own pages, and cites the page it answered from.
+        </p>
+        <div class="owv-examples" id="owv-examples">
+            <p class="owv-examples-fallback">
+                <a href="/www-rag/">Open the directory</a> to search, filter and export the
+                full catalogue, or chat with any site in it.
+            </p>
+        </div>
+        <p class="owv-see-more">
+            <a class="owv-btn owv-btn-primary" href="/www-rag/">Browse all indexed sites</a>
+        </p>
+    </div>
+</section>
+
+<section class="owv-band owv-final">
+    <div class="container">
+        <h2 class="owv-h2 owv-h2-dark">Your site, your index, your assistant</h2>
+        <p class="owv-p owv-p-dark">
+            If your site is already in the index, you can claim it by DNS or file
+            verification and take over its assistant. If it isn't, you can put it there
+            yourself — and if you'd rather we never did, the gate is already reading your
+            robots.txt.
+        </p>
+        <div class="owv-cta-row">
+            <a class="owv-btn owv-btn-primary" href="https://chat.divinci.app/start/crawl" rel="noopener">Index your site</a>
+            <a class="owv-btn owv-btn-ghost owv-btn-ghost-dark" href="/www-rag/">Find and claim your site</a>
+        </div>
+    </div>
+</section>
+
+<style>
+/* ── Open Web Vector Initiative ───────────────────────────────────────────
+   Shares the /www-rag/ palette on purpose — the two pages are one story,
+   and a visitor moving between them should not feel a change of product.
+   Dark bands: #0b0b14 → #1f1f3a. Light bands: #f7f7fb. Accent: #4f46e5. */
+.owv-hero {
+    background: linear-gradient(135deg, #0b0b14 0%, #161629 55%, #1f1f3a 100%);
+    color: #fff;
+    padding: 96px 0 72px;
+}
+.owv-eyebrow {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9d9db8;
+    margin: 0 0 18px;
+}
+.owv-eyebrow-dark { color: #a5a5c8; }
+.owv-title {
+    /* A global `hyphens: auto` breaks the display serif mid-word on a phone
+       ("legi-ble"); the line breaks read better than the hyphen does. */
+    hyphens: manual;
+    font-family: 'Fraunces', serif;
+    font-size: clamp(34px, 5.2vw, 56px);
+    line-height: 1.08;
+    margin: 0 0 22px;
+    max-width: 18ch;
+    color: #fff !important;
+}
+.owv-lead {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+    color: #c9c9e0;
+    max-width: 62ch;
+    margin: 0 0 40px;
+}
+.owv-lead strong { color: #fff; }
+
+/* Stat row — six tiles, wrapping to two rows on narrow screens. */
+.owv-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 14px;
+    overflow: hidden;
+}
+.owv-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px;
+    background: rgba(11,11,20,0.55);
+}
+.owv-stat-value {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+.owv-stat-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: #9d9db8;
+}
+.owv-asof {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13.5px;
+    color: #8f8fae;
+    margin: 14px 0 0;
+}
+.owv-asof-stamp { color: #6f6f92; }
+
+.owv-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+}
+.owv-btn {
+    display: inline-block;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 13px 26px;
+    border-radius: 999px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.owv-btn:hover { transform: translateY(-1px); }
+.owv-btn-primary {
+    color: #1a1408;
+    background: linear-gradient(135deg, #d9c49a 0%, #b8a080 100%);
+    border: 1px solid rgba(255, 235, 195, 0.6);
+    box-shadow: 0 2px 12px rgba(184, 160, 128, 0.35);
+}
+.owv-btn-ghost {
+    color: #fff;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.28);
+}
+.owv-btn-ghost-dark:hover { background: rgba(255,255,255,0.12); }
+
+/* ── Bands ─────────────────────────────────────────────────────────────── */
+.owv-band { padding: 76px 0; }
+.owv-composition, .owv-dataset { background: #f7f7fb; }
+.owv-how, .owv-see { background: #fff; }
+.owv-ask {
+    background: linear-gradient(160deg, #12122a 0%, #1b1b38 100%);
+    color: #c9c9e0;
+}
+.owv-final {
+    background: linear-gradient(135deg, #1f1f3a 0%, #161629 60%, #0b0b14 100%);
+    color: #c9c9e0;
+    text-align: center;
+}
+.owv-final .owv-cta-row { justify-content: center; }
+.owv-h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 3.4vw, 36px);
+    line-height: 1.15;
+    color: #1a1a2e;
+    margin: 0 0 18px;
+    max-width: 26ch;
+}
+.owv-h2-dark { color: #fff !important; }
+.owv-final .owv-h2 { margin-left: auto; margin-right: auto; }
+.owv-p {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 17.5px;
+    line-height: 1.65;
+    color: #45454f;
+    max-width: 68ch;
+    margin: 0 0 32px;
+}
+.owv-p-dark { color: #b6b6d2; }
+.owv-final .owv-p { margin-left: auto; margin-right: auto; }
+.owv-band code {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em;
+    padding: 2px 6px;
+    border-radius: 5px;
+    background: rgba(79,70,229,0.09);
+    color: #4338ca;
+    overflow-wrap: anywhere;
+}
+.owv-ask code {
+    background: rgba(255,255,255,0.10);
+    color: #cdcdf5;
+}
+
+/* A bare <p> picks up the site-wide heading green (#1e3a2b) from global CSS,
+   which beats any colour merely INHERITED from its container — invisible on
+   the dark bands and off-palette on the light ones. Every paragraph inside
+   these sections therefore gets its colour stated on the element itself. */
+.owv-principle p,
+.owv-callout-body p { color: #b6b6d2; }
+.owv-note p,
+.owv-stage p { color: #55555f; }
+/* Same story for links: without this they fall through to the UA default blue. */
+.owv-band a:not(.owv-btn):not(.owv-example-link) {
+    color: #4f46e5;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.owv-ask a:not(.owv-btn),
+.owv-final a:not(.owv-btn) { color: #cdcdf5; }
+
+/* ── Composition bar ───────────────────────────────────────────────────── */
+.owv-bar {
+    display: flex;
+    height: 28px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #e5e5f0;
+}
+.owv-bar-seg { display: block; height: 100%; }
+.owv-seg-org { background: #4f46e5; }
+.owv-seg-gov { background: #2563eb; }
+.owv-seg-edu { background: #0891b2; }
+.owv-seg-com { background: #b8a080; }
+.owv-seg-other { background: #c7c7d6; }
+.owv-legend {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin: 14px 0 40px;
+    padding: 0;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    color: #55555f;
+}
+.owv-legend li { display: flex; align-items: center; gap: 7px; }
+.owv-legend b { color: #1a1a2e; font-variant-numeric: tabular-nums; }
+.owv-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.owv-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+.owv-fact {
+    background: #fff;
+    border: 1px solid #e5e5f0;
+    border-radius: 14px;
+    padding: 20px 22px;
+}
+.owv-fact-title {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: #1a1a2e;
+    margin: 0 0 8px;
+}
+.owv-fact-body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: #55555f;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+/* ── Pipeline ──────────────────────────────────────────────────────────── */
+/* Real HTML boxes rather than one fixed-size SVG: the labels stay selectable
+   and legible, and the whole row restacks into a column on a phone instead of
+   scaling its type down to 5px. */
+.owv-pipe {
+    list-style: none;
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    margin: 0 0 14px;
+    padding: 0;
+}
+.owv-pipe-node {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 16px 14px;
+    background: #fafafc;
+    border: 1px solid #e5e5f0;
+    border-radius: 12px;
+}
+.owv-pipe-gate {
+    background: #eef2ff;
+    border-color: #c7d2fe;
+}
+.owv-pipe-end {
+    background: #1a1a2e;
+    border-color: #1a1a2e;
+}
+.owv-pipe-end .owv-pipe-name { color: #fff; }
+.owv-pipe-end .owv-pipe-note { color: #a5a5c8; }
+.owv-pipe-end .owv-pipe-step { color: #6f6f92; }
+.owv-pipe-step {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    color: #9a9aa8;
+}
+.owv-pipe-name {
+    font-family: 'Fraunces', serif;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: #1a1a2e;
+    line-height: 1.2;
+}
+.owv-pipe-note {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: #77778a;
+    overflow-wrap: anywhere;
+}
+.owv-pipe-arrow {
+    flex: 0 0 14px;
+    align-self: center;
+    height: 10px;
+    background: #c7c7d6;
+    /* Chevron drawn with a clip-path so no image or icon font is needed. */
+    clip-path: polygon(0 20%, 60% 20%, 60% 0, 100% 50%, 60% 100%, 60% 80%, 0 80%);
+}
+.owv-pipe-branch {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #55555f;
+    background: #fff8ec;
+    border: 1px solid #f0e2c8;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 0 0 40px;
+    max-width: 72ch;
+}
+.owv-pipe-branch-mark { color: #b8a080; margin-right: 6px; font-weight: 700; }
+
+.owv-grid2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+}
+.owv-note {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: #55555f;
+    border-left: 3px solid #4f46e5;
+    padding-left: 18px;
+}
+.owv-note p { margin: 0; }
+.owv-note-title {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    color: #1a1a2e;
+    margin: 0 0 8px;
+}
+
+/* ── "We ask first" cards ──────────────────────────────────────────────── */
+.owv-principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
+    margin-bottom: 34px;
+}
+/* Deliberately not "…-card": style.css paints a paper-grain background-image
+   on every [class*="card"] on the site, which overrides the background set
+   here (it cost the /www-rag/ initiative band its whole dark gradient). */
+.owv-principle {
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 16px;
+    padding: 24px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #b6b6d2;
+}
+.owv-principle p { margin: 0; }
+.owv-principle em { color: #dcdcf5; font-style: italic; }
+.owv-principle strong { color: #fff; }
+.owv-principle-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: #fff;
+    margin: 0 0 10px;
+    line-height: 1.25;
+}
+.owv-callout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 22px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-left: 3px solid #b8a080;
+    border-radius: 16px;
+    padding: 24px 26px;
+}
+.owv-callout-stat {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    line-height: 1;
+    color: #d9c49a;
+    margin: 0;
+    flex: none;
+}
+.owv-callout-body {
+    flex: 1 1 320px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: #b6b6d2;
+}
+.owv-callout-body p { margin: 0; }
+.owv-callout-body strong { color: #fff; }
+
+/* ── Dataset stages ────────────────────────────────────────────────────── */
+.owv-stages {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+.owv-stage {
+    background: #fff;
+    border: 1px solid #e5e5f0;
+    border-radius: 16px;
+    padding: 24px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #55555f;
+    display: flex;
+    flex-direction: column;
+}
+.owv-stage p { margin: 0 0 10px; }
+.owv-stage-tag {
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+}
+.owv-stage-now .owv-stage-tag { background: #eafaf1; color: #1d7a4a; }
+.owv-stage-next .owv-stage-tag { background: #eef2ff; color: #4f46e5; }
+.owv-stage-later .owv-stage-tag { background: #fff4e5; color: #b45309; }
+.owv-stage-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    color: #1a1a2e;
+    margin: 0 0 10px;
+}
+.owv-stage-meta {
+    margin-top: auto;
+    padding-top: 10px;
+    font-size: 12.5px;
+    color: #9a9aa8;
+    border-top: 1px solid #f0f0f5;
+}
+
+/* ── Live examples ─────────────────────────────────────────────────────── */
+.owv-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+.owv-examples-fallback {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    color: #55555f;
+    margin: 0;
+}
+.owv-example {
+    background: #fafafc;
+    border: 1px solid #e5e5f0;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.owv-example-host {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a2e;
+    overflow-wrap: anywhere;
+}
+.owv-example-meta {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13.5px;
+    color: #77778a;
+    font-variant-numeric: tabular-nums;
+}
+.owv-example-link {
+    margin-top: auto;
+    align-self: flex-start;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    background: #1a1a2e;
+    padding: 7px 16px;
+    border-radius: 8px;
+}
+.owv-see-more { margin: 0; }
+
+@media (max-width: 900px) {
+    /* Column layout: the chevrons rotate to point downwards. */
+    .owv-pipe { flex-direction: column; align-items: stretch; }
+    .owv-pipe-arrow {
+        flex: none;
+        width: 10px;
+        height: 14px;
+        margin: 0 auto;
+        clip-path: polygon(20% 0, 20% 60%, 0 60%, 50% 100%, 100% 60%, 80% 60%, 80% 0);
+    }
+}
+@media (max-width: 640px) {
+    .owv-hero { padding: 72px 0 56px; }
+    .owv-band { padding: 56px 0; }
+    .owv-lead { font-size: 17px; }
+    .owv-callout-stat { font-size: 36px; }
+    .owv-btn { width: 100%; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .owv-btn { transition: none; }
+    .owv-btn:hover { transform: none; }
+}
+</style>
+
+<script defer src="{{ get_url(path="js/open-web-vectors.js") }}"></script>
+{% endblock %}

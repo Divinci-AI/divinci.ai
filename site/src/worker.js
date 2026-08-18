@@ -119,7 +119,15 @@ export default {
       'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
       'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
       'Reporting-Endpoints': `csp-endpoint="${cspReportUrl}"`,
-      'Content-Security-Policy': `default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://r2.leadsy.ai https://tag.trovo-tag.com https://js.hs-scripts.com https://js.hs-analytics.net https://js.hs-banner.com https://js.hscollectedforms.net; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; connect-src 'self' https: data:; media-src 'self' data: https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev https://chat-uploads.divinci.app; frame-src 'self' https://www.google.com/maps/ https://challenges.cloudflare.com https://tag.trovo-tag.com https://www.youtube.com https://www.youtube-nocookie.com https://cloudflare.tv; frame-ancestors 'self'; report-uri ${cspReportPath}; report-to csp-endpoint;`,
+      // NOTE on the CloudFront origin in script-src: r2.leadsy.ai/tag.js is
+      // only a loader — it pulls its actual payload from the distribution
+      // below, which was NOT allowlisted, so the visitor-identification tag
+      // silently did nothing. The violation was being reported to
+      // /api/csp-report the whole time; the reports go to console.warn, which
+      // means `wrangler tail` and nowhere else. A CloudFront distribution
+      // hostname can change, so this entry will break the same way again if
+      // the vendor re-provisions; if the tag stops working, look here first.
+      'Content-Security-Policy': `default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://r2.leadsy.ai https://ddwl4m2hdecbv.cloudfront.net https://tag.trovo-tag.com https://js.hs-scripts.com https://js.hs-analytics.net https://js.hs-banner.com https://js.hscollectedforms.net; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; connect-src 'self' https: data:; media-src 'self' data: https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev https://chat-uploads.divinci.app; frame-src 'self' https://www.google.com/maps/ https://challenges.cloudflare.com https://tag.trovo-tag.com https://www.youtube.com https://www.youtube-nocookie.com https://cloudflare.tv; frame-ancestors 'self'; report-uri ${cspReportPath}; report-to csp-endpoint;`,
     };
 
     // Handle CSP violation reports: lightweight log endpoint. Browser sends

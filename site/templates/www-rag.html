@@ -1,5 +1,33 @@
 {% extends "base.html" %}
 
+{# ── Page-scoped Divinci agent ────────────────────────────────────────────
+   The floating bubble runs the site-wide Release, so on its own it answers
+   as the generic divinci.ai assistant. These blocks re-point it at this
+   page's subject: WWW-RAG, the crawl, and the Open Web Vector Initiative.
+   Deliberately free of hard numbers — the corpus grows daily and the panel
+   is not one of the surfaces that refreshes from the API. #}
+{% block chat_config %}
+<script type="application/json" id="divinci-chat-starters">
+[
+  {"label": "What is WWW-RAG?", "message": "What is the WWW-RAG directory and how does it work?"},
+  {"label": "Index my site", "message": "How do I get my website crawled and indexed by WWW-RAG?"},
+  {"label": "Claim my site", "message": "How do I claim my site's assistant in the WWW-RAG directory, and what does claiming let me do?"},
+  {"label": "Do you train on it?", "message": "Does Divinci train AI models on the content it crawls for WWW-RAG, and how do you decide which sites to crawl?"}
+]
+</script>
+<script type="application/json" id="divinci-chat-blurbs">
+[
+  {"selector": ".www-rag-live-section", "blurb": "That's the crawler working right now — ask me what it's doing."},
+  {"selector": ".www-rag-owv-band", "blurb": "We ask permission before we crawl. Ask me how the gate works."},
+  {"selector": ".www-rag-universe-section", "blurb": "Sites sit near the sites they resemble. Ask me how that map is built."},
+  {"selector": ".www-rag-grid-section", "blurb": "Filter it, sort it, or export the whole catalog — I can walk you through it."}
+]
+</script>
+<script type="text/plain" id="divinci-chat-speech">🔎 Curious how a site gets indexed? Ask me.</script>
+<script type="text/plain" id="divinci-chat-greeting">👋 This is the WWW-RAG Directory — every site here has its own vector index and a chat endpoint grounded in its own pages. Ask me how the crawl works, how to get your site indexed, or how to claim one.</script>
+<script type="text/plain" id="divinci-chat-context">Context: the visitor is on the WWW-RAG Directory (divinci.ai/www-rag), Divinci's public catalog of crawled sites. Each site gets its own vector index (EmbeddingGemma 300M, 768-dim, Turso/libSQL) and an anonymous chat endpoint that cites the site's own pages. From the directory a visitor can Chat with any site's assistant, Build a copy of its index in their own workspace, or Claim their own site by DNS/file verification. Divinci indexes for search and retrieval grounding and does not train models on crawled content; robots.txt and Cloudflare Content Signals are read before crawling, and a refusal we cannot read is treated as a refusal. This work is the Open Web Vector Initiative (divinci.ai/open-web-vectors). Answer in that context. This page is served in the language with BCP-47 code "{{ current_lang }}"; reply in that language unless the visitor writes in another one.</script>
+{% endblock %}
+
 {% block content %}
 <section class="www-rag-hero" id="www-rag-hero">
     {# Layered poster + video: the <img> is the LCP element and the <video>
@@ -39,6 +67,23 @@
     <span class="www-rag-scan-cta-spark">✦</span> Scan your website
 </a>
 
+{# What this catalog is part of. Sits directly under the hero because it is
+   the answer to the first question the grid raises — who crawled all this,
+   and were they allowed to. #}
+<section class="www-rag-owv-band">
+    <div class="container">
+        <a class="www-rag-owv-link" href="/open-web-vectors/">
+            <span class="www-rag-owv-mark" aria-hidden="true">◆</span>
+            <span class="www-rag-owv-text">
+                <span class="www-rag-owv-eyebrow">The Open Web Vector Initiative</span>
+                <span class="www-rag-owv-headline">Every site here has its own vector database — and its own robots.txt was read before we fetched a single page.</span>
+                <span class="www-rag-owv-sub">How the permission gate works, what's in the corpus, and what we will and won't publish as a dataset.</span>
+            </span>
+            <span class="www-rag-owv-go" aria-hidden="true">→</span>
+        </a>
+    </div>
+</section>
+
 {# Live crawl strip. Hidden until the activity endpoint answers — the crawl
    daemon is laptop-local and often idle, and an empty box that says nothing
    is worse than no box. www-rag-live.js unhides it. #}
@@ -71,8 +116,73 @@
 
 <section class="www-rag-grid-section">
     <div class="container">
+        {# Toolbar stays hidden until the catalog lands — filters over an
+           empty list are just a row of dead controls. www-rag-directory.js
+           unhides it. #}
+        <div id="www-rag-toolbar" class="www-rag-toolbar" hidden>
+            <div class="www-rag-toolbar-filters">
+                <label class="www-rag-field">
+                    <span class="www-rag-field-label">Domain</span>
+                    <select id="www-rag-filter-tld" class="www-rag-select">
+                        <option value="">All domains</option>
+                        <option value="com">.com</option>
+                        <option value="org">.org</option>
+                        <option value="gov">.gov</option>
+                        <option value="edu">.edu</option>
+                        <option value="io">.io</option>
+                        <option value="ai">.ai</option>
+                        <option value="net">.net</option>
+                        <option value="co">.co</option>
+                        <option value="dev">.dev</option>
+                        <option value="other">Other</option>
+                    </select>
+                </label>
+                <label class="www-rag-field">
+                    <span class="www-rag-field-label">Status</span>
+                    <select id="www-rag-filter-status" class="www-rag-select">
+                        <option value="">Any status</option>
+                        <option value="chat">Chat-enabled</option>
+                        <option value="nochat">Not chat-enabled</option>
+                        <option value="claimed">Claimed</option>
+                        <option value="unclaimed">Unclaimed</option>
+                    </select>
+                </label>
+                <label class="www-rag-field">
+                    <span class="www-rag-field-label">Content</span>
+                    <select id="www-rag-filter-docs" class="www-rag-select">
+                        <option value="">Pages and documents</option>
+                        <option value="files">Has documents</option>
+                        <option value="pages">Pages only</option>
+                    </select>
+                </label>
+                <label class="www-rag-field">
+                    <span class="www-rag-field-label">Sort</span>
+                    <select id="www-rag-sort" class="www-rag-select">
+                        <option value="chunkCount:desc">Most chunks</option>
+                        <option value="pageCount:desc">Most pages</option>
+                        <option value="fileCount:desc">Most documents</option>
+                        <option value="totalBytes:desc">Largest index</option>
+                        <option value="lastCrawledAt:desc">Recently crawled</option>
+                        <option value="host:asc">Site A–Z</option>
+                        <option value="host:desc">Site Z–A</option>
+                        {# Selected when a table header click produces an order
+                           this list has no entry for (e.g. fewest pages). #}
+                        <option value="" disabled>Custom order</option>
+                    </select>
+                </label>
+                <button type="button" id="www-rag-reset" class="www-rag-reset">Reset</button>
+            </div>
+            <div class="www-rag-toolbar-right">
+                <span id="www-rag-count" class="www-rag-count" aria-live="polite"></span>
+                <div class="www-rag-viewtoggle" role="group" aria-label="View as">
+                    <button type="button" class="www-rag-viewbtn" data-www-rag-view="cards" aria-pressed="true">Cards</button>
+                    <button type="button" class="www-rag-viewbtn" data-www-rag-view="table" aria-pressed="false">Table</button>
+                </div>
+                <button type="button" id="www-rag-export" class="www-rag-export">Export CSV</button>
+            </div>
+        </div>
         <div id="www-rag-status" class="www-rag-status">Loading catalog…</div>
-        <div id="www-rag-grid" class="www-rag-grid"></div>
+        <div id="www-rag-grid" class="www-rag-results"></div>
     </div>
 </section>
 
@@ -218,6 +328,77 @@
 @media (max-width: 640px) {
     .www-rag-scan-fab { left: 14px; bottom: 14px; font-size: 14px; padding: 10px 18px; }
 }
+/* ── Open Web Vector Initiative band ───────────────────────────────── */
+.www-rag-owv-band {
+    background: #f7f7fb;
+    padding: 28px 0 0;
+}
+/* Not "…-card": style.css paints a paper-grain background-image on every
+   [class*="card"], which lands on top of this band's dark gradient and
+   leaves white text on a near-white surface. */
+.www-rag-owv-link {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 24px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: #c9c9e0;
+    background: linear-gradient(135deg, #14142a 0%, #1f1f3a 100%);
+    border: 1px solid #2b2b52;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.www-rag-owv-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 28px rgba(20, 20, 42, 0.22);
+}
+.www-rag-owv-mark {
+    flex: none;
+    font-size: 20px;
+    color: #d9c49a;
+}
+.www-rag-owv-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: 'Source Sans 3', sans-serif;
+    min-width: 0;
+}
+.www-rag-owv-eyebrow {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #9d9db8;
+}
+.www-rag-owv-headline {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.3;
+}
+.www-rag-owv-sub {
+    font-size: 14px;
+    color: #9d9db8;
+    line-height: 1.45;
+}
+.www-rag-owv-go {
+    flex: none;
+    margin-left: auto;
+    font-size: 22px;
+    color: #d9c49a;
+}
+@media (max-width: 640px) {
+    .www-rag-owv-link { gap: 14px; padding: 18px; }
+    .www-rag-owv-headline { font-size: 16.5px; }
+    .www-rag-owv-go { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .www-rag-owv-link { transition: none; }
+    .www-rag-owv-link:hover { transform: none; }
+}
+
 /* ── Live crawl strip ──────────────────────────────────────────────── */
 .www-rag-live-section {
     background: #f7f7fb;
@@ -369,6 +550,215 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
+}
+
+/* ── Toolbar: filters, view toggle, export ─────────────────────────── */
+.www-rag-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 16px 18px;
+    background: #fff;
+    border: 1px solid #e5e5f0;
+    border-radius: 14px;
+    font-family: 'Source Sans 3', sans-serif;
+}
+.www-rag-toolbar[hidden] { display: none; }
+.www-rag-toolbar-filters,
+.www-rag-toolbar-right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 10px;
+}
+.www-rag-toolbar-right { align-items: center; }
+.www-rag-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.www-rag-field-label {
+    font-size: 10.5px;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #9a9aa8;
+}
+.www-rag-select {
+    font-family: inherit;
+    font-size: 14px;
+    color: #1a1a2e;
+    background: #fafafc;
+    border: 1px solid #ddddea;
+    border-radius: 8px;
+    padding: 7px 10px;
+    min-width: 150px;
+}
+.www-rag-select:focus-visible,
+.www-rag-reset:focus-visible,
+.www-rag-export:focus-visible,
+.www-rag-viewbtn:focus-visible,
+.www-rag-sort-btn:focus-visible {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
+}
+.www-rag-reset,
+.www-rag-export,
+.www-rag-viewbtn {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    border: 1px solid #ddddea;
+    background: #fff;
+    color: #1a1a2e;
+}
+.www-rag-reset { color: #55555f; }
+.www-rag-reset:hover { background: #f4f4f8; }
+.www-rag-export {
+    color: #fff;
+    background: #1a1a2e;
+    border-color: #1a1a2e;
+}
+.www-rag-export:hover { background: #2b2b48; }
+.www-rag-export[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.www-rag-count {
+    font-size: 14px;
+    color: #666;
+}
+.www-rag-viewtoggle {
+    display: inline-flex;
+    border: 1px solid #ddddea;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.www-rag-viewtoggle .www-rag-viewbtn {
+    border: none;
+    border-radius: 0;
+    background: #fff;
+    color: #55555f;
+}
+.www-rag-viewtoggle .www-rag-viewbtn + .www-rag-viewbtn {
+    border-left: 1px solid #ddddea;
+}
+.www-rag-viewbtn.is-active {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+@media (max-width: 720px) {
+    .www-rag-toolbar { flex-direction: column; align-items: stretch; }
+    .www-rag-field, .www-rag-select { width: 100%; }
+    .www-rag-toolbar-right { justify-content: space-between; }
+}
+
+/* ── Table view ────────────────────────────────────────────────────── */
+/* The table is wider than a phone; the wrapper scrolls it rather than the
+   page, and carries tabindex so keyboard users can reach the overflow. */
+.www-rag-table-wrap {
+    overflow-x: auto;
+    background: #fff;
+    border: 1px solid #e5e5f0;
+    border-radius: 14px;
+}
+.www-rag-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+.www-rag-table th,
+.www-rag-table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid #f0f0f5;
+    vertical-align: middle;
+}
+/* No `position: sticky` here: .www-rag-table-wrap sets overflow-x, which
+   makes it a scroll container in BOTH axes, so a sticky header resolves
+   against a box that never scrolls vertically and silently does nothing. */
+.www-rag-table thead th {
+    background: #fafafc;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #6c6c80;
+    white-space: nowrap;
+}
+.www-rag-table tbody tr:hover { background: #fbfbfe; }
+.www-rag-table tbody tr:last-child td { border-bottom: none; }
+.www-rag-num { text-align: right; white-space: nowrap; }
+.www-rag-table th.www-rag-num { text-align: right; }
+.www-rag-sort-btn {
+    font: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.www-rag-sort-btn:hover { color: #4f46e5; }
+.www-rag-sort-btn.is-active { color: #4f46e5; }
+.www-rag-sort-caret { font-size: 8px; }
+.www-rag-row-site {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+.www-rag-row-host {
+    font-weight: 600;
+    color: #1a1a2e;
+    overflow-wrap: anywhere;
+}
+.www-rag-row-desc {
+    color: #666;
+    max-width: 42ch;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.www-rag-row-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.www-rag-chip {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #f2f2f7;
+    color: #55555f;
+    white-space: nowrap;
+}
+.www-rag-chip-ok { background: #eafaf1; color: #1d7a4a; }
+.www-rag-chip-claimed { background: #eef2ff; color: #4f46e5; }
+.www-rag-chip-pending { background: #fff4e5; color: #b45309; }
+.www-rag-row-actions {
+    display: flex;
+    gap: 6px;
+    white-space: nowrap;
+}
+.www-rag-row-actions .www-rag-card-action {
+    flex: none;
+    font-size: 12px;
+    padding: 5px 10px;
 }
 .www-rag-card {
     background: #fff;

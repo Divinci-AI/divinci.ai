@@ -59,7 +59,10 @@ module.exports = defineConfig({
         '**/accessibility-compliance.spec.js',
         '**/gdpr-compliance.spec.js',
         '**/social-media-sharing.spec.js',
-        '**/mobile-navigation-comprehensive.spec.js'
+        '**/mobile-navigation-comprehensive.spec.js',
+        // Sets its own viewport per test (desktop and phone in one file), so
+        // it runs here rather than under the Mobile-* projects.
+        '**/www-rag-directory.spec.js'
       ],
     },
     {

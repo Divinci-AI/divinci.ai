@@ -9,6 +9,13 @@
  *
  * Bundled (with the SDK inlined) by esbuild → /static/js/divinci-chat.js.
  * Config comes from data-* attributes on that script tag (see base.html).
+ *
+ * Per-page personality: base.html exposes a `chat_release_id` Tera block (a
+ * page can point the bubble at its own Release) and a `chat_config` block
+ * where a page emits `divinci-chat-{greeting,starters,blurbs,speech,context}`.
+ * Every one of those is optional and falls back to the site-wide default, so
+ * pages that say nothing keep behaving exactly as before. /www-rag/ and
+ * /open-web-vectors/ use them to keep the bubble on-topic.
  */
 import { DivinciClient } from "@divinci-ai/client";
 
@@ -77,6 +84,13 @@ function readJsonConfig<T>(id: string, fallback: T): T {
   try { return JSON.parse(el.textContent || "") as T; } catch { return fallback; }
 }
 
+/** Same idea for plain prose — no JSON quoting/escaping in the template. */
+function readTextConfig(id: string, fallback: string): string {
+  const el = document.getElementById(id);
+  const text = el ? (el.textContent || "").trim() : "";
+  return text || fallback;
+}
+
 const CONVERSATION_STARTERS: Array<{ label: string; message: string }> = readJsonConfig("divinci-chat-starters", [
   { label: "What is Divinci?", message: "What is Divinci AI?" },
   { label: "Connect an AI via MCP", message: "How do I connect Claude or Grok to Divinci over MCP?" },
@@ -94,7 +108,40 @@ const SECTION_BLURBS: Array<{ selector: string; blurb: string }> = readJsonConfi
   { selector: ".expert-answers-section", blurb: "Got a reliability or workflow question? Ask me." },
   { selector: ".contact-section", blurb: "Want to talk to a human? I can help you reach us." },
 ]);
-const SPEECH_FALLBACK = "👋 Hi! I'm Divinci — ask me anything.";
+/**
+ * Panel greeting, shown above the starter buttons on an empty conversation.
+ * Per-page override via the `divinci-chat-greeting` block (see base.html's
+ * `chat_config` Tera block).
+ */
+const GREETING = readTextConfig(
+  "divinci-chat-greeting",
+  "👋 Hi, I'm Divinci! Ask me anything — what the platform does, how to get started, our API/SDK/CLI/MCP, or how to connect Claude, Grok, Perplexity, or Mistral.",
+);
+
+/**
+ * Page-scoped grounding, prepended to every prompt this page sends.
+ *
+ * The site runs ONE release, so without this the bubble answers as the
+ * generic divinci.ai assistant no matter which page it is floating over.
+ * A page that sets `divinci-chat-context` gets its own framing — the text
+ * is prepended to the wire prompt only; the visitor's own words are what
+ * gets rendered, stored in localStorage, and echoed back on screen.
+ *
+ * Sent on EVERY turn rather than just the first: conversations are restored
+ * from localStorage across page loads, so a visitor who chatted on the home
+ * page and then opened this one would otherwise never get the framing at all.
+ * Keep the text short — it rides along with each message.
+ *
+ * A dedicated Release per page (see `chat_release_id`) is the stronger
+ * version of this; this is the part that works without provisioning one.
+ */
+const PAGE_CONTEXT = readTextConfig("divinci-chat-context", "");
+
+function withPageContext(prompt: string): string {
+  return PAGE_CONTEXT ? PAGE_CONTEXT + "\n\n" + prompt : prompt;
+}
+
+const SPEECH_FALLBACK = readTextConfig("divinci-chat-speech", "👋 Hi! I'm Divinci — ask me anything.");
 const SPEECH_DWELL_MS = 2500;
 const SPEECH_DEBOUNCE_MS = 300;
 /** Hero bottom must clear this fraction of the viewport before the launcher fades in. */
@@ -1223,11 +1270,17 @@ class DivinciChatWidget {
       }
     }
     if (this.messages.length === 0 && !this.exhausted) {
-      list.appendChild(el("div", "dvc-msg dvc-msg-assistant",
-        "👋 Hi, I'm Divinci! Ask me anything — what the platform does, how to get started, our API/SDK/CLI/MCP, or how to connect Claude, Grok, Perplexity, or Mistral."));
+      // textContent, not el()'s third argument: el() assigns innerHTML, and
+      // the greeting and starter labels are page-authored config now rather
+      // than literals in this file. They are plain prose — nothing here needs
+      // to be parsed as markup, so nothing here is.
+      const greeting = el("div", "dvc-msg dvc-msg-assistant");
+      greeting.textContent = GREETING;
+      list.appendChild(greeting);
       const starters = el("div", "dvc-starters");
       for (const s of CONVERSATION_STARTERS) {
-        const btn = el("button", "dvc-starter-btn", s.label);
+        const btn = el("button", "dvc-starter-btn");
+        btn.textContent = s.label;
         btn.addEventListener("click", () => submitPrompt(s.message));
         starters.appendChild(btn);
       }
@@ -1333,7 +1386,7 @@ class DivinciChatWidget {
             await this.ensureGateStarted();
           }
         }
-        const { reply, remaining } = await this.client.freeChatGate.send(prompt);
+        const { reply, remaining } = await this.client.freeChatGate.send(withPageContext(prompt));
         this.messages[this.messages.length - 1] = { role: "assistant", text: reply };
         this.remaining = remaining;
         this.saveMessages();
@@ -1369,7 +1422,7 @@ class DivinciChatWidget {
               // "timeout-or-duplicate" rejection from siteverify, so this
               // recovery could never actually recover.
               await this.refreshGateToken();
-              const { reply, remaining } = await this.client.freeChatGate.send(prompt);
+              const { reply, remaining } = await this.client.freeChatGate.send(withPageContext(prompt));
               this.messages[this.messages.length - 1] = { role: "assistant", text: reply };
               this.remaining = remaining;
               this.saveMessages();

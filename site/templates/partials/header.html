@@ -42,6 +42,9 @@
                     <a href="{% if current_lang == 'en' %}/hermes-agents/{% else %}/{{ current_lang }}/hermes-agents/{% endif %}">Hermes Agents</a>
                     <a href="/voice-agents/">Voice Agents</a>
                     <a href="/www-rag/">{{ translations.navigation.www_rag_directory | default(value="WWW-RAG Directory") }}</a>
+                    {# Not language-prefixed: one English page, no per-locale
+                       variants — /{{ current_lang }}/open-web-vectors/ would 404. #}
+                    <a href="/open-web-vectors/">{{ translations.navigation.open_web_vectors | default(value="Open Web Vectors") }}</a>
                 </div>
             </li>
             <li><a href="{% if current_lang == 'en' %}/blog/{% else %}/{{ current_lang }}/blog/{% endif %}">{{ translations.navigation.blog | default(value="Blog") }}</a></li>

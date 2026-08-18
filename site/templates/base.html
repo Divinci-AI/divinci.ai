@@ -739,10 +739,18 @@
          `npm run build:chat` (esbuild, SDK inlined). Public config from
          config.toml [extra] — no API keys; freeChatGate is keyless in-browser. -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    {# Per-page agent config. `chat_config` is where a page emits its own
+       greeting / starter prompts / ambient blurbs / page-context grounding
+       (ids: divinci-chat-greeting, -starters, -blurbs, -speech, -context);
+       `chat_release_id` lets a page point the bubble at a different Release
+       entirely. Both are optional — a page that overrides neither gets the
+       site-wide assistant exactly as before. Must be emitted BEFORE the
+       bundle, which reads them synchronously on boot. #}
+    {% block chat_config %}{% endblock %}
     <script defer id="divinci-chat-js"
         src="{{ get_url(path="js/divinci-chat.js") }}"
         data-api-base="{{ config.extra.divinci_chat_api_base }}"
-        data-release-id="{{ config.extra.divinci_chat_release_id }}"
+        data-release-id="{% block chat_release_id %}{{ config.extra.divinci_chat_release_id }}{% endblock %}"
         data-turnstile-sitekey="{{ config.extra.divinci_chat_turnstile_sitekey }}"
         data-signup-url="{{ config.extra.divinci_chat_signup_url }}"></script>
 
