@@ -18,6 +18,16 @@
 
 const { test, expect } = require('@playwright/test');
 const { PAYLOAD } = require('./fixtures/www-rag-directory');
+// The build-time measurement that backs the HTML fallback. Read rather than
+// hardcoded: it is re-stamped on every build, so any literal here would be
+// wrong by the next deploy — which is the entire reason it is generated.
+//
+// The two tests that compare this to the served page need the server to be
+// serving a CURRENT build. `zola serve` misses changes often enough that a
+// stale one will serve the previous measurement and those tests will fail
+// with a confusing off-by-a-few-hundred diff; restart it before believing
+// them (see CLAUDE.md).
+const MEASURED = require('../data/open-web-vectors.json');
 
 const DIRECTORY_API = '**/api/v1/www-rag-directory*';
 
@@ -46,6 +56,14 @@ async function openDirectory(page, query = '') {
 }
 
 test.describe('WWW-RAG directory', () => {
+    test('the corpus size is in the HTML before any script runs', async ({ page }) => {
+        // Answer engines and retrieval crawlers mostly do not run JavaScript,
+        // and this line used to be empty for all of them.
+        await page.route(DIRECTORY_API, (route) => route.abort());
+        await page.goto('/www-rag/');
+        await expect(page.locator('#www-rag-stats')).toHaveText(MEASURED.directory_headline);
+    });
+
     test('loads the catalogue into the cards view', async ({ page }) => {
         await openDirectory(page);
 
@@ -270,13 +288,28 @@ test.describe('Open Web Vector Initiative page', () => {
         await expect(page.locator('#owv-examples')).not.toContainText('delta.com');
     });
 
-    test('keeps its dated snapshot when the directory is unreachable', async ({ page }) => {
+    test('falls back to the build-time measurement when the directory is unreachable', async ({ page }) => {
         await page.route(DIRECTORY_API, (route) => route.abort());
         await page.goto('/open-web-vectors/');
 
-        await expect(page.locator('[data-owv-stat="sites"]')).toHaveText('472');
-        await expect(page.locator('[data-owv-asof]')).toContainText('Snapshot:');
+        // Not dashes, and not a hand-typed guess: the last real measurement,
+        // labelled with the date it was taken, so a stale page is a disclosed
+        // fact rather than a silent lie.
+        await expect(page.locator('[data-owv-stat="sites"]')).toHaveText(MEASURED.stats.sites);
+        await expect(page.locator('[data-owv-stat="pages"]')).toHaveText(MEASURED.stats.pages);
+        await expect(page.locator('[data-owv-asof]')).toHaveText(`Measured ${MEASURED.measured_label}.`);
+        await expect(page.locator('[data-owv-fact="deepest"]')).toHaveText(MEASURED.facts.deepest);
         await expect(page.locator('.owv-examples-fallback')).toBeVisible();
+    });
+
+    test('the live refresh replaces the build-time measurement, not just fills blanks', async ({ page }) => {
+        // The two must be visibly different here, or this proves nothing.
+        expect(MEASURED.stats.sites).not.toBe('9');
+
+        await stubNetwork(page);
+        await page.goto('/open-web-vectors/');
+        await expect(page.locator('[data-owv-stat="sites"]')).toHaveText('9');
+        await expect(page.locator('[data-owv-asof]')).toHaveText('Read live just now.');
     });
 
     test('reads without horizontal overflow on a phone', async ({ page }) => {

@@ -48,7 +48,11 @@
         {% if page.description %}
         <p class="www-rag-subtitle">{{ page.description }}</p>
         {% endif %}
-        <div class="www-rag-stats" id="www-rag-stats" aria-live="polite"></div>
+        {#- Server-rendered so the corpus size is in the HTML for readers that
+            do not run JavaScript; www-rag-directory.js replaces it with the
+            live figures. Same generated measurement the initiative page uses. -#}
+        {%- set owv = load_data(path="data/open-web-vectors.json") -%}
+        <div class="www-rag-stats" id="www-rag-stats" aria-live="polite">{{ owv.directory_headline }}</div>
         <input
             type="search"
             id="www-rag-search"

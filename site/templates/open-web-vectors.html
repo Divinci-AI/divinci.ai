@@ -27,6 +27,13 @@
 {% endblock %}
 
 {% block content %}
+{#- The measured figures, stamped into data/ by scripts/build-open-web-vectors-data.py
+    on every build. Deliberately NOT hand-typed: the corpus is self-feeding and
+    a hand-typed snapshot was 8% wrong within a day of being written. The date
+    travels with the numbers so a stale fallback is a disclosed fact rather than
+    a silent lie, and open-web-vectors.js replaces the lot from the live API for
+    anyone running JavaScript. -#}
+{%- set owv = load_data(path="data/open-web-vectors.json") -%}
 <section class="owv-hero">
     <div class="container">
         <p class="owv-eyebrow">The Open Web Vector Initiative</p>
@@ -39,38 +46,35 @@
             claim theirs.
         </p>
 
-        {# Server-rendered from the 2026-08-17 snapshot so the page means
-           something without JS; open-web-vectors.js refreshes every value
-           from the same public directory API the /www-rag/ grid uses. #}
         <div class="owv-stats" id="owv-stats">
             <div class="owv-stat">
-                <span class="owv-stat-value" data-owv-stat="sites">472</span>
+                <span class="owv-stat-value" data-owv-stat="sites">{{ owv.stats.sites }}</span>
                 <span class="owv-stat-label">sites indexed</span>
             </div>
             <div class="owv-stat">
-                <span class="owv-stat-value" data-owv-stat="pages">219,248</span>
+                <span class="owv-stat-value" data-owv-stat="pages">{{ owv.stats.pages }}</span>
                 <span class="owv-stat-label">pages crawled</span>
             </div>
             <div class="owv-stat">
-                <span class="owv-stat-value" data-owv-stat="chunks">1,106,599</span>
+                <span class="owv-stat-value" data-owv-stat="chunks">{{ owv.stats.chunks }}</span>
                 <span class="owv-stat-label">chunks embedded</span>
             </div>
             <div class="owv-stat">
-                <span class="owv-stat-value" data-owv-stat="bytes">1.3 GB</span>
+                <span class="owv-stat-value" data-owv-stat="bytes">{{ owv.stats.bytes }}</span>
                 <span class="owv-stat-label">of extracted text</span>
             </div>
             <div class="owv-stat">
-                <span class="owv-stat-value" data-owv-stat="endpoints">410</span>
+                <span class="owv-stat-value" data-owv-stat="endpoints">{{ owv.stats.endpoints }}</span>
                 <span class="owv-stat-label">live chat endpoints</span>
             </div>
             <div class="owv-stat">
-                <span class="owv-stat-value" data-owv-stat="median">117</span>
+                <span class="owv-stat-value" data-owv-stat="median">{{ owv.stats.median }}</span>
                 <span class="owv-stat-label">pages, median site</span>
             </div>
         </div>
         <p class="owv-asof">
             Measured, not projected — read live from the public directory API.
-            <span class="owv-asof-stamp" data-owv-asof>Snapshot: 17 August 2026.</span>
+            <span class="owv-asof-stamp" data-owv-asof>Measured {{ owv.measured_label }}.</span>
         </p>
 
         <div class="owv-cta-row">
@@ -84,41 +88,33 @@
     <div class="container">
         <h2 class="owv-h2">It reads like public infrastructure, because that's what's in it</h2>
         <p class="owv-p">
-            <span data-owv-public-share>55%</span> of the index is
+            <span data-owv-public-share>{{ owv.composition.public_share }}</span> of the index is
             <code>.gov</code>, <code>.edu</code> and <code>.org</code>. That is not a
             filter we applied for the look of it — it is what happens when you follow
             citations and documentation links rather than commercial traffic.
         </p>
 
+        {# Bar and legend loop the same list, so a segment can never end up
+           labelled with another bucket's count. #}
         <div class="owv-bar" role="img" aria-label="Composition of the index by top-level domain" data-owv-bar>
-            <span class="owv-bar-seg owv-seg-org" data-owv-seg="org" style="width:30.9%"></span>
-            <span class="owv-bar-seg owv-seg-gov" data-owv-seg="gov" style="width:15.7%"></span>
-            <span class="owv-bar-seg owv-seg-edu" data-owv-seg="edu" style="width:8.1%"></span>
-            <span class="owv-bar-seg owv-seg-com" data-owv-seg="com" style="width:33.3%"></span>
-            <span class="owv-bar-seg owv-seg-other" data-owv-seg="other" style="width:12.0%"></span>
+            {%- for bucket in owv.composition.buckets %}
+            <span class="owv-bar-seg owv-seg-{{ bucket.key }}" data-owv-seg="{{ bucket.key }}" style="width:{{ bucket.width }}%"></span>
+            {%- endfor %}
         </div>
         <ul class="owv-legend">
-            <li><span class="owv-dot owv-seg-org"></span>.org <b data-owv-count="org">146</b></li>
-            <li><span class="owv-dot owv-seg-gov"></span>.gov <b data-owv-count="gov">74</b></li>
-            <li><span class="owv-dot owv-seg-edu"></span>.edu <b data-owv-count="edu">38</b></li>
-            <li><span class="owv-dot owv-seg-com"></span>.com <b data-owv-count="com">157</b></li>
-            <li><span class="owv-dot owv-seg-other"></span>everything else <b data-owv-count="other">57</b></li>
+            {%- for bucket in owv.composition.buckets %}
+            <li><span class="owv-dot owv-seg-{{ bucket.key }}"></span>{{ bucket.label }} <b data-owv-count="{{ bucket.key }}">{{ bucket.count }}</b></li>
+            {%- endfor %}
         </ul>
 
         <div class="owv-facts">
             <div class="owv-fact">
                 <h3 class="owv-fact-title">Deepest crawls</h3>
-                <p class="owv-fact-body" data-owv-fact="deepest">
-                    diff.wikimedia.org, ipac.caltech.edu and blog.mozilla.org run past
-                    7,000 pages each.
-                </p>
+                <p class="owv-fact-body" data-owv-fact="deepest">{{ owv.facts.deepest }}</p>
             </div>
             <div class="owv-fact">
                 <h3 class="owv-fact-title">Largest single corpus</h3>
-                <p class="owv-fact-body" data-owv-fact="largest">
-                    exoplanetarchive.ipac.caltech.edu — 929 pages, but 176 MB of
-                    extracted text, more than any site with ten times the page count.
-                </p>
+                <p class="owv-fact-body" data-owv-fact="largest">{{ owv.facts.largest }}</p>
             </div>
             <div class="owv-fact">
                 <h3 class="owv-fact-title">Typical site</h3>

@@ -270,6 +270,91 @@ describe('API-driven pages match the scripts that drive them', () => {
     window.close();
   });
 
+  test('every figure on the initiative page comes from the measurement, not the template', () => {
+    // The page's claim is that its numbers are measured. A hand-typed figure
+    // that creeps back into the template would be invisible in review and
+    // wrong within a day — the corpus added 38 sites in the 24 hours after
+    // the original snapshot was typed.
+    const measured = JSON.parse(readFileSync(join(ROOT, 'data/open-web-vectors.json'), 'utf8'));
+    const html = readFileSync(join(PUBLIC, 'open-web-vectors/index.html'), 'utf8');
+    const { window } = new JSDOM(html);
+    const doc = window.document;
+
+    for (const [key, value] of Object.entries(measured.stats)) {
+      const node = doc.querySelector(`[data-owv-stat="${key}"]`);
+      assert.ok(node, `the page has no [data-owv-stat="${key}"]`);
+      assert.equal(node.textContent.trim(), value,
+        `[data-owv-stat="${key}"] reads "${node.textContent.trim()}" but the measurement says "${value}" — ` +
+        'a figure has been hardcoded back into the template');
+    }
+
+    for (const bucket of measured.composition.buckets) {
+      const count = doc.querySelector(`[data-owv-count="${bucket.key}"]`);
+      const seg = doc.querySelector(`[data-owv-seg="${bucket.key}"]`);
+      assert.equal(count.textContent.trim(), bucket.count, `legend count for ${bucket.key}`);
+      // Numeric, not textual: minify_html rewrites "34.0%" to "34%", and the
+      // browser normalises the same way when the live refresh sets it, so the
+      // two are the same width written two ways.
+      const width = parseFloat((seg.getAttribute('style') || '').replace(/[^0-9.]/g, ''));
+      assert.equal(width, parseFloat(bucket.width),
+        `bar segment for ${bucket.key} is ${width}% but the measurement says ${bucket.width}%`);
+    }
+    assert.equal(
+      doc.querySelector('[data-owv-public-share]').textContent.trim(),
+      measured.composition.public_share);
+    assert.equal(doc.querySelector('[data-owv-fact="deepest"]').textContent.trim(), measured.facts.deepest);
+    assert.equal(doc.querySelector('[data-owv-fact="largest"]').textContent.trim(), measured.facts.largest);
+
+    // The date is what makes a stale fallback honest rather than a lie, so it
+    // has to be on the page beside the numbers it belongs to.
+    assert.equal(
+      doc.querySelector('[data-owv-asof]').textContent.trim(),
+      `Measured ${measured.measured_label}.`);
+    assert.match(measured.measured_at, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(new Date(measured.measured_at) <= new Date(),
+      'the measurement is dated in the future');
+
+    window.close();
+  });
+
+  test('the directory carries the same measured headline, in every locale', () => {
+    const measured = JSON.parse(readFileSync(join(ROOT, 'data/open-web-vectors.json'), 'utf8'));
+    // Locale directories only: public/tags/www-rag/ is the taxonomy page for
+    // the "www-rag" tag, which shares a path shape and nothing else.
+    const dirs = readdirSync(PUBLIC, { withFileTypes: true })
+      .filter((e) => e.isDirectory() && /^[a-z]{2}(-[a-z]+)?$/.test(e.name))
+      .map((e) => join(PUBLIC, e.name, 'www-rag', 'index.html'))
+      .filter((f) => existsSync(f));
+    const pages = [join(PUBLIC, 'www-rag', 'index.html'), ...dirs];
+    assert.ok(pages.length > 5, `expected the directory in several locales, found ${pages.length}`);
+
+    for (const file of pages) {
+      const { window } = new JSDOM(readFileSync(file, 'utf8'));
+      assert.equal(
+        window.document.getElementById('www-rag-stats').textContent.trim(),
+        measured.directory_headline,
+        `${relative(PUBLIC, file)} does not carry the measured headline`);
+      window.close();
+    }
+  });
+
+  test('the measurement is refreshed by every build command, not by memory', () => {
+    // The whole design rests on this running unattended. If it drops out of
+    // the chain the page silently freezes at whatever it last measured.
+    const script = 'scripts/build-open-web-vectors-data.py';
+    const wrangler = readFileSync(join(ROOT, 'wrangler.jsonc'), 'utf8');
+    const commands = [...wrangler.matchAll(/"command":\s*"([^"]+)"/g)].map((m) => m[1]);
+    assert.ok(commands.length >= 3, `expected a build command per environment, found ${commands.length}`);
+    for (const command of commands) {
+      assert.ok(command.includes(script),
+        `a wrangler build command does not run ${script}:\n  ${command}`);
+      assert.ok(command.indexOf(script) < command.indexOf('zola build'),
+        'the measurement must be stamped BEFORE zola build reads it');
+    }
+    const pkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'));
+    assert.ok(pkg.scripts.build.includes(script), `npm run build does not run ${script}`);
+  });
+
   test('the initiative page links to the directory and back', () => {
     const owv = readFileSync(join(PUBLIC, 'open-web-vectors/index.html'), 'utf8');
     const rag = readFileSync(join(PUBLIC, 'www-rag/index.html'), 'utf8');
