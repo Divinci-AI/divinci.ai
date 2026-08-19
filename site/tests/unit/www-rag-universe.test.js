@@ -71,3 +71,41 @@ describe('the universe caption', () => {
         expect(caption(STATS)).toContain('not that it links nowhere');
     });
 });
+
+describe("the caption separates measured from drawn", () => {
+    // The endpoint keeps only the strongest few link edges per site: the full
+    // graph is ~10,545 edges, a megabyte of JSON and an unreadable hairball.
+    // Reporting the DRAWN count as the finding would understate the measurement
+    // by half — the same "a number without its coverage" error this caption was
+    // rewritten to stop making, reintroduced by the fix for a different problem.
+    const CAPPED = {
+        sites: 1530, linkEdges: 5200, linkEdgesTotal: 10545, linkTopKPerSource: 6,
+        semanticEdges: 1109, sitesWithLinkScan: 1065, sitesWithCentroid: 145,
+    };
+
+    test('reports the measured total, not the drawn subset', () => {
+        const text = caption(CAPPED);
+        expect(text).toContain('10,545 hyperlinks');
+        expect(text).not.toContain('5,200 hyperlinks');
+    });
+
+    test('says the drawing is capped, and by how much', () => {
+        expect(caption(CAPPED)).toContain('strongest 6 per site');
+    });
+
+    test('does not claim a cap when nothing was capped', () => {
+        const uncapped = { ...CAPPED, linkEdges: 10545 };
+        expect(caption(uncapped)).not.toContain('strongest');
+    });
+
+    test('survives a payload from before linkEdgesTotal existed', () => {
+        // The page is served from cache and the API deploys separately, so the
+        // two are briefly out of step. Rendering "undefined hyperlinks" during
+        // that window would be a self-inflicted outage of the caption.
+        const legacy = { sites: 1486, linkEdges: 103, semanticEdges: 323,
+                         sitesWithLinkScan: 28, sitesWithCentroid: 145 };
+        const text = caption(legacy);
+        expect(text).toContain('103 hyperlinks');
+        expect(text).not.toContain('undefined');
+    });
+});

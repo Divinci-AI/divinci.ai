@@ -448,9 +448,20 @@
     // the domain name. An arbitrary-but-stable position looks exactly like a
     // meaningful one, which is the worst way for a visualization to be wrong.
     var s = stats.sites.toLocaleString();
+    // `linkEdges` is what we DRAW; `linkEdgesTotal` is what we measured. The
+    // endpoint keeps only the strongest few per site because the full graph is
+    // an unreadable hairball and a megabyte of JSON — but reporting the drawn
+    // count as though it were the finding is the same error this caption was
+    // rewritten to stop making. Older payloads have no linkEdgesTotal, so fall
+    // back rather than render "undefined".
+    var total = typeof stats.linkEdgesTotal === "number" ? stats.linkEdgesTotal : stats.linkEdges;
+    var shown = stats.linkEdges;
+    var linkPhrase = total > shown
+      ? total.toLocaleString() + " hyperlinks found between them (drawing the strongest " +
+        (stats.linkTopKPerSource || "few") + " per site)"
+      : total.toLocaleString() + " hyperlinks found between them";
     return (
-      s + " sites · " +
-      stats.linkEdges.toLocaleString() + " hyperlinks found between them · " +
+      s + " sites · " + linkPhrase + " · " +
       stats.semanticEdges.toLocaleString() + " semantic ties. Size is pages indexed. " +
       "Embeddings are mapped for " + stats.sitesWithCentroid.toLocaleString() + " of " + s +
       " sites — those sit near the sites they resemble. The rest are parked on a ring " +
