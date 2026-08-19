@@ -233,6 +233,9 @@
     // not exist. The caption says so in words; until now the pixels said the
     // opposite.
     sim.beltRadius = belt;
+    var parked = 0;
+    for (i = 0; i < nodes.length; i++) if (nodes[i].orbital) parked++;
+    sim.orbitalCount = parked;
 
     for (i = 0; i < nodes.length; i++) {
       a = nodes[i];
@@ -369,13 +372,6 @@
       ctx.arc(0, 0, sim.beltRadius, 0, Math.PI * 2);
       ctx.stroke();
       ctx.setLineDash([]);
-      var beltFont = Math.max(9, 10 / view.scale);
-      ctx.font = beltFont + "px ui-sans-serif, system-ui, -apple-system, sans-serif";
-      ctx.fillStyle = BELT_EDGE;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "bottom";
-      ctx.fillText("no links or embedding yet · position here means nothing",
-                   0, -sim.beltRadius - 8 / view.scale);
     }
 
     // Authority halo, under the node bodies. A ring rather than a bigger dot,
@@ -450,6 +446,26 @@
       });
 
     ctx.restore();
+
+    // ── Screen-space legend ──────────────────────────────────────────────
+    // Drawn AFTER restore(), in pixels, because the world-space version was
+    // invisible: fit() deliberately frames the CONNECTED graph and lets the
+    // belt run past the edges, so a label positioned at the belt radius sits
+    // outside the viewport at the default zoom. The one sentence that stops a
+    // viewer reading the outer ring as an arrangement was only legible if you
+    // zoomed out — which is to say, never.
+    if (sim.orbitalCount > 0) {
+      ctx.globalAlpha = 1;
+      ctx.font = "11px ui-sans-serif, system-ui, -apple-system, sans-serif";
+      ctx.textAlign = "left";
+      ctx.textBaseline = "bottom";
+      ctx.fillStyle = BELT_EDGE;
+      ctx.fillText(
+        "outer ring · " + sim.orbitalCount.toLocaleString() +
+          " sites with no links or embedding yet — their position means nothing",
+        14, h - 12,
+      );
+    }
   }
 
   /* ------------------------------------------------------------------ boot */

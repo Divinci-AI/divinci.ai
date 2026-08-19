@@ -160,12 +160,29 @@ describe("what the map encodes", () => {
     });
 
     describe("the holding belt", () => {
+        test("its explanation is drawn in SCREEN space, not world space", () => {
+            // The first version placed the words at the belt radius in world
+            // coordinates. fit() frames the CONNECTED graph and lets the belt
+            // run past the edges, so the label sat outside the viewport at the
+            // default zoom and was only legible if you zoomed out — which is to
+            // say never. Caught by looking at the deployed page, not by any
+            // assertion, which is why this one exists.
+            const after = SOURCE.slice(SOURCE.indexOf("ctx.restore()"));
+            expect(after).toContain("their position means nothing");
+            const before = SOURCE.slice(0, SOURCE.indexOf("ctx.restore()"));
+            expect(before).not.toContain("position means nothing");
+        });
+
+        test("names how many sites are parked there", () => {
+            expect(SOURCE).toContain("sim.orbitalCount");
+        });
+
         test("is outlined and named on the canvas", () => {
             // 298 of 1,608 nodes have no edge of either kind and are parked at a
             // hash-derived angle. Drawn plainly they form a tidy arc that reads
             // as an arrangement. The caption said so in words; the pixels did not.
             expect(SOURCE).toContain("sim.beltRadius");
-            expect(SOURCE).toMatch(/position here means nothing/);
+            expect(SOURCE).toMatch(/no links or embedding yet/);
         });
 
         test("orbital nodes are drawn dimmer than placed ones", () => {
