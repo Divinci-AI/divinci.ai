@@ -320,8 +320,12 @@
 (function () {
   "use strict";
   var banner = document.querySelector(".promo-banner");
-  if (!banner) return;
-  var slidesWrap = banner.querySelector(".promo-slides") || banner;
+  // The hero social-proof line is fed by the SAME fetch, and some pages
+  // (e.g. /files/) carry one without a coupon carousel — so bail only when
+  // neither consumer is present, or those pages keep a hardcoded count.
+  var heroProof = document.querySelector(".hero-note-proof");
+  if (!banner && !heroProof) return;
+  var slidesWrap = banner ? (banner.querySelector(".promo-slides") || banner) : null;
   var host = window.location.hostname;
   var isStaging = host.endsWith(".workers.dev") || host.indexOf("stage") !== -1 ||
     host === "localhost" || host === "127.0.0.1";
@@ -334,11 +338,42 @@
       var sites = (data && data.sites) || [];
       if (!sites.length) return;
 
+      // The denominator is the CORPUS size, not the page size. `limit=150`
+      // above caps how many slides we build; using sites.length here said
+      // "1 of 150" while the directory held 1,624 — understating the corpus
+      // by 10x on the highest-traffic line of the funnel. totalSites/
+      // totalChunks ride along in the same response, so this costs nothing.
+      // Fall back to the page size only if the API omits them.
+      var totalSites = (data && typeof data.totalSites === "number" && data.totalSites > 0)
+        ? data.totalSites : sites.length;
+      var totalChunks = (data && typeof data.totalChunks === "number" && data.totalChunks > 0)
+        ? data.totalChunks : 0;
+      var fmtInt = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); };
+      var fmtCompact = function (n) {
+        if (n >= 1e9) return (n / 1e9).toFixed(1).replace(/\.0$/, "") + "B";
+        if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
+        if (n >= 1e3) return Math.round(n / 1e3) + "K";
+        return String(n);
+      };
+
       // slides[0] is the coupon slide the carousel always returns to. Pages
       // that ship a different promo banner (e.g. /files/, whose banner is a
       // single static cross-link) have no [data-promo-coupon], and every tick
       // would then throw on `prev.classList` — once per 3.8s, forever. Those
       // pages just keep whatever slide they rendered.
+      // Replace the hardcoded "100+" / "300+" token with the live corpus size,
+      // rounded DOWN to the nearest 100 so the claim stays conservative and
+      // does not churn on every crawl. Regex-on-the-number rather than a
+      // rewritten sentence: the same line exists in 13 locales and in two
+      // different phrasings, and this preserves all of them (and any future
+      // translation) while touching one file.
+      if (heroProof && totalSites >= 100) {
+        var rounded = Math.floor(totalSites / 100) * 100;
+        heroProof.textContent = heroProof.textContent.replace(
+          /\d[\d,]*\+/, fmtInt(rounded) + "+");
+      }
+
+      if (!banner) return;
       var couponSlide = banner.querySelector("[data-promo-coupon]");
       if (!couponSlide) return;
       var slides = [couponSlide];
@@ -355,11 +390,45 @@
           slide.appendChild(img);
         }
         var label = document.createElement("span");
-        label.textContent = site.host + " is already an AI — " + (i + 1) + " of " + sites.length + " scanned sites";
+        label.textContent = site.host + " is already an AI — " + (i + 1) + " of " +
+          fmtInt(totalSites) + " scanned sites" +
+          (totalChunks ? " · " + fmtCompact(totalChunks) + " searchable chunks" : "");
         slide.appendChild(label);
         slidesWrap.appendChild(slide);
         slides.push(slide);
       });
+
+      // A LIVE slide fed by the crawler's own activity feed (divinci.ai,
+      // `access-control-allow-origin: *`, ~10s cache). The site slides above
+      // describe the corpus as it stands; this one shows it growing. Appended
+      // to slides[] so the existing rotation picks it up with no other change.
+      // Entirely best-effort: any failure leaves the carousel exactly as it
+      // was, which is why nothing below is awaited or retried.
+      var liveSlide = null;
+      var renderLive = function (a) {
+        if (!a || a.stale || a.state !== "crawling") return;
+        var host = (a.inFlight && a.inFlight[0]) || "";
+        var done = typeof a.done === "number" ? a.done : null;
+        var seeds = typeof a.seeds === "number" ? a.seeds : null;
+        var text = host ? "Crawling " + host + " right now" : "Crawling the open web right now";
+        if (done !== null && seeds) text += " — " + fmtInt(done) + " of " + fmtInt(seeds) + " sites this pass";
+        if (!liveSlide) {
+          liveSlide = document.createElement("a");
+          liveSlide.className = "promo-slide";
+          liveSlide.href = DIR_ORIGIN + "/www-rag/";
+          slidesWrap.appendChild(liveSlide);
+          slides.push(liveSlide);
+        }
+        liveSlide.textContent = text;
+      };
+      var pollLive = function () {
+        fetch(DIR_ORIGIN + "/api/www-rag/activity", { headers: { Accept: "application/json" } })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(renderLive)
+          .catch(function () { /* keep whatever the slide last showed */ });
+      };
+      pollLive();
+      setInterval(pollLive, 30000);
 
       var current = 0;   // index into slides[] of the visible slide
       var siteIdx = 0;   // next site slide to show (1-based into slides[])
