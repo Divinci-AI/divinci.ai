@@ -312,3 +312,22 @@ About 50% of the errors came from our marketing site and 42% from a \
 pre-production environment. The product accounted for about 8%. The three \
 other blips recorded this day were each too brief to rate the day.
 """
+
+[[incident]]
+date = "2026-08-19"
+title = "Status monitoring reported a problem that was not happening"
+severity = "degraded"
+window = "06:40–08:01 UTC"
+resolved = true
+areas = ["internal"]
+summary = """
+No customer-facing service was affected. Our edge-error monitor counts only \
+error responses, so when everything is healthy it has nothing to count. In \
+that state it held its previous reading instead of returning to normal, and \
+this page kept reporting a problem that had already ended. The monitor now \
+treats "nothing to count" as zero, and recovers on its own. We have also \
+narrowed what it watches to the systems customers actually use — it \
+previously counted our marketing site, documentation, this status page, and \
+internal tooling alongside the product, which is why several days here were \
+marked degraded when the product was serving normally.
+"""
