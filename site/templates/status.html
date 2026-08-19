@@ -246,7 +246,81 @@ main#status-page.status-page {
    solid amber bar cannot distinguish "our docs site was slow" from "chat was
    down". The severity and the uptime percentage are unchanged; this only shows
    WHERE it landed. */
-.status-bar[data-banded="1"] { background-image: var(--bands); }
+.status-bar[data-banded="1"] {
+  display: flex; flex-direction: column;
+  background: none;            /* the strips ARE the fill now */
+}
+/* One strip per area. These are real elements rather than a gradient so each
+   can be hovered on its own — a reader pointing at the amber strip should be
+   told which area it is, not just that the day was amber. */
+.status-band { flex: 1 1 0; min-height: 0; }
+.status-band[data-s="operational"]    { background: #2f9e44; }
+.status-band[data-s="degraded"]       { background: #f0a020; }
+.status-band[data-s="partial_outage"] { background: #e8590c; }
+.status-band[data-s="major_outage"]   { background: #c92a2a; }
+.status-bar:focus-visible { outline: 2px solid #1b5e4b; outline-offset: 2px; }
+
+/* ── Hover card ────────────────────────────────────────────────────────
+   Replaces the native title. A native tooltip cannot show the per-area
+   breakdown legibly, waits about a second before appearing, and cannot be
+   styled — and the breakdown is the whole point of the banding. */
+.status-pop {
+  position: fixed; z-index: 60; max-width: 22rem;
+  background: #ffffff; color: #2d3c34;
+  border: 1px solid #dce3e0; border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(20, 40, 30, 0.16);
+  padding: 0.65rem 0.75rem; font-size: 0.8rem; line-height: 1.5;
+  pointer-events: none;        /* never eats the hover it is describing */
+  /* Backstop for the content cap above: pointer-events are off, so the card
+     can never be scrolled — it must always fit on screen by construction. */
+  max-height: 70vh; overflow: hidden;
+}
+.status-pop[hidden] { display: none; }
+/* The site styles <p> and <li> globally; without this the card inherits body
+   type and the verdict line renders twice the size of everything around it. */
+.status-pop p, .status-pop li, .status-pop ul, .status-pop div {
+  font-size: inherit; line-height: inherit;
+}
+.status-pop-date { font-weight: 700; font-variant-numeric: tabular-nums; }
+.status-pop-sev { font-weight: 600; text-transform: capitalize; }
+.status-pop-sev[data-s="operational"]    { color: #2f9e44; }
+.status-pop-sev[data-s="degraded"]       { color: #b47509; }
+.status-pop-sev[data-s="partial_outage"] { color: #e8590c; }
+.status-pop-sev[data-s="major_outage"]   { color: #c92a2a; }
+.status-pop-sev[data-s="unknown"],
+.status-pop-sev[data-s="no_data"]        { color: #7e8d95; }
+.status-pop-focus {
+  margin: 0.35rem 0 0; padding: 0.3rem 0.45rem;
+  background: #f4f7f5; border-radius: 5px; font-weight: 600;
+}
+.status-pop-areas { list-style: none; margin: 0.4rem 0 0; padding: 0; }
+.status-pop-area {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-variant-numeric: tabular-nums;
+}
+.status-pop-area[data-hit="0"] { color: #9aa8a2; }
+.status-pop-dot { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+.status-pop-lines { margin: 0.4rem 0 0; padding: 0; list-style: none; color: #5c6b64; }
+.status-pop-lines li { margin: 0.1rem 0; }
+.status-pop-verdict { margin: 0.45rem 0 0; font-weight: 600; }
+.status-pop-verdict[data-prod="0"] { color: #2f9e44; }
+.status-pop-verdict[data-prod="1"] { color: #b47509; }
+.status-pop-note { margin: 0.4rem 0 0; font-style: italic; color: #5c6b64; }
+
+/* Area chips in the incident list, so the same breakdown is readable without
+   hovering anything — hover is not available on touch, and the list is what a
+   customer reads when they want the account rather than the shape. */
+.status-incident-areas {
+  flex-basis: 100%; display: flex; flex-wrap: wrap;
+  gap: 0.3rem 0.5rem; margin: 0.4rem 0 0;
+}
+.status-incident-chip {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.75rem; padding: 0.1rem 0.4rem;
+  border: 1px solid #e2e8e5; border-radius: 999px; color: #7e8d95;
+}
+.status-incident-chip[data-hit="1"] { color: #2d3c34; border-color: #d6c39a; background: #fdf8ee; }
+.status-incident-chip .status-pop-dot { width: 7px; height: 7px; }
 
 .status-areas-key {
   display: flex; flex-wrap: wrap; gap: 0.35rem 1rem;
@@ -592,14 +666,27 @@ main#status-page.status-page {
       var bands = dayBands(day, AREA_META);
       if (bands) {
         b.setAttribute('data-banded', '1');
-        b.style.setProperty('--bands', bandsToGradient(bands));
+        bands.forEach(function (band) {
+          var strip = document.createElement('span');
+          strip.className = 'status-band';
+          strip.setAttribute('data-s', band.status);
+          // Hovering a STRIP names that strip; hovering the gaps or an
+          // unbanded day falls through to the whole-day card.
+          strip.addEventListener('mouseenter', function () { showPop(b, day, band); });
+          b.appendChild(strip);
+        });
       }
-      // Native tooltip: cheap, accessible, no JS popover to maintain.
+      // The full text still backs the accessible name — the hover card is a
+      // sighted-reader affordance and must not be the only way to get this.
       var text = dayTooltip(day);
-      b.title = text;
-      // A title alone is invisible to screen readers on a bare <span>.
       b.setAttribute('role', 'img');
       b.setAttribute('aria-label', text.replace(/\n/g, '. '));
+      // Keyboard users get the same card; without this it is hover-only.
+      b.setAttribute('tabindex', '0');
+      b.addEventListener('mouseenter', function () { showPop(b, day, null); });
+      b.addEventListener('mouseleave', hidePop);
+      b.addEventListener('focus', function () { showPop(b, day, null); });
+      b.addEventListener('blur', hidePop);
       bars.appendChild(b);
     });
 
@@ -622,6 +709,139 @@ main#status-page.status-page {
 
     renderAreasKey(h);
     renderIncidents(h, withData);
+  }
+
+  // ── Hover card ────────────────────────────────────────────────────────
+  //
+  // One shared element, reused for every bar. Positioned with `fixed` against
+  // the bar's viewport rect and clamped to the window, so it cannot open off
+  // the right edge on the most recent days — which are the ones people
+  // actually look at.
+  var POP = null;
+  function ensurePop() {
+    if (POP) return POP;
+    POP = document.createElement('div');
+    POP.className = 'status-pop';
+    POP.setAttribute('role', 'tooltip');
+    POP.hidden = true;
+    document.body.appendChild(POP);
+    return POP;
+  }
+  function hidePop() { if (POP) POP.hidden = true; }
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined && text !== null) n.textContent = text;
+    return n;
+  }
+
+  /**
+   * @param {Element} bar   the day's bar, for positioning
+   * @param {object}  day   the history day
+   * @param {object|null} band  the strip under the pointer, when there is one
+   */
+  function showPop(bar, day, band) {
+    var pop = ensurePop();
+    pop.textContent = '';
+    var status = day.status || 'no_data';
+
+    var head = el('div');
+    head.appendChild(el('span', 'status-pop-date', day.date));
+    head.appendChild(document.createTextNode(' — '));
+    var sev = el('span', 'status-pop-sev', (STATUS_LABEL[status] || status));
+    sev.setAttribute('data-s', status);
+    head.appendChild(sev);
+    if (day.uptimePct !== null && day.uptimePct !== undefined) {
+      head.appendChild(document.createTextNode(', ' + day.uptimePct + '% uptime'));
+    }
+    pop.appendChild(head);
+
+    if (status === 'no_data') {
+      pop.appendChild(el('p', 'status-pop-note',
+        'The sampler recorded nothing this day. Not a claim of uptime.'));
+      return place(pop, bar);
+    }
+
+    // What the pointer is actually on, said first.
+    if (band) {
+      var f = el('div', 'status-pop-focus',
+        band.name + ' — ' + (STATUS_LABEL[band.status] || band.status));
+      pop.appendChild(f);
+    }
+
+    var bands = dayBands(day, AREA_META);
+    if (bands) {
+      var ul = el('ul', 'status-pop-areas');
+      bands.forEach(function (bd) {
+        var li = el('li', 'status-pop-area');
+        li.setAttribute('data-hit', bd.status === 'operational' ? '0' : '1');
+        var dot = el('span', 'status-pop-dot');
+        dot.style.background = BAND_COLOR[bd.status] || '#d8dee2';
+        li.appendChild(dot);
+        li.appendChild(document.createTextNode(bd.name));
+        ul.appendChild(li);
+      });
+      pop.appendChild(ul);
+
+      var prod = bands.some(function (bd) { return bd.id === 'product' && bd.status !== 'operational'; });
+      var v = el('p', 'status-pop-verdict', prod
+        ? 'The product was among the affected areas.'
+        : 'The product (chat, API, embeds) was not affected.');
+      v.setAttribute('data-prod', prod ? '1' : '0');
+      pop.appendChild(v);
+    }
+
+    // A flapping day can hold dozens of windows — 2026-08-16 has 33, which
+    // rendered a card 1188px tall that could not fit on screen at all. Show a
+    // readable head and COUNT the rest rather than truncating silently; the
+    // full list is still in the accessible name and in the incident entry.
+    var windows = day.windows || [];
+    if (windows.length) {
+      var MAX_LINES = 5;
+      var lines = el('ul', 'status-pop-lines');
+      windows.slice(0, MAX_LINES).forEach(function (w) {
+        var range = clockRange(w.from, w.to);
+        lines.appendChild(el('li', null, '• ' + (STATUS_LABEL[w.status] || w.status)
+          + (range ? ' ' + range : '') + ' (~' + w.minutes + ' min)'
+          + (w.counted ? '' : ' — too brief to rate the day')));
+      });
+      if (windows.length > MAX_LINES) {
+        var rest = windows.length - MAX_LINES;
+        lines.appendChild(el('li', null,
+          '• and ' + rest + ' more ' + (rest === 1 ? 'period' : 'periods') + ' this day'));
+      }
+      pop.appendChild(lines);
+    }
+
+    notesFor(day.date).forEach(function (n) {
+      if (n.title) pop.appendChild(el('p', 'status-pop-note', n.title));
+    });
+
+    if (!windows.length && status !== 'operational') {
+      pop.appendChild(el('p', 'status-pop-note',
+        'Timing not recorded for this day — rated by its worst sample.'));
+    }
+    place(pop, bar);
+  }
+
+  function place(pop, bar) {
+    pop.hidden = false;
+    var r = bar.getBoundingClientRect();
+    var w = pop.offsetWidth, h = pop.offsetHeight;
+    var pad = 8;
+    var left = r.left + r.width / 2 - w / 2;
+    // Clamp INSIDE the viewport. The newest days sit hard against the right
+    // edge of the chart, and those are the ones most likely to be read.
+    left = Math.max(pad, Math.min(left, window.innerWidth - w - pad));
+    // Prefer above; flip below when there is not room; clamp if neither fits,
+    // so a tall card is never anchored off-screen.
+    var top = r.top - h - pad;
+    if (top < pad) top = r.bottom + pad;
+    if (top + h > window.innerHeight - pad) top = window.innerHeight - h - pad;
+    if (top < pad) top = pad;
+    pop.style.left = left + 'px';
+    pop.style.top = top + 'px';
   }
 
   /**
@@ -743,6 +963,32 @@ main#status-page.status-page {
       });
 
       li.appendChild(date); li.appendChild(st); li.appendChild(pct);
+
+      // The same area breakdown the bar shows, in text. Hover is unavailable
+      // on touch, and this list — not the chart — is what someone reads when
+      // they want the account rather than the shape. Affected areas are
+      // highlighted; the rest are listed greyed so the reader can see what was
+      // checked and found fine, not just what broke.
+      var incidentBands = dayBands(
+        { date: d.date, status: li.getAttribute('data-s') }, AREA_META);
+      if (incidentBands) {
+        var chips = document.createElement('div');
+        chips.className = 'status-incident-areas';
+        incidentBands.forEach(function (bd) {
+          var hit = bd.status !== 'operational';
+          var chip = document.createElement('span');
+          chip.className = 'status-incident-chip';
+          chip.setAttribute('data-hit', hit ? '1' : '0');
+          var dot = document.createElement('span');
+          dot.className = 'status-pop-dot';
+          dot.style.background = BAND_COLOR[bd.status] || '#d8dee2';
+          chip.appendChild(dot);
+          chip.appendChild(document.createTextNode(
+            bd.name + (hit ? '' : ' — not affected')));
+          chips.appendChild(chip);
+        });
+        li.appendChild(chips);
+      }
 
       notes.forEach(function (n) {
         var body = document.createElement('div');
