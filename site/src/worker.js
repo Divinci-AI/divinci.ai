@@ -17,6 +17,7 @@ import {
   WEB_BOT_AUTH_DIRECTORY_PATH,
   handleWebBotAuthDirectory,
 } from './web-bot-auth-directory.mjs';
+import { AREAS } from './status-areas.mjs';
 import {
   HISTORY_KEY,
   applySample,
@@ -625,6 +626,11 @@ function statusPayload(overall, components, extra) {
     components,
     updatedAt: new Date().toISOString(),
     source: 'datadog-monitors',
+    // The area taxonomy the banded history bars are drawn from. Published
+    // rather than duplicated in the template: the ORDER is load-bearing (two
+    // identical days must draw identically), and a second hand-maintained copy
+    // is how that quietly stops being true.
+    areas: AREAS,
     ...extra,
   });
 }

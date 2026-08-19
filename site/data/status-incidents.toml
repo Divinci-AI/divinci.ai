@@ -33,6 +33,7 @@ title = "API requests timed out during two deploys"
 severity = "partial_outage"
 window = "00:22–00:30 and 00:52–00:58 PT (07:22–07:58 UTC)"
 resolved = true
+areas = ["product"]
 summary = """
 Two deployments left incoming API requests waiting on a newly started server \
 that had not yet been marked ready to receive traffic. Rather than failing \
@@ -57,6 +58,7 @@ title = "Chat and API unavailable — database connection limit reached"
 severity = "major_outage"
 window = "02:05–02:45 PT (09:05–09:45 UTC)"
 resolved = true
+areas = ["product"]
 summary = """
 Our caching layer reached its maximum number of simultaneous connections and \
 began refusing new ones. Because the API opens a connection as each server \
@@ -74,4 +76,239 @@ actual fix — changed the API to close its connections on shutdown so they can 
 no longer accumulate. We have also added monitoring on connection usage so we \
 are warned hours before this threshold could be approached again, rather than \
 learning about it from an outage.
+"""
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Per-day notes for every day the bar is not green, added 2026-08-19.
+#
+# WHY THESE READ THE WAY THEY DO
+# The 90-day bar is coloured by a single monitor that counts server errors
+# across our whole Cloudflare zone. That zone carries much more than the
+# product: our marketing site, our documentation site, pre-production
+# environments, and internal tooling all sit on it too. So a day could be
+# rated "Degraded" here without anything a customer touches being affected.
+#
+# We went back through the error data for each of these days and attributed it
+# by area. On every one of them the customer-facing product was a minority of
+# the errors — between 1% and 14%. `areas` lists each area that accounted for
+# at least 10% of the errors during the rated windows, and drives the banded
+# bar so the split is visible rather than buried in this file.
+#
+# We are narrowing the monitor so the rating reflects customer-facing surfaces
+# rather than the whole zone. Until that lands, these notes are the correction.
+# ─────────────────────────────────────────────────────────────────────────────
+
+[[incident]]
+date = "2026-07-31"
+title = "Errors from a pre-production environment, not the product"
+severity = "degraded"
+window = "two ~30-minute periods"
+resolved = true
+areas = ["preprod"]
+summary = """
+Roughly 89% of the errors counted in the rated windows came from a \
+pre-production environment that carries no customer traffic. The customer-facing \
+product accounted for about 2%. No customer impact is known for this day; the \
+rating reflects the monitor's zone-wide scope rather than a product problem.
+"""
+
+[[incident]]
+date = "2026-08-03"
+title = "Marketing site and internal tooling timeouts"
+severity = "degraded"
+window = "one ~30-minute period"
+resolved = true
+areas = ["marketing", "internal"]
+summary = """
+Our own marketing site accounted for about 69% of the errors in the rated \
+window and internal tooling for a further 23%. The product accounted for about \
+2%. Visitors to the marketing site may have seen slow or failed page loads; \
+chat, the API and embeds were unaffected.
+"""
+
+[[incident]]
+date = "2026-08-04"
+title = "Marketing site timeouts, plus a pre-production environment"
+severity = "degraded"
+window = "one ~30-minute period"
+resolved = true
+areas = ["marketing", "preprod"]
+summary = """
+About 70% of the errors came from our marketing site and 29% from a \
+pre-production environment. The product accounted for about 1%. Marketing site \
+visitors may have seen slow or failed page loads; the product was unaffected.
+"""
+
+[[incident]]
+date = "2026-08-05"
+title = "Certificate problem on our email service, and marketing site timeouts"
+severity = "degraded"
+window = "four ~30-minute periods"
+resolved = true
+areas = ["marketing", "product"]
+summary = """
+This is the one day in this group with real product impact. About 40% of the \
+errors came from the service that sends account email — invitations and \
+notifications — which was rejecting connections because of a certificate \
+problem. Email sent during those windows would have failed. Our marketing site \
+accounted for a further 55% of the errors, unrelated.
+
+Email sending is now covered by its own alert so a failure is reported \
+directly rather than only appearing as an error-rate rise.
+"""
+
+[[incident]]
+date = "2026-08-07"
+title = "Marketing and documentation sites timing out"
+severity = "degraded"
+window = "four periods, ~150 minutes total"
+resolved = true
+areas = ["marketing", "docs", "internal"]
+summary = """
+Our marketing site accounted for about 50% of the errors, our developer \
+documentation site for 28%, and internal tooling for 11%. The product \
+accounted for about 3%. Readers of the marketing and documentation sites may \
+have seen slow or failed page loads; chat, the API and embeds were unaffected.
+"""
+
+[[incident]]
+date = "2026-08-08"
+title = "Marketing site timeouts"
+severity = "degraded"
+window = "four ~30-minute periods"
+resolved = true
+areas = ["marketing"]
+summary = """
+About 84% of the errors came from our marketing site. The product accounted \
+for about 1%. Marketing site visitors may have seen slow or failed page loads; \
+the product was unaffected.
+"""
+
+[[incident]]
+date = "2026-08-09"
+title = "Marketing site timeouts, plus a pre-production environment"
+severity = "degraded"
+window = "five periods, ~150 minutes total"
+resolved = true
+areas = ["marketing", "preprod"]
+summary = """
+About 77% of the errors came from our marketing site and 11% from a \
+pre-production environment carrying no customer traffic. The product accounted \
+for about 5%. The product was effectively unaffected.
+"""
+
+[[incident]]
+date = "2026-08-10"
+title = "Marketing site and internal tooling timeouts"
+severity = "degraded"
+window = "four ~30-minute periods"
+resolved = true
+areas = ["marketing", "internal"]
+summary = """
+About 70% of the errors came from our marketing site and 23% from internal \
+tooling that customers never reach. The product accounted for about 2%.
+"""
+
+[[incident]]
+date = "2026-08-11"
+title = "Marketing site and internal tooling timeouts"
+severity = "degraded"
+window = "one ~30-minute period"
+resolved = true
+areas = ["marketing", "internal"]
+summary = """
+About 67% of the errors came from our marketing site and 21% from internal \
+tooling. The product accounted for about 5%. A short, low-volume period — \
+fewer than a hundred errors in total.
+"""
+
+[[incident]]
+date = "2026-08-12"
+title = "Pre-production and marketing site errors"
+severity = "degraded"
+window = "two ~30-minute periods"
+resolved = true
+areas = ["preprod", "marketing", "internal"]
+summary = """
+About 46% of the errors came from a pre-production environment, 42% from our \
+marketing site and 11% from internal tooling. The product accounted for about \
+1% and was effectively unaffected.
+"""
+
+[[incident]]
+date = "2026-08-13"
+title = "Internal tooling and marketing site errors"
+severity = "degraded"
+window = "three ~30-minute periods"
+resolved = true
+areas = ["internal", "marketing", "preprod"]
+summary = """
+About 41% of the errors came from internal tooling, 39% from our marketing \
+site and 12% from a pre-production environment. The product accounted for \
+about 4%.
+"""
+
+[[incident]]
+date = "2026-08-14"
+title = "Marketing site timeouts, with some product errors"
+severity = "degraded"
+window = "six periods, ~210 minutes total"
+resolved = true
+areas = ["marketing", "product", "preprod"]
+summary = """
+Our marketing site accounted for about 64% of the errors. The product \
+accounted for about 14% — the highest product share in this group — spread \
+across short periods rather than one sustained event, and no customer report \
+was received. A pre-production environment accounted for a further 11%.
+"""
+
+[[incident]]
+date = "2026-08-15"
+title = "Marketing site timeouts, with some product errors"
+severity = "degraded"
+window = "two ~30-minute periods"
+resolved = true
+areas = ["marketing", "product"]
+summary = """
+About 75% of the errors came from our marketing site. The product accounted \
+for about 12%, in brief bursts rather than a sustained failure.
+"""
+
+[[incident]]
+date = "2026-08-16"
+title = "Internal logging misconfiguration flooded our error counts"
+severity = "major_outage"
+window = "intermittent through the day"
+resolved = true
+areas = ["internal"]
+summary = """
+This day reads as our worst on record and was not an outage at all. An internal \
+logging component had been sending its output to an address that was never \
+configured to exist, so every attempt failed. Because the failures were \
+counted as server errors on the same zone the status monitor watches, a busy \
+processing day produced roughly 26,000 of them and repeatedly pushed this page \
+into "Major outage". Internal tooling accounted for about 91% of the errors and \
+the product for about 1%.
+
+Customers were not affected at any point during this day. The component had \
+been failing silently since it was written: the failure looked like a \
+successful request to the code making it, so nothing ever reported it.
+
+The misdirected logging has been disabled, and the published history for this \
+day has been corrected. We have also recorded that the underlying monitor \
+counts our whole zone rather than only customer-facing surfaces, which is what \
+allowed an internal fault to be published as a customer-facing outage.
+"""
+
+[[incident]]
+date = "2026-08-17"
+title = "Marketing site and pre-production errors"
+severity = "degraded"
+window = "one ~10-minute period"
+resolved = true
+areas = ["marketing", "preprod"]
+summary = """
+About 50% of the errors came from our marketing site and 42% from a \
+pre-production environment. The product accounted for about 8%. The three \
+other blips recorded this day were each too brief to rate the day.
 """

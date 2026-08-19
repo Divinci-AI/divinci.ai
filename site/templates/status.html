@@ -63,6 +63,7 @@
           <span id="status-history-legend" class="status-history-legend"></span>
           <span>Today</span>
         </div>
+        <div class="status-areas-key" id="status-areas-key" hidden></div>
       </div>
 
       <div class="status-card" id="status-incidents-card" hidden>
@@ -239,6 +240,33 @@ main#status-page.status-page {
 .status-bar[data-s="degraded"]       { background: #f0a020; }
 .status-bar[data-s="partial_outage"] { background: #e8590c; }
 .status-bar[data-s="major_outage"]   { background: #c92a2a; }
+/* A BANDED day: one horizontal strip per area, drawn top-down in the order
+   the API publishes. A day where only the marketing site was unhappy shows one
+   amber strip and four green ones — which is the whole point, because a single
+   solid amber bar cannot distinguish "our docs site was slow" from "chat was
+   down". The severity and the uptime percentage are unchanged; this only shows
+   WHERE it landed. */
+.status-bar[data-banded="1"] { background-image: var(--bands); }
+
+.status-areas-key {
+  display: flex; flex-wrap: wrap; gap: 0.35rem 1rem;
+  margin-top: 0.75rem; font-size: 0.75rem;
+  color: var(--color-neutral-secondary, #7e8d95);
+}
+.status-areas-key-item { display: flex; align-items: center; gap: 0.35rem; }
+/* A miniature of the bar itself, with THIS area's strip filled and the others
+   faint — so the key reads positionally ("this is the second strip down")
+   rather than as five identical green squares, which told the reader nothing
+   about which band was which. */
+.status-areas-key-swatch {
+  width: 9px; height: 18px; border-radius: 2px; flex: none;
+  background-image: var(--swatch);
+}
+.status-areas-key-note {
+  flex-basis: 100%; margin: 0.35rem 0 0;
+  font-size: 0.75rem; line-height: 1.5;
+}
+
 .status-bar[data-s="unknown"],
 .status-bar[data-s="no_data"]        { background: #d8dee2; }
 
@@ -413,6 +441,9 @@ main#status-page.status-page {
       updated.textContent = '';
     }
 
+    // The area taxonomy comes from the API (src/status-areas.mjs) so the page
+    // never keeps its own copy — see the comment on `areas` in statusPayload().
+    AREA_META = (data && Array.isArray(data.areas)) ? data.areas : [];
     renderHistory(data && data.history);
   }
 
@@ -468,6 +499,21 @@ main#status-page.status-page {
         + (w.counted ? '' : ' — too brief to rate the day'));
     });
 
+    // Which parts of the estate this actually landed on. The bar is coloured
+    // by a monitor that watches our whole zone — marketing site, docs,
+    // pre-production and internal tooling included — so "Degraded" on its own
+    // systematically over-states customer impact. Say plainly whether the
+    // product was among them.
+    var bandsForTip = dayBands(day, AREA_META);
+    if (bandsForTip) {
+      var hit = bandsForTip.filter(function (b) { return b.status !== 'operational'; });
+      lines.push('Affected: ' + hit.map(function (b) { return b.name; }).join(', '));
+      var prod = hit.some(function (b) { return b.id === 'product'; });
+      lines.push(prod
+        ? 'The product was among the affected areas.'
+        : 'The product (chat, API, embeds) was not affected.');
+    }
+
     // Windows are the sampler's view. A human note is the authoritative one,
     // and is the only place the CAUSE is ever written down.
     notesFor(day.date).forEach(function (n) {
@@ -487,6 +533,51 @@ main#status-page.status-page {
     return lines.join('\n');
   }
 
+  /**
+   * Per-area bands for one day.
+   *
+   * Mirrors dayBands() in src/status-areas.mjs, which is the canonical version
+   * and is the one under test (tests/worker/status-areas.test.mjs). Kept to the
+   * same handful of rules deliberately:
+   *   - only a BAD day bands at all;
+   *   - no attributed areas means NO bands, never an invented breakdown —
+   *     this page's failure mode has been over-claiming, and a fabricated
+   *     "only pre-production" would be exactly that;
+   *   - an id the API does not publish is dropped, because the notes file is
+   *     hand-edited and a typo must not paint a meaningless strip.
+   */
+  var AREA_META = [];
+  var BAD = { degraded: 1, partial_outage: 1, major_outage: 1 };
+  var BAND_COLOR = {
+    operational: '#2f9e44', degraded: '#f0a020',
+    partial_outage: '#e8590c', major_outage: '#c92a2a',
+    // Key swatches only: the strips that are NOT this area.
+    none: '#e3e8eb',
+  };
+
+  function dayBands(day, areaMeta) {
+    if (!BAD[day.status] || !areaMeta || !areaMeta.length) return null;
+    var named = {};
+    notesFor(day.date).forEach(function (n) {
+      (n.areas || []).forEach(function (a) { named[a] = 1; });
+    });
+    var any = areaMeta.some(function (a) { return named[a.id]; });
+    if (!any) return null;
+    return areaMeta.map(function (a) {
+      return { id: a.id, name: a.name, status: named[a.id] ? day.status : 'operational' };
+    });
+  }
+
+  /** Bands -> a hard-edged linear-gradient, equal strips, no blending. */
+  function bandsToGradient(bands) {
+    var step = 100 / bands.length;
+    var stops = bands.map(function (b, i) {
+      var c = BAND_COLOR[b.status] || '#d8dee2';
+      return c + ' ' + (i * step) + '%, ' + c + ' ' + ((i + 1) * step) + '%';
+    });
+    return 'linear-gradient(to bottom, ' + stops.join(', ') + ')';
+  }
+
   function renderHistory(h) {
     var card = document.getElementById('status-history-card');
     if (!h || !h.days || !h.days.length) { card.hidden = true; return; }
@@ -498,6 +589,11 @@ main#status-page.status-page {
       var b = document.createElement('span');
       b.className = 'status-bar';
       b.setAttribute('data-s', day.status || 'no_data');
+      var bands = dayBands(day, AREA_META);
+      if (bands) {
+        b.setAttribute('data-banded', '1');
+        b.style.setProperty('--bands', bandsToGradient(bands));
+      }
       // Native tooltip: cheap, accessible, no JS popover to maintain.
       var text = dayTooltip(day);
       b.title = text;
@@ -524,7 +620,45 @@ main#status-page.status-page {
       legend.textContent = '';
     }
 
+    renderAreasKey(h);
     renderIncidents(h, withData);
+  }
+
+  /**
+   * The band key. Shown ONLY when at least one day on screen is actually
+   * banded — a legend for something the reader cannot see is just clutter, and
+   * it would also imply we attribute every day, which we do not.
+   */
+  function renderAreasKey(h) {
+    var el = document.getElementById('status-areas-key');
+    if (!el) return;
+    var banded = (h.days || []).some(function (d) { return dayBands(d, AREA_META); });
+    if (!banded || !AREA_META.length) { el.hidden = true; return; }
+    el.hidden = false;
+    el.textContent = '';
+    AREA_META.forEach(function (a, i) {
+      var item = document.createElement('span');
+      item.className = 'status-areas-key-item';
+      var sw = document.createElement('span');
+      sw.className = 'status-areas-key-swatch';
+      // Fill only this area's strip, in the same top-to-bottom order the bars
+      // use, so the swatch shows WHERE the area sits rather than just that it
+      // exists.
+      sw.style.setProperty('--swatch', bandsToGradient(AREA_META.map(function (x, j) {
+        return { status: j === i ? 'degraded' : 'none' };
+      })));
+      item.appendChild(sw);
+      item.appendChild(document.createTextNode(a.name));
+      if (a.hint) item.title = a.hint;
+      el.appendChild(item);
+    });
+    var note = document.createElement('p');
+    note.className = 'status-areas-key-note';
+    note.textContent = 'On days we attributed, the bar is split top-to-bottom into these '
+      + 'areas in this order, so you can see which part was affected. '
+      + 'Uptime is measured across our whole network, which includes areas '
+      + 'customers never touch.';
+    el.appendChild(note);
   }
 
   // Human-authored notes, keyed by date. Build-time data (see load_data above).
