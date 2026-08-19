@@ -43,6 +43,23 @@
   // Rolling 90-day uptime history for /status. Written opportunistically on
   // /api/status cache-misses (the footer indicator generates steady traffic),
   // so no cron trigger is required — see handleStatus() in src/worker.js.
+  // ── Customer-facing edge-error collector ────────────────────────────
+  //
+  // Every 5 minutes, ask Cloudflare how many 5xx hit CUSTOMER hosts and paths
+  // and publish the answer to Datadog (see src/customer-health.mjs). This one
+  // is a cron rather than request-driven like the history sampler, because it
+  // feeds the PAGER: a signal that goes blind whenever the marketing site is
+  // quiet at 4am is worse than no signal.
+  //
+  // ⚠️ dev and staging deploy this same code and MUST NOT run it — two
+  // environments submitting the same metric double every value the monitor
+  // reads. Their `triggers.crons` are explicitly emptied below (named
+  // environments otherwise inherit this block), and scheduled() also refuses
+  // unless ENVIRONMENT is production.
+  "triggers": {
+    "crons": ["*/5 * * * *"]
+  },
+
   "kv_namespaces": [
     {
       "binding": "STATUS_HISTORY",
@@ -66,6 +83,8 @@
   "env": {
     "dev": {
       "name": "divinci-ai-site-dev",
+      // Never run the collector outside production — see triggers above.
+      "triggers": { "crons": [] },
       "vars": {
         "ENVIRONMENT": "development",
         "SITE_NAME": "Divinci AI (Dev)",
@@ -82,6 +101,8 @@
     },
     "staging": {
       "name": "divinci-ai-site-staging",
+      // Never run the collector outside production — see triggers above.
+      "triggers": { "crons": [] },
       "vars": {
         "ENVIRONMENT": "staging",
         "SITE_NAME": "Divinci AI (Staging)",

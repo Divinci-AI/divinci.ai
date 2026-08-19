@@ -18,6 +18,7 @@ import {
   handleWebBotAuthDirectory,
 } from './web-bot-auth-directory.mjs';
 import { AREAS } from './status-areas.mjs';
+import { collectCustomerHealth } from './customer-health.mjs';
 import {
   HISTORY_KEY,
   applySample,
@@ -84,6 +85,28 @@ async function rewriteBaseUrls(response, requestUrl, env) {
 }
 
 export default {
+  /**
+   * Cron: collect customer-facing edge errors and publish them to Datadog.
+   *
+   * Guarded on ENVIRONMENT because dev and staging deploy the same code — two
+   * environments submitting the same metric would double every value the pager
+   * reads, and the resulting series would look like a traffic increase rather
+   * than a bug.
+   */
+  async scheduled(event, env, ctx) {
+    if (env.ENVIRONMENT !== 'production') {
+      console.log(`[customer-health] skipped: ENVIRONMENT=${env.ENVIRONMENT}`);
+      return;
+    }
+    ctx.waitUntil(
+      collectCustomerHealth(env).catch((e) => {
+        // Never rethrow into the cron runner: the useful signal is the metric
+        // going absent, which the monitor's no-data notification reports.
+        console.error('[customer-health] collection failed:', e?.message ?? e);
+      }),
+    );
+  },
+
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
