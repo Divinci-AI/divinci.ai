@@ -1,7 +1,7 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  normalizeHost, isCustomerHost, isCustomerPath, summarize, collectCustomerHealth, shouldCollect,
+  normalizeHost, isCustomerHost, isCustomerPath, summarize, collectCustomerHealth, shouldCollect, keyFingerprint,
 } from '../../src/customer-health.mjs';
 
 describe('host classification', () => {
@@ -284,5 +284,25 @@ describe('alerting contracts', () => {
           data: { viewer: { zones: [{ httpRequestsAdaptiveGroups: [] }] } } }) };
     const out = await collectCustomerHealth({ CF_ANALYTICS_TOKEN: 't', DD_API_KEY: 'k' }, { fetchImpl });
     assert.deepEqual(out, { customer: 0, internal: 0, rows: 0 });
+  });
+});
+
+describe('keyFingerprint — identity without exposure', () => {
+  test('is stable, 8 hex chars, and never contains the key', async () => {
+    const key = 'abcdef0123456789abcdef0123456789';
+    const fp = await keyFingerprint(key);
+    assert.match(fp, /^[0-9a-f]{8}$/);
+    assert.equal(fp, await keyFingerprint(key));
+    assert.ok(!fp.includes(key.slice(0, 8)));
+  });
+
+  test('DIFFERENT keys of the SAME length fingerprint differently', async () => {
+    // The whole point. On 2026-08-19 a valid key for the WRONG Datadog org sat
+    // in this worker; both it and the right one were 32 chars, so the length we
+    // logged could not tell them apart and the metric silently went nowhere.
+    const a = 'a'.repeat(32);
+    const b = 'b'.repeat(32);
+    assert.equal(a.length, b.length);
+    assert.notEqual(await keyFingerprint(a), await keyFingerprint(b));
   });
 });

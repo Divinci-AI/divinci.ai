@@ -187,6 +187,31 @@ const CUSTOMER_5XX_QUERY = `query($zone:String!,$since:Time!,$until:Time!){
  * visible: the metric goes absent and the monitor's no-data notification says
  * so. The cost of being wrong in the other direction is silent.
  */
+/**
+ * First 8 hex of sha256(key) — an IDENTITY, never the key.
+ *
+ * ⚠️ A LENGTH cannot tell two keys apart, and that is exactly what went wrong
+ * on 2026-08-19: this worker held a VALID Datadog API key belonging to a
+ * DIFFERENT org. Intake returned `202 {"status":"ok"}` for every submission
+ * and filed the points where nobody could see them, while the same worker read
+ * monitors from the correct org (Datadog's read APIs are scoped by the
+ * APPLICATION key). Both keys were 32 characters, so `key_len` said they were
+ * the same. A fingerprint makes "which credential is this actually" answerable
+ * from the log line, which is the only place the question was visible.
+ *
+ * Safe to log: 8 hex of a hash is not reversible and is not a credential —
+ * the same comparison this repo already uses to verify a secret write
+ * (`shasum -a256 | cut -c1-16`). Never log the key itself.
+ */
+export async function keyFingerprint(key) {
+  try {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(key)));
+    return [...new Uint8Array(buf)].slice(0, 4).map(b => b.toString(16).padStart(2, "0")).join("");
+  } catch {
+    return "unavailable";
+  }
+}
+
 export function shouldCollect(env) {
   return (env?.ENVIRONMENT ?? "") === "production";
 }
@@ -263,7 +288,8 @@ export async function collectCustomerHealth(env, opts = {}) {
   // are recorded rather than assumed.
   const submitBody = await submit.text().catch(() => '<unreadable>');
   if (!submit.ok) throw new Error(`datadog submit ${submit.status}: ${submitBody.slice(0, 200)}`);
-  console.log(`[customer-health] datadog status=${submit.status} body=${submitBody.slice(0, 120)} site=${site} key_len=${String(apiKey).length}`);
+  console.log(`[customer-health] datadog status=${submit.status} `
+    + `body=${submitBody.slice(0, 120)} site=${site} key_fp=${await keyFingerprint(apiKey)}`);
 
   // One line, k=v, greppable. Mirrors the [*-failed] marker convention used
   // across the platform.
