@@ -516,7 +516,10 @@
 .owv-note p,
 .owv-stage p { color: #55555f; }
 /* Same story for links: without this they fall through to the UA default blue. */
-.owv-band a:not(.owv-btn):not(.owv-example-link) {
+.owv-band a:not(.owv-btn):not(.owv-example-link):not(.owv-stage-link) {
+    /* .owv-stage-link opts out for the same reason .owv-btn does: it is a
+       whole heading, not a phrase inside prose, so the house underline reads
+       as a mis-styled title rather than as a link. */
     color: #4f46e5;
     text-decoration: underline;
     text-underline-offset: 2px;
