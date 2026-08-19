@@ -322,12 +322,16 @@ resolved = true
 areas = ["internal"]
 summary = """
 No customer-facing service was affected. Our edge-error monitor counts only \
-error responses, so when everything is healthy it has nothing to count. In \
-that state it held its previous reading instead of returning to normal, and \
-this page kept reporting a problem that had already ended. The monitor now \
-treats "nothing to count" as zero, and recovers on its own. We have also \
-narrowed what it watches to the systems customers actually use — it \
-previously counted our marketing site, documentation, this status page, and \
-internal tooling alongside the product, which is why several days here were \
-marked degraded when the product was serving normally.
+error responses, so when everything was healthy it had nothing to count — and \
+in that state it held its previous reading instead of returning to normal, so \
+this page kept reporting a problem that had already ended.
+
+We have replaced what this page measures. It now reads a signal that is \
+published continuously, including explicit zeros, so "no data" can no longer \
+be mistaken for "no errors" — and that signal counts only the services \
+customers actually use. Previously it counted our marketing site, our \
+documentation, this status page and internal tooling alongside the product, \
+which is why several earlier days here were marked degraded while the product \
+was serving normally. Measured over the preceding week, fewer than 1% of the \
+errors it had been counting were on a customer-facing path.
 """

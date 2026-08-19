@@ -240,7 +240,12 @@ export async function collectCustomerHealth(env, opts = {}) {
     }),
     signal: AbortSignal.timeout(8000),
   });
-  if (!submit.ok) throw new Error(`datadog submit ${submit.status}`);
+  // Log what Datadog ACTUALLY said. A 202 is not proof of ingestion — the
+  // intake accepts a payload and can still drop it — so the status and body
+  // are recorded rather than assumed.
+  const submitBody = await submit.text().catch(() => '<unreadable>');
+  if (!submit.ok) throw new Error(`datadog submit ${submit.status}: ${submitBody.slice(0, 200)}`);
+  console.log(`[customer-health] datadog status=${submit.status} body=${submitBody.slice(0, 120)} site=${site} key_len=${String(apiKey).length}`);
 
   // One line, k=v, greppable. Mirrors the [*-failed] marker convention used
   // across the platform.
