@@ -107,7 +107,60 @@ const SCRIPT_HOOKS = [
   { test: (h) => /id="footer-status"/.test(h), name: "#footer-status" },
 ];
 
+/**
+ * The chat widget is configured by data-* attributes on its <script> tag, NOT
+ * by an import or an env var — so the API origin it talks to is a literal
+ * baked into 15 committed HTML files. Nothing checked it, and until
+ * 2026-08-19 every one of them pointed the PRODUCTION apex at the STAGING API.
+ *
+ * That was not merely untidy. Staging's Atlas cluster is deliberately paused
+ * when idle (56h of one recent 7-day window). While paused, /health stays
+ * green and every data route 503s — so the chat widget on the production
+ * marketing funnel went dark intermittently, with no alert and no error rate
+ * to observe. Exactly the "a failed X is a 200" class the platform already
+ * guards elsewhere.
+ *
+ * Resolved 2026-08-19 by repointing at release 6a5c825a4be54800a5349d53 on
+ * api.divinci.app — which needed no new release to be published: divinci.ai
+ * itself was already serving that exact release in production, so the funnel
+ * had simply never been moved onto it. There is no waiver any more; a staging
+ * origin is now a hard failure.
+ */
+/**
+ * The funnel does not build the chat widget — it ships a COPY of the bundle
+ * built from `site/static/js/src/divinci-chat-widget.ts` next door. Nothing
+ * asserted the copy matched, and it silently fell a month behind: the funnel
+ * carried the 2026-07-19 build while the source of truth moved on 2026-08-18,
+ * missing ~20 fixes (iOS voice, keyboard-safe mobile panel, accessibility,
+ * Turnstile token refresh, bare-403 recovery).
+ *
+ * A stale copy is invisible by construction — the page loads, the widget
+ * appears, and only the fixes are missing. Byte-comparison is the whole check.
+ */
+const VENDORED_BUNDLES = [
+  ["public/js/divinci-chat.js", "../site/static/js/divinci-chat.js"],
+  ["public/js/divinci-robot.js", "../site/static/js/divinci-robot.js"],
+];
+
+const WIDGET_PROD_API = "https://api.divinci.app";
+const WIDGET_STAGING_API = "https://api.stage.divinci.app";
+// The release divinci.ai itself serves in production. Pinned because a
+// correct origin with the wrong release is still the wrong assistant.
+const WIDGET_PROD_RELEASE = "6a5c825a4be54800a5349d53";
+
 // ── Pure helpers (exercised by --selftest) ────────────────────────────────
+
+/**
+ * The chat widget's data-* configuration, or null when the page does not load
+ * it. Read off the divinci-chat.js <script> tag specifically, so an unrelated
+ * data-api-base elsewhere on the page cannot satisfy the check.
+ */
+export function widgetConfig(html) {
+  const tag = html.match(/<script\b[^>]*\bsrc="[^"]*divinci-chat\.js"[^>]*>/);
+  if (!tag) return null;
+  const attr = (name) => tag[0].match(new RegExp(`\\b${name}="([^"]*)"`))?.[1] ?? null;
+  return { apiBase: attr("data-api-base"), releaseId: attr("data-release-id") };
+}
 
 /** Every href/src value in the document, in source order. */
 export function extractRefs(html) {
@@ -284,6 +337,52 @@ function checkPage(page) {
   }
   if (!/<title>.+<\/title>/.test(html)) fail(`${page.url} — missing <title>`);
   if (h1s === 1 && canonical === page.canonical) ok(`${page.url} — structure + canonical + og tags`);
+
+  // 7. The chat widget must talk to production. See STAGING_API_WAIVER above.
+  const widget = widgetConfig(html);
+  if (widget) {
+    if (!widget.apiBase || !widget.releaseId) {
+      fail(`${page.url} — divinci-chat.js is missing data-api-base or data-release-id`);
+    } else if (widget.apiBase === WIDGET_PROD_API) {
+      if (widget.releaseId !== WIDGET_PROD_RELEASE) {
+        fail(`${page.url} — chat widget release is ${widget.releaseId}, expected ${WIDGET_PROD_RELEASE}`);
+      } else {
+        ok(`${page.url} — chat widget → production API + release`);
+      }
+    } else if (widget.apiBase === WIDGET_STAGING_API) {
+      // Regression guard, not a hypothetical: this is the state the funnel
+      // shipped in for a month. Staging pauses when idle and answers /health
+      // green while every data route 503s, so a page in this state looks
+      // perfectly healthy from the outside.
+      fail(`${page.url} — chat widget points at STAGING (${widget.apiBase}); production must use ${WIDGET_PROD_API}`);
+    } else {
+      fail(`${page.url} — chat widget points at an unrecognised API origin: ${widget.apiBase}`);
+    }
+  }
+}
+
+/**
+ * Vendored bundles must be byte-identical to the source of truth next door.
+ * Skipped (not failed) when site/ is absent, so the guard still runs in a
+ * checkout that contains only the funnel — a missing sibling is not evidence
+ * of drift, and failing on it would train people to ignore this check.
+ */
+function checkVendoredBundles() {
+  const here = dirname(fileURLToPath(import.meta.url));
+  for (const [copyRel, srcRel] of VENDORED_BUNDLES) {
+    const copy = join(here, copyRel);
+    const src = join(here, srcRel);
+    if (!existsSync(copy)) { fail(`${copyRel} — missing`); continue; }
+    if (!existsSync(src)) {
+      console.warn(`  ⓘ ${copyRel} — source of truth not in this checkout, drift not checked`);
+      continue;
+    }
+    if (readFileSync(copy).equals(readFileSync(src))) {
+      ok(`${copyRel} — matches ${srcRel}`);
+    } else {
+      fail(`${copyRel} — STALE: differs from ${srcRel}. Rebuild in site/ (\`npm run build:chat\` / \`build:robot\`) and copy it across.`);
+    }
+  }
 }
 
 async function checkLive(base) {
@@ -354,6 +453,18 @@ function selftest() {
   is("selectorMatches still accepts the exact class alongside its siblings",
     selectorMatches('<section class="economics"><div class="economics-grid">', ".economics"), true);
 
+  is("widgetConfig reads both data attributes",
+    widgetConfig('<script src="/js/divinci-chat.js" data-api-base="https://api.divinci.app" data-release-id="abc"></script>'),
+    { apiBase: "https://api.divinci.app", releaseId: "abc" });
+  is("widgetConfig returns null when the widget is absent",
+    widgetConfig('<script src="/js/app.js" data-api-base="https://api.divinci.app"></script>'), null);
+  // The regression that matters: a data-api-base on some OTHER tag must not
+  // satisfy the check, or the widget could be repointed unnoticed.
+  is("widgetConfig ignores data-api-base on an unrelated tag",
+    widgetConfig('<div data-api-base="https://api.divinci.app"></div>'), null);
+  is("widgetConfig reports a missing attribute as null",
+    widgetConfig('<script src="/js/divinci-chat.js" data-release-id="abc"></script>').apiBase, null);
+
   is("refToDiskPath maps a directory to index.html",
     refToDiskPath("/partners/", "/root"), "/root/partners/index.html");
   is("refToDiskPath strips query and hash",
@@ -368,6 +479,7 @@ function selftest() {
 if (process.argv.includes("--selftest")) selftest();
 
 for (const page of PAGES) checkPage(page);
+checkVendoredBundles();
 
 if (process.argv.includes("--live")) {
   const baseArg = process.argv.find((a) => a.startsWith("--base="));
