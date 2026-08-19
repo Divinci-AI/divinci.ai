@@ -440,15 +440,23 @@
   }
 
   function describe(stats) {
-    // State the coverage plainly. Most of the corpus has no link data, and a
-    // dashed node must read as "unknown", never as "links to nothing".
+    // State the coverage of BOTH layers. The link half already said so; the
+    // semantic half did not, and claimed more than it delivered: "position is
+    // embedding similarity" was true of the 145 sites that have a centroid and
+    // false of the other 1,341, which have no edges at all and therefore never
+    // leave their starting point — and that point is hashHost(host), a hash of
+    // the domain name. An arbitrary-but-stable position looks exactly like a
+    // meaningful one, which is the worst way for a visualization to be wrong.
+    var s = stats.sites.toLocaleString();
     return (
-      stats.sites.toLocaleString() + " sites · " +
+      s + " sites · " +
       stats.linkEdges.toLocaleString() + " hyperlinks found between them · " +
-      stats.semanticEdges.toLocaleString() + " semantic ties. " +
-      "Position is embedding similarity; size is pages indexed. Link data covers " +
-      stats.sitesWithLinkScan + " of " + stats.sites +
-      " sites so far, so a dashed circle means we have not mapped that site's links yet — not that it links nowhere."
+      stats.semanticEdges.toLocaleString() + " semantic ties. Size is pages indexed. " +
+      "Embeddings are mapped for " + stats.sitesWithCentroid.toLocaleString() + " of " + s +
+      " sites — those sit near the sites they resemble. The rest are parked on a ring " +
+      "until theirs are computed, so their position carries no meaning yet. " +
+      "Link data covers " + stats.sitesWithLinkScan.toLocaleString() + " of " + s +
+      " sites, so a dashed circle means we have not mapped that site's links yet — not that it links nowhere."
     );
   }
 
