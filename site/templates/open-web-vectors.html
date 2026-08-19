@@ -9,7 +9,7 @@
 [
   {"label": "How does the gate work?", "message": "How does the Open Web Vector Initiative decide whether it is allowed to crawl a site?"},
   {"label": "Do you train on it?", "message": "Does Divinci train AI models on the pages it crawls for the Open Web Vector Initiative?"},
-  {"label": "What's in the dataset?", "message": "What will the Open Web Vectors dataset contain, and what will it deliberately leave out?"},
+  {"label": "What's in the dataset?", "message": "The index manifest is published on Hugging Face \u2014 what is in it, and what does it deliberately leave out?"},
   {"label": "Index my site", "message": "How do I get my own website indexed, and how do I claim it afterwards?"}
 ]
 </script>
@@ -17,13 +17,13 @@
 [
   {"selector": ".owv-ask", "blurb": "Half the sites we looked at said no. Ask me what happens then."},
   {"selector": ".owv-how", "blurb": "One vector database per site — ask me why that matters."},
-  {"selector": ".owv-dataset", "blurb": "Manifest first, text only where permitted. Ask me why."},
+  {"selector": ".owv-dataset", "blurb": "The manifest is live on Hugging Face. Text only where permitted \u2014 ask me why."},
   {"selector": ".owv-see", "blurb": "Every site here has a live, cited chat endpoint."}
 ]
 </script>
 <script type="text/plain" id="divinci-chat-speech">🛡️ We ask before we crawl. Ask me how.</script>
 <script type="text/plain" id="divinci-chat-greeting">👋 This is the Open Web Vector Initiative — a public, per-site retrieval index for the open web. Ask me how the permission gate works, what's in the corpus, or how to get your own site indexed.</script>
-<script type="text/plain" id="divinci-chat-context">Context: the visitor is on the Open Web Vector Initiative page (divinci.ai/open-web-vectors). The initiative builds a public, per-site retrieval index of the open web: every crawled site gets its own vector database (EmbeddingGemma 300M, 768-dim, cosine, DiskANN, Turso/libSQL) and a chat endpoint grounded in that site's own pages, with citations. Nothing is trained on. The permission gate runs BEFORE the crawler: robots.txt and Cloudflare Content Signals are read first, training refusal and inference refusal are honoured as different things, a robots.txt we could not read is treated as a refusal rather than as consent, and the crawler declares its purposes ("search", "ai-input") in the request. Refused hosts cost zero browser-seconds. The corpus is browsable at divinci.ai/www-rag, where a site owner can also claim their site. A public dataset is planned in stages: index manifest first, embeddings without text next, and full text only for hosts with no training reservation. Answer in that context. This page is served in the language with BCP-47 code "{{ current_lang }}"; reply in that language unless the visitor writes in another one.</script>
+<script type="text/plain" id="divinci-chat-context">Context: the visitor is on the Open Web Vector Initiative page (divinci.ai/open-web-vectors). The initiative builds a public, per-site retrieval index of the open web: every crawled site gets its own vector database (EmbeddingGemma 300M, 768-dim, cosine, DiskANN, Turso/libSQL) and a chat endpoint grounded in that site's own pages, with citations. Nothing is trained on. The permission gate runs BEFORE the crawler: robots.txt and Cloudflare Content Signals are read first, training refusal and inference refusal are honoured as different things, a robots.txt we could not read is treated as a refusal rather than as consent, and the crawler declares its purposes ("search", "ai-input") in the request. Refused hosts cost zero browser-seconds. The corpus is browsable at divinci.ai/www-rag, where a site owner can also claim their site. The public dataset ships in stages. Stage one, the index manifest, is PUBLISHED at https://huggingface.co/datasets/Divinci-AI/open-web-vectors-manifest under CC-BY-4.0 — one row per site with rights metadata and no page text. Embeddings without text come next, and full text only for hosts with no training reservation. If asked why there is no text yet: a Hugging Face dataset of raw page text is in practice a training corpus, and publishing one would hand content from sites that set ai-train=no to exactly the use they refused. Answer in that context. This page is served in the language with BCP-47 code "{{ current_lang }}"; reply in that language unless the visitor writes in another one.</script>
 {% endblock %}
 
 {% block content %}
@@ -266,16 +266,27 @@
         </p>
 
         <ol class="owv-stages">
-            <li class="owv-stage owv-stage-now">
-                <span class="owv-stage-tag">Shipping first</span>
-                <h3 class="owv-stage-title">The index manifest</h3>
+            <li class="owv-stage owv-stage-now owv-stage-live">
+                <span class="owv-stage-tag">Published</span>
+                <h3 class="owv-stage-title">
+                    <a class="owv-stage-link"
+                       href="https://huggingface.co/datasets/Divinci-AI/open-web-vectors-manifest"
+                       target="_blank" rel="noopener">The index manifest &rarr;</a>
+                </h3>
                 <p>
                     One row per site: host, page and chunk counts, corpus bytes, crawl
-                    date, embedding model, the site's declared AI signals, and our gate
-                    verdict. No content. Nobody has published a measured, per-host map of
-                    who permits what — that alone is worth having.
+                    date, the site&rsquo;s declared AI signals, and our gate verdict. No
+                    content. Nobody has published a measured, per-host map of who permits
+                    search, who permits inference-time grounding, and who reserves
+                    training &mdash; that alone is worth having.
                 </p>
-                <p class="owv-stage-meta">CC-BY-4.0</p>
+                <p>
+                    It carries its own gaps in the open: which verdicts were re-asked
+                    after the crawl rather than measured at crawl time, and which rows
+                    have no chunk count at all. A manifest that hid those would be
+                    making a claim rather than a measurement.
+                </p>
+                <p class="owv-stage-meta">CC-BY-4.0 &middot; on Hugging Face</p>
             </li>
             <li class="owv-stage owv-stage-next">
                 <span class="owv-stage-tag">Next</span>
@@ -768,6 +779,23 @@
     font-size: 20px;
     color: #1a1a2e;
     margin: 0 0 10px;
+}
+/* The published stage is the one a visitor can act on, so it is the only card
+   that reads as a destination rather than a plan. */
+.owv-stage-live {
+    border-color: #b7e4cb;
+    box-shadow: 0 1px 3px rgba(29, 122, 74, 0.08);
+}
+.owv-stage-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 2px solid #b7e4cb;
+    transition: border-color 0.15s ease, color 0.15s ease;
+}
+.owv-stage-link:hover,
+.owv-stage-link:focus-visible {
+    color: #1d7a4a;
+    border-bottom-color: #1d7a4a;
 }
 .owv-stage-meta {
     margin-top: auto;
