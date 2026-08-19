@@ -1,7 +1,7 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  normalizeHost, isCustomerHost, isCustomerPath, summarize, collectCustomerHealth,
+  normalizeHost, isCustomerHost, isCustomerPath, summarize, collectCustomerHealth, shouldCollect,
 } from '../../src/customer-health.mjs';
 
 describe('host classification', () => {
@@ -226,5 +226,63 @@ describe('collectCustomerHealth', () => {
     assert.equal(await collectCustomerHealth({ DD_API_KEY: 'k' }, { fetchImpl }), null);
     assert.equal(await collectCustomerHealth({ CF_ANALYTICS_TOKEN: 't' }, { fetchImpl }), null);
     assert.equal(calls.length, 0);
+  });
+});
+
+describe('shouldCollect — one signal, not three', () => {
+  test('only production publishes', () => {
+    assert.equal(shouldCollect({ ENVIRONMENT: 'production' }), true);
+    for (const e of ['development', 'staging', 'local', 'preview', 'Production', 'PRODUCTION']) {
+      assert.equal(shouldCollect({ ENVIRONMENT: e }), false, e);
+    }
+  });
+
+  test('an unknown environment fails CLOSED', () => {
+    // dev/staging/prod run the same file. If two of them submit, every value
+    // the pager reads is doubled — and a doubled count reads as a traffic
+    // increase, not a bug. Guessing "probably production" is how that happens.
+    // Being wrong this way is visible instead: the metric goes absent and the
+    // monitor's no-data notification says so.
+    for (const env of [{}, { ENVIRONMENT: '' }, { ENVIRONMENT: undefined }, null, undefined]) {
+      assert.equal(shouldCollect(env), false, JSON.stringify(env));
+    }
+  });
+});
+
+describe('alerting contracts', () => {
+  test('the metric names are what monitor 20807649 queries', async () => {
+    // Renaming either of these silently blinds the pager: the Datadog monitor
+    // queries divinci.cf.customer.errors_5xx by name, and nothing at deploy
+    // time checks that the publisher and the query still agree. Add fields
+    // freely; never rename without changing the monitor in the same commit.
+    const calls = [];
+    const fetchImpl = async (url, init) => {
+      calls.push({ url: String(url), init });
+      if (String(url).includes('datadoghq.com')) return { ok: true, status: 202, text: async () => '{}' };
+      return {
+        ok: true, status: 200,
+        text: async () => JSON.stringify({
+          data: { viewer: { zones: [{ httpRequestsAdaptiveGroups: [] }] } },
+        }),
+      };
+    };
+    await collectCustomerHealth(
+      { CF_ANALYTICS_TOKEN: 't', DD_API_KEY: 'k' }, { fetchImpl, now: Date.UTC(2026, 7, 19, 12, 0, 0) },
+    );
+    const dd = JSON.parse(calls.find(c => c.url.includes('datadoghq')).init.body);
+    const names = dd.series.map(s => s.metric).sort();
+    assert.deepEqual(names, ['divinci.cf.customer.errors_5xx', 'divinci.cf.internal.errors_5xx']);
+  });
+
+  test('it publishes an explicit ZERO rather than nothing on a clean window', async () => {
+    // The monitor deliberately has NO default_zero(): the series is continuous
+    // by construction, so an absent series always means the collector is dead.
+    // That only holds if a clean window still submits a point.
+    const fetchImpl = async (url) => String(url).includes('datadoghq')
+      ? { ok: true, status: 202, text: async () => '{}' }
+      : { ok: true, status: 200, text: async () => JSON.stringify({
+          data: { viewer: { zones: [{ httpRequestsAdaptiveGroups: [] }] } } }) };
+    const out = await collectCustomerHealth({ CF_ANALYTICS_TOKEN: 't', DD_API_KEY: 'k' }, { fetchImpl });
+    assert.deepEqual(out, { customer: 0, internal: 0, rows: 0 });
   });
 });

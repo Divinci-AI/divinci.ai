@@ -18,7 +18,7 @@ import {
   handleWebBotAuthDirectory,
 } from './web-bot-auth-directory.mjs';
 import { AREAS } from './status-areas.mjs';
-import { collectCustomerHealth } from './customer-health.mjs';
+import { collectCustomerHealth, shouldCollect } from './customer-health.mjs';
 import {
   HISTORY_KEY,
   applySample,
@@ -94,7 +94,9 @@ export default {
    * than a bug.
    */
   async scheduled(event, env, ctx) {
-    if (env.ENVIRONMENT !== 'production') {
+    // The decision lives in customer-health.mjs so it can be tested — this
+    // file imports `cloudflare:email` and cannot be loaded by node --test.
+    if (!shouldCollect(env)) {
       console.log(`[customer-health] skipped: ENVIRONMENT=${env.ENVIRONMENT}`);
       return;
     }

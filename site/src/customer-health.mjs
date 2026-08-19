@@ -173,6 +173,24 @@ const CUSTOMER_5XX_QUERY = `query($zone:String!,$since:Time!,$until:Time!){
   }}
 }`;
 
+/**
+ * Whether THIS deployment may publish the metric.
+ *
+ * ⚠️ This is the only thing standing between one signal and three. dev,
+ * staging and production run the SAME code from the same file; if two of them
+ * submit, every value the pager reads is doubled — and a doubled count reads
+ * as a traffic increase, not as a bug, so nobody would go looking.
+ *
+ * Fails CLOSED on an unknown environment. An unset ENVIRONMENT means we cannot
+ * tell which deployment this is, and guessing "probably production" is how the
+ * duplicate submission happens. The cost of being wrong in this direction is
+ * visible: the metric goes absent and the monitor's no-data notification says
+ * so. The cost of being wrong in the other direction is silent.
+ */
+export function shouldCollect(env) {
+  return (env?.ENVIRONMENT ?? "") === "production";
+}
+
 export async function collectCustomerHealth(env, opts = {}) {
   const now = opts.now ?? Date.now();
   const doFetch = opts.fetchImpl ?? fetch;
