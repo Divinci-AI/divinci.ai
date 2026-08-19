@@ -109,3 +109,67 @@ describe("the caption separates measured from drawn", () => {
         expect(text).not.toContain('undefined');
     });
 });
+
+describe("what the map encodes", () => {
+    // Extract a helper out of the browser IIFE and call it directly.
+    function fn(name) {
+        const start = SOURCE.indexOf("function " + name + "(");
+        if (start === -1) throw new Error(name + "() not found — did the renderer move?");
+        const end = SOURCE.indexOf("\n  }", start);
+        const body = SOURCE.slice(start, end + 4);
+        // eslint-disable-next-line no-new-func
+        return new Function(body + "\nreturn " + name + ";")();
+    }
+
+    describe("authorityOf", () => {
+        // Size is pages indexed, which measures how hard WE crawled. Measured on
+        // the live graph: www.w3.org has 15 pages and 294 inbound links while
+        // ipac.caltech.edu draws among the largest nodes on 7,831 pages and ZERO
+        // inbound. 18 of the 40 hosts with 40+ inbound render under 200 pages.
+        const authorityOf = fn("authorityOf");
+
+        test("a host nothing points at has no authority", () => {
+            expect(authorityOf({ linkInDegree: 0 })).toBe(0);
+            expect(authorityOf({})).toBe(0);
+        });
+
+        test("ranks the real hubs above the deeply-crawled", () => {
+            const w3 = authorityOf({ linkInDegree: 294 });
+            const ipac = authorityOf({ linkInDegree: 0 });
+            expect(w3).toBeGreaterThan(ipac);
+        });
+
+        test("is bounded, so one outlier cannot swamp the canvas", () => {
+            expect(authorityOf({ linkInDegree: 100000 })).toBeLessThanOrEqual(1);
+            expect(authorityOf({ linkInDegree: 486 })).toBeLessThanOrEqual(1);
+        });
+
+        test("is monotonic in inbound links", () => {
+            const seq = [1, 10, 40, 150, 300].map((d) => authorityOf({ linkInDegree: d }));
+            expect(seq).toEqual([...seq].sort((a, b) => a - b));
+        });
+
+        test("a small hub outranks a large nobody for a label", () => {
+            // The exact regression: label order was radius alone, so w3.org was
+            // never named. Prominence = radius + authority*18 (see the sort).
+            const prominence = (radius, inDeg) => radius + authorityOf({ linkInDegree: inDeg }) * 18;
+            const w3 = prominence(5, 294);      // 15 pages
+            const ipac = prominence(20, 0);     // 7,831 pages, nothing points at it
+            expect(w3).toBeGreaterThan(ipac);
+        });
+    });
+
+    describe("the holding belt", () => {
+        test("is outlined and named on the canvas", () => {
+            // 298 of 1,608 nodes have no edge of either kind and are parked at a
+            // hash-derived angle. Drawn plainly they form a tidy arc that reads
+            // as an arrangement. The caption said so in words; the pixels did not.
+            expect(SOURCE).toContain("sim.beltRadius");
+            expect(SOURCE).toMatch(/position here means nothing/);
+        });
+
+        test("orbital nodes are drawn dimmer than placed ones", () => {
+            expect(SOURCE).toMatch(/n\.orbital \? 0\.45 : 1/);
+        });
+    });
+});

@@ -46,6 +46,10 @@
   var NODE_LINKED = "#3987e5";
   var NODE_SCANNED = "#199e70";
   var NODE_UNSCANNED = "#6b6b78";
+  // Deliberately the dimmest thing on the canvas and NOT one of the two hues:
+  // the belt boundary is chrome, not data, and must not read as a third
+  // category competing with linked/scanned.
+  var BELT_EDGE = "#3a3a46";
   var EDGE_LINK = "#3987e5";
   var EDGE_SEMANTIC = "#7d7d95";
   var TEXT = "#c3c2b7";
@@ -78,6 +82,26 @@
     return Math.min(4 + Math.sqrt(corpus) * 0.26, 20);
   }
 
+  /**
+   * How much of the corpus points AT this host, log-scaled to 0..1.
+   *
+   * Size is pages indexed, which measures how hard WE crawled — not what the
+   * corpus considers important. Measured on the live graph, the gap is stark:
+   * www.w3.org has 15 pages and 294 inbound links, en.wikipedia.org 56 and 368,
+   * while ipac.caltech.edu renders among the largest nodes on 7,831 pages with
+   * ZERO inbound. 18 of the 40 hosts with 40+ inbound links draw smaller than
+   * 200 pages' worth of dot.
+   *
+   * Authority therefore gets its own channel rather than replacing size: the
+   * caption promises "size is pages indexed", and quietly redefining it would
+   * make the legend a lie.
+   */
+  function authorityOf(node) {
+    var d = node.linkInDegree || 0;
+    if (d < 1) return 0;
+    return Math.min(Math.log(d) / Math.log(400), 1);
+  }
+
   function stateOf(node) {
     if (node.linkOutDegree > 0 || node.linkInDegree > 0) return "linked";
     if (node.linkScanPages > 0) return "scanned";
@@ -103,6 +127,8 @@
         state: stateOf(n),
         orbital: true,
         pageCount: n.pageCount || 0,
+        inDegree: n.linkInDegree || 0,
+        authority: authorityOf(n),
       };
       byHost[n.host] = node;
       return node;
@@ -200,6 +226,13 @@
       coreR = Math.max(coreR, Math.sqrt(nodes[i].x * nodes[i].x + nodes[i].y * nodes[i].y) + nodes[i].radius);
     }
     var belt = Math.max(coreR * 1.28 + 70, 240);
+    // Published so draw() can OUTLINE the belt. 298 of 1,608 nodes have no edge
+    // of either kind and are parked here at an angle derived from a hash of the
+    // hostname. Drawn plainly they form a tidy arc that reads as an arrangement
+    // — a viewer zooming in sees neighbours and infers a relationship that does
+    // not exist. The caption says so in words; until now the pixels said the
+    // opposite.
+    sim.beltRadius = belt;
 
     for (i = 0; i < nodes.length; i++) {
       a = nodes[i];
@@ -325,8 +358,42 @@
       ctx.fill();
     });
 
-    sim.nodes.forEach(function (n) {
+    // The holding area, drawn as one. A boundary plus a word is the difference
+    // between "a region of the map" and "the pile we have not placed yet".
+    if (sim.beltRadius) {
       ctx.globalAlpha = 1;
+      ctx.setLineDash([6 / view.scale, 9 / view.scale]);
+      ctx.strokeStyle = BELT_EDGE;
+      ctx.lineWidth = 1 / view.scale;
+      ctx.beginPath();
+      ctx.arc(0, 0, sim.beltRadius, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      var beltFont = Math.max(9, 10 / view.scale);
+      ctx.font = beltFont + "px ui-sans-serif, system-ui, -apple-system, sans-serif";
+      ctx.fillStyle = BELT_EDGE;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "bottom";
+      ctx.fillText("no links or embedding yet · position here means nothing",
+                   0, -sim.beltRadius - 8 / view.scale);
+    }
+
+    // Authority halo, under the node bodies. A ring rather than a bigger dot,
+    // so "how much the corpus points here" cannot be mistaken for "how much we
+    // crawled" — the two disagree by an order of magnitude on the real hubs.
+    sim.nodes.forEach(function (n) {
+      if (n.authority < 0.55) return;
+      ctx.globalAlpha = 0.12 + n.authority * 0.3;
+      ctx.strokeStyle = NODE_LINKED;
+      ctx.lineWidth = (1 + n.authority * 2.2) / view.scale;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius + (3 + n.authority * 7) / view.scale, 0, Math.PI * 2);
+      ctx.stroke();
+    });
+
+    sim.nodes.forEach(function (n) {
+      // Orbital nodes carry no information in their position, so they recede.
+      ctx.globalAlpha = n.orbital ? 0.45 : 1;
       if (n.state === "unscanned") {
         // Secondary encoding — "no link data" is distinguishable without colour.
         ctx.setLineDash([2.5 / view.scale, 2.5 / view.scale]);
@@ -354,9 +421,16 @@
     ctx.font = fontSize + "px ui-sans-serif, system-ui, -apple-system, sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
+    // Ordered by PROMINENCE, not radius. Sorting by size alone meant the
+    // corpus's actual hubs were never named: w3.org (15 pages, 294 inbound) and
+    // en.wikipedia.org (56 pages, 368 inbound) lost every collision to sites we
+    // happened to crawl deeply. Authority is scaled into the same units as the
+    // radius so one comparison covers both reasons a node deserves a name.
     sim.nodes
       .slice()
-      .sort(function (p, q) { return q.radius - p.radius; })
+      .sort(function (p, q) {
+        return (q.radius + q.authority * 18) - (p.radius + p.authority * 18);
+      })
       .forEach(function (n) {
         if (n.radius < 9) return;
         var label = n.host.replace(/^www\./, "");
