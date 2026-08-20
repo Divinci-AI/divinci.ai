@@ -45,9 +45,10 @@
         — captured once as a transparent still from the live 3D scene rather
         than re-rendered here.
 
-        The satellites are 🌐 rather than faces. On the SDK page they are the
-        people an SDK serves; here they are SITES, which is what this initiative
-        indexes. Same visual, different subject. -#}
+        The SDK version rides six emoji on the outer circle. They are dropped
+        here: at this scale the ring and the robot carry the composition on
+        their own, and six faces-turned-globes read as clutter around a subject
+        big enough to not need labelling. -#}
     <div class="owv-orbit" aria-hidden="true">
       <svg class="owv-orbit-ring" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
         <g fill="none" stroke="currentColor" stroke-width="1.7">
@@ -65,12 +66,6 @@
       <img class="owv-orbit-robot" src="/images/robot-orbit-520.webp"
            srcset="/images/robot-orbit-320.webp 320w, /images/robot-orbit-520.webp 520w"
            sizes="200px" width="520" height="520" alt="" loading="lazy" decoding="async">
-      <span class="owv-orbit-sat" style="left:50.0%;top:15.0%">🌐</span>
-      <span class="owv-orbit-sat" style="left:80.3%;top:32.5%">🌐</span>
-      <span class="owv-orbit-sat" style="left:80.3%;top:67.5%">🌐</span>
-      <span class="owv-orbit-sat" style="left:50.0%;top:85.0%">🌐</span>
-      <span class="owv-orbit-sat" style="left:19.7%;top:67.5%">🌐</span>
-      <span class="owv-orbit-sat" style="left:19.7%;top:32.5%">🌐</span>
     </div>
     <div class="container">
         <p class="owv-eyebrow">The Open Web Vector Initiative</p>
@@ -434,9 +429,16 @@
     width: min(65vw, 1400px);
     aspect-ratio: 1;
     right: -7%;
-    /* Biased up so the robot centres on the headline/lead band rather than
-       straddling the stat bar. */
-    top: 44%;
+    /* Biased up so the robot clears the stat bar rather than being bisected by
+       it. 44% was tuned when the robot was 34% of the box; at 59.5% its lower
+       half sat behind the panel with the feet poking out below, which reads as
+       a mistake rather than as depth.
+
+       38% is measured, not chosen: it is the only value in a 33-46% sweep where
+       the head is not clipped by the top of the band AND the feet do not extend
+       past the bottom of the stat bar. The fit is tight (0px and 3px of slack),
+       so if the lead copy or the hero padding changes, re-run that sweep. */
+    top: 38%;
     transform: translateY(-50%);
     pointer-events: none;
     /* Behind the copy. At this size it necessarily passes under the headline
@@ -454,6 +456,11 @@
     height: 100%;
     /* Fainter than the small version was: it now crosses live text. */
     opacity: 0.34;
+    /* The geometry is 25% larger than the box that positions it. Scaling the
+       SVG rather than the container keeps `width`, `right` and `top` meaning
+       exactly what they did before, so the ring grows without moving the
+       robot or re-deriving its percentage. */
+    transform: scale(1.25);
 }
 .owv-orbit-outer { opacity: 0.6; }
 /* Fades the ring out from behind the robot so the silhouette reads. */
@@ -461,8 +468,10 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 46%;
-    height: 46%;
+    /* Tracks the robot: a scrim smaller than its subject leaves ring lines
+       crossing the silhouette it exists to clear. */
+    width: 68%;
+    height: 68%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background: radial-gradient(circle, rgba(18,18,42,0.92) 0%, rgba(18,18,42,0.55) 55%, rgba(18,18,42,0) 78%);
@@ -471,22 +480,27 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 34%;
+    /* 34% -> 59.5%: 1.75x. The robot is the subject now that the satellites
+       are gone, so it carries the composition rather than sitting inside it. */
+    width: 59.5%;
     height: auto;
+    /* ⚠️ The vertical fit CANNOT be done with `top` alone.
+       The robot is sized in vw (65vw x 59.5%) but the hero's height is fixed by
+       its content at ~813px. So the robot grows with the viewport while the
+       room for it does not: a `top` tuned at 1600px clipped the head by 62px at
+       1920px. Capping the height decouples the two — the robot stops growing
+       once it fills the band, and one `top` then works at every width. */
+    max-height: 608px;
     transform: translate(-50%, -50%);
-}
-.owv-orbit-sat {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    /* The SDK hero sets 56px. Scaled to this container and floored so it never
-       shrinks back into decoration. */
-    font-size: clamp(26px, 2.9vw, 48px);
-    line-height: 1;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
 }
 /* Removed rather than shrunk below this width: at a phone size the ring would
-   sit squarely behind the headline with nowhere to bleed to. */
-@media (max-width: 1180px) {
+   sit squarely behind the headline with nowhere to bleed to.
+   
+   The cutoff moved 1180 -> 1320 when the robot grew 75%. Measured gap between
+   the robot's left edge and the lead text: 41px at 1320, 19px at 1280, and it
+   goes NEGATIVE below 1280 — the robot starts sitting on the paragraph. A
+   bigger subject needs more room, so the breakpoint has to move with it. */
+@media (max-width: 1320px) {
     .owv-orbit { display: none; }
 }
 .owv-eyebrow {
