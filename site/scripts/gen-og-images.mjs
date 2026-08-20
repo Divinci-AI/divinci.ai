@@ -294,7 +294,7 @@ async function coverCrop(inputPath) {
 }
 
 async function robotScene(robot) {
-  // The globe pose is wider than the other plates (orb on the raised arm).
+  // The globe pose is wider than the other plates (orb over the 90° arm).
   // Composite the transparent still onto navy so the figure sits in the
   // right half without eating the title.
   if (robot === "globe.jpg") {
@@ -302,7 +302,7 @@ async function robotScene(robot) {
     if (!existsSync(still)) {
       throw new Error(`missing robot plate: ${still}`);
     }
-    const robotH = 430;
+    const robotH = 360;
     const robotBuf = await sharp(still)
       .resize({ height: robotH, fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
       .png()
@@ -315,7 +315,7 @@ async function robotScene(robot) {
     return sharp(navy)
       .composite([{
         input: robotBuf,
-        left: Math.max(0, W - rw - 16),
+        left: Math.max(0, W - rw - 8),
         top: Math.round((H - robotH) / 2),
       }])
       .jpeg({ quality: 92 })
