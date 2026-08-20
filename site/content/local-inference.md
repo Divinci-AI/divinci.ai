@@ -10,7 +10,42 @@ feature_category = "development-tools"
 <div class="feature-hero">
 <div class="feature-hero-inner">
 <div class="feature-hero-card">
-<h1>Your AI, on your machine</h1>
+<style>
+/* Cycling model name in the hero. Pure CSS — no inline script, works with JS
+   disabled, and degrades to the first item under reduced-motion. */
+.li-rotator{display:block;position:relative;height:1.15em;margin-bottom:.1em}
+.li-rotator .li-item{position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;gap:.35em;opacity:0;white-space:nowrap;
+  animation:li-rotate 13s infinite}
+.li-rotator .li-item:nth-child(1){animation-delay:0s}
+.li-rotator .li-item:nth-child(2){animation-delay:2.6s}
+.li-rotator .li-item:nth-child(3){animation-delay:5.2s}
+.li-rotator .li-item:nth-child(4){animation-delay:7.8s}
+.li-rotator .li-item:nth-child(5){animation-delay:10.4s}
+/* The marks are light-on-transparent (drawn for dark UI), so they sit on a dark
+   chip rather than being recoloured. */
+.li-rotator .li-chip{display:inline-flex;align-items:center;justify-content:center;
+  width:.95em;height:.95em;border-radius:.22em;background:#181f3b;flex:0 0 auto}
+.li-rotator .li-chip img{width:72%;height:72%;object-fit:contain;display:block}
+@keyframes li-rotate{
+  0%,2%{opacity:0;transform:translateY(.12em)}
+  5%,17%{opacity:1;transform:none}
+  20%,100%{opacity:0;transform:translateY(-.12em)}
+}
+@media (prefers-reduced-motion:reduce){
+  .li-rotator .li-item{animation:none;opacity:0}
+  .li-rotator .li-item:nth-child(1){opacity:1}
+}
+</style>
+
+<h1><span class="li-rotator" aria-hidden="true">
+<span class="li-item"><span class="li-chip"><img src="/images/models/gemma.png" alt=""></span>Gemma 4</span>
+<span class="li-item"><span class="li-chip"><img src="/images/models/spark.svg" alt=""></span>Qwen2.5</span>
+<span class="li-item"><span class="li-chip"><img src="/images/models/spark.svg" alt=""></span>Llama 3.2</span>
+<span class="li-item"><span class="li-chip"><img src="/images/models/spark.svg" alt=""></span>SmolLM2</span>
+<span class="li-item"><span class="li-chip"><img src="/images/models/liquid.svg" alt=""></span>Liquid</span>
+</span><span class="li-tail">on your machine</span></h1>
+<span class="sr-only">Gemma 4, Qwen2.5, Llama 3.2, SmolLM2 and Liquid — on your machine.</span>
 <p class="subtitle">Divinci Local Inference runs open-weight language models directly in Chrome, on your own GPU. Your conversations never leave your device — and once a model is loaded, it works with the network switched off.</p>
 <div class="hero-ctas">
 <a href="https://chromewebstore.google.com/detail/dmjdolijifmjncfdlakfampfenigahaj" class="cta-primary" target="_blank" rel="noopener">Get the extension</a>
