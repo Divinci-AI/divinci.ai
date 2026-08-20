@@ -574,11 +574,13 @@
    texts fighting for the same pixels is worse than no annotation. The hero's
    prose is a centred column; the space either side of it is empty, so that is
    where these go. */
-/* Pushed well clear of the button pair. 16px left the arrow no distance to
-   travel — it was a squiggle beside the text rather than a line connecting two
-   things. */
-.cta-note-left  { right: calc(100% + 120px); left: auto; }
-.cta-note-right { left: calc(100% + 120px); right: auto; }
+/* Pushed clear of the button pair. 16px left the arrow no distance to travel —
+   it was a squiggle beside the text rather than a line connecting two things.
+   120px overshot the other way: the connector became a long shallow line that
+   read as ruled rather than drawn. 88px is the value where the arc has room to
+   bend without the line dominating it. */
+.cta-note-left  { right: calc(100% + 88px); left: auto; }
+.cta-note-right { left: calc(100% + 88px); right: auto; }
 .cta-note-text {
   font-family: "Caveat", "Bradley Hand", "Segoe Print", cursive;
   font-size: 2rem;
@@ -601,17 +603,21 @@
 .cta-note-line {
   position: absolute;
   /* Placed so the DRAWN tip lands on the button, not so the box looks tidy.
-     Measured: at top 62 / left -196 the tip fell at (1112, 416) while the
-     button's top-right is (1052, 387) — 84px right and 17px low. These two
-     numbers are that correction. */
-  top: 45px;
+     The offsets are solved from the path, not guessed: the tip sits at local
+     (24, 56) in a 380-wide box, so left:-134 with the note 88px outboard puts
+     it 22px inside the button's outer edge and 3px below its top. That last
+     number matters: the ink is --denim and so is the PRIMARY button's fill, so
+     a tip sunk into the button loses its arrowhead. It touches the edge rather
+     than landing in the middle. Re-derive all of these whenever the note
+     offset or the path's end point moves — they are not independent. */
+  top: 37px;
   width: 380px;
   height: 150px;
   overflow: visible;
   pointer-events: none;
 }
-.cta-note-right .cta-note-line { left: -300px; }
-.cta-note-left  .cta-note-line { right: -300px; }
+.cta-note-right .cta-note-line { left: -134px; }
+.cta-note-left  .cta-note-line { right: -134px; }
 .cta-wrap:hover .cta-note,
 .cta-wrap:focus-within .cta-note {
   opacity: 1;
@@ -636,10 +642,10 @@
   .cta-note-line path { transition: none; stroke-dashoffset: 0; }
 }
 
-/* No hover on touch, and below 1460px a 340px note set 120px outboard no longer
-   fits the margin beside the 520px prose column — measured: 8px of clearance at
-   1440 and -12px at 1400. Each push outward costs reach, and this is the third
-   time that trade has been made deliberately rather than discovered later. */
-@media (hover: none), (max-width: 1459px) {
+/* No hover on touch, and below 1380px a 340px note set 88px outboard no longer
+   fits the margin beside the 520px prose column. Each push outward costs reach:
+   at 120px outboard this cut off at 1460, so pulling the notes in bought back
+   80px of viewport as well as a better-shaped arrow. */
+@media (hover: none), (max-width: 1379px) {
   .cta-note { display: none; }
 }
