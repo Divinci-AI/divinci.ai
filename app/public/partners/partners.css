@@ -560,12 +560,9 @@
      width. Measured against Range.getClientRects(), not element boxes — h1 is
      a full-width block whose glyphs are centred, so its box over-reports a
      collision that is not there. */
-  bottom: calc(100% - 20px);
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
+  bottom: calc(100% + 16px);
+  width: 340px;
+  display: block;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.22s ease, transform 0.22s ease;
@@ -577,11 +574,14 @@
    texts fighting for the same pixels is worse than no annotation. The hero's
    prose is a centred column; the space either side of it is empty, so that is
    where these go. */
-.cta-note-left  { right: calc(100% + 16px); left: auto; }
-.cta-note-right { left: calc(100% + 16px); right: auto; }
+/* Pushed well clear of the button pair. 16px left the arrow no distance to
+   travel — it was a squiggle beside the text rather than a line connecting two
+   things. */
+.cta-note-left  { right: calc(100% + 64px); left: auto; }
+.cta-note-right { left: calc(100% + 64px); right: auto; }
 .cta-note-text {
   font-family: "Caveat", "Bradley Hand", "Segoe Print", cursive;
-  font-size: 1.6rem;
+  font-size: 2rem;
   line-height: 1.15;
   text-align: center;
   /* A hand-written line does not sit level. */
@@ -595,11 +595,23 @@
     0 0 18px var(--parchment);
 }
 .cta-note-right .cta-note-text { transform: rotate(1.8deg); }
+/* The arrow is a CONNECTOR, so it is positioned to span the gap between the
+   note and its button rather than sitting in the note's flex column. In the
+   column it could only ever be as wide as the note and ended in empty space. */
 .cta-note-line {
-  width: 128px;
-  height: 68px;
+  position: absolute;
+  /* Placed so the DRAWN tip lands on the button, not so the box looks tidy.
+     Measured: at top 62 / left -196 the tip fell at (1112, 416) while the
+     button's top-right is (1052, 387) — 84px right and 17px low. These two
+     numbers are that correction. */
+  top: 45px;
+  width: 300px;
+  height: 150px;
   overflow: visible;
+  pointer-events: none;
 }
+.cta-note-right .cta-note-line { left: -280px; }
+.cta-note-left  .cta-note-line { right: -280px; }
 .cta-wrap:hover .cta-note,
 .cta-wrap:focus-within .cta-note {
   opacity: 1;
@@ -624,9 +636,9 @@
   .cta-note-line path { transition: none; stroke-dashoffset: 0; }
 }
 
-/* No hover on touch, and below 1180px a 300px note no longer fits in the
-   margin beside the 520px prose column — measured, not guessed: at 1024px it
-   would hang 52px off both edges of the viewport. */
-@media (hover: none), (max-width: 1180px) {
+/* No hover on touch, and below 1320px a 340px note set 64px outboard no longer
+   fits the margin beside the 520px prose column — measured: it hangs 16px off
+   the viewport at 1280 and 66px at 1181. Bigger and further out costs reach. */
+@media (hover: none), (max-width: 1320px) {
   .cta-note { display: none; }
 }
