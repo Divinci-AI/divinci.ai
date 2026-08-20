@@ -64,8 +64,8 @@
         </g>
       </svg>
       <div class="owv-orbit-scrim"></div>
-      <img class="owv-orbit-robot" src="/images/robot-orbit-520.webp?v=gap"
-           srcset="/images/robot-orbit-320.webp?v=gap 320w, /images/robot-orbit-520.webp?v=gap 520w"
+      <img class="owv-orbit-robot" src="/images/robot-orbit-520.webp?v=glance"
+           srcset="/images/robot-orbit-320.webp?v=glance 320w, /images/robot-orbit-520.webp?v=glance 520w"
            sizes="200px" width="520" height="520" alt="" loading="lazy" decoding="async">
     </div>
     <div class="container">
@@ -479,12 +479,16 @@
 }
 .owv-orbit-robot {
     position: absolute;
-    left: 50%;
+    /* 50% -> 47%: the still is wider now (globe on the left, hanging hand on
+       the right). Centering it in the orbit shoved the heart and the right
+       hand off the hero's overflow:hidden right edge. */
+    left: 47%;
     top: 50%;
     /* 34% -> 59.5%: 1.75x. The robot is the subject now that the satellites
        are gone, so it carries the composition rather than sitting inside it. */
     width: 59.5%;
     height: auto;
+    object-fit: contain;
     /* ⚠️ The vertical fit CANNOT be done with `top` alone.
        The robot is sized in vw (65vw x 59.5%) but the hero's height is fixed by
        its content at ~813px. So the robot grows with the viewport while the
