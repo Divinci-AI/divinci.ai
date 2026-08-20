@@ -527,3 +527,84 @@
   font-size: 0.92rem;
   color: var(--ink-soft);
 }
+
+/* ── Hover notes on the hero CTAs ────────────────────────── */
+/* A hand-drawn aside above each button, revealed on hover or keyboard focus.
+   Decorative: it restates in a scribble what the page already says in prose,
+   which is why the markup is aria-hidden and nothing here is the only place a
+   fact appears. */
+.cta-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.cta-note {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  pointer-events: none;   /* never steals the hover it was triggered by */
+  color: var(--denim);
+}
+/* Pushed OUTWARD, past the edge of the button block.
+   Centred above the buttons they landed straight on top of `.hero-sub`, and two
+   texts fighting for the same pixels is worse than no annotation. The hero's
+   prose is a centred column; the space either side of it is empty, so that is
+   where these go. */
+.cta-note-left  { right: 62%; }
+.cta-note-right { left: 62%; }
+.cta-note-text {
+  font-family: "Caveat", "Bradley Hand", "Segoe Print", cursive;
+  font-size: 1.28rem;
+  line-height: 1.15;
+  text-align: center;
+  /* A hand-written line does not sit level. */
+  transform: rotate(-2.2deg);
+  /* Halo rather than a box: keeps the marker-on-paper look while guaranteeing
+     the ink stays readable if it ever crosses body copy at a width I did not
+     measure. A panel behind it would read as a tooltip, which this is not. */
+  text-shadow:
+    0 0 6px var(--parchment),
+    0 0 12px var(--parchment),
+    0 0 18px var(--parchment);
+}
+.cta-note-right .cta-note-text { transform: rotate(1.8deg); }
+.cta-note-line {
+  width: 108px;
+  height: 58px;
+  overflow: visible;
+}
+.cta-wrap:hover .cta-note,
+.cta-wrap:focus-within .cta-note {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Draw the stroke on rather than fading it: a marker line appearing all at
+   once looks printed. `pathLength` is not set, so the dash values are in user
+   units and comfortably longer than either path. */
+.cta-note-line path {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 0.42s ease 0.06s;
+}
+.cta-wrap:hover .cta-note-line path,
+.cta-wrap:focus-within .cta-note-line path {
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-note { transition: opacity 0.01s linear; transform: none; }
+  .cta-note-line path { transition: none; stroke-dashoffset: 0; }
+}
+
+/* No hover on touch, and no room for a 240px aside beside a full-width
+   button — the notes would overlap each other and the copy. */
+@media (hover: none), (max-width: 720px) {
+  .cta-note { display: none; }
+}
