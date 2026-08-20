@@ -24,10 +24,10 @@ feature_category = "development-tools"
 <div class="container">
 <h2 class="section-heading" style="margin-top: 3rem;">See it run with the internet off</h2>
 <p>Nothing below is a mock-up. This is the extension answering from a model held in the browser's own memory — the second question is asked <em>after</em> the network has been disconnected.</p>
-<video controls playsinline preload="metadata" poster="/images/local-inference-poster.png" style="width:100%;max-width:900px;border-radius:12px;display:block;margin:2rem auto;box-shadow:0 12px 40px rgba(0,0,0,.12);">
-<source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/local-inference-demo.webm" type="video/webm">
-<source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/local-inference-demo.mp4" type="video/mp4">
-Your browser cannot play this video. <a href="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/local-inference-demo.mp4">Download it instead.</a>
+<video controls playsinline preload="metadata" poster="/images/local-inference-poster.png" style="width:100%;max-width:900px;height:auto;border-radius:12px;display:block;margin:2rem auto;box-shadow:0 12px 40px rgba(0,0,0,.12);">
+<source src="/video/local-inference-demo.webm" type="video/webm">
+<source src="/video/local-inference-demo.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="/video/local-inference-demo.mp4">Download it instead.</a>
 </video>
 </div>
 </section>
@@ -58,7 +58,7 @@ Your browser cannot play this video. <a href="https://pub-fb3e683317b24cf8b42601
 <tr><td style="padding:.6rem;">SmolLM2 360M</td><td style="padding:.6rem;">~0.3 GB</td><td style="padding:.6rem;">Smallest and quickest to try.</td></tr>
 </tbody>
 </table>
-<img src="/images/local-inference-models.png" alt="The extension's model picker, showing the available on-device models and their download sizes" style="width:100%;max-width:900px;border-radius:12px;display:block;margin:2rem auto;" loading="lazy" decoding="async" width="1280" height="800">
+<img src="/images/local-inference-models.png" alt="The extension's model picker, showing the available on-device models and their download sizes" style="width:100%;max-width:900px;height:auto;border-radius:12px;display:block;margin:2rem auto;" loading="lazy" decoding="async" width="1280" height="800">
 </div>
 </section>
 
@@ -66,7 +66,6 @@ Your browser cannot play this video. <a href="https://pub-fb3e683317b24cf8b42601
 <div class="container">
 <h2 class="section-heading" style="margin-top: 2rem;">Use it anywhere, or inside Divinci</h2>
 <p>Open the side panel on any page for an on-device assistant. Or pick the local model in <a href="https://chat.divinci.app">Divinci AI's chat</a> and have your own hardware answer instead of a cloud API — same interface, same conversation history, no API cost.</p>
-<img src="/images/local-inference-panel.png" alt="The Divinci Local Inference side panel open on a web page" style="width:100%;max-width:900px;border-radius:12px;display:block;margin:2rem auto;" loading="lazy" decoding="async" width="1280" height="800">
 </div>
 </section>
 
