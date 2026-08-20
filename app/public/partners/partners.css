@@ -560,7 +560,12 @@
      width. Measured against Range.getClientRects(), not element boxes — h1 is
      a full-width block whose glyphs are centred, so its box over-reports a
      collision that is not there. */
-  bottom: calc(100% + 16px);
+  /* 34px, not 16: the gap between note and buttons is what holds the arrow
+     OFF the CTA. Backing the tip off along its own approach vector instead
+     flattens the descent — the arrow stops aiming at the button and reads as a
+     stray mark beside it. Lifting the whole annotation keeps the curve's shape
+     and direction exactly and buys the clearance from somewhere else. */
+  bottom: calc(100% + 34px);
   width: 340px;
   display: block;
   opacity: 0;
@@ -605,11 +610,11 @@
   /* Placed so the DRAWN tip lands on the button, not so the box looks tidy.
      The offsets are solved from the path, not guessed: the tip sits at local
      (24, 56) in a 380-wide box, so left:-134 with the note 88px outboard puts
-     it 22px inside the button's outer edge and 3px below its top. That last
-     number matters: the ink is --denim and so is the PRIMARY button's fill, so
-     a tip sunk into the button loses its arrowhead. It touches the edge rather
-     than landing in the middle. Re-derive all of these whenever the note
-     offset or the path's end point moves — they are not independent. */
+     it 7px inside the button's outer edge and 14px ABOVE its top — pointing
+     at the CTA without touching it. Never let the tip land inside: the ink is
+     --denim and so is the primary button's fill, so a sunk tip loses its
+     arrowhead entirely. Re-derive all of these whenever the note offset, the
+     bottom offset, or the path's end point moves — they are not independent. */
   top: 37px;
   width: 380px;
   height: 150px;
