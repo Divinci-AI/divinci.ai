@@ -423,32 +423,46 @@
    prefers-reduced-motion to turn off. */
 .owv-orbit {
     position: absolute;
-    /* Positive inset: at -40px the two right-hand satellites were clipped
-       by the band edge, which looks like a rendering bug rather than a
-       bleed. The ring is fully inside the hero. */
-    right: 48px;
-    top: 80px;
-    width: min(28vw, 340px);
+    /* Sized against the SECTION, not against the gap beside the text.
+       Measured on the SDK hero it is recycled from: the ring there renders at
+       127% of the hero width out of a 420px layout box, and the satellites span
+       61%. The size IS the effect — at 340px it read as an icon sitting in
+       spare space rather than as the hero's subject. */
+    /* A flat 65vw so it is 65% of the SECTION at every width, rather than a
+       px cap that quietly shrinks it to 54% on a large display. The ceiling is
+       only there to stop it becoming absurd on an ultrawide. */
+    width: min(65vw, 1400px);
     aspect-ratio: 1;
+    right: -7%;
+    /* Biased up so the robot centres on the headline/lead band rather than
+       straddling the stat bar. */
+    top: 44%;
+    transform: translateY(-50%);
     pointer-events: none;
+    /* Behind the copy. At this size it necessarily passes under the headline
+       and the stat bar, so the ring is faint and the text carries its own
+       stacking context above it. */
     z-index: 0;
-    color: #6d6dbf;          /* the ring stroke, via currentColor */
+    color: #6d6dbf;
 }
+/* Everything readable sits above the graphic. */
+.owv-hero > .container { position: relative; z-index: 1; }
 .owv-orbit-ring {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.6;
+    /* Fainter than the small version was: it now crosses live text. */
+    opacity: 0.34;
 }
-.owv-orbit-outer { opacity: 0.8; }
-/* Fades the ring lines out from behind the robot so its silhouette reads. */
+.owv-orbit-outer { opacity: 0.6; }
+/* Fades the ring out from behind the robot so the silhouette reads. */
 .owv-orbit-scrim {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 54%;
-    height: 54%;
+    width: 46%;
+    height: 46%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background: radial-gradient(circle, rgba(18,18,42,0.92) 0%, rgba(18,18,42,0.55) 55%, rgba(18,18,42,0) 78%);
@@ -457,21 +471,21 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 45%;
+    width: 34%;
     height: auto;
     transform: translate(-50%, -50%);
 }
 .owv-orbit-sat {
     position: absolute;
     transform: translate(-50%, -50%);
-    font-size: clamp(18px, 1.9vw, 26px);
+    /* The SDK hero sets 56px. Scaled to this container and floored so it never
+       shrinks back into decoration. */
+    font-size: clamp(26px, 2.9vw, 48px);
     line-height: 1;
-    /* Emoji ignore `color`; the shadow is what seats them on the dark band. */
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.55));
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
 }
-/* The hero text must never wrap around or collide with it — below this width
-   the visual is removed rather than shrunk, because a 120px orbit reads as
-   clutter rather than as a diagram. */
+/* Removed rather than shrunk below this width: at a phone size the ring would
+   sit squarely behind the headline with nowhere to bleed to. */
 @media (max-width: 1180px) {
     .owv-orbit { display: none; }
 }
@@ -521,7 +535,14 @@
     flex-direction: column;
     gap: 6px;
     padding: 18px 20px;
-    background: rgba(11,11,20,0.55);
+    /* Nearly opaque, and blurred behind, so the orbit passes UNDER the numbers
+       instead of through them. At 0.55 two globes sat directly on "4.5 GB" and
+       "249" — decoration obscuring the measured figures the section exists to
+       report. The panel reads as floating over the graphic, which is the
+       intent; illegible data is not. */
+    background: rgba(11,11,20,0.94);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 .owv-stat-value {
     font-family: 'Fraunces', serif;
