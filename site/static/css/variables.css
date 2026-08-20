@@ -97,8 +97,6 @@
   /* === LEGACY COLORS (for migration) === */
   
   /* Old blue/cyan colors - to be replaced */
-  --color-legacy-blue: #16214c;           /* Old primary blue */
-  --color-legacy-cyan: #5ce2e7;           /* Old accent cyan */
   --color-legacy-dark-blue: #0e1633;      /* Old dark blue */
   
   /* === SPACING & LAYOUT === */

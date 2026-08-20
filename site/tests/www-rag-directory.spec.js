@@ -256,7 +256,14 @@ test.describe('WWW-RAG directory', () => {
 
         await page.click('.www-rag-owv-link');
         await expect(page).toHaveURL(/\/open-web-vectors\/$/);
-        await expect(page.locator('h1')).toContainText('The web is only legible');
+        // Structural, not verbatim. This pinned the exact headline until the
+        // page was rewritten to "The open web has no retrieval layer of its
+        // own." and the test went red for a copy edit — which is the wrong
+        // thing for a navigation test to be sensitive to. What it needs to know
+        // is that the link landed on the initiative page and that page
+        // rendered; the headline's WORDING belongs to whoever is writing it.
+        await expect(page.locator('h1.owv-title')).toBeVisible();
+        await expect(page.locator('h1.owv-title')).not.toBeEmpty();
     });
 });
 
@@ -407,10 +414,67 @@ test.describe('page-scoped Divinci agent', () => {
                 .forEach((k) => localStorage.removeItem(k));
         });
         await page.reload();
-        // On pages with a tall hero the launcher stays hidden until the
-        // visitor scrolls past it.
-        await page.evaluate(() => window.scrollTo(0, 1200));
+        await scrollToLauncherWindow(page);
         await page.locator('.dvc-bubble').click();
+    }
+
+    /**
+     * Scroll to a position where the launcher is actually interactive.
+     *
+     * It hides itself at BOTH ends of the page (divinci-chat-widget.ts): while
+     * the hero is still on screen (`hero.bottom < 72% of the viewport`), and
+     * again once 56px of the footer has arrived, where it would sit over the
+     * Legal / Privacy Settings links.
+     *
+     * A fixed `scrollTo(0, 1200)` covered the hero half and was enough until
+     * the footer half landed in 55ec49f. With the directory stubbed to nine
+     * rows this page is only ~2,050px tall, so 1200 CLAMPS to the bottom and
+     * parks the launcher in its faded state — where it keeps opacity 1 but
+     * gets `pointer-events: none`, so every click times out on actionability
+     * with no hint as to why. Deriving the position from the two thresholds
+     * survives the page changing height again.
+     */
+    async function scrollToLauncherWindow(page) {
+        const where = await page.evaluate(() => {
+            const HERO_HIDE_BOTTOM_RATIO = 0.72;
+            const FOOTER_HIDE_REVEAL_PX = 56;
+            const hero = document.querySelector('section.hero');
+            const footer =
+                document.querySelector('footer.site-footer') || document.querySelector('footer');
+            const vh = window.innerHeight;
+            const y = window.scrollY;
+            const min = hero
+                ? hero.getBoundingClientRect().bottom + y - vh * HERO_HIDE_BOTTOM_RATIO + 1
+                : 0;
+            const footerMax = footer
+                ? footer.getBoundingClientRect().top + y - (vh - FOOTER_HIDE_REVEAL_PX) - 1
+                : Number.MAX_SAFE_INTEGER;
+            // Never past the end of the document: scrollTo clamps silently, and
+            // a clamped position lands back in the footer's fade zone.
+            const max = Math.min(footerMax, document.documentElement.scrollHeight - vh);
+            // The MIDDLE of the window, not its lower bound. The reveal runs off
+            // a scroll event, so a target of 0 never fires one and the launcher
+            // stays in whatever state it initialised with — which is how aiming
+            // at the lower bound broke /open-web-vectors/, a page with no hero
+            // and 3,600px of headroom.
+            const target = Math.max(1, Math.min(max, Math.round((min + max) / 2)));
+            window.scrollTo(0, target);
+            return { min: Math.round(min), max: Math.round(max), target: Math.round(target) };
+        });
+        // If the two thresholds ever overlap there is NO position where the
+        // launcher can be used, which is a product bug on a short page — say so
+        // rather than letting the click time out.
+        expect(
+            where.min,
+            `no scroll position leaves the launcher usable: hero needs >= ${where.min}, footer/document allow <= ${where.max}`,
+        ).toBeLessThanOrEqual(where.max);
+        // Visibility is not enough: the faded state keeps opacity 1 and only
+        // drops pointer-events, which reads as a mysterious click timeout.
+        await expect
+            .poll(async () =>
+                page.locator('.dvc-bubble').evaluate((el) => getComputedStyle(el).pointerEvents),
+            )
+            .not.toBe('none');
     }
 
     const CASES = [

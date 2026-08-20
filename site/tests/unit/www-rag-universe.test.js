@@ -267,12 +267,15 @@ describe("map freshness", () => {
  * inside the fetch continuation. Measured against the live endpoint:
  *
  *     nodes    step()    600-step settle
- *       170     0.9 ms     0.5 s      ← when the "O(n²) is fine here" comment was written
- *     1,608    80   ms    48   s
- *     2,876   256   ms   154   s      ← reproduced in-browser as a 36 s frozen frame
+ *       719     1.6 ms     1.0 s
+ *     1,438     8.6 ms     5.2 s
+ *     2,876    33   ms    19.8 s      ← in a browser: a 36,255 ms frozen frame
  *
- * (The 2,876 row was timed against the live endpoint; the rest is that number
- * scaled quadratically.)
+ * ⚠️ Measure natively. An earlier revision quoted 256 ms/step and a 154 s
+ * settle because the harness used `vm.createContext`, which is 6.8x slower
+ * here on identical code and data. `new Function(src)(...)` compiles into the
+ * current realm and carries no such penalty — and the browser numbers, which
+ * were right all along, are the ones that actually matter.
  *
  * Nothing was wrong with that comment when it was written. It went stale, and
  * the directory adds ~150 sites a day, so it will go stale again. These tests
@@ -368,7 +371,7 @@ describe("the simulation has to scale with the corpus", () => {
     });
 
     test("nothing runs the whole settle in one blocking go", () => {
-        // The exact line that froze the tab for 154 seconds.
+        // The exact line whose 600 synchronous ticks froze the tab.
         expect(SOURCE).not.toMatch(/for\s*\(\s*var\s+i\s*=\s*0;\s*i\s*<\s*600;\s*i\+\+\s*\)\s*step\(/);
         // The settle must yield to the browser between slices, and must be
         // bounded by wall-clock rather than only by a step count — a step

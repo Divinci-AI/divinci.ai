@@ -6,7 +6,7 @@
  * On 2026-08-20 this section crashed the page. The force simulation was
  * all-pairs (1.5·n² evaluations per tick) and the boot ran 600 ticks
  * SYNCHRONOUSLY inside the fetch continuation. At the live corpus of 2,876
- * sites that measured 154 s of unyielding main thread; reproduced in a real
+ * sites that is ~20 s of unyielding main thread measured natively; in a real
  * browser it showed as a single 36,255 ms frozen frame and an empty black box.
  * The directory adds ~150 sites a day, so it had been getting worse daily and
  * would have kept doing so.
@@ -197,11 +197,11 @@ test.describe('The RAG universe', () => {
         expect(works, 'longtask is unsupported here, so this test proves nothing').toBe(true);
 
         const longest = tasks.length ? Math.max(...tasks) : 0;
-        // The old code produced a single 36,255 ms task at 2,876 nodes. The
-        // fixed one is one indivisible ~17 ms step per frame, with a cold-JIT
-        // spike on the first. 1,000 ms sits far above the real ceiling and 36x
-        // below the failure, so it discriminates without being flaky on a
-        // loaded CI machine.
+        // The old code produced a single 36,255 ms task at 2,876 nodes, and
+        // 17,920 ms under this very fixture. The fixed one reveals in a single
+        // ~56 ms task and then nothing over 50 ms at all — production measured
+        // zero. 1,000 ms sits far above the real ceiling and ~18x below the
+        // failure, so it discriminates without being flaky on a loaded runner.
         expect(longest, `long tasks (ms): ${tasks.join(', ')}`).toBeLessThan(1000);
     });
 

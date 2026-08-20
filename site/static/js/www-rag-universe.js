@@ -32,12 +32,22 @@
  * whole settle SYNCHRONOUSLY:
  *
  *     nodes    step()      600-step settle (blocking the main thread)
- *       170      0.9 ms      0.5 s
- *     1,608     80   ms     48   s
- *     2,876    256   ms    154   s   ← the tab is killed long before this ends
+ *       719     1.6 ms       1.0 s
+ *     1,438     8.6 ms       5.2 s
+ *     2,876    33   ms      19.8 s
  *
- * Only the 2,876 row was timed; the others are that measurement scaled
- * quadratically, which is the point — the shape is what predicts next month.
+ * And in a real browser, which is the number that matters: a single
+ * **36,255 ms frozen frame**, 15 requestAnimationFrame callbacks in 55 s, and
+ * an empty black box where the map should be.
+ *
+ * ⚠️ MEASURE IN THE CURRENT REALM, NOT IN A vm CONTEXT. The first pass at this
+ * quoted 256 ms/step and a 154 s settle, because the harness ran the file
+ * through `vm.createContext`. Verified afterwards on identical code and data:
+ * a vm context is **6.8x slower** here than plain node, so every absolute
+ * figure was inflated ~7x and even the speedup ratio was wrong, since the two
+ * implementations are penalised differently. Use `new Function(src)(...)`,
+ * which compiles into the current realm and lets the JIT specialise the way a
+ * browser would — or trust the browser numbers, which were right all along.
  *
  * That is the page crash. Not memory — an unyielding main thread that Chrome's
  * unresponsive-tab killer and iOS Safari's watchdog both terminate.
@@ -311,12 +321,19 @@
    * measures divergence, not error:
    *
    *     theta   ms/step   mean |F error|   p95     max
-   *      0.6     32.0        2.6%          4.8%     8%
-   *      0.9     18.6        7.5%         16.4%    34%   ← here
-   *      1.5     11.2       32.5%         82.1%   224%
+   *      0.6     6.48        2.6%          4.8%     8%
+   *      0.9     4.95        7.5%         16.4%    34%   ← here
+   *      1.2     3.92       15.9%         36.1%    68%
+   *      1.5     3.52       32.5%         82.1%   224%
    *
-   * 1.5 is tempting and wrong: a p95 of 82% is a different picture, not a
-   * cheaper one. Speed came from the traversal's memory layout instead.
+   * 1.5 is tempting and wrong, and the timings say so more plainly than the
+   * errors do: loosening all the way to 1.5 buys **1.4x**, and pays 32% mean
+   * force error for it. That is a different picture, not a cheaper one. The
+   * real speed came from the traversal's memory layout instead.
+   *
+   * (The error columns are ratios of forces and are unaffected by how the
+   * harness was run; the ms column was re-measured natively — see the vm
+   * warning at the top of this file.)
    */
   var THETA = 0.9;
   var THETA2 = THETA * THETA;
@@ -330,8 +347,9 @@
   // The traversal visits a few hundred cells per node and reading `nodes[b].x`
   // there was the hottest read in the simulation. A Float64Array pair is
   // contiguous and monomorphic; the copy in is 2,876 writes, noise against what
-  // it saves. Measured on the live graph at an unchanged THETA — so no accuracy
-  // was traded for it — the repulsion phase went 16.9 ms -> 13.7 ms.
+  // it saves, at an unchanged THETA so no accuracy is traded for it. (An
+  // earlier revision quoted a specific before/after here; it was measured in a
+  // vm context and is not reproduced, for the reason given at the top.)
   var pxs = null, pys = null;
 
   function ensureTree(n) {
@@ -942,8 +960,8 @@
      * ceiling, not just a step count.
      *
      * The old code ran all 600 steps inside the fetch continuation. At 2,876
-     * nodes that measured 154 SECONDS of unyielding main thread, which is not a
-     * slow page, it is a killed tab. Chunking alone would fix the crash but not
+     * nodes that is ~20 SECONDS of unyielding main thread natively, and a
+     * 36,255 ms frozen frame in a real browser — not a slow page, a killed tab. Chunking alone would fix the crash but not
      * the scaling: 600 steps is unbounded work, so a corpus twice this size
      * simply takes twice as long to appear.
      *
@@ -952,18 +970,18 @@
      * which the loop below is doing anyway — so what grows with the corpus is
      * how much of the settling you watch, not how long you wait.
      *
-     * The 8 ms slice bounds how many steps a frame ATTEMPTS. Note what that
-     * means at today's corpus: one step is ~17 ms, so it already exceeds the
-     * budget on its own and the settle runs exactly ONE step per frame. The
-     * budget's real job is stopping it running two. Measured slice durations
-     * over the live graph: 61, 38, 28, 21, 19, 19 … median 16 — the opening
-     * spike is JIT warm-up on the first call, not a growing cost.
+     * The 8 ms slice bounds how many steps a frame ATTEMPTS. A step is
+     * indivisible, so once one step costs more than the budget the settle
+     * necessarily runs exactly ONE step per frame and the budget's real job is
+     * stopping it running two.
      *
-     * A step is indivisible, so ~17 ms of main thread per frame for ~50 frames
-     * is the floor here. That is jank-free (well under the 50 ms long-task
-     * threshold) but it is not free; going below it would mean splitting a
-     * single step across frames, which is a much larger change and is not
-     * worth it until a step approaches 50 ms on its own.
+     * What that costs, measured in the BROWSER against the live corpus rather
+     * than in a harness: the reveal is a single ~56 ms task (the 1.8 MB
+     * JSON.parse, build(), and the first cold-JIT step together), and after it
+     * nothing on the page exceeds 50 ms at all — production measured zero long
+     * tasks. That is the floor here; going below it would mean splitting one
+     * step across frames, which is a much larger change and is not worth it
+     * until a single step approaches 50 ms on its own.
      */
     var SETTLE_STEPS = 600;
     var SETTLE_BUDGET_MS = 900;
