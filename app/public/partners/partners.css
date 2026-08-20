@@ -482,3 +482,48 @@
   .shipped-card:hover,
   .shipped-card:focus-visible { transform: none; }
 }
+
+/* ── Demo pipeline ───────────────────────────────────────── */
+/* Sits between "How it works" and the tenancy diagram: how a partner WINS the
+   client, before the three steps about serving one. Alternates band colour
+   with its neighbours, same as the other sections. */
+.pipeline { background: var(--parchment-deep); }
+.pipeline-lede {
+  max-width: 62ch;
+  margin: 0 auto 26px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+.pipeline-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 860px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 14px;
+}
+.pipeline-points li {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.pipeline-points strong { color: var(--ink); }
+.pipeline-points code {
+  font-size: 0.92em;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--parchment-deep);
+  border: 1px solid var(--border);
+}
+.pipeline-more {
+  margin: 22px 0 0;
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}

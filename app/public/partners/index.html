@@ -62,7 +62,11 @@
 
       <div class="cta-row">
         <a class="cta-primary" href="https://chat.divinci.app/" data-app-link="/">Start a free workspace →</a>
-        <a class="cta-secondary" href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener">Talk to us about partner terms</a>
+        <!-- ⚠️ The HERO secondary is the demo pipeline; the BOTTOM one is still
+             "talk to us". Deliberately not both: this page recruits partners,
+             and removing every route to a human from a partner-recruitment
+             page would trade a conversation for a clone. -->
+        <a class="cta-secondary" href="https://github.com/Divinci-AI/divinci-demo-pipeline-oss" target="_blank" rel="noopener">Run the demo pipeline →</a>
       </div>
 
       <p class="hero-note">
@@ -94,7 +98,10 @@
       <div class="shipped">
         <p class="shipped-lede">
           Three built on the platform, live right now — each one a company's own
-          pages, answering from them and citing them.
+          pages, answering from them and citing them. None was assembled by
+          hand: all three came out of the
+          <a href="https://github.com/Divinci-AI/divinci-demo-pipeline-oss" target="_blank" rel="noopener">demo pipeline</a>,
+          which is open source and yours to run.
         </p>
         <div class="shipped-row">
           <a class="shipped-card" href="https://drfuhrman.ai/" target="_blank" rel="noopener">
@@ -161,6 +168,30 @@
           <svg class="card-art" viewBox="0 0 100 100" aria-hidden="true"><path d="M26 62 50 24l24 38z"/><path d="M38 62v14h24V62"/><circle cx="50" cy="48" r="5"/></svg>
         </li>
       </ol>
+    </section>
+
+    <!-- ── Demo pipeline ────────────────────────────────────────────── -->
+    <section class="pipeline">
+      <h2>Win the client before you pitch</h2>
+      <p class="pipeline-lede">
+        The three demos above were not built by hand. Point the
+        <a href="https://github.com/Divinci-AI/divinci-demo-pipeline-oss" target="_blank" rel="noopener">demo pipeline</a> at a
+        prospect's public site and it crawls what is there, builds a
+        citation-grounded assistant from it, and gives you a working link under
+        that company's own brand — the thing you would otherwise be describing
+        in a deck.
+      </p>
+      <ul class="pipeline-points">
+        <li><strong>🔓 Apache-2.0, and it runs from a clean clone.</strong> <code>npm run smoke</code> is the whole first run. It is not a demo of a demo tool — it is the code that produced the three links above.</li>
+        <li><strong>🚦 Nothing reaches the company without a human.</strong> Twelve steps, with advisory gates on the corpus and on the finished demo — and outreach is a hard stop. The pipeline never contacts anyone on its own.</li>
+        <li><strong>⚖️ The compliance tier writes the guardrails.</strong> A clinic and a shop do not get the same assistant: the tier generates the scope, the refusals and the disclaimer, so a regulated prospect is not a bespoke project.</li>
+        <li><strong>💻 Your laptop or your cloud.</strong> Run it locally with Ollama so nothing but the vectors leaves the building, or on Cloudflare, GCP or AWS when you want it unattended.</li>
+      </ul>
+      <p class="pipeline-more">
+        <a href="https://github.com/Divinci-AI/divinci-demo-pipeline-oss" target="_blank" rel="noopener">Read the source</a> ·
+        <a href="https://github.com/Divinci-AI/divinci-demo-pipeline-oss/blob/main/docs/TARGETS.md" target="_blank" rel="noopener">Deployment targets</a> ·
+        <a href="https://github.com/Divinci-AI/divinci-demo-pipeline-oss/blob/main/policies/crawl-policy.md" target="_blank" rel="noopener">Crawl policy</a>
+      </p>
     </section>
 
     <!-- ── Multi-tenancy diagram ────────────────────────────────────── -->
@@ -402,6 +433,10 @@
       <details>
         <summary>Can my clients see each other's content?</summary>
         <p>Not unless you deliberately wire them together. Each client gets their own workspace, and a workspace's content is only reachable from that workspace — you can invite a client's staff into theirs without giving them any visibility into the others. Routing a query from one release to another is a separate feature that is off by default, fail-closed, and limited to an explicit allowlist of targets.</p>
+      </details>
+      <details>
+        <summary>Can I use the demo pipeline on my own prospects?</summary>
+        <p>Yes — that is what it is for, and it is Apache-2.0 so there is nothing to ask us about first. Point it at a prospect's public site and it produces a working, citation-grounded assistant under their brand that you can open in a first meeting. It never contacts anyone on its own: outreach is behind a hard human gate, and the crawl asks before it crawls. <a href="https://github.com/Divinci-AI/divinci-demo-pipeline-oss" target="_blank" rel="noopener">The source is here.</a></p>
       </details>
       <details>
         <summary>Whose brand does the client see?</summary>
