@@ -130,10 +130,45 @@
       }
       return "";
     }
-    if (typeof data.seeds === "number" && typeof data.done === "number") {
-      return num(data.done) + " of " + num(data.seeds) + " sites this pass";
+    // ⚠️ NOT "done of seeds". Until 2026-08-20 this line read
+    // `done + " of " + seeds + " sites this pass"`, which was wrong four
+    // times over and shipped as "5,509 of 5,509 sites this pass":
+    //
+    //   1. Both numbers were TRUNCATED at the worker's 5,000-key listing cap,
+    //      which is why two independently-counted prefixes printed the same
+    //      figure. They were not counts; they were where counting stopped.
+    //   2. The two sets are DISJOINT. `seeds` is what is still queued and
+    //      `done` is a tombstone set, so `done` is not a subset of `seeds`
+    //      and "X of Y" cannot mean progress through Y.
+    //   3. `done` is not "sites crawled" — it tombstones every host that
+    //      refused us, failed, or was withdrawn, so it overstated work
+    //      completed as if it were corpus added.
+    //   4. There is no "pass". The worker's own activity.js says so and
+    //      deliberately never sends passStartedAt; these are LIFETIME
+    //      counters.
+    //
+    // `sitesThisPass` is the honest rolling-24h number despite its name, and
+    // is what this line should have been using all along.
+    var parts = [];
+    if (typeof data.sitesThisPass === "number" && data.sitesThisPass > 0) {
+      parts.push(num(data.sitesThisPass) + " sites in the last 24h");
     }
-    return "";
+    if (typeof data.seeds === "number" && data.seeds > 0) {
+      parts.push(floor(data.seeds, data.seedsTruncated) + " queued");
+    }
+    return parts.join(" · ");
+  }
+
+  /**
+   * Render a count that may be a floor.
+   *
+   * An older worker sends no `truncated` flag at all. Treating that as "exact"
+   * would silently reintroduce the made-up number during a rollout, so an
+   * absent flag is treated as unknown and gets the "+" — a count shown as
+   * slightly-too-cautious is recoverable, a fabricated one is not.
+   */
+  function floor(n, truncated) {
+    return num(n) + (truncated === false ? "" : "+");
   }
 
   function renderInFlight(data) {

@@ -57,7 +57,9 @@ describe('www-rag live crawl strip', () => {
                 stale: false,
                 ageSeconds: 8,
                 seeds: 62,
+                seedsTruncated: false,
                 done: 41,
+                sitesThisPass: 27,
                 inFlight: ['kubernetes.io', 'huggingface.co'],
                 recent: [{ host: 'pydata.org', pages: 118, chunks: 2456 }],
             });
@@ -65,10 +67,56 @@ describe('www-rag live crawl strip', () => {
             expect(root().hidden).toBe(false);
             expect(root().getAttribute('data-state')).toBe('crawling');
             expect($('www-rag-live-headline').textContent).toBe('Crawling now');
-            expect($('www-rag-live-detail').textContent).toBe('41 of 62 sites this pass');
+            // NOT "41 of 62 sites this pass", which this test used to pin.
+            // `done` (41) is a tombstone set, `seeds` (62) is the remaining
+            // queue — disjoint sets, so "X of Y" was never progress through Y.
+            expect($('www-rag-live-detail').textContent).toBe('27 sites in the last 24h · 62 queued');
             expect($('www-rag-live-inflight').textContent).toContain('kubernetes.io');
             expect($('www-rag-live-recent').textContent).toContain('pydata.org');
             expect($('www-rag-live-recent').textContent).toContain('2,456 chunks');
+        });
+
+        test('a truncated queue count is shown as a floor, not as a number', async () => {
+            // The bug this replaced: on 2026-08-20 the page read "5,509 of
+            // 5,509 sites this pass" because BOTH counters had hit the
+            // worker's 5,000-key listing cap. Two independently-counted
+            // prefixes printing the same figure is the signature of
+            // truncation — the value was where counting stopped, not a count.
+            await boot({
+                state: 'crawling', stale: false, ageSeconds: 8,
+                seeds: 5509, seedsTruncated: true, done: 5509,
+                sitesThisPass: 1139,
+                inFlight: ['kubernetes.io'], recent: [],
+            });
+
+            const detail = $('www-rag-live-detail').textContent;
+            expect(detail).toBe('1,139 sites in the last 24h · 5,509+ queued');
+            expect(detail).not.toContain('of 5,509');
+            expect(detail).not.toContain('this pass');
+        });
+
+        test('a worker too old to report truncation still never fabricates an exact count', async () => {
+            // An absent flag is unknown, not false. During a rollout the page
+            // is fed by whichever worker version answered, and a count shown
+            // as slightly-too-cautious is recoverable where a fabricated one
+            // is not.
+            await boot({
+                state: 'crawling', stale: false, ageSeconds: 8,
+                seeds: 5509, done: 5509, sitesThisPass: 1139,
+                inFlight: ['kubernetes.io'], recent: [],
+            });
+
+            expect($('www-rag-live-detail').textContent).toBe('1,139 sites in the last 24h · 5,509+ queued');
+        });
+
+        test('the queue is omitted entirely rather than shown as zero', async () => {
+            await boot({
+                state: 'crawling', stale: false, ageSeconds: 8,
+                seeds: 0, seedsTruncated: false, done: 12, sitesThisPass: 40,
+                inFlight: ['kubernetes.io'], recent: [],
+            });
+
+            expect($('www-rag-live-detail').textContent).toBe('40 sites in the last 24h');
         });
 
         test('an offline snapshot never shows a live-crawl animation', async () => {

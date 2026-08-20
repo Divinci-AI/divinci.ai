@@ -408,10 +408,15 @@
       var renderLive = function (a) {
         if (!a || a.stale || a.state !== "crawling") return;
         var host = (a.inFlight && a.inFlight[0]) || "";
-        var done = typeof a.done === "number" ? a.done : null;
-        var seeds = typeof a.seeds === "number" ? a.seeds : null;
+        // ⚠️ NOT "done of seeds sites this pass" — see the long note in
+        // site/public/js/www-rag-live.js. That phrasing shipped as
+        // "5,509 of 5,509 sites this pass": both numbers were truncated at the
+        // worker's listing cap, the two sets are disjoint (done is a tombstone
+        // set, not a subset of the queue), and there is no pass. This banner
+        // carried a vendored COPY of the same line, so it had the same bug.
+        var recent = typeof a.sitesThisPass === "number" ? a.sitesThisPass : null;
         var text = host ? "Crawling " + host + " right now" : "Crawling the open web right now";
-        if (done !== null && seeds) text += " — " + fmtInt(done) + " of " + fmtInt(seeds) + " sites this pass";
+        if (recent) text += " — " + fmtInt(recent) + " sites in the last 24h";
         if (!liveSlide) {
           liveSlide = document.createElement("a");
           liveSlide.className = "promo-slide";
