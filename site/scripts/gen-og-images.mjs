@@ -56,6 +56,9 @@ const SHIELD_SLUGS = new Set([
 const WAVE_SLUGS = new Set(["about", "contact", "support", "careers", "press"]);
 const BOOK_SLUGS = new Set(["api", "cli", "docs", "tutorials", "changelog", "brand"]);
 const PHONE_SLUGS = new Set(["voice-agent-scripts"]);
+const ROBOT_OVERRIDE = {
+  "open-web-vectors": "globe.jpg",
+};
 
 const TITLE_OVERRIDE = {
   index: "Excellence, every time",
@@ -79,6 +82,7 @@ const PRODUCT_SLUGS = new Set([
   "voice-agents",
   "hermes-agents",
   "www-rag",
+  "open-web-vectors",
   "cli",
   "api",
   "docs",
@@ -164,6 +168,7 @@ function sectionOf(slug) {
 }
 
 function robotFileFor(slug) {
+  if (ROBOT_OVERRIDE[slug]) return ROBOT_OVERRIDE[slug];
   if (SHIELD_SLUGS.has(slug)) return "shield.jpg";
   if (WAVE_SLUGS.has(slug)) return "look-wave.jpg";
   if (BOOK_SLUGS.has(slug)) return "book.jpg";
@@ -298,7 +303,8 @@ async function robotScene(robot) {
   const meta = await fitted.metadata();
   const fittedW = meta.width ?? Math.round((1456 / 704) * SCALE_H);
   const robotX = fittedW / 2;
-  const targetX = robot === "look-wave.jpg" || robot === "look.jpg" ? 760 : 900;
+  const targetX =
+    robot === "look-wave.jpg" || robot === "look.jpg" || robot === "globe.jpg" ? 760 : 900;
   const extractLeft = Math.max(0, Math.min(fittedW - W, Math.round(robotX - targetX)));
   const extractTop = Math.max(0, Math.round((SCALE_H - H) / 2));
   return fitted.extract({ left: extractLeft, top: extractTop, width: W, height: H }).toBuffer();
