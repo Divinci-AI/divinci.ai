@@ -146,6 +146,9 @@ const SPEECH_DWELL_MS = 2500;
 const SPEECH_DEBOUNCE_MS = 300;
 /** Hero bottom must clear this fraction of the viewport before the launcher fades in. */
 const HERO_HIDE_BOTTOM_RATIO = 0.72;
+/** Once this many px of the footer are on screen the launcher fades back out —
+ *  it sits over the footer's links (Privacy Settings et al) otherwise. */
+const FOOTER_HIDE_REVEAL_PX = 56;
 
 /** How long to wait for Turnstile's success callback after forcing a reset.
  *  interaction-only normally resolves well under a second; 4s is slack for a
@@ -356,6 +359,7 @@ class DivinciChatWidget {
   private speechDebounce: ReturnType<typeof setTimeout> | null = null;
   private speechPendingId: string | null = null;
   private heroEl: Element | null = null;
+  private footerEl: Element | null = null;
   // Detach handle for the visualViewport listeners installed while the
   // full-screen mobile panel is open; null when nothing is attached.
   private viewportDetach: (() => void) | null = null;
@@ -751,17 +755,23 @@ class DivinciChatWidget {
   }
 
   /**
-   * On pages with a hero, keep the launcher hidden at the top so it doesn't
-   * compete with the hero composition — then fade it in once the second
-   * section enters view. Pages without a hero show the robot immediately.
+   * Scroll gate, both ends of the page:
+   *  - On pages with a hero, keep the launcher hidden at the top so it doesn't
+   *    compete with the hero composition — fade it in once the second section
+   *    enters view. Pages without a hero show the robot immediately.
+   *  - At the bottom, fade it back out as the footer arrives; parked over the
+   *    footer it covers the Legal/Privacy Settings links.
    */
   private startHeroScrollGate(): void {
     this.heroEl = document.querySelector("section.hero");
-    if (!this.heroEl) return;
+    this.footerEl = document.querySelector("footer.site-footer") ?? document.querySelector("footer");
+    if (!this.heroEl && !this.footerEl) return;
 
-    this.root.classList.add("dvc-hero-hidden");
-    this.root.setAttribute("aria-hidden", "true");
-    this.bubble.tabIndex = -1;
+    if (this.heroEl) {
+      this.root.classList.add("dvc-hero-hidden");
+      this.root.setAttribute("aria-hidden", "true");
+      this.bubble.tabIndex = -1;
+    }
     this.syncHeroScrollGate();
 
     const onScrollOrResize = (): void => {
@@ -776,20 +786,28 @@ class DivinciChatWidget {
   }
 
   private syncHeroScrollGate(): void {
-    if (!this.heroEl) return;
-    // Stay visible while the panel is open so closing at the top doesn't
-    // yank the chat away mid-conversation.
+    if (!this.heroEl && !this.footerEl) return;
+    // Stay visible while the panel is open so closing at the top — or reading
+    // the footer — doesn't yank the chat away mid-conversation.
     if (this.open) {
       this.root.classList.remove("dvc-hero-hidden");
       this.root.removeAttribute("aria-hidden");
       this.bubble.tabIndex = 0;
       return;
     }
-    const bottom = this.heroEl.getBoundingClientRect().bottom;
-    const pastHero = bottom < window.innerHeight * HERO_HIDE_BOTTOM_RATIO;
+    const vh = window.innerHeight;
+    let visible = true;
+    if (this.heroEl) {
+      visible = this.heroEl.getBoundingClientRect().bottom < vh * HERO_HIDE_BOTTOM_RATIO;
+    }
+    if (visible && this.footerEl) {
+      // Footer top climbs up from vh as it scrolls in; once this much of it
+      // shows, the launcher is over its content — get out of the way.
+      visible = this.footerEl.getBoundingClientRect().top > vh - FOOTER_HIDE_REVEAL_PX;
+    }
     const wasHidden = this.root.classList.contains("dvc-hero-hidden");
-    this.root.classList.toggle("dvc-hero-hidden", !pastHero);
-    if (pastHero) {
+    this.root.classList.toggle("dvc-hero-hidden", !visible);
+    if (visible) {
       this.root.removeAttribute("aria-hidden");
       this.bubble.tabIndex = 0;
       if (wasHidden) this.revealSpeechIfReady();
