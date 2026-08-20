@@ -94,11 +94,6 @@
   --color-neutral-inverse-50: rgba(45, 90, 79, 0.5);
   --color-neutral-inverse-70: rgba(45, 90, 79, 0.7);
   
-  /* === LEGACY COLORS (for migration) === */
-  
-  /* Old blue/cyan colors - to be replaced */
-  --color-legacy-dark-blue: #0e1633;      /* Old dark blue */
-  
   /* === SPACING & LAYOUT === */
   
   /* Box Shadows */
