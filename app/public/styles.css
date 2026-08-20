@@ -114,18 +114,32 @@ a { color: var(--denim); }
   background-position: 50% top;
   background-repeat: no-repeat;
   opacity: var(--orb-o, 0);
-  /* The mask never reaches full opacity at its core (0.82, not 1). The veil
-     exists to keep the headline legible, so the orb THINS it rather than
-     removing it -- otherwise dragging the cursor across the h1 puts the
-     painting's own contrast directly behind the type.
+  /* Radius 25vw, so the effect spans 50% of the page width. The stops fade all
+     the way to `transparent 100%` rather than ending early at 72%, so that
+     figure is the VISIBLE width and not a circle with an invisible margin --
+     an early transparent stop makes the radius and the apparent size two
+     different numbers, and then "make it 50%" has no single answer.
+
+     Proportional, not clamped: it is meant to read as a wash across the hero,
+     so it should scale with the hero.
+
+     The mask never reaches full opacity at its core -- 0.55, dropped from 0.80
+     when the radius widened. The veil exists to keep the hero type legible, so
+     the orb THINS it rather than removing it. Peak alpha and radius are not
+     independent: at 240px the strong core landed between the lines of type, but
+     a 25vw core covers the h1, the sub and the CTAs at once, and at 0.80 the
+     sub (--ink-soft, 1.05rem) washed out against the painter's hat. Widening
+     this again means softening the core again.
      Fades the orb in and out at the band's edges. The POSITION is never
      transitioned -- an easing on x/y makes the orb lag the cursor, which reads
      as jank rather than as smoothing. */
   transition: opacity 0.3s ease;
-  -webkit-mask-image: radial-gradient(circle var(--orb-r, 240px) at var(--orb-x, 50%) var(--orb-y, 50%),
-    rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.45) 42%, transparent 72%);
-  mask-image: radial-gradient(circle var(--orb-r, 240px) at var(--orb-x, 50%) var(--orb-y, 50%),
-    rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.45) 42%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle var(--orb-r, 25vw) at var(--orb-x, 50%) var(--orb-y, 50%),
+    rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.42) 25%,
+    rgba(0, 0, 0, 0.24) 50%, rgba(0, 0, 0, 0.09) 75%, transparent 100%);
+  mask-image: radial-gradient(circle var(--orb-r, 25vw) at var(--orb-x, 50%) var(--orb-y, 50%),
+    rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.42) 25%,
+    rgba(0, 0, 0, 0.24) 50%, rgba(0, 0, 0, 0.09) 75%, transparent 100%);
 }
 
 /* Decorative and cursor-driven: nothing here is content. */
