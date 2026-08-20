@@ -1029,7 +1029,54 @@
     .owv-btn { transition: none; }
     .owv-btn:hover { transform: none; }
 }
+
+/* ── Chat widget gated to below the hero ──────────────────────────────────
+   The launcher is hidden until the visitor has scrolled past the hero. The
+   hero already carries the page's own call to action ("Browse the directory",
+   "Index your site"); a floating bubble competing with them in the same view
+   is a third choice nobody asked for.
+
+   `:not(.dvc-chat-open)` is the whole safety mechanism, and it is CSS rather
+   than JS state on purpose: if the panel is OPEN it stays visible no matter
+   where the page is scrolled, so scrolling back up can never yank away a
+   conversation someone is in the middle of.
+
+   Gated by a class on <html> so the rule applies before .dvc-root is injected
+   — the widget mounts asynchronously, and a rule that only lands afterwards
+   shows the bubble for a frame first. */
+html.owv-chat-gated .dvc-root:not(.dvc-chat-open) {
+    opacity: 0;
+    visibility: hidden;   /* also removes it from the tab order and a11y tree */
+    pointer-events: none;
+}
+html .dvc-root { transition: opacity 0.25s ease; }
+@media (prefers-reduced-motion: reduce) {
+    html .dvc-root { transition: none; }
+}
 </style>
 
 <script defer src="{{ get_url(path="js/open-web-vectors.js") }}"></script>
+
+<script>
+  /* Gate the chat launcher to below the hero. See `.owv-chat-gated` above.
+
+     Fails OPEN: if the hero is missing or IntersectionObserver is unavailable,
+     the class is removed and the widget behaves exactly as it does everywhere
+     else on the site. A decorative gate must never be able to hide the support
+     channel permanently. */
+  (function () {
+    var root = document.documentElement;
+    root.classList.add("owv-chat-gated");
+    function ungate() { root.classList.remove("owv-chat-gated"); }
+    var hero = document.querySelector(".owv-hero");
+    if (!hero || typeof IntersectionObserver !== "function") { ungate(); return; }
+    new IntersectionObserver(function (entries) {
+      /* Gated while ANY part of the hero is still on screen, so the widget
+         appears exactly when the hero has left the viewport — and hides again
+         if the visitor scrolls back up to it. */
+      root.classList.toggle("owv-chat-gated", entries[0].isIntersecting);
+    }, { threshold: 0 }).observe(hero);
+  })();
+</script>
+
 {% endblock %}
