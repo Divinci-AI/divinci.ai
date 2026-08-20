@@ -109,18 +109,46 @@ test('coerces and clamps counts, dropping nonsense', () => {
   assert.equal(v.sitesThisPass, undefined, 'Infinity is not a count');
 });
 
-test('progress requires both seeds and done', () => {
+test('seeds and done are accepted independently', () => {
+  // They used to be all-or-nothing so the page could render "X of Y". That
+  // pairing was the category error: the two are disjoint lifetime counters.
   const partial = ok({ state: 'crawling', done: 41 });
+  assert.equal(partial.done, 41, 'a lone done is real data, not half a pair');
   assert.equal(partial.seeds, undefined);
-  assert.equal(partial.done, undefined, 'a lone done would render as "41 of —"');
 
   const full = ok({ state: 'crawling', seeds: 62, done: 41 });
   assert.equal(full.seeds, 62);
   assert.equal(full.done, 41);
 });
 
-test('clamps done to seeds so progress can never read "63 of 62"', () => {
-  assert.equal(ok({ state: 'crawling', seeds: 62, done: 63 }).done, 62);
+test('NEVER clamps done to seeds — done legitimately exceeds the queue', () => {
+  // This replaces a test that asserted the opposite. `seeds` is the REMAINING
+  // queue and `done` is a tombstone set covering every host that refused us,
+  // failed, or was withdrawn, so done > seeds is the normal steady state.
+  //
+  // The clamp did not correct an over-count; it manufactured agreement. In
+  // production it pinned done to exactly seeds and the public page read
+  // "5,509 of 5,509 sites this pass" — a number no counter ever produced.
+  const v = ok({ state: 'crawling', seeds: 62, done: 9001 });
+  assert.equal(v.done, 9001, 'the reported count survives intact');
+  assert.equal(v.seeds, 62);
+  assert.notEqual(v.done, v.seeds, 'the two must never be forced into agreement');
+});
+
+test('truncation flags pass through only when the reporter sent booleans', () => {
+  // Absent must stay distinguishable from false: an older worker sends
+  // nothing, and the page shows a cautious "+" rather than inventing an
+  // exact number it cannot support.
+  const flagged = ok({ state: 'crawling', seeds: 5509, done: 5509, seedsTruncated: true, doneTruncated: false });
+  assert.equal(flagged.seedsTruncated, true);
+  assert.equal(flagged.doneTruncated, false);
+
+  const silent = ok({ state: 'crawling', seeds: 62, done: 41 });
+  assert.equal(silent.seedsTruncated, undefined, 'absent stays absent, never coerced to false');
+  assert.equal(silent.doneTruncated, undefined);
+
+  const junk = ok({ state: 'crawling', seeds: 62, done: 41, seedsTruncated: 'yes' });
+  assert.equal(junk.seedsTruncated, undefined, 'a non-boolean is not a flag');
 });
 
 // ── timestamps ──────────────────────────────────────────────────────────

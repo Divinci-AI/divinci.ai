@@ -126,16 +126,32 @@ export function sanitizeActivity(input, now = Date.now()) {
   const nextPassAt = toTimestamp(input.nextPassAt, now + 30 * 86400000);
   if (nextPassAt !== null) value.nextPassAt = nextPassAt;
 
-  // Progress is only meaningful as a pair; a `done` with no `seeds` would
-  // render as "41 of —", so require both or neither.
+  // ⚠️ NEVER clamp these to each other. Until 2026-08-20 this read
+  // `value.done = Math.min(done, seeds)` — "a reporter that over-counts must
+  // not render as 63 of 62". That rationale assumed `done` is a subset of
+  // `seeds`. It is not: `seeds` is the REMAINING queue and `done` is a
+  // tombstone set covering every host that refused us, failed, or was
+  // withdrawn. `done` legitimately exceeds `seeds` and always will.
+  //
+  // So the clamp did not correct an over-count; it manufactured agreement.
+  // With the real done far above the pending queue, min() pinned it to
+  // exactly `seeds` — and the public page showed "5,509 of 5,509 sites this
+  // pass", a number no counter ever produced. A sanitizer may drop a value it
+  // cannot trust; it must never invent one that looks plausible.
+  //
+  // They are also accepted independently now. The old pairing existed so the
+  // page could render "X of Y", which was itself the category error.
   const seeds = toCount(input.seeds);
   const done = toCount(input.done);
-  if (seeds !== null && done !== null) {
-    value.seeds = seeds;
-    // A reporter that over-counts (a host logged twice) must not render as
-    // "63 of 62" — clamp rather than reject, the pass is still healthy.
-    value.done = Math.min(done, seeds);
-  }
+  if (seeds !== null) value.seeds = seeds;
+  if (done !== null) value.done = done;
+
+  // Truncation flags travel with their counts, and ONLY when the reporter
+  // actually sent a boolean — an older worker sends nothing, and absent must
+  // stay distinguishable from false so the page can show a cautious "+"
+  // rather than a fabricated exact number.
+  if (typeof input.seedsTruncated === 'boolean') value.seedsTruncated = input.seedsTruncated;
+  if (typeof input.doneTruncated === 'boolean') value.doneTruncated = input.doneTruncated;
 
   for (const key of ['pagesThisPass', 'chunksThisPass', 'sitesThisPass']) {
     const n = toCount(input[key]);
