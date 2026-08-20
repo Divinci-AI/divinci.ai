@@ -86,6 +86,52 @@ a { color: var(--denim); }
   background-position: center, center, 50% top;
   background-repeat: no-repeat;
 }
+
+/* Cursor orb -- a soft circle of the artwork ITSELF, unveiled, tracking the
+   pointer.
+
+   .hero-bg paints a parchment veil over the picture so the headline stays
+   legible. This repaints the same picture on top, masked to a circle, so the
+   effect reads as the veil thinning under the cursor rather than as a light
+   being shone onto it.
+
+   The box, the `cover` and the `50% top` MUST match the parent's artwork layer
+   exactly. inset:0 gives an identical box, so `cover` resolves identically. If
+   any of the three drift, the orb reveals a SHIFTED copy of the painting and
+   the effect reads as a ghost image rather than as a window.
+
+   Driven by --orb-x / --orb-y / --orb-o, set by app.js. With no JS the vars are
+   unset, --orb-o falls back to 0, and this layer is invisible -- the hero is
+   byte-for-byte what it was before. app.js also feature-detects mask-image
+   first: without masking this would be a full unmasked copy of the painting
+   laid over the hero at opacity 1, i.e. the headline gone. */
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/davinci-painter-robot-800w.webp");
+  background-size: cover;
+  background-position: 50% top;
+  background-repeat: no-repeat;
+  opacity: var(--orb-o, 0);
+  /* The mask never reaches full opacity at its core (0.82, not 1). The veil
+     exists to keep the headline legible, so the orb THINS it rather than
+     removing it -- otherwise dragging the cursor across the h1 puts the
+     painting's own contrast directly behind the type.
+     Fades the orb in and out at the band's edges. The POSITION is never
+     transitioned -- an easing on x/y makes the orb lag the cursor, which reads
+     as jank rather than as smoothing. */
+  transition: opacity 0.3s ease;
+  -webkit-mask-image: radial-gradient(circle var(--orb-r, 240px) at var(--orb-x, 50%) var(--orb-y, 50%),
+    rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.45) 42%, transparent 72%);
+  mask-image: radial-gradient(circle var(--orb-r, 240px) at var(--orb-x, 50%) var(--orb-y, 50%),
+    rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.45) 42%, transparent 72%);
+}
+
+/* Decorative and cursor-driven: nothing here is content. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg::after { display: none; }
+}
 .topbar, main, .footer { position: relative; z-index: 1; }
 .hero h1 {
   font-family: 'Fraunces', Georgia, serif;

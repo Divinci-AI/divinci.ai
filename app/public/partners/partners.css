@@ -470,11 +470,14 @@
   color: var(--ink-soft);
   line-height: 1.35;
 }
-.shipped-note {
-  margin: 14px 0 0;
+/* The section's own CTA, after the evidence rather than before it: the three
+   screenshots are the argument for running the pipeline, so the button that
+   runs it belongs underneath them. Same .cta-secondary as the hero's -- it is
+   the same destination, and giving one destination two button treatments reads
+   as two different things. */
+.shipped-cta {
+  margin: 28px 0 0;
   text-align: center;
-  font-size: 0.82rem;
-  color: var(--ink-soft);
 }
 
 /* One column on a phone: three 300px shots side by side become three

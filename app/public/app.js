@@ -459,3 +459,66 @@
     })
     .catch(function () { /* banner stays on the coupon slide */ });
 })();
+
+/* Hero cursor orb — reveals the ambient artwork under the pointer.
+   Self-contained and independent of the funnel wiring above: it runs on all
+   three funnels, which share one .hero-bg. */
+(function () {
+  "use strict";
+
+  var bg = document.querySelector(".hero-bg");
+  if (!bg || !window.matchMedia) return;
+
+  /* ⚠️ Feature-detect the mask BEFORE enabling anything. .hero-bg::after is a
+     full copy of the painting; the radial mask is the only thing making it a
+     circle. On a browser without mask-image, setting --orb-o to 1 would lay the
+     whole unmasked painting over the hero and bury the headline. Fail to the
+     plain hero, never to the broken one. */
+  var masks =
+    window.CSS && CSS.supports &&
+    (CSS.supports("mask-image", "radial-gradient(#000, transparent)") ||
+      CSS.supports("-webkit-mask-image", "radial-gradient(#000, transparent)"));
+  if (!masks) return;
+
+  // Decorative motion, and there is no cursor to follow on a touch screen.
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  var cx = 0, cy = 0, seen = false, queued = false;
+
+  function paint() {
+    queued = false;
+    // One rect read per frame, never per event: pointermove fires far faster
+    // than the display refreshes, so the rAF gate is what keeps this cheap.
+    var r = bg.getBoundingClientRect();
+    if (cy < r.top || cy > r.bottom) {
+      // Below the artwork band (usually: scrolled into the page body). Fade
+      // out rather than pinning the orb to the last edge it saw.
+      bg.style.setProperty("--orb-o", "0");
+      return;
+    }
+    bg.style.setProperty("--orb-x", (cx - r.left) + "px");
+    bg.style.setProperty("--orb-y", (cy - r.top) + "px");
+    bg.style.setProperty("--orb-o", "1");
+  }
+
+  function queue() {
+    if (!queued) { queued = true; requestAnimationFrame(paint); }
+  }
+
+  window.addEventListener("pointermove", function (e) {
+    // A pen or a touch contact reports coordinates too; only a mouse hovers.
+    if (e.pointerType && e.pointerType !== "mouse") return;
+    cx = e.clientX; cy = e.clientY; seen = true;
+    queue();
+  }, { passive: true });
+
+  /* Scrolling moves the artwork under a stationary cursor, so the orb has to
+     re-resolve even with no pointer event. Guarded on `seen` so a page that is
+     scrolled before the mouse ever moves does not flash an orb at (0,0). */
+  window.addEventListener("scroll", function () { if (seen) queue(); }, { passive: true });
+
+  function hide() { bg.style.setProperty("--orb-o", "0"); }
+  document.documentElement.addEventListener("mouseleave", hide);
+  window.addEventListener("blur", hide);
+})();
