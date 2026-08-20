@@ -294,6 +294,34 @@ async function coverCrop(inputPath) {
 }
 
 async function robotScene(robot) {
+  // The globe pose is wider than the other plates (orb on the raised arm).
+  // Composite the transparent still onto navy so the figure sits in the
+  // right half without eating the title.
+  if (robot === "globe.jpg") {
+    const still = join(ROBOTS, "orbit.png");
+    if (!existsSync(still)) {
+      throw new Error(`missing robot plate: ${still}`);
+    }
+    const robotH = 430;
+    const robotBuf = await sharp(still)
+      .resize({ height: robotH, fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .png()
+      .toBuffer();
+    const rmeta = await sharp(robotBuf).metadata();
+    const rw = rmeta.width ?? robotH;
+    const navy = await sharp({
+      create: { width: W, height: H, channels: 3, background: { r: 22, g: 19, b: 42 } },
+    }).jpeg().toBuffer();
+    return sharp(navy)
+      .composite([{
+        input: robotBuf,
+        left: Math.max(0, W - rw - 16),
+        top: Math.round((H - robotH) / 2),
+      }])
+      .jpeg({ quality: 92 })
+      .toBuffer();
+  }
+
   const platePath = join(ROBOTS, robot);
   if (!existsSync(platePath)) {
     throw new Error(`missing robot plate: ${platePath}`);
@@ -303,8 +331,7 @@ async function robotScene(robot) {
   const meta = await fitted.metadata();
   const fittedW = meta.width ?? Math.round((1456 / 704) * SCALE_H);
   const robotX = fittedW / 2;
-  const targetX =
-    robot === "look-wave.jpg" || robot === "look.jpg" || robot === "globe.jpg" ? 760 : 900;
+  const targetX = robot === "look-wave.jpg" || robot === "look.jpg" ? 760 : 900;
   const extractLeft = Math.max(0, Math.min(fittedW - W, Math.round(robotX - targetX)));
   const extractTop = Math.max(0, Math.round((SCALE_H - H) / 2));
   return fitted.extract({ left: extractLeft, top: extractTop, width: W, height: H }).toBuffer();
