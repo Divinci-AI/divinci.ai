@@ -529,6 +529,39 @@
     });
   }
 
+  /**
+   * "3 hours ago" for an ISO timestamp, or null when there is nothing to say.
+   *
+   * Freshness goes in front of a reader rather than into an alert because the
+   * jobs that build these layers cannot report their own success: the link
+   * refresh is triggered hourly but Cloudflare cuts the caller at 125s while
+   * the work takes ~240s, so the trigger always sees a timeout. A stale map
+   * that SAYS it is stale needs nobody to be on call.
+   */
+  function ago(iso) {
+    if (!iso) return null;
+    var then = Date.parse(iso);
+    if (!isFinite(then)) return null;
+    var mins = Math.round((Date.now() - then) / 60000);
+    // Clock skew between the reader and the server must not print "in the
+    // future" or a negative age; treat anything not-yet-past as just now.
+    if (mins < 1) return "just now";
+    if (mins < 60) return mins + (mins === 1 ? " minute ago" : " minutes ago");
+    var hrs = Math.round(mins / 60);
+    if (hrs < 48) return hrs + (hrs === 1 ? " hour ago" : " hours ago");
+    var days = Math.round(hrs / 24);
+    return days + (days === 1 ? " day ago" : " days ago");
+  }
+
+  // Older payloads carry no timestamps; say nothing rather than "undefined".
+  function freshness(s2) {
+    var link = ago(s2.linkEdgesBuiltAt);
+    var sem = ago(s2.semanticEdgesBuiltAt);
+    if (!link && !sem) return "";
+    if (link && sem) return " Links rebuilt " + link + ", embeddings " + sem + ".";
+    return " " + (link ? "Links rebuilt " + link : "Embeddings rebuilt " + sem) + ".";
+  }
+
   function describe(stats) {
     // State the coverage of BOTH layers. The link half already said so; the
     // semantic half did not, and claimed more than it delivered: "position is
@@ -557,7 +590,8 @@
       " sites — those sit near the sites they resemble. The rest are parked on a ring " +
       "until theirs are computed, so their position carries no meaning yet. " +
       "Link data covers " + stats.sitesWithLinkScan.toLocaleString() + " of " + s +
-      " sites, so a dashed circle means we have not mapped that site's links yet — not that it links nowhere."
+      " sites, so a dashed circle means we have not mapped that site's links yet — not that it links nowhere." +
+      freshness(stats)
     );
   }
 

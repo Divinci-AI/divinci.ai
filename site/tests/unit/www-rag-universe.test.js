@@ -18,6 +18,18 @@
 const fs = require('fs');
 const path = require('path');
 
+/** Source of one top-level `function name(...) { ... }`, by brace matching. */
+function extractFn(name) {
+    const start = SOURCE.indexOf(`function ${name}(`);
+    if (start === -1) throw new Error(`${name}() not found — did the renderer move?`);
+    let depth = 0;
+    for (let i = SOURCE.indexOf('{', start); i < SOURCE.length; i++) {
+        if (SOURCE[i] === '{') depth++;
+        else if (SOURCE[i] === '}' && --depth === 0) return SOURCE.slice(start, i + 1);
+    }
+    throw new Error(`${name}() is unbalanced`);
+}
+
 const SOURCE = fs.readFileSync(
     path.join(__dirname, '../../static/js/www-rag-universe.js'),
     'utf8'
@@ -33,10 +45,13 @@ const STATS = {
 
 /** Pull `describe()` out of the browser IIFE and call it directly. */
 function caption(stats) {
-    const body = SOURCE.match(/function describe\(stats\)[\s\S]*?\n {2}\}/);
-    if (!body) throw new Error('describe() not found — did the renderer move?');
+    // Brace-matched, not regex-matched. The previous version stopped at the
+    // first two-space-indented `}`, so the moment `describe` contained a
+    // nested function it extracted half a function and every caption test
+    // failed for a reason that had nothing to do with the captions.
+    const body = [extractFn('describe'), extractFn('ago'), extractFn('freshness')].join('\n');
     // eslint-disable-next-line no-new-func
-    return new Function('stats', body[0] + '\nreturn describe(stats);')(stats);
+    return new Function('stats', body + '\nreturn describe(stats);')(stats);
 }
 
 describe('the universe caption', () => {
@@ -188,5 +203,58 @@ describe("what the map encodes", () => {
         test("orbital nodes are drawn dimmer than placed ones", () => {
             expect(SOURCE).toMatch(/n\.orbital \? 0\.45 : 1/);
         });
+    });
+});
+
+describe("map freshness", () => {
+    // The jobs that rebuild these layers cannot report their own success: the
+    // link refresh is triggered hourly but Cloudflare cuts the caller at 125s
+    // while the work takes ~240s, so the trigger always sees a timeout. Nothing
+    // schedules the semantic rebuild at all. Putting the age on the map means a
+    // stale map says so, and nobody has to be on call for it.
+    const BASE = {
+        sites: 2525, linkEdges: 2646, linkEdgesTotal: 19087, linkTopKPerSource: 3,
+        semanticEdges: 2547, sitesWithLinkScan: 2059, sitesWithCentroid: 1083,
+    };
+    const isoAgo = (mins) => new Date(Date.now() - mins * 60000).toISOString();
+
+    test('reports both layers when both have been built', () => {
+        const text = caption({ ...BASE, linkEdgesBuiltAt: isoAgo(40), semanticEdgesBuiltAt: isoAgo(19 * 60) });
+        expect(text).toContain('Links rebuilt 40 minutes ago');
+        expect(text).toContain('embeddings 19 hours ago');
+    });
+
+    test('a layer that has never been built says nothing rather than lying', () => {
+        // null, not the epoch — otherwise the map claims it was refreshed in 1970.
+        const text = caption({ ...BASE, linkEdgesBuiltAt: isoAgo(5), semanticEdgesBuiltAt: null });
+        expect(text).toContain('Links rebuilt 5 minutes ago');
+        expect(text).not.toContain('embeddings');
+        expect(text).not.toContain('1970');
+    });
+
+    test('says nothing at all on a payload from before the field existed', () => {
+        // The cached page and the API deploy separately, so they are briefly
+        // out of step; "undefined ago" would be a self-inflicted outage.
+        const text = caption(BASE);
+        expect(text).not.toContain('rebuilt');
+        expect(text).not.toContain('undefined');
+        expect(text).not.toContain('NaN');
+    });
+
+    test('clock skew never prints a negative or future age', () => {
+        const text = caption({ ...BASE, linkEdgesBuiltAt: isoAgo(-30), semanticEdgesBuiltAt: null });
+        expect(text).toContain('just now');
+        expect(text).not.toMatch(/-\d/);
+    });
+
+    test('a genuinely stale map reads as stale, in days', () => {
+        const text = caption({ ...BASE, linkEdgesBuiltAt: isoAgo(6 * 24 * 60), semanticEdgesBuiltAt: null });
+        expect(text).toContain('6 days ago');
+    });
+
+    test('garbage in the field is ignored, not rendered', () => {
+        const text = caption({ ...BASE, linkEdgesBuiltAt: 'not-a-date', semanticEdgesBuiltAt: null });
+        expect(text).not.toContain('rebuilt');
+        expect(text).not.toContain('NaN');
     });
 });
