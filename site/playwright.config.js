@@ -62,7 +62,8 @@ module.exports = defineConfig({
         '**/mobile-navigation-comprehensive.spec.js',
         // Sets its own viewport per test (desktop and phone in one file), so
         // it runs here rather than under the Mobile-* projects.
-        '**/www-rag-directory.spec.js'
+        '**/www-rag-directory.spec.js',
+        '**/www-rag-universe.spec.js'
       ],
     },
     {

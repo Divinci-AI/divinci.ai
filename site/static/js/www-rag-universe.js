@@ -23,11 +23,51 @@
  *     pages. They are only ever drawn to canvas or written via textContent —
  *     never innerHTML.
  *
+ * ── EVERYTHING HERE IS SIZED FOR A CORPUS THAT GROWS ~150 SITES/DAY ─────────
+ *
+ * This file used to run a plain O(n²) simulation, with a comment justifying it:
+ * "O(n²) over ~170 nodes is ~14k evaluations — cheaper than building a
+ * Barnes-Hut tree at this size." True at 170. The endpoint returned 1,608 when
+ * that line was last touched and 2,876 on 2026-08-20, and the boot ran the
+ * whole settle SYNCHRONOUSLY:
+ *
+ *     nodes    step()      600-step settle (blocking the main thread)
+ *       170      0.9 ms      0.5 s
+ *     1,608     80   ms     48   s
+ *     2,876    256   ms    154   s   ← the tab is killed long before this ends
+ *
+ * Only the 2,876 row was timed; the others are that measurement scaled
+ * quadratically, which is the point — the shape is what predicts next month.
+ *
+ * That is the page crash. Not memory — an unyielding main thread that Chrome's
+ * unresponsive-tab killer and iOS Safari's watchdog both terminate.
+ *
+ * So the growth curve itself is the thing to fix, not the constant:
+ *
+ *   · REPULSION is Barnes-Hut over a quadtree — O(n log n). The long-range
+ *     1/d² term is the only one that needs every pair; distant clusters are
+ *     summarised by their centroid and body COUNT (the force is per-body and
+ *     mass-independent, so count is the right aggregate, not mass).
+ *   · CONTACT and DE-OVERLAP only ever act below ~55 px, so they run against a
+ *     uniform hash grid — O(n) expected — instead of scanning every pair to
+ *     discard 99.9% of them. De-overlap alone was two thirds of the old cost:
+ *     two full n² passes, against repulsion's one.
+ *   · THE SETTLE IS CHUNKED across frames with a time budget. Even a fast
+ *     simulation must never hold the thread for seconds at a time.
+ *   · DRAWING IS BATCHED BY STYLE. ~14,000 individual stroke()/fill() calls a
+ *     frame will miss 60 fps on their own; bucketing by alpha band collapses
+ *     that to a few dozen paths.
+ *   · THE LOOP STOPS, and stops rescheduling, once the motion falls below what
+ *     a viewer can see — measured in screen pixels, not world units.
+ *
+ * If you are tempted to reintroduce an all-pairs loop "for clarity", check the
+ * live node count first: scripts/../tests/unit/www-rag-universe.test.js pins
+ * the complexity, and the endpoint adds another ~150 nodes tomorrow.
+ *
  * DELIBERATELY FRAMEWORK-AGNOSTIC, same as morpho.js: the core touches nothing
  * but a <canvas> and its 2D context. The signed-in app at chat.divinci.app runs
- * the same layout from TypeScript (pages/WwwRagDirectory/Universe/force-layout.ts);
- * if these ever need to share one implementation, this file is the shape it
- * would take — add `export` to the layout functions and drop the IIFE.
+ * the same layout from TypeScript (pages/WwwRagDirectory/Universe/force-layout.ts)
+ * and still carries BOTH all-pairs loops — it needs this same treatment.
  *
  * The section stays hidden unless the endpoint answers with a usable graph. An
  * empty box on a marketing page is worse than no box.
@@ -54,6 +94,12 @@
   var EDGE_SEMANTIC = "#7d7d95";
   var TEXT = "#c3c2b7";
 
+  // Style buckets. Edge alpha and width are continuous functions of one scalar
+  // (similarity, or link weight), so quantising that scalar into bands lets one
+  // path carry thousands of segments. 7 bands is below the threshold where the
+  // banding is visible at these alphas and above where it flattens the ramp.
+  var BANDS = 7;
+
   var section = document.getElementById("www-rag-universe-section");
   var canvas = document.getElementById("www-rag-universe-canvas");
   var caption = document.getElementById("www-rag-universe-caption");
@@ -62,6 +108,9 @@
   var ctx = canvas.getContext("2d");
   var reduceMotion =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var now = (window.performance && window.performance.now)
+    ? function () { return window.performance.now(); }
+    : function () { return Date.now(); };
 
   /* ---------------------------------------------------------------- layout */
 
@@ -108,13 +157,33 @@
     return "unscanned";
   }
 
+  function band(t) {
+    // `!(b >= 0)` rather than `b < 0`, because it catches NaN in the same test.
+    // A malformed row — a null similarity, a string pageCount — makes this NaN,
+    // and NaN fails every comparison, so a naive clamp RETURNS NaN, indexes the
+    // bucket array with it, and throws on .push. One bad row would then take
+    // out the whole map. Hostnames and counts reach the payload from crawled
+    // third-party pages; nothing upstream promises they are well-formed.
+    var b = Math.floor(t * BANDS);
+    if (!(b >= 0)) return 0;
+    return b >= BANDS ? BANDS - 1 : b;
+  }
+
   function build(graph) {
-    var byHost = {};
+    // Prototype-free: hostnames are untrusted keys. On a plain `{}`,
+    // `byHost["__proto__"] = node` REPLACES the object's prototype instead of
+    // adding a key, after which every miss — `byHost["constructor"]` and
+    // friends — resolves to an inherited value that then gets treated as a
+    // node. Object.create(null) removes the class outright and reads
+    // identically at every use site.
+    var byHost = Object.create(null);
+    var maxRadius = 0;
     var nodes = graph.nodes.map(function (n) {
       var seed = hashHost(n.host);
       var angle = (seed % 10000) * 0.001 * Math.PI * 2;
       var dist = 60 + ((seed >>> 13) % 400);
       var r = radiusFor(n);
+      if (r > maxRadius) maxRadius = r;
       var node = {
         host: n.host,
         releaseId: n.releaseId,
@@ -152,6 +221,7 @@
       );
       if (made) {
         made.sim = e.similarity;
+        made.band = band((e.similarity - 0.45) / 0.55);
         semantic.push(made);
       }
     });
@@ -163,55 +233,343 @@
       if (made) {
         made.pages = e.pages;
         made.weight = weight;
+        made.band = band(weight);
         links.push(made);
       }
     });
 
-    return { nodes: nodes, semantic: semantic, links: links, alpha: 1 };
+    // Bucket for drawing. Done ONCE here rather than per frame: the keys are
+    // all derived from data that never changes after build, and re-deriving
+    // them 60 times a second is exactly the kind of per-frame work that stops
+    // scaling. `orbital` is only final after the edge passes above.
+    var semanticBands = [];
+    var linkBands = [];
+    var i;
+    for (i = 0; i < BANDS; i++) { semanticBands.push([]); linkBands.push([]); }
+    semantic.forEach(function (e) { semanticBands[e.band].push(e); });
+    links.forEach(function (e) { linkBands[e.band].push(e); });
+
+    var bodies = { linked: [], scanned: [], unscanned: [] };
+    var orbitals = { linked: [], scanned: [], unscanned: [] };
+    var halos = [];
+    for (i = 0; i < BANDS; i++) halos.push([]);
+    nodes.forEach(function (n) {
+      (n.orbital ? orbitals : bodies)[n.state].push(n);
+      if (n.authority >= 0.55) halos[band(n.authority)].push(n);
+    });
+
+    // Labels are chosen by prominence and dropped on collision; only nodes that
+    // could ever win are worth sorting. Everything under radius 9 is discarded
+    // by draw() anyway, and the sort was over all 2,876 nodes every frame.
+    var labelled = nodes
+      .filter(function (n) { return n.radius >= 9; })
+      .sort(function (p, q) {
+        return (q.radius + q.authority * 18) - (p.radius + p.authority * 18);
+      });
+
+    return {
+      nodes: nodes,
+      semantic: semantic,
+      links: links,
+      semanticBands: semanticBands,
+      linkBands: linkBands,
+      bodies: bodies,
+      orbitals: orbitals,
+      halos: halos,
+      labelled: labelled,
+      // Every short-range interaction in step() is bounded by this, so it sets
+      // the grid cell size. Contact reaches a.radius+b.radius+15.
+      nearRange: maxRadius * 2 + 15,
+      alpha: 1,
+      meanSpeed: Infinity,
+    };
   }
+
+  /* ------------------------------------------------- spatial acceleration */
+
+  /**
+   * Barnes-Hut quadtree, in flat typed arrays reused across frames.
+   *
+   * Object-per-cell would hand the GC ~4k objects every tick — 240k a second at
+   * 60 fps — which shows up as periodic frame drops rather than a steady cost,
+   * the kind of jank that is hard to attribute later. These grow once and are
+   * then only ever overwritten.
+   *
+   * The aggregate stored per cell is the body COUNT, not the summed mass: the
+   * repulsion this approximates is `16000/d² · alpha` per body, independent of
+   * the other body's mass (mass only divides the force on the RECEIVING node,
+   * which happens outside the traversal).
+   */
+  /**
+   * Opening angle. A cell is summarised when its width over its distance falls
+   * below THETA; smaller is more exact and much slower. 0.9 is d3-force's
+   * default, chosen for simulations whose positions are read as data.
+   *
+   * Measured against exact all-pairs repulsion at an identical settled layout
+   * of the live 2,876-node graph — the only honest way to judge this, since a
+   * force layout is chaotic and comparing final POSITIONS between two runs
+   * measures divergence, not error:
+   *
+   *     theta   ms/step   mean |F error|   p95     max
+   *      0.6     32.0        2.6%          4.8%     8%
+   *      0.9     18.6        7.5%         16.4%    34%   ← here
+   *      1.5     11.2       32.5%         82.1%   224%
+   *
+   * 1.5 is tempting and wrong: a p95 of 82% is a different picture, not a
+   * cheaper one. Speed came from the traversal's memory layout instead.
+   */
+  var THETA = 0.9;
+  var THETA2 = THETA * THETA;
+  var REPULSION = 16000;
+  var MAX_DEPTH = 22;   // coincident hosts would otherwise subdivide forever
+
+  var tCap = 0, tUsed = 0;
+  var tSumX, tSumY, tCount, tHalf, tCx, tCy, tChild, tHead, tNext, tStack;
+  // Positions, mirrored out of the node objects once per step.
+  //
+  // The traversal visits a few hundred cells per node and reading `nodes[b].x`
+  // there was the hottest read in the simulation. A Float64Array pair is
+  // contiguous and monomorphic; the copy in is 2,876 writes, noise against what
+  // it saves. Measured on the live graph at an unchanged THETA — so no accuracy
+  // was traded for it — the repulsion phase went 16.9 ms -> 13.7 ms.
+  var pxs = null, pys = null;
+
+  function ensureTree(n) {
+    var cap = 8 * n + 256;
+    if (cap <= tCap) return;
+    tCap = cap;
+    tSumX = new Float64Array(cap);
+    tSumY = new Float64Array(cap);
+    tCount = new Int32Array(cap);
+    tHalf = new Float64Array(cap);
+    tCx = new Float64Array(cap);
+    tCy = new Float64Array(cap);
+    tChild = new Int32Array(cap * 4);
+    tHead = new Int32Array(cap);
+    tStack = new Int32Array(4 * MAX_DEPTH + 16);
+    if (!tNext || tNext.length < n) tNext = new Int32Array(n);
+    if (!pxs || pxs.length < n) { pxs = new Float64Array(n); pys = new Float64Array(n); }
+  }
+
+  function newCell(cx, cy, half) {
+    var c = tUsed++;
+    tSumX[c] = 0; tSumY[c] = 0; tCount[c] = 0;
+    tCx[c] = cx; tCy[c] = cy; tHalf[c] = half;
+    tHead[c] = -1;
+    tChild[c * 4] = -1; tChild[c * 4 + 1] = -1;
+    tChild[c * 4 + 2] = -1; tChild[c * 4 + 3] = -1;
+    return c;
+  }
+
+  function place(c, depth, i, x, y) {
+    for (;;) {
+      tCount[c]++;
+      tSumX[c] += x;
+      tSumY[c] += y;
+      if (tChild[c * 4] === -1) {
+        var head = tHead[c];
+        if (head === -1) { tHead[c] = i; tNext[i] = -1; return; }
+        // Out of depth or out of cells: keep the leaf as a short list. Both are
+        // correctness fallbacks, not tuning — a list leaf is still EXACT, just
+        // evaluated pairwise, so the worst case degrades smoothly instead of
+        // overflowing an array or looping forever on coincident points.
+        if (depth >= MAX_DEPTH || tUsed + 4 > tCap) {
+          tNext[i] = head; tHead[c] = i; return;
+        }
+        var h = tHalf[c] / 2;
+        tChild[c * 4] = newCell(tCx[c] - h, tCy[c] - h, h);
+        tChild[c * 4 + 1] = newCell(tCx[c] + h, tCy[c] - h, h);
+        tChild[c * 4 + 2] = newCell(tCx[c] - h, tCy[c] + h, h);
+        tChild[c * 4 + 3] = newCell(tCx[c] + h, tCy[c] + h, h);
+        tHead[c] = -1;
+        for (var b = head, nx; b !== -1; b = nx) {
+          nx = tNext[b];
+          var bx = pxs[b], by = pys[b];
+          var bq = (bx >= tCx[c] ? 1 : 0) + (by >= tCy[c] ? 2 : 0);
+          place(tChild[c * 4 + bq], depth + 1, b, bx, by);
+        }
+      }
+      c = tChild[c * 4 + ((x >= tCx[c] ? 1 : 0) + (y >= tCy[c] ? 2 : 0))];
+      depth++;
+    }
+  }
+
+  function buildTree(nodes) {
+    var n = nodes.length, i;
+    ensureTree(n);
+    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (i = 0; i < n; i++) {
+      var a = nodes[i];
+      var x = a.x, y = a.y;
+      pxs[i] = x; pys[i] = y;
+      if (x < minX) minX = x;
+      if (x > maxX) maxX = x;
+      if (y < minY) minY = y;
+      if (y > maxY) maxY = y;
+    }
+    tUsed = 0;
+    newCell((minX + maxX) / 2, (minY + maxY) / 2,
+            Math.max(maxX - minX, maxY - minY) / 2 + 1);
+    for (i = 0; i < n; i++) place(0, 0, i, pxs[i], pys[i]);
+    // Sums become centroids. Leaves are evaluated exactly, so only the internal
+    // cells' centroids are ever read — doing them all is cheaper than branching.
+    for (i = 0; i < tUsed; i++) {
+      var k = tCount[i];
+      if (k > 0) { tSumX[i] /= k; tSumY[i] /= k; }
+    }
+  }
+
+  /**
+   * Uniform hash grid over the same points, via counting sort.
+   *
+   * Covers every interaction up to `cell` px with a 3x3 neighbourhood query:
+   * two points at distance d occupy cells at most ceil(d/cell) apart. The cell
+   * size is therefore the largest short-range reach in the simulation, never
+   * smaller — and it is grown further when the layout spreads out, so the index
+   * array can never blow up on a sparse graph.
+   */
+  var gCell = 64, gw = 1, gh = 1, gMinX = 0, gMinY = 0;
+  var gStart = null, gItems = null, gKey = null, gCursor = null;
+
+  function buildGrid(nodes, reach) {
+    var n = nodes.length, i;
+    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (i = 0; i < n; i++) {
+      var a = nodes[i];
+      if (a.x < minX) minX = a.x;
+      if (a.x > maxX) maxX = a.x;
+      if (a.y < minY) minY = a.y;
+      if (a.y > maxY) maxY = a.y;
+    }
+    var span = Math.max(maxX - minX, maxY - minY, 1);
+    // Never below `reach` (that is what makes 3x3 sufficient); never so small
+    // that a 5,000px-wide layout needs a million cells.
+    gCell = Math.max(reach, span / 256);
+    gMinX = minX; gMinY = minY;
+    gw = Math.max(1, Math.ceil((maxX - minX) / gCell) + 1);
+    gh = Math.max(1, Math.ceil((maxY - minY) / gCell) + 1);
+    var cells = gw * gh;
+    if (!gStart || gStart.length < cells + 1) gStart = new Int32Array(cells + 1);
+    else gStart.fill(0, 0, cells + 1);
+    if (!gCursor || gCursor.length < cells) gCursor = new Int32Array(cells);
+    if (!gItems || gItems.length < n) { gItems = new Int32Array(n); gKey = new Int32Array(n); }
+    for (i = 0; i < n; i++) {
+      var gx = ((nodes[i].x - minX) / gCell) | 0;
+      var gy = ((nodes[i].y - minY) / gCell) | 0;
+      if (gx < 0) gx = 0; else if (gx >= gw) gx = gw - 1;
+      if (gy < 0) gy = 0; else if (gy >= gh) gy = gh - 1;
+      var k = gy * gw + gx;
+      gKey[i] = k;
+      gStart[k + 1]++;
+    }
+    for (i = 0; i < cells; i++) { gStart[i + 1] += gStart[i]; gCursor[i] = gStart[i]; }
+    for (i = 0; i < n; i++) gItems[gCursor[gKey[i]]++] = i;
+  }
+
+  /* ------------------------------------------------------------ simulation */
 
   function step(sim) {
     var nodes = sim.nodes;
+    var n = nodes.length;
     var alpha = sim.alpha;
-    var i, j, a, b;
+    var i, j, a, b, dx, dy, d2, d, f, fx, fy, k;
 
-    // Pairwise repulsion. O(n²) over ~170 nodes is ~14k evaluations — cheaper
-    // than building a Barnes-Hut tree at this size.
-    for (i = 0; i < nodes.length; i++) {
-      a = nodes[i];
-      for (j = i + 1; j < nodes.length; j++) {
-        b = nodes[j];
-        var dx = b.x - a.x;
-        var dy = b.y - a.y;
-        var d2 = dx * dx + dy * dy;
-        if (d2 < 1e-6) {
-          dx = (i - j) * 0.01 || 0.01;
-          dy = 0.01;
-          d2 = dx * dx + dy * dy;
+    // ── Long-range repulsion, Barnes-Hut. Was n²/2 = 4.1M pair evaluations at
+    // 2,876 nodes; this is ~n·log n and the gap widens as the corpus grows.
+    buildTree(nodes);
+    for (i = 0; i < n; i++) {
+      var aX = pxs[i], aY = pys[i];
+      var ax = 0, ay = 0;
+      var sp = 0;
+      tStack[sp++] = 0;
+      while (sp > 0) {
+        var c = tStack[--sp];
+        if (tCount[c] === 0) continue;
+        var head = tHead[c];
+        if (head !== -1) {
+          for (b = head; b !== -1; b = tNext[b]) {
+            if (b === i) continue;
+            dx = pxs[b] - aX;
+            dy = pys[b] - aY;
+            d2 = dx * dx + dy * dy;
+            if (d2 < 1e-6) { dx = (i - b) * 0.01 || 0.01; dy = 0.01; d2 = dx * dx + dy * dy; }
+            k = REPULSION * alpha / (d2 * Math.sqrt(d2));
+            ax -= dx * k;
+            ay -= dy * k;
+          }
+          continue;
         }
-        var d = Math.sqrt(d2);
-        var minD = a.radius + b.radius + 15;
-        var f = (16000 / d2) * alpha + (d < minD ? (minD - d) * 0.5 : 0);
-        var fx = (dx / d) * f;
-        var fy = (dy / d) * f;
-        a.vx -= fx / a.mass;
-        a.vy -= fy / a.mass;
-        b.vx += fx / b.mass;
-        b.vy += fy / b.mass;
+        dx = tSumX[c] - aX;
+        dy = tSumY[c] - aY;
+        d2 = dx * dx + dy * dy;
+        // Squared-form acceptance test, so a cell that gets REJECTED (the
+        // common case near the centre) costs no sqrt at all — the traversal is
+        // ~73% of a step, and most of its cell visits end in a recursion.
+        var wid = tHalf[c] * 2;
+        if (d2 > 1e-12 && wid * wid < THETA2 * d2) {
+          k = REPULSION * alpha * tCount[c] / (d2 * Math.sqrt(d2));
+          ax -= dx * k;
+          ay -= dy * k;
+        } else {
+          for (var q = 0; q < 4; q++) {
+            var ch = tChild[c * 4 + q];
+            if (ch !== -1) tStack[sp++] = ch;
+          }
+        }
+      }
+      a = nodes[i];
+      a.vx += ax / a.mass;
+      a.vy += ay / a.mass;
+    }
+
+    // ── Contact repulsion. Acts only inside a.radius+b.radius+15 (≤ ~55 px),
+    // so scanning every pair to reject 99.9% of them was pure waste. Grid
+    // neighbourhood, each unordered pair visited once via the j > i test.
+    buildGrid(nodes, sim.nearRange);
+    for (i = 0; i < n; i++) {
+      a = nodes[i];
+      var cx0 = gKey[i] % gw, cy0 = (gKey[i] / gw) | 0;
+      for (var oy = -1; oy <= 1; oy++) {
+        var yy = cy0 + oy;
+        if (yy < 0 || yy >= gh) continue;
+        for (var ox = -1; ox <= 1; ox++) {
+          var xx = cx0 + ox;
+          if (xx < 0 || xx >= gw) continue;
+          var cell = yy * gw + xx;
+          for (var s = gStart[cell], e = gStart[cell + 1]; s < e; s++) {
+            j = gItems[s];
+            if (j <= i) continue;
+            b = nodes[j];
+            dx = b.x - a.x;
+            dy = b.y - a.y;
+            d2 = dx * dx + dy * dy;
+            var minD = a.radius + b.radius + 15;
+            if (d2 >= minD * minD) continue;
+            if (d2 < 1e-6) { dx = (i - j) * 0.01 || 0.01; dy = 0.01; d2 = dx * dx + dy * dy; }
+            d = Math.sqrt(d2);
+            f = (minD - d) * 0.5;
+            fx = (dx / d) * f;
+            fy = (dy / d) * f;
+            a.vx -= fx / a.mass;
+            a.vy -= fy / a.mass;
+            b.vx += fx / b.mass;
+            b.vy += fy / b.mass;
+          }
+        }
       }
     }
 
     function spring(e) {
-      var dx = e.t.x - e.s.x;
-      var dy = e.t.y - e.s.y;
-      var d = Math.sqrt(dx * dx + dy * dy) || 0.01;
-      var f = (d - e.rest) * e.k * alpha;
-      var fx = (dx / d) * f;
-      var fy = (dy / d) * f;
-      e.s.vx += fx / e.s.mass;
-      e.s.vy += fy / e.s.mass;
-      e.t.vx -= fx / e.t.mass;
-      e.t.vy -= fy / e.t.mass;
+      var sdx = e.t.x - e.s.x;
+      var sdy = e.t.y - e.s.y;
+      var sd = Math.sqrt(sdx * sdx + sdy * sdy) || 0.01;
+      var sf = (sd - e.rest) * e.k * alpha;
+      var sfx = (sdx / sd) * sf;
+      var sfy = (sdy / sd) * sf;
+      e.s.vx += sfx / e.s.mass;
+      e.s.vy += sfy / e.s.mass;
+      e.t.vx -= sfx / e.t.mass;
+      e.t.vy -= sfy / e.t.mass;
     }
     sim.semantic.forEach(spring);
     sim.links.forEach(spring);
@@ -221,23 +579,24 @@
     // the actual graph into a knot — and belting them says something true:
     // these are the sites we know nothing relational about yet.
     var coreR = 0;
-    for (i = 0; i < nodes.length; i++) {
-      if (nodes[i].orbital) continue;
-      coreR = Math.max(coreR, Math.sqrt(nodes[i].x * nodes[i].x + nodes[i].y * nodes[i].y) + nodes[i].radius);
+    var parked = 0;
+    for (i = 0; i < n; i++) {
+      a = nodes[i];
+      if (a.orbital) { parked++; continue; }
+      coreR = Math.max(coreR, Math.sqrt(a.x * a.x + a.y * a.y) + a.radius);
     }
     var belt = Math.max(coreR * 1.28 + 70, 240);
-    // Published so draw() can OUTLINE the belt. 298 of 1,608 nodes have no edge
-    // of either kind and are parked here at an angle derived from a hash of the
-    // hostname. Drawn plainly they form a tidy arc that reads as an arrangement
-    // — a viewer zooming in sees neighbours and infers a relationship that does
+    // Published so draw() can OUTLINE the belt. Nodes with no edge of either
+    // kind are parked here at an angle derived from a hash of the hostname.
+    // Drawn plainly they form a tidy arc that reads as an arrangement — a
+    // viewer zooming in sees neighbours and infers a relationship that does
     // not exist. The caption says so in words; until now the pixels said the
     // opposite.
     sim.beltRadius = belt;
-    var parked = 0;
-    for (i = 0; i < nodes.length; i++) if (nodes[i].orbital) parked++;
     sim.orbitalCount = parked;
 
-    for (i = 0; i < nodes.length; i++) {
+    var energy = 0;
+    for (i = 0; i < n; i++) {
       a = nodes[i];
       if (a.orbital) {
         var dr = Math.sqrt(a.x * a.x + a.y * a.y) || 0.01;
@@ -250,11 +609,14 @@
       }
       a.vx *= 0.87;
       a.vy *= 0.87;
-      var sp = Math.sqrt(a.vx * a.vx + a.vy * a.vy);
-      if (sp > 30) {
-        a.vx = (a.vx / sp) * 30;
-        a.vy = (a.vy / sp) * 30;
+      var sp2 = a.vx * a.vx + a.vy * a.vy;
+      if (sp2 > 900) {
+        var spd = Math.sqrt(sp2);
+        a.vx = (a.vx / spd) * 30;
+        a.vy = (a.vy / spd) * 30;
+        sp2 = 900;
       }
+      energy += sp2;
       a.x += a.vx;
       a.y += a.vy;
     }
@@ -262,28 +624,51 @@
     // Positional de-overlap. Velocity repulsion spaces nodes on average but
     // cannot guarantee it — a node held between strong springs settles on top
     // of its neighbours, which is what turns a hub cluster into a blob.
+    //
+    // Same grid, not rebuilt between the two relaxation passes: a pass moves a
+    // node by at most the overlap it resolves (tens of px at most, and only
+    // when nodes start coincident), while the cell size carries slack over the
+    // largest reach. Rebuilding twice more per frame costs more than the
+    // occasional missed pair in a relaxation that runs again next tick.
     for (var pass = 0; pass < 2; pass++) {
-      for (i = 0; i < nodes.length; i++) {
+      for (i = 0; i < n; i++) {
         a = nodes[i];
-        for (j = i + 1; j < nodes.length; j++) {
-          b = nodes[j];
-          var mind = a.radius + b.radius + 7.5;
-          var ox = b.x - a.x;
-          var oy = b.y - a.y;
-          var o2 = ox * ox + oy * oy;
-          if (o2 >= mind * mind || o2 < 1e-9) continue;
-          var od = Math.sqrt(o2);
-          var push = (mind - od) / od;
-          var total = a.mass + b.mass;
-          a.x -= ox * push * (b.mass / total);
-          a.y -= oy * push * (b.mass / total);
-          b.x += ox * push * (a.mass / total);
-          b.y += oy * push * (a.mass / total);
+        var kx = gKey[i] % gw, ky = (gKey[i] / gw) | 0;
+        for (var py = -1; py <= 1; py++) {
+          var ny2 = ky + py;
+          if (ny2 < 0 || ny2 >= gh) continue;
+          for (var px = -1; px <= 1; px++) {
+            var nx2 = kx + px;
+            if (nx2 < 0 || nx2 >= gw) continue;
+            var pc = ny2 * gw + nx2;
+            for (var ps = gStart[pc], pe = gStart[pc + 1]; ps < pe; ps++) {
+              j = gItems[ps];
+              if (j <= i) continue;
+              b = nodes[j];
+              var mind = a.radius + b.radius + 7.5;
+              var oxx = b.x - a.x;
+              var oyy = b.y - a.y;
+              var o2 = oxx * oxx + oyy * oyy;
+              if (o2 >= mind * mind || o2 < 1e-9) continue;
+              var od = Math.sqrt(o2);
+              var push = (mind - od) / od;
+              var total = a.mass + b.mass;
+              a.x -= oxx * push * (b.mass / total);
+              a.y -= oyy * push * (b.mass / total);
+              b.x += oxx * push * (a.mass / total);
+              b.y += oyy * push * (a.mass / total);
+            }
+          }
         }
       }
     }
 
     sim.alpha = Math.max(0.06, sim.alpha * 0.994);
+    // Mean node speed in WORLD px/frame. The caller turns it into on-screen px
+    // with view.scale and decides whether anything is still visibly moving —
+    // that decision needs the zoom, which lives in the renderer, and a
+    // threshold in world units would mean something different on every device.
+    sim.meanSpeed = Math.sqrt(energy / n);
   }
 
   /* ---------------------------------------------------------------- render */
@@ -315,6 +700,22 @@
     view.y = h / 2 - ((minY + maxY) / 2) * view.scale;
   }
 
+  // Orbital nodes carry no information in their position, so they recede.
+  function nodeAlpha(n) { return n.orbital ? 0.45 : 1; }
+
+  // Midpoint of a band, for the alpha/width the whole bucket is drawn at.
+  function bandT(b) { return (b + 0.5) / BANDS; }
+
+  /**
+   * One path per style bucket, rather than one per edge.
+   *
+   * The old renderer issued ~14,000 separate beginPath/stroke/fill calls per
+   * frame (5,251 semantic edges + 5,816 links each with an arrowhead + 2,876
+   * node arcs). Each stroke() is its own rasteriser submission, so that cost
+   * alone kept the frame off 60 fps even once the physics was cheap. Batching
+   * by quantised alpha collapses it to a few dozen paths and changes nothing a
+   * viewer can see — the bands are finer than the alpha ramp is perceptible.
+   */
   function draw(sim, w, h) {
     ctx.fillStyle = SURFACE;
     ctx.fillRect(0, 0, w, h);
@@ -323,43 +724,59 @@
     ctx.scale(view.scale, view.scale);
 
     ctx.lineCap = "round";
-    sim.semantic.forEach(function (e) {
-      var strength = (e.sim - 0.45) / 0.55;
-      ctx.globalAlpha = 0.05 + strength * 0.16;
-      ctx.strokeStyle = EDGE_SEMANTIC;
-      ctx.lineWidth = 0.6 / view.scale + strength * 0.5;
+    ctx.strokeStyle = EDGE_SEMANTIC;
+    for (var bi = 0; bi < BANDS; bi++) {
+      var bucket = sim.semanticBands[bi];
+      if (!bucket.length) continue;
+      var t = bandT(bi);
+      ctx.globalAlpha = 0.05 + t * 0.16;
+      ctx.lineWidth = 0.6 / view.scale + t * 0.5;
       ctx.beginPath();
-      ctx.moveTo(e.s.x, e.s.y);
-      ctx.lineTo(e.t.x, e.t.y);
+      for (var si = 0; si < bucket.length; si++) {
+        var se = bucket[si];
+        ctx.moveTo(se.s.x, se.s.y);
+        ctx.lineTo(se.t.x, se.t.y);
+      }
       ctx.stroke();
-    });
+    }
 
-    sim.links.forEach(function (e) {
-      ctx.globalAlpha = 0.34 + e.weight * 0.5;
-      ctx.strokeStyle = EDGE_LINK;
-      ctx.lineWidth = (0.7 + e.weight * 2.6) / Math.max(view.scale, 0.6);
-      var dx = e.t.x - e.s.x;
-      var dy = e.t.y - e.s.y;
-      var d = Math.sqrt(dx * dx + dy * dy) || 1;
-      var ux = dx / d;
-      var uy = dy / d;
-      var ex = e.t.x - ux * (e.t.radius + 3);
-      var ey = e.t.y - uy * (e.t.radius + 3);
+    ctx.strokeStyle = EDGE_LINK;
+    ctx.fillStyle = EDGE_LINK;
+    for (bi = 0; bi < BANDS; bi++) {
+      var lb = sim.linkBands[bi];
+      if (!lb.length) continue;
+      var wt = bandT(bi);
+      var head = (4 + wt * 4) / Math.max(view.scale, 0.6);
+      ctx.globalAlpha = 0.34 + wt * 0.5;
+      ctx.lineWidth = (0.7 + wt * 2.6) / Math.max(view.scale, 0.6);
       ctx.beginPath();
-      ctx.moveTo(e.s.x + ux * e.s.radius, e.s.y + uy * e.s.radius);
-      ctx.lineTo(ex, ey);
+      var heads = [];
+      for (var li = 0; li < lb.length; li++) {
+        var e = lb[li];
+        var dx = e.t.x - e.s.x;
+        var dy = e.t.y - e.s.y;
+        var d = Math.sqrt(dx * dx + dy * dy) || 1;
+        var ux = dx / d;
+        var uy = dy / d;
+        var ex = e.t.x - ux * (e.t.radius + 3);
+        var ey = e.t.y - uy * (e.t.radius + 3);
+        ctx.moveTo(e.s.x + ux * e.s.radius, e.s.y + uy * e.s.radius);
+        ctx.lineTo(ex, ey);
+        heads.push(ex, ey, Math.atan2(dy, dx));
+      }
       ctx.stroke();
-      // Arrowhead: direction is the whole point of this layer.
-      var head = (4 + e.weight * 4) / Math.max(view.scale, 0.6);
-      var ang = Math.atan2(dy, dx);
+      // Arrowhead: direction is the whole point of this layer. All of a band's
+      // heads are one filled path — they never overlap, so winding is moot.
       ctx.beginPath();
-      ctx.moveTo(ex, ey);
-      ctx.lineTo(ex - head * Math.cos(ang - Math.PI / 7), ey - head * Math.sin(ang - Math.PI / 7));
-      ctx.lineTo(ex - head * Math.cos(ang + Math.PI / 7), ey - head * Math.sin(ang + Math.PI / 7));
-      ctx.closePath();
-      ctx.fillStyle = EDGE_LINK;
+      for (var hi = 0; hi < heads.length; hi += 3) {
+        var hx = heads[hi], hy = heads[hi + 1], ang = heads[hi + 2];
+        ctx.moveTo(hx, hy);
+        ctx.lineTo(hx - head * Math.cos(ang - Math.PI / 7), hy - head * Math.sin(ang - Math.PI / 7));
+        ctx.lineTo(hx - head * Math.cos(ang + Math.PI / 7), hy - head * Math.sin(ang + Math.PI / 7));
+        ctx.closePath();
+      }
       ctx.fill();
-    });
+    }
 
     // The holding area, drawn as one. A boundary plus a word is the difference
     // between "a region of the map" and "the pile we have not placed yet".
@@ -377,73 +794,87 @@
     // Authority halo, under the node bodies. A ring rather than a bigger dot,
     // so "how much the corpus points here" cannot be mistaken for "how much we
     // crawled" — the two disagree by an order of magnitude on the real hubs.
-    sim.nodes.forEach(function (n) {
-      if (n.authority < 0.55) return;
-      ctx.globalAlpha = 0.12 + n.authority * 0.3;
-      ctx.strokeStyle = NODE_LINKED;
-      ctx.lineWidth = (1 + n.authority * 2.2) / view.scale;
+    ctx.strokeStyle = NODE_LINKED;
+    for (bi = 0; bi < BANDS; bi++) {
+      var hb = sim.halos[bi];
+      if (!hb.length) continue;
+      var au = bandT(bi);
+      ctx.globalAlpha = 0.12 + au * 0.3;
+      ctx.lineWidth = (1 + au * 2.2) / view.scale;
+      var pad = (3 + au * 7) / view.scale;
       ctx.beginPath();
-      ctx.arc(n.x, n.y, n.radius + (3 + n.authority * 7) / view.scale, 0, Math.PI * 2);
-      ctx.stroke();
-    });
-
-    sim.nodes.forEach(function (n) {
-      // Orbital nodes carry no information in their position, so they recede.
-      ctx.globalAlpha = n.orbital ? 0.45 : 1;
-      if (n.state === "unscanned") {
-        // Secondary encoding — "no link data" is distinguishable without colour.
-        ctx.setLineDash([2.5 / view.scale, 2.5 / view.scale]);
-        ctx.strokeStyle = NODE_UNSCANNED;
-        ctx.lineWidth = 1.2 / view.scale;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.setLineDash([]);
-      } else {
-        ctx.fillStyle = n.state === "linked" ? NODE_LINKED : NODE_SCANNED;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = SURFACE;
-        ctx.lineWidth = 2 / view.scale;
-        ctx.stroke();
+      for (var ai = 0; ai < hb.length; ai++) {
+        var hn = hb[ai];
+        ctx.moveTo(hn.x + hn.radius + pad, hn.y);
+        ctx.arc(hn.x, hn.y, hn.radius + pad, 0, Math.PI * 2);
       }
-    });
+      ctx.stroke();
+    }
+
+    // Node bodies, six buckets: three states x placed/orbital. The moveTo
+    // before each arc matters — without it consecutive circles are joined by a
+    // line and the whole batch draws as a cat's cradle.
+    var groups = [sim.bodies, sim.orbitals];
+    for (var gi = 0; gi < 2; gi++) {
+      var g = groups[gi];
+      ["linked", "scanned", "unscanned"].forEach(function (stateKey) {
+        var list = g[stateKey];
+        if (!list.length) return;
+        ctx.globalAlpha = nodeAlpha(list[0]);
+        ctx.beginPath();
+        for (var i = 0; i < list.length; i++) {
+          var n = list[i];
+          ctx.moveTo(n.x + n.radius, n.y);
+          ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+        }
+        if (stateKey === "unscanned") {
+          // Secondary encoding — "no link data" is distinguishable without colour.
+          ctx.setLineDash([2.5 / view.scale, 2.5 / view.scale]);
+          ctx.strokeStyle = NODE_UNSCANNED;
+          ctx.lineWidth = 1.2 / view.scale;
+          ctx.stroke();
+          ctx.setLineDash([]);
+        } else {
+          ctx.fillStyle = stateKey === "linked" ? NODE_LINKED : NODE_SCANNED;
+          ctx.fill();
+          ctx.strokeStyle = SURFACE;
+          ctx.lineWidth = 2 / view.scale;
+          ctx.stroke();
+        }
+      });
+    }
 
     // Selective labels, biggest first, dropped on collision. A name on every
     // node is an unreadable thicket; none at all makes the map useless.
+    //
+    // Ordered by PROMINENCE, not radius, and sorted once at build time. Sorting
+    // by size alone meant the corpus's actual hubs were never named: w3.org (15
+    // pages, 294 inbound) and en.wikipedia.org (56 pages, 368 inbound) lost
+    // every collision to sites we happened to crawl deeply. Authority is scaled
+    // into the same units as the radius so one comparison covers both reasons a
+    // node deserves a name.
     var placed = [];
     var fontSize = Math.max(10, 11 / view.scale);
+    ctx.globalAlpha = 1;
     ctx.font = fontSize + "px ui-sans-serif, system-ui, -apple-system, sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
-    // Ordered by PROMINENCE, not radius. Sorting by size alone meant the
-    // corpus's actual hubs were never named: w3.org (15 pages, 294 inbound) and
-    // en.wikipedia.org (56 pages, 368 inbound) lost every collision to sites we
-    // happened to crawl deeply. Authority is scaled into the same units as the
-    // radius so one comparison covers both reasons a node deserves a name.
-    sim.nodes
-      .slice()
-      .sort(function (p, q) {
-        return (q.radius + q.authority * 18) - (p.radius + p.authority * 18);
-      })
-      .forEach(function (n) {
-        if (n.radius < 9) return;
-        var label = n.host.replace(/^www\./, "");
-        var halfW = (label.length * fontSize * 0.55) / 2 / view.scale;
-        var top = n.y + n.radius + 4 / view.scale;
-        var box = { x0: n.x - halfW, y0: top, x1: n.x + halfW, y1: top + (fontSize * 1.25) / view.scale };
-        for (var i = 0; i < placed.length; i++) {
-          var p = placed[i];
-          if (!(box.x1 < p.x0 || box.x0 > p.x1 || box.y1 < p.y0 || box.y0 > p.y1)) return;
-        }
-        placed.push(box);
-        ctx.lineWidth = 3 / view.scale;
-        ctx.strokeStyle = SURFACE;
-        ctx.strokeText(label, n.x, top);
-        ctx.fillStyle = TEXT;
-        ctx.fillText(label, n.x, top);
-      });
+    sim.labelled.forEach(function (n) {
+      var label = n.host.replace(/^www\./, "");
+      var halfW = (label.length * fontSize * 0.55) / 2 / view.scale;
+      var top = n.y + n.radius + 4 / view.scale;
+      var box = { x0: n.x - halfW, y0: top, x1: n.x + halfW, y1: top + (fontSize * 1.25) / view.scale };
+      for (var i = 0; i < placed.length; i++) {
+        var p = placed[i];
+        if (!(box.x1 < p.x0 || box.x0 > p.x1 || box.y1 < p.y0 || box.y0 > p.y1)) return;
+      }
+      placed.push(box);
+      ctx.lineWidth = 3 / view.scale;
+      ctx.strokeStyle = SURFACE;
+      ctx.strokeText(label, n.x, top);
+      ctx.fillStyle = TEXT;
+      ctx.fillText(label, n.x, top);
+    });
 
     ctx.restore();
 
@@ -472,7 +903,7 @@
 
   function start(graph) {
     var sim = build(graph);
-    var dpr = window.devicePixelRatio || 1;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var w = 0;
     var h = 0;
 
@@ -487,32 +918,133 @@
     // MUST precede resize(): the section ships `hidden`, and a display:none
     // element measures 0×0, which silently leaves the canvas backing store at
     // 0×0 forever — no resize event ever fires to correct it, so the visitor
-    // gets an empty black box. Unhiding first costs nothing visually: the
-    // measure/settle/draw below all run in this same task, so the browser
-    // paints once, already formed.
+    // gets an empty black box.
     section.hidden = false;
 
+    // The canvas is unhidden but transparent while the layout settles, so the
+    // graph still ARRIVES FORMED rather than exploding outward while the
+    // visitor watches — the property the old synchronous settle was buying,
+    // kept without blocking the thread for it.
+    canvas.style.opacity = "0";
+    // The fade is the reveal, not decoration — but it is still motion, so a
+    // visitor who asked for none gets the finished frame appearing outright.
+    if (!reduceMotion) canvas.style.transition = "opacity 420ms ease";
+
     resize();
-    window.addEventListener("resize", function () { resize(); fit(sim, w, h); });
+    window.addEventListener("resize", function () {
+      resize();
+      fit(sim, w, h);
+      draw(sim, w, h);
+    });
 
-    // Settle before the first paint so it arrives formed rather than exploding
-    // outward while the visitor watches.
-    for (var i = 0; i < 600; i++) step(sim);
-    fit(sim, w, h);
-    draw(sim, w, h);
+    /**
+     * Settle in slices, never in one blocking run — and under a WALL-CLOCK
+     * ceiling, not just a step count.
+     *
+     * The old code ran all 600 steps inside the fetch continuation. At 2,876
+     * nodes that measured 154 SECONDS of unyielding main thread, which is not a
+     * slow page, it is a killed tab. Chunking alone would fix the crash but not
+     * the scaling: 600 steps is unbounded work, so a corpus twice this size
+     * simply takes twice as long to appear.
+     *
+     * Bounding the TIME instead makes the failure mode graceful. A big corpus
+     * gets fewer pre-reveal steps and finishes settling on screen, visibly,
+     * which the loop below is doing anyway — so what grows with the corpus is
+     * how much of the settling you watch, not how long you wait.
+     *
+     * The 8 ms slice bounds how many steps a frame ATTEMPTS. Note what that
+     * means at today's corpus: one step is ~17 ms, so it already exceeds the
+     * budget on its own and the settle runs exactly ONE step per frame. The
+     * budget's real job is stopping it running two. Measured slice durations
+     * over the live graph: 61, 38, 28, 21, 19, 19 … median 16 — the opening
+     * spike is JIT warm-up on the first call, not a growing cost.
+     *
+     * A step is indivisible, so ~17 ms of main thread per frame for ~50 frames
+     * is the floor here. That is jank-free (well under the 50 ms long-task
+     * threshold) but it is not free; going below it would mean splitting a
+     * single step across frames, which is a much larger change and is not
+     * worth it until a step approaches 50 ms on its own.
+     */
+    var SETTLE_STEPS = 600;
+    var SETTLE_BUDGET_MS = 900;
+    var SLICE_MS = 8;
 
-    if (reduceMotion) return; // settled still frame is the whole experience
+    function settle(done) {
+      var ran = 0;
+      var spent = 0;
+      var slowest = 0;
+      (function slice() {
+        var began = now();
+        var inSlice = 0;
+        while (ran < SETTLE_STEPS) {
+          // PREDICTIVE, not reactive. A step cannot be interrupted, so a plain
+          // `while (elapsed < SLICE_MS)` lets one overshoot the slice by its
+          // own full duration — 8 + 19 ms at today's corpus, but 8 + ~85 ms at
+          // four times it, which is a long task every frame. Refusing to START
+          // a step that will not fit keeps the slice bounded as the corpus
+          // grows, instead of quietly re-creating the problem this fixes.
+          var elapsed = now() - began;
+          if (inSlice > 0 && elapsed + slowest > SLICE_MS) break;
+          // The first step of every slice always runs, whatever it costs:
+          // a budget that can refuse every step makes no progress at all.
+          var before = now();
+          step(sim);
+          ran++;
+          inSlice++;
+          var took = now() - before;
+          if (took > slowest) slowest = took;
+        }
+        spent += now() - began;
+        if (ran < SETTLE_STEPS && spent < SETTLE_BUDGET_MS) {
+          requestAnimationFrame(slice);
+          return;
+        }
+        done();
+      })();
+    }
 
-    var frames = 0;
-    (function loop() {
-      // Keep drifting gently, but stop the simulation once it has cooled — a
-      // marketing page should not burn a core forever in a background tab.
-      if (frames++ < 2400 && !document.hidden) {
+    settle(function () {
+      fit(sim, w, h);
+      draw(sim, w, h);
+      canvas.style.opacity = "1";
+      if (reduceMotion) return; // settled still frame is the whole experience
+
+      /**
+       * Stop when the motion stops being VISIBLE, and stop RESCHEDULING.
+       *
+       * The old loop called requestAnimationFrame unconditionally, outside its
+       * own budget check, so a callback stayed registered for the life of the
+       * page; and `frames++` counted while the tab was hidden, so a page opened
+       * in a background tab burned all 2,400 frames doing nothing and then
+       * showed a permanently frozen graph.
+       *
+       * The budget was also far too generous, because this layout never
+       * converges — the alpha floor keeps feeding it energy, so it settles into
+       * a permanent creep instead of stopping. Measured on the live graph, that
+       * creep is 0.41 world px/frame, which at the fitted zoom is 0.08 SCREEN
+       * px: a node takes 13 frames to move one pixel. The old loop therefore
+       * spent ~65 seconds of a core rendering motion nobody can perceive.
+       *
+       * So the test is in screen pixels, where the claim is checkable: below
+       * an eighth of a pixel per frame, stop. Two consecutive frames, so a
+       * momentary dip mid-settle cannot end it early.
+       */
+      var IMPERCEPTIBLE_PX = 0.125;
+      var stillFrames = 0;
+      var frames = 0;
+      (function loop() {
+        if (frames++ >= 2400) return;
         step(sim);
+        // Re-fit as it settles: with the shortened pre-reveal settle the graph
+        // is still contracting, and a fixed view would let it shrink away from
+        // the frame it was fitted to.
+        fit(sim, w, h);
         draw(sim, w, h);
-      }
-      requestAnimationFrame(loop);
-    })();
+        stillFrames = sim.meanSpeed * view.scale < IMPERCEPTIBLE_PX ? stillFrames + 1 : 0;
+        if (stillFrames >= 2) return;
+        requestAnimationFrame(loop);
+      })();
+    });
 
     canvas.addEventListener("click", function (ev) {
       var rect = canvas.getBoundingClientRect();
@@ -595,25 +1127,86 @@
     );
   }
 
-  fetch(API_URL, { credentials: "omit" })
-    .then(function (res) {
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      return res.text();
-    })
-    .then(function (text) {
-      var graph;
-      try {
-        graph = JSON.parse(text);
-      } catch (e) {
-        throw new Error("universe endpoint returned non-JSON");
-      }
-      if (!graph || !graph.nodes || !graph.nodes.length) throw new Error("empty universe");
-      if (caption) caption.textContent = describe(graph.stats);
-      start(graph);
-    })
-    .catch(function () {
-      // Stay hidden. The endpoint is unavailable on some environments, and an
-      // empty canvas is worse than no section at all.
-      section.hidden = true;
-    });
+  function load() {
+    fetch(API_URL, { credentials: "omit" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.text();
+      })
+      .then(function (text) {
+        var graph;
+        try {
+          graph = JSON.parse(text);
+        } catch (e) {
+          throw new Error("universe endpoint returned non-JSON");
+        }
+        if (!graph || !graph.nodes || !graph.nodes.length) throw new Error("empty universe");
+        if (caption) caption.textContent = describe(graph.stats);
+        start(graph);
+      })
+      .catch(function () {
+        // Stay hidden. The endpoint is unavailable on some environments, and an
+        // empty canvas is worse than no section at all.
+        section.hidden = true;
+      });
+  }
+
+  /**
+   * Hold the 280 KB payload and the settle until the map is nearly in view.
+   *
+   * ⚠️ BE HONEST ABOUT WHAT THIS BUYS TODAY. The map is the FOURTH section on
+   * /www-rag, above the directory, and starts ~850 px down — 133 px below the
+   * fold at 1280x720, and already on screen at 1080p. That is inside the 600 px
+   * rootMargin on every realistic viewport, so in practice this fires almost
+   * immediately and defers the fetch for hardly anyone. What it actually buys
+   * is ordering: the work lands after first layout instead of competing with
+   * the hero, the video and the directory fetch during the initial burst.
+   *
+   * It is kept because it is free and because the section will not sit at 850 px
+   * forever — anything added above it turns this into a real deferral. Do not
+   * restate it as "visitors who never scroll pay nothing" without re-measuring;
+   * that claim was written here, was untrue for this layout, and is the same
+   * kind of stale-comment error that produced the crash this file fixes.
+   *
+   * ⚠️ OBSERVE THE SENTINEL, NOT THE SECTION. The section ships `hidden`, and a
+   * display:none element has no layout box, so IntersectionObserver never
+   * reports it as intersecting — no matter where the page is scrolled. Watching
+   * it directly means the universe NEVER loads, which is a worse failure than
+   * the one this deferral exists to fix, and it looks exactly like a broken
+   * endpoint. Same root cause as the 0x0 canvas note in start().
+   *
+   * A zero-height element immediately before the section does have a box, and
+   * sits exactly where the section will appear.
+   */
+  function whenNearlyVisible(run) {
+    if (!window.IntersectionObserver || !section.parentNode) { run(); return; }
+    var sentinel = document.createElement("div");
+    sentinel.setAttribute("aria-hidden", "true");
+    sentinel.style.cssText = "height:0;margin:0;padding:0;border:0";
+    section.parentNode.insertBefore(sentinel, section);
+    var io = new IntersectionObserver(function (entries) {
+      if (!entries.some(function (en) { return en.isIntersecting; })) return;
+      io.disconnect();
+      if (sentinel.parentNode) sentinel.parentNode.removeChild(sentinel);
+      run();
+    }, { rootMargin: "600px 0px" });
+    io.observe(sentinel);
+  }
+
+  whenNearlyVisible(load);
+
+  // Test hook. The scaling guard in tests/unit/www-rag-universe.test.js drives
+  // the simulation directly, because the property that matters — that the work
+  // per step grows sub-quadratically with the corpus — cannot be asserted by
+  // reading the source. Browsers never define `module`, so this is inert in
+  // production and adds nothing to the page.
+  // Gated on a flag the harness sets first, not merely on `module` existing: a
+  // third-party script defining a `module` global would otherwise have its
+  // exports overwritten by ours. Opt-in means production cannot reach this
+  // line by accident.
+  if (typeof module !== "undefined" && module && module.exports &&
+      module.exports.__wwwRagUniverseTestHook) {
+    module.exports.build = build;
+    module.exports.step = step;
+  }
 })();

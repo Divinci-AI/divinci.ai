@@ -258,3 +258,211 @@ describe("map freshness", () => {
         expect(text).not.toContain('NaN');
     });
 });
+
+/**
+ * ── THE MAP HAS TO SURVIVE THE CORPUS GROWING ──────────────────────────────
+ *
+ * On 2026-08-20 /www-rag crashed the tab. Not a leak and not the payload: the
+ * force simulation was all-pairs, and the boot ran 600 steps SYNCHRONOUSLY
+ * inside the fetch continuation. Measured against the live endpoint:
+ *
+ *     nodes    step()    600-step settle
+ *       170     0.9 ms     0.5 s      ← when the "O(n²) is fine here" comment was written
+ *     1,608    80   ms    48   s
+ *     2,876   256   ms   154   s      ← reproduced in-browser as a 36 s frozen frame
+ *
+ * (The 2,876 row was timed against the live endpoint; the rest is that number
+ * scaled quadratically.)
+ *
+ * Nothing was wrong with that comment when it was written. It went stale, and
+ * the directory adds ~150 sites a day, so it will go stale again. These tests
+ * exist so the next person finds out from a red build instead of from a
+ * visitor, and so "restore the simple all-pairs loop for clarity" fails loudly.
+ */
+describe("the simulation has to scale with the corpus", () => {
+    /** Load the browser IIFE with a stubbed DOM and pull out its test hook. */
+    function loadSim(countCalls) {
+        const vm = require('vm');
+        const ctx2d = new Proxy({}, {
+            get: (t, k) => (k in t ? t[k] : () => {}),
+            set: (t, k, v) => ((t[k] = v), true),
+        });
+        const el = () => ({
+            hidden: true, style: {}, width: 0, height: 0,
+            getContext: () => ctx2d,
+            getBoundingClientRect: () => ({ width: 1200, height: 620, left: 0, top: 0 }),
+            addEventListener: () => {},
+            set textContent(v) {}, get textContent() { return ''; },
+        });
+        // Count Math.sqrt as a deterministic, machine-independent proxy for the
+        // work a step does: every force actually applied takes exactly one, and
+        // rejected quadtree cells take none. Wall-clock would make this test
+        // flaky on a loaded machine; a call count is exact.
+        const calls = { sqrt: 0 };
+        const MathProxy = Object.create(Math);
+        MathProxy.sqrt = (x) => { calls.sqrt++; return Math.sqrt(x); };
+        const sandbox = {
+            module: { exports: { __wwwRagUniverseTestHook: true } },
+            Math: countCalls ? MathProxy : Math,
+            Date, JSON, Error, isFinite, Infinity, Float64Array, Int32Array,
+            console,
+            document: { getElementById: el, createElement: el, hidden: false },
+            window: {
+                devicePixelRatio: 2,
+                matchMedia: () => ({ matches: false }),
+                addEventListener: () => {},
+            },
+            requestAnimationFrame: () => {},
+            // Never resolves: the hook is all this test wants, and a resolved
+            // fetch would start the real boot sequence underneath it.
+            fetch: () => new Promise(() => {}),
+        };
+        sandbox.globalThis = sandbox;
+        vm.createContext(sandbox);
+        vm.runInContext(SOURCE, sandbox);
+        return { api: sandbox.module.exports, calls };
+    }
+
+    /** A deterministic corpus of n sites with a realistic edge density. */
+    function corpus(n) {
+        const nodes = [];
+        for (let i = 0; i < n; i++) {
+            nodes.push({
+                host: `site-${i}.example`, releaseId: `r${i}`,
+                pageCount: (i % 97) + 1, chunkCount: (i % 401) + 1,
+                linkScanPages: i % 3 === 0 ? 5 : 0,
+                linkOutDegree: i % 5 === 0 ? 2 : 0,
+                linkInDegree: i % 7 === 0 ? 11 : 0,
+            });
+        }
+        // ~2 edges per node, matching the live graph's 11k edges over 2.9k sites.
+        const linkEdges = [], semanticEdges = [];
+        for (let i = 0; i < n; i++) {
+            linkEdges.push({ source: `site-${i}.example`, target: `site-${(i * 7 + 3) % n}.example`, pages: (i % 40) + 1 });
+            semanticEdges.push({ source: `site-${i}.example`, target: `site-${(i * 13 + 5) % n}.example`, similarity: 0.45 + ((i % 50) / 100) });
+        }
+        return { nodes, linkEdges, semanticEdges, stats: {} };
+    }
+
+    function workFor(n, steps) {
+        const { api, calls } = loadSim(true);
+        const sim = api.build(corpus(n));
+        calls.sqrt = 0;                       // exclude build()
+        for (let i = 0; i < steps; i++) api.step(sim);
+        return calls.sqrt;
+    }
+
+    test("doubling the corpus must not quadruple the work", () => {
+        const STEPS = 12;
+        const small = workFor(700, STEPS);
+        const large = workFor(1400, STEPS);
+        const ratio = large / small;
+        // An all-pairs simulation lands at ~4.0 here — that is the regression
+        // this catches. Barnes-Hut plus a neighbourhood grid measures ~2.2.
+        // 3.0 leaves generous headroom for tuning THETA or the grid without
+        // being loose enough to let the quadratic loop back in.
+        expect(ratio).toBeLessThan(3.0);
+        // And it must still be doing the work — a step that silently stopped
+        // computing forces would sail through the bound above.
+        expect(small).toBeGreaterThan(700);
+    });
+
+    test("nothing runs the whole settle in one blocking go", () => {
+        // The exact line that froze the tab for 154 seconds.
+        expect(SOURCE).not.toMatch(/for\s*\(\s*var\s+i\s*=\s*0;\s*i\s*<\s*600;\s*i\+\+\s*\)\s*step\(/);
+        // The settle must yield to the browser between slices, and must be
+        // bounded by wall-clock rather than only by a step count — a step
+        // budget is unbounded work, so a corpus twice this size simply takes
+        // twice as long to appear.
+        expect(SOURCE).toContain("SETTLE_BUDGET_MS");
+        expect(SOURCE).toMatch(/requestAnimationFrame\(slice\)/);
+    });
+
+    test("the repulsion pass is not all-pairs", () => {
+        // `step` used to carry two nested loops over every node. If you are
+        // here because this failed: check the live node count at
+        // https://api.divinci.app/api/v1/www-rag-universe before deciding an
+        // all-pairs loop is affordable. It was ~170 when that was last true.
+        const start = SOURCE.indexOf("function step(sim)");
+        const body = SOURCE.slice(start, SOURCE.indexOf("\n  }", start));
+        expect(body).not.toMatch(/for\s*\([^)]*j\s*=\s*i\s*\+\s*1;\s*j\s*<\s*n(odes\.length)?;/);
+        expect(SOURCE).toContain("buildTree(nodes)");
+        expect(SOURCE).toContain("buildGrid(nodes");
+    });
+
+    test("the animation loop can always terminate", () => {
+        // The old loop called requestAnimationFrame unconditionally, OUTSIDE
+        // its own budget check, so a callback stayed registered for the life of
+        // the page. Every reschedule must sit after the guards that can stop it.
+        const start = SOURCE.indexOf("function loop()");
+        const body = SOURCE.slice(start, SOURCE.indexOf("})();", start));
+        const reschedule = body.indexOf("requestAnimationFrame(loop)");
+        expect(reschedule).toBeGreaterThan(-1);
+        expect(body.slice(0, reschedule)).toMatch(/return;/);
+        // And it stops on what a viewer can SEE, in screen pixels — this layout
+        // never converges, it settles into a permanent 0.08 px/frame creep.
+        expect(SOURCE).toContain("IMPERCEPTIBLE_PX");
+    });
+
+    test("one malformed row cannot take out the whole map", () => {
+        // Hostnames and counts reach the payload from crawled third-party
+        // pages. Bucketing edges by a quantised score introduced a way for a
+        // null similarity to become a NaN array index and throw out of
+        // build(), which the caller turns into "endpoint unavailable" — the
+        // entire section gone because one row was junk.
+        const { api } = loadSim(false);
+        const graph = corpus(40);
+        graph.semanticEdges[0].similarity = null;
+        graph.semanticEdges[1].similarity = "definitely-not-a-number";
+        delete graph.semanticEdges[2].similarity;
+        graph.linkEdges[0].pages = null;
+        graph.nodes[3].pageCount = "seventeen";
+
+        let sim;
+        expect(() => { sim = api.build(graph); }).not.toThrow();
+        expect(sim.nodes).toHaveLength(40);
+        expect(() => api.step(sim)).not.toThrow();
+    });
+
+    test("an edge naming a prototype key resolves to no node at all", () => {
+        // The host->node map is keyed by untrusted hostnames. On a plain `{}`,
+        // a lookup for a host that does not exist but happens to name an
+        // inherited member — "constructor", "toString", "valueOf" — returns a
+        // FUNCTION off Object.prototype instead of undefined. The `if (!s)`
+        // guard passes it, and the spring then reads `.x` off a function: NaN,
+        // which propagates into the real node on the other end of the edge and
+        // spreads through the layout from there.
+        //
+        // Note the edges below reference hosts that are NOT in the node list —
+        // that is the whole point. An earlier version of this test also
+        // declared them as nodes, which shadowed the inherited members and
+        // made it pass with or without the fix.
+        const { api } = loadSim(false);
+        const graph = corpus(30);
+        const real = graph.nodes[5].host;
+        graph.linkEdges.push({ source: "constructor", target: real, pages: 3 });
+        graph.semanticEdges.push({ source: real, target: "valueOf", similarity: 0.9 });
+        graph.semanticEdges.push({ source: "toString", target: real, similarity: 0.8 });
+
+        let sim;
+        expect(() => { sim = api.build(graph); }).not.toThrow();
+        for (let i = 0; i < 5; i++) api.step(sim);
+
+        expect(sim.nodes).toHaveLength(30);
+        // If a prototype member were treated as a node, the spring on the other
+        // end of that edge would read `.x` off a function and write NaN back
+        // into a real node — so this is where the damage shows up.
+        expect(sim.nodes.every((n) => Number.isFinite(n.x) && Number.isFinite(n.y))).toBe(true);
+        // Nothing that is not a node may end up in an edge.
+        const endpoints = sim.semantic.concat(sim.links);
+        expect(endpoints.every((e) => typeof e.s === "object" && typeof e.t === "object")).toBe(true);
+    });
+
+    test("the deferral observes a sentinel, never the hidden section", () => {
+        // The section ships `hidden`; a display:none element has no layout box,
+        // so IntersectionObserver never reports it intersecting and the
+        // universe would never load at all. Caught by running it, not reading it.
+        expect(SOURCE).not.toMatch(/io\.observe\(\s*section\s*\)/);
+        expect(SOURCE).toMatch(/io\.observe\(\s*sentinel\s*\)/);
+    });
+});
