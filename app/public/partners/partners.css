@@ -389,3 +389,96 @@
   .audience { gap: 6px 8px; }
   .audience li { font-size: 0.82rem; padding: 5px 11px; }
 }
+
+/* ── Shipped demos strip ─────────────────────────────────── */
+/* Three real, live demos under the hero pitch. Screenshots rather than logos:
+   a logo wall says "these companies exist", a screenshot says "this is what
+   your client gets", which is the thing a partner is actually buying.
+
+   Deliberately AFTER .audience — the pitch, who it is for, then the proof.
+   Putting it above the CTA pushed the buttons below the fold on a laptop. */
+.shipped {
+  margin: 34px auto 0;
+  max-width: 1000px;
+}
+.shipped-lede {
+  margin: 0 0 14px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+.shipped-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.shipped-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  /* The card is the link. A separate "view demo" affordance would be a second
+     tap target for the same destination. */
+  border-radius: var(--radius);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.shipped-card img {
+  width: 100%;
+  display: block;
+  /* Fixed geometry, cropped from the TOP.
+
+     The three demos are captured at different heights — one shows a finished
+     answer with citations, which is taller than a landing state. Left as
+     `height: auto` the cards end at different points and the names below them
+     sit on a ragged line. Cropping from the top keeps the part that identifies
+     the demo (brand lockup, tagline, first turn) and loses only the composer. */
+  aspect-ratio: 1000 / 700;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  /* Each demo carries its OWN brand palette, which is the point — so the card
+     must not tint them. No filter, no overlay, no forced background. */
+  background: var(--white);
+}
+.shipped-card:hover,
+.shipped-card:focus-visible {
+  transform: translateY(-2px);
+}
+.shipped-card:hover img,
+.shipped-card:focus-visible img {
+  border-color: var(--denim);
+}
+.shipped-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.shipped-tag {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+.shipped-note {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+/* One column on a phone: three 300px shots side by side become three
+   unreadable 90px shots, which proves nothing. */
+@media (max-width: 720px) {
+  .shipped-row { grid-template-columns: 1fr; gap: 20px; }
+  .shipped { margin-top: 26px; }
+}
+
+/* Motion: the lift is decorative. */
+@media (prefers-reduced-motion: reduce) {
+  .shipped-card { transition: none; }
+  .shipped-card:hover,
+  .shipped-card:focus-visible { transform: none; }
+}
