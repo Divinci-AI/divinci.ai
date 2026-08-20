@@ -35,6 +35,43 @@
     anyone running JavaScript. -#}
 {%- set owv = load_data(path="data/open-web-vectors.json") -%}
 <section class="owv-hero">
+    {#- Static recycle of the SDK hero's orbit (workspace/sdk/docs Hero.astro).
+        Deliberately NOT the original: that one is a WebGL three.js canvas plus
+        an animated courier canvas plus six CSS-animated satellites. None of
+        that belongs on a Zola static page, and none of it is needed to make
+        the point.
+
+        What is kept: the flower-of-life ring geometry, verbatim, and the robot
+        — captured once as a transparent still from the live 3D scene rather
+        than re-rendered here.
+
+        The satellites are 🌐 rather than faces. On the SDK page they are the
+        people an SDK serves; here they are SITES, which is what this initiative
+        indexes. Same visual, different subject. -#}
+    <div class="owv-orbit" aria-hidden="true">
+      <svg class="owv-orbit-ring" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="currentColor" stroke-width="1.7">
+          <circle cx="200" cy="200" r="70"/>
+          <circle cx="200" cy="130" r="70"/>
+          <circle cx="260.6" cy="165" r="70"/>
+          <circle cx="260.6" cy="235" r="70"/>
+          <circle cx="200" cy="270" r="70"/>
+          <circle cx="139.4" cy="235" r="70"/>
+          <circle cx="139.4" cy="165" r="70"/>
+          <circle cx="200" cy="200" r="140" class="owv-orbit-outer"/>
+        </g>
+      </svg>
+      <div class="owv-orbit-scrim"></div>
+      <img class="owv-orbit-robot" src="/images/robot-orbit-520.webp"
+           srcset="/images/robot-orbit-320.webp 320w, /images/robot-orbit-520.webp 520w"
+           sizes="200px" width="520" height="520" alt="" loading="lazy" decoding="async">
+      <span class="owv-orbit-sat" style="left:50.0%;top:15.0%">🌐</span>
+      <span class="owv-orbit-sat" style="left:80.3%;top:32.5%">🌐</span>
+      <span class="owv-orbit-sat" style="left:80.3%;top:67.5%">🌐</span>
+      <span class="owv-orbit-sat" style="left:50.0%;top:85.0%">🌐</span>
+      <span class="owv-orbit-sat" style="left:19.7%;top:67.5%">🌐</span>
+      <span class="owv-orbit-sat" style="left:19.7%;top:32.5%">🌐</span>
+    </div>
     <div class="container">
         <p class="owv-eyebrow">The Open Web Vector Initiative</p>
         {#- The headline names the STATUS QUO, because the lead below answers
@@ -371,6 +408,72 @@
     background: linear-gradient(135deg, #0b0b14 0%, #161629 55%, #1f1f3a 100%);
     color: #fff;
     padding: 96px 0 72px;
+    position: relative;
+    overflow: hidden;   /* the outer ring is allowed to bleed off the right edge */
+}
+
+/* ── Static orbit visual ──────────────────────────────────────────────────
+   Sits in the empty upper-right of the hero, beside the headline and lead and
+   ABOVE the stat bar. It is decorative and aria-hidden, so it must never take
+   space from the text: it is absolutely positioned and disappears entirely
+   below 1180px, where the stat bar starts to reach into it.
+
+   No animation anywhere. The original spins; this is a still, which is the
+   whole point of recycling it here. That also means there is nothing for
+   prefers-reduced-motion to turn off. */
+.owv-orbit {
+    position: absolute;
+    /* Positive inset: at -40px the two right-hand satellites were clipped
+       by the band edge, which looks like a rendering bug rather than a
+       bleed. The ring is fully inside the hero. */
+    right: 48px;
+    top: 80px;
+    width: min(28vw, 340px);
+    aspect-ratio: 1;
+    pointer-events: none;
+    z-index: 0;
+    color: #6d6dbf;          /* the ring stroke, via currentColor */
+}
+.owv-orbit-ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+}
+.owv-orbit-outer { opacity: 0.8; }
+/* Fades the ring lines out from behind the robot so its silhouette reads. */
+.owv-orbit-scrim {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 54%;
+    height: 54%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(18,18,42,0.92) 0%, rgba(18,18,42,0.55) 55%, rgba(18,18,42,0) 78%);
+}
+.owv-orbit-robot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 45%;
+    height: auto;
+    transform: translate(-50%, -50%);
+}
+.owv-orbit-sat {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-size: clamp(18px, 1.9vw, 26px);
+    line-height: 1;
+    /* Emoji ignore `color`; the shadow is what seats them on the dark band. */
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.55));
+}
+/* The hero text must never wrap around or collide with it — below this width
+   the visual is removed rather than shrunk, because a 120px orbit reads as
+   clutter rather than as a diagram. */
+@media (max-width: 1180px) {
+    .owv-orbit { display: none; }
 }
 .owv-eyebrow {
     font-family: 'Source Sans 3', sans-serif;
