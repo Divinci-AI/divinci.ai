@@ -577,8 +577,8 @@
 /* Pushed well clear of the button pair. 16px left the arrow no distance to
    travel — it was a squiggle beside the text rather than a line connecting two
    things. */
-.cta-note-left  { right: calc(100% + 64px); left: auto; }
-.cta-note-right { left: calc(100% + 64px); right: auto; }
+.cta-note-left  { right: calc(100% + 120px); left: auto; }
+.cta-note-right { left: calc(100% + 120px); right: auto; }
 .cta-note-text {
   font-family: "Caveat", "Bradley Hand", "Segoe Print", cursive;
   font-size: 2rem;
@@ -605,13 +605,13 @@
      button's top-right is (1052, 387) — 84px right and 17px low. These two
      numbers are that correction. */
   top: 45px;
-  width: 300px;
+  width: 380px;
   height: 150px;
   overflow: visible;
   pointer-events: none;
 }
-.cta-note-right .cta-note-line { left: -280px; }
-.cta-note-left  .cta-note-line { right: -280px; }
+.cta-note-right .cta-note-line { left: -300px; }
+.cta-note-left  .cta-note-line { right: -300px; }
 .cta-wrap:hover .cta-note,
 .cta-wrap:focus-within .cta-note {
   opacity: 1;
@@ -636,9 +636,10 @@
   .cta-note-line path { transition: none; stroke-dashoffset: 0; }
 }
 
-/* No hover on touch, and below 1320px a 340px note set 64px outboard no longer
-   fits the margin beside the 520px prose column — measured: it hangs 16px off
-   the viewport at 1280 and 66px at 1181. Bigger and further out costs reach. */
-@media (hover: none), (max-width: 1320px) {
+/* No hover on touch, and below 1460px a 340px note set 120px outboard no longer
+   fits the margin beside the 520px prose column — measured: 8px of clearance at
+   1440 and -12px at 1400. Each push outward costs reach, and this is the third
+   time that trade has been made deliberately rather than discovered later. */
+@media (hover: none), (max-width: 1459px) {
   .cta-note { display: none; }
 }
