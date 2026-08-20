@@ -390,19 +390,25 @@
   .audience li { font-size: 0.82rem; padding: 5px 11px; }
 }
 
-/* ── Shipped demos strip ─────────────────────────────────── */
-/* Three real, live demos under the hero pitch. Screenshots rather than logos:
-   a logo wall says "these companies exist", a screenshot says "this is what
-   your client gets", which is the thing a partner is actually buying.
+/* ── Shipped demos section ───────────────────────────────── */
+/* Three real, live demos. Screenshots rather than logos: a logo wall says
+   "these companies exist", a screenshot says "this is what your client gets",
+   which is the thing a partner is actually buying.
 
-   Deliberately AFTER .audience — the pitch, who it is for, then the proof.
-   Putting it above the CTA pushed the buttons below the fold on a laptop. */
-.shipped {
-  margin: 34px auto 0;
-  max-width: 1000px;
-}
+   Its own band, immediately after the hero — the proof follows the pitch but
+   is not part of it. It lived inside .hero until 2026-08-20, appended after
+   the audience chips with no heading; that made the page's strongest claim
+   read as hero furniture. Never move it ABOVE the CTA pair: that pushes the
+   buttons below the fold on a laptop, which is what put it here originally.
+
+   Band colour alternates with its neighbours (.steps is white), same rule as
+   .pipeline / .build-vs / .economics. */
+.shipped { background: var(--parchment-deep); }
 .shipped-lede {
-  margin: 0 0 14px;
+  /* Pulled up under the h2's 30px margin — a heading and its own lede should
+     read as one unit, not as two separate blocks. */
+  margin: -16px auto 22px;
+  max-width: 700px;
   text-align: center;
   color: var(--ink-soft);
   font-size: 0.98rem;
@@ -412,6 +418,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   align-items: start;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 .shipped-card {
   display: flex;
@@ -473,7 +481,6 @@
    unreadable 90px shots, which proves nothing. */
 @media (max-width: 720px) {
   .shipped-row { grid-template-columns: 1fr; gap: 20px; }
-  .shipped { margin-top: 26px; }
 }
 
 /* Motion: the lift is decorative. */
