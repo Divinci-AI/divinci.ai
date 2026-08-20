@@ -76,28 +76,34 @@
              read "Start a free workspace one workspace per client kept apart"
              as the link. It is aria-hidden for the same reason — it repeats,
              in a scribble, what the page already says in prose. -->
-        <span class="cta-wrap">
-          <a class="cta-primary" href="https://chat.divinci.app/" data-app-link="/">Start a free workspace →</a>
-          <span class="cta-note cta-note-left" aria-hidden="true">
-            <span class="cta-note-text">one workspace per client, kept apart</span>
-            <svg class="cta-note-line" viewBox="0 0 120 64" fill="none" aria-hidden="true">
-              <path d="M12 6 C 30 10, 42 22, 48 38 C 51 46, 54 52, 58 58" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#ctaRough)"/>
-              <path d="M50 48 L58 58 L47 59" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#ctaRough)"/>
-            </svg>
+        <!-- Shrink-to-fit group. `.cta-row` is a full-width flex container, so
+             anchoring the notes to IT put them at the container edges rather
+             than beside the buttons — 84px off the viewport at 1280. This box
+             hugs the two buttons, which is the edge the notes actually mean. -->
+        <span class="cta-group">
+          <span class="cta-wrap">
+            <a class="cta-primary" href="https://chat.divinci.app/" data-app-link="/">Start a free workspace →</a>
+            <span class="cta-note cta-note-left" aria-hidden="true">
+              <span class="cta-note-text">one workspace per client, kept apart</span>
+              <svg class="cta-note-line" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+                <path d="M12 6 C 30 10, 42 22, 48 38 C 51 46, 54 52, 58 58" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#ctaRough)"/>
+                <path d="M50 48 L58 58 L47 59" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#ctaRough)"/>
+              </svg>
+            </span>
           </span>
-        </span>
-        <!-- ⚠️ The HERO secondary is the demo pipeline; the BOTTOM one is still
-             "talk to us". Deliberately not both: this page recruits partners,
-             and removing every route to a human from a partner-recruitment
-             page would trade a conversation for a clone. -->
-        <span class="cta-wrap">
-          <a class="cta-secondary" href="https://github.com/Divinci-AI/divinci-demo-pipeline-oss" target="_blank" rel="noopener">Run the demo pipeline →</a>
-          <span class="cta-note cta-note-right" aria-hidden="true">
-            <span class="cta-note-text">include a custom AI as part of your customer outreach</span>
-            <svg class="cta-note-line" viewBox="0 0 120 64" fill="none" aria-hidden="true">
-              <path d="M108 6 C 90 10, 78 22, 72 38 C 69 46, 66 52, 62 58" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#ctaRough)"/>
-              <path d="M70 48 L62 58 L73 59" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#ctaRough)"/>
-            </svg>
+          <!-- ⚠️ The HERO secondary is the demo pipeline; the BOTTOM one is still
+               "talk to us". Deliberately not both: this page recruits partners,
+               and removing every route to a human from a partner-recruitment
+               page would trade a conversation for a clone. -->
+          <span class="cta-wrap">
+            <a class="cta-secondary" href="https://github.com/Divinci-AI/divinci-demo-pipeline-oss" target="_blank" rel="noopener">Run the demo pipeline →</a>
+            <span class="cta-note cta-note-right" aria-hidden="true">
+              <span class="cta-note-text">include a custom AI as part of your customer outreach</span>
+              <svg class="cta-note-line" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+                <path d="M108 6 C 90 10, 78 22, 72 38 C 69 46, 66 52, 62 58" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#ctaRough)"/>
+                <path d="M70 48 L62 58 L73 59" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#ctaRough)"/>
+              </svg>
+            </span>
           </span>
         </span>
       </div>

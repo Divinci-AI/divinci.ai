@@ -533,14 +533,35 @@
    Decorative: it restates in a scribble what the page already says in prose,
    which is why the markup is aria-hidden and nothing here is the only place a
    fact appears. */
+/* The notes position against the ROW, not against their own button.
+   Measured: `.hero-sub` is a fixed 520px column, centred, and `.cta-row` sits
+   just inside it — so anchoring to the row's outer edges puts each note wholly
+   outside the prose instead of merely offset from it. Anchoring to the button
+   could only ever move them a fraction of a button width. */
+.cta-group {
+  position: relative;   /* the notes' containing block */
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;            /* mirrors .cta-row so the pair looks unchanged */
+}
 .cta-wrap {
-  position: relative;
+  position: static;   /* so .cta-note resolves against .cta-group */
   display: inline-flex;
 }
 .cta-note {
   position: absolute;
-  bottom: calc(100% + 14px);
-  width: 240px;
+  /* NEGATIVE offset: the note sits slightly BELOW the top of the button rather
+     than floating above it. Now that the notes are horizontally outside the
+     prose column they have nothing to clear on that axis — but at 1440px and
+     below, a positive offset pushed the taller text into the headline's actual
+     glyphs. Swept 20/0/-20/-40/-60: -20 is the first clean value at every
+     width. Measured against Range.getClientRects(), not element boxes — h1 is
+     a full-width block whose glyphs are centred, so its box over-reports a
+     collision that is not there. */
+  bottom: calc(100% - 20px);
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -556,11 +577,11 @@
    texts fighting for the same pixels is worse than no annotation. The hero's
    prose is a centred column; the space either side of it is empty, so that is
    where these go. */
-.cta-note-left  { right: 62%; }
-.cta-note-right { left: 62%; }
+.cta-note-left  { right: calc(100% + 16px); left: auto; }
+.cta-note-right { left: calc(100% + 16px); right: auto; }
 .cta-note-text {
   font-family: "Caveat", "Bradley Hand", "Segoe Print", cursive;
-  font-size: 1.28rem;
+  font-size: 1.6rem;
   line-height: 1.15;
   text-align: center;
   /* A hand-written line does not sit level. */
@@ -575,8 +596,8 @@
 }
 .cta-note-right .cta-note-text { transform: rotate(1.8deg); }
 .cta-note-line {
-  width: 108px;
-  height: 58px;
+  width: 128px;
+  height: 68px;
   overflow: visible;
 }
 .cta-wrap:hover .cta-note,
@@ -603,8 +624,9 @@
   .cta-note-line path { transition: none; stroke-dashoffset: 0; }
 }
 
-/* No hover on touch, and no room for a 240px aside beside a full-width
-   button — the notes would overlap each other and the copy. */
-@media (hover: none), (max-width: 720px) {
+/* No hover on touch, and below 1180px a 300px note no longer fits in the
+   margin beside the 520px prose column — measured, not guessed: at 1024px it
+   would hang 52px off both edges of the viewport. */
+@media (hover: none), (max-width: 1180px) {
   .cta-note { display: none; }
 }
