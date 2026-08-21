@@ -287,7 +287,14 @@
                                            an aria-hidden subtree is its own violation. #}
                                         <a href="{{ post.permalink | safe }}" class="post-image-link" aria-hidden="true" tabindex="-1">
                                         {% set vid_filter = post.extra.hero_video_filter | default(value="") %}
-                                        {% if post.extra.featured_video %}
+                                        {# card_image: an explicit list thumbnail, checked before any hero
+                                           media. Opt-in — no post that omits it changes. It exists because
+                                           the hero and the thumbnail are not always the same picture: a
+                                           video hero has no still that reads at 600px, and a post may want
+                                           its typeset OG card here instead of its hero art. #}
+                                        {% if post.extra.card_image %}
+                                            <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.card_image }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=post.extra.card_image) | safe }}';">
+                                        {% elif post.extra.featured_video %}
                                             {% set vid_src = post.extra.featured_video %}
                                             {# CIR-resize local poster to ~600w (~10-20KB instead of full-res) #}
                                             {% if post.extra.hero_video_poster %}{% if post.extra.hero_video_poster is starting_with("http") %}{% set pc_poster = post.extra.hero_video_poster %}{% else %}{% set pc_poster = '/cdn-cgi/image/width=600,format=auto,quality=80' ~ post.extra.hero_video_poster %}{% endif %}{% endif %}

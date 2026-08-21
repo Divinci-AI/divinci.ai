@@ -22,6 +22,12 @@ featured_image = "images/www-rag-directory-hero.webp"
 # selects the raw, no-cream-wash treatment — see blog-post.html.
 hero_background = "images/www-rag-directory-hero-poster.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/www-rag-directory-veo31.webm"
+# The list thumbnail. Without it the card is a <video preload="none"> with
+# no poster — i.e. BLANK, which is what adding hero_video did to it. The
+# typeset OG card was the other candidate and reads worse here: the grid
+# already prints the title under the image, so it appeared twice, at a size
+# too small to read. Every other card in the grid is plain art.
+card_image = "images/www-rag-directory-hero-poster.webp"
 +++
 
 ---

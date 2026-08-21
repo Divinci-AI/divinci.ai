@@ -60,8 +60,14 @@ const ROBOT_OVERRIDE = {
   "open-web-vectors": "globe.jpg",
 };
 
+// Card titles, where the page <title> is longer than three lines at card size.
+// The page title stays SEO-complete; the card gets a version that survives an
+// unfurl thumbnail. Without this the WWW-RAG card read "…From One MacBook
+// to…", cutting the one word the headline turns on.
 const TITLE_OVERRIDE = {
   index: "Excellence, every time",
+  "blog/www-rag-making-the-open-web-chattable":
+    "WWW-RAG: From One MacBook to Cloudflare",
 };
 
 const SECTION = {
