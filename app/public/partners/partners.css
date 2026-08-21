@@ -403,7 +403,39 @@
 
    Band colour alternates with its neighbours (.steps is white), same rule as
    .pipeline / .build-vs / .economics. */
-.shipped { background: var(--parchment-deep); }
+/* Transparent at the top, solid parchment-deep by the time the artwork ends.
+   `.hero-bg` is a body-level layer exactly 100vh tall; `.shipped` starts at
+   y=611 on any desktop width, so its first (100vh - 611px) sit over the
+   painting. A solid fill there threw that away — the band cut the artwork off
+   with a hard horizontal edge a third of the way down the picture. Fading in
+   instead lets the hero image carry past the fold, which is the only reason a
+   visitor registers it at all.
+
+   ⚠️ NOT a percentage of the section, which is what this was first written as.
+   The overlap is a function of VIEWPORT HEIGHT, not of section height, and the
+   two do not track each other at all — measured with the section 635px tall
+   throughout:
+
+     1440x900   overlap 46%      390x844   overlap -6% (no overlap at all)
+     1280x720   overlap 17%
+
+   A fixed 52% stop was therefore right at one window size and wrong at the
+   rest. The fade is a viewport-relative LENGTH instead, clamped.
+
+   Overshooting is safe and undershooting is not: past the artwork the fade
+   just continues over plain parchment and still reads as intentional, whereas
+   ending early puts solid tan against visible painting — the exact edge this
+   removes. So the stop is generous, and only a viewport taller than ~1300px
+   can still clip it (no worse than the solid fill it replaces). On a phone
+   there is no overlap and this is simply a soft top edge on the band. */
+.shipped {
+  background: linear-gradient(
+    to bottom,
+    rgba(232, 221, 199, 0) 0,
+    rgba(232, 221, 199, 0.6) clamp(120px, 26vh, 380px),
+    var(--parchment-deep) clamp(220px, 52vh, 760px)
+  );
+}
 .shipped-lede {
   /* Pulled up under the h2's 30px margin — a heading and its own lede should
      read as one unit, not as two separate blocks. */
