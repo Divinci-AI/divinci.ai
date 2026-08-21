@@ -1,0 +1,161 @@
+/* divinci.app/connect/ — put the Divinci MCP server into an AI assistant.
+ *
+ * Additive only, like /partners/partners.css: topbar, hero, hero-bg, sections
+ * and footer all come from /styles.css. This file styles only the pieces this
+ * funnel has that the others do not.
+ *
+ * ⚠️ The honesty constraint that shaped this whole page: NONE of the three
+ * consumer assistants has a working one-click "install this MCP server" link
+ * as of 2026-08-21. Measured, not assumed:
+ *   - claude.ai  — ?modal=add-custom-connector still opens the modal, but the
+ *                  mcpName / mcpServerUrl params are IGNORED (both fields load
+ *                  empty). The request for them is closed-unimplemented.
+ *   - ChatGPT    — custom MCP lives behind Developer Mode, Plus/Pro only, and
+ *                  the URL is pasted by hand. No deep link exists.
+ *   - Grok       — grok.com/connectors → New → Custom, paid tiers, pasted by
+ *                  hand. No deep link exists.
+ * So the page is built around ONE-CLICK COPY plus the shortest honest path per
+ * client, not around a link that would silently do nothing. If any vendor ships
+ * a real prefill later, the per-client `deepLink` in connect.js is the one place
+ * to change. */
+
+.connect-lede {
+  max-width: 620px;
+  margin: 18px auto 0;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+/* The server URL is the single thing every path needs, so it is the hero. */
+.mcp-url {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  max-width: 560px;
+  margin: 26px auto 0;
+}
+.mcp-url code {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 18px;
+  font-size: 1.02rem;
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  color: var(--ink);
+  /* A URL must never wrap mid-token into something that reads as two URLs. */
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.mcp-copy {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--white);
+  background: var(--denim);
+  border: 2px solid var(--denim);
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+.mcp-copy:hover { background: var(--denim-dark); border-color: var(--denim-dark); }
+.mcp-copy:focus-visible { outline: 2px solid var(--denim); outline-offset: 3px; }
+.mcp-copy[data-copied="true"] { background: var(--green); border-color: var(--green); }
+
+/* ── Assistant picker ───────────────────────────────────── */
+.clients { background: var(--parchment-deep); }
+.client-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto 26px;
+}
+.client-tab {
+  font-family: 'Source Sans 3', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.client-tab[aria-selected="true"] {
+  background: var(--denim);
+  border-color: var(--denim);
+  color: var(--white);
+}
+.client-tab:focus-visible { outline: 2px solid var(--denim); outline-offset: 2px; }
+
+.client-panel {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px 28px;
+}
+.client-panel[hidden] { display: none; }
+.client-panel h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.25rem;
+  margin: 0 0 4px;
+}
+/* Says what it costs the reader BEFORE the steps, never after — a plan
+   requirement discovered at step 4 is a wasted walkthrough. */
+.client-req {
+  margin: 0 0 18px;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+.client-panel ol { margin: 0; padding-left: 22px; }
+.client-panel li { margin-bottom: 10px; line-height: 1.5; }
+.client-panel code {
+  background: var(--parchment-deep);
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 0.92em;
+  /* Long commands must scroll inside the card, never widen the page. */
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  vertical-align: bottom;
+}
+.client-note {
+  margin: 16px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+
+/* ── The claimed-site callout ───────────────────────────── */
+/* Only rendered when ?site= is present, so it is never an empty promise. */
+.claim-banner {
+  max-width: 620px;
+  margin: 22px auto 0;
+  padding: 14px 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--green);
+  border-radius: var(--radius);
+  text-align: left;
+  font-size: 0.95rem;
+}
+.claim-banner strong { color: var(--ink); }
+.claim-banner[hidden] { display: none; }
+
+@media (max-width: 560px) {
+  .mcp-url { flex-direction: column; }
+  .mcp-url code { justify-content: flex-start; }
+  .client-panel { padding: 20px 18px; }
+}

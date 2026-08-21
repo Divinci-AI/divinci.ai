@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divinci — Connect your AI assistant to your own website</title>
+  <meta name="description" content="Add the Divinci MCP server to Claude, ChatGPT, Grok or Claude Code, and give your assistant your website's own content — searchable, cited, and kept in sync.">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="canonical" href="https://divinci.app/connect/">
+  <meta property="og:title" content="Connect your AI assistant to your own website">
+  <meta property="og:description" content="Add the Divinci MCP server to Claude, ChatGPT, Grok or Claude Code — your assistant answers from your site, with citations.">
+  <meta property="og:url" content="https://divinci.app/connect/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://divinci.app/images/davinci-painter-robot-800w.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fraunces:wght@600;700&family=Source+Sans+3:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/connect/connect.css">
+  <link rel="stylesheet" href="/css/divinci-chat-widget.css">
+</head>
+<body>
+
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="/">
+      <img src="/images/divinci_logo_ink.svg" alt="Divinci logo" width="34" height="34">
+      <span>Divinci</span>
+    </a>
+    <div class="top-actions">
+      <a class="signin" href="https://chat.divinci.app/" data-app-link="/">Sign in</a>
+      <a class="top-pricing" href="https://divinci.ai/pricing/">Pricing</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Your assistant, <em>answering from your own site.</em></h1>
+      <p class="hero-sub">
+        Divinci is an MCP server. Add it to Claude, ChatGPT, Grok or Claude Code
+        and your assistant can search your website's real content and cite it —
+        instead of guessing, or telling you what it read about you in 2024.
+      </p>
+
+      <!-- Shown only when ?site= is present and parses as a hostname. Never a
+           blank promise: with no site parameter this stays hidden. -->
+      <p class="claim-banner" hidden>
+        We have already crawled and indexed <strong data-site>your site</strong>.
+        <a data-claim-link data-claim-base="https://chat.divinci.app/claim" href="https://chat.divinci.app/claim">Claim it</a>
+        to make it yours — the index moves into your own workspace, no re-crawl.
+      </p>
+
+      <!-- The one string every path below needs. -->
+      <div class="mcp-url">
+        <code>https://mcp.divinci.app/mcp</code>
+        <button type="button" class="mcp-copy">Copy</button>
+      </div>
+      <p class="connect-lede">
+        Free to start. Signing in creates your account if you don't have one —
+        the connector's sign-in step is the sign-up step.
+      </p>
+    </section>
+
+    <!-- ── Pick your assistant ───────────────────────────────────────────
+         ⚠️ Honest by construction. None of the three consumer assistants has a
+         working one-click install link for a remote MCP server (measured
+         2026-08-21 — see connect.css for what was tested and how it failed).
+         Rather than ship a link that silently does nothing, each panel gives
+         the shortest path that actually works, and says up front what plan it
+         needs. If a vendor ships a real prefill, add it HERE and nowhere else. -->
+    <section class="clients">
+      <h2>Add it to your assistant</h2>
+
+      <div class="client-tabs" role="tablist" aria-label="Choose your assistant">
+        <button type="button" class="client-tab" role="tab" data-client="claude" aria-selected="true" aria-controls="panel-claude" id="tab-claude">Claude</button>
+        <button type="button" class="client-tab" role="tab" data-client="chatgpt" aria-selected="false" aria-controls="panel-chatgpt" id="tab-chatgpt">ChatGPT</button>
+        <button type="button" class="client-tab" role="tab" data-client="grok" aria-selected="false" aria-controls="panel-grok" id="tab-grok">Grok</button>
+        <button type="button" class="client-tab" role="tab" data-client="code" aria-selected="false" aria-controls="panel-code" id="tab-code">Claude Code</button>
+      </div>
+
+      <div class="client-panel" data-client="claude" role="tabpanel" id="panel-claude" aria-labelledby="tab-claude">
+        <h3>Claude</h3>
+        <p class="client-req">Web, desktop or mobile · works on the free plan</p>
+        <ol>
+          <li>Open <a href="https://claude.ai/settings/connectors" target="_blank" rel="noopener">Settings → Connectors</a>, then <strong>Customize → Connectors</strong>.</li>
+          <li>Click <strong>Add</strong>, then <strong>Custom</strong>. If it asks for a type, choose <strong>Web</strong>.</li>
+          <li>Paste <code>https://mcp.divinci.app/mcp</code> as the remote MCP server URL and click <strong>Continue</strong>.</li>
+          <li>Click <strong>Connect</strong> and sign in. That step creates your Divinci account if you don't have one.</li>
+        </ol>
+        <p class="client-note">
+          On Team and Enterprise plans an owner adds the connector once under
+          Organization settings, and everyone else then clicks Connect.
+        </p>
+      </div>
+
+      <div class="client-panel" data-client="chatgpt" role="tabpanel" id="panel-chatgpt" aria-labelledby="tab-chatgpt" hidden>
+        <h3>ChatGPT</h3>
+        <p class="client-req">Plus or Pro · custom MCP servers live behind Developer Mode</p>
+        <ol>
+          <li>In ChatGPT on the web, open <strong>Settings → Apps → Advanced</strong> and turn on <strong>Developer Mode</strong>.</li>
+          <li>Add a connector and paste <code>https://mcp.divinci.app/mcp</code> as the MCP server URL.</li>
+          <li>Sign in when prompted — that creates your Divinci account if you don't have one.</li>
+          <li>In a chat, use <strong>+ → More → Developer Mode → Add sources</strong> and switch Divinci on.</li>
+        </ol>
+        <p class="client-note">
+          On Business, Enterprise and Edu, a workspace admin can turn Developer
+          Mode off or allowlist specific connectors — so this may need them.
+        </p>
+      </div>
+
+      <div class="client-panel" data-client="grok" role="tabpanel" id="panel-grok" aria-labelledby="tab-grok" hidden>
+        <h3>Grok</h3>
+        <p class="client-req">Paid tiers · web, iOS and Android</p>
+        <ol>
+          <li>Go to <a href="https://grok.com/connectors" target="_blank" rel="noopener">grok.com/connectors</a>.</li>
+          <li>Choose <strong>New Connector</strong>, then <strong>Custom</strong>.</li>
+          <li>Paste <code>https://mcp.divinci.app/mcp</code> and save.</li>
+          <li>Sign in when prompted — that creates your Divinci account if you don't have one.</li>
+        </ol>
+        <p class="client-note">xAI calls this "Bring Your Own MCP".</p>
+      </div>
+
+      <div class="client-panel" data-client="code" role="tabpanel" id="panel-code" aria-labelledby="tab-code" hidden>
+        <h3>Claude Code</h3>
+        <p class="client-req">One command · this is the genuinely one-step path</p>
+        <ol>
+          <li>Run <code>claude mcp add --transport http divinci https://mcp.divinci.app/mcp</code></li>
+          <li>Run <code>/mcp</code> inside Claude Code and choose <strong>divinci</strong> to sign in.</li>
+        </ol>
+        <p class="client-note">
+          The same command works in any MCP client that takes a remote HTTP
+          server — Cursor, Windsurf, Zed and others.
+        </p>
+      </div>
+    </section>
+
+    <section class="steps">
+      <h2>What your assistant can then do</h2>
+      <ol>
+        <li>
+          <span class="step-num">1</span>
+          <h3>Answer from your content</h3>
+          <p>Search everything you have indexed — your site, your documents, your transcripts — and answer with citations back to the source.</p>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <h3>Keep it current</h3>
+          <p>Re-crawl your site or sync a connected source on a schedule, so answers follow your content instead of drifting away from it.</p>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <h3>Publish it to others</h3>
+          <p>Turn the same index into an assistant on your own site, with your branding — the same content, answering for your visitors.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="bottom-cta">
+      <h2>Already crawled. Waiting to be claimed.</h2>
+      <p>
+        Divinci has indexed hundreds of public websites already. If yours is one
+        of them, claiming it moves that index into your own workspace — no
+        re-crawl, no waiting.
+      </p>
+      <p>
+        <a class="cta-primary" href="https://chat.divinci.app/" data-app-link="/">Create your free account →</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <a href="https://divinci.ai/status/" class="footer-status" id="footer-status" data-state="unknown"
+         data-label-operational="All systems operational"
+         data-label-degraded="Degraded performance"
+         data-label-partial-outage="Partial outage"
+         data-label-major-outage="Major outage">
+        <span class="footer-status-dot" aria-hidden="true"></span>
+        <span class="footer-status-label" id="footer-status-label">System status</span>
+      </a> ·
+      <a href="https://divinci.ai/pricing/">Pricing</a> ·
+      <a href="https://divinci.ai/docs/">Docs</a> ·
+      <a href="https://divinci.ai/privacy-policy/">Privacy</a> ·
+      <a href="https://divinci.ai/contact/">Contact</a>
+    </p>
+    <p class="fineprint">© 2026 <a href="https://divinci.ai/">Divinci AI, Inc.</a></p>
+  </footer>
+
+  <script src="/app.js" defer></script>
+  <script src="/connect/connect.js" defer></script>
+</body>
+</html>
