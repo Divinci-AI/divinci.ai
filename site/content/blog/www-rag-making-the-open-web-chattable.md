@@ -17,7 +17,11 @@ title_display = "WWW-RAG: Making the Open Web Chattable,<br>From One MacBook to 
 reading_time = 15
 summary = "WWW-RAG is our public directory of real websites turned into individually chattable AI assistants — philosophy archives, space agencies, developer docs, law libraries, e-commerce stores. It began as a from-scratch Rust daemon crawling and embedding on a single MacBook, at an embedding cost of roughly zero. That machine reached 451 sites in two months. On 18 August 2026 the whole crawl→embed→publish path moved onto Cloudflare — Workers, Workflows, Browser Rendering, Workers AI — and added 3,505 more in the four days after. This post is the tour and the migration: what carried over unchanged, what broke on the way, and why the same embedding model on both sides meant not a single vector had to be recomputed."
 featured_image = "images/www-rag-directory-hero.webp"
-hero_background = "images/www-rag-directory-hero.webp"
+# The /www-rag/ hero, reused: the webp is the poster and the LCP element,
+# the webm fades in over it. hero_background (not hero_video_poster) is what
+# selects the raw, no-cream-wash treatment — see blog-post.html.
+hero_background = "images/www-rag-directory-hero-poster.webp"
+hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/www-rag-directory-veo31.webm"
 +++
 
 ---

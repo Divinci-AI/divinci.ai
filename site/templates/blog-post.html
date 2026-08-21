@@ -147,13 +147,18 @@ window.MathJax = {
 
 
 <!-- Blog Post Hero Section -->
-{# has-hero-background: show the image raw (no cream wash), matching /www-rag/.
-   Video/YouTube heroes keep the cream overlay for title contrast. #}
-<section class="blog-post-hero{% if page.extra.hero_background and not page.extra.hero_video and not page.extra.hero_youtube %} has-hero-background{% elif page.extra.hero_video or page.extra.hero_youtube %} has-hero-video{% endif %}">
+{# has-hero-background: show the art raw (no cream wash), matching /www-rag/.
+   Video/YouTube heroes on their own keep the cream overlay for title contrast.
+
+   Setting hero_background AND hero_video together is the /www-rag/ recipe:
+   the webp is the poster and the LCP element, the webm fades in over it, and
+   neither gets the cream wash. hero_background therefore wins the class — it
+   is the explicit request for the raw treatment. #}
+<section class="blog-post-hero{% if page.extra.hero_background %} has-hero-background{% elif page.extra.hero_video or page.extra.hero_youtube %} has-hero-video{% endif %}">
     <!-- Hero media background: webm, silent YouTube loop, or static image -->
     {% if page.extra.hero_video or page.extra.hero_youtube or page.extra.hero_background %}
     <div class="hero-video-background">
-        {% if page.extra.hero_video or page.extra.hero_youtube %}
+        {% if (page.extra.hero_video or page.extra.hero_youtube) and not page.extra.hero_background %}
         {% if page.extra.hero_video_poster %}
           {% set poster_url = page.extra.hero_video_poster %}
         {% elif page.extra.hero_video %}
@@ -180,8 +185,15 @@ window.MathJax = {
         {% elif page.extra.hero_background %}
         {# Raw cover image — no cream overlay (matches /www-rag/ directory hero). #}
         <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.hero_background }}" srcset="/cdn-cgi/image/width=600,format=auto,quality=82/{{ page.extra.hero_background }} 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/{{ page.extra.hero_background }} 1200w, /cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.hero_background }} 1600w" sizes="(max-width: 768px) 100vw, (max-width: 1280px) 1200px, 1600px" alt="" width="1600" height="793" class="hero-bg-poster" loading="eager" fetchpriority="high" decoding="async" aria-hidden="true" onerror="this.onerror=null;this.src='{{ get_url(path=page.extra.hero_background) | safe }}';">
+        {# preload="none" and no poster attribute: the <img> above is already
+           painting, so LCP is measured off it rather than off the video. #}
+        {% if page.extra.hero_video %}
+        <video autoplay muted loop playsinline webkit-playsinline preload="none" width="1600" height="900" class="hero-bg-video" data-hero-video{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
+            <source src="{{ page.extra.hero_video }}" type="video/webm">
+        </video>
         {% endif %}
-        {% if page.extra.hero_video or page.extra.hero_youtube %}
+        {% endif %}
+        {% if (page.extra.hero_video or page.extra.hero_youtube) and not page.extra.hero_background %}
         <div class="hero-video-overlay"></div>
         {% endif %}
     </div>
@@ -527,17 +539,60 @@ window.MathJax = {
 .blog-post-hero.has-hero-background .blog-post-hero-content {
     z-index: auto;
 }
+/*
+ * Plaque wash: 0.82/0.72, raised from 0.42/0.30.
+ *
+ * MEASURED, not eyeballed. The hero art under the plaques averages
+ * rgb(41,47,63), and blur(28px) means the plaque composites against roughly
+ * that mean. At the old alphas the panel landed near rgb(126,128,134), which
+ * puts the #1a2820 title and excerpt at **2.8:1 – 3.9:1** — the excerpt failed
+ * WCAG AA (4.5:1) outright and the title only just cleared the large-text 3:1.
+ * At 0.82/0.72 the panel is ~rgb(197,195,193) and both sit at **8.7:1**.
+ *
+ * The glass is not lost: blur(28px) + saturate(1.5) still fogs the navy and
+ * gold linework through, which is what makes it read as frosted rather than
+ * as a flat card. Alpha buys contrast; the blur buys the material.
+ */
 .blog-post-hero.has-hero-background .post-title,
 .blog-post-hero.has-hero-background .post-excerpt,
 .blog-post-hero.has-hero-background .post-meta {
-    /* Light cream wash + strong blur so navy/gold art fogs through */
     background: linear-gradient(
         135deg,
-        rgba(248, 244, 240, 0.42) 0%,
-        rgba(240, 235, 225, 0.30) 100%
+        rgba(248, 244, 240, 0.82) 0%,
+        rgba(240, 235, 225, 0.72) 100%
     );
     -webkit-backdrop-filter: blur(28px) saturate(1.5);
     backdrop-filter: blur(28px) saturate(1.5);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+/* The breadcrumb has no plaque behind it — it sits directly on the art, where
+   the inherited #2d3c34 at opacity .8 measures **1.11:1** against the navy.
+   That is not "low contrast", it is invisible; it does not appear at all in a
+   screenshot of the hero. Cream at full opacity is 11.4:1, with a dark shadow
+   for the stretches where gold linework runs underneath it. */
+.blog-post-hero.has-hero-background .breadcrumb-nav,
+.blog-post-hero.has-hero-background .breadcrumb-nav a,
+.blog-post-hero.has-hero-background .breadcrumb-category {
+    color: #f2ede4;
+    opacity: 1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+}
+.blog-post-hero.has-hero-background .breadcrumb-nav a:hover {
+    color: #ffffff;
+}
+
+/* The byline is the one line the wash alone cannot rescue: `.post-date` is
+   dimmed to opacity .7 globally, which on this panel is 3.5:1 — still under
+   AA at ANY plaque alpha (4.07:1 even at 0.92). Undim it here and set the
+   colour explicitly: #3b4a41 at full opacity is 5.3:1 — clear of AA, and
+   deliberately a step softer than the 8.7:1 title so the byline does not
+   compete with it. Scoped rather than global because the
+   cream heroes every other post uses measure 4.4:1, a near-miss that wants
+   its own look at all 40 of them rather than a drive-by change. */
+.blog-post-hero.has-hero-background .post-date {
+    opacity: 1;
+    color: #3b4a41;
 }
 
 /* Sacred Geometry Background */
