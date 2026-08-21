@@ -70,6 +70,13 @@
     </div>
     <div class="container">
         <p class="owv-eyebrow">The Open Web Vector Initiative</p>
+        {#- Inline robot: only shown below 1320px, where the overlay orbit is
+            hidden. Sits between the eyebrow and the headline so a phone still
+            gets the graphic without the ring covering the copy. -#}
+        <img class="owv-hero-robot-inline" src="/images/robot-orbit-320.webp?v=orb4"
+             srcset="/images/robot-orbit-320.webp?v=orb4 320w, /images/robot-orbit-520.webp?v=orb4 520w"
+             sizes="(max-width: 640px) 210px, 260px"
+             width="320" height="320" alt="" loading="eager" decoding="async">
         {#- The headline names the STATUS QUO, because the lead below answers
             it with "We are building the other thing". Keep that relationship: a
             headline describing the initiative leaves the lead answering nothing.
@@ -505,8 +512,16 @@
    the robot's left edge and the lead text: 41px at 1320, 19px at 1280, and it
    goes NEGATIVE below 1280 — the robot starts sitting on the paragraph. A
    bigger subject needs more room, so the breakpoint has to move with it. */
+.owv-hero-robot-inline { display: none; }
 @media (max-width: 1320px) {
     .owv-orbit { display: none; }
+    .owv-hero-robot-inline {
+        display: block;
+        width: min(58vw, 240px);
+        height: auto;
+        margin: 6px auto 18px;
+    }
+    .owv-eyebrow { margin-bottom: 8px; }
 }
 .owv-eyebrow {
     font-family: 'Source Sans 3', sans-serif;
