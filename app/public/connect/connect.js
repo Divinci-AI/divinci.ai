@@ -101,7 +101,12 @@
     var slot = banner.querySelector("[data-site]");
     if (slot) slot.textContent = site;
     var link = banner.querySelector("[data-claim-link]");
-    if (link) link.href = link.getAttribute("data-claim-base") + "?site=" + encodeURIComponent(site);
+    /* The directory page consumes `?claim=<host>` and opens that site's claim
+     * modal directly. NOT `/claim?site=` — that route does not exist, and the
+     * web client is served with SPA not-found handling, so a wrong path returns
+     * 200 with the app shell and a status-code check calls it healthy. Verified
+     * against the router, not against curl. */
+    if (link) link.href = link.getAttribute("data-claim-base") + "?claim=" + encodeURIComponent(site);
     banner.hidden = false;
   }
 })();
