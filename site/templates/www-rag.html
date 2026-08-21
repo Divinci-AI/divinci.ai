@@ -110,11 +110,17 @@
    empty canvas is worse than no section. www-rag-universe.js unhides it. #}
 <section class="www-rag-universe-section" id="www-rag-universe-section" hidden>
     <div class="container">
-        <h2 class="www-rag-universe-title">The RAG universe</h2>
-        <canvas id="www-rag-universe-canvas" class="www-rag-universe-canvas"
-                role="img"
-                aria-label="Force-directed map of the crawled website corpus. Sites sit near the sites they resemble; bright arrows are hyperlinks found while crawling."></canvas>
-        <p class="www-rag-universe-caption" id="www-rag-universe-caption"></p>
+        {# The section heading was removed once the page title became "The RAG
+           Universe" — it repeated the h1 verbatim two screens apart. The
+           caption now sits ON the canvas: it describes what the pixels mean,
+           so it belongs where the pixels are. It is pointer-events:none so the
+           canvas underneath stays clickable. #}
+        <div class="www-rag-universe-stage">
+            <canvas id="www-rag-universe-canvas" class="www-rag-universe-canvas"
+                    role="img"
+                    aria-label="Force-directed map of the crawled website corpus. Sites sit near the sites they resemble; bright arrows are hyperlinks found while crawling."></canvas>
+            <p class="www-rag-universe-caption" id="www-rag-universe-caption"></p>
+        </div>
     </div>
 </section>
 
@@ -1004,11 +1010,8 @@
     padding: 8px 0 32px;
     background: #f7f7fb;
 }
-.www-rag-universe-title {
-    font-family: 'Fraunces', serif;
-    font-size: 28px;
-    margin: 0 0 14px;
-    color: #1a1a2e;
+.www-rag-universe-stage {
+    position: relative;
 }
 .www-rag-universe-canvas {
     display: block;
@@ -1021,16 +1024,40 @@
     border-radius: 12px;
     cursor: pointer;
 }
+/* Overlays the top-left of the canvas. The JS-drawn "outer ring" legend
+   lives bottom-left, so the two never collide. Light on the near-black
+   canvas, with a shadow so it survives a bright cluster drifting underneath. */
 .www-rag-universe-caption {
-    margin: 12px 0 0;
-    color: #55555f;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    /* 52px of top inset, not 18: the site's research banner is a 40px-tall
+       FIXED bar, and scrolling this full-bleed section to the top of the
+       viewport parks its first line — the one carrying the site count —
+       underneath it. Measured, not guessed. */
+    padding: 52px 24px 18px;
+    max-width: min(62ch, 100%);
+    color: rgba(233, 236, 245, 0.82);
     font-size: 13px;
     line-height: 1.6;
-    max-width: 78ch;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+    /* The canvas is clickable (a node opens that site) — never eat its clicks. */
+    pointer-events: none;
 }
 @media (max-width: 720px) {
     .www-rag-universe-canvas { height: 52vh; }
-    .www-rag-universe-title { font-size: 23px; }
+    /* The overlay needs empty dark canvas to sit on, and a phone has none:
+       at 52vh the caption covers the map it is describing, and the fixed
+       research banner eats its first line. Below the canvas it just reads. */
+    .www-rag-universe-caption {
+        position: static;
+        max-width: 100%;
+        margin: 12px 0 0;
+        padding: 0;
+        color: #55555f;
+        text-shadow: none;
+    }
 }
 </style>
 
