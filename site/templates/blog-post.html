@@ -4,7 +4,13 @@
 {# Preload the hero video poster — it's typically the LCP element on blog
    posts that use a hero video. Without this, the browser doesn't fetch the
    poster until it parses the <video> tag in the body, ~6-12s into the load. #}
-{% if page.extra.hero_video or page.extra.hero_youtube %}
+{# hero_background first, mirroring the body: on a combined
+   hero_background + hero_video page the poster IS the hero_background, and
+   deriving one from the video filename preloads a file that does not exist.
+   That shipped for one deploy as a 404 on a fetchpriority="high" preload —
+   costly twice over, since the element that actually paints was then not
+   preloaded at all. #}
+{% if (page.extra.hero_video or page.extra.hero_youtube) and not page.extra.hero_background %}
   {% if page.extra.hero_video_poster %}
     {% set poster_url = page.extra.hero_video_poster %}
   {% elif page.extra.hero_video %}
