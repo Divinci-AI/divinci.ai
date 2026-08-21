@@ -539,6 +539,14 @@
 }
 .owv-lead strong { color: #fff; }
 
+/* On the orbit layout the robot's feet sit in the gap between the lead and
+   the stat row. 40px was enough when the robot was 34% of the box; at 59.5%
+   the feet land in the panel. Only widen that gap where the orbit is shown. */
+@media (min-width: 1321px) {
+    .owv-lead { margin-bottom: 156px; }
+    .owv-hero { padding-bottom: 112px; }
+}
+
 /* Stat row — six tiles, wrapping to two rows on narrow screens. */
 .owv-stats {
     display: grid;
