@@ -505,16 +505,26 @@
     max-height: 540px;
     transform: translate(-50%, -50%);
 }
-/* Removed rather than shrunk below this width: at a phone size the ring would
-   sit squarely behind the headline with nowhere to bleed to.
-   
-   The cutoff moved 1180 -> 1320 when the robot grew 75%. Measured gap between
-   the robot's left edge and the lead text: 41px at 1320, 19px at 1280, and it
-   goes NEGATIVE below 1280 — the robot starts sitting on the paragraph. A
-   bigger subject needs more room, so the breakpoint has to move with it. */
+/* Below 1320px the overlay robot sat on the paragraph, so it leaves the flow
+   as an inline still between the eyebrow and the title. The flower-of-life
+   rings stay: recentered and enlarged so they read as a background under the
+   copy, one stacking layer below. The scrim hid rings behind the overlay
+   robot; without that robot it would just darken the headline. */
 .owv-hero-robot-inline { display: none; }
 @media (max-width: 1320px) {
-    .owv-orbit { display: none; }
+    .owv-orbit {
+        width: 165vw;
+        right: auto;
+        left: 50%;
+        top: 22%;
+        transform: translate(-50%, -50%);
+    }
+    .owv-orbit-robot,
+    .owv-orbit-scrim { display: none; }
+    .owv-orbit-ring {
+        opacity: 0.26;
+        transform: scale(1.2);
+    }
     .owv-hero-robot-inline {
         display: block;
         width: min(58vw, 240px);
