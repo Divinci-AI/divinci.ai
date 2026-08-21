@@ -517,7 +517,10 @@
         right: auto;
         left: 50%;
         top: 22%;
-        transform: translate(-50%, -50%);
+        /* -50% centers the box; extra -15% of the geometry itself lifts the
+           rings so they overlap the eyebrow instead of sitting only on the
+           robot. */
+        transform: translate(-50%, -65%);
     }
     .owv-orbit-robot,
     .owv-orbit-scrim { display: none; }
