@@ -1,46 +1,46 @@
 {
-  "measured_at": "2026-08-20",
-  "measured_label": "20 August 2026",
+  "measured_at": "2026-08-21",
+  "measured_label": "21 August 2026",
   "stats": {
-    "sites": "2,817",
-    "pages": "701,057",
-    "chunks": "13,584,921",
-    "bytes": "4.9 GB",
-    "endpoints": "2,758",
-    "median": "251"
+    "sites": "3,958",
+    "pages": "967,346",
+    "chunks": "22,003,475",
+    "bytes": "7.7 GB",
+    "endpoints": "3,899",
+    "median": "254"
   },
   "composition": {
-    "public_share": "32%",
+    "public_share": "23%",
     "buckets": [
       {
         "key": "org",
         "label": ".org",
-        "count": "550",
-        "width": "19.5"
+        "count": "571",
+        "width": "14.4"
       },
       {
         "key": "gov",
         "label": ".gov",
         "count": "116",
-        "width": "4.1"
+        "width": "2.9"
       },
       {
         "key": "edu",
         "label": ".edu",
-        "count": "234",
-        "width": "8.3"
+        "count": "235",
+        "width": "5.9"
       },
       {
         "key": "com",
         "label": ".com",
-        "count": "1,201",
-        "width": "42.6"
+        "count": "2,130",
+        "width": "53.8"
       },
       {
         "key": "other",
         "label": "everything else",
-        "count": "716",
-        "width": "25.4"
+        "count": "906",
+        "width": "22.9"
       }
     ]
   },
@@ -48,5 +48,5 @@
     "deepest": "diff.wikimedia.org, ipac.caltech.edu and blog.mozilla.org run past 7,000 pages each.",
     "largest": "exoplanetarchive.ipac.caltech.edu — 929 pages, and 176 MB of extracted text: the densest corpus in the index."
   },
-  "directory_headline": "2,817 curated sites · 701,057 pages · 4,452 files · 13,584,921 searchable chunks"
+  "directory_headline": "3,958 curated sites · 967,346 pages · 4,452 files · 22,003,475 searchable chunks"
 }
