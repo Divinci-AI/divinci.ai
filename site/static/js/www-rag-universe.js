@@ -681,7 +681,37 @@
       }
     }
 
-    sim.alpha = Math.max(0.06, sim.alpha * 0.994);
+    /**
+     * COOL TO A STOP. The floor here was 0.06, which meant the simulation
+     * never converged: every frame kept injecting the same energy forever, so
+     * the layout settled into a permanent creep rather than coming to rest.
+     *
+     * The renderer's stop rule ("below an eighth of a screen pixel per frame")
+     * was therefore load-bearing on the wrong thing — it fired only while the
+     * corpus was small enough that 0.06 of energy moved a node less than that.
+     * Measured against the live 4,667-node graph, motion plateaued at 0.243
+     * screen px/frame, i.e. permanently ABOVE the threshold, so the loop never
+     * stopped early and ran its full 2,400-frame cap on every page view:
+     *
+     *   alpha floor   frames to still   JS CPU (node, this corpus)
+     *        0.06          2,400 (cap)      20.2 s     ← never converges
+     *        0.02            550             4.8 s
+     *        0.001           551             4.8 s
+     *
+     * That is the laptop-melter, and it is not one long task — it is 2,400
+     * consecutive frames of work nobody can see. 20.2 s of that is JS on an
+     * M-series laptop; the rasterisation of ~21,500 antialiased strokes and
+     * ~5,100 arcs, 2,400 times over, is on top and is the part that scales
+     * with a weaker GPU.
+     *
+     * ⚠️ The floor must stay BELOW the energy at which a node still moves a
+     * visible pixel, and that energy falls as the corpus grows — so a floor
+     * tuned to "looks alive at today's size" re-creates this bug at twice the
+     * size. 0.001 is d3-force's alphaMin convention: low enough that the decay,
+     * not the floor, is what ends the run at any corpus size. With it, frames
+     * to still no longer scale with the node count at all.
+     */
+    sim.alpha = Math.max(0.001, sim.alpha * 0.994);
     // Mean node speed in WORLD px/frame. The caller turns it into on-screen px
     // with view.scale and decides whether anything is still visibly moving —
     // that decision needs the zoom, which lives in the renderer, and a
@@ -1036,22 +1066,34 @@
        * in a background tab burned all 2,400 frames doing nothing and then
        * showed a permanently frozen graph.
        *
-       * The budget was also far too generous, because this layout never
-       * converges — the alpha floor keeps feeding it energy, so it settles into
-       * a permanent creep instead of stopping. Measured on the live graph, that
-       * creep is 0.41 world px/frame, which at the fitted zoom is 0.08 SCREEN
-       * px: a node takes 13 frames to move one pixel. The old loop therefore
-       * spent ~65 seconds of a core rendering motion nobody can perceive.
+       * This test used to be the ONLY thing that could end the run, because the
+       * layout could not converge — step()'s alpha floor fed it energy forever.
+       * That worked while a floored simulation still moved a node less than an
+       * eighth of a pixel, and silently stopped working when the corpus grew
+       * past it: at 4,667 nodes the creep plateaued at 0.243 screen px/frame,
+       * so the rule never fired and every visitor paid the full frame cap.
+       *
+       * The floor is now low enough for the decay to end the run on its own,
+       * which makes this a cheap early exit rather than the load-bearing part.
+       * Keep both: the decay bounds the run, this ends it as soon as there is
+       * nothing left to see.
        *
        * So the test is in screen pixels, where the claim is checkable: below
        * an eighth of a pixel per frame, stop. Two consecutive frames, so a
        * momentary dip mid-settle cannot end it early.
        */
       var IMPERCEPTIBLE_PX = 0.125;
+      // A BACKSTOP, not the normal path. With the simulation actually cooling
+      // (see the alpha floor in step()) the live corpus comes to rest in ~551
+      // frames, so this cap should never be the thing that ends the run. It was
+      // 2,400 back when it WAS the thing that ended it — which is exactly the
+      // signature to watch for: if this number starts mattering again, the
+      // simulation has stopped converging, and raising it is the wrong fix.
+      var MAX_FRAMES = 900;
       var stillFrames = 0;
       var frames = 0;
       (function loop() {
-        if (frames++ >= 2400) return;
+        if (frames++ >= MAX_FRAMES) return;
         step(sim);
         // Re-fit as it settles: with the shortened pre-reveal settle the graph
         // is still contracting, and a fixed view would let it shrink away from
@@ -1170,7 +1212,8 @@
   }
 
   /**
-   * Hold the 280 KB payload and the settle until the map is nearly in view.
+   * Hold the payload (3.3 MB uncompressed, 529 KB gzipped as of 2026-08-21,
+   * and growing with the corpus) and the settle until the map is nearly in view.
    *
    * ⚠️ BE HONEST ABOUT WHAT THIS BUYS TODAY. The map is the FOURTH section on
    * /www-rag, above the directory, and starts ~850 px down — 133 px below the

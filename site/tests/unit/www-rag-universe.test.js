@@ -393,6 +393,62 @@ describe("the simulation has to scale with the corpus", () => {
         expect(SOURCE).toContain("buildGrid(nodes");
     });
 
+    test("the simulation cools to a stop", () => {
+        // THE BUG THIS EXISTS FOR. step() ended with
+        //   sim.alpha = Math.max(0.06, sim.alpha * 0.994)
+        // and that floor meant the layout could never converge: every frame
+        // kept injecting the same energy, so it settled into a permanent creep
+        // rather than coming to rest.
+        //
+        // That made the renderer's "has anything moved a visible pixel" rule
+        // load-bearing on something it could not deliver. The rule fired while
+        // the corpus was small enough that 0.06 of energy moved a node less
+        // than an eighth of a screen pixel, and silently stopped firing as the
+        // corpus grew: measured against the live 4,667-node graph, motion
+        // plateaued at 0.243 screen px/frame — permanently above the threshold
+        // — so the loop ran its full 2,400-frame cap on EVERY page view. About
+        // 40 s of a pinned core, plus ~21,500 antialiased strokes rasterised
+        // 2,400 times. That is what froze a colleague's laptop.
+        //
+        // Restoring the floor is therefore not a tuning choice, it is the
+        // regression. Same corpus, 3,000 steps:
+        //
+        //   floor 0.06   -> alpha 0.060000, meanSpeed 0.104249   (never rests)
+        //   floor 0.001  -> alpha 0.001000, meanSpeed 0.003187   (at rest)
+        const { api } = loadSim(false);
+        const sim = api.build(corpus(400));
+        for (let i = 0; i < 3000; i++) api.step(sim);
+        expect(sim.alpha).toBeLessThan(0.005);
+        expect(sim.meanSpeed).toBeLessThan(0.02);
+    });
+
+    test("frames to rest do not scale with the corpus", () => {
+        // Per-frame cost is O(n) and always will be — something has to draw
+        // every node. What must NOT grow with the corpus is how many frames
+        // are spent before the thing stops moving, or the page gets slower
+        // twice over: more work per frame AND more frames. Measured against
+        // the live payload with the floor removed: 553 frames at 4,667 nodes,
+        // 588 at 9,334 — flat. With the floor: the cap, at every size.
+        function framesToRest(n) {
+            const { api } = loadSim(false);
+            const sim = api.build(corpus(n));
+            let peak = 0;
+            for (let i = 0; i < 4000; i++) {
+                api.step(sim);
+                if (i < 25) peak = Math.max(peak, sim.meanSpeed);
+                else if (sim.meanSpeed < peak * 0.01) return i;
+            }
+            return Infinity;
+        }
+        const small = framesToRest(400);
+        const large = framesToRest(1600);
+        expect(large).toBeLessThan(4000);
+        // Four times the corpus must not cost appreciably more frames. Loose
+        // enough that a layout-tuning change does not trip it, tight enough
+        // that "it never converges" cannot pass.
+        expect(large).toBeLessThan(small * 1.6);
+    });
+
     test("the animation loop can always terminate", () => {
         // The old loop called requestAnimationFrame unconditionally, OUTSIDE
         // its own budget check, so a callback stayed registered for the life of
@@ -402,9 +458,15 @@ describe("the simulation has to scale with the corpus", () => {
         const reschedule = body.indexOf("requestAnimationFrame(loop)");
         expect(reschedule).toBeGreaterThan(-1);
         expect(body.slice(0, reschedule)).toMatch(/return;/);
-        // And it stops on what a viewer can SEE, in screen pixels — this layout
-        // never converges, it settles into a permanent 0.08 px/frame creep.
+        // And it stops on what a viewer can SEE, in screen pixels. That used to
+        // be the ONLY thing that could end the run, because the layout could
+        // not converge; it is now a cheap early exit on top of a simulation
+        // that cools on its own. Both are kept — see "the simulation cools to
+        // a stop" for why the second one cannot be relied on alone.
         expect(SOURCE).toContain("IMPERCEPTIBLE_PX");
+        // A backstop, not the normal path. If this ever needs raising, the
+        // simulation has stopped converging and raising it is the wrong fix.
+        expect(SOURCE).toMatch(/var MAX_FRAMES = \d{3};/);
     });
 
     test("one malformed row cannot take out the whole map", () => {
