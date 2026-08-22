@@ -1061,6 +1061,23 @@
       })();
     }
 
+    /**
+     * Is the map actually in front of the visitor right now?
+     *
+     * The common path on this page is to scroll straight past the map to the
+     * searchable directory below it, and painting a canvas nobody is looking at
+     * is pure cost. Defaults to TRUE and stays true without IntersectionObserver
+     * — a browser that cannot tell us must not lose the animation, and the
+     * throttle above already bounds what that costs.
+     */
+    var visible = true;
+    function onScreen() { return visible; }
+    if (window.IntersectionObserver) {
+      new window.IntersectionObserver(function (entries) {
+        for (var vi = 0; vi < entries.length; vi++) visible = entries[vi].isIntersecting;
+      }, { rootMargin: "100px 0px" }).observe(canvas);
+    }
+
     settle(function () {
       fit(sim, w, h);
       draw(sim, w, h);
@@ -1100,20 +1117,119 @@
       // signature to watch for: if this number starts mattering again, the
       // simulation has stopped converging, and raising it is the wrong fix.
       var MAX_FRAMES = 900;
+
+      /**
+       * DRAWING IS THROTTLED SEPARATELY FROM STEPPING, and the throttle is
+       * driven by measurement rather than by anything the device claims.
+       *
+       * Where the time actually goes, measured on the live corpus: a step costs
+       * ~8 ms and a draw costs ~90 ms — ~96,000 canvas ops, 21,500 antialiased
+       * strokes and 5,100 arcs onto a 2x canvas. So the settle was ~90% DRAW,
+       * and it was drawing 571 times to animate something nobody watches for
+       * nine seconds.
+       *
+       * Stepping every frame is what converges the layout, and it is cheap.
+       * Drawing every frame is what pinned the core, and it is decoration. They
+       * were welded 1:1 for no reason.
+       *
+       * ⚠️ DO NOT "OPTIMISE" THIS BY BATCHING STEPS INTO THE DRAW FRAME. Running
+       * N steps and then a draw in one callback makes that callback N*8+90 ms —
+       * a LONGER long task, not a shorter one. The whole point is that a
+       * step-only frame costs 8 ms and is therefore not a long task at all.
+       *
+       * ── Why measured, and not navigator.hardwareConcurrency ───────────────
+       * The same code on the same laptop measured 69 ms/frame idle and ~101
+       * ms/frame at load average 16 — a 47% swing with nothing about the device
+       * changed. Every capability API returns the same answer in both cases.
+       * hardwareConcurrency is especially poor evidence here: this workload is
+       * single-threaded, so a cheap phone with 8 weak cores outranks a fast
+       * dual-core laptop. The cost is observable directly, every frame, for
+       * free — so observe it.
+       */
+      // Share of wall-clock time drawing may consume. At a 12 ms draw this is
+      // every frame (smooth); at 90 ms it is roughly four times a second. A
+      // slow machine gets a visibly stepped settle instead of a frozen tab,
+      // which is the honest trade — there is no budget at which 21,500 strokes
+      // are smooth on hardware that cannot afford them.
+      var DRAW_DUTY = 0.35;
+      // Always some visible progress, however expensive drawing turns out to
+      // be: without a ceiling a pathological device would draw once and appear
+      // to have hung.
+      var MAX_DRAW_INTERVAL_MS = 400;
+      // Wall-clock ceiling on the ANIMATED phase — a BACKSTOP, not the usual
+      // exit. Convergence takes ~571 steps at one step per frame, so a machine
+      // holding 60 fps finishes in ~9.5 s and never reaches this. It exists for
+      // the machine that cannot: past it the remaining steps run through the
+      // same chunked settle() used before the reveal — bounded slices, no long
+      // tasks, no drawing — and the result is drawn once.
+      //
+      // Set it BELOW ~10 s and a perfectly capable laptop gets its animation
+      // truncated, which is the opposite of the intent.
+      //
+      // Honest limit: settle() is itself bounded (600 steps / 900 ms), so a
+      // machine slow enough to land here may end on a layout that is settled
+      // but not fully converged. A slightly tangled static map beats a pinned
+      // core, and it is still every step the budget could buy.
+      var ANIMATE_BUDGET_MS = 15000;
+
       var stillFrames = 0;
       var frames = 0;
-      (function loop() {
-        if (frames++ >= MAX_FRAMES) return;
-        step(sim);
+      var drawCost = 0;
+      var draws = 0;
+      var lastDrawAt = 0;
+      var startedAt = now();
+
+      function drawNow() {
         // Re-fit as it settles: with the shortened pre-reveal settle the graph
         // is still contracting, and a fixed view would let it shrink away from
-        // the frame it was fitted to.
+        // the frame it was fitted to. fit() is a RENDERING concern, so it moves
+        // in here with the draw rather than running on every step.
+        var before = now();
         fit(sim, w, h);
         draw(sim, w, h);
+        var took = now() - before;
+        // Fast attack, slow decay. A machine that just got busy must throttle
+        // on the next frame, not average its way there over ten seconds; one
+        // cheap frame must not immediately undo that.
+        drawCost = took > drawCost ? took : drawCost * 0.9 + took * 0.1;
+        draws++;
+        lastDrawAt = now();
+      }
+
+      drawNow();
+
+      (function loop() {
+        if (frames++ >= MAX_FRAMES) { finish(); return; }
+        step(sim);
+
+        // Skip the draw entirely while the map is off screen. The visitor who
+        // scrolls straight down to the directory is the common case on this
+        // page, and painting a canvas nobody is looking at is pure cost. Steps
+        // continue, so the layout is settled when they scroll back.
+        if (onScreen()) {
+          var interval = Math.min(drawCost / DRAW_DUTY, MAX_DRAW_INTERVAL_MS);
+          if (now() - lastDrawAt >= interval) drawNow();
+        }
+
         stillFrames = sim.meanSpeed * view.scale < IMPERCEPTIBLE_PX ? stillFrames + 1 : 0;
-        if (stillFrames >= 2) return;
+        if (stillFrames >= 2) { finish(); return; }
+        if (now() - startedAt >= ANIMATE_BUDGET_MS) { finishInSlices(); return; }
         requestAnimationFrame(loop);
       })();
+
+      /** Settled: one full-detail draw, whatever the throttle last showed. */
+      function finish() {
+        drawNow();
+        // Hand the measurement to the next visit. Only once several draws have
+        // been timed: the first is cold-JIT and unrepresentative, and writing
+        // it alone would let one slow paint decide a week of page loads.
+        if (draws >= 4) rememberDrawCost(drawCost);
+      }
+
+      /** Out of animation budget: converge without drawing, then draw once. */
+      function finishInSlices() {
+        settle(finish);
+      }
     });
 
     canvas.addEventListener("click", function (ev) {
@@ -1302,7 +1418,162 @@
     io.observe(sentinel);
   }
 
-  whenNearlyVisible(load);
+  /* ------------------------------------------------------- the still poster */
+
+  /**
+   * A visitor who cannot use the live map gets a picture of it instead.
+   *
+   * On a phone this is not a degradation, it is strictly better. The map is a
+   * 5,000-node hairball drawn into 52vh: at that size a node is about two
+   * pixels, so it can be neither read nor tapped. Today such a visitor
+   * downloads ~294 KB of graph and runs a 5,000-body force simulation to
+   * produce something they cannot use. The poster is one image, appears
+   * immediately, and costs no CPU at all.
+   *
+   * ── The caption is DATED, and deliberately not live ──────────────────────
+   * The obvious move is to fetch the live stats and caption the poster with
+   * them. That would be a lie: the numbers would describe the corpus now and
+   * the picture would show the corpus on the day it was captured, and the gap
+   * grows ~150 sites a day. A snapshot gets a snapshot's caption. This also
+   * means the poster path makes NO api request whatsoever, which is the point.
+   *
+   * The visitor is not locked out — LOAD_LABEL below opens the real thing on
+   * demand. The heuristics here decide the default, never the ceiling.
+   */
+  var POSTER_SRC = "/images/marketing/www-rag/universe-poster.webp";
+  var POSTER_CAPTION =
+    "A snapshot of the RAG Universe, captured 22 August 2026: 5,119 sites, " +
+    "11,968 hyperlinks between them and 12,150 semantic ties. Size is pages " +
+    "indexed, and sites sit near the sites they resemble. The live map is " +
+    "interactive — every dot opens that site's assistant — but it is a heavy " +
+    "drawing on a small screen, so this page shows the picture by default.";
+  var LOAD_LABEL = "Load the interactive map";
+
+  /**
+   * Remember what this device MEASURED, not what it claims to be.
+   *
+   * The strongest possible pre-fetch signal is a real measurement from a real
+   * previous visit — better than any capability API, because the cost of this
+   * page is dominated by draw time and no API reports that. Stored with a
+   * timestamp and expired, because "slow" is a property of a moment (a busy
+   * laptop measured 47% worse than the same laptop idle) and must not become a
+   * permanent verdict on the machine.
+   */
+  var SLOW_KEY = "divinci-www-rag-universe-drawcost";
+  /**
+   * How expensive a draw has to be before this device skips the map next time.
+   *
+   * Deliberately HIGH, because the adaptive throttle changed what "too slow"
+   * means. An expensive draw is now managed rather than fatal: at 160 ms the
+   * throttle simply backs off to ~4 draws a second and the whole settle costs
+   * ~6.5 s of main thread instead of ~62 s. That is a perfectly usable page, so
+   * turning it into a poster would be taking something away for no reason.
+   *
+   * This threshold is for the device where even a throttled settle hurts. Set
+   * it near the throttle's own working range and an ordinary desktop that was
+   * briefly busy — a build running, forty tabs open — gets demoted to a still
+   * image for a week on the strength of one bad afternoon.
+   */
+  var SLOW_DRAW_MS = 300;
+  var SLOW_MEMORY_MS = 7 * 24 * 60 * 60 * 1000;
+
+  function recallDrawCost() {
+    try {
+      var raw = window.localStorage.getItem(SLOW_KEY);
+      if (!raw) return null;
+      var parts = raw.split(":");
+      var cost = parseFloat(parts[0]);
+      var at = parseFloat(parts[1]);
+      if (!isFinite(cost) || !isFinite(at)) return null;
+      if (Date.now() - at > SLOW_MEMORY_MS) return null;
+      return cost;
+    } catch (e) {
+      return null; // private mode, disabled storage — measure again, no harm
+    }
+  }
+
+  function rememberDrawCost(cost) {
+    try {
+      window.localStorage.setItem(SLOW_KEY, Math.round(cost) + ":" + Date.now());
+    } catch (e) { /* storage is a convenience here, never a requirement */ }
+  }
+
+  /** Why this visitor gets the poster, or null to draw the live map. */
+  function posterReason() {
+    var recalled = recallDrawCost();
+    if (recalled !== null && recalled > SLOW_DRAW_MS) return "measured-slow";
+    // Guarded like every other host object this file touches (matchMedia,
+    // IntersectionObserver, module). A browser always has `navigator`; a test
+    // harness or a worker running this file for its layout maths does not, and
+    // an unguarded read there throws before the map is ever built.
+    var nav = typeof navigator !== "undefined" ? navigator : null;
+    var conn = nav && (nav.connection || nav.mozConnection || nav.webkitConnection);
+    if (conn) {
+      // The visitor has explicitly asked for less data. ~294 KB of decoration
+      // is exactly what that setting means to decline.
+      if (conn.saveData === true) return "save-data";
+      if (conn.effectiveType === "slow-2g" || conn.effectiveType === "2g") return "slow-network";
+    }
+    // Coarse pointer AND a small viewport. Both, because a touchscreen laptop
+    // has a coarse pointer and can render this perfectly well, and a narrow
+    // desktop window is not a phone.
+    var coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+    if (coarse && Math.min(window.innerWidth, window.innerHeight) < 720) return "small-screen";
+    return null;
+  }
+
+  function showPoster(reason) {
+    var stage = canvas.parentNode;
+    var img = document.createElement("img");
+    img.className = "www-rag-universe-poster";
+    img.src = POSTER_SRC;
+    img.alt =
+      "A still of the RAG Universe map: thousands of indexed websites drawn as " +
+      "a dense cluster, positioned so that sites resembling each other sit together.";
+    img.decoding = "async";
+    // If the poster itself fails, fall back to the live map rather than
+    // leaving an empty box — the failure mode of a missing image must not be
+    // a missing section.
+    img.onerror = function () {
+      if (img.parentNode) img.parentNode.removeChild(img);
+      canvas.style.display = "";
+      load();
+    };
+    canvas.style.display = "none";
+    stage.insertBefore(img, canvas);
+
+    if (caption) caption.textContent = POSTER_CAPTION;
+
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "www-rag-universe-load";
+    button.textContent = LOAD_LABEL;
+    button.addEventListener("click", function () {
+      button.disabled = true;
+      button.textContent = "Loading…";
+      if (img.parentNode) img.parentNode.removeChild(img);
+      canvas.style.display = "";
+      if (button.parentNode) button.parentNode.removeChild(button);
+      load();
+    });
+    stage.appendChild(button);
+
+    section.hidden = false;
+  }
+
+  var reason = posterReason();
+  // Record the decision either way. Which path a visitor got is otherwise
+  // invisible from outside — the poster and the live map both end up as
+  // "something in the box" — and an E2E cannot assert on a branch it cannot
+  // see. `data-poster-reason` names WHY, so a wrong answer is diagnosable
+  // rather than merely wrong.
+  section.setAttribute("data-universe-mode", reason ? "poster" : "live");
+  if (reason) {
+    section.setAttribute("data-poster-reason", reason);
+    showPoster(reason);
+  } else {
+    whenNearlyVisible(load);
+  }
 
   // Test hook. The scaling guard in tests/unit/www-rag-universe.test.js drives
   // the simulation directly, because the property that matters — that the work

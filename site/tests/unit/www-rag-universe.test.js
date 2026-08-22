@@ -35,6 +35,18 @@ const SOURCE = fs.readFileSync(
     'utf8'
 );
 
+/**
+ * SOURCE with comments removed.
+ *
+ * Several assertions here are of the form "this file must not USE X". Run
+ * against the raw file they also forbid MENTIONING X — which is backwards,
+ * because the reason X is a bad idea belongs in a comment right where someone
+ * would otherwise reach for it. Strip the prose, assert on the code.
+ */
+const CODE = SOURCE
+    .replace(/\/\*[\s\S]*?\*\//g, " ")
+    .replace(/(^|[^:])\/\/[^\n]*/g, "$1");
+
 const STATS = {
     sites: 1486,
     linkEdges: 103,
@@ -295,6 +307,157 @@ describe("map freshness", () => {
  * assertion here is by HOSTNAME — checking an edge is `[0, 2]` would pass
  * equally well if the decoder and the test shared an off-by-one.
  */
+/**
+ * Drawing is throttled separately from stepping.
+ *
+ * Measured on the live corpus: a step costs ~8 ms, a draw ~90 ms (~96,000
+ * canvas ops). The settle was therefore ~90% DRAW, and it drew 571 times to
+ * animate something nobody watches for nine seconds. Decoupling the two took
+ * the page from 615 long tasks / 62,465 ms of blocked main thread to 47 /
+ * 6,477 ms, measured in Chromium against production with the map on screen the
+ * whole run.
+ *
+ * These are source assertions rather than behavioural ones, deliberately: the
+ * behaviour needs a real canvas with real rasterisation to mean anything, and
+ * a jsdom canvas would happily "prove" a throttle that does nothing. What can
+ * be pinned here is the SHAPE — that the two rates are still separate, and
+ * that nobody has re-welded them. The numbers are pinned by the browser
+ * measurement in the commit message and by the E2E budget.
+ */
+describe("the draw throttle", () => {
+    const loop = SOURCE.slice(SOURCE.indexOf("function loop()"), SOURCE.indexOf("function finish()"));
+
+    test("steps every frame but does not draw every frame", () => {
+        // step() unconditional, draw behind an interval check.
+        expect(loop).toMatch(/step\(sim\);/);
+        expect(loop).toMatch(/lastDrawAt >= interval/);
+    });
+
+    test("never batches steps into the draw frame", () => {
+        // Running N steps and then a draw in one callback makes that callback
+        // N*8+90 ms — a LONGER long task, not a shorter one. The whole point is
+        // that a step-only frame costs ~8 ms and is not a long task at all.
+        expect(loop).not.toMatch(/for\s*\([^)]*\)\s*\{?\s*step\(sim\)/);
+        expect(loop).not.toMatch(/while\s*\([^)]*\)\s*\{?\s*step\(sim\)/);
+    });
+
+    test("the draw interval comes from a MEASURED cost, not a device claim", () => {
+        // The same code on the same laptop measured 69 ms/frame idle and ~101
+        // at load average 16 — a 47% swing with nothing about the device
+        // changed. Every capability API returns the same answer in both cases.
+        expect(SOURCE).toContain("drawCost");
+        expect(SOURCE).toMatch(/interval = Math\.min\(drawCost \/ DRAW_DUTY/);
+        // Against CODE, not the file: the comments name these APIs precisely to
+        // explain why they are not used, and a test that forbade the string
+        // would be pressure to delete the explanation.
+        expect(CODE).not.toContain("hardwareConcurrency");
+        expect(CODE).not.toContain("deviceMemory");
+    });
+
+    test("the cost estimate attacks fast and decays slowly", () => {
+        // A machine that just got busy must throttle on the NEXT frame, not
+        // average its way there over ten seconds.
+        expect(SOURCE).toMatch(/drawCost = took > drawCost \? took : drawCost \* 0\.9/);
+    });
+
+    test("it stops drawing while the map is off screen", () => {
+        // Scrolling straight past to the directory is the common path on this
+        // page; painting a canvas nobody is looking at is pure cost.
+        expect(loop).toContain("onScreen()");
+        // …but a browser that cannot tell us must not lose the animation.
+        expect(SOURCE).toMatch(/var visible = true;/);
+    });
+
+    test("the animation budget cannot truncate a machine that can afford it", () => {
+        // Convergence takes ~571 steps at one step per frame, so a machine
+        // holding 60 fps needs ~9.5 s. A budget below that cuts off a
+        // perfectly capable laptop, which is the opposite of the intent.
+        const m = SOURCE.match(/ANIMATE_BUDGET_MS = (\d+)/);
+        expect(m).toBeTruthy();
+        expect(Number(m[1])).toBeGreaterThan(10000);
+    });
+
+    test("running out of animation budget still reaches a settled layout", () => {
+        // Bounded slices, no drawing, then one draw — never a half-drawn map.
+        expect(SOURCE).toMatch(/function finishInSlices\(\)\s*\{\s*settle\(finish\);/);
+    });
+});
+
+/**
+ * The still poster.
+ *
+ * On a phone the live map is a 5,000-node hairball in 52vh — a node is about
+ * two pixels, so it can be neither read nor tapped — and producing it costs
+ * ~294 KB of graph and a 5,000-body simulation. The poster is strictly better
+ * there, not a degradation.
+ */
+describe("the poster path", () => {
+    test("makes no API request at all", () => {
+        // The saving is the whole point: the poster branch must not fetch, and
+        // must not fall through into whenNearlyVisible(load). Asserted as an
+        // if/else over the decision — the two must stay mutually exclusive,
+        // however the branch bodies grow.
+        expect(CODE).toMatch(
+            /if \(reason\) \{[\s\S]{0,300}showPoster\(reason\);[\s\S]{0,40}\} else \{[\s\S]{0,120}whenNearlyVisible\(load\);/,
+        );
+    });
+
+    test("captions the still with DATED counts, never live ones", () => {
+        // Fetching live stats to caption a static image would be a lie that
+        // grows ~150 sites a day: the numbers would describe the corpus now and
+        // the picture the corpus on capture day.
+        expect(SOURCE).toMatch(/POSTER_CAPTION[\s\S]{0,200}captured \d{1,2} \w+ \d{4}/);
+        const poster = SOURCE.slice(SOURCE.indexOf("function showPoster"), SOURCE.indexOf("var reason = posterReason()"));
+        expect(poster).not.toContain("describe(");
+        expect(poster).not.toContain("fetch(");
+    });
+
+    test("leaves the visitor a way to the real map", () => {
+        // The heuristics decide the DEFAULT, never the ceiling.
+        expect(SOURCE).toContain("LOAD_LABEL");
+        const poster = SOURCE.slice(SOURCE.indexOf("function showPoster"), SOURCE.indexOf("var reason = posterReason()"));
+        expect(poster).toMatch(/addEventListener\("click"[\s\S]*load\(\)/);
+    });
+
+    test("a missing poster image falls back to the live map, not an empty box", () => {
+        expect(SOURCE).toMatch(/img\.onerror = function \(\)[\s\S]{0,240}load\(\);/);
+    });
+
+    test("needs BOTH a coarse pointer and a small viewport", () => {
+        // A touchscreen laptop has a coarse pointer and renders this fine; a
+        // narrow desktop window is not a phone.
+        expect(SOURCE).toMatch(/coarse && Math\.min\(window\.innerWidth, window\.innerHeight\) < 720/);
+    });
+
+    test("the remembered verdict expires, and is not a permanent label", () => {
+        // "Slow" is a property of a moment — a busy laptop measured 47% worse
+        // than the same laptop idle. It must not become a verdict on the
+        // machine.
+        expect(SOURCE).toContain("SLOW_MEMORY_MS");
+        expect(SOURCE).toMatch(/Date\.now\(\) - at > SLOW_MEMORY_MS/);
+    });
+
+    test("the slow threshold sits well above the throttle's working range", () => {
+        // With the throttle in place a 160 ms draw is managed, not fatal — the
+        // settle costs ~6.5 s instead of ~62 s, which is a usable page. A
+        // threshold near that range demotes an ordinary desktop that was
+        // briefly busy to a still image for a week.
+        const m = SOURCE.match(/SLOW_DRAW_MS = (\d+)/);
+        expect(m).toBeTruthy();
+        expect(Number(m[1])).toBeGreaterThanOrEqual(250);
+    });
+
+    test("storage failures never break the page", () => {
+        // Private mode throws on both read and write.
+        expect(SOURCE).toMatch(/function recallDrawCost\(\)[\s\S]{0,700}catch \(e\)/);
+        expect(SOURCE).toMatch(/function rememberDrawCost\(cost\)[\s\S]{0,300}catch \(e\)/);
+    });
+
+    test("one cold-JIT draw cannot decide a week of page loads", () => {
+        expect(SOURCE).toMatch(/if \(draws >= 4\) rememberDrawCost\(drawCost\);/);
+    });
+});
+
 describe("the compact payload decoder", () => {
     function loadDecoder() {
         const vm = require('vm');
@@ -303,6 +466,7 @@ describe("the compact payload decoder", () => {
             getContext: () => new Proxy({}, { get: () => () => {} }),
             getBoundingClientRect: () => ({ width: 1200, height: 620, left: 0, top: 0 }),
             addEventListener: () => {},
+            setAttribute: () => {}, removeAttribute: () => {},
             set textContent(v) {}, get textContent() { return ''; },
         });
         const sandbox = {
@@ -311,6 +475,10 @@ describe("the compact payload decoder", () => {
             document: { getElementById: el, createElement: el, hidden: false },
             window: { devicePixelRatio: 2, matchMedia: () => ({ matches: false }), addEventListener: () => {} },
             requestAnimationFrame: () => {},
+            // The module reads these at load time to decide poster-vs-map.
+            // A sandbox without them exercises only the guarded path, which
+            // would hide a real regression in the branch that matters.
+            navigator: { connection: { saveData: false, effectiveType: "4g" } },
             fetch: () => new Promise(() => {}),
         };
         sandbox.globalThis = sandbox;
@@ -389,6 +557,7 @@ describe("the simulation has to scale with the corpus", () => {
             getContext: () => ctx2d,
             getBoundingClientRect: () => ({ width: 1200, height: 620, left: 0, top: 0 }),
             addEventListener: () => {},
+            setAttribute: () => {}, removeAttribute: () => {},
             set textContent(v) {}, get textContent() { return ''; },
         });
         // Count Math.sqrt as a deterministic, machine-independent proxy for the
@@ -408,8 +577,13 @@ describe("the simulation has to scale with the corpus", () => {
                 devicePixelRatio: 2,
                 matchMedia: () => ({ matches: false }),
                 addEventListener: () => {},
+            setAttribute: () => {}, removeAttribute: () => {},
             },
             requestAnimationFrame: () => {},
+            // The module reads these at load time to decide poster-vs-map.
+            // A sandbox without them exercises only the guarded path, which
+            // would hide a real regression in the branch that matters.
+            navigator: { connection: { saveData: false, effectiveType: "4g" } },
             // Never resolves: the hook is all this test wants, and a resolved
             // fetch would start the real boot sequence underneath it.
             fetch: () => new Promise(() => {}),

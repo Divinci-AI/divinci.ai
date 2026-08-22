@@ -1045,8 +1045,38 @@
     /* The canvas is clickable (a node opens that site) — never eat its clicks. */
     pointer-events: none;
 }
+/* The still poster, for a visitor who cannot use the live map. Sized to the
+   same box the canvas occupies so the section does not jump when the visitor
+   presses "Load the interactive map" and the two swap. */
+.www-rag-universe-poster {
+    display: block;
+    width: 100%;
+    height: 62vh;
+    max-height: 620px;
+    object-fit: cover;
+    border-radius: 14px;
+    background: #0b0b12;
+}
+
+.www-rag-universe-load {
+    display: block;
+    margin: 14px auto 0;
+    padding: 9px 18px;
+    font: inherit;
+    font-size: 14px;
+    color: #e9ecf5;
+    background: rgba(57, 135, 229, 0.16);
+    border: 1px solid rgba(57, 135, 229, 0.55);
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.www-rag-universe-load:hover { background: rgba(57, 135, 229, 0.28); }
+.www-rag-universe-load:disabled { opacity: 0.6; cursor: default; }
+
 @media (max-width: 720px) {
     .www-rag-universe-canvas { height: 52vh; }
+    .www-rag-universe-poster { height: 52vh; }
     /* The overlay needs empty dark canvas to sit on, and a phone has none:
        at 52vh the caption covers the map it is describing, and the fixed
        research banner eats its first line. Below the canvas it just reads. */
