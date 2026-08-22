@@ -282,6 +282,100 @@ describe("map freshness", () => {
  * exist so the next person finds out from a red build instead of from a
  * visitor, and so "restore the simple all-pairs loop for clarity" fails loudly.
  */
+/**
+ * The compact wire format.
+ *
+ * The endpoint shipped 3.24 MB (544 KB gzipped) to every visitor of this page,
+ * and the client parsed all of it before it could draw anything. Referencing
+ * nodes by INDEX instead of repeating two hostnames on each of 21,508 edges
+ * takes that to 1.33 MB / 275 KB.
+ *
+ * The failure mode of an index remap is silent: an edge that comes out pointing
+ * at the wrong node still renders and still looks like a graph. So every
+ * assertion here is by HOSTNAME — checking an edge is `[0, 2]` would pass
+ * equally well if the decoder and the test shared an off-by-one.
+ */
+describe("the compact payload decoder", () => {
+    function loadDecoder() {
+        const vm = require('vm');
+        const el = () => ({
+            hidden: true, style: {}, width: 0, height: 0,
+            getContext: () => new Proxy({}, { get: () => () => {} }),
+            getBoundingClientRect: () => ({ width: 1200, height: 620, left: 0, top: 0 }),
+            addEventListener: () => {},
+            set textContent(v) {}, get textContent() { return ''; },
+        });
+        const sandbox = {
+            module: { exports: { __wwwRagUniverseTestHook: true } },
+            Math, Date, JSON, Error, isFinite, Infinity, Float64Array, Int32Array, Object, Array, console,
+            document: { getElementById: el, createElement: el, hidden: false },
+            window: { devicePixelRatio: 2, matchMedia: () => ({ matches: false }), addEventListener: () => {} },
+            requestAnimationFrame: () => {},
+            fetch: () => new Promise(() => {}),
+        };
+        sandbox.globalThis = sandbox;
+        vm.createContext(sandbox);
+        vm.runInContext(SOURCE, sandbox);
+        return sandbox.module.exports.expandCompact;
+    }
+
+    const compact = () => ({
+        format: "compact",
+        nodes: [{ host: "a.example" }, { host: "b.example" }, { host: "c.example" }],
+        linkEdges: [[0, 2, 7, 9], [1, 0, 3, 4]],
+        semanticEdges: [[0, 1, 0.988]],
+    });
+
+    test("resolves every edge back to the hosts it named", () => {
+        const g = loadDecoder()(compact());
+        expect(g.linkEdges).toEqual([
+            { source: "a.example", target: "c.example", pages: 7, links: 9 },
+            { source: "b.example", target: "a.example", pages: 3, links: 4 },
+        ]);
+        expect(g.semanticEdges).toEqual([
+            { source: "a.example", target: "b.example", similarity: 0.988 },
+        ]);
+    });
+
+    test("keeps direction — b→a is not a→b", () => {
+        // A decoder that sorted or normalised the pair would pass the test
+        // above while inverting a directed fact about the web.
+        const g = loadDecoder()(compact());
+        expect(g.linkEdges[1].source).toBe("b.example");
+        expect(g.linkEdges[1].target).toBe("a.example");
+    });
+
+    test("drops an out-of-range index instead of throwing on undefined.host", () => {
+        // A malformed payload must cost an edge, not the whole section: load()
+        // turns any throw here into "endpoint unavailable" and hides the map.
+        const g = loadDecoder()({
+            format: "compact",
+            nodes: [{ host: "a.example" }],
+            linkEdges: [[0, 99, 1, 1], [-1, 0, 1, 1]],
+            semanticEdges: [[0, 5, 0.9]],
+        });
+        expect(g.linkEdges).toEqual([]);
+        expect(g.semanticEdges).toEqual([]);
+    });
+
+    test("passes a legacy payload straight through, untouched", () => {
+        // The server defaults to legacy and an older server ignores the query
+        // parameter entirely, so this runs against the old shape in production
+        // until both sides have shipped. It must be a no-op, not a mangling.
+        const legacy = {
+            nodes: [{ host: "a.example" }],
+            linkEdges: [{ source: "a.example", target: "a.example", pages: 1, links: 1 }],
+            semanticEdges: [{ source: "a.example", target: "a.example", similarity: 0.9 }],
+        };
+        expect(loadDecoder()(JSON.parse(JSON.stringify(legacy)))).toEqual(legacy);
+    });
+
+    test("the request actually asks for the compact format", () => {
+        // Decoding it is worth nothing if the URL never opts in.
+        expect(SOURCE).toContain("www-rag-universe?format=compact");
+    });
+});
+
 describe("the simulation has to scale with the corpus", () => {
     /** Load the browser IIFE with a stubbed DOM and pull out its test hook. */
     function loadSim(countCalls) {

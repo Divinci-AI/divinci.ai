@@ -85,7 +85,17 @@
 (function () {
   "use strict";
 
-  var API_URL = "https://api.divinci.app/api/v1/www-rag-universe";
+  /**
+   * `format=compact` halves the payload. Measured against the live 4,667-node
+   * corpus: 3.24 MB / 544 KB gzipped becomes 1.33 MB / 275 KB, because the
+   * compact form references nodes by index instead of repeating two hostnames
+   * on each of 21,508 edges.
+   *
+   * An old server that has not shipped the format ignores the parameter and
+   * answers legacy, which expandCompact() passes straight through — so this is
+   * safe to deploy in either order.
+   */
+  var API_URL = "https://api.divinci.app/api/v1/www-rag-universe?format=compact";
   var CHAT_BASE = "https://chat.divinci.app/ai-release/";
 
   // Palette validated for colour-vision deficiency against the #0b0b12 surface
@@ -1187,6 +1197,43 @@
     );
   }
 
+  /**
+   * Widen a compact payload back into the shape build() reads.
+   *
+   * Deliberately done HERE and not inside build(): the layout is the part that
+   * was just made to converge, and threading two edge encodings through it
+   * would put that at risk to save a few thousand short-lived objects. The
+   * saving that mattered was on the wire and in JSON.parse, and both have
+   * already happened by the time this runs.
+   *
+   * ⚠️ Indices are positions in THIS response's `nodes` array and mean nothing
+   * outside it. An out-of-range index is dropped rather than resolved to
+   * `undefined.host`, which would throw and take the whole section down.
+   */
+  function expandCompact(graph) {
+    if (!graph || graph.format !== "compact") return graph;
+    var nodes = graph.nodes || [];
+    function host(i) {
+      var n = typeof i === "number" ? nodes[i] : null;
+      return n ? n.host : null;
+    }
+    var linkEdges = [];
+    (graph.linkEdges || []).forEach(function (e) {
+      var s = host(e[0]), t = host(e[1]);
+      if (s === null || t === null) return;
+      linkEdges.push({ source: s, target: t, pages: e[2], links: e[3] });
+    });
+    var semanticEdges = [];
+    (graph.semanticEdges || []).forEach(function (e) {
+      var s = host(e[0]), t = host(e[1]);
+      if (s === null || t === null) return;
+      semanticEdges.push({ source: s, target: t, similarity: e[2] });
+    });
+    graph.linkEdges = linkEdges;
+    graph.semanticEdges = semanticEdges;
+    return graph;
+  }
+
   function load() {
     fetch(API_URL, { credentials: "omit" })
       .then(function (res) {
@@ -1201,6 +1248,7 @@
           throw new Error("universe endpoint returned non-JSON");
         }
         if (!graph || !graph.nodes || !graph.nodes.length) throw new Error("empty universe");
+        graph = expandCompact(graph);
         if (caption) caption.textContent = describe(graph.stats);
         start(graph);
       })
@@ -1269,5 +1317,6 @@
       module.exports.__wwwRagUniverseTestHook) {
     module.exports.build = build;
     module.exports.step = step;
+    module.exports.expandCompact = expandCompact;
   }
 })();
