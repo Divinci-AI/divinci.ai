@@ -9,6 +9,25 @@
 # would fix that, but the deploy is a local `wrangler deploy` against a Keychain
 # OAuth token anyway, so CI could never finish the job it started.
 #
+# ⛔ DO NOT WIRE THIS INTO A LaunchAgent. Measured 2026-08-22: a launchd-spawned
+# /bin/bash cannot READ this repo. The checkout lives under ~/Documents, which is
+# TCC-protected, and TCC grants attach to the INTERPRETER, not the script — so
+# the only way to make it work is to give /bin/bash Full Disk Access, i.e. every
+# command on the machine. The failure is also easy to misread:
+#
+#     ls  /Users/…/site/package.json   ->  succeeds, prints the size
+#     cat /Users/…/site/package.json   ->  Operation not permitted
+#
+# stat() is allowed and open() is denied, so `[ -r "$f" ]` returns TRUE and the
+# job then dies somewhere further in. Run this from a terminal session, which
+# already holds Documents access.
+#
+# The thing that actually enforces freshness without a daemon is
+# check-universe-freshness.mjs, wired into every wrangler build command: a deploy
+# with figures older than 45 days fails. That covers the case this script exists
+# for — a stale, undated figure on every share of the page — at the only moment
+# it can still be fixed.
+#
 # WHAT IT DOES NOT DO: it does not push to main and it does not deploy. It opens
 # a PR, because the output is a PICTURE — a capture can come out wrong in ways no
 # assertion catches, and a human should look at it before it becomes the image
