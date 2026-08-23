@@ -21,12 +21,21 @@
  */
 import fs from "fs";
 import path from "path";
+import { execFileSync } from "child_process";
+import {
+	CAPTION_RE,
+	evalCaptionLiteral,
+	renderCaptionLiteral,
+} from "./lib/caption-source.mjs";
 import { fileURLToPath } from "url";
 import { chromium } from "playwright";
 import sharp from "sharp";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(__dirname, "../static/images/marketing/www-rag/universe-poster.webp");
+const UNIVERSE_JS = path.join(__dirname, "../static/js/www-rag-universe.js");
+const FIGURES_FILE = path.join(__dirname, "og-assets", "figures.json");
+const OG_SLUG = "www-rag";
 
 const argv = process.argv.slice(2);
 const urlArg = argv.indexOf("--url");
@@ -44,6 +53,12 @@ const URL = urlArg !== -1 ? argv[urlArg + 1] : "https://divinci.ai/www-rag/";
 // baking one crop in would look wrong on the other. Cropping to 4:3 also cut
 // the canvas-drawn belt legend out of the bottom-left corner.
 const WIDTH = 1400;
+
+function localDate() {
+	const d = new Date();
+	const pad = (n) => String(n).padStart(2, "0");
+	return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
 
 const browser = await chromium.launch();
 const page = await browser.newPage({
@@ -147,10 +162,93 @@ await sharp(png)
 
 const bytes = fs.statSync(OUT).size;
 console.log(`\n✅ ${path.relative(process.cwd(), OUT)} — ${(bytes / 1024).toFixed(0)} KB`);
-console.log("\nUpdate POSTER_CAPTION in static/js/www-rag-universe.js with:");
-console.log(
-	`  captured ${new Date().toISOString().slice(0, 10)}: ` +
-	`${stats.sites.toLocaleString()} sites, ` +
-	`${stats.linkEdges.toLocaleString()} hyperlinks, ` +
-	`${stats.semanticEdges.toLocaleString()} semantic ties`,
-);
+
+// ---------------------------------------------------------------------------
+// Everything below keeps the WORDS in step with the PICTURE.
+//
+// The poster is a still, so its caption states a date and three counts. Those
+// were updated by hand, from a line this script printed — which is a step that
+// gets skipped, and a caption claiming 5,119 sites over a picture of 6,486 is
+// worse than no caption at all. So the script that takes the picture also
+// writes the words, and refuses rather than guessing.
+// ---------------------------------------------------------------------------
+
+const n = (v) => Number(v).toLocaleString("en-US");
+const captured = new Date().toLocaleDateString("en-GB", {
+	day: "numeric",
+	month: "long",
+	year: "numeric",
+});
+
+const caption =
+	`A snapshot of the RAG Universe, captured ${captured}: ${n(stats.sites)} sites, ` +
+	`${n(stats.linkEdges)} hyperlinks between them and ${n(stats.semanticEdges)} semantic ` +
+	`ties. Size is pages indexed, and sites sit near the sites they resemble. The live ` +
+	`map is interactive — every dot opens that site's assistant — but it is a heavy ` +
+	`drawing on a small screen, so this page shows the picture by default.`;
+
+const literal = renderCaptionLiteral(caption);
+
+const source = fs.readFileSync(UNIVERSE_JS, "utf8");
+// Exactly one match or nothing happens — a silent no-op here would ship a
+// stale caption under a fresh picture, which is what this section prevents.
+const matches = source.match(new RegExp(CAPTION_RE.source, "g")) || [];
+if (matches.length !== 1) {
+	throw new Error(
+		`expected exactly ONE POSTER_CAPTION declaration in ${path.basename(UNIVERSE_JS)}, ` +
+		`found ${matches.length} — refusing to rewrite it`,
+	);
+}
+const rewritten = source.replace(CAPTION_RE, `$1    ${literal}$2`);
+
+// Read back what we are about to write and CHECK IT SAYS WHAT WE MEANT.
+// Emitting source is easy to get subtly wrong in ways that still parse; the
+// only honest test is to evaluate the result and compare it to the input.
+const emitted = rewritten.match(CAPTION_RE)[0];
+let roundTrip;
+try {
+	roundTrip = evalCaptionLiteral(emitted);
+} catch (err) {
+	throw new Error(`emitted POSTER_CAPTION does not parse: ${err.message}`);
+}
+if (roundTrip !== caption) {
+	throw new Error(
+		"emitted POSTER_CAPTION does not round-trip — refusing to write.\n" +
+		`  wanted (${caption.length} chars): ${JSON.stringify(caption.slice(0, 90))}…\n` +
+		`  got    (${String(roundTrip).length} chars): ${JSON.stringify(String(roundTrip).slice(0, 90))}…`,
+	);
+}
+
+if (rewritten === source) {
+	console.log("   caption already current — unchanged");
+} else {
+	fs.writeFileSync(UNIVERSE_JS, rewritten);
+	console.log(`   caption rewritten in ${path.relative(process.cwd(), UNIVERSE_JS)}`);
+}
+
+// The unfurl card's figures strip. Written to a committed file rather than
+// fetched at card-build time so `npm run og` stays offline and deterministic.
+const figuresLine =
+	`${n(stats.sites)} sites · ${n(stats.linkEdges)} links · ` +
+	`${n(stats.semanticEdges)} semantic ties`;
+const figures = JSON.parse(fs.readFileSync(FIGURES_FILE, "utf8"));
+figures[OG_SLUG] = {
+	line: figuresLine,
+	capturedAt: localDate(),
+};
+fs.writeFileSync(FIGURES_FILE, JSON.stringify(figures, null, 2) + "\n");
+console.log(`   og figures: ${figuresLine}`);
+
+// Redraw the cards so the repo is CONSISTENT when this script exits. The
+// wrangler build commands run zola only — they do NOT run `npm run og` — so
+// whatever is committed under static/images/og/ is exactly what deploys.
+if (process.argv.includes("--no-og")) {
+	console.log("   skipping card rebuild (--no-og)");
+} else {
+	execFileSync("node", [path.join(__dirname, "gen-og-images.mjs")], {
+		stdio: "inherit",
+		cwd: path.join(__dirname, ".."),
+	});
+}
+
+console.log("\nNext: review the picture, then commit and deploy the site.");

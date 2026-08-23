@@ -1,0 +1,7 @@
+{
+  "_comment": "Live figures drawn onto specific OG cards. WRITTEN BY scripts/gen-universe-poster.mjs, read by scripts/gen-og-images.mjs. Committed on purpose: the OG build must stay offline and deterministic, so it never fetches the API. A slug missing from this file simply gets no figures strip.",
+  "www-rag": {
+    "line": "6,521 sites · 15,785 links · 15,469 semantic ties",
+    "capturedAt": "2026-08-22"
+  }
+}

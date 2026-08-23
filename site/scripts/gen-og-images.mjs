@@ -28,6 +28,27 @@ const CONTENT = join(ROOT, "content");
 const STATIC = join(ROOT, "static");
 const ROBOTS = join(HERE, "og-assets", "robots");
 const OUT = join(STATIC, "images", "og");
+const FIGURES_FILE = join(HERE, "og-assets", "figures.json");
+
+/**
+ * Live corpus figures drawn onto specific cards, keyed by slug.
+ *
+ * Read from a COMMITTED file rather than fetched. An unfurl card is built at
+ * `npm run og` time, which also runs in CI and on machines with no network —
+ * fetching here would make the build non-deterministic and would fail it
+ * whenever the API was down, to decorate a picture. gen-universe-poster.mjs
+ * writes this file when it refreshes the poster, so the two always agree.
+ *
+ * Missing file or missing slug = no strip. The card is still complete without
+ * it, so this must never be a hard failure.
+ */
+async function loadFigures() {
+  try {
+    return JSON.parse(await readFile(FIGURES_FILE, "utf8"));
+  } catch {
+    return {};
+  }
+}
 
 const W = 1200;
 const H = 630;
@@ -237,7 +258,7 @@ function resolveHero(slug, extra) {
   return null;
 }
 
-function textSvg({ title, subtitle, section, accent }) {
+function textSvg({ title, subtitle, section, accent, figures }) {
   const size = title.length > 70 ? 44 : title.length > 42 ? 52 : 60;
   const lines = wrap(title, 640, size, 3);
   const startY = 200;
@@ -277,6 +298,12 @@ function textSvg({ title, subtitle, section, accent }) {
         `font-size="${subSize}" fill="#e2d6c2">${esc(l)}</text>`,
     )
     .join("\n  ")}
+  ${
+    figures
+      ? `<text x="72" y="${H - 64}" font-family="Helvetica,Arial,sans-serif" font-size="19" ` +
+        `fill="#cbbfa9" opacity="0.92">${esc(figures)}</text>`
+      : ""
+  }
   <text x="72" y="${H - 28}" font-family="Helvetica,Arial,sans-serif" font-size="22"
         font-weight="600" fill="${esc(accent)}">divinci.ai</text>
 </svg>`;
@@ -365,6 +392,7 @@ async function compose(page) {
     subtitle: page.subtitle,
     section: page.section,
     accent: page.accent,
+    figures: page.figures,
   });
 
   const card = await sharp(scene)
@@ -394,6 +422,7 @@ async function walkMd(dir, out = []) {
 }
 
 async function collectPages() {
+  const figures = await loadFigures();
   const pages = [];
   for (const file of await walkMd(CONTENT)) {
     const rel = relative(CONTENT, file).replace(/\\/g, "/");
@@ -412,6 +441,7 @@ async function collectPages() {
       accent: section.accent,
       robot: robotFileFor(slug),
       hero: resolveHero(slug, extra),
+      figures: figures[slug]?.line,
     });
   }
 
@@ -452,6 +482,7 @@ await clearPreviousPngs(OUT);
 
 let heroes = 0;
 let robots = 0;
+const withFigures = pages.filter((p) => p.figures).map((p) => p.slug);
 for (const page of pages) {
   const kind = await compose(page);
   if (kind === "hero") heroes += 1;
@@ -468,4 +499,12 @@ if (existsSync(blogCard)) {
 
 console.log(
   `gen-og-images: wrote ${pages.length} card(s) (${heroes} hero, ${robots} robot) → static/images/og/`,
+);
+// Say it out loud. A figures strip that silently stopped being drawn — a
+// renamed slug, an unreadable figures.json — looks exactly like a card that
+// never had one, and the whole point is that this number moves.
+console.log(
+  withFigures.length
+    ? `gen-og-images: live figures drawn on ${withFigures.join(", ")}`
+    : "gen-og-images: no live figures strip on any card (scripts/og-assets/figures.json empty or unreadable)",
 );

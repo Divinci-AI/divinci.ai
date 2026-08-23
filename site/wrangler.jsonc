@@ -73,7 +73,7 @@
   },
   "compatibility_flags": ["nodejs_compat"],
   "build": {
-    "command": "python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build"
+    "command": "node scripts/check-universe-freshness.mjs && python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build"
   },
   "limits": {
     "cpu_ms": 50
@@ -96,7 +96,7 @@
       ],
       "workers_dev": true,
       "build": {
-        "command": "python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build --base-url https://dev.divinci.ai"
+        "command": "node scripts/check-universe-freshness.mjs && python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build --base-url https://dev.divinci.ai"
       }
     },
     "staging": {
@@ -122,7 +122,7 @@
       ],
       "workers_dev": true,
       "build": {
-        "command": "python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build --base-url https://staging.divinci.ai"
+        "command": "node scripts/check-universe-freshness.mjs && python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build --base-url https://staging.divinci.ai"
       }
     }
   }

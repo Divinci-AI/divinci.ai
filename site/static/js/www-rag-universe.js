@@ -1442,11 +1442,12 @@
    */
   var POSTER_SRC = "/images/marketing/www-rag/universe-poster.webp";
   var POSTER_CAPTION =
-    "A snapshot of the RAG Universe, captured 22 August 2026: 5,119 sites, " +
-    "11,968 hyperlinks between them and 12,150 semantic ties. Size is pages " +
-    "indexed, and sites sit near the sites they resemble. The live map is " +
-    "interactive — every dot opens that site's assistant — but it is a heavy " +
-    "drawing on a small screen, so this page shows the picture by default.";
+    "A snapshot of the RAG Universe, captured 22 August 2026: 6,521 " +
+    "sites, 15,785 hyperlinks between them and 15,469 semantic ties. Size " +
+    "is pages indexed, and sites sit near the sites they resemble. The " +
+    "live map is interactive — every dot opens that site's assistant — " +
+    "but it is a heavy drawing on a small screen, so this page shows the " +
+    "picture by default.";
   var LOAD_LABEL = "Load the interactive map";
 
   /**
