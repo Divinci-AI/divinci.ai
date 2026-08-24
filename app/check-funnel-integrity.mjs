@@ -193,6 +193,51 @@ export function cssDefinesClass(css, name) {
 }
 
 /**
+ * The submit button must never be disabled from the URL field's `blur` handler.
+ *
+ * WHY — this killed the entire funnel, silently, for weeks.
+ *
+ * `blur` on the URL input fires on the submit button's own MOUSEDOWN, before
+ * mouseup. app.js used that blur to pre-check the directory, and the check
+ * disabled the button while it ran. So pressing the CTA disabled the button
+ * mid-press, and a browser dispatches no `click` — and therefore no `submit` —
+ * on a disabled button. The press was swallowed outright: no navigation, no
+ * request, no console error. The button even re-enabled ~200ms later, so the
+ * page looked perfectly healthy afterwards.
+ *
+ * Nothing could see it. There is no failing request to log, no 5xx, no error
+ * rate — the same "a failed X is a 200" shape guarded elsewhere in this file,
+ * except here the failure never reaches the network at all. Measured against
+ * production 2026-08-23: 1000+ directory prechecks (the blur handler firing)
+ * against ZERO scan-website submits over 14 days.
+ *
+ * The invariant: `runCheck` gates its `button.disabled = true` behind a flag,
+ * and the blur call site passes a falsy one. Returns the reasons it is
+ * violated, empty when it holds.
+ */
+export function blurCanDisableSubmit(js) {
+  const body = js.match(/function runCheck\([^)]*\)\s*\{[\s\S]*?\n    \}/);
+  if (!body) return ["runCheck() not found in app.js — this guard has gone blind, fix the guard"];
+  const reasons = [];
+
+  // The disable must be gated, not unconditional.
+  const gate = body[0].match(/if\s*\(\s*(\w+)\s*&&\s*button\s*\)\s*\{[^}]*button\.disabled\s*=\s*true/);
+  if (!gate) {
+    reasons.push("runCheck() disables the submit button unconditionally — gate it behind a busy flag that only the submit path passes");
+  } else if (!new RegExp(`function runCheck\\([^)]*\\b${gate[1]}\\b`).test(js)) {
+    reasons.push(`runCheck() gates the disable on "${gate[1]}", which is not one of its parameters`);
+  }
+
+  // The blur call site must opt out of it.
+  const blur = js.match(/addEventListener\("blur",[\s\S]*?runCheck\(([^)]*)\)/);
+  if (!blur) reasons.push("blur handler no longer calls runCheck() — this guard has gone blind, fix the guard");
+  else if (!/,\s*(false|0)\s*$/.test(blur[1].trim())) {
+    reasons.push(`blur handler calls runCheck(${blur[1].trim()}) — it must pass an explicit falsy busy flag, or it disables the button mid-click`);
+  }
+  return reasons;
+}
+
+/**
  * Anchors that open a new tab must carry rel="noopener" — without it the opened
  * page gets a live `window.opener` handle back to ours (reverse tabnabbing).
  * Returns the offending tag strings.
@@ -385,6 +430,15 @@ function checkVendoredBundles() {
   }
 }
 
+/** app.js must not be able to swallow a press on the funnel's primary CTA. */
+function checkSubmitReachable() {
+  const js = join(publicDir, "app.js");
+  if (!existsSync(js)) { fail("app.js — missing"); return; }
+  const reasons = blurCanDisableSubmit(readFileSync(js, "utf8"));
+  if (reasons.length) for (const r of reasons) fail(`app.js — ${r}`);
+  else ok("app.js — blur pre-check cannot disable the submit button mid-click");
+}
+
 async function checkLive(base) {
   for (const page of PAGES) {
     for (const [ref, expect] of [
@@ -420,6 +474,35 @@ function selftest() {
     if (!pass) { bad++; console.error(`✗ selftest: ${name}\n    got      ${JSON.stringify(actual)}\n    expected ${JSON.stringify(expected)}`); }
     else console.warn(`✓ selftest: ${name}`);
   };
+
+  // ── blurCanDisableSubmit ────────────────────────────────────────────────
+  // The bug that killed the funnel, and the two shapes that fix or re-break it.
+  const submitJs = (runCheckSig, disableLine, blurCall) => `
+    function runCheck(${runCheckSig}) {
+      ${disableLine}
+      var pending = checkDirectory(host);
+      return pending;
+    }
+    input.addEventListener("blur", function () {
+      void runCheck(${blurCall});
+    });`;
+  const GATED = 'if (busy && button) { button.disabled = true; }';
+  const UNGATED = 'if (button) { button.disabled = true; }';
+
+  is("blurCanDisableSubmit passes when gated and blur opts out",
+    blurCanDisableSubmit(submitJs("host, busy", GATED, "host, false")), []);
+  // The original bug violates BOTH halves of the invariant, so it reports two.
+  is("blurCanDisableSubmit catches the original unconditional disable",
+    blurCanDisableSubmit(submitJs("host", UNGATED, "host")).length, 2);
+  is("blurCanDisableSubmit catches a gated disable that blur still opts INTO",
+    blurCanDisableSubmit(submitJs("host, busy", GATED, "host, true")).length, 1);
+  is("blurCanDisableSubmit catches a gate on a non-parameter",
+    blurCanDisableSubmit(submitJs("host", GATED, "host, false")).length, 1);
+  is("blurCanDisableSubmit goes LOUD rather than silent if app.js is restructured",
+    blurCanDisableSubmit("function somethingElse() {}").length, 1);
+  // The real shipped file must satisfy it.
+  is("blurCanDisableSubmit holds for the shipped app.js",
+    blurCanDisableSubmit(readFileSync(join(publicDir, "app.js"), "utf8")), []);
 
   is("extractRefs finds href and src",
     extractRefs('<a href="/a.css"><img src="/b.png">'), ["/a.css", "/b.png"]);
@@ -480,6 +563,7 @@ if (process.argv.includes("--selftest")) selftest();
 
 for (const page of PAGES) checkPage(page);
 checkVendoredBundles();
+checkSubmitReachable();
 
 if (process.argv.includes("--live")) {
   const baseArg = process.argv.find((a) => a.startsWith("--base="));

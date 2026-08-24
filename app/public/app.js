@@ -92,11 +92,41 @@
     // hit the network for the same host — submit reuses blur's verdict.
     var lastCheckedHost = "";
     var lastCheckedListed = false;
+    // The check currently in flight, so a submit that lands mid-check joins it
+    // instead of firing a second request and racing its own verdict.
+    var inFlightHost = "";
+    var inFlight = null;
 
-    function runCheck(host) {
-      if (button) { button.disabled = true; button.dataset.origLabel = button.dataset.origLabel || button.textContent; button.textContent = "Checking…"; }
-      return checkDirectory(host).then(function (site) {
-        if (button) { button.disabled = false; button.textContent = button.dataset.origLabel; }
+    /* `busy` disables the button and swaps its label for the duration. ONLY the
+       submit path may pass it.
+
+       The blur path MUST NOT — and this is the whole reason the funnel died.
+       `blur` fires on the submit button's own MOUSEDOWN, before mouseup. So
+       disabling the button from the blur handler disables it *mid-click*, and
+       a browser dispatches no `click` (and therefore no `submit`) on a disabled
+       button. The user's press on the primary CTA was swallowed outright: no
+       navigation, no request, no console error, nothing to see. Measured
+       2026-08-23 against production — 1000+ directory prechecks (this blur
+       handler firing) against ZERO scan-website submits over 14 days.
+
+       If you ever want busy feedback while the background check runs, show it
+       on something that is not the button the user is in the middle of
+       pressing. */
+    function runCheck(host, busy) {
+      if (busy && button) {
+        button.disabled = true;
+        button.dataset.origLabel = button.dataset.origLabel || button.textContent;
+        button.textContent = "Checking…";
+      }
+      var settle = function () {
+        if (busy && button) {
+          button.disabled = false;
+          if (button.dataset.origLabel) button.textContent = button.dataset.origLabel;
+        }
+        if (inFlightHost === host) { inFlight = null; inFlightHost = ""; }
+      };
+      var pending = checkDirectory(host).then(function (site) {
+        settle();
         lastCheckedHost = host;
         // Only block on a PUBLICLY PUBLISHED listing — a still-draft release
         // (mid-crawl via the broader corpus pipeline) isn't "already
@@ -109,7 +139,15 @@
           if (existingAlert) existingAlert.remove();
         }
         return lastCheckedListed;
+      }, function () {
+        // checkDirectory already fails open; this is belt-and-braces so a
+        // rejection can never strand the button disabled or block a scan.
+        settle();
+        return false;
       });
+      inFlightHost = host;
+      inFlight = pending;
+      return pending;
     }
 
     input.addEventListener("blur", function () {
@@ -117,7 +155,7 @@
       if (!normalized) return;
       var host = new URL(normalized).hostname;
       if (host === lastCheckedHost) return;
-      void runCheck(host);
+      void runCheck(host, false);
     });
     input.addEventListener("input", function () {
       // Host changed since the last check — clear the memo so blur/submit
@@ -146,7 +184,10 @@
         if (!lastCheckedListed) proceed();
         return;
       }
-      runCheck(host).then(function (listed) {
+      // Join a check the blur handler already started for this same host
+      // rather than issuing a duplicate request.
+      var check = (inFlight && inFlightHost === host) ? inFlight : runCheck(host, true);
+      check.then(function (listed) {
         if (!listed) proceed();
       });
     });
