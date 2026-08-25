@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{# Starry-night theme: the whole page (header included) sits on the dark
+   navy starfield; every surface below the hero is frosted glass. #}
+{% block body_class %}www-rag-starry{% endblock %}
+
 {# ── Page-scoped Divinci agent ────────────────────────────────────────────
    The floating bubble runs the site-wide Release, so on its own it answers
    as the generic divinci.ai assistant. These blocks re-point it at this
@@ -29,6 +33,16 @@
 {% endblock %}
 
 {% block content %}
+{# Twinkling starfield. position:fixed inside <main>, which style.css puts in
+   its own stacking context (body > * { z-index: 1 }) — so it paints under the
+   page's own content but still shows through the header, which sits above
+   <main> at z-index 10000 and is transparent on this page. #}
+<div class="www-rag-starfield" aria-hidden="true">
+    <span class="www-rag-star-layer www-rag-star-layer-a"></span>
+    <span class="www-rag-star-layer www-rag-star-layer-b"></span>
+    <span class="www-rag-star-layer www-rag-star-layer-c"></span>
+    <span class="www-rag-star-nebula"></span>
+</div>
 <section class="www-rag-hero" id="www-rag-hero">
     {# Layered poster + video: the <img> is the LCP element and the <video>
        fades in over it once it can play (data-hero-video handler in base.html). #}
@@ -44,6 +58,10 @@
         </video>
     </div>
     <div class="container">
+        {# The hero video is busy — constellations, gold linework, a spider.
+           The copy rides on its own frosted plate so it stays readable over
+           whatever frame happens to be underneath. #}
+        <div class="www-rag-hero-plate">
         <h1 class="www-rag-title">{{ page.title }}</h1>
         {% if page.description %}
         <p class="www-rag-subtitle">{{ page.description }}</p>
@@ -53,6 +71,7 @@
             live figures. Same generated measurement the initiative page uses. -#}
         {%- set owv = load_data(path="data/open-web-vectors.json") -%}
         <div class="www-rag-stats" id="www-rag-stats" aria-live="polite">{{ owv.directory_headline }}</div>
+        </div>
         <input
             type="search"
             id="www-rag-search"
@@ -340,7 +359,7 @@
 }
 /* ── Open Web Vector Initiative band ───────────────────────────────── */
 .www-rag-owv-band {
-    background: #f7f7fb;
+    background: transparent;
     padding: 28px 0 0;
 }
 /* Not "…-card": style.css paints a paper-grain background-image on every
@@ -411,7 +430,7 @@
 
 /* ── Live crawl strip ──────────────────────────────────────────────── */
 .www-rag-live-section {
-    background: #f7f7fb;
+    background: transparent;
     padding: 28px 0 0;
 }
 .www-rag-live {
@@ -547,7 +566,7 @@
 
 .www-rag-grid-section {
     padding: 48px 0 96px;
-    background: #f7f7fb;
+    background: transparent;
 }
 .www-rag-status {
     text-align: center;
@@ -1008,7 +1027,7 @@
    band that did not exist, rendering it invisible. */
 .www-rag-universe-section {
     padding: 8px 0 32px;
-    background: #f7f7fb;
+    background: transparent;
 }
 .www-rag-universe-stage {
     position: relative;
@@ -1089,6 +1108,560 @@
         text-shadow: none;
     }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   Starry-night theme
+   The page is one continuous night sky: the fixed starfield below sits
+   under everything, the header goes transparent so the same sky runs
+   behind the logo and nav, and every surface from the hero down is
+   frosted glass rather than a light card.
+   ══════════════════════════════════════════════════════════════════════ */
+body.www-rag-starry {
+    background-color: #05081a;
+    color: #dfe4f5;
+}
+/* style.css paints a beige measuring grid (body::before) and a gold
+   parchment texture (body::after) over every page. Both read as scratches
+   on a night sky, and the parchment one is what turns the navy muddy. */
+body.www-rag-starry::before,
+body.www-rag-starry::after { display: none !important; }
+
+/* ── The sky ───────────────────────────────────────────────────────────
+   position:fixed inside <main>. style.css gives every direct child of
+   <body> `z-index: 1`, so <main> is a stacking context and this layer can
+   never paint over the page's own content — but the header (z-index 10000,
+   a later sibling) paints ON TOP of the whole of <main>, so making the
+   header transparent reveals this sky through it. */
+.www-rag-starfield {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse 130% 90% at 50% -20%, #1b2a5e 0%, #0d1436 42%, #060a1e 78%, #040614 100%);
+}
+.www-rag-star-layer,
+.www-rag-star-nebula {
+    position: absolute;
+    display: block;
+    /* Oversized so the drift below never exposes an edge. mobile-fixes.css
+       declares `* { max-width: 100% }`, which silently clamps the extra
+       width back to the viewport (height stretches, width does not) and
+       leaves a starless band down the right-hand side — measured. */
+    inset: -12%;
+    max-width: none;
+}
+.www-rag-star-layer { background-repeat: repeat; }
+/* Each layer twinkles as a whole on its own period; three periods that do
+   not divide into each other never resynchronise, so the sky reads as
+   individual stars breathing rather than one pulsing sheet. */
+.www-rag-star-layer-a { animation: www-rag-twinkle-a 4.3s ease-in-out infinite; }
+.www-rag-star-layer-b { animation: www-rag-twinkle-b 6.7s ease-in-out infinite; }
+.www-rag-star-layer-c { animation: www-rag-twinkle-c 9.1s ease-in-out infinite, www-rag-drift 140s linear infinite; }
+@keyframes www-rag-twinkle-a {
+    0%, 100% { opacity: 0.45; }
+    50%      { opacity: 1; }
+}
+@keyframes www-rag-twinkle-b {
+    0%, 100% { opacity: 1; }
+    45%      { opacity: 0.35; }
+}
+@keyframes www-rag-twinkle-c {
+    0%, 100% { opacity: 0.7; }
+    30%      { opacity: 1; }
+    65%      { opacity: 0.5; }
+}
+@keyframes www-rag-drift {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-40px, 24px, 0); }
+}
+/* Every section has to sit ABOVE the sky explicitly. The starfield is
+   positioned with z-index 0, and in CSS paint order a positioned z-index:0
+   box paints after every non-positioned in-flow block in the same stacking
+   context — so an unpositioned <section> disappears behind it entirely
+   (the hero survived only because .www-rag-hero .container is already
+   z-index 1). Measured: the card grid vanished, all but the monograms,
+   which happen to be position:relative. */
+.www-rag-hero,
+.www-rag-owv-band,
+.www-rag-live-section,
+.www-rag-universe-section,
+.www-rag-grid-section {
+    position: relative;
+    z-index: 1;
+}
+/* A faint milky band and two colour pools, so the field is not a flat
+   scatter of white dots on navy. */
+.www-rag-star-nebula {
+    background:
+        radial-gradient(ellipse 60% 26% at 22% 34%, rgba(96, 132, 224, 0.16) 0%, rgba(96,132,224,0) 70%),
+        radial-gradient(ellipse 44% 30% at 82% 68%, rgba(180, 148, 226, 0.13) 0%, rgba(180,148,226,0) 70%),
+        radial-gradient(ellipse 90% 14% at 60% 12%, rgba(214, 196, 154, 0.10) 0%, rgba(214,196,154,0) 75%);
+}
+/* A moving star sky is exactly the kind of ambient motion vestibular
+   disorders react to — keep the sky, drop the movement. */
+@media (prefers-reduced-motion: reduce) {
+    .www-rag-star-layer-a,
+    .www-rag-star-layer-b,
+    .www-rag-star-layer-c { animation: none !important; opacity: 0.85; }
+}
+.www-rag-star-layer-a {
+    background-image:
+        radial-gradient(1.3px 1.3px at 171px 83px, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.1px 1.1px at 43px 280px, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.0px 1.0px at 265px 115px, rgba(198,216,255,0.8) 0%, rgba(198,216,255,0.8) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.2px 1.2px at 220px 41px, rgba(198,216,255,0.8) 0%, rgba(198,216,255,0.8) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.1px 1.1px at 36px 295px, rgba(226,236,255,0.9) 0%, rgba(226,236,255,0.9) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.4px 1.4px at 304px 37px, rgba(198,216,255,0.8) 0%, rgba(198,216,255,0.8) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.0px 1.0px at 31px 119px, rgba(226,236,255,0.9) 0%, rgba(226,236,255,0.9) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.1px 1.1px at 154px 220px, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.4px 1.4px at 298px 163px, rgba(226,236,255,0.9) 0%, rgba(226,236,255,0.9) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.4px 1.4px at 58px 303px, rgba(226,236,255,0.9) 0%, rgba(226,236,255,0.9) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.4px 1.4px at 196px 55px, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.4px 1.4px at 294px 36px, rgba(198,216,255,0.8) 0%, rgba(198,216,255,0.8) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.5px 1.5px at 278px 224px, rgba(198,216,255,0.8) 0%, rgba(198,216,255,0.8) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.3px 1.3px at 305px 238px, rgba(226,236,255,0.9) 0%, rgba(226,236,255,0.9) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.1px 1.1px at 98px 130px, rgba(255,246,224,0.85) 0%, rgba(255,246,224,0.85) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.6px 1.6px at 274px 259px, rgba(198,216,255,0.8) 0%, rgba(198,216,255,0.8) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.1px 1.1px at 153px 43px, rgba(198,216,255,0.8) 0%, rgba(198,216,255,0.8) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.1px 1.1px at 90px 181px, rgba(198,216,255,0.8) 0%, rgba(198,216,255,0.8) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.7px 1.7px at 221px 26px, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.6px 1.6px at 291px 299px, rgba(255,246,224,0.85) 0%, rgba(255,246,224,0.85) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.4px 1.4px at 180px 185px, rgba(198,216,255,0.8) 0%, rgba(198,216,255,0.8) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.7px 1.7px at 41px 53px, rgba(198,216,255,0.8) 0%, rgba(198,216,255,0.8) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.5px 1.5px at 39px 37px, rgba(255,246,224,0.85) 0%, rgba(255,246,224,0.85) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.2px 1.2px at 301px 234px, rgba(198,216,255,0.8) 0%, rgba(198,216,255,0.8) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.7px 1.7px at 183px 17px, rgba(255,246,224,0.85) 0%, rgba(255,246,224,0.85) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.3px 1.3px at 92px 65px, rgba(226,236,255,0.9) 0%, rgba(226,236,255,0.9) 40%, rgba(255,255,255,0) 100%);
+    background-size: 320px 320px;
+}
+.www-rag-star-layer-b {
+    background-image:
+        radial-gradient(2.2px 2.2px at 90px 220px, rgba(206,226,255,0.85) 0%, rgba(206,226,255,0.85) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(2.4px 2.4px at 150px 251px, rgba(255,240,205,0.9) 0%, rgba(255,240,205,0.9) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.8px 1.8px at 419px 268px, rgba(206,226,255,0.85) 0%, rgba(206,226,255,0.85) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.6px 1.6px at 126px 409px, rgba(255,240,205,0.9) 0%, rgba(255,240,205,0.9) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.7px 1.7px at 305px 225px, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.6px 1.6px at 125px 361px, rgba(206,226,255,0.85) 0%, rgba(206,226,255,0.85) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(2.2px 2.2px at 400px 214px, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(2.0px 2.0px at 174px 282px, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.6px 1.6px at 338px 194px, rgba(206,226,255,0.85) 0%, rgba(206,226,255,0.85) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.7px 1.7px at 424px 51px, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(2.1px 2.1px at 238px 88px, rgba(255,240,205,0.9) 0%, rgba(255,240,205,0.9) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.7px 1.7px at 211px 254px, rgba(206,226,255,0.85) 0%, rgba(206,226,255,0.85) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(2.4px 2.4px at 25px 246px, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.8px 1.8px at 44px 405px, rgba(206,226,255,0.85) 0%, rgba(206,226,255,0.85) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(2.3px 2.3px at 417px 342px, rgba(206,226,255,0.85) 0%, rgba(206,226,255,0.85) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(1.7px 1.7px at 379px 42px, rgba(255,240,205,0.9) 0%, rgba(255,240,205,0.9) 40%, rgba(255,255,255,0) 100%);
+    background-size: 440px 440px;
+}
+.www-rag-star-layer-c {
+    background-image:
+        radial-gradient(3.1px 3.1px at 120px 31px, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(3.1px 3.1px at 234px 148px, rgba(190,215,255,0.92) 0%, rgba(190,215,255,0.92) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(3.0px 3.0px at 564px 95px, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(2.6px 2.6px at 36px 101px, rgba(190,215,255,0.92) 0%, rgba(190,215,255,0.92) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(2.6px 2.6px at 33px 580px, rgba(190,215,255,0.92) 0%, rgba(190,215,255,0.92) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(2.6px 2.6px at 564px 435px, rgba(190,215,255,0.92) 0%, rgba(190,215,255,0.92) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(3.2px 3.2px at 290px 12px, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(2.7px 2.7px at 438px 354px, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,0) 100%),
+        radial-gradient(2.5px 2.5px at 350px 110px, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,0) 100%);
+    background-size: 620px 620px;
+}
+
+/* ── Header and banner ─────────────────────────────────────────────── */
+/* The cream header bar is what breaks the page in two, so on this page it
+   has no surface of its own — the starfield behind <main> shows through. */
+body.www-rag-starry header[role="banner"] {
+    background-color: transparent;
+    background-image: none !important;
+    border-bottom: 1px solid rgba(158, 186, 255, 0.14);
+}
+body.www-rag-starry header[role="banner"] .logo,
+body.www-rag-starry header[role="banner"] .logo a,
+body.www-rag-starry header[role="banner"] .logo-name {
+    color: #f2f5ff;
+}
+body.www-rag-starry header[role="banner"] nav a,
+body.www-rag-starry header[role="banner"] .site-search-trigger {
+    color: #dbe2f7;
+}
+body.www-rag-starry header[role="banner"] nav a:hover {
+    color: #ffe9bd;
+}
+body.www-rag-starry header[role="banner"] .divinci-motto,
+body.www-rag-starry header[role="banner"] .divinci-motto__latin {
+    color: rgba(217, 196, 154, 0.85);
+}
+body.www-rag-starry header[role="banner"] .site-search-trigger {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(180, 200, 255, 0.22);
+}
+body.www-rag-starry header[role="banner"] .site-search-trigger kbd {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(180, 200, 255, 0.24);
+    color: #cfd8f2;
+}
+body.www-rag-starry header[role="banner"] .hamburger-line {
+    background: #dbe2f7;
+}
+/* Dropdown panels are opaque cream by default and would flare white. */
+body.www-rag-starry header[role="banner"] .dropdown-menu {
+    background: rgba(13, 19, 48, 0.92);
+    border: 1px solid rgba(158, 186, 255, 0.18);
+    backdrop-filter: blur(14px) saturate(140%);
+}
+body.www-rag-starry header[role="banner"] .dropdown-menu a { color: #dbe2f7; }
+body.www-rag-starry header[role="banner"] .dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffe9bd;
+}
+/* The research bar reads as the top edge of the same sky. Its scrolled
+   glass islands already frost themselves — only the colour changes. */
+body.www-rag-starry .site-research-banner {
+    background: linear-gradient(90deg, #0b1236 0%, #172452 100%);
+    border-bottom-color: rgba(158, 186, 255, 0.16);
+}
+body.www-rag-starry .site-research-banner.is-scrolled {
+    background: transparent;
+}
+body.www-rag-starry .site-research-banner-glass-left,
+body.www-rag-starry .site-research-banner-glass-right {
+    color: #e6ecff;
+}
+/* Once scrolled, the two islands frost to near-white (rgba(245,250,255,.82))
+   with deep-blue text — a pair of bright bars floating on a night sky. Same
+   glass, dark side up: everything the .is-glass rules paint light gets its
+   night-sky counterpart here, text included, or it goes light-on-light. */
+body.www-rag-starry .site-research-banner.is-glass .site-research-banner-glass-left,
+body.www-rag-starry .site-research-banner.is-glass .site-research-banner-glass-right {
+    background: rgba(12, 18, 46, 0.72);
+    border: 1px solid rgba(178, 200, 255, 0.22);
+    box-shadow: 0 8px 32px rgba(3, 5, 18, 0.45);
+}
+body.www-rag-starry .site-research-banner.is-glass .scrolled-logo,
+body.www-rag-starry .site-research-banner.is-glass .scrolled-logo-text,
+body.www-rag-starry .site-research-banner.is-glass .banner-nav-list > li > a,
+body.www-rag-starry .site-research-banner.is-glass .banner-nav-list > li > a .dropdown-arrow,
+body.www-rag-starry .site-research-banner.is-glass .language-switcher-current,
+body.www-rag-starry .site-research-banner.is-glass .scrolled-mobile-signup {
+    color: #e6ecff;
+}
+body.www-rag-starry .site-research-banner.is-glass .banner-nav-list > li > a:hover,
+body.www-rag-starry .site-research-banner.is-glass .language-switcher-current:hover,
+body.www-rag-starry .site-research-banner.is-glass .scrolled-mobile-signup:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: #ffe9bd;
+}
+body.www-rag-starry .site-research-banner.is-glass .scrolled-mobile-signup {
+    border-color: rgba(178, 200, 255, 0.4);
+}
+body.www-rag-starry .site-research-banner.is-glass .scrolled-search {
+    color: #dbe2f7;
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(178, 200, 255, 0.24);
+}
+body.www-rag-starry .site-research-banner.is-glass .scrolled-search:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+/* Sign up stays a real button: the gold CTA the rest of the page uses. */
+body.www-rag-starry .site-research-banner .scrolled-signup,
+body.www-rag-starry .site-research-banner .scrolled-signup:hover {
+    background: linear-gradient(135deg, #d9c49a 0%, #b8a080 100%);
+    border-color: rgba(255, 235, 195, 0.6);
+    color: #1a1408;
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────── */
+.www-rag-hero {
+    background: linear-gradient(135deg, #060a1e 0%, #101a44 60%, #17224f 100%);
+}
+/* Deeper wash than the light-page version: the copy plate below is
+   translucent, so what is behind it has to be dark to begin with. */
+.www-rag-hero-bg::after {
+    background:
+        radial-gradient(ellipse 70% 60% at 50% 46%, rgba(6, 10, 30, 0.62) 0%, rgba(6, 10, 30, 0.18) 70%, rgba(6,10,30,0) 100%),
+        linear-gradient(180deg, rgba(6, 10, 30, 0.42) 0%, rgba(6, 10, 30, 0.46) 60%, rgba(5, 8, 26, 0.88) 100%);
+}
+/* The plate: the frosted highlight that carries the hero copy. */
+.www-rag-hero-plate {
+    display: inline-block;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 28px 36px 22px;
+    border-radius: 22px;
+    background: linear-gradient(160deg, rgba(12, 18, 46, 0.55) 0%, rgba(8, 12, 32, 0.62) 100%);
+    border: 1px solid rgba(178, 200, 255, 0.16);
+    backdrop-filter: blur(14px) saturate(130%);
+    box-shadow: 0 18px 50px rgba(3, 5, 18, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+.www-rag-title {
+    /* Belt and braces: the plate handles contrast, the shadow handles the
+       frame where a gold constellation line lands right behind a stem. */
+    text-shadow: 0 2px 18px rgba(4, 7, 22, 0.85), 0 1px 3px rgba(4, 7, 22, 0.7);
+}
+.www-rag-subtitle {
+    color: #dbe3fa;
+    text-shadow: 0 1px 10px rgba(4, 7, 22, 0.8);
+}
+.www-rag-stats {
+    color: #b9c2e2;
+    text-shadow: 0 1px 8px rgba(4, 7, 22, 0.8);
+    margin-bottom: 0;
+}
+.www-rag-search {
+    background: rgba(10, 15, 38, 0.55);
+    border-color: rgba(178, 200, 255, 0.28);
+    backdrop-filter: blur(10px);
+    margin-top: 24px;
+}
+.www-rag-search::placeholder { color: #a8b1d4; }
+.www-rag-scan-hint {
+    color: #b9c2e2;
+    text-shadow: 0 1px 8px rgba(4, 7, 22, 0.8);
+}
+@media (max-width: 640px) {
+    .www-rag-hero-plate { padding: 20px 18px 16px; border-radius: 18px; }
+}
+
+/* ── Glass surfaces ────────────────────────────────────────────────── */
+/* One recipe, used by every panel below the hero: Apple-style liquid glass.
+   Deliberately a THIN pane, not a fog — the sky behind it has to stay
+   visible. A 1-2px star does not survive a heavy blur (28px erased them
+   completely, and no amount of thinning the fill brings them back), so the
+   blur stays at 3px: enough to soften the stars into glass-diffused glows,
+   little enough that they read through. What makes it a surface at this
+   opacity is the specular edge — the bright hairline border and the inset
+   top highlight — not the fill.
+   The tint has to be a background-COLOR, not a gradient — style.css blanks
+   background-image with !important on everything matching [class*="card"],
+   so a gradient fill leaves the cards with no tint at all. The gradient
+   below is a sheen for the panels that can keep one; the colour underneath
+   is the tint every panel gets. */
+.www-rag-owv-link,
+.www-rag-live,
+.www-rag-toolbar,
+.www-rag-card,
+.www-rag-table-wrap,
+.www-rag-universe-canvas,
+.www-rag-universe-poster {
+    background-color: rgba(38, 48, 100, 0.06);
+    background-image: linear-gradient(155deg, rgba(255, 255, 255, 0.06) 0%, rgba(146, 170, 235, 0.015) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    /* No brightness lift: raising the black level is what washed the stars
+       out. saturate() alone keeps the sky's colour from going grey. */
+    backdrop-filter: blur(3px) saturate(200%);
+    box-shadow: 0 12px 38px rgba(3, 5, 18, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+/* style.css paints a noise texture on everything matching [class*="card"]
+   with !important; on glass it reads as dirt. */
+.www-rag-card { background-image: none !important; }
+
+.www-rag-owv-link { color: #cdd6f0; }
+.www-rag-owv-link:hover {
+    box-shadow: 0 14px 40px rgba(3, 5, 18, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    border-color: rgba(217, 196, 154, 0.45);
+}
+.www-rag-owv-eyebrow, .www-rag-owv-sub { color: #aab3d6; }
+
+.www-rag-live { color: #cdd6f0; }
+.www-rag-live-detail, .www-rag-live-more, .www-rag-live-counts, .www-rag-live-label { color: #97a1c6; }
+.www-rag-live-host { background: rgba(255, 255, 255, 0.09); border-color: rgba(178, 200, 255, 0.20); }
+
+/* ── Toolbar ───────────────────────────────────────────────────────── */
+.www-rag-field-label { color: #a3accd; }
+.www-rag-select,
+.www-rag-reset,
+.www-rag-export,
+.www-rag-viewbtn,
+.www-rag-viewtoggle,
+.www-rag-viewtoggle .www-rag-viewbtn {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(178, 200, 255, 0.22);
+    color: #e2e8fb;
+}
+/* The native menu inherits the control's colour on some platforms and
+   renders white-on-white otherwise — pin the popup to a dark row. */
+.www-rag-select option { background: #0f1738; color: #e2e8fb; }
+.www-rag-reset { color: #b9c2e2; }
+.www-rag-reset:hover,
+.www-rag-viewtoggle .www-rag-viewbtn:hover { background: rgba(255, 255, 255, 0.14); }
+.www-rag-viewbtn.is-active {
+    background: rgba(217, 196, 154, 0.20);
+    color: #ffe9bd;
+}
+.www-rag-export {
+    background: linear-gradient(135deg, #d9c49a 0%, #b8a080 100%);
+    border-color: rgba(255, 235, 195, 0.6);
+    color: #1a1408;
+}
+.www-rag-export:hover { background: linear-gradient(135deg, #e6d3ae 0%, #c6ae8c 100%); }
+.www-rag-count, .www-rag-status { color: #b9c2e2; }
+.www-rag-select:focus-visible,
+.www-rag-reset:focus-visible,
+.www-rag-export:focus-visible,
+.www-rag-viewbtn:focus-visible,
+.www-rag-sort-btn:focus-visible { outline-color: #ffe9bd; }
+
+/* ── Cards ─────────────────────────────────────────────────────────── */
+.www-rag-card:hover {
+    background-color: rgba(70, 86, 150, 0.13);
+    box-shadow: 0 18px 48px rgba(3, 5, 18, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -1px 0 rgba(255, 255, 255, 0.07);
+    border-color: rgba(217, 196, 154, 0.42);
+}
+.www-rag-card-host { color: #f2f5ff; }
+.www-rag-card-desc { color: #b6bfdf; }
+.www-rag-card-meta { color: #97a1c6; }
+.www-rag-card-stat {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(178, 200, 255, 0.14);
+}
+.www-rag-card-stat-value { color: #f2f5ff; }
+.www-rag-card-stat-label { color: #98a2c5; }
+.www-rag-card-details { border-top-color: rgba(178, 200, 255, 0.16); }
+.www-rag-card-details-toggle { color: #b9c9ff; }
+.www-rag-card-details-toggle:hover { color: #ffe9bd; }
+.www-rag-card-detail-label { color: #98a2c5; }
+.www-rag-card-detail-value { color: #ccd4ee; }
+.www-rag-card-chat {
+    /* Flat colour, not the gold gradient the other CTAs use: style.css blanks
+       background-image with `!important` on every [class*="card"] inside a
+       card, at a specificity this selector cannot beat. A gradient here
+       paints nothing at all and leaves near-black text on dark glass —
+       caught on staging, where the light theme's flat background-color had
+       been hiding the interaction. */
+    background: none;
+    background-color: #d9c49a;
+    color: #1a1408;
+}
+.www-rag-card-chat:hover { background-color: #e6d3ae; }
+.www-rag-card-build {
+    background: rgba(148, 172, 255, 0.16);
+    border-color: rgba(148, 172, 255, 0.42);
+    color: #cfd9ff;
+}
+.www-rag-card-claim {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(178, 200, 255, 0.24);
+    color: #e2e8fb;
+}
+.www-rag-card-pending { color: #f0c274; }
+/* Generated from the hostname as a pale tile — too bright against glass. */
+.www-rag-card-monogram { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18); }
+
+/* ── Table view ────────────────────────────────────────────────────── */
+.www-rag-table { color: #ccd4ee; }
+.www-rag-table th,
+.www-rag-table td { border-bottom-color: rgba(178, 200, 255, 0.12); }
+.www-rag-table thead th {
+    background: rgba(255, 255, 255, 0.05);
+    color: #a3accd;
+}
+.www-rag-table tbody tr:hover { background: rgba(255, 255, 255, 0.05); }
+.www-rag-row-host { color: #f2f5ff; }
+.www-rag-row-desc { color: #adb6d8; }
+.www-rag-sort-btn:hover, .www-rag-sort-btn.is-active { color: #ffe9bd; }
+.www-rag-chip {
+    background: rgba(255, 255, 255, 0.09);
+    color: #ccd4ee;
+}
+.www-rag-chip-ok { background: rgba(61, 220, 132, 0.16); color: #7ce8ae; }
+.www-rag-chip-claimed { background: rgba(148, 172, 255, 0.18); color: #c3d0ff; }
+.www-rag-chip-pending { background: rgba(240, 180, 41, 0.18); color: #f5cb7a; }
+
+/* ── Universe map ──────────────────────────────────────────────────── */
+/* The canvas draws its own near-black field, so it keeps a solid backdrop
+   rather than glass — but the frame matches the panels around it. */
+.www-rag-universe-canvas,
+.www-rag-universe-poster {
+    background-color: #070b1e;
+    background-image: none;
+    backdrop-filter: none;
+}
+.www-rag-universe-load {
+    background: rgba(217, 196, 154, 0.16);
+    border-color: rgba(217, 196, 154, 0.5);
+    color: #ffe9bd;
+}
+.www-rag-universe-load:hover { background: rgba(217, 196, 154, 0.28); }
+@media (max-width: 720px) {
+    /* Under the canvas on a phone, where the light-page rule turned it grey. */
+    .www-rag-universe-caption { color: #b9c2e2; }
+}
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+/* The parchment footer is a warm brown wall at the bottom of a night sky;
+   a navy veil ties it back in without touching the shared rule. */
+body.www-rag-starry .site-footer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(6, 10, 30, 0.72) 0%, rgba(5, 8, 26, 0.86) 100%);
+    z-index: 0;
+}
+body.www-rag-starry .site-footer > * { position: relative; z-index: 1; }
+
+/* ── Reduced transparency ──────────────────────────────────────────────
+   macOS "Reduce transparency" (and the Windows equivalent) reaches the page
+   as prefers-reduced-transparency. This page's whole surface system is a
+   6%-opacity pane over a starfield, so honour the request literally: solid
+   panels, no backdrop sampling. The sky stays — it is decoration behind
+   content, not content read through glass. Only this page's own surfaces
+   are covered; the site-wide banner islands are shared chrome and are not
+   this page's call to make. */
+@media (prefers-reduced-transparency: reduce) {
+    .www-rag-owv-link,
+    .www-rag-live,
+    .www-rag-toolbar,
+    .www-rag-card,
+    .www-rag-table-wrap {
+        background-color: #111838;
+        background-image: none;
+        backdrop-filter: none;
+    }
+    .www-rag-hero-plate,
+    .www-rag-search {
+        background: #0b1130;
+        backdrop-filter: none;
+    }
+    body.www-rag-starry header[role="banner"] .dropdown-menu {
+        background: #0d1330;
+        backdrop-filter: none;
+    }
+}
+
+/* ── Safari (< 18) fallback ────────────────────────────────────────────
+   Every frosted surface above declares only the unprefixed property, and
+   deliberately so: with `-webkit-backdrop-filter` sitting beside it in the
+   same rule, the build's HTML/CSS minifier collapses the pair and keeps
+   ONLY the -webkit- one — which Chrome does not honour, so nothing frosted
+   at all and the starfield read as sharp pinpricks printed on the cards.
+   An @supports block cannot be collapsed into those rules, so the prefixed
+   property survives here for the Safari versions that still need it. */
+@supports not (backdrop-filter: blur(1px)) {
+    body.www-rag-starry header[role="banner"] .dropdown-menu {
+        -webkit-backdrop-filter: blur(14px) saturate(140%);
+    }
+    .www-rag-hero-plate {
+        -webkit-backdrop-filter: blur(14px) saturate(130%);
+    }
+    .www-rag-search {
+        -webkit-backdrop-filter: blur(10px);
+    }
+    .www-rag-owv-link,
+    .www-rag-live,
+    .www-rag-toolbar,
+    .www-rag-card,
+    .www-rag-table-wrap {
+        -webkit-backdrop-filter: blur(3px) saturate(200%);
+    }
+    .www-rag-universe-canvas,
+    .www-rag-universe-poster {
+        -webkit-backdrop-filter: none;
+    }
+}
 </style>
 
 <script defer src="{{ get_url(path="js/www-rag-directory.js") }}"></script>
@@ -1100,14 +1673,52 @@
 <script defer src="{{ get_url(path="js/www-rag-universe.js") }}"></script>
 <script>
 // Floating "Scan your website" pill: hidden while the hero (which carries the
-// same CTA) is on screen; fades in once the visitor scrolls into the grid.
+// same CTA) is on screen; fades in once the visitor scrolls into the grid; and
+// retires again as the footer arrives. The footer is a later sibling of <main>
+// with a higher z-index, so it paints OVER the pill, which is fixed INSIDE
+// <main> — the pill's own z-index cannot escape that. The old parchment footer
+// hid it outright; the starry theme's translucent veil turned it into a ghost
+// instead, so the pill now steps aside on cue.
 (function () {
-    var fab = document.getElementById("www-rag-scan-fab");
-    var hero = document.getElementById("www-rag-hero");
-    if (!fab || !hero || !("IntersectionObserver" in window)) return;
-    new IntersectionObserver(function (entries) {
-        fab.classList.toggle("visible", !entries[0].isIntersecting);
-    }, { threshold: 0.05 }).observe(hero);
+    function init() {
+        var fab = document.getElementById("www-rag-scan-fab");
+        var hero = document.getElementById("www-rag-hero");
+        if (!fab || !hero || !("IntersectionObserver" in window)) return;
+        var footer = document.querySelector(".site-footer");
+        var heroOnScreen = true;
+        var footerOnScreen = false;
+
+        function sync() {
+            fab.classList.toggle("visible", !heroOnScreen && !footerOnScreen);
+        }
+
+        new IntersectionObserver(function (entries) {
+            heroOnScreen = entries[0].isIntersecting;
+            sync();
+        }, { threshold: 0.05 }).observe(hero);
+
+        // rootMargin shrinks the root to the bottom slice of the viewport, so
+        // the pill steps aside once the footer reaches the band it actually
+        // occupies — not the moment a sliver of footer appears far below it.
+        // A percentage keeps that tracking the viewport across resizes.
+        if (footer) {
+            new IntersectionObserver(function (entries) {
+                footerOnScreen = entries[0].isIntersecting;
+                sync();
+            }, { threshold: 0, rootMargin: "-85% 0px 0px 0px" }).observe(footer);
+        }
+    }
+
+    // This script sits INSIDE <main> and runs while the document is still
+    // parsing, so <footer> — a later sibling of <main> — does not exist yet.
+    // Looking it up at parse time returns null and the footer observer above
+    // is silently never attached. (The hero resolves either way; it is above
+    // this script.)
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+    } else {
+        init();
+    }
 })();
 </script>
 {% endblock %}
