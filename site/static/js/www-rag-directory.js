@@ -45,6 +45,34 @@
   var BUILD_BASE = "https://chat.divinci.app/www-rag?copy=";
   var CLAIM_BASE = "https://chat.divinci.app/www-rag?claim=";
 
+  // The page ships in thirteen languages, and the server already rendered the
+  // stats line in the visitor's. Without the same pattern here, the first
+  // successful refresh would quietly rewrite it back into English. The block
+  // is optional: no block, or an unparseable one, and the English defaults
+  // below apply — which is what every test fixture exercises.
+  var I18N = (function () {
+    var el = document.getElementById("www-rag-i18n");
+    if (!el) return {};
+    try {
+      return JSON.parse(el.textContent) || {};
+    } catch (err) {
+      return {};
+    }
+  })();
+
+  var STATS_PATTERN =
+    I18N.stats || "{sites} curated sites · {pages} pages · {files} files · {chunks} searchable chunks";
+  var STATS_INDEXED = I18N.statsIndexed || "{size} indexed";
+
+  // Fills {name} placeholders. Deliberately not a regex over the whole string:
+  // a translated pattern is data, and a stray {…} in one should render as
+  // itself rather than disappear.
+  function fill(pattern, values) {
+    return Object.keys(values).reduce(function (out, key) {
+      return out.split("{" + key + "}").join(values[key]);
+    }, pattern);
+  }
+
   // The header omits the corpus size below this, for two independent reasons.
   //
   // Correctness: the header SUMS per-site totalBytes, and a missing value
@@ -1065,11 +1093,13 @@
             ? formatBytes(data.totalBytes)
             : null;
         statsEl.textContent =
-          formatCount(data.totalSites) + " curated sites · " +
-          formatCount(data.totalPages) + " pages · " +
-          formatCount(data.totalFiles) + " files · " +
-          formatCount(data.totalChunks) + " searchable chunks" +
-          (totalSize ? " · " + totalSize + " indexed" : "");
+          fill(STATS_PATTERN, {
+            sites: formatCount(data.totalSites),
+            pages: formatCount(data.totalPages),
+            files: formatCount(data.totalFiles),
+            chunks: formatCount(data.totalChunks),
+          }) +
+          (totalSize ? " · " + fill(STATS_INDEXED, { size: totalSize }) : "");
       }
       // Only offer TLD options the catalog actually contains, so the filter
       // never leads to a guaranteed-empty result.

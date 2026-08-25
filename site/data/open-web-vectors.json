@@ -1,46 +1,46 @@
 {
-  "measured_at": "2026-08-21",
-  "measured_label": "21 August 2026",
+  "measured_at": "2026-08-25",
+  "measured_label": "25 August 2026",
   "stats": {
-    "sites": "5,052",
-    "pages": "1,182,313",
-    "chunks": "28,154,041",
-    "bytes": "10 GB",
-    "endpoints": "4,993",
-    "median": "234"
+    "sites": "9,487",
+    "pages": "2,131,141",
+    "chunks": "53,430,892",
+    "bytes": "18 GB",
+    "endpoints": "9,428",
+    "median": "219"
   },
   "composition": {
-    "public_share": "22%",
+    "public_share": "13%",
     "buckets": [
       {
         "key": "org",
         "label": ".org",
-        "count": "750",
-        "width": "14.8"
+        "count": "907",
+        "width": "9.6"
       },
       {
         "key": "gov",
         "label": ".gov",
-        "count": "118",
-        "width": "2.3"
+        "count": "122",
+        "width": "1.3"
       },
       {
         "key": "edu",
         "label": ".edu",
-        "count": "235",
-        "width": "4.7"
+        "count": "236",
+        "width": "2.5"
       },
       {
         "key": "com",
         "label": ".com",
-        "count": "2,923",
-        "width": "57.9"
+        "count": "6,867",
+        "width": "72.4"
       },
       {
         "key": "other",
         "label": "everything else",
-        "count": "1,026",
-        "width": "20.3"
+        "count": "1,355",
+        "width": "14.3"
       }
     ]
   },
@@ -48,5 +48,12 @@
     "deepest": "diff.wikimedia.org, ipac.caltech.edu and blog.mozilla.org run past 7,000 pages each.",
     "largest": "exoplanetarchive.ipac.caltech.edu — 929 pages, and 176 MB of extracted text: the densest corpus in the index."
   },
-  "directory_headline": "5,052 curated sites · 1,182,313 pages · 4,452 files · 28,154,041 searchable chunks"
+  "directory_headline": "9,487 curated sites · 2,131,141 pages · 4,453 files · 53,430,892 searchable chunks",
+  "directory_counts": {
+    "sites": "9,487",
+    "pages": "2,131,141",
+    "files": "4,453",
+    "chunks": "53,430,892",
+    "size": ""
+  }
 }

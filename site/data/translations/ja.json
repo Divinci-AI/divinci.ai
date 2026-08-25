@@ -1176,5 +1176,17 @@
     "card3_desc": "ネイティブに学習された2つの 1-bit モデル、2つの組織、同じ異常：構造は消え、挙動は残りました。",
     "card3_alt": "1-bit 量子化の崩壊グラフ",
     "card3_meta": "Part III · 7分で読めます"
+  },
+  "www_rag": {
+    "search_placeholder": "サイト名またはトピックで検索…",
+    "search_label": "WWW-RAG ディレクトリを検索",
+    "scan_cta": "ウェブサイトをスキャン",
+    "scan_aria": "Divinci でウェブサイトをスキャン",
+    "scan_hint": "Divinci にサインインすると、そのままクローラーに移動します。ワークスペースは自動で設定します。",
+    "owv_eyebrow": "Open Web Vector イニシアチブ",
+    "owv_headline": "ここにあるすべてのサイトが独自のベクターデータベースを持ち、1 ページを取得する前にそのサイトの robots.txt を読んでいます。",
+    "owv_sub": "許可ゲートの仕組み、コーパスの中身、そしてデータセットとして公開するもの・しないもの。",
+    "stats": "厳選サイト {sites} 件 · {pages} ページ · {files} ファイル · 検索可能なチャンク {chunks} 件",
+    "stats_indexed": "{size} をインデックス済み"
   }
 }

@@ -1176,5 +1176,17 @@
     "card3_desc": "Twee natively getrainde 1-bit modellen, twee organisaties, dezelfde anomalie: structuur weg, gedrag overleefd.",
     "card3_alt": "Grafiek van de 1-bit-quantiseringsoplossing",
     "card3_meta": "Part III · 7 min lezen"
+  },
+  "www_rag": {
+    "search_placeholder": "Zoek op sitenaam of onderwerp…",
+    "search_label": "Zoeken in de WWW-RAG-directory",
+    "scan_cta": "Scan uw website",
+    "scan_aria": "Scan uw website met Divinci",
+    "scan_hint": "Log in bij Divinci en kom direct in de crawler terecht — we richten uw werkruimte automatisch in.",
+    "owv_eyebrow": "Het Open Web Vector-initiatief",
+    "owv_headline": "Elke site hier heeft zijn eigen vectordatabase — en zijn robots.txt is gelezen voordat we ook maar één pagina ophaalden.",
+    "owv_sub": "Hoe de toestemmingspoort werkt, wat er in het corpus zit, en wat we wel en niet als dataset publiceren.",
+    "stats": "{sites} samengestelde sites · {pages} pagina's · {files} bestanden · {chunks} doorzoekbare chunks",
+    "stats_indexed": "{size} geïndexeerd"
   }
 }

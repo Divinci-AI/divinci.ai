@@ -1176,5 +1176,17 @@
     "card3_desc": "Zwei nativ trainierte 1-bit-Modelle, zwei Organisationen, dieselbe Anomalie: Struktur verschwunden, Verhalten überlebt.",
     "card3_alt": "Diagramm zur Auflösung der 1-bit-Quantisierung",
     "card3_meta": "Part III · 7 Min. Lesezeit"
+  },
+  "www_rag": {
+    "search_placeholder": "Nach Website-Name oder Thema suchen…",
+    "search_label": "Das WWW-RAG-Verzeichnis durchsuchen",
+    "scan_cta": "Website scannen",
+    "scan_aria": "Ihre Website mit Divinci scannen",
+    "scan_hint": "Melden Sie sich bei Divinci an und landen Sie direkt im Crawler — Ihren Arbeitsbereich richten wir automatisch ein.",
+    "owv_eyebrow": "Die Open-Web-Vector-Initiative",
+    "owv_headline": "Jede Website hier hat ihre eigene Vektordatenbank — und ihre robots.txt wurde gelesen, bevor wir eine einzige Seite abgerufen haben.",
+    "owv_sub": "Wie die Berechtigungsprüfung funktioniert, was im Korpus steckt und was wir als Datensatz veröffentlichen — und was nicht.",
+    "stats": "{sites} kuratierte Websites · {pages} Seiten · {files} Dateien · {chunks} durchsuchbare Chunks",
+    "stats_indexed": "{size} indexiert"
   }
 }

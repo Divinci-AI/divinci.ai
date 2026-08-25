@@ -241,11 +241,15 @@ def largest_fact(sites):
     )
 
 
-def directory_headline(data, sites):
-    """The one-line summary above the directory grid on /www-rag/.
+def directory_counts(data):
+    """The figures behind the headline, kept separately from the sentence.
 
-    Mirrors the string www-rag-directory.js writes into #www-rag-stats,
-    including its rule for when the corpus size is worth naming at all.
+    /www-rag/ is published in thirteen languages, and a translated summary
+    line puts these numbers in its own word order — so the template needs the
+    parts, not just the assembled English sentence. Display-ready strings, for
+    the same reason derive() returns strings everywhere else: the template must
+    never re-format a figure. `size` is "" when the corpus is too small to be
+    worth naming, which is the template's cue to drop that clause entirely.
     """
     total_bytes = data.get("totalBytes")
     size = (
@@ -254,13 +258,31 @@ def directory_headline(data, sites):
         and total_bytes >= MIN_HEADER_BYTES
         else None
     )
+    return {
+        "sites": format_count(data.get("totalSites")),
+        "pages": format_count(data.get("totalPages")),
+        "files": format_count(data.get("totalFiles")),
+        "chunks": format_count(data.get("totalChunks")),
+        "size": size or "",
+    }
+
+
+def directory_headline(data, sites):
+    """The one-line summary above the directory grid on /www-rag/, in English.
+
+    Mirrors the string www-rag-directory.js writes into #www-rag-stats,
+    including its rule for when the corpus size is worth naming at all. Other
+    locales assemble the same figures from directory_counts() through their own
+    pattern; this stays the English wording every test pins.
+    """
+    counts = directory_counts(data)
     line = (
-        f"{format_count(data.get('totalSites'))} curated sites · "
-        f"{format_count(data.get('totalPages'))} pages · "
-        f"{format_count(data.get('totalFiles'))} files · "
-        f"{format_count(data.get('totalChunks'))} searchable chunks"
+        f"{counts['sites']} curated sites · "
+        f"{counts['pages']} pages · "
+        f"{counts['files']} files · "
+        f"{counts['chunks']} searchable chunks"
     )
-    return line + (f" · {size} indexed" if size else "")
+    return line + (f" · {counts['size']} indexed" if counts["size"] else "")
 
 
 def derive(data, measured_on):
@@ -311,6 +333,7 @@ def derive(data, measured_on):
             "largest": largest_fact(sites),
         },
         "directory_headline": directory_headline(data, sites),
+        "directory_counts": directory_counts(data),
     }
 
 

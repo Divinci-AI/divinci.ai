@@ -328,12 +328,29 @@ describe('API-driven pages match the scripts that drive them', () => {
     const pages = [join(PUBLIC, 'www-rag', 'index.html'), ...dirs];
     assert.ok(pages.length > 5, `expected the directory in several locales, found ${pages.length}`);
 
+    // What matters is that every locale carries the MEASUREMENT — not that it
+    // carries the English sentence. The page is translated, so each locale
+    // assembles those figures through its own pattern (see www_rag.stats in
+    // data/translations/). English still has to match the generated headline
+    // exactly: it is the wording the generator, the widget and the unit tests
+    // all mirror, and drift between them is the bug this guards against.
+    const figures = Object.entries(measured.directory_counts ?? {})
+      .filter(([, value]) => value)
+      .map(([name, value]) => ({ name, value }));
+    assert.ok(figures.length >= 4, 'expected the measurement to carry its counts');
+
     for (const file of pages) {
       const { window } = new JSDOM(readFileSync(file, 'utf8'));
-      assert.equal(
-        window.document.getElementById('www-rag-stats').textContent.trim(),
-        measured.directory_headline,
-        `${relative(PUBLIC, file)} does not carry the measured headline`);
+      const rendered = window.document.getElementById('www-rag-stats').textContent.trim();
+      const where = relative(PUBLIC, file);
+      if (where === 'www-rag/index.html') {
+        assert.equal(rendered, measured.directory_headline,
+          `${where} does not carry the measured headline`);
+      }
+      for (const { name, value } of figures) {
+        assert.ok(rendered.includes(value),
+          `${where} is missing the measured ${name} (${value}): ${rendered}`);
+      }
       window.close();
     }
   });

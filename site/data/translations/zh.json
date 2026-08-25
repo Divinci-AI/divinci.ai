@@ -1176,5 +1176,17 @@
     "card3_desc": "两个原生训练的 1-bit 模型，两家机构，同一异常：结构消失，行为犹存。",
     "card3_alt": "1-bit 量化消融图表",
     "card3_meta": "Part III · 7 分钟阅读"
+  },
+  "www_rag": {
+    "search_placeholder": "按站点名称或主题搜索…",
+    "search_label": "搜索 WWW-RAG 目录",
+    "scan_cta": "扫描您的网站",
+    "scan_aria": "使用 Divinci 扫描您的网站",
+    "scan_hint": "登录 Divinci 即可直接进入抓取工具 — 我们会自动为您配置工作区。",
+    "owv_eyebrow": "开放网络向量计划",
+    "owv_headline": "这里的每个站点都有自己的向量数据库 — 在抓取任何一个页面之前，我们都先读取了它的 robots.txt。",
+    "owv_sub": "权限门如何运作、语料库包含什么，以及我们会（和不会）作为数据集发布什么。",
+    "stats": "{sites} 个精选站点 · {pages} 个页面 · {files} 个文件 · {chunks} 个可搜索片段",
+    "stats_indexed": "已索引 {size}"
   }
 }

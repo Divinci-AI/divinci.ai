@@ -68,26 +68,49 @@
         {% endif %}
         {#- Server-rendered so the corpus size is in the HTML for readers that
             do not run JavaScript; www-rag-directory.js replaces it with the
-            live figures. Same generated measurement the initiative page uses. -#}
+            live figures. Same generated measurement the initiative page uses.
+            The sentence is assembled here rather than taken whole, because
+            this page ships in thirteen languages and each one puts the
+            figures in its own word order — directory_counts carries the
+            parts, directory_headline stays the English assembly. Falls back
+            to that headline if a stale measurement predates the counts. -#}
         {%- set owv = load_data(path="data/open-web-vectors.json") -%}
-        <div class="www-rag-stats" id="www-rag-stats" aria-live="polite">{{ owv.directory_headline }}</div>
+        {%- set counts = owv.directory_counts | default(value=false) -%}
+        {%- set stats_line = owv.directory_headline -%}
+        {%- if counts -%}
+            {%- set_global stats_line = translations.www_rag.stats | default(value="{sites} curated sites · {pages} pages · {files} files · {chunks} searchable chunks")
+                | replace(from="{sites}", to=counts.sites)
+                | replace(from="{pages}", to=counts.pages)
+                | replace(from="{files}", to=counts.files)
+                | replace(from="{chunks}", to=counts.chunks) -%}
+            {#- The corpus-size clause exists only when the corpus is big
+                enough to be worth naming; the generator leaves size empty
+                below that floor. -#}
+            {%- if counts.size -%}
+                {#- Tera cannot parse a parenthesised filter chain inside a
+                    concatenation, so the clause is built before it is joined. -#}
+                {%- set indexed = translations.www_rag.stats_indexed | default(value="{size} indexed") | replace(from="{size}", to=counts.size) -%}
+                {%- set_global stats_line = stats_line ~ " · " ~ indexed -%}
+            {%- endif -%}
+        {%- endif -%}
+        <div class="www-rag-stats" id="www-rag-stats" aria-live="polite">{{ stats_line }}</div>
         </div>
         <input
             type="search"
             id="www-rag-search"
             class="www-rag-search"
-            placeholder="Search by site name or topic…"
-            aria-label="Search the WWW-RAG directory"
+            placeholder="{{ translations.www_rag.search_placeholder | default(value="Search by site name or topic…") }}"
+            aria-label="{{ translations.www_rag.search_label | default(value="Search the WWW-RAG directory") }}"
         />
         <a class="www-rag-scan-cta" href="https://chat.divinci.app/start/crawl" rel="noopener">
-            <span class="www-rag-scan-cta-spark">✦</span> Scan your website
+            <span class="www-rag-scan-cta-spark">✦</span> {{ translations.www_rag.scan_cta | default(value="Scan your website") }}
         </a>
-        <p class="www-rag-scan-hint">Sign in to Divinci and land right in the crawler — we'll set up your workspace automatically.</p>
+        <p class="www-rag-scan-hint">{{ translations.www_rag.scan_hint | default(value="Sign in to Divinci and land right in the crawler — we'll set up your workspace automatically.") }}</p>
     </div>
 </section>
 
-<a class="www-rag-scan-fab" id="www-rag-scan-fab" href="https://chat.divinci.app/start/crawl" rel="noopener" aria-label="Scan your website with Divinci">
-    <span class="www-rag-scan-cta-spark">✦</span> Scan your website
+<a class="www-rag-scan-fab" id="www-rag-scan-fab" href="https://chat.divinci.app/start/crawl" rel="noopener" aria-label="{{ translations.www_rag.scan_aria | default(value="Scan your website with Divinci") }}">
+    <span class="www-rag-scan-cta-spark">✦</span> {{ translations.www_rag.scan_cta | default(value="Scan your website") }}
 </a>
 
 {# What this catalog is part of. Sits directly under the hero because it is
@@ -98,9 +121,9 @@
         <a class="www-rag-owv-link" href="/open-web-vectors/">
             <span class="www-rag-owv-mark" aria-hidden="true">◆</span>
             <span class="www-rag-owv-text">
-                <span class="www-rag-owv-eyebrow">The Open Web Vector Initiative</span>
-                <span class="www-rag-owv-headline">Every site here has its own vector database — and its own robots.txt was read before we fetched a single page.</span>
-                <span class="www-rag-owv-sub">How the permission gate works, what's in the corpus, and what we will and won't publish as a dataset.</span>
+                <span class="www-rag-owv-eyebrow">{{ translations.www_rag.owv_eyebrow | default(value="The Open Web Vector Initiative") }}</span>
+                <span class="www-rag-owv-headline">{{ translations.www_rag.owv_headline | default(value="Every site here has its own vector database — and its own robots.txt was read before we fetched a single page.") }}</span>
+                <span class="www-rag-owv-sub">{{ translations.www_rag.owv_sub | default(value="How the permission gate works, what's in the corpus, and what we will and won't publish as a dataset.") }}</span>
             </span>
             <span class="www-rag-owv-go" aria-hidden="true">→</span>
         </a>
@@ -1664,6 +1687,18 @@ body.www-rag-starry .site-footer > * { position: relative; z-index: 1; }
 }
 </style>
 
+{# The live refresh rewrites the stats line with figures from the API, so it
+   needs the same localised pattern the server rendered above — otherwise the
+   sentence reverts to English the moment the catalog lands. Same idiom as the
+   chat config blocks above: JSON in, English defaults if it is missing.
+   json_encode escapes the strings, which come from our own translation files
+   and never from a visitor. #}
+<script type="application/json" id="www-rag-i18n">
+{
+  "stats": {{ translations.www_rag.stats | default(value="{sites} curated sites · {pages} pages · {files} files · {chunks} searchable chunks") | json_encode() | safe }},
+  "statsIndexed": {{ translations.www_rag.stats_indexed | default(value="{size} indexed") | json_encode() | safe }}
+}
+</script>
 <script defer src="{{ get_url(path="js/www-rag-directory.js") }}"></script>
 {# morpho must be defined before the strip renders; both are deferred, so
    they execute in document order. The strip degrades to plain text if this

@@ -1176,5 +1176,17 @@
     "card3_desc": "네이티브 학습된 1-bit 모델 두 개, 두 조직, 동일한 이상 현상: 구조는 사라지고 동작은 유지되었습니다.",
     "card3_alt": "1-bit 양자화 해체 차트",
     "card3_meta": "Part III · 7분 읽기"
+  },
+  "www_rag": {
+    "search_placeholder": "사이트 이름 또는 주제로 검색…",
+    "search_label": "WWW-RAG 디렉터리 검색",
+    "scan_cta": "웹사이트 스캔하기",
+    "scan_aria": "Divinci로 웹사이트 스캔하기",
+    "scan_hint": "Divinci에 로그인하면 바로 크롤러로 이동합니다 — 워크스페이스는 자동으로 설정해 드립니다.",
+    "owv_eyebrow": "Open Web Vector 이니셔티브",
+    "owv_headline": "여기 있는 모든 사이트는 각자의 벡터 데이터베이스를 가지고 있으며, 단 한 페이지를 가져오기 전에 해당 사이트의 robots.txt를 먼저 읽었습니다.",
+    "owv_sub": "권한 게이트의 작동 방식, 코퍼스의 구성, 그리고 데이터셋으로 공개할 것과 공개하지 않을 것.",
+    "stats": "선별된 사이트 {sites}개 · {pages} 페이지 · {files} 파일 · 검색 가능한 청크 {chunks}개",
+    "stats_indexed": "{size} 인덱싱됨"
   }
 }

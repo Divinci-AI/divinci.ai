@@ -183,6 +183,30 @@ class DerivedPayload(unittest.TestCase):
             "9 curated sites · 3,634 pages · 16 files · 54,975 searchable chunks",
         )
 
+    def test_directory_counts_carry_the_same_figures_as_the_headline(self):
+        # The translated locales assemble their own sentence from these, so a
+        # count that drifts from the headline would show a different corpus
+        # depending on which language you read the page in.
+        counts = self.derived["directory_counts"]
+        self.assertEqual(counts["sites"], "9")
+        self.assertEqual(counts["pages"], "3,634")
+        self.assertEqual(counts["files"], "16")
+        self.assertEqual(counts["chunks"], "54,975")
+        for figure in counts.values():
+            if figure:
+                self.assertIn(figure, self.derived["directory_headline"])
+
+    def test_directory_counts_leave_size_empty_below_the_floor(self):
+        # "" and not None: the template tests it for truthiness to decide
+        # whether the "N GB indexed" clause exists at all.
+        self.assertEqual(self.derived["directory_counts"]["size"], "")
+
+    def test_directory_counts_name_a_size_once_it_is_large(self):
+        payload = load_fixture()
+        payload["totalBytes"] = 200 * 1024 * 1024 * 1024
+        derived = owv.derive(payload, MEASURED_ON)
+        self.assertEqual(derived["directory_counts"]["size"], "200 GB")
+
     def test_directory_headline_omits_a_corpus_size_below_the_floor(self):
         # Same display threshold as the widget: ~1 GB undersells 1.1M chunks.
         self.assertNotIn("indexed", self.derived["directory_headline"])

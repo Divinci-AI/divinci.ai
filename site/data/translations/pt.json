@@ -1176,5 +1176,17 @@
     "card3_desc": "Dois modelos 1-bit treinados nativamente, duas organizações, mesma anomalia: estrutura desaparecida, comportamento sobreviveu.",
     "card3_alt": "Gráfico de dissolução de quantização 1-bit",
     "card3_meta": "Parte III · 7 min de leitura"
+  },
+  "www_rag": {
+    "search_placeholder": "Pesquise por nome do site ou tema…",
+    "search_label": "Pesquisar no diretório WWW-RAG",
+    "scan_cta": "Analise seu site",
+    "scan_aria": "Analise seu site com a Divinci",
+    "scan_hint": "Faça login na Divinci e vá direto para o crawler — configuramos seu espaço de trabalho automaticamente.",
+    "owv_eyebrow": "A Iniciativa Open Web Vector",
+    "owv_headline": "Cada site aqui tem seu próprio banco de dados vetorial — e seu robots.txt foi lido antes de buscarmos uma única página.",
+    "owv_sub": "Como funciona a barreira de permissões, o que há no corpus e o que vamos — e não vamos — publicar como conjunto de dados.",
+    "stats": "{sites} sites curados · {pages} páginas · {files} arquivos · {chunks} trechos pesquisáveis",
+    "stats_indexed": "{size} indexados"
   }
 }
