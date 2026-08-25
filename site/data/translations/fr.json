@@ -1187,6 +1187,16 @@
     "owv_headline": "Chaque site ici possède sa propre base de données vectorielle — et son robots.txt a été lu avant que nous ne récupérions la moindre page.",
     "owv_sub": "Comment fonctionne la barrière d'autorisation, ce que contient le corpus, et ce que nous publierons — ou non — sous forme de jeu de données.",
     "stats": "{sites} sites sélectionnés · {pages} pages · {files} fichiers · {chunks} segments interrogeables",
-    "stats_indexed": "{size} indexés"
+    "stats_indexed": "{size} indexés",
+    "status_loading": "Chargement du répertoire…",
+    "status_error": "Impossible de charger le répertoire pour le moment. Veuillez réessayer dans un instant.",
+    "status_empty": "Aucun site ne correspond à votre recherche et à vos filtres.",
+    "card_no_chat": "Chat non disponible",
+    "build_title": "Copiez les segments et embeddings de ce site dans votre propre espace de travail et construisez un assistant par-dessus",
+    "claim_title": "Prouvez que ce site vous appartient (vérification DNS ou par fichier) et reprenez son assistant",
+    "table_actions": "Actions",
+    "table_label": "Tableau du répertoire WWW-RAG",
+    "count_sites": "{count} sites",
+    "count_filtered": "{shown} sur {total} sites"
   }
 }

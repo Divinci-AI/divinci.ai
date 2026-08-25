@@ -1190,6 +1190,16 @@
     "owv_headline": "Every site here has its own vector database — and its own robots.txt was read before we fetched a single page.",
     "owv_sub": "How the permission gate works, what's in the corpus, and what we will and won't publish as a dataset.",
     "stats": "{sites} curated sites · {pages} pages · {files} files · {chunks} searchable chunks",
-    "stats_indexed": "{size} indexed"
+    "stats_indexed": "{size} indexed",
+    "status_loading": "Loading catalog…",
+    "status_error": "Couldn't load the directory right now. Please try again shortly.",
+    "status_empty": "No sites match your search and filters.",
+    "card_no_chat": "Not chat-enabled",
+    "build_title": "Copy this site's chunks + embeddings into your own workspace and build an assistant on top of it",
+    "claim_title": "Prove you own this site (DNS or file verification) and take over its assistant",
+    "table_actions": "Actions",
+    "table_label": "WWW-RAG directory table",
+    "count_sites": "{count} sites",
+    "count_filtered": "{shown} of {total} sites"
   }
 }

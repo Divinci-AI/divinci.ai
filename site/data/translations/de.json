@@ -1187,6 +1187,16 @@
     "owv_headline": "Jede Website hier hat ihre eigene Vektordatenbank — und ihre robots.txt wurde gelesen, bevor wir eine einzige Seite abgerufen haben.",
     "owv_sub": "Wie die Berechtigungsprüfung funktioniert, was im Korpus steckt und was wir als Datensatz veröffentlichen — und was nicht.",
     "stats": "{sites} kuratierte Websites · {pages} Seiten · {files} Dateien · {chunks} durchsuchbare Chunks",
-    "stats_indexed": "{size} indexiert"
+    "stats_indexed": "{size} indexiert",
+    "status_loading": "Katalog wird geladen…",
+    "status_error": "Das Verzeichnis konnte gerade nicht geladen werden. Bitte versuchen Sie es in Kürze erneut.",
+    "status_empty": "Keine Websites entsprechen Ihrer Suche und Ihren Filtern.",
+    "card_no_chat": "Kein Chat verfügbar",
+    "build_title": "Kopieren Sie die Chunks und Embeddings dieser Website in Ihren eigenen Arbeitsbereich und bauen Sie darauf einen Assistenten auf",
+    "claim_title": "Weisen Sie nach, dass Ihnen diese Website gehört (DNS- oder Dateiprüfung), und übernehmen Sie ihren Assistenten",
+    "table_actions": "Aktionen",
+    "table_label": "Tabelle des WWW-RAG-Verzeichnisses",
+    "count_sites": "{count} Websites",
+    "count_filtered": "{shown} von {total} Websites"
   }
 }

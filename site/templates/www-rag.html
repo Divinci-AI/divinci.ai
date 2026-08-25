@@ -194,7 +194,7 @@
                     <select id="www-rag-filter-status" class="www-rag-select">
                         <option value="">Any status</option>
                         <option value="chat">Chat-enabled</option>
-                        <option value="nochat">Not chat-enabled</option>
+                        <option value="nochat">{{ translations.www_rag.card_no_chat | default(value="Not chat-enabled") }}</option>
                         <option value="claimed">Claimed</option>
                         <option value="unclaimed">Unclaimed</option>
                     </select>
@@ -233,7 +233,7 @@
                 <button type="button" id="www-rag-export" class="www-rag-export">Export CSV</button>
             </div>
         </div>
-        <div id="www-rag-status" class="www-rag-status">Loading catalog…</div>
+        <div id="www-rag-status" class="www-rag-status">{{ translations.www_rag.status_loading | default(value="Loading catalog…") }}</div>
         <div id="www-rag-grid" class="www-rag-results"></div>
     </div>
 </section>
@@ -1696,7 +1696,16 @@ body.www-rag-starry .site-footer > * { position: relative; z-index: 1; }
 <script type="application/json" id="www-rag-i18n">
 {
   "stats": {{ translations.www_rag.stats | default(value="{sites} curated sites · {pages} pages · {files} files · {chunks} searchable chunks") | json_encode() | safe }},
-  "statsIndexed": {{ translations.www_rag.stats_indexed | default(value="{size} indexed") | json_encode() | safe }}
+  "statsIndexed": {{ translations.www_rag.stats_indexed | default(value="{size} indexed") | json_encode() | safe }},
+  "statusError": {{ translations.www_rag.status_error | default(value="Couldn't load the directory right now. Please try again shortly.") | json_encode() | safe }},
+  "statusEmpty": {{ translations.www_rag.status_empty | default(value="No sites match your search and filters.") | json_encode() | safe }},
+  "cardNoChat": {{ translations.www_rag.card_no_chat | default(value="Not chat-enabled") | json_encode() | safe }},
+  "buildTitle": {{ translations.www_rag.build_title | default(value="Copy this site's chunks + embeddings into your own workspace and build an assistant on top of it") | json_encode() | safe }},
+  "claimTitle": {{ translations.www_rag.claim_title | default(value="Prove you own this site (DNS or file verification) and take over its assistant") | json_encode() | safe }},
+  "tableActions": {{ translations.www_rag.table_actions | default(value="Actions") | json_encode() | safe }},
+  "tableLabel": {{ translations.www_rag.table_label | default(value="WWW-RAG directory table") | json_encode() | safe }},
+  "countSites": {{ translations.www_rag.count_sites | default(value="{count} sites") | json_encode() | safe }},
+  "countFiltered": {{ translations.www_rag.count_filtered | default(value="{shown} of {total} sites") | json_encode() | safe }}
 }
 </script>
 <script defer src="{{ get_url(path="js/www-rag-directory.js") }}"></script>

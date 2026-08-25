@@ -1187,6 +1187,16 @@
     "owv_headline": "Elke site hier heeft zijn eigen vectordatabase — en zijn robots.txt is gelezen voordat we ook maar één pagina ophaalden.",
     "owv_sub": "Hoe de toestemmingspoort werkt, wat er in het corpus zit, en wat we wel en niet als dataset publiceren.",
     "stats": "{sites} samengestelde sites · {pages} pagina's · {files} bestanden · {chunks} doorzoekbare chunks",
-    "stats_indexed": "{size} geïndexeerd"
+    "stats_indexed": "{size} geïndexeerd",
+    "status_loading": "Catalogus laden…",
+    "status_error": "De directory kon nu niet worden geladen. Probeer het zo meteen opnieuw.",
+    "status_empty": "Geen sites komen overeen met uw zoekopdracht en filters.",
+    "card_no_chat": "Geen chat beschikbaar",
+    "build_title": "Kopieer de chunks en embeddings van deze site naar uw eigen werkruimte en bouw daar een assistent op",
+    "claim_title": "Toon aan dat deze site van u is (DNS- of bestandsverificatie) en neem de assistent over",
+    "table_actions": "Acties",
+    "table_label": "Tabel van de WWW-RAG-directory",
+    "count_sites": "{count} sites",
+    "count_filtered": "{shown} van {total} sites"
   }
 }

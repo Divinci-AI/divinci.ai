@@ -1187,6 +1187,16 @@
     "owv_headline": "Cada site aqui tem seu próprio banco de dados vetorial — e seu robots.txt foi lido antes de buscarmos uma única página.",
     "owv_sub": "Como funciona a barreira de permissões, o que há no corpus e o que vamos — e não vamos — publicar como conjunto de dados.",
     "stats": "{sites} sites curados · {pages} páginas · {files} arquivos · {chunks} trechos pesquisáveis",
-    "stats_indexed": "{size} indexados"
+    "stats_indexed": "{size} indexados",
+    "status_loading": "Carregando o catálogo…",
+    "status_error": "Não foi possível carregar o diretório agora. Tente novamente em instantes.",
+    "status_empty": "Nenhum site corresponde à sua pesquisa e aos seus filtros.",
+    "card_no_chat": "Sem chat disponível",
+    "build_title": "Copie os trechos e embeddings deste site para seu próprio espaço de trabalho e construa um assistente sobre eles",
+    "claim_title": "Comprove que este site é seu (verificação por DNS ou arquivo) e assuma o controle do assistente dele",
+    "table_actions": "Ações",
+    "table_label": "Tabela do diretório WWW-RAG",
+    "count_sites": "{count} sites",
+    "count_filtered": "{shown} de {total} sites"
   }
 }

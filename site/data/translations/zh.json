@@ -1187,6 +1187,16 @@
     "owv_headline": "这里的每个站点都有自己的向量数据库 — 在抓取任何一个页面之前，我们都先读取了它的 robots.txt。",
     "owv_sub": "权限门如何运作、语料库包含什么，以及我们会（和不会）作为数据集发布什么。",
     "stats": "{sites} 个精选站点 · {pages} 个页面 · {files} 个文件 · {chunks} 个可搜索片段",
-    "stats_indexed": "已索引 {size}"
+    "stats_indexed": "已索引 {size}",
+    "status_loading": "正在加载目录…",
+    "status_error": "目前无法加载目录。请稍后重试。",
+    "status_empty": "没有站点符合您的搜索和筛选条件。",
+    "card_no_chat": "未启用聊天",
+    "build_title": "将该站点的片段和嵌入向量复制到您自己的工作区，并在其上构建助手",
+    "claim_title": "验证您对该站点的所有权（DNS 或文件验证），并接管它的助手",
+    "table_actions": "操作",
+    "table_label": "WWW-RAG 目录表格",
+    "count_sites": "{count} 个站点",
+    "count_filtered": "{total} 个站点中的 {shown} 个"
   }
 }

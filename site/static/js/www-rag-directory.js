@@ -64,6 +64,25 @@
     I18N.stats || "{sites} curated sites · {pages} pages · {files} files · {chunks} searchable chunks";
   var STATS_INDEXED = I18N.statsIndexed || "{size} indexed";
 
+  // The prose and the screen-reader-only strings. Deliberately NOT the
+  // labels: "Chat", "Pages", "Chunks" and the rest read as iconography next
+  // to a hostname, and half the target languages keep them as loanwords
+  // anyway. These are the sentences a visitor reads when something fails,
+  // and the strings that exist ONLY for a screen reader — which speaks them
+  // through the voice for <html lang>, so an English string on /de/ comes
+  // out mangled rather than merely untranslated.
+  var TEXT = {
+    statusError: I18N.statusError || "Couldn't load the directory right now. Please try again shortly.",
+    statusEmpty: I18N.statusEmpty || "No sites match your search and filters.",
+    cardNoChat: I18N.cardNoChat || "Not chat-enabled",
+    buildTitle: I18N.buildTitle || "Copy this site's chunks + embeddings into your own workspace and build an assistant on top of it",
+    claimTitle: I18N.claimTitle || "Prove you own this site (DNS or file verification) and take over its assistant",
+    tableActions: I18N.tableActions || "Actions",
+    tableLabel: I18N.tableLabel || "WWW-RAG directory table",
+    countSites: I18N.countSites || "{count} sites",
+    countFiltered: I18N.countFiltered || "{shown} of {total} sites",
+  };
+
   // Fills {name} placeholders. Deliberately not a regex over the whole string:
   // a translated pattern is data, and a stray {…} in one should render as
   // itself rather than disappear.
@@ -495,7 +514,7 @@
     { key: "status", label: "Status", sortable: false },
     // Header text is for screen readers only — a visible "Actions" label over
     // three buttons is noise, but an empty <th> leaves the column unnamed.
-    { key: "actions", label: "Actions", sortable: false, srOnly: true },
+    { key: "actions", label: TEXT.tableActions, sortable: false, srOnly: true },
   ];
 
   function actionLinks(site, variant) {
@@ -509,7 +528,7 @@
       chatLink.textContent = "Chat";
       actions.appendChild(chatLink);
     } else if (variant === "card") {
-      actions.appendChild(el("span", "www-rag-card-pending", "Not chat-enabled"));
+      actions.appendChild(el("span", "www-rag-card-pending", TEXT.cardNoChat));
     }
 
     var buildLink = document.createElement("a");
@@ -517,7 +536,7 @@
     buildLink.href = BUILD_BASE + encodeURIComponent(site.host);
     buildLink.target = "_blank";
     buildLink.rel = "noopener";
-    buildLink.title = "Copy this site's chunks + embeddings into your own workspace and build an assistant on top of it";
+    buildLink.title = TEXT.buildTitle;
     buildLink.textContent = "Build";
     actions.appendChild(buildLink);
 
@@ -527,7 +546,7 @@
       claimLink.href = CLAIM_BASE + encodeURIComponent(site.host);
       claimLink.target = "_blank";
       claimLink.rel = "noopener";
-      claimLink.title = "Prove you own this site (DNS or file verification) and take over its assistant";
+      claimLink.title = TEXT.claimTitle;
       claimLink.textContent = "Claim";
       actions.appendChild(claimLink);
     }
@@ -648,7 +667,7 @@
     var scroller = el("div", "www-rag-table-wrap");
     scroller.setAttribute("tabindex", "0");
     scroller.setAttribute("role", "region");
-    scroller.setAttribute("aria-label", "WWW-RAG directory table");
+    scroller.setAttribute("aria-label", TEXT.tableLabel);
     scroller.appendChild(table);
 
     return {
@@ -779,10 +798,12 @@
   function updateCount(total) {
     if (!countEl) return;
     var all = allSites.length;
+    // #www-rag-count is aria-live, so a screen reader announces this on every
+    // keystroke and every filter change — it has to be in the page's language.
     countEl.textContent =
       total === all
-        ? formatCount(all) + " sites"
-        : formatCount(total) + " of " + formatCount(all) + " sites";
+        ? fill(TEXT.countSites, { count: formatCount(all) })
+        : fill(TEXT.countFiltered, { shown: formatCount(total), total: formatCount(all) });
     if (exportEl) {
       exportEl.textContent = "Export CSV (" + formatCount(total) + ")";
       exportEl.disabled = total === 0;
@@ -874,7 +895,7 @@
     teardownChunks();
     gridEl.innerHTML = "";
     if (!visible.length) {
-      statusEl.textContent = "No sites match your search and filters.";
+      statusEl.textContent = TEXT.statusEmpty;
       statusEl.classList.remove("hidden");
       return;
     }
@@ -1118,7 +1139,7 @@
       render();
     })
     .catch(function (err) {
-      statusEl.textContent = "Couldn't load the directory right now. Please try again shortly.";
+      statusEl.textContent = TEXT.statusError;
       statusEl.classList.remove("hidden");
       console.warn("[www-rag-directory]", err);
     });

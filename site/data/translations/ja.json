@@ -1187,6 +1187,16 @@
     "owv_headline": "ここにあるすべてのサイトが独自のベクターデータベースを持ち、1 ページを取得する前にそのサイトの robots.txt を読んでいます。",
     "owv_sub": "許可ゲートの仕組み、コーパスの中身、そしてデータセットとして公開するもの・しないもの。",
     "stats": "厳選サイト {sites} 件 · {pages} ページ · {files} ファイル · 検索可能なチャンク {chunks} 件",
-    "stats_indexed": "{size} をインデックス済み"
+    "stats_indexed": "{size} をインデックス済み",
+    "status_loading": "カタログを読み込んでいます…",
+    "status_error": "現在ディレクトリを読み込めませんでした。しばらくしてからもう一度お試しください。",
+    "status_empty": "検索条件とフィルターに一致するサイトはありません。",
+    "card_no_chat": "チャット非対応",
+    "build_title": "このサイトのチャンクと埋め込みを自分のワークスペースにコピーし、その上にアシスタントを構築します",
+    "claim_title": "このサイトの所有者であることを DNS またはファイルで確認し、そのアシスタントを引き継ぎます",
+    "table_actions": "操作",
+    "table_label": "WWW-RAG ディレクトリの表",
+    "count_sites": "{count} 件のサイト",
+    "count_filtered": "{total} 件中 {shown} 件のサイト"
   }
 }
