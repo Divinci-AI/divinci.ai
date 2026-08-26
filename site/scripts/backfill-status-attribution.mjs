@@ -30,6 +30,13 @@
  * present are left alone — the live collector owns those.
  */
 import { execFileSync } from 'node:child_process';
+
+// wrangler prefers CLOUDFLARE_API_TOKEN over the browser OAuth session, and
+// the token in this shell is not the one with KV write — same `env -u` dance
+// the deploy scripts do. Deleting the key beats setting it to undefined:
+// execFileSync stringifies an undefined value into the literal "undefined".
+const WRANGLER_ENV = { ...process.env };
+delete WRANGLER_ENV.CLOUDFLARE_API_TOKEN;
 import { attributeRows, attributionForDay, autoNote, ZONES, ATTRIBUTION_KEY } from '../src/status-attribution.mjs';
 
 const KV_NAMESPACE = '4d3eb9e275804f3090b9c0f96154381d'; // STATUS_HISTORY, production
@@ -127,7 +134,7 @@ try {
   existing = JSON.parse(execFileSync('npx', [
     'wrangler', 'kv', 'key', 'get', ATTRIBUTION_KEY,
     '--namespace-id', KV_NAMESPACE, '--remote',
-  ], { encoding: 'utf8', env: { ...process.env, CLOUDFLARE_API_TOKEN: undefined } }));
+  ], { encoding: 'utf8', env: WRANGLER_ENV }));
 } catch { /* no record yet — expected on the first run */ }
 
 const merged = { ...existing, days: { ...(record.days), ...(existing.days ?? {}) }, updatedAt: Date.now() };
@@ -137,5 +144,5 @@ if (kept.length) console.log(`\nleft alone (already collected): ${kept.join(', '
 execFileSync('npx', [
   'wrangler', 'kv', 'key', 'put', ATTRIBUTION_KEY, JSON.stringify(merged),
   '--namespace-id', KV_NAMESPACE, '--remote',
-], { stdio: 'inherit', env: { ...process.env, CLOUDFLARE_API_TOKEN: undefined } });
+], { stdio: 'inherit', env: WRANGLER_ENV });
 console.log(`\nwrote ${Object.keys(merged.days).length} days to ${ATTRIBUTION_KEY}`);
