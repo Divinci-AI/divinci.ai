@@ -96,7 +96,7 @@ This opens a browser tab, you authorize, and the OAuth token is cached (macOS Ke
 
 ## Deployment
 
-- Staging: `divinci-ai-site-staging.divinci-ai.workers.dev` / `staging.divinci.ai`
+- Staging: `staging.divinci.ai` (the `*.workers.dev` hostnames are disabled — see `workers_dev: false` in `wrangler.jsonc`; they published indexable copies of the site)
 - Production: `divinci.ai` / `www.divinci.ai`
 - Static assets (videos, large images): Cloudflare R2 — `https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/`
 
