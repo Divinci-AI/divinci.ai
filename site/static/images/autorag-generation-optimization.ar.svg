@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg lang="ar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 412" role="img" aria-labelledby="goTitle goDesc">
+  <title id="goTitle">How AutoRAG picks the generation configuration</title>
+  <desc id="goDesc">Three candidate generation configurations — differing in prompt, model and temperature — are each run over the whole QA set. A calibrated judge scores every answer, marking it a pass or a fail. The scores are broken out by relevance, faithfulness and completeness, and the configuration that scores best across them is promoted to your live pipeline.</desc>
+
+  <defs>
+    <marker id="goTip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b8a080"/>
+    </marker>
+    <filter id="goCard" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#8b7659" flood-opacity="0.13"/>
+    </filter>
+    <style>
+      .go       { font-family: 'Source Sans 3','Helvetica Neue',Helvetica,Arial,sans-serif; }
+      .go-card  { fill:#ffffff; stroke:#e6dccb; stroke-width:1; }
+      .go-t     { font-size:13.5px; font-weight:600; fill:#1e3a2b; }
+      .go-s     { font-size:10px; fill:#7d6a52; }
+      .go-rule  { stroke:#f0e8d9; stroke-width:1; }
+      .go-flow  { stroke:#b8a080; stroke-width:2; fill:none; }
+      .go-sub   { fill:#fdfbf7; stroke:#e8dfd0; stroke-width:1; }
+      .go-chip  { fill:#f6f1e8; stroke:#ddd0ba; stroke-width:1; }
+      .go-chipt { font-size:9px; fill:#6b5a45; }
+      .go-lab   { font-size:9.5px; fill:#8b7659; }
+      .go-cap   { font-size:11px; fill:#8b7659; text-anchor:middle; }
+      .go-line  { fill:#dfd6c6; }
+    </style>
+  </defs>
+
+  <g class="go">
+
+    <line class="go-flow" x1="240" y1="190" x2="262" y2="190" marker-end="url(#goTip)"/>
+    <line class="go-flow" x1="476" y1="190" x2="498" y2="190" marker-end="url(#goTip)"/>
+
+    <!-- ══════ 1 · Candidates ══════ -->
+    <rect class="go-card" x="16" y="40" width="216" height="290" rx="11" filter="url(#goCard)"/>
+    <text class="go-t" x="32" y="68">المرشَّحات</text>
+    <text class="go-s" x="32" y="85">prompt · نموذج · حرارة</text>
+    <line class="go-rule" x1="32" y1="97" x2="216" y2="97"/>
+
+    <rect class="go-sub" x="32" y="110" width="184" height="60" rx="6"/>
+    <circle cx="52" cy="140" r="11" fill="#e8ddc7" stroke="#c9b894"/>
+    <text x="52" y="144" font-size="11" font-weight="700" fill="#6b5a45" text-anchor="middle">A</text>
+    <rect class="go-chip" x="72" y="120" width="62" height="17" rx="8.5"/>
+    <text class="go-chipt" x="103" y="132" text-anchor="middle">prompt A</text>
+    <rect class="go-chip" x="140" y="120" width="62" height="17" rx="8.5"/>
+    <text class="go-chipt" x="171" y="132" text-anchor="middle">temp 0.2</text>
+    <rect class="go-chip" x="72" y="144" width="90" height="17" rx="8.5"/>
+    <text class="go-chipt" x="117" y="156" text-anchor="middle">نموذج · سريع</text>
+
+    <rect class="go-sub" x="32" y="180" width="184" height="60" rx="6"/>
+    <circle cx="52" cy="210" r="11" fill="#e8ddc7" stroke="#c9b894"/>
+    <text x="52" y="214" font-size="11" font-weight="700" fill="#6b5a45" text-anchor="middle">B</text>
+    <rect class="go-chip" x="72" y="190" width="62" height="17" rx="8.5"/>
+    <text class="go-chipt" x="103" y="202" text-anchor="middle">prompt B</text>
+    <rect class="go-chip" x="140" y="190" width="62" height="17" rx="8.5"/>
+    <text class="go-chipt" x="171" y="202" text-anchor="middle">temp 0.2</text>
+    <rect class="go-chip" x="72" y="214" width="90" height="17" rx="8.5"/>
+    <text class="go-chipt" x="117" y="226" text-anchor="middle">نموذج · عميق</text>
+
+    <rect class="go-sub" x="32" y="250" width="184" height="60" rx="6"/>
+    <circle cx="52" cy="280" r="11" fill="#e8ddc7" stroke="#c9b894"/>
+    <text x="52" y="284" font-size="11" font-weight="700" fill="#6b5a45" text-anchor="middle">C</text>
+    <rect class="go-chip" x="72" y="260" width="62" height="17" rx="8.5"/>
+    <text class="go-chipt" x="103" y="272" text-anchor="middle">prompt B</text>
+    <rect class="go-chip" x="140" y="260" width="62" height="17" rx="8.5"/>
+    <text class="go-chipt" x="171" y="272" text-anchor="middle">temp 0.7</text>
+    <rect class="go-chip" x="72" y="284" width="90" height="17" rx="8.5"/>
+    <text class="go-chipt" x="117" y="296" text-anchor="middle">نموذج · عميق</text>
+
+    <!-- ══════ 2 · Judged over the QA set ══════ -->
+    <rect class="go-card" x="252" y="40" width="216" height="290" rx="11" filter="url(#goCard)"/>
+    <text class="go-t" x="268" y="68">تُشغَّل على المجموعة</text>
+    <text class="go-s" x="268" y="85">يقيّمها الحَكَم المعايَر</text>
+    <line class="go-rule" x1="268" y1="97" x2="452" y2="97"/>
+
+    <g>
+      <rect class="go-sub" x="268" y="112" width="184" height="26" rx="5"/>
+      <rect class="go-line" x="280" y="123" width="104" height="4" rx="2"/>
+      <path d="M420 124 l4 4 l8 -9" stroke="#2d5a4f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <rect class="go-sub" x="268" y="146" width="184" height="26" rx="5"/>
+      <rect class="go-line" x="280" y="157" width="88" height="4" rx="2"/>
+      <path d="M420 158 l4 4 l8 -9" stroke="#2d5a4f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <rect class="go-sub" x="268" y="180" width="184" height="26" rx="5"/>
+      <rect class="go-line" x="280" y="191" width="112" height="4" rx="2"/>
+      <path d="M420 188 l10 10 M430 188 l-10 10" stroke="#b8a080" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g>
+      <rect class="go-sub" x="268" y="214" width="184" height="26" rx="5"/>
+      <rect class="go-line" x="280" y="225" width="72" height="4" rx="2"/>
+      <path d="M420 226 l4 4 l8 -9" stroke="#2d5a4f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <rect class="go-sub" x="268" y="248" width="184" height="26" rx="5"/>
+      <rect class="go-line" x="280" y="259" width="96" height="4" rx="2"/>
+      <path d="M420 260 l4 4 l8 -9" stroke="#2d5a4f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <text class="go-lab" x="360" y="298" text-anchor="middle">كل سؤال، وكل مرشَّحة</text>
+    <text class="go-lab" x="360" y="314" text-anchor="middle">— بلا أمثلة منتقاة</text>
+
+    <!-- ══════ 3 · Promoted ══════ -->
+    <rect class="go-card" x="488" y="40" width="216" height="290" rx="11" filter="url(#goCard)"/>
+    <text class="go-t" x="504" y="68">تُرقَّى الأفضل</text>
+    <text class="go-s" x="504" y="85">مفصَّلة حسب المقياس</text>
+    <line class="go-rule" x1="504" y1="97" x2="688" y2="97"/>
+
+    <text class="go-lab" x="504" y="122">الصلة</text>
+    <rect x="504" y="130" width="184" height="8" rx="4" fill="#ece5d8"/>
+    <rect x="504" y="130" width="167" height="8" rx="4" fill="#2d5a4f"/>
+
+    <text class="go-lab" x="504" y="164">الأمانة</text>
+    <rect x="504" y="172" width="184" height="8" rx="4" fill="#ece5d8"/>
+    <rect x="504" y="172" width="176" height="8" rx="4" fill="#2d5a4f"/>
+
+    <text class="go-lab" x="504" y="206">الاكتمال</text>
+    <rect x="504" y="214" width="184" height="8" rx="4" fill="#ece5d8"/>
+    <rect x="504" y="214" width="148" height="8" rx="4" fill="#2d5a4f"/>
+
+    <line class="go-rule" x1="504" y1="244" x2="688" y2="244"/>
+
+    <text class="go-lab" x="504" y="268">الثانية · المرشَّحة A</text>
+    <rect x="504" y="276" width="184" height="6" rx="3" fill="#ece5d8"/>
+    <rect x="504" y="276" width="124" height="6" rx="3" fill="#c4b394"/>
+
+    <rect x="530" y="294" width="132" height="26" rx="13" fill="#2d5a4f"/>
+    <text x="596" y="311" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">نُشرت المرشَّحة B</text>
+
+    <text class="go-cap" x="360" y="366">يُنشر الـprompt والنموذج والمعاملات الفائزة معاً كتهيئة واحدة</text>
+    <text class="go-cap" x="360" y="381">ويُعاد فحصها كلما نمت مجموعة الأسئلة.</text>
+
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 76" role="img" aria-labelledby="arTitle2 arDesc2">
+  <title id="arTitle2">Reranking</title>
+  <desc id="arDesc2">A broad first-pass retrieval returns many candidates; a cross-encoder scores each one against the query and only the best three survive.</desc>
+  <defs>
+    <marker id="ar2Tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b8a080"/>
+    </marker>
+    <style>
+      .a       { font-family: 'Source Sans 3','Helvetica Neue',Helvetica,Arial,sans-serif; }
+      .a-h     { font-size:8px; letter-spacing:0.09em; fill:#8b7659; }
+      .a-q     { fill:none; stroke:#b8a080; stroke-width:1.5; }
+      .a-qt    { font-size:8px; fill:#8b7659; text-anchor:middle; }
+      .a-box   { fill:#ffffff; stroke:#2d5a4f; stroke-width:1.5; }
+      .a-boxt  { font-size:7.5px; fill:#1e3a2b; text-anchor:middle; }
+      .a-tile  { fill:#f6f1e8; stroke:#c9b894; stroke-width:1.2; }
+      .a-tilet { font-size:7px; fill:#6b5a45; text-anchor:middle; }
+      .a-pill  { fill:#2d5a4f; }
+      .a-pillt { font-size:7.5px; fill:#ffffff; text-anchor:middle; }
+      .a-link  { stroke:#b8a080; stroke-width:1.2; fill:none; }
+    </style>
+  </defs>
+  <g class="a">
+    <text class="a-h" x="8" y="13">RERANKING</text>
+    <circle class="a-q" cx="14" cy="47" r="8"/>
+    <text class="a-qt" x="14" y="50">Q</text>
+    <line class="a-link" x1="23" y1="47" x2="28" y2="47" marker-end="url(#ar2Tip)"/>
+    <rect class="a-box" x="30" y="37" width="40" height="20" rx="5"/>
+    <text class="a-boxt" x="50" y="50">retrieve</text>
+    <line class="a-link" x1="70" y1="47" x2="75" y2="47" marker-end="url(#ar2Tip)"/>
+    <rect x="77" y="33" width="22" height="5" rx="2.5" fill="#e8ddc7" stroke="#c9b894" stroke-width="0.8"/>
+    <rect x="77" y="41" width="22" height="5" rx="2.5" fill="#e8ddc7" stroke="#c9b894" stroke-width="0.8"/>
+    <rect x="77" y="49" width="22" height="5" rx="2.5" fill="#e8ddc7" stroke="#c9b894" stroke-width="0.8"/>
+    <rect x="77" y="57" width="22" height="5" rx="2.5" fill="#e8ddc7" stroke="#c9b894" stroke-width="0.8"/>
+    <line class="a-link" x1="99" y1="47" x2="104" y2="47" marker-end="url(#ar2Tip)"/>
+    <rect class="a-box" x="106" y="35" width="42" height="24" rx="5"/>
+    <text class="a-boxt" x="127" y="45">cross-</text>
+    <text class="a-boxt" x="127" y="54">encoder</text>
+    <line class="a-link" x1="148" y1="47" x2="153" y2="47" marker-end="url(#ar2Tip)"/>
+    <rect class="a-pill" x="155" y="37" width="32" height="20" rx="10"/>
+    <text class="a-pillt" x="171" y="50">top 3</text>
+  </g>
+</svg>

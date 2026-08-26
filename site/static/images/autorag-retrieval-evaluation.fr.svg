@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg lang="fr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 412" role="img" aria-labelledby="reTitle reDesc">
+  <title id="reTitle">AutoRAG compares retrieval strategies on your own QA set</title>
+  <desc id="reDesc">A question from the generated QA set is sent to three retrieval strategies at once: BM25 keyword matching, dense vector similarity, and a hybrid of both followed by reranking. Each returns a ranked list; the chunk that actually answers the question is shown in green. BM25 ranks it third and dense ranks it second, while hybrid plus reranking puts it first, giving it the highest MRR — so that strategy is selected.</desc>
+
+  <defs>
+    <filter id="reCard" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#8b7659" flood-opacity="0.13"/>
+    </filter>
+    <style>
+      .re       { font-family: 'Source Sans 3','Helvetica Neue',Helvetica,Arial,sans-serif; }
+      .re-card  { fill:#ffffff; stroke:#e6dccb; stroke-width:1; }
+      .re-win   { fill:#ffffff; stroke:#2d5a4f; stroke-width:1.75; }
+      .re-t     { font-size:13.5px; font-weight:600; fill:#1e3a2b; }
+      .re-s     { font-size:10px; fill:#7d6a52; }
+      .re-rank  { font-size:9.5px; fill:#a08e74; }
+      .re-lab   { font-size:9.5px; fill:#8b7659; }
+      .re-rule  { stroke:#f0e8d9; stroke-width:1; }
+      .re-fan   { stroke:#c9b894; stroke-width:1.5; fill:none; }
+      .re-cap   { font-size:11px; fill:#8b7659; text-anchor:middle; }
+      .re-hit   { fill:#2d5a4f; }
+      .re-miss  { fill:#e2d8c6; }
+    </style>
+  </defs>
+
+  <g class="re">
+
+    <!-- the question, drawn from the generated QA set -->
+    <rect x="252" y="14" width="216" height="34" rx="17" fill="#ffffff" stroke="#c9b894"/>
+    <circle cx="274" cy="31" r="9" fill="#2d5a4f"/>
+    <text x="274" y="34.5" font-size="9" font-weight="700" fill="#ffffff" text-anchor="middle">Q</text>
+    <text x="292" y="35" font-size="11.5" fill="#3d4f45">une question du jeu de QR</text>
+
+    <!-- fan out to the three strategies -->
+    <path class="re-fan" d="M360 48 L360 60 Q360 68 352 68 L132 68 Q124 68 124 76 L124 86"/>
+    <path class="re-fan" d="M360 48 L360 86"/>
+    <path class="re-fan" d="M360 48 L360 60 Q360 68 368 68 L588 68 Q596 68 596 76 L596 86"/>
+
+    <!-- ══════ BM25 ══════ -->
+    <rect class="re-card" x="16" y="86" width="216" height="222" rx="11" filter="url(#reCard)"/>
+    <text class="re-t" x="32" y="112">BM25</text>
+    <text class="re-s" x="32" y="129">correspondance de mots</text>
+    <line class="re-rule" x1="32" y1="141" x2="216" y2="141"/>
+    <text class="re-rank" x="32" y="163">1</text><rect class="re-miss" x="48" y="155" width="122" height="11" rx="5.5"/>
+    <text class="re-rank" x="32" y="187">2</text><rect class="re-miss" x="48" y="179" width="104" height="11" rx="5.5"/>
+    <text class="re-rank" x="32" y="211">3</text><rect class="re-hit"  x="48" y="203" width="140" height="11" rx="5.5"/>
+    <text class="re-rank" x="32" y="235">4</text><rect class="re-miss" x="48" y="227" width="88"  height="11" rx="5.5"/>
+    <line class="re-rule" x1="32" y1="256" x2="216" y2="256"/>
+    <text class="re-lab" x="32" y="281">MRR</text>
+    <rect x="72" y="273" width="128" height="7" rx="3.5" fill="#ece5d8"/>
+    <rect x="72" y="273" width="43"  height="7" rx="3.5" fill="#c4b394"/>
+
+    <!-- ══════ Dense ══════ -->
+    <rect class="re-card" x="252" y="86" width="216" height="222" rx="11" filter="url(#reCard)"/>
+    <text class="re-t" x="268" y="112">Vecteurs denses</text>
+    <text class="re-s" x="268" y="129">similarité d'embeddings</text>
+    <line class="re-rule" x1="268" y1="141" x2="452" y2="141"/>
+    <text class="re-rank" x="268" y="163">1</text><rect class="re-miss" x="284" y="155" width="116" height="11" rx="5.5"/>
+    <text class="re-rank" x="268" y="187">2</text><rect class="re-hit"  x="284" y="179" width="140" height="11" rx="5.5"/>
+    <text class="re-rank" x="268" y="211">3</text><rect class="re-miss" x="284" y="203" width="96"  height="11" rx="5.5"/>
+    <text class="re-rank" x="268" y="235">4</text><rect class="re-miss" x="284" y="227" width="82"  height="11" rx="5.5"/>
+    <line class="re-rule" x1="268" y1="256" x2="452" y2="256"/>
+    <text class="re-lab" x="268" y="281">MRR</text>
+    <rect x="308" y="273" width="128" height="7" rx="3.5" fill="#ece5d8"/>
+    <rect x="308" y="273" width="64"  height="7" rx="3.5" fill="#c4b394"/>
+
+    <!-- ══════ Hybrid + rerank — the winner ══════ -->
+    <rect class="re-win" x="488" y="86" width="216" height="222" rx="11" filter="url(#reCard)"/>
+    <text class="re-t" x="504" y="112">Hybride + rerank</text>
+    <text class="re-s" x="504" y="129">les deux, puis réordonné</text>
+    <line class="re-rule" x1="504" y1="141" x2="688" y2="141"/>
+    <text class="re-rank" x="504" y="163">1</text><rect class="re-hit"  x="520" y="155" width="146" height="11" rx="5.5"/>
+    <text class="re-rank" x="504" y="187">2</text><rect class="re-miss" x="520" y="179" width="104" height="11" rx="5.5"/>
+    <text class="re-rank" x="504" y="211">3</text><rect class="re-miss" x="520" y="203" width="92"  height="11" rx="5.5"/>
+    <text class="re-rank" x="504" y="235">4</text><rect class="re-miss" x="520" y="227" width="78"  height="11" rx="5.5"/>
+    <line class="re-rule" x1="504" y1="256" x2="688" y2="256"/>
+    <text class="re-lab" x="504" y="281">MRR</text>
+    <rect x="544" y="273" width="128" height="7" rx="3.5" fill="#ece5d8"/>
+    <rect x="544" y="273" width="128" height="7" rx="3.5" fill="#2d5a4f"/>
+
+    <rect x="540" y="316" width="112" height="24" rx="12" fill="#e8ddc7" stroke="#c9b894"/>
+    <path d="M556 328 l4 4 l7 -8" stroke="#2d5a4f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="606" y="332" font-size="10.5" font-weight="600" fill="#1e3a2b" text-anchor="middle">retenue</text>
+
+    <!-- legend -->
+    <rect class="re-hit"  x="196" y="356" width="11" height="11" rx="3"/>
+    <text class="re-lab" x="213" y="365">le fragment qui répond</text>
+    <rect class="re-miss" x="372" y="356" width="11" height="11" rx="3" stroke="#c9b894" stroke-width="1"/>
+    <text class="re-lab" x="389" y="365">autres résultats</text>
+
+    <text class="re-cap" x="360" y="391">Chaque stratégie est testée sur le jeu de QR généré — AutoRAG</text>
+    <text class="re-cap" x="360" y="406">retient celle qui classe le bon fragment en tête.</text>
+
+  </g>
+</svg>

@@ -1,265 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550" aria-labelledby="title desc">
-  <title id="title">LLM Quality Assurance Pipeline Visualization</title>
-  <desc id="desc">Visual representation of Divinci AI's comprehensive quality assurance process for enterprise LLM applications</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" role="img" aria-labelledby="qpTitle qpDesc">
+  <title id="qpTitle">The LLM quality assurance pipeline</title>
+  <desc id="qpDesc">Four stages run left to right. Test generation writes cases from your own data — user scenarios, edge cases, regression tests and red teaming. Validation checks every answer for factual accuracy, hallucination, bias and toxicity. Analytics scores what matters: relevance, consistency, completeness and compliance. Monitoring watches performance, anomalies, user feedback and drift after release. A feedback arrow returns from monitoring to test generation, because what monitoring finds in production becomes tomorrow's test cases.</desc>
 
   <defs>
-    <!-- Styles -->
-    <style>
-      /* Base styles using the Divinci color palette */
-      .background { fill: rgb(248, 244, 240); }
-      .primary-path { stroke: #2E5BFF; stroke-width: 2; fill: none; }
-      .secondary-path { stroke: #00D8D8; stroke-width: 1.5; fill: none; }
-      .tertiary-path { stroke: #8C54FF; stroke-width: 1.5; fill: none; }
-      .monitoring-path { stroke: #FFAB2D; stroke-width: 1.5; fill: none; }
-
-      .pipeline-container { fill: #F5F7FA; stroke: #485262; stroke-width: 1.5; }
-
-      .testing-node { fill: #F5F7FA; stroke: #2E5BFF; stroke-width: 2; }
-      .validation-node { fill: #F5F7FA; stroke: #00D8D8; stroke-width: 2; }
-      .analysis-node { fill: #F5F7FA; stroke: #8C54FF; stroke-width: 2; }
-      .monitoring-node { fill: #F5F7FA; stroke: #FFAB2D; stroke-width: 2; }
-
-      .icon-primary { fill: #2E5BFF; }
-      .icon-secondary { fill: #00D8D8; }
-      .icon-tertiary { fill: #8C54FF; }
-      .icon-monitoring { fill: #FFAB2D; }
-
-      text {
-        font-family: 'Inter', sans-serif;
-        fill: #485262;
-      }
-      .title-text {
-        font-size: 16px;
-        font-weight: 500;
-      }
-      .subtitle-text {
-        font-size: 14px;
-        font-weight: 400;
-      }
-      .detail-text {
-        font-size: 12px;
-        font-weight: 400;
-      }
-
-      /* Animation keyframes */
-      @keyframes flowAnimation {
-        from { stroke-dashoffset: 1000; }
-        to { stroke-dashoffset: 0; }
-      }
-
-      .animated-path {
-        stroke-dasharray: 5, 3;
-        animation: flowAnimation 20s linear infinite;
-      }
-
-      /* Diamonds removed to fix black areas */
-      .diamond {
-        fill: none;
-        stroke-width: 0;
-        opacity: 0;
-        display: none;
-        visibility: hidden;
-      }
-
-      .diamond-test, .diamond-validate, .diamond-analyze, .diamond-monitor {
-        display: none;
-        visibility: hidden;
-        opacity: 0;
-      }
-
-      .qa-box {
-        fill: #F5F7FA;
-        stroke-width: 1.5;
-        rx: 4;
-        ry: 4;
-      }
-
-      .qa-box-test { stroke: #2E5BFF; }
-      .qa-box-validate { stroke: #00D8D8; }
-      .qa-box-analyze { stroke: #8C54FF; }
-      .qa-box-monitor { stroke: #FFAB2D; }
-
-      /* Performance indicators */
-      .performance-indicator-good { fill: #00D27A; }
-      .performance-indicator-medium { fill: #FFAB2D; }
-      .performance-indicator-attention { fill: #FF5C5C; }
-
-      /* Metrics box */
-      .metrics-box {
-        fill: #F0F5FF;
-        stroke: #2E5BFF;
-        stroke-width: 1;
-        rx: 4;
-        ry: 4;
-      }
-    </style>
-
-    <!-- Gradients -->
-    <linearGradient id="pipelineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#2E5BFF" stop-opacity="0.2"/>
-      <stop offset="33%" stop-color="#00D8D8" stop-opacity="0.2"/>
-      <stop offset="66%" stop-color="#8C54FF" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="#FFAB2D" stop-opacity="0.2"/>
-    </linearGradient>
-
-    <!-- Filter for glow effects -->
-    <filter id="qa-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    <marker id="qpTip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b8a080"/>
+    </marker>
+    <filter id="qpCard" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#8b7659" flood-opacity="0.13"/>
     </filter>
+    <style>
+      .qp       { font-family: 'Source Sans 3','Helvetica Neue',Helvetica,Arial,sans-serif; }
+      .qp-card  { fill:#ffffff; stroke:#e6dccb; stroke-width:1; }
+      .qp-t     { font-size:14px; font-weight:600; fill:#1e3a2b; }
+      .qp-s     { font-size:10.5px; fill:#7d6a52; }
+      .qp-b     { fill:#2d5a4f; }
+      .qp-bn    { font-size:11px; font-weight:700; fill:#ffffff; text-anchor:middle; }
+      .qp-rule  { stroke:#f0e8d9; stroke-width:1; }
+      .qp-flow  { stroke:#b8a080; stroke-width:2; fill:none; }
+      .qp-item  { fill:#fdfbf7; stroke:#e8dfd0; stroke-width:1; }
+      .qp-itemt { font-size:10.5px; fill:#3d4f45; }
+      .qp-loop  { stroke:#b8a080; stroke-width:1.75; fill:none; stroke-dasharray:7 5; }
+      .qp-loopt { font-size:11px; fill:#8b7659; text-anchor:middle; }
+    </style>
   </defs>
 
-  <!-- Background -->
-  <rect width="100%" height="100%" class="background"/>
+  <g class="qp">
 
-  <!-- Pipeline Background - Adjusted height -->
-  <rect x="50" y="100" width="800" height="250" rx="10" ry="10" fill="url(#pipelineGradient)" opacity="0.1"/>
+    <line class="qp-flow" x1="218" y1="126" x2="238" y2="126" marker-end="url(#qpTip)"/>
+    <line class="qp-flow" x1="440" y1="126" x2="460" y2="126" marker-end="url(#qpTip)"/>
+    <line class="qp-flow" x1="662" y1="126" x2="682" y2="126" marker-end="url(#qpTip)"/>
 
-  <!-- Pipeline Container - Adjusted height -->
-  <rect x="50" y="100" width="800" height="250" rx="10" ry="10" class="pipeline-container"/>
-  <text x="450" y="130" class="title-text" text-anchor="middle">LLM Quality Assurance Pipeline</text>
+    <!-- ═══ 1 · Test generation ═══ -->
+    <rect class="qp-card" x="24" y="26" width="186" height="200" rx="11" filter="url(#qpCard)"/>
+    <circle class="qp-b" cx="182" cy="52" r="11"/>
+    <text class="qp-bn" x="182" y="56">1</text>
+    <text class="qp-t" x="40" y="57">Test generation</text>
+    <text class="qp-s" x="40" y="77">Cases written from your data</text>
+    <line class="qp-rule" x1="40" y1="90" x2="194" y2="90"/>
+    <rect class="qp-item" x="38" y="100" width="158" height="22" rx="5"/>
+    <circle cx="50" cy="111" r="3" fill="#b8a080"/><text class="qp-itemt" x="60" y="115">user scenarios</text>
+    <rect class="qp-item" x="38" y="128" width="158" height="22" rx="5"/>
+    <circle cx="50" cy="139" r="3" fill="#b8a080"/><text class="qp-itemt" x="60" y="143">edge cases</text>
+    <rect class="qp-item" x="38" y="156" width="158" height="22" rx="5"/>
+    <circle cx="50" cy="167" r="3" fill="#b8a080"/><text class="qp-itemt" x="60" y="171">regression tests</text>
+    <rect class="qp-item" x="38" y="184" width="158" height="22" rx="5"/>
+    <circle cx="50" cy="195" r="3" fill="#b8a080"/><text class="qp-itemt" x="60" y="199">red teaming</text>
 
-  <!-- Main Process Flow Lines - Direct connections between nodes -->
-  <path d="M155,250 L315,250" class="primary-path animated-path"/>
-  <path d="M385,250 L545,250" class="secondary-path animated-path"/>
-  <path d="M615,250 L775,250" class="tertiary-path animated-path"/>
-  <path d="M845,250 C870,250 870,300 450,300 C30,300 30,250 85,250" class="monitoring-path animated-path" stroke-dasharray="4,2"/>
+    <!-- ═══ 2 · Validation ═══ -->
+    <rect class="qp-card" x="246" y="26" width="186" height="200" rx="11" filter="url(#qpCard)"/>
+    <circle class="qp-b" cx="404" cy="52" r="11"/>
+    <text class="qp-bn" x="404" y="56">2</text>
+    <text class="qp-t" x="262" y="57">Validation</text>
+    <text class="qp-s" x="262" y="77">Every answer checked</text>
+    <line class="qp-rule" x1="262" y1="90" x2="416" y2="90"/>
+    <rect class="qp-item" x="260" y="100" width="158" height="22" rx="5"/>
+    <circle cx="272" cy="111" r="3" fill="#b8a080"/><text class="qp-itemt" x="282" y="115">fact checking</text>
+    <rect class="qp-item" x="260" y="128" width="158" height="22" rx="5"/>
+    <circle cx="272" cy="139" r="3" fill="#b8a080"/><text class="qp-itemt" x="282" y="143">hallucination</text>
+    <rect class="qp-item" x="260" y="156" width="158" height="22" rx="5"/>
+    <circle cx="272" cy="167" r="3" fill="#b8a080"/><text class="qp-itemt" x="282" y="171">bias detection</text>
+    <rect class="qp-item" x="260" y="184" width="158" height="22" rx="5"/>
+    <circle cx="272" cy="195" r="3" fill="#b8a080"/><text class="qp-itemt" x="282" y="199">toxicity filter</text>
 
-  <!-- Automated Testing Phase -->
-  <g transform="translate(120, 250)">
-    <circle cx="0" cy="0" r="35" class="testing-node"/>
-    <text x="0" y="-5" class="subtitle-text" text-anchor="middle">Automated</text>
-    <text x="0" y="15" class="subtitle-text" text-anchor="middle">Testing</text>
+    <!-- ═══ 3 · Analytics ═══ -->
+    <rect class="qp-card" x="468" y="26" width="186" height="200" rx="11" filter="url(#qpCard)"/>
+    <circle class="qp-b" cx="626" cy="52" r="11"/>
+    <text class="qp-bn" x="626" y="56">3</text>
+    <text class="qp-t" x="484" y="57">Analytics</text>
+    <text class="qp-s" x="484" y="77">Scored on what matters</text>
+    <line class="qp-rule" x1="484" y1="90" x2="638" y2="90"/>
+    <rect class="qp-item" x="482" y="100" width="158" height="22" rx="5"/>
+    <circle cx="494" cy="111" r="3" fill="#b8a080"/><text class="qp-itemt" x="504" y="115">relevance</text>
+    <rect class="qp-item" x="482" y="128" width="158" height="22" rx="5"/>
+    <circle cx="494" cy="139" r="3" fill="#b8a080"/><text class="qp-itemt" x="504" y="143">consistency</text>
+    <rect class="qp-item" x="482" y="156" width="158" height="22" rx="5"/>
+    <circle cx="494" cy="167" r="3" fill="#b8a080"/><text class="qp-itemt" x="504" y="171">completeness</text>
+    <rect class="qp-item" x="482" y="184" width="158" height="22" rx="5"/>
+    <circle cx="494" cy="195" r="3" fill="#b8a080"/><text class="qp-itemt" x="504" y="199">compliance</text>
 
-    <!-- Testing sub-components -->
-    <g transform="translate(-80, -100)">
-      <rect x="0" y="0" width="160" height="70" class="qa-box qa-box-test"/>
-      <text x="80" y="20" class="subtitle-text" text-anchor="middle">Test Generation</text>
-      <line x1="80" y1="30" x2="80" y2="70" stroke="#2E5BFF" stroke-width="1" stroke-dasharray="2,1"/>
+    <!-- ═══ 4 · Monitoring ═══ -->
+    <rect class="qp-card" x="690" y="26" width="186" height="200" rx="11" filter="url(#qpCard)"/>
+    <circle class="qp-b" cx="848" cy="52" r="11"/>
+    <text class="qp-bn" x="848" y="56">4</text>
+    <text class="qp-t" x="706" y="57">Monitoring</text>
+    <text class="qp-s" x="706" y="77">Live, after it ships</text>
+    <line class="qp-rule" x1="706" y1="90" x2="860" y2="90"/>
+    <rect class="qp-item" x="704" y="100" width="158" height="22" rx="5"/>
+    <circle cx="716" cy="111" r="3" fill="#b8a080"/><text class="qp-itemt" x="726" y="115">performance</text>
+    <rect class="qp-item" x="704" y="128" width="158" height="22" rx="5"/>
+    <circle cx="716" cy="139" r="3" fill="#b8a080"/><text class="qp-itemt" x="726" y="143">anomalies</text>
+    <rect class="qp-item" x="704" y="156" width="158" height="22" rx="5"/>
+    <circle cx="716" cy="167" r="3" fill="#b8a080"/><text class="qp-itemt" x="726" y="171">user feedback</text>
+    <rect class="qp-item" x="704" y="184" width="158" height="22" rx="5"/>
+    <circle cx="716" cy="195" r="3" fill="#b8a080"/><text class="qp-itemt" x="726" y="199">drift detection</text>
 
-      <text x="40" y="45" class="detail-text" text-anchor="middle">User Scenarios</text>
-      <text x="40" y="60" class="detail-text" text-anchor="middle">Edge Cases</text>
+    <!-- ═══ the loop that makes it a pipeline and not a checklist ═══ -->
+    <path class="qp-loop" d="M783 226 L783 258 Q783 274 767 274 L133 274 Q117 274 117 258 L117 240" marker-end="url(#qpTip)"/>
+    <text class="qp-loopt" x="450" y="300">What monitoring finds in production</text>
+    <text class="qp-loopt" x="450" y="316">becomes tomorrow's test cases.</text>
 
-      <text x="120" y="45" class="detail-text" text-anchor="middle">Regression Tests</text>
-      <text x="120" y="60" class="detail-text" text-anchor="middle">Red Teaming</text>
-    </g>
-
-    <line x1="0" y1="-35" x2="0" y2="-100" stroke="#2E5BFF" stroke-width="1"/>
-
-    <!-- Removed diamond and Yes/No paths to fix black areas -->
   </g>
-
-  <!-- Validation Phase -->
-  <g transform="translate(350, 250)">
-    <circle cx="0" cy="0" r="35" class="validation-node"/>
-    <text x="0" y="-5" class="subtitle-text" text-anchor="middle">Content</text>
-    <text x="0" y="15" class="subtitle-text" text-anchor="middle">Validation</text>
-
-    <!-- Validation sub-components -->
-    <g transform="translate(-80, -100)">
-      <rect x="0" y="0" width="160" height="70" class="qa-box qa-box-validate"/>
-      <text x="80" y="20" class="subtitle-text" text-anchor="middle">Validation Engine</text>
-      <line x1="80" y1="30" x2="80" y2="70" stroke="#00D8D8" stroke-width="1" stroke-dasharray="2,1"/>
-
-      <text x="40" y="45" class="detail-text" text-anchor="middle">Fact Checking</text>
-      <text x="40" y="60" class="detail-text" text-anchor="middle">Hallucination</text>
-
-      <text x="120" y="45" class="detail-text" text-anchor="middle">Bias Detection</text>
-      <text x="120" y="60" class="detail-text" text-anchor="middle">Toxicity Filter</text>
-    </g>
-
-    <line x1="0" y1="-35" x2="0" y2="-100" stroke="#00D8D8" stroke-width="1"/>
-
-    <!-- Removed diamond and Yes/No paths to fix black areas -->
-  </g>
-
-  <!-- Analysis Phase -->
-  <g transform="translate(580, 250)">
-    <circle cx="0" cy="0" r="35" class="analysis-node"/>
-    <text x="0" y="-5" class="subtitle-text" text-anchor="middle">Quality</text>
-    <text x="0" y="15" class="subtitle-text" text-anchor="middle">Analysis</text>
-
-    <!-- Analysis sub-components -->
-    <g transform="translate(-80, -100)">
-      <rect x="0" y="0" width="160" height="70" class="qa-box qa-box-analyze"/>
-      <text x="80" y="20" class="subtitle-text" text-anchor="middle">Analytics Engine</text>
-      <line x1="80" y1="30" x2="80" y2="70" stroke="#8C54FF" stroke-width="1" stroke-dasharray="2,1"/>
-
-      <text x="40" y="45" class="detail-text" text-anchor="middle">Relevance</text>
-      <text x="40" y="60" class="detail-text" text-anchor="middle">Consistency</text>
-
-      <text x="120" y="45" class="detail-text" text-anchor="middle">Completeness</text>
-      <text x="120" y="60" class="detail-text" text-anchor="middle">Compliance</text>
-    </g>
-
-    <line x1="0" y1="-35" x2="0" y2="-100" stroke="#8C54FF" stroke-width="1"/>
-
-    <!-- Removed diamond and Yes/No paths to fix black areas -->
-  </g>
-
-  <!-- Monitoring Phase -->
-  <g transform="translate(810, 250)">
-    <circle cx="0" cy="0" r="35" class="monitoring-node"/>
-    <text x="0" y="-5" class="subtitle-text" text-anchor="middle">Continuous</text>
-    <text x="0" y="15" class="subtitle-text" text-anchor="middle">Monitoring</text>
-
-    <!-- Monitoring sub-components -->
-    <g transform="translate(-80, -100)">
-      <rect x="0" y="0" width="160" height="70" class="qa-box qa-box-monitor"/>
-      <text x="80" y="20" class="subtitle-text" text-anchor="middle">Monitoring System</text>
-      <line x1="80" y1="30" x2="80" y2="70" stroke="#FFAB2D" stroke-width="1" stroke-dasharray="2,1"/>
-
-      <text x="40" y="45" class="detail-text" text-anchor="middle">Performance</text>
-      <text x="40" y="60" class="detail-text" text-anchor="middle">Anomalies</text>
-
-      <text x="120" y="45" class="detail-text" text-anchor="middle">User Feedback</text>
-      <text x="120" y="60" class="detail-text" text-anchor="middle">Drift Detection</text>
-    </g>
-
-    <line x1="0" y1="-35" x2="0" y2="-100" stroke="#FFAB2D" stroke-width="1"/>
-  </g>
-
-  <!-- Key Metrics and Results - Moved down to avoid overlap with paths -->
-  <g transform="translate(450, 420)">
-    <rect x="-350" y="0" width="700" height="90" class="metrics-box"/>
-
-    <g transform="translate(-280, 35)">
-      <circle cx="0" cy="0" r="15" class="performance-indicator-good"/>
-      <text x="0" y="5" class="detail-text" text-anchor="middle">✓</text>
-      <text x="0" y="30" class="detail-text" text-anchor="middle">Hallucination</text>
-      <text x="0" y="45" class="detail-text" text-anchor="middle">Reduction</text>
-    </g>
-
-    <g transform="translate(-140, 35)">
-      <circle cx="0" cy="0" r="15" class="performance-indicator-good"/>
-      <text x="0" y="5" class="detail-text" text-anchor="middle">✓</text>
-      <text x="0" y="30" class="detail-text" text-anchor="middle">Testing</text>
-      <text x="0" y="45" class="detail-text" text-anchor="middle">Time Saved</text>
-    </g>
-
-    <g transform="translate(0, 35)">
-      <circle cx="0" cy="0" r="15" class="performance-indicator-good"/>
-      <text x="0" y="5" class="detail-text" text-anchor="middle">✓</text>
-      <text x="0" y="30" class="detail-text" text-anchor="middle">Compliance</text>
-      <text x="0" y="45" class="detail-text" text-anchor="middle">Rate</text>
-    </g>
-
-    <g transform="translate(140, 35)">
-      <circle cx="0" cy="0" r="15" class="performance-indicator-good"/>
-      <text x="0" y="5" class="detail-text" text-anchor="middle">✓</text>
-      <text x="0" y="30" class="detail-text" text-anchor="middle">Escalation</text>
-      <text x="0" y="45" class="detail-text" text-anchor="middle">Reduction</text>
-    </g>
-
-    <g transform="translate(280, 35)">
-      <circle cx="0" cy="0" r="15" class="performance-indicator-good"/>
-      <text x="0" y="5" class="detail-text" text-anchor="middle">✓</text>
-      <text x="0" y="30" class="detail-text" text-anchor="middle">Accuracy</text>
-      <text x="0" y="45" class="detail-text" text-anchor="middle">Rating</text>
-    </g>
-  </g>
-
-  <!-- Version Labels -->
-  <text x="810" y="480" class="detail-text"><!-- v1.0 - 2023-05-01 --></text>
 </svg>

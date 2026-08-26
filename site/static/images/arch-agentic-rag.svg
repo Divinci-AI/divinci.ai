@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 76" role="img" aria-labelledby="agTitle agDesc">
+  <title id="agTitle">Agentic RAG</title>
+  <desc id="agDesc">An agent router decides which sources a query needs — knowledge base one, knowledge base two, or a tool call — and the results are synthesised into a single answer.</desc>
+  <defs>
+    <marker id="agTip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b8a080"/>
+    </marker>
+    <style>
+      .a       { font-family: 'Source Sans 3','Helvetica Neue',Helvetica,Arial,sans-serif; }
+      .a-h     { font-size:8px; letter-spacing:0.09em; fill:#8b7659; }
+      .a-q     { fill:none; stroke:#b8a080; stroke-width:1.5; }
+      .a-qt    { font-size:8px; fill:#8b7659; text-anchor:middle; }
+      .a-box   { fill:#ffffff; stroke:#2d5a4f; stroke-width:1.5; }
+      .a-boxt  { font-size:7.5px; fill:#1e3a2b; text-anchor:middle; }
+      .a-tile  { fill:#f6f1e8; stroke:#c9b894; stroke-width:1.2; }
+      .a-tilet { font-size:7px; fill:#6b5a45; text-anchor:middle; }
+      .a-pill  { fill:#2d5a4f; }
+      .a-pillt { font-size:7.5px; fill:#ffffff; text-anchor:middle; }
+      .a-link  { stroke:#b8a080; stroke-width:1.2; fill:none; }
+    </style>
+  </defs>
+  <g class="a">
+    <text class="a-h" x="8" y="13">AGENTIC RAG</text>
+    <circle class="a-q" cx="13" cy="47" r="8"/>
+    <text class="a-qt" x="13" y="50">Q</text>
+    <line class="a-link" x1="22" y1="47" x2="27" y2="47" marker-end="url(#agTip)"/>
+    <rect class="a-box" x="29" y="35" width="40" height="24" rx="5"/>
+    <text class="a-boxt" x="49" y="45">agent</text>
+    <text class="a-boxt" x="49" y="54">router</text>
+    <path class="a-link" d="M69 42 L76 33" marker-end="url(#agTip)"/>
+    <path class="a-link" d="M69 47 L76 47" marker-end="url(#agTip)"/>
+    <path class="a-link" d="M69 52 L76 61" marker-end="url(#agTip)"/>
+    <rect class="a-tile" x="78" y="24" width="34" height="14" rx="4"/>
+    <text class="a-tilet" x="95" y="34">KB 1</text>
+    <rect class="a-tile" x="78" y="40" width="34" height="14" rx="4"/>
+    <text class="a-tilet" x="95" y="50">KB 2</text>
+    <rect class="a-tile" x="78" y="56" width="34" height="14" rx="4"/>
+    <text class="a-tilet" x="95" y="66">tools</text>
+    <path class="a-link" d="M112 31 L131 43" marker-end="url(#agTip)"/>
+    <path class="a-link" d="M112 47 L131 47" marker-end="url(#agTip)"/>
+    <path class="a-link" d="M112 63 L131 51" marker-end="url(#agTip)"/>
+    <rect class="a-pill" x="133" y="37" width="54" height="20" rx="10"/>
+    <text class="a-pillt" x="160" y="50">answer</text>
+  </g>
+</svg>

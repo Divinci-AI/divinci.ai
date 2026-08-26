@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 452" role="img" aria-labelledby="arTitle arDesc">
+<svg lang="fr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 452" role="img" aria-labelledby="arTitle arDesc">
   <title id="arTitle">How AutoRAG finds your best RAG pipeline</title>
   <desc id="arDesc">A four-stage loop. One: your connected sources are parsed and chunked into a corpus. Two: AutoRAG generates a QA set of questions written from your own chunks, each traceable to the chunk that answers it. Three: candidate pipeline configurations — chunk size, embedding model, top-k, reranking — are swept and run against that QA set. Four: candidates are scored on recall, nDCG and faithfulness, and the best-scoring configuration is deployed as your live pipeline. Arena and production feedback then returns hard cases to the QA set, and the search runs again.</desc>
 
@@ -44,9 +44,9 @@
     <rect class="ar-card" x="28" y="32" width="193" height="270" rx="12" filter="url(#arCard)"/>
     <circle class="ar-badge" cx="193" cy="58" r="12"/>
     <text class="ar-badge-n" x="193" y="62">1</text>
-    <text class="ar-title" x="46" y="63">Your corpus</text>
-    <text class="ar-sub" x="46" y="84">Parsed and chunked from</text>
-    <text class="ar-sub" x="46" y="99">the sources you connect</text>
+    <text class="ar-title" x="46" y="63">Votre corpus</text>
+    <text class="ar-sub" x="46" y="84">Analysé et découpé depuis</text>
+    <text class="ar-sub" x="46" y="99">les sources que vous reliez</text>
     <line class="ar-rule" x1="46" y1="112" x2="203" y2="112"/>
 
     <!-- stacked source documents -->
@@ -66,16 +66,16 @@
     <rect x="143" y="218" width="26" height="20" rx="4" fill="#e8ddc7" stroke="#c9b894"/>
     <rect x="175" y="218" width="26" height="20" rx="4" fill="#e8ddc7" stroke="#c9b894"/>
 
-    <text class="ar-cap"  x="124.5" y="258">chunks</text>
-    <text class="ar-note" x="124.5" y="278">PDF · Office · Wiki · Code · DB</text>
+    <text class="ar-cap"  x="124.5" y="258">fragments</text>
+    <text class="ar-note" x="124.5" y="278">PDF · Office · Wiki · Code · BD</text>
 
     <!-- ══════════════ 2 · Generated QA set ══════════════ -->
     <rect class="ar-card" x="265" y="32" width="193" height="270" rx="12" filter="url(#arCard)"/>
     <circle class="ar-badge" cx="430" cy="58" r="12"/>
     <text class="ar-badge-n" x="430" y="62">2</text>
-    <text class="ar-title" x="283" y="63">Generated QA set</text>
-    <text class="ar-sub" x="283" y="84">Questions written from</text>
-    <text class="ar-sub" x="283" y="99">your own chunks</text>
+    <text class="ar-title" x="283" y="63">Jeu de QR généré</text>
+    <text class="ar-sub" x="283" y="84">Questions écrites à partir</text>
+    <text class="ar-sub" x="283" y="99">de vos propres fragments</text>
     <line class="ar-rule" x1="283" y1="112" x2="440" y2="112"/>
 
     <g>
@@ -103,16 +103,16 @@
       <rect x="325" y="242" width="63" height="4" rx="2" fill="#e2d8c6"/>
     </g>
 
-    <text class="ar-note" x="361.5" y="274">Every question traces back</text>
-    <text class="ar-note" x="361.5" y="288">to the chunk that answers it</text>
+    <text class="ar-note" x="361.5" y="274">Chaque question renvoie</text>
+    <text class="ar-note" x="361.5" y="288">au fragment qui y répond</text>
 
     <!-- ══════════════ 3 · Pipeline search ══════════════ -->
     <rect class="ar-card" x="502" y="32" width="193" height="270" rx="12" filter="url(#arCard)"/>
     <circle class="ar-badge" cx="667" cy="58" r="12"/>
     <text class="ar-badge-n" x="667" y="62">3</text>
-    <text class="ar-title" x="520" y="63">Pipeline search</text>
-    <text class="ar-sub" x="520" y="84">Every candidate config,</text>
-    <text class="ar-sub" x="520" y="99">run against that QA set</text>
+    <text class="ar-title" x="520" y="63">Recherche</text>
+    <text class="ar-sub" x="520" y="84">Chaque config candidate,</text>
+    <text class="ar-sub" x="520" y="99">testée sur ce jeu de QR</text>
     <line class="ar-rule" x1="520" y1="112" x2="677" y2="112"/>
 
     <!-- chunk size -->
@@ -149,19 +149,19 @@
     <rect class="ar-chip-on" x="607" y="238" width="31" height="20" rx="5"/>
     <text class="ar-chip-to" x="622.5" y="252">on</text>
 
-    <text class="ar-note" x="598.5" y="276">one combination of many —</text>
-    <text class="ar-note" x="598.5" y="290">the whole grid is swept</text>
+    <text class="ar-note" x="598.5" y="276">une combinaison parmi tant —</text>
+    <text class="ar-note" x="598.5" y="290">toute la grille est balayée</text>
 
     <!-- ══════════════ 4 · Scored winner ══════════════ -->
     <rect class="ar-card" x="739" y="32" width="193" height="270" rx="12" filter="url(#arCard)"/>
     <circle class="ar-badge" cx="904" cy="58" r="12"/>
     <text class="ar-badge-n" x="904" y="62">4</text>
-    <text class="ar-title" x="757" y="63">Scored winner</text>
-    <text class="ar-sub" x="757" y="84">Best-scoring config</text>
-    <text class="ar-sub" x="757" y="99">becomes your pipeline</text>
+    <text class="ar-title" x="757" y="63">Gagnante</text>
+    <text class="ar-sub" x="757" y="84">La meilleure config</text>
+    <text class="ar-sub" x="757" y="99">devient votre pipeline</text>
     <line class="ar-rule" x1="757" y1="112" x2="914" y2="112"/>
 
-    <text class="ar-note" x="835.5" y="134">recall · nDCG · faithfulness</text>
+    <text class="ar-note" x="835.5" y="134">rappel · nDCG · fidélité</text>
 
     <!-- winning candidate -->
     <rect x="757" y="144" width="157" height="26" rx="6" fill="#2d5a4f"/>
@@ -183,14 +183,14 @@
     <path class="ar-flow" d="M827 240 L835.5 249 L844 240" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 
     <rect x="765" y="252" width="141" height="26" rx="13" fill="#e8ddc7" stroke="#c9b894"/>
-    <text x="835.5" y="269" font-size="11.5" font-weight="600" fill="#1e3a2b" text-anchor="middle">Deployed pipeline</text>
+    <text x="835.5" y="269" font-size="11.5" font-weight="600" fill="#1e3a2b" text-anchor="middle">Pipeline déployé</text>
 
     <!-- ══════════════ feedback loop ══════════════ -->
     <path class="ar-loop"
           d="M835.5 302 L835.5 368 Q835.5 384 819.5 384 L377.5 384 Q361.5 384 361.5 368 L361.5 316"
           marker-end="url(#arTip)"/>
-    <text class="ar-loop-t" x="598.5" y="408">Arena and production feedback — hard cases</text>
-    <text class="ar-loop-t" x="598.5" y="424">rejoin the QA set, and the search runs again</text>
+    <text class="ar-loop-t" x="598.5" y="408">Les cas difficiles de l'arène et de la production</text>
+    <text class="ar-loop-t" x="598.5" y="424">reviennent au jeu de QR, et la recherche reprend</text>
 
   </g>
 </svg>

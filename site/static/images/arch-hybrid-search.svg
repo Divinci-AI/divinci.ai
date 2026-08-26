@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 76" role="img" aria-labelledby="ahTitle ahDesc">
+  <title id="ahTitle">Hybrid search</title>
+  <desc id="ahDesc">The query runs through both vector similarity and BM25 keyword search; the two ranked lists are fused with reciprocal rank fusion, and the top k chunks are returned.</desc>
+  <defs>
+    <marker id="ahTip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b8a080"/>
+    </marker>
+    <style>
+      .a       { font-family: 'Source Sans 3','Helvetica Neue',Helvetica,Arial,sans-serif; }
+      .a-h     { font-size:8px; letter-spacing:0.09em; fill:#8b7659; }
+      .a-q     { fill:none; stroke:#b8a080; stroke-width:1.5; }
+      .a-qt    { font-size:8px; fill:#8b7659; text-anchor:middle; }
+      .a-box   { fill:#ffffff; stroke:#2d5a4f; stroke-width:1.5; }
+      .a-boxt  { font-size:7.5px; fill:#1e3a2b; text-anchor:middle; }
+      .a-tile  { fill:#f6f1e8; stroke:#c9b894; stroke-width:1.2; }
+      .a-tilet { font-size:7px; fill:#6b5a45; text-anchor:middle; }
+      .a-pill  { fill:#2d5a4f; }
+      .a-pillt { font-size:7.5px; fill:#ffffff; text-anchor:middle; }
+      .a-link  { stroke:#b8a080; stroke-width:1.2; fill:none; }
+    </style>
+  </defs>
+  <g class="a">
+    <text class="a-h" x="8" y="13">HYBRID SEARCH</text>
+    <circle class="a-q" cx="15" cy="47" r="9"/>
+    <text class="a-qt" x="15" y="50">Q</text>
+    <path class="a-link" d="M24 43 L31 36" marker-end="url(#ahTip)"/>
+    <path class="a-link" d="M24 51 L31 58" marker-end="url(#ahTip)"/>
+    <rect class="a-box" x="33" y="27" width="42" height="18" rx="5"/>
+    <text class="a-boxt" x="54" y="39">vector</text>
+    <rect class="a-box" x="33" y="49" width="42" height="18" rx="5"/>
+    <text class="a-boxt" x="54" y="61">BM25</text>
+    <path class="a-link" d="M75 36 L83 43" marker-end="url(#ahTip)"/>
+    <path class="a-link" d="M75 58 L83 51" marker-end="url(#ahTip)"/>
+    <rect class="a-box" x="85" y="37" width="40" height="20" rx="5"/>
+    <text class="a-boxt" x="105" y="50">RRF</text>
+    <line class="a-link" x1="125" y1="47" x2="131" y2="47" marker-end="url(#ahTip)"/>
+    <rect class="a-pill" x="133" y="37" width="54" height="20" rx="10"/>
+    <text class="a-pillt" x="160" y="50">top k chunks</text>
+  </g>
+</svg>

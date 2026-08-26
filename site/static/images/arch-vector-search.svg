@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 76" role="img" aria-labelledby="avTitle avDesc">
+  <title id="avTitle">Vector search</title>
+  <desc id="avDesc">The query is embedded, matched against the vector index by nearest-neighbour similarity, and the top k chunks are returned.</desc>
+  <defs>
+    <marker id="avTip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b8a080"/>
+    </marker>
+    <style>
+      .a       { font-family: 'Source Sans 3','Helvetica Neue',Helvetica,Arial,sans-serif; }
+      .a-h     { font-size:8px; letter-spacing:0.09em; fill:#8b7659; }
+      .a-q     { fill:none; stroke:#b8a080; stroke-width:1.5; }
+      .a-qt    { font-size:8px; fill:#8b7659; text-anchor:middle; }
+      .a-box   { fill:#ffffff; stroke:#2d5a4f; stroke-width:1.5; }
+      .a-boxt  { font-size:7.5px; fill:#1e3a2b; text-anchor:middle; }
+      .a-tile  { fill:#f6f1e8; stroke:#c9b894; stroke-width:1.2; }
+      .a-tilet { font-size:7px; fill:#6b5a45; text-anchor:middle; }
+      .a-pill  { fill:#2d5a4f; }
+      .a-pillt { font-size:7.5px; fill:#ffffff; text-anchor:middle; }
+      .a-link  { stroke:#b8a080; stroke-width:1.2; fill:none; }
+    </style>
+  </defs>
+  <g class="a">
+    <text class="a-h" x="8" y="13">VECTOR SEARCH</text>
+    <circle class="a-q" cx="15" cy="47" r="9"/>
+    <text class="a-qt" x="15" y="50">Q</text>
+    <line class="a-link" x1="25" y1="47" x2="31" y2="47" marker-end="url(#avTip)"/>
+    <rect class="a-box" x="33" y="37" width="40" height="20" rx="5"/>
+    <text class="a-boxt" x="53" y="50">embed</text>
+    <line class="a-link" x1="73" y1="47" x2="79" y2="47" marker-end="url(#avTip)"/>
+    <rect class="a-tile" x="81" y="33" width="40" height="28" rx="5"/>
+    <circle cx="90" cy="41" r="2.6" fill="#c9b894"/>
+    <circle cx="99" cy="53" r="2.6" fill="#c9b894"/>
+    <circle cx="111" cy="44" r="3.6" fill="#2d5a4f"/>
+    <line class="a-link" x1="121" y1="47" x2="127" y2="47" marker-end="url(#avTip)"/>
+    <rect class="a-pill" x="129" y="37" width="58" height="20" rx="10"/>
+    <text class="a-pillt" x="158" y="50">top k chunks</text>
+  </g>
+</svg>
