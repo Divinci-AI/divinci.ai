@@ -128,8 +128,19 @@ export function rateDay(d) {
  * Rate-limits writes to one per SAMPLE_INTERVAL_MS, EXCEPT that a worsening
  * status always samples immediately — otherwise a short outage that starts
  * and ends between two intervals leaves no trace at all.
+ *
+ * ⚠️ `opts.bypassRateLimit` is for a CRON caller, and it is not an
+ * optimisation — without it a scheduled sampler silently loses samples.
+ *
+ * The rate limit exists because sampling used to be driven by /api/status
+ * TRAFFIC: many uncoordinated callers, so the record had to defend itself.
+ * A cron IS its own rate limit, and its cadence is not exact — Cloudflare's
+ * scheduler drifts, so two five-minute ticks routinely land 4m58s apart. That
+ * is `< SAMPLE_INTERVAL_MS`, so the guard would drop the sample, and the loss
+ * would be invisible: fewer samples still produce a percentage, just a
+ * quieter and slightly wrong one. Exactly the failure this page keeps having.
  */
-export function applySample(rec, status, now) {
+export function applySample(rec, status, now, opts = {}) {
   if (!rec.days) rec.days = {};
   const k = dayKey(now);
 
@@ -139,7 +150,8 @@ export function applySample(rec, status, now) {
     (today.worst &&
       today.worst !== status &&
       STATUS_RANK[status] > STATUS_RANK[today.worst]);
-  if (!worsened && rec.lastSampleAt && now - rec.lastSampleAt < SAMPLE_INTERVAL_MS) {
+  if (!opts.bypassRateLimit
+      && !worsened && rec.lastSampleAt && now - rec.lastSampleAt < SAMPLE_INTERVAL_MS) {
     return false;
   }
 

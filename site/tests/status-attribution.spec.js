@@ -113,6 +113,32 @@ test.describe('uptime bars', () => {
   });
 });
 
+test.describe('the non-sighted path', () => {
+  test('the bar\'s accessible name carries the whole account, not just a colour', async ({ page }) => {
+    // The hover card is a sighted-reader affordance and hover does not exist
+    // on touch. Everything it says has to be in the accessible name too, or
+    // the attribution is invisible to a screen reader and to a phone — which
+    // between them are most of the people who read a status page in anger.
+    await open(page, [ATTRIBUTED]);
+    const label = await page.locator('#status-history-bars .status-bar').first()
+      .getAttribute('aria-label');
+    expect(label).toContain('2026-08-25');
+    expect(label).toContain('Degraded');
+    expect(label).toContain('Affected: Marketing site, Developer docs');
+    expect(label).toContain('The product (chat, API, embeds) was not affected.');
+    expect(label).toContain('automatic');
+  });
+
+  test('an unattributed day does not claim an attribution it does not have', async ({ page }) => {
+    await open(page, [UNATTRIBUTED]);
+    const label = await page.locator('#status-history-bars .status-bar').first()
+      .getAttribute('aria-label');
+    expect(label).toContain('Degraded');
+    expect(label).not.toContain('Affected:');
+    expect(label).not.toContain('was not affected');
+  });
+});
+
 test.describe('incident notes', () => {
   test('an automatic note is shown, labelled, and says whether customers were hit', async ({ page }) => {
     await open(page, [ATTRIBUTED]);

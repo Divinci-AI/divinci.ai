@@ -104,9 +104,60 @@ describe('the scheduled handler', () => {
 
   test('runs BOTH collectors, not just the one that pages', () => {
     assert.ok(scheduled.length > 0, 'scheduled() not found in worker.js');
-    for (const call of ['collectCustomerHealth(env)', 'collectAttribution(env)']) {
+    // Prefix match: both take options now, and pinning the exact call shape
+    // would fail on an unrelated argument rather than on the thing that
+    // matters — that the collector is invoked at all.
+    for (const call of ['collectCustomerHealth(env', 'collectAttribution(env']) {
       assert.ok(scheduled.includes(call), `scheduled() no longer calls ${call}`);
     }
+  });
+
+  test('the cron writes the uptime sample, and the request path does NOT', () => {
+    // The history used to be sampled from /api/status traffic, so it was
+    // biased toward the hours people browse a marketing site and could miss a
+    // quiet-hour incident entirely (2026-08-14 stored as 100% operational
+    // against six degraded windows; the real 2026-08-02 outage stored as
+    // 99.47%). The cron does not care what time it is.
+    //
+    // Restoring a write to the request path would undo that AND make a public
+    // request able to trigger a KV read-modify-write again, with two writers
+    // interleaving on one key. It would look like a harmless resolution
+    // improvement, which is why this is pinned rather than commented.
+    assert.ok(scheduled.includes('recordSample:'),
+      'the cron no longer records the uptime sample');
+
+    // ⚠️ Assert it of EVERY call, not of the handler as a whole. A substring
+    // check for `bypassRateLimit` anywhere in scheduled() passes as soon as
+    // ONE call has it — which is how the first version of this test went
+    // green while the main sampling path had quietly lost the flag. Verified
+    // by mutation: dropping the flag from either call must fail here.
+    const calls = scheduled.match(/recordSample\(env[^)]*\)/g) || [];
+    assert.ok(calls.length >= 2, `expected both sampling paths, found ${calls.length}`);
+    for (const call of calls) {
+      assert.ok(call.includes('bypassRateLimit'),
+        `a drifting cron tick is silently dropped: ${call}`);
+    }
+
+    const handler = worker.slice(worker.indexOf('async function handleStatus('));
+    assert.ok(!/\brecordSample\(/.test(handler),
+      'handleStatus writes to the history again — the cron owns it');
+  });
+
+  test('the page publishes whether its own feed is alive', () => {
+    // `ratingFresh` is what an uptime check can content-match on, and it is
+    // the only thing that catches the collector dying: the history is now
+    // sampled exclusively by this cron, so if it stops, the page keeps
+    // rendering a perfectly good record that simply stops growing.
+    //
+    // It must be false for BOTH failure shapes — a stale reading and a failed
+    // response build — or the check passes through the outage it exists for.
+    const handler = worker.slice(worker.indexOf('async function handleStatus('));
+    const freshness = handler.match(/ratingFresh:[^,\n]*/g) || [];
+    assert.equal(freshness.length, 2, 'every response must state its freshness');
+    assert.ok(freshness.some((f) => f.includes("!== 'unknown'")),
+      'a stale reading must not report as fresh');
+    assert.ok(freshness.some((f) => f.includes('false')),
+      'a failed build must not report as fresh');
   });
 
   test('neither collector can take the other down', () => {

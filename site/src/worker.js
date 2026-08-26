@@ -119,9 +119,33 @@ export default {
     // collector rather than inside it: the two answer different questions
     // (how many customer errors vs where all the errors landed), and a
     // failure in the newer one must never cost us the metric that pages.
+    //
+    // ⚠️ IT ALSO WRITES THE UPTIME SAMPLE, and that is the point.
+    //
+    // The 90-day history used to be sampled opportunistically from
+    // /api/status TRAFFIC — the footer indicator on each page view. That was
+    // reasonable when a missed sample only cost resolution, but it means the
+    // record is biased toward the hours people browse a marketing site, and a
+    // quiet-hour incident can be absent from it ENTIRELY. It has been:
+    // 2026-08-14 was stored as 100% operational while the uptime checks show
+    // six degraded windows, and the real 2026-08-02 production outage went in
+    // as "degraded 99.47%" because almost nobody was loading the site at
+    // 00:22 PT.
+    //
+    // A cron does not care what time it is. Now that the rating comes from a
+    // measurement this job already makes, sampling from here makes the record
+    // complete instead of merely representative — and makes the cron the ONLY
+    // writer of history:v1, so a request and a tick can no longer interleave
+    // their read-modify-writes.
     ctx.waitUntil(
-      collectAttribution(env).catch((e) => {
+      collectAttribution(env, {
+        recordSample: (status) => recordSample(env, status, { bypassRateLimit: true }),
+      }).catch((e) => {
         console.error('[status-attribution] collection failed:', e?.message ?? e);
+        // A tick that could not measure is a blind spot, and a blind spot is
+        // worth recording: `unknown` outranks `operational`, so a run of them
+        // rates the day unknown rather than quietly leaving it green.
+        return recordSample(env, 'unknown', { bypassRateLimit: true });
       }),
     );
   },
@@ -779,13 +803,13 @@ async function readPushedComponents(env) {
 // be tested directly (npm run test:worker). What stays here is only the KV
 // read/write around them.
 
-async function recordSample(env, status) {
+async function recordSample(env, status, opts = {}) {
   if (!env.STATUS_HISTORY) return;
   try {
     const now = Date.now();
     const raw = await env.STATUS_HISTORY.get(HISTORY_KEY, { type: 'json' });
     const rec = raw && typeof raw === 'object' ? raw : { days: {}, lastSampleAt: 0, since: dayKey(now) };
-    if (!applySample(rec, status, now)) return; // rate-limited, nothing to write
+    if (!applySample(rec, status, now, opts)) return; // rate-limited, nothing to write
     await env.STATUS_HISTORY.put(HISTORY_KEY, JSON.stringify(rec));
   } catch (e) {
     // History is a nice-to-have; never let it break the status response.
@@ -885,20 +909,24 @@ async function handleStatus(request, env, ctx) {
     const pushed = await readPushedComponents(env);
     components.push(...pushed);
 
-    // ⚠️ The 90-day history samples the PLATFORM status only, deliberately,
-    // even though the banner below reflects everything.
+    // ⚠️ THIS HANDLER NO LONGER WRITES ANYTHING. The 90-day history is
+    // sampled by the cron (see scheduled()), which is on a clock rather than
+    // on whoever happens to be reading the marketing site — so a quiet-hour
+    // incident can no longer be missing from the record. Two consequences
+    // worth keeping:
     //
-    // That history is a published number people compare across days. Folding
-    // the pushed GCP components into it would silently redefine the metric
-    // mid-series — the same "% uptime" would stop meaning what it meant last
-    // week, and no reader could tell. Worse, an external probe flaking in one
-    // region would write a red window into a record that is supposed to
-    // describe US. Both happened on 2026-08-05 before this split existed.
+    //   - A public request can no longer trigger a KV read-modify-write, so
+    //     the endpoint cannot be made to amplify writes at all.
+    //   - The cron is the ONLY writer of history:v1, so nothing interleaves
+    //     with it. Do not restore sampling here to "improve resolution": it
+    //     would re-introduce both.
     //
-    // Never sample a `null` platform as anything: no reading has ever been
-    // stored, so there is nothing to record. Writing `unknown` would fill the
-    // history with a blind spot that is really just an unconfigured feed.
-    if (platform) await recordSample(env, platform);
+    // The history still reflects the PLATFORM status only, never the pushed
+    // GCP components. That is a published number people compare across days,
+    // and folding the components in would silently redefine it mid-series
+    // while letting an external probe flaking in one region write a red
+    // window into a record that is supposed to describe US. Both happened on
+    // 2026-08-05 before this split existed.
 
     // The BANNER, by contrast, should reflect current truth from every source.
     const overall = worstStatus(platform ?? 'unknown', worstOf(pushed));
@@ -906,6 +934,17 @@ async function handleStatus(request, env, ctx) {
     const response = new Response(
       statusPayload(overall, components, {
         configured: platform !== null,
+        // ⚠️ AN ALERTING CONTRACT. A dead collector is already visible on the
+        // page — Platform goes `unknown` after 20 minutes — but visible only
+        // to a human who happens to look, and the history now depends on that
+        // cron entirely. This one boolean makes it CHECKABLE: a content match
+        // on `"ratingFresh":true` in the existing marketing-status-api uptime
+        // check fires when, and only when, the feed behind this page stops.
+        //
+        // `configured` cannot do that job: it stays true while a record
+        // exists, however old. The two answer different questions and both
+        // are published for that reason.
+        ratingFresh: platform !== null && platform !== 'unknown',
         history: await readHistory(env, attribution),
       }),
       { status: 200, headers }
@@ -914,12 +953,15 @@ async function handleStatus(request, env, ctx) {
     return response;
   } catch (err) {
     console.error('[status] status build failed:', err && err.message ? err.message : err);
-    // Record the unknown too — a gap in monitoring is itself worth showing,
-    // and it keeps the denominator honest rather than silently skipping.
-    ctx.waitUntil(recordSample(env, 'unknown'));
+    // Nothing is recorded here — the cron owns the record, and a failure to
+    // BUILD a response is not evidence about the platform. The cron's own
+    // failure path is what writes `unknown`.
     // Degrade to unknown — never assert operational on a failed lookup.
     return new Response(
-      statusPayload('unknown', unknownComponents, { configured: true, error: 'upstream_unavailable', history: await readHistory(env, null) }),
+      statusPayload('unknown', unknownComponents, {
+        configured: true, ratingFresh: false, error: 'upstream_unavailable',
+        history: await readHistory(env, null),
+      }),
       { status: 200, headers }
     );
   }

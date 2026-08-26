@@ -190,7 +190,7 @@ window.MathJax = {
         {% endif %}
         {% elif page.extra.hero_background %}
         {# Raw cover image — no cream overlay (matches /www-rag/ directory hero). #}
-        <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.hero_background }}" srcset="/cdn-cgi/image/width=600,format=auto,quality=82/{{ page.extra.hero_background }} 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/{{ page.extra.hero_background }} 1200w, /cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.hero_background }} 1600w" sizes="(max-width: 768px) 100vw, (max-width: 1280px) 1200px, 1600px" alt="" width="1600" height="793" class="hero-bg-poster" loading="eager" fetchpriority="high" decoding="async" aria-hidden="true" onerror="this.onerror=null;this.src='{{ get_url(path=page.extra.hero_background) | safe }}';">
+        <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.hero_background }}" srcset="/cdn-cgi/image/width=600,format=auto,quality=82/{{ page.extra.hero_background }} 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/{{ page.extra.hero_background }} 1200w, /cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.hero_background }} 1600w" sizes="(max-width: 768px) 100vw, (max-width: 1280px) 1200px, 1600px" alt="" width="1600" height="793" class="hero-bg-poster" loading="eager" fetchpriority="high" decoding="async" aria-hidden="true" onerror="this.onerror=null;this.src='{{ page.extra.hero_background | safe }}';">
         {# preload="none" and no poster attribute: the <img> above is already
            painting, so LCP is measured off it rather than off the video. #}
         {% if page.extra.hero_video %}
@@ -236,7 +236,7 @@ window.MathJax = {
                     {% if page.extra.author_avatar is starting_with("http") %}
                         <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/{{ page.extra.author_avatar }}" alt="{{ page.extra.author | default(value='Michael Mooring') }}" width="94" height="94" class="author-avatar" loading="lazy" decoding="async">
                     {% else %}
-                        <img src="{{ get_url(path=page.extra.author_avatar) }}" alt="{{ page.extra.author | default(value='Michael Mooring') }}" width="94" height="94" class="author-avatar" loading="lazy" decoding="async">
+                        <img src="{{ page.extra.author_avatar }}" alt="{{ page.extra.author | default(value='Michael Mooring') }}" width="94" height="94" class="author-avatar" loading="lazy" decoding="async">
                     {% endif %}
                 {% else %}
                     <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.jpg" alt="Michael Mooring" width="94" height="94" loading="lazy" decoding="async" class="author-avatar">
@@ -284,7 +284,7 @@ window.MathJax = {
                         {% if page.extra.featured_image is starting_with("http") %}
                             <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.featured_image }}" alt="{{ page.title }}" width="1600" height="900" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ page.extra.featured_image }}';">
                         {% else %}
-                            <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.featured_image }}" alt="{{ page.title }}" width="1600" height="900" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=page.extra.featured_image) | safe }}';">
+                            <img src="/cdn-cgi/image/width=1600,format=auto,quality=82/{{ page.extra.featured_image }}" alt="{{ page.title }}" width="1600" height="900" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ page.extra.featured_image | safe }}';">
                         {% endif %}
                     {% endif %}
                 {% endif %}
@@ -444,7 +444,7 @@ window.MathJax = {
                                     </video>
                                 {% else %}
                                     <video muted loop playsinline webkit-playsinline preload="none" width="400" height="225" class="related-image related-video" style="object-fit:cover;{% if post.extra.hero_video_filter %}filter:{{ post.extra.hero_video_filter }};{% endif %}"{% if post.extra.hero_video_poster %} poster="{{ rp_poster }}"{% endif %}>
-                                        <source src="{{ get_url(path=post.extra.hero_video) }}" type="video/webm">
+                                        <source src="{{ post.extra.hero_video }}" type="video/webm">
                                     </video>
                                 {% endif %}
                             {% elif post.extra.hero_youtube and post.extra.hero_video_poster %}

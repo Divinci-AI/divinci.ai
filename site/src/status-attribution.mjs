@@ -563,22 +563,45 @@ export function mergeAttributionIntoDays(days, record) {
 /**
  * Customer-facing 5xx in one five-minute window that mean "degraded".
  *
- * DERIVED, not chosen. Measured over the 14 days to 2026-08-26, classifying
- * every 5xx on both zones by host and path, per 15-minute bucket:
+ * DERIVED, not chosen. 14 days to 2026-08-26, every 5xx on both zones
+ * classified by host and path, counted per FIVE-MINUTE bucket — the window
+ * this is actually compared against:
  *
- *     p50=31   p75=45   p90=66   p95=83   p99=141   max=483
+ *     p50=9  p75=15  p90=23  p95=30  p99=59  p99.5=96  p99.9=161  max=239
  *
- * The first thing that shows is a PERMANENT FLOOR: customer-facing paths
- * carry roughly two 5xx a minute at all times, so "any customer error" is not
- * an incident signal and a threshold near zero would mark every day degraded.
- * p99 (141 per 15 min ≈ 47 per 5) is the point where a window stops looking
- * like that floor, so the bar sits just above it.
+ * Two things show. First, a PERMANENT FLOOR: customer-facing paths carry
+ * errors in almost every window (only 197 of 4,032 were clean), so "any
+ * customer error" is not an incident signal and a low bar marks every day
+ * degraded. Second, real incidents are SUSTAINED — the two genuine events in
+ * the window (2026-08-17 05:30–05:50Z, 2026-08-24 05:15–05:35Z) each ran five
+ * or six consecutive buckets at 143–174, while the two largest single buckets
+ * (239, 237) were isolated bursts.
  *
- * ⚠️ Calibrate this from the distribution again if it is ever moved, not from
- * an argument about what feels right — and re-measure rather than scaling this
- * number, because the floor itself is a live quantity that will drift.
+ * 150 sits just under p99.9. Measured against the same 14 days:
+ *
+ *     threshold   windows over    baseline uptime   days coloured
+ *          50           51             98.67%            7 / 14
+ *         100           19             99.50%            2 / 14
+ *         150           10             99.74%            2 / 14
+ *         200            2             99.95%            0 / 14
+ *
+ * It catches both real events, leaves the isolated bursts recorded as blips
+ * that the day-rating rule declines to shout about (see MIN_DEGRADED_MS in
+ * status-history.mjs — a lone sample cannot colour a day), and 200 is already
+ * too high to colour any day at all.
+ *
+ * ⛔ THIS SHIPPED AT 50 FOR ABOUT AN HOUR, AND THE MISTAKE IS WORTH KEEPING.
+ * The first calibration measured FIFTEEN-minute buckets (p99=141) and divided
+ * by three. Bursts concentrate, so a 5-minute tail is far heavier than a
+ * linear share of a 15-minute one: the arithmetic said "p99 ≈ 47", the actual
+ * 5-minute p99 is 59 and p99.9 is 161. The page went live claiming roughly 19
+ * minutes of degradation a day.
+ *
+ * So: re-measure at the window size you will actually compare against. Do not
+ * scale a distribution, and do not move this from an argument about what feels
+ * right — the floor is a live quantity and it will drift.
  */
-export const DEGRADED_5XX_PER_WINDOW = 50;
+export const DEGRADED_5XX_PER_WINDOW = 150;
 
 /**
  * A reading older than this cannot describe the present. Four missed ticks:
@@ -606,11 +629,15 @@ export const HEALTH_STALE_AFTER_MS = 20 * 60 * 1000;
  * reaches the banner through the GCP-derived components, which probe the
  * customer path directly instead of counting what came back.
  */
+export function ratingForCount(customer) {
+  return customer >= DEGRADED_5XX_PER_WINDOW ? 'degraded' : 'operational';
+}
+
 export function customerFacingStatus(record, now) {
   const latest = record && record.latest;
   if (!latest || !Number.isFinite(latest.at) || !Number.isFinite(latest.customer)) return null;
   if (now - latest.at > HEALTH_STALE_AFTER_MS) return 'unknown';
-  return latest.customer >= DEGRADED_5XX_PER_WINDOW ? 'degraded' : 'operational';
+  return ratingForCount(latest.customer);
 }
 
 // ── Collection ───────────────────────────────────────────────────────────
@@ -713,6 +740,15 @@ export async function collectAttribution(env, opts = {}) {
   // stale precisely while everything was healthy, and the page would turn
   // grey on its best days.
   rec.latest = { at: until.getTime(), customer };
+
+  // ⚠️ SAMPLE FIRST, THEN ATTRIBUTE — the order is load-bearing.
+  //
+  // `duringIncident` below is decided by reading the sampler's own record, so
+  // the sample for THIS window has to be in it already. Folding first would
+  // scope every incident's first window against the state before it began,
+  // and the opening five minutes of every incident — the part that says what
+  // started it — would land in the whole-day basket instead.
+  if (opts.recordSample) await opts.recordSample(ratingForCount(customer));
 
   let duringIncident = false;
   if (tick.total > 0) {

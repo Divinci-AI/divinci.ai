@@ -17,7 +17,7 @@
    with aggressive defaults and much faster. The file is 139KB so the size
    tradeoff vs the build artifact is fine. #}
 <link rel="preload" as="image"
-      href="/images/davinci-painter-robot-800w.webp"
+      href="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/davinci-painter-robot-800w.webp"
       fetchpriority="high">
 {% endblock %}
 
@@ -26,7 +26,7 @@
 <section class="hero">
     <div class="hero-content">
         <div class="hero-image">
-            <img src="/images/davinci-painter-robot-800w.webp" srcset="/images/davinci-painter-robot-400w.webp 400w, /images/davinci-painter-robot-600w.webp 600w, /images/davinci-painter-robot-800w.webp 800w" sizes="(max-width: 600px) 100vw, (max-width: 900px) 600px, 800px" alt="Leonardo da Vinci drawing a robot" width="800" height="800" class="davinci-image" id="hero-poster" fetchpriority="high" loading="eager" decoding="async" onerror="this.onerror=null;this.src='https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Davinci_the_painter_painting_a_robot_in_a_line_art.webp';">
+            <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/davinci-painter-robot-800w.webp" srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/davinci-painter-robot-400w.webp 400w, https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/davinci-painter-robot-600w.webp 600w, https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/davinci-painter-robot-800w.webp 800w" sizes="(max-width: 600px) 100vw, (max-width: 900px) 600px, 800px" alt="Leonardo da Vinci drawing a robot" width="800" height="800" class="davinci-image" id="hero-poster" fetchpriority="high" loading="eager" decoding="async" onerror="this.onerror=null;this.src='https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Davinci_the_painter_painting_a_robot_in_a_line_art.webp';">
             {# Silent encode (`-silent`): the mute/unmute control is gone, replaced by
                the hover play button below, so the audio track is dead weight. Stripped
                with `ffmpeg -c:v copy -an` — same VP9/H.264 video bitstream, 7-9% smaller. #}
@@ -38,11 +38,11 @@
                if the video data stalls or never resolves, the user sees the same
                brand visual instead of a blank rectangle. The hero CSS keeps these
                videos at opacity:0 until the cycling JS fades them in. #}
-            <video id="hero-video-2" muted playsinline preload="none" poster="/images/davinci-painter-robot-800w.webp" data-lazy-video>
+            <video id="hero-video-2" muted playsinline preload="none" poster="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/davinci-painter-robot-800w.webp" data-lazy-video>
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/alysha-ai-chat-interface.webm" type="video/webm">
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/alysha-ai_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__5e9e0736-637d-4e05-a391-179c76e9edee_3.mp4" type="video/mp4">
             </video>
-            <video id="hero-video-3" muted playsinline preload="none" poster="/images/davinci-painter-robot-800w.webp" data-lazy-video>
+            <video id="hero-video-3" muted playsinline preload="none" poster="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/davinci-painter-robot-800w.webp" data-lazy-video>
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-robot-chat-interface.webm" type="video/webm">
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ai-robot_social_u4943574663_Close-up_of_AI_chat_interface_on_a_mobile_phone.__dba81638-02b0-4792-92f5-37ef95f8ceb0_0.mp4" type="video/mp4">
             </video>
@@ -95,15 +95,15 @@
                      data-label-template="{{ translations.hero.cta.connect_provider | default(value="Connect {provider} to Divinci") }}"
                      data-label-template-mobile="{{ translations.hero.cta.connect_provider_mobile | default(value="Connect {provider}") }}">
                     <a href="https://claude.ai" id="connect-ai-chip-claude" class="connect-ai-chip" data-provider="claude" data-name="Claude" target="_blank" rel="noopener">
-                        <img class="connect-ai-chip-icon" src="/images/claude-ai-icon-transparent.png" alt="" width="20" height="20" decoding="async">
+                        <img class="connect-ai-chip-icon" src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/claude-ai-icon-transparent.webp" alt="" width="20" height="20" decoding="async">
                         <span class="connect-ai-chip-label"></span>
                     </a>
                     <a href="https://grok.com" id="connect-ai-chip-grok" class="connect-ai-chip" data-provider="grok" data-name="Grok" target="_blank" rel="noopener">
-                        <img class="connect-ai-chip-icon" src="/images/grok-icon-transparent.png" alt="" width="20" height="20" decoding="async">
+                        <img class="connect-ai-chip-icon" src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/grok-icon-transparent.webp" alt="" width="20" height="20" decoding="async">
                         <span class="connect-ai-chip-label"></span>
                     </a>
                     <a href="https://www.perplexity.ai" id="connect-ai-chip-perplexity" class="connect-ai-chip" data-provider="perplexity" data-name="Perplexity" target="_blank" rel="noopener">
-                        <img class="connect-ai-chip-icon" src="/images/perplexity-ai-icon-transparent.png" alt="" width="20" height="20" decoding="async">
+                        <img class="connect-ai-chip-icon" src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/perplexity-ai-icon-transparent.webp" alt="" width="20" height="20" decoding="async">
                         <span class="connect-ai-chip-label"></span>
                     </a>
                     <a href="https://chat.mistral.ai" id="connect-ai-chip-mistral" class="connect-ai-chip" data-provider="mistral" data-name="Mistral" target="_blank" rel="noopener">
@@ -1638,7 +1638,7 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/images/sam-tobia.jpg" alt="Samuel Tobia" width="94" height="94" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/images/sam-tobia.jpg';">
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sam-tobia.webp" alt="Samuel Tobia" width="94" height="94" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sam-tobia.webp';">
                 </div>
                 <h3>Samuel Tobia</h3>
                 <p class="role">{{ translations.team.roles.cto_cofounder | default(value="Co-Founder & CTO") }}</p>
@@ -1652,7 +1652,7 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/images/duane-mooring.png" alt="Duane Mooring" width="94" height="94" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/images/duane-mooring.png';">
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/duane-mooring.webp" alt="Duane Mooring" width="94" height="94" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/duane-mooring.webp';">
                 </div>
                 <h3>Duane Mooring</h3>
                 <p class="role">{{ translations.team.roles.cpo | default(value="CPO - Chief Project Officer") }}</p>
@@ -1666,7 +1666,7 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/images/sierra-hooshiari.jpeg" alt="Sierra Hooshiari" width="94" height="94" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/images/sierra-hooshiari.jpeg';">
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sierra-hooshiari.webp" alt="Sierra Hooshiari" width="94" height="94" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sierra-hooshiari.webp';">
                 </div>
                 <h3>Sierra Hooshiari</h3>
                 <p class="role">{{ translations.team.roles.coo | default(value="Co-Founder & CMO") }}</p>
@@ -1680,7 +1680,7 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/images/sean-fuhrman.jpeg" alt="Sean Fuhrman" width="94" height="94" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/images/sean-fuhrman.jpeg';">
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sean-fuhrman.webp" alt="Sean Fuhrman" width="94" height="94" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sean-fuhrman.webp';">
                 </div>
                 <h3>Sean Fuhrman</h3>
                 <p class="role">{{ translations.team.roles.data_scientist | default(value="Data Scientist") }}</p>
@@ -1694,7 +1694,7 @@
             </div>
             <div class="team-member">
                 <div class="team-member-photo">
-                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/images/paul-marie-carfantan.jpeg" alt="Paul-Marie Carfantan" width="94" height="94" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/images/paul-marie-carfantan.jpeg';">
+                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/paul-marie-carfantan.webp" alt="Paul-Marie Carfantan" width="94" height="94" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/paul-marie-carfantan.webp';">
                 </div>
                 <h3>Paul-Marie Carfantan</h3>
                 <p class="role">{{ translations.team.roles.ai_safety_ethics_advisor | default(value="AI Safety and Ethics Advisor") }}</p>

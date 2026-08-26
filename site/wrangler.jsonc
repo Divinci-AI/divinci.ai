@@ -56,6 +56,16 @@
   // reads. Their `triggers.crons` are explicitly emptied below (named
   // environments otherwise inherit this block), and scheduled() also refuses
   // unless ENVIRONMENT is production.
+  //
+  // ⚠️ CONSEQUENCE, since 2026-08-26: the lower environments' /status pages
+  // are INERT, and this is expected rather than broken. The cron is now the
+  // only writer of both the customer-facing rating and the uptime history, so
+  // with no cron staging shows Platform: unknown, `configured: false`, and a
+  // history that never grows. Do not "fix" that by giving staging a cron —
+  // its other collector would then double-submit the metric a pager reads,
+  // which is the failure this block exists to prevent. Verify status-page
+  // changes against a local build with /api/status stubbed instead; that is
+  // what tests/status-attribution.spec.js does.
   "triggers": {
     "crons": ["*/5 * * * *"]
   },

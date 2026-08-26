@@ -85,7 +85,7 @@
     {# Essential meta tags only #}
     <meta property="og:title" content="{% block og_title %}{{ page.title | default(value="Divinci AI") }}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{{ page.description | default(value="AI releases. Excellence, every time.") }}{% endblock %}">
-    <meta property="og:image" content="{{ get_url(path="images/social-preview.png") }}">
+    <meta property="og:image" content="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/social-preview.png">
     <meta property="og:type" content="website">
     
     {% block extra_head %}{% endblock %}

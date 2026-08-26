@@ -5,7 +5,7 @@
  * make: too few events, too much it could not classify, or a quiet day it
  * never observed all have to produce NOTHING rather than a confident guess.
  */
-import { test } from 'node:test';
+import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   ATTRIBUTION_KEY,
@@ -21,10 +21,12 @@ import {
   autoNote,
   collectAttribution,
   customerFacingStatus,
+  DEGRADED_5XX_PER_WINDOW,
+  ratingForCount,
   incidentOpenAt,
 } from '../../src/status-attribution.mjs';
-import { HISTORY_KEY } from '../../src/status-history.mjs';
-import { AREA_IDS, dayBands } from '../../src/status-areas.mjs';
+import { HISTORY_KEY, SAMPLE_INTERVAL_MS, applySample } from '../../src/status-history.mjs';
+import { ALL_AREA_IDS, AREAS, AREA_IDS, INTERNAL_AREAS, INTERNAL_AREA_IDS, dayBands } from '../../src/status-areas.mjs';
 
 const row = (host, path, count) => ({ count, dimensions: { clientRequestHTTPHost: host, clientRequestPath: path } });
 
@@ -303,7 +305,8 @@ test('a clean window still writes the heartbeat, but moves no day counters', asy
 
 test('the live rating counts customer-facing errors only', async () => {
   // The whole point of the 2026-08-26 change: 4,000 errors on internal
-  // tooling must not colour a public status page, and 60 on the product must.
+  // tooling must not colour a public status page, and a real customer-facing
+  // burst must.
   const kv = fakeKV();
   const now = Date.parse('2026-08-26T04:00:00Z');
   await collectAttribution({ STATUS_HISTORY: kv, CF_ANALYTICS_TOKEN: 'x' }, {
@@ -314,9 +317,19 @@ test('the live rating counts customer-facing errors only', async () => {
 
   const kv2 = fakeKV();
   await collectAttribution({ STATUS_HISTORY: kv2, CF_ANALYTICS_TOKEN: 'x' }, {
-    now, fetchRows: async () => [[row('api.divinci.app', '/ai-chat/start', 60)], []],
+    now, fetchRows: async () => [[row('api.divinci.app', '/ai-chat/start', 400)], []],
   });
   assert.equal(customerFacingStatus(await kv2.get(ATTRIBUTION_KEY), now), 'degraded');
+
+  // ...and a window inside the routine band must NOT. 60 customer-facing 5xx
+  // in five minutes is roughly the p99 of an ordinary day: real errors, and
+  // not an incident. A threshold that fired here is the one that shipped for
+  // an hour claiming ~19 minutes of daily degradation.
+  const kv3 = fakeKV();
+  await collectAttribution({ STATUS_HISTORY: kv3, CF_ANALYTICS_TOKEN: 'x' }, {
+    now, fetchRows: async () => [[row('api.divinci.app', '/ai-chat/start', 60)], []],
+  });
+  assert.equal(customerFacingStatus(await kv3.get(ATTRIBUTION_KEY), now), 'operational');
 });
 
 test('the rating distinguishes never-configured from gone-stale', () => {
@@ -516,4 +529,128 @@ test('a green day with nothing internal is left completely alone', async () => {
   } } };
   const input = [{ date: '2026-08-27', status: 'operational' }];
   assert.deepEqual(mergeAttributionIntoDays(input, rec), input);
+});
+
+// ── the taxonomy's own invariants ────────────────────────────────────────
+//
+// Two lists, one counter. Nothing else checks that they agree, and a single
+// id in both would double-count silently in addInto().
+
+describe('the area taxonomy', () => {
+  test('public and sidecar areas are disjoint', () => {
+    const overlap = AREA_IDS.filter((id) => INTERNAL_AREA_IDS.includes(id));
+    assert.deepEqual(overlap, [], 'an id in both lists is counted twice');
+  });
+
+  test('ALL_AREA_IDS is exactly the union, with no duplicates', () => {
+    assert.deepEqual([...ALL_AREA_IDS].sort(), [...AREA_IDS, ...INTERNAL_AREA_IDS].sort());
+    assert.equal(new Set(ALL_AREA_IDS).size, ALL_AREA_IDS.length);
+  });
+
+  test('every area is renderable — an id with no name is an empty chip', () => {
+    for (const a of [...AREAS, ...INTERNAL_AREAS]) {
+      assert.ok(a.name && a.name.length > 1, `${a.id} has no name`);
+      assert.ok(a.hint && a.hint.length > 5, `${a.id} has no hint`);
+    }
+  });
+});
+
+test('classification can only ever return a known id, or nothing', () => {
+  // areaForRow's output indexes a counter object. It is guarded, but the
+  // guarantee should live where the values are produced — hosts and paths are
+  // attacker-supplied, and a classifier that could invent a key is the kind of
+  // thing that is fine until the guard is refactored away.
+  const known = new Set(ALL_AREA_IDS);
+  const hostile = [
+    '__proto__', 'constructor', 'toString', 'hasOwnProperty',
+    '__proto__.divinci.app', 'constructor.divinci.ai', 'a'.repeat(500) + '.divinci.app',
+    'DIVINCI.APP', 'divinci.app.evil.com', 'evil.com/divinci.app',
+    '', ' ', '\n', '\u0000', '::1', '127.0.0.1', 'xn--divinci-.app',
+  ];
+  const paths = ['/', '__proto__', '/../../etc/passwd', '/%00', null, undefined, 42, {}];
+  for (const h of hostile) {
+    for (const path of paths) {
+      const got = areaForRow(h, path);
+      assert.ok(got === null || known.has(got), `areaForRow(${JSON.stringify(h)}) => ${got}`);
+    }
+  }
+  // ...and non-string hosts must not throw either.
+  for (const h of [null, undefined, 42, {}, [], true]) {
+    assert.equal(areaForRow(h, '/'), null);
+  }
+});
+
+test('the degraded threshold is a floor, not a fence', () => {
+  assert.equal(ratingForCount(DEGRADED_5XX_PER_WINDOW - 1), 'operational');
+  assert.equal(ratingForCount(DEGRADED_5XX_PER_WINDOW), 'degraded');
+  assert.equal(ratingForCount(0), 'operational');
+});
+
+test('the threshold sits above the routine band, not inside it', () => {
+  // The number is derived from a measured distribution, and the measurement
+  // is the reason it can be trusted — so pin the shape of the claim, not just
+  // the value. p95 of a five-minute bucket is 30 and p99 is 59; a threshold
+  // anywhere near those marks ordinary days degraded, which is precisely what
+  // shipped for an hour on 2026-08-26.
+  assert.ok(DEGRADED_5XX_PER_WINDOW > 59,
+    'a threshold at or below the 5-minute p99 fires on routine noise');
+  assert.equal(ratingForCount(59), 'operational', 'p99 of an ordinary day is not an incident');
+  assert.equal(ratingForCount(239), 'degraded', 'the largest observed burst must register');
+});
+
+// ── cron-owned sampling ──────────────────────────────────────────────────
+
+test('the sample is written BEFORE attribution decides it was an incident', async () => {
+  // Ordering, not decoration. `duringIncident` is read out of the sampler's
+  // record, so the sample for this window has to be in it already — or the
+  // opening five minutes of every incident, the part that says what started
+  // it, land in the whole-day basket instead.
+  const seen = [];
+  const kv = fakeKV();
+  await collectAttribution({ STATUS_HISTORY: kv, CF_ANALYTICS_TOKEN: 'x' }, {
+    now: Date.parse('2026-08-26T04:00:00Z'),
+    fetchRows: async () => [[row('api.divinci.app', '/ai-chat/start', 900)], []],
+    recordSample: async (status) => {
+      seen.push(status);
+      // Stand in for worker.js's recordSample: land it in the history record
+      // the collector is about to read.
+      const rec = (await kv.get(HISTORY_KEY)) || { days: {} };
+      applySample(rec, status, Date.parse('2026-08-26T04:00:00Z'), { bypassRateLimit: true });
+      await kv.put(HISTORY_KEY, JSON.stringify(rec));
+    },
+  });
+  assert.deepEqual(seen, ['degraded'], 'the rating must be sampled once, from this window');
+  const attr = await kv.get(ATTRIBUTION_KEY);
+  assert.equal(attr.days['2026-08-26'].incTotal, 900,
+    'the window that OPENED the incident must be counted as part of it');
+});
+
+test('a quiet window samples operational and opens no incident', async () => {
+  const seen = [];
+  const kv = fakeKV();
+  await collectAttribution({ STATUS_HISTORY: kv, CF_ANALYTICS_TOKEN: 'x' }, {
+    now: Date.parse('2026-08-26T04:00:00Z'),
+    fetchRows: async () => [[], []],
+    recordSample: async (status) => seen.push(status),
+  });
+  assert.deepEqual(seen, ['operational']);
+});
+
+test('a cron sampler must not be rate-limited by the traffic-era guard', () => {
+  // Cloudflare's scheduler drifts: two 5-minute ticks routinely land 4m58s
+  // apart, which is `< SAMPLE_INTERVAL_MS`. Without the bypass the guard
+  // drops the sample, and the loss is invisible — fewer samples still produce
+  // a percentage, just a quieter and slightly wrong one.
+  const t0 = Date.parse('2026-08-26T04:00:00Z');
+  const drifted = t0 + SAMPLE_INTERVAL_MS - 2000;
+
+  const guarded = { days: {}, lastSampleAt: 0 };
+  applySample(guarded, 'operational', t0);
+  assert.equal(applySample(guarded, 'operational', drifted), false,
+    'the traffic-era guard should still bite for an unforced caller');
+
+  const cron = { days: {}, lastSampleAt: 0 };
+  applySample(cron, 'operational', t0, { bypassRateLimit: true });
+  assert.equal(applySample(cron, 'operational', drifted, { bypassRateLimit: true }), true);
+  assert.equal(cron.days['2026-08-26'].ok, 2, 'both ticks must be recorded');
 });

@@ -214,20 +214,20 @@
                                     </video>
                                 {% else %}
                                     <video muted loop playsinline webkit-playsinline preload="none" class="featured-image object-cover video-thumbnail">
-                                        <source src="{{ get_url(path=featured_post.extra.featured_image) }}" type="video/{% if featured_post.extra.featured_image is ending_with('.webm') %}webm{% else %}mp4{% endif %}">
+                                        <source src="{{ featured_post.extra.featured_image }}" type="video/{% if featured_post.extra.featured_image is ending_with('.webm') %}webm{% else %}mp4{% endif %}">
                                     </video>
                                 {% endif %}
                             {% else %}
                                 {% if featured_post.extra.featured_image is starting_with("http") %}
                                     <img src="/cdn-cgi/image/width=1200,format=auto,quality=82/{{ featured_post.extra.featured_image }}" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ featured_post.extra.featured_image }}';">
                                 {% else %}
-                                    <img src="/cdn-cgi/image/width=1200,format=auto,quality=82/{{ featured_post.extra.featured_image }}" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=featured_post.extra.featured_image) | safe }}';">
+                                    <img src="/cdn-cgi/image/width=1200,format=auto,quality=82/{{ featured_post.extra.featured_image }}" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='{{ featured_post.extra.featured_image | safe }}';">
                                 {% endif %}
                             {% endif %}
                         {% else %}
                             <picture>
-                                <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-still.webp" type="image/webp">
-                                <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/autorag-still.jpg" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image" loading="eager" fetchpriority="high" decoding="async">
+                                <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-still.webp" type="image/webp">
+                                <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-still.webp" alt="{{ featured_post.title }}" width="1200" height="675" class="featured-image" loading="eager" fetchpriority="high" decoding="async">
                             </picture>
                         {% endif %}
                         </a>
@@ -242,7 +242,7 @@
                             </a>
                             <div class="post-meta">
                                 {% if featured_post.extra.author_avatar %}
-                                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/{{ featured_post.extra.author_avatar }}" alt="{{ featured_post.extra.author | default(value='Michael Mooring') }}" width="94" height="94" class="author-avatar" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=featured_post.extra.author_avatar) | safe }}';">
+                                    <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/{{ featured_post.extra.author_avatar }}" alt="{{ featured_post.extra.author | default(value='Michael Mooring') }}" width="94" height="94" class="author-avatar" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ featured_post.extra.author_avatar | safe }}';">
                                 {% else %}
                                     <img src="/cdn-cgi/image/width=188,height=188,format=auto,quality=85,fit=cover/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Michael-Mooring-png.jpg" alt="Michael Mooring" width="94" height="94" loading="lazy" decoding="async" class="author-avatar">
                                 {% endif %}
@@ -293,7 +293,7 @@
                                            video hero has no still that reads at 600px, and a post may want
                                            its typeset OG card here instead of its hero art. #}
                                         {% if post.extra.card_image %}
-                                            <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.card_image }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=post.extra.card_image) | safe }}';">
+                                            <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.card_image }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ post.extra.card_image | safe }}';">
                                         {% elif post.extra.featured_video %}
                                             {% set vid_src = post.extra.featured_video %}
                                             {# CIR-resize local poster to ~600w (~10-20KB instead of full-res) #}
@@ -327,7 +327,7 @@
                                             {% if post.extra.featured_image is starting_with("http") %}
                                                 <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.featured_image }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ post.extra.featured_image }}';">
                                             {% else %}
-                                                <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.featured_image }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ get_url(path=post.extra.featured_image) | safe }}';">
+                                                <img src="/cdn-cgi/image/width=600,format=auto,quality=82/{{ post.extra.featured_image }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{{ post.extra.featured_image | safe }}';">
                                             {% endif %}
                                         {% else %}
                                             <img src="{{ get_url(path='images/autorag-diagram.svg') }}" alt="{{ post.title }}" width="600" height="338" class="post-image" loading="lazy">
@@ -352,7 +352,7 @@
                             <!-- Share with Friends Card (integrated into grid) -->
                             <article class="post-card share-card">
                                 <div class="share-card-video">
-                                    <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="{{ get_url(path='images/renaissance-scholars-study-poster.webp') }}">
+                                    <video autoplay muted loop playsinline webkit-playsinline preload="none" poster="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/renaissance-scholars-study-poster.webp">
                                         <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/renaissance-scholars-study.webm" type="video/webm">
                                     </video>
                                 </div>
