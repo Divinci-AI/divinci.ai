@@ -18,7 +18,7 @@ import {
 } from './web-bot-auth-directory.mjs';
 import { AREAS } from './status-areas.mjs';
 import { collectCustomerHealth, shouldCollect } from './customer-health.mjs';
-import { NOINDEX, isIndexable } from './indexability.mjs';
+import { NOINDEX, isIndexable, robotsTxt } from './indexability.mjs';
 import {
   ATTRIBUTION_KEY,
   collectAttribution,
@@ -240,11 +240,7 @@ export default {
     // This is a declaration of preference, not an access control. The
     // enforcement lever is AI Crawl Control in the Cloudflare dashboard.
     if (url.pathname === '/robots.txt') {
-      return new Response(`User-agent: *
-Content-Signal: search=yes, ai-input=yes, ai-train=no
-Allow: /
-
-Sitemap: ${url.origin}/sitemap.xml`, {
+      return new Response(robotsTxt(isIndexable(env, url.hostname), url.origin), {
         headers: {
           'Content-Type': 'text/plain',
           ...securityHeaders

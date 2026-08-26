@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { NOINDEX, isIndexable } from '../../src/indexability.mjs';
+import { NOINDEX, isIndexable, robotsTxt } from '../../src/indexability.mjs';
 
 const PROD = { ENVIRONMENT: 'production', BASE_URL: 'https://divinci.ai' };
 const STAGING = { ENVIRONMENT: 'staging', BASE_URL: 'https://staging.divinci.ai' };
@@ -75,4 +75,36 @@ test('an unrecognised environment is treated as not production', () => {
 
 test('the header value tells crawlers not to index or walk the link graph', () => {
   assert.equal(NOINDEX, 'noindex, nofollow');
+});
+
+test('the canonical robots.txt keeps its signals and advertises the sitemap', () => {
+  const body = robotsTxt(true, 'https://divinci.ai');
+  assert.match(body, /^User-agent: \*$/m);
+  assert.match(body, /Content-Signal: search=yes, ai-input=yes, ai-train=no/);
+  assert.match(body, /^Allow: \/$/m);
+  assert.match(body, /^Sitemap: https:\/\/divinci\.ai\/sitemap\.xml$/m);
+});
+
+test('a duplicate keeps Allow so its noindex is ever seen', () => {
+  // The load-bearing line. Disallowing here would mean the crawler never
+  // fetches the page, never reads X-Robots-Tag, and never drops what it has
+  // already indexed.
+  assert.match(robotsTxt(false, 'https://staging.divinci.ai'), /^Allow: \/$/m);
+});
+
+test('a duplicate advertises no sitemap', () => {
+  assert.doesNotMatch(robotsTxt(false, 'https://staging.divinci.ai'), /Sitemap:/);
+});
+
+test('a duplicate does not claim search or AI-input rights', () => {
+  // search=yes next to an X-Robots-Tag: noindex is self-contradicting, and a
+  // copy must not assert reuse terms for the authoritative page.
+  const body = robotsTxt(false, 'https://dev.divinci.ai');
+  assert.match(body, /Content-Signal: search=no, ai-input=no, ai-train=no/);
+});
+
+test('ai-train stays refused on every host', () => {
+  for (const body of [robotsTxt(true, 'https://divinci.ai'), robotsTxt(false, 'https://dev.divinci.ai')]) {
+    assert.match(body, /ai-train=no/);
+  }
 });

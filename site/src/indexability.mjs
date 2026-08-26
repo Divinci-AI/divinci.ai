@@ -63,3 +63,38 @@ export function isIndexable(env, hostname) {
  * not walk its link graph and discover the rest of the environment.
  */
 export const NOINDEX = 'noindex, nofollow';
+
+/**
+ * The body of robots.txt for one host.
+ *
+ * A copy of this site must say something different here than the canonical one
+ * does, and the difference is narrower than instinct suggests.
+ *
+ * It KEEPS `Allow: /`. Forbidding the crawl is the tempting move and the wrong
+ * one: a URL a crawler may not fetch is a URL whose `noindex` header it never
+ * reads, so anything already in the index stays there indefinitely. Crawlable
+ * plus noindex is the combination that actually removes a page.
+ *
+ * It drops the `Sitemap:` line, which on a duplicate is an invitation to walk
+ * a list of URLs that must never be indexed — wasted crawl budget at best.
+ *
+ * And it withdraws the content signals. `search=yes` alongside an
+ * `X-Robots-Tag: noindex` is a self-contradicting pair, and `ai-input=yes` on a
+ * copy asserts reuse terms for a page that is not the authoritative one.
+ *
+ * @param {boolean} indexable  Result of isIndexable() for this host.
+ * @param {string} origin  `url.origin`, used for the sitemap URL.
+ * @returns {string}
+ */
+export function robotsTxt(indexable, origin) {
+  if (!indexable) {
+    return `User-agent: *
+Content-Signal: search=no, ai-input=no, ai-train=no
+Allow: /`;
+  }
+  return `User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+Sitemap: ${origin}/sitemap.xml`;
+}
