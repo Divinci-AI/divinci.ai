@@ -76,14 +76,14 @@
       "id": "4d3eb9e275804f3090b9c0f96154381d"
     }
   ],
-  "workers_dev": true,
+  "workers_dev": false,
   "preview_urls": true,
   "placement": {
     "mode": "smart"
   },
   "compatibility_flags": ["nodejs_compat"],
   "build": {
-    "command": "node scripts/check-universe-freshness.mjs && python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build"
+    "command": "node scripts/check-universe-freshness.mjs && python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build && node scripts/build-headers.mjs"
   },
   "limits": {
     "cpu_ms": 50
@@ -104,9 +104,9 @@
       "routes": [
         { "pattern": "dev.divinci.ai/*", "zone_name": "divinci.ai" }
       ],
-      "workers_dev": true,
+      "workers_dev": false,
       "build": {
-        "command": "node scripts/check-universe-freshness.mjs && python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build --base-url https://dev.divinci.ai"
+        "command": "node scripts/check-universe-freshness.mjs && python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build --base-url https://dev.divinci.ai && node scripts/build-headers.mjs --env dev"
       }
     },
     "staging": {
@@ -130,9 +130,9 @@
           "id": "7fcc432e9d2e46fea6d6cf0c6f11f7cb"
         }
       ],
-      "workers_dev": true,
+      "workers_dev": false,
       "build": {
-        "command": "node scripts/check-universe-freshness.mjs && python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build --base-url https://staging.divinci.ai"
+        "command": "node scripts/check-universe-freshness.mjs && python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-assistant-pages.py && python3 scripts/build-search-index.py && python3 scripts/build-agent-skills.py && python3 scripts/build-llms-full.py && zola build --base-url https://staging.divinci.ai && node scripts/build-headers.mjs --env staging"
       }
     }
   }
