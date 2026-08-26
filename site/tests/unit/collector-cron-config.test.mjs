@@ -1,5 +1,5 @@
 /**
- * Deployment-config guards for the customer-health collector.
+ * Deployment-config guards for the two 5-minute collectors.
  *
  * The collector publishes `divinci.cf.customer.errors_5xx`, which Datadog
  * monitor 20807649 queries and which the public /status history is sampled
@@ -79,5 +79,44 @@ describe('customer-health collector cron', () => {
     const stage = cfg.env?.staging?.kv_namespaces?.find((k) => k.binding === 'STATUS_HISTORY');
     assert.ok(prod?.id && stage?.id);
     assert.notEqual(prod.id, stage.id);
+  });
+});
+
+// ── The attribution collector must actually be invoked ───────────────────
+//
+// The cron config above says a schedule EXISTS. It says nothing about whether
+// the collector is wired to it — and the two ride the same trigger, so a
+// refactor that drops one call keeps a green cron, a green deploy, and a
+// green test suite while the public status page quietly stops learning
+// anything new. It would look exactly like a quiet week.
+//
+// This was not hypothetical when the collector shipped: the days already on
+// the page had been backfilled, so a dead collector would have been masked by
+// data that was already correct. The only reason it was caught was reading
+// KV twice, five minutes apart, by hand.
+
+describe('the scheduled handler', () => {
+  const worker = readFileSync(join(here, '..', '..', 'src', 'worker.js'), 'utf8');
+  const scheduled = worker.slice(
+    worker.indexOf('async scheduled('),
+    worker.indexOf('async fetch('),
+  );
+
+  test('runs BOTH collectors, not just the one that pages', () => {
+    assert.ok(scheduled.length > 0, 'scheduled() not found in worker.js');
+    for (const call of ['collectCustomerHealth(env)', 'collectAttribution(env)']) {
+      assert.ok(scheduled.includes(call), `scheduled() no longer calls ${call}`);
+    }
+  });
+
+  test('neither collector can take the other down', () => {
+    // They answer different questions — how many customer errors, and where
+    // all the errors landed — and one throwing must never cost the other. A
+    // rejection escaping into the cron runner would do exactly that, since
+    // they share an invocation.
+    const waits = scheduled.split('ctx.waitUntil(').length - 1;
+    assert.equal(waits, 2, 'each collector needs its own waitUntil');
+    const catches = scheduled.split('.catch(').length - 1;
+    assert.equal(catches, 2, 'each collector must swallow its own failure');
   });
 });

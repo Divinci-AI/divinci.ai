@@ -10,7 +10,9 @@ import assert from 'node:assert/strict';
 import {
   ATTRIBUTION_KEY,
   HISTORY_KEY_FOR_INCIDENTS,
+  MIN_AREA_EVENTS,
   MIN_BASIS_EVENTS,
+  mergeAttributionIntoDays,
   applyAttribution,
   areaForRow,
   attributeRows,
@@ -18,6 +20,7 @@ import {
   attributionView,
   autoNote,
   collectAttribution,
+  customerFacingStatus,
   incidentOpenAt,
 } from '../../src/status-attribution.mjs';
 import { HISTORY_KEY } from '../../src/status-history.mjs';
@@ -177,12 +180,12 @@ test('days outside the window are pruned', () => {
 
 test('the note answers the question a visitor is actually asking', () => {
   const a = attributionForDay({
-    total: 4400, areas: { marketing: 3900, preprod: 500 }, unclassified: 0,
+    total: 4400, areas: { marketing: 3900, docs: 500 }, unclassified: 0,
     incTotal: 0, inc: {}, incUnclassified: 0,
   });
   const n = autoNote('2026-08-25', a, { windows: [{ minutes: 20, counted: true }] });
   assert.equal(n.auto, true);
-  assert.deepEqual(n.areas, ['marketing', 'preprod']);
+  assert.deepEqual(n.areas, ['marketing', 'docs']);
   assert.equal(n.productAffected, false);
   assert.match(n.summary, /was not among the affected areas/);
   assert.match(n.summary, /20 minutes/);
@@ -279,18 +282,64 @@ test('a tick lands in KV, scoped by the sampler window', async () => {
   assert.equal(day.areas.marketing, 300);
 });
 
-test('a clean window writes nothing at all', async () => {
-  // Churning KV every five minutes for "nothing failed" costs writes and, far
-  // worse, would let quiet hours dilute an incident's share on a day that had
-  // one.
+test('a clean window still writes the heartbeat, but moves no day counters', async () => {
+  // A quiet window is POSITIVE evidence — it is what "operational" is
+  // computed from. Skipping the write would let the reading go stale exactly
+  // while everything was healthy, and the page would turn grey on its best
+  // days. The day counters must not move, though: a long quiet stretch
+  // diluting an incident's share is the bug the two baskets exist to prevent.
   const kv = fakeKV();
+  const now = Date.parse('2026-08-26T04:00:00Z');
   const out = await collectAttribution({ STATUS_HISTORY: kv, CF_ANALYTICS_TOKEN: 'x' }, {
-    now: Date.parse('2026-08-26T04:00:00Z'),
-    fetchRows: async () => [[], []],
+    now, fetchRows: async () => [[], []],
   });
-  assert.equal(out.wrote, false);
-  assert.equal(kv.store.size, 0);
+  assert.equal(out.wrote, true);
+  assert.equal(out.customer, 0);
+  const rec = await kv.get(ATTRIBUTION_KEY);
+  assert.equal(rec.latest.customer, 0);
+  assert.deepEqual(rec.days, {}, 'a quiet window must not create a day record');
+  assert.equal(customerFacingStatus(rec, now), 'operational');
 });
+
+test('the live rating counts customer-facing errors only', async () => {
+  // The whole point of the 2026-08-26 change: 4,000 errors on internal
+  // tooling must not colour a public status page, and 60 on the product must.
+  const kv = fakeKV();
+  const now = Date.parse('2026-08-26T04:00:00Z');
+  await collectAttribution({ STATUS_HISTORY: kv, CF_ANALYTICS_TOKEN: 'x' }, {
+    now, fetchRows: async () => [[row('chunks-workflow.divinci.app', '/', 4000)], []],
+  });
+  assert.equal(customerFacingStatus(await kv.get(ATTRIBUTION_KEY), now), 'operational',
+    'an internal cron failing 4,000 times is not a customer-facing incident');
+
+  const kv2 = fakeKV();
+  await collectAttribution({ STATUS_HISTORY: kv2, CF_ANALYTICS_TOKEN: 'x' }, {
+    now, fetchRows: async () => [[row('api.divinci.app', '/ai-chat/start', 60)], []],
+  });
+  assert.equal(customerFacingStatus(await kv2.get(ATTRIBUTION_KEY), now), 'degraded');
+});
+
+test('the rating distinguishes never-configured from gone-stale', () => {
+  const now = Date.parse('2026-08-26T04:00:00Z');
+  // Never configured: say nothing. Announcing an outage that is really an
+  // unset binding is a bug this page has already shipped once.
+  assert.equal(customerFacingStatus(null, now), null);
+  assert.equal(customerFacingStatus({ days: {} }, now), null);
+  assert.equal(customerFacingStatus({ latest: { at: now, customer: 'x' } }, now), null);
+  // Gone stale: that IS news. A page reporting "operational" from a dead feed
+  // is worse than one admitting it does not know.
+  assert.equal(customerFacingStatus({ latest: { at: now - 25 * 60000, customer: 0 } }, now), 'unknown');
+  assert.equal(customerFacingStatus({ latest: { at: now - 6 * 60000, customer: 0 } }, now), 'operational');
+});
+
+test('the rating never claims an outage', () => {
+  // "Elevated errors" is degraded by nature — requests are being served and
+  // some fail. A real outage reaches the banner through the GCP components,
+  // which probe the customer path instead of counting what came back.
+  const now = Date.now();
+  assert.equal(customerFacingStatus({ latest: { at: now, customer: 1e9 } }, now), 'degraded');
+});
+
 
 test('missing configuration is refused loudly, not silently skipped', async () => {
   const errs = [];
@@ -334,4 +383,137 @@ test('one zone failing skips the tick rather than half-attributing it', async ()
     /403/,
   );
   assert.equal(kv.store.size, 0, 'nothing may be written from a partial read');
+});
+
+// ── dilution ─────────────────────────────────────────────────────────────
+//
+// The 5xx this counts are reachable by anyone: strangers scanning for
+// /stripe.json already generate thousands against our hosts uninvited. So the
+// share floor is an attacker-controlled dial unless something else holds.
+
+test('noise elsewhere cannot dilute a real product burst out of the report', () => {
+  // 300 product errors inside the window the page is calling degraded, buried
+  // under 20k of unrelated marketing noise: 1.5%, far under the share floor.
+  const d = {
+    total: 0, areas: {}, unclassified: 0,
+    incTotal: 20300, inc: { marketing: 20000, product: 300 }, incUnclassified: 0,
+  };
+  const a = attributionForDay(d);
+  assert.ok(a.areas.some(x => x.id === 'product'),
+    'an absolute count must survive dilution — otherwise "the product was not '
+    + 'affected" is a claim anyone can buy with free traffic');
+  assert.equal(autoNote('2026-08-26', a, null).productAffected, true);
+});
+
+test('the absolute floor does NOT apply to a whole day', () => {
+  // Measured: 634 product 5xx across all of 2026-08-25 were our own publisher
+  // retrying — 9.7% of the day, correctly not called out. Contemporaneity is
+  // what makes a bare count mean anything.
+  const a = attributionForDay({
+    total: 6554, areas: { marketing: 5920, product: 634 }, unclassified: 0,
+    incTotal: 0, inc: {}, incUnclassified: 0,
+  });
+  assert.equal(a.basis, 'day');
+  assert.deepEqual(a.areas.map(x => x.id), ['marketing']);
+  assert.ok(634 > MIN_AREA_EVENTS, 'the fixture must actually exceed the floor');
+});
+
+// ── what becomes public ──────────────────────────────────────────────────
+
+const RECORD = { days: { '2026-08-26': {
+  total: 4817, areas: { marketing: 4000, product: 817 }, unclassified: 0,
+  incTotal: 900, inc: { marketing: 600, product: 300 }, incUnclassified: 0,
+} } };
+
+test('the payload carries shares and area ids — never counts, never hosts', () => {
+  // Publishing "4,077 errors on the marketing site" would hand any reader a
+  // running measure of our request volume and of how much load it takes to
+  // hurt us. A share is the entire useful content of the claim.
+  const [day] = mergeAttributionIntoDays(
+    [{ date: '2026-08-26', status: 'degraded' }], RECORD);
+  const json = JSON.stringify(day);
+  for (const count of ['4817', '4000', '817', '900', '600', '300']) {
+    assert.ok(!json.includes(count), `an absolute error count reached the payload: ${count}`);
+  }
+  assert.deepEqual(day.areas, ['marketing', 'product']);
+  assert.deepEqual(day.areaShares, [
+    { id: 'marketing', share: 66.7 }, { id: 'product', share: 33.3 },
+  ]);
+  assert.equal(day.areaBasis, 'incident');
+});
+
+test('a green day is never attributed', () => {
+  const [day] = mergeAttributionIntoDays(
+    [{ date: '2026-08-26', status: 'operational' }], RECORD);
+  assert.equal(day.areas, undefined);
+  assert.equal(day.autoNote, undefined);
+});
+
+test('a day the record says nothing about passes through untouched', () => {
+  const [day] = mergeAttributionIntoDays(
+    [{ date: '2026-08-21', status: 'degraded' }], RECORD);
+  assert.deepEqual(day, { date: '2026-08-21', status: 'degraded' });
+});
+
+test('an absent or unreadable record changes nothing', () => {
+  const days = [{ date: '2026-08-26', status: 'degraded' }];
+  for (const rec of [null, undefined, {}, { days: null }, 'nonsense']) {
+    assert.deepEqual(mergeAttributionIntoDays(days, rec), days);
+  }
+});
+
+// ── the ends of the scale ────────────────────────────────────────────────
+
+test('a whole is reported as 100%, not as ">99"', () => {
+  const a = attributionForDay({
+    total: 500, areas: { marketing: 500 }, unclassified: 0,
+    incTotal: 0, inc: {}, incUnclassified: 0,
+  });
+  assert.match(autoNote('2026-08-25', a, null).summary, /\(100%\)/);
+});
+
+test('99.6% is not rounded up into a claim that nothing else was involved', () => {
+  const a = attributionForDay({
+    total: 1000, areas: { marketing: 996, product: 4 }, unclassified: 0,
+    incTotal: 0, inc: {}, incUnclassified: 0,
+  });
+  assert.match(autoNote('2026-08-25', a, null).summary, /\(>99%\)/);
+});
+
+test('an incident that straddles midnight is still an incident', () => {
+  // The collector reads a window that ended minutes ago, so just after 00:00
+  // UTC the recent windows are still filed under yesterday. Looking only at
+  // today would report every midnight-straddling incident as quiet — and
+  // quiet is what sends a day to the weaker whole-day basis.
+  const now = Date.parse('2026-08-26T00:02:00Z');
+  const hist = { days: { '2026-08-25': { windows: [
+    { s: 'degraded', f: Date.parse('2026-08-25T23:50:00Z'), t: Date.parse('2026-08-25T23:58:00Z') },
+  ] } } };
+  assert.equal(incidentOpenAt(hist, now), true);
+});
+
+test('a GREEN day still reports internal trouble in the sidecar', async () => {
+  // From 2026-08-26 an internal-only problem does not make a day bad. If the
+  // sidecar only rode along with bad days it would show the legacy ones and
+  // then never fill again — internal systems would have been removed from the
+  // number and, unnoticed, from the page. It carries no severity: the day
+  // stays green, and correctly so.
+  const rec = { days: { '2026-08-27': {
+    total: 4000, areas: { internal: 4000 }, unclassified: 0,
+    incTotal: 0, inc: {}, incUnclassified: 0,
+  } } };
+  const [day] = mergeAttributionIntoDays([{ date: '2026-08-27', status: 'operational' }], rec);
+  assert.deepEqual(day.internalAreas, ['internal']);
+  assert.equal(day.status, 'operational');
+  assert.equal(day.areas, undefined, 'a green day must not band');
+  assert.equal(day.autoNote, undefined, 'a green day must not carry an incident note');
+});
+
+test('a green day with nothing internal is left completely alone', async () => {
+  const rec = { days: { '2026-08-27': {
+    total: 4000, areas: { marketing: 4000 }, unclassified: 0,
+    incTotal: 0, inc: {}, incUnclassified: 0,
+  } } };
+  const input = [{ date: '2026-08-27', status: 'operational' }];
+  assert.deepEqual(mergeAttributionIntoDays(input, rec), input);
 });

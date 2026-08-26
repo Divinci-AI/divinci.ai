@@ -30,6 +30,9 @@
  */
 
 /**
+ * PUBLIC areas — the ones a visitor can reach, and the only ones that band a
+ * bar or move the uptime number.
+ *
  * Fixed order, most customer-facing first, so the top band is always the one a
  * reader cares about most and the shape is comparable across days.
  */
@@ -37,11 +40,48 @@ export const AREAS = [
   { id: 'product', name: 'Product', hint: 'Chat, API, embeds — what customers use' },
   { id: 'marketing', name: 'Marketing site', hint: 'divinci.ai and this status page' },
   { id: 'docs', name: 'Developer docs', hint: 'The SDK documentation site' },
-  { id: 'preprod', name: 'Pre-production', hint: 'Staging and dev — not customer traffic' },
+];
+
+/**
+ * Areas NO CUSTOMER CAN REACH — reported separately, and deliberately kept out
+ * of the rating, the uptime percentage and the bands (2026-08-26).
+ *
+ * They used to be two of the five bands and, worse, they were in the NUMBER:
+ * the day rating came from a Cloudflare monitor counting 5xx across whole
+ * zones, and those zones carry staging, dev and internal cron jobs. Once every
+ * day was attributed the scale of that was measurable, and it was not a
+ * rounding error — of 19 attributed days, EIGHT were led by internal tooling
+ * or pre-production, and the worst day on the page (2026-08-16, published as a
+ * major outage at 66% uptime) was 87.5% one dead internal cron. The product
+ * appeared on one day out of nineteen.
+ *
+ * So the page was telling customers about outages they could not have
+ * experienced, in a number they had no way to discount. A status page that
+ * cries wolf about its own crons trains people to ignore it, which costs
+ * exactly the day it matters.
+ *
+ * They are still REPORTED, because "we could not reach our own tooling" is a
+ * real thing to say — it can slow how fast we answer support. It is just not
+ * a claim about anyone's service, so it gets its own section and touches
+ * nothing else.
+ */
+export const INTERNAL_AREAS = [
+  { id: 'preprod', name: 'Pre-production', hint: 'Staging and dev — no customer traffic' },
   { id: 'internal', name: 'Internal tooling', hint: 'Systems only Divinci staff reach' },
 ];
 
 export const AREA_IDS = AREAS.map(a => a.id);
+export const INTERNAL_AREA_IDS = INTERNAL_AREAS.map(a => a.id);
+
+/**
+ * Every id the COLLECTOR counts. Wider than the public set on purpose: an
+ * internal error still has to be counted to be reported in the sidecar, and —
+ * more importantly — a bucket that is counted is a bucket that can be seen. An
+ * area dropped from collection entirely would be indistinguishable from an
+ * area that never fails, which is how the estate got mis-attributed in the
+ * first place.
+ */
+export const ALL_AREA_IDS = [...AREA_IDS, ...INTERNAL_AREA_IDS];
 const AREA_SET = new Set(AREA_IDS);
 
 /** Is this a severity that should tint a band? */

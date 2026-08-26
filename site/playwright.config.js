@@ -34,6 +34,11 @@ module.exports = defineConfig({
         viewport: { width: 1920, height: 1080 },
       },
       testMatch: [
+        // Stubs /api/status and asserts what a visitor actually sees: that an
+        // attributed day is banded, an unattributed one is NOT, a
+        // hand-written note beats the derived one, and a note is rendered as
+        // text. None of that is reachable from the module tests.
+        '**/status-attribution.spec.js',
         // These two run under Chromium rather than the Mobile-* projects on
         // purpose: each sets its own viewport AND its own isMobile/hasTouch per
         // describe (both assert phone AND desktop behaviour in one file), and

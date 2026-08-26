@@ -12,7 +12,6 @@ import {
   timingSafeEqual,
 } from './www-rag-activity.mjs';
 import { AGENT_LINK_HEADER, handleAgentDiscovery } from './agent-discovery.mjs';
-import { monitorStatus } from './monitor-status.mjs';
 import {
   WEB_BOT_AUTH_DIRECTORY_PATH,
   handleWebBotAuthDirectory,
@@ -21,9 +20,9 @@ import { AREAS } from './status-areas.mjs';
 import { collectCustomerHealth, shouldCollect } from './customer-health.mjs';
 import {
   ATTRIBUTION_KEY,
-  attributionView,
-  autoNote,
   collectAttribution,
+  customerFacingStatus,
+  mergeAttributionIntoDays,
 } from './status-attribution.mjs';
 import {
   HISTORY_KEY,
@@ -251,8 +250,8 @@ Sitemap: ${url.origin}/sitemap.xml`, {
       return handleContactForm(request, env);
     }
 
-    // Public system status, read from Datadog monitor state. Same-origin, so
-    // the footer indicator and /status page need no CORS proxy.
+    // Public system status, from our own customer-facing error measurement.
+    // Same-origin, so the footer indicator and /status page need no CORS proxy.
     if (url.pathname === '/api/status') {
       return handleStatus(request, env, ctx);
     }
@@ -612,7 +611,6 @@ Timestamp: ${new Date().toISOString()}
 // ─────────────────────────────────────────────────────────────────────────
 // Public system status (/api/status)
 //
-// Reads live Datadog monitor state and maps it to customer-facing components.
 // Same-origin, so /status and the footer indicator consume it directly.
 //
 // DESIGN RULE — do not "fix" this by defaulting to operational: any state we
@@ -620,55 +618,53 @@ Timestamp: ${new Date().toISOString()}
 // dot that cannot go red is an unsubstantiated claim, which is exactly what we
 // removed from /security. `unknown` is a correct, honest answer.
 //
-// COMPONENT MAPPING: the backing monitors are Cloudflare zone-wide metrics
-// spanning divinci.app AND divinci.ai together, so they cannot currently
-// distinguish per-service health. One honest component is therefore better
-// than four that would move in lockstep and mislabel the cause. When the
-// content-matched GCP uptime checks are mirrored into Datadog (see
-// docs/ops/STATUS_PAGE_OPTIONS.md in the server repo), add per-service
-// components here — it is a config change, nothing else.
+// COMPONENT MAPPING: Platform is deliberately ONE component. Its source (see
+// customerFacingStatus in status-attribution.mjs) knows which host and path
+// each error hit, so it could be split — but the per-service question is
+// already answered better by the GCP uptime checks pushed in below, which
+// probe each surface directly rather than inferring health from error counts.
+// Two overlapping answers to the same question is how a page starts
+// contradicting itself.
 const STATUS_COMPONENTS = [
   {
     id: 'platform',
     name: 'Platform',
     description: 'Chat, API, and web — edge and origin availability',
-    monitors: [
-      // Elevated 5xx — degraded but generally still serving.
-      //
-      // ⚠️ Monitor 20807650 ([CF] Origin unreachable 52x/530) was DELETED on
-      // 2026-08-16 as redundant: its status codes (522/523/524/530) are a
-      // strict subset of this monitor's, on the same zones, and it was paging
-      // twice for every origin event. Its id MUST be removed here as well — a
-      // monitor this list references but Datadog no longer returns maps to
-      // `unknown` (see the fetch loop), which would pin the public Platform
-      // component to `unknown` permanently.
-      //
-      // Consequence worth knowing: Platform can no longer report
-      // `major_outage` from Cloudflare, because "5xx elevated" is a degraded
-      // signal by nature. A genuine outage still reaches the banner through the
-      // GCP-derived components below, which probe the customer path directly.
-      { id: 20807649, onAlert: 'degraded' },
-    ],
   },
 ];
+
 
 // STATUS_RANK / worstStatus now live in ./status-history.mjs — the day-rating
 // rules need them and they are the same ordering, so keeping two copies in
 // sync was an invitation to drift.
 
-// Duration-aware mapping now lives in ./monitor-status.mjs so it can be tested
-// directly. See that module for why a two-minute Alert must not read as a
-// MAJOR OUTAGE — and why it is softened rather than ignored.
-function monitorStateToStatus(overallState, onAlert, stateModifiedAt, now) {
-  return monitorStatus(overallState, onAlert, stateModifiedAt, now);
-}
+// ⚠️ DATADOG NO LONGER FEEDS THIS PAGE (2026-08-26). The Platform component
+// used to be monitor 20807649, `[CF] 5xx rate elevated (prod zones)` — a
+// ZONE-WIDE count, so staging, dev, our own crons and internal tooling all
+// coloured a customer-facing status page. See the long note in
+// status-attribution.mjs for the measurements that ended that.
+//
+// The monitor still exists and still PAGES us, unchanged. We want to be woken
+// for our own broken crons; a customer does not want to read about them.
+//
+// ./monitor-status.mjs is therefore no longer wired to anything. It is kept,
+// with its tests, because the duration-aware mapping it encodes is the thing
+// you would need again the day a monitor is re-consulted — and rewriting it
+// from scratch is how the two-minute-flap-reads-as-MAJOR-OUTAGE bug comes
+// back.
 
 function statusPayload(overall, components, extra) {
   return JSON.stringify({
     status: overall,
     components,
     updatedAt: new Date().toISOString(),
-    source: 'datadog-monitors',
+    // What the severity above is derived from. Named in the payload because
+    // it CHANGED on 2026-08-26 — from a zone-wide Datadog monitor to our own
+    // customer-facing classification — and a consumer comparing this week to
+    // last week deserves to see that the basis moved rather than infer a
+    // sudden improvement in reliability.
+    source: 'customer-facing-edge-errors',
+    ratingBasisChangedOn: '2026-08-26',
     // The area taxonomy the banded history bars are drawn from. Published
     // rather than duplicated in the template: the ORDER is load-bearing (two
     // identical days must draw identically), and a second hand-maintained copy
@@ -807,47 +803,33 @@ async function recordSample(env, status) {
  * answering a question nobody asked, and would put five bands on a bar that
  * has nothing to break down.
  */
-const BAD_DAY = { degraded: 1, partial_outage: 1, major_outage: 1 };
-
-async function attachAttribution(env, view) {
-  if (!view || !Array.isArray(view.days) || !env.STATUS_HISTORY) return view;
-  let rec = null;
+/**
+ * The attribution record — the live customer-facing reading AND the per-day
+ * area breakdown, in one value.
+ *
+ * Never throws: attribution is additive detail on the page, and losing it
+ * must cost bands and a note, never the history or the response itself.
+ */
+async function readAttribution(env) {
+  if (!env.STATUS_HISTORY) return null;
   try {
-    rec = await env.STATUS_HISTORY.get(ATTRIBUTION_KEY, { type: 'json' });
+    return await env.STATUS_HISTORY.get(ATTRIBUTION_KEY, { type: 'json' });
   } catch (e) {
-    // Attribution is additive detail. Losing it costs bands and an auto note;
-    // it must never cost the history itself.
     console.error('[status] attribution read failed:', e && e.message ? e.message : e);
-    return view;
+    return null;
   }
-  if (!rec) return view;
-
-  const byDate = attributionView(rec);
-  view.days = view.days.map((day) => {
-    const a = BAD_DAY[day.status] ? byDate[day.date] : null;
-    if (!a) return day;
-    const note = autoNote(day.date, a, day);
-    return {
-      ...day,
-      // Ids only, in the order the bands are drawn. The page owns the names.
-      areas: a.areas.map((x) => x.id),
-      // Shares are published because "94% of these errors were on the
-      // marketing site" is a far more useful claim than "the marketing site
-      // was involved", and a reader can only judge the first one.
-      areaShares: a.areas.map((x) => ({ id: x.id, share: x.share })),
-      areaBasis: a.basis,
-      autoNote: note,
-    };
-  });
-  return view;
 }
 
-async function readHistory(env) {
+async function readHistory(env, attribution) {
   if (!env.STATUS_HISTORY) return null;
   try {
     const rec = await env.STATUS_HISTORY.get(HISTORY_KEY, { type: 'json' });
     if (!rec || !rec.days) return { days: [], since: null, uptimePct: null };
-    return await attachAttribution(env, buildHistoryView(rec, Date.now()));
+    const view = buildHistoryView(rec, Date.now());
+    // The merge rule lives in status-attribution.mjs, where node --test can
+    // reach it — it decides what becomes public, so it must be testable.
+    view.days = mergeAttributionIntoDays(view.days, attribution);
+    return view;
   } catch (e) {
     console.error('[status] history read failed:', e && e.message ? e.message : e);
     return null;
@@ -876,78 +858,35 @@ async function handleStatus(request, env, ctx) {
   const hit = await cache.match(cacheKey);
   if (hit) return hit;
 
-  // Never expose which specific monitors back a component — component-level
-  // status is all the public needs.
   const unknownComponents = STATUS_COMPONENTS.map(c => ({
     id: c.id, name: c.name, description: c.description, status: 'unknown',
   }));
 
-  const apiKey = env.DD_API_KEY;
-  // DD_MONITOR_TOKEN is the dedicated read-only application key scoped to
-  // `monitors_read` only (it 403s on everything else, verified). Prefer it so
-  // this public Worker never holds a write-capable Datadog credential; the
-  // later names are legacy fallbacks.
-  const appKey = env.DD_MONITOR_TOKEN || env.DD_STATUS_APP_KEY || env.DD_APP_KEY;
-  if (!apiKey || !appKey) {
-    // Datadog unconfigured still leaves the pushed per-service components
-    // meaningful — they come from GCP and know nothing about Datadog.
-    const pushedOnly = [...unknownComponents, ...(await readPushedComponents(env))];
-    return new Response(
-      statusPayload(worstOf(pushedOnly), pushedOnly, { configured: false, history: await readHistory(env) }),
-      { status: 200, headers }
-    );
-  }
-
   try {
-    const site = env.DD_SITE || 'us5.datadoghq.com';
-    const res = await fetch(`https://api.${site}/api/v1/monitor?page_size=100`, {
-      headers: { 'DD-API-KEY': apiKey, 'DD-APPLICATION-KEY': appKey },
-      signal: AbortSignal.timeout(4000),
-    });
-    if (!res.ok) throw new Error(`datadog ${res.status}`);
-
-    // Guard the parse: a non-JSON body (HTML error page, empty) must not throw
-    // an opaque SyntaxError — we want it to land in the catch as `unknown`.
-    const text = await res.text();
-    let monitors;
-    try {
-      monitors = JSON.parse(text);
-    } catch {
-      throw new Error(`datadog returned non-JSON (${res.status})`);
-    }
-    if (!Array.isArray(monitors)) throw new Error('unexpected datadog payload shape');
-
-    const byId = new Map(monitors.map(m => [m.id, m]));
-
     // One clock for the whole evaluation — two components computed against
-    // different `now`s could straddle a sustain boundary and disagree.
+    // different `now`s could straddle a staleness boundary and disagree.
     const now = Date.now();
-    let overall = 'operational';
-    const components = STATUS_COMPONENTS.map(c => {
-      let status = 'operational';
-      for (const ref of c.monitors) {
-        const mon = byId.get(ref.id);
-        // A monitor we expected but did not get back is an unknown, not an OK —
-        // otherwise a deleted or renamed monitor silently reads as healthy.
-        // `overall_state_modified` is when the monitor last CHANGED state, i.e.
-        // exactly how long the current state has held. Without it the page
-        // cannot tell a 2-minute flap from a real outage.
-        status = worstStatus(status, mon
-          ? monitorStateToStatus(mon.overall_state, ref.onAlert, mon.overall_state_modified, now)
-          : 'unknown');
-      }
-      overall = worstStatus(overall, status);
-      return { id: c.id, name: c.name, description: c.description, status };
-    });
 
-    // Per-service components pushed from the GCP uptime checks. They sit
-    // AFTER the zone-wide Platform component: Platform answers "is the edge
-    // reaching us at all", these answer "which service is unhappy".
+    // ⚠️ READ ONCE, USE TWICE. The same record answers "how are we right now"
+    // and "which areas did each past bad day land on". Reading it separately
+    // for each would let the banner and the bar beneath it be computed from
+    // two different snapshots — the page contradicting itself within one
+    // response, which is the one thing a status page may never do.
+    const attribution = await readAttribution(env);
+    const platform = customerFacingStatus(attribution, now);
+
+    const components = STATUS_COMPONENTS.map(c => ({
+      id: c.id, name: c.name, description: c.description, status: platform ?? 'unknown',
+    }));
+
+    // Per-service components pushed from the GCP uptime checks. They sit AFTER
+    // Platform: Platform answers "are customer-facing requests failing at the
+    // edge", these answer "which service is unhappy".
     const pushed = await readPushedComponents(env);
     components.push(...pushed);
 
-    // ⚠️ The 90-day history is sampled from the DATADOG-derived status only,
-    // deliberately, even though the banner below reflects everything.
+    // ⚠️ The 90-day history samples the PLATFORM status only, deliberately,
+    // even though the banner below reflects everything.
     //
     // That history is a published number people compare across days. Folding
     // the pushed GCP components into it would silently redefine the metric
@@ -956,28 +895,31 @@ async function handleStatus(request, env, ctx) {
     // region would write a red window into a record that is supposed to
     // describe US. Both happened on 2026-08-05 before this split existed.
     //
-    // The components are still fully visible on the page, so a real outage
-    // they catch is never hidden — it just does not retroactively rewrite the
-    // uptime series it was never part of.
-    await recordSample(env, overall);
+    // Never sample a `null` platform as anything: no reading has ever been
+    // stored, so there is nothing to record. Writing `unknown` would fill the
+    // history with a blind spot that is really just an unconfigured feed.
+    if (platform) await recordSample(env, platform);
 
     // The BANNER, by contrast, should reflect current truth from every source.
-    overall = worstStatus(overall, worstOf(pushed));
+    const overall = worstStatus(platform ?? 'unknown', worstOf(pushed));
 
     const response = new Response(
-      statusPayload(overall, components, { configured: true, history: await readHistory(env) }),
+      statusPayload(overall, components, {
+        configured: platform !== null,
+        history: await readHistory(env, attribution),
+      }),
       { status: 200, headers }
     );
     ctx.waitUntil(cache.put(cacheKey, response.clone()));
     return response;
   } catch (err) {
-    console.error('[status] upstream failed:', err && err.message ? err.message : err);
+    console.error('[status] status build failed:', err && err.message ? err.message : err);
     // Record the unknown too — a gap in monitoring is itself worth showing,
     // and it keeps the denominator honest rather than silently skipping.
     ctx.waitUntil(recordSample(env, 'unknown'));
     // Degrade to unknown — never assert operational on a failed lookup.
     return new Response(
-      statusPayload('unknown', unknownComponents, { configured: true, error: 'upstream_unavailable', history: await readHistory(env) }),
+      statusPayload('unknown', unknownComponents, { configured: true, error: 'upstream_unavailable', history: await readHistory(env, null) }),
       { status: 200, headers }
     );
   }

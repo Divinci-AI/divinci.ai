@@ -38,7 +38,9 @@ function build(notesByDate) {
 
 const ALL = AREAS.map(a => a.id);
 const CASES = [
-  [], ['product'], ['marketing'], ['internal'],
+  [], ['product'], ['marketing'], ['docs'],
+  // Sidecar-only and mixed: neither may band a sidecar area, in EITHER copy.
+  ['internal'], ['preprod', 'internal'],
   ['marketing', 'internal'], ['marketing', 'product', 'preprod'],
   ALL, ['bogus'], ['bogus', 'docs'],
 ];
@@ -90,19 +92,19 @@ test('bands from MULTIPLE notes on one day are unioned', () => {
   const { dayBands } = build({
     '2026-08-02': [
       { date: '2026-08-02', areas: ['product'] },
-      { date: '2026-08-02', areas: ['preprod'] },
+      { date: '2026-08-02', areas: ['docs'] },
     ],
   });
   const hit = dayBands({ date: '2026-08-02', status: 'major_outage' }, AREAS)
     .filter(b => b.status !== 'operational').map(b => b.id);
-  assert.deepEqual(hit.sort(), ['preprod', 'product']);
+  assert.deepEqual(hit.sort(), ['docs', 'product']);
 });
 
 test('the gradient is hard-edged and covers exactly 100%', () => {
   // A blended gradient would imply a spectrum between areas, which is
   // meaningless — each strip is a distinct thing that was or was not affected.
   const { dayBands, bandsToGradient } = build({
-    '2026-08-16': [{ date: '2026-08-16', areas: ['internal'] }],
+    '2026-08-16': [{ date: '2026-08-16', areas: ['marketing'] }],
   });
   const g = bandsToGradient(dayBands({ date: '2026-08-16', status: 'major_outage' }, AREAS));
   assert.match(g, /^linear-gradient\(to bottom, /);
@@ -116,7 +118,7 @@ test('the gradient is hard-edged and covers exactly 100%', () => {
     assert.equal(pcts[i], pcts[i + 1], 'a strip boundary is not hard-edged');
   }
   // The affected area must actually be the one tinted.
-  const idx = AREAS.findIndex(a => a.id === 'internal');
+  const idx = AREAS.findIndex(a => a.id === 'marketing');
   assert.ok(g.includes('#c92a2a'), 'major_outage colour missing');
   assert.equal(g.split('#c92a2a').length - 1, 2, 'exactly one strip should be red');
   assert.ok(idx >= 0);

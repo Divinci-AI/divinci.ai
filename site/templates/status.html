@@ -64,11 +64,28 @@
           <span>Today</span>
         </div>
         <div class="status-areas-key" id="status-areas-key" hidden></div>
+        <p class="status-history-basis" id="status-history-basis" hidden></p>
       </div>
 
       <div class="status-card" id="status-incidents-card" hidden>
         <h2 class="status-card-title">Recent incidents</h2>
         <ul class="status-incidents" id="status-incidents"></ul>
+      </div>
+
+      <!--
+        The sidecar. Systems no customer can reach, reported apart from
+        everything else and counted in nothing — see INTERNAL_AREAS in
+        src/status-areas.mjs for what put them here.
+      -->
+      <div class="status-card" id="status-internal-card" hidden>
+        <h2 class="status-card-title">Internal systems</h2>
+        <p class="status-internal-lede">
+          Our own tooling and pre-production environments. Problems here can slow
+          how quickly we answer support requests, so we report them — but they are
+          not part of your service, and they are <strong>not counted</strong> in the
+          uptime figure above.
+        </p>
+        <ul class="status-internal-days" id="status-internal-days"></ul>
       </div>
 
       <div class="status-note">
@@ -79,10 +96,12 @@
           <strong>unknown</strong> rather than assuming everything is fine.
         </p>
         <p>
-          Current coverage is edge-and-origin availability across our
-          platform. We are adding per-service checks that verify the customer
-          path end to end; until those land, this page reflects overall
-          availability rather than individual features.
+          Uptime and the daily bars count errors on surfaces you can reach — the
+          product, this site and the developer documentation. Our own tooling and
+          pre-production environments are reported separately, under
+          <strong>Internal systems</strong>, and are not included in the figure.
+          Per-service checks probe the customer path directly and appear as
+          components above.
         </p>
         <p>
           Security questions or an incident to report:
@@ -336,6 +355,12 @@ main#status-page.status-page {
   width: 9px; height: 18px; border-radius: 2px; flex: none;
   background-image: var(--swatch);
 }
+.status-history-basis {
+  margin: 0.6rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--color-neutral-secondary, #7e8d95);
+}
 .status-areas-key-note {
   flex-basis: 100%; margin: 0.35rem 0 0;
   font-size: 0.75rem; line-height: 1.5;
@@ -428,6 +453,29 @@ main#status-page.status-page {
   letter-spacing: 0.03em;
 }
 .status-incident-note[data-auto="1"] { border-left-color: #cfd8dd; }
+
+/* Quieter than the incident list on purpose. This is a footnote about our own
+   machinery, and giving it the same weight as a customer-facing incident would
+   be the same over-claiming the bands were built to stop. */
+.status-internal-lede {
+  margin: 0 0 0.9rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-neutral-secondary, #7e8d95);
+}
+.status-internal-days { list-style: none; margin: 0; padding: 0; }
+.status-internal-day {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--color-neutral-border, #eef2f0);
+  font-size: 0.9rem;
+}
+.status-internal-day:first-child { border-top: none; }
+.status-internal-date { font-weight: 700; color: #2d3c34; font-variant-numeric: tabular-nums; }
+.status-internal-areas { color: var(--color-neutral-secondary, #7e8d95); }
 
 .status-note {
   max-width: 52rem;
@@ -535,6 +583,7 @@ main#status-page.status-page {
     // The area taxonomy comes from the API (src/status-areas.mjs) so the page
     // never keeps its own copy — see the comment on `areas` in statusPayload().
     AREA_META = (data && Array.isArray(data.areas)) ? data.areas : [];
+    BASIS_CHANGED_ON = (data && data.ratingBasisChangedOn) || null;
     renderHistory(data && data.history);
   }
 
@@ -642,6 +691,7 @@ main#status-page.status-page {
    *     hand-edited and a typo must not paint a meaningless strip.
    */
   var AREA_META = [];
+  var BASIS_CHANGED_ON = null;
   var BAD = { degraded: 1, partial_outage: 1, major_outage: 1 };
   var BAND_COLOR = {
     operational: '#2f9e44', degraded: '#f0a020',
@@ -726,6 +776,22 @@ main#status-page.status-page {
 
     // Be explicit that the window is only partly populated — 90 grey bars must
     // never be mistaken for 90 days of verified uptime.
+    // ⚠️ The series changed meaning on the date the API reports, and a reader
+    // comparing this week with last week has no other way to know: the number
+    // would simply look as though reliability improved. Rendered from the API
+    // so the date cannot drift out of step with the code that changed it.
+    var basis = document.getElementById('status-history-basis');
+    if (basis) {
+      if (BASIS_CHANGED_ON) {
+        basis.hidden = false;
+        basis.textContent = 'From ' + BASIS_CHANGED_ON + ', uptime counts customer-facing '
+          + 'surfaces only. Earlier days also counted our internal tooling and '
+          + 'pre-production, so they read worse than customers experienced.';
+      } else {
+        basis.hidden = true;
+      }
+    }
+
     var legend = document.getElementById('status-history-legend');
     var withData = h.daysWithData || 0;
     if (withData === 0) {
@@ -739,6 +805,7 @@ main#status-page.status-page {
 
     renderAreasKey(h);
     renderIncidents(h, withData);
+    renderInternal(h);
   }
 
   // ── Hover card ────────────────────────────────────────────────────────
@@ -916,10 +983,15 @@ main#status-page.status-page {
     });
     var note = document.createElement('p');
     note.className = 'status-areas-key-note';
+    // ⚠️ This sentence used to end "Uptime is measured across our whole
+    // network, which includes areas customers never touch." That stopped
+    // being true on 2026-08-26, when pre-production and internal tooling were
+    // taken out of the rating. A stale disclaimer is worse than none: it
+    // teaches a reader to discount a number that no longer needs discounting.
     note.textContent = 'On days we attributed, the bar is split top-to-bottom into these '
       + 'areas in this order, so you can see which part was affected. '
-      + 'Uptime is measured across our whole network, which includes areas '
-      + 'customers never touch.';
+      + 'Uptime counts only surfaces you can reach — our own tooling and '
+      + 'pre-production are reported separately and are not included.';
     el.appendChild(note);
   }
 
@@ -946,6 +1018,82 @@ main#status-page.status-page {
   // hand-maintained list, only ANNOTATED by it, so the two cannot silently
   // drift apart. Notes for a date the sampler recorded as clean are still
   // shown; that is the case the sampler is worst at.
+  /**
+   * Areas that belong in the sidecar for a date: whatever a human note named,
+   * else whatever the collector attributed.
+   *
+   * A hand-written note wins here for the same reason it wins on the bands —
+   * and this is what keeps a note like 2026-08-19's, which correctly named
+   * internal tooling back when internal tooling was still a band, rendering
+   * correctly now that it is not.
+   */
+  var INTERNAL_AREA_META = [
+    { id: 'preprod', name: 'Pre-production' },
+    { id: 'internal', name: 'Internal tooling' },
+  ];
+
+  function internalAreasFor(day) {
+    var named = {};
+    notesFor(day.date).forEach(function (n) {
+      (n.areas || []).forEach(function (a) { named[a] = 1; });
+    });
+    var fromNote = INTERNAL_AREA_META.filter(function (a) { return named[a.id]; });
+    if (fromNote.length) return fromNote;
+    var ids = day.internalAreas || [];
+    return INTERNAL_AREA_META.filter(function (a) { return ids.indexOf(a.id) !== -1; });
+  }
+
+  /**
+   * The sidecar. Rendered only when there is something in it — an empty card
+   * explaining what we would have told you is just clutter.
+   */
+  function renderInternal(h) {
+    var card = document.getElementById('status-internal-card');
+    var list = document.getElementById('status-internal-days');
+    if (!card || !list) return;
+    list.textContent = '';
+
+    var rows = (h.days || []).map(function (d) {
+      return { date: d.date, areas: internalAreasFor(d) };
+    }).filter(function (r) { return r.areas.length; }).reverse();
+
+    if (!rows.length) { card.hidden = true; return; }
+    card.hidden = false;
+
+    // Capped, and the remainder COUNTED rather than dropped. Our own tooling
+    // has trouble on most days — 17 of the first 32 — so the full list is a
+    // wall of near-identical rows that crowds out the customer-facing part of
+    // the page it is deliberately subordinate to. Silently truncating would be
+    // worse than either: "no more days" and "we stopped listing" must not look
+    // the same.
+    var MAX_ROWS = 8;
+    var extra = rows.length - MAX_ROWS;
+    rows.slice(0, MAX_ROWS).forEach(function (r) {
+      var li = document.createElement('li');
+      li.className = 'status-internal-day';
+      var date = document.createElement('span');
+      date.className = 'status-internal-date';
+      date.textContent = r.date;
+      var areas = document.createElement('span');
+      areas.className = 'status-internal-areas';
+      areas.textContent = r.areas.map(function (a) { return a.name; }).join(' and ')
+        + ' had elevated errors';
+      li.appendChild(date); li.appendChild(areas);
+      list.appendChild(li);
+    });
+
+    if (extra > 0) {
+      var more = document.createElement('li');
+      more.className = 'status-internal-day';
+      var span = document.createElement('span');
+      span.className = 'status-internal-areas';
+      span.textContent = 'and ' + extra + ' earlier ' + (extra === 1 ? 'day' : 'days')
+        + ' in the recorded window';
+      more.appendChild(span);
+      list.appendChild(more);
+    }
+  }
+
   function renderIncidents(h, withData) {
     var card = document.getElementById('status-incidents-card');
     var list = document.getElementById('status-incidents');

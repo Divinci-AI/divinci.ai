@@ -8,7 +8,7 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { AREAS, AREA_IDS, dayBands, productAffected } from '../../src/status-areas.mjs';
+import { AREAS, AREA_IDS, INTERNAL_AREA_IDS, dayBands, productAffected } from '../../src/status-areas.mjs';
 
 test('a day names only the areas the note implicated', () => {
   const bands = dayBands({ status: 'degraded' }, ['marketing']);
@@ -19,8 +19,24 @@ test('a day names only the areas the note implicated', () => {
 test('every band carries the DAY\'s severity, not a softened one', () => {
   // A major outage confined to one area is still a major outage in that area.
   // Down-ranking it per band would understate a real event.
-  const bands = dayBands({ status: 'major_outage' }, ['internal']);
-  assert.equal(bands.find(b => b.id === 'internal').status, 'major_outage');
+  const bands = dayBands({ status: 'major_outage' }, ['docs']);
+  assert.equal(bands.find(b => b.id === 'docs').status, 'major_outage');
+});
+
+test('an area no customer can reach bands NOTHING', () => {
+  // Pre-production and internal tooling left the bands on 2026-08-26 along
+  // with the uptime number they used to move. A note naming only those must
+  // therefore produce no bands at all rather than an empty five-strip bar —
+  // there is nothing customer-facing to draw. The day is still reported, in
+  // the sidecar, which is the whole point of the split.
+  for (const id of INTERNAL_AREA_IDS) {
+    assert.equal(dayBands({ status: 'degraded' }, [id]), null, `${id} banded`);
+  }
+  assert.equal(dayBands({ status: 'degraded' }, ['internal', 'preprod']), null);
+  // ...and a mixed note bands only the public half.
+  const mixed = dayBands({ status: 'degraded' }, ['internal', 'docs']);
+  assert.deepEqual(mixed.filter(b => b.status !== 'operational').map(b => b.id), ['docs']);
+  assert.equal(mixed.length, AREAS.length, 'the sidecar areas must not reappear as strips');
 });
 
 test('no evidence renders NO bands — never an invented breakdown', () => {
@@ -50,7 +66,7 @@ test('band order is fixed and product-first', () => {
   // The shape has to be comparable across 90 days at a glance; a per-day
   // ordering would make two identical days look different.
   assert.equal(AREA_IDS[0], 'product');
-  const a = dayBands({ status: 'degraded' }, ['internal']).map(b => b.id);
+  const a = dayBands({ status: 'degraded' }, ['marketing']).map(b => b.id);
   const b = dayBands({ status: 'degraded' }, ['docs']).map(b => b.id);
   assert.deepEqual(a, b);
   assert.deepEqual(a, AREA_IDS);
