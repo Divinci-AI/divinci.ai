@@ -325,7 +325,7 @@ feature_category = "quality-assurance"
 <h2 class="section-heading" style="margin-top: 2rem; margin-bottom: 3rem;">ما هو ضمان جودة نماذج اللغة الكبيرة؟</h2>
 
 <div class="qa-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/qa-pipeline-diagram.svg" alt="مخطط سير عمل ضمان جودة نماذج اللغة الكبيرة" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;"  loading="lazy"/ width="900" height="550">
+  <img src="/images/qa-pipeline-diagram.svg" alt="مخطط سير عمل ضمان جودة نماذج اللغة الكبيرة" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" loading="lazy" width="900" height="340">
 </div>
 
 <div class="overview-content">

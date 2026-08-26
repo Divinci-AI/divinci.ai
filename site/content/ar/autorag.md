@@ -262,7 +262,8 @@ lang = "ar"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">ما هو AutoRAG؟</h2>
 
 <div class="autorag-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/autorag-diagram.svg" alt="مخطط توصيل قاعدة المعرفة AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;"  loading="lazy"/ width="800" height="500">
+  <img src="/images/autorag-diagram.ar.svg" alt="كيف يعمل AutoRAG: يُحلَّل المتن ويُقسَّم إلى مقاطع؛ ثم تُولَّد مجموعة أسئلة وأجوبة من تلك المقاطع؛ وتُجرَّب تهيئات المسار المرشَّحة وتُشغَّل على تلك المجموعة؛ وتُنشر التهيئة الأعلى تقييماً، بينما تعيد ملاحظات التشغيل الحالات الصعبة إلى مجموعة الأسئلة والأجوبة." class="diagram-svg" style="width: 100%; max-width: 960px; height: auto;" loading="lazy" width="960" height="452">
+  <p style="text-align: center; margin-top: 10px; color: #8b7659; font-size: 14px;">يصبح متنك أنت هو المعيار — ثم يبحث AutoRAG عن تهيئة المسار التي تحقق أعلى تقييم عليه.</p>
 </div>
 
 <div class="overview-content">
@@ -271,6 +272,13 @@ lang = "ar"
 <p>تتطلب تطبيقات RAG التقليدية تكويناً يدوياً مكثفاً ومعالجة مسبقة للمستندات وضبطاً مستمراً للبقاء فعالة. تكافح العديد من المؤسسات مع اختيار وحدات وخطوط أنابيب RAG الصحيحة لبياناتها المحددة، مما يؤدي إلى إهدار وقت وموارد ثمينة على تكوينات دون المستوى الأمثل. يزيل AutoRAG هذه الحواجز من خلال تقييم مجموعات مختلفة من وحدات RAG تلقائياً، والتعامل مع تحليل المستندات، وتحسين التجزئة، واختيار استراتيجية الاسترجاع، وتوليد الاستجابات - كل ذلك أثناء التعلم والتحسن المستمر من مقاييس التقييم.</p>
 
 <p>مع AutoRAG، تحصل تطبيقات الذكاء الاصطناعي المؤسسية على وصول فوري إلى المعلومات الملكية لمؤسستك بدقة وصلة لا مثيل لهما. ينشئ النظام تلقائياً مجموعات بيانات أسئلة وأجوبة من مجموعتك، ويقيم استراتيجيات استرجاع وتوليد متعددة، ويحدد التكوين الأمثل لخط الأنابيب - مما يقلل بشكل كبير من الهلوسات ويوفر إجابات مدعومة بالمصادر بالكامل تبني الثقة مع مستخدميك.</p>
+</div>
+
+<div class="autorag-video">
+  <div class="autorag-video-frame">
+    <iframe src="https://www.youtube-nocookie.com/embed/_Fgxhij-Wkc" title="Divinci AutoRAG — اكتشاف الثغرات المعرفية وسدّها" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <p class="autorag-video-cap">شاهد كيف يكتشف AutoRAG الثغرات في قاعدة المعرفة ويسدّها — <a href="https://www.youtube.com/watch?v=_Fgxhij-Wkc" target="_blank" rel="noopener">شاهده على YouTube</a>.</p>
 </div>
 </div>
 </section>
@@ -394,9 +402,7 @@ lang = "ar"
 
 <!-- Document Processing Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<object data="/images/autorag-clean-test.svg" type="image/svg+xml" style="width: 100%; max-width: 800px; height: auto;">
-<img src="/images/autorag-clean-test.svg" alt="عملية إنشاء بيانات AutoRAG" style="width: 100%; max-width: 800px; height: auto;"  loading="lazy"/ width="750" height="350">
-</object>
+<img src="/images/autorag-data-creation.ar.svg" alt="عملية إنشاء البيانات في AutoRAG: تُحلَّل المستندات لاستخراج بنيتها، وتُقسَّم إلى مقاطع متداخلة، وتُفهرَس وتُضمَّن كمتن، ثم تتحول إلى مجموعة أسئلة وأجوبة ترتبط إجاباتها بمقاطعها المصدرية." style="width: 100%; max-width: 900px; height: auto;" loading="lazy" width="900" height="320">
 <p style="text-align: center; margin-top: 10px; color: #8b7659; font-size: 14px;">عملية إنشاء البيانات الشاملة لـ AutoRAG تحول المستندات الخام إلى مجموعة محسنة ومجموعات بيانات الأسئلة والأجوبة</p>
 </div>
 
@@ -433,7 +439,7 @@ lang = "ar"
 
 <!-- Vector Embedding Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-vector-embedding.svg" alt="تصور التضمين المتجه" style="width: 100%; max-width: 600px; height: auto;"  loading="lazy"/ width="300" height="200">
+<img src="/images/autorag-retrieval-evaluation.ar.svg" alt="يقارن AutoRAG استراتيجيات الاسترجاع على مجموعة أسئلتك وأجوبتك: يعيد كل من BM25 والمتجهات الكثيفة والنهج الهجين مع إعادة الترتيب قائمة مرتَّبة، وتُختار الاستراتيجية التي تضع المقطع المجيب في أعلى الترتيب." style="width: 100%; max-width: 720px; height: auto;" loading="lazy" width="720" height="412">
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
@@ -469,7 +475,7 @@ lang = "ar"
 
 <!-- Retrieval Optimization Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-retrieval-optimization.svg" alt="تصور تحسين الاسترجاع" style="width: 100%; max-width: 600px; height: auto;"  loading="lazy"/ width="300" height="200">
+<img src="/images/autorag-generation-optimization.ar.svg" alt="يقيّم AutoRAG تهيئات التوليد المرشَّحة على كامل مجموعة الأسئلة والأجوبة بواسطة حَكَم معايَر، ثم يرقّي التهيئة الأفضل من حيث الصلة والأمانة والاكتمال." style="width: 100%; max-width: 720px; height: auto;" loading="lazy" width="720" height="412">
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">

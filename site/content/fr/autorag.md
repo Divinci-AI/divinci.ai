@@ -262,7 +262,8 @@ lang = "fr"
 <h2 class="section-heading" style="margin-top: 6rem; margin-bottom: 6rem;">Qu'est-ce qu'AutoRAG ?</h2>
 
 <div class="autorag-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/autorag-diagram.svg" alt="Diagramme de connexion de base de connaissances AutoRAG" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;"  loading="lazy"/ width="800" height="500">
+  <img src="/images/autorag-diagram.fr.svg" alt="Comment fonctionne AutoRAG : votre corpus est analysé et découpé en fragments ; un jeu de questions-réponses est généré à partir de ces fragments ; les configurations candidates du pipeline sont balayées et exécutées sur ce jeu ; la configuration la mieux notée est déployée, et les retours de production réinjectent les cas difficiles dans le jeu de QA." class="diagram-svg" style="width: 100%; max-width: 960px; height: auto;" loading="lazy" width="960" height="452">
+  <p style="text-align: center; margin-top: 10px; color: #8b7659; font-size: 14px;">Votre propre corpus devient le référentiel — AutoRAG cherche ensuite la configuration de pipeline qui y obtient le meilleur score.</p>
 </div>
 
 <div class="overview-content">
@@ -271,6 +272,13 @@ lang = "fr"
 <p>Les implémentations RAG traditionnelles nécessitent une configuration manuelle extensive, un prétraitement de documents et un ajustement continu pour rester efficaces. De nombreuses organisations peinent à sélectionner les bons modules et pipelines RAG pour leurs données spécifiques, gaspillant un temps et des ressources précieux sur des configurations sous-optimales. AutoRAG élimine ces barrières en évaluant automatiquement diverses combinaisons de modules RAG, en gérant l'analyse de documents, l'optimisation du chunking, la sélection de stratégies de récupération et la génération de réponses, tout en apprenant et s'améliorant continuellement à partir des métriques d'évaluation.</p>
 
 <p>Avec AutoRAG, vos applications d'IA d'entreprise accèdent instantanément aux informations propriétaires de votre organisation avec une précision et une pertinence sans précédent. Le système crée automatiquement des jeux de données de questions-réponses à partir de votre corpus, évalue plusieurs stratégies de récupération et de génération, et identifie la configuration optimale du pipeline, réduisant significativement les hallucinations et fournissant des réponses entièrement sourcées qui inspirent confiance à vos utilisateurs.</p>
+</div>
+
+<div class="autorag-video">
+  <div class="autorag-video-frame">
+    <iframe src="https://www.youtube-nocookie.com/embed/_Fgxhij-Wkc" title="Divinci AutoRAG — repérer et combler les lacunes de connaissances" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <p class="autorag-video-cap">Découvrez comment AutoRAG repère et comble les lacunes d'une base de connaissances — <a href="https://www.youtube.com/watch?v=_Fgxhij-Wkc" target="_blank" rel="noopener">voir sur YouTube</a>.</p>
 </div>
 </div>
 </section>
@@ -394,9 +402,7 @@ lang = "fr"
 
 <!-- Document Processing Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<object data="/images/autorag-clean-test.svg" type="image/svg+xml" style="width: 100%; max-width: 800px; height: auto;">
-<img src="/images/autorag-clean-test.svg" alt="Processus de création de données AutoRAG" style="width: 100%; max-width: 800px; height: auto;"  loading="lazy"/ width="750" height="350">
-</object>
+<img src="/images/autorag-data-creation.fr.svg" alt="Processus de création de données d'AutoRAG : les documents sont analysés pour en extraire la structure, découpés en fragments qui se chevauchent, indexés et vectorisés en corpus, puis transformés en un jeu de questions-réponses dont les réponses renvoient à leurs fragments d'origine." style="width: 100%; max-width: 900px; height: auto;" loading="lazy" width="900" height="320">
 <p style="text-align: center; margin-top: 10px; color: #8b7659; font-size: 14px;">Le processus complet de création de données d'AutoRAG transforme les documents bruts en corpus optimisé et ensembles de données QA</p>
 </div>
 
@@ -433,7 +439,7 @@ lang = "fr"
 
 <!-- Vector Embedding Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-vector-embedding.svg" alt="Visualisation d'embedding vectoriel" style="width: 100%; max-width: 600px; height: auto;"  loading="lazy"/ width="300" height="200">
+<img src="/images/autorag-retrieval-evaluation.fr.svg" alt="AutoRAG compare les stratégies de recherche sur votre propre jeu de questions-réponses : BM25, vecteurs denses et hybride avec réordonnancement renvoient chacun une liste classée, et la stratégie qui place le fragment pertinent le plus haut est retenue." style="width: 100%; max-width: 720px; height: auto;" loading="lazy" width="720" height="412">
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
@@ -469,7 +475,7 @@ lang = "fr"
 
 <!-- Retrieval Optimization Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-retrieval-optimization.svg" alt="Visualisation d'optimisation de récupération" style="width: 100%; max-width: 600px; height: auto;"  loading="lazy"/ width="300" height="200">
+<img src="/images/autorag-generation-optimization.fr.svg" alt="AutoRAG note les configurations de génération candidates sur l'ensemble du jeu de questions-réponses à l'aide d'un juge calibré, puis promeut celle qui obtient le meilleur score en pertinence, fidélité et exhaustivité." style="width: 100%; max-width: 720px; height: auto;" loading="lazy" width="720" height="412">
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">

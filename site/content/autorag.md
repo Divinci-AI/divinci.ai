@@ -47,13 +47,30 @@ feature_category = "data-management"
     padding: 8rem 0 12rem 0;
 }
 
+/* The orbit the five benefits sit on. Drawn faintly so the ring reads as a
+   deliberate armillary rather than five circles floating at random — the
+   diameter is twice the 400px translateY below. */
+.benefits-circle-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    transform: translate(-50%, -50%);
+    border: 1px dashed rgba(184, 160, 128, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
 .center-benefit {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, rgba(30, 45, 102, 0.1), rgba(184, 160, 128, 0.1));
-    border: 2px solid rgba(184, 160, 128, 0.3);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(232, 221, 199, 0.6));
+    border: 2px solid rgba(184, 160, 128, 0.55);
+    box-shadow: 0 6px 24px rgba(139, 118, 89, 0.14);
     border-radius: 50%;
     text-align: center;
     z-index: 2;
@@ -65,13 +82,18 @@ feature_category = "data-management"
 
 .orbital-benefit {
     position: absolute;
-    background: rgba(248, 244, 240, 0.9);
-    border: 2px solid rgba(184, 160, 128, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1.5px solid rgba(184, 160, 128, 0.5);
+    box-shadow: 0 4px 18px rgba(139, 118, 89, 0.1);
     border-radius: 50%;
     text-align: center;
     transition: all 0.3s ease;
     top: 50%;
     left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .orbital-benefit:nth-child(2) { transform: translate(-50%, -50%) rotate(0deg) translateY(-400px) rotate(0deg); }
@@ -94,6 +116,40 @@ feature_category = "data-management"
     width: 60px;
     height: 60px;
     margin-bottom: 1rem;
+}
+
+/* Below the width the orbit needs (2 x 400px radius + a 305px circle), the six
+   benefits become a plain grid — they used to overlap into an unreadable pile. */
+@media (max-width: 1100px) {
+    .feature-benefits {
+        padding: 4rem 0 5rem;
+    }
+
+    .benefits-circle-container {
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .benefits-circle-container::before {
+        display: none;
+    }
+
+    .center-benefit,
+    .orbital-benefit {
+        position: static;
+        transform: none !important;
+        width: auto !important;
+        height: auto !important;
+        padding: 2rem 1.5rem !important;
+        border-radius: 16px;
+    }
+
+    .center-benefit {
+        grid-column: 1 / -1;
+    }
 }
 
 .feature-grid {
@@ -336,6 +392,7 @@ feature_category = "data-management"
     justify-content: center;
     flex-wrap: wrap;
 }
+
 </style>
 
 <!-- Hero Section -->
@@ -364,7 +421,8 @@ feature_category = "data-management"
 <h2 class="section-heading" style="margin-top: 3rem; margin-bottom: 3rem;">What is AutoRAG?</h2>
 
 <div class="autorag-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/autorag-diagram.svg" alt="AutoRAG Knowledge Base Connection Diagram" class="diagram-svg" style="width: 100%; max-width: 800px; height: auto;"  loading="lazy"/ width="800" height="500">
+  <img src="/images/autorag-diagram.svg" alt="How AutoRAG works: your corpus is parsed into chunks; a QA set is generated from those chunks; candidate pipeline configurations are swept and run against it; the best-scoring configuration is deployed, and production feedback returns hard cases to the QA set." class="diagram-svg" style="width: 100%; max-width: 960px; height: auto;" loading="lazy" width="960" height="452">
+  <p style="text-align: center; margin-top: 10px; color: #8b7659; font-size: 14px;">Your own corpus becomes the benchmark — then AutoRAG searches the pipeline configurations for the one that scores best on it.</p>
 </div>
 
 <div class="overview-content">
@@ -373,6 +431,13 @@ feature_category = "data-management"
 <p>Traditional RAG implementations require extensive manual configuration, document preprocessing, and continuous tuning to remain effective. Many organizations struggle with selecting the right RAG modules and pipelines for their specific data, wasting valuable time and resources on suboptimal configurations. AutoRAG eliminates these barriers by automatically evaluating various RAG module combinations, handling document parsing, chunking optimization, retrieval strategy selection, and response generation—all while continuously learning and improving from evaluation metrics.</p>
 
 <p>With AutoRAG, your enterprise AI applications gain instant access to your organization's proprietary information with unprecedented accuracy and relevance. The system automatically creates QA datasets from your corpus, evaluates multiple retrieval and generation strategies, and identifies the optimal pipeline configuration—significantly reducing hallucinations and providing fully-sourced responses that build trust with your users.</p>
+</div>
+
+<div class="autorag-video">
+  <div class="autorag-video-frame">
+    <iframe src="https://www.youtube-nocookie.com/embed/_Fgxhij-Wkc" title="Divinci AutoRAG — finding and closing knowledge gaps" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <p class="autorag-video-cap">Watch AutoRAG find and close the gaps in a knowledge base — <a href="https://www.youtube.com/watch?v=_Fgxhij-Wkc" target="_blank" rel="noopener">see it on YouTube</a>.</p>
 </div>
 </div>
 </section>
@@ -385,13 +450,13 @@ feature_category = "data-management"
 <div class="benefits-circle-container">
 <div class="center-benefit" style="width: 365px; height: 365px; padding: 40px;">
 <div class="benefit-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80">
-<circle cx="50" cy="50" r="45" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
-<circle cx="50" cy="50" r="35" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.5" />
-<path d="M30,50 L70,50" stroke="#2d5a4f" stroke-width="3" fill="none" />
-<path d="M50,30 L50,70" stroke="#2d5a4f" stroke-width="3" fill="none" />
-<circle cx="50" cy="50" r="15" stroke="#2d5a4f" stroke-width="2" fill="none">
-<animate attributeName="r" values="15;20;15" dur="3s" repeatCount="indefinite" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80" aria-hidden="true" focusable="false">
+<circle cx="50" cy="50" r="44" fill="none" stroke="#2d5a4f" stroke-width="1" opacity="0.18"/>
+<g fill="#2d5a4f" opacity="0.32"><circle cx="30" cy="30" r="3"/><circle cx="43.3" cy="30" r="3"/><circle cx="56.7" cy="30" r="3"/><circle cx="70" cy="30" r="3"/><circle cx="30" cy="43.3" r="3"/><circle cx="43.3" cy="43.3" r="3"/><circle cx="70" cy="43.3" r="3"/><circle cx="30" cy="56.7" r="3"/><circle cx="43.3" cy="56.7" r="3"/><circle cx="56.7" cy="56.7" r="3"/><circle cx="70" cy="56.7" r="3"/><circle cx="30" cy="70" r="3"/><circle cx="43.3" cy="70" r="3"/><circle cx="56.7" cy="70" r="3"/><circle cx="70" cy="70" r="3"/></g>
+<circle cx="56.7" cy="43.3" r="4.5" fill="#2d5a4f"/>
+<circle cx="56.7" cy="43.3" r="10" fill="none" stroke="#2d5a4f" stroke-width="2">
+<animate attributeName="r" values="10;13.5;10" dur="3.6s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="1;0.3;1" dur="3.6s" repeatCount="indefinite"/>
 </circle>
 </svg>
 </div>
@@ -401,13 +466,12 @@ feature_category = "data-management"
 
 <div class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px;">
 <div class="benefit-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
-<circle cx="50" cy="50" r="40" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
-<path d="M30,50 L70,50" stroke="#2d5a4f" stroke-width="3" fill="none" />
-<path d="M50,30 L50,70" stroke="#2d5a4f" stroke-width="3" fill="none" />
-<circle cx="50" cy="50" r="10" stroke="#2d5a4f" stroke-width="2" fill="none">
-<animate attributeName="r" values="10;15;10" dur="3s" repeatCount="indefinite" />
-</circle>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60" aria-hidden="true" focusable="false">
+<circle cx="50" cy="50" r="40" fill="none" stroke="#2d5a4f" stroke-width="1" opacity="0.22"/>
+<path d="M56 34 h12 a16 16 0 0 1 0 32 h-12" fill="none" stroke="#2d5a4f" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="18" y="38" width="20" height="24" rx="4" fill="none" stroke="#2d5a4f" stroke-width="2.5"/>
+<path d="M38 45 h18 M38 55 h18" stroke="#2d5a4f" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M52 14 l-6 10 h7 l-6 10" fill="none" stroke="#b8a080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 </div>
 <h3>Rapid Integration</h3>
@@ -416,13 +480,15 @@ feature_category = "data-management"
 
 <div class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px;">
 <div class="benefit-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
-<circle cx="50" cy="50" r="40" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
-<path d="M30,50 C45,35 55,65 70,50" stroke="#2d5a4f" stroke-width="2" fill="none">
-<animate attributeName="d" values="M30,50 C45,35 55,65 70,50;M30,50 C45,65 55,35 70,50;M30,50 C45,35 55,65 70,50" dur="6s" repeatCount="indefinite" />
-</path>
-<circle cx="30" cy="50" r="4" fill="#2d5a4f" opacity="0.7" />
-<circle cx="70" cy="50" r="4" fill="#2d5a4f" opacity="0.7" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60" aria-hidden="true" focusable="false">
+<circle cx="50" cy="50" r="40" fill="none" stroke="#2d5a4f" stroke-width="1" opacity="0.22"/>
+<circle cx="22" cy="50" r="5" fill="#2d5a4f"/>
+<path d="M27 50 C46 50 53 27 72 27" fill="none" stroke="#2d5a4f" stroke-width="1.5" opacity="0.3"/>
+<path d="M27 50 C46 50 53 73 72 73" fill="none" stroke="#2d5a4f" stroke-width="1.5" opacity="0.3"/>
+<circle cx="76" cy="27" r="3.5" fill="none" stroke="#2d5a4f" stroke-width="1.5" opacity="0.4"/>
+<circle cx="76" cy="73" r="3.5" fill="none" stroke="#2d5a4f" stroke-width="1.5" opacity="0.4"/>
+<path d="M27 50 H71" fill="none" stroke="#2d5a4f" stroke-width="2.75" stroke-linecap="round"/>
+<circle cx="77" cy="50" r="5.5" fill="#2d5a4f"/>
 </svg>
 </div>
 <h3>Adaptive Retrieval</h3>
@@ -431,12 +497,13 @@ feature_category = "data-management"
 
 <div class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px;">
 <div class="benefit-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
-<circle cx="50" cy="50" r="40" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
-<path d="M30,70 L70,30" stroke="#2d5a4f" stroke-width="2" fill="none" />
-<circle cx="30" cy="70" r="5" fill="#2d5a4f" opacity="0.7" />
-<circle cx="70" cy="30" r="5" fill="#2d5a4f" opacity="0.7" />
-<path d="M30,30 L70,70" stroke="#2d5a4f" stroke-width="2" fill="none" stroke-dasharray="5,5" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60" aria-hidden="true" focusable="false">
+<circle cx="50" cy="50" r="40" fill="none" stroke="#2d5a4f" stroke-width="1" opacity="0.22"/>
+<path d="M24 31 H72 M24 42 H72 M24 53 H56" stroke="#2d5a4f" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M29 58 V69" stroke="#b8a080" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="21" y="69" width="17" height="13" rx="3" fill="none" stroke="#b8a080" stroke-width="2"/>
+<circle cx="69" cy="69" r="12" fill="none" stroke="#2d5a4f" stroke-width="2.5"/>
+<path d="M63 69 l4.5 4.5 L76 65" fill="none" stroke="#2d5a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 </div>
 <h3>Reduced Hallucinations</h3>
@@ -445,14 +512,14 @@ feature_category = "data-management"
 
 <div class="orbital-benefit" style="width: 305px; height: 305px; padding: 35px;">
 <div class="benefit-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
-<circle cx="50" cy="50" r="40" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
-<path d="M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30" stroke="#2d5a4f" stroke-width="2" fill="none">
-<animate attributeName="d" values="M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30;M50,30 C75,35 75,65 50,70 C25,65 25,35 50,30;M50,30 C70,30 70,70 50,70 C30,70 30,30 50,30" dur="8s" repeatCount="indefinite" />
-</path>
-<circle cx="50" cy="50" r="5" fill="#2d5a4f" opacity="0.7">
-<animate attributeName="r" values="5;8;5" dur="4s" repeatCount="indefinite" />
-</circle>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60" aria-hidden="true" focusable="false">
+<circle cx="50" cy="50" r="40" fill="none" stroke="#2d5a4f" stroke-width="1" opacity="0.22"/>
+<path d="M24 24 V78 H80" fill="none" stroke="#2d5a4f" stroke-width="1.5" opacity="0.32" stroke-linecap="round"/>
+<path d="M30 71 C43 69 53 66 75 61" fill="none" stroke="#b8a080" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+<path d="M30 68 C44 64 52 48 74 34" fill="none" stroke="#2d5a4f" stroke-width="2.75" stroke-linecap="round"/>
+<circle cx="30" cy="68" r="3.5" fill="#2d5a4f"/>
+<circle cx="49" cy="55" r="3.5" fill="#2d5a4f"/>
+<circle cx="74" cy="34" r="4.5" fill="#2d5a4f"/>
 </svg>
 </div>
 <h3>Self-Improving Performance</h3>
@@ -461,12 +528,15 @@ feature_category = "data-management"
 
 <div class="orbital-benefit" style="width: 305px; height: 305px; padding: 30px;">
 <div class="benefit-icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
-<circle cx="50" cy="50" r="40" stroke="#2d5a4f" stroke-width="1" fill="none" opacity="0.3" />
-<path d="M30,40 L70,40" stroke="#2d5a4f" stroke-width="2" fill="none" />
-<path d="M30,60 L70,60" stroke="#2d5a4f" stroke-width="2" fill="none" />
-<path d="M40,30 L40,70" stroke="#2d5a4f" stroke-width="2" fill="none" />
-<path d="M60,30 L60,70" stroke="#2d5a4f" stroke-width="2" fill="none" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60" aria-hidden="true" focusable="false">
+<circle cx="50" cy="50" r="40" fill="none" stroke="#2d5a4f" stroke-width="1" opacity="0.22"/>
+<path d="M50 43 V37 M45 55 L36 63 M55 55 L64 62" stroke="#b8a080" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M41 16 h11 l7 7 v13 h-18 z" fill="none" stroke="#2d5a4f" stroke-width="2" stroke-linejoin="round"/>
+<path d="M52 16 v7 h7" fill="none" stroke="#2d5a4f" stroke-width="2" stroke-linejoin="round"/>
+<ellipse cx="26" cy="69" rx="9" ry="3.5" fill="none" stroke="#2d5a4f" stroke-width="2"/>
+<path d="M17 69 v9 a9 3.5 0 0 0 18 0 v-9" fill="none" stroke="#2d5a4f" stroke-width="2"/>
+<path d="M70 63 l-6 6 l6 6 M78 63 l6 6 l-6 6" fill="none" stroke="#2d5a4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="50" cy="50" r="7" fill="none" stroke="#2d5a4f" stroke-width="2.5"/>
 </svg>
 </div>
 <h3>Multi-Format Support</h3>
@@ -496,9 +566,7 @@ feature_category = "data-management"
 
 <!-- Document Processing Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<object data="/images/autorag-clean-test.svg" type="image/svg+xml" style="width: 100%; max-width: 800px; height: auto;">
-<img src="/images/autorag-clean-test.svg" alt="AutoRAG Data Creation Process" style="width: 100%; max-width: 800px; height: auto;"  loading="lazy"/ width="750" height="350">
-</object>
+<img src="/images/autorag-data-creation.svg" alt="AutoRAG's data creation process: documents are parsed into structure, split into overlapping chunks, indexed and embedded as a corpus, then turned into a QA set whose answers link back to their source chunks." style="width: 100%; max-width: 900px; height: auto;" loading="lazy" width="900" height="320">
 <p style="text-align: center; margin-top: 10px; color: #8b7659; font-size: 14px;">AutoRAG's comprehensive data creation process transforms raw documents into optimized corpus and QA datasets</p>
 </div>
 
@@ -535,7 +603,7 @@ feature_category = "data-management"
 
 <!-- Vector Embedding Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-vector-embedding.svg" alt="Vector Embedding Visualization" style="width: 100%; max-width: 600px; height: auto;"  loading="lazy"/ width="300" height="200">
+<img src="/images/autorag-retrieval-evaluation.svg" alt="AutoRAG compares retrieval strategies on your own QA set: BM25, dense vectors, and hybrid-with-reranking each return a ranked list, and the strategy that ranks the answering chunk highest is selected." style="width: 100%; max-width: 720px; height: auto;" loading="lazy" width="720" height="412">
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">
@@ -571,7 +639,7 @@ feature_category = "data-management"
 
 <!-- Retrieval Optimization Visualization -->
 <div style="text-align: center; margin: 2rem 0;">
-<img src="/images/autorag-retrieval-optimization.svg" alt="Retrieval Optimization Visualization" style="width: 100%; max-width: 600px; height: auto;"  loading="lazy"/ width="300" height="200">
+<img src="/images/autorag-generation-optimization.svg" alt="AutoRAG scores candidate generation configurations over the whole QA set with a calibrated judge, then promotes the one that scores best on relevance, faithfulness and completeness." style="width: 100%; max-width: 720px; height: auto;" loading="lazy" width="720" height="412">
 </div>
 
 <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px;">

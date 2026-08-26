@@ -35,7 +35,7 @@ feature_category = "quality-assurance"
 .benefits-circle-container {
     position: relative;
     width: min(900px, 90vw);
-    height: 1111px;
+    height: 1190px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -47,13 +47,29 @@ feature_category = "quality-assurance"
     padding: 8rem 0 12rem 0;
 }
 
+/* The orbit the five benefits sit on — diameter is twice the 420px translateY
+   below, so the ring passes through their centres. */
+.benefits-circle-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 840px;
+    height: 840px;
+    transform: translate(-50%, -50%);
+    border: 1px dashed rgba(184, 160, 128, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
 .center-benefit {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, rgba(30, 45, 102, 0.1), rgba(184, 160, 128, 0.1));
-    border: 2px solid rgba(184, 160, 128, 0.3);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(232, 221, 199, 0.6));
+    border: 2px solid rgba(184, 160, 128, 0.55);
+    box-shadow: 0 6px 24px rgba(139, 118, 89, 0.14);
     border-radius: 50%;
     text-align: center;
     z-index: 2;
@@ -65,13 +81,18 @@ feature_category = "quality-assurance"
 
 .orbital-benefit {
     position: absolute;
-    background: rgba(248, 244, 240, 0.9);
-    border: 2px solid rgba(184, 160, 128, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1.5px solid rgba(184, 160, 128, 0.5);
+    box-shadow: 0 4px 18px rgba(139, 118, 89, 0.1);
     border-radius: 50%;
     text-align: center;
     transition: all 0.3s ease;
     top: 50%;
     left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .orbital-benefit:nth-child(2) { transform: translate(-50%, -50%) rotate(0deg) translateY(-420px) rotate(0deg); }
@@ -94,6 +115,40 @@ feature_category = "quality-assurance"
     width: 60px;
     height: 60px;
     margin-bottom: 1rem;
+}
+
+/* Below the width the orbit needs (2 x 420px radius + a 350px circle), the six
+   benefits become a plain grid instead of overlapping into an unreadable pile. */
+@media (max-width: 1200px) {
+    .feature-benefits {
+        padding: 4rem 0 5rem;
+    }
+
+    .benefits-circle-container {
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .benefits-circle-container::before {
+        display: none;
+    }
+
+    .center-benefit,
+    .orbital-benefit {
+        position: static;
+        transform: none !important;
+        width: auto !important;
+        height: auto !important;
+        padding: 2rem 1.5rem !important;
+        border-radius: 16px;
+    }
+
+    .center-benefit {
+        grid-column: 1 / -1;
+    }
 }
 
 .feature-grid {
@@ -328,7 +383,7 @@ feature_category = "quality-assurance"
 <h2 class="section-heading" style="margin-top: 3rem; margin-bottom: 3rem;">What is LLM Quality Assurance?</h2>
 
 <div class="qa-diagram-container" style="text-align: center; margin: 2rem 0;">
-  <img src="/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;"  loading="lazy"/ width="900" height="550">
+  <img src="/images/qa-pipeline-diagram.svg" alt="LLM Quality Assurance Pipeline" class="diagram-svg" style="width: 100%; max-width: 900px; height: auto;" loading="lazy" width="900" height="340">
 </div>
 
 <div class="overview-content">
