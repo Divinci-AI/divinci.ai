@@ -10,9 +10,9 @@ tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
-hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
 summary = "La compliance per settori regolamentati con modelli linguistici custom si divide nettamente lungo un asse: pesi aperti vs API chiuse. Per backing a pesi aperti puoi rilasciare un'attestazione di peso vIndex che soddisfa l'erasure verificabile dell'Articolo 17 GDPR in modo crittografico. Per backing ad API chiuse, la stessa ricevuta copre la catena decisionale ma non può rivendicare provenance dei pesi — e il regolatore riceve questa distinzione nella ricevuta stessa. Questo post mappa quattro framework regolatori (EU AI Act, GDPR, HIPAA, NIST AI RMF) sulle quattro fasi della pipeline che rilasciamo, e mostra il formato effettivo della ricevuta."
 +++

@@ -10,8 +10,8 @@ tags = ["Vector Embeddings", "Semantic Search", "RAG Systems", "Search Optimizat
 
 [extra]
 author = "Samuel Tobia"
-author_avatar = "images/sam-tobia.jpg"
-featured_image = "images/autorag-vector-embedding-adjusted.svg"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sam-tobia.webp"
+featured_image = "/images/autorag-vector-embedding-adjusted.svg"
 reading_time = 18
 summary = "Los embeddings vectoriales son la base de los sistemas de búsqueda modernos de IA, pero su efectividad depende en gran medida de las estrategias de optimización. Esta guía completa explora técnicas avanzadas para mejorar la calidad de los embeddings, la relevancia de búsqueda y el rendimiento general del sistema."
 +++

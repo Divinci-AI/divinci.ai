@@ -11,8 +11,8 @@ tags = ["DFlash", "Speculative Decoding", "Gemma 4", "vLLM", "Inference", "H100"
 [extra]
 math = true
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/gemma4-dflash-hero.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/gemma4-dflash-hero.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/gemma4-dflash-hero-v2.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/gemma4-dflash-hero-poster-v2.webp"
 title_display = "Speculative Decoding for Free.<br>92% of the speedup, zero drafter retraining."

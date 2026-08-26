@@ -10,10 +10,10 @@ tags = ["CI/CD", "LLM Ops", "Testing", "Evaluation", "Release Management", "Engi
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ci-testing-for-custom-language-models-in-2026-veo31.webm"
-hero_video_poster = "/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
-featured_image = "images/ci-testing-for-custom-language-models-in-2026-hero.png"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero.webp"
 reading_time = 13
 summary = "La suite di regressione del post 7 costa soldi veri quando la esegui su ogni PR. Ecco come manteniamo la stessa copertura a una frazione del costo — contract test sotto il secondo, uno strato smoke da 90 secondi, embedding-cache + judge-batching e una finestra shadow di 2 settimane prima che qualunque gate inizi a bloccare. L'ultimo post della serie."
 +++

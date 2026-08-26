@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Postmortems", "Evaluation Gat
 
 [extra]
 author = "Майк Муринг"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/10-ci-cd-release-failures-in-custom-language-models-veo31.webm"
-hero_video_poster = "/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
 reading_time = 11
 summary = "Мы выпустили достаточно релизов кастомных LM через четырёхстадийный конвейер Divinci, чтобы составить список десяти самых разрушительных режимов отказа, которые мы регулярно ловили. Три из них — регрессии с учётом срезов, которые агрегатный гейт пропустил бы. Ещё два — тихие просадки качества, которые canary на инфраструктурных метриках продвинул бы дальше. Остальные — те ошибки, которые должен ловить любой релизный конвейер; мы их перечисляем, потому что стоит вслух сказать, какие из них агрегатно-гейтовый конвейер действительно ловит сам по себе."
 +++

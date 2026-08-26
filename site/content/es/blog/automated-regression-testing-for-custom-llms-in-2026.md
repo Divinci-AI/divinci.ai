@@ -10,10 +10,10 @@ tags = ["Regression Testing", "LLM Ops", "CI/CD", "Evaluation", "Drift Detection
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/automated-regression-testing-for-custom-llms-in-2026-veo31.webm"
-hero_video_poster = "/images/automated-regression-testing-for-custom-llms-in-2026-hero-poster.webp"
-featured_image = "images/automated-regression-testing-for-custom-llms-in-2026-hero.png"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-regression-testing-for-custom-llms-in-2026-hero-poster.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-regression-testing-for-custom-llms-in-2026-hero.webp"
 reading_time = 13
 summary = "La mayoría de las 'regresiones' de LLM son deriva en la propia suite de evaluación — calibración del juez, cobertura de segmentos, plantilla de prompt, índice de recuperación. Esta es la suite que las detecta, puntuada por segmento con un juez calibrado y reproducida contra trazas de producción en vivo."
 +++

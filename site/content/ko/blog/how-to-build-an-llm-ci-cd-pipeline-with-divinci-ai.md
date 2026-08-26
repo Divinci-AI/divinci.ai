@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Canary", "Rollback", "Evaluat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
-hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
 summary = "전통적인 CI/CD 파이프라인은 산출물이 결정론적이라고 가정합니다. 그러나 언어 모델은 그렇지 않습니다. 본 글은 Divinci AI에서 출시하는 파이프라인을 단계별로 안내합니다 — 인간 기반 판정자와의 슬라이스 인식 Spearman 게이트, p95가 아니라 출력 품질을 감시하는 카나리, 약 12초의 원자적 롤백, 그리고 모든 결정에 대한 해시 체인 릴리스 영수증(오픈 웨이트 모델인 경우 vIndex 가중치 어테스테이션이 내장됨)을 다룹니다. 이 중 세 가지는 2026년 다른 어떤 LLM 릴리스 도구도 제공하지 않는 기능입니다."
 +++

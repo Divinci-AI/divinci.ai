@@ -13,10 +13,10 @@ tags = ["cloudflare", "infrastructure", "edge-computing", "rag", "ai", "workers-
 math = true
 pinned = true
 author = "Divinci AI Team"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/cloudflare-renaissance-blueprint.webm"
 featured_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-cloudflare-workers-launchpad-cohort-6.webm"
-hero_video_poster = "/images/divinci-cloudflare-workers-launchpad-cohort-6-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/divinci-cloudflare-workers-launchpad-cohort-6-poster.webp"
 reading_time = 12
 summary = "Divinci AI joins Cloudflare Workers Launchpad Cohort #6, bringing enterprise AI collaboration to the edge. Learn how we're leveraging Cloudflare's global network to deliver RAG-powered intelligence with unprecedented speed, security, and scale."
 x_post = "https://x.com/DivinciAi/status/1977450693100536167"
@@ -25,7 +25,7 @@ discord_post = "https://discord.com/channels/1425017107871039572/142501710907480
 instagram_post = "https://www.instagram.com/reel/DPuI8XLEl9G/?utm_source=ig_web_copy_link&igsh=MXN0M29uOGQzZWE0Nw=="
 +++
 
-<video muted loop playsinline webkit-playsinline preload="none" poster="/images/divinci-cloudflare-workers-launchpad-cohort-6-poster.webp" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+<video muted loop playsinline webkit-playsinline preload="none" poster="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/divinci-cloudflare-workers-launchpad-cohort-6-poster.webp" data-lazy-video style="width: 100%; border-radius: 8px; margin: 2rem 0;">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci-cloudflare-workers-launchpad-cohort-6.webm" type="video/webm">
 </video>
 <p style="text-align: center; font-style: italic; color: #666; margin-top: -1rem; margin-bottom: 2rem;">Building AI at the speed of light on Cloudflare's global edge network</p>
@@ -38,7 +38,7 @@ Today, we're honored to announce that **Divinci AI has been accepted into [Cloud
   <strong style="color: #1e3a2b; display: block; margin-bottom: 0.5rem; font-size: 1.05rem;">📺 Update — Cohort #6 Demo Day pitch</strong>
   <p style="margin: 0 0 1rem; color: #4a4030; font-size: 0.96rem;">We pitched Divinci AI at Cloudflare's Workers Launchpad Cohort #6 Demo Day. The full pitch deck and a walkthrough of how we use the Cloudflare stack — Workers, Worker Workflows, Workers AI, and Vectorize — are now on YouTube. The full live broadcast from Cloudflare TV is also linked below.</p>
   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 0 0 1rem; border-radius: 8px;">
-    <iframe src="https://www.youtube.com/embed/0PQQKcreMpo" title="Divinci AI — Cloudflare Workers Launchpad Cohort #6 Demo Day pitch" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    <iframe src="https://www.youtube.com/embed/0PQQKcreMpo" title="Divinci AI — Cloudflare Workers Launchpad Cohort #6 Demo Day pitch" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
   </div>
   <p style="margin: 0; color: #4a4030; font-size: 0.92rem;">▶︎ <a href="https://www.youtube.com/watch?v=0PQQKcreMpo" target="_blank" rel="noopener">Watch the pitch on YouTube</a> &nbsp;·&nbsp; 📡 <a href="https://cloudflare.tv/shows/workers-launchpad-demo-day/workers-launchpad-demo-day---cohort-6/1ZrX4ovO" target="_blank" rel="noopener">Cohort #6 Demo Day broadcast on Cloudflare TV</a></p>
 </aside>

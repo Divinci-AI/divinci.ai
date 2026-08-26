@@ -11,8 +11,8 @@ tags = ["Voice Agents", "LiveKit", "SIP", "RAG", "Streaming", "Latency", "Gemini
 [extra]
 math = false
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/voice-agents-hero.webp"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/voice-agents-hero.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/voice-agents-hero.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/voice-agents-hero.webp"
 title_display = "Putting a Grounded Assistant<br>on a Real Phone Number"

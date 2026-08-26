@@ -3,7 +3,7 @@ title = "RAG रूटिंग — एक API, अनेक आर्किट�
 description = "Divinci की RAG रूटिंग हर क्वेरी को सबसे सस्ते सक्षम बैकएंड पर भेजती है। एक एंडपॉइंट के पीछे दस रिट्रीवल इंजन, प्रति-प्रश्न सीखी हुई रूटिंग।"
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "data-management"
 +++
 

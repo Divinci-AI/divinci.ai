@@ -10,9 +10,9 @@ tags = ["QA", "Diagnostics", "Postmortems", "LLM Ops", "Evaluation", "Debugging"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-diagnose-custom-llm-qa-failures-in-7-steps-veo31.webm"
-hero_video_poster = "/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
 reading_time = 11
 summary = "カスタム LLM で QA アラートが発火したとき、最初の反射的な反応はモデルを責めることです。しかし当社が実施してきたロールアウトを通じて見ると、モデルが正解である割合はおよそ 7 回に 1 回です。残りの 6 回では、バグは評価、ジャッジ、プロンプト SHA、前処理パイプライン、データセットのバージョン、あるいは検索インデックスにあります。本記事は、当社が実際にたどっている診断ツリーを順を追って示し、各分岐に答える具体的な API コールを掲載しています。"
 +++

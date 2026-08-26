@@ -10,8 +10,8 @@ tags = ["Hermes", "NousResearch", "Cloudflare", "Durable Objects", "Sandbox Cont
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/hosted-hermes-on-cloudflare-hero.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hosted-hermes-on-cloudflare-hero.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hosted-hermes-hero.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hosted-hermes-hero-poster.webp"
 title_display = "Hosted Hermes on Cloudflare:<br>One Agent, One Sandbox."
@@ -36,7 +36,7 @@ This post is in two halves: what it does, then how it works.
 
 <div style="max-width:820px;margin:2rem auto;">
   <div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(30,58,43,0.15);background:#0f1c17;">
-    <iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="https://www.youtube-nocookie.com/embed/Y3NDtqk6ags" title="Nous Research's Hermes Agent: The Case for Open Models in Production" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="https://www.youtube-nocookie.com/embed/Y3NDtqk6ags" title="Nous Research's Hermes Agent: The Case for Open Models in Production" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
   <p style="text-align:center;color:#5a6862;font-size:0.85rem;margin-top:0.6rem;">New to Hermes? "The Case for Open Models in Production" — Arize Observe 2026. Video © NousResearch.</p>
 </div>

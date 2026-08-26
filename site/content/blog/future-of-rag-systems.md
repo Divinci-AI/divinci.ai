@@ -11,8 +11,8 @@ tags = ["RAG Systems", "AI Architecture", "Vector Embeddings", "LLMs", "Document
 
 [extra]
 author = "Michael Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/autorag-still.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-still.webp"
 reading_time = 8
 summary = "Retrieval-Augmented Generation (RAG) systems have revolutionized how AI models access and reason over large datasets. In this article, we explore the next generation of RAG technology and how it's enabling more sophisticated AI applications that go beyond simple document retrieval."
 +++
@@ -294,7 +294,7 @@ Vector similarity search, while powerful, can miss nuanced relationships between
 Most RAG implementations use fixed retrieval patterns that don't adapt to query complexity or context. A simple factual question requires different retrieval logic than a complex analytical request, yet most systems treat them identically.
 
 <picture>
-  <img src="/images/autorag-still.png" alt="Advanced RAG Architecture" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-still.webp" alt="Advanced RAG Architecture" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 </picture>
 *Modern RAG systems employ sophisticated multi-stage retrieval and reasoning pipelines*
 

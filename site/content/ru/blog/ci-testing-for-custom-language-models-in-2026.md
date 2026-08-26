@@ -10,10 +10,10 @@ tags = ["CI/CD", "LLM Ops", "Testing", "Evaluation", "Release Management", "Engi
 
 [extra]
 author = "Майк Муринг"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ci-testing-for-custom-language-models-in-2026-veo31.webm"
-hero_video_poster = "/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
-featured_image = "images/ci-testing-for-custom-language-models-in-2026-hero.png"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero.webp"
 reading_time = 13
 summary = "Регрессионный набор из поста 7 стоит реальных денег при запуске на каждом PR. Вот как мы удерживаем то же покрытие за долю стоимости — субсекундные контрактные тесты, 90-секундный smoke-слой, кэш эмбеддингов + батчинг судьи и двухнедельное теневое окно перед тем, как любой гейт начнёт блокировать. Заключительный пост серии."
 +++

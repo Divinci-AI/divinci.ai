@@ -10,10 +10,10 @@ tags = ["CI/CD", "LLM Ops", "Testing", "Evaluation", "Release Management", "Engi
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ci-testing-for-custom-language-models-in-2026-veo31.webm"
-hero_video_poster = "/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
-featured_image = "images/ci-testing-for-custom-language-models-in-2026-hero.png"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero.webp"
 reading_time = 13
 summary = "第 7 篇文章中的回归套件在每个 PR 上运行都要花真金白银。这就是我们如何在保持同等覆盖率的同时大幅降低成本——亚秒级契约测试、90 秒的冒烟层、嵌入缓存 + 评审器批处理,以及任何门禁开始拦截前 2 周的影子窗口。本系列的收官之作。"
 +++

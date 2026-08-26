@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Postmortems", "Evaluation Gat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/10-ci-cd-release-failures-in-custom-language-models-veo31.webm"
-hero_video_poster = "/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
 reading_time = 11
 summary = "Nous avons livré assez de releases de LMs personnalisés à travers le pipeline en quatre étapes de Divinci pour avoir une liste des dix modes d'échec les plus dommageables que nous frappions régulièrement. Trois d'entre eux sont des régressions conscientes des tranches qu'une porte agrégée aurait livrées. Deux autres sont des chutes silencieuses de qualité qu'un canary basé sur des métriques d'infrastructure aurait promues. Le reste, ce sont les erreurs que tout pipeline de release devrait attraper — nous les listons parce qu'il vaut la peine de dire à voix haute lesquelles un pipeline à porte agrégée attrape effectivement de lui-même."
 +++

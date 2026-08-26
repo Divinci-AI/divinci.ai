@@ -10,10 +10,10 @@ tags = ["CI/CD", "LLM Ops", "Testing", "Evaluation", "Release Management", "Engi
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ci-testing-for-custom-language-models-in-2026-veo31.webm"
-hero_video_poster = "/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
-featured_image = "images/ci-testing-for-custom-language-models-in-2026-hero.png"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero.webp"
 reading_time = 13
 summary = "A suíte de regressão do post 7 custa dinheiro real para rodar em cada PR. Veja como mantemos a mesma cobertura por uma fração do custo — testes de contrato em menos de um segundo, uma camada de smoke de 90 segundos, cache de embeddings + batching de juízes, e uma janela shadow de 2 semanas antes de qualquer gate começar a bloquear. O post final da série."
 +++

@@ -12,10 +12,10 @@ tags = ["ScoredQA", "Calibration", "Evaluation", "Spearman", "RAG Routing", "LLM
 [extra]
 math = true
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/calibrating-the-judge-leonardo.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/calibrating-the-judge-leonardo.webp"
-featured_image = "images/calibrating-the-judge-hero.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/calibrating-the-judge-hero.webp"
 title_display = "Calibrating the Judge.<br>The Grader get Graded."
 reading_time = 11
 summary = "An LLM rating another LLM's answers is a measurement of nothing until you anchor it to a human. We built ScoredQA Calibration so a domain expert (Dr. Joel Fuhrman, in our first deployment) rates 50 answers on a 0/0.25/0.5/0.75/1 scale, and we compute Spearman ρ between their ratings and each available LLM judge. Only judges that clear ρ ≥ 0.85 with n ≥ 30 ratings get blessed as the calibrated default. Same calibration session is drivable from the CLI, MCP, the Divinci Agent, and the web."

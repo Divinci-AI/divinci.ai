@@ -12,10 +12,10 @@ tags = ["Photonic Computing", "Ternary Logic", "Green Computing", "Quantum Compu
 [extra]
 math = true
 author = "Divinci AI Research Team"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 featured_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/light-logic-temple-electric.webm"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/light-logic-background.webm"
-hero_video_poster = "/images/light-logic-temple-electric-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/light-logic-temple-electric-poster.webp"
 reading_time = 15
 summary = "What if we could build computers that run on light, think in threes instead of twos, harness quantum randomness, and draw power from gravity itself? This exploration of 'Light Logic' computing reveals how combining photonic circuits, ternary mathematics, and sustainable energy could democratize computational resources as part of universal basic income."
 +++

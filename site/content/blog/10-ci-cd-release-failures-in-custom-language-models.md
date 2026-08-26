@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Postmortems", "Evaluation Gat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/10-ci-cd-release-failures-in-custom-language-models-veo31.webm"
-hero_video_poster = "/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
 reading_time = 11
 summary = "We've shipped enough custom LM releases through Divinci's four-stage pipeline to have a list of the ten most damaging failure modes we used to keep hitting. Three of them are slice-aware regressions an aggregate gate would have shipped. Two more are silent quality drops an infrastructure-metric canary would have promoted. The rest are the kind of mistake every release pipeline should catch — we list them because it's worth saying out loud which ones an aggregate-gated pipeline does, in fact, catch on its own."
 +++

@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Canary", "Rollback", "Evaluat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
-hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
 summary = "يفترض خط أنابيب CI/CD التقليدي أن المُخرَج حتمي. أما نموذج اللغة فليس كذلك. يستعرض هذا المقال خط الأنابيب الذي نشحنه في Divinci AI — بوابات Spearman واعية بالشرائح مقارنة بحَكَم مُعاير بشريًا، وكناري يراقب جودة المخرجات (وليس فقط p95)، وتراجع ذرّي في نحو اثنتي عشرة ثانية، وإيصال إصدار مرتبط بسلسلة تجزئة لكل قرار (مع تضمين شهادة أوزان vIndex حين يكون النموذج مفتوح الأوزان). ثلاثة من هذه القدرات لا تشحنها أي أداة إصدار LLM أخرى في عام 2026."
 +++

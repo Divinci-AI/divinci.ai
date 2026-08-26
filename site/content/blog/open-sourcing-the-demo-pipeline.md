@@ -11,7 +11,7 @@ tags = ["Open Source", "RAG", "Web Crawling", "Demos", "Agent Skills", "Apache-2
 [extra]
 math = false
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 title_display = "We Open-Sourced the Pipeline<br>That Builds Our Demos."
 reading_time = 6
 summary = "When we want to show a company what Divinci would do with their content, we do not mock it up — we build it. A pipeline researches the company, crawls its public site, builds a white-label RAG assistant from the corpus, generates a branded landing page, and produces the outreach. It is now open source under Apache-2.0. This post is about what is in it, what deliberately is not, and the two design decisions we would defend to anyone: that nothing naming external infrastructure gets a default, and that the loop never approves its own gates."

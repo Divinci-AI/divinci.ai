@@ -10,9 +10,9 @@ tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
-hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
 summary = "Compliance em setores regulados para modelos de linguagem customizados se divide claramente ao longo de um eixo: open-weights vs API fechada. Para backings open-weights, você pode entregar uma atestação de pesos via vIndex que satisfaz a apagabilidade verificável do Artigo 17 do GDPR criptograficamente. Para backings de API fechada, o mesmo recibo cobre a cadeia de decisão mas não pode reivindicar a proveniência dos pesos — e o regulador obtém essa distinção no próprio recibo. Este post mapeia quatro frameworks regulatórios (EU AI Act, GDPR, HIPAA, NIST AI RMF) nos quatro estágios do pipeline que entregamos, e mostra o formato real do recibo."
 +++

@@ -10,10 +10,10 @@ tags = ["Regression Testing", "LLM Ops", "CI/CD", "Evaluation", "Drift Detection
 
 [extra]
 author = "마이크 무어링(Mike Mooring)"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/automated-regression-testing-for-custom-llms-in-2026-veo31.webm"
-hero_video_poster = "/images/automated-regression-testing-for-custom-llms-in-2026-hero-poster.webp"
-featured_image = "images/automated-regression-testing-for-custom-llms-in-2026-hero.png"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-regression-testing-for-custom-llms-in-2026-hero-poster.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-regression-testing-for-custom-llms-in-2026-hero.webp"
 reading_time = 13
 summary = "대부분의 LLM '회귀'는 사실 평가 스위트 자체의 드리프트입니다 — 판정자 보정, 슬라이스 커버리지, 프롬프트 템플릿, 검색 인덱스 모두 그렇습니다. 다음은 그것들을 잡아내는 스위트로, 보정된 판정자로 슬라이스별 점수를 매기고 실제 프로덕션 트레이스에 대해 리플레이됩니다."
 +++

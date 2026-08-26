@@ -10,9 +10,9 @@ tags = ["LLM Ops", "CI/CD", "Automation", "Rollback", "MTTR", "Release Managemen
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/automated-llm-ci-cd-pipelines-with-instant-rollback-veo31.webm"
-hero_video_poster = "/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
 reading_time = 11
 summary = "人間の承認ゲートとゲートの間で、LLM リリースパイプラインは自律的に動作するか、しないかのどちらかです。本記事はアーキテクチャ記事の運用編であり、自動化のスペクトラム(どの判断が自動的に発火し、どの判断に人間が必要で、どの判断はオーバーライドに署名が入るまでハードストップするか)を整理し、実際のロールバックドリルがどのようなものかを示し、最終的に得られる MTTR の数値で締めくくります。"
 +++

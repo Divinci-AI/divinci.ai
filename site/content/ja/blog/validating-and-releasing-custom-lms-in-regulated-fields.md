@@ -10,9 +10,9 @@ tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
-hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
 summary = "規制業界におけるカスタム言語モデルのコンプライアンスは、ある軸できれいに二分されます。それがオープンウェイトとクローズドAPIです。オープンウェイトのバッキングなら、GDPR第17条の検証可能な消去要件を暗号学的に満たすvindex重み証明を出荷できます。クローズドAPIのバッキングでも同じレシートが決定チェーンをカバーしますが、重み出所の主張はできません。そしてその区別自体がレシートの中で監査人に伝わります。本投稿では、4つの規制フレームワーク(EU AI法、GDPR、HIPAA、NIST AI RMF)を、当社が出荷する4段階のパイプラインにマッピングし、実際のレシートフォーマットを示します。"
 +++

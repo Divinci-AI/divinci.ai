@@ -3,7 +3,7 @@ title = "Aseguramiento de Calidad LLM - Pruebas y Monitoreo de IA Empresarial"
 description = "Aseguramiento de calidad de nivel empresarial para modelos de IA con pruebas automatizadas, monitoreo y validación"
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-qa.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-qa.webp"
 feature_category = "quality-assurance"
 +++
 

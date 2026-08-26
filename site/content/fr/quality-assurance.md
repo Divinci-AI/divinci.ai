@@ -3,7 +3,7 @@ title = "Assurance Qualité LLM - Tests et Surveillance IA d'Entreprise"
 description = "Assurance qualité de niveau entreprise pour modèles d'IA avec tests automatisés, surveillance et validation"
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-qa.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-qa.webp"
 feature_category = "quality-assurance"
 +++
 

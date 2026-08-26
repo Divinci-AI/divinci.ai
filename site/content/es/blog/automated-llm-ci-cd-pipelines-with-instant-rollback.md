@@ -10,9 +10,9 @@ tags = ["LLM Ops", "CI/CD", "Automation", "Rollback", "MTTR", "Release Managemen
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/automated-llm-ci-cd-pipelines-with-instant-rollback-veo31.webm"
-hero_video_poster = "/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
 reading_time = 11
 summary = "Entre los gates de aprobación humana, un pipeline de release de LLM o se ejecuta solo o no lo hace. Este post es el complemento operacional al post de arquitectura — dibuja el espectro de automatización (qué decisiones disparan automáticamente, cuáles requieren un humano, y cuáles nos detienen en seco hasta que alguien firma el override), muestra cómo se ve un drill real de rollback, y termina con el número de MTTR que sale por el otro lado."
 +++

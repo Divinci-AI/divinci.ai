@@ -3,7 +3,7 @@ title = "Divinci Local Inference — run AI in your browser, on your own GPU"
 description = "A Chrome extension that runs open-weight models like Gemma 4 and Llama 3.2 entirely on your machine via WebGPU. Private by default, no API cost, works offline once loaded."
 template = "feature.html"
 [extra]
-hero_poster = "images/local-inference-poster.png"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/local-inference-poster.webp"
 feature_category = "development-tools"
 +++
 
@@ -39,7 +39,7 @@ feature_category = "development-tools"
 </style>
 
 <h1><span class="li-rotator" aria-hidden="true">
-<span class="li-item"><span class="li-chip"><img src="/images/models/gemma.png" alt=""></span>Gemma 4</span>
+<span class="li-item"><span class="li-chip"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/models/gemma.webp" alt=""></span>Gemma 4</span>
 <span class="li-item"><span class="li-chip"><img src="/images/models/spark.svg" alt=""></span>Qwen2.5</span>
 <span class="li-item"><span class="li-chip"><img src="/images/models/spark.svg" alt=""></span>Llama 3.2</span>
 <span class="li-item"><span class="li-chip"><img src="/images/models/spark.svg" alt=""></span>SmolLM2</span>
@@ -59,7 +59,7 @@ feature_category = "development-tools"
 <div class="container">
 <h2 class="section-heading" style="margin-top: 3rem;">See it run with the internet off</h2>
 <p>Nothing below is a mock-up. This is the extension answering from a model held in the browser's own memory — the second question is asked <em>after</em> the network has been disconnected.</p>
-<video controls playsinline preload="metadata" poster="/images/local-inference-poster.png" style="width:100%;max-width:900px;height:auto;border-radius:12px;display:block;margin:2rem auto;box-shadow:0 12px 40px rgba(0,0,0,.12);">
+<video controls playsinline preload="metadata" poster="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/local-inference-poster.webp" style="width:100%;max-width:900px;height:auto;border-radius:12px;display:block;margin:2rem auto;box-shadow:0 12px 40px rgba(0,0,0,.12);">
 <source src="/video/local-inference-demo.webm" type="video/webm">
 <source src="/video/local-inference-demo.mp4" type="video/mp4">
 Your browser cannot play this video. <a href="/video/local-inference-demo.mp4">Download it instead.</a>
@@ -93,7 +93,7 @@ Your browser cannot play this video. <a href="/video/local-inference-demo.mp4">D
 <tr><td style="padding:.6rem;">SmolLM2 360M</td><td style="padding:.6rem;">~0.3 GB</td><td style="padding:.6rem;">Smallest and quickest to try.</td></tr>
 </tbody>
 </table>
-<img src="/images/local-inference-models.png" alt="The extension's model picker, showing the available on-device models and their download sizes" style="width:100%;max-width:900px;height:auto;border-radius:12px;display:block;margin:2rem auto;" loading="lazy" decoding="async" width="1280" height="800">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/local-inference-models.webp" alt="The extension's model picker, showing the available on-device models and their download sizes" style="width:100%;max-width:900px;height:auto;border-radius:12px;display:block;margin:2rem auto;" loading="lazy" decoding="async" width="1280" height="800">
 </div>
 </section>
 

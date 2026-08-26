@@ -10,8 +10,8 @@ tags = ["AI Ethics", "Responsible AI", "AI Governance", "Fairness", "Explainabil
 
 [extra]
 author = "Paul-Marie Carfantan"
-author_avatar = "images/paul-marie-carfantan.jpeg"
-featured_image = "images/AI-Standards-Hub-Logo_04-1.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/paul-marie-carfantan.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/AI-Standards-Hub-Logo_04-1.webp"
 reading_time = 12
 summary = "مع تزايد انتشار أنظمة الذكاء الاصطناعي في عمليات صنع القرار الحرجة، لم يعد بناء ذكاء اصطناعي مسؤول اختياريًا - بل أصبح ضروريًا. يقدم هذا الدليل الشامل أطر عمل عملية واستراتيجيات تنفيذ لضمان أن أنظمة الذكاء الاصطناعي الخاصة بك أخلاقية وعادلة وخاضعة للمساءلة."
 +++
@@ -100,7 +100,7 @@ def evaluate_fairness_metrics(predictions, protected_attribute, labels):
 
 ## تنفيذ الذكاء الاصطناعي المسؤول عبر دورة حياة التطوير
 
-![[إطار الذكاء الاصطناعي المسؤول]](/images/AI-Standards-Hub-Logo_04-1.png)
+![[إطار الذكاء الاصطناعي المسؤول]](https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/AI-Standards-Hub-Logo_04-1.webp)
 *إطار شامل لتنفيذ ممارسات الذكاء الاصطناعي المسؤول*
 
 ### التخطيط والتصميم

@@ -10,9 +10,9 @@ tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
-hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
 summary = "Compliance voor gereguleerde sectoren bij aangepaste taalmodellen splitst zich helder langs één as: open-weights versus closed-API. Voor open-weights backings kun je een vIndex-weight-attestation leveren die voldoet aan de cryptografisch verifieerbare wissing van AVG artikel 17. Voor closed-API backings dekt hetzelfde ontvangstbewijs de beslisketen, maar kan het geen aanspraak maken op gewichtsherkomst — en de toezichthouder krijgt dat onderscheid in het ontvangstbewijs zelf. Deze post koppelt vier regelgevende kaders (EU AI Act, AVG, HIPAA, NIST AI RMF) aan de vier pipelinefasen die wij leveren, en toont het werkelijke ontvangstbewijsformaat."
 +++

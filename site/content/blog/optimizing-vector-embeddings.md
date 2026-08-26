@@ -10,8 +10,8 @@ tags = ["Vector Embeddings", "Semantic Search", "RAG Systems", "Search Optimizat
 
 [extra]
 author = "Samuel Tobia"
-author_avatar = "images/sam-tobia.jpg"
-featured_image = "images/autorag-vector-embedding-adjusted.svg"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sam-tobia.webp"
+featured_image = "/images/autorag-vector-embedding-adjusted.svg"
 reading_time = 18
 summary = "Vector embeddings are the foundation of modern AI search systems, but their effectiveness depends heavily on optimization strategies. This comprehensive guide explores advanced techniques for improving embedding quality, search relevance, and overall system performance."
 +++

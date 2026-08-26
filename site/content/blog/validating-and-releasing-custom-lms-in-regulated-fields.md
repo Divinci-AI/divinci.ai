@@ -10,9 +10,9 @@ tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
-hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
 summary = "Regulated-industry compliance for custom language models splits cleanly along one axis: open-weights vs closed-API. For open-weights backings, you can ship a vIndex weight-attestation that satisfies GDPR Article 17 verifiable erasure cryptographically. For closed-API backings, the same receipt covers the decision chain but can't claim weight provenance — and the regulator gets that distinction in the receipt itself. This post maps four regulatory frameworks (EU AI Act, GDPR, HIPAA, NIST AI RMF) onto the four pipeline stages we ship, and shows the actual receipt format."
 +++

@@ -10,9 +10,9 @@ tags = ["QA", "Diagnostics", "Postmortems", "LLM Ops", "Evaluation", "Debugging"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-diagnose-custom-llm-qa-failures-in-7-steps-veo31.webm"
-hero_video_poster = "/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
 reading_time = 11
 summary = "Wanneer een QA-alert afgaat op een custom LLM, is de natuurlijke reflex om het model de schuld te geven. Over de uitrolprojecten die we hebben begeleid, blijkt het model ongeveer één op de zeven keer het juiste antwoord te zijn. De andere zes keer zit de bug in de eval, de judge, de prompt-SHA, de preprocessing-pijplijn, de datasetversie of de retrieval-index. Deze post is de diagnostische boom die we daadwerkelijk doorlopen — op volgorde, met de exacte API-call die elke vertakking beantwoordt."
 +++

@@ -12,8 +12,8 @@ tags = ["RAG-Arena", "ScoredQA", "RAG Routing", "EXIT", "LLM-as-Judge", "Spearma
 [extra]
 math = true
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/rag-arena-scored-qa-routing-hero.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/rag-arena-scored-qa-routing-hero.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-arena-leonardo-hero-v2.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-arena-leonardo-hero-poster-v2.webp"
 title_display = "Inside the RAG Arena.<br>When the Judges Don't Agree."

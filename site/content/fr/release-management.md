@@ -3,7 +3,7 @@ title = "Gestion des Versions IA - DevOps d'Entreprise pour Systèmes IA"
 description = "Gestion des versions de niveau entreprise pour modèles d'IA avec contrôle de version, capacités de rollback et automatisation de déploiement"
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-release.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-release.webp"
 feature_category = "development-tools"
 +++
 

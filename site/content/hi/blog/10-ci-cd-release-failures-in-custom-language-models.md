@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Postmortems", "Evaluation Gat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/10-ci-cd-release-failures-in-custom-language-models-veo31.webm"
-hero_video_poster = "/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
 reading_time = 11
 summary = "हमने Divinci की चार-चरण पाइपलाइन के माध्यम से इतनी कस्टम LM रिलीज़ शिप की हैं कि अब हमारे पास उन दस सबसे विनाशकारी failure modes की सूची है जिनसे हम बार-बार टकराते थे। इनमें से तीन स्लाइस-अवेयर रिग्रेशन हैं जिन्हें एक एग्रीगेट गेट शिप कर देता। दो और साइलेंट गुणवत्ता गिरावटें हैं जिन्हें एक इंफ्रास्ट्रक्चर-मेट्रिक कैनरी प्रमोट कर देता। बाक़ी वैसी ग़लतियाँ हैं जिन्हें हर रिलीज़ पाइपलाइन को पकड़ना चाहिए — हम उन्हें इसलिए सूचीबद्ध करते हैं क्योंकि यह स्पष्ट रूप से कहने योग्य है कि एक एग्रीगेट-गेटेड पाइपलाइन वास्तव में किन्हें स्वयं ही पकड़ लेती है।"
 +++

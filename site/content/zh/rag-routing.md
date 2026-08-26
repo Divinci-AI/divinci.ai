@@ -3,7 +3,7 @@ title = "RAG 路由 — 一个 API，多种架构"
 description = "Divinci 的 RAG 路由将每个查询分派到能正确回答的最便宜后端。十种检索引擎置于单个端点之后，按问题学习路由。"
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "data-management"
 +++
 

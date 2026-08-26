@@ -3,7 +3,7 @@ title = "Hosted Hermes Agents — Your Own Hermes, Isolated in the Cloud"
 description = "Run your own NousResearch Hermes agent inside Divinci: an isolated Cloudflare Sandbox container per agent, one Durable Object each. Chat in-app, or connect a local Hermes, the desktop app, or any OpenAI-compatible client through a per-agent proxy URL. Bring your own provider key."
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "ai-config"
 +++
 
@@ -200,7 +200,7 @@ feature_category = "ai-config"
 </style>
 
 <div class="hs-hero-wrap">
-  <video class="hs-hero-video" autoplay muted loop playsinline preload="auto" poster="/images/hosted-hermes-hero-poster.webp" aria-label="Animated da Vinci illustration: Hermes delivering scrolls to isolated sandbox cells">
+  <video class="hs-hero-video" autoplay muted loop playsinline preload="auto" poster="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hosted-hermes-hero-poster.webp" aria-label="Animated da Vinci illustration: Hermes delivering scrolls to isolated sandbox cells">
     <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hosted-hermes-hero.webm" type="video/webm">
   </video>
   <div class="hs-hero-panel">
@@ -243,7 +243,7 @@ feature_category = "ai-config"
 <p class="hs-sub">Hermes is NousResearch's open, tool-using agent — the open-weight models are the brain, the Hermes Agent CLI is the body. Here's the team behind it on running open models in production.</p>
 <div class="hs-video">
   <div class="hs-video-frame">
-    <iframe src="https://www.youtube-nocookie.com/embed/QQEgIo4Juxg" title="Hermes — NousResearch" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe src="https://www.youtube-nocookie.com/embed/QQEgIo4Juxg" title="Hermes — NousResearch" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
   <p class="hs-video-cap">Meet Hermes — NousResearch. Video&nbsp;© NousResearch.</p>
 </div>

@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Canary", "Rollback", "Evaluat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
-hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
 summary = "Un pipeline CI/CD traditionnel suppose que l'artefact est déterministe. Un modèle de langage ne l'est pas. Cet article décrit le pipeline que nous déployons chez Divinci AI — portes Spearman conscientes des tranches face à un juge ancré sur l'humain, canary qui surveille la qualité des sorties (pas seulement le p95), rollback atomique en environ douze secondes, et un reçu de release chaîné par hash pour chaque décision (avec une attestation de poids vIndex intégrée lorsque le modèle est à poids ouverts). Trois de ces éléments ne sont fournis par aucun autre outil de release LLM en 2026."
 +++

@@ -3,7 +3,7 @@ title = "إدارة إصدارات الذكاء الاصطناعي - DevOps مؤ
 description = "إدارة إصدارات على مستوى المؤسسة لنماذج الذكاء الاصطناعي مع التحكم في الإصدارات وقدرات الاستعادة وأتمتة النشر"
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-release.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-release.webp"
 feature_category = "development-tools"
 +++
 

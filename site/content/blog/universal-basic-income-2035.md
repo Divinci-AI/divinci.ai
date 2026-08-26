@@ -13,10 +13,10 @@ tags = ["UBI", "AI", "Fusion Energy", "Cryptocurrency", "Bitcoin", "Government R
 math = true
 pinned = true
 author = "Divinci AI Research Team"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-family-dinner.webm"
 featured_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-family-dinner.webm"
-hero_video_poster = "/images/ubi-family-dinner-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ubi-family-dinner-poster.webp"
 reading_time = 22
 summary = "A comprehensive analysis revealing how fusion energy, AI, robotics, government restructuring, and cryptocurrency innovation could make Universal Basic Income economically feasible by 2035—providing $1,000-2,000 monthly plus cost reductions equivalent to $2,600-2,900 total monthly value."
 +++
@@ -2090,7 +2090,7 @@ Beyond cash transfers, UBI enables something more profound: **personal independe
 ### The Robotic Homestead Revolution
 
 <div style="float: right; max-width: 45%; margin: 0 0 1rem 1.5rem;">
-  <img src="/images/dyson-strawberry.webp" alt="Robotic strawberry harvesting at Dyson Farming's automated glasshouse facility" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" loading="lazy" width="800" height="500">
+  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/dyson-strawberry.webp" alt="Robotic strawberry harvesting at Dyson Farming's automated glasshouse facility" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" loading="lazy" width="800" height="500">
   <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #666; font-style: italic; text-align: left;">Photo: Dyson Farming</p>
 </div>
 
@@ -2268,7 +2268,7 @@ Explore the vision of technology-enabled sustainable living through these excell
 <div class="video-container" data-video-id="z-Ng5ZvrDm4" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
   <iframe src="https://www.youtube.com/embed/z-Ng5ZvrDm4?enablejsapi=1&mute=1&autoplay=0"
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="autoplay; encrypted-media; picture-in-picture"
           allowfullscreen>
   </iframe>
 </div>
@@ -2280,7 +2280,7 @@ A beautiful animated short film showing a grandmother's letter to her granddaugh
 <div class="video-container" data-video-id="UVlBmdvIC6s" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
   <iframe src="https://www.youtube.com/embed/UVlBmdvIC6s?enablejsapi=1&mute=1&autoplay=0"
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="autoplay; encrypted-media; picture-in-picture"
           allowfullscreen>
   </iframe>
 </div>

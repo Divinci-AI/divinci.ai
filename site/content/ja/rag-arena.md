@@ -5,7 +5,7 @@ template = "feature.html"
 
 [extra]
 canonical_to_english = true
-hero_poster = "images/rag-arena-hero.png"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/rag-arena-hero.webp"
 +++
 
 # RAG Arena
@@ -883,7 +883,7 @@ hero_poster = "images/rag-arena-hero.png"
 
 <div class="arena-hero">
 <div class="arena-hero-bg">
-<img src="/cdn-cgi/image/width=1200,format=auto,quality=80/images/rag-arena-hero.png" srcset="/cdn-cgi/image/width=400,format=auto,quality=80/images/rag-arena-hero.png 400w, /cdn-cgi/image/width=600,format=auto,quality=80/images/rag-arena-hero.png 600w, /cdn-cgi/image/width=1200,format=auto,quality=80/images/rag-arena-hero.png 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="RAG Arena hero illustration" loading="eager" fetchpriority="high" decoding="async">
+<img src="/cdn-cgi/image/width=1200,format=auto,quality=80/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/rag-arena-hero.webp" srcset="/cdn-cgi/image/width=400,format=auto,quality=80/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/rag-arena-hero.webp 400w, /cdn-cgi/image/width=600,format=auto,quality=80/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/rag-arena-hero.webp 600w, /cdn-cgi/image/width=1200,format=auto,quality=80/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/rag-arena-hero.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="RAG Arena hero illustration" loading="eager" fetchpriority="high" decoding="async">
 <video autoplay muted loop playsinline data-hero-video>
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-arena-battle.webm" type="video/webm">
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-arena-battle.mp4" type="video/mp4">

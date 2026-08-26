@@ -3,7 +3,7 @@ title = "RAG Routing — One API, Many Architectures"
 description = "Divinci's RAG Routing dispatches every query to the cheapest backend that can answer it correctly. Ten supported retrieval engines (PageIndex, neo4j-hybrid, RAPTOR, LightRAG, Qdrant, Cloudflare Vectorize, Couchbase, Vertex AI, MongoDB Atlas, Redis Vector) behind one endpoint, with learned per-question routing."
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "data-management"
 +++
 

@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Postmortems", "Evaluation Gat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/10-ci-cd-release-failures-in-custom-language-models-veo31.webm"
-hero_video_poster = "/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
 reading_time = 11
 summary = "شحنّا ما يكفي من إصدارات نماذج اللغة المخصّصة عبر خط أنابيب Divinci من أربع مراحل لنُكوّن قائمة بأكثر عشرة أنماط إخفاق ضررًا كنّا نواجهها مرارًا. ثلاثة منها انحدارات واعية بالشرائح كانت ستشحنها بوّابة تجميعية. واثنان آخران انخفاضات صامتة في الجودة كان كناري يعتمد على مقاييس بنية تحتية سيُروّجها. أما البقية فهي من النوع الذي يجب على كل خط أنابيب إصدار التقاطه — ندرجها لأنه من المفيد أن نقول بصوت عالٍ أيّ منها يلتقطه فعلًا خط أنابيب مبوّب على المتوسّط من تلقاء نفسه."
 +++

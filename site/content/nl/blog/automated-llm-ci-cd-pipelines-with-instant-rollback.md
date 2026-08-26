@@ -10,9 +10,9 @@ tags = ["LLM Ops", "CI/CD", "Automation", "Rollback", "MTTR", "Release Managemen
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/automated-llm-ci-cd-pipelines-with-instant-rollback-veo31.webm"
-hero_video_poster = "/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
 reading_time = 11
 summary = "Tussen menselijke goedkeuringspoorten draait een LLM-release-pipeline zichzelf, of niet. Deze post is de operationele tegenhanger van de architectuurpost — hij tekent het automatiseringsspectrum (welke beslissingen automatisch vuren, welke een mens vereisen, en welke we hard stoppen totdat iemand de override ondertekent), laat zien hoe een echte rollback-oefening eruitziet, en eindigt met het MTTR-getal dat er aan de andere kant uitkomt."
 +++

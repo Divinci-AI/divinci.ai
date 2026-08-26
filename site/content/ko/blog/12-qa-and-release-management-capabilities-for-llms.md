@@ -10,9 +10,9 @@ tags = ["LLM Ops", "QA", "Release Management", "Evaluation", "Compliance", "Audi
 
 [extra]
 author = "마이크 무어링(Mike Mooring)"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/12-qa-and-release-management-capabilities-for-llms-veo31.webm"
-hero_video_poster = "/images/12-qa-and-release-management-capabilities-for-llms-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/12-qa-and-release-management-capabilities-for-llms-hero-poster.webp"
 reading_time = 11
 summary = "우리는 자체 릴리스 파이프라인을 구축하기에 앞서 12개의 LLM 릴리스 플랫폼을 조사했습니다. 시장은 서로 완전히 만나지 못하는 세 진영 — 평가 CI 도구, 서빙 카나리아 도구, 옵저버빌리티 도구 — 으로 갈라져 있으며, 그 사이에 비어 있는 이음새가 바로 고객 릴리스에 필요한 부분입니다. 이 글은 그 조사에서 도출된 역량 체크리스트입니다. 우리 플랫폼을 포함해 어떤 플랫폼에도 적용할 수 있는 12가지 구체적인 테스트입니다."
 +++

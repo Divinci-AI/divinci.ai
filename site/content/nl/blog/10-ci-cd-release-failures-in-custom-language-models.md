@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Postmortems", "Evaluation Gat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/10-ci-cd-release-failures-in-custom-language-models-veo31.webm"
-hero_video_poster = "/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
 reading_time = 11
 summary = "We hebben genoeg custom-LM-releases door Divinci's vier-fasenpipeline geschoten om een lijst te hebben van de tien meest schadelijke failure modes waar we eerst telkens tegenaan liepen. Drie daarvan zijn slice-bewuste regressies die een aggregaatgate zou hebben gereleased. Twee andere zijn stille kwaliteitsdips die een canary op infrastructure-metrics zou hebben gepromoveerd. De rest is het soort fout dat elke releasepipeline geacht wordt op te vangen — we noemen ze omdat het waard is hardop te zeggen welke een aggregaat-gated pipeline daadwerkelijk wel zelf opvangt."
 +++

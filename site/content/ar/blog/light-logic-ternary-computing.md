@@ -10,8 +10,8 @@ tags = ["Photonic Computing", "Ternary Logic", "Green Computing", "Quantum Compu
 
 [extra]
 author = "Divinci AI Research Team"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/u4943574663_3D_visualization_of_colorful_vector_points_formin_daf9af57-cead-4692-9787-1bdb244fe254_0.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/u4943574663_3D_visualization_of_colorful_vector_points_formin_daf9af57-cead-4692-9787-1bdb244fe254_0.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/light-logic-background.webm"
 reading_time = 15
 summary = "ماذا لو كان بإمكاننا بناء أجهزة كمبيوتر تعمل بالضوء، وتفكر بالأرقام الثلاثية بدلاً من الثنائية، وتسخّر العشوائية الكمومية، وتستمد الطاقة من الجاذبية نفسها؟ هذا الاستكشاف للحوسبة بـ'منطق الضوء' يكشف كيف يمكن للجمع بين الدوائر الفوتونية والرياضيات الثلاثية والطاقة المستدامة أن يضفي طابعًا ديمقراطيًا على الموارد الحسابية كجزء من الدخل الأساسي الشامل."

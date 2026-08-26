@@ -3,7 +3,7 @@ title = "AutoRAG - التوليد المعزز بالاسترجاع الآلي"
 description = "اعثر تلقائياً على خط أنابيب RAG الأمثل لبياناتك مع حل AutoRAG الشامل من Divinci AI"
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "data-management"
 lang = "ar"
 +++
@@ -276,7 +276,7 @@ lang = "ar"
 
 <div class="autorag-video">
   <div class="autorag-video-frame">
-    <iframe src="https://www.youtube-nocookie.com/embed/_Fgxhij-Wkc" title="Divinci AutoRAG — اكتشاف الثغرات المعرفية وسدّها" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe src="https://www.youtube-nocookie.com/embed/_Fgxhij-Wkc" title="Divinci AutoRAG — اكتشاف الثغرات المعرفية وسدّها" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
   <p class="autorag-video-cap">شاهد كيف يكتشف AutoRAG الثغرات في قاعدة المعرفة ويسدّها — <a href="https://www.youtube.com/watch?v=_Fgxhij-Wkc" target="_blank" rel="noopener">شاهده على YouTube</a>.</p>
 </div>

@@ -872,7 +872,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const frame = document.createElement('iframe');
         frame.src = heroTheater.dataset.embed;
         frame.title = heroPlay.getAttribute('aria-label') || 'Video';
-        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        frame.allow = 'autoplay; encrypted-media; picture-in-picture';
         frame.allowFullscreen = true;
         frame.referrerPolicy = 'strict-origin-when-cross-origin';
         stage.appendChild(frame);

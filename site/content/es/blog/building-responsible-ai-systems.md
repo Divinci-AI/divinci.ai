@@ -10,8 +10,8 @@ tags = ["Ética de IA", "IA Responsable", "Gobierno de IA", "Equidad", "Explicab
 
 [extra]
 author = "Paul-Marie Carfantan"
-author_avatar = "images/paul-marie-carfantan.jpeg"
-featured_image = "images/AI-Standards-Hub-Logo_04-1.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/paul-marie-carfantan.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/AI-Standards-Hub-Logo_04-1.webp"
 reading_time = 12
 summary = "A medida que los sistemas de IA se vuelven más prevalentes en procesos críticos de toma de decisiones, construir IA responsable ya no es opcional—es esencial. Esta guía completa proporciona marcos prácticos y estrategias de implementación para asegurar que tus sistemas de IA sean éticos, justos y responsables."
 +++
@@ -100,7 +100,7 @@ Los humanos deben mantener control significativo sobre los sistemas de IA:
 
 ## Implementando IA Responsable en el Ciclo de Vida de Desarrollo
 
-![[Marco de IA Responsable]](/images/AI-Standards-Hub-Logo_04-1.png)
+![[Marco de IA Responsable]](https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/AI-Standards-Hub-Logo_04-1.webp)
 *Un marco completo para implementar prácticas de IA responsable*
 
 ### Planificación y Diseño

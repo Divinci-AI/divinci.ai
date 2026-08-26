@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Postmortems", "Evaluation Gat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/10-ci-cd-release-failures-in-custom-language-models-veo31.webm"
-hero_video_poster = "/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
 reading_time = 11
 summary = "Wir haben genug Custom-LM-Releases durch Divincis vierstufige Pipeline geschickt, um eine Liste der zehn schädlichsten Failure Modes zu haben, die uns früher immer wieder erwischt haben. Drei davon sind slice-aware Regressionen, die ein Aggregat-Gate ausgeliefert hätte. Zwei weitere sind stille Qualitätseinbrüche, die ein Canary mit Infrastruktur-Metriken durchgewunken hätte. Der Rest ist die Art Fehler, die jede Release-Pipeline abfangen sollte — wir nennen sie, weil es sich lohnt, laut auszusprechen, welche eine aggregat-gegatete Pipeline tatsächlich von selbst abfängt."
 +++

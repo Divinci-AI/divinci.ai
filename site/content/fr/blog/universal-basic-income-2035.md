@@ -10,7 +10,7 @@ tags = ["UBI", "AI", "Fusion Energy", "Cryptocurrency", "Bitcoin", "Government R
 
 [extra]
 author = "Divinci AI Research Team"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-family-dinner.webm"
 reading_time = 22
 summary = "Une analyse complète révélant comment l'énergie de fusion, l'IA, la robotique, la restructuration gouvernementale et l'innovation en cryptomonnaie pourraient rendre le revenu de base universel économiquement réalisable d'ici 2035 — fournissant 1 000 à 2 000 $ mensuels plus des réductions de coûts équivalentes à 2 600 à 2 900 $ de valeur mensuelle totale."

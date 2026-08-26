@@ -182,7 +182,7 @@ window.MathJax = {
         {% if page.extra.hero_youtube %}
         {# Silent looping YouTube background. pointer-events:none so the
            iframe never steals clicks; playlist=id is required for loop=1. #}
-        <iframe class="hero-bg-youtube" src="https://www.youtube-nocookie.com/embed/{{ page.extra.hero_youtube }}?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist={{ page.extra.hero_youtube }}&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;disablekb=1&amp;fs=0" title="{{ page.title }}" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" tabindex="-1" aria-hidden="true"></iframe>
+        <iframe class="hero-bg-youtube" src="https://www.youtube-nocookie.com/embed/{{ page.extra.hero_youtube }}?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist={{ page.extra.hero_youtube }}&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;disablekb=1&amp;fs=0" title="{{ page.title }}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" tabindex="-1" aria-hidden="true"></iframe>
         {% elif page.extra.hero_video %}
         <video autoplay muted loop playsinline webkit-playsinline preload="none" width="1600" height="900" class="hero-bg-video" data-hero-video{% if page.extra.hero_video_filter %} style="filter:{{ page.extra.hero_video_filter }}"{% endif %}>
             <source src="{{ page.extra.hero_video }}" type="video/webm">

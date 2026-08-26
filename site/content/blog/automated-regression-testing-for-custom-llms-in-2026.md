@@ -10,10 +10,10 @@ tags = ["Regression Testing", "LLM Ops", "CI/CD", "Evaluation", "Drift Detection
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/automated-regression-testing-for-custom-llms-in-2026-veo31.webm"
-hero_video_poster = "/images/automated-regression-testing-for-custom-llms-in-2026-hero-poster.webp"
-featured_image = "images/automated-regression-testing-for-custom-llms-in-2026-hero.png"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-regression-testing-for-custom-llms-in-2026-hero-poster.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-regression-testing-for-custom-llms-in-2026-hero.webp"
 reading_time = 13
 summary = "Most LLM 'regressions' are drift in the eval suite itself — judge calibration, slice coverage, prompt template, retrieval index. Here is the suite that catches those, scored per-slice with a calibrated judge and replayed against live production traces."
 +++

@@ -10,7 +10,7 @@ tags = ["UBI", "AI", "Fusion Energy", "Cryptocurrency", "Bitcoin", "Government R
 
 [extra]
 author = "Divinci AI Research Team"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ubi-family-dinner.webm"
 reading_time = 22
 summary = "تحليل شامل يكشف كيف يمكن لطاقة الاندماج والذكاء الاصطناعي والروبوتات وإعادة هيكلة الحكومة والابتكار في العملات المشفرة جعل الدخل الأساسي الشامل ممكنًا اقتصاديًا بحلول 2035 - مع توفير 1,000-2,000 دولار شهريًا بالإضافة إلى تخفيضات في التكلفة تعادل قيمة شهرية إجمالية قدرها 2,600-2,900 دولار."

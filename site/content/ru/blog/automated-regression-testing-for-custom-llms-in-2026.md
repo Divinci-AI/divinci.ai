@@ -10,10 +10,10 @@ tags = ["Regression Testing", "LLM Ops", "CI/CD", "Evaluation", "Drift Detection
 
 [extra]
 author = "Майк Муринг"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/automated-regression-testing-for-custom-llms-in-2026-veo31.webm"
-hero_video_poster = "/images/automated-regression-testing-for-custom-llms-in-2026-hero-poster.webp"
-featured_image = "images/automated-regression-testing-for-custom-llms-in-2026-hero.png"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-regression-testing-for-custom-llms-in-2026-hero-poster.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-regression-testing-for-custom-llms-in-2026-hero.webp"
 reading_time = 13
 summary = "Большинство «регрессий» LLM — это дрейф в самом наборе оценок: калибровка судьи, покрытие срезов, шаблон промпта, индекс ретривала. Вот набор, который их ловит — со скорингом по срезам, откалиброванным судьёй и реплеем против живых продакшен-трейсов."
 +++

@@ -3,7 +3,7 @@ title = "RAG Routing — Una sola API, molte architetture"
 description = "Il RAG Routing di Divinci instrada ogni query al backend più economico che risponda. Dieci motori di retrieval su un endpoint, routing per domanda."
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "data-management"
 +++
 

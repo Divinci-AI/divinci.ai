@@ -10,9 +10,9 @@ tags = ["LLM Ops", "CI/CD", "Automation", "Rollback", "MTTR", "Release Managemen
 
 [extra]
 author = "Майк Муринг"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/automated-llm-ci-cd-pipelines-with-instant-rollback-veo31.webm"
-hero_video_poster = "/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
 reading_time = 11
 summary = "Между точками человеческого одобрения релизный конвейер LLM либо работает сам, либо нет. Этот материал — операционное дополнение к архитектурной статье: он описывает спектр автоматизации (какие решения срабатывают автоматически, какие требуют человека, а какие жёстко блокируются до тех пор, пока кто-то не подпишет переопределение), показывает, как выглядит реальная репетиция отката, и завершается значением MTTR, которое получается на выходе."
 +++

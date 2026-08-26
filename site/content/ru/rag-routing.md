@@ -3,7 +3,7 @@ title = "Маршрутизация RAG — один API, множество а�
 description = "RAG Routing от Divinci направляет каждый запрос к самому дешёвому бэкенду. Десять движков извлечения за одной точкой, обученный per-question роутинг."
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "data-management"
 +++
 

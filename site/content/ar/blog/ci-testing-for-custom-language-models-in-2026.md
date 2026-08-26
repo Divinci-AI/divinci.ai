@@ -10,10 +10,10 @@ tags = ["CI/CD", "LLM Ops", "Testing", "Evaluation", "Release Management", "Engi
 
 [extra]
 author = "مايك مورينغ"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ci-testing-for-custom-language-models-in-2026-veo31.webm"
-hero_video_poster = "/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
-featured_image = "images/ci-testing-for-custom-language-models-in-2026-hero.png"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero.webp"
 reading_time = 13
 summary = "تشغيل مجموعة الانحدار من المنشور السابع يكلّف مالاً حقيقياً على كل طلب سحب. هذه هي الطريقة التي نُحافظ بها على التغطية نفسها بجزء يسير من التكلفة — اختبارات عقد بأقل من ثانية، وطبقة اختبار سريع مدتها 90 ثانية، وذاكرة تخزين مؤقتة للتضمينات مع تجميع دفعات المُحكِّم، ونافذة ظلّية مدتها أسبوعان قبل أن تبدأ أي بوابة بالحجب. المنشور الأخير في السلسلة."
 +++

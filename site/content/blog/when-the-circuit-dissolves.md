@@ -12,10 +12,10 @@ tags = ["LarQL", "Interpretability", "Quantization", "BitNet", "Bonsai", "Mechan
 [extra]
 math = true
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/divinci-hero-social-v3.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/divinci-hero-social-v3.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/vindex-hero-bg-veo.webm"
-hero_video_poster = "/images/vindex-hero-bg-veo-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/vindex-hero-bg-veo-poster.webp"
 hero_video_filter = "invert(1)"
 reading_time = 7
 summary = "I ran LarQL on two different natively-trained 1-bit models — Bonsai 8B (Qwen3 architecture) and Microsoft's BitNet b1.58-2B-4T. Both show the same dissolved structure: var@64 ≈ 0.10 (vs 0.85 for fp16), no four-stage circuit, near-Marchenko-Pastur singular value spectrum. They still answer questions correctly. That decoupling is the strangest result I've found this year."

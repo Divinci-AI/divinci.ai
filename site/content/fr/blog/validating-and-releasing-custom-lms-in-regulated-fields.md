@@ -10,9 +10,9 @@ tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
-hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
 summary = "La conformité dans les secteurs réglementés pour les modèles de langage personnalisés se sépare nettement selon un seul axe : poids ouverts vs API fermée. Pour les bases en poids ouverts, vous pouvez livrer une attestation de poids vIndex qui satisfait cryptographiquement l'effacement vérifiable de l'article 17 du RGPD. Pour les bases en API fermée, le même reçu couvre la chaîne de décision mais ne peut pas revendiquer la provenance des poids — et le régulateur reçoit cette distinction dans le reçu lui-même. Ce billet met en correspondance quatre cadres réglementaires (EU AI Act, RGPD, HIPAA, NIST AI RMF) avec les quatre étapes du pipeline que nous livrons, et montre le format réel du reçu."
 +++

@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Postmortems", "Evaluation Gat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/10-ci-cd-release-failures-in-custom-language-models-veo31.webm"
-hero_video_poster = "/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
 reading_time = 11
 summary = "私たちは Divinci の 4 段階パイプラインを通じて十分な数のカスタム LM リリースを出荷してきたため、かつて何度もぶつかっていた最もダメージの大きい 10 の故障モードのリストを手にしています。そのうち 3 つは、集計ゲートであれば出荷してしまうスライス単位のリグレッションです。さらに 2 つは、インフラ指標のカナリアであれば昇格させてしまうサイレントな品質低下です。残りは、どんなリリースパイプラインも捕捉すべき種類のミスです — 集計ゲートのパイプラインが実際に自前で捕捉するものはどれかを明言する価値があるため、ここに列挙します。"
 +++

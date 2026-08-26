@@ -10,9 +10,9 @@ tags = ["LLM Ops", "CI/CD", "Automation", "Rollback", "MTTR", "Release Managemen
 
 [extra]
 author = "مايك مورينغ"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/automated-llm-ci-cd-pipelines-with-instant-rollback-veo31.webm"
-hero_video_poster = "/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
 reading_time = 11
 summary = "بين بوابات الموافقة البشرية، إمّا أن يُشغّل خط أنابيب إصدار LLM نفسَه أو لا يفعل. هذا المقال هو الرفيق التشغيلي لمقال البنية المعمارية — يرسم طيف الأتمتة (أيّ القرارات تُطلَق آليًا، وأيّها يتطلّب إنسانًا، وأيّها نوقفه إيقافًا تامًا حتى يوقّع أحدهم على التجاوز)، ويُظهر كيف يبدو تمرين التراجع الفعلي، وينتهي برقم MTTR الذي يخرج في النهاية."
 +++

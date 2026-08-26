@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Canary", "Rollback", "Evaluat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
-hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
 summary = "従来の CI/CD パイプラインは、成果物が決定論的であることを前提としています。しかし、言語モデルはそうではありません。本記事では、Divinci AI で実際に運用しているパイプライン — 人間アンカー付きジャッジに対するスライス単位の Spearman ゲート、p95 だけでなく出力品質を監視するカナリア、約 12 秒のアトミックロールバック、そしてすべての判断に対するハッシュチェーン化されたリリースレシート(モデルがオープンウェイトの場合は vIndex ウェイトアテステーションを埋め込み)— を解説します。これら 4 つのうち 3 つは、2026 年時点でほかの LLM リリースツールではいずれも提供されていません。"
 +++

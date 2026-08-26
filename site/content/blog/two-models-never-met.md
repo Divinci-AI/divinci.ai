@@ -10,7 +10,7 @@ tags = ["LarQL", "Interpretability", "CKA", "Cross-Model", "Mechanistic Interpre
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_poster.webp"
 title_display = "The Two Models That Never Met.<br>Both Measured at the Same Depth."

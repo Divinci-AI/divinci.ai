@@ -3,7 +3,7 @@ title = "AutoRAG - Generación Aumentada por Recuperación Automatizada"
 description = "Encuentra automáticamente el pipeline RAG óptimo para tus datos con la solución integral AutoRAG de Divinci AI"
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "data-management"
 +++
 
@@ -390,7 +390,7 @@ feature_category = "data-management"
 
 <div class="autorag-video">
   <div class="autorag-video-frame">
-    <iframe src="https://www.youtube-nocookie.com/embed/_Fgxhij-Wkc" title="Divinci AutoRAG — encontrar y cerrar lagunas de conocimiento" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe src="https://www.youtube-nocookie.com/embed/_Fgxhij-Wkc" title="Divinci AutoRAG — encontrar y cerrar lagunas de conocimiento" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
   <p class="autorag-video-cap">Mira cómo AutoRAG encuentra y cierra las lagunas de una base de conocimiento — <a href="https://www.youtube.com/watch?v=_Fgxhij-Wkc" target="_blank" rel="noopener">verlo en YouTube</a>.</p>
 </div>

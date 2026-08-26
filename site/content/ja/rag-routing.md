@@ -3,7 +3,7 @@ title = "RAGルーティング — 1つのAPI、複数のアーキテクチャ"
 description = "DivinciのRAGルーティングは各クエリを正しく回答できる最安のバックエンドへ振り分けます。10種類の検索エンジンを1エンドポイントに統合し、質問ごとに学習型ルーティング。"
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "data-management"
 +++
 

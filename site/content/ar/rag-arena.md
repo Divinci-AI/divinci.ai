@@ -3,7 +3,7 @@ title = "RAG Arena والتوجيه الديناميكي"
 description = "قارن قواعد المعرفة جنباً إلى جنب ووجّه الأسئلة تلقائياً إلى أفضل RAG vector مع نظام Divinci AI الذكي"
 template = "feature.html"
 [extra]
-hero_poster = "images/rag-arena-hero.png"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/rag-arena-hero.webp"
 feature_category = "data-management"
 lang = "ar"
 +++
@@ -879,7 +879,7 @@ lang = "ar"
 
 <div class="arena-hero">
 <div class="arena-hero-bg">
-<img src="/cdn-cgi/image/width=1200,format=auto,quality=80/images/rag-arena-hero.png" srcset="/cdn-cgi/image/width=400,format=auto,quality=80/images/rag-arena-hero.png 400w, /cdn-cgi/image/width=600,format=auto,quality=80/images/rag-arena-hero.png 600w, /cdn-cgi/image/width=1200,format=auto,quality=80/images/rag-arena-hero.png 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="RAG Arena hero illustration" loading="eager" fetchpriority="high" decoding="async">
+<img src="/cdn-cgi/image/width=1200,format=auto,quality=80/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/rag-arena-hero.webp" srcset="/cdn-cgi/image/width=400,format=auto,quality=80/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/rag-arena-hero.webp 400w, /cdn-cgi/image/width=600,format=auto,quality=80/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/rag-arena-hero.webp 600w, /cdn-cgi/image/width=1200,format=auto,quality=80/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/rag-arena-hero.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="RAG Arena hero illustration" loading="eager" fetchpriority="high" decoding="async">
 <video autoplay muted loop playsinline data-hero-video>
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-arena-battle.webm" type="video/webm">
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/rag-arena-battle.mp4" type="video/mp4">

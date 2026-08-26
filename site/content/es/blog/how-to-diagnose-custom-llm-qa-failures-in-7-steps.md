@@ -10,9 +10,9 @@ tags = ["QA", "Diagnostics", "Postmortems", "LLM Ops", "Evaluation", "Debugging"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-diagnose-custom-llm-qa-failures-in-7-steps-veo31.webm"
-hero_video_poster = "/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
 reading_time = 11
 summary = "Cuando una alerta de QA se dispara en un LLM custom, el reflejo natural es culpar al modelo. En todos los rollouts que hemos ejecutado, el modelo es la respuesta correcta aproximadamente una vez de cada siete. Las otras seis veces, el bug está en el eval, en el juez, en el SHA del prompt, en el pipeline de preprocessing, en la versión del dataset o en el índice de retrieval. Este post es el árbol diagnóstico que de verdad recorremos — en orden, con la llamada de API exacta que responde a cada rama."
 +++

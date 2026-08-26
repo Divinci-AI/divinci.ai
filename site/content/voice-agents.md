@@ -3,7 +3,7 @@ title = "AI Voice Agents — Your Grounded Assistant, On a Real Phone Number"
 description = "Give your Divinci release a phone number. Callers get the same RAG-grounded, guardrailed, fine-tuned assistant you ship on the web — streaming answers in seconds over an ordinary phone call. No app, no browser, no sign-up."
 template = "feature.html"
 [extra]
-hero_poster = "images/voice-agents-hero.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/voice-agents-hero.webp"
 feature_category = "ai-config"
 +++
 
@@ -189,7 +189,7 @@ feature_category = "ai-config"
 
 <div class="feature-hero va-hero-deferred" id="va-hero">
   <div class="feature-hero-bg">
-    <img src="/images/voice-agents-hero.webp" width="1408" height="768" alt="Brass telephone handset with a glowing neural network — Divinci AI Voice Agents" loading="eager" fetchpriority="high" decoding="async">
+    <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/voice-agents-hero.webp" width="1408" height="768" alt="Brass telephone handset with a glowing neural network — Divinci AI Voice Agents" loading="eager" fetchpriority="high" decoding="async">
     <video autoplay muted loop playsinline webkit-playsinline preload="none" data-hero-video aria-label="Animated brass telephone handset with glowing neural network">
       <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/voice-agents-hero.webm" type="video/webm">
     </video>

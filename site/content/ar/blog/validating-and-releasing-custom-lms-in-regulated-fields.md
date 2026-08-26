@@ -10,9 +10,9 @@ tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
-hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
 summary = "ينقسم امتثال النماذج اللغوية المخصصة في الصناعات الخاضعة للتنظيم انقساماً واضحاً على محور واحد: الأوزان المفتوحة مقابل واجهات الـ API المغلقة. بالنسبة للنماذج ذات الأوزان المفتوحة، يمكنك إصدار شهادة وزن vIndex تستوفي شرط المحو القابل للتحقق المنصوص عليه في المادة 17 من GDPR تشفيرياً. أما بالنسبة للنماذج المغلقة عبر API، فإن نفس الإيصال يغطي سلسلة القرار لكنه لا يستطيع المطالبة بإثبات مصدر الأوزان — والجهة المنظمة تحصل على هذا التمييز في الإيصال نفسه. تُسقط هذه المقالة أربعة أطر تنظيمية (قانون الذكاء الاصطناعي للاتحاد الأوروبي، GDPR، HIPAA، NIST AI RMF) على المراحل الأربع لخط الإطلاق الذي نُصدِره، وتعرض صيغة الإيصال الفعلية."
 +++

@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Canary", "Rollback", "Evaluat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
-hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
 summary = "Традиционный CI/CD-конвейер исходит из того, что артефакт детерминирован. Языковая модель — нет. В этой статье разобран конвейер, который мы используем в Divinci AI: гейты на основе Spearman с учётом срезов и калиброванным по человеку судьёй, canary, отслеживающий качество ответов (а не только p95), атомарный откат примерно за двенадцать секунд и хеш-связанная расписка о релизе по каждому решению (со встроенной vIndex-аттестацией весов, когда модель с открытыми весами). Трёх из этих компонентов нет ни у одного другого инструмента релизов LLM в 2026 году."
 +++

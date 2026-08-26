@@ -10,9 +10,9 @@ tags = ["LLM Ops", "QA", "Release Management", "Evaluation", "Compliance", "Audi
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/12-qa-and-release-management-capabilities-for-llms-veo31.webm"
-hero_video_poster = "/images/12-qa-and-release-management-capabilities-for-llms-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/12-qa-and-release-management-capabilities-for-llms-hero-poster.webp"
 reading_time = 11
 summary = "Nous avons passé en revue douze plateformes de release LLM avant de construire la nôtre. Le marché se divise en trois camps qui ne se rejoignent pas tout à fait — outils d'eval-CI, outils de canary de service, et outils d'observabilité — et la couture manquante entre eux est exactement celle dont une release client a besoin. Ce billet est la checklist de capacités issue de cette revue : 12 tests spécifiques que vous pouvez appliquer à n'importe quelle plateforme, y compris la nôtre."
 +++

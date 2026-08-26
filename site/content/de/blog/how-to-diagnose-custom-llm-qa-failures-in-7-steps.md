@@ -10,9 +10,9 @@ tags = ["QA", "Diagnostics", "Postmortems", "LLM Ops", "Evaluation", "Debugging"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-diagnose-custom-llm-qa-failures-in-7-steps-veo31.webm"
-hero_video_poster = "/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
 reading_time = 11
 summary = "Wenn ein QA-Alarm bei einem Custom-LLM ausgelöst wird, ist der natürliche Reflex, das Modell verantwortlich zu machen. Bei den Rollouts, die wir durchgeführt haben, ist das Modell etwa in einem von sieben Fällen die richtige Antwort. In den anderen sechs Fällen steckt der Fehler in der Eval, in der Judge-Instanz, im Prompt-SHA, in der Preprocessing-Pipeline, in der Datensatzversion oder im Retrieval-Index. Dieser Beitrag ist der Diagnose-Baum, den wir tatsächlich abarbeiten — in dieser Reihenfolge, mit dem exakten API-Aufruf, der jeden Zweig beantwortet."
 +++

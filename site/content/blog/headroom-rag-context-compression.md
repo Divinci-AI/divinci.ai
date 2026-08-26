@@ -11,8 +11,8 @@ tags = ["Headroom", "RAG", "Context Compression", "EXIT", "LLM-as-Judge", "Cloud
 [extra]
 math = false
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/headroom-rag-context-compression-hero.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/headroom-rag-context-compression-hero.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/headroom-rag-context-compression-veo31.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/headroom-rag-context-compression-hero-poster.webp"
 title_display = "We Raced Headroom Against<br>Our EXIT RAG Compressor."

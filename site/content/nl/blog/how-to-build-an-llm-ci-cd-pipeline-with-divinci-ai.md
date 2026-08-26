@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Canary", "Rollback", "Evaluat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
-hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
 summary = "Een traditionele CI/CD-pipeline gaat ervan uit dat het artefact deterministisch is. Een taalmodel is dat niet. Dit artikel beschrijft de pipeline die we bij Divinci AI in productie hebben — slice-bewuste Spearman-gates tegen een human-anchored judge, een canary die outputkwaliteit bewaakt (niet alleen p95), atomische rollback in ongeveer twaalf seconden en een hash-chained release-bewijs voor elke beslissing (met een vIndex-weight-attestation ingebed wanneer het model open-weights is). Drie daarvan zijn dingen die geen enkele andere LLM-releasetool in 2026 levert."
 +++

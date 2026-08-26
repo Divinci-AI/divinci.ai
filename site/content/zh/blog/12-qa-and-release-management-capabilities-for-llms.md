@@ -10,9 +10,9 @@ tags = ["LLM Ops", "QA", "Release Management", "Evaluation", "Compliance", "Audi
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/12-qa-and-release-management-capabilities-for-llms-veo31.webm"
-hero_video_poster = "/images/12-qa-and-release-management-capabilities-for-llms-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/12-qa-and-release-management-capabilities-for-llms-hero-poster.webp"
 reading_time = 11
 summary = "在我们自己动手构建之前,我们调研了十二个 LLM 发布平台。市场分裂成三个彼此并不相接的阵营——评估-CI 工具、服务金丝雀工具和可观测性工具——而它们之间缺失的那条接缝,恰恰是一次客户发布所真正需要的。本文是那次调研所沉淀下来的能力清单:12 项可应用于任何平台(包括我们自己)的具体测试。"
 +++

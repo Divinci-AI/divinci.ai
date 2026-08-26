@@ -11,8 +11,8 @@ tags = ["RAG Systems", "AI Architecture", "Vector Embeddings", "LLMs", "Document
 
 [extra]
 author = "Michael Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/autorag-still.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-still.webp"
 reading_time = 8
 summary = "Les systèmes de génération augmentée par récupération (RAG) ont révolutionné la façon dont les modèles d'IA accèdent aux grands ensembles de données et raisonnent sur eux. Dans cet article, nous explorons la prochaine génération de technologie RAG et comment elle permet des applications IA plus sophistiquées qui vont au-delà de la simple récupération de documents."
 +++
@@ -288,7 +288,7 @@ La recherche par similarité vectorielle, bien que puissante, peut manquer des r
 
 La plupart des implémentations RAG utilisent des modèles de récupération fixes qui ne s'adaptent pas à la complexité de la requête ou au contexte. Une simple question factuelle nécessite une logique de récupération différente d'une demande analytique complexe, pourtant la plupart des systèmes les traitent de manière identique.
 
-![[Architecture RAG avancée]](/images/autorag-still.png)
+![[Architecture RAG avancée]](https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-still.webp)
 *Les systèmes RAG modernes emploient des pipelines de récupération et de raisonnement multi-étapes sophistiqués*
 
 ## L'évolution de l'architecture RAG

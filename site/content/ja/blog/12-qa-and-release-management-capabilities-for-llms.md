@@ -10,9 +10,9 @@ tags = ["LLM Ops", "QA", "Release Management", "Evaluation", "Compliance", "Audi
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/12-qa-and-release-management-capabilities-for-llms-veo31.webm"
-hero_video_poster = "/images/12-qa-and-release-management-capabilities-for-llms-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/12-qa-and-release-management-capabilities-for-llms-hero-poster.webp"
 reading_time = 11
 summary = "私たちは自社のリリースパイプラインを構築する前に、12のLLMリリースプラットフォームを調査しました。市場は3つの陣営に分かれており、それぞれが完全には噛み合っていません ― 評価CIツール、サービングカナリアツール、可観測性ツール ― そしてその間にある欠けたシームこそが、まさに顧客向けリリースが必要としているものです。本記事は、その調査から生まれた機能チェックリストです。当社を含むあらゆるプラットフォームに適用できる、12の具体的なテストを紹介します。"
 +++

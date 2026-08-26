@@ -4,7 +4,7 @@ description = "通过 Divinci AI 的综合 AutoRAG 解决方案,自动找到适�
 template = "feature.html"
 [extra]
 canonical_to_english = true
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "data-management"
 +++
 
@@ -346,7 +346,7 @@ feature_category = "data-management"
 <!-- Hero Section -->
 <div class="feature-hero">
 <div class="feature-hero-bg">
-<img src="/images/hero-autorag.webp" srcset="/cdn-cgi/image/width=400,format=auto,quality=82/images/hero-autorag.webp 400w, /cdn-cgi/image/width=600,format=auto,quality=82/images/hero-autorag.webp 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/images/hero-autorag.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="AutoRAG hero illustration" loading="eager" fetchpriority="high" decoding="async">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp" srcset="/cdn-cgi/image/width=400,format=auto,quality=82/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp 400w, /cdn-cgi/image/width=600,format=auto,quality=82/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="AutoRAG hero illustration" loading="eager" fetchpriority="high" decoding="async">
 <video autoplay muted loop playsinline data-hero-video>
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-autorag-video.webm" type="video/webm">
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-autorag-video.mp4" type="video/mp4">
@@ -383,7 +383,7 @@ feature_category = "data-management"
 
 <div class="autorag-video">
   <div class="autorag-video-frame">
-    <iframe src="https://www.youtube-nocookie.com/embed/_Fgxhij-Wkc" title="Divinci AutoRAG — finding and closing knowledge gaps" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe src="https://www.youtube-nocookie.com/embed/_Fgxhij-Wkc" title="Divinci AutoRAG — finding and closing knowledge gaps" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
   <p class="autorag-video-cap">Watch AutoRAG find and close the gaps in a knowledge base — <a href="https://www.youtube.com/watch?v=_Fgxhij-Wkc" target="_blank" rel="noopener">see it on YouTube</a>.</p>
 </div>

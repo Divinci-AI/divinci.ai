@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Postmortems", "Evaluation Gat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/10-ci-cd-release-failures-in-custom-language-models-veo31.webm"
-hero_video_poster = "/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
 reading_time = 11
 summary = "我们通过 Divinci 的四阶段流水线发布过足够多次定制 LM,足以列出过去反复踩到的十种最具破坏性的故障模式。其中三种是切片感知的回归 —— 用聚合分门禁会被直接放行。还有两种是基础设施指标的金丝雀会顺手放过的静默质量下降。其余几种属于任何发布流水线本就应当抓到的错误 —— 我们把它们也列出来,是因为值得明说:用聚合分门禁的流水线在哪些情况下其实是能自行拦下的。"
 +++

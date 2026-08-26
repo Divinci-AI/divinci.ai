@@ -10,9 +10,9 @@ tags = ["QA", "Diagnostics", "Postmortems", "LLM Ops", "Evaluation", "Debugging"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-diagnose-custom-llm-qa-failures-in-7-steps-veo31.webm"
-hero_video_poster = "/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
 reading_time = 11
 summary = "커스텀 LLM에서 QA 경보가 울리면, 자연스러운 반사 작용은 모델을 탓하는 것입니다. 우리가 진행한 롤아웃 전반에서, 모델이 실제 정답인 경우는 대략 일곱 번에 한 번 정도입니다. 나머지 여섯 번은 버그가 평가에, 저지에, 프롬프트 SHA에, 전처리 파이프라인에, 데이터셋 버전에, 또는 검색 인덱스에 있습니다. 이 글은 우리가 실제로 따라가는 진단 트리입니다 — 순서대로, 각 분기를 답하는 정확한 API 호출과 함께 정리했습니다."
 +++

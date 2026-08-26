@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Postmortems", "Evaluation Gat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/10-ci-cd-release-failures-in-custom-language-models-veo31.webm"
-hero_video_poster = "/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
 reading_time = 11
 summary = "Abbiamo spedito abbastanza rilasci di LM personalizzati attraverso la pipeline a quattro stadi di Divinci da avere una lista delle dieci modalità di fallimento più dannose che continuavamo a incontrare. Tre di queste sono regressioni per fetta che un gate aggregato avrebbe spedito. Altre due sono cali silenziosi di qualità che un canary su metrica infrastrutturale avrebbe promosso. Il resto è il tipo di errore che ogni pipeline di rilascio dovrebbe catturare — li elenchiamo perché vale la pena dire ad alta voce quali, di fatto, una pipeline con gate aggregato cattura da sola."
 +++

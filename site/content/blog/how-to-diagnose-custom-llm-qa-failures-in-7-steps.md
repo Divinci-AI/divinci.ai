@@ -11,9 +11,9 @@ tags = ["QA", "Diagnostics", "Postmortems", "LLM Ops", "Evaluation", "Debugging"
 math = true
 pinned = true
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-diagnose-custom-llm-qa-failures-in-7-steps-veo31.webm"
-hero_video_poster = "/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
 reading_time = 11
 summary = "When a QA alert fires on a custom LLM, the natural reflex is to blame the model. Across the rollouts we've run, the model is the right answer roughly one time in seven. The other six times, the bug is in the eval, the judge, the prompt SHA, the preprocessing pipeline, the dataset version, or the retrieval index. This post is the diagnostic tree we actually walk — in order, with the exact API call that answers each branch."
 +++

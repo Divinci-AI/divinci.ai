@@ -10,9 +10,9 @@ tags = ["LLM Ops", "CI/CD", "Automation", "Rollback", "MTTR", "Release Managemen
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/automated-llm-ci-cd-pipelines-with-instant-rollback-veo31.webm"
-hero_video_poster = "/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
 reading_time = 11
 summary = "사람의 승인 게이트 사이에서 LLM 릴리스 파이프라인은 스스로 작동하거나, 그렇지 못합니다. 본 글은 아키텍처 글의 운영 측 동반자로, 자동화 스펙트럼(어떤 결정이 자동으로 실행되고, 어떤 결정이 사람을 요구하며, 누군가 명시적으로 오버라이드에 서명할 때까지 어떤 결정을 강제로 중단시키는지)을 그려내고, 실제 롤백 드릴이 어떻게 진행되는지 보여주며, 그 결과로 나오는 MTTR 수치로 마무리합니다."
 +++

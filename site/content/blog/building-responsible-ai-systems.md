@@ -10,8 +10,8 @@ tags = ["AI Ethics", "Responsible AI", "AI Governance", "Fairness", "Explainabil
 
 [extra]
 author = "Paul-Marie Carfantan"
-author_avatar = "images/paul-marie-carfantan.jpeg"
-featured_image = "images/AI-Standards-Hub-Logo_04-1.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/paul-marie-carfantan.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/AI-Standards-Hub-Logo_04-1.webp"
 reading_time = 12
 summary = "As AI systems become more prevalent in critical decision-making processes, building responsible AI is no longer optional—it's essential. This comprehensive guide provides practical frameworks and implementation strategies for ensuring your AI systems are ethical, fair, and accountable."
 hidden = true
@@ -83,8 +83,8 @@ Humans should maintain meaningful control over AI systems:
 ## Implementing Responsible AI Across the Development Lifecycle
 
 <picture>
-  <source srcset="/images/AI-Standards-Hub-Logo_04-1.webp" type="image/webp">
-  <img src="/images/AI-Standards-Hub-Logo_04-1.jpg" alt="Responsible AI Framework" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
+  <source srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/AI-Standards-Hub-Logo_04-1.webp" type="image/webp">
+  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/AI-Standards-Hub-Logo_04-1.webp" alt="Responsible AI Framework" style="width: 100%; max-width: 900px; margin: 2rem auto; display: block;" loading="lazy">
 </picture>
 *A comprehensive framework for implementing responsible AI practices*
 

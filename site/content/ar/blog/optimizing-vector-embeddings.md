@@ -10,8 +10,8 @@ tags = ["Vector Embeddings", "Semantic Search", "RAG Systems", "Search Optimizat
 
 [extra]
 author = "Samuel Tobia"
-author_avatar = "images/sam-tobia.jpg"
-featured_image = "images/autorag-vector-embedding-adjusted.svg"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sam-tobia.webp"
+featured_image = "/images/autorag-vector-embedding-adjusted.svg"
 reading_time = 18
 summary = "التضمينات المتجهة هي أساس أنظمة البحث بالذكاء الاصطناعي الحديثة، لكن فعاليتها تعتمد بشكل كبير على استراتيجيات التحسين. يستكشف هذا الدليل الشامل التقنيات المتقدمة لتحسين جودة التضمين وملاءمة البحث والأداء العام للنظام."
 +++

@@ -11,8 +11,8 @@ tags = ["Photonic Computing", "Ternary Logic", "Green Computing", "Quantum Compu
 
 [extra]
 author = "Divinci AI Research Team"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/u4943574663_3D_visualization_of_colorful_vector_points_formin_daf9af57-cead-4692-9787-1bdb244fe254_0.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/u4943574663_3D_visualization_of_colorful_vector_points_formin_daf9af57-cead-4692-9787-1bdb244fe254_0.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/light-logic-background.webm"
 reading_time = 15
 summary = "Et si nous pouvions construire des ordinateurs qui fonctionnent avec la lumière, pensent en trois au lieu de deux, exploitent le hasard quantique et tirent leur énergie de la gravité elle-même ? Cette exploration de l'informatique 'Light Logic' révèle comment la combinaison de circuits photoniques, de mathématiques ternaires et d'énergie durable pourrait démocratiser les ressources de calcul dans le cadre d'un revenu de base universel."

@@ -10,9 +10,9 @@ tags = ["QA", "Diagnostics", "Postmortems", "LLM Ops", "Evaluation", "Debugging"
 
 [extra]
 author = "माइक मूरिंग"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-diagnose-custom-llm-qa-failures-in-7-steps-veo31.webm"
-hero_video_poster = "/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
 reading_time = 11
 summary = "जब एक कस्टम LLM पर QA अलर्ट सक्रिय होता है, तो स्वाभाविक प्रतिक्रिया मॉडल को दोष देना है। हमने जो rollouts चलाए हैं, उनमें मॉडल लगभग सात में से एक बार सही उत्तर होता है। अन्य छह बार, बग eval में, judge में, prompt SHA में, preprocessing pipeline में, dataset version में, या retrieval index में होता है। यह पोस्ट वह डायग्नोस्टिक ट्री है जिसे हम वास्तव में चलाते हैं — क्रम में, सटीक API कॉल के साथ जो प्रत्येक शाखा का उत्तर देता है।"
 +++

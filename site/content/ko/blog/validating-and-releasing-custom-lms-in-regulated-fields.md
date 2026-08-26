@@ -10,9 +10,9 @@ tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
-hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
 summary = "규제 산업의 맞춤형 언어 모델 컴플라이언스는 하나의 축을 따라 깔끔하게 갈라집니다: 오픈 웨이트 대 폐쇄 API입니다. 오픈 웨이트 백엔드의 경우, GDPR 제17조의 검증 가능한 삭제를 암호학적으로 충족하는 vIndex 가중치 증명을 제공할 수 있습니다. 폐쇄 API 백엔드의 경우, 동일한 영수증이 의사결정 체인을 다루지만 가중치 출처는 주장할 수 없으며, 규제 당국은 그 구분을 영수증 자체에서 확인하게 됩니다. 본 글은 네 가지 규제 프레임워크(EU AI Act, GDPR, HIPAA, NIST AI RMF)를 우리가 제공하는 네 단계 파이프라인에 매핑하고, 실제 영수증 포맷을 보여줍니다."
 +++

@@ -10,7 +10,7 @@ tags = ["Caso de Estudio", "FinTech", "Soporte al Cliente", "Implementación RAG
 
 [extra]
 author = "Sierra Hooshiari"
-author_avatar = "images/sierra-hooshiari.jpeg"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/sierra-hooshiari.webp"
 featured_image = "/images/qa-pipeline-diagram.svg"
 reading_time = 10
 summary = "FastFinance, una plataforma bancaria digital en crecimiento, transformó sus operaciones de soporte al cliente usando el sistema RAG personalizado de Divinci AI, logrando mejoras dramáticas en tiempos de respuesta y satisfacción del cliente mientras mantenía el cumplimiento regulatorio."

@@ -12,8 +12,8 @@ tags = ["LarQL", "Interpretability", "Transformers", "Machine Learning", "Mechan
 [extra]
 math = true
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/divinci-hero-social-v3.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/divinci-hero-social-v3.png"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_v2.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_v2_poster.webp"
 reading_time = 7

@@ -10,9 +10,9 @@ tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail"
 
 [extra]
 author = "Майк Муринг"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
-hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
 summary = "Комплаенс в регулируемых отраслях для кастомных языковых моделей чётко разделяется по одной оси: open-weights против closed-API. Для open-weights-бэкендов вы можете выпустить vIndex weight-attestation, который криптографически удовлетворяет требование GDPR Статьи 17 о верифицируемом удалении. Для closed-API-бэкендов та же квитанция покрывает цепочку решений, но не может претендовать на provenance весов — и регулятор получает это разграничение прямо в квитанции. Этот пост сопоставляет четыре регуляторных фреймворка (EU AI Act, GDPR, HIPAA, NIST AI RMF) с четырьмя стадиями пайплайна, которые мы выпускаем, и показывает фактический формат квитанции."
 +++

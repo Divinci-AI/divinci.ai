@@ -11,8 +11,8 @@ tags = ["RAG", "Product Recommendations", "E-commerce", "BM25", "Prominence", "S
 [extra]
 math = true
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/prominence-is-not-relevance-hero.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/prominence-is-not-relevance-hero.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/prominence-is-not-relevance-veo31.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/prominence-is-not-relevance-hero-poster.webp"
 reading_time = 9
@@ -160,6 +160,6 @@ The bug that started all of this looked like a recommendation problem. It was re
 
 The whole feature really is one score and one ordering rule. The rule was the hard part.
 
-<!-- DRAFT — image placeholders: hero at static/images/prominence-is-not-relevance-hero.png.
+<!-- DRAFT — image placeholders: hero at statichttps://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/prominence-is-not-relevance-hero.webp.
      Candidate diagram: the three layers (decoration / ranking / recommendation) as a
      pipeline, or the relevance×prominence quadrant with the diabetes-question products plotted. -->

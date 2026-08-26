@@ -12,22 +12,22 @@ tags = ["WWW-RAG", "Web Crawling", "RAG", "Rust", "Embeddings", "Turso", "libSQL
 [extra]
 math = false
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 title_display = "WWW-RAG: Making the Open Web Chattable,<br>From One MacBook to Cloudflare."
 reading_time = 15
 summary = "WWW-RAG is our public directory of real websites turned into individually chattable AI assistants — philosophy archives, space agencies, developer docs, law libraries, e-commerce stores. It began as a from-scratch Rust daemon crawling and embedding on a single MacBook, at an embedding cost of roughly zero. That machine reached 451 sites in two months. On 18 August 2026 the whole crawl→embed→publish path moved onto Cloudflare — Workers, Workflows, Browser Rendering, Workers AI — and added 3,505 more in the four days after. This post is the tour and the migration: what carried over unchanged, what broke on the way, and why the same embedding model on both sides meant not a single vector had to be recomputed."
-featured_image = "images/www-rag-directory-hero.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/www-rag-directory-hero.webp"
 # The /www-rag/ hero, reused: the webp is the poster and the LCP element,
 # the webm fades in over it. hero_background (not hero_video_poster) is what
 # selects the raw, no-cream-wash treatment — see blog-post.html.
-hero_background = "images/www-rag-directory-hero-poster.webp"
+hero_background = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/www-rag-directory-hero-poster.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/www-rag-directory-veo31.webm"
 # The list thumbnail. Without it the card is a <video preload="none"> with
 # no poster — i.e. BLANK, which is what adding hero_video did to it. The
 # typeset OG card was the other candidate and reads worse here: the grid
 # already prints the title under the image, so it appeared twice, at a size
 # too small to read. Every other card in the grid is plain art.
-card_image = "images/www-rag-directory-hero-poster.webp"
+card_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/www-rag-directory-hero-poster.webp"
 +++
 
 ---
@@ -39,7 +39,7 @@ Point your browser at [the WWW-RAG directory](/www-rag/) and you'll find a shelf
 Measured on **21 August 2026**: **3,958 sites · 967,346 pages · 22,003,475 searchable chunks**, about 7.7 GB of extracted text. Those numbers were out of date by the time you read this sentence, which is the point of the rest of the post.
 
 <figure>
-<img src="/images/marketing/www-rag/www-rag-universe-2026-08.png" alt="The RAG Universe: a force-directed map of 3,958 crawled websites, sites positioned near the sites they resemble, with hyperlink and semantic edges drawn between them." width="1600" height="595" loading="eager">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/marketing/www-rag/www-rag-universe-2026-08.webp" alt="The RAG Universe: a force-directed map of 3,958 crawled websites, sites positioned near the sites they resemble, with hyperlink and semantic edges drawn between them." width="1600" height="595" loading="eager">
 <figcaption>Every site in the corpus, positioned by what it's about. Sites sit near the sites they resemble; the outer ring is the ones whose embeddings haven't been computed yet — their position means nothing, and saying so is cheaper than pretending otherwise.</figcaption>
 </figure>
 
@@ -54,7 +54,7 @@ It could do that because of one fact the entire project leaned on: the embedding
 That rearranged the economics of the whole thing. One machine could crawl a website and embed every chunk *locally, for free*, and the resulting vectors landed in exactly the vector space our cloud platform already queries. No re-embedding step. No paid embedding API in the ingestion path at all. A 90-site corpus cost electricity.
 
 <figure>
-<img src="/images/marketing/www-rag/www-rag-blog-grid.png" alt="The WWW-RAG directory in July 2026 — a grid of site cards including the Internet Encyclopedia of Philosophy, NASA, the Linux man pages, Project Gutenberg and the FAA." width="1600" height="793" loading="lazy">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/marketing/www-rag/www-rag-blog-grid.webp" alt="The WWW-RAG directory in July 2026 — a grid of site cards including the Internet Encyclopedia of Philosophy, NASA, the Linux man pages, Project Gutenberg and the FAA." width="1600" height="793" loading="lazy">
 <figcaption>The directory in late July, when this post was first written: 92 sites, hand-seeded, all of them published by a daemon on one laptop.</figcaption>
 </figure>
 

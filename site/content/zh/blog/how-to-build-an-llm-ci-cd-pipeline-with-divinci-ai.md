@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Canary", "Rollback", "Evaluat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
-hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
 summary = "传统 CI/CD 流水线假设构建产物是确定的。语言模型不是。本文走过我们在 Divinci AI 实际使用的流水线 —— 针对人工锚定评分员的切片感知 Spearman 门禁、监控输出质量(而不仅是 p95)的金丝雀、约十二秒的原子化回滚,以及每一项决策都附带哈希链式的发布凭证(当模型为开放权重时,凭证内嵌 vIndex 权重证明)。其中三项在 2026 年没有任何其他 LLM 发布工具具备。"
 +++

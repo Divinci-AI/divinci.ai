@@ -11,8 +11,8 @@ tags = ["RAG Systems", "AI Architecture", "Vector Embeddings", "LLMs", "Document
 
 [extra]
 author = "Michael Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/autorag-still.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-still.webp"
 reading_time = 8
 summary = "أحدثت أنظمة التوليد المعزز بالاسترجاع (RAG) ثورة في كيفية وصول نماذج الذكاء الاصطناعي إلى مجموعات البيانات الكبيرة والاستدلال عليها. في هذا المقال، نستكشف الجيل القادم من تقنية RAG وكيف تمكّن تطبيقات ذكاء اصطناعي أكثر تطورًا تتجاوز استرجاع المستندات البسيط."
 +++
@@ -288,7 +288,7 @@ curl -X POST https://api.divinci.app/v1/query \
 
 تستخدم معظم تطبيقات RAG أنماط استرجاع ثابتة لا تتكيف مع تعقيد الاستعلام أو السياق. يتطلب سؤال واقعي بسيط منطق استرجاع مختلف عن طلب تحليلي معقد، ومع ذلك تعاملهم معظم الأنظمة بشكل متطابق.
 
-![[هندسة RAG المتقدمة]](/images/autorag-still.png)
+![[هندسة RAG المتقدمة]](https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/autorag-still.webp)
 *تستخدم أنظمة RAG الحديثة خطوط أنابيب استرجاع واستدلال متطورة متعددة المراحل*
 
 ## تطور هندسة RAG

@@ -3,7 +3,7 @@ title = "AutoRAG - Génération Augmentée par Récupération Automatisée"
 description = "Trouvez automatiquement le pipeline RAG optimal pour vos données avec la solution AutoRAG complète de Divinci AI"
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "data-management"
 lang = "fr"
 +++
@@ -276,7 +276,7 @@ lang = "fr"
 
 <div class="autorag-video">
   <div class="autorag-video-frame">
-    <iframe src="https://www.youtube-nocookie.com/embed/_Fgxhij-Wkc" title="Divinci AutoRAG — repérer et combler les lacunes de connaissances" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe src="https://www.youtube-nocookie.com/embed/_Fgxhij-Wkc" title="Divinci AutoRAG — repérer et combler les lacunes de connaissances" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
   <p class="autorag-video-cap">Découvrez comment AutoRAG repère et comble les lacunes d'une base de connaissances — <a href="https://www.youtube.com/watch?v=_Fgxhij-Wkc" target="_blank" rel="noopener">voir sur YouTube</a>.</p>
 </div>

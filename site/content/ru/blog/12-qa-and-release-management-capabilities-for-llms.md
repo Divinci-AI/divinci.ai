@@ -10,9 +10,9 @@ tags = ["LLM Ops", "QA", "Release Management", "Evaluation", "Compliance", "Audi
 
 [extra]
 author = "Майк Муринг"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/12-qa-and-release-management-capabilities-for-llms-veo31.webm"
-hero_video_poster = "/images/12-qa-and-release-management-capabilities-for-llms-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/12-qa-and-release-management-capabilities-for-llms-hero-poster.webp"
 reading_time = 11
 summary = "Прежде чем строить собственный конвейер релизов, мы изучили двенадцать платформ для релизов LLM. Рынок делится на три лагеря, которые не вполне пересекаются — инструменты eval-CI, инструменты канареечного развёртывания и инструменты наблюдаемости, — и недостающий шов между ними — это именно то, что нужно при релизе у клиента. Этот пост — контрольный список возможностей, получившийся по итогам того обзора: 12 конкретных тестов, которые можно применить к любой платформе, включая нашу."
 +++

@@ -10,9 +10,9 @@ tags = ["QA", "Diagnostics", "Postmortems", "LLM Ops", "Evaluation", "Debugging"
 
 [extra]
 author = "Майк Муринг"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-diagnose-custom-llm-qa-failures-in-7-steps-veo31.webm"
-hero_video_poster = "/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
 reading_time = 11
 summary = "Когда срабатывает тревога QA на кастомной LLM, естественная реакция — обвинить модель. По нашему опыту развёртываний, модель оказывается правильным ответом примерно в одном случае из семи. В остальных шести случаях ошибка кроется в оценке, судье, SHA промпта, конвейере препроцессинга, версии датасета или индексе ретривера. Этот пост — диагностическое дерево, по которому мы реально ходим, по порядку, с точным API-запросом, который отвечает на каждую ветку."
 +++

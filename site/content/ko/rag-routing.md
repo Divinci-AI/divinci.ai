@@ -3,7 +3,7 @@ title = "RAG 라우팅 — 하나의 API, 여러 아키텍처"
 description = "Divinci의 RAG 라우팅은 모든 쿼리를 정확히 답할 수 있는 가장 저렴한 백엔드로 보냅니다. 단일 엔드포인트 뒤에 10개 검색 엔진, 질문별 학습형 라우팅."
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-autorag.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-autorag.webp"
 feature_category = "data-management"
 +++
 

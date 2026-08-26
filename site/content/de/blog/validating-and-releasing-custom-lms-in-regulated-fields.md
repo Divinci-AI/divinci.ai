@@ -10,9 +10,9 @@ tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
-hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
 summary = "Compliance in regulierten Branchen für maßgeschneiderte Sprachmodelle teilt sich sauber entlang einer Achse: Open-Weights gegen Closed-API. Für Open-Weights-Backings können Sie eine vIndex-Gewichtsattestierung ausliefern, die die nachprüfbare Löschung gemäß DSGVO Artikel 17 kryptographisch erfüllt. Für Closed-API-Backings deckt derselbe Beleg die Entscheidungskette ab, kann aber keine Gewichts-Provenienz beanspruchen — und der Prüfer erhält genau diese Unterscheidung im Beleg selbst. Dieser Beitrag bildet vier Regulierungsrahmen (EU AI Act, DSGVO, HIPAA, NIST AI RMF) auf die vier Pipeline-Stufen ab, die wir ausliefern, und zeigt das tatsächliche Beleg-Format."
 +++

@@ -10,10 +10,10 @@ tags = ["CI/CD", "LLM Ops", "Testing", "Evaluation", "Release Management", "Engi
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ci-testing-for-custom-language-models-in-2026-veo31.webm"
-hero_video_poster = "/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
-featured_image = "images/ci-testing-for-custom-language-models-in-2026-hero.png"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero.webp"
 reading_time = 13
 summary = "7편의 회귀 스위트는 모든 PR에서 실행하기에 실제로 비용이 듭니다. 동일한 커버리지를 훨씬 더 적은 비용으로 유지하는 방법을 다룹니다 — 1초 미만의 계약 테스트, 90초짜리 스모크 계층, 임베딩 캐시 + 저지 배치 처리, 그리고 어떤 게이트든 차단을 시작하기 전에 두는 2주 섀도우 윈도우. 시리즈의 마지막 글입니다."
 +++

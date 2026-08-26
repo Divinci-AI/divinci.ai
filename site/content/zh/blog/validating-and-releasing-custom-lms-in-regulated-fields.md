@@ -10,9 +10,9 @@ tags = ["Compliance", "EU AI Act", "GDPR", "HIPAA", "NIST AI RMF", "Audit Trail"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/validating-and-releasing-custom-lms-in-regulated-fields-veo31.webm"
-hero_video_poster = "/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/validating-and-releasing-custom-lms-in-regulated-fields-hero-poster.webp"
 reading_time = 12
 summary = "受监管行业对自定义语言模型的合规性,沿着一条清晰的分界线分裂:开放权重 vs 封闭 API。对开放权重底座,你可以交付一份 vIndex 权重证明,以加密方式满足 GDPR 第 17 条的可验证删除要求。对封闭 API 底座,同一份回执覆盖了决策链,但无法主张权重来源 —— 而监管机构会在回执本身看到这个区别。本文将四个监管框架(欧盟 AI 法案、GDPR、HIPAA、NIST AI RMF)映射到我们交付的四个流水线阶段,并展示真实的回执格式。"
 +++

@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Canary", "Rollback", "Evaluat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-veo31.webm"
-hero_video_poster = "/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-build-an-llm-ci-cd-pipeline-with-divinci-ai-hero-poster.webp"
 reading_time = 10
 summary = "एक पारंपरिक CI/CD पाइपलाइन यह मान कर चलती है कि आर्टिफ़ैक्ट डिटरमिनिस्टिक है। एक लैंग्वेज मॉडल नहीं है। यह पोस्ट उस पाइपलाइन के बारे में है जो हम Divinci AI में शिप करते हैं — एक मानव-एंकर्ड जज के विरुद्ध स्लाइस-अवेयर Spearman गेट, एक कैनरी जो आउटपुट गुणवत्ता (केवल p95 नहीं) पर नज़र रखता है, लगभग बारह सेकंड में एटॉमिक रोलबैक, और हर निर्णय के लिए एक हैश-चेन्ड रिलीज़ रसीद (जब मॉडल ओपन-वेट्स होता है तो उसमें एक vIndex वेट-अटेस्टेशन एम्बेड होता है)। इनमें से तीन ऐसी चीज़ें हैं जो 2026 में किसी अन्य LLM रिलीज़ टूल में शामिल नहीं हैं।"
 +++

@@ -11,8 +11,8 @@ tags = ["LiteParse", "OpenParse", "RAG", "PDF Parsing", "Document Ingestion", "C
 [extra]
 math = false
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
-featured_image = "images/liteparse-vs-openparse-faster-pdf-parsing-hero.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/liteparse-vs-openparse-faster-pdf-parsing-hero.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/liteparse-vs-openparse-faster-pdf-parsing-veo31.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/liteparse-vs-openparse-faster-pdf-parsing-hero-poster.webp"
 title_display = "We Made Our RAG Pipeline<br>Parse PDFs 20–50× Faster."

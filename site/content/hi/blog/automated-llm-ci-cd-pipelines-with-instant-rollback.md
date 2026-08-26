@@ -10,9 +10,9 @@ tags = ["LLM Ops", "CI/CD", "Automation", "Rollback", "MTTR", "Release Managemen
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/automated-llm-ci-cd-pipelines-with-instant-rollback-veo31.webm"
-hero_video_poster = "/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/automated-llm-ci-cd-pipelines-with-instant-rollback-hero-poster.webp"
 reading_time = 11
 summary = "मानवीय अनुमोदन गेट्स के बीच, एक LLM रिलीज़ पाइपलाइन या तो ख़ुद चलती है या नहीं चलती। यह पोस्ट आर्किटेक्चर पोस्ट का ऑपरेशनल साथी है — यह ऑटोमेशन स्पेक्ट्रम खींचता है (कौन से निर्णय अपने आप फायर होते हैं, किनमें मानवीय हस्तक्षेप चाहिए, और किनमें हम तब तक हार्ड-स्टॉप करते हैं जब तक कोई ओवरराइड पर हस्ताक्षर न कर दे), असली रोलबैक ड्रिल कैसी दिखती है यह दिखाता है, और इसके दूसरी तरफ़ से जो MTTR नंबर निकलता है उसके साथ ख़त्म होता है।"
 +++

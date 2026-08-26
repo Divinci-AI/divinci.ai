@@ -10,9 +10,9 @@ tags = ["CI/CD", "Release Management", "LLM Ops", "Postmortems", "Evaluation Gat
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/10-ci-cd-release-failures-in-custom-language-models-veo31.webm"
-hero_video_poster = "/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/10-ci-cd-release-failures-in-custom-language-models-hero-poster.webp"
 reading_time = 11
 summary = "저희는 Divinci의 4단계 파이프라인을 통해 충분히 많은 커스텀 LM 릴리스를 출시해 왔으며, 그 과정에서 반복적으로 부딪혔던 가장 치명적인 실패 모드 열 가지의 목록을 정리했습니다. 그중 세 가지는 집계 게이트라면 그대로 출시했을 슬라이스 인식 회귀입니다. 또 다른 두 가지는 인프라 지표 기반 카나리라면 그대로 승격시켰을 조용한 품질 저하입니다. 나머지는 모든 릴리스 파이프라인이 잡아내야 할 종류의 실수입니다 — 집계 게이트 파이프라인이 사실상 자체적으로 잡아내는 것들이 무엇인지 분명히 말해 둘 가치가 있기 때문에 함께 나열합니다."
 +++

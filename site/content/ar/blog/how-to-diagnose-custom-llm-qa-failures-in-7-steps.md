@@ -10,9 +10,9 @@ tags = ["QA", "Diagnostics", "Postmortems", "LLM Ops", "Evaluation", "Debugging"
 
 [extra]
 author = "مايك مورينغ"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-diagnose-custom-llm-qa-failures-in-7-steps-veo31.webm"
-hero_video_poster = "/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
 reading_time = 11
 summary = "عندما يُطلَق إنذار ضمان جودة على نموذج لغوي مخصص، تكون الردة الفعلية الطبيعية هي إلقاء اللوم على النموذج. عبر عمليات الإطلاق التي أدرناها، كان النموذج هو الإجابة الصحيحة تقريباً مرة واحدة من كل سبع مرات. أما المرات الست الأخرى، فإن الخلل يقع في التقييم، أو الحَكَم، أو بصمة قالب الموجِّه (SHA)، أو خط أنابيب المعالجة المسبقة، أو إصدار مجموعة البيانات، أو فهرس الاسترجاع. هذه التدوينة هي الشجرة التشخيصية التي نسلكها فعلياً — بالترتيب، مع استدعاء واجهة برمجة التطبيقات الدقيق الذي يُجيب على كل فرع."
 +++

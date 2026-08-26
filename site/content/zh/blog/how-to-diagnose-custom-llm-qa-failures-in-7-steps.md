@@ -10,9 +10,9 @@ tags = ["QA", "Diagnostics", "Postmortems", "LLM Ops", "Evaluation", "Debugging"
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/how-to-diagnose-custom-llm-qa-failures-in-7-steps-veo31.webm"
-hero_video_poster = "/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/how-to-diagnose-custom-llm-qa-failures-in-7-steps-hero-poster.webp"
 reading_time = 11
 summary = "当 QA 告警在自定义 LLM 上触发时,本能反应往往是归咎于模型。但在我们经手的所有发布中,模型大约只在七次告警里有一次是真正的“罪魁祸首”。其余六次的根因都在评测、评审器、提示词 SHA、预处理流水线、数据集版本或检索索引中。本文是我们实际走过的诊断决策树——按顺序排列,并附上回答每一分支所用的精确 API 调用。"
 +++

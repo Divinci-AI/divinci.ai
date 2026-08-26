@@ -3,7 +3,7 @@ title = "LLM Quality Assurance - Enterprise Testing & Validation"
 description = "Comprehensive quality assurance pipeline for enterprise LLM applications with automated testing, validation, and monitoring"
 template = "feature.html"
 [extra]
-hero_poster = "images/hero-qa.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-qa.webp"
 feature_category = "quality-assurance"
 +++
 
@@ -360,7 +360,7 @@ feature_category = "quality-assurance"
 <!-- Hero Section -->
 <div class="feature-hero">
 <div class="feature-hero-bg">
-<img src="/images/hero-qa.webp" srcset="/cdn-cgi/image/width=400,format=auto,quality=82/images/hero-qa.webp 400w, /cdn-cgi/image/width=600,format=auto,quality=82/images/hero-qa.webp 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/images/hero-qa.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="Quality assurance hero illustration" loading="eager" fetchpriority="high" decoding="async">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-qa.webp" srcset="/cdn-cgi/image/width=400,format=auto,quality=82/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-qa.webp 400w, /cdn-cgi/image/width=600,format=auto,quality=82/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-qa.webp 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-qa.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="Quality assurance hero illustration" loading="eager" fetchpriority="high" decoding="async">
 <video autoplay muted loop playsinline data-hero-video>
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-qa-video.webm" type="video/webm">
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-qa-video.mp4" type="video/mp4">

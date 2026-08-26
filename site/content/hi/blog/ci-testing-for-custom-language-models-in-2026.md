@@ -10,10 +10,10 @@ tags = ["CI/CD", "LLM Ops", "Testing", "Evaluation", "Release Management", "Engi
 
 [extra]
 author = "Mike Mooring"
-author_avatar = "images/Michael-Mooring.png"
+author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/ci-testing-for-custom-language-models-in-2026-veo31.webm"
-hero_video_poster = "/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
-featured_image = "images/ci-testing-for-custom-language-models-in-2026-hero.png"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero-poster.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/ci-testing-for-custom-language-models-in-2026-hero.webp"
 reading_time = 13
 summary = "पोस्ट 7 का रिग्रेशन सूट हर PR पर चलाने में असली पैसा लगता है। यह बताता है कि कैसे हम वही कवरेज एक छोटे से अंश में बनाए रखते हैं — सब-सेकंड कॉन्ट्रैक्ट टेस्ट्स, 90-सेकंड स्मोक लेयर, एम्बेडिंग-कैश + जज-बैचिंग, और कोई भी गेट ब्लॉक करना शुरू करने से पहले 2-सप्ताह की शैडो विंडो। सीरीज़ की अंतिम पोस्ट।"
 +++

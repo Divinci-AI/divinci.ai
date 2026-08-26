@@ -4,7 +4,7 @@ description = "DevOps corporativo para sistemas de IA. Controle de versão, capa
 template = "feature.html"
 
 [extra]
-hero_poster = "images/hero-release.webp"
+hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-release.webp"
 +++
 
 # Gerenciamento de Releases de IA
@@ -358,7 +358,7 @@ hero_poster = "images/hero-release.webp"
 <!-- Hero Section -->
 <div class="feature-hero">
 <div class="feature-hero-bg">
-<img src="/images/hero-release.webp" srcset="/cdn-cgi/image/width=400,format=auto,quality=82/images/hero-release.webp 400w, /cdn-cgi/image/width=600,format=auto,quality=82/images/hero-release.webp 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/images/hero-release.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="Release management hero illustration" loading="eager" fetchpriority="high" decoding="async">
+<img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-release.webp" srcset="/cdn-cgi/image/width=400,format=auto,quality=82/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-release.webp 400w, /cdn-cgi/image/width=600,format=auto,quality=82/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-release.webp 600w, /cdn-cgi/image/width=1200,format=auto,quality=82/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-release.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 600px, 1200px" alt="Release management hero illustration" loading="eager" fetchpriority="high" decoding="async">
 <video autoplay muted loop playsinline data-hero-video>
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-release-video.webm" type="video/webm">
 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/hero-release-video.mp4" type="video/mp4">
