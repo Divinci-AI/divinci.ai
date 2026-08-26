@@ -307,7 +307,9 @@ body > * {
 .feature-page .arena-cta {
   text-align: center !important;
   padding: 4rem 3.5rem !important;
-  max-width: 800px !important;
+  /* Match `.feature-page .container` (templates/feature.html): 1200px cap less
+     its 2rem side padding, so the card's edges line up with the sections above. */
+  max-width: calc(1200px - 4rem) !important;
   margin: 0 auto !important;
   position: relative;
   z-index: 1;
@@ -2793,7 +2795,9 @@ body:not(.homepage) .privacy-settings-link:hover {
     flex-direction: row;
   }
   
-  .feature-details {
+  /* Scoped to the showcase: feature pages reuse `.feature-details` as a plain
+     content section, and the fixed height here turned them into scroll boxes. */
+  .davinci-journal-showcase .feature-details {
     flex: 0 0 60%;
     padding: 2rem 2rem;
     display: flex;
@@ -3745,7 +3749,7 @@ body:not(.homepage) .privacy-settings-link:hover {
     min-height: 400px;
   }
   
-  .feature-details {
+  .davinci-journal-showcase .feature-details {
     flex: 1;
     width: 100%;
     padding: 0 2rem 2em;

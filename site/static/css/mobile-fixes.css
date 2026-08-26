@@ -74,17 +74,21 @@ html, body {
   max-width: 100%;
 }
 
-/* Fix for wide elements that cause horizontal scroll */
+/* Fix for wide elements that cause horizontal scroll.
+   `clip` rather than `hidden`: per spec, an `overflow-x` of `hidden` forces the
+   computed `overflow-y` to `auto`, which gave every `.container` its own
+   vertical scrollbox whenever an ancestor constrained its height. `clip` has no
+   such side effect. */
 .container, .hero, .features-section, .journal-pages-container {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Container mobile improvements */
 @media (max-width: 768px) {
   .container {
     max-width: 100vw;
-    overflow-x: hidden;
+    overflow-x: clip;   /* `hidden` would force overflow-y to `auto` — see above */
     width: 100%;
     box-sizing: border-box;
   }
@@ -1757,7 +1761,7 @@ html, body {
   /* Fix potential horizontal scroll from sections */
   section {
     max-width: 100vw;
-    overflow-x: hidden;
+    overflow-x: clip;   /* not `hidden` — that forces overflow-y to `auto` */
     box-sizing: border-box;
   }
 
