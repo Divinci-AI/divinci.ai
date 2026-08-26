@@ -18,6 +18,7 @@ import {
 } from './web-bot-auth-directory.mjs';
 import { AREAS } from './status-areas.mjs';
 import { collectCustomerHealth, shouldCollect } from './customer-health.mjs';
+import { NOINDEX, isIndexable } from './indexability.mjs';
 import {
   ATTRIBUTION_KEY,
   collectAttribution,
@@ -185,6 +186,16 @@ export default {
       'Referrer-Policy': 'strict-origin-when-cross-origin',
       'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
       'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
+      // Keep every duplicate of this site out of search results. staging, dev
+      // and the *.workers.dev hostname each environment gets for free all
+      // serve the same bytes as production and would otherwise compete with
+      // it. See isIndexable() for why ENVIRONMENT alone is not enough.
+      //
+      // robots.txt above must keep allowing crawl for this to work: a
+      // disallowed URL is one the crawler never fetches, so it never sees
+      // this header, and anything already indexed stays indexed. Crawlable
+      // plus noindex is what actually removes a page from the index.
+      ...(isIndexable(env, url.hostname) ? {} : { 'X-Robots-Tag': NOINDEX }),
       'Reporting-Endpoints': `csp-endpoint="${cspReportUrl}"`,
       // NOTE on the CloudFront origin in script-src: r2.leadsy.ai/tag.js is
       // only a loader — it pulls its actual payload from the distribution
