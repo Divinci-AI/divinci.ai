@@ -216,6 +216,49 @@ export function shouldCollect(env) {
   return (env?.ENVIRONMENT ?? "") === "production";
 }
 
+/**
+ * Ask one zone for its 5xx, grouped by host and path.
+ *
+ * Extracted so the /status attribution collector can ask the SAME question of
+ * the marketing zone without a second copy of the query and the second copy of
+ * the error handling that would drift from it. Both callers depend on the two
+ * non-obvious behaviours here:
+ *   - Cloudflare answers a GraphQL error with HTTP 200 and an `errors` array,
+ *     so the status code alone proves nothing about whether we got data;
+ *   - a missing `httpRequestsAdaptiveGroups` is an unexpected payload, NOT an
+ *     empty result — treating it as zero would publish a reassuring number
+ *     from a broken query.
+ *
+ * @returns {Promise<Array<{count:number, dimensions:object}>>}
+ */
+export async function fetchZone5xx(zoneTag, { token, since, until, fetchImpl = fetch }) {
+  const iso = (d) => `${d.toISOString().slice(0, 19)}Z`;
+  const res = await fetchImpl(CF_GRAPHQL, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: CUSTOMER_5XX_QUERY,
+      variables: { zone: zoneTag, since: iso(since), until: iso(until) },
+    }),
+    signal: AbortSignal.timeout(8000),
+  });
+  if (!res.ok) throw new Error(`cloudflare graphql ${res.status}`);
+
+  const text = await res.text();
+  let body;
+  try {
+    body = JSON.parse(text);
+  } catch {
+    throw new Error(`cloudflare returned non-JSON (${res.status})`);
+  }
+  if (body.errors?.length) {
+    throw new Error(`cloudflare graphql error: ${JSON.stringify(body.errors).slice(0, 200)}`);
+  }
+  const rows = body?.data?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;
+  if (!Array.isArray(rows)) throw new Error('unexpected cloudflare payload shape');
+  return rows;
+}
+
 export async function collectCustomerHealth(env, opts = {}) {
   const now = opts.now ?? Date.now();
   const doFetch = opts.fetchImpl ?? fetch;
@@ -233,31 +276,7 @@ export async function collectCustomerHealth(env, opts = {}) {
   const since = new Date(until.getTime() - COLLECT_WINDOW_MS);
   const iso = (d) => `${d.toISOString().slice(0, 19)}Z`;
 
-  const res = await doFetch(CF_GRAPHQL, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query: CUSTOMER_5XX_QUERY,
-      variables: { zone: CUSTOMER_ZONE_TAG, since: iso(since), until: iso(until) },
-    }),
-    signal: AbortSignal.timeout(8000),
-  });
-  if (!res.ok) throw new Error(`cloudflare graphql ${res.status}`);
-
-  // Cloudflare answers a GraphQL error with HTTP 200 and an `errors` array, so
-  // the status code alone proves nothing about whether we got data.
-  const text = await res.text();
-  let body;
-  try {
-    body = JSON.parse(text);
-  } catch {
-    throw new Error(`cloudflare returned non-JSON (${res.status})`);
-  }
-  if (body.errors?.length) {
-    throw new Error(`cloudflare graphql error: ${JSON.stringify(body.errors).slice(0, 200)}`);
-  }
-  const rows = body?.data?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;
-  if (!Array.isArray(rows)) throw new Error('unexpected cloudflare payload shape');
+  const rows = await fetchZone5xx(CUSTOMER_ZONE_TAG, { token, since, until, fetchImpl: doFetch });
 
   const { customer, internal } = summarize(rows);
   const ts = Math.floor(until.getTime() / 1000);

@@ -55,17 +55,29 @@ const isBad = (s) => s === 'degraded' || s === 'partial_outage' || s === 'major_
  * "only pre-production was affected" on a day we never attributed would be
  * inventing detail, and this page's whole problem has been over-claiming.
  *
- * @param {object} day    a history day ({ date, status })
+ * TWO SOURCES, one rule. A human note in data/status-incidents.toml is
+ * preferred, because someone who knew what happened wrote it and it can name
+ * an area the error counts never saw. Where there is no note, the day's own
+ * `areas` — derived at the time from where the errors actually landed, see
+ * status-attribution.mjs — is used instead. That fallback is the difference
+ * between a day explaining itself now and a day staying a featureless amber
+ * block until somebody gets round to writing it up, which for most days meant
+ * never.
+ *
+ * @param {object} day    a history day ({ date, status, areas? })
  * @param {string[]} areas  area ids named by the human note for that date
  */
 export function dayBands(day, areas) {
   const status = day && day.status;
   if (!isBad(status)) return null;
-  if (!Array.isArray(areas) || areas.length === 0) return null;
+
+  let source = Array.isArray(areas) && areas.length ? areas : null;
+  if (!source && day && Array.isArray(day.areas) && day.areas.length) source = day.areas;
+  if (!source) return null;
 
   // Unknown ids are dropped rather than trusted — the notes file is
   // hand-edited, and a typo must not silently paint a band that means nothing.
-  const named = new Set(areas.filter(a => AREA_SET.has(a)));
+  const named = new Set(source.filter(a => AREA_SET.has(a)));
   if (named.size === 0) return null;
 
   return AREAS.map(a => ({

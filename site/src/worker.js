@@ -20,6 +20,12 @@ import {
 import { AREAS } from './status-areas.mjs';
 import { collectCustomerHealth, shouldCollect } from './customer-health.mjs';
 import {
+  ATTRIBUTION_KEY,
+  attributionView,
+  autoNote,
+  collectAttribution,
+} from './status-attribution.mjs';
+import {
   HISTORY_KEY,
   applySample,
   buildHistoryView,
@@ -105,6 +111,18 @@ export default {
         // Never rethrow into the cron runner: the useful signal is the metric
         // going absent, which the monitor's no-data notification reports.
         console.error('[customer-health] collection failed:', e?.message ?? e);
+      }),
+    );
+
+    // Attribute this window's errors to an AREA of the estate, so a bad day
+    // can explain itself on /status at the time rather than waiting for
+    // someone to write it up days later. Runs beside the customer-health
+    // collector rather than inside it: the two answer different questions
+    // (how many customer errors vs where all the errors landed), and a
+    // failure in the newer one must never cost us the metric that pages.
+    ctx.waitUntil(
+      collectAttribution(env).catch((e) => {
+        console.error('[status-attribution] collection failed:', e?.message ?? e);
       }),
     );
   },
@@ -779,12 +797,57 @@ async function recordSample(env, status) {
   }
 }
 
+/**
+ * Which areas each bad day landed on, and the note that says so.
+ *
+ * Merged into the history view rather than published as its own field: a
+ * consumer that has a day already has everything about that day, and a second
+ * top-level map keyed by date is a second thing to keep aligned with the
+ * first. Only BAD days carry attribution — attributing a green day would be
+ * answering a question nobody asked, and would put five bands on a bar that
+ * has nothing to break down.
+ */
+const BAD_DAY = { degraded: 1, partial_outage: 1, major_outage: 1 };
+
+async function attachAttribution(env, view) {
+  if (!view || !Array.isArray(view.days) || !env.STATUS_HISTORY) return view;
+  let rec = null;
+  try {
+    rec = await env.STATUS_HISTORY.get(ATTRIBUTION_KEY, { type: 'json' });
+  } catch (e) {
+    // Attribution is additive detail. Losing it costs bands and an auto note;
+    // it must never cost the history itself.
+    console.error('[status] attribution read failed:', e && e.message ? e.message : e);
+    return view;
+  }
+  if (!rec) return view;
+
+  const byDate = attributionView(rec);
+  view.days = view.days.map((day) => {
+    const a = BAD_DAY[day.status] ? byDate[day.date] : null;
+    if (!a) return day;
+    const note = autoNote(day.date, a, day);
+    return {
+      ...day,
+      // Ids only, in the order the bands are drawn. The page owns the names.
+      areas: a.areas.map((x) => x.id),
+      // Shares are published because "94% of these errors were on the
+      // marketing site" is a far more useful claim than "the marketing site
+      // was involved", and a reader can only judge the first one.
+      areaShares: a.areas.map((x) => ({ id: x.id, share: x.share })),
+      areaBasis: a.basis,
+      autoNote: note,
+    };
+  });
+  return view;
+}
+
 async function readHistory(env) {
   if (!env.STATUS_HISTORY) return null;
   try {
     const rec = await env.STATUS_HISTORY.get(HISTORY_KEY, { type: 'json' });
     if (!rec || !rec.days) return { days: [], since: null, uptimePct: null };
-    return buildHistoryView(rec, Date.now());
+    return await attachAttribution(env, buildHistoryView(rec, Date.now()));
   } catch (e) {
     console.error('[status] history read failed:', e && e.message ? e.message : e);
     return null;

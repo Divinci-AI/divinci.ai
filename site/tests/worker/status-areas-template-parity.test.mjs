@@ -58,6 +58,32 @@ test('the template agrees with the module on every case', () => {
   }
 });
 
+test('the template agrees with the module on DERIVED attribution too', () => {
+  // The fallback that stops an un-written-up day rendering as a bare block.
+  // It exists in two places for the same reason dayBands does, so it needs
+  // the same pin — otherwise one copy keeps banding derived days and the
+  // other quietly stops.
+  for (const status of STATUSES) {
+    for (const areas of CASES) {
+      const day = { date: '2026-08-25', status, areas };
+      const tpl = build({}).dayBands(day, AREAS);          // no human note
+      const mod = canonical(day, []);
+      const norm = (b) => (b ? b.map(x => `${x.id}:${x.status}`).join(',') : null);
+      assert.equal(norm(tpl), norm(mod),
+        `disagreement for status=${status} derived=${JSON.stringify(areas)}`);
+    }
+  }
+});
+
+test('a human note overrides the derived areas in BOTH copies', () => {
+  const day = { date: '2026-08-25', status: 'degraded', areas: ['marketing'] };
+  const tpl = build({ '2026-08-25': [{ date: '2026-08-25', areas: ['product'] }] })
+    .dayBands(day, AREAS);
+  const hit = (b) => b.filter(x => x.status !== 'operational').map(x => x.id);
+  assert.deepEqual(hit(tpl), ['product']);
+  assert.deepEqual(hit(canonical(day, ['product'])), ['product']);
+});
+
 test('bands from MULTIPLE notes on one day are unioned', () => {
   // A day can carry more than one note (2026-08-02 has two). Taking only the
   // first would silently under-report which areas were hit.

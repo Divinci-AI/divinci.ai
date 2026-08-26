@@ -14,6 +14,26 @@
 # day. A note here surfaces the incident regardless of whether sampling caught
 # it.
 #
+# ⚠️ YOU NO LONGER HAVE TO WRITE ONE FOR THE PAGE TO SAY SOMETHING.
+# Since 2026-08-26 the Worker attributes each bad day automatically, from the
+# hosts and paths the errors actually landed on (src/status-attribution.mjs),
+# and publishes a note saying WHAT was affected and by how much — at the time,
+# with no deploy. That was the gap this file could never close: it is written
+# after the fact, so every day was a featureless amber block until somebody
+# got round to it, and the days nobody did stayed blocks forever.
+#
+# So the division of labour is now:
+#   - automatic: which areas, what share of the errors, how long, and whether
+#     the product was among them. Counting can establish all of that.
+#   - this file: WHY it happened and what we changed. Counting can never
+#     establish either, and a machine guessing at cause on a public status
+#     page is worse than saying nothing.
+#
+# A note here still REPLACES the automatic one for its date and still wins on
+# `areas` — it was written by someone who knew what happened, and it can name
+# an area the error counts never saw. Write one whenever the cause is known
+# and worth publishing; the page is no longer blank without it.
+#
 # HOW TO ADD ONE
 #   - `date` must be YYYY-MM-DD (UTC) and is what a note is keyed on. Use the
 #     day the impact STARTED; add a second entry if it spans days.

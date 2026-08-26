@@ -412,6 +412,23 @@ main#status-page.status-page {
   letter-spacing: 0.03em;
 }
 
+/* Deliberately quieter than `ongoing`: this is a provenance label, not an
+   alarm. It must be readable — a reader is entitled to know a machine wrote
+   the sentence — without competing with the incident itself for attention. */
+.status-incident-auto {
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid #dfe5e8;
+  background: #f4f7f8;
+  color: #6d7c85;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.status-incident-note[data-auto="1"] { border-left-color: #cfd8dd; }
+
 .status-note {
   max-width: 52rem;
   margin: 0 auto;
@@ -589,9 +606,13 @@ main#status-page.status-page {
     }
 
     // Windows are the sampler's view. A human note is the authoritative one,
-    // and is the only place the CAUSE is ever written down.
-    notesFor(day.date).forEach(function (n) {
-      if (n.title) lines.push('• ' + n.title);
+    // and is the only place the CAUSE is ever written down — but a day with
+    // no human note still gets the derived one, or the accessible name would
+    // say less than the visible card.
+    var tipNotes = notesFor(day.date);
+    if (!tipNotes.length && day.autoNote) tipNotes = [day.autoNote];
+    tipNotes.forEach(function (n) {
+      if (n.title) lines.push('• ' + n.title + (n.auto ? ' (automatic)' : ''));
     });
 
     if (!windows.length) {
@@ -635,6 +656,15 @@ main#status-page.status-page {
     notesFor(day.date).forEach(function (n) {
       (n.areas || []).forEach(function (a) { named[a] = 1; });
     });
+    // No hand-written note for this date? Use the attribution the API derived
+    // from error counts at the time (src/status-attribution.mjs). This is what
+    // stops an un-written-up day rendering as a bare amber block — which was
+    // every day until someone got round to it, and permanently for the ones
+    // nobody did. A human note still wins: it was written by someone who knew
+    // what happened, and it can name an area the error counts never saw.
+    if (!Object.keys(named).length) {
+      (day.areas || []).forEach(function (a) { named[a] = 1; });
+    }
     var any = areaMeta.some(function (a) { return named[a.id]; });
     if (!any) return null;
     return areaMeta.map(function (a) {
@@ -772,6 +802,12 @@ main#status-page.status-page {
 
     var bands = dayBands(day, AREA_META);
     if (bands) {
+      // "The marketing site carried 94% of these errors" is a claim a reader
+      // can weigh; "the marketing site was involved" is not. Shares are shown
+      // wherever the API derived them, and simply omitted where a hand-written
+      // note supplied the areas instead — no invented precision.
+      var shareById = {};
+      (day.areaShares || []).forEach(function (x) { shareById[x.id] = x.share; });
       var ul = el('ul', 'status-pop-areas');
       bands.forEach(function (bd) {
         var li = el('li', 'status-pop-area');
@@ -779,7 +815,10 @@ main#status-page.status-page {
         var dot = el('span', 'status-pop-dot');
         dot.style.background = BAND_COLOR[bd.status] || '#d8dee2';
         li.appendChild(dot);
-        li.appendChild(document.createTextNode(bd.name));
+        var share = shareById[bd.id];
+        li.appendChild(document.createTextNode(
+          bd.name + (bd.status !== 'operational' && share !== undefined
+            ? ' — ' + share + '% of errors' : '')));
         ul.appendChild(li);
       });
       pop.appendChild(ul);
@@ -814,8 +853,11 @@ main#status-page.status-page {
       pop.appendChild(lines);
     }
 
-    notesFor(day.date).forEach(function (n) {
-      if (n.title) pop.appendChild(el('p', 'status-pop-note', n.title));
+    var popNotes = notesFor(day.date);
+    if (!popNotes.length && day.autoNote) popNotes = [day.autoNote];
+    popNotes.forEach(function (n) {
+      if (n.title) pop.appendChild(el('p', 'status-pop-note',
+        n.title + (n.auto ? ' (automatic)' : '')));
     });
 
     if (!windows.length && status !== 'operational') {
@@ -970,7 +1012,7 @@ main#status-page.status-page {
       // highlighted; the rest are listed greyed so the reader can see what was
       // checked and found fine, not just what broke.
       var incidentBands = dayBands(
-        { date: d.date, status: li.getAttribute('data-s') }, AREA_META);
+        { date: d.date, status: li.getAttribute('data-s'), areas: d.areas }, AREA_META);
       if (incidentBands) {
         var chips = document.createElement('div');
         chips.className = 'status-incident-areas';
@@ -990,9 +1032,17 @@ main#status-page.status-page {
         li.appendChild(chips);
       }
 
-      notes.forEach(function (n) {
+      // A day with no hand-written note still gets an account of itself: the
+      // API derives one from where the errors actually landed, at the time
+      // (src/status-attribution.mjs). It says WHAT was affected and how much;
+      // only a human can say WHY, which is why a hand-written note replaces
+      // this rather than sitting beside it.
+      var shown = notes.length ? notes : (d.autoNote ? [d.autoNote] : []);
+
+      shown.forEach(function (n) {
         var body = document.createElement('div');
         body.className = 'status-incident-note';
+        if (n.auto) body.setAttribute('data-auto', '1');
 
         var h3 = document.createElement('p');
         h3.className = 'status-incident-note-title';
@@ -1005,6 +1055,16 @@ main#status-page.status-page {
           ong.className = 'status-incident-ongoing';
           ong.textContent = 'ongoing';
           h3.appendChild(ong);
+        }
+        if (n.auto) {
+          // Labelled, not disguised. A reader deciding how much to trust a
+          // sentence deserves to know whether a person wrote it — and it is
+          // the only honest way to publish a note nobody has reviewed.
+          var auto = document.createElement('span');
+          auto.className = 'status-incident-auto';
+          auto.textContent = 'automatic';
+          auto.title = 'Derived from error attribution at the time, not written by a person.';
+          h3.appendChild(auto);
         }
         body.appendChild(h3);
 
