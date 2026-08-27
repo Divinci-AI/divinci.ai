@@ -1,4 +1,5 @@
 const { test, expect, devices } = require('@playwright/test');
+const { emulationOnly } = require('./helpers/device');
 
 /**
  * Comprehensive Mobile Testing Suite
@@ -441,7 +442,7 @@ class ComprehensiveMobileHelper {
 // Comprehensive test suite for priority devices
 MOBILE_TEST_CONFIG.devices.filter(d => d.priority === 'high').forEach(({ name, device, width }) => {
   test.describe(`Comprehensive Mobile Suite - ${name} (${width}px)`, () => {
-    test.use(device);
+    test.use(emulationOnly(device));
 
     test(`${name} - Complete mobile validation suite`, async ({ page }) => {
       const helper = new ComprehensiveMobileHelper(page, name);

@@ -1,4 +1,5 @@
 const { test, expect, devices } = require('@playwright/test');
+const { emulationOnly } = require('./helpers/device');
 
 // Mobile devices for language testing
 const mobileDevices = [
@@ -153,7 +154,7 @@ class MobileLanguageHelper {
 // Test each mobile device with language functionality
 mobileDevices.forEach(({ name, device, width }) => {
   test.describe(`Mobile Language Switching - ${name} (${width}px)`, () => {
-    test.use(device);
+    test.use(emulationOnly(device));
 
     test(`${name} - Language switcher visibility and interaction`, async ({ page }) => {
       const helper = new MobileLanguageHelper(page);

@@ -1,4 +1,5 @@
 const { test, expect, devices } = require('@playwright/test');
+const { emulationOnly } = require('./helpers/device');
 
 // Define mobile devices for comprehensive testing
 const mobileDevices = [
@@ -143,7 +144,7 @@ class MobileNavigationHelper {
 // Comprehensive mobile navigation test suite
 mobileDevices.forEach(({ name, device, width }) => {
   test.describe(`Mobile Navigation - ${name} (${width}px)`, () => {
-    test.use(device);
+    test.use(emulationOnly(device));
 
     test(`${name} - Homepage navigation and layout`, async ({ page }) => {
       const helper = new MobileNavigationHelper(page);

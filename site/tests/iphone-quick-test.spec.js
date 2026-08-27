@@ -1,7 +1,13 @@
 const { test, expect, devices } = require('@playwright/test');
 
+// File scope, not inside the describe: `test.use()` may change the browser
+// engine only at the top level of a file. Inside a describe Playwright
+// rejects it — `defaultBrowserType` is worker-scoped and would force a new
+// worker mid-file. At this scope the iPhone descriptor applies in full, so
+// these run on WebKit rather than on Chromium in an iPhone-shaped window.
+test.use({ ...devices['iPhone 12 Pro'] });
+
 test.describe('iPhone 12 Pro Homepage Quick Analysis', () => {
-  test.use({ ...devices['iPhone 12 Pro'] });
 
   test('iPhone 12 Pro homepage issues analysis', async ({ page }) => {
     // Navigate to live site

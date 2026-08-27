@@ -295,6 +295,39 @@ module.exports = defineConfig({
       },
       testMatch: ['**/comprehensive-mobile-visual.spec.js'],
     },
+
+    // The in-file device matrices. These specs choose their own viewport per
+    // describe (see tests/helpers/device.js), so this project supplies only the
+    // engine — hence a plain chromium `use` rather than a device descriptor.
+    //
+    // They need a project at all because every project here carries an explicit
+    // testMatch, and for a long time none of them named these files: the specs
+    // existed, were edited, and were never once collected. Adding a file to
+    // tests/ is not enough to run it.
+    {
+      name: 'Mobile-Matrix',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: [
+        '**/comprehensive-mobile-journeys.spec.js',
+        '**/comprehensive-mobile-language.spec.js',
+        '**/comprehensive-mobile-navigation.spec.js',
+        '**/comprehensive-mobile-performance.spec.js',
+        '**/mobile-comprehensive-suite.spec.js',
+      ],
+    },
+
+    // The iPhone specs declare `devices['iPhone 12 Pro']` at file scope, which
+    // carries defaultBrowserType: 'webkit' and overrides whatever this project
+    // sets. The `use` here is therefore a formality — the file wins.
+    {
+      name: 'Mobile-iPhone-WebKit',
+      use: { ...devices['iPhone 12 Pro'] },
+      testMatch: [
+        '**/iphone-12-pro-validation.spec.js',
+        '**/iphone-homepage-visual.spec.js',
+        '**/iphone-quick-test.spec.js',
+      ],
+    },
   ],
 
   // Global test configuration

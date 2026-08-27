@@ -1,4 +1,5 @@
 const { test, expect, devices } = require('@playwright/test');
+const { emulationOnly } = require('./helpers/device');
 
 // Mobile devices for user journey testing
 const mobileDevices = [
@@ -113,7 +114,7 @@ class MobileJourneyHelper {
 // Comprehensive user journey tests
 mobileDevices.forEach(({ name, device, width }) => {
   test.describe(`Mobile User Journeys - ${name} (${width}px)`, () => {
-    test.use(device);
+    test.use(emulationOnly(device));
 
     test(`${name} - Homepage to Contact journey`, async ({ page }) => {
       const helper = new MobileJourneyHelper(page);

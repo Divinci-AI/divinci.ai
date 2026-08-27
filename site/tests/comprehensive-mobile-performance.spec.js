@@ -1,4 +1,5 @@
 const { test, expect, devices } = require('@playwright/test');
+const { emulationOnly } = require('./helpers/device');
 
 // Mobile devices for performance testing
 const mobileDevices = [
@@ -248,11 +249,11 @@ class MobilePerformanceHelper {
 // Performance tests for each device
 mobileDevices.forEach(({ name, device, width, network }) => {
   test.describe(`Mobile Performance - ${name} (${width}px)`, () => {
-    test.use({ 
+    test.use(emulationOnly({
       ...device,
       // Simulate network conditions
       // Note: In real implementation you might want to use page.route() for network throttling
-    });
+    }));
 
     test(`${name} - Homepage performance analysis`, async ({ page }) => {
       const helper = new MobilePerformanceHelper(page);
