@@ -1,46 +1,46 @@
 {
-  "measured_at": "2026-08-25",
-  "measured_label": "25 August 2026",
+  "measured_at": "2026-08-26",
+  "measured_label": "26 August 2026",
   "stats": {
-    "sites": "10,190",
-    "pages": "2,299,758",
-    "chunks": "57,820,220",
-    "bytes": "20 GB",
-    "endpoints": "10,131",
-    "median": "223"
+    "sites": "12,397",
+    "pages": "2,769,011",
+    "chunks": "69,465,303",
+    "bytes": "25 GB",
+    "endpoints": "12,337",
+    "median": "227"
   },
   "composition": {
-    "public_share": "12%",
+    "public_share": "10%",
     "buckets": [
       {
         "key": "org",
         "label": ".org",
-        "count": "911",
-        "width": "8.9"
+        "count": "928",
+        "width": "7.5"
       },
       {
         "key": "gov",
         "label": ".gov",
         "count": "122",
-        "width": "1.2"
+        "width": "1.0"
       },
       {
         "key": "edu",
         "label": ".edu",
         "count": "237",
-        "width": "2.3"
+        "width": "1.9"
       },
       {
         "key": "com",
         "label": ".com",
-        "count": "7,459",
-        "width": "73.2"
+        "count": "9,541",
+        "width": "77.0"
       },
       {
         "key": "other",
         "label": "everything else",
-        "count": "1,461",
-        "width": "14.3"
+        "count": "1,569",
+        "width": "12.7"
       }
     ]
   },
@@ -48,12 +48,12 @@
     "deepest": "diff.wikimedia.org, ipac.caltech.edu and blog.mozilla.org run past 7,000 pages each.",
     "largest": "exoplanetarchive.ipac.caltech.edu — 929 pages, and 176 MB of extracted text: the densest corpus in the index."
   },
-  "directory_headline": "10,190 curated sites · 2,299,758 pages · 4,453 files · 57,820,220 searchable chunks",
+  "directory_headline": "12,397 curated sites · 2,769,011 pages · 4,211 files · 69,465,303 searchable chunks",
   "directory_counts": {
-    "sites": "10,190",
-    "pages": "2,299,758",
-    "files": "4,453",
-    "chunks": "57,820,220",
+    "sites": "12,397",
+    "pages": "2,769,011",
+    "files": "4,211",
+    "chunks": "69,465,303",
     "size": ""
   }
 }

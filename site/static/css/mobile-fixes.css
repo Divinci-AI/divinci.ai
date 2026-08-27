@@ -1352,7 +1352,7 @@ html, body {
   background-image: url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/robot-group-mobile.webp');
   background-image: image-set(
     url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/robot-group-mobile.webp') type('image/webp'),
-    url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/robot-group-mobile.png') type('image/png')
+    url('https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/robot-group-mobile.webp') type('image/png')
   );
   background-size: cover;
   background-position: center;

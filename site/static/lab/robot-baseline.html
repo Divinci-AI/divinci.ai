@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><title>robot baseline</title>
+<style>html,body{margin:0;height:100%;background:#f6f2e9}
+#stage{position:fixed;inset:0}canvas{display:block}</style>
+<div id="stage"></div>
+<script src="/js/divinci-robot.js"></script>
+<script>
+  window.__robotFailed = false;
+  window.DivinciRobotLauncher.mount(document.getElementById("stage"),
+    { onFail: function () { window.__robotFailed = true; } });
+</script>

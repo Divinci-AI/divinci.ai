@@ -1,0 +1,880 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Lab — Leonardo writes the hero</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --ink:#1d2b4a; --paper:#f6f2e9; --rule:#d9d0be;
+    /* Extra box beyond "just covering the viewport". The arm fills ~27% of its
+       own box, so a box at viewport size puts ~27% of the screen under arm --
+       and slack guarantees the forearm still leaves frame at every tip position. */
+    --arm-slack: 1.06;
+  }
+  * { box-sizing:border-box }
+  html,body { height:100% }
+  body { margin:0; background:var(--paper); color:var(--ink); overflow:hidden;
+         font:16px/1.5 "Iowan Old Style", Palatino, Georgia, serif; }
+  .stage { position:relative; height:100vh; overflow:hidden; }
+  .hero { position:absolute; left:6vw; top:22vh; width:min(56vw,760px); z-index:1; }
+  h1 { font-size:clamp(1.9rem,3.6vw,3rem); line-height:1.1; margin:0;
+       letter-spacing:-.02em; font-weight:600; }
+  .slate { position:relative; margin-top:.5rem; }
+  .slate svg { display:block; width:100%; height:auto; overflow:visible; }
+  .rule { stroke:var(--rule); stroke-width:.8; stroke-dasharray:4 8; }
+  .ink { fill:none; stroke:var(--ink); stroke-width:2; stroke-linecap:round;
+         stroke-linejoin:round; }
+  .streak { fill:none; stroke:url(#streakGrad);
+            stroke-linecap:round; stroke-linejoin:round; }
+
+  /* The arm sits above everything, positioned in viewport coordinates: it is a
+     hand entering over the page, not an element inside the layout. */
+  .arm-layer { position:fixed; inset:0; pointer-events:none; z-index:5;
+               contain:strict; }
+  .arm { position:absolute; left:0; top:0; transform-origin:0 0;
+         will-change:transform;
+         opacity:0; transition:opacity .7s ease; }
+  .arm.is-in { opacity:1 }
+  .arm video, .arm img { display:block; width:100%; height:auto; }
+  .dbg { position:fixed; left:0; top:0; width:14px; height:14px; margin:-7px 0 0 -7px;
+         border:2px solid #c0392b; border-radius:50%; z-index:9; pointer-events:none; }
+  .dbg::after { content:""; position:absolute; left:5px; top:5px; width:4px; height:4px;
+                background:#c0392b; border-radius:50%; }
+  .sound { position:fixed; right:1.6rem; bottom:1.6rem; z-index:8;
+           font:inherit; font-size:.78rem; letter-spacing:.02em;
+           color:var(--ink); background:transparent; cursor:pointer;
+           border:1px solid color-mix(in srgb, var(--ink) 28%, transparent);
+           border-radius:2rem; padding:.42rem .95rem; opacity:.5;
+           transition:opacity .2s ease, background .2s ease; }
+  .sound:hover { opacity:.9 }
+  .sound[aria-pressed="true"] { opacity:1;
+    background:color-mix(in srgb, var(--ink) 8%, transparent); }
+  .caption { position:fixed; left:6vw; bottom:4vh; font-size:.8rem; opacity:.5;
+             font-family:ui-monospace,Menlo,monospace; z-index:6; }
+  @media (prefers-reduced-motion:reduce) { .arm-layer { display:none } }
+</style>
+
+<div class="stage">
+  <div class="hero">
+    <h1>Custom AI releases, with</h1>
+    <div class="slate">
+      <svg id="slate" viewBox="0 0 300 60" aria-hidden="true">
+        <defs>
+          <!-- Reveal is a horizontal wipe tied to the bristle tip, not a
+               stroke-dash along the pen path: the brush sweeps independently of
+               the letterforms now, so dash order would uncover glyphs the brush
+               had not reached. spreadMethod=pad keeps everything left of x1
+               fully opaque without needing a second rect. -->
+          <linearGradient id="wipe" gradientUnits="userSpaceOnUse"
+                          x1="0" x2="0" y1="0" y2="0" spreadMethod="pad">
+            <stop offset="0" stop-color="#fff"></stop>
+            <stop offset="1" stop-color="#000"></stop>
+          </linearGradient>
+          <mask id="wipeMask"><rect id="wipeRect" fill="url(#wipe)"></rect></mask>
+          <linearGradient id="streakGrad" gradientUnits="userSpaceOnUse"
+                          x1="0" x2="0" y1="0" y2="0" spreadMethod="pad">
+            <stop offset="0" stop-color="#1d2b4a" stop-opacity="0"></stop>
+            <stop offset="1" stop-color="#1d2b4a" stop-opacity="0.30"></stop>
+          </linearGradient>
+        </defs>
+        <line class="rule" x1="0" y1="46" x2="300" y2="46"></line>
+        <path id="streak" class="streak"></path>
+        <g mask="url(#wipeMask)"><g id="inkg"></g></g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="arm-layer">
+  <div class="dbg" id="dbg" hidden></div>
+  <div class="arm" id="arm">
+    <video id="armvid" muted playsinline loop preload="none"></video>
+  </div>
+</div>
+<button type="button" id="sound" class="sound" aria-pressed="false">
+  <span aria-hidden="true">♪</span> brush sound
+</button>
+<p class="caption" id="cap"></p>
+
+<script>
+// build-banner: surfaces load failures that would otherwise just look like
+// "the page did not change".
+window.addEventListener("error", function (e) {
+  var b = document.createElement("pre");
+  b.style.cssText = "position:fixed;left:0;right:0;bottom:0;margin:0;z-index:99;" +
+    "background:#c0392b;color:#fff;font:12px ui-monospace,Menlo,monospace;padding:8px";
+  b.textContent = "JS ERROR  build 14:40:44  " + (e.message || e) +
+                  "  @" + (e.filename || "").split("/").pop() + ":" + e.lineno;
+  document.body.appendChild(b);
+});
+window.addEventListener("unhandledrejection", function (e) {
+  var b = document.createElement("pre");
+  b.style.cssText = "position:fixed;left:0;right:0;bottom:0;margin:0;z-index:99;" +
+    "background:#b9770e;color:#fff;font:12px ui-monospace,Menlo,monospace;padding:8px";
+  b.textContent = "PROMISE REJECTED  build 14:40:44  " + (e.reason && e.reason.message || e.reason);
+  document.body.appendChild(b);
+});
+(function () {
+  "use strict";
+
+  var slate = document.getElementById("slate"),
+      inkg  = document.getElementById("inkg"),
+      arm   = document.getElementById("arm"),
+      dbg   = document.getElementById("dbg"),
+      dbgTxt = document.getElementById("dbgtxt"),
+      wipe   = document.getElementById("wipe"),
+      wipeRect = document.getElementById("wipeRect"),
+      streak = document.getElementById("streak"),
+      streakGrad = document.getElementById("streakGrad"),
+      vid   = document.getElementById("armvid"),
+      cap   = document.getElementById("cap");
+
+  /* ---- pen feel -------------------------------------------------------- */
+  var SPEED      = 230;   // font units/sec at the reference word length
+  var REF_LEN    = 455;   // "Security"; longer words speed up slightly, so a
+  var LEN_EXP    = 0.42;  // long phrase does not take proportionally forever
+  var CURVE_DRAG = 2.6;   // how much corners slow the pen
+  var LEAD_IN    = 0.35;  // seconds of approach before the first mark
+  var HOLD       = 1.0;   // seconds the finished word stays up
+  var FADE       = 0.55;
+  var LIFT       = 0.055; // pen-lift height, as a fraction of viewport height
+  var COVER      = 0.27;  // share of the viewport the arm's own pixels should fill
+  /* Veo cannot hold the pencil grip for long while visibly articulating the
+     fingers, so the clip is gated to the few seconds where the grip survives --
+     a short loop. Playing it under 1x stretches that back out and keeps the
+     motion graceful instead of twitchy. Media time is unaffected, so the
+     per-frame tip lookup still indexes correctly. */
+  var RATE       = 0.45;
+  var SCALE      = 0.89;  // linear size trim on top of COVER
+  /* How loosely the hand follows the pen. The ink is drawn exactly; the arm
+     chases it through a low-pass filter, so it glides over the word rather than
+     snapping to every wiggle of the letterform. TAU is the follow time in
+     seconds -- higher trails more. */
+  var TAU        = 0.06;
+  /* How much of the video's own tip motion to cancel out.
+
+     The tip is not noisy -- it genuinely sweeps ~72px vertically as the wrist
+     nods. Cancelling all of it pins the tip to the ink perfectly but throws
+     that whole sweep onto the hand instead, which is what made the hand snap
+     between positions. Cancelling only the slow component lets the tip drift a
+     little over the word -- painting across it rather than tracing it -- and
+     keeps the hand steady. 0 = never compensate, 1 = pin exactly. */
+  var TIP_FOLLOW = 0.85;
+  /* Two generated clips of the same arm. The brush is the default: it held its
+     grip for 4.6s against the pencil's 0.7s under the same drift gate, so its
+     loop is far longer and reads much less repetitive. ?tool=pencil to compare. */
+  var TOOL = "brush";
+  /* "trace" -- the brush follows the exact letterform, and the ink is revealed
+     by stroke-dash directly under the bristles. The letterform's own reversals
+     make this inherently jerky, so speed-driven motion blur absorbs it rather
+     than smoothing the path (smoothing cannot help: the excursions ARE the
+     shape). "sweep" is the loose left-to-right swoosh, kept for comparison. */
+  var MODE       = "trace";
+  var BLUR_MAX   = 2.6;   // px, at full speed
+  var BLUR_KNEE  = 620;   // px/sec at which blur starts
+  /* The brush does NOT trace the letterforms. The ink is drawn exactly along
+     the cursive path, but the arm only sweeps left-to-right across the word on
+     a loose wobbling line, the way a brush passes over a page. Tracing every
+     loop and reversal of a cursive 'l' is what made it look mechanical --
+     smoothing that motion is not enough, because the excursions ARE the shape. */
+  var WOBBLE     = 3.0;   // vertical sway of the sweep, in font units
+  var WOBBLES    = 2.6;   // sway cycles per word
+  /* How far above the BASELINE the bristle tip rides, as a fraction of the
+     x-height. ~0.45 puts it in the body of the letters rather than under them. */
+  var RIDE       = 0.45;
+  var FEATHER    = 7;     // soft edge on the reveal, font units
+  var STREAK     = 34;    // how far the wet trail reaches back, font units
+  var STREAK_W   = 4.4;   // width of the wet trail; .ink strokes at 2
+  var TRAIL_MS   = 300;   // how long a point stays wet, ms
+  var STREAK_A   = 1;     // opacity at the brush end -- 1 = full ink, not a grey wash
+  var DEBUG      = false;
+  var MIN_STROKE = 0.035; // floor per stroke, seconds
+  var MIN_GAP    = 0.02;  // floor per pen-lift, seconds
+  var MAX_GAP    = 0.20;
+  var LETTER_Y   = 0;     // how much of the letter's own height leaks in (0 = none)
+
+
+  // Tunable from the URL so the feel can be dialled in without a rebuild:
+  //   ?speed=60&hold=3&lift=.08&drag=3.2&lead=.8&fade=1.2
+  (function () {
+    var q = new URLSearchParams(location.search), n;
+    function num(k, d) { n = parseFloat(q.get(k)); return isNaN(n) ? d : n; }
+    SPEED = num("speed", SPEED);       HOLD = num("hold", HOLD);
+    LIFT = num("lift", LIFT);          CURVE_DRAG = num("drag", CURVE_DRAG);
+    LEAD_IN = num("lead", LEAD_IN);    FADE = num("fade", FADE);
+    COVER = num("cover", COVER);      RATE = num("rate", RATE);
+    SCALE = num("scale", SCALE);      TAU = num("tau", TAU);
+    TIP_FOLLOW = num("tipfollow", TIP_FOLLOW);
+    if (q.get("tool") === "pencil") TOOL = "pencil";
+    WOBBLE = num("wobble", WOBBLE);   WOBBLES = num("wobbles", WOBBLES);
+    RIDE = num("ride", RIDE);         DEBUG = q.get("debug") === "1";
+    MIN_STROKE = num("minstroke", MIN_STROKE);  MAX_GAP = num("maxgap", MAX_GAP);
+    FEATHER = num("feather", FEATHER);  STREAK = num("streak", STREAK);
+    STREAK_W = num("streakw", STREAK_W);  STREAK_A = num("streaka", STREAK_A);
+    TRAIL_MS = num("trailms", TRAIL_MS);
+    if (q.get("mode") === "sweep") MODE = "sweep";
+    BLUR_MAX = num("blur", BLUR_MAX);  BLUR_KNEE = num("knee", BLUR_KNEE);
+    if (MODE === "trace") { TAU = num("tau", 0.03); RIDE = num("ride", 0); }
+    LETTER_Y = num("lettery", LETTER_Y);
+  })();
+
+  var BUILD = "14:40:44";
+  cap.textContent = "build " + BUILD + " · loading…";
+  var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // A ~1700px alpha video is not a thing to hand a phone; the still cutout
+  // carries the same POV framing at a fraction of the cost.
+  var lite = innerWidth < 760 || (navigator.deviceMemory || 8) < 4 ||
+             (navigator.connection && (navigator.connection.saveData ||
+              /2g/.test(navigator.connection.effectiveType || "")));
+  var TIPS = null, WORDS = null;
+
+  var BASE = TOOL === "pencil" ? "leonardo-arm" : "leonardo-brush";
+
+  Promise.all([
+    fetch("/data/handwriting.json").then(function (r) { return r.json(); }),
+    fetch("/data/" + BASE + "-tips.json").then(function (r) { return r.json(); })
+  ]).then(function (res) { TIPS = res[1]; start(res[0]); });
+
+  /* ---- geometry -------------------------------------------------------- */
+
+  /* Rebuild path + cumulative lengths from the raw polylines, and build a
+     time-parameterisation that slows through curvature. Setting pathLength to
+     our own total makes the browser's dash units identical to the units the tip
+     lookup uses -- otherwise ink and bristles drift apart by whatever the two
+     measures disagree on. */
+  function compile(name, strokes) {
+    var d = "", segs = [], total = 0, list = [];
+    strokes.forEach(function (st, si) {
+      var p = st.p, k = st.k, pts = [];
+      for (var i = 0; i < p.length; i += 2) pts.push([p[i], p[i + 1]]);
+      d += "M" + pts.map(function (q) { return q[0] + " " + q[1]; }).join("L");
+
+      var start = total, tcost = 0, tbl = [{ s: 0, t: 0 }];
+      for (var j = 1; j < pts.length; j++) {
+        var a = pts[j - 1], b = pts[j];
+        var len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        segs.push({ a: a, b: b, len: len, at: total });
+        total += len;
+        // A corner costs more time per unit length than a straight.
+        tcost += len * (1 + CURVE_DRAG * (k[j] || 0));
+        tbl.push({ s: total - start, t: tcost });
+      }
+      list.push({ i: si, from: start, to: total, tbl: tbl, tcost: tcost,
+                  head: pts[0], tail: pts[pts.length - 1],
+                  d: "M" + pts.map(function (q) { return q[0] + " " + q[1]; }).join("L"),
+                  len: total - start });
+    });
+    /* Horizontal envelope of the pen, sampled evenly by ARC LENGTH.
+
+       The brush cannot take its x from arc-length fraction: cursive spends a
+       lot of stroke on loops that advance almost no distance across the page
+       (a capital A, the bowl of an 'a'), so a linear ramp over arc length falls
+       far behind the ink -- which is why the brush stopped sitting on the word.
+       Running-max makes it monotonic (a stroke looping back must not drag the
+       brush left), then a light box blur takes the corners off, then a second
+       running-max restores monotonicity the blur can break. */
+    var NS = 320, env = new Float32Array(NS), run = -Infinity;
+    for (var e = 0; e < NS; e++) {
+      var q = pointAtSegs(segs, total * e / (NS - 1));
+      if (q.x > run) run = q.x;
+      env[e] = run;
+    }
+    var sm = new Float32Array(NS), R = 6;
+    for (e = 0; e < NS; e++) {
+      var acc = 0, n2 = 0;
+      for (var o = -R; o <= R; o++) {
+        var idx = e + o;
+        if (idx >= 0 && idx < NS) { acc += env[idx]; n2++; }
+      }
+      sm[e] = acc / n2;
+    }
+    run = -Infinity;
+    for (e = 0; e < NS; e++) { if (sm[e] > run) run = sm[e]; sm[e] = run; }
+
+    return { name: name, d: d, segs: segs, strokes: list, total: total,
+             env: sm, xMin: sm[0], xMax: sm[NS - 1] };
+  }
+
+  function pointAt(w, dist) { return pointAtSegs(w.segs, dist); }
+  function pointAtSegs(s, dist) {
+    var lo = 0, hi = s.length - 1;
+    while (lo < hi) { var m = (lo + hi + 1) >> 1; if (s[m].at <= dist) lo = m; else hi = m - 1; }
+    var g = s[lo], t = g.len ? (dist - g.at) / g.len : 0;
+    t = t < 0 ? 0 : t > 1 ? 1 : t;
+    return { x: g.a[0] + (g.b[0] - g.a[0]) * t,
+             y: g.a[1] + (g.b[1] - g.a[1]) * t,
+             ang: Math.atan2(g.b[1] - g.a[1], g.b[0] - g.a[0]) };
+  }
+
+  /* Map a stroke's eased local time back to arc length via its curvature table. */
+  function distInStroke(st, u) {
+    var want = u * st.tcost, tbl = st.tbl, lo = 0, hi = tbl.length - 1;
+    while (lo < hi) { var m = (lo + hi + 1) >> 1; if (tbl[m].t <= want) lo = m; else hi = m - 1; }
+    var a = tbl[lo], b = tbl[Math.min(lo + 1, tbl.length - 1)];
+    var f = b.t > a.t ? (want - a.t) / (b.t - a.t) : 0;
+    return st.from + a.s + (b.s - a.s) * f;
+  }
+
+  // Gentle at both ends of every stroke -- a hand eases off the page, it does
+  // not stop dead. Applied per stroke, not per word, which is most of what
+  // reads as "graceful".
+  function easeStroke(u) { return u - Math.sin(2 * Math.PI * u) / (2 * Math.PI); }
+  function easeTravel(u) { return u * u * (3 - 2 * u); }
+
+  /* Build the full timeline for a word: draw phases separated by travel phases
+     where the pen is off the page. Without explicit travel, the dash animation
+     teleports between strokes and the arm skates across the gap. */
+  /* Word duration is dominated by the per-stroke and per-gap minimums, not by
+     SPEED: smoothed cursive runs 24-54 strokes per word, so a 0.18s stroke floor
+     and a 0.13s gap floor alone accounted for ~9.5s of "Analytics" -- raising
+     SPEED barely moved it. The floors exist only to stop a one-segment stroke
+     flashing past, so they are now small, and gaps scale with the pen speed
+     instead of being a fixed cost. */
+  function timeline(w) {
+    var speed = SPEED * Math.pow(w.total / REF_LEN, LEN_EXP);
+    var ph = [], t = LEAD_IN;
+    w.strokes.forEach(function (st, i) {
+      var dur = Math.max(MIN_STROKE, st.tcost / speed);
+      ph.push({ kind: "draw", st: st, t0: t, dur: dur });
+      t += dur;
+      var nx = w.strokes[i + 1];
+      if (nx) {
+        var gap = Math.hypot(nx.head[0] - st.tail[0], nx.head[1] - st.tail[1]);
+        var d = Math.min(MAX_GAP, Math.max(MIN_GAP, gap / (speed * 1.6)));
+        ph.push({ kind: "travel", t0: t, dur: d, from: st.tail, to: nx.head,
+                  ink: st.to, gap: gap });
+        t += d;
+      }
+    });
+    return { phases: ph, end: t, lead: w.strokes[0].head };
+  }
+
+  /* ---- brush sound ------------------------------------------------------ */
+
+  /* Synthesised rather than sampled: a bristle hiss is filtered noise, so there
+     is no asset to ship, and the gain and filter can track the pen's actual
+     speed instead of looping a fixed clip. Brown noise (an integrated random
+     walk) rather than white -- white reads as static, brown as friction.
+     Nothing is created until the user opts in, which also satisfies the
+     autoplay rules: an AudioContext made before a gesture starts suspended. */
+  var actx = null, sndGain = null, sndFilt = null, soundOn = false, sndTick = 0;
+  var sndBtn = document.getElementById("sound");
+
+  function initAudio() {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return false;
+    actx = new AC();
+    var n = Math.floor(actx.sampleRate * 2);
+    var buf = actx.createBuffer(1, n, actx.sampleRate);
+    var ch = buf.getChannelData(0), last = 0;
+    for (var i = 0; i < n; i++) {
+      var w = Math.random() * 2 - 1;
+      last = (last + 0.02 * w) / 1.02;
+      ch[i] = last * 3.2;
+    }
+    var src = actx.createBufferSource();
+    src.buffer = buf; src.loop = true;
+    sndFilt = actx.createBiquadFilter();
+    sndFilt.type = "bandpass"; sndFilt.frequency.value = 1700; sndFilt.Q.value = 0.65;
+    sndGain = actx.createGain(); sndGain.gain.value = 0;
+    src.connect(sndFilt); sndFilt.connect(sndGain); sndGain.connect(actx.destination);
+    src.start();
+    return true;
+  }
+
+  function updateSound() {
+    if (!soundOn || !sndGain) return;
+    if (++sndTick % 3) return;              // ~20Hz is plenty for a hiss
+    var t = actx.currentTime;
+    var v = PAINTING ? Math.min(1, SPS / 1500) * 0.22 : 0;
+    sndGain.gain.setTargetAtTime(v, t, PAINTING ? 0.03 : 0.08);
+    sndFilt.frequency.setTargetAtTime(950 + Math.min(2400, SPS * 1.1), t, 0.06);
+  }
+
+  if (sndBtn) {
+    try { soundOn = localStorage.getItem("brushSound") === "1"; } catch (e) { soundOn = false; }
+    sndBtn.setAttribute("aria-pressed", soundOn ? "true" : "false");
+    sndBtn.addEventListener("click", function () {
+      soundOn = !soundOn;
+      if (soundOn && !actx && !initAudio()) { soundOn = false; return; }
+      if (actx && actx.state === "suspended") actx.resume();
+      if (!soundOn && sndGain) sndGain.gain.setTargetAtTime(0, actx.currentTime, 0.05);
+      sndBtn.setAttribute("aria-pressed", soundOn ? "true" : "false");
+      try { localStorage.setItem("brushSound", soundOn ? "1" : "0"); } catch (e) {}
+    });
+  }
+
+  /* ---- ink ------------------------------------------------------------- */
+
+  /* One <path> per stroke, rather than one path holding every stroke as a
+     subpath. SVG restarts stroke-dasharray at each subpath, so a single
+     `dashoffset: total` was applied independently to all 25-54 of them; since
+     each stroke is tiny next to `total`, they all flipped from hidden to shown
+     within the first few units and the word snapped in at once. Dashing each
+     stroke against its OWN length is the only way to reveal them in order. */
+  var inkPaths = [], curIdx = -1;
+
+  function buildInk(w) {
+    while (inkg.firstChild) inkg.removeChild(inkg.firstChild);
+    inkPaths = [];
+    curIdx = -1;
+    var NS = "http://www.w3.org/2000/svg";
+    for (var i = 0; i < w.strokes.length; i++) {
+      var st = w.strokes[i];
+      var el = document.createElementNS(NS, "path");
+      el.setAttribute("class", "ink");
+      el.setAttribute("d", st.d);
+      el.setAttribute("pathLength", st.len);
+      el.style.strokeDasharray = st.len + " " + st.len;
+      el.style.strokeDashoffset = st.len;
+      inkg.appendChild(el);
+      inkPaths.push(el);
+    }
+  }
+
+  function revealTo(w, dist) {
+    var L = w.strokes, i = 0;
+    while (i < L.length - 1 && dist > L[i].to) i++;
+    if (i !== curIdx) {
+      for (var j = 0; j < L.length; j++) {
+        if (j < i) inkPaths[j].style.strokeDashoffset = 0;
+        else if (j > i) inkPaths[j].style.strokeDashoffset = L[j].len;
+      }
+      curIdx = i;
+    }
+    var got = Math.max(0, Math.min(L[i].len, dist - L[i].from));
+    inkPaths[i].style.strokeDashoffset = L[i].len - got;
+  }
+
+  function revealAll() {
+    for (var i = 0; i < inkPaths.length; i++) inkPaths[i].style.strokeDashoffset = 0;
+    curIdx = inkPaths.length;
+  }
+
+  /* ---- placement ------------------------------------------------------- */
+
+  var M = null, BOX = null, HERO = document.querySelector(".hero");
+
+  /* Sizing runs the other way round from the obvious one.
+
+     The obvious way -- size the arm so it still leaves the screen no matter
+     where the pen reaches -- makes the writing line's position dictate the arm,
+     and with the text near the left edge that forces an enormous arm (it was
+     covering ~34% of the screen and upscaling the video ~1.7x, which is what
+     made the drawing look coarse).
+
+     So instead COVER dictates the arm, and the hero block is then moved to
+     wherever an arm that size can still reach while running off the corner. */
+  function measure() {
+    var vb = slate.viewBox.baseVal, r = slate.getBoundingClientRect();
+    var k = r.width / vb.width, vw = innerWidth, vh = innerHeight;
+    var aspect = TIPS.w / TIPS.h, fill = TIPS.fill || 0.32;
+
+    var txMax = 0, tyMax = 0;
+    TIPS.tips.forEach(function (p) {
+      if (p[0] > txMax) txMax = p[0];
+      if (p[1] > tyMax) tyMax = p[1];
+    });
+
+    // Arm box from the requested coverage, capped at the source resolution so
+    // we never upscale the video -- upscaling is what coarsens the hatching.
+    var W = Math.sqrt((COVER / fill) * vw * vh * aspect);
+    W = Math.min(W, TIPS.w) * getSlack() * SCALE;
+    var H = W / aspect;
+
+    // The furthest up-and-left the pen may go and still leave the arm exiting
+    // the bottom-right corner.
+    var reqX = vw * 1.02 - (1 - txMax) * W;
+    var reqY = vh * 1.02 - (1 - tyMax) * H;
+
+    // Where the pen's top-left extreme currently sits, and how far it must move.
+    var curX = r.left + (BOX[0] - vb.x) * k;
+    var curY = r.top + (BOX[1] - vb.y) * k;
+    var dx = Math.max(0, reqX - curX), dy = Math.max(0, reqY - curY);
+    if (dx || dy) {
+      HERO.style.transform = "translate(" +
+        (parseFloat(HERO.dataset.dx || 0) + dx) + "px," +
+        (parseFloat(HERO.dataset.dy || 0) + dy) + "px)";
+      HERO.dataset.dx = parseFloat(HERO.dataset.dx || 0) + dx;
+      HERO.dataset.dy = parseFloat(HERO.dataset.dy || 0) + dy;
+      r = slate.getBoundingClientRect();
+    }
+
+    M = { k: k, vx: vb.x, vy: vb.y, left: r.left, top: r.top,
+          W: W, H: H, aspect: aspect };
+    arm.style.width = W + "px";
+  }
+  function getSlack() {
+    var v = getComputedStyle(document.documentElement).getPropertyValue("--arm-slack");
+    return parseFloat(v) || 1.06;
+  }
+  addEventListener("resize", function () {
+    M = null;
+    HERO.style.transform = ""; HERO.dataset.dx = 0; HERO.dataset.dy = 0;
+  });
+
+  var TIP = [0, 0], TIPMEAN = null;
+  function tipMean() {
+    if (!TIPMEAN) {
+      var sx = 0, sy = 0;
+      TIPS.tips.forEach(function (p) { sx += p[0]; sy += p[1]; });
+      TIPMEAN = [sx / TIPS.tips.length, sy / TIPS.tips.length];
+    }
+    return TIPMEAN;
+  }
+  function tipFrac() {
+    /* The arm moves inside its own box, so the offset from box origin to pencil
+       tip changes frame to frame. Crucially this is INTERPOLATED: the table is
+       sampled at 10fps and played at 0.45x, so the table advances only ~4.5
+       times a second while we render at 60fps. Stepping it would teleport the
+       arm by 18px on average and 37px at worst, 4.5 times a second -- which is
+       the single largest source of the jerkiness. */
+    var n = TIPS.frames, m = tipMean();
+    if (!vid || vid.readyState < 2 || !vid.duration) return m;
+    var pos = vid.currentTime * TIPS.fps;
+    var i = Math.floor(pos) % n, j = (i + 1) % n, f = pos - Math.floor(pos);
+    var a = TIPS.tips[i], b = TIPS.tips[j];
+    // Interpolate, then pull back toward the mean by (1 - TIP_FOLLOW).
+    TIP[0] = m[0] + (a[0] + (b[0] - a[0]) * f - m[0]) * TIP_FOLLOW;
+    TIP[1] = m[1] + (a[1] + (b[1] - a[1]) * f - m[1]) * TIP_FOLLOW;
+    return TIP;
+  }
+
+  /* Where the brush is, as a function of progress across the word rather than
+     of the pen's position. x advances monotonically -- a cursive stroke that
+     loops back leftward must not drag the brush backwards with it. */
+  var sweepPhase = 0, LASTP = 0;
+  var BASE_Y = 0, XH = 8.7;
+  function sweepPoint(w, dist) {
+    var prog = w.total ? dist / w.total : 0;
+    if (MODE === "trace") {
+      var e = pointAt(w, dist);
+      LASTP = prog;
+      return { x: e.x, y: e.y - RIDE * XH, ang: e.ang, prog: prog };
+    }
+    var base = BASE_Y;                       // the writing baseline
+    // Purely a function of progress across the word: perfectly monotonic, and
+    // it never stalls while the pen loops back through a letter.
+    var g = prog * (w.env.length - 1);
+    var gi = Math.min(w.env.length - 2, Math.floor(g)), gf = g - gi;
+    var x = w.env[gi] + (w.env[gi + 1] - w.env[gi]) * gf;
+    var y = base - RIDE * XH + Math.sin(prog * Math.PI * WOBBLES * 2 + sweepPhase) * WOBBLE;
+    if (LETTER_Y) y += (pointAt(w, dist).y - base) * LETTER_Y;
+    LASTP = prog;
+    return { x: x, y: y, ang: 0, prog: prog };
+  }
+
+  var SM = null, SMt = 0, PX = null, PY = 0, SMt0 = 0, LASTB = -1, SPS = 0;
+  function place(w, pt, lift, tilt) {
+    var px = M.left + (pt.x - M.vx) * M.k;
+    var py = M.top + (pt.y - M.vy) * M.k - lift * innerHeight;
+    var f = tipFrac();
+    var tx = px - f[0] * M.W, ty = py - f[1] * M.H;
+
+    var now = performance.now();
+    if (!SM) {
+      SM = { x: tx, y: ty, r: tilt };
+    } else {
+      // Frame-rate independent exponential follow, so the feel does not change
+      // between a 60Hz and a 120Hz display.
+      var a = 1 - Math.exp(-Math.min(0.1, (now - SMt) / 1000) / TAU);
+      SM.x += (tx - SM.x) * a;
+      SM.y += (ty - SM.y) * a;
+      SM.r += (tilt - SM.r) * a;
+    }
+    SMt = now;
+
+    arm.style.transform =
+      "translate3d(" + SM.x.toFixed(1) + "px," + SM.y.toFixed(1) + "px,0)" +
+      " rotate(" + SM.r.toFixed(2) + "deg)";
+
+    /* Speed-driven blur. Quantised to half-pixel steps on purpose: a filter
+       whose value changes every frame is re-rasterised every frame over a
+       ~1200px element, which is exactly the cost that made me drop the earlier
+       drop-shadow. Stepping it means the string changes rarely. */
+    if (BLUR_MAX > 0 && PX !== null) {
+      var dts = Math.max(0.004, (now - SMt0) / 1000);
+      var sp = Math.hypot(SM.x - PX, SM.y - PY) / dts;
+      // Low-pass the speed before quantising. Raw frame-to-frame speed flaps
+      // across the step boundary and rewrites the filter ~4x more often than
+      // the motion actually warrants.
+      SPS += (sp - SPS) * 0.15;
+      var b = Math.min(BLUR_MAX, Math.max(0, (SPS - BLUR_KNEE) / BLUR_KNEE * BLUR_MAX));
+      b = Math.round(b * 2) / 2;
+      if (b !== LASTB) {
+        arm.style.filter = b ? "blur(" + b + "px)" : "";
+        LASTB = b;
+      }
+    }
+    PX = SM.x; PY = SM.y; SMt0 = now;
+    updateSound();
+
+    var tt = trueTip();
+    paintTo((SM.x + tt[0] * M.W - M.left) / M.k + M.vx,
+            (SM.y + tt[1] * M.H - M.top) / M.k + M.vy);
+
+    if (DEBUG) {
+      dbgTxt.textContent =
+        "prog " + (LASTP * 100).toFixed(0) + "%" +
+        "  target x " + px.toFixed(0) + " y " + py.toFixed(0) +
+        "  tip x " + (SM.x + tt[0] * M.W).toFixed(0) +
+        " y " + (SM.y + tt[1] * M.H).toFixed(0) +
+        "  off " + Math.hypot(SM.x + tt[0] * M.W - px,
+                              SM.y + tt[1] * M.H - py).toFixed(0) + "px" +
+        "  armW " + M.W.toFixed(0) + " k " + M.k.toFixed(2);
+      /* Marks where the bristle tip actually is: the arm's smoothed origin plus
+         the CURRENT frame's true tip offset (not the damped one we position
+         with). Any gap between this and the ink is the tip-follow slack. */
+      dbg.hidden = false;
+      var t = tt;
+      dbg.style.transform = "translate(" + (SM.x + t[0] * M.W) + "px," +
+                                           (SM.y + t[1] * M.H) + "px)";
+    }
+  }
+
+  /* The reveal and the wet trail both key off where the bristles ACTUALLY are
+     (smoothed origin + this video frame's true tip offset), converted back into
+     SVG user space -- not off the target we aimed at. Using the target would
+     uncover ink a few pixels ahead of the visible brush. */
+  var trail = [], streakFade = 1, PAINTING = false;
+  function paintTo(svgX, svgY) {
+    if (MODE !== "trace") {          // trace mode reveals by dash, not by wipe
+      wipe.setAttribute("x1", svgX - FEATHER);
+      wipe.setAttribute("x2", svgX);
+    }
+
+    var tnow = performance.now();
+    /* Only while the brush is down. It leads the ink by the follow-lag, so
+       painting during a pen-lift, the approach or the withdraw dropped blobs
+       ahead of the letters -- the stray dots. A real brush is off the page for
+       all three. */
+    if (PAINTING) {
+      var last = trail[trail.length - 1];
+      if (!last || Math.abs(svgX - last[0]) > 0.6 || Math.abs(svgY - last[1]) > 0.6) {
+        trail.push([svgX, svgY, tnow]);
+      }
+    }
+    // Keep only the tail that is still inside the fade window.
+    /* Age by TIME, not by point count or by horizontal distance. Point count
+       makes the tail length depend on pen speed -- at full tilt 26 points span a
+       third of a word, which paints a fat blob over the letters. Horizontal
+       distance never expires at all when tracing, because the path doubles back. */
+    while (trail.length > 2 && tnow - trail[0][2] > TRAIL_MS) trail.shift();
+    if (MODE !== "trace") {
+      while (trail.length > 2 && svgX - trail[0][0] > STREAK) trail.shift();
+    }
+
+    if (trail.length > 2) {
+      streak.setAttribute("d", "M" + trail.map(function (q) {
+        return q[0].toFixed(1) + " " + q[1].toFixed(1);
+      }).join("L"));
+      if (MODE === "trace") {
+        var back = 0;
+        for (var ti = 0; ti < trail.length; ti++) {
+          var dx = Math.abs(svgX - trail[ti][0]);
+          if (dx > back) back = dx;
+        }
+        streakGrad.setAttribute("x1", svgX - Math.max(4, back));
+      } else {
+        streakGrad.setAttribute("x1", svgX - STREAK);
+      }
+      streakGrad.setAttribute("x2", svgX);
+      streak.style.opacity = streakFade;
+    } else {
+      streak.setAttribute("d", "");
+    }
+  }
+  function clearPaint() {
+    trail = []; streakFade = 1; PAINTING = false;
+    streak.setAttribute("d", "");
+    if (MODE === "trace") {          // mask stays fully open
+      wipe.setAttribute("x1", 1e4); wipe.setAttribute("x2", 1e4 + 1);
+    } else {                          // nothing revealed yet
+      wipe.setAttribute("x1", BOX[0] - 40); wipe.setAttribute("x2", BOX[0] - 39);
+    }
+  }
+
+  function trueTip() {
+    var n = TIPS.frames;
+    if (!vid || vid.readyState < 2 || !vid.duration) return TIPS.tips[0];
+    var pos = vid.currentTime * TIPS.fps;
+    var i = Math.floor(pos) % n, j = (i + 1) % n, f = pos - Math.floor(pos);
+    var a = TIPS.tips[i], b = TIPS.tips[j];
+    return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+  }
+  function snapArm() { SM = null; PX = null; SPS = 0; }
+
+  /* ---- deferred arm ---------------------------------------------------- */
+
+  /* Nothing about the arm is allowed to hold up the page. No <source> ships in
+     the markup, so the browser cannot start fetching it during initial load;
+     the sources are attached only once the page has finished loading and the
+     main thread is idle. Until then the animation still runs -- the arm is just
+     invisible, and the tip lookup falls back to frame 0. */
+  function armReady() {
+    arm.classList.add("is-in");
+  }
+
+  function loadArm() {
+    var go = function () {
+      if (lite) {
+        var still = new Image();
+        still.decoding = "async";
+        still.alt = "";
+        still.onload = armReady;
+        still.src = "/images/" + BASE + "-still.webp";
+        vid.replaceWith(still);
+        vid = { currentTime: 0, readyState: 0, duration: 0 };
+        return;
+      }
+      // Pick one source rather than emitting both: a <source> list is fine, but
+      // being explicit keeps us from ever racing two 3MB fetches.
+      var canWebm = vid.canPlayType('video/webm; codecs="vp9"');
+      vid.src = "/video/" + BASE + (canWebm ? ".webm" : ".mp4");
+      vid.preload = "auto";
+      vid.addEventListener("canplay", function () {
+        vid.playbackRate = RATE;
+        vid.play().catch(function () {});   // muted+playsinline; ignore refusal
+        armReady();
+      }, { once: true });
+      vid.addEventListener("error", function () {
+        // Codec or network failed -- fall back to the still rather than nothing.
+        lite = true;
+        go();
+      }, { once: true });
+      vid.load();
+    };
+
+    var idle = function () {
+      (window.requestIdleCallback || function (f) { setTimeout(f, 200); })(go, { timeout: 3000 });
+    };
+    if (document.readyState === "complete") idle();
+    else addEventListener("load", idle, { once: true });
+  }
+
+  /* ---- run ------------------------------------------------------------- */
+
+  function start(data) {
+    WORDS = Object.keys(data.words).map(function (n) { return compile(n, data.words[n]); });
+    var box = data.box, pad = 8;
+    BOX = box;
+    /* box[3] is the descender line, not the baseline -- see tools/handwriting.py.
+       Using it put the brush a full descender beneath the letters. */
+    BASE_Y = typeof data.baseline === "number" ? data.baseline : box[3];
+    XH = data.xheight || 8.7;
+    var widest = Math.max.apply(null, WORDS.map(function (w) {
+      return Math.max.apply(null, w.segs.map(function (s) { return s.b[0]; }));
+    }));
+    slate.setAttribute("viewBox",
+      [box[0] - pad, box[1] - pad, widest + pad * 2, (box[3] - box[1]) + pad * 2].join(" "));
+    streak.style.strokeWidth = STREAK_W;
+    var inkColor = getComputedStyle(document.documentElement)
+                     .getPropertyValue("--ink").trim() || "#1d2b4a";
+    var stops = streakGrad.querySelectorAll("stop");
+    for (var si = 0; si < stops.length; si++) {
+      stops[si].setAttribute("stop-color", inkColor);
+    }
+    if (stops[1]) stops[1].setAttribute("stop-opacity", STREAK_A);
+
+    var vb0 = slate.viewBox.baseVal;
+    wipeRect.setAttribute("x", vb0.x); wipeRect.setAttribute("y", vb0.y);
+    wipeRect.setAttribute("width", vb0.width); wipeRect.setAttribute("height", vb0.height);
+    wipe.setAttribute("y1", vb0.y); wipe.setAttribute("y2", vb0.y);
+    streakGrad.setAttribute("y1", vb0.y); streakGrad.setAttribute("y2", vb0.y);
+
+    var rule = slate.querySelector(".rule");
+    rule.setAttribute("x1", box[0] - pad); rule.setAttribute("x2", box[0] + widest + pad);
+    rule.setAttribute("y1", BASE_Y + 1.5);  rule.setAttribute("y2", BASE_Y + 1.5);
+
+    if (reduced) {
+      buildInk(WORDS[0]); revealAll();
+      wipe.setAttribute("x1", 1e4); wipe.setAttribute("x2", 1e4 + 1);
+      cap.textContent = WORDS[0].name; return;
+    }
+    loadArm();
+    loop(0);
+  }
+
+  function loop(i) {
+    var w = WORDS[i % WORDS.length], tl = timeline(w);
+    if (!M) measure();
+
+    buildInk(w);
+    inkg.style.transition = "";
+    inkg.style.opacity = 1;
+    // In sweep mode the wipe does the revealing, so the strokes start complete.
+    if (MODE !== "trace") revealAll();
+    clearPaint();
+    cap.textContent = w.name + "  ·  " + TOOL + "  ·  build " + BUILD;
+
+    snapArm();
+    sweepPhase = (i % 4) * 1.31;   // decorrelate the sway between words
+    var t0 = performance.now();
+    requestAnimationFrame(function frame(now) {
+      if (!M) measure();
+      var t = (now - t0) / 1000;
+
+      if (t < LEAD_IN) {
+        // Approach: the arm glides in and settles onto the first mark.
+        PAINTING = false;
+        var u = easeTravel(t / LEAD_IN);
+        var head = sweepPoint(w, 0);
+        place(w, head, (1 - u) * LIFT * 3.2, -3 * (1 - u));
+        return requestAnimationFrame(frame);
+      }
+
+      var ph = null;
+      for (var j = 0; j < tl.phases.length; j++) {
+        var p = tl.phases[j];
+        if (t >= p.t0 && t < p.t0 + p.dur) { ph = p; break; }
+      }
+
+      if (ph && ph.kind === "draw") {
+        PAINTING = true;
+        var u2 = easeStroke((t - ph.t0) / ph.dur);
+        var dist = distInStroke(ph.st, u2);
+        if (MODE === "trace") revealTo(w, dist);
+        var pt = sweepPoint(w, dist);
+        place(w, pt, 0, MODE === "trace" ? Math.sin(pt.ang) * 2.0
+              : Math.cos(pt.prog * Math.PI * WOBBLES * 2 + sweepPhase) * 2.4);
+        return requestAnimationFrame(frame);
+      }
+
+      if (ph && ph.kind === "travel") {
+        PAINTING = false;          // pen-lift: brush is off the page
+        var u3 = easeTravel((t - ph.t0) / ph.dur);
+        if (MODE === "trace") revealTo(w, ph.ink);
+        // Arc over the gap; a bigger jump lifts higher.
+        // Pen-lifts still gate the ink, but the brush keeps sweeping through
+        // them -- it must not hop once per stroke.
+        var pt2 = sweepPoint(w, ph.ink);
+        place(w, pt2, 0, Math.cos(pt2.prog * Math.PI * WOBBLES * 2 + sweepPhase) * 2.4);
+        return requestAnimationFrame(frame);
+      }
+
+      // Word finished: hold, then withdraw and fade.
+      var held = t - tl.end;
+      if (held < HOLD) {
+        PAINTING = false;
+        if (MODE === "trace") revealAll();
+        var u4 = easeTravel(Math.min(1, held / 0.8));
+        streakFade = Math.max(0, 1 - held / 0.45);
+        var tail = sweepPoint(w, w.total);
+        place(w, tail, u4 * LIFT * 3.4, -5 * u4);
+        /* place() leaves the wipe at the bristle tip, which parks the feather
+           across the final glyph and leaves it permanently half-faded. Carry
+           the reveal past the end of the word as it settles. */
+        var done = MODE === "trace" ? 0 : easeTravel(Math.min(1, held / 0.3));
+        var edge = parseFloat(wipe.getAttribute("x1")) || w.xMax;
+        var full = w.xMax + FEATHER + 4;
+        wipe.setAttribute("x1", edge + (full - edge) * done);
+        wipe.setAttribute("x2", edge + (full - edge) * done + FEATHER);
+        return requestAnimationFrame(frame);
+      }
+      inkg.style.transition = "opacity " + FADE + "s ease";
+      inkg.style.opacity = 0;
+      setTimeout(function () { loop(i + 1); }, FADE * 1000);
+    });
+  }
+})();
+</script>

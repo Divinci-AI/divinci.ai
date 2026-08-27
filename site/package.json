@@ -5,7 +5,7 @@
   "scripts": {
     "og": "node scripts/gen-og-images.mjs",
     "refresh:universe": "node scripts/gen-universe-poster.mjs",
-    "build": "npm run og && npm run build:chat && npm run build:robot && python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-search-index.py && zola build",
+    "build": "npm run og && npm run build:chat && npm run build:robot && npm run build:robot-hero && python3 scripts/build-open-web-vectors-data.py && python3 scripts/build-search-index.py && zola build",
     "build:chat": "esbuild static/js/src/divinci-chat-widget.ts --bundle --format=iife --minify --target=es2020 --outfile=static/js/divinci-chat.js",
     "build:robot": "esbuild static/js/src/divinci-robot-launcher.tsx --bundle --format=iife --minify --target=es2020 --jsx=automatic --outfile=static/js/divinci-robot.js",
     "serve": "zola serve --port 1111",
@@ -95,7 +95,8 @@
     "test:e2e:safe": "echo 'Pre-push validation: Running unit tests and style checks...' && npm run test:unit:jest && npm run style:validate",
     "test:validate-setup": "node scripts/validate-test-setup.js",
     "pre-commit": "npm run test:unit:jest && npm run style:validate",
-    "pre-push": "npm run test:e2e:safe && npm run style:check"
+    "pre-push": "npm run test:e2e:safe && npm run style:check",
+    "build:robot-hero": "esbuild static/js/src/pipeline-robot.tsx --bundle --format=iife --minify --target=es2020 --jsx=automatic --outfile=static/js/pipeline-robot.js"
   },
   "dependencies": {
     "@divinci-ai/client": "^0.6.0",

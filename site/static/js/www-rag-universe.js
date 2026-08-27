@@ -1440,7 +1440,7 @@
    * The visitor is not locked out — LOAD_LABEL below opens the real thing on
    * demand. The heuristics here decide the default, never the ceiling.
    */
-  var POSTER_SRC = "/images/marketing/www-rag/universe-poster.webp";
+  var POSTER_SRC = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/marketing/www-rag/universe-poster.webp";
   var POSTER_CAPTION =
     "A snapshot of the RAG Universe, captured 22 August 2026: 6,521 " +
     "sites, 15,785 hyperlinks between them and 15,469 semantic ties. Size " +
