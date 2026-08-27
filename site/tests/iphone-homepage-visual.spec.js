@@ -1,5 +1,9 @@
 const { test, expect, devices } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 // iPhone 12 Pro specific testing
 // File scope, not inside the describe: `test.use()` may change the browser
 // engine only at the top level of a file. Inside a describe Playwright
@@ -18,7 +22,7 @@ test.describe('iPhone 12 Pro Homepage Visual Testing', () => {
     await page.goto('/');
     
     // Wait for page to fully load
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Wait for any animations to complete
     await page.waitForTimeout(2000);
@@ -32,7 +36,7 @@ test.describe('iPhone 12 Pro Homepage Visual Testing', () => {
 
   test('Homepage sections analysis - iPhone 12 Pro', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Test individual sections that commonly have mobile issues
     
@@ -63,7 +67,7 @@ test.describe('iPhone 12 Pro Homepage Visual Testing', () => {
 
   test('Mobile interaction testing - iPhone 12 Pro', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Test mobile menu (hamburger)
     const mobileMenuToggle = page.locator('[class*="menu-toggle"], [class*="hamburger"], .mobile-menu-btn');
@@ -82,7 +86,7 @@ test.describe('iPhone 12 Pro Homepage Visual Testing', () => {
 
   test('Responsive layout checks - iPhone 12 Pro', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Check for common mobile issues
     
@@ -152,7 +156,7 @@ test.describe('iPhone 12 Pro Homepage Visual Testing', () => {
     const startTime = Date.now();
     
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const loadTime = Date.now() - startTime;
     console.log(`Page load time: ${loadTime}ms`);

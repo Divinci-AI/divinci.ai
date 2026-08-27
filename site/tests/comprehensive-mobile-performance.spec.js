@@ -1,6 +1,10 @@
 const { test, expect, devices } = require('@playwright/test');
 const { emulationOnly } = require('./helpers/device');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 // Mobile devices for performance testing
 const mobileDevices = [
   { name: 'iPhone 12 Pro', device: devices['iPhone 12 Pro'], width: 390, network: '3G' },
@@ -22,7 +26,7 @@ class MobilePerformanceHelper {
     await this.page.goto(url, { waitUntil: 'load' });
     const loadTime = Date.now() - startTime;
     
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('domcontentloaded');
     const networkIdleTime = Date.now() - startTime;
     
     // Get Core Web Vitals using page.evaluate
@@ -291,7 +295,7 @@ mobileDevices.forEach(({ name, device, width, network }) => {
       console.log(`📦 Testing ${name} resource loading...`);
       
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const resources = await helper.analyzeResourceLoading();
       console.log(`📈 ${name} Resource Analysis:`, resources);
@@ -356,7 +360,7 @@ mobileDevices.forEach(({ name, device, width, network }) => {
       console.log(`📱 Testing ${name} mobile features...`);
       
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test language switcher performance
       const langSwitcherTest = await page.evaluate(async () => {
@@ -519,7 +523,7 @@ test.describe('Cross-Device Performance Comparison', () => {
       
       try {
         await page.goto('/');
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const accessibility = await helper.analyzeAccessibility();
         

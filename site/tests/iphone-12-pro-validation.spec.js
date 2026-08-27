@@ -1,5 +1,9 @@
 const { test, expect, devices } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 // File scope, not inside the describe: `test.use()` may change the browser
 // engine only at the top level of a file. Inside a describe Playwright
 // rejects it — `defaultBrowserType` is worker-scoped and would force a new
@@ -12,7 +16,7 @@ test.describe('iPhone 12 Pro Homepage Validation', () => {
   test('iPhone 12 Pro homepage fixes validation', async ({ page }) => {
     // Navigate to live site
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     console.log('📱 Validating iPhone 12 Pro fixes...');
     

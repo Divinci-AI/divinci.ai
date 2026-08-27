@@ -1,6 +1,10 @@
 const { test, expect, devices } = require('@playwright/test');
 const { emulationOnly } = require('./helpers/device');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Comprehensive Mobile Testing Suite
  * 
@@ -59,7 +63,7 @@ class ComprehensiveMobileHelper {
     
     try {
       await this.page.goto(url);
-      await this.page.waitForLoadState('networkidle');
+      await this.page.waitForLoadState('domcontentloaded');
       
       const layoutCheck = await this.page.evaluate(() => {
         const body = document.body;
@@ -267,7 +271,7 @@ class ComprehensiveMobileHelper {
       await this.page.goto('/', { waitUntil: 'load' });
       const loadTime = Date.now() - startTime;
       
-      await this.page.waitForLoadState('networkidle');
+      await this.page.waitForLoadState('domcontentloaded');
       const networkIdleTime = Date.now() - startTime;
       
       // Get web vitals
@@ -339,10 +343,10 @@ class ComprehensiveMobileHelper {
       
       // Journey 1: Homepage to Contact
       await this.page.goto('/');
-      await this.page.waitForLoadState('networkidle');
+      await this.page.waitForLoadState('domcontentloaded');
       
       await this.page.goto('/contact/');
-      await this.page.waitForLoadState('networkidle');
+      await this.page.waitForLoadState('domcontentloaded');
       journeyResults.push({ journey: 'homepage_to_contact', success: true });
       
       // Journey 2: Language switching
@@ -356,7 +360,7 @@ class ComprehensiveMobileHelper {
         const spanishOption = this.page.locator('[data-lang="es"]');
         if (await spanishOption.count() > 0) {
           await spanishOption.click();
-          await this.page.waitForLoadState('networkidle');
+          await this.page.waitForLoadState('domcontentloaded');
           journeyResults.push({ journey: 'language_switching', success: true });
         }
       }
@@ -368,7 +372,7 @@ class ComprehensiveMobileHelper {
       for (const pageUrl of pages) {
         try {
           await this.page.goto(pageUrl);
-          await this.page.waitForLoadState('networkidle');
+          await this.page.waitForLoadState('domcontentloaded');
           
           // Check layout doesn't break
           const hasOverflow = await this.page.evaluate(() => {
@@ -539,7 +543,7 @@ test.describe('Cross-Device Mobile Consistency', () => {
         try {
           const testUrl = langCode === 'en' ? '/' : `/${langCode}/`;
           await page.goto(testUrl);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           const layoutCheck = await page.evaluate(() => ({
             hasOverflow: document.body.scrollWidth > window.innerWidth + 10,

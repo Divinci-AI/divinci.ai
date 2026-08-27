@@ -1,6 +1,10 @@
 const { test, expect, devices } = require('@playwright/test');
 const { emulationOnly } = require('./helpers/device');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 // Mobile devices for language testing
 const mobileDevices = [
   { name: 'iPhone 12 Pro', device: devices['iPhone 12 Pro'], width: 390 },
@@ -162,7 +166,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       console.log(`🌐 Testing ${name} language switcher...`);
       
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Check language switcher state
       const switcherState = await helper.getLanguageSwitcherState();
@@ -186,7 +190,7 @@ mobileDevices.forEach(({ name, device, width }) => {
         console.log(`🔤 Testing ${name} - ${lang.name}...`);
         
         await page.goto(lang.url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Check page direction for RTL languages
         const direction = await helper.checkPageDirection();
@@ -236,7 +240,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       
       // Start with English
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Open language switcher
       await page.locator('.language-switcher-current').click();
@@ -246,7 +250,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       const spanishOption = page.locator('[data-lang="es"]');
       if (await spanishOption.count() > 0) {
         await spanishOption.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Verify we're on Spanish site
         const url = page.url();
@@ -258,7 +262,7 @@ mobileDevices.forEach(({ name, device, width }) => {
         const aboutLink = page.locator('a[href*="/es/about"], nav a[href*="about"]');
         if (await aboutLink.count() > 0) {
           await aboutLink.first().click();
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           const newUrl = page.url();
           console.log(`📄 ${name} Spanish navigation: ${newUrl}`);
@@ -272,7 +276,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       const englishOption = page.locator('[data-lang="en"]');
       if (await englishOption.count() > 0) {
         await englishOption.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const finalUrl = page.url();
         expect(finalUrl).not.toContain('/es');
@@ -287,7 +291,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       
       // Test Arabic (RTL)
       await page.goto('/ar/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Check RTL direction is applied
       const direction = await helper.checkPageDirection();
@@ -340,7 +344,7 @@ test.describe('Cross-Language Mobile Consistency', () => {
       
       try {
         await page.goto('/');
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const switcherState = await helper.getLanguageSwitcherState();
         const interaction = await helper.testLanguageSwitcherInteraction();
@@ -391,7 +395,7 @@ test.describe('Cross-Language Mobile Consistency', () => {
         try {
           const testUrl = langCode === 'en' ? '/' : `/${langCode}/`;
           await page.goto(testUrl);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           const content = await page.evaluate(() => {
             const title = document.title;

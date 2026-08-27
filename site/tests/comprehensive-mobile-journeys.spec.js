@@ -1,6 +1,10 @@
 const { test, expect, devices } = require('@playwright/test');
 const { emulationOnly } = require('./helpers/device');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 // Mobile devices for user journey testing
 const mobileDevices = [
   { name: 'iPhone 12 Pro', device: devices['iPhone 12 Pro'], width: 390 },
@@ -22,7 +26,7 @@ class MobileJourneyHelper {
   }
 
   async checkPageLoad(expectedTitle = 'Divinci') {
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('domcontentloaded');
     const title = await this.page.title();
     const url = this.page.url();
     
@@ -351,7 +355,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       // Step 1: Performance test
       const startTime = Date.now();
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       const loadTime = Date.now() - startTime;
       
       await helper.logStep('Performance Test', { loadTime: `${loadTime}ms` });
@@ -478,7 +482,7 @@ test.describe('Cross-Device Journey Consistency', () => {
       
       try {
         await page.goto('/contact/');
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Check if contact form exists
         const contactForm = page.locator('form, .contact-form');

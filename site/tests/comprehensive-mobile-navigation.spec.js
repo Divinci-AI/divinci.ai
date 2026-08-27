@@ -1,6 +1,10 @@
 const { test, expect, devices } = require('@playwright/test');
 const { emulationOnly } = require('./helpers/device');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 // Define mobile devices for comprehensive testing
 const mobileDevices = [
   { name: 'iPhone 12 Pro', device: devices['iPhone 12 Pro'], width: 390 },
@@ -152,7 +156,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       console.log(`📱 Testing ${name} navigation...`);
       
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test horizontal overflow
       const overflowCheck = await helper.checkHorizontalOverflow();
@@ -182,7 +186,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       
       // Start at homepage
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const testPages = [
         { url: '/about/', name: 'About' },
@@ -194,7 +198,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       for (const testPage of testPages) {
         try {
           await page.goto(`${testPage.url}`);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           // Check layout doesn't break
           const overflowCheck = await helper.checkHorizontalOverflow();
@@ -216,7 +220,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       console.log(`🎯 Testing ${name} interactions...`);
       
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test CTA buttons
       const ctaButtons = page.locator('.cta-button, .primary-button, .secondary-button, [href*="calendly"]');
@@ -263,7 +267,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       
       const startTime = Date.now();
       
-      await page.goto('/', { waitUntil: 'networkidle' });
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
       
       const loadTime = Date.now() - startTime;
       console.log(`⏱️ ${name} Load time: ${loadTime}ms`);
@@ -306,7 +310,7 @@ test.describe('Cross-Device Mobile Comparison', () => {
       
       try {
         await page.goto('/');
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const overflowCheck = await helper.checkHorizontalOverflow();
         const touchCheck = await helper.checkTouchTargets();
