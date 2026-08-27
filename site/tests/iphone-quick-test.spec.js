@@ -5,7 +5,7 @@ test.describe('iPhone 12 Pro Homepage Quick Analysis', () => {
 
   test('iPhone 12 Pro homepage issues analysis', async ({ page }) => {
     // Navigate to live site
-    await page.goto('https://divinci.ai/');
+    await page.goto('/');
     await page.waitForLoadState('networkidle');
     
     console.log('📱 Testing iPhone 12 Pro (390x844) homepage...');

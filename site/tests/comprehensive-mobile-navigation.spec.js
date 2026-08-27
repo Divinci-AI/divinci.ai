@@ -150,7 +150,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       
       console.log(`📱 Testing ${name} navigation...`);
       
-      await page.goto('https://divinci.ai/');
+      await page.goto('/');
       await page.waitForLoadState('networkidle');
       
       // Test horizontal overflow
@@ -180,7 +180,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       console.log(`🔄 Testing ${name} page flow...`);
       
       // Start at homepage
-      await page.goto('https://divinci.ai/');
+      await page.goto('/');
       await page.waitForLoadState('networkidle');
       
       const testPages = [
@@ -192,7 +192,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       
       for (const testPage of testPages) {
         try {
-          await page.goto(`https://divinci.ai${testPage.url}`);
+          await page.goto(`${testPage.url}`);
           await page.waitForLoadState('networkidle');
           
           // Check layout doesn't break
@@ -214,7 +214,7 @@ mobileDevices.forEach(({ name, device, width }) => {
     test(`${name} - Interactive elements test`, async ({ page }) => {
       console.log(`🎯 Testing ${name} interactions...`);
       
-      await page.goto('https://divinci.ai/');
+      await page.goto('/');
       await page.waitForLoadState('networkidle');
       
       // Test CTA buttons
@@ -262,7 +262,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       
       const startTime = Date.now();
       
-      await page.goto('https://divinci.ai/', { waitUntil: 'networkidle' });
+      await page.goto('/', { waitUntil: 'networkidle' });
       
       const loadTime = Date.now() - startTime;
       console.log(`⏱️ ${name} Load time: ${loadTime}ms`);
@@ -304,7 +304,7 @@ test.describe('Cross-Device Mobile Comparison', () => {
       const helper = new MobileNavigationHelper(page);
       
       try {
-        await page.goto('https://divinci.ai/');
+        await page.goto('/');
         await page.waitForLoadState('networkidle');
         
         const overflowCheck = await helper.checkHorizontalOverflow();

@@ -5,7 +5,7 @@ test.describe('iPhone 12 Pro Homepage Validation', () => {
 
   test('iPhone 12 Pro homepage fixes validation', async ({ page }) => {
     // Navigate to live site
-    await page.goto('https://divinci.ai/');
+    await page.goto('/');
     await page.waitForLoadState('networkidle');
     
     console.log('📱 Validating iPhone 12 Pro fixes...');

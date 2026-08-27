@@ -121,7 +121,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       await helper.logStep('Journey Start', { journey: 'Homepage to Contact', device: name });
       
       // Step 1: Start at homepage
-      await page.goto('https://divinci.ai/');
+      await page.goto('/');
       await helper.checkPageLoad();
       await helper.checkMobileLayout();
       
@@ -140,7 +140,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       
       // Method 2: CTA button if available
       if (!contactReached) {
-        await page.goto('https://divinci.ai/');
+        await page.goto('/');
         const ctaButton = page.locator('.cta-button, [href*="calendly"], .primary-button');
         if (await ctaButton.count() > 0) {
           await ctaButton.first().click();
@@ -151,7 +151,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       
       // Method 3: Direct navigation to contact page
       if (!contactReached) {
-        await page.goto('https://divinci.ai/contact/');
+        await page.goto('/contact/');
         await helper.checkPageLoad();
         await helper.logStep('Direct Contact Navigation');
         contactReached = true;
@@ -193,7 +193,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       await helper.logStep('Journey Start', { journey: 'Multi-language exploration', device: name });
       
       // Step 1: Start at English homepage
-      await page.goto('https://divinci.ai/');
+      await page.goto('/');
       await helper.checkPageLoad();
       
       // Step 2: Open language switcher
@@ -220,7 +220,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       }
       
       // Step 4: Test RTL language (Arabic)
-      await page.goto('https://divinci.ai/ar/');
+      await page.goto('/ar/');
       await helper.checkPageLoad();
       
       const rtlCheck = await page.evaluate(() => {
@@ -245,7 +245,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       await helper.logStep('Journey Start', { journey: 'Feature exploration', device: name });
       
       // Step 1: Homepage
-      await page.goto('https://divinci.ai/');
+      await page.goto('/');
       await helper.checkPageLoad();
       await helper.testScrollAndNavigation();
       
@@ -258,7 +258,7 @@ mobileDevices.forEach(({ name, device, width }) => {
         await helper.logStep('AutoRAG Page Visited');
       } else {
         // Direct navigation if link not found
-        await page.goto('https://divinci.ai/autorag/');
+        await page.goto('/autorag/');
         await helper.checkPageLoad();
         await helper.logStep('AutoRAG Direct Navigation');
       }
@@ -298,12 +298,12 @@ mobileDevices.forEach(({ name, device, width }) => {
       await helper.logStep('Journey Start', { journey: 'Complete site navigation', device: name });
       
       const pagesToTest = [
-        { url: 'https://divinci.ai/', name: 'Homepage' },
-        { url: 'https://divinci.ai/about/', name: 'About' },
-        { url: 'https://divinci.ai/autorag/', name: 'AutoRAG' },
-        { url: 'https://divinci.ai/quality-assurance/', name: 'Quality Assurance' },
-        { url: 'https://divinci.ai/support/', name: 'Support' },
-        { url: 'https://divinci.ai/contact/', name: 'Contact' }
+        { url: '/', name: 'Homepage' },
+        { url: '/about/', name: 'About' },
+        { url: '/autorag/', name: 'AutoRAG' },
+        { url: '/quality-assurance/', name: 'Quality Assurance' },
+        { url: '/support/', name: 'Support' },
+        { url: '/contact/', name: 'Contact' }
       ];
       
       for (const pageTest of pagesToTest) {
@@ -349,7 +349,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       
       // Step 1: Performance test
       const startTime = Date.now();
-      await page.goto('https://divinci.ai/');
+      await page.goto('/');
       await page.waitForLoadState('networkidle');
       const loadTime = Date.now() - startTime;
       
@@ -424,13 +424,13 @@ test.describe('Cross-Device Journey Consistency', () => {
       
       try {
         // Simple journey: Homepage -> Contact
-        await page.goto('https://divinci.ai/');
+        await page.goto('/');
         await helper.checkPageLoad();
         
         const homeLayout = await helper.checkMobileLayout();
         
         // Navigate to contact
-        await page.goto('https://divinci.ai/contact/');
+        await page.goto('/contact/');
         await helper.checkPageLoad();
         
         const contactLayout = await helper.checkMobileLayout();
@@ -476,7 +476,7 @@ test.describe('Cross-Device Journey Consistency', () => {
       const page = await context.newPage();
       
       try {
-        await page.goto('https://divinci.ai/contact/');
+        await page.goto('/contact/');
         await page.waitForLoadState('networkidle');
         
         // Check if contact form exists

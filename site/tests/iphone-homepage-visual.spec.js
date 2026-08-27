@@ -9,7 +9,7 @@ test.describe('iPhone 12 Pro Homepage Visual Testing', () => {
 
   test('Homepage visual regression test - iPhone 12 Pro', async ({ page }) => {
     // Navigate to homepage
-    await page.goto('https://divinci.ai/');
+    await page.goto('/');
     
     // Wait for page to fully load
     await page.waitForLoadState('networkidle');
@@ -25,7 +25,7 @@ test.describe('iPhone 12 Pro Homepage Visual Testing', () => {
   });
 
   test('Homepage sections analysis - iPhone 12 Pro', async ({ page }) => {
-    await page.goto('https://divinci.ai/');
+    await page.goto('/');
     await page.waitForLoadState('networkidle');
     
     // Test individual sections that commonly have mobile issues
@@ -56,7 +56,7 @@ test.describe('iPhone 12 Pro Homepage Visual Testing', () => {
   });
 
   test('Mobile interaction testing - iPhone 12 Pro', async ({ page }) => {
-    await page.goto('https://divinci.ai/');
+    await page.goto('/');
     await page.waitForLoadState('networkidle');
     
     // Test mobile menu (hamburger)
@@ -75,7 +75,7 @@ test.describe('iPhone 12 Pro Homepage Visual Testing', () => {
   });
 
   test('Responsive layout checks - iPhone 12 Pro', async ({ page }) => {
-    await page.goto('https://divinci.ai/');
+    await page.goto('/');
     await page.waitForLoadState('networkidle');
     
     // Check for common mobile issues
@@ -145,7 +145,7 @@ test.describe('iPhone 12 Pro Homepage Visual Testing', () => {
   test('Performance and loading - iPhone 12 Pro', async ({ page }) => {
     const startTime = Date.now();
     
-    await page.goto('https://divinci.ai/');
+    await page.goto('/');
     await page.waitForLoadState('networkidle');
     
     const loadTime = Date.now() - startTime;

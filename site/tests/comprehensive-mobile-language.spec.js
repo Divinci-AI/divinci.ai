@@ -14,7 +14,7 @@ const languages = [
     code: 'en', 
     name: 'English', 
     native: 'English',
-    url: 'https://divinci.ai/',
+    url: '/',
     expectedTitle: 'Divinci AI - Excellence, every time',
     expectedContent: 'Excellence, every time',
     direction: 'ltr'
@@ -23,7 +23,7 @@ const languages = [
     code: 'es', 
     name: 'Spanish', 
     native: 'Español',
-    url: 'https://divinci.ai/es/',
+    url: '/es/',
     expectedTitle: 'Divinci AI',
     expectedContent: 'Excelencia',
     direction: 'ltr'
@@ -32,7 +32,7 @@ const languages = [
     code: 'fr', 
     name: 'French', 
     native: 'Français',
-    url: 'https://divinci.ai/fr/',
+    url: '/fr/',
     expectedTitle: 'Divinci AI',
     expectedContent: 'Excellence',
     direction: 'ltr'
@@ -41,7 +41,7 @@ const languages = [
     code: 'ar', 
     name: 'Arabic', 
     native: 'العربية',
-    url: 'https://divinci.ai/ar/',
+    url: '/ar/',
     expectedTitle: 'Divinci AI',
     expectedContent: 'الذكاء',
     direction: 'rtl'
@@ -160,7 +160,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       
       console.log(`🌐 Testing ${name} language switcher...`);
       
-      await page.goto('https://divinci.ai/');
+      await page.goto('/');
       await page.waitForLoadState('networkidle');
       
       // Check language switcher state
@@ -234,7 +234,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       console.log(`🔄 Testing ${name} language switching flow...`);
       
       // Start with English
-      await page.goto('https://divinci.ai/');
+      await page.goto('/');
       await page.waitForLoadState('networkidle');
       
       // Open language switcher
@@ -285,7 +285,7 @@ mobileDevices.forEach(({ name, device, width }) => {
       console.log(`🔄 Testing ${name} RTL support...`);
       
       // Test Arabic (RTL)
-      await page.goto('https://divinci.ai/ar/');
+      await page.goto('/ar/');
       await page.waitForLoadState('networkidle');
       
       // Check RTL direction is applied
@@ -338,7 +338,7 @@ test.describe('Cross-Language Mobile Consistency', () => {
       const helper = new MobileLanguageHelper(page);
       
       try {
-        await page.goto('https://divinci.ai/');
+        await page.goto('/');
         await page.waitForLoadState('networkidle');
         
         const switcherState = await helper.getLanguageSwitcherState();
@@ -388,7 +388,7 @@ test.describe('Cross-Language Mobile Consistency', () => {
         const page = await context.newPage();
         
         try {
-          const testUrl = langCode === 'en' ? 'https://divinci.ai/' : `https://divinci.ai/${langCode}/`;
+          const testUrl = langCode === 'en' ? '/' : `/${langCode}/`;
           await page.goto(testUrl);
           await page.waitForLoadState('networkidle');
           

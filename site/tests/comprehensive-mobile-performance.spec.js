@@ -260,7 +260,7 @@ mobileDevices.forEach(({ name, device, width, network }) => {
       console.log(`⚡ Testing ${name} performance...`);
       
       // Measure page load performance
-      const loadMetrics = await helper.measurePageLoad('https://divinci.ai/');
+      const loadMetrics = await helper.measurePageLoad('/');
       console.log(`📊 ${name} Load Metrics:`, loadMetrics);
       
       // Performance thresholds for mobile
@@ -289,7 +289,7 @@ mobileDevices.forEach(({ name, device, width, network }) => {
       
       console.log(`📦 Testing ${name} resource loading...`);
       
-      await page.goto('https://divinci.ai/');
+      await page.goto('/');
       await page.waitForLoadState('networkidle');
       
       const resources = await helper.analyzeResourceLoading();
@@ -314,10 +314,10 @@ mobileDevices.forEach(({ name, device, width, network }) => {
       console.log(`🔄 Testing ${name} across multiple pages...`);
       
       const pagesToTest = [
-        'https://divinci.ai/',
-        'https://divinci.ai/about/',
-        'https://divinci.ai/autorag/',
-        'https://divinci.ai/contact/'
+        '/',
+        '/about/',
+        '/autorag/',
+        '/contact/'
       ];
       
       const results = {};
@@ -354,7 +354,7 @@ mobileDevices.forEach(({ name, device, width, network }) => {
       
       console.log(`📱 Testing ${name} mobile features...`);
       
-      await page.goto('https://divinci.ai/');
+      await page.goto('/');
       await page.waitForLoadState('networkidle');
       
       // Test language switcher performance
@@ -454,7 +454,7 @@ test.describe('Cross-Device Performance Comparison', () => {
       const helper = new MobilePerformanceHelper(page);
       
       try {
-        const loadMetrics = await helper.measurePageLoad('https://divinci.ai/');
+        const loadMetrics = await helper.measurePageLoad('/');
         const accessibility = await helper.analyzeAccessibility();
         const resources = await helper.analyzeResourceLoading();
         const mobileOpts = await helper.checkMobileOptimizations();
@@ -517,7 +517,7 @@ test.describe('Cross-Device Performance Comparison', () => {
       const helper = new MobilePerformanceHelper(page);
       
       try {
-        await page.goto('https://divinci.ai/');
+        await page.goto('/');
         await page.waitForLoadState('networkidle');
         
         const accessibility = await helper.analyzeAccessibility();

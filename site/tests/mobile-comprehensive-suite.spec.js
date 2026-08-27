@@ -24,11 +24,11 @@ const MOBILE_TEST_CONFIG = {
   languages: ['en', 'es', 'fr', 'ar'],
   
   criticalPages: [
-    { url: 'https://divinci.ai/', name: 'Homepage', priority: 'critical' },
-    { url: 'https://divinci.ai/about/', name: 'About', priority: 'high' },
-    { url: 'https://divinci.ai/autorag/', name: 'AutoRAG', priority: 'high' },
-    { url: 'https://divinci.ai/contact/', name: 'Contact', priority: 'critical' },
-    { url: 'https://divinci.ai/support/', name: 'Support', priority: 'medium' },
+    { url: '/', name: 'Homepage', priority: 'critical' },
+    { url: '/about/', name: 'About', priority: 'high' },
+    { url: '/autorag/', name: 'AutoRAG', priority: 'high' },
+    { url: '/contact/', name: 'Contact', priority: 'critical' },
+    { url: '/support/', name: 'Support', priority: 'medium' },
   ],
   
   performanceThresholds: {
@@ -52,7 +52,7 @@ class ComprehensiveMobileHelper {
     };
   }
 
-  async runLayoutValidation(url = 'https://divinci.ai/') {
+  async runLayoutValidation(url = '/') {
     const testName = 'layout_validation';
     console.log(`📱 ${this.deviceName} - Running layout validation...`);
     
@@ -263,7 +263,7 @@ class ComprehensiveMobileHelper {
     
     try {
       const startTime = Date.now();
-      await this.page.goto('https://divinci.ai/', { waitUntil: 'load' });
+      await this.page.goto('/', { waitUntil: 'load' });
       const loadTime = Date.now() - startTime;
       
       await this.page.waitForLoadState('networkidle');
@@ -337,15 +337,15 @@ class ComprehensiveMobileHelper {
       const journeyResults = [];
       
       // Journey 1: Homepage to Contact
-      await this.page.goto('https://divinci.ai/');
+      await this.page.goto('/');
       await this.page.waitForLoadState('networkidle');
       
-      await this.page.goto('https://divinci.ai/contact/');
+      await this.page.goto('/contact/');
       await this.page.waitForLoadState('networkidle');
       journeyResults.push({ journey: 'homepage_to_contact', success: true });
       
       // Journey 2: Language switching
-      await this.page.goto('https://divinci.ai/');
+      await this.page.goto('/');
       const langSwitcher = this.page.locator('.language-switcher-current');
       
       if (await langSwitcher.count() > 0) {
@@ -361,7 +361,7 @@ class ComprehensiveMobileHelper {
       }
       
       // Journey 3: Multi-page navigation
-      const pages = ['https://divinci.ai/', 'https://divinci.ai/about/', 'https://divinci.ai/autorag/'];
+      const pages = ['/', '/about/', '/autorag/'];
       let navigationSuccess = true;
       
       for (const pageUrl of pages) {
@@ -536,7 +536,7 @@ test.describe('Cross-Device Mobile Consistency', () => {
         const page = await context.newPage();
         
         try {
-          const testUrl = langCode === 'en' ? 'https://divinci.ai/' : `https://divinci.ai/${langCode}/`;
+          const testUrl = langCode === 'en' ? '/' : `/${langCode}/`;
           await page.goto(testUrl);
           await page.waitForLoadState('networkidle');
           
