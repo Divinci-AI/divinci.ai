@@ -6262,6 +6262,26 @@ body:not(.homepage) .privacy-settings-link:hover {
   background: none;
   color: #ffffff;
 }
+/* The plain-text look above costs the trigger its tap target: with no padding
+   and line-height 1 it measures 92 x 18px, against the 44px minimum in WCAG
+   2.5.5 and Apple's HIG. On a phone that is a thumb-sized control rendered at
+   less than half thumb size.
+   Rather than pad it — which would change the look the rule above is for, and
+   grow the banner — the hit area is extended past the text by a transparent
+   overlay. Layout, spacing and every pixel drawn stay exactly as they were;
+   only the region that answers a tap gets bigger. 13px each way takes 18 to
+   44. */
+.site-research-banner .language-switcher-current {
+  position: relative;
+}
+.site-research-banner .language-switcher-current::after {
+  content: "";
+  position: absolute;
+  inset: -13px 0;
+  /* Purely a target. Nothing is drawn, and it must not eat the dropdown's own
+     clicks, so it sits beneath its siblings in the stacking order. */
+  z-index: -1;
+}
 .site-research-banner .current-language,
 .site-research-banner .language-icon {
   color: inherit;
