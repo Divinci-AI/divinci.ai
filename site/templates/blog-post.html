@@ -15,7 +15,7 @@
     {% set poster_url = page.extra.hero_video_poster %}
   {% elif page.extra.hero_video %}
     {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
-    {% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}
+    {% set poster_url = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/" ~ video_name ~ "-poster.webp" %}
   {% else %}
     {% set poster_url = "https://i.ytimg.com/vi/" ~ page.extra.hero_youtube ~ "/hqdefault.jpg" %}
   {% endif %}
@@ -169,7 +169,7 @@ window.MathJax = {
           {% set poster_url = page.extra.hero_video_poster %}
         {% elif page.extra.hero_video %}
           {% set video_name = page.extra.hero_video | split(pat="/") | last | split(pat=".") | first %}
-          {% set poster_url = get_url(path='images/' ~ video_name ~ '-poster.webp') %}
+          {% set poster_url = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/" ~ video_name ~ "-poster.webp" %}
         {% else %}
           {% set poster_url = "https://i.ytimg.com/vi/" ~ page.extra.hero_youtube ~ "/hqdefault.jpg" %}
         {% endif %}

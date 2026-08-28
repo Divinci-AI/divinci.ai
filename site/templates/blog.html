@@ -304,7 +304,7 @@
                                                 </video>
                                             {% else %}
                                                 {% set video_name = vid_src | split(pat="/") | last | replace(from=".webm", to="") | replace(from=".mp4", to="") %}
-                                                <video muted loop playsinline webkit-playsinline preload="none" width="600" height="338" poster="/cdn-cgi/image/width=600,format=auto,quality=80{{ get_url(path='images/' ~ video_name ~ '-poster.webp') }}"{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="post-image video-thumbnail object-cover">
+                                                <video muted loop playsinline webkit-playsinline preload="none" width="600" height="338" poster="/cdn-cgi/image/width=600,format=auto,quality=80{{ "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/" ~ video_name ~ "-poster.webp" }}"{% if vid_filter %} style="filter:{{ vid_filter }}"{% endif %} class="post-image video-thumbnail object-cover">
                                                     <source src="{{ get_url(path=vid_src) }}" type="video/webm">
                                                 </video>
                                             {% endif %}

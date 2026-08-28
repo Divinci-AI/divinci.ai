@@ -414,7 +414,13 @@
     {%- else -%}
       {%- set og_key = og_slug -%}
     {%- endif -%}
-    {%- set og_card = get_url(path="images/og/" ~ og_key ~ ".jpg") -%}
+    {#- The card lives on R2, and the path is BUILT here by concatenation, so no
+        find-and-replace over literal asset paths could see it: after the raster
+        migration this still resolved to /images/og/<key>.jpg on this origin and
+        every unfurl 404'd. Deliberately the .jpg original rather than the .webp
+        beside it — LinkedIn and several other unfurlers will not render a WebP
+        og:image, which is why both formats were uploaded. -#}
+    {%- set og_card = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/og/" ~ og_key ~ ".jpg" -%}
     {%- set og_alt = page.title | default(value=section.title | default(value="Divinci AI")) -%}
 
     <!-- Open Graph / Facebook -->
