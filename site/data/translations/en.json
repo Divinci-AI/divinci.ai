@@ -1068,7 +1068,7 @@
           "reg_topic": "Annex IV",
           "requirement": "Technical documentation auto-generated from the vIndex",
           "competitors": "Access logs + prompt guardrails only",
-          "larql": "Generated from the vIndex itself"
+          "larql": "Annex IV dossier generated from release records and the model-edit log — with every gap stated"
         },
         {
           "reg_label": "GDPR",
@@ -1096,14 +1096,14 @@
           "reg_topic": "Trust Services",
           "requirement": "Security, availability, confidentiality",
           "competitors": "Point-in-time audit",
-          "larql": "Live attestation from deployment telemetry"
+          "larql": "Deployment telemetry as evidence input — Divinci is not SOC 2 certified"
         },
         {
           "reg_label": "ISO/IEC 42001",
           "reg_topic": "AI Management",
           "requirement": "AI management system standard",
           "competitors": "Document-only conformity",
-          "larql": "vIndex as the system of record"
+          "larql": "vIndex as the system of record — certification not yet held"
         }
       ]
     },
@@ -1113,10 +1113,18 @@
       "para_2": "Below: the actual Gate-3 patch we ship in our public test suite, showing the Paris→capital association suppressed and reverted with measurable, repeatable effect on a real Gemma 4 E2B vIndex."
     },
     "cta_band": {
-      "heading": "Compliance you can prove. On any open transformer.",
-      "tagline": "Twelve published vIndexes today across Gemma, Qwen, Llama, Mistral, OpenAI MoE, and Microsoft 1-bit. Bring your model — we'll build the receipt.",
-      "cta_primary": "Book a compliance review →",
-      "cta_secondary": "Browse vIndexes on Hugging Face"
+      "heading": "Compliance you can prove. On any open transformer."
+    },
+    "video": {
+      "heading": "Watch a fact leave the weights",
+      "subheading": "Ninety seconds: what a vIndex is, how a rank-1 patch removes one association from a frozen model, and what the receipt looks like.",
+      "iframe_title": "Deleting a fact from a language model — vIndex and LarQL",
+      "caption": "The worked example in full:",
+      "caption_link": "Deleting Paris from a Language Model"
+    },
+    "audit": {
+      "models_label": "Twelve published vIndexes",
+      "models_link": "Browse them on Hugging Face"
     }
   },
   "research_band": {
@@ -1159,11 +1167,18 @@
       "concrete, specific guidance — not vague advice.",
       "matches the expert’s established voice & priorities."
     ],
-    "verdict_prefix": "Wins",
-    "verdict_suffix": "rubrics",
-    "footnote": "[tk] placeholder values; replaced with measured numbers from a 10-question vanilla-vs-DFO eval before publish.",
-    "verdict_meta": "Spearman ρ · length-tolerant completeness · citation grounding · voice fit",
-    "cta": "The methodology behind this measurement"
+    "footnote": "Illustrative example of the framing difference — not a scored benchmark result.",
+    "verdict_meta": "How we score these when we measure: Spearman ρ · length-tolerant completeness · citation grounding · voice fit",
+    "cta": "The methodology behind this measurement",
+    "verdict_text": "Same prompt. One answer applies the deployed expert’s framework and cites the corpus — the other doesn’t.",
+    "val_specificity_vanilla": "generic",
+    "val_citations_vanilla": "none",
+    "val_voice_vanilla": "off",
+    "val_expert_vanilla": "absent",
+    "val_specificity_divinci": "specific",
+    "val_citations_divinci": "cited",
+    "val_voice_divinci": "match",
+    "val_expert_divinci": "applied"
   },
   "research_cards": {
     "logos_label": "Working across",

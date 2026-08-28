@@ -1065,7 +1065,7 @@
           "reg_topic": "Trasparenza",
           "requirement": "\"Trasparenza sufficiente per consentire agli utenti di interpretare gli output\"",
           "competitors": "Model card, descrizioni testuali del sistema",
-          "larql": "Il vIndex È un artefatto di trasparenza interrogabile — ogni caratteristica portatrice di fatti identificata da <code>(layer, feature, gate_score)</code>"
+          "larql": "Dossier Allegato IV generato dai record della release e dal registro delle modifiche al modello, con ogni lacuna dichiarata"
         },
         {
           "reg_label": "Regolamento UE sull'IA §14",
@@ -1093,14 +1093,14 @@
           "reg_topic": "De-identificazione",
           "requirement": "Rimuovere le PII dai prodotti di dati",
           "competitors": "Filtraggio dei token in I/O (possibili fughe)",
-          "larql": "Identificazione a livello di caratteristica delle direzioni che codificano PII; rimozione chirurgica al livello dei pesi"
+          "larql": "Telemetria di deployment come base probatoria: Divinci non è certificata SOC 2"
         },
         {
           "reg_label": "NIST AI RMF",
           "reg_topic": "Gestione",
           "requirement": "Quantificare e gestire il rischio residuo",
           "competitors": "Valutazioni di rischio a sensazione",
-          "larql": "Le costanti universali C1–C5 ti forniscono una base strutturale misurabile; verifica nuovamente dopo ogni patch"
+          "larql": "vIndex come sistema di registro; certificazione non ancora ottenuta"
         }
       ]
     },
@@ -1110,10 +1110,18 @@
       "para_2": "Sotto: la patch Gate-3 reale che spediamo nella nostra suite di test pubblica, che mostra l'associazione Parigi→capitale soppressa e ripristinata con effetto misurabile e ripetibile su un vIndex Gemma 4 E2B reale."
     },
     "cta_band": {
-      "heading": "Conformità che puoi dimostrare. Su qualsiasi transformer aperto.",
-      "tagline": "Otto vIndex pubblicati oggi su Gemma, Qwen, Llama, Mistral, OpenAI MoE e Microsoft 1-bit. Porta il tuo modello — costruiremo noi la ricevuta.",
-      "cta_primary": "Prenota una revisione di conformità →",
-      "cta_secondary": "Sfoglia i vIndex su Hugging Face"
+      "heading": "Conformità che puoi dimostrare. Su qualsiasi transformer aperto."
+    },
+    "video": {
+      "heading": "Guarda un fatto lasciare i pesi",
+      "subheading": "Novanta secondi: cos’è un vIndex, come una patch di rango 1 rimuove un’associazione da un modello congelato e che aspetto ha la ricevuta.",
+      "iframe_title": "Cancellare un fatto da un modello linguistico — vIndex e LarQL",
+      "caption": "L’esempio completo:",
+      "caption_link": "Cancellare Parigi da un modello linguistico"
+    },
+    "audit": {
+      "models_label": "Dodici vIndex pubblicati",
+      "models_link": "Sfogliali su Hugging Face"
     }
   },
   "research_band": {
@@ -1156,11 +1164,18 @@
       "indicazioni concrete e specifiche — non consigli vaghi.",
       "corrisponde alla voce e alle priorità consolidate dell'esperto."
     ],
-    "verdict_prefix": "Vince",
-    "verdict_suffix": "griglie",
-    "footnote": "[tk] valori segnaposto; sostituiti con numeri misurati da una valutazione vanilla-vs-DFO di 10 domande prima della pubblicazione.",
-    "verdict_meta": "ρ di Spearman · completezza tollerante alla lunghezza · ancoraggio delle citazioni · corrispondenza di voce",
-    "cta": "La metodologia alla base di questa misurazione"
+    "footnote": "Esempio illustrativo della differenza di impostazione — non un risultato di benchmark misurato.",
+    "verdict_meta": "Come li valutiamo quando misuriamo: Spearman ρ · completezza tollerante alla lunghezza · fondatezza delle citazioni · aderenza al tono",
+    "cta": "La metodologia alla base di questa misurazione",
+    "verdict_text": "Stessa domanda. Una risposta applica il framework dell’esperto distribuito e cita il corpus — l’altra no.",
+    "val_specificity_vanilla": "generico",
+    "val_citations_vanilla": "nessuna",
+    "val_voice_vanilla": "fuori tono",
+    "val_expert_vanilla": "assente",
+    "val_specificity_divinci": "specifico",
+    "val_citations_divinci": "citata",
+    "val_voice_divinci": "coerente",
+    "val_expert_divinci": "applicato"
   },
   "research_cards": {
     "logos_label": "Operativo su",

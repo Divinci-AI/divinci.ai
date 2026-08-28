@@ -1065,7 +1065,7 @@
           "reg_topic": "透明度",
           "requirement": "\"足以让用户解读输出结果的透明度\"",
           "competitors": "模型卡片、文字化系统描述",
-          "larql": "vIndex 本身就是一个可查询的透明度制品 — 每一个承载事实的特征都通过 <code>(layer, feature, gate_score)</code> 标识"
+          "larql": "依据发布记录与模型编辑日志生成附件 IV 文档，并逐项标明缺口"
         },
         {
           "reg_label": "欧盟人工智能法案 §14",
@@ -1093,14 +1093,14 @@
           "reg_topic": "去标识化",
           "requirement": "从数据产品中移除 PII",
           "competitors": "I/O 处的 token 过滤(可能泄漏)",
-          "larql": "在特征级识别编码 PII 的方向;在权重层进行外科式移除"
+          "larql": "以部署遥测作为证据输入 —— Divinci 尚未通过 SOC 2 认证"
         },
         {
           "reg_label": "NIST AI RMF",
           "reg_topic": "管理",
           "requirement": "量化并管理残留风险",
           "competitors": "凭感觉的风险评估",
-          "larql": "C1–C5 通用常量为你提供可测量的结构基线;每次打补丁后重新验证"
+          "larql": "以 vIndex 作为记录系统 —— 尚未取得认证"
         }
       ]
     },
@@ -1110,10 +1110,18 @@
       "para_2": "下面是我们在公开测试套件中实际提供的 Gate-3 补丁,展示了在真实的 Gemma 4 E2B vIndex 上对 Paris→capital 关联的抑制与还原,具有可测量、可重复的效果。"
     },
     "cta_band": {
-      "heading": "可证明的合规。在任何开放 transformer 上。",
-      "tagline": "目前已发布八个 vIndex,覆盖 Gemma、Qwen、Llama、Mistral、OpenAI MoE 和 Microsoft 1-bit。带上你的模型 — 我们来构建凭证。",
-      "cta_primary": "预约合规评审 →",
-      "cta_secondary": "在 Hugging Face 浏览 vIndex"
+      "heading": "可证明的合规。在任何开放 transformer 上。"
+    },
+    "video": {
+      "heading": "看一个事实从权重中消失",
+      "subheading": "九十秒：什么是 vIndex，秩-1 补丁如何从冻结模型中移除一个关联，以及凭证是什么样子。",
+      "iframe_title": "从语言模型中删除一个事实 —— vIndex 与 LarQL",
+      "caption": "完整实例：",
+      "caption_link": "从语言模型中删除巴黎"
+    },
+    "audit": {
+      "models_label": "已发布的 12 个 vIndex",
+      "models_link": "在 Hugging Face 上浏览"
     }
   },
   "research_band": {
@@ -1156,11 +1164,18 @@
       "具体、明确的指导 —— 而非含糊的建议。",
       "契合专家既有的声音与优先事项。"
     ],
-    "verdict_prefix": "胜出",
-    "verdict_suffix": "项评分维度",
-    "footnote": "[tk] 占位数值；在发布前将替换为来自 10 题 vanilla 与 DFO 对照评测的测量数据。",
-    "verdict_meta": "Spearman ρ · 长度容差完整性 · 引用依据度 · 声音契合度",
-    "cta": "该测量背后的方法论"
+    "footnote": "用于说明表述差异的示例，并非经过评分的基准测试结果。",
+    "verdict_meta": "实际测量时的评分维度：Spearman ρ · 长度容忍的完整性 · 引用依据 · 语气契合",
+    "cta": "该测量背后的方法论",
+    "verdict_text": "同一个问题。一个回答运用了所部署专家的框架并引用语料，另一个没有。",
+    "val_specificity_vanilla": "笼统",
+    "val_citations_vanilla": "无",
+    "val_voice_vanilla": "不符",
+    "val_expert_vanilla": "缺失",
+    "val_specificity_divinci": "具体",
+    "val_citations_divinci": "有引用",
+    "val_voice_divinci": "相符",
+    "val_expert_divinci": "已应用"
   },
   "research_cards": {
     "logos_label": "研究覆盖",

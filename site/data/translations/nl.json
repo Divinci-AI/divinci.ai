@@ -1065,7 +1065,7 @@
           "reg_topic": "Transparantie",
           "requirement": "„Voldoende transparantie zodat gebruikers de uitvoer kunnen interpreteren\"",
           "competitors": "Model cards, prozaïsche systeembeschrijvingen",
-          "larql": "De vIndex IS een doorzoekbaar transparantie-artefact — elk feiten­dragend feature geïdentificeerd via <code>(layer, feature, gate_score)</code>"
+          "larql": "Bijlage IV-dossier gegenereerd uit release-records en het modelbewerkingslogboek — elk hiaat wordt benoemd"
         },
         {
           "reg_label": "EU AI Act §14",
@@ -1093,14 +1093,14 @@
           "reg_topic": "De-identificatie",
           "requirement": "PII uit dataproducten verwijderen",
           "competitors": "Tokenfiltering bij I/O (lekken mogelijk)",
-          "larql": "Feature-niveau identificatie van richtingen die PII coderen; chirurgische verwijdering op de gewichtenlaag"
+          "larql": "Deploymenttelemetrie als bewijsgrondslag — Divinci is niet SOC 2-gecertificeerd"
         },
         {
           "reg_label": "NIST AI RMF",
           "reg_topic": "Beheren",
           "requirement": "Restrisico kwantificeren en beheren",
           "competitors": "Risicobeoordelingen op gevoel",
-          "larql": "De universele constanten C1–C5 geven u een meetbare structurele basislijn; verifieer opnieuw na elke patch"
+          "larql": "vIndex als administratiesysteem — certificering nog niet behaald"
         }
       ]
     },
@@ -1110,10 +1110,18 @@
       "para_2": "Hieronder: de echte Gate-3 patch die we leveren in onze publieke testsuite, met de Paris→capital-associatie onderdrukt en hersteld met meetbaar, herhaalbaar effect op een echte Gemma 4 E2B vIndex."
     },
     "cta_band": {
-      "heading": "Compliance die u kunt bewijzen. Op elke open transformer.",
-      "tagline": "Vandaag acht gepubliceerde vIndexes over Gemma, Qwen, Llama, Mistral, OpenAI MoE en Microsoft 1-bit. Breng uw model — wij bouwen het bonnetje.",
-      "cta_primary": "Boek een compliance-review →",
-      "cta_secondary": "Blader door vIndexes op Hugging Face"
+      "heading": "Compliance die u kunt bewijzen. Op elke open transformer."
+    },
+    "video": {
+      "heading": "Zie hoe een feit uit de gewichten verdwijnt",
+      "subheading": "Negentig seconden: wat een vIndex is, hoe een rank-1-patch één associatie uit een bevroren model verwijdert, en hoe het bewijs eruitziet.",
+      "iframe_title": "Een feit uit een taalmodel wissen — vIndex en LarQL",
+      "caption": "Het volledige voorbeeld:",
+      "caption_link": "Parijs uit een taalmodel wissen"
+    },
+    "audit": {
+      "models_label": "Twaalf gepubliceerde vIndexes",
+      "models_link": "Bekijk ze op Hugging Face"
     }
   },
   "research_band": {
@@ -1156,11 +1164,18 @@
       "concrete, specifieke richtlijn — geen vaag advies.",
       "sluit aan bij de gevestigde stem & prioriteiten van de expert."
     ],
-    "verdict_prefix": "Winsten",
-    "verdict_suffix": "rubrieken",
-    "footnote": "[tk] tijdelijke waarden; vervangen door gemeten getallen uit een 10-vragen vanilla-vs-DFO-evaluatie vóór publicatie.",
-    "verdict_meta": "Spearman ρ · lengte-tolerante volledigheid · citaatverankering · stemovereenkomst",
-    "cta": "De methodologie achter deze meting"
+    "footnote": "Illustratief voorbeeld van het verschil in kadering — geen gescoord benchmarkresultaat.",
+    "verdict_meta": "Hoe we dit scoren bij een meting: Spearman ρ · lengtetolerante volledigheid · citaatonderbouwing · stemovereenkomst",
+    "cta": "De methodologie achter deze meting",
+    "verdict_text": "Dezelfde vraag. Eén antwoord past het raamwerk van de ingezette expert toe en citeert het corpus — het andere niet.",
+    "val_specificity_vanilla": "algemeen",
+    "val_citations_vanilla": "geen",
+    "val_voice_vanilla": "afwijkend",
+    "val_expert_vanilla": "afwezig",
+    "val_specificity_divinci": "specifiek",
+    "val_citations_divinci": "geciteerd",
+    "val_voice_divinci": "passend",
+    "val_expert_divinci": "toegepast"
   },
   "research_cards": {
     "logos_label": "Werken met",

@@ -1065,7 +1065,7 @@
           "reg_topic": "투명성",
           "requirement": "\"사용자가 출력을 해석할 수 있는 충분한 투명성\"",
           "competitors": "모델 카드, 산문형 시스템 설명",
-          "larql": "vIndex 자체가 쿼리 가능한 투명성 산출물 — 사실을 담는 모든 피처를 <code>(layer, feature, gate_score)</code>로 식별"
+          "larql": "릴리스 기록과 모델 편집 로그에서 생성되는 부속서 IV 문서 — 모든 미비 사항을 명시"
         },
         {
           "reg_label": "EU AI 법 §14",
@@ -1093,14 +1093,14 @@
           "reg_topic": "비식별화",
           "requirement": "데이터 제품에서 PII 제거",
           "competitors": "I/O에서의 토큰 필터링(누출 가능)",
-          "larql": "PII를 인코딩하는 방향을 피처 수준에서 식별; 가중치 레이어에서 외과적 제거"
+          "larql": "배포 텔레메트리를 증거 자료로 활용 — Divinci는 SOC 2 인증을 받지 않았습니다"
         },
         {
           "reg_label": "NIST AI RMF",
           "reg_topic": "관리",
           "requirement": "잔여 위험을 정량화하고 관리",
           "competitors": "느낌에 기반한 위험 평가",
-          "larql": "C1–C5 보편 상수가 측정 가능한 구조 베이스라인을 제공; 모든 패치 후 재검증"
+          "larql": "vIndex를 기록 시스템으로 사용 — 인증은 아직 취득하지 않았습니다"
         }
       ]
     },
@@ -1110,10 +1110,18 @@
       "para_2": "아래: 저희 공개 테스트 스위트에서 제공하는 실제 Gate-3 패치로, 실제 Gemma 4 E2B vIndex에서 Paris→capital 연결의 억제와 복원이 측정 가능하고 반복 가능한 효과를 보여줍니다."
     },
     "cta_band": {
-      "heading": "증명할 수 있는 컴플라이언스. 모든 오픈 트랜스포머에서.",
-      "tagline": "현재 Gemma, Qwen, Llama, Mistral, OpenAI MoE, Microsoft 1-bit에 걸쳐 여덟 개의 vIndex가 공개되어 있습니다. 모델을 가져오세요 — 영수증은 저희가 만들어드립니다.",
-      "cta_primary": "컴플라이언스 리뷰 예약 →",
-      "cta_secondary": "Hugging Face에서 vIndex 둘러보기"
+      "heading": "증명할 수 있는 컴플라이언스. 모든 오픈 트랜스포머에서."
+    },
+    "video": {
+      "heading": "사실이 가중치에서 사라지는 과정",
+      "subheading": "90초: vIndex란 무엇인지, 랭크-1 패치가 고정된 모델에서 하나의 연관을 어떻게 제거하는지, 그리고 영수증은 어떤 모습인지.",
+      "iframe_title": "언어 모델에서 사실 삭제하기 — vIndex와 LarQL",
+      "caption": "전체 사례 보기:",
+      "caption_link": "언어 모델에서 파리 삭제하기"
+    },
+    "audit": {
+      "models_label": "공개된 vIndex 12개",
+      "models_link": "Hugging Face에서 보기"
     }
   },
   "research_band": {
@@ -1156,11 +1164,18 @@
       "구체적이고 명확한 가이드 — 모호한 조언이 아닙니다.",
       "전문가의 확립된 어조와 우선순위와 일치합니다."
     ],
-    "verdict_prefix": "승리",
-    "verdict_suffix": "루브릭",
-    "footnote": "[tk] 자리표시자 값; 게시 전 바닐라 대 DFO 10문항 평가에서 측정된 수치로 교체됩니다.",
-    "verdict_meta": "Spearman ρ · 길이 허용 완전성 · 인용 근거 · 음성 일치",
-    "cta": "이 측정의 방법론"
+    "footnote": "접근 방식의 차이를 보여주는 예시일 뿐이며, 점수화된 벤치마크 결과가 아닙니다.",
+    "verdict_meta": "측정 시 채점 기준: Spearman ρ · 길이 보정 완전성 · 인용 근거 · 어조 일치",
+    "cta": "이 측정의 방법론",
+    "verdict_text": "같은 질문. 한 답변은 배포된 전문가의 프레임워크를 적용하고 코퍼스를 인용하지만, 다른 답변은 그렇지 않습니다.",
+    "val_specificity_vanilla": "일반적",
+    "val_citations_vanilla": "없음",
+    "val_voice_vanilla": "불일치",
+    "val_expert_vanilla": "없음",
+    "val_specificity_divinci": "구체적",
+    "val_citations_divinci": "인용됨",
+    "val_voice_divinci": "일치",
+    "val_expert_divinci": "적용됨"
   },
   "research_cards": {
     "logos_label": "다양한 분야에서",

@@ -1,6 +1,114 @@
 {% extends "base.html" %}
 
+{% block extra_head %}
+<style>
+  /* Scoped to /compliance. Deliberately NOT in style.css: that file is shared
+     and was mid-edit by another agent — appending there would have swept their
+     work into this change. */
+  .compliance-video { margin: 3rem auto 0; max-width: 760px; }
+  .compliance-video h2 { text-align: center; margin-bottom: .5rem; }
+  .compliance-video-sub {
+    text-align: center; font-size: .9375rem; line-height: 1.6;
+    opacity: .75; margin: 0 auto 1.5rem; max-width: 620px;
+  }
+  .compliance-video-frame {
+    position: relative; width: 100%; aspect-ratio: 16 / 9;
+    border-radius: 8px; overflow: hidden; background: #000;
+    box-shadow: 0 2px 18px rgba(0,0,0,.18);
+  }
+  .compliance-video-frame iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+  }
+  .compliance-video-poster {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  /* .hero-play and .hero-liquid come from style.css. Their reveal is gated on
+     .hero-image.hero-play-ready, which only exists on the home hero — so the
+     gate is re-expressed here against this frame. */
+  .compliance-video-frame .hero-play { opacity: 1; transform: scale(0.9); pointer-events: auto; }
+  .compliance-video-frame:hover .hero-play,
+  .compliance-video-frame:focus-within .hero-play { transform: scale(1); }
+  .compliance-video-frame .hero-play:hover,
+  .compliance-video-frame .hero-play:focus-visible { transform: scale(1.06); }
+  /* The hero blob is sized at 122% to wash the whole frame — it reads there
+     because that artwork is near-white. Over a dark photograph it swallows the
+     thumbnail, so here it is a glow behind the button, not a fill. */
+  .compliance-video-frame .hero-liquid { width: 62%; }
+
+  .compliance-video-frame .hero-play:hover ~ .hero-liquid,
+  .compliance-video-frame .hero-play:focus-visible ~ .hero-liquid { opacity: .62; }
+  .compliance-video-frame.is-playing .hero-play,
+  .compliance-video-frame.is-playing .hero-liquid,
+  .compliance-video-frame.is-playing .compliance-video-poster { display: none; }
+  .compliance-video-caption {
+    margin-top: .75rem; font-size: .8125rem; line-height: 1.55;
+    text-align: center; opacity: .7;
+  }
+  .compliance-video-caption a { text-decoration: underline; }
+
+  /* Box styling — width, cream gradient, radius, heading — is inherited from
+     .compliance-cta-band in style.css. Only the parts that class does not
+     cover are defined here, so the palette stays in one place. */
+  /* 1180px is the page's content column — the same max-width as
+     .compliance-receipt-section above it, so the band lines up with the code
+     panel rather than sitting inset from it at the shared class's 880px. */
+  .compliance-audit-offer { max-width: 1180px; margin-top: 3.5rem; margin-bottom: 4rem; }
+  /* The shared class centres a 660px column; at 1180px wide that column is
+     narrow enough to wrap the copy into six lines and make the band tall. The
+     text runs the band's width instead, held off the edges by the section's
+     own padding rather than by a max-width on the paragraphs. */
+  .compliance-audit-offer { padding: 2.25rem 3rem; }
+  .compliance-audit-offer p {
+    line-height: 1.65;
+    max-width: none;
+    margin-left: 0; margin-right: 0;
+    margin-bottom: .85rem;
+  }
+  .compliance-audit-caveat { font-size: .875rem; opacity: .78; }
+  .compliance-audit-models { font-size: .875rem; opacity: .85; text-align: center; margin-top: .9rem; }
+  /* .research-band-logos is a left-aligned strip on the home page; here it sits
+     inside a centred band, so only the alignment and spacing are restated. */
+  .compliance-audit-logos { justify-content: center; margin: 1.75rem auto 0; padding-top: 1.5rem; max-width: none; }
+  .compliance-audit-logos ul { justify-content: center; }
+  .compliance-audit-models a { text-decoration: underline; color: inherit; }
+  .compliance-audit-tagline {
+    font-weight: 700; font-size: 1.25rem; color: #1e3a2b;
+    margin-top: 1.5rem; margin-bottom: .25rem;
+  }
+  .compliance-audit-offer .compliance-hero-cta { margin-top: 1.25rem; }
+
+  @media (max-width: 900px) {
+    .compliance-audit-offer { padding: 2rem 1.5rem; }
+  }
+
+  @media (max-width: 640px) {
+    .compliance-audit-offer { margin-top: 2.25rem; }
+  }
+
+  @media (max-width: 640px) {
+    .compliance-video { margin-top: 2.25rem; }
+  }
+</style>
+{% endblock %}
+
 {% block content %}
+{# The fractalNoise displacement the home hero uses for the liquid blob.
+   Duplicated rather than shared because it lives inline in index.html; the
+   filter id is global to the document and only one of the two pages renders
+   at a time. #}
+<svg class="svg-hidden" aria-hidden="true" focusable="false">
+  <filter id="hero-liquid-filter" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.011 0.019" numOctaves="3" seed="7" result="rawnoise">
+      <animate attributeName="baseFrequency" dur="11s" repeatCount="indefinite"
+               values="0.011 0.019;0.021 0.010;0.014 0.024;0.011 0.019"/>
+    </feTurbulence>
+    <feColorMatrix in="rawnoise" type="matrix" result="noise"
+                   values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0 1"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="46" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
 <section class="compliance-page">
   <div class="container">
     <header class="compliance-hero">
@@ -15,6 +123,38 @@
       </div>
     </header>
 
+    <section class="compliance-video">
+      <h2>{{ translations.compliance.video.heading | default(value="Watch a fact get deleted") }}</h2>
+      <p class="compliance-video-sub">
+        {{ translations.compliance.video.subheading | default(value="Ninety seconds: what a vIndex is, how a rank-1 patch removes one association from a frozen model, and what the receipt looks like.") }}
+      </p>
+      <div class="compliance-video-frame" id="compliance-video-frame"
+           data-embed="https://www.youtube-nocookie.com/embed/wnsKaMaEAOQ?autoplay=1&amp;rel=0&amp;modestbranding=1&amp;playsinline=1">
+        {# Poster + play affordance rather than a bare YouTube embed: nothing is
+           requested from YouTube — and no cookie is set — until the visitor asks
+           for it, which is the behaviour this page is arguing for. The button and
+           its liquid blob reuse .hero-play / .hero-liquid from the home hero. #}
+        <img class="compliance-video-poster"
+             src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/larql-vindex-poster-1280w.webp"
+             srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/larql-vindex-poster-800w.webp 800w,
+                     https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/larql-vindex-poster-1280w.webp 1280w"
+             sizes="(max-width: 820px) 100vw, 760px"
+             alt="{{ translations.compliance.video.poster_alt | default(value="August 2nd: the EU AI Act technical documentation deadline") }}"
+             width="1280" height="720" loading="eager" decoding="sync">
+        <button type="button" class="hero-play compliance-video-play"
+                aria-label="{{ translations.compliance.video.play | default(value="Play: deleting a fact from a language model") }}">
+          <svg class="hero-play-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <path d="M12 8.8 23.4 16 12 23.2Z"/>
+          </svg>
+        </button>
+        <div class="hero-liquid" aria-hidden="true"></div>
+      </div>
+      <p class="compliance-video-caption">
+        {{ translations.compliance.video.caption | default(value="The worked example in full:") }}
+        <a href="/blog/deleting-paris-from-a-language-model/">{{ translations.compliance.video.caption_link | default(value="Deleting Paris from a Language Model") }}</a>
+      </p>
+    </section>
+
     <section class="compliance-mapping">
       <h2>{{ translations.compliance.mapping.heading | default(value="What the regulation requires") }}</h2>
       <p class="compliance-mapping-sub">
@@ -27,7 +167,7 @@
               <th>{{ translations.compliance.mapping.th_regulation | default(value="Regulation") }}</th>
               <th>{{ translations.compliance.mapping.th_requirement | default(value="Requirement") }}</th>
               <th>{{ translations.compliance.mapping.th_competitors | default(value="Competitors") }}</th>
-              <th>{{ translations.compliance.mapping.th_larql | default(value="LarQL/vIndex") }}</th>
+              <th>{% if translations.compliance.mapping.th_larql %}{{ translations.compliance.mapping.th_larql }}{% else %}LarQL/vIndex{% endif %}</th>
             </tr>
           </thead>
           <tbody>
@@ -79,14 +219,38 @@
 # vIndex sha256: 9abaeaf6...</code></pre>
     </section>
 
-    <section class="compliance-cta-band">
-      <h2>{{ translations.compliance.cta_band.heading | default(value="Compliance you can prove. On any open transformer.") }}</h2>
-      <p>{{ translations.compliance.cta_band.tagline | default(value="Twelve published vIndexes today. Bring your model — we will build the receipt.") }}</p>
+    <section class="compliance-cta-band compliance-audit-offer">
+      <h2>{{ translations.compliance.audit.heading | default(value="Bring an erasure request. Leave with the dossier.") }}</h2>
+      <p>{{ translations.compliance.audit.para_1 | default(value="Pick a single fact you need removed from a model you run. We apply the edit, run the probe, and hand back two artifacts: the signed LarQL patch that performed the erasure, and an EU AI Act Annex IV dossier assembled from your release records — with every section we could not complete named explicitly.") }}</p>
+      <p class="compliance-audit-caveat">{{ translations.compliance.audit.caveat | default(value="Two limits worth stating up front. Weight-level erasure requires an open-weight served model — GPT, Claude and Gemini cannot be edited this way, only retrieved-context can. And the dossier is a draft for your assessment, not a declaration of conformity: that is a judgement only you can make.") }}</p>
+      {# The home page's trust strip, reused wholesale: .research-band-logos and
+         its per-brand filters live in style.css. Only alignment is overridden
+         below — the band is centred, that strip is left-aligned. #}
+      <div class="research-band-logos compliance-audit-logos" aria-label="{{ translations.compliance.audit.models_aria | default(value="Model families with published vIndexes") }}">
+        <span class="research-band-logos-label">{{ translations.research_cards.logos_label | default(value="Working across") }}</span>
+        <ul>
+          <li title="Gemma" class="research-band-logo-gemma"><img src="/brand/companies/gemma.svg" alt="Gemma" loading="eager" decoding="sync" width="32" height="32"><span>Gemma</span></li>
+          <li title="Qwen"><img src="/brand/companies/qwen.svg" alt="Qwen" loading="eager" decoding="sync" width="32" height="32"><span>Qwen</span></li>
+          <li title="Llama — Meta"><img src="/brand/companies/meta.svg" alt="Meta (Llama)" loading="eager" decoding="sync" width="32" height="32"><span>Llama</span></li>
+          <li title="Mistral"><img src="/brand/companies/mistralai.svg" alt="Mistral AI" loading="eager" decoding="sync" width="32" height="32"><span>Mistral</span></li>
+          <li title="OpenAI" class="research-band-logo-wide"><img src="/brand/companies/openai.svg" alt="OpenAI" loading="eager" decoding="sync" width="32" height="32"></li>
+          <li title="Microsoft (BitNet)" class="research-band-logo-brand-color"><img src="/brand/companies/microsoft.svg" alt="Microsoft" loading="eager" decoding="sync" width="32" height="32"><span>Microsoft</span></li>
+        </ul>
+      </div>
+      <p class="compliance-audit-models">
+        {{ translations.compliance.audit.models_label | default(value="Twelve published vIndexes") }} —
+        <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">{{ translations.compliance.audit.models_link | default(value="Browse them on Hugging Face") }}</a>
+      </p>
+      <p class="compliance-audit-tagline">{{ translations.compliance.cta_band.heading | default(value="Compliance you can prove. On any open transformer.") }}</p>
       <div class="compliance-hero-cta">
-        <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener" class="research-cta-primary">{{ translations.compliance.cta_band.cta_primary | default(value="Book a compliance review →") }}</a>
-        <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener" class="research-cta-secondary">{{ translations.compliance.cta_band.cta_secondary | default(value="Browse vIndexes on Hugging Face") }}</a>
+        <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener" class="research-cta-primary">{{ translations.compliance.audit.cta_primary | default(value="Book the erasure audit →") }}</a>
+        <a href="/blog/deleting-paris-from-a-language-model/" class="research-cta-secondary">{{ translations.compliance.audit.cta_secondary | default(value="Read how the erasure works") }}</a>
       </div>
     </section>
+
   </div>
+
 </section>
+
+<script defer src="{{ get_url(path='js/video-facade.js') }}"></script>
 {% endblock %}

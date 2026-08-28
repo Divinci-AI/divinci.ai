@@ -1065,7 +1065,7 @@
           "reg_topic": "Transparence",
           "requirement": "« Transparence suffisante pour permettre aux utilisateurs d'interpréter les sorties »",
           "competitors": "Fiches de modèle, descriptions textuelles du système",
-          "larql": "Le vIndex EST un artefact de transparence interrogeable — chaque caractéristique porteuse de fait identifiée par <code>(layer, feature, gate_score)</code>"
+          "larql": "Dossier Annexe IV généré à partir des enregistrements de version et du journal des modifications du modèle — chaque lacune est signalée"
         },
         {
           "reg_label": "Règlement IA UE §14",
@@ -1093,14 +1093,14 @@
           "reg_topic": "Désidentification",
           "requirement": "Retirer les PII des produits de données",
           "competitors": "Filtrage de tokens en E/S (fuites possibles)",
-          "larql": "Identification au niveau caractéristique des directions encodant les PII ; suppression chirurgicale au niveau des poids"
+          "larql": "Télémétrie de déploiement comme élément de preuve — Divinci n’est pas certifiée SOC 2"
         },
         {
           "reg_label": "NIST AI RMF",
           "reg_topic": "Gestion",
           "requirement": "Quantifier et gérer le risque résiduel",
           "competitors": "Évaluations de risque à l'intuition",
-          "larql": "Les constantes universelles C1–C5 vous donnent une base structurelle mesurable ; revérifiez après chaque correctif"
+          "larql": "vIndex comme système de référence — certification non encore obtenue"
         }
       ]
     },
@@ -1110,10 +1110,18 @@
       "para_2": "Ci-dessous : le correctif Gate-3 réel que nous livrons dans notre suite de tests publique, montrant l'association Paris→capitale supprimée et restaurée avec un effet mesurable et reproductible sur un véritable vIndex Gemma 4 E2B."
     },
     "cta_band": {
-      "heading": "Une conformité que vous pouvez prouver. Sur n'importe quel transformer ouvert.",
-      "tagline": "Huit vIndexes publiés aujourd'hui sur Gemma, Qwen, Llama, Mistral, OpenAI MoE et Microsoft 1-bit. Apportez votre modèle — nous construirons le reçu.",
-      "cta_primary": "Réserver une revue de conformité →",
-      "cta_secondary": "Parcourir les vIndexes sur Hugging Face"
+      "heading": "Une conformité que vous pouvez prouver. Sur n'importe quel transformer ouvert."
+    },
+    "video": {
+      "heading": "Regardez un fait quitter les poids",
+      "subheading": "Quatre-vingt-dix secondes : ce qu’est un vIndex, comment un correctif de rang 1 retire une association d’un modèle figé, et à quoi ressemble le reçu.",
+      "iframe_title": "Supprimer un fait d’un modèle de langage — vIndex et LarQL",
+      "caption": "L’exemple complet :",
+      "caption_link": "Supprimer Paris d’un modèle de langage"
+    },
+    "audit": {
+      "models_label": "Douze vIndex publiés",
+      "models_link": "Les consulter sur Hugging Face"
     }
   },
   "research_band": {
@@ -1156,11 +1164,18 @@
       "consignes concrètes et précises — pas de conseils vagues.",
       "correspond au ton et aux priorités établis de l’expert."
     ],
-    "verdict_prefix": "Remporte",
-    "verdict_suffix": "grilles",
-    "footnote": "[tk] valeurs provisoires ; remplacées par des chiffres mesurés issus d’une évaluation de 10 questions vanilla-vs-DFO avant publication.",
-    "verdict_meta": "ρ de Spearman · exhaustivité tolérante à la longueur · ancrage des citations · adéquation de ton",
-    "cta": "La méthodologie derrière cette mesure"
+    "footnote": "Exemple illustratif de la différence de cadrage — pas un résultat de benchmark noté.",
+    "verdict_meta": "Comment nous notons lors d’une mesure : Spearman ρ · exhaustivité tolérante à la longueur · ancrage des citations · adéquation de la voix",
+    "cta": "La méthodologie derrière cette mesure",
+    "verdict_text": "Même question. Une réponse applique le cadre de l’expert déployé et cite le corpus — l’autre non.",
+    "val_specificity_vanilla": "générique",
+    "val_citations_vanilla": "aucune",
+    "val_voice_vanilla": "décalée",
+    "val_expert_vanilla": "absent",
+    "val_specificity_divinci": "précis",
+    "val_citations_divinci": "citée",
+    "val_voice_divinci": "conforme",
+    "val_expert_divinci": "appliqué"
   },
   "research_cards": {
     "logos_label": "Compatible avec",

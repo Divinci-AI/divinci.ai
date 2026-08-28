@@ -1065,7 +1065,7 @@
           "reg_topic": "Transparenz",
           "requirement": "„Ausreichende Transparenz, damit Nutzer Ausgaben interpretieren können\"",
           "competitors": "Model Cards, prosa-basierte Systembeschreibungen",
-          "larql": "Der vIndex IST ein abfragbares Transparenzartefakt — jedes faktentragende Feature identifiziert über <code>(layer, feature, gate_score)</code>"
+          "larql": "Annex-IV-Dossier aus Release-Daten und dem Modell-Änderungsprotokoll erzeugt — jede Lücke wird benannt"
         },
         {
           "reg_label": "EU AI Act §14",
@@ -1093,14 +1093,14 @@
           "reg_topic": "De-Identifikation",
           "requirement": "PII aus Datenprodukten entfernen",
           "competitors": "Token-Filterung an I/O (Lecks möglich)",
-          "larql": "Feature-Level-Identifikation der PII-kodierenden Richtungen; chirurgische Entfernung auf der Gewichtsschicht"
+          "larql": "Deployment-Telemetrie als Nachweisgrundlage — Divinci ist nicht SOC-2-zertifiziert"
         },
         {
           "reg_label": "NIST AI RMF",
           "reg_topic": "Verwalten",
           "requirement": "Restrisiko quantifizieren und steuern",
           "competitors": "Risikobewertungen aus dem Bauch heraus",
-          "larql": "Die universellen Konstanten C1–C5 liefern eine messbare strukturelle Baseline; nach jedem Patch erneut verifizieren"
+          "larql": "vIndex als führendes System — Zertifizierung liegt noch nicht vor"
         }
       ]
     },
@@ -1110,10 +1110,18 @@
       "para_2": "Unten: der echte Gate-3-Patch aus unserer öffentlichen Test-Suite, der die Paris→Hauptstadt-Verknüpfung unterdrückt und wiederherstellt, mit messbarer, wiederholbarer Wirkung auf einem echten Gemma 4 E2B vIndex."
     },
     "cta_band": {
-      "heading": "Compliance, die Sie beweisen können. Auf jedem offenen Transformer.",
-      "tagline": "Heute acht veröffentlichte vIndexes über Gemma, Qwen, Llama, Mistral, OpenAI MoE und Microsoft 1-bit. Bringen Sie Ihr Modell — wir bauen die Quittung.",
-      "cta_primary": "Compliance-Review buchen →",
-      "cta_secondary": "vIndexes auf Hugging Face durchstöbern"
+      "heading": "Compliance, die Sie beweisen können. Auf jedem offenen Transformer."
+    },
+    "video": {
+      "heading": "Sehen Sie zu, wie ein Fakt die Gewichte verlässt",
+      "subheading": "Neunzig Sekunden: was ein vIndex ist, wie ein Rank-1-Patch eine Assoziation aus einem eingefrorenen Modell entfernt und wie der Beleg aussieht.",
+      "iframe_title": "Einen Fakt aus einem Sprachmodell löschen — vIndex und LarQL",
+      "caption": "Das vollständige Beispiel:",
+      "caption_link": "Paris aus einem Sprachmodell löschen"
+    },
+    "audit": {
+      "models_label": "Zwölf veröffentlichte vIndexes",
+      "models_link": "Auf Hugging Face ansehen"
     }
   },
   "research_band": {
@@ -1156,11 +1164,18 @@
       "konkrete, spezifische Anleitung — keine vage Empfehlung.",
       "entspricht der etablierten Stimme & Prioritäten des Experten."
     ],
-    "verdict_prefix": "Gewinnt",
-    "verdict_suffix": "Bewertungsraster",
-    "footnote": "[tk] Platzhalterwerte; werden vor der Veröffentlichung durch gemessene Zahlen aus einem 10-Fragen-Vanilla-vs-DFO-Eval ersetzt.",
-    "verdict_meta": "Spearman ρ · längentolerante Vollständigkeit · Zitationsbegründung · Voice-Fit",
-    "cta": "Die Methodik hinter dieser Messung"
+    "footnote": "Illustratives Beispiel für den Unterschied in der Einordnung — kein bewertetes Benchmark-Ergebnis.",
+    "verdict_meta": "So bewerten wir das bei einer Messung: Spearman ρ · längentolerante Vollständigkeit · Zitatbelege · Stimmpassung",
+    "cta": "Die Methodik hinter dieser Messung",
+    "verdict_text": "Dieselbe Frage. Eine Antwort wendet das Framework des eingesetzten Experten an und zitiert den Korpus — die andere nicht.",
+    "val_specificity_vanilla": "generisch",
+    "val_citations_vanilla": "keine",
+    "val_voice_vanilla": "daneben",
+    "val_expert_vanilla": "fehlt",
+    "val_specificity_divinci": "konkret",
+    "val_citations_divinci": "zitiert",
+    "val_voice_divinci": "passend",
+    "val_expert_divinci": "angewendet"
   },
   "research_cards": {
     "logos_label": "Über alle hinweg im Einsatz",

@@ -1065,7 +1065,7 @@
           "reg_topic": "Transparencia",
           "requirement": "\"Transparencia suficiente para permitir a los usuarios interpretar los resultados\"",
           "competitors": "Tarjetas de modelo, descripciones del sistema en prosa",
-          "larql": "El vIndex ES un artefacto de transparencia consultable — cada característica portadora de hechos identificada por <code>(layer, feature, gate_score)</code>"
+          "larql": "Expediente del Anexo IV generado a partir de los registros de la versión y del historial de ediciones del modelo, indicando cada laguna"
         },
         {
           "reg_label": "Ley de IA de la UE §14",
@@ -1093,14 +1093,14 @@
           "reg_topic": "Desidentificación",
           "requirement": "Eliminar PII de los productos de datos",
           "competitors": "Filtrado de tokens en E/S (con posibles fugas)",
-          "larql": "Identificación a nivel de característica de las direcciones que codifican PII; eliminación quirúrgica en la capa de pesos"
+          "larql": "Telemetría de despliegue como base probatoria: Divinci no está certificada en SOC 2"
         },
         {
           "reg_label": "NIST AI RMF",
           "reg_topic": "Gestión",
           "requirement": "Cuantificar y gestionar el riesgo residual",
           "competitors": "Evaluaciones de riesgo basadas en intuición",
-          "larql": "Las constantes universales C1–C5 te dan una línea base estructural medible; vuelve a verificar tras cada parche"
+          "larql": "vIndex como sistema de registro; aún no se dispone de la certificación"
         }
       ]
     },
@@ -1110,10 +1110,18 @@
       "para_2": "A continuación: el parche Gate-3 real que enviamos en nuestro paquete de pruebas público, mostrando la asociación París→capital suprimida y revertida con efecto medible y repetible en un vIndex real de Gemma 4 E2B."
     },
     "cta_band": {
-      "heading": "Cumplimiento que puedes demostrar. En cualquier transformer abierto.",
-      "tagline": "Ocho vIndexes publicados hoy en Gemma, Qwen, Llama, Mistral, OpenAI MoE y Microsoft 1-bit. Trae tu modelo — nosotros construiremos el comprobante.",
-      "cta_primary": "Reservar revisión de cumplimiento →",
-      "cta_secondary": "Explorar vIndexes en Hugging Face"
+      "heading": "Cumplimiento que puedes demostrar. En cualquier transformer abierto."
+    },
+    "video": {
+      "heading": "Vea cómo un hecho sale de los pesos",
+      "subheading": "Noventa segundos: qué es un vIndex, cómo un parche de rango 1 elimina una asociación de un modelo congelado y qué aspecto tiene el comprobante.",
+      "iframe_title": "Eliminar un hecho de un modelo de lenguaje — vIndex y LarQL",
+      "caption": "El ejemplo completo:",
+      "caption_link": "Eliminar París de un modelo de lenguaje"
+    },
+    "audit": {
+      "models_label": "Doce vIndexes publicados",
+      "models_link": "Véalos en Hugging Face"
     }
   },
   "research_band": {
@@ -1156,11 +1164,18 @@
       "orientación concreta y específica — no un consejo vago.",
       "coincide con la voz y las prioridades establecidas del experto."
     ],
-    "verdict_prefix": "Gana",
-    "verdict_suffix": "rúbricas",
-    "footnote": "[tk] valores de marcador de posición; sustituidos por cifras medidas de una evaluación de 10 preguntas vanilla frente a DFO antes de la publicación.",
-    "verdict_meta": "Spearman ρ · completitud tolerante a la longitud · fundamentación de citas · ajuste de voz",
-    "cta": "La metodología detrás de esta medición"
+    "footnote": "Ejemplo ilustrativo de la diferencia de enfoque, no un resultado de benchmark puntuado.",
+    "verdict_meta": "Cómo lo puntuamos cuando medimos: Spearman ρ · exhaustividad tolerante a la longitud · fundamentación de citas · ajuste de voz",
+    "cta": "La metodología detrás de esta medición",
+    "verdict_text": "La misma pregunta. Una respuesta aplica el marco del experto desplegado y cita el corpus; la otra no.",
+    "val_specificity_vanilla": "genérico",
+    "val_citations_vanilla": "ninguna",
+    "val_voice_vanilla": "desajustada",
+    "val_expert_vanilla": "ausente",
+    "val_specificity_divinci": "específico",
+    "val_citations_divinci": "citada",
+    "val_voice_divinci": "coincide",
+    "val_expert_divinci": "aplicado"
   },
   "research_cards": {
     "logos_label": "Trabajando con",

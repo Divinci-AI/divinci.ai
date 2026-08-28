@@ -38,6 +38,8 @@ That's Gate 3. A single weight-space edit, targeting one feature in one layer, c
 
 This post explains how it works, why it works, and how to reproduce it in about ten minutes on a laptop.
 
+{{ youtube(id="wnsKaMaEAOQ", title="Deleting a fact from a language model — vIndex and LarQL", caption="The same edit in ninety seconds, framed against EU AI Act Annex IV and GDPR Article 17.") }}
+
 ---
 
 ## Why this should be impossible
@@ -186,6 +188,30 @@ print(t.decode(out[0]))
 *April 23, 2026 — The Kimi-K2 vIndex is in development at [huggingface.co/Divinci-AI/kimi-k2-vIndex](https://huggingface.co/Divinci-AI/kimi-k2-vIndex). Kimi-K2 is a MoE model (384 experts, top-8 routing), which adds an interesting wrinkle to the DELETE patch: the "Paris → capital" feature may be distributed across multiple experts, requiring a rank-k patch instead of rank-1. Experiment coming in a follow-up post.*
 
 *Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). vIndex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
+
+---
+
+## What this is for
+
+A rank-1 DELETE patch is a 100-byte JSON file with a checksum that names one
+association, one layer, and the measured effect of removing it — and restores
+the model bit-for-bit when you take it away.
+
+Two regimes ask for something that shape. **EU AI Act Annex IV** requires
+technical documentation covering, among nine sections, the relevant changes made
+to a system across its lifecycle; a signed patch log is that record. **GDPR
+Article 17(3)** permits a technical-impossibility defence only where you can
+show you explored reasonable alternatives; this is an alternative you can point
+at.
+
+Neither is a legal conclusion — no regulator has ruled on a rank-1 patch, and
+this remains an engineering claim about what the artifact contains. The mapping
+from each requirement to what a vIndex actually produces, including the parts we
+cannot generate for you, is on the [compliance page](/compliance/).
+
+<p style="margin:1.5rem 0;">
+  <a href="/compliance/" class="research-cta-primary">See the regulation mapping &rarr;</a>
+</p>
 
 ## References
 

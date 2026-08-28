@@ -1065,7 +1065,7 @@
           "reg_topic": "透明性",
           "requirement": "「ユーザーが出力を解釈できる十分な透明性」",
           "competitors": "モデルカード、散文的なシステム記述",
-          "larql": "vIndexはクエリ可能な透明性アーティファクトそのもの — 事実を担うすべての特徴量を <code>(layer, feature, gate_score)</code> で識別"
+          "larql": "リリース記録とモデル編集ログから生成される附属書IVドシエ（未充足項目をすべて明示）"
         },
         {
           "reg_label": "EU AI法 §14",
@@ -1093,14 +1093,14 @@
           "reg_topic": "非識別化",
           "requirement": "データプロダクトからPIIを削除",
           "competitors": "I/Oでのトークンフィルタリング(漏洩の可能性)",
-          "larql": "PIIをエンコードする方向の特徴量レベルでの識別;重み層での外科的除去"
+          "larql": "デプロイのテレメトリを証跡の入力として利用。Divinci は SOC 2 認証を取得していません"
         },
         {
           "reg_label": "NIST AI RMF",
           "reg_topic": "管理",
           "requirement": "残存リスクの定量化と管理",
           "competitors": "感覚的なリスク評価",
-          "larql": "C1–C5 のユニバーサル定数が測定可能な構造ベースラインを提供;すべてのパッチ後に再検証"
+          "larql": "vIndex を記録システムとして利用。認証は未取得です"
         }
       ]
     },
@@ -1110,10 +1110,18 @@
       "para_2": "以下:私たちが公開テストスイートで提供している実際のGate-3パッチで、実物のGemma 4 E2B vIndex上で「Paris→首都」関連付けの抑制と復元が、測定可能かつ再現可能な効果を持つことを示しています。"
     },
     "cta_band": {
-      "heading": "証明できるコンプライアンス。あらゆるオープントランスフォーマー上で。",
-      "tagline": "Gemma、Qwen、Llama、Mistral、OpenAI MoE、Microsoft 1-bit にわたり、現在8つのvindexを公開中。あなたのモデルを持ち込んでください — 私たちが領収書を構築します。",
-      "cta_primary": "コンプライアンスレビューを予約 →",
-      "cta_secondary": "Hugging Face で vIndex を閲覧"
+      "heading": "証明できるコンプライアンス。あらゆるオープントランスフォーマー上で。"
+    },
+    "video": {
+      "heading": "事実が重みから消える瞬間",
+      "subheading": "90秒で解説：vIndexとは何か、ランク1パッチが凍結されたモデルから1つの関連をどう取り除くか、そして受領証はどのようなものか。",
+      "iframe_title": "言語モデルから事実を削除する — vIndexとLarQL",
+      "caption": "詳しい実例はこちら：",
+      "caption_link": "言語モデルからパリを削除する"
+    },
+    "audit": {
+      "models_label": "公開済みの vIndex 12 件",
+      "models_link": "Hugging Faceで見る"
     }
   },
   "research_band": {
@@ -1156,11 +1164,18 @@
       "具体的で明確な指針 — 曖昧な助言ではありません。",
       "専門家の確立された声と優先順位に一致しています。"
     ],
-    "verdict_prefix": "獲得",
-    "verdict_suffix": "ルーブリック",
-    "footnote": "[tk] プレースホルダーの値。公開前に、バニラ対DFOの10問評価から測定された数値に置き換えられます。",
-    "verdict_meta": "Spearman ρ · 長さ許容型完全性 · 引用の根拠 · 声の適合",
-    "cta": "この測定の背後にある手法"
+    "footnote": "論じ方の違いを示す参考例であり、スコア化されたベンチマーク結果ではありません。",
+    "verdict_meta": "測定時の評価軸：Spearman ρ・長さに依存しない網羅性・引用の根拠・語り口の一致",
+    "cta": "この測定の背後にある手法",
+    "verdict_text": "同じ質問。一方の回答は導入された専門家のフレームワークを適用しコーパスを引用しますが、もう一方はしません。",
+    "val_specificity_vanilla": "一般的",
+    "val_citations_vanilla": "なし",
+    "val_voice_vanilla": "不一致",
+    "val_expert_vanilla": "なし",
+    "val_specificity_divinci": "具体的",
+    "val_citations_divinci": "引用あり",
+    "val_voice_divinci": "一致",
+    "val_expert_divinci": "適用"
   },
   "research_cards": {
     "logos_label": "複数組織・モデルにわたって",
