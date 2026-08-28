@@ -1,59 +1,59 @@
 {
-  "measured_at": "2026-08-26",
-  "measured_label": "26 August 2026",
+  "measured_at": "2026-08-28",
+  "measured_label": "28 August 2026",
   "stats": {
-    "sites": "12,397",
-    "pages": "2,769,011",
-    "chunks": "69,465,303",
-    "bytes": "25 GB",
-    "endpoints": "12,337",
-    "median": "227"
+    "sites": "15,128",
+    "pages": "3,395,437",
+    "chunks": "86,283,964",
+    "bytes": "32 GB",
+    "endpoints": "15,038",
+    "median": "228"
   },
   "composition": {
-    "public_share": "10%",
+    "public_share": "9%",
     "buckets": [
       {
         "key": "org",
         "label": ".org",
-        "count": "928",
-        "width": "7.5"
+        "count": "962",
+        "width": "6.4"
       },
       {
         "key": "gov",
         "label": ".gov",
         "count": "122",
-        "width": "1.0"
+        "width": "0.8"
       },
       {
         "key": "edu",
         "label": ".edu",
-        "count": "237",
-        "width": "1.9"
+        "count": "242",
+        "width": "1.6"
       },
       {
         "key": "com",
         "label": ".com",
-        "count": "9,541",
-        "width": "77.0"
+        "count": "11,933",
+        "width": "78.9"
       },
       {
         "key": "other",
         "label": "everything else",
-        "count": "1,569",
-        "width": "12.7"
+        "count": "1,869",
+        "width": "12.4"
       }
     ]
   },
   "facts": {
-    "deepest": "diff.wikimedia.org, ipac.caltech.edu and blog.mozilla.org run past 7,000 pages each.",
-    "largest": "exoplanetarchive.ipac.caltech.edu — 929 pages, and 176 MB of extracted text: the densest corpus in the index."
+    "deepest": "openstreetmap.org, scielo.br and diff.wikimedia.org run past 7,000 pages each.",
+    "largest": "scielo.br — 10,220 pages, and 196 MB of extracted text: the densest corpus in the index."
   },
-  "directory_headline": "12,397 curated sites · 2,769,011 pages · 4,211 files · 69,465,303 searchable chunks",
+  "directory_headline": "15,128 curated sites · 3,395,437 pages · 7,080 files · 86,283,964 searchable chunks",
   "directory_counts": {
-    "sites": "12,397",
-    "pages": "2,769,011",
-    "files": "4,211",
-    "chunks": "69,465,303",
+    "sites": "15,128",
+    "pages": "3,395,437",
+    "files": "7,080",
+    "chunks": "86,283,964",
     "size": ""
   }
 }

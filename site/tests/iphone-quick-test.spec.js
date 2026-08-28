@@ -38,6 +38,15 @@ test.describe('iPhone 12 Pro Homepage Quick Analysis', () => {
       const problematic = [];
       
       elements.forEach(el => {
+        // Skip anything inside an <svg>. A diagram's own <g>/<path>/<rect> are
+        // measured in the SVG's user coordinate space and routinely report
+        // widths far past the viewport while the <svg> that draws them fits
+        // perfectly — they are clipped by its viewBox and can no more cause a
+        // scrollbar than a cropped photo can. Counting them made this assertion
+        // report 8 offenders on a page whose documentElement.scrollWidth equals
+        // window.innerWidth exactly: no horizontal overflow at all.
+        if (el.closest('svg')) return;
+
         const rect = el.getBoundingClientRect();
         const styles = window.getComputedStyle(el);
         

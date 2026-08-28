@@ -27,6 +27,7 @@ STATIC = SITE / "static"
 DOCS = Path.home() / "Documents/server/workspace/sdk/docs"
 DEST = DOCS / "public" / "pipeline"
 R2 = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev"
+PROD = "https://sdk.divinci.ai"
 
 
 def main() -> int:
@@ -39,11 +40,38 @@ def main() -> int:
     html = (STATIC / "lab" / "pipeline.html").read_text(encoding="utf-8")
     # published at a real URL now, so let it be indexed
     html = html.replace('<meta name="robots" content="noindex">\n', "")
-    html = html.replace('<title>Lab — The document\'s journey</title>',
-                        "<title>One document. The whole pipeline. — Divinci AI</title>\n"
-                        '<meta name="description" content="Follow a single PDF through every '
-                        'stage of the Divinci RAG pipeline — parsed, chunked, quizzed, '
-                        'embedded, routed, attacked, guarded, and served.">')
+    title = "One document. The whole pipeline."
+    desc = ("Follow a single PDF through every stage of the Divinci RAG pipeline — "
+            "parsed, chunked, quizzed, embedded, routed, attacked, guarded, and served.")
+    # The card is produced by the docs site's own gen-og-images.mjs (see its
+    # STANDALONE list), so this unfurls in the same visual system as every other
+    # page there. PNG, not WebP: LinkedIn and several unfurlers still will not
+    # render a WebP og:image.
+    #
+    # PROD origin is baked here; the docs site's post-build step rewrites it for
+    # any other environment, so staging never advertises sdk.divinci.ai URLs.
+    head = (
+        f"<title>{title} — Divinci AI</title>\n"
+        f'<meta name="description" content="{desc}">\n'
+        f'<link rel="canonical" href="{PROD}/pipeline/">\n'
+        f'<meta property="og:type" content="article">\n'
+        f'<meta property="og:site_name" content="Divinci AI SDK">\n'
+        f'<meta property="og:locale" content="en">\n'
+        f'<meta property="og:title" content="{title}">\n'
+        f'<meta property="og:description" content="{desc}">\n'
+        f'<meta property="og:url" content="{PROD}/pipeline/">\n'
+        f'<meta property="og:image" content="{PROD}/og/pages/pipeline.png">\n'
+        f'<meta property="og:image:type" content="image/png">\n'
+        f'<meta property="og:image:width" content="1200">\n'
+        f'<meta property="og:image:height" content="630">\n'
+        f'<meta property="og:image:alt" content="The Divinci robot reading a '
+        f'document, beside the words {title}">\n'
+        f'<meta name="twitter:card" content="summary_large_image">\n'
+        f'<meta name="twitter:title" content="{title}">\n'
+        f'<meta name="twitter:description" content="{desc}">\n'
+        f'<meta name="twitter:image" content="{PROD}/og/pages/pipeline.png">'
+    )
+    html = html.replace("<title>Lab — The document's journey</title>", head)
     html = html.replace('src="/lab/pipeline.js"', 'src="/pipeline/pipeline.js"')
     # the agent list in the CTA carries its own vendor marks
     html = re.sub(r'"/brand/(vendors|companies)/', r'"/pipeline/brand/\1/', html)

@@ -255,7 +255,11 @@ mobileDevices.forEach(({ name, device, width }) => {
       await helper.testScrollAndNavigation();
       
       // Step 2: Explore AutoRAG feature
-      const autoragLink = page.locator('a[href*="autorag"], nav a[href*="AutoRAG" i]');
+      // The page carries several links to /autorag/ — nav, body copy, footer —
+      // and on a phone the nav ones are inside a collapsed menu at zero height.
+      // `.first()` reached for one of those and the click sat there until it
+      // timed out; `:visible` picks a link a thumb could actually reach.
+      const autoragLink = page.locator('a[href*="autorag"]:visible, nav a[href*="AutoRAG" i]:visible');
       if (await autoragLink.count() > 0) {
         await autoragLink.first().click();
         await helper.checkPageLoad();

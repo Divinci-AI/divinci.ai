@@ -93,6 +93,78 @@ template = "feature.html"
     padding: 0 2rem var(--section-spacing);
 }
 
+/* Walkthrough promo — the whole card is the link, so the art and the copy
+   are one target rather than a decorative image next to a small anchor. */
+.pipeline-promo {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+}
+
+.pipeline-promo-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 42%);
+    align-items: center;
+    gap: 2.5rem;
+    background: var(--color-bg-primary, #f8f4f0);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-medium);
+    padding: 2.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.pipeline-promo-card:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.pipeline-promo-eyebrow {
+    display: block;
+    font: 600 0.72rem/1 ui-monospace, Menlo, monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 0.7rem;
+}
+
+.pipeline-promo-copy h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    color: var(--color-neutral-primary);
+    line-height: 1.15;
+    margin: 0 0 0.7rem;
+    text-align: left;
+}
+
+.pipeline-promo-copy p {
+    margin: 0 0 1.1rem;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+.pipeline-promo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-neutral-inverse);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.pipeline-promo-art {
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--radius-medium) - 4px);
+    display: block;
+}
+
+@media (max-width: 860px) {
+    /* art first would push the copy below the fold on a phone */
+    .pipeline-promo-card { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
 .sdk-chooser h2 {
     font-family: 'Fraunces', serif;
     font-size: var(--text-h2);
@@ -431,6 +503,22 @@ template = "feature.html"
 <a href="/api/" class="link-secondary">API Reference</a>
 </div>
 </div>
+
+<!-- Pipeline walkthrough -->
+<section class="pipeline-promo">
+<a class="pipeline-promo-card" href="https://sdk.divinci.ai/pipeline" target="_blank" rel="noopener">
+<div class="pipeline-promo-copy">
+<span class="pipeline-promo-eyebrow">Walkthrough</span>
+<h2>One document. The whole pipeline.</h2>
+<p>Follow a single PDF from upload to a grounded answer — parsed, chunked, quizzed, embedded, routed, attacked, guarded, and served. Every stage is a real stage, and every tool named is one you can actually pick.</p>
+<span class="pipeline-promo-link">See the walkthrough &rarr;</span>
+</div>
+<img class="pipeline-promo-art"
+     src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/pipeline-preview.webp"
+     alt="The Divinci robot reading a document, beside the words One document. The whole pipeline."
+     width="1200" height="630" loading="lazy" decoding="async">
+</a>
+</section>
 
 <!-- SDK Chooser -->
 <section class="sdk-chooser">

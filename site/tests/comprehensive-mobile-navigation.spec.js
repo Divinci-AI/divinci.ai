@@ -223,7 +223,12 @@ mobileDevices.forEach(({ name, device, width }) => {
       await page.waitForLoadState('domcontentloaded');
       
       // Test CTA buttons
-      const ctaButtons = page.locator('.cta-button, .primary-button, .secondary-button, [href*="calendly"]');
+      // `:visible` matters here. The homepage ships desktop and mobile variants
+      // of its CTA and hides one per breakpoint, so a plain `.first()` picks
+      // `.cta-button.mobile-demo-button` at 0px tall and then asserts it is
+      // visible — a test failing on an element the design deliberately hid,
+      // while the CTA a visitor actually sees goes unchecked.
+      const ctaButtons = page.locator('.cta-button:visible, .primary-button:visible, .secondary-button:visible, [href*="calendly"]:visible');
       if (await ctaButtons.count() > 0) {
         const firstCta = ctaButtons.first();
         await expect(firstCta).toBeVisible();
