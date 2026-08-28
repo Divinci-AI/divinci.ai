@@ -1,16 +1,58 @@
 name: Tests
 
+# WHY THIS FILE WAS REWRITTEN (2026-08-28)
+#
+# The previous version had five jobs and not one of them could run. Every job
+# began `npm ci` at the repository root, and there is no package.json there —
+# there never has been. It also ran `tests/e2e/`, which targets the PRE-ZOLA
+# site (`/pricing.html`, `/about-us.html`) against a server rooted at the repo,
+# so those paths stopped existing when the site moved to Zola. It had been red
+# on `main` since 2026-08-23 and did not trigger on feature branches, which is
+# where the work happens.
+#
+# The installable harness is `site/`: it has its own package.json, lockfile,
+# playwright.config.js and 65 specs, and it serves itself with `zola serve`.
+# Measured 2026-08-28 before switching: Desktop-Chrome is 157 passed,
+# 1 skipped, 0 failed in 8.9 minutes. That evidence is the reason this is safe
+# to make blocking — pointing CI at an unverified suite is how every branch
+# goes red at once.
+#
+# The root `tests/` tree and `playwright.config.ts` are left alone. They are a
+# fossil of the pre-Zola site with no package.json to install; retargeting them
+# would mean standing up a second harness beside a working one. See
+# `divinci-ai-site-ci-cannot-gate-anything` in the server repo's
+# notes/KNOWN-GAPS.yaml.
+
 on:
   push:
-    branches: [main, develop]
+    # Every branch, deliberately. Work here lands on feature branches and
+    # deploys straight from a local working tree via wrangler; a workflow
+    # scoped to main/develop is one that never runs on the code being written.
+    branches: ['**']
+    paths:
+      - 'site/**'
+      - '.github/workflows/test.yml'
   pull_request:
-    branches: [main, develop]
+    paths:
+      - 'site/**'
+      - '.github/workflows/test.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  ZOLA_VERSION: '0.19.2'
 
 jobs:
-  test:
-    name: Run Tests
+  site:
+    name: Site build guards + E2E
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: site
 
     steps:
       - name: Checkout code
@@ -21,130 +63,46 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install Zola
+        # The suite serves itself with `zola serve`, and the build guards need
+        # `zola build` output. Pinned rather than "latest": a silent Zola bump
+        # would change the rendered HTML the guards assert against.
+        run: |
+          curl -sSL "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar xz -C /usr/local/bin zola
+          zola --version
 
       - name: Install dependencies
         run: npm ci
 
+      - name: Build the site
+        run: zola build
+
+      - name: Build invariants
+        # Cheap, no browser, and it catches a class of bug that NO DOM
+        # assertion can see: an image whose CSS filter layer is composited
+        # before the image lands paints nothing while `complete`,
+        # `naturalWidth` and `checkVisibility()` all report it healthy.
+        # Also runs in the deploy build chain, so this is a second line rather
+        # than the only one.
+        run: node scripts/check-build-invariants.mjs
+
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
 
-      - name: Run E2E tests
-        run: npx playwright test tests/e2e/ --project=chromium
-
-      - name: Run accessibility tests
-        run: npx playwright test tests/accessibility/ --project=chromium
-        continue-on-error: true
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: test-results
-          path: test-results/
-          retention-days: 7
+      - name: Run E2E (Desktop-Chrome)
+        # The one project measured green before this workflow was pointed at
+        # it. The Mobile-* and Visual-* projects are NOT enabled here yet —
+        # they have not been measured, and enabling an unmeasured project is
+        # exactly the mistake this rewrite exists to avoid.
+        run: npx playwright test --project=Desktop-Chrome
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
-          path: test-results/html-report/
+          path: site/test-results/
           retention-days: 7
-
-  visual-tests:
-    name: Percy Visual Tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    if: github.event_name == 'pull_request'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright browsers
-        run: npx playwright install chromium
-
-      - name: Run Percy visual tests
-        run: npx percy exec -- npx playwright test tests/visual/percy.visual.spec.ts --project=chromium
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-
-  cross-browser:
-    name: Cross-Browser Tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    if: github.ref == 'refs/heads/main'
-
-    strategy:
-      fail-fast: false
-      matrix:
-        browser: [chromium, firefox, webkit]
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps ${{ matrix.browser }}
-
-      - name: Run tests on ${{ matrix.browser }}
-        run: npx playwright test tests/e2e/ --project=${{ matrix.browser }}
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: test-results-${{ matrix.browser }}
-          path: test-results/
-          retention-days: 3
-
-  mobile-tests:
-    name: Mobile Tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium webkit
-
-      - name: Run mobile tests
-        run: npx playwright test tests/e2e/ --project=mobile-chrome --project=mobile-safari
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: test-results-mobile
-          path: test-results/
-          retention-days: 3
