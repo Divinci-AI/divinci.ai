@@ -111,7 +111,11 @@
             "model recovers it. Divinci scores each option on your document, " +
             "then splits on structure rather than a character count.",
       chips: CHUNKERS, build: parseScene,
-      note: { text: "any of these — bring your own key",
+      /* Only Unstructured is BYOK -- the catalog has it as credentials=byok,
+         authProvider=UNSTRUCTURED, while LangExtract / LiteParse / the record
+         chunker are all divinci-managed. The note used to claim "any of these",
+         which read as though every option demanded a key of your own. */
+      note: { text: "all managed — Unstructured takes your key",
               at: [0.14, 0.42], left: "1.5vw", bottom: "26vh" },
       // circle the layout region the winning parser recovered
       mark: { d: "M206 106 C 186 140, 192 200, 226 216 C 272 232, 352 230, 380 208 " +
