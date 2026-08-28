@@ -90,6 +90,11 @@ async function rewriteBaseUrls(response, requestUrl, env) {
   });
 }
 
+// Static assets (images, video) live in the divinci-static-assets R2
+// bucket -- see site/tools/r2_migrate.py. Nothing under /images/ is
+// served from this origin any more.
+const R2 = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev";
+
 export default {
   /**
    * Cron: collect customer-facing edge errors and publish them to Datadog.
@@ -326,8 +331,15 @@ export default {
       // imagesrcset + imagesizes lets the browser preload the variant that
       // matches the viewport (400w on phones, 600w on tablets, 800w on desktop)
       // — matches the <img srcset> in templates/index.html exactly.
+      // The hero lives on R2, NOT this origin. These hints used url.origin and
+      // so pointed at /images/... after the rasters moved — three 404s fired on
+      // every homepage request, and the preload warmed nothing, which is worse
+      // than having no Early Hints at all. The URL here must match the <img
+      // srcset> in templates/index.html exactly or the browser preloads a
+      // resource it then never uses.
+      const hero = `${R2}/images/davinci-painter-robot`;
       earlyHintsLink = [
-        `<${url.origin}/images/davinci-painter-robot-800w.webp>; rel=preload; as=image; imagesrcset="${url.origin}/images/davinci-painter-robot-400w.webp 400w, ${url.origin}/images/davinci-painter-robot-600w.webp 600w, ${url.origin}/images/davinci-painter-robot-800w.webp 800w"; imagesizes="(max-width: 600px) 100vw, (max-width: 900px) 600px, 800px"`,
+        `<${hero}-800w.webp>; rel=preload; as=image; imagesrcset="${hero}-400w.webp 400w, ${hero}-600w.webp 600w, ${hero}-800w.webp 800w"; imagesizes="(max-width: 600px) 100vw, (max-width: 900px) 600px, 800px"`,
         `<${url.origin}/css/style.css>; rel=preload; as=style`,
       ].join(', ');
     } else if (/^\/(.*\/)?api\/?$/.test(url.pathname)) {

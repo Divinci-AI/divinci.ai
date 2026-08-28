@@ -2,12 +2,12 @@
   "measured_at": "2026-08-28",
   "measured_label": "28 August 2026",
   "stats": {
-    "sites": "15,128",
-    "pages": "3,395,437",
-    "chunks": "86,283,964",
+    "sites": "15,148",
+    "pages": "3,399,260",
+    "chunks": "86,344,783",
     "bytes": "32 GB",
-    "endpoints": "15,038",
-    "median": "228"
+    "endpoints": "15,057",
+    "median": "227"
   },
   "composition": {
     "public_share": "9%",
@@ -15,7 +15,7 @@
       {
         "key": "org",
         "label": ".org",
-        "count": "962",
+        "count": "964",
         "width": "6.4"
       },
       {
@@ -33,13 +33,13 @@
       {
         "key": "com",
         "label": ".com",
-        "count": "11,933",
+        "count": "11,948",
         "width": "78.9"
       },
       {
         "key": "other",
         "label": "everything else",
-        "count": "1,869",
+        "count": "1,872",
         "width": "12.4"
       }
     ]
@@ -48,12 +48,12 @@
     "deepest": "openstreetmap.org, scielo.br and diff.wikimedia.org run past 7,000 pages each.",
     "largest": "scielo.br — 10,220 pages, and 196 MB of extracted text: the densest corpus in the index."
   },
-  "directory_headline": "15,128 curated sites · 3,395,437 pages · 7,080 files · 86,283,964 searchable chunks",
+  "directory_headline": "15,148 curated sites · 3,399,260 pages · 7,785 files · 86,344,783 searchable chunks",
   "directory_counts": {
-    "sites": "15,128",
-    "pages": "3,395,437",
-    "files": "7,080",
-    "chunks": "86,283,964",
+    "sites": "15,148",
+    "pages": "3,399,260",
+    "files": "7,785",
+    "chunks": "86,344,783",
     "size": ""
   }
 }
