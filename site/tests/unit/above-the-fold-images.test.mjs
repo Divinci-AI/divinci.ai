@@ -14,6 +14,10 @@
  * assert on. It is something the markup has to guarantee, which is what this
  * checks.
  *
+ * `section.html` also carries this hook and is deliberately covered even
+ * though it renders nothing today: all 15 sections declare an explicit
+ * template, so it is a fallback. The day one stops, its hero is the LCP.
+ *
  * Runs against public/ — the built, minified output that actually ships, where
  * `loading="eager"` is legitimately DROPPED (it is the HTML default) and
  * `loading=lazy` is kept. So the assertion is "not lazy", never "is eager":
@@ -37,7 +41,7 @@ const PUBLIC = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..
  * longer find the thing it protects.
  */
 const HERO_IMAGES = [
-  { hook: "hero-poster", why: "the LCP element on the homepage and all 190 section pages" },
+  { hook: "hero-poster", why: "the LCP element on the 12 language homepages and the /preview variants" },
   { hook: "owv-orbit-robot", why: "the Open Web Vectors hero illustration (wide layout)" },
   { hook: "owv-hero-robot-inline", why: "the same illustration below 1320px" },
   { hook: "site-research-banner-hf", why: "sits in the site banner, above the nav, on every page" },

@@ -35,10 +35,12 @@
 <section class="hero">
     <div class="hero-content">
         <div class="hero-image">
-            {#- The poster IS the LCP element on every section page, so it is
-                eager. index.html's copy of this hero has been eager all along;
-                this one lagged, which meant the pages reached through the nav
-                deferred exactly the image the page is judged on. -#}
+            {#- Eager, like index.html's copy of the same hero. Note this
+                template renders NOTHING today — all 15 sections declare an
+                explicit template, so it is a fallback. Fixed anyway because
+                the day a section stops declaring one, this poster is that
+                page's LCP, and a fallback nobody exercises is exactly where a
+                stale default survives. -#}
             <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Davinci_the_painter_painting_a_robot_in_a_line_art.webp" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster" width="1024" height="1024" loading="eager" decoding="async">
             <video id="hero-video" muted loop playsinline preload="metadata" data-lazy-video>
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready.webm" type="video/webm">
