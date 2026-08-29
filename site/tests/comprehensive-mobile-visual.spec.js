@@ -119,7 +119,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
         await page.waitForLoadState('domcontentloaded');
         
         // Test header
-        const header = page.locator('header');
+        const header = page.locator('header').first();
         if (await header.count() > 0) {
           await expect(header).toHaveScreenshot(`mobile-header-${deviceName.toLowerCase()}.png`, {
             threshold: 0.3,
@@ -179,7 +179,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
             });
             
             // Test header consistency
-            const header = page.locator('header');
+            const header = page.locator('header').first();
             if (await header.count() > 0) {
               await expect(header).toHaveScreenshot(`mobile-header-${pageInfo.name}.png`, {
                 threshold: 0.3,
@@ -293,7 +293,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
                   console.log(`    📝 RTL layout detected for Arabic`);
                   
                   // Capture header for RTL testing
-                  const header = page.locator('header');
+                  const header = page.locator('header').first();
                   if (await header.count() > 0) {
                     await expect(header).toHaveScreenshot(`mobile-${lang}-header-${pageInfo.name}.png`, {
                       threshold: 0.3,
@@ -437,7 +437,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
       await page.waitForLoadState('domcontentloaded');
       
       // Test sticky header on mobile
-      const header = page.locator('header');
+      const header = page.locator('header').first();
       if (await header.count() > 0) {
         // Take initial header screenshot
         await expect(header).toHaveScreenshot('mobile-header-initial.png', {

@@ -196,7 +196,7 @@ test.describe('Language Switcher E2E Tests', () => {
     console.log('✅ Tutorials page maintains Spanish context');
     
     // Test footer navigation within Spanish site
-    const footer = page.locator('footer');
+    const footer = page.locator('footer').first();
     if (await footer.count() > 0) {
       const footerLinks = await footer.locator('a[href^="/es/"]').all();
       

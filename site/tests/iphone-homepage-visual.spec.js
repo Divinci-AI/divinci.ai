@@ -59,7 +59,7 @@ test.describe('iPhone 12 Pro Homepage Visual Testing', () => {
     }
     
     // 4. Footer
-    const footer = page.locator('footer');
+    const footer = page.locator('footer').first();
     if (await footer.count() > 0) {
       await expect(footer).toHaveScreenshot('iphone-footer.png');
     }

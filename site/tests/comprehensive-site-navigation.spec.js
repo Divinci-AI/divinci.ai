@@ -110,8 +110,8 @@ test.describe('Comprehensive Site Navigation', () => {
           console.log(`  ✅ ${pageDef.path} - Status: ${response.status()}`);
           
           // Verify header navigation is present
-          await expect(page.locator('header')).toBeVisible();
-          await expect(page.locator('nav')).toBeVisible();
+          await expect(page.locator('header').first()).toBeVisible();
+          await expect(page.locator('nav').first()).toBeVisible();
         } else {
           console.log(`  ❌ ${pageDef.path} - Status: ${response?.status() || 'Unknown'}`);
         }
@@ -313,7 +313,7 @@ test.describe('Comprehensive Site Navigation', () => {
           await expect(notFoundContent).toBeVisible();
           
           // Verify navigation still works on 404 page
-          const header = page.locator('header');
+          const header = page.locator('header').first();
           if (await header.count() > 0) {
             await expect(header).toBeVisible();
             console.log(`    📝 Header navigation available on 404 page`);
@@ -341,7 +341,7 @@ test.describe('Comprehensive Site Navigation', () => {
         await page.goto(`${baseURL}${pagePath}`, { waitUntil: 'domcontentloaded' });
         
         // Check header consistency
-        const header = page.locator('header');
+        const header = page.locator('header').first();
         if (await header.count() > 0) {
           const currentHeaderHTML = await header.innerHTML();
           

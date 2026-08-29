@@ -44,7 +44,7 @@ test.describe('Journal Page Cycling Fix', () => {
     console.log('JavaScript state check:', jsCheck);
     
     // Test next button navigation
-    const nextButton = page.locator('.nav-button.nav-next');
+    const nextButton = page.locator('.nav-button.nav-next').first();
     console.log(`Next button count: ${await nextButton.count()}`);
     
     if (await nextButton.count() > 0) {

@@ -21,11 +21,11 @@ test.describe('Basic Accessibility Tests', () => {
     expect(title.length).toBeGreaterThan(0);
     
     // Test page has main heading
-    const h1 = page.locator('h1');
+    const h1 = page.locator('h1').first();
     await expect(h1).toBeVisible();
     
     // Test navigation exists
-    const nav = page.locator('nav');
+    const nav = page.locator('nav').first();
     await expect(nav).toBeVisible();
     
     // Test language attribute is set

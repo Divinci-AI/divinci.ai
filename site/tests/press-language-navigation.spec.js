@@ -84,10 +84,10 @@ test.describe('Press Page Language Navigation', () => {
             await expect(page.locator('.press-section').first()).toBeVisible();
             
             // Check header exists
-            await expect(page.locator('header')).toBeVisible();
+            await expect(page.locator('header').first()).toBeVisible();
             
             // Check footer exists
-            await expect(page.locator('footer')).toBeVisible();
+            await expect(page.locator('footer').first()).toBeVisible();
             
             // Check language switcher exists
             await expect(page.locator('.language-switcher')).toBeVisible();

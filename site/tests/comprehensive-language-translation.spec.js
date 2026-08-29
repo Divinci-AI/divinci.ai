@@ -300,7 +300,7 @@ test.describe('Comprehensive Language Translation Tests', () => {
       expect(page.url()).toContain('/press/');
       
       // Check translated content
-      await expect(page.locator('h1')).toContainText(translations.title);
+      await expect(page.locator('h1').first()).toContainText(translations.title);
       await expect(page.locator('h2').first()).toContainText(translations.contact);
       
       // Verify language switcher works on press page

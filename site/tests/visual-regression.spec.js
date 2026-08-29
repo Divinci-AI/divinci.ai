@@ -269,7 +269,7 @@ test.describe('Visual Regression Tests', () => {
       
       console.log('📸 Taking header component screenshot...');
       
-      const header = page.locator('header');
+      const header = page.locator('header').first();
       if (await header.count() > 0) {
         await expect(header).toBeVisible();
         
@@ -410,7 +410,7 @@ test.describe('Visual Regression Tests', () => {
       
       console.log('📱 Taking mobile header screenshot...');
       
-      const header = page.locator('header');
+      const header = page.locator('header').first();
       if (await header.count() > 0) {
         await expect(header).toBeVisible();
         

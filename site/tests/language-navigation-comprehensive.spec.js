@@ -216,7 +216,7 @@ test.describe('Comprehensive Language Navigation', () => {
         });
         
         // Test footer navigation links for this language
-        const footer = page.locator('footer');
+        const footer = page.locator('footer').first();
         if (await footer.count() > 0) {
           const footerLinks = await footer.locator('a[href^="/"]').all();
           
@@ -277,7 +277,7 @@ test.describe('Comprehensive Language Navigation', () => {
         }
         
         // Check footer branding
-        const footerLogo = page.locator('footer img, .footer-logo img');
+        const footerLogo = page.locator('footer img, .footer-logo img').first();
         if (await footerLogo.count() > 0) {
           await expect(footerLogo).toBeVisible();
           console.log(`  ✅ Footer logo visible for ${lang.name}`);

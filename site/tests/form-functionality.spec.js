@@ -34,7 +34,7 @@ test.describe('Form Functionality Tests', () => {
       console.log('📝 Testing homepage signup form...\n');
       
       // Find signup section and form
-      const signupSection = page.locator('.signup-section, .signup-form, .newsletter-signup');
+      const signupSection = page.locator('.signup-section, .signup-form, .newsletter-signup').first();
       
       if (await signupSection.count() > 0) {
         await expect(signupSection).toBeVisible();

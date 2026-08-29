@@ -190,7 +190,7 @@ test.describe('Visual Accessibility Tests', () => {
       await expect(heroSection).toBeVisible();
       
       // Check that navigation is still usable
-      const navigation = page.locator('nav');
+      const navigation = page.locator('nav').first();
       await expect(navigation).toBeVisible();
       
       // Check that text doesn't get cut off
@@ -318,7 +318,7 @@ test.describe('Visual Accessibility Tests', () => {
         await expect(heroSection).toBeVisible();
         
         // Check that navigation is accessible
-        const navigation = page.locator('nav');
+        const navigation = page.locator('nav').first();
         await expect(navigation).toBeVisible();
         
         // Check that touch targets are large enough (minimum 44px)
@@ -369,7 +369,7 @@ test.describe('Visual Accessibility Tests', () => {
       await expect(heroText).toBeVisible();
       
       // Check that navigation is handled appropriately for print
-      const navigation = page.locator('nav');
+      const navigation = page.locator('nav').first();
       const navVisible = await navigation.isVisible();
       
       // Navigation might be hidden in print - that's acceptable

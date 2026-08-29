@@ -42,7 +42,7 @@ test.describe('Responsive Design and Mobile Navigation', () => {
       console.log('📱 Testing mobile viewport layout...\n');
       
       // Test header on mobile
-      const header = page.locator('header');
+      const header = page.locator('header').first();
       await expect(header).toBeVisible();
       console.log('  ✅ Header is visible on mobile');
       
@@ -82,7 +82,7 @@ test.describe('Responsive Design and Mobile Navigation', () => {
         console.log('  ✅ Hero section is visible on mobile');
         
         // Check hero content stacking
-        const heroContent = page.locator('.hero-content, .hero-text');
+        const heroContent = page.locator('.hero-content, .hero-text').first();
         if (await heroContent.count() > 0) {
           const heroBox = await heroContent.boundingBox();
           if (heroBox) {
@@ -279,7 +279,7 @@ test.describe('Responsive Design and Mobile Navigation', () => {
       console.log('📱 Testing tablet viewport layout...\n');
       
       // Test navigation on tablet
-      const navigation = page.locator('nav, .navigation');
+      const navigation = page.locator('nav, .navigation').first();
       if (await navigation.count() > 0) {
         await expect(navigation).toBeVisible();
         console.log('  ✅ Navigation is visible on tablet');
@@ -356,8 +356,8 @@ test.describe('Responsive Design and Mobile Navigation', () => {
         // Collect content information
         const contentInfo = {
           viewport: viewportName,
-          hasHeader: await page.locator('header').isVisible(),
-          hasNavigation: await page.locator('nav').isVisible(),
+          hasHeader: await page.locator('header').first().isVisible(),
+          hasNavigation: await page.locator('nav').first().isVisible(),
           hasHero: await page.locator('.hero, .hero-section').isVisible(),
           hasFeatures: await page.locator('.features-section, .features-grid').isVisible(),
           hasFooter: await page.locator('footer, .site-footer').isVisible(),

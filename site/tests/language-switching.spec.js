@@ -231,7 +231,7 @@ test.describe('Language Switching and Translation Tests', () => {
         }
         
         // Test footer content
-        const footer = page.locator('footer');
+        const footer = page.locator('footer').first();
         if (await footer.count() > 0) {
           const footerText = await footer.textContent();
           expect(footerText?.length).toBeGreaterThan(0);

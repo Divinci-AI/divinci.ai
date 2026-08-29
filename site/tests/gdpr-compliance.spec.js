@@ -221,7 +221,7 @@ test.describe('GDPR Compliance Tests', () => {
       await page.goto('/privacy-policy/');
       
       // Check page loads successfully
-      await expect(page.locator('h1')).toContainText('Privacy Policy');
+      await expect(page.locator('h1').first()).toContainText('Privacy Policy');
       
       // Check for required GDPR sections
       await expect(page.locator('text=Your Rights')).toBeVisible();

@@ -30,7 +30,7 @@ test.describe('Language Switcher Functionality', () => {
     expect(page.url()).toMatch(/\/es\/$/);
     
     // Verify Spanish content is displayed
-    const heroHeading = await page.locator('h1').textContent();
+    const heroHeading = await page.locator('h1').first().textContent();
     expect(heroHeading).toContain('Lanzamientos de IA');
     
     // Now switch to French from Spanish

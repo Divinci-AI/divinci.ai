@@ -91,7 +91,7 @@ test.describe('Comprehensive Visual Testing - All Devices', () => {
       });
 
       test(`Header and navigation - ${deviceName}`, async ({ page }) => {
-        const header = page.locator('header');
+        const header = page.locator('header').first();
         await expect(header).toHaveScreenshot(`header-${deviceName}.png`, {
           threshold: 0.3
         });
@@ -263,7 +263,7 @@ test.describe('Comprehensive Visual Testing - All Devices', () => {
         await page.waitForLoadState('domcontentloaded');
         await page.waitForTimeout(2000);
         
-        const header = page.locator('header');
+        const header = page.locator('header').first();
         await expect(header).toHaveScreenshot(`header-${breakpoint.name}.png`, {
           threshold: 0.3
         });

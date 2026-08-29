@@ -13,7 +13,7 @@ test.describe('Simple Site Test', () => {
     await expect(page).toHaveTitle(/Divinci AI/);
     
     // Check that the main heading is present
-    await expect(page.locator('h1')).toContainText('AI releases');
+    await expect(page.locator('h1').first()).toContainText('AI releases');
     
     // Check that the hero section is visible
     await expect(page.locator('.hero')).toBeVisible();

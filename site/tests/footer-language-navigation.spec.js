@@ -7,7 +7,7 @@ test.describe('Footer Language Navigation', () => {
     await page.goto('/autorag');
     
     // Wait for page to load
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('h1').first()).toBeVisible();
     
     // Click the footer logo link
     await page.click('.footer-logo-link');
@@ -22,7 +22,7 @@ test.describe('Footer Language Navigation', () => {
     await page.goto('/es/autorag');
     
     // Wait for page to load
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('h1').first()).toBeVisible();
     
     // Click the footer logo link
     await page.click('.footer-logo-link');
@@ -37,7 +37,7 @@ test.describe('Footer Language Navigation', () => {
     await page.goto('/fr/autorag');
     
     // Wait for page to load
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('h1').first()).toBeVisible();
     
     // Click the footer logo link
     await page.click('.footer-logo-link');
@@ -52,7 +52,7 @@ test.describe('Footer Language Navigation', () => {
     await page.goto('/ar/autorag');
     
     // Wait for page to load
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('h1').first()).toBeVisible();
     
     // Click the footer logo link
     await page.click('.footer-logo-link');
@@ -118,7 +118,7 @@ test.describe('Footer Language Navigation', () => {
     
     for (const featurePage of featurePages) {
       await page.goto(featurePage);
-      await expect(page.locator('h1')).toBeVisible();
+      await expect(page.locator('h1').first()).toBeVisible();
       
       // Click footer logo
       await page.click('.footer-logo-link');

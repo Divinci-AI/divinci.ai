@@ -183,7 +183,7 @@ test.describe('Language Site Health Check', () => {
       await expect(heroContent.first()).toBeVisible();
       
       // Check navigation exists
-      const navigation = page.locator('nav');
+      const navigation = page.locator('nav').first();
       await expect(navigation).toBeVisible();
       
       // Check language switcher exists

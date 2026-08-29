@@ -251,13 +251,13 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
             await expect(page).toHaveTitle(pageInfo.expectedTitle);
             
             // Verify header is present and functional
-            const header = page.locator('header');
+            const header = page.locator('header').first();
             if (await header.count() > 0) {
               await expect(header).toBeVisible();
             }
             
             // Verify main content area is present
-            const mainContent = page.locator('main, .main-content, .content');
+            const mainContent = page.locator('main, .main-content, .content').first();
             if (await mainContent.count() > 0) {
               await expect(mainContent).toBeVisible();
             }
@@ -449,7 +449,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
             
             if (response && response.status() === 200) {
               // Test mobile navigation on language-specific page
-              const header = page.locator('header');
+              const header = page.locator('header').first();
               if (await header.count() > 0) {
                 await expect(header).toBeVisible();
               }

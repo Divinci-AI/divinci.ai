@@ -34,7 +34,7 @@ test.describe('New-Divinci Zola Site', () => {
 
   test('should load homepage successfully', async ({ page }) => {
     await expect(page).toHaveTitle(/Divinci AI/);
-    await expect(page.locator('h1')).toContainText('AI releases');
+    await expect(page.locator('h1').first()).toContainText('AI releases');
   });
 
   test('should display all main sections', async ({ page }) => {
@@ -68,7 +68,7 @@ test.describe('New-Divinci Zola Site', () => {
 
   test('should have functioning header navigation', async ({ page }) => {
     // Check header elements
-    await expect(page.locator('header')).toBeVisible();
+    await expect(page.locator('header').first()).toBeVisible();
     await expect(page.locator('header .logo')).toBeVisible();
     await expect(page.locator('header nav')).toBeVisible();
     
@@ -98,7 +98,7 @@ test.describe('New-Divinci Zola Site', () => {
     // Test Spanish switch
     await page.locator('a[href="/es/"]').click();
     await page.waitForURL('**/es/');
-    await expect(page.locator('h1')).toContainText('Lanzamientos de IA');
+    await expect(page.locator('h1').first()).toContainText('Lanzamientos de IA');
   });
 
   test('should display all 10 features', async ({ page }) => {
@@ -190,7 +190,7 @@ test.describe('New-Divinci Zola Site', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     
     // Check header responsiveness
-    await expect(page.locator('header')).toBeVisible();
+    await expect(page.locator('header').first()).toBeVisible();
     
     // Check hero section on mobile
     await expect(page.locator('.hero')).toBeVisible();
@@ -247,7 +247,7 @@ test.describe('Language-specific pages', () => {
     await page.goto(`${baseURL}/es/`);
     await page.waitForLoadState('domcontentloaded');
     
-    await expect(page.locator('h1')).toContainText('Lanzamientos de IA');
+    await expect(page.locator('h1').first()).toContainText('Lanzamientos de IA');
     await expect(page.locator('.features-section h2')).toContainText('Potencia tu flujo de trabajo');
     await expect(page.locator('.team-section h2')).toContainText('Conoce a nuestro equipo');
   });
@@ -256,7 +256,7 @@ test.describe('Language-specific pages', () => {
     await page.goto(`${baseURL}/fr/`);
     await page.waitForLoadState('domcontentloaded');
     
-    await expect(page.locator('h1')).toContainText('Versions d\'IA');
+    await expect(page.locator('h1').first()).toContainText('Versions d\'IA');
     await expect(page.locator('.features-section h2')).toContainText('Renforcez votre flux de travail');
     await expect(page.locator('.team-section h2')).toContainText('Rencontrez notre équipe');
   });
@@ -265,7 +265,7 @@ test.describe('Language-specific pages', () => {
     await page.goto(`${baseURL}/ar/`);
     await page.waitForLoadState('domcontentloaded');
     
-    await expect(page.locator('h1')).toContainText('إصدارات الذكاء الاصطناعي');
+    await expect(page.locator('h1').first()).toContainText('إصدارات الذكاء الاصطناعي');
     await expect(page.locator('.features-section h2')).toContainText('عزز سير عملك بالذكاء الاصطناعي');
     await expect(page.locator('.team-section h2')).toContainText('تعرف على فريقنا');
   });

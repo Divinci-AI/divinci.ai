@@ -120,7 +120,7 @@ test.describe('Internationalization Accessibility Tests', () => {
       expect(['right', 'start'].some(align => textAlign.includes(align))).toBeTruthy();
       
       // Test navigation layout in RTL
-      const navigation = page.locator('nav');
+      const navigation = page.locator('nav').first();
       const navDirection = await navigation.evaluate(el => window.getComputedStyle(el).direction);
       expect(navDirection).toBe('rtl');
       
@@ -406,7 +406,7 @@ test.describe('Internationalization Accessibility Tests', () => {
       expect(lang).toBe('fr');
       
       // Test that navigation is still accessible
-      const navigation = page.locator('nav');
+      const navigation = page.locator('nav').first();
       await expect(navigation).toBeVisible();
       
       // Test keyboard navigation still works
