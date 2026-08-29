@@ -1,46 +1,46 @@
 {
-  "measured_at": "2026-08-28",
-  "measured_label": "28 August 2026",
+  "measured_at": "2026-08-29",
+  "measured_label": "29 August 2026",
   "stats": {
-    "sites": "15,181",
-    "pages": "3,406,573",
-    "chunks": "86,552,524",
-    "bytes": "32 GB",
-    "endpoints": "15,090",
-    "median": "227"
+    "sites": "21,071",
+    "pages": "4,350,805",
+    "chunks": "105,992,136",
+    "bytes": "38 GB",
+    "endpoints": "20,973",
+    "median": "217"
   },
   "composition": {
-    "public_share": "9%",
+    "public_share": "7%",
     "buckets": [
       {
         "key": "org",
         "label": ".org",
-        "count": "965",
-        "width": "6.4"
+        "count": "1,046",
+        "width": "5.0"
       },
       {
         "key": "gov",
         "label": ".gov",
-        "count": "122",
-        "width": "0.8"
+        "count": "126",
+        "width": "0.6"
       },
       {
         "key": "edu",
         "label": ".edu",
-        "count": "242",
-        "width": "1.6"
+        "count": "245",
+        "width": "1.2"
       },
       {
         "key": "com",
         "label": ".com",
-        "count": "11,976",
-        "width": "78.9"
+        "count": "17,056",
+        "width": "80.9"
       },
       {
         "key": "other",
         "label": "everything else",
-        "count": "1,876",
-        "width": "12.4"
+        "count": "2,598",
+        "width": "12.3"
       }
     ]
   },
@@ -48,12 +48,12 @@
     "deepest": "openstreetmap.org, scielo.br and diff.wikimedia.org run past 7,000 pages each.",
     "largest": "scielo.br — 10,220 pages, and 196 MB of extracted text: the densest corpus in the index."
   },
-  "directory_headline": "15,181 curated sites · 3,406,573 pages · 7,785 files · 86,552,524 searchable chunks",
+  "directory_headline": "21,071 curated sites · 4,350,805 pages · 8,379 files · 105,992,136 searchable chunks",
   "directory_counts": {
-    "sites": "15,181",
-    "pages": "3,406,573",
-    "files": "7,785",
-    "chunks": "86,552,524",
+    "sites": "21,071",
+    "pages": "4,350,805",
+    "files": "8,379",
+    "chunks": "105,992,136",
     "size": ""
   }
 }
