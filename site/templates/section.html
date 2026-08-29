@@ -35,7 +35,11 @@
 <section class="hero">
     <div class="hero-content">
         <div class="hero-image">
-            <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Davinci_the_painter_painting_a_robot_in_a_line_art.webp" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster" width="1024" height="1024" loading="lazy" decoding="async">
+            {#- The poster IS the LCP element on every section page, so it is
+                eager. index.html's copy of this hero has been eager all along;
+                this one lagged, which meant the pages reached through the nav
+                deferred exactly the image the page is judged on. -#}
+            <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Davinci_the_painter_painting_a_robot_in_a_line_art.webp" alt="Leonardo da Vinci drawing a robot" class="davinci-image" id="hero-poster" width="1024" height="1024" loading="eager" decoding="async">
             <video id="hero-video" muted loop playsinline preload="metadata" data-lazy-video>
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready.webm" type="video/webm">
                 <source src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/Video_of_Robot_Creation_Ready.mp4" type="video/mp4">
