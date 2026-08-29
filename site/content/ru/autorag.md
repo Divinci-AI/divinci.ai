@@ -979,7 +979,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <li>Role-based access controls for document visibility</li>
 <li>Data residency options for regional compliance requirements</li>
 <li>Audit logging for all system operations and data access</li>
-<li>Compliance with GDPR, HIPAA, SOC 2, and other regulatory frameworks</li>
+<li>Compliance with GDPR, HIPAA, and other regulatory frameworks</li>
 </ul>
 <p>Additionally, our deployment options include air-gapped environments for the highest security requirements.</p>
 </div>

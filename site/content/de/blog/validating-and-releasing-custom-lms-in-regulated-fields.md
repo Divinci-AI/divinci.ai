@@ -269,7 +269,7 @@ Das ist die Stufe, die die Compliance-Geschichte einlöst. Die Observe-Stufe lä
 
 Jede Release-Entscheidung — Register, Gate-Pass, Gate-Fail, Gate-Override, Checkpoint-Promote, Checkpoint-Hold, Auto-Rollback, manueller Rollback **und jede Anwendung eines DELETE-Patches nach DSGVO Artikel 17** — emittiert einen vIndex-Beleg. Hash-verkettet mit dem vorhergehenden Beleg für diesen Kunden und dem vorhergehenden Beleg für dieses Release.
 
-So sieht ein echter Beleg für einen DELETE-Patch nach DSGVO Artikel 17 aus — direkt aus dem auf der [Compliance-Seite](/de/compliance/) dokumentierten Format adaptiert:
+So ist ein Beleg für einen DELETE-Patch nach DSGVO Artikel 17 aufgebaut — ein durchgearbeitetes Beispiel mit Platzhalter-Kennungen und -Werten, im auf der [Compliance-Seite](/de/compliance/) dokumentierten Format:
 
 ```json
 {
@@ -301,7 +301,7 @@ So sieht ein echter Beleg für einen DELETE-Patch nach DSGVO Artikel 17 aus — 
 }
 ```
 
-Dieses Artefakt ist verifizierbar. Ein Prüfer muss unseren Logs nicht vertrauen. Er nimmt den `vindex_sha256_after`, lädt den entsprechenden veröffentlichten vIndex von `huggingface.co/Divinci-AI` und verifiziert, dass Feature 11179 in Layer 27 strukturell nicht mehr unter den Top-25 erscheint. Er nimmt die `chain_signature` und verifiziert sie gegen den vorhergehenden Beleg. Die gesamte Kette wird extern verankert, nach einem vom Kunden konfigurierten Zeitplan.
+Ein Beleg in diesem Format ist verifizierbar. Ein Prüfer muss unseren Logs nicht vertrauen. Er nimmt den `vindex_sha256_after`, lädt den entsprechenden veröffentlichten vIndex von `huggingface.co/Divinci-AI` und verifiziert, dass Feature 11179 in Layer 27 strukturell nicht mehr unter den Top-25 erscheint. Er nimmt die `chain_signature` und verifiziert sie gegen den vorhergehenden Beleg. Die gesamte Kette wird extern verankert, nach einem vom Kunden konfigurierten Zeitplan.
 
 **Dieselbe Operation gegen ein Closed-API-Modell.** Die Beleg-Felder oben ändern sich in drei Punkten: `operation.target` wird zu `provider_api_endpoint`, `verification` wird zu einem anderen Schema, das nur Belege der Entscheidungskette enthält, und `weight_attestation_class` wird zu `decision_chain_only`. Der Closed-API-Modellanbieter hat die Gewichte nicht freigelegt, also sagt der Beleg genau das. Ein Prüfer, der einen Nachweis auf Gewichtsebene will, weiß nun, dass er das beim Anbieter eskalieren muss, nicht bei uns.
 

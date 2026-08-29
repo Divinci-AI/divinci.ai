@@ -630,7 +630,6 @@
             "list": {
               "encryption": "Crittografia dei dati: Tutti i dati sono crittografati in transito e a riposo",
               "access": "Accesso basato sui ruoli: Controlli di permessi granulari",
-              "soc2": "Conformità SOC 2: Audit di sicurezza regolari",
               "isolation": "Isolamento dei dati: I tuoi dati di addestramento sono usati solo per i tuoi modelli IA",
               "private_cloud": "Opzioni Private Cloud: Per clienti enterprise con requisiti di sicurezza migliorati"
             },
@@ -1107,7 +1106,7 @@
     "receipt": {
       "heading": "Com'è davvero una \"ricevuta\"",
       "para_1": "Una patch LarQL è un file JSON portatile con checksum SHA-256. Applicala per sopprimere un fatto; rimuovila per ripristinare il modello bit per bit. La patch È il log di audit — operatori, regolatori e consumatori a valle possono verificare la stessa operazione in modo indipendente.",
-      "para_2": "Sotto: la patch Gate-3 reale che spediamo nella nostra suite di test pubblica, che mostra l'associazione Parigi→capitale soppressa e ripristinata con effetto misurabile e ripetibile su un vIndex Gemma 4 E2B reale."
+      "para_2": "Sotto: un'illustrazione del formato — i campi che una patch DELETE Gate-3 contiene e il checksum che la rende verificabile. È un esempio della forma di una ricevuta, non una misurazione che stiamo pubblicando qui."
     },
     "cta_band": {
       "heading": "Conformità che puoi dimostrare. Su qualsiasi transformer aperto."

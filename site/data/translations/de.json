@@ -630,7 +630,6 @@
             "list": {
               "encryption": "Datenverschlüsselung: Alle Daten werden bei Übertragung und Speicherung verschlüsselt",
               "access": "Rollenbasierter Zugriff: Granulare Berechtigungssteuerung",
-              "soc2": "SOC-2-Compliance: Regelmäßige Sicherheitsaudits",
               "isolation": "Datenisolation: Ihre Trainingsdaten werden ausschließlich für Ihre KI-Modelle verwendet",
               "private_cloud": "Private-Cloud-Optionen: Für Enterprise-Kunden mit erhöhten Sicherheitsanforderungen"
             },
@@ -1107,7 +1106,7 @@
     "receipt": {
       "heading": "Wie eine „Quittung\" tatsächlich aussieht",
       "para_1": "Ein LarQL-Patch ist eine portable JSON-Datei mit SHA-256-Prüfsumme. Anwenden, um einen Fakt zu unterdrücken; entfernen, um das Modell bitgenau wiederherzustellen. Der Patch IST das Audit-Log — Betreiber, Regulatoren und nachgelagerte Konsumenten können dieselbe Operation unabhängig verifizieren.",
-      "para_2": "Unten: der echte Gate-3-Patch aus unserer öffentlichen Test-Suite, der die Paris→Hauptstadt-Verknüpfung unterdrückt und wiederherstellt, mit messbarer, wiederholbarer Wirkung auf einem echten Gemma 4 E2B vIndex."
+      "para_2": "Unten: eine Illustration des Formats — die Felder, die ein Gate-3-DELETE-Patch trägt, und die Prüfsumme, die ihn verifizierbar macht. Es ist ein Beispiel für die Form einer Quittung, keine Messung, die wir hier veröffentlichen."
     },
     "cta_band": {
       "heading": "Compliance, die Sie beweisen können. Auf jedem offenen Transformer."

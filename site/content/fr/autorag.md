@@ -872,7 +872,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <li>Contrôles d'accès basés sur les rôles pour la visibilité des documents</li>
 <li>Options de résidence des données pour les exigences de conformité régionales</li>
 <li>Journalisation d'audit pour toutes les opérations système et accès aux données</li>
-<li>Conformité avec GDPR, HIPAA, SOC 2 et autres cadres réglementaires</li>
+<li>Conformité avec GDPR, HIPAA et autres cadres réglementaires</li>
 </ul>
 <p>De plus, nos options de déploiement incluent des environnements isolés pour les exigences de sécurité les plus élevées.</p>
 </div>

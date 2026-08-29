@@ -269,7 +269,7 @@ Dit is de fase die het complianceverhaal verdient. De Observe-fase draait contin
 
 Elke releasebeslissing — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **en elke toepassing van een AVG-artikel-17-DELETE-patch** — emitteert een vIndex-ontvangstbewijs. Hash-geketend aan het vorige ontvangstbewijs voor deze klant en het vorige ontvangstbewijs voor deze release.
 
-Zo ziet een echt ontvangstbewijs eruit voor een AVG-artikel-17-DELETE-patch — rechtstreeks aangepast van het formaat dat op de [compliancepagina](/nl/compliance/) is gedocumenteerd:
+Zo is een ontvangstbewijs voor een AVG-artikel-17-DELETE-patch opgebouwd — een uitgewerkt voorbeeld met plaatsaanduidingen voor identificatoren en cijfers, in het formaat dat op de [compliancepagina](/nl/compliance/) is gedocumenteerd:
 
 ```json
 {
@@ -301,7 +301,7 @@ Zo ziet een echt ontvangstbewijs eruit voor een AVG-artikel-17-DELETE-patch — 
 }
 ```
 
-Dat artefact is verifieerbaar. Een auditor hoeft onze logs niet te vertrouwen. Ze pakken de `vindex_sha256_after`, halen de bijbehorende gepubliceerde vIndex op van `huggingface.co/Divinci-AI`, en verifiëren dat feature 11179 in laag 27 structureel afwezig is in de top-25. Ze pakken de `chain_signature` en verifiëren deze tegen het voorgaande ontvangstbewijs. De hele keten wordt extern verankerd volgens een schema dat de klant configureert.
+Een ontvangstbewijs in dit formaat is verifieerbaar. Een auditor hoeft onze logs niet te vertrouwen. Ze pakken de `vindex_sha256_after`, halen de bijbehorende gepubliceerde vIndex op van `huggingface.co/Divinci-AI`, en verifiëren dat feature 11179 in laag 27 structureel afwezig is in de top-25. Ze pakken de `chain_signature` en verifiëren deze tegen het voorgaande ontvangstbewijs. De hele keten wordt extern verankerd volgens een schema dat de klant configureert.
 
 **Dezelfde operatie tegen een closed-API model.** De ontvangstbewijsvelden hierboven veranderen op drie manieren: `operation.target` wordt `provider_api_endpoint`, `verification` wordt een ander schema dat alleen bewijs uit de beslisketen dekt, en `weight_attestation_class` wordt `decision_chain_only`. De aanbieder van het closed-API model heeft geen gewichten beschikbaar gesteld, dus zegt het ontvangstbewijs dat. Een auditor die bewijs op gewichtsniveau wil, weet nu dat ze moeten escaleren naar de provider, niet naar ons.
 

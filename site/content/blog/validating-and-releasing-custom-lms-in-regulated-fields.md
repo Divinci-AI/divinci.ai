@@ -269,7 +269,7 @@ This is the stage that earns the compliance story. The Observe stage runs contin
 
 Every release decision — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **and any GDPR Article 17 DELETE patch application** — emits a vIndex receipt. Hash-chained to the previous receipt for this customer and the previous receipt for this release.
 
-Here is what a real receipt looks like for a GDPR Article 17 DELETE patch — adapted directly from the format documented on the [compliance page](/compliance/):
+Here is the shape of a receipt for a GDPR Article 17 DELETE patch — a worked example with placeholder identifiers and figures, using the format documented on the [compliance page](/compliance/):
 
 ```json
 {
@@ -301,7 +301,7 @@ Here is what a real receipt looks like for a GDPR Article 17 DELETE patch — ad
 }
 ```
 
-That artifact is verifiable. An auditor doesn't have to trust our logs. They take the `vindex_sha256_after`, pull the corresponding published vIndex from `huggingface.co/Divinci-AI`, and verify that feature 11179 in layer 27 is structurally absent from the top-25. They take the `chain_signature` and verify it against the prior receipt. The whole chain is anchored externally on a schedule the customer configures.
+A receipt in this format is verifiable. An auditor doesn't have to trust our logs. They take the `vindex_sha256_after`, pull the corresponding published vIndex from `huggingface.co/Divinci-AI`, and verify that feature 11179 in layer 27 is structurally absent from the top-25. They take the `chain_signature` and verify it against the prior receipt. The whole chain is anchored externally on a schedule the customer configures.
 
 **Same operation against a closed-API model.** The receipt fields above change in three ways: `operation.target` becomes `provider_api_endpoint`, `verification` becomes a different schema covering decision-chain evidence only, and `weight_attestation_class` becomes `decision_chain_only`. The closed-API model provider has not exposed weights, so the receipt says so. An auditor who wants weight-level proof now knows they need to escalate to the provider, not to us.
 

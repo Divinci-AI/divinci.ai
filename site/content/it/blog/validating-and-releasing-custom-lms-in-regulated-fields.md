@@ -269,7 +269,7 @@ Questa è la fase che si guadagna la storia di compliance. La fase Observe esegu
 
 Ogni decisione di rilascio — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **e ogni applicazione di patch DELETE per l'Articolo 17 GDPR** — emette una ricevuta vIndex. Hash-chained alla ricevuta precedente per questo cliente e alla ricevuta precedente per questo rilascio.
 
-Ecco come appare una ricevuta reale per una patch DELETE dell'Articolo 17 GDPR — adattata direttamente dal formato documentato nella [pagina compliance](/it/compliance/):
+Ecco la forma di una ricevuta per una patch DELETE dell'Articolo 17 GDPR — un esempio con identificatori e valori segnaposto, nel formato documentato nella [pagina compliance](/it/compliance/):
 
 ```json
 {
@@ -301,7 +301,7 @@ Ecco come appare una ricevuta reale per una patch DELETE dell'Articolo 17 GDPR �
 }
 ```
 
-Quell'artefatto è verificabile. Un auditor non deve fidarsi dei nostri log. Prende `vindex_sha256_after`, scarica il vIndex pubblicato corrispondente da `huggingface.co/Divinci-AI`, e verifica che la feature 11179 nel layer 27 sia strutturalmente assente dalla top-25. Prende la `chain_signature` e la verifica contro la ricevuta precedente. L'intera catena è ancorata esternamente secondo una scheduling configurato dal cliente.
+Una ricevuta in questo formato è verificabile. Un auditor non deve fidarsi dei nostri log. Prende `vindex_sha256_after`, scarica il vIndex pubblicato corrispondente da `huggingface.co/Divinci-AI`, e verifica che la feature 11179 nel layer 27 sia strutturalmente assente dalla top-25. Prende la `chain_signature` e la verifica contro la ricevuta precedente. L'intera catena è ancorata esternamente secondo una scheduling configurato dal cliente.
 
 **Stessa operazione contro un modello ad API chiuse.** I campi della ricevuta sopra cambiano in tre modi: `operation.target` diventa `provider_api_endpoint`, `verification` diventa uno schema diverso che copre solo l'evidenza della catena decisionale, e `weight_attestation_class` diventa `decision_chain_only`. Il provider del modello ad API chiuse non ha esposto i pesi, quindi la ricevuta lo dice. Un auditor che vuole prova a livello di pesi ora sa che deve fare escalation al provider, non a noi.
 

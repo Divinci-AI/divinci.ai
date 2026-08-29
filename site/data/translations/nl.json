@@ -630,7 +630,6 @@
             "list": {
               "encryption": "Dataversleuteling: Alle data wordt versleuteld tijdens transport en in rust",
               "access": "Rolgebaseerde toegang: Granulaire rechtenbeheersing",
-              "soc2": "SOC 2-compliance: Reguliere beveiligingsaudits",
               "isolation": "Data-isolatie: Uw trainingsdata wordt alleen gebruikt voor uw AI-modellen",
               "private_cloud": "Private-cloud-opties: Voor enterprise-klanten met verhoogde beveiligingseisen"
             },
@@ -1107,7 +1106,7 @@
     "receipt": {
       "heading": "Hoe een „bonnetje\" er werkelijk uitziet",
       "para_1": "Een LarQL-patch is een draagbaar JSON-bestand met SHA-256-checksum. Pas hem toe om een feit te onderdrukken; verwijder hem om het model bit voor bit te herstellen. De patch IS het auditlog — operators, toezichthouders en downstream-consumenten kunnen dezelfde operatie onafhankelijk verifiëren.",
-      "para_2": "Hieronder: de echte Gate-3 patch die we leveren in onze publieke testsuite, met de Paris→capital-associatie onderdrukt en hersteld met meetbaar, herhaalbaar effect op een echte Gemma 4 E2B vIndex."
+      "para_2": "Hieronder: een illustratie van het formaat — de velden die een Gate-3 DELETE-patch bevat, en de checksum die hem verifieerbaar maakt. Het is een voorbeeld van de vorm van een bonnetje, geen meting die wij hier publiceren."
     },
     "cta_band": {
       "heading": "Compliance die u kunt bewijzen. Op elke open transformer."

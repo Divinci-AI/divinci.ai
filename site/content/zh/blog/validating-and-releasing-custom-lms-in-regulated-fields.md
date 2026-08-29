@@ -269,7 +269,7 @@ Gate 阶段是欧盟 AI 法案"人工监督措施"<sup><a href="#ref-1">[1]</a><
 
 每一次发布决策 —— 注册、门控通过、门控拒绝、门控覆盖、检查点提升、检查点保留、自动回滚、手动回滚,**以及任何 GDPR 第 17 条 DELETE 补丁的应用** —— 都会发出一份 vIndex 回执。它通过哈希链链接到该客户的上一份回执和该发布的上一份回执。
 
-下面是一份针对 GDPR 第 17 条 DELETE 补丁的真实回执 —— 直接改编自[合规页面](/zh/compliance/)记录的格式:
+下面是一份针对 GDPR 第 17 条 DELETE 补丁的回执样式 —— 一个使用占位标识符和数字的示例,采用[合规页面](/zh/compliance/)记录的格式:
 
 ```json
 {
@@ -301,7 +301,7 @@ Gate 阶段是欧盟 AI 法案"人工监督措施"<sup><a href="#ref-1">[1]</a><
 }
 ```
 
-这份交付物是可验证的。审计人员不必信任我们的日志。他们拿走 `vindex_sha256_after`,从 `huggingface.co/Divinci-AI` 拉取对应已发布的 vIndex,验证第 27 层中的特征 11179 在结构上已从前 25 名中缺席。他们拿走 `chain_signature` 并对照前一份回执验证。整条链按客户配置的计划在外部锚定。
+这种格式的回执是可验证的。审计人员不必信任我们的日志。他们拿走 `vindex_sha256_after`,从 `huggingface.co/Divinci-AI` 拉取对应已发布的 vIndex,验证第 27 层中的特征 11179 在结构上已从前 25 名中缺席。他们拿走 `chain_signature` 并对照前一份回执验证。整条链按客户配置的计划在外部锚定。
 
 **对封闭 API 模型的相同操作。**上面的回执字段会有三处变化:`operation.target` 变为 `provider_api_endpoint`,`verification` 变为只覆盖决策链证据的另一种 schema,`weight_attestation_class` 变为 `decision_chain_only`。封闭 API 模型提供方没有公开权重,回执就这么写。想要权重级证明的审计人员现在知道他们需要去找提供方,而不是找我们。
 

@@ -630,7 +630,6 @@
             "list": {
               "encryption": "Chiffrement des données : Toutes les données sont chiffrées en transit et au repos",
               "access": "Accès basé sur les rôles : Contrôles de permissions granulaires",
-              "soc2": "Conformité SOC 2 : Audits de sécurité réguliers",
               "isolation": "Isolation des données : Vos données d'entraînement sont utilisées uniquement pour vos modèles d'IA",
               "private_cloud": "Options de cloud privé : Pour les clients entreprise avec des exigences de sécurité renforcées"
             },
@@ -1107,7 +1106,7 @@
     "receipt": {
       "heading": "À quoi ressemble vraiment un « reçu »",
       "para_1": "Un correctif LarQL est un fichier JSON portable avec une somme de contrôle SHA-256. Appliquez-le pour supprimer un fait ; retirez-le pour restaurer le modèle bit pour bit. Le correctif EST le journal d'audit — opérateurs, régulateurs et consommateurs en aval peuvent vérifier la même opération de façon indépendante.",
-      "para_2": "Ci-dessous : le correctif Gate-3 réel que nous livrons dans notre suite de tests publique, montrant l'association Paris→capitale supprimée et restaurée avec un effet mesurable et reproductible sur un véritable vIndex Gemma 4 E2B."
+      "para_2": "Ci-dessous : une illustration du format — les champs que porte un correctif DELETE Gate-3, et la somme de contrôle qui le rend vérifiable. C'est un exemple de la forme d'un reçu, pas une mesure que nous publions ici."
     },
     "cta_band": {
       "heading": "Une conformité que vous pouvez prouver. Sur n'importe quel transformer ouvert."

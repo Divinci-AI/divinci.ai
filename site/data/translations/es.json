@@ -630,7 +630,6 @@
             "list": {
               "encryption": "Cifrado de datos: Todos los datos están cifrados en tránsito y en reposo",
               "access": "Acceso basado en roles: Controles de permisos granulares",
-              "soc2": "Cumplimiento SOC 2: Auditorías de seguridad periódicas",
               "isolation": "Aislamiento de datos: Sus datos de entrenamiento se usan solo para sus modelos de IA",
               "private_cloud": "Opciones de nube privada: Para clientes empresariales con requisitos de seguridad mejorados"
             },
@@ -1107,7 +1106,7 @@
     "receipt": {
       "heading": "Cómo es realmente un \"comprobante\"",
       "para_1": "Un parche LarQL es un archivo JSON portátil con suma de comprobación SHA-256. Aplícalo para suprimir un hecho; quítalo para restaurar el modelo bit por bit. El parche ES el registro de auditoría — operadores, reguladores y consumidores posteriores pueden verificar la misma operación de forma independiente.",
-      "para_2": "A continuación: el parche Gate-3 real que enviamos en nuestro paquete de pruebas público, mostrando la asociación París→capital suprimida y revertida con efecto medible y repetible en un vIndex real de Gemma 4 E2B."
+      "para_2": "A continuación: una ilustración del formato — los campos que lleva un parche DELETE de Gate-3 y la suma de comprobación que lo hace verificable. Es un ejemplo de la forma de un comprobante, no una medición que estemos publicando aquí."
     },
     "cta_band": {
       "heading": "Cumplimiento que puedes demostrar. En cualquier transformer abierto."

@@ -269,7 +269,7 @@ Esta es la etapa que se gana la historia de cumplimiento. La etapa Observe corre
 
 Cada decisión de release — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **y cualquier aplicación de parche DELETE del Artículo 17 del GDPR** — emite un recibo de vIndex. Encadenado por hash al recibo previo para este cliente y al recibo previo para este release.
 
-Aquí está cómo se ve un recibo real para un parche DELETE del Artículo 17 del GDPR — adaptado directamente del formato documentado en la [página de compliance](/es/compliance/):
+Así es la forma de un recibo para un parche DELETE del Artículo 17 del GDPR — un ejemplo trabajado con identificadores y cifras de marcador de posición, en el formato documentado en la [página de compliance](/es/compliance/):
 
 ```json
 {
@@ -301,7 +301,7 @@ Aquí está cómo se ve un recibo real para un parche DELETE del Artículo 17 de
 }
 ```
 
-Ese artefacto es verificable. Un auditor no tiene que confiar en nuestros logs. Toman el `vindex_sha256_after`, jalan el vIndex publicado correspondiente de `huggingface.co/Divinci-AI`, y verifican que la feature 11179 en la layer 27 está estructuralmente ausente del top-25. Toman el `chain_signature` y lo verifican contra el recibo anterior. Toda la cadena está anclada externamente en una agenda que el cliente configura.
+Un recibo en este formato es verificable. Un auditor no tiene que confiar en nuestros logs. Toman el `vindex_sha256_after`, jalan el vIndex publicado correspondiente de `huggingface.co/Divinci-AI`, y verifican que la feature 11179 en la layer 27 está estructuralmente ausente del top-25. Toman el `chain_signature` y lo verifican contra el recibo anterior. Toda la cadena está anclada externamente en una agenda que el cliente configura.
 
 **La misma operación contra un modelo closed-API.** Los campos del recibo de arriba cambian de tres formas: `operation.target` se vuelve `provider_api_endpoint`, `verification` se vuelve un esquema distinto cubriendo solo evidencia de cadena de decisión, y `weight_attestation_class` se vuelve `decision_chain_only`. El proveedor del modelo closed-API no ha expuesto pesos, así que el recibo lo dice. Un auditor que quiera prueba a nivel de pesos ahora sabe que tiene que escalar al proveedor, no a nosotros.
 

@@ -193,7 +193,7 @@
           {{ translations.compliance.receipt.para_1 | default(value="A LarQL patch is a portable JSON file with a SHA-256 checksum.") }}
         </p>
         <p>
-          {{ translations.compliance.receipt.para_2 | default(value="Below: the actual Gate-3 patch from our public test suite.") }}
+          {{ translations.compliance.receipt.para_2 | default(value="Below: an illustration of the format — the fields a Gate-3 DELETE patch carries, and the checksum that makes it verifiable. It is an example of the shape of a receipt, not a measurement we are publishing here.") }}
         </p>
       </div>
       <pre class="compliance-receipt-pre"><code>{
@@ -210,13 +210,7 @@
     "layer": 27,
     "feature": 11179
   }]
-}
-
-# ── Verifiable result ──
-# before: feature 11179 score 18.10 target='서울'  (rank #1)
-# after:  feature 11179 ABSENT from top-25
-# Δ perplexity (WikiText-103, 1024 tok): +0.02%
-# vIndex sha256: 9abaeaf6...</code></pre>
+}</code></pre>
     </section>
 
     <section class="compliance-cta-band compliance-audit-offer">

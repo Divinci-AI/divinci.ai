@@ -269,7 +269,7 @@ C'est l'étape qui mérite l'histoire de conformité. L'étape Observer exécute
 
 Chaque décision de publication — enregistrement, succès de filtre, échec de filtre, dérogation au filtre, promotion de point de contrôle, mise en attente d'un point de contrôle, rollback automatique, rollback manuel, **et toute application d'un patch DELETE article 17 du RGPD** — émet un reçu vIndex. Chaîné par hachage au reçu précédent pour ce client et au reçu précédent pour cette publication.
 
-Voici à quoi ressemble un véritable reçu pour un patch DELETE article 17 du RGPD — adapté directement du format documenté sur la [page de conformité](/fr/compliance/) :
+Voici la forme d'un reçu pour un patch DELETE article 17 du RGPD — un exemple travaillé, avec des identifiants et des chiffres fictifs, dans le format documenté sur la [page de conformité](/fr/compliance/) :
 
 ```json
 {
@@ -301,7 +301,7 @@ Voici à quoi ressemble un véritable reçu pour un patch DELETE article 17 du R
 }
 ```
 
-Cet artefact est vérifiable. Un auditeur n'a pas à faire confiance à nos journaux. Il prend le `vindex_sha256_after`, récupère le vIndex publié correspondant depuis `huggingface.co/Divinci-AI`, et vérifie que la feature 11179 de la couche 27 est structurellement absente du top-25. Il prend la `chain_signature` et la vérifie contre le reçu précédent. La chaîne entière est ancrée à l'extérieur selon un calendrier que le client configure.
+Un reçu dans ce format est vérifiable. Un auditeur n'a pas à faire confiance à nos journaux. Il prend le `vindex_sha256_after`, récupère le vIndex publié correspondant depuis `huggingface.co/Divinci-AI`, et vérifie que la feature 11179 de la couche 27 est structurellement absente du top-25. Il prend la `chain_signature` et la vérifie contre le reçu précédent. La chaîne entière est ancrée à l'extérieur selon un calendrier que le client configure.
 
 **Même opération contre un modèle à API fermée.** Les champs du reçu ci-dessus changent de trois façons : `operation.target` devient `provider_api_endpoint`, `verification` devient un schéma différent couvrant uniquement les preuves de chaîne de décision, et `weight_attestation_class` devient `decision_chain_only`. Le fournisseur du modèle à API fermée n'a pas exposé les poids, donc le reçu le dit. Un auditeur qui veut une preuve au niveau des poids sait alors qu'il doit faire remonter le sujet au fournisseur, pas à nous.
 

@@ -269,7 +269,7 @@ HIPAA के लिए, canary stage वह जगह भी है जहाँ
 
 हर release decision — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **और कोई भी GDPR Article 17 DELETE patch application** — एक vIndex receipt emit करता है। इस customer के लिए पिछले receipt और इस release के लिए पिछले receipt से hash-chained।
 
-GDPR Article 17 DELETE patch के लिए असली receipt कैसा दिखता है — सीधे [compliance page](/hi/compliance/) पर documented format से adapted:
+GDPR Article 17 DELETE patch के लिए receipt का स्वरूप इस तरह है — placeholder identifiers और आँकड़ों वाला एक उदाहरण, [compliance page](/hi/compliance/) पर documented format में:
 
 ```json
 {
@@ -301,7 +301,7 @@ GDPR Article 17 DELETE patch के लिए असली receipt कैसा 
 }
 ```
 
-वह artifact verifiable है। एक auditor को हमारी logs पर भरोसा नहीं करना पड़ता। वह `vindex_sha256_after` लेता है, `huggingface.co/Divinci-AI` से संबंधित published vIndex pull करता है, और verify करता है कि layer 27 में feature 11179 top-25 से संरचनात्मक रूप से अनुपस्थित है। वह `chain_signature` लेता है और पिछले receipt के विरुद्ध verify करता है। पूरी chain customer द्वारा configure किए गए schedule पर externally anchored है।
+इस format का receipt verifiable है। एक auditor को हमारी logs पर भरोसा नहीं करना पड़ता। वह `vindex_sha256_after` लेता है, `huggingface.co/Divinci-AI` से संबंधित published vIndex pull करता है, और verify करता है कि layer 27 में feature 11179 top-25 से संरचनात्मक रूप से अनुपस्थित है। वह `chain_signature` लेता है और पिछले receipt के विरुद्ध verify करता है। पूरी chain customer द्वारा configure किए गए schedule पर externally anchored है।
 
 **वही operation एक closed-API model के विरुद्ध।** ऊपर के receipt fields तीन तरह से बदलते हैं: `operation.target` बन जाता है `provider_api_endpoint`, `verification` एक अलग schema बन जाता है जो केवल decision-chain evidence को cover करता है, और `weight_attestation_class` बन जाता है `decision_chain_only`। Closed-API model provider ने weights expose नहीं किए हैं, तो receipt ऐसा कहता है। एक auditor जिसे weight-level proof चाहिए उसे अब पता है कि उन्हें provider के पास escalate करना है, हमारे पास नहीं।
 

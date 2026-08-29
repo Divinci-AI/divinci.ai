@@ -269,7 +269,7 @@ HIPAA의 경우, 카나리 단계는 요청별 감사 로깅이 엔드 투 엔�
 
 모든 출시 결정 — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **그리고 모든 GDPR 제17조 DELETE 패치 적용** — 은 vIndex 영수증을 발행합니다. 해당 고객의 이전 영수증과 해당 릴리스의 이전 영수증에 해시 체인으로 연결됩니다.
 
-[컴플라이언스 페이지](/ko/compliance/)에 문서화된 포맷에서 직접 가져온 GDPR 제17조 DELETE 패치의 실제 영수증은 다음과 같습니다.
+[컴플라이언스 페이지](/ko/compliance/)에 문서화된 포맷을 사용한, GDPR 제17조 DELETE 패치 영수증의 형태는 다음과 같습니다. 식별자와 수치는 자리표시자인 예시입니다.
 
 ```json
 {
@@ -301,7 +301,7 @@ HIPAA의 경우, 카나리 단계는 요청별 감사 로깅이 엔드 투 엔�
 }
 ```
 
-그 산출물은 검증 가능합니다. 감사인은 우리의 로그를 신뢰할 필요가 없습니다. `vindex_sha256_after`를 가져와 `huggingface.co/Divinci-AI`에서 해당 공개 vIndex를 받아온 뒤, 레이어 27의 특성 11179가 상위 25에서 구조적으로 부재함을 검증합니다. `chain_signature`를 가져와 이전 영수증과 대조해 검증합니다. 전체 체인은 고객이 구성한 일정에 따라 외부에 앵커링됩니다.
+이 포맷의 영수증은 검증 가능합니다. 감사인은 우리의 로그를 신뢰할 필요가 없습니다. `vindex_sha256_after`를 가져와 `huggingface.co/Divinci-AI`에서 해당 공개 vIndex를 받아온 뒤, 레이어 27의 특성 11179가 상위 25에서 구조적으로 부재함을 검증합니다. `chain_signature`를 가져와 이전 영수증과 대조해 검증합니다. 전체 체인은 고객이 구성한 일정에 따라 외부에 앵커링됩니다.
 
 **폐쇄 API 모델에 대한 동일 작업.** 위 영수증 필드는 세 가지 방식으로 바뀝니다: `operation.target`은 `provider_api_endpoint`가 되고, `verification`은 의사결정 체인 증거만을 다루는 다른 스키마가 되며, `weight_attestation_class`는 `decision_chain_only`가 됩니다. 폐쇄 API 모델 제공자는 가중치를 노출하지 않았으므로 영수증은 그렇게 기록합니다. 가중치 수준의 증명을 원하는 감사인은 이제 우리가 아니라 제공자에게 에스컬레이션해야 한다는 것을 압니다.
 

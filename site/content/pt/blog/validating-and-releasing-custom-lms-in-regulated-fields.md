@@ -269,7 +269,7 @@ Este é o estágio que sustenta a história de compliance. O estágio Observe ro
 
 Toda decisão de release — register, gate-pass, gate-fail, gate-override, checkpoint-promote, checkpoint-hold, auto-rollback, manual-rollback, **e qualquer aplicação de patch DELETE do Artigo 17 do GDPR** — emite um recibo vIndex. Hash-chained ao recibo anterior deste cliente e ao recibo anterior deste release.
 
-Eis como se parece um recibo real para um patch DELETE do Artigo 17 do GDPR — adaptado diretamente do formato documentado na [página de compliance](/pt/compliance/):
+Eis a forma de um recibo para um patch DELETE do Artigo 17 do GDPR — um exemplo trabalhado, com identificadores e números de marcador, no formato documentado na [página de compliance](/pt/compliance/):
 
 ```json
 {
@@ -301,7 +301,7 @@ Eis como se parece um recibo real para um patch DELETE do Artigo 17 do GDPR — 
 }
 ```
 
-Esse artefato é verificável. Um auditor não precisa confiar nos nossos logs. Ele pega o `vindex_sha256_after`, puxa o vIndex publicado correspondente em `huggingface.co/Divinci-AI`, e verifica que a feature 11179 na camada 27 está estruturalmente ausente do top-25. Pega o `chain_signature` e verifica contra o recibo anterior. A cadeia inteira é ancorada externamente em uma cadência configurada pelo cliente.
+Um recibo neste formato é verificável. Um auditor não precisa confiar nos nossos logs. Ele pega o `vindex_sha256_after`, puxa o vIndex publicado correspondente em `huggingface.co/Divinci-AI`, e verifica que a feature 11179 na camada 27 está estruturalmente ausente do top-25. Pega o `chain_signature` e verifica contra o recibo anterior. A cadeia inteira é ancorada externamente em uma cadência configurada pelo cliente.
 
 **Mesma operação contra um modelo de API fechada.** Os campos do recibo acima mudam de três formas: `operation.target` se torna `provider_api_endpoint`, `verification` se torna um schema diferente cobrindo apenas evidências da cadeia de decisão, e `weight_attestation_class` se torna `decision_chain_only`. O provedor do modelo de API fechada não expôs pesos, então o recibo o diz. Um auditor que quer prova no nível dos pesos agora sabe que precisa escalar para o provedor, não para nós.
 

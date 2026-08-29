@@ -985,7 +985,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <li>Controles de acceso basados en roles para la visibilidad de documentos</li>
 <li>Opciones de residencia de datos para requisitos de cumplimiento regional</li>
 <li>Registro de auditoría para todas las operaciones del sistema y acceso a datos</li>
-<li>Cumplimiento con GDPR, HIPAA, SOC 2 y otros marcos regulatorios</li>
+<li>Cumplimiento con GDPR, HIPAA y otros marcos regulatorios</li>
 </ul>
 <p>Además, nuestras opciones de implementación incluyen entornos aislados para los requisitos de seguridad más altos.</p>
 </div>
