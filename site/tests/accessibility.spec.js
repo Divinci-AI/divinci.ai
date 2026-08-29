@@ -1,6 +1,10 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Comprehensive Accessibility Test Suite
  * Tests WCAG 2.1 AA compliance, keyboard navigation, screen reader support,
@@ -13,7 +17,7 @@ test.describe('Accessibility Test Suite', () => {
     // Navigate to homepage before each test
     await page.goto('/');
     // Wait for page to be fully loaded
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
   });
 
   test.describe('Keyboard Navigation Tests', () => {
@@ -294,7 +298,7 @@ test.describe('Accessibility Test Suite', () => {
       test(`should have proper accessibility in ${name}`, async ({ page }) => {
         if (code !== 'en') {
           await page.goto(`/${code}/`);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
         }
         
         // Test lang attribute is properly set
@@ -384,7 +388,7 @@ test.describe('Accessibility Test Suite', () => {
     test('should have reasonable loading times for accessibility tools', async ({ page }) => {
       const startTime = Date.now();
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       const loadTime = Date.now() - startTime;
       
       // Should load within 5 seconds for accessibility tools
@@ -456,7 +460,7 @@ test.describe('Accessibility Test Suite', () => {
 
     test('should provide helpful 404 error page', async ({ page }) => {
       // Test navigation to non-existent page
-      const response = await page.goto('/non-existent-page', { waitUntil: 'networkidle' });
+      const response = await page.goto('/non-existent-page', { waitUntil: 'domcontentloaded' });
       
       if (response?.status() === 404) {
         // Should have helpful content

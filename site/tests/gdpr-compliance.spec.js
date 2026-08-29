@@ -3,6 +3,10 @@
 
 import { test, expect } from '@playwright/test';
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 test.describe('GDPR Compliance Tests', () => {
   
   test.beforeEach(async ({ page }) => {
@@ -12,7 +16,7 @@ test.describe('GDPR Compliance Tests', () => {
       localStorage.removeItem('divinci-gdpr-consent');
     });
     await page.reload();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
   });
 
   test.describe('Cookie Consent Banner', () => {
@@ -27,7 +31,7 @@ test.describe('GDPR Compliance Tests', () => {
       });
       
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Wait a moment for geolocation detection
       await page.waitForTimeout(1000);
@@ -57,7 +61,7 @@ test.describe('GDPR Compliance Tests', () => {
       });
       
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Wait for geolocation detection
       await page.waitForTimeout(1000);
@@ -82,7 +86,7 @@ test.describe('GDPR Compliance Tests', () => {
       });
       
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(1000);
       
       // Banner should not be visible initially
@@ -202,7 +206,7 @@ test.describe('GDPR Compliance Tests', () => {
       
       // Reload page
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Banner should not appear
       await expect(page.locator('#gdpr-cookie-banner')).not.toBeVisible();

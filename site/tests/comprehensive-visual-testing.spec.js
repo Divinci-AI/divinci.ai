@@ -1,5 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Comprehensive Visual Testing Suite
  * Enhanced visual regression testing for desktop, mobile, and tablet
@@ -63,7 +67,7 @@ test.describe('Comprehensive Visual Testing - All Devices', () => {
     test(`Full homepage visual test - ${device.name}`, async ({ page }) => {
       await page.setViewportSize({ width: device.width, height: device.height });
       await page.goto(baseURL);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(3000); // Wait for images and fonts to load
       
       await expect(page).toHaveScreenshot(`homepage-full-${device.name}.png`, {
@@ -82,7 +86,7 @@ test.describe('Comprehensive Visual Testing - All Devices', () => {
       test.beforeEach(async ({ page }) => {
         await page.setViewportSize({ width: device.width, height: device.height });
         await page.goto(baseURL);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         await page.waitForTimeout(2000);
       });
 
@@ -161,7 +165,7 @@ test.describe('Comprehensive Visual Testing - All Devices', () => {
     test.beforeEach(async ({ page }) => {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(baseURL);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(2000);
     });
 
@@ -178,7 +182,7 @@ test.describe('Comprehensive Visual Testing - All Devices', () => {
     test('Mobile navigation menu open', async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Check if mobile menu trigger exists and click it
       const menuTrigger = page.locator('.mobile-menu-trigger, .hamburger, .menu-toggle');
@@ -226,7 +230,7 @@ test.describe('Comprehensive Visual Testing - All Devices', () => {
       test(`${section.name} section consistency - desktop`, async ({ page, browserName }) => {
         await page.setViewportSize({ width: 1920, height: 1080 });
         await page.goto(baseURL);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         await page.waitForTimeout(2000);
         
         await page.locator(section.selector).scrollIntoViewIfNeeded();
@@ -256,7 +260,7 @@ test.describe('Comprehensive Visual Testing - All Devices', () => {
       test(`Header responsiveness at ${breakpoint.width}px`, async ({ page }) => {
         await page.setViewportSize({ width: breakpoint.width, height: 800 });
         await page.goto(baseURL);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         await page.waitForTimeout(2000);
         
         const header = page.locator('header');
@@ -268,7 +272,7 @@ test.describe('Comprehensive Visual Testing - All Devices', () => {
       test(`Hero section responsiveness at ${breakpoint.width}px`, async ({ page }) => {
         await page.setViewportSize({ width: breakpoint.width, height: 800 });
         await page.goto(baseURL);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         await page.waitForTimeout(2000);
         
         const hero = page.locator('.hero');
@@ -308,7 +312,7 @@ test.describe('Multilingual Visual Testing', () => {
     test(`${lang.name} homepage visual - desktop`, async ({ page }) => {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(`${baseURL}${lang.url}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(3000);
       
       await expect(page).toHaveScreenshot(`homepage-${lang.name}-desktop.png`, {
@@ -321,7 +325,7 @@ test.describe('Multilingual Visual Testing', () => {
     test(`${lang.name} homepage visual - mobile`, async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(`${baseURL}${lang.url}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(3000);
       
       await expect(page).toHaveScreenshot(`homepage-${lang.name}-mobile.png`, {
@@ -334,7 +338,7 @@ test.describe('Multilingual Visual Testing', () => {
     test(`${lang.name} footer visual test`, async ({ page }) => {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(`${baseURL}${lang.url}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(2000);
       
       await page.locator('.site-footer').scrollIntoViewIfNeeded();
@@ -351,7 +355,7 @@ test.describe('Multilingual Visual Testing', () => {
   test('Arabic RTL layout visual test', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(`${baseURL}/ar/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(3000);
     
     // Test specific RTL elements
@@ -375,7 +379,7 @@ test.describe('Visual Accessibility Testing', () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(2000);
   });
 

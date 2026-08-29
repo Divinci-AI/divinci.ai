@@ -1,12 +1,16 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Performance and Asset Loading Tests
  * Tests page load performance, asset optimization, and loading efficiency
  */
 
 test.describe('Performance and Asset Loading', () => {
-  const baseURL = 'http://127.0.0.1:1027';
+  const baseURL = '';
   
   test.beforeEach(async ({ page }) => {
     // Enable network domain for performance monitoring
@@ -27,7 +31,7 @@ test.describe('Performance and Asset Loading', () => {
       
       // Start navigation
       const response = await page.goto(`${baseURL}/`, {
-        waitUntil: 'networkidle',
+        waitUntil: 'domcontentloaded',
         timeout: 30000
       });
       
@@ -153,7 +157,7 @@ test.describe('Performance and Asset Loading', () => {
         try {
           const startTime = Date.now();
           const response = await page.goto(`${baseURL}${testPage.path}`, {
-            waitUntil: 'networkidle',
+            waitUntil: 'domcontentloaded',
             timeout: 20000
           });
           const loadTime = Date.now() - startTime;
@@ -225,7 +229,7 @@ test.describe('Performance and Asset Loading', () => {
       });
       
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log(`  📝 Found ${imageRequests.length} image requests`);
       
@@ -309,7 +313,7 @@ test.describe('Performance and Asset Loading', () => {
       });
       
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Wait for videos to start loading
       await page.waitForTimeout(3000);
@@ -399,7 +403,7 @@ test.describe('Performance and Asset Loading', () => {
       });
       
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log(`  📝 CSS Resources: ${cssRequests.length}`);
       let totalCSSSize = 0;
@@ -473,7 +477,7 @@ test.describe('Performance and Asset Loading', () => {
       });
       
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log(`  📝 Found ${cacheableResources.length} cacheable resources`);
       
@@ -538,7 +542,7 @@ test.describe('Performance and Asset Loading', () => {
       });
       
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log(`  📝 Found ${compressibleResources.length} compressible resources`);
       
@@ -594,7 +598,7 @@ test.describe('Performance and Asset Loading', () => {
       });
       
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const timings = await page.evaluate(() => window.resourceTimings || []);
       
@@ -670,7 +674,7 @@ test.describe('Performance and Asset Loading', () => {
       await page.waitForSelector('h1', { timeout: 10000 });
       const firstContentTime = Date.now();
       
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       const completeTime = Date.now();
       
       console.log(`  ⏱️ Loading Timeline:`);

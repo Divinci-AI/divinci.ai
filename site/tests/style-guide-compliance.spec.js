@@ -1,5 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Comprehensive style guide compliance test for Divinci AI website
  * 
@@ -222,7 +226,7 @@ test.describe('Style Guide Compliance', () => {
       await page.goto(pagePath);
       
       // Wait for page to fully load
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Extract colors from all visible elements
       const allColors = await extractColorsFromElement(page, '*');
@@ -275,7 +279,7 @@ test.describe('Style Guide Compliance', () => {
   
   test('Homepage contains required brand colors', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Extract colors from homepage
     const allColors = await extractColorsFromElement(page, '*');
@@ -311,7 +315,7 @@ test.describe('Style Guide Compliance', () => {
   test('All pages use primary font color #2d3c34', async ({ page }) => {
     for (const pagePath of PAGES_TO_TEST) {
       await page.goto(pagePath);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Check if the primary font color is being used
       const usesPrimaryFont = await page.evaluate(() => {
@@ -344,7 +348,7 @@ test.describe('Style Guide Compliance', () => {
   test('No pages use deprecated blue color scheme', async ({ page }) => {
     for (const pagePath of PAGES_TO_TEST) {
       await page.goto(pagePath);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Look specifically for the old blue color scheme
       const deprecatedColors = await page.evaluate(() => {

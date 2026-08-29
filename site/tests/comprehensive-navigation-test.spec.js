@@ -1,5 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Comprehensive Navigation and Page Existence Test
  * Tests all navigation links and identifies 404 errors
@@ -86,8 +90,8 @@ test.describe('Comprehensive Navigation and Page Existence Tests', () => {
     for (const [pageName, languages] of Object.entries(EXPECTED_PAGES)) {
       for (const [lang, url] of Object.entries(languages)) {
         try {
-          const response = await page.goto(`http://127.0.0.1:1027${url}`, { 
-            waitUntil: 'networkidle',
+          const response = await page.goto(`${url}`, { 
+            waitUntil: 'domcontentloaded',
             timeout: 10000 
           });
           
@@ -124,8 +128,8 @@ test.describe('Comprehensive Navigation and Page Existence Tests', () => {
   });
 
   test('should test all navigation dropdown links', async ({ page }) => {
-    await page.goto('http://127.0.0.1:1027/');
-    await page.waitForLoadState('networkidle');
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
     
     console.log('🧭 Testing navigation dropdown links...\n');
     
@@ -177,8 +181,8 @@ test.describe('Comprehensive Navigation and Page Existence Tests', () => {
     for (const lang of testLanguages) {
       console.log(`\n🌍 Testing ${lang} navigation links...`);
       
-      await page.goto(`http://127.0.0.1:1027/${lang}/`);
-      await page.waitForLoadState('networkidle');
+      await page.goto(`/${lang}/`);
+      await page.waitForLoadState('domcontentloaded');
       
       // Test Features dropdown for this language
       const featuresDropdown = page.locator('.dropdown').first();

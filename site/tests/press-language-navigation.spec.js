@@ -1,5 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 test.describe('Press Page Language Navigation', () => {
     const languages = [
         { code: 'en', name: 'English', url: '/press/' },
@@ -15,13 +19,13 @@ test.describe('Press Page Language Navigation', () => {
 
     test.beforeEach(async ({ page }) => {
         // Start from English press page
-        await page.goto('http://127.0.0.1:1025/press/');
-        await page.waitForLoadState('networkidle');
+        await page.goto('/press/');
+        await page.waitForLoadState('domcontentloaded');
     });
 
     test('all language versions of press page should exist', async ({ page }) => {
         for (const lang of languages) {
-            const response = await page.goto(`http://127.0.0.1:1025${lang.url}`);
+            const response = await page.goto(`${lang.url}`);
             expect(response.status()).toBe(200);
             
             // Verify we're on the press page
@@ -56,7 +60,7 @@ test.describe('Press Page Language Navigation', () => {
 
     test('language context should be maintained when switching languages', async ({ page }) => {
         // Navigate to Spanish press page
-        await page.goto('http://127.0.0.1:1025/es/press/');
+        await page.goto('/es/press/');
         
         // Open language switcher
         const toggleButton = page.locator('.language-switcher-current');
@@ -73,7 +77,7 @@ test.describe('Press Page Language Navigation', () => {
 
     test('press page should maintain consistent structure across languages', async ({ page }) => {
         for (const lang of languages.slice(0, 3)) { // Test first 3 languages
-            await page.goto(`http://127.0.0.1:1025${lang.url}`);
+            await page.goto(`${lang.url}`);
             
             // Check main sections exist
             await expect(page.locator('.press-hero')).toBeVisible();
@@ -91,7 +95,7 @@ test.describe('Press Page Language Navigation', () => {
     });
 
     test('RTL layout should work for Arabic press page', async ({ page }) => {
-        await page.goto('http://127.0.0.1:1025/ar/press/');
+        await page.goto('/ar/press/');
         
         // Check if HTML has RTL direction
         const htmlDir = await page.locator('html').getAttribute('dir');

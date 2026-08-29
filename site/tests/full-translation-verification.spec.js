@@ -1,6 +1,10 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Full Translation Verification Test Suite
  * Tests all 13 languages for 100% translation coverage
@@ -194,7 +198,7 @@ test.describe('Full Translation Verification', () => {
       
       // Navigate to language page
       await page.goto(language.url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // 1. Verify HTML lang attribute
       const htmlLang = await page.locator('html').getAttribute('lang');
@@ -287,7 +291,7 @@ test.describe('Full Translation Verification', () => {
   // Test RTL support for Arabic
   test('Arabic has proper RTL support', async ({ page }) => {
     await page.goto('/ar/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Check HTML dir attribute
     const htmlDir = await page.locator('html').getAttribute('dir');

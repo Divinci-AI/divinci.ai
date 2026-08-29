@@ -1,12 +1,16 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Visual Regression Test Suite
  * Tests visual consistency and takes screenshots for regression testing
  */
 
 test.describe('Visual Regression Tests', () => {
-  const baseURL = 'http://127.0.0.1:1027';
+  const baseURL = '';
   
   test.beforeEach(async ({ page }) => {
     // Disable animations for consistent screenshots
@@ -32,14 +36,14 @@ test.describe('Visual Regression Tests', () => {
     });
     
     // Wait for fonts to load
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(1000);
   });
 
   test.describe('Homepage Visual Tests', () => {
     test('should capture homepage hero section', async ({ page }) => { 
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📸 Taking homepage hero section screenshot...');
       
@@ -60,7 +64,7 @@ test.describe('Visual Regression Tests', () => {
 
     test('should capture homepage features section', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📸 Taking features section screenshot...');
       
@@ -85,7 +89,7 @@ test.describe('Visual Regression Tests', () => {
 
     test('should capture enterprise AI section', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📸 Taking enterprise AI section screenshot...');
       
@@ -110,7 +114,7 @@ test.describe('Visual Regression Tests', () => {
 
     test('should capture team section', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📸 Taking team section screenshot...');
       
@@ -135,7 +139,7 @@ test.describe('Visual Regression Tests', () => {
 
     test('should capture footer', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📸 Taking footer screenshot...');
       
@@ -162,7 +166,7 @@ test.describe('Visual Regression Tests', () => {
   test.describe('Full Page Screenshots', () => {
     test('should capture full homepage', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📸 Taking full homepage screenshot...');
       
@@ -181,7 +185,7 @@ test.describe('Visual Regression Tests', () => {
     test('should capture about page if exists', async ({ page }) => {
       try {
         await page.goto(`${baseURL}/about/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         console.log('📸 Taking about page screenshot...');
         
@@ -208,7 +212,7 @@ test.describe('Visual Regression Tests', () => {
     test('should capture contact page if exists', async ({ page }) => {
       try {
         await page.goto(`${baseURL}/contact/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         console.log('📸 Taking contact page screenshot...');
         
@@ -234,7 +238,7 @@ test.describe('Visual Regression Tests', () => {
     test('should capture autorag page if exists', async ({ page }) => {
       try {
         await page.goto(`${baseURL}/autorag/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         console.log('📸 Taking AutoRAG page screenshot...');
         
@@ -261,7 +265,7 @@ test.describe('Visual Regression Tests', () => {
   test.describe('Component Visual Tests', () => {
     test('should capture header component', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📸 Taking header component screenshot...');
       
@@ -282,7 +286,7 @@ test.describe('Visual Regression Tests', () => {
 
     test('should capture navigation dropdown', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📸 Taking navigation dropdown screenshot...');
       
@@ -310,7 +314,7 @@ test.describe('Visual Regression Tests', () => {
 
     test('should capture language switcher', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📸 Taking language switcher screenshot...');
       
@@ -337,7 +341,7 @@ test.describe('Visual Regression Tests', () => {
 
     test('should capture panel components', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📸 Taking panel components screenshot...');
       
@@ -384,7 +388,7 @@ test.describe('Visual Regression Tests', () => {
     test('should capture mobile homepage', async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📱 Taking mobile homepage screenshot...');
       
@@ -402,7 +406,7 @@ test.describe('Visual Regression Tests', () => {
     test('should capture mobile header', async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📱 Taking mobile header screenshot...');
       
@@ -422,7 +426,7 @@ test.describe('Visual Regression Tests', () => {
     test('should capture mobile navigation menu', async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📱 Taking mobile navigation menu screenshot...');
       
@@ -452,7 +456,7 @@ test.describe('Visual Regression Tests', () => {
   test.describe('Cross-Browser Visual Consistency', () => {
     test('should compare visual consistency across browser projects', async ({ page, browserName }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log(`🔄 Taking cross-browser screenshot for ${browserName}...`);
       
@@ -473,7 +477,7 @@ test.describe('Visual Regression Tests', () => {
   test.describe('Form Visual Tests', () => {
     test('should capture signup form', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📝 Taking signup form screenshot...');
       
@@ -496,7 +500,7 @@ test.describe('Visual Regression Tests', () => {
     test('should capture contact form if exists', async ({ page }) => {
       try {
         await page.goto(`${baseURL}/contact/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         console.log('📝 Taking contact form screenshot...');
         
@@ -526,7 +530,7 @@ test.describe('Visual Regression Tests', () => {
       
       try {
         await page.goto(`${baseURL}/non-existent-page/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Wait a bit for any 404 page content to load
         await page.waitForTimeout(1000);

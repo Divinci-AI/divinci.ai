@@ -6,7 +6,7 @@ const { test, expect } = require('@playwright/test');
  */
 
 test.describe('Video Functionality', () => {
-  const baseURL = 'http://127.0.0.1:1111';
+  const baseURL = '/';
   
   test.beforeEach(async ({ page }) => {
     await page.goto(baseURL);

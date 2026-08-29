@@ -22,8 +22,13 @@ name: Tests
 #           and `checkVisibility()` all report it healthy. No DOM assertion can
 #           see that, so `toBeVisible()` passes over an invisible logo.
 #
-#   e2e     157 Playwright tests, SHARDED. Sizing this took three attempts and
-#           two wrong assumptions, both recorded here so nobody repeats them:
+#   e2e-green
+#           The subset that actually passes, run on EVERY push. 52 tests, ~1
+#           min. This is the job that gates.
+#
+#   e2e     The full Desktop-Chrome suite, SHARDED, workflow_dispatch ONLY.
+#           Sizing took three attempts and two wrong assumptions, both recorded
+#           so nobody repeats them:
 #             1. Measured locally at 8.9 min and treated that as the CI cost —
 #                but locally Playwright used up to 12 workers, and
 #                playwright.config.js pins `workers: 1` under CI. 30-min
@@ -33,22 +38,35 @@ name: Tests
 #                60-min timeout, cancelled again. This repo is PUBLIC —
 #                Actions minutes are free and unlimited, and public repos get
 #                4-core runners.
-#           So: 3 shards x 4 workers — 17.1/16.8/17.3 min against a 45-min
-#           budget, which is the right size.
+#           So: 3 shards x 4 workers, 45-min budget.
 #
-#           But it FAILS in CI, and not because of the sizing. 52 of the 65
-#           spec files call `page.waitForLoadState('networkidle')`, several in
-#           a beforeEach. On a runner the network never goes idle — the page
-#           loads HubSpot, Leadsy and fonts — so those specs time out at 30s,
-#           on every shard, on every retry. Deterministic, not flaky.
+# ⚠️ A CORRECTION TO WHAT THIS FILE USED TO SAY (2026-08-28).
 #
-#           Which is why it is workflow_dispatch ONLY. The suite passes 157/157
-#           locally; I measured it there and called it "measured green", and
-#           local is not where CI runs. Same error as the two above.
+# This header claimed the suite "passes 157/157 locally" and was therefore
+# "MEASURED green". It does not and was not. Measured at HEAD on 2026-08-28,
+# Desktop-Chrome is 306 tests: 189 passed, 116 FAILED, 1 skipped. The earlier
+# figure was measuring something else. Do not restore that claim.
 #
-#           To unblock: replace `networkidle` with a deterministic wait (a
-#           locator, or 'domcontentloaded'). Commit 7aa8ff3 already did this
-#           for the eight mobile specs — the pattern is there to copy.
+# Two systemic causes were then fixed, and the suite re-measured:
+#
+#   - 318 `waitForLoadState('networkidle')` waits across 44 files. That wait
+#     cannot succeed here (Cloudflare Turnstile holds a blob: request open for
+#     the life of the page), so each burned its full 30s before failing.
+#     Now `domcontentloaded`, and pinned by scripts/check-spec-invariants.mjs.
+#   - 55 hardcoded origins across 25 files pointing at 127.0.0.1:1025 and
+#     :1027 while webServer serves :1111 — 133 ERR_CONNECTION_REFUSED. Those
+#     tests were DEAD, not passing. Now relative, so baseURL governs.
+#
+# Result: 116 -> 86 failures, 189 -> 219 passing, 5.3m -> 4.1m, and ZERO
+# regressions (the after failure-set is a strict subset of the before set,
+# compared by test TITLE — comparing by file:line is invalid here, because
+# adding a comment to each file shifts every line number and manufactures ~74
+# phantom regressions).
+#
+# The remaining 86 are test ROT, not infrastructure: the specs assert an older
+# site. The largest cluster is `locator('nav')` resolving to 3 elements where
+# the test expects 1. Each needs a judgement call about what to assert now, so
+# the full suite stays on-demand until that work is done.
 #
 # Ordering note for anyone changing this: the target suite was MEASURED green
 # (157 passed, 1 skipped, 0 failed) before being made blocking. Pointing CI at
@@ -115,6 +133,66 @@ jobs:
         # Also runs in the deploy build chain, so this is a second line rather
         # than the only one.
         run: node scripts/check-build-invariants.mjs
+
+      - name: Spec invariants
+        # Source-level, so it needs no browser and no server. Currently pins
+        # one rule: no spec may wait for `networkidle`. That wait cannot
+        # succeed on this site and its failure mode is a 30s timeout, which
+        # reads as slowness rather than as a bug — which is how 318 of them
+        # accumulated across 44 files and kept this suite from gating.
+        run: node scripts/check-spec-invariants.mjs
+
+  e2e-green:
+    name: E2E (green subset)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: guards
+    defaults:
+      run:
+        working-directory: site
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install Zola
+        run: |
+          curl -sSL "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar xz -C /usr/local/bin zola
+          zola --version
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run the green subset
+        # ONE regex, not eight arguments: this Playwright version ANDs multiple
+        # positional filters, so passing them separately matches nothing and
+        # exits "No tests found" — which looks like a config error, not a
+        # filter mistake.
+        #
+        # These eight files were measured green twice in a row (52 passed,
+        # exit 0) after the networkidle and hardcoded-port fixes. To regenerate
+        # the list, run the full suite and take the files with zero failures.
+        # ADD a file here only after it passes twice; this job is blocking.
+        run: |
+          npx playwright test --project=Desktop-Chrome --workers=4 \
+            "(debug-scroll|language-navigation-comprehensive|language-switcher-functionality|mobile-media|performance-assets|status-attribution|video-functionality|www-rag-universe)\.spec\.js"
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-green
+          path: site/test-results/
+          retention-days: 7
 
   e2e:
     name: E2E ${{ matrix.shard }}/3

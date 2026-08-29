@@ -1,12 +1,16 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Comprehensive Mobile Navigation Testing Suite
  * Tests all navigation functionality specifically on mobile devices
  */
 
 test.describe('Comprehensive Mobile Navigation Tests', () => {
-  const baseURL = 'http://127.0.0.1:1111';
+  const baseURL = '';
   
   // Mobile viewports to test
   const mobileViewports = {
@@ -64,7 +68,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
         
         await page.setViewportSize(viewport);
         await page.goto(`${baseURL}/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Look for mobile menu elements
         const mobileMenuTrigger = page.locator('.mobile-menu-trigger, .hamburger, .menu-toggle, .navbar-toggler, .menu-button');
@@ -105,7 +109,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
                   
                   // Test link tap
                   await link.tap();
-                  await page.waitForLoadState('networkidle');
+                  await page.waitForLoadState('domcontentloaded');
                   
                   // Verify navigation worked
                   expect(page.url()).toContain(href);
@@ -113,7 +117,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
                   
                   // Go back to homepage for next test
                   await page.goto(`${baseURL}/`);
-                  await page.waitForLoadState('networkidle');
+                  await page.waitForLoadState('domcontentloaded');
                   
                   // Re-open menu for next link test
                   if (i < Math.min(linkCount, 3) - 1) {
@@ -156,7 +160,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
       
       await page.setViewportSize(mobileViewports['iPhone-12']);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test dropdown interactions with touch
       const dropdowns = page.locator('.dropdown, .nav-dropdown');
@@ -198,14 +202,14 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
                     console.log(`      📝 Testing link: "${text.trim()}" -> ${href}`);
                     
                     await firstLink.tap();
-                    await page.waitForLoadState('networkidle');
+                    await page.waitForLoadState('domcontentloaded');
                     
                     expect(page.url()).toContain(href);
                     console.log(`      ✅ Dropdown link navigation successful`);
                     
                     // Return to homepage
                     await page.goto(`${baseURL}/`);
-                    await page.waitForLoadState('networkidle');
+                    await page.waitForLoadState('domcontentloaded');
                   }
                 }
                 
@@ -238,7 +242,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
         
         try {
           const response = await page.goto(`${baseURL}${pageInfo.path}`, {
-            waitUntil: 'networkidle',
+            waitUntil: 'domcontentloaded',
             timeout: 15000
           });
           
@@ -293,7 +297,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
       
       await page.setViewportSize(mobileViewports['iPhone-12']);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test navigation links in header
       const headerLinks = page.locator('header a, nav a');
@@ -311,14 +315,14 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
           
           try {
             await link.tap();
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('domcontentloaded');
             
             expect(page.url()).toContain(href);
             console.log(`    ✅ Navigation successful`);
             
             // Test back navigation
             await page.goBack();
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('domcontentloaded');
             console.log(`    ✅ Back navigation successful`);
           } catch (error) {
             console.log(`    ❌ Navigation failed: ${error.message}`);
@@ -346,14 +350,14 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
             
             try {
               await link.tap();
-              await page.waitForLoadState('networkidle');
+              await page.waitForLoadState('domcontentloaded');
               
               expect(page.url()).toContain(href);
               console.log(`    ✅ Footer navigation successful`);
               
               // Return to homepage
               await page.goto(`${baseURL}/`);
-              await page.waitForLoadState('networkidle');
+              await page.waitForLoadState('domcontentloaded');
             } catch (error) {
               console.log(`    ❌ Footer navigation failed: ${error.message}`);
             }
@@ -369,7 +373,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
       
       await page.setViewportSize(mobileViewports['iPhone-12']);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const languageSwitcher = page.locator('.language-switcher, .lang-switch, .language-selector');
       if (await languageSwitcher.count() > 0) {
@@ -400,14 +404,14 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
               console.log(`    Testing language: "${text.trim()}" -> ${href}`);
               
               await firstLangLink.tap();
-              await page.waitForLoadState('networkidle');
+              await page.waitForLoadState('domcontentloaded');
               
               expect(page.url()).toContain(href);
               console.log(`    ✅ Language switch successful`);
               
               // Test back to original language
               await page.goto(`${baseURL}/`);
-              await page.waitForLoadState('networkidle');
+              await page.waitForLoadState('domcontentloaded');
             }
           }
         } else {
@@ -439,7 +443,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
           
           try {
             const response = await page.goto(`${baseURL}${langPath}`, {
-              waitUntil: 'networkidle',
+              waitUntil: 'domcontentloaded',
               timeout: 15000
             });
             
@@ -493,7 +497,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
       
       await page.setViewportSize(mobileViewports['iPhone-12']);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test tab navigation
       console.log('  Testing tab navigation...');
@@ -534,7 +538,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
           console.log(`  Testing Enter key navigation to: ${href}`);
           
           await page.keyboard.press('Enter');
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           expect(page.url()).toContain(href);
           console.log('  ✅ Enter key navigation successful');
@@ -547,7 +551,7 @@ test.describe('Comprehensive Mobile Navigation Tests', () => {
       
       await page.setViewportSize(mobileViewports['iPhone-12']);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test for proper semantic landmarks
       const landmarks = [

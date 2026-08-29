@@ -37,6 +37,10 @@ const { test, expect } = require('@playwright/test');
 const { makeUniverse } = require('./fixtures/www-rag-universe');
 const { PAYLOAD: DIRECTORY_PAYLOAD } = require('./fixtures/www-rag-directory');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 const UNIVERSE_API = '**/api/v1/www-rag-universe*';
 const SURFACE = { r: 0x0b, g: 0x0b, b: 0x12 };   // the canvas background
 
@@ -154,7 +158,7 @@ test.describe('The RAG universe', () => {
         await stubUniverse(page, 200);
 
         await page.goto('/www-rag/');
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         // Precondition, asserted rather than assumed: if the page ever gets
         // short enough that the map is on screen at load, the deferral is

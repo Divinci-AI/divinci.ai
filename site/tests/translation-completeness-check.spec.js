@@ -1,6 +1,10 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Translation Completeness Check
  * Detects any untranslated English text on non-English pages
@@ -62,7 +66,7 @@ test.describe('Translation Completeness Check', () => {
       console.log(`\n🔍 Checking ${language.name} for untranslated text...`);
       
       await page.goto(language.url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const pageText = await page.textContent('body');
       const foundEnglishPhrases = [];
@@ -105,7 +109,7 @@ test.describe('Translation Completeness Check', () => {
     for (const lang of languages) {
       const url = lang === 'en' ? '/' : `/${lang}/`;
       await page.goto(url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Check that key visual elements are present
       const hasLogo = await page.locator('.logo').isVisible();
@@ -129,7 +133,7 @@ test.describe('Translation Completeness Check', () => {
     
     for (const lang of testLanguages) {
       await page.goto(`/${lang}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const pageText = await page.textContent('body');
       

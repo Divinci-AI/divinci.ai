@@ -1,6 +1,10 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Language Switcher Functionality Test Suite
  * Tests the actual language switcher behavior to catch real issues
@@ -11,7 +15,7 @@ test.describe('Language Switcher Functionality', () => {
   test.beforeEach(async ({ page }) => {
     // Start with English homepage
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
   });
 
   test('should not create stacked URLs when switching languages', async ({ page }) => {
@@ -20,7 +24,7 @@ test.describe('Language Switcher Functionality', () => {
     
     // Switch to Spanish
     await page.locator('[data-lang="es"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Verify we're on Spanish page with correct URL
     expect(page.url()).toMatch(/\/es\/$/);
@@ -32,7 +36,7 @@ test.describe('Language Switcher Functionality', () => {
     // Now switch to French from Spanish
     await page.locator('.language-switcher').click();
     await page.locator('[data-lang="fr"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Verify URL is clean (not stacked like /fr/es/)
     const currentUrl = page.url();
@@ -51,7 +55,7 @@ test.describe('Language Switcher Functionality', () => {
   test('should handle navigation from any language to English', async ({ page }) => {
     // Start by going to Spanish
     await page.goto('/es/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Verify we're on Spanish
     expect(page.url()).toMatch(/\/es\/$/);
@@ -59,7 +63,7 @@ test.describe('Language Switcher Functionality', () => {
     // Switch to English
     await page.locator('.language-switcher').click();
     await page.locator('[data-lang="en"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Verify we're on clean English URL (no language prefix)
     const englishUrl = page.url();
@@ -78,7 +82,7 @@ test.describe('Language Switcher Functionality', () => {
     // Switch to Spanish
     await page.locator('.language-switcher').click();
     await page.locator('[data-lang="es"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Check current language display
     const currentLangEs = await page.locator('.current-language').textContent();
@@ -87,7 +91,7 @@ test.describe('Language Switcher Functionality', () => {
     // Switch to Japanese
     await page.locator('.language-switcher').click();
     await page.locator('[data-lang="ja"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Check Japanese current language
     const currentLangJa = await page.locator('.current-language').textContent();
@@ -110,7 +114,7 @@ test.describe('Language Switcher Functionality', () => {
       // Click switcher and select language
       await page.locator('.language-switcher').click();
       await page.locator(`[data-lang="${lang.code}"]`).click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Verify URL structure
       const currentUrl = page.url();
@@ -157,7 +161,7 @@ test.describe('Language Switcher Functionality', () => {
       console.log(`Testing direct access to ${test.url}...`);
       
       await page.goto(test.url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Verify we didn't get redirected to a different URL
       expect(page.url()).toContain(test.url);
@@ -180,7 +184,7 @@ test.describe('Language Switcher Functionality', () => {
     
     // Click English (current language)
     await page.locator('[data-lang="en"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Should still be on English homepage
     const url1 = page.url();
@@ -189,12 +193,12 @@ test.describe('Language Switcher Functionality', () => {
     // Switch to Spanish
     await page.locator('.language-switcher').click();
     await page.locator('[data-lang="es"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Click Spanish again (same language)
     await page.locator('.language-switcher').click();
     await page.locator('[data-lang="es"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Should still be on Spanish page with clean URL
     const url2 = page.url();

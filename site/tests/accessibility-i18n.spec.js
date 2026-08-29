@@ -1,6 +1,10 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Internationalization (i18n) Accessibility Test Suite
  * Tests accessibility across all supported languages and cultural adaptations
@@ -31,7 +35,7 @@ test.describe('Internationalization Accessibility Tests', () => {
         // Navigate to language-specific page
         const url = code === 'en' ? '/' : `/${code}/`;
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Test HTML lang attribute
         const htmlLang = await page.locator('html').getAttribute('lang');
@@ -62,7 +66,7 @@ test.describe('Internationalization Accessibility Tests', () => {
       test(`should have accessible navigation in ${name}`, async ({ page }) => {
         const url = code === 'en' ? '/' : `/${code}/`;
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Test navigation links are translated and accessible
         const navLinks = page.locator('nav a');
@@ -102,7 +106,7 @@ test.describe('Internationalization Accessibility Tests', () => {
     
     test('should handle RTL layout correctly for Arabic', async ({ page }) => {
       await page.goto('/ar/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test HTML direction
       const htmlDir = await page.locator('html').getAttribute('dir');
@@ -140,7 +144,7 @@ test.describe('Internationalization Accessibility Tests', () => {
       for (const { code, name } of scriptTests) {
         const url = code === 'en' ? '/' : `/${code}/`;
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Test line height is appropriate for the script
         const heroHeading = page.locator('h1').first();
@@ -188,7 +192,7 @@ test.describe('Internationalization Accessibility Tests', () => {
       for (const { code, expectedChars } of fontTests) {
         const url = `/${code}/`;
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Test that the page contains expected characters
         const bodyText = await page.textContent('body');
@@ -227,7 +231,7 @@ test.describe('Internationalization Accessibility Tests', () => {
       for (const { code } of localeTests) {
         const url = code === 'en' ? '/' : `/${code}/`;
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Look for any displayed dates or numbers
         const bodyText = await page.textContent('body');
@@ -252,7 +256,7 @@ test.describe('Internationalization Accessibility Tests', () => {
       for (const { code, dir } of inputTests) {
         const url = code === 'en' ? '/' : `/${code}/`;
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Navigate to signup form
         await page.locator('#signup').scrollIntoViewIfNeeded();
@@ -292,7 +296,7 @@ test.describe('Internationalization Accessibility Tests', () => {
       test(`should provide proper ARIA support for ${name}`, async ({ page }) => {
         const url = code === 'en' ? '/' : `/${code}/`;
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Test main landmarks are labeled
         const main = page.locator('main, [role="main"]');
@@ -339,7 +343,7 @@ test.describe('Internationalization Accessibility Tests', () => {
     test('should maintain accessibility when switching languages', async ({ page }) => {
       // Start with English
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test initial state
       const initialLang = await page.locator('html').getAttribute('lang');
@@ -352,7 +356,7 @@ test.describe('Internationalization Accessibility Tests', () => {
       // Switch to Spanish
       const spanishOption = page.locator('.language-option[data-lang="es"]');
       await spanishOption.click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test Spanish page accessibility
       const spanishLang = await page.locator('html').getAttribute('lang');
@@ -371,7 +375,7 @@ test.describe('Internationalization Accessibility Tests', () => {
       await languageSwitcher.click();
       const arabicOption = page.locator('.language-option[data-lang="ar"]');
       await arabicOption.click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test RTL layout
       const arabicLang = await page.locator('html').getAttribute('lang');
@@ -387,15 +391,15 @@ test.describe('Internationalization Accessibility Tests', () => {
     test('should preserve accessibility when using browser back/forward', async ({ page }) => {
       // Navigate to French page
       await page.goto('/fr/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Navigate to German page
       await page.goto('/de/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Use browser back
       await page.goBack();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Should be back on French page with proper accessibility
       const lang = await page.locator('html').getAttribute('lang');

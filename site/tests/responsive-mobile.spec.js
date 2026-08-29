@@ -1,12 +1,16 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Responsive Design and Mobile Navigation Tests
  * Tests mobile responsiveness, touch interactions, and mobile-specific functionality
  */
 
 test.describe('Responsive Design and Mobile Navigation', () => {
-  const baseURL = 'http://127.0.0.1:1027';
+  const baseURL = '';
   
   // Test different viewport sizes
   const viewports = {
@@ -33,7 +37,7 @@ test.describe('Responsive Design and Mobile Navigation', () => {
     test('should display correctly on mobile viewport', async ({ page }) => {
       await page.setViewportSize(viewports.mobile);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📱 Testing mobile viewport layout...\n');
       
@@ -134,7 +138,7 @@ test.describe('Responsive Design and Mobile Navigation', () => {
     test('should handle touch interactions on mobile', async ({ page }) => {
       await page.setViewportSize(viewports.mobile);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('👆 Testing touch interactions on mobile...\n');
       
@@ -207,7 +211,7 @@ test.describe('Responsive Design and Mobile Navigation', () => {
       for (const pagePath of pagesToTest) {
         try {
           await page.goto(`${baseURL}${pagePath}`);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           console.log(`📝 Testing mobile form usability on ${pagePath}...\n`);
           
@@ -270,7 +274,7 @@ test.describe('Responsive Design and Mobile Navigation', () => {
     test('should display correctly on tablet viewport', async ({ page }) => {
       await page.setViewportSize(viewports.tablet);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📱 Testing tablet viewport layout...\n');
       
@@ -345,7 +349,7 @@ test.describe('Responsive Design and Mobile Navigation', () => {
       for (const [viewportName, viewport] of Object.entries(viewports)) {
         await page.setViewportSize(viewport);
         await page.goto(`${baseURL}/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         console.log(`  📝 Testing ${viewportName} (${viewport.width}x${viewport.height})`);
         
@@ -403,7 +407,7 @@ test.describe('Responsive Design and Mobile Navigation', () => {
     test('should test horizontal scrolling prevention', async ({ page }) => {
       await page.setViewportSize(viewports.mobile);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('↔️ Testing horizontal scrolling prevention...\n');
       
@@ -446,7 +450,7 @@ test.describe('Responsive Design and Mobile Navigation', () => {
     test('should test mobile-specific interactions', async ({ page }) => {
       await page.setViewportSize(viewports.mobile);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📱 Testing mobile-specific features...\n');
       

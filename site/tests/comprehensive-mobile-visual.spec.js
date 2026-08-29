@@ -1,12 +1,16 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Comprehensive Mobile Visual Testing Suite
  * Tests visual consistency and layout across all pages on mobile devices
  */
 
 test.describe('Comprehensive Mobile Visual Testing', () => {
-  const baseURL = 'http://127.0.0.1:1111';
+  const baseURL = '';
   
   // Mobile device configurations
   const mobileDevices = {
@@ -89,7 +93,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
         
         await page.setViewportSize(viewport);
         await page.goto(`${baseURL}/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         await page.waitForTimeout(1000);
         
         // Take full page screenshot
@@ -112,7 +116,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
         
         await page.setViewportSize(viewport);
         await page.goto(`${baseURL}/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Test header
         const header = page.locator('header');
@@ -160,7 +164,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
         
         try {
           const response = await page.goto(`${baseURL}${pageInfo.path}`, {
-            waitUntil: 'networkidle',
+            waitUntil: 'domcontentloaded',
             timeout: 15000
           });
           
@@ -220,7 +224,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
       for (const pageInfo of pagesWithForms) {
         try {
           await page.goto(`${baseURL}${pageInfo.path}`);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           for (const formSelector of pageInfo.forms) {
             const form = page.locator(formSelector);
@@ -267,7 +271,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
           
           try {
             const response = await page.goto(`${baseURL}${langPath}`, {
-              waitUntil: 'networkidle',
+              waitUntil: 'domcontentloaded',
               timeout: 15000
             });
             
@@ -316,7 +320,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
       
       await page.setViewportSize(mobileDevices['iPhone-12']);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const languageSwitcher = page.locator('.language-switcher, .lang-switch, .language-selector');
       if (await languageSwitcher.count() > 0) {
@@ -355,7 +359,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
       
       await page.setViewportSize(mobileDevices['iPhone-12']);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test hero section mobile layout
       const heroSection = page.locator('.hero, .hero-section, .banner');
@@ -430,7 +434,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
       
       await page.setViewportSize(mobileDevices['iPhone-12']);
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Test sticky header on mobile
       const header = page.locator('header');
@@ -484,7 +488,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
       
       try {
         await page.goto(`${baseURL}/non-existent-page/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         await page.waitForTimeout(1000);
         
         await expect(page).toHaveScreenshot('mobile-404-page.png', {
@@ -513,7 +517,7 @@ test.describe('Comprehensive Mobile Visual Testing', () => {
       for (const pageInfo of pagesWithForms) {
         try {
           await page.goto(`${baseURL}${pageInfo.path}`);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           for (const formSelector of pageInfo.selectors) {
             const form = page.locator(formSelector);

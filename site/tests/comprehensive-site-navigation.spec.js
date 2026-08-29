@@ -1,12 +1,16 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Comprehensive Site Navigation Tests
  * Tests navigation between all main pages and verifies content
  */
 
 test.describe('Comprehensive Site Navigation', () => {
-  const baseURL = 'http://127.0.0.1:1111';
+  const baseURL = '';
   
   // Main pages that should exist
   const mainPages = [
@@ -65,7 +69,7 @@ test.describe('Comprehensive Site Navigation', () => {
       
       try {
         const response = await page.goto(`${baseURL}${pageDef.path}`, {
-          waitUntil: 'networkidle',
+          waitUntil: 'domcontentloaded',
           timeout: 15000
         });
         
@@ -97,7 +101,7 @@ test.describe('Comprehensive Site Navigation', () => {
       
       try {
         const response = await page.goto(`${baseURL}${pageDef.path}`, {
-          waitUntil: 'networkidle',
+          waitUntil: 'domcontentloaded',
           timeout: 15000
         });
         
@@ -125,7 +129,7 @@ test.describe('Comprehensive Site Navigation', () => {
       
       try {
         const response = await page.goto(`${baseURL}${pageDef.path}`, {
-          waitUntil: 'networkidle',
+          waitUntil: 'domcontentloaded',
           timeout: 15000
         });
         
@@ -149,7 +153,7 @@ test.describe('Comprehensive Site Navigation', () => {
 
   test('should have working header navigation links', async ({ page }) => {
     await page.goto(`${baseURL}/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     console.log('🧭 Testing header navigation links...\n');
     
@@ -201,7 +205,7 @@ test.describe('Comprehensive Site Navigation', () => {
 
   test('should have working footer navigation links', async ({ page }) => {
     await page.goto(`${baseURL}/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     console.log('🦶 Testing footer navigation links...\n');
     
@@ -241,32 +245,32 @@ test.describe('Comprehensive Site Navigation', () => {
     
     // Start at homepage
     await page.goto(`${baseURL}/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Test navigation to About page if link exists
     const aboutLink = page.locator('a[href="/about/"], a[href*="about"]').first();
     if (await aboutLink.count() > 0) {
       await aboutLink.click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await expect(page.url()).toContain('/about');
       console.log('  ✅ Successfully navigated to About page');
       
       // Navigate back to home
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
     }
     
     // Test navigation to Contact page if link exists
     const contactLink = page.locator('a[href="/contact/"], a[href*="contact"]').first();
     if (await contactLink.count() > 0) {
       await contactLink.click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await expect(page.url()).toContain('/contact');
       console.log('  ✅ Successfully navigated to Contact page');
       
       // Navigate back to home
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
     }
     
     // Test feature dropdown navigation
@@ -278,7 +282,7 @@ test.describe('Comprehensive Site Navigation', () => {
       const autoragLink = page.locator('a[href="/autorag/"], a[href*="autorag"]').first();
       if (await autoragLink.count() > 0) {
         await autoragLink.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         await expect(page.url()).toContain('/autorag');
         console.log('  ✅ Successfully navigated to AutoRAG page via dropdown');
       }
@@ -297,7 +301,7 @@ test.describe('Comprehensive Site Navigation', () => {
     for (const path of nonExistentPaths) {
       try {
         const response = await page.goto(`${baseURL}${path}`, {
-          waitUntil: 'networkidle',
+          waitUntil: 'domcontentloaded',
           timeout: 10000
         });
         
@@ -334,7 +338,7 @@ test.describe('Comprehensive Site Navigation', () => {
       const pagePath = testPages[i];
       
       try {
-        await page.goto(`${baseURL}${pagePath}`, { waitUntil: 'networkidle' });
+        await page.goto(`${baseURL}${pagePath}`, { waitUntil: 'domcontentloaded' });
         
         // Check header consistency
         const header = page.locator('header');

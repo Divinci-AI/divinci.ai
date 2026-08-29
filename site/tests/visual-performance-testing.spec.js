@@ -1,5 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Visual Performance Testing Suite
  * Tests visual consistency under various performance conditions
@@ -44,7 +48,7 @@ test.describe('Visual Performance Testing', () => {
         maxDiffPixels: 3000
       });
 
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(3000);
       
       await expect(page).toHaveScreenshot('homepage-slow3g-loaded-mobile.png', {
@@ -63,7 +67,7 @@ test.describe('Visual Performance Testing', () => {
 
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(baseURL);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(2000);
       
       await expect(page).toHaveScreenshot('homepage-fast3g-desktop.png', {
@@ -95,7 +99,7 @@ test.describe('Visual Performance Testing', () => {
       });
 
       // Test fully loaded state
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(3000);
       await expect(hero).toHaveScreenshot('hero-full-images.png', {
         threshold: 0.3
@@ -108,7 +112,7 @@ test.describe('Visual Performance Testing', () => {
 
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(baseURL);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(2000);
       
       await expect(page).toHaveScreenshot('homepage-broken-images.png', {
@@ -127,7 +131,7 @@ test.describe('Visual Performance Testing', () => {
 
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(baseURL);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(2000);
       
       await expect(page).toHaveScreenshot('homepage-system-fonts.png', {
@@ -158,7 +162,7 @@ test.describe('Visual Performance Testing', () => {
       });
 
       // Test with web fonts loaded
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(3000);
       await expect(hero).toHaveScreenshot('hero-web-fonts.png', {
         threshold: 0.3
@@ -190,7 +194,7 @@ test.describe('Visual Performance Testing', () => {
       });
 
       // Test styled content
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(2000);
       await expect(page).toHaveScreenshot('homepage-styled.png', {
         fullPage: true,
@@ -223,7 +227,7 @@ test.describe('Visual Performance Testing', () => {
 
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(baseURL);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(3000);
       
       await expect(page).toHaveScreenshot('homepage-high-cpu.png', {
@@ -244,7 +248,7 @@ test.describe('Visual Performance Testing', () => {
 
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(baseURL);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(2000);
       
       await expect(page).toHaveScreenshot('homepage-memory-pressure.png', {
@@ -258,7 +262,7 @@ test.describe('Visual Performance Testing', () => {
     test('Offline mode visual test', async ({ page, context }) => {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(baseURL);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Go offline after initial load
       await context.setOffline(true);
@@ -282,7 +286,7 @@ test.describe('Visual Performance Testing', () => {
 
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(baseURL);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(2000);
       
       await expect(page).toHaveScreenshot('homepage-no-javascript.png', {
@@ -307,7 +311,7 @@ test.describe('Visual Performance Testing', () => {
 
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(baseURL);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(2000);
       
       await expect(page).toHaveScreenshot('homepage-no-css-grid.png', {
@@ -321,7 +325,7 @@ test.describe('Visual Performance Testing', () => {
     test('Print media visual test', async ({ page }) => {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(baseURL);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(2000);
       
       // Emulate print media

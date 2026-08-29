@@ -1,5 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 test.describe('Language-Aware Navigation Tests', () => {
     const languages = [
         { code: 'en', url: '', name: 'English' },
@@ -9,15 +13,15 @@ test.describe('Language-Aware Navigation Tests', () => {
     ];
 
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://127.0.0.1:1025/');
-        await page.waitForLoadState('networkidle');
+        await page.goto('/');
+        await page.waitForLoadState('domcontentloaded');
     });
 
     test('navigation from press page should maintain language context', async ({ page }) => {
         for (const lang of languages) {
             // Navigate to press page in specific language
             const pressUrl = lang.code === 'en' ? '/press/' : `${lang.url}/press/`;
-            await page.goto(`http://127.0.0.1:1025${pressUrl}`);
+            await page.goto(`${pressUrl}`);
             
             console.log(`Testing ${lang.name} press page navigation: ${pressUrl}`);
             
@@ -31,7 +35,7 @@ test.describe('Language-Aware Navigation Tests', () => {
             const contactLink = page.locator('nav a[href*="contact"], footer a[href*="contact"]').first();
             if (await contactLink.count() > 0) {
                 await contactLink.click();
-                await page.waitForLoadState('networkidle');
+                await page.waitForLoadState('domcontentloaded');
                 
                 // Verify we're on the correct language version of contact page
                 if (lang.code === 'en') {
@@ -43,13 +47,13 @@ test.describe('Language-Aware Navigation Tests', () => {
             }
             
             // Navigate back to press page for next test
-            await page.goto(`http://127.0.0.1:1025${pressUrl}`);
+            await page.goto(`${pressUrl}`);
             
             // Test navigation to Support page
             const supportLink = page.locator('nav a[href*="support"], footer a[href*="support"]').first();
             if (await supportLink.count() > 0) {
                 await supportLink.click();
-                await page.waitForLoadState('networkidle');
+                await page.waitForLoadState('domcontentloaded');
                 
                 // Verify we're on the correct language version of support page
                 if (lang.code === 'en') {
@@ -61,11 +65,11 @@ test.describe('Language-Aware Navigation Tests', () => {
             }
             
             // Test homepage navigation
-            await page.goto(`http://127.0.0.1:1025${pressUrl}`);
+            await page.goto(`${pressUrl}`);
             const logoLink = page.locator('header .logo a, .footer-logo a').first();
             if (await logoLink.count() > 0) {
                 await logoLink.click();
-                await page.waitForLoadState('networkidle');
+                await page.waitForLoadState('domcontentloaded');
                 
                 // Verify we're on the correct language version of homepage
                 if (lang.code === 'en') {
@@ -80,7 +84,7 @@ test.describe('Language-Aware Navigation Tests', () => {
 
     test('footer navigation should maintain language context from press page', async ({ page }) => {
         // Test specifically from Spanish press page since that's where the issue was found
-        await page.goto('http://127.0.0.1:1025/es/press/');
+        await page.goto('/es/press/');
         
         // Check footer navigation links
         const footerLinks = [
@@ -100,20 +104,20 @@ test.describe('Language-Aware Navigation Tests', () => {
                 
                 // Click and verify URL
                 await linkElement.click();
-                await page.waitForLoadState('networkidle');
+                await page.waitForLoadState('domcontentloaded');
                 
                 expect(page.url()).toContain(link.expectedPath);
                 console.log(`✓ Footer link maintains Spanish context: ${page.url()}`);
                 
                 // Go back to press page for next test
-                await page.goto('http://127.0.0.1:1025/es/press/');
+                await page.goto('/es/press/');
             }
         }
     });
 
     test('header navigation should maintain language context from press page', async ({ page }) => {
         // Test from French press page
-        await page.goto('http://127.0.0.1:1025/fr/press/');
+        await page.goto('/fr/press/');
         
         // Check header navigation links
         const headerLinks = [
@@ -131,20 +135,20 @@ test.describe('Language-Aware Navigation Tests', () => {
                 
                 // Click and verify URL  
                 await linkElement.click();
-                await page.waitForLoadState('networkidle');
+                await page.waitForLoadState('domcontentloaded');
                 
                 expect(page.url()).toContain('/fr/');
                 console.log(`✓ Header link maintains French context: ${page.url()}`);
                 
                 // Go back to press page for next test
-                await page.goto('http://127.0.0.1:1025/fr/press/');
+                await page.goto('/fr/press/');
             }
         }
     });
 
     test('press page internal links should maintain language context', async ({ page }) => {
         // Test internal press page links (like Read more, Download, etc.)
-        await page.goto('http://127.0.0.1:1025/es/press/');
+        await page.goto('/es/press/');
         
         // Check if any "Read more" or "Read article" links maintain context
         const internalLinks = page.locator('.news-link, .coverage-link, .asset-download').all();
@@ -154,18 +158,18 @@ test.describe('Language-Aware Navigation Tests', () => {
             const href = await link.getAttribute('href');
             if (href && href !== '#') {
                 await link.click();
-                await page.waitForLoadState('networkidle');
+                await page.waitForLoadState('domcontentloaded');
                 
                 // Should either stay on Spanish site or be external
                 const currentUrl = page.url();
-                if (currentUrl.includes('127.0.0.1:1025') && !currentUrl.includes('external')) {
+                if (currentUrl.includes('127.0.0.1') && !currentUrl.includes('external')) {
                     expect(currentUrl).toContain('/es/');
                 }
                 console.log(`✓ Internal link context: ${currentUrl}`);
                 
                 // Go back for next test
                 await page.goBack();
-                await page.waitForLoadState('networkidle');
+                await page.waitForLoadState('domcontentloaded');
             }
         }
     });
@@ -173,10 +177,10 @@ test.describe('Language-Aware Navigation Tests', () => {
     test('breadcrumb and context switching should work correctly', async ({ page }) => {
         // Test that language context is preserved when navigating between pages
         const testFlow = [
-            'http://127.0.0.1:1025/es/',           // Spanish homepage
-            'http://127.0.0.1:1025/es/press/',     // Spanish press page
-            'http://127.0.0.1:1025/es/support/',   // Spanish support page
-            'http://127.0.0.1:1025/es/contact/'    // Spanish contact page
+            '/es/',           // Spanish homepage
+            '/es/press/',     // Spanish press page
+            '/es/support/',   // Spanish support page
+            '/es/contact/'    // Spanish contact page
         ];
         
         for (let i = 0; i < testFlow.length - 1; i++) {
@@ -188,7 +192,7 @@ test.describe('Language-Aware Navigation Tests', () => {
             
             if (await nextLink.count() > 0) {
                 await nextLink.click();
-                await page.waitForLoadState('networkidle');
+                await page.waitForLoadState('domcontentloaded');
                 
                 // Verify we're on the expected Spanish page
                 expect(page.url()).toContain('/es/');

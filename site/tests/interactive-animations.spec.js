@@ -1,12 +1,16 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Interactive Elements and Animations Tests
  * Tests sacred geometry animations, interactive elements, and visual components
  */
 
 test.describe('Interactive Elements and Animations', () => {
-  const baseURL = 'http://127.0.0.1:1027';
+  const baseURL = '';
   
   test.beforeEach(async ({ page }) => {
     // Allow animations for this test suite but with shorter durations
@@ -25,7 +29,7 @@ test.describe('Interactive Elements and Animations', () => {
   test.describe('Video Elements and Controls', () => {
     test('should load and display video elements correctly', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('🎥 Testing video elements...\n');
       
@@ -107,7 +111,7 @@ test.describe('Interactive Elements and Animations', () => {
 
     test('should handle video interaction and hover effects', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('🎬 Testing video interactions...\n');
       
@@ -162,7 +166,7 @@ test.describe('Interactive Elements and Animations', () => {
   test.describe('SVG and Sacred Geometry Elements', () => {
     test('should display SVG elements and animations', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('🔯 Testing SVG and sacred geometry elements...\n');
       
@@ -242,7 +246,7 @@ test.describe('Interactive Elements and Animations', () => {
 
     test('should test SVG animation effects', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('✨ Testing SVG animations and effects...\n');
       
@@ -305,7 +309,7 @@ test.describe('Interactive Elements and Animations', () => {
   test.describe('Interactive UI Components', () => {
     test('should test dropdown and menu interactions', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📋 Testing dropdown and menu interactions...\n');
       
@@ -384,7 +388,7 @@ test.describe('Interactive Elements and Animations', () => {
 
     test('should test button and link interactions', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('🔘 Testing button and link interactions...\n');
       
@@ -454,7 +458,7 @@ test.describe('Interactive Elements and Animations', () => {
 
     test('should test scroll-triggered animations', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📜 Testing scroll-triggered animations...\n');
       
@@ -528,7 +532,7 @@ test.describe('Interactive Elements and Animations', () => {
   test.describe('Performance of Interactive Elements', () => {
     test('should measure animation performance', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('⚡ Testing animation performance...\n');
       

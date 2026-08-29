@@ -7,8 +7,12 @@
 
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 test.describe('AutoRAG Page Content Completeness', () => {
-    const baseUrl = 'http://127.0.0.1:1027';
+    const baseUrl = '';
     
     // Define the expected sections for a complete AutoRAG page
     const expectedSections = [
@@ -109,7 +113,7 @@ test.describe('AutoRAG Page Content Completeness', () => {
     for (const langPage of languagePages) {
         test(`${langPage.name} AutoRAG page has all required sections`, async ({ page }) => {
             await page.goto(`${baseUrl}${langPage.url}`);
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('domcontentloaded');
             
             // Check if page loaded successfully
             const response = page.url();
@@ -128,7 +132,7 @@ test.describe('AutoRAG Page Content Completeness', () => {
         
         test(`${langPage.name} AutoRAG page has complete content in each section`, async ({ page }) => {
             await page.goto(`${baseUrl}${langPage.url}`);
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('domcontentloaded');
             
             // Check components within each section
             for (const [sectionId, components] of Object.entries(expectedComponents)) {
@@ -155,7 +159,7 @@ test.describe('AutoRAG Page Content Completeness', () => {
         
         test(`${langPage.name} AutoRAG page tabs are interactive`, async ({ page }) => {
             await page.goto(`${baseUrl}${langPage.url}`);
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('domcontentloaded');
             
             const tabSection = page.locator('#feature-details');
             
@@ -187,7 +191,7 @@ test.describe('AutoRAG Page Content Completeness', () => {
         
         test(`${langPage.name} AutoRAG page has proper translations`, async ({ page }) => {
             await page.goto(`${baseUrl}${langPage.url}`);
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('domcontentloaded');
             
             // Language-specific content checks
             const langContent = {
@@ -249,7 +253,7 @@ test.describe('AutoRAG Page Content Completeness', () => {
         
         // Collect visual structure from English page as reference
         await page.goto(`${baseUrl}/autorag/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         for (const section of expectedSections) {
             const sectionElement = page.locator(`#${section.id}`);
@@ -265,7 +269,7 @@ test.describe('AutoRAG Page Content Completeness', () => {
         // Compare with other language versions
         for (const langPage of languagePages.slice(1)) {  // Skip English as it's the reference
             await page.goto(`${baseUrl}${langPage.url}`);
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('domcontentloaded');
             
             for (const element of visualElements) {
                 const sectionElement = page.locator(`#${element.section}`);
@@ -287,7 +291,7 @@ test.describe('AutoRAG Page Content Completeness', () => {
         
         for (const testPage of testPages) {
             await page.goto(`${baseUrl}${testPage.url}`);
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('domcontentloaded');
             
             // Check for animated SVG elements in benefits section
             const benefitsSection = page.locator('#feature-benefits');
@@ -309,7 +313,7 @@ test.describe('AutoRAG Page Content Completeness', () => {
 });
 
 test.describe('AutoRAG Page Performance and Accessibility', () => {
-    const baseUrl = 'http://127.0.0.1:1027';
+    const baseUrl = '';
     
     test('AutoRAG pages load within acceptable time', async ({ page }) => {
         const pages = ['/autorag/', '/es/autorag/', '/fr/autorag/', '/ar/autorag/'];
@@ -317,7 +321,7 @@ test.describe('AutoRAG Page Performance and Accessibility', () => {
         for (const pageUrl of pages) {
             const startTime = Date.now();
             await page.goto(`${baseUrl}${pageUrl}`);
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('domcontentloaded');
             const loadTime = Date.now() - startTime;
             
             expect(loadTime, `${pageUrl} should load within 5 seconds`).toBeLessThan(5000);
@@ -326,7 +330,7 @@ test.describe('AutoRAG Page Performance and Accessibility', () => {
     
     test('AutoRAG pages have proper semantic HTML', async ({ page }) => {
         await page.goto(`${baseUrl}/autorag/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Check for semantic HTML elements
         const semanticElements = {

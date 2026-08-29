@@ -1,12 +1,16 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Comprehensive Language Navigation Tests
  * Tests navigation and functionality across all supported language sites
  */
 
 test.describe('Comprehensive Language Navigation', () => {
-  const baseURL = 'http://127.0.0.1:1111';
+  const baseURL = '';
   
   // All supported languages with their expected content
   const languages = [
@@ -59,7 +63,7 @@ test.describe('Comprehensive Language Navigation', () => {
       
       try {
         const response = await page.goto(`${baseURL}${lang.url}`, {
-          waitUntil: 'networkidle',
+          waitUntil: 'domcontentloaded',
           timeout: 15000
         });
         
@@ -143,7 +147,7 @@ test.describe('Comprehensive Language Navigation', () => {
     
     // Test from English homepage
     await page.goto(`${baseURL}/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const languageSwitcher = page.locator('.language-switcher');
     
@@ -174,7 +178,7 @@ test.describe('Comprehensive Language Navigation', () => {
       const spanishOption = page.locator('a[href="/es/"], a[href*="/es/"]').first();
       if (await spanishOption.count() > 0) {
         await spanishOption.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const currentURL = page.url();
         if (currentURL.includes('/es/')) {
@@ -207,7 +211,7 @@ test.describe('Comprehensive Language Navigation', () => {
       try {
         // Go to language homepage
         await page.goto(`${baseURL}${lang.url}`, {
-          waitUntil: 'networkidle',
+          waitUntil: 'domcontentloaded',
           timeout: 10000
         });
         
@@ -259,7 +263,7 @@ test.describe('Comprehensive Language Navigation', () => {
       
       try {
         await page.goto(`${baseURL}${lang.url}`, {
-          waitUntil: 'networkidle',
+          waitUntil: 'domcontentloaded',
           timeout: 10000
         });
         

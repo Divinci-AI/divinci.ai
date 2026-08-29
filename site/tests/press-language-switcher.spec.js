@@ -1,10 +1,14 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 test.describe('Press Page Language Switcher', () => {
     test.beforeEach(async ({ page }) => {
         // Navigate to the press page
-        await page.goto('http://127.0.0.1:1025/press/');
-        await page.waitForLoadState('networkidle');
+        await page.goto('/press/');
+        await page.waitForLoadState('domcontentloaded');
     });
 
     test('language switcher should be visible on desktop', async ({ page }) => {

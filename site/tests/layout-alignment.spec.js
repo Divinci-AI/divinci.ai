@@ -1,16 +1,20 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Layout and Alignment Tests
  * Tests CSS Grid layout and icon alignment functionality
  */
 
 test.describe('Layout and Alignment', () => {
-  const baseURL = 'http://127.0.0.1:1111';
+  const baseURL = '';
   
   test.beforeEach(async ({ page }) => {
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Disable animations for consistent testing
     await page.addStyleTag({

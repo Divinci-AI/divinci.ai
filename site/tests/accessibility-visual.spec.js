@@ -1,6 +1,10 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Visual Accessibility Test Suite
  * Tests color contrast, visual design patterns, and visual accessibility requirements
@@ -10,7 +14,7 @@ test.describe('Visual Accessibility Tests', () => {
   
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
   });
 
   test.describe('Color Contrast and Visual Design', () => {
@@ -122,7 +126,7 @@ test.describe('Visual Accessibility Tests', () => {
         // Simulate high contrast mode
         await page.emulateMedia({ forcedColors: 'active' });
         await page.reload();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Check that text is still readable
         const heroText = page.locator('.hero-text h1');
@@ -145,7 +149,7 @@ test.describe('Visual Accessibility Tests', () => {
       // Test with reduced motion
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Check that animations are disabled or reduced
       const animatedElements = page.locator('[style*="transition"], [style*="animation"], .panel');
@@ -179,7 +183,7 @@ test.describe('Visual Accessibility Tests', () => {
       // Simulate 200% zoom
       await page.setViewportSize({ width: 640, height: 480 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Check that main content is still accessible
       const heroSection = page.locator('.hero');
@@ -307,7 +311,7 @@ test.describe('Visual Accessibility Tests', () => {
       test(`should be accessible on ${name} viewport`, async ({ page }) => {
         await page.setViewportSize({ width, height });
         await page.reload();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Check that main content is visible
         const heroSection = page.locator('.hero');

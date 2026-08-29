@@ -5,13 +5,17 @@
 
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 test.describe('Critical Language Navigation', () => {
-    const baseUrl = 'http://127.0.0.1:1027';
+    const baseUrl = '';
 
     test('Header logo navigation maintains language context', async ({ page }) => {
         // Test Spanish documentation page - the original reported issue
         await page.goto(`${baseUrl}/es/docs/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Find the header logo link
         const logoLink = page.locator('.logo a').first();
@@ -25,7 +29,7 @@ test.describe('Critical Language Navigation', () => {
     test('Footer navigation maintains language context', async ({ page }) => {
         // Test Spanish contact page navigation
         await page.goto(`${baseUrl}/es/contact/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Check footer "About" link
         const aboutLink = page.locator('footer a[href*="about"]').first();
@@ -55,7 +59,7 @@ test.describe('Critical Language Navigation', () => {
             console.log(`Testing ${testCase.name}...`);
             
             await page.goto(`${baseUrl}${testCase.url}`);
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('domcontentloaded');
             
             // Check header logo navigation
             const logoLink = page.locator('.logo a').first();

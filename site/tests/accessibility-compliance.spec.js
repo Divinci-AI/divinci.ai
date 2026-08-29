@@ -3,12 +3,16 @@
 
 import { test, expect } from '@playwright/test';
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 test.describe('Accessibility Compliance Suite', () => {
   
   test.beforeEach(async ({ page }) => {
     // Set up accessibility testing environment
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
   });
 
   test.describe('WCAG 2.1 AA Compliance Tests', () => {
@@ -136,7 +140,7 @@ test.describe('Accessibility Compliance Suite', () => {
       // Test with reduced motion preference
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Check that animations are disabled
       const animatedElements = await page.locator('.journal-page.active .davinci-sketch path').first();
@@ -235,7 +239,7 @@ test.describe('Accessibility Compliance Suite', () => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Check touch targets are at least 44px
       const touchTargets = await page.locator('button, a, input, .journal-page').all();

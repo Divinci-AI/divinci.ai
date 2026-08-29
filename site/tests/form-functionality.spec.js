@@ -1,12 +1,16 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Form Functionality Tests
  * Tests all forms on the site including contact, career applications, and signup forms
  */
 
 test.describe('Form Functionality Tests', () => {
-  const baseURL = 'http://127.0.0.1:1027';
+  const baseURL = '';
   
   test.beforeEach(async ({ page }) => {
     // Disable animations for consistent testing
@@ -25,7 +29,7 @@ test.describe('Form Functionality Tests', () => {
   test.describe('Homepage Signup Form', () => {
     test('should display and validate signup form elements', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       console.log('📝 Testing homepage signup form...\n');
       
@@ -83,7 +87,7 @@ test.describe('Form Functionality Tests', () => {
 
     test('should handle form submission attempt', async ({ page }) => {
       await page.goto(`${baseURL}/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const emailInput = page.locator('input[type="email"], input[name="email"]');
       const submitButton = page.locator('button[type="submit"], .signup-button, .submit-button');
@@ -140,7 +144,7 @@ test.describe('Form Functionality Tests', () => {
       // Try to navigate to contact page
       try {
         await page.goto(`${baseURL}/contact/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         console.log('📞 Testing contact form...\n');
         
@@ -207,7 +211,7 @@ test.describe('Form Functionality Tests', () => {
     test('should validate required fields in contact form', async ({ page }) => {
       try {
         await page.goto(`${baseURL}/contact/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const contactForm = page.locator('form, .contact-form');
         const submitButton = page.locator('button[type="submit"], input[type="submit"], .submit-button');
@@ -248,7 +252,7 @@ test.describe('Form Functionality Tests', () => {
     test('should display career application form if exists', async ({ page }) => {
       try {
         await page.goto(`${baseURL}/careers/`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         console.log('💼 Testing career application form...\n');
         
@@ -318,7 +322,7 @@ test.describe('Form Functionality Tests', () => {
       for (const pagePath of pagesToTest) {
         try {
           await page.goto(`${baseURL}${pagePath}`);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           console.log(`📧 Testing newsletter forms on ${pagePath}...\n`);
           
@@ -366,7 +370,7 @@ test.describe('Form Functionality Tests', () => {
       for (const pagePath of pagesToTest) {
         try {
           await page.goto(`${baseURL}${pagePath}`);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           console.log(`♿ Testing form accessibility on ${pagePath}...\n`);
           
@@ -433,7 +437,7 @@ test.describe('Form Functionality Tests', () => {
       for (const pagePath of pagesToTest) {
         try {
           await page.goto(`${baseURL}${pagePath}`);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           console.log(`🔒 Testing form security on ${pagePath}...\n`);
           

@@ -1,5 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * New-Divinci Zola Site E2E Tests
  * Tests functionality and visual integrity of the new-divinci Zola site
@@ -13,7 +17,7 @@ test.describe('New-Divinci Zola Site', () => {
     await page.goto(baseURL);
     
     // Wait for page to load
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Disable animations for consistent testing
     await page.addStyleTag({
@@ -163,7 +167,7 @@ test.describe('New-Divinci Zola Site', () => {
 
   test('should check for broken images', async ({ page }) => {
     // Wait for all images to load
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Get all images
     const images = await page.locator('img').all();
@@ -241,7 +245,7 @@ test.describe('Language-specific pages', () => {
   
   test('should load Spanish version', async ({ page }) => {
     await page.goto(`${baseURL}/es/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     await expect(page.locator('h1')).toContainText('Lanzamientos de IA');
     await expect(page.locator('.features-section h2')).toContainText('Potencia tu flujo de trabajo');
@@ -250,7 +254,7 @@ test.describe('Language-specific pages', () => {
   
   test('should load French version', async ({ page }) => {
     await page.goto(`${baseURL}/fr/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     await expect(page.locator('h1')).toContainText('Versions d\'IA');
     await expect(page.locator('.features-section h2')).toContainText('Renforcez votre flux de travail');
@@ -259,7 +263,7 @@ test.describe('Language-specific pages', () => {
   
   test('should load Arabic version', async ({ page }) => {
     await page.goto(`${baseURL}/ar/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     await expect(page.locator('h1')).toContainText('إصدارات الذكاء الاصطناعي');
     await expect(page.locator('.features-section h2')).toContainText('عزز سير عملك بالذكاء الاصطناعي');

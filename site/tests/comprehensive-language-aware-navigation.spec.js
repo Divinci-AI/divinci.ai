@@ -1,5 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 test.describe('Comprehensive Language-Aware Navigation Test Suite', () => {
     const languages = ['en', 'es', 'fr', 'ar'];
     const pageTypes = [
@@ -24,14 +28,14 @@ test.describe('Comprehensive Language-Aware Navigation Test Suite', () => {
             for (const pageType of pageTypes) {
                 // Construct the URL for the specific language and page
                 const pageUrl = lang === 'en' 
-                    ? `http://127.0.0.1:1027${pageType.path}/`
-                    : `http://127.0.0.1:1027/${lang}${pageType.path}/`;
+                    ? `${pageType.path}/`
+                    : `/${lang}${pageType.path}/`;
                 
                 console.log(`Testing: ${lang} ${pageType.name} → ${pageUrl}`);
                 
                 try {
                     // Navigate to the page
-                    const response = await page.goto(pageUrl, { waitUntil: 'networkidle' });
+                    const response = await page.goto(pageUrl, { waitUntil: 'domcontentloaded' });
                     
                     // Skip if page doesn't exist (404)
                     if (response.status() === 404) {
@@ -72,10 +76,10 @@ test.describe('Comprehensive Language-Aware Navigation Test Suite', () => {
         for (const lang of testLanguages) {
             // Start from contact page as it was the original issue
             const startUrl = lang === 'en' 
-                ? 'http://127.0.0.1:1027/contact/'
-                : `http://127.0.0.1:1027/${lang}/contact/`;
+                ? '/contact/'
+                : `/${lang}/contact/`;
             
-            await page.goto(startUrl, { waitUntil: 'networkidle' });
+            await page.goto(startUrl, { waitUntil: 'domcontentloaded' });
             
             for (const link of footerLinks) {
                 const footerLink = page.locator(link.selector).first();
@@ -104,7 +108,7 @@ test.describe('Comprehensive Language-Aware Navigation Test Suite', () => {
 
         for (const startPage of startPages) {
             // Start from English page
-            await page.goto(`http://127.0.0.1:1027${startPage}`, { waitUntil: 'networkidle' });
+            await page.goto(`${startPage}`, { waitUntil: 'domcontentloaded' });
             
             // Open language switcher
             const languageSwitcher = page.locator('.language-switcher-current');
@@ -130,16 +134,16 @@ test.describe('Comprehensive Language-Aware Navigation Test Suite', () => {
 
     test('Direct URL access works for all language pages', async ({ page }) => {
         const directTestUrls = [
-            'http://127.0.0.1:1027/es/',
-            'http://127.0.0.1:1027/es/contact/',
-            'http://127.0.0.1:1027/es/docs/',
-            'http://127.0.0.1:1027/fr/contact/',
-            'http://127.0.0.1:1027/ar/'
+            '/es/',
+            '/es/contact/',
+            '/es/docs/',
+            '/fr/contact/',
+            '/ar/'
         ];
 
         for (const url of directTestUrls) {
             try {
-                const response = await page.goto(url, { waitUntil: 'networkidle' });
+                const response = await page.goto(url, { waitUntil: 'domcontentloaded' });
                 
                 if (response.status() === 200) {
                     // Extract language from URL
@@ -171,7 +175,7 @@ test.describe('Comprehensive Language-Aware Navigation Test Suite', () => {
         ];
 
         for (const testPage of templateTestPages) {
-            await page.goto(`http://127.0.0.1:1027${testPage.url}`, { waitUntil: 'networkidle' });
+            await page.goto(`${testPage.url}`, { waitUntil: 'domcontentloaded' });
             
             // Check header logo
             const logoHref = await page.locator('.logo a').getAttribute('href');

@@ -7,8 +7,12 @@
 
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 test.describe('Feature Pages Content Completeness', () => {
-    const baseUrl = 'http://127.0.0.1:1027';
+    const baseUrl = '';
     
     // Define feature pages and their expected sections
     const featurePages = {
@@ -86,7 +90,7 @@ test.describe('Feature Pages Content Completeness', () => {
             test(`${lang.name} ${featureConfig.name} page has all required sections`, async ({ page }) => {
                 // Navigate to the page
                 await page.goto(`${baseUrl}${pagePath}`);
-                await page.waitForLoadState('networkidle');
+                await page.waitForLoadState('domcontentloaded');
                 
                 // Verify page loaded successfully
                 const response = await page.goto(`${baseUrl}${pagePath}`);
@@ -111,7 +115,7 @@ test.describe('Feature Pages Content Completeness', () => {
             
             test(`${lang.name} ${featureConfig.name} page has complete components`, async ({ page }) => {
                 await page.goto(`${baseUrl}${pagePath}`);
-                await page.waitForLoadState('networkidle');
+                await page.waitForLoadState('domcontentloaded');
                 
                 // Check components in each section
                 for (const [sectionId, requirements] of Object.entries(featureConfig.expectedComponents)) {
@@ -214,7 +218,7 @@ test.describe('Feature Pages Content Completeness', () => {
                 test(`${lang.name} ${featureConfig.name} has correct translations`, async ({ page }) => {
                     const pagePath = lang.path ? `${lang.path}/${featureKey}/` : `/${featureKey}/`;
                     await page.goto(`${baseUrl}${pagePath}`);
-                    await page.waitForLoadState('networkidle');
+                    await page.waitForLoadState('domcontentloaded');
                     
                     const expectedTexts = translations[lang.code]?.[featureKey];
                     if (expectedTexts) {
@@ -244,7 +248,7 @@ test.describe('Feature Pages Content Completeness', () => {
             
             // Get layout from English AutoRAG as reference
             await page.goto(`${baseUrl}/autorag/`);
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('domcontentloaded');
             
             const sections = await page.locator('section[id]').all();
             for (const section of sections) {
@@ -263,7 +267,7 @@ test.describe('Feature Pages Content Completeness', () => {
                 for (const featureKey of Object.keys(featurePages)) {
                     const pagePath = `${lang.path}/${featureKey}/`;
                     await page.goto(`${baseUrl}${pagePath}`);
-                    await page.waitForLoadState('networkidle');
+                    await page.waitForLoadState('domcontentloaded');
                     
                     for (const [sectionId, reference] of Object.entries(referenceLayout)) {
                         const section = page.locator(`#${sectionId}`);
@@ -291,7 +295,7 @@ test.describe('Feature Pages Content Completeness', () => {
                     
                     const startTime = Date.now();
                     await page.goto(`${baseUrl}${pagePath}`);
-                    await page.waitForLoadState('networkidle');
+                    await page.waitForLoadState('domcontentloaded');
                     const loadTime = Date.now() - startTime;
                     
                     expect(
@@ -306,7 +310,7 @@ test.describe('Feature Pages Content Completeness', () => {
 
 // Summary test to identify incomplete pages
 test.describe('Feature Pages Completeness Summary', () => {
-    const baseUrl = 'http://127.0.0.1:1027';
+    const baseUrl = '';
     
     test('Generate completeness report', async ({ page }) => {
         const report = {

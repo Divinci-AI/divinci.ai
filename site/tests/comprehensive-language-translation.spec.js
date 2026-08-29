@@ -1,6 +1,10 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Comprehensive Language Translation Test Suite
  * Tests all 13 languages for proper content translation and URL routing
@@ -155,7 +159,7 @@ test.describe('Comprehensive Language Translation Tests', () => {
       
       // Navigate to the language-specific URL
       await page.goto(language.url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Check that we're on the correct URL
       expect(page.url()).toContain(language.url);
@@ -227,14 +231,14 @@ test.describe('Comprehensive Language Translation Tests', () => {
       
       // Navigate to starting language
       await page.goto(switchTest.from);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Click language switcher
       await page.locator('.language-switcher').click();
       
       // Click target language
       await page.locator(`[data-lang="${switchTest.to}"]`).click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Verify clean URL (no stacking)
       const finalUrl = page.url();
@@ -256,7 +260,7 @@ test.describe('Comprehensive Language Translation Tests', () => {
       const url = lang === 'en' ? '/' : `/${lang}/`;
       
       await page.goto(url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Check that all main navigation elements exist
       const navigation = await page.locator('nav').count();
@@ -289,8 +293,8 @@ test.describe('Comprehensive Language Translation Tests', () => {
     for (const [langCode, translations] of Object.entries(pressTranslations)) {
       const pressUrl = langCode === 'en' ? '/press/' : `/${langCode}/press/`;
       
-      await page.goto(`http://127.0.0.1:1025${pressUrl}`);
-      await page.waitForLoadState('networkidle');
+      await page.goto(`${pressUrl}`);
+      await page.waitForLoadState('domcontentloaded');
       
       // Check that press page loads successfully
       expect(page.url()).toContain('/press/');

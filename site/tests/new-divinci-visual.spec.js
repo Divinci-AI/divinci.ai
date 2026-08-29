@@ -1,5 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * New-Divinci Zola Site Visual Tests
  * Visual regression testing for desktop and mobile viewports
@@ -28,7 +32,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match homepage visual - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Wait for images to load
     await page.waitForTimeout(2000);
@@ -43,7 +47,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match homepage visual - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Wait for images to load
     await page.waitForTimeout(2000);
@@ -58,7 +62,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match hero section - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const heroSection = page.locator('.hero');
     await expect(heroSection).toHaveScreenshot('hero-desktop.png', {
@@ -69,7 +73,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match hero section - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const heroSection = page.locator('.hero');
     await expect(heroSection).toHaveScreenshot('hero-mobile.png', {
@@ -80,7 +84,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match enterprise AI section - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const enterpriseSection = page.locator('.enterprise-ai');
     await expect(enterpriseSection).toHaveScreenshot('enterprise-ai-desktop.png', {
@@ -91,7 +95,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match features section - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const featuresSection = page.locator('.features-section');
     await expect(featuresSection).toHaveScreenshot('features-desktop.png', {
@@ -102,7 +106,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match features section - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const featuresSection = page.locator('.features-section');
     await expect(featuresSection).toHaveScreenshot('features-mobile.png', {
@@ -113,7 +117,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match team section - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const teamSection = page.locator('.team-section');
     await expect(teamSection).toHaveScreenshot('team-desktop.png', {
@@ -124,7 +128,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match team section - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const teamSection = page.locator('.team-section');
     await expect(teamSection).toHaveScreenshot('team-mobile.png', {
@@ -135,7 +139,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match signup section - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const signupSection = page.locator('.signup-section');
     await expect(signupSection).toHaveScreenshot('signup-desktop.png', {
@@ -146,7 +150,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match signup section - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const signupSection = page.locator('.signup-section');
     await expect(signupSection).toHaveScreenshot('signup-mobile.png', {
@@ -157,7 +161,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match AI for Good section - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const aiForGoodSection = page.locator('.ai-for-good-section');
     await expect(aiForGoodSection).toHaveScreenshot('ai-for-good-desktop.png', {
@@ -168,7 +172,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match AI for Good section - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const aiForGoodSection = page.locator('.ai-for-good-section');
     await expect(aiForGoodSection).toHaveScreenshot('ai-for-good-mobile.png', {
@@ -179,7 +183,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match footer - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const footer = page.locator('.site-footer');
     await expect(footer).toHaveScreenshot('footer-desktop.png', {
@@ -190,7 +194,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match footer - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const footer = page.locator('.site-footer');
     await expect(footer).toHaveScreenshot('footer-mobile.png', {
@@ -201,7 +205,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match language switcher dropdown - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Click language switcher to open dropdown
     await page.locator('.language-switcher').click();
@@ -216,7 +220,7 @@ test.describe('New-Divinci Visual Tests', () => {
   test('should match language switcher dropdown - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(baseURL);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Click language switcher to open dropdown
     await page.locator('.language-switcher').click();
@@ -252,7 +256,7 @@ test.describe('Language-specific visual tests', () => {
   test('should match Spanish homepage - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(`${baseURL}/es/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(2000);
     
     await expect(page).toHaveScreenshot('homepage-spanish-desktop.png', {
@@ -264,7 +268,7 @@ test.describe('Language-specific visual tests', () => {
   test('should match French homepage - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(`${baseURL}/fr/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(2000);
     
     await expect(page).toHaveScreenshot('homepage-french-desktop.png', {
@@ -276,7 +280,7 @@ test.describe('Language-specific visual tests', () => {
   test('should match Arabic homepage - desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto(`${baseURL}/ar/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(2000);
     
     await expect(page).toHaveScreenshot('homepage-arabic-desktop.png', {
@@ -288,7 +292,7 @@ test.describe('Language-specific visual tests', () => {
   test('should match Spanish homepage - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(`${baseURL}/es/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(2000);
     
     await expect(page).toHaveScreenshot('homepage-spanish-mobile.png', {
@@ -300,7 +304,7 @@ test.describe('Language-specific visual tests', () => {
   test('should match French homepage - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(`${baseURL}/fr/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(2000);
     
     await expect(page).toHaveScreenshot('homepage-french-mobile.png', {
@@ -312,7 +316,7 @@ test.describe('Language-specific visual tests', () => {
   test('should match Arabic homepage - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(`${baseURL}/ar/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(2000);
     
     await expect(page).toHaveScreenshot('homepage-arabic-mobile.png', {

@@ -3,11 +3,15 @@
 
 import { test, expect } from '@playwright/test';
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 test.describe('Social Media Sharing Meta Tags', () => {
   
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
   });
 
   test.describe('Open Graph Meta Tags', () => {
@@ -103,7 +107,7 @@ test.describe('Social Media Sharing Meta Tags', () => {
     test('should have proper meta tags on feature pages', async ({ page }) => {
       // Test AutoRAG page
       await page.goto('/autorag/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const ogTitle = await page.getAttribute('meta[property="og:title"]', 'content');
       expect(ogTitle).toMatch(/AutoRAG.*Divinci AI/);
@@ -116,7 +120,7 @@ test.describe('Social Media Sharing Meta Tags', () => {
 
     test('should have proper meta tags on quality assurance page', async ({ page }) => {
       await page.goto('/quality-assurance/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const ogTitle = await page.getAttribute('meta[property="og:title"]', 'content');
       expect(ogTitle).toMatch(/Quality.*Divinci AI/);
@@ -132,7 +136,7 @@ test.describe('Social Media Sharing Meta Tags', () => {
 
     test('should use a distinct OG card on a translated feature page', async ({ page }) => {
       await page.goto('/es/autorag/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
 
       const ogImage = await page.getAttribute('meta[property="og:image"]', 'content');
       expect(ogImage).toContain('/images/og/autorag.jpg');
@@ -171,7 +175,7 @@ test.describe('Social Media Sharing Meta Tags', () => {
     
     test('should handle French language social meta tags', async ({ page }) => {
       await page.goto('/fr/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const ogLocale = await page.getAttribute('meta[property="og:locale"]', 'content');
       expect(ogLocale).toBe('fr');
@@ -184,7 +188,7 @@ test.describe('Social Media Sharing Meta Tags', () => {
 
     test('should handle Spanish language social meta tags', async ({ page }) => {
       await page.goto('/es/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const ogLocale = await page.getAttribute('meta[property="og:locale"]', 'content');
       expect(ogLocale).toBe('es');

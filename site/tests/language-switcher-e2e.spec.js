@@ -1,5 +1,9 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Language Switcher E2E Tests
  * Tests language switcher functionality and verifies translated pages work properly
@@ -27,7 +31,7 @@ async function checkBrokenImages(page) {
 }
 
 test.describe('Language Switcher E2E Tests', () => {
-  const baseURL = 'http://127.0.0.1:1111';
+  const baseURL = '';
   
   // Test languages with their page translations
   const testLanguages = [
@@ -94,7 +98,7 @@ test.describe('Language Switcher E2E Tests', () => {
     
     // Start on English homepage
     await page.goto(`${baseURL}/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Verify we're on English page
     const htmlLang = await page.getAttribute('html', 'lang');
@@ -112,7 +116,7 @@ test.describe('Language Switcher E2E Tests', () => {
     const spanishOption = page.locator('a[href="/es/"], a[href*="/es/"]').first();
     if (await spanishOption.count() > 0) {
       await spanishOption.click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Verify we're now on Spanish site
       const newHtmlLang = await page.getAttribute('html', 'lang');
@@ -122,7 +126,7 @@ test.describe('Language Switcher E2E Tests', () => {
       
       // Test Spanish tutorials page
       await page.goto(`${baseURL}/es/tutorials`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const tutorialsHeading = page.locator('h1').first();
       const headingText = await tutorialsHeading.textContent();
@@ -131,7 +135,7 @@ test.describe('Language Switcher E2E Tests', () => {
       
       // Test Spanish docs page
       await page.goto(`${baseURL}/es/docs`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const docsHeading = page.locator('h1').first();
       const docsHeadingText = await docsHeading.textContent();
@@ -145,7 +149,7 @@ test.describe('Language Switcher E2E Tests', () => {
     // Test switching to French
     console.log('\n🔄 Testing switch to French...');
     await page.goto(`${baseURL}/fr/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const frenchHtmlLang = await page.getAttribute('html', 'lang');
     expect(frenchHtmlLang).toBe('fr');
@@ -153,7 +157,7 @@ test.describe('Language Switcher E2E Tests', () => {
     
     // Test French tutorials page
     await page.goto(`${baseURL}/fr/tutorials`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const frenchTutorialsHeading = page.locator('h1').first();
     const frenchHeadingText = await frenchTutorialsHeading.textContent();
@@ -166,7 +170,7 @@ test.describe('Language Switcher E2E Tests', () => {
     
     // Start on Spanish homepage
     await page.goto(`${baseURL}/es/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Verify Spanish context
     let htmlLang = await page.getAttribute('html', 'lang');
@@ -175,7 +179,7 @@ test.describe('Language Switcher E2E Tests', () => {
     
     // Navigate to AutoRAG page within Spanish site
     await page.goto(`${baseURL}/es/autorag/`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Verify still in Spanish context
     htmlLang = await page.getAttribute('html', 'lang');
@@ -184,7 +188,7 @@ test.describe('Language Switcher E2E Tests', () => {
     
     // Navigate to tutorials via URL
     await page.goto(`${baseURL}/es/tutorials`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Verify still in Spanish context
     htmlLang = await page.getAttribute('html', 'lang');
@@ -203,7 +207,7 @@ test.describe('Language Switcher E2E Tests', () => {
         
         if (href) {
           await firstLink.click();
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           // Verify still in Spanish context
           htmlLang = await page.getAttribute('html', 'lang');
@@ -223,7 +227,7 @@ test.describe('Language Switcher E2E Tests', () => {
       // Test tutorials page
       try {
         await page.goto(`${baseURL}${lang.tutorials}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const tutorialsHeading = page.locator('h1').first();
         const headingText = await tutorialsHeading.textContent();
@@ -241,7 +245,7 @@ test.describe('Language Switcher E2E Tests', () => {
       // Test docs page
       try {
         await page.goto(`${baseURL}${lang.docs}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const docsHeading = page.locator('h1').first();
         const docsHeadingText = await docsHeading.textContent();
@@ -259,7 +263,7 @@ test.describe('Language Switcher E2E Tests', () => {
       // Test blog page
       try {
         await page.goto(`${baseURL}${lang.blog}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const blogHeading = page.locator('h1').first();
         const blogHeadingText = await blogHeading.textContent();
@@ -298,7 +302,7 @@ test.describe('Language Switcher E2E Tests', () => {
     for (const pagePath of testPages) {
       try {
         await page.goto(`${baseURL}${pagePath}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Check if language switcher exists
         const languageSwitcher = page.locator('.language-switcher');
@@ -334,7 +338,7 @@ test.describe('Language Switcher E2E Tests', () => {
     
     // Start on English tutorials
     await page.goto(`${baseURL}/tutorials`);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     let htmlLang = await page.getAttribute('html', 'lang');
     expect(htmlLang).toBe('en');
@@ -349,7 +353,7 @@ test.describe('Language Switcher E2E Tests', () => {
       const spanishOption = page.locator('a[href="/es/"], a[href*="/es/"]').first();
       if (await spanishOption.count() > 0) {
         await spanishOption.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Should now be on Spanish homepage, not Spanish tutorials
         htmlLang = await page.getAttribute('html', 'lang');
@@ -359,7 +363,7 @@ test.describe('Language Switcher E2E Tests', () => {
         
         // Now manually navigate to Spanish tutorials
         await page.goto(`${baseURL}/es/tutorials`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const heading = page.locator('h1').first();
         const headingText = await heading.textContent();
@@ -386,7 +390,7 @@ test.describe('Language Switcher E2E Tests', () => {
     for (const post of englishBlogPosts) {
       try {
         await page.goto(`${baseURL}${post.url}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const htmlLang = await page.getAttribute('html', 'lang');
         expect(htmlLang).toBe('en');
@@ -412,7 +416,7 @@ test.describe('Language Switcher E2E Tests', () => {
     for (const post of spanishBlogPosts) {
       try {
         await page.goto(`${baseURL}${post.url}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const htmlLang = await page.getAttribute('html', 'lang');
         expect(htmlLang).toBe('es');
@@ -432,7 +436,7 @@ test.describe('Language Switcher E2E Tests', () => {
     // Test French blog post
     try {
       await page.goto(`${baseURL}/fr/blog/building-responsible-ai-systems/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const htmlLang = await page.getAttribute('html', 'lang');
       expect(htmlLang).toBe('fr');
@@ -454,13 +458,13 @@ test.describe('Language Switcher E2E Tests', () => {
     // Test navigation from Spanish homepage to Spanish blog
     try {
       await page.goto(`${baseURL}/es/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Look for blog link in navigation or footer
       const blogLink = page.locator('a[href="/es/blog"], a[href*="/es/blog"], a[href="/blog"]').first();
       if (await blogLink.count() > 0) {
         await blogLink.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Verify we're on Spanish blog page
         const htmlLang = await page.getAttribute('html', 'lang');
@@ -482,12 +486,12 @@ test.describe('Language Switcher E2E Tests', () => {
     // Test navigation from French homepage to French blog
     try {
       await page.goto(`${baseURL}/fr/`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const blogLink = page.locator('a[href="/fr/blog"], a[href*="/fr/blog"], a[href="/blog"]').first();
       if (await blogLink.count() > 0) {
         await blogLink.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const htmlLang = await page.getAttribute('html', 'lang');
         expect(htmlLang).toBe('fr');
@@ -528,7 +532,7 @@ test.describe('Language Switcher E2E Tests', () => {
     for (const pageInfo of pagesToTest) {
       try {
         await page.goto(`${baseURL}${pageInfo.url}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Wait for images to load
         await page.waitForTimeout(2000);
@@ -572,7 +576,7 @@ test.describe('Language Switcher E2E Tests', () => {
         
         // Navigate to the test page
         await page.goto(`${baseURL}${testPage.url}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Test #team link
         const teamLink = page.locator('a[href="#team"]').first();
@@ -596,7 +600,7 @@ test.describe('Language Switcher E2E Tests', () => {
         
         // Navigate back to test page for signup test
         await page.goto(`${baseURL}${testPage.url}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Test #signup link
         const signupLink = page.locator('a[href="#signup"]').first();
@@ -653,7 +657,7 @@ test.describe('Language Switcher E2E Tests', () => {
         console.log(`\n  Testing ${test.name}...`);
         
         await page.goto(`${baseURL}${test.url}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Check team link
         const teamLink = page.locator('a[href*="team"]').first();

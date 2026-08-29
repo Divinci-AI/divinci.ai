@@ -1,9 +1,13 @@
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 test.describe('Pricing Page FAQ Functionality', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/pricing');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
   });
 
   test('FAQ section should be visible', async ({ page }) => {
@@ -116,7 +120,7 @@ test.describe('Pricing Page FAQ Functionality', () => {
     
     // Reload page to trigger JavaScript
     await page.reload();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     // Check that FAQ script found the questions
     const faqLog = consoleLogs.find(log => log.includes('Found FAQ questions:'));

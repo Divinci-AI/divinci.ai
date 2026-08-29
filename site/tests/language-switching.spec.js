@@ -1,6 +1,10 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Language Switching E2E Test Suite
  * Tests bidirectional language navigation and translation completeness
@@ -27,7 +31,7 @@ test.describe('Language Switching and Translation Tests', () => {
   test.beforeEach(async ({ page }) => {
     // Start with English homepage
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
   });
 
   test.describe('Language Switcher Functionality', () => {
@@ -56,7 +60,7 @@ test.describe('Language Switching and Translation Tests', () => {
       // Switch to Spanish and verify
       await page.locator('.language-switcher').click();
       await page.locator('[data-lang="es"]').click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       const updatedCurrentLanguage = page.locator('.current-language');
       await expect(updatedCurrentLanguage).toContainText('Español');
@@ -87,7 +91,7 @@ test.describe('Language Switching and Translation Tests', () => {
         // Navigate to target language
         await page.locator('.language-switcher').click();
         await page.locator(`[data-lang="${targetLang.code}"]`).click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Verify we're on the correct language page
         const url = page.url();
@@ -109,7 +113,7 @@ test.describe('Language Switching and Translation Tests', () => {
         // Switch back to English
         await page.locator('.language-switcher').click();
         await page.locator('[data-lang="en"]').click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Verify we're back to English
         const englishUrl = page.url();
@@ -127,7 +131,7 @@ test.describe('Language Switching and Translation Tests', () => {
       // Switch to Spanish
       await page.locator('.language-switcher').click();
       await page.locator('[data-lang="es"]').click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Verify the features section is still present (translated)
       const featuresSection = page.locator('#features');
@@ -136,7 +140,7 @@ test.describe('Language Switching and Translation Tests', () => {
       // Switch back to English
       await page.locator('.language-switcher').click();
       await page.locator('[data-lang="en"]').click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Verify features section is still there
       await expect(page.locator('#features')).toBeVisible();
@@ -148,7 +152,7 @@ test.describe('Language Switching and Translation Tests', () => {
       for (const langCode of testLanguages) {
         await page.locator('.language-switcher').click();
         await page.locator(`[data-lang="${langCode}"]`).click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Quick verification that page loaded correctly
         const htmlLang = await page.locator('html').getAttribute('lang');
@@ -168,7 +172,7 @@ test.describe('Language Switching and Translation Tests', () => {
         // Navigate to language page
         const url = code === 'en' ? '/' : `/${code}/`;
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Verify page title is translated
         const pageTitle = await page.title();
@@ -261,7 +265,7 @@ test.describe('Language Switching and Translation Tests', () => {
       for (const { code } of languages.slice(0, 8)) { // Test first 8 for performance
         const url = code === 'en' ? '/' : `/${code}/`;
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const structure = {
           language: code,
@@ -301,7 +305,7 @@ test.describe('Language Switching and Translation Tests', () => {
         const expectedUrl = code === 'en' ? '/' : `/${code}/`;
         
         await page.goto(expectedUrl);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Verify URL is correct
         const currentUrl = page.url();
@@ -320,33 +324,33 @@ test.describe('Language Switching and Translation Tests', () => {
     test('should handle browser back/forward with language switching', async ({ page }) => {
       // Start with English
       await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Navigate to Spanish
       await page.goto('/es/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Navigate to French
       await page.goto('/fr/');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Use browser back to Spanish
       await page.goBack();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       let htmlLang = await page.locator('html').getAttribute('lang');
       expect(htmlLang).toBe('es');
       
       // Use browser back to English
       await page.goBack();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       htmlLang = await page.locator('html').getAttribute('lang');
       expect(htmlLang).toBe('en');
       
       // Use browser forward to Spanish
       await page.goForward();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       htmlLang = await page.locator('html').getAttribute('lang');
       expect(htmlLang).toBe('es');
@@ -363,7 +367,7 @@ test.describe('Language Switching and Translation Tests', () => {
       
       for (const { url, expectedLang } of directAccessTests) {
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Verify language is correct
         const htmlLang = await page.locator('html').getAttribute('lang');
@@ -389,7 +393,7 @@ test.describe('Language Switching and Translation Tests', () => {
       for (const { code } of languages.slice(0, 8)) { // Test subset for performance
         const url = code === 'en' ? '/' : `/${code}/`;
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         const heroHeading = page.locator('.hero h1, h1').first();
         if (await heroHeading.count() > 0) {
@@ -414,7 +418,7 @@ test.describe('Language Switching and Translation Tests', () => {
       for (const { code } of languages.slice(0, 6)) { // Test subset
         const url = code === 'en' ? '/' : `/${code}/`;
         await page.goto(url);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Test language switcher functionality
         const languageSwitcher = page.locator('.language-switcher');
@@ -428,7 +432,7 @@ test.describe('Language Switching and Translation Tests', () => {
         await expect(targetOption).toBeVisible();
         
         await targetOption.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         
         // Verify switch was successful
         const newLang = await page.locator('html').getAttribute('lang');

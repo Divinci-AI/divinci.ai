@@ -1,6 +1,10 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
+// `domcontentloaded`, never `networkidle`: Cloudflare Turnstile holds a blob:
+// request open for the life of the page, so the network on this site NEVER
+// goes idle and every such wait burns its full timeout before failing.
+
 /**
  * Language Health Check Test Suite
  * Quickly identifies which language sites have issues
@@ -32,7 +36,7 @@ test.describe('Language Site Health Check', () => {
         console.log(`Testing ${lang.name} (${lang.code})...`);
         
         await page.goto(lang.url);
-        await page.waitForLoadState('networkidle', { timeout: 10000 });
+        await page.waitForLoadState('domcontentloaded', { timeout: 10000 });
         
         // Basic checks
         const htmlLang = await page.locator('html').getAttribute('lang');
@@ -106,7 +110,7 @@ test.describe('Language Site Health Check', () => {
   test('detailed language switcher functionality check', async ({ page }) => {
     // Start with English
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     
     const switcherProblems = [];
     
@@ -131,7 +135,7 @@ test.describe('Language Site Health Check', () => {
         const spanishOption = page.locator('[data-lang="es"]');
         if (await spanishOption.count() > 0) {
           await spanishOption.click();
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           
           const newUrl = page.url();
           const newLang = await page.locator('html').getAttribute('lang');
@@ -164,7 +168,7 @@ test.describe('Language Site Health Check', () => {
   languages.forEach(({ code, name, url }) => {
     test(`${name} site basic functionality`, async ({ page }) => {
       await page.goto(url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       
       // Essential checks for each language
       const htmlLang = await page.locator('html').getAttribute('lang');
