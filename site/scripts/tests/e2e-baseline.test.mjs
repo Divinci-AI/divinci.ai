@@ -89,6 +89,39 @@ describe("the gate", () => {
   });
 });
 
+describe("unstable tests", () => {
+  const id = "Desktop-Chrome | a.spec.js | group › a";
+
+  test("an unstable test failing is NOT a regression", () => {
+    const r = compare(collectTests(report([["a", "unexpected"]])), [], [id]);
+    assert.deepEqual(r.regressions, []);
+  });
+
+  test("an unstable test passing is NOT a stale baseline entry", () => {
+    // Both directions, or the gate is red whichever way the test lands —
+    // which is what made a flaky test un-baselineable in the first place.
+    const r = compare(collectTests(report([["a", "expected"]])), [id], [id]);
+    assert.deepEqual(r.fixed, []);
+  });
+
+  test("an unstable entry naming a test that did not run is reported", () => {
+    // Dead weight here silently widens the blind spot.
+    const r = compare(collectTests(report([["b", "expected"]])), [], [id]);
+    assert.deepEqual(r.unstableVanished, [id]);
+  });
+
+  test("it reports which unstable tests failed, so the list stays visible", () => {
+    const r = compare(collectTests(report([["a", "unexpected"]])), [], [id]);
+    assert.deepEqual(r.unstableFailing, [id]);
+  });
+
+  test("a test NOT on the unstable list still gates normally", () => {
+    // The escape hatch must not leak: listing one test cannot excuse another.
+    const r = compare(collectTests(report([["a", "unexpected"], ["z", "unexpected"]])), [], [id]);
+    assert.deepEqual(r.regressions, ["Desktop-Chrome | a.spec.js | group › z"]);
+  });
+});
+
 describe("parsing", () => {
   test("ignores comments and blank lines", () => {
     assert.deepEqual(parseBaseline("# note\n\n  x  \n#more\ny\n"), ["x", "y"]);

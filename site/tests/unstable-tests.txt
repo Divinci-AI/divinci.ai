@@ -1,0 +1,28 @@
+# Tests whose result is NOT TRUSTED in either direction.
+#
+# ⚠️ EVERY LINE HERE IS A TEST NOTHING CHECKS. This is a blind spot, not a
+# fix. The right move is to make the test deterministic and delete its line.
+#
+# Why the mechanism exists: a strict baseline cannot hold a nondeterministic
+# test. It fails as a REGRESSION on runs where the test fails, and as a STALE
+# ENTRY on runs where it passes — so a flaky test makes the gate red no matter
+# what, and the pressure is then to weaken the gate.
+#
+# EVIDENCE REQUIRED to add a line: the test must be observed disagreeing
+# across two runs whose site/ trees are IDENTICAL. Do not add a test you
+# merely suspect, and never add one to silence a failure you caused.
+#
+# The six below oscillated between CI runs 33296319036 and 33297564327. Those
+# two commits changed only .github/workflows/test.yml and the baseline file —
+# nothing under site/ — so the suite disagreed with itself on an unchanged
+# tree. Three flipped each way.
+#
+# mobile-zoom-guard is the one worth fixing first: it drives viewport and
+# visualViewport under 4 parallel workers, which is exactly the shape that
+# produces order-dependent results.
+Desktop-Chrome | language-switcher-e2e.spec.js | Language Switcher E2E Tests › should handle header navigation links correctly from non-homepage pages
+Desktop-Chrome | language-switching.spec.js | Language Switching and Translation Tests › Bidirectional Language Switching › should switch from English to each language and back
+Desktop-Chrome | language-switching.spec.js | Language Switching and Translation Tests › Cross-Language Content Validation › should have working language switcher on all language pages
+Desktop-Chrome | mobile-zoom-guard.spec.js | Chat widget on a desktop › stays a side sheet and keeps its autofocus
+Desktop-Chrome | mobile-zoom-guard.spec.js | Chat widget on a phone › opens full-screen, greeting visible, no keyboard stolen
+Desktop-Chrome | mobile-zoom-guard.spec.js | Chat widget on a phone › the panel shrinks to the visual viewport when the keyboard opens

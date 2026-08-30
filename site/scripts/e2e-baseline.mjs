@@ -32,6 +32,19 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 
 const BASELINE = new URL("../tests/known-failures.txt", import.meta.url).pathname;
+/**
+ * Tests whose RESULT IS NOT TRUSTED in either direction.
+ *
+ * A strict baseline cannot hold a nondeterministic test: it fails as a
+ * regression on the runs where the test fails, and as a stale entry on the
+ * runs where it passes. Observed immediately — two CI runs whose `site/` trees
+ * were IDENTICAL (only the workflow and the baseline file differed) disagreed
+ * about six tests, three in each direction.
+ *
+ * This is a BLIND SPOT, not a fix. Every line here is a test nothing checks.
+ * Keep it short, and prefer making the test deterministic to listing it.
+ */
+const UNSTABLE = new URL("../tests/unstable-tests.txt", import.meta.url).pathname;
 const DEFAULT_REPORT = new URL("../playwright-results.json", import.meta.url).pathname;
 
 /**
@@ -64,18 +77,23 @@ export function collectTests(report) {
 /** `flaky` means it passed on a retry. Treat it as passing, not as failing. */
 const isFailing = (t) => t.status === "unexpected";
 
-export function compare(tests, baseline) {
+export function compare(tests, baseline, unstable = []) {
   const failing = new Set(tests.filter(isFailing).map((t) => t.id));
   const known = new Set(baseline);
   const seen = new Set(tests.map((t) => t.id));
+  const skip = new Set(unstable);
 
   return {
-    regressions: [...failing].filter((id) => !known.has(id)).sort(),
+    regressions: [...failing].filter((id) => !known.has(id) && !skip.has(id)).sort(),
     // Only entries whose test actually RAN can be called fixed. A baseline
     // line for a test that did not run is stale in a different way — the spec
     // was renamed or removed — and is reported separately so the two are not
     // confused.
-    fixed: [...known].filter((id) => seen.has(id) && !failing.has(id)).sort(),
+    fixed: [...known].filter((id) => seen.has(id) && !failing.has(id) && !skip.has(id)).sort(),
+    // An unstable entry naming a test that no longer runs is dead weight that
+    // silently widens the blind spot; surface it like any other stale line.
+    unstableVanished: [...skip].filter((id) => !seen.has(id)).sort(),
+    unstableFailing: [...skip].filter((id) => failing.has(id)).sort(),
     vanished: [...known].filter((id) => !seen.has(id)).sort(),
     failingCount: failing.size,
     totalCount: tests.length,
@@ -160,8 +178,10 @@ function main() {
   }
   const raw = readFileSync(BASELINE, "utf8");
   const baseline = parseBaseline(raw);
+  const unstable = existsSync(UNSTABLE)
+    ? parseBaseline(readFileSync(UNSTABLE, "utf8")) : [];
   const expectedTotal = baselineHeaderTotal(raw);
-  const r = compare(tests, baseline);
+  const r = compare(tests, baseline, unstable);
 
   // A suite that collected far fewer tests than the baseline was built from
   // has broken collection. Without this, a config change that silently stops
@@ -184,6 +204,11 @@ function main() {
     console.error(`\n✘ ${r.fixed.length} baseline entr(y/ies) now PASS — delete these lines:\n`);
     for (const id of r.fixed) console.error(`    ${id}`);
   }
+  if (r.unstableVanished.length) {
+    bad = true;
+    console.error(`\n✘ ${r.unstableVanished.length} unstable entr(y/ies) name a test that did not run:\n`);
+    for (const id of r.unstableVanished) console.error(`    ${id}`);
+  }
   if (r.vanished.length) {
     bad = true;
     console.error(`\n✘ ${r.vanished.length} baseline entr(y/ies) name a test that did not run`);
@@ -194,6 +219,12 @@ function main() {
   if (bad) {
     console.error(`\n  ${r.failingCount} failing / ${r.totalCount} tests; baseline holds ${baseline.length}.\n`);
     process.exit(1);
+  }
+  // Print the blind spot on every green run. A tolerated list that is never
+  // shown is a list that only grows.
+  if (unstable.length) {
+    console.log(`  ${unstable.length} unstable test(s) NOT CHECKED (${r.unstableFailing.length} failing this run):`);
+    for (const id of unstable) console.log(`    ~ ${id}`);
   }
   console.log(`✓ e2e baseline: ${r.failingCount} known failures of ${r.totalCount} tests, unchanged`);
 }
