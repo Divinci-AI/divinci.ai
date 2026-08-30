@@ -6,6 +6,27 @@ const { defineConfig, devices } = require('@playwright/test');
  */
 module.exports = defineConfig({
   testDir: './tests',
+
+  /**
+   * 60s, not Playwright's default 30s.
+   *
+   * Many specs here sweep the whole language matrix — thirteen homepages, or
+   * every page in every locale — in ONE test. Measured on CI runners those
+   * take 32-40s, which straddles the 30s default: the same test fails on one
+   * run and passes on the next depending on which side of the line the runner
+   * lands. That reads as flakiness and is not. It is a correct test on a
+   * budget sized for a single-page test.
+   *
+   * This was found by reading DURATIONS rather than verdicts. Three tests had
+   * already been written off as nondeterministic before the durations showed
+   * every attempt clustered at 32-37s. A pass/fail column cannot tell a
+   * marginal budget from a real race; a duration column does it at a glance.
+   *
+   * Still bounded, and not the only bound: actionTimeout is 10s and
+   * navigationTimeout 30s, so a genuinely hung action fails well before this.
+   */
+  timeout: 60000,
+
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
