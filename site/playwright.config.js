@@ -12,7 +12,10 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [
     ['html', { outputFolder: 'test-results' }],
-    ['json', { outputFile: 'test-results/results.json' }],
+    // NOT inside test-results/: the html reporter above owns that folder and
+    // CLEARS it, which silently deleted this file on every run — so the JSON
+    // report the config has always declared has never actually existed.
+    ['json', { outputFile: 'playwright-results.json' }],
     ['list']
   ],
   

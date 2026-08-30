@@ -201,6 +201,75 @@ jobs:
           path: site/test-results/
           retention-days: 7
 
+  e2e-baseline:
+    name: E2E (full suite vs baseline)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    needs: guards
+    # BOOTSTRAP ONLY. There is no baseline yet, so this would fail every
+    # push until one exists. Dispatch it, take playwright-results.json from
+    # the run, generate the baseline from THAT, and remove this line in the
+    # same commit that adds the file.
+    if: github.event_name == 'workflow_dispatch'
+    defaults:
+      run:
+        working-directory: site
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install Zola
+        run: |
+          curl -sSL "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar xz -C /usr/local/bin zola
+          zola --version
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Harness unit tests
+        # The baseline script decides whether this job is red. Test it first,
+        # and before the 20-minute suite rather than after.
+        run: node --test scripts/tests/e2e-baseline.test.mjs
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run the full Desktop-Chrome suite
+        # `|| true` because the suite HAS known failures — a non-zero exit here
+        # is expected and is not the verdict. The verdict is the next step.
+        # This does not hide a crash: the baseline script fails when the JSON
+        # report is missing, unparseable, or holds fewer tests than the
+        # baseline was built from.
+        run: npx playwright test --project=Desktop-Chrome --workers=4 || true
+
+      - name: Compare against the known-failure baseline
+        run: node scripts/e2e-baseline.mjs --check
+
+      - name: Upload the JSON report
+        # Always: this is what you regenerate the baseline FROM, and it is the
+        # only CI-derived source that may be used for that.
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-json-report
+          path: site/playwright-results.json
+          retention-days: 30
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-baseline
+          path: site/test-results/
+          retention-days: 7
+
   e2e:
     name: E2E ${{ matrix.shard }}/3
     runs-on: ubuntu-latest
