@@ -22,9 +22,18 @@ name: Tests
 #           and `checkVisibility()` all report it healthy. No DOM assertion can
 #           see that, so `toBeVisible()` passes over an invisible logo.
 #
-#   e2e-green
-#           The subset that actually passes, run on EVERY push. 52 tests, ~1
-#           min. This is the job that gates.
+#   e2e-baseline
+#           The FULL Desktop-Chrome suite on every push, gated against a
+#           committed baseline of known failures. 306 tests, ~30 min. This is
+#           the job that gates.
+#
+#           It replaced an `e2e-green` job that ran a hand-picked list of
+#           spec files measured green. That list was wrong twice in one day —
+#           first built from a local run (red on its first CI run), then
+#           invalidated by a `.first()` fix that removed a strict-mode throw
+#           and un-skipped assertions a try/catch had been swallowing. Two
+#           gates with two hand-maintained lists can disagree, and did. One
+#           gate over everything, with the exceptions written down, cannot.
 #
 #   e2e     The full Desktop-Chrome suite, SHARDED, workflow_dispatch ONLY.
 #           Sizing took three attempts and two wrong assumptions, both recorded
@@ -142,75 +151,11 @@ jobs:
         # accumulated across 44 files and kept this suite from gating.
         run: node scripts/check-spec-invariants.mjs
 
-  e2e-green:
-    name: E2E (green subset)
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    needs: guards
-    defaults:
-      run:
-        working-directory: site
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: site/package-lock.json
-
-      - name: Install Zola
-        run: |
-          curl -sSL "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
-            | tar xz -C /usr/local/bin zola
-          zola --version
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-
-      - name: Run the green subset
-        # ONE regex, not eight arguments: this Playwright version ANDs multiple
-        # positional filters, so passing them separately matches nothing and
-        # exits "No tests found" — which looks like a config error, not a
-        # filter mistake.
-        #
-        # ⚠️ THIS LIST MUST BE DERIVED FROM A CI RUN, NOT A LOCAL ONE.
-        # It first shipped with eight files, measured green twice consecutively
-        # on a laptop — and went red on the very first CI run. www-rag-universe
-        # passes locally and fails on a runner through all three attempts: its
-        # canvas exists at full size but stays at `opacity: 0`, so the reveal
-        # never happens. Whatever drives it does not run the same way headless.
-        # The seven below are green IN CI (run 33223177232).
-        #
-        # To regenerate: dispatch the full `e2e` job and take the files with
-        # zero failures from ITS results. A file measured green only locally is
-        # not evidence about this job.
-        run: |
-          npx playwright test --project=Desktop-Chrome --workers=4 \
-            "(debug-scroll|language-navigation-comprehensive|language-switcher-functionality|mobile-media|performance-assets|status-attribution|video-functionality)\.spec\.js"
-
-      - name: Upload Playwright report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: playwright-report-green
-          path: site/test-results/
-          retention-days: 7
-
   e2e-baseline:
     name: E2E (full suite vs baseline)
     runs-on: ubuntu-latest
     timeout-minutes: 45
     needs: guards
-    # BOOTSTRAP ONLY. There is no baseline yet, so this would fail every
-    # push until one exists. Dispatch it, take playwright-results.json from
-    # the run, generate the baseline from THAT, and remove this line in the
-    # same commit that adds the file.
-    if: github.event_name == 'workflow_dispatch'
     defaults:
       run:
         working-directory: site

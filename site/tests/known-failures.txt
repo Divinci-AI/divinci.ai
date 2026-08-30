@@ -1,0 +1,94 @@
+# Known-failure baseline for the full Desktop-Chrome E2E suite.
+#
+# Every line is a test that FAILS TODAY and is accepted for now. The gate
+# fails on any change to this set — a new failure, or a line here that
+# starts passing. Fixing a test therefore REQUIRES deleting its line, so
+# this file can only shrink.
+#
+# Do not add a line to silence a test you just broke. Adding one is
+# accepting debt, and it shows up in review as exactly that.
+#
+# ⚠️ REGENERATE FROM CI ONLY:
+#     node scripts/e2e-baseline.mjs --update --report <ci results.json>
+#   A locally-generated baseline encodes the wrong failure set in both
+#   directions — see the note at the top of scripts/e2e-baseline.mjs.
+#
+# generated_from: https://github.com/Divinci-AI/divinci.ai/actions/runs/33296319036
+# generated_at: 2026-08-30
+# total_tests: 306
+Desktop-Chrome | accessibility-axe-wcag.spec.js | chat dialog semantics and keyboard contract › is announced as a labelled modal dialog with a live transcript
+Desktop-Chrome | accessibility-compliance.spec.js | Accessibility Compliance Suite › Mobile Accessibility Tests › should be accessible on mobile devices
+Desktop-Chrome | accessibility-compliance.spec.js | Accessibility Compliance Suite › Screen Reader Compatibility › should provide meaningful text alternatives
+Desktop-Chrome | accessibility-compliance.spec.js | Accessibility Compliance Suite › WCAG 2.1 AA Compliance Tests › should handle language attributes correctly
+Desktop-Chrome | accessibility-compliance.spec.js | Accessibility Compliance Suite › WCAG 2.1 AA Compliance Tests › should have proper video accessibility
+Desktop-Chrome | accessibility-compliance.spec.js | Accessibility Compliance Suite › WCAG 2.1 AA Compliance Tests › should respect reduced motion preferences
+Desktop-Chrome | comprehensive-navigation-test.spec.js | Comprehensive Navigation and Page Existence Tests › should identify all missing pages (404s)
+Desktop-Chrome | comprehensive-navigation-test.spec.js | Comprehensive Navigation and Page Existence Tests › should test all navigation dropdown links
+Desktop-Chrome | comprehensive-navigation-test.spec.js | Comprehensive Navigation and Page Existence Tests › should test language-specific navigation links
+Desktop-Chrome | comprehensive-site-navigation.spec.js | Comprehensive Site Navigation › should have working header navigation links
+Desktop-Chrome | comprehensive-site-navigation.spec.js | Comprehensive Site Navigation › should navigate between pages via internal links
+Desktop-Chrome | footer-language-navigation.spec.js | Footer Language Navigation › footer logo link should contain both image and text
+Desktop-Chrome | footer-language-navigation.spec.js | Footer Language Navigation › footer logo navigation should work across different feature pages
+Desktop-Chrome | footer-language-navigation.spec.js | Footer Language Navigation › should navigate to Arabic homepage when clicking footer logo from Arabic page
+Desktop-Chrome | footer-language-navigation.spec.js | Footer Language Navigation › should navigate to English homepage when clicking footer logo from English page
+Desktop-Chrome | footer-language-navigation.spec.js | Footer Language Navigation › should navigate to French homepage when clicking footer logo from French page
+Desktop-Chrome | footer-language-navigation.spec.js | Footer Language Navigation › should navigate to Spanish homepage when clicking footer logo from Spanish page
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Accessibility of GDPR Features › should have adequate color contrast in cookie banner
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Accessibility of GDPR Features › should have proper ARIA labels for cookie controls
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Accessibility of GDPR Features › should have proper keyboard navigation for cookie banner
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Analytics Consent Enforcement › should load analytics with consent
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Analytics Consent Enforcement › should not load analytics without consent
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Cookie Consent Banner › should allow accepting all cookies
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Cookie Consent Banner › should allow customizing cookie preferences
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Cookie Consent Banner › should allow rejecting non-essential cookies
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Cookie Consent Banner › should display cookie consent banner for EU users only
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Cookie Consent Banner › should not show banner on subsequent visits if consent given
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Cookie Consent Banner › should show privacy dropdown on hover with all options
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Data Subject Rights › should allow consent revocation
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Data Subject Rights › should allow data export
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Mobile GDPR Compliance › should display properly on mobile devices
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Privacy Policy Integration › should have accessible privacy policy page
+Desktop-Chrome | gdpr-compliance.spec.js | GDPR Compliance Tests › Privacy Policy Integration › should have functional privacy controls
+Desktop-Chrome | interactive-animations.spec.js | Interactive Elements and Animations › Interactive UI Components › should test button and link interactions
+Desktop-Chrome | interactive-animations.spec.js | Interactive Elements and Animations › Interactive UI Components › should test dropdown and menu interactions
+Desktop-Chrome | interactive-animations.spec.js | Interactive Elements and Animations › Performance of Interactive Elements › should measure animation performance
+Desktop-Chrome | journal-cycling.spec.js | Journal Page Cycling Fix › should cycle between journal pages without interference from scroll animation
+Desktop-Chrome | journal-functionality.spec.js | Da Vinci Journal Functionality › should have accessible journal content
+Desktop-Chrome | journal-functionality.spec.js | Da Vinci Journal Functionality › should have proper journal content
+Desktop-Chrome | language-aware-navigation.spec.js | Language-Aware Navigation Tests › header navigation should maintain language context from press page
+Desktop-Chrome | language-aware-navigation.spec.js | Language-Aware Navigation Tests › navigation from press page should maintain language context
+Desktop-Chrome | language-aware-navigation.spec.js | Language-Aware Navigation Tests › press page internal links should maintain language context
+Desktop-Chrome | language-navigation-comprehensive.spec.js | Comprehensive Language Navigation › should load all language homepages successfully
+Desktop-Chrome | language-simple-test.spec.js | Simple Language Validation › identify template-missing languages
+Desktop-Chrome | language-switcher-e2e.spec.js | Language Switcher E2E Tests › should handle cross-language navigation correctly
+Desktop-Chrome | language-switcher-e2e.spec.js | Language Switcher E2E Tests › should handle header navigation links correctly from non-homepage pages
+Desktop-Chrome | language-switcher-e2e.spec.js | Language Switcher E2E Tests › should have no broken images across all language pages
+Desktop-Chrome | language-switching.spec.js | Language Switching and Translation Tests › Bidirectional Language Switching › should switch from English to each language and back
+Desktop-Chrome | language-switching.spec.js | Language Switching and Translation Tests › Cross-Language Content Validation › should have working language switcher on all language pages
+Desktop-Chrome | language-switching.spec.js | Language Switching and Translation Tests › Language Switcher Functionality › should maintain language switcher accessibility
+Desktop-Chrome | layout-alignment.spec.js | Layout and Alignment › should handle inline styles cleanup
+Desktop-Chrome | layout-alignment.spec.js | Layout and Alignment › should have proper enterprise AI panel layout
+Desktop-Chrome | layout-alignment.spec.js | Layout and Alignment › should have properly aligned feature icons
+Desktop-Chrome | mobile-navigation-comprehensive.spec.js | Comprehensive Mobile Navigation Tests › Mobile Language Navigation › should test language switcher on mobile
+Desktop-Chrome | mobile-navigation-comprehensive.spec.js | Comprehensive Mobile Navigation Tests › Mobile Menu Functionality › should test touch interactions on mobile navigation
+Desktop-Chrome | new-divinci-site.spec.js | New-Divinci Zola Site › should be responsive on mobile
+Desktop-Chrome | new-divinci-site.spec.js | New-Divinci Zola Site › should check for broken images
+Desktop-Chrome | new-divinci-site.spec.js | New-Divinci Zola Site › should display all 10 features
+Desktop-Chrome | new-divinci-site.spec.js | New-Divinci Zola Site › should display all main sections
+Desktop-Chrome | new-divinci-site.spec.js | New-Divinci Zola Site › should have AI for Good principles
+Desktop-Chrome | new-divinci-site.spec.js | New-Divinci Zola Site › should have comprehensive footer
+Desktop-Chrome | new-divinci-site.spec.js | New-Divinci Zola Site › should have enterprise AI panels
+Desktop-Chrome | new-divinci-site.spec.js | New-Divinci Zola Site › should have functioning header navigation
+Desktop-Chrome | new-divinci-site.spec.js | New-Divinci Zola Site › should have proper video elements
+Desktop-Chrome | new-divinci-site.spec.js | New-Divinci Zola Site › should have working language switcher
+Desktop-Chrome | new-divinci-site.spec.js | New-Divinci Zola Site › should have working signup form
+Desktop-Chrome | responsive-mobile.spec.js | Responsive Design and Mobile Navigation › Mobile Viewport Tests › should handle touch interactions on mobile
+Desktop-Chrome | scroll-animation.spec.js | Journal Scroll Animation Test › should apply scroll-based fanning animation to journal pages
+Desktop-Chrome | social-media-sharing.spec.js | Social Media Sharing Meta Tags › Open Graph Meta Tags › should have proper Open Graph meta tags on homepage
+Desktop-Chrome | social-media-sharing.spec.js | Social Media Sharing Meta Tags › Twitter Card Meta Tags › should have proper Twitter Card meta tags
+Desktop-Chrome | www-rag-directory.spec.js | WWW-RAG directory › icons are only requested for rows the visitor actually reaches
+Desktop-Chrome | www-rag-universe.spec.js | The RAG universe › a corpus larger than today's never blocks the main thread
+Desktop-Chrome | www-rag-universe.spec.js | The RAG universe › a hostile hostname stays on the canvas and never becomes HTML
+Desktop-Chrome | www-rag-universe.spec.js | The RAG universe › renders the map once the endpoint answers
+Desktop-Chrome | www-rag-universe.spec.js | The RAG universe › the animation stops instead of burning a core forever
+Desktop-Chrome | www-rag-universe.spec.js | The RAG universe, with reduced motion › arrives as a settled still frame and never animates
