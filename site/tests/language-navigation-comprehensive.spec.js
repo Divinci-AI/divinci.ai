@@ -54,6 +54,13 @@ test.describe('Comprehensive Language Navigation', () => {
   });
 
   test('should load all language homepages successfully', async ({ page }) => {
+    // This visits THIRTEEN homepages in one test and measures 32-40s on a CI
+    // runner, against Playwright's default 30s test timeout — so it failed on
+    // two runs and passed on a third purely by finishing under the wire. That
+    // reads as flakiness and is not: it is a correct test with a wrong budget.
+    // test.slow() triples the timeout rather than exempting the test from the
+    // gate, which is what a genuinely nondeterministic test would need.
+    test.slow();
     console.log('🌍 Testing all language homepages...\n');
     
     const results = [];

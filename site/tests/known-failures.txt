@@ -58,7 +58,6 @@ Desktop-Chrome | journal-functionality.spec.js | Da Vinci Journal Functionality 
 Desktop-Chrome | language-aware-navigation.spec.js | Language-Aware Navigation Tests › header navigation should maintain language context from press page
 Desktop-Chrome | language-aware-navigation.spec.js | Language-Aware Navigation Tests › navigation from press page should maintain language context
 Desktop-Chrome | language-aware-navigation.spec.js | Language-Aware Navigation Tests › press page internal links should maintain language context
-Desktop-Chrome | language-navigation-comprehensive.spec.js | Comprehensive Language Navigation › should load all language homepages successfully
 Desktop-Chrome | language-simple-test.spec.js | Simple Language Validation › identify template-missing languages
 Desktop-Chrome | language-switcher-e2e.spec.js | Language Switcher E2E Tests › should handle cross-language navigation correctly
 Desktop-Chrome | language-switcher-e2e.spec.js | Language Switcher E2E Tests › should have no broken images across all language pages
