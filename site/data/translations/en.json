@@ -1130,7 +1130,7 @@
     "eyebrow": "Open Research",
     "title": "Open weights, open patches, open vIndexes.",
     "body_1": "We publish vIndexes — queryable feature databases extracted from open transformers — for every model we use. Twelve live on Hugging Face today, spanning four model families and four organizations, plus two natively-trained 1-bit dissolution controls.",
-    "body_2": "The viewer lets you orbit the FFN feature space in 3D. The blog series walks the universal-constants to surgical-edits. LarQL is open-source: github.com/Divinci-AI/larql",
+    "body_2": "The viewer lets you orbit the FFN feature space in 3D. The blog series walks the universal-constants to surgical-edits.",
     "cta_primary": "Read the research →",
     "cta_secondary": "Browse on Hugging Face"
   },
@@ -1166,7 +1166,6 @@
       "concrete, specific guidance — not vague advice.",
       "matches the expert’s established voice & priorities."
     ],
-    "footnote": "Illustrative example of the framing difference — not a scored benchmark result.",
     "verdict_meta": "How we score these when we measure: Spearman ρ · length-tolerant completeness · citation grounding · voice fit",
     "cta": "The methodology behind this measurement",
     "verdict_text": "Same prompt. One answer applies the deployed expert’s framework and cites the corpus — the other doesn’t.",

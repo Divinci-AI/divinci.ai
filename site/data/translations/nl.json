@@ -1127,7 +1127,7 @@
     "eyebrow": "Open onderzoek",
     "title": "Open weights, open patches, open vIndexes.",
     "body_1": "We publiceren vIndexes — doorzoekbare feature-databases geëxtraheerd uit open transformers — voor elk model dat we gebruiken. Twaalf staan vandaag live op Hugging Face, verdeeld over vier modelfamilies en vier organisaties, plus twee native getrainde 1-bit oplossingscontroles.",
-    "body_2": "De viewer laat u om de FFN-featureruimte in 3D draaien. De blogserie loopt van universele constanten naar chirurgische bewerkingen. LarQL is open-source: github.com/Divinci-AI/larql",
+    "body_2": "De viewer laat u om de FFN-featureruimte in 3D draaien. De blogserie loopt van universele constanten naar chirurgische bewerkingen.",
     "cta_primary": "Lees het onderzoek →",
     "cta_secondary": "Blader op Hugging Face"
   },
@@ -1163,7 +1163,6 @@
       "concrete, specifieke richtlijn — geen vaag advies.",
       "sluit aan bij de gevestigde stem & prioriteiten van de expert."
     ],
-    "footnote": "Illustratief voorbeeld van het verschil in kadering — geen gescoord benchmarkresultaat.",
     "verdict_meta": "Hoe we dit scoren bij een meting: Spearman ρ · lengtetolerante volledigheid · citaatonderbouwing · stemovereenkomst",
     "cta": "De methodologie achter deze meting",
     "verdict_text": "Dezelfde vraag. Eén antwoord past het raamwerk van de ingezette expert toe en citeert het corpus — het andere niet.",

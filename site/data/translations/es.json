@@ -1127,7 +1127,7 @@
     "eyebrow": "Investigación abierta",
     "title": "Pesos abiertos, parches abiertos, vIndexes abiertos.",
     "body_1": "Publicamos vIndexes — bases de datos de características consultables extraídas de transformers abiertos — para cada modelo que utilizamos. Doce están disponibles en Hugging Face hoy, abarcando cuatro familias de modelos y cuatro organizaciones, más dos controles de disolución 1-bit entrenados de forma nativa.",
-    "body_2": "El visualizador le permite orbitar el espacio de características FFN en 3D. La serie de blog recorre desde las constantes universales hasta las ediciones quirúrgicas. LarQL es de código abierto: github.com/Divinci-AI/larql",
+    "body_2": "El visualizador le permite orbitar el espacio de características FFN en 3D. La serie de blog recorre desde las constantes universales hasta las ediciones quirúrgicas.",
     "cta_primary": "Leer la investigación →",
     "cta_secondary": "Explorar en Hugging Face"
   },
@@ -1163,7 +1163,6 @@
       "orientación concreta y específica — no un consejo vago.",
       "coincide con la voz y las prioridades establecidas del experto."
     ],
-    "footnote": "Ejemplo ilustrativo de la diferencia de enfoque, no un resultado de benchmark puntuado.",
     "verdict_meta": "Cómo lo puntuamos cuando medimos: Spearman ρ · exhaustividad tolerante a la longitud · fundamentación de citas · ajuste de voz",
     "cta": "La metodología detrás de esta medición",
     "verdict_text": "La misma pregunta. Una respuesta aplica el marco del experto desplegado y cita el corpus; la otra no.",
