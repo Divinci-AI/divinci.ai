@@ -1,0 +1,90 @@
+<html><head><meta charset="utf-8"><title>Divinci AI — Investor Executive Summary: Bobby's questions, answered</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;font-size:11pt;line-height:1.4}
+h1{font-size:18pt}h2{font-size:14pt;margin-top:22pt;border-bottom:1px solid #999;padding-bottom:3pt}
+p.q{font-weight:bold;margin-bottom:2pt;margin-top:12pt}
+p.a{margin-top:0;margin-left:14pt}
+p.note{color:#555;font-style:italic}
+table{border-collapse:collapse}td,th{border:1px solid #999;padding:3pt 6pt;font-size:10pt}
+</style></head><body>
+<h1>Divinci AI — Investor Executive Summary: Bobby's questions, answered</h1>
+<p class="note">Companion to the one-page Investor Executive Summary v0.3 (2 September 2026). Bobby Edelman's outline (The Brink SBDC @ USD, email of 31 August 2026) is reproduced as questions; each answer is the source material behind the corresponding section of the one-pager. Prepared for Michael Mooring, Samuel Tobia and Anindya Sundar Nandi. Facts trace to the plan documents (one-pager, strategy, expense workbook v0.2, fact base as of 1 September) or to founder-supplied figures of 2 September.</p>
+
+<h2>1. Company Overview</h2>
+<p class="q">Name and founding date?</p>
+<p class="a">Divinci AI Inc., a Delaware C-corporation (file no. 2970809), incorporated 22 January 2024. Platform development began mid-2023. Headquartered in Irvine, California; web: divinci.ai.</p>
+<p class="q">Mission statement or vision?</p>
+<p class="a">Custom AIs a business can prove: built, continuously evolved, and independently verifiable on the Divinci platform.</p>
+<p class="q">High-level description of the product or service offered?</p>
+<p class="a">The Divinci platform builds and runs custom AI assistants for businesses: retrieval over their own content, voice, web embeds, and SDK, CLI and MCP surfaces. The compliance wedge, Model Erasure with a receipt, finds what an AI model has learned about a person, removes it, proves the rest of the model still performs, and hands the auditor a signed receipt they can verify without trusting Divinci.</p>
+
+<h2>2. Problem</h2>
+<p class="q">What market pain points or customer challenges does the company solve?</p>
+<p class="a">A company can delete a database row, but a model that learned from that data can still remember the person in its learned numerical memory. Under GDPR Article 17 (the right to erasure) "we deleted the row" is no longer a complete answer, and regulators (EDPB, CNIL) currently treat retraining as the defensible response: slow, expensive, and in practice rarely done. Most large enterprises running AI in Europe have no answer if a model-level erasure demand arrives. No regulator has yet ruled on whether any unlearning method discharges Article 17; that question is open for the whole market.</p>
+<p class="q">Data or statistics on the problem's scale or urgency?</p>
+<p class="a">EU AI Act enforcement powers went live 2 August 2026. GDPR fines run up to €20M or 4% of global turnover. Retraining a 70B model costs $0.5k–50k in compute for a non-trivial fine-tune and $50k–500k as a full engagement including labor, data preparation, engineering time and downtime.</p>
+
+<h2>3. Solution and benefits</h2>
+<p class="q">How does the product address the problem?</p>
+<p class="a">Find, remove, prove. Identify what a model learned about an individual; remove it on open-weight models; re-measure the model against pre-set performance thresholds; issue a signed receipt (Ed25519, a standard digital-signature method) served from a public endpoint and checked by an open-source verifier with no dependency on Divinci.</p>
+<p class="q">Unique selling propositions or innovations versus competitors?</p>
+<p class="a">The proof step is the product. In Divinci's own August 2026 test the untouched control topics degraded more than the erased topic (−0.058 vs −0.026), which a vendor that cannot measure would have shipped silently. Nobody else sells the measurement half. The receipt is live in production today, not a proposed format.</p>
+<p class="q">Benefits?</p>
+<p class="a">Discharge an erasure demand without a full retrain. Evidence an auditor can check alone. Damage to the model is measured rather than assumed. The result is a single artifact a regulator, auditor or customer can verify independently.</p>
+
+<h2>4. Target Market</h2>
+<p class="q">Defined market segments or demographics?</p>
+<p class="a">Privacy, DPO and GRC buyers at organisations running open-weight, self-hosted, EU-facing models with a live or imminent erasure exposure. Reached directly and through the seven consultancy partners.</p>
+<p class="q">Market size and growth potential?</p>
+<p class="a">Honest estimate of the qualified market: tens to low hundreds of organisations globally, unmeasured. Sizing it through 15–20 privacy-counsel and DPO interviews is a task inside the 30-day gate, not an assumption. For context only: the machine-unlearning niche is projected at $0.15B (2025) to $2.73B (2032), a 51.2% CAGR from a small base, and Fortune 500 AI-compliance programmes budget $8–15M initially.</p>
+
+<h2>5. Traction and Milestones</h2>
+<p class="q">Key achievements to date?</p>
+<p class="a">TrustBench receipt in production: first production certificate tr_793H62GCEK3W9GAS6YYTWEP0KC is complete, signature valid, verifiable with zero credentials; public key registry live. QA suite in production with per-metric threshold gates, scheduled runs and alerts. Erasure API (LarQL) on staging for open-weight models with two API surfaces, two SDKs, a CLI and a web UI; nine published and sixteen catalogued vIndexes. A measured erasure experiment published August 2026 including its negative result. Seven software-development consultancy partnerships signed and ready to run the Divinci demo pipeline. Member of the Google for Startups Cloud Program. Registered trademark.</p>
+<p class="q">Future milestones and timeline?</p>
+<p class="a">Next 30 days, a pre-registered go/no-go gate: an individual-level erasure experiment across multiple model families with a control individual and a kill criterion stated in advance; a scoped EU data-protection counsel opinion; one live Article 17 request discharged end to end with a design partner; 15–20 demand interviews; three design partners signed; evaluation protocol published within 60 days including failures. Contingent on the gate: an In-Q-Tel technology development application ($500k–3M range), approached after the gate result and leading with the receipt. Divinci has no relationship with In-Q-Tel today and no clearances.</p>
+
+<h2>6. Business Model</h2>
+<p class="q">Revenue streams and pricing strategy?</p>
+<p class="a">Planning-grade pricing anchored to the retrain substitute, priced far below retrain cost divided by the number of requests:</p>
+<table><tr><th>Line</th><th>Price</th></tr>
+<tr><td>vIndex build, per model-version</td><td>$30k–75k one-time</td></tr>
+<tr><td>Erasure readiness, per model per year (N runs, receipts, re-index)</td><td>$60k–150k</td></tr>
+<tr><td>Overage beyond included runs</td><td>$2k–5k per run</td></tr>
+<tr><td>Partner / OEM revenue share</td><td>20–25% of list</td></tr>
+<tr><td>Design partners</td><td>$0 plus a dated, publishable case study</td></tr></table>
+<p class="q">Potential for scalability and profitability?</p>
+<p class="a">Revenue scales with the customer's model registry rather than Divinci's headcount, because the receipt and re-measure steps are automated. Current revenue is $0; the first dollars are expected from the consultancy partnerships and from design-partner case studies converting to paid readiness contracts.</p>
+
+<h2>7. Team</h2>
+<p class="q">Key team members, expertise and relevant experience?</p>
+<p class="a">Michael Duane Mooring, Co-founder and CEO: built the Divinci platform from its first commit in 2023 through its production surfaces; leads product, engineering and the compliance wedge. Samuel Tobia, CTO: technical co-founder; infrastructure, deployments and the production Cloudflare and Google Cloud estate. Anindya Sundar Nandi, Product Marketing Manager: demo pipeline, partner enablement and customer-facing evaluation. Two technical co-founders and five shipping product surfaces (web, embed, desktop, SDK/CLI, MCP).</p>
+<p class="q">Notable advisors or partnerships?</p>
+<p class="a">The Brink SBDC @ USD (Bobby Edelman). Google for Startups Cloud Program, with a Google Cloud Marketplace listing in progress. Seven consultancy partnerships. A named academic co-signer for the erasure result is a recruitment target of the gate, not yet secured.</p>
+
+<h2>8. Financial Highlights</h2>
+<p class="q">Current revenue, burn rate and funding stage?</p>
+<p class="a">Revenue $0. Burn about $5,000/month keep-the-lights-on expenses; founders draw no salary. Bootstrapped; no seed round raised.</p>
+<p class="q">Projected revenue and profit margins?</p>
+<p class="a">Break-even target about $11,000/month: the $5,000 of expenses plus $2,000/month for each of the three founders; everything above that line is return. Compliance programme year 1 costs about $224k at founder scale (~$179k plus 25% contingency), funded from operations, with $0 programme revenue in year 1. Post-gate scenarios from workbook v0.2: Lean ~$1.53M (about 5 people, validate the wedge); Standard ~$3.47M (8–9 people, $150–400k revenue from 2–4 direct deals); Aggressive ~$6.06M (15–18 people, $0.5–1.2M revenue). Gross margin is not yet claimed: the vIndex build cost per model-version is unmeasured and is a Week-2 task.</p>
+
+<h2>9. Funding Ask</h2>
+<p class="q">Specific amount of capital sought?</p>
+<p class="a">None to run the 30-day gate. The ask today is three design partners with open-weight models and EU exposure, an introduction to EU data-protection counsel, and a named academic willing to adversarially test and co-sign the result. If the gate passes, a raise of about $1.5M against the Lean scenario, with an In-Q-Tel work-program application as a non-dilutive complement.</p>
+<p class="q">Planned allocation of funds?</p>
+<p class="a">Engineering $810k (two ML engineers and one platform engineer); independent validation, SOC 2 and ISO 42001 $180k; legal, IP and regulatory $90k; GPU, vIndex COGS and cloud $55k; design-partner delivery, events, content, travel and partner fees $65k; insurance and overhead $25k; 25% contingency $306k.</p>
+<p class="q">Potential ROI or valuation targets?</p>
+<p class="a">No valuation target has been set. The ROI frame today is the break-even line above; a priced round is only justified against the gate's result.</p>
+
+<h2>10. Competitive Advantage</h2>
+<p class="q">Key differentiators from competitors?</p>
+<p class="a">The bundle: baseline, erase, re-measure, attest, delivered as one verifiable artifact. Hirundo (Israel, $8M seed, weight-level edits on Llama, DeepSeek, Qwen and Gemma) is ahead on distribution and could copy a receipt format in weeks, but is behind on EU framing and, as far as Divinci can see, on the evidence artifact. Divinci publishes its failures, which is credibility rather than a moat.</p>
+<p class="q">Proprietary technology, patents or barriers to entry?</p>
+<p class="a">Rank-one editing methods (ROME, MEMIT) are published commodity; the moat is the measured, signed, independently checkable evidence around the edit, and the production receipt infrastructure already running. Registered trademark; no patents filed; a freedom-to-operate review is budgeted.</p>
+
+<h2>11. Contact Information</h2>
+<p class="q">Primary contact, email, phone and website?</p>
+<p class="a">Michael Duane Mooring, Co-founder and CEO. mike@divinci.ai. +1 646-346-0194. https://divinci.ai</p>
+
+<p class="note">Citation layer: GDPR Article 17 is the erasure right; EU AI Act Article 17 is the quality-management system; Annex IV contains no erasure clause.</p>
+</body></html>

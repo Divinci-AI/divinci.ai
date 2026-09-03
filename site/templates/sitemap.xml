@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{#- Zola's default sitemap, minus the Access-gated investor data room. A URL in the
+    sitemap is an invitation to crawl; /investors answers every crawler with an
+    Access login page, and listing it would also advertise that the path exists. -#}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for sitemap_entry in entries %}
+{%- if sitemap_entry.permalink is containing("/investors") %}{% continue %}{% endif %}
+    <url>
+        <loc>{{ sitemap_entry.permalink | escape_xml | safe }}</loc>
+        {%- if sitemap_entry.updated %}
+        <lastmod>{{ sitemap_entry.updated }}</lastmod>
+        {%- endif %}
+    </url>
+{%- endfor %}
+</urlset>

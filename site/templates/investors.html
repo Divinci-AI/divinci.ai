@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{# /investors — the investor data room. Served ONLY behind a Cloudflare Access
+   application scoped to divinci.ai/investors (see notes in content/investors.md).
+   Everything under /investors/ is noindex: the page carries the meta tag, the
+   search-index builder skips it, and the worker's robots.txt disallows it. #}
+
+{% block extra_head %}
+<meta name="robots" content="noindex,nofollow,noarchive">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Scoped to /investors. Tokens mirror the Investor Executive Summary artifact so the
+     one-pager reads the same here and there. Deliberately not in style.css. */
+  .dr{--paper:#F5F6F8;--sheet:#FFFFFF;--ink:#1B1F26;--ink-2:#4A535F;--ink-3:#7A838F;--rule:#D9DDE3;
+      --accent:#0F5C6E;--accent-ink:#0B4655;--accent-wash:#E6F0F2;--confirm:#8A5A00;--confirm-wash:#FBF1DC;--confirm-rule:#E1B45C;
+      --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;--sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+      --cond:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;
+      background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;}
+  @media (prefers-color-scheme: dark){.dr{--paper:#14181D;--sheet:#1B2026;--ink:#E8EAEE;--ink-2:#B4BAC3;--ink-3:#87919C;--rule:#2E353D;--accent:#5FB3C4;--accent-ink:#8ACBD8;--accent-wash:#183038;--confirm:#E8B75A;--confirm-wash:#332912;--confirm-rule:#8A6A2A;}}
+  .dr .page{max-width:1120px;margin:0 auto;padding:40px 24px 64px;}
+  .dr header.masthead{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:24px;}
+  .dr .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 8px;}
+  .dr h1{font-family:var(--cond);font-weight:700;font-size:38px;line-height:1.05;margin:0;text-wrap:balance;color:var(--ink);}
+  .dr h1 span{color:var(--accent);}
+  .dr .masthead .meta{font-family:var(--mono);font-size:12px;color:var(--ink-2);text-align:right;line-height:1.7;}
+  .dr .gate{background:var(--accent-wash);border-left:3px solid var(--accent);padding:10px 14px;font-size:13.5px;color:var(--ink-2);margin:0 0 26px;}
+  .dr .gate b{color:var(--accent-ink);}
+  .dr .partners{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 30px;}
+  .dr .partner{background:var(--sheet);border:1px solid var(--rule);border-top:3px solid var(--accent);padding:14px 16px;}
+  .dr .partner .who{font-family:var(--cond);font-size:15px;font-weight:700;margin:0 0 4px;}
+  .dr .partner .what{font-size:13.5px;color:var(--ink-2);margin:0;}
+  .dr .partner .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px;}
+  .dr .confirm{font-family:var(--mono);font-size:11.5px;color:var(--confirm);background:var(--confirm-wash);border:1px dashed var(--confirm-rule);padding:1px 6px;border-radius:2px;}
+  .dr .grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:40px;align-items:start;}
+  .dr main{min-width:0;}
+  .dr section{padding:22px 0;border-top:1px solid var(--rule);}
+  .dr section:first-of-type{border-top:0;padding-top:0;}
+  .dr h2{font-family:var(--cond);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 10px;display:flex;gap:10px;align-items:baseline;}
+  .dr h2 .n{font-family:var(--mono);font-weight:500;color:var(--ink-3);letter-spacing:0;}
+  .dr p{margin:0 0 10px;max-width:68ch;}
+  .dr ul{margin:6px 0 10px;padding-left:20px;max-width:70ch;}
+  .dr li{margin:4px 0;}
+  .dr strong{font-weight:600;}
+  .dr .fig{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.94em;}
+  .dr .cite{font-family:var(--mono);font-size:11px;color:var(--accent);background:var(--accent-wash);padding:1px 5px;border-radius:2px;white-space:nowrap;}
+  .dr .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:14px;margin:8px 0 12px;max-width:70ch;}
+  .dr .kv dt{font-family:var(--mono);font-size:12px;color:var(--ink-3);letter-spacing:.04em;text-transform:uppercase;padding-top:2px;}
+  .dr .kv dd{margin:0;}
+  .dr table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0 12px;}
+  .dr th,.dr td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  .dr th{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:500;}
+  .dr td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .dr .tablewrap{overflow-x:auto;}
+  .dr .receipt{background:var(--sheet);border:1px solid var(--rule);border-top:3px solid var(--accent);padding:14px 16px;margin:12px 0 14px;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--ink-2);}
+  .dr .receipt .lbl{color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-size:10.5px;}
+  .dr .receipt .ok{color:var(--accent);font-weight:500;}
+  .dr aside{position:sticky;top:20px;display:flex;flex-direction:column;gap:20px;}
+  .dr .rail{background:var(--sheet);border:1px solid var(--rule);padding:16px 18px;}
+  .dr .rail h3{font-family:var(--cond);font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 10px;color:var(--ink-2);}
+  .dr .rail dl{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:13.5px;margin:0;}
+  .dr .rail dt{font-family:var(--mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;padding-top:3px;}
+  .dr .rail dd{margin:0;}
+  .dr .docs{list-style:none;padding:0;margin:0;max-width:none;}
+  .dr .docs li{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--rule);margin:0;}
+  .dr .docs li:last-child{border-bottom:0;}
+  .dr .docs a{color:var(--accent-ink);text-decoration:none;font-weight:500;}
+  .dr .docs a:hover{text-decoration:underline;}
+  .dr .docs .kind{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;}
+  .dr .docs .sub{display:block;font-size:13px;color:var(--ink-2);}
+  .dr footer.note{margin-top:28px;padding-top:14px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-3);font-style:italic;max-width:80ch;}
+  @media (max-width:820px){.dr .grid{grid-template-columns:1fr;} .dr aside{position:static;} .dr header.masthead{grid-template-columns:1fr;} .dr .masthead .meta{text-align:left;}}
+  @media print{.dr{background:#fff;} .dr aside{position:static;}}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dr">
+<div class="page">
+
+<header class="masthead">
+  <div>
+    <p class="eyebrow">Investor data room · updated 3 September 2026</p>
+    <h1>Divinci AI — model erasure <span>with a receipt an auditor can verify without us</span></h1>
+  </div>
+  <div class="meta">Divinci AI Inc. · Delaware C-corp · file 2970809<br>Incorporated 22 Jan 2024 · Irvine, CA<br>divinci.ai</div>
+</header>
+
+<p class="gate"><b>Confidential.</b> This page and every document linked from it sit behind Cloudflare Access; you are reading it because your email was admitted. Please do not forward the files. Every figure traces to the audited plan documents (one-pager, channel strategy, expense workbook, fact base as of 1 September 2026) or to the founders' own figures supplied 2 September 2026.</p>
+
+<div class="partners">
+  <div class="partner">
+    <p class="lbl">Ecosystem partner</p>
+    <p class="who">Cloudflare</p>
+    <p class="what">Workers Launchpad Cohort 6 (Birthday Week 2025). The Divinci platform, its edge audio services and the embed clients run on Cloudflare Workers, Workers AI, R2, D1 and Vectorize.</p>
+  </div>
+  <div class="partner">
+    <p class="lbl">Ecosystem partner</p>
+    <p class="who">Google</p>
+    <p class="what">Member of the Google for Startups Cloud Program (Ecosystem Partner tier). Production API on Google Cloud Run and Vertex AI; a Google Cloud Marketplace listing is in progress.</p>
+  </div>
+  <div class="partner">
+    <p class="lbl">Banking &amp; innovation economy</p>
+    <p class="who">J.P. Morgan Innovation Economy</p>
+    <p class="what">Relationship through J.P. Morgan's Innovation Economy practice for venture-backed and high-growth companies. <span class="confirm">founders to confirm wording and scope before external use</span></p>
+  </div>
+</div>
+
+<div class="grid">
+<main>
+
+<section>
+  <h2><span class="n">1</span>Company overview</h2>
+  <dl class="kv">
+    <dt>Mission</dt><dd>Custom AIs a business can prove — built, continuously evolved, and independently verifiable on the Divinci platform.</dd>
+    <dt>Platform</dt><dd>Builds and runs custom AI assistants for businesses: retrieval over their own content, voice, web embeds, SDK, CLI and MCP surfaces. Platform development since mid-2023.</dd>
+    <dt>Wedge</dt><dd><strong>Model Erasure with a receipt.</strong> Find what an AI model has learned about a person, remove it, prove the rest of the model still performs, and hand the auditor a signed receipt they can check without trusting us.</dd>
+  </dl>
+</section>
+
+<section>
+  <h2><span class="n">2</span>Problem</h2>
+  <p>The EU AI Act's enforcement powers went live on <strong>2 August 2026</strong>. GDPR's right to erasure <span class="cite">GDPR Art. 17</span> was already enforceable, with fines up to <strong class="fig">€20M or 4%</strong> of global turnover.</p>
+  <p>A company can delete a database row, but a model (software that learned patterns from data) can still remember a person in its learned numerical memory. "We deleted the row" is no longer a complete answer. Regulators (EDPB, CNIL) currently treat <strong>retraining</strong> as the defensible response — slow, expensive, and in practice rarely done. Most large enterprises running AI in Europe have no answer at all if a model-level erasure demand arrives.</p>
+  <p>To our knowledge no regulator has yet ruled on whether <em>any</em> unlearning method discharges GDPR Article 17. That question is open for everyone in this market.</p>
+</section>
+
+<section>
+  <h2><span class="n">3</span>Solution and benefits</h2>
+  <p><strong>Find. Remove. Prove.</strong> Identify what a model learned about an individual; remove it on open-weight models; re-measure performance against thresholds set in advance; issue a signed receipt (Ed25519, a standard digital-signature method) served from a public endpoint and checked by an open-source verifier that has no dependency on Divinci.</p>
+  <div class="receipt">
+    <span class="lbl">First production certificate</span><br>
+    tr_793H62GCEK3W9GAS6YYTWEP0KC · signing key tbp-prod-002<br>
+    status <span class="ok">complete</span> · signature <span class="ok">valid</span> · verifiable with zero credentials via @divinci-ai/trustbench-verifier
+  </div>
+  <ul>
+    <li><strong>Discharge an erasure demand without a full retrain.</strong> A non-trivial 70B fine-tune runs <span class="fig">$0.5k–50k</span> in compute, and <span class="fig">$50k–500k</span> as a full engagement — labor, data prep, engineering time, downtime.</li>
+    <li><strong>Evidence an auditor can check alone.</strong> The receipt is live in production today, not a proposed format.</li>
+    <li><strong>The proof step is the product.</strong> In our own August test the untouched control topics degraded <em>more</em> than the erased topic (<span class="fig">−0.058 vs −0.026</span>). A vendor that cannot measure that ships the damage silently. Nobody else sells the measurement half.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">4</span>Target market</h2>
+  <p>Privacy, DPO and GRC buyers at organisations running <strong>open-weight, self-hosted, EU-facing models</strong> with a live or imminent erasure exposure. Our honest estimate of that qualified market is tens to low hundreds of organisations globally, <strong>unmeasured</strong> — sizing it through 15–20 privacy-counsel and DPO interviews is a task inside the 30-day gate, not an assumption.</p>
+  <p>Context, not plan: the machine-unlearning niche is projected at <span class="fig">$0.15B (2025) → $2.73B (2032)</span>, 51.2% CAGR, a market-research extrapolation on a small base. Fortune 500 AI-compliance programmes budget <span class="fig">$8–15M</span> initially.</p>
+</section>
+
+<section>
+  <h2><span class="n">5</span>Traction and milestones</h2>
+  <p><strong>Shipped.</strong></p>
+  <ul>
+    <li>TrustBench receipt in production; public key registry live; first certificate externally verified.</li>
+    <li>QA suite in production: per-metric threshold gates, scheduled runs, alerts.</li>
+    <li>Erasure API (LarQL) shipped to staging on open-weight models — two API surfaces, two SDKs, a CLI and a web UI; nine published and sixteen catalogued vIndexes.</li>
+    <li>A measured erasure experiment published in August 2026, including the negative result.</li>
+    <li>Divinci platform in production. <strong>Seven software-development consultancy partnerships</strong> signed and ready to run the Divinci demo pipeline and expand Divinci through their own client bases.</li>
+  </ul>
+  <p><strong>Next 30 days — a pre-registered go/no-go gate</strong> (3 September to 3 October 2026).</p>
+  <ul>
+    <li>Individual-level erasure experiment across three model families and three association types with a control individual; the kill criterion is stated before the run.</li>
+    <li>Scoped EU data-protection counsel opinion, treated as a bounding input rather than the answer.</li>
+    <li>A live GDPR Article 17 request discharged end to end with a design partner.</li>
+    <li>15–20 demand interviews; three design partners signed; evaluation protocol published within 60 days, failures included.</li>
+  </ul>
+  <p><strong>Strategic-partner track, contingent on the gate.</strong> In-Q-Tel, the not-for-profit strategic investor for the U.S. national-security community, funds technology development agreements of <span class="fig">$500k–3M</span> structured as development and licensing deals. Our signed, independently verifiable receipt is the artifact an AI-assurance audit keeps. We have no relationship with In-Q-Tel today and no clearances; we would approach after the gate result, leading with the receipt. The full brief is in the documents below.</p>
+</section>
+
+<section>
+  <h2><span class="n">6</span>Business model</h2>
+  <p>Planning-grade pricing, anchored to the retrain substitute: the per-event price sits far below retrain/N, because retraining clears the whole backlog once.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Line</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr><td>vIndex build, per model-version</td><td class="num">$30k–75k one-time</td></tr>
+      <tr><td>Erasure readiness, per model per year (N runs + receipts + re-index)</td><td class="num">$60k–150k</td></tr>
+      <tr><td>Overage beyond included runs</td><td class="num">$2k–5k per run — never the anchor</td></tr>
+      <tr><td>Partner / OEM rev-share</td><td class="num">20–25% of list</td></tr>
+      <tr><td>Design partners</td><td class="num">$0 + dated publishable case study</td></tr>
+    </tbody>
+  </table></div>
+  <p>Scales with the customer's model registry rather than our headcount: the receipt and re-measure steps are automated. Current revenue is $0; the first dollars come from the consultancy partnerships and the design-partner case studies converting.</p>
+</section>
+
+<section>
+  <h2><span class="n">7</span>Team</h2>
+  <ul>
+    <li><strong>Michael Duane Mooring — Co-founder &amp; CEO.</strong> Built the Divinci platform from its first commit (2023) through its production surfaces; leads product, engineering and the compliance wedge.</li>
+    <li><strong>Samuel Tobia — CTO.</strong> Technical co-founder; infrastructure, deployments and the production Cloudflare and Google Cloud estate.</li>
+    <li><strong>Anindya Sundar Nandi — Product Marketing Manager.</strong> Demo pipeline, partner enablement and customer-facing evaluation of the product.</li>
+  </ul>
+  <p>Two technical co-founders; five shipping product surfaces (web, embed, desktop, SDK/CLI, MCP). Advisors and programmes: The Brink SBDC at the University of San Diego (Bobby Edelman); Cloudflare Workers Launchpad; Google for Startups Cloud Program. A named academic co-signer is a recruitment target of the gate, not yet secured.</p>
+</section>
+
+<section>
+  <h2><span class="n">8</span>Financial highlights</h2>
+  <dl class="kv">
+    <dt>Stage</dt><dd>Bootstrapped; no seed round raised.</dd>
+    <dt>Revenue</dt><dd><span class="fig">$0</span> today.</dd>
+    <dt>Burn</dt><dd>~<span class="fig">$5,000/month</span> cash today with founders unpaid, rising to ~<span class="fig">$8,000/month</span> when the Google Cloud startup credit ends in September 2026 (measured 2 September; detail in the infrastructure cost sheet below).</dd>
+    <dt>Break-even</dt><dd>~<span class="fig">$11,000/month</span> at today's burn — the expenses plus $2,000/month each for the three founders. Everything above that line is return.</dd>
+    <dt>Programme, yr 1</dt><dd>~<span class="fig">$224k</span> at founder scale (subtotal ~$179k + 25% contingency), funded from operations. Programme revenue in year 1 is <strong>$0</strong> — twelve months of investment, roughly 15% of a three-person team's year.</dd>
+    <dt>Post-gate</dt><dd>Lean ~<span class="fig">$1.53M</span> (~5 people, validate the wedge) · Standard ~<span class="fig">$3.47M</span> (~8–9 people, $150–400k revenue from 2–4 direct deals) · Aggressive ~<span class="fig">$6.06M</span> (~15–18 people, $0.5–1.2M). Each is justified only against the gate's result.</dd>
+    <dt>Margins</dt><dd>vIndex build cost per model-version is not yet measured; it is the open item blocking a gross-margin claim and a Week-2 task of the gate.</dd>
+  </dl>
+</section>
+
+<section>
+  <h2><span class="n">9</span>Funding ask</h2>
+  <p><strong>No capital is required to run the 30-day gate.</strong> What we are asking for now: three design partners with open-weight models and EU exposure; an introduction to EU data-protection counsel who will take the scoped question; a named academic willing to adversarially test and co-sign the result.</p>
+  <p><strong>If the gate passes</strong> — the experiment holds and the counsel memo supports the argument — we would raise <strong class="fig">~$1.5M</strong> against the Lean scenario, alongside an In-Q-Tel work-program application as a non-dilutive complement:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Allocation</th><th>Amount</th></tr></thead>
+    <tbody>
+      <tr><td>Engineering — 2 ML + 1 platform engineer</td><td class="num">$810k</td></tr>
+      <tr><td>Independent validation, SOC 2, ISO 42001, pen test</td><td class="num">$180k</td></tr>
+      <tr><td>Legal, IP and regulatory advisory</td><td class="num">$90k</td></tr>
+      <tr><td>GPU, vIndex COGS and cloud</td><td class="num">$55k</td></tr>
+      <tr><td>Design-partner delivery, events, content, travel, partner fees</td><td class="num">$65k</td></tr>
+      <tr><td>Insurance and overhead</td><td class="num">$25k</td></tr>
+      <tr><td>Contingency, 25%</td><td class="num">$306k</td></tr>
+    </tbody>
+  </table></div>
+  <p>No valuation target has been set; the ROI frame today is the break-even line above, and a priced round is only justified against the gate's result.</p>
+</section>
+
+<section>
+  <h2><span class="n">10</span>Competitive advantage</h2>
+  <p>The defensible position is the <strong>bundle</strong>: baseline → erase → re-measure → attest, as one verifiable artifact. Hirundo (Israel, $8M seed, weight-level edits on Llama, DeepSeek, Qwen and Gemma) is ahead on distribution and could copy a receipt format in weeks, but is behind on EU framing and, as far as we can see, on the evidence artifact. Rank-one editing methods (ROME, MEMIT) are published commodity; the moat is not the edit, it is the measured, signed, independently checkable evidence around it.</p>
+  <p>We publish our failures. That is credibility, not a moat, and we say so. Divinci holds a registered trademark; no patents are filed, and a freedom-to-operate review is budgeted.</p>
+</section>
+
+<section id="documents">
+  <h2><span class="n">11</span>Documents</h2>
+  <p>Hosted copies are served from this protected path. The Google Docs and Sheets are the live, formula-bearing versions and open only for accounts the founders have shared them with.</p>
+  <ul class="docs">
+    <li><span><a href="/investors/docs/Divinci-AI-Compliance-Investor-Deck-v0.1.pdf">Compliance investor deck v0.1</a><span class="sub">The narrative deck: problem, proof, market, gate, ask.</span></span><span class="kind">PDF</span></li>
+    <li><span><a href="/investors/docs/Divinci-Investor-Executive-Summary-v0.3.docx">Investor Executive Summary v0.3</a><span class="sub">The one-page summary this page is built from, in Bobby Edelman's SBDC format.</span></span><span class="kind">DOCX</span></li>
+    <li><span><a href="/investors/docs/Investor-Executive-Summary-v0.3-questions-answered.html">Executive Summary — the questions, answered</a><span class="sub">The eleven SBDC outline questions with the source material behind each section.</span></span><span class="kind">HTML</span></li>
+    <li><span><a href="/investors/docs/Compliance-Channel-Strategy-gen7.html">Compliance channel strategy (gen 7)</a><span class="sub">Pre-registered 30-day gate, pricing, channels, the In-Q-Tel lane. Credibility-scored 0.935 by an independent rubric judge, zero hard fails.</span></span><span class="kind">HTML</span></li>
+    <li><span><a href="/investors/docs/Compliance-One-Pager-gen7.html">Compliance one-pager (gen 7)</a><span class="sub">The 660-word plan summary with every figure cited to its source.</span></span><span class="kind">HTML</span></li>
+    <li><span><a href="/investors/docs/In-Q-Tel-Partner-Brief-gen7.html">In-Q-Tel partner brief (gen 7)</a><span class="sub">Proposal only: a four-phase work program with scope, timeline and acceptance thresholds. No relationship exists today.</span></span><span class="kind">HTML</span></li>
+    <li><span><a href="/investors/docs/EU-AI-Act-Model-Erasure-Strategy-v0.3.pdf">EU AI Act model-erasure strategy v0.3</a><span class="sub">The earlier long-form strategy the current plan descends from.</span></span><span class="kind">PDF</span></li>
+    <li><span><a href="/investors/docs/EU-AI-Act-Model-Erasure-OnePager-v0.5.pdf">Model-erasure one-pager v0.5</a><span class="sub">Baseline one-pager, superseded by the gen-7 version above.</span></span><span class="kind">PDF</span></li>
+    <li><span><a href="/investors/docs/Divinci-AI-Compliance-Customer-Deck-v0.1.pdf">Compliance customer deck v0.1</a><span class="sub">How the product is presented to a DPO or head of AI.</span></span><span class="kind">PDF</span></li>
+    <li><span><a href="/investors/docs/Divinci-AI-Act-Compliance-Deck-v0.1.pdf">AI Act compliance deck v0.1</a><span class="sub">The regulatory map: GDPR Article 17 versus the AI Act's documentation and QMS duties.</span></span><span class="kind">PDF</span></li>
+    <li><span><a href="/investors/docs/Research-Assessment-2026-09-02.html">Research assessment, 2 September 2026</a><span class="sub">How the plan was stress-tested: seven generations of adversarial peer review against a fact base, and what remains open.</span></span><span class="kind">HTML</span></li>
+    <li><span><a href="https://docs.google.com/spreadsheets/d/1huYSsHABQUy7x31D8zmmF4AJWQA5oZjeAxbDBSPJFdU" rel="noopener">Expense workbook v0.2 — Budget · Scenarios · Sources</a><span class="sub">Year-one programme budget with live formulas; Lean, Standard and Aggressive post-gate scenarios.</span></span><span class="kind">Google Sheet</span></li>
+    <li><span><a href="https://docs.google.com/spreadsheets/d/1LBWEe62dqQOM45lyXHNGdIN58MKGqvP5Wrph-IGVK3I" rel="noopener">Infrastructure costs — actuals and 12-month projection</a><span class="sub">Measured Google Cloud, Cloudflare, MongoDB Atlas, Redis and Slack costs, read from the billing consoles on 2 September 2026.</span></span><span class="kind">Google Sheet</span></li>
+    <li><span><a href="https://docs.google.com/document/d/1jZTquaz3HJVPwD-LgngAoDkLsucOK8uU77gZ2VVJ3Ck" rel="noopener">Investor Executive Summary v0.3</a><span class="sub">Editable Google Doc version.</span></span><span class="kind">Google Doc</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">12</span>Contact</h2>
+  <p>Michael Duane Mooring, Co-founder &amp; CEO · mike@divinci.ai · +1 646-346-0194 · https://divinci.ai</p>
+</section>
+
+</main>
+
+<aside>
+  <div class="rail">
+    <h3>At a glance</h3>
+    <dl>
+      <dt>Entity</dt><dd>Divinci AI Inc., Delaware</dd>
+      <dt>Founded</dt><dd>22 Jan 2024</dd>
+      <dt>HQ</dt><dd>Irvine, California</dd>
+      <dt>Team</dt><dd>3 — CEO, CTO, Product Marketing</dd>
+      <dt>Shipped</dt><dd>Receipt in production; erasure in staging</dd>
+      <dt>Partners</dt><dd>7 consultancy partnerships; Cloudflare Launchpad; Google for Startups</dd>
+      <dt>Burn</dt><dd>~$5k/month, no seed raised</dd>
+      <dt>Ask now</dt><dd>No capital. 3 design partners, EU counsel intro, 1 academic</dd>
+      <dt>Ask later</dt><dd>~$1.5M, contingent on the gate; In-Q-Tel work program as a complement</dd>
+      <dt>Yr-1 cost</dt><dd>~$224k from operations</dd>
+    </dl>
+  </div>
+  <div class="rail">
+    <h3>What backs the numbers</h3>
+    <dl>
+      <dt>Plan</dt><dd>One-pager, strategy, expense workbook and In-Q-Tel brief, credibility-scored 0.935 by a Claude Fable 5.1 rubric judge, zero hard fails</dd>
+      <dt>Facts</dt><dd>Fact base verified against the primary EU sources, 28 Aug 2026</dd>
+      <dt>Costs</dt><dd>Retrain-cost probe across four GPU rate cards, 31 Aug; infrastructure bills read from the consoles, 2 Sep</dd>
+      <dt>Founders</dt><dd>Revenue, burn and partnership figures supplied 2 Sep 2026</dd>
+    </dl>
+  </div>
+</aside>
+</div>
+
+<footer class="note">Citation layer: GDPR Article 17 is the erasure right; EU AI Act Article 17 is the quality-management system; Annex IV contains no erasure clause. Figures marked with a currency range are planning-grade estimates from the expense workbook v0.2 and the fact base of 1 September 2026.</footer>
+</div>
+</div>
+{% endblock %}

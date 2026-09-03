@@ -38,7 +38,7 @@ CONTENT = ROOT / "content"
 STATIC = ROOT / "static"
 
 # Pages/dirs to exclude from the index.
-SKIP_PAGES = {"sitemap", "_index"}
+SKIP_PAGES = {"sitemap", "_index", "investors"}  # /investors is Access-gated; never index it
 # Top-level content dirs that are NOT languages.
 SKIP_DIRS = {"blog", "static", "preview", "_index"}
 

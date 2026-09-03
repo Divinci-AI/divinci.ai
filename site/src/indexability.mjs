@@ -94,6 +94,7 @@ Allow: /`;
   }
   return `User-agent: *
 Content-Signal: search=yes, ai-input=yes, ai-train=no
+Disallow: /investors
 Allow: /
 
 Sitemap: ${origin}/sitemap.xml`;

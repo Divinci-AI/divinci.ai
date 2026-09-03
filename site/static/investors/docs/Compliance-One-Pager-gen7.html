@@ -1,0 +1,30 @@
+<html><head><meta charset="utf-8"><title>Divinci — Compliance one-pager (gen-7)</title><style>body{font-family:Arial;font-size:11pt;line-height:1.4} table{border-collapse:collapse} td,th{border:1px solid #999;padding:3pt 6pt;font-size:10pt} h1{font-size:18pt} h2{font-size:14pt} h3{font-size:12pt}</style></head><body><p style="color:#555;font-style:italic">Gen-7 seed (gen7_merged_fixed_0p935), judged by Claude Fable 5.1: credibility 0.9350. Republished 2026-09-03; supersedes the gen-6 text in this document.</p><h1>Erasure you can prove</h1>
+<p>A company can delete a database row, but a model (software that learned patterns from data) can still remember a person in its learned numerical memory. GDPR Article 17 grants erasure of personal data [REG-01]. Rebuilding the model clears that memory, but the same expensive rebuild serves every future request. Divinci plans to erase the remembered item, measure the rest, and issue a receipt an outsider can check. The bracketed codes throughout point to the sourced fact behind each number.</p>
+<h2>What exists today</h2>
+<ul>
+<li><strong>A verifiable receipt is in production.</strong> It uses <strong>Ed25519</strong>, a standard digital-signature method, and an independently licensed tool can check it [PROD-01].</li>
+<li><strong>The erasure engine is staging only</strong>, not live, and it does not affect current chat traffic [PROD-04].</li>
+<li><strong>We report a failed public test.</strong> Our own check caught the damage: removing one document dropped its retrieval from 4/4 to 0, and overall accuracy slipped about five points (0.926 to 0.876). The topics we had <em>not</em> touched — the controls — slipped more than the one we erased (-0.058 versus -0.026), which is exactly what the check exists to catch. That test was <strong>not</strong> model weights (learned numerical memory) and <strong>not</strong> personal data [PROD-09].</li>
+</ul>
+<p>This is early. To our knowledge, no regulator has accepted or rejected model-level unlearning for GDPR Article 17 [REG-06]. Our interpretation is a product thesis, not a legal citation.</p>
+<h2>The 30-day gate</h2>
+<p>Before commercial claims, we will pre-register and publish one falsifiable protocol — thresholds written down before the test, so no one can move them after seeing the result. For one individual, erased answers must remain 0 after direct and reworded prompts. Assumption: the planning-grade general-accuracy threshold is a 0.05 drop. The kill criterion — the result that stops the programme — is any breach of that threshold; a failed gate stops the programme, not a sales plan. The protocol covers multiple association types (each kind of link the model holds between a person and a fact, such as a name-to-diagnosis pair) and at least two open-weight model families (models whose learned numerical memory can be inspected and changed), plus a <strong>Control Individual</strong> — a matched person we never target — whose data is never erased. One individual is an <strong>n = 1</strong> mechanical test; it cannot establish transfer.</p>
+<p>The gate also includes a <strong>live GDPR Article 17 request</strong>: a design partner sends a real request, we attempt to discharge it, and we record the result and receipt. Counsel reviews the interpretation, but counsel opinion is a bounding input, not a ruling that resolves the experiment [GATE-01].</p>
+<h2>Who buys first</h2>
+<p>The first buyer is a privacy, DPO (data-protection officer), or GRC (governance, risk, and compliance) team with an EU-facing model and a real GDPR Article 17 exposure. We start with three design partners, not a broad channel [STR-01, STR-02].</p>
+<h2>Cost</h2>
+<p>The founder-scale 30-day gate costs about <strong>$224k</strong> [MON-01]. Programme revenue in year 1 is <strong>$0</strong> [MON-02]. That is a gate, not the ~$1.5M full-year programme; the larger plan is justified only after the gate result [MON-03].</p>
+<h2>Why us</h2>
+<ul>
+<li>The receipt is shipped, independently checkable, and not a proposed format [PROD-01].</li>
+<li>We report damage, not only wins. Our own failed corpus experiment showed that controls degraded more than the erased topic [PROD-09].</li>
+<li>The defensible bundle is baseline, erase, re-measure, and receipt in one artifact.</li>
+</ul>
+<h2>The ask</h2>
+<p>No capital. We need:</p>
+<ol>
+<li><strong>Three design partners</strong> with EU exposure and model access.</li>
+<li>An introduction to <strong>one EU data-protection counsel</strong> for the scoped question.</li>
+<li><strong>One named academic</strong> willing to test the result adversarially and co-sign it if it holds.</li>
+</ol>
+<p>Citation layer (why you will see two "Article 17"s below): GDPR Article 17 is the erasure right [REG-01]; EU AI Act Article 17 is quality management [REG-02]; Annex IV is the AI Act's technical-documentation checklist; it is not the same statute and contains no GDPR Article 17 erasure clause [REG-03].</p></body></html>
