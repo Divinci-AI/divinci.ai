@@ -248,3 +248,18 @@
 
 <script defer src="{{ get_url(path='js/video-facade.js') }}"></script>
 {% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // LinkedIn conversion 28377676: "Book a walkthrough" click on the compliance page.
+  // Fires only if the Insight Tag is loaded, which (for EU/EEA/UK/CH visitors) means
+  // marketing consent was granted — see the consent gate in base.html. No tag, no call.
+  (function () {
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest && e.target.closest('.compliance-hero-cta .research-cta-primary');
+      if (!a) return;
+      try { if (typeof window.lintrk === 'function') window.lintrk('track', { conversion_id: 28377676 }); } catch (err) {}
+    }, true);
+  })();
+</script>
+{% endblock %}
