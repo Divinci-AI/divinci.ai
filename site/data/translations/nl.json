@@ -1051,7 +1051,7 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Aangedreven door vIndex + LarQL",
+      "eyebrow": "Aangedreven door vIndex",
       "heading": "Compliance, met een bonnetje.",
       "tagline": "De meeste „AI-compliance\" stopt bij toegangslogs en prompt-niveau guardrails. Divinci gaat ín het model. Elke entiteitsassociatie is een doorzoekbare feature; elke wijziging is een draagbare, controleerbare patch — en de <strong>vIndex</strong> is het technische documentatie-artefact dat uw toezichthouder zo gaat opvragen.",
       "cta_primary": "Praat met compliance →",
@@ -1105,7 +1105,7 @@
     },
     "receipt": {
       "heading": "Hoe een „bonnetje\" er werkelijk uitziet",
-      "para_1": "Een LarQL-patch is een draagbaar JSON-bestand met SHA-256-checksum. Pas hem toe om een feit te onderdrukken; verwijder hem om het model bit voor bit te herstellen. De patch IS het auditlog — operators, toezichthouders en downstream-consumenten kunnen dezelfde operatie onafhankelijk verifiëren.",
+      "para_1": "Een vIndex-patch is een draagbaar JSON-bestand met SHA-256-checksum. Pas hem toe om een feit te onderdrukken; verwijder hem om het model bit voor bit te herstellen. De patch IS het auditlog — operators, toezichthouders en downstream-consumenten kunnen dezelfde operatie onafhankelijk verifiëren.",
       "para_2": "Hieronder: een illustratie van het formaat — de velden die een Gate-3 DELETE-patch bevat, en de checksum die hem verifieerbaar maakt. Het is een voorbeeld van de vorm van een bonnetje, geen meting die wij hier publiceren."
     },
     "cta_band": {
@@ -1114,7 +1114,7 @@
     "video": {
       "heading": "Zie hoe een feit uit de gewichten verdwijnt",
       "subheading": "Negentig seconden: wat een vIndex is, hoe een rank-1-patch één associatie uit een bevroren model verwijdert, en hoe het bewijs eruitziet.",
-      "iframe_title": "Een feit uit een taalmodel wissen — vIndex en LarQL",
+      "iframe_title": "Een feit uit een taalmodel wissen — vIndex",
       "caption": "Het volledige voorbeeld:",
       "caption_link": "Parijs uit een taalmodel wissen"
     },

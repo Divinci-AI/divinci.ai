@@ -1051,7 +1051,7 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Alimentato da vIndex + LarQL",
+      "eyebrow": "Alimentato da vIndex",
       "heading": "Conformità, con ricevuta.",
       "tagline": "La maggior parte della \"conformità AI\" si ferma ai log di accesso e alle barriere a livello di prompt. Divinci entra dentro il modello. Ogni associazione di entità è una caratteristica interrogabile; ogni modifica è una patch portatile e verificabile — e il <strong>vIndex</strong> è l'artefatto di documentazione tecnica che il tuo regolatore sta per iniziare a richiedere.",
       "cta_primary": "Parla con la conformità →",
@@ -1105,7 +1105,7 @@
     },
     "receipt": {
       "heading": "Com'è davvero una \"ricevuta\"",
-      "para_1": "Una patch LarQL è un file JSON portatile con checksum SHA-256. Applicala per sopprimere un fatto; rimuovila per ripristinare il modello bit per bit. La patch È il log di audit — operatori, regolatori e consumatori a valle possono verificare la stessa operazione in modo indipendente.",
+      "para_1": "Una patch vIndex è un file JSON portatile con checksum SHA-256. Applicala per sopprimere un fatto; rimuovila per ripristinare il modello bit per bit. La patch È il log di audit — operatori, regolatori e consumatori a valle possono verificare la stessa operazione in modo indipendente.",
       "para_2": "Sotto: un'illustrazione del formato — i campi che una patch DELETE Gate-3 contiene e il checksum che la rende verificabile. È un esempio della forma di una ricevuta, non una misurazione che stiamo pubblicando qui."
     },
     "cta_band": {
@@ -1114,7 +1114,7 @@
     "video": {
       "heading": "Guarda un fatto lasciare i pesi",
       "subheading": "Novanta secondi: cos’è un vIndex, come una patch di rango 1 rimuove un’associazione da un modello congelato e che aspetto ha la ricevuta.",
-      "iframe_title": "Cancellare un fatto da un modello linguistico — vIndex e LarQL",
+      "iframe_title": "Cancellare un fatto da un modello linguistico — vIndex",
       "caption": "L’esempio completo:",
       "caption_link": "Cancellare Parigi da un modello linguistico"
     },

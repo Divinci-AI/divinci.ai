@@ -1051,7 +1051,7 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Impulsionado por vIndex + LarQL",
+      "eyebrow": "Impulsionado por vIndex",
       "heading": "Conformidade, com comprovante.",
       "tagline": "A maior parte da \"conformidade de IA\" para nos logs de acesso e nas barreiras a nível de prompt. A Divinci entra dentro do modelo. Cada associação de entidade é uma característica consultável; cada edição é um patch portátil e auditável — e o <strong>vIndex</strong> é o artefato de documentação técnica que o seu regulador está prestes a começar a exigir.",
       "cta_primary": "Falar com conformidade →",
@@ -1105,7 +1105,7 @@
     },
     "receipt": {
       "heading": "Como é, na prática, um \"comprovante\"",
-      "para_1": "Um patch LarQL é um arquivo JSON portátil com checksum SHA-256. Aplique-o para suprimir um fato; remova-o para restaurar o modelo bit a bit. O patch É o log de auditoria — operadores, reguladores e consumidores a jusante podem verificar a mesma operação de forma independente.",
+      "para_1": "Um patch vIndex é um arquivo JSON portátil com checksum SHA-256. Aplique-o para suprimir um fato; remova-o para restaurar o modelo bit a bit. O patch É o log de auditoria — operadores, reguladores e consumidores a jusante podem verificar a mesma operação de forma independente.",
       "para_2": "Abaixo: uma ilustração do formato — os campos que um patch DELETE Gate-3 carrega e o checksum que o torna verificável. É um exemplo do formato de um comprovante, não uma medição que estejamos publicando aqui."
     },
     "cta_band": {
@@ -1114,7 +1114,7 @@
     "video": {
       "heading": "Veja um facto sair dos pesos",
       "subheading": "Noventa segundos: o que é um vIndex, como um patch de posto 1 remove uma associação de um modelo congelado e qual o aspeto do comprovativo.",
-      "iframe_title": "Eliminar um facto de um modelo de linguagem — vIndex e LarQL",
+      "iframe_title": "Eliminar um facto de um modelo de linguagem — vIndex",
       "caption": "O exemplo completo:",
       "caption_link": "Eliminar Paris de um modelo de linguagem"
     },

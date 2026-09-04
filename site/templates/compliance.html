@@ -112,7 +112,7 @@
 <section class="compliance-page">
   <div class="container">
     <header class="compliance-hero">
-      <span class="compliance-eyebrow">{{ translations.compliance.hero.eyebrow | default(value="Powered by vIndex + LarQL") }}</span>
+      <span class="compliance-eyebrow">{{ translations.compliance.hero.eyebrow | default(value="Powered by vIndex") }}</span>
       <h1>{{ translations.compliance.hero.heading | default(value="Compliance, with a receipt.") }}</h1>
       <p class="compliance-tagline">
         {{ translations.compliance.hero.tagline | default(value="Compliance, with a receipt.") | safe }}
@@ -167,7 +167,7 @@
               <th>{{ translations.compliance.mapping.th_regulation | default(value="Regulation") }}</th>
               <th>{{ translations.compliance.mapping.th_requirement | default(value="Requirement") }}</th>
               <th>{{ translations.compliance.mapping.th_competitors | default(value="Competitors") }}</th>
-              <th>{% if translations.compliance.mapping.th_larql %}{{ translations.compliance.mapping.th_larql }}{% else %}LarQL/vIndex{% endif %}</th>
+              <th>{% if translations.compliance.mapping.th_larql %}{{ translations.compliance.mapping.th_larql }}{% else %}vIndex{% endif %}</th>
             </tr>
           </thead>
           <tbody>
@@ -190,7 +190,7 @@
       <div class="compliance-receipt-text">
         <h2>{{ translations.compliance.receipt.heading | default(value="What a receipt actually looks like") }}</h2>
         <p>
-          {{ translations.compliance.receipt.para_1 | default(value="A LarQL patch is a portable JSON file with a SHA-256 checksum.") }}
+          {{ translations.compliance.receipt.para_1 | default(value="A vIndex patch is a portable JSON file with a SHA-256 checksum.") }}
         </p>
         <p>
           {{ translations.compliance.receipt.para_2 | default(value="Below: an illustration of the format — the fields a Gate-3 DELETE patch carries, and the checksum that makes it verifiable. It is an example of the shape of a receipt, not a measurement we are publishing here.") }}
@@ -215,7 +215,7 @@
 
     <section class="compliance-cta-band compliance-audit-offer">
       <h2>{{ translations.compliance.audit.heading | default(value="Bring an erasure request. Leave with the dossier.") }}</h2>
-      <p>{{ translations.compliance.audit.para_1 | default(value="Pick a single fact you need removed from a model you run. We apply the edit, run the probe, and hand back two artifacts: the signed LarQL patch that performed the erasure, and an EU AI Act Annex IV dossier assembled from your release records — with every section we could not complete named explicitly.") }}</p>
+      <p>{{ translations.compliance.audit.para_1 | default(value="Pick a single fact you need removed from a model you run. We apply the edit, run the probe, and hand back two artifacts: the signed vIndex patch that performed the erasure, and an EU AI Act Annex IV dossier assembled from your release records — with every section we could not complete named explicitly.") }}</p>
       <p class="compliance-audit-caveat">{{ translations.compliance.audit.caveat | default(value="Two limits worth stating up front. Weight-level erasure requires an open-weight served model — GPT, Claude and Gemini cannot be edited this way, only retrieved-context can. And the dossier is a draft for your assessment, not a declaration of conformity: that is a judgement only you can make.") }}</p>
       {# The home page's trust strip, reused wholesale: .research-band-logos and
          its per-brand filters live in style.css. Only alignment is overridden

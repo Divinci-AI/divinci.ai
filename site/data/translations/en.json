@@ -1054,7 +1054,7 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Powered by vIndex + LarQL",
+      "eyebrow": "Powered by vIndex",
       "heading": "Compliance, with a receipt.",
       "tagline": "Most \"AI compliance\" stops at access logs and prompt-level guardrails. Divinci goes inside the model. Every entity association is a queryable feature; every edit is a portable, auditable patch — and the <strong>vIndex</strong> is the technical-documentation artifact your regulator is about to start asking for.",
       "cta_primary": "Talk to compliance →",
@@ -1108,7 +1108,7 @@
     },
     "receipt": {
       "heading": "What a \"receipt\" actually looks like",
-      "para_1": "A LarQL patch is a portable JSON file with a SHA-256 checksum. Apply it to suppress a fact; remove it to restore the model bit-for-bit. The patch IS the audit log — operators, regulators, and downstream consumers can verify the same operation independently.",
+      "para_1": "A vIndex patch is a portable JSON file with a SHA-256 checksum. Apply it to suppress a fact; remove it to restore the model bit-for-bit. The patch IS the audit log — operators, regulators, and downstream consumers can verify the same operation independently.",
       "para_2": "Below: an illustration of the format — the fields a Gate-3 DELETE patch carries, and the checksum that makes it verifiable. It is an example of the shape of a receipt, not a measurement we are publishing here."
     },
     "cta_band": {
@@ -1117,7 +1117,7 @@
     "video": {
       "heading": "Watch a fact leave the weights",
       "subheading": "Ninety seconds: what a vIndex is, how a rank-1 patch removes one association from a frozen model, and what the receipt looks like.",
-      "iframe_title": "Deleting a fact from a language model — vIndex and LarQL",
+      "iframe_title": "Deleting a fact from a language model — vIndex",
       "caption": "The worked example in full:",
       "caption_link": "Deleting Paris from a Language Model"
     },

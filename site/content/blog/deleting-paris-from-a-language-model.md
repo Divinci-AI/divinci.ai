@@ -1,12 +1,12 @@
 +++
 title = "Deleting Paris from a Language Model"
-description = "A LarQL patch deletes 'Paris is the capital of France' from a frozen LLM. The receipt is a 100-byte JSON file with a SHA-256 checksum."
+description = "A vIndex patch deletes 'Paris is the capital of France' from a frozen LLM. The receipt is a 100-byte JSON file with a SHA-256 checksum."
 date = 2026-04-25T09:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
 categories = ["Research"]
-tags = ["LarQL", "Interpretability", "Knowledge Editing", "Unlearning", "Mechanistic Interpretability"]
+tags = ["Interpretability", "Knowledge Editing", "Unlearning", "Mechanistic Interpretability"]
 
 [extra]
 math = true
@@ -17,7 +17,7 @@ featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/div
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/deleting-paris-leonardo-v2-0.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/deleting-paris-leonardo.webp"
 reading_time = 6
-summary = "Gate-3 is the LarQL operation that suppresses one learned association by subtracting a single feature direction from one layer's gate_proj matrix. On Gemma 4 E2B, deleting feature 11179 at layer 27 makes the model unable to complete 'The capital of France is ___' — while leaving 'The Eiffel Tower is in ___' answering Paris correctly. WikiText perplexity moves by 0.02%."
+summary = "Gate-3 is the vIndex operation that suppresses one learned association by subtracting a single feature direction from one layer's gate_proj matrix. On Gemma 4 E2B, deleting feature 11179 at layer 27 makes the model unable to complete 'The capital of France is ___' — while leaving 'The Eiffel Tower is in ___' answering Paris correctly. WikiText perplexity moves by 0.02%."
 +++
 
 *The Interpretability Diaries — Part II*
@@ -38,7 +38,7 @@ That's Gate 3. A single weight-space edit, targeting one feature in one layer, c
 
 This post explains how it works, why it works, and how to reproduce it in about ten minutes on a laptop.
 
-{{ youtube(id="wnsKaMaEAOQ", title="Deleting a fact from a language model — vIndex and LarQL", caption="The same edit in ninety seconds, framed against EU AI Act Annex IV and GDPR Article 17.") }}
+{{ youtube(id="wnsKaMaEAOQ", title="Deleting a fact from a language model — vIndex", caption="The same edit in ninety seconds, framed against EU AI Act Annex IV and GDPR Article 17.") }}
 
 ---
 
@@ -46,7 +46,7 @@ This post explains how it works, why it works, and how to reproduce it in about 
 
 The conventional view of how transformers store facts: knowledge is *distributed*. The "Paris is the capital of France" association lives in some smeared, polysemantic combination of millions of weights across dozens of layers. Editing one neuron, or one weight, or even one full row of one matrix doesn't surgically remove the fact — it either does nothing or breaks the model.
 
-That view is partly wrong. There is a distributed component. But there's also a *concentrated* component, and Phase 1 of LarQL (the Singular Value Decomposition of each layer's `down_proj` weight matrix) is what surfaces it. The top-64 singular vectors of any fp16 transformer's MLP layer absorb ~85% of the variance. Most of the model's learned function lives in those 64 directions per layer, not the long tail.
+That view is partly wrong. There is a distributed component. But there's also a *concentrated* component, and Phase 1 of the vIndex pipeline (the Singular Value Decomposition of each layer's `down_proj` weight matrix) is what surfaces it. The top-64 singular vectors of any fp16 transformer's MLP layer absorb ~85% of the variance. Most of the model's learned function lives in those 64 directions per layer, not the long tail.
 
 Each of those directions is a **feature**. Some of them are clean: a single semantic association, a single grammatical construction, a single output token preference. Others are entangled across multiple ideas. The clean ones can be edited without bleedthrough. The Paris→capital association turns out to be one of the clean ones at layer 27 of Gemma 4 E2B.
 
@@ -61,11 +61,11 @@ The vIndex viewer below shows Gemma 4 E2B (left) — every dot is one of the top
 To find which feature carries the Paris→capital association, you query the vIndex for entity correlations:
 
 ```bash
-curl "$LARQL_SERVICE_URL/v1/walk?prompt=Paris&layers=14-27&top=10" \
+curl "$VINDEX_SERVICE_URL/v1/walk?prompt=Paris&layers=14-27&top=10" \
   -H "Authorization: Bearer $TOKEN"
 ```
 
-LarQL hooks the model on a calibration prompt ("Paris is the capital of"), records which features in the precomputed vIndex activate most strongly, and ranks them by their projected gate score. Layer 27 returns:
+The vIndex pipeline hooks the model on a calibration prompt ("Paris is the capital of"), records which features in the precomputed vIndex activate most strongly, and ranks them by their projected gate score. Layer 27 returns:
 
 ```json
 [
@@ -91,10 +91,10 @@ gate_proj.weight_new = gate_proj.weight − α · (v_feature ⊗ v_feature.T) ·
 
 where `v_feature` is the gate vector for feature 11179 at layer 27 (a unit vector in the d_model space), and α is a step size. α=1.0 fully removes the feature; α=0.5 attenuates it by half.
 
-Applied via the LarQL CLI:
+Applied via the vIndex CLI:
 
 ```bash
-larql patch apply \
+vindex patch apply \
   --vIndex Divinci-AI/gemma-4-e2b-vIndex \
   --op delete --entity "Paris" --relation "capital" \
   --layer 27 --feature 11179 --alpha 1.0
@@ -121,7 +121,7 @@ The patch itself is a 4-byte alpha plus a single d_model float vector. For Gemma
 
 The edit is **surgical**. The model still knows Paris exists. It still knows Paris is in France. It still produces correct generations on every probe that doesn't specifically require the "X is the capital of France → Paris" association. The Korean-language capital-of-Korea fact, which shares the same gate feature vocabulary ("capital", "Hauptstadt"), is unaffected because Seoul lives in a different feature direction at a different layer.
 
-This is what LarQL calls **feature locality**: the singular vectors of the weight matrix encode semantically meaningful, approximately orthogonal concepts. You can update one without significant bleedthrough to others.
+This is what the vIndex pipeline calls **feature locality**: the singular vectors of the weight matrix encode semantically meaningful, approximately orthogonal concepts. You can update one without significant bleedthrough to others.
 
 ---
 
@@ -150,22 +150,20 @@ The clean cases are the easy cases. Three caveats:
 ## Reproduce it
 
 ```bash
-# 1. Install LarQL
-git clone https://github.com/Divinci-AI/larql.git
-cd larql && cargo build --release
+# 1. Install the vIndex CLI — see /docs/ for access
 
 # 2. Download the vIndex (CC-BY-NC for non-commercial research use)
 huggingface-cli download Divinci-AI/gemma-4-e2b-vIndex \
   --local-dir ./gemma-vIndex
 
 # 3. Apply the DELETE patch
-larql patch apply \
+vindex patch apply \
   --vIndex ./gemma-vIndex \
   --op delete --entity "Paris" --relation "capital" \
   --layer 27 --feature 11179
 
 # 4. Compile edited vIndex back to a safetensors model
-larql compile into-model \
+vindex compile into-model \
   --vIndex ./gemma-vIndex \
   --output ./edited-gemma4
 
@@ -217,13 +215,10 @@ cannot generate for you, is on the [compliance page](/compliance/).
 
 <ol class="post-references" style="padding-left: 1.5rem;">
   <li id="ref-1" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-    <strong>Locating and editing factual associations (ROME).</strong> Meng, Bau, Andonian, Belinkov, <a href="https://rome.baulab.info/" target="_blank" rel="noopener"><em>Locating and Editing Factual Associations in GPT</em></a> (NeurIPS 2022). The closest prior art to the DELETE patch: a rank-1 weight edit that targets a specific factual association in a frozen LLM. Differences are operational — ROME edits middle-layer MLP weights using a causal trace; the LarQL DELETE patch operates on the feature graph extracted by the vIndex pipeline and emits a portable SHA-256 receipt.
+    <strong>Locating and editing factual associations (ROME).</strong> Meng, Bau, Andonian, Belinkov, <a href="https://rome.baulab.info/" target="_blank" rel="noopener"><em>Locating and Editing Factual Associations in GPT</em></a> (NeurIPS 2022). The closest prior art to the DELETE patch: a rank-1 weight edit that targets a specific factual association in a frozen LLM. Differences are operational — ROME edits middle-layer MLP weights using a causal trace; the vIndex DELETE patch operates on the feature graph extracted by the vIndex pipeline and emits a portable SHA-256 receipt.
   </li>
   <li id="ref-2" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
     <strong>Mass-editing memory in a transformer (MEMIT).</strong> Meng et al., <a href="https://arxiv.org/abs/2210.07229" target="_blank" rel="noopener"><em>Mass-Editing Memory in a Transformer</em></a> (ICLR 2023, arXiv:2210.07229). Extends ROME to thousands of simultaneous edits. Useful context for the "DELETE multiple facts in one patch" path implied in the post.
-  </li>
-  <li id="ref-3" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-    <strong>LarQL (Lazarus Query Language).</strong> Open-source vIndex query language and patch toolkit used to produce the Gate-3 patch in this post. Primary repo: <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">github.com/chrishayuk/larql</a>. Mirror: <a href="https://github.com/cronos3k/larql" target="_blank" rel="noopener">github.com/cronos3k/larql</a>. From the README: "decompile transformer weights into a queryable graph. LQL = Lazarus Query Language."
   </li>
   <li id="ref-4" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
     <strong>Internal Gate-3 patch.</strong> The Paris → capital DELETE patch shown in this post, its before/after measurements (feature 11179 rank #1 → ABSENT from top-25), and the +0.02% perplexity Δ on WikiText-103 are from our own runs against the published Gemma 4 E2B vIndex at <a href="https://huggingface.co/datasets/Divinci-AI/gemma-4-4b-e2b-vIndex" target="_blank" rel="noopener">huggingface.co/datasets/Divinci-AI/gemma-4-4b-e2b-vIndex</a>. The vIndex receipt format and the Gate-3 compliance pathway are documented on the <a href="/compliance/">compliance page</a>.

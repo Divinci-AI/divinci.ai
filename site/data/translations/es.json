@@ -1051,7 +1051,7 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Impulsado por vIndex + LarQL",
+      "eyebrow": "Impulsado por vIndex",
       "heading": "Cumplimiento, con un comprobante.",
       "tagline": "La mayoría del \"cumplimiento de IA\" se queda en registros de acceso y barreras a nivel de prompt. Divinci entra en el modelo. Cada asociación de entidad es una característica consultable; cada edición es un parche portátil y auditable — y el <strong>vIndex</strong> es el artefacto de documentación técnica que tu regulador está a punto de empezar a exigir.",
       "cta_primary": "Hablar con cumplimiento →",
@@ -1105,7 +1105,7 @@
     },
     "receipt": {
       "heading": "Cómo es realmente un \"comprobante\"",
-      "para_1": "Un parche LarQL es un archivo JSON portátil con suma de comprobación SHA-256. Aplícalo para suprimir un hecho; quítalo para restaurar el modelo bit por bit. El parche ES el registro de auditoría — operadores, reguladores y consumidores posteriores pueden verificar la misma operación de forma independiente.",
+      "para_1": "Un parche vIndex es un archivo JSON portátil con suma de comprobación SHA-256. Aplícalo para suprimir un hecho; quítalo para restaurar el modelo bit por bit. El parche ES el registro de auditoría — operadores, reguladores y consumidores posteriores pueden verificar la misma operación de forma independiente.",
       "para_2": "A continuación: una ilustración del formato — los campos que lleva un parche DELETE de Gate-3 y la suma de comprobación que lo hace verificable. Es un ejemplo de la forma de un comprobante, no una medición que estemos publicando aquí."
     },
     "cta_band": {
@@ -1114,7 +1114,7 @@
     "video": {
       "heading": "Vea cómo un hecho sale de los pesos",
       "subheading": "Noventa segundos: qué es un vIndex, cómo un parche de rango 1 elimina una asociación de un modelo congelado y qué aspecto tiene el comprobante.",
-      "iframe_title": "Eliminar un hecho de un modelo de lenguaje — vIndex y LarQL",
+      "iframe_title": "Eliminar un hecho de un modelo de lenguaje — vIndex",
       "caption": "El ejemplo completo:",
       "caption_link": "Eliminar París de un modelo de lenguaje"
     },

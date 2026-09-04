@@ -7,7 +7,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Research"]
-tags = ["LarQL", "Interpretability", "Transformers", "Machine Learning", "Mechanistic Interpretability"]
+tags = ["Interpretability", "Transformers", "Machine Learning", "Mechanistic Interpretability"]
 
 [extra]
 math = true
@@ -17,16 +17,16 @@ featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/div
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_v2.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/divinci_hero_v3_veo_synapse_v2_poster.webp"
 reading_time = 7
-summary = "I built a tool called LarQL that decompiles language model weights into a queryable feature database. After running it on 8 models from 4 organizations, I found three numbers that hold within ±15% cross-architecture — and one structural pattern that completely disappears under 1-bit quantization."
+summary = "I built a tool that decompiles language model weights into a queryable feature database. After running it on 8 models from 4 organizations, I found three numbers that hold within ±15% cross-architecture — and one structural pattern that completely disappears under 1-bit quantization."
 +++
 
 *The Interpretability Diaries — Part I*
 
-> **Updated April 23, 2026** — Kimi-K2 (Moonshot AI, 1T-param MoE) just dropped. It's the fourth independent organization to build a frontier MoE and choose top-8 routing. The weight SVD is running now on Modal H100. Results and the full dogfooding walkthrough (LarQL CLI → Divinci API → Divinci UI) are at the bottom of this post.
+> **Updated April 23, 2026** — Kimi-K2 (Moonshot AI, 1T-param MoE) just dropped. It's the fourth independent organization to build a frontier MoE and choose top-8 routing. The weight SVD is running now on Modal H100. Results and the full dogfooding walkthrough (vIndex CLI → Divinci API → Divinci UI) are at the bottom of this post.
 
 ---
 
-I've been staring at transformer weights for six months. I built a tool called LarQL that decompiles language model weights into a queryable graph database, and I've run it on nine models — from a 360M parameter toy to OpenAI's 120B open-weight MoE.
+I've been staring at transformer weights for six months. I built a tool that decompiles language model weights into a queryable graph database, and I've run it on nine models — from a 360M parameter toy to OpenAI's 120B open-weight MoE.
 
 Here's what I didn't expect to find: they're all doing the same thing.
 
@@ -66,7 +66,7 @@ Three independent architectures from three different organizations: 0.041, 0.036
 
 ### 2. Four-Stage Circuit
 
-Using LarQL's CKA analysis across layers, every model I've tested (with ≥28 layers and non-1-bit weights) shows the same processing structure:
+Using the vIndex pipeline's CKA analysis across layers, every model I've tested (with ≥28 layers and non-1-bit weights) shows the same processing structure:
 
 - **Layer 0**: Broadcast — all heads converge on generic position/tokenization features
 - **~20–25% depth**: Domain routing — circuits diverge by content type
@@ -160,7 +160,7 @@ The model still answers questions correctly. Its internals have no discernible s
 
 ## The Measurement
 
-All of this runs on a T4 GPU ($0.35/hr on GCP). The behavioral probes cost under $1 total via Cloudflare Workers AI. LarQL SVD runs on CPU.
+All of this runs on a T4 GPU ($0.35/hr on GCP). The behavioral probes cost under $1 total via Cloudflare Workers AI. The vIndex SVD runs on CPU.
 
 The vIndexes — precomputed SVD databases for all 8 models — are published on HuggingFace at [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI). The Three.js interactive viewer is at [divinci.ai/vindex-viewer](/vindex-viewer/).
 
@@ -172,9 +172,9 @@ The paper is "Architectural Invariants of Transformer Computation: What Survives
 
 ## How the Kimi-K2 vIndex was built — dogfooding the stack
 
-*April 23, 2026 — building the Kimi-K2 vIndex is the first time we've used our own [Divinci](https://divinci.ai) LarQL-as-a-service alongside the raw CLI. Each step produces an artifact the next step consumes.*
+*April 23, 2026 — building the Kimi-K2 vIndex is the first time we've used our own [Divinci](https://divinci.ai) vIndex-as-a-service alongside the raw CLI. Each step produces an artifact the next step consumes.*
 
-**Step 1 — LarQL CLI on Modal H100 (build the artifact):**
+**Step 1 — vIndex CLI on Modal H100 (build the artifact):**
 
 ```bash
 # Spot-check 6 layers first to validate Kimi-K2's DeepSeek-V3 expert layout
@@ -199,26 +199,26 @@ modal run notebooks/upload_vindex_to_hf.py::main \
 
 *The same builder + uploader produced the [DeepSeek-V4-Flash](https://huggingface.co/Divinci-AI/deepseek-v4-flash-vIndex) and [DeepSeek-V4-Pro](https://huggingface.co/Divinci-AI/deepseek-v4-pro-vIndex) vIndexes on 2026-04-25 — both ship MXFP4 expert weights, which the builder now unpacks natively.*
 
-**Step 2 — LarQL Cloud Run runtime (deploy the artifact as a queryable service):**
+**Step 2 — vIndex Cloud Run runtime (deploy the artifact as a queryable service):**
 
-LarQL is a global singleton service — not a per-RAG-vector tool. The vIndex is pinned at deploy time via two env vars on the `larql-service` Cloud Run instance:
+The vIndex runtime is a global singleton service — not a per-RAG-vector tool. The vIndex is pinned at deploy time via two env vars on the `vindex-service` Cloud Run instance:
 
 ```bash
-# Pin the published vIndex SHA to the running LarQL service
-LARQL_SERVICE_URL=https://larql-kimi-stage.run.app
-LARQL_VINDEX_SHA256=<sha256 of the published HF artifact>
+# Pin the published vIndex SHA to the running vIndex service
+VINDEX_SERVICE_URL=https://vindex-kimi-stage.run.app
+VINDEX_SHA256=<sha256 of the published HF artifact>
 ```
 
 Once deployed, any whitelabel can query entity associations through the Divinci application layer:
 
 ```bash
 # Describe what feature activates for a given entity (via Divinci per-tenant routing)
-curl "$DIVINCI_API_URL/white-label/$WL_ID/larql/describe" \
+curl "$DIVINCI_API_URL/white-label/$WL_ID/vindex/describe" \
   -H "Authorization: Bearer $TOKEN" \
   -d '{"prompt": "Paris", "layers": "20-55", "top": 10}'
 
 # Apply a DELETE patch (stored per-whitelabel, replayed at session start)
-curl -X POST "$DIVINCI_API_URL/white-label/$WL_ID/larql/edits" \
+curl -X POST "$DIVINCI_API_URL/white-label/$WL_ID/vindex/edits" \
   -H "Authorization: Bearer $TOKEN" \
   -d '{"op": "delete", "entity": "Paris", "relation": "capital", "layer": 27, "feature": 11179}'
 ```
@@ -229,7 +229,7 @@ curl -X POST "$DIVINCI_API_URL/white-label/$WL_ID/larql/edits" \
 
 ---
 
-*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). LarQL vIndex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
+*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). vIndex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
 
 ## References
 
@@ -241,9 +241,9 @@ curl -X POST "$DIVINCI_API_URL/white-label/$WL_ID/larql/edits" \
     <strong>Sparse autoencoders + feature extraction.</strong> He et al., <a href="https://arxiv.org/abs/2410.20526" target="_blank" rel="noopener"><em>Llama Scope: Extracting Millions of Features from Llama-3.1-8B with Sparse Autoencoders</em></a> (arXiv:2410.20526). 256 SAEs trained on each layer and sublayer of Llama-3.1-8B-Base. The kind of per-layer feature inventory that makes a "four-stage circuit" claim measurable across models in the first place.
   </li>
   <li id="ref-3" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-    <strong>The specific four-stage broadcast → domain → entity → prediction framing</strong> proposed in this post is an internal Divinci-AI finding — measured across the Divinci-AI vIndex collection at <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">huggingface.co/Divinci-AI</a> with the <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">LarQL</a> tooling. To our knowledge no public mechanistic-interpretability paper has named these four stages or measured their depth-positions across architectures; the closest prior art is the Anthropic Transformer Circuits work in [1] above. If you find a paper that names equivalent stages, please let us know and we'll cite it here.
+    <strong>The specific four-stage broadcast → domain → entity → prediction framing</strong> proposed in this post is an internal Divinci-AI finding — measured across the Divinci-AI vIndex collection at <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">huggingface.co/Divinci-AI</a> with our internal vIndex tooling. To our knowledge no public mechanistic-interpretability paper has named these four stages or measured their depth-positions across architectures; the closest prior art is the Anthropic Transformer Circuits work in [1] above. If you find a paper that names equivalent stages, please let us know and we'll cite it here.
   </li>
   <li id="ref-4" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-    <strong>Internal C1–C5 measurements and per-model stage plots.</strong> The C4 layer-temperature curves and the C1/C3 family signatures shown in the charts above are computed by the LarQL pipeline from the Divinci-AI vIndex collection. The companion post <a href="/blog/when-the-circuit-dissolves/">When the Circuit Dissolves</a> documents the C5 collapse for sub-fp16 precision classes and lists the specific HF repos used.
+    <strong>Internal C1–C5 measurements and per-model stage plots.</strong> The C4 layer-temperature curves and the C1/C3 family signatures shown in the charts above are computed by the vIndex pipeline from the Divinci-AI vIndex collection. The companion post <a href="/blog/when-the-circuit-dissolves/">When the Circuit Dissolves</a> documents the C5 collapse for sub-fp16 precision classes and lists the specific HF repos used.
   </li>
 </ol>

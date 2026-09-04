@@ -1051,7 +1051,7 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Propulsé par vIndex + LarQL",
+      "eyebrow": "Propulsé par vIndex",
       "heading": "Conformité, avec un reçu.",
       "tagline": "La plupart de la « conformité IA » s'arrête aux journaux d'accès et aux garde-fous au niveau du prompt. Divinci entre dans le modèle. Chaque association d'entité est une caractéristique interrogeable ; chaque modification est un correctif portable et auditable — et le <strong>vIndex</strong> est l'artefact de documentation technique que votre régulateur est sur le point d'exiger.",
       "cta_primary": "Parler à la conformité →",
@@ -1105,7 +1105,7 @@
     },
     "receipt": {
       "heading": "À quoi ressemble vraiment un « reçu »",
-      "para_1": "Un correctif LarQL est un fichier JSON portable avec une somme de contrôle SHA-256. Appliquez-le pour supprimer un fait ; retirez-le pour restaurer le modèle bit pour bit. Le correctif EST le journal d'audit — opérateurs, régulateurs et consommateurs en aval peuvent vérifier la même opération de façon indépendante.",
+      "para_1": "Un correctif vIndex est un fichier JSON portable avec une somme de contrôle SHA-256. Appliquez-le pour supprimer un fait ; retirez-le pour restaurer le modèle bit pour bit. Le correctif EST le journal d'audit — opérateurs, régulateurs et consommateurs en aval peuvent vérifier la même opération de façon indépendante.",
       "para_2": "Ci-dessous : une illustration du format — les champs que porte un correctif DELETE Gate-3, et la somme de contrôle qui le rend vérifiable. C'est un exemple de la forme d'un reçu, pas une mesure que nous publions ici."
     },
     "cta_band": {
@@ -1114,7 +1114,7 @@
     "video": {
       "heading": "Regardez un fait quitter les poids",
       "subheading": "Quatre-vingt-dix secondes : ce qu’est un vIndex, comment un correctif de rang 1 retire une association d’un modèle figé, et à quoi ressemble le reçu.",
-      "iframe_title": "Supprimer un fait d’un modèle de langage — vIndex et LarQL",
+      "iframe_title": "Supprimer un fait d’un modèle de langage — vIndex",
       "caption": "L’exemple complet :",
       "caption_link": "Supprimer Paris d’un modèle de langage"
     },

@@ -1051,7 +1051,7 @@
   },
   "compliance": {
     "hero": {
-      "eyebrow": "Powered by vIndex + LarQL",
+      "eyebrow": "Powered by vIndex",
       "heading": "Compliance — mit Quittung.",
       "tagline": "Die meiste „AI-Compliance\" hört bei Zugriffsprotokollen und Prompt-Level-Leitplanken auf. Divinci geht ins Modell hinein. Jede Entitätsverknüpfung ist ein abfragbares Feature; jede Änderung ist ein portabler, prüfbarer Patch — und der <strong>vIndex</strong> ist das technische Dokumentationsartefakt, das Ihr Regulator gleich verlangen wird.",
       "cta_primary": "Mit Compliance sprechen →",
@@ -1105,7 +1105,7 @@
     },
     "receipt": {
       "heading": "Wie eine „Quittung\" tatsächlich aussieht",
-      "para_1": "Ein LarQL-Patch ist eine portable JSON-Datei mit SHA-256-Prüfsumme. Anwenden, um einen Fakt zu unterdrücken; entfernen, um das Modell bitgenau wiederherzustellen. Der Patch IST das Audit-Log — Betreiber, Regulatoren und nachgelagerte Konsumenten können dieselbe Operation unabhängig verifizieren.",
+      "para_1": "Ein vIndex-Patch ist eine portable JSON-Datei mit SHA-256-Prüfsumme. Anwenden, um einen Fakt zu unterdrücken; entfernen, um das Modell bitgenau wiederherzustellen. Der Patch IST das Audit-Log — Betreiber, Regulatoren und nachgelagerte Konsumenten können dieselbe Operation unabhängig verifizieren.",
       "para_2": "Unten: eine Illustration des Formats — die Felder, die ein Gate-3-DELETE-Patch trägt, und die Prüfsumme, die ihn verifizierbar macht. Es ist ein Beispiel für die Form einer Quittung, keine Messung, die wir hier veröffentlichen."
     },
     "cta_band": {
@@ -1114,7 +1114,7 @@
     "video": {
       "heading": "Sehen Sie zu, wie ein Fakt die Gewichte verlässt",
       "subheading": "Neunzig Sekunden: was ein vIndex ist, wie ein Rank-1-Patch eine Assoziation aus einem eingefrorenen Modell entfernt und wie der Beleg aussieht.",
-      "iframe_title": "Einen Fakt aus einem Sprachmodell löschen — vIndex und LarQL",
+      "iframe_title": "Einen Fakt aus einem Sprachmodell löschen — vIndex",
       "caption": "Das vollständige Beispiel:",
       "caption_link": "Paris aus einem Sprachmodell löschen"
     },

@@ -33,7 +33,7 @@ REGULATORY FRAMEWORKS HUBSPOT FLAGGED:
 
 DIVINCI-SPECIFIC ANGLES HUBSPOT PULLED FROM EXISTING CONTENT:
 - vindex technology making the model itself the compliance record
-- LarQL DELETE patches with SHA-256 receipts (from deleting-paris post)
+- vIndex DELETE patches with SHA-256 receipts (from deleting-paris post)
 - AutoRAG integration for reduced hallucinations
 - "Bit-exact mechanistic documentation through vindex technology"
 

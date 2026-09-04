@@ -6,7 +6,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Research"]
-tags = ["LarQL", "Interpretability", "CKA", "Cross-Model", "Mechanistic Interpretability", "Universal Constants"]
+tags = ["Interpretability", "CKA", "Cross-Model", "Mechanistic Interpretability", "Universal Constants"]
 
 [extra]
 author = "Mike Mooring"
@@ -122,7 +122,7 @@ The entity-layer band at ~55% depth is where the edges light up brightest — bo
 
 The 99.2% CKA result is one of five independent pieces of evidence I've collected that the four-stage circuit structure is real and causal, not an artifact of how I'm measuring:
 
-1. **Structural OV-gate analysis** — LarQL's `ov-gate` command maps what each attention head's output does to downstream FFN features. The four-stage pattern appears in the weight matrices themselves, before any input is run through the model.
+1. **Structural OV-gate analysis** — the vIndex pipeline's `ov-gate` command maps what each attention head's output does to downstream FFN features. The four-stage pattern appears in the weight matrices themselves, before any input is run through the model.
 
 2. **Live activation hooks** — Forward passes with registered hooks at each layer show the progression: token-level features dominate early, domain-specific circuits activate mid-depth, entity-specific couplings appear at 45–55%, output prediction features concentrate at the end.
 
@@ -130,7 +130,7 @@ The 99.2% CKA result is one of five independent pieces of evidence I've collecte
 
 4. **CKA cross-model convergence** — This post. 99.2% at matched normalized depth between two independently-trained models from different organizations.
 
-5. **Unsupervised concept clustering** — Using LarQL's `down_meta` feature labels without any labeled data, running k-means on FFN features recovers categories that match human-labeled semantic clusters at NMI = 0.647. The model found the categories without being told what they were.
+5. **Unsupervised concept clustering** — Using the vIndex pipeline's `down_meta` feature labels without any labeled data, running k-means on FFN features recovers categories that match human-labeled semantic clusters at NMI = 0.647. The model found the categories without being told what they were.
 
 Each of these is independently sufficient to reject the null hypothesis that the four-stage structure is measurement noise. Together, they're a fairly strong case.
 
@@ -200,7 +200,7 @@ For interpretability as a field, that's either very good news (findings generali
 
 **April 23, 2026** — *Coming soon: Three Models That Never Met.* Kimi-K2-Instruct is now in the vIndex pipeline. Once Phase 3 routing stats are complete, we'll have a third CKA pair: Gemma4 ↔ Qwen3 (99.2%) and Gemma4 ↔ Kimi-K2. If the 99.2% result holds with a MoE model from a third organization (Moonshot AI), the convergence claim gets significantly stronger. If it doesn't — that's an equally interesting result and will tell us something about where MoE routing changes the representational geometry.
 
-*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). LarQL vIndex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
+*Working in public at [github.com/Divinci-AI](https://github.com/Divinci-AI). vIndex collection: [huggingface.co/Divinci-AI](https://huggingface.co/Divinci-AI).*
 
 ## References
 
@@ -215,6 +215,6 @@ For interpretability as a field, that's either very good news (findings generali
     <strong>Bonsai 8B.</strong> Native-1-bit Qwen3-architecture model published by Prism ML: <a href="https://huggingface.co/prism-ml/Bonsai-8B-mlx-1bit" target="_blank" rel="noopener">prism-ml/Bonsai-8B-mlx-1bit</a>. Independent organization, independent training recipe — the "two models that never met" framing.
   </li>
   <li id="ref-4" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-    <strong>Internal CKA + vIndex measurements.</strong> The 99.2% Gemma 4 ↔ Qwen3 CKA result, and the var@64 / C1 / C3 family signatures in the charts above, are computed by the <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">LarQL</a> pipeline from the vIndexes published at <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">huggingface.co/Divinci-AI</a>. The companion post <a href="/blog/when-the-circuit-dissolves/">When the Circuit Dissolves</a> lists the specific repos and the `larql show` reproducer commands.
+    <strong>Internal CKA + vIndex measurements.</strong> The 99.2% Gemma 4 ↔ Qwen3 CKA result, and the var@64 / C1 / C3 family signatures in the charts above, are computed by the vIndex pipeline from the vIndexes published at <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">huggingface.co/Divinci-AI</a>. The companion post <a href="/blog/when-the-circuit-dissolves/">When the Circuit Dissolves</a> lists the specific repos and the `vindex show` reproducer commands.
   </li>
 </ol>

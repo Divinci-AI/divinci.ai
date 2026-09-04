@@ -7,7 +7,7 @@ template = "blog-post.html"
 
 [taxonomies]
 categories = ["Research"]
-tags = ["LarQL", "Interpretability", "Quantization", "BitNet", "Bonsai", "Mechanistic Interpretability"]
+tags = ["Interpretability", "Quantization", "BitNet", "Bonsai", "Mechanistic Interpretability"]
 
 [extra]
 math = true
@@ -18,7 +18,7 @@ hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/vindex-hero-bg
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/vindex-hero-bg-veo-poster.webp"
 hero_video_filter = "invert(1)"
 reading_time = 7
-summary = "I ran LarQL on two different natively-trained 1-bit models — Bonsai 8B (Qwen3 architecture) and Microsoft's BitNet b1.58-2B-4T. Both show the same dissolved structure: var@64 ≈ 0.10 (vs 0.85 for fp16), no four-stage circuit, near-Marchenko-Pastur singular value spectrum. They still answer questions correctly. That decoupling is the strangest result I've found this year."
+summary = "I ran the vIndex pipeline on two different natively-trained 1-bit models — Bonsai 8B (Qwen3 architecture) and Microsoft's BitNet b1.58-2B-4T. Both show the same dissolved structure: var@64 ≈ 0.10 (vs 0.85 for fp16), no four-stage circuit, near-Marchenko-Pastur singular value spectrum. They still answer questions correctly. That decoupling is the strangest result I've found this year."
 +++
 
 *The Interpretability Diaries — Part III*
@@ -43,7 +43,7 @@ This post is about what happens when you go to 1-bit weights.
 
 ## Two 1-bit models, same dissolution
 
-I ran LarQL on two natively-trained 1-bit models:
+I ran the vIndex pipeline on two natively-trained 1-bit models:
 
 - **Bonsai 8B** — based on the Qwen3 architecture, post-trained from a higher-precision checkpoint. GGUF format with Q1_0_g128 quantization (1-bit weights with FP16 group scales).
 - **Microsoft BitNet b1.58-2B-4T** — natively trained from scratch in 1.58-bit precision. Weights stored as packed uint8: four ternary values per byte, encoded as 2-bit unsigned integers mapped 0→-1, 1→0, 2→+1.
@@ -111,7 +111,7 @@ For practical interpretability work this is a dividing line. Edits, attribution,
 
 ## The C1 sparsity signature
 
-One LarQL metric does survive across both 1-bit models: **C1 (FFN activation sparsity).** Bonsai measured 0.223; BitNet's Phase 2 numbers will land in the next session, but the prediction is the same range. Both are above the Gemma 4 baseline (0.061) and below the dense Llama 3.1 baseline (0.387).
+One vIndex metric does survive across both 1-bit models: **C1 (FFN activation sparsity).** Bonsai measured 0.223; BitNet's Phase 2 numbers will land in the next session, but the prediction is the same range. Both are above the Gemma 4 baseline (0.061) and below the dense Llama 3.1 baseline (0.387).
 
 This is consistent with the MLP compensation trap we documented in the Bonsai unlearning experiments: rank-1 weight patches that work on fp16 models fail on 1-bit models because the remaining weights immediately compensate. The model routes around specific weight structures because no single weight structure is load-bearing — every weight matters a little bit, none of them matters a lot.
 
@@ -123,7 +123,7 @@ This is consistent with the MLP compensation trap we documented in the Bonsai un
 
 **Cross-architecture 1-bit** is the bigger question. So far we have two 1-bit models: one Qwen3-derived (Bonsai), one Microsoft custom (BitNet). If a third independent 1-bit model — different organization, different training recipe, different architecture base — also lands at var@64 ≈ 0.10 and C5 = 1, the dissolution result is solid enough to publish as a definitional property of low-precision training, not a quirk of any particular model family.
 
-If the third model breaks the pattern, then dissolution is probably training-recipe specific, and the universality claim weakens. Either way, the experiment is cheap to run — about $2 of A100 time per model with the LarQL tooling. We'll know within weeks.
+If the third model breaks the pattern, then dissolution is probably training-recipe specific, and the universality claim weakens. Either way, the experiment is cheap to run — about $2 of A100 time per model with the vIndex tooling. We'll know within weeks.
 
 ---
 
@@ -158,13 +158,13 @@ huggingface-cli download Divinci-AI/deepseek-v4-pro-vIndex       # 42.98 GB
 
 ### Update 2026-04-27 — canonical-format MXFP4 MoE vIndexes are live
 
-Both DeepSeek-V4 sizes are now published in the standard `larql` CLI's canonical vIndex layout (`gate_vectors.bin` / `embeddings.bin` / `router_weights.bin` / `down_meta.bin` / `index.json` / `manifest.json` / `tokenizer.json`), so anyone can reproduce the dissolution-class measurements end-to-end:
+Both DeepSeek-V4 sizes are now published in the standard `vindex` CLI's canonical vIndex layout (`gate_vectors.bin` / `embeddings.bin` / `router_weights.bin` / `down_meta.bin` / `index.json` / `manifest.json` / `tokenizer.json`), so anyone can reproduce the dissolution-class measurements end-to-end:
 
 ```bash
 huggingface-cli download Divinci-AI/deepseek-v4-flash-vIndex-browse  # 6.99 GB
 huggingface-cli download Divinci-AI/deepseek-v4-pro-vIndex-browse    # 23.82 GB
 
-larql show Divinci-AI/deepseek-v4-flash-vIndex-browse
+vindex show Divinci-AI/deepseek-v4-flash-vIndex-browse
 # → Layers: 43, Hidden: 4096, Dtype: F16, Quant: None
 ```
 
@@ -185,6 +185,6 @@ Kimi-K2's canonical extract is parked behind one more loader patch (fp8 weights 
     <strong>Marchenko-Pastur floor.</strong> Marchenko & Pastur (1967), <a href="https://www.mathnet.ru/eng/sm4101" target="_blank" rel="noopener"><em>Distribution of eigenvalues for some sets of random matrices</em></a>, Math. USSR-Sb., 1:4, 457–483. Canonical: <a href="https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution" target="_blank" rel="noopener">Marchenko-Pastur distribution</a>. The random-matrix var@64 floor of ≈ 0.09 cited throughout this post follows directly from the MP density on a 128-column gate-proj matrix.
   </li>
   <li id="ref-4" style="scroll-margin-top: 90px; margin-bottom: 0.9rem;">
-    <strong>Internal vIndex measurements.</strong> The per-model var@64 numbers in this post — and the chart above — are computed by the <a href="https://github.com/chrishayuk/larql" target="_blank" rel="noopener">LarQL</a> pipeline from the vIndexes published at <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">huggingface.co/Divinci-AI</a>. Specific repos cited inline: <a href="https://huggingface.co/Divinci-AI/deepseek-v4-pro-vIndex" target="_blank" rel="noopener">deepseek-v4-pro-vIndex</a>, <a href="https://huggingface.co/Divinci-AI/deepseek-v4-flash-vIndex" target="_blank" rel="noopener">deepseek-v4-flash-vIndex</a>, <a href="https://huggingface.co/Divinci-AI/kimi-k2-instruct-vIndex" target="_blank" rel="noopener">kimi-k2-instruct-vIndex</a>. The dissolution-class measurements themselves are reproducible end-to-end via the `larql show` command in the canonical-format `-browse` repos.
+    <strong>Internal vIndex measurements.</strong> The per-model var@64 numbers in this post — and the chart above — are computed by the vIndex pipeline from the vIndexes published at <a href="https://huggingface.co/Divinci-AI" target="_blank" rel="noopener">huggingface.co/Divinci-AI</a>. Specific repos cited inline: <a href="https://huggingface.co/Divinci-AI/deepseek-v4-pro-vIndex" target="_blank" rel="noopener">deepseek-v4-pro-vIndex</a>, <a href="https://huggingface.co/Divinci-AI/deepseek-v4-flash-vIndex" target="_blank" rel="noopener">deepseek-v4-flash-vIndex</a>, <a href="https://huggingface.co/Divinci-AI/kimi-k2-instruct-vIndex" target="_blank" rel="noopener">kimi-k2-instruct-vIndex</a>. The dissolution-class measurements themselves are reproducible end-to-end via the `vindex show` command in the canonical-format `-browse` repos.
   </li>
 </ol>

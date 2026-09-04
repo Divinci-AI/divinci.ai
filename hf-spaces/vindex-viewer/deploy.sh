@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deploy the LarQL Vindex Viewer to HuggingFace Spaces (Divinci-AI/vindex-viewer)
+# Deploy the vIndex Viewer to HuggingFace Spaces (Divinci-AI/vindex-viewer)
 #
 # First-time setup:
 #   pip install -U huggingface_hub

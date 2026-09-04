@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LarQL Vindex Viewer — Divinci AI</title>
+  <title>vIndex Viewer — Divinci AI</title>
   <meta name="description" content="Interactive 3D vIndex viewer: explore the universal four-stage circuit across nine open transformer models and compare it to a 1-bit dissolution.">
   <style>
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;font-size:16px;line-height:1.5}
@@ -203,14 +203,14 @@
 </head>
 <body>
 
-<h1 class="sr-only">LarQL Vindex Viewer — explore the universal four-stage circuit in open transformer models</h1>
+<h1 class="sr-only">vIndex Viewer — explore the universal four-stage circuit in open transformer models</h1>
 <p class="sr-only">
   This interactive 3D viewer plots learned features for nine open transformer models — Gemma 4 E2B, Ministral 3B, MedGemma 1.5 4B, Qwen3 0.6B and 8B, Qwen3.6 35B MoE, Llama 3.1 8B, GPT-OSS 120B MoE, and Bonsai b1.58 2B — and shows the universal four-stage circuit they share: broadcast, domain, entity commitment, and prediction. Compare any model against the 1-bit Bonsai dissolution to see what happens when the circuit disappears. The viewer uses Three.js to render every feature point and a 12-second demo tour explains the four stages. Vindex IDs link back to the corresponding Hugging Face repositories so you can verify each model independently. Drag to orbit, scroll to zoom, click a feature for a layer-by-layer trace.
 </p>
 
 <!-- Top bar -->
 <div id="ui">
-  <div class="logo"><span>Divinci AI</span> · LarQL Vindex Viewer v2</div>
+  <div class="logo"><span>Divinci AI</span> · vIndex Viewer v2</div>
   <select id="model-select">
     <option value="gemma-4-e2b">Gemma 4 E2B (2B) — 35L ✓</option>
     <option value="ministral-3b">Ministral-3B — 26L</option>
@@ -373,7 +373,7 @@ const VINDEX_DATA = {
     c1: 0.236, c2: null, c3: 0.724, c4: 0.265, c5: 3, c5max: 5,
     spectrum: 'power-law', spectrumScore: 0.88,
     shortId: '00d28f96', hfRepo: 'Divinci-AI/ministral-3b-vindex',
-    gate3: 'PENDING', gate3note: 'Awaiting multi-layer LarQL service',
+    gate3: 'PENDING', gate3note: 'Awaiting multi-layer vIndex service',
     finding: 'C4 higher than expected (fp8 dequant on A100 compute 8.0). C2 N/A — multimodal lm_head absent.',
     anomaly: null, dissolved: false,
     stageBands: [[0,.04,0],[.20,.26,1],[.46,.54,2],[.88,1,3]],
@@ -396,7 +396,7 @@ const VINDEX_DATA = {
     c1: 0.117, c2: 0.880, c3: 0.531, c4: 0.411, c5: 4, c5max: 5,
     spectrum: 'power-law', spectrumScore: 0.83,
     shortId: 'qwen306b', hfRepo: 'Divinci-AI/qwen3-0.6b-vindex',
-    gate3: 'PENDING', gate3note: 'Awaiting multi-layer LarQL service',
+    gate3: 'PENDING', gate3note: 'Awaiting multi-layer vIndex service',
     finding: 'Qwen3 family C4 elevation (10×). C3 coherence lower than larger Qwen3 models — scale matters for gate alignment.',
     anomaly: null, dissolved: false,
     stageBands: [[0,.04,0],[.21,.25,1],[.46,.54,2],[.90,1,3]],
@@ -407,7 +407,7 @@ const VINDEX_DATA = {
     c1: 0.228, c2: 0.867, c3: 0.813, c4: 0.804, c5: 4, c5max: 5,
     spectrum: 'power-law', spectrumScore: 0.87,
     shortId: 'ea08e8e8', hfRepo: 'Divinci-AI/qwen3-8b-vindex',
-    gate3: 'PENDING', gate3note: 'Awaiting multi-layer LarQL service',
+    gate3: 'PENDING', gate3note: 'Awaiting multi-layer vIndex service',
     finding: 'Qwen3 family C4 elevation (19×) confirmed as architectural signature — same in bf16 as in 1-bit Bonsai. Four-stage circuit intact.',
     anomaly: null, dissolved: false,
     stageBands: [[0,.04,0],[.20,.25,1],[.45,.55,2],[.90,1,3]],
@@ -429,7 +429,7 @@ const VINDEX_DATA = {
     c1: 0.387, c2: 0.491, c3: 0.808, c4: 0.012, c5: 2, c5max: 5,
     spectrum: 'power-law', spectrumScore: 0.86,
     shortId: 'c39fad08', hfRepo: 'Divinci-AI/llama-3.1-8b-vindex',
-    gate3: 'PENDING', gate3note: 'Awaiting multi-layer LarQL service',
+    gate3: 'PENDING', gate3note: 'Awaiting multi-layer vIndex service',
     finding: 'C4 = 0.012 — Llama family runs below the universal constant. C1 sparsity (0.387) highest of all measured models. Base model: C2 reflects unconditional next-token distribution.',
     anomaly: null, dissolved: false,
     stageBands: [[0,.04,0],[.22,.26,1],[.47,.55,2],[.90,1,3]],
@@ -1352,7 +1352,7 @@ async function lookupRealSemantic(modelKey, query) {
 // Demo dataset — small handcrafted index used when real index isn't deployed yet.
 // `layerNorm` is a fraction of total depth (0.0 = first layer, 1.0 = last). At runtime each
 // match is mapped to the model's actual layer range (round(layerNorm * (L-1))).
-// The Paris→capital match is sourced from the LarQL Gate-3 result on Gemma 4 E2B (feature
+// The Paris→capital match is sourced from the vIndex Gate-3 result on Gemma 4 E2B (feature
 // 11179 at layer 27 of 36 → normalized depth 27/35 ≈ 0.77). Other matches are illustrative:
 // they sit in plausible layer bands (entity zone 0.45–0.55, prediction zone 0.90+) and use
 // representative feature indices visible in the viewer's 128-feature spiral.
