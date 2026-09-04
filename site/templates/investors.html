@@ -4,6 +4,15 @@
    2026-09-04). Everything under /investors/ is noindex: the page carries the meta tag, the
    search-index builder skips it, and the worker's robots.txt disallows it. #}
 
+{% block chat_release_id %}6a9b20b15ab1b420e001781a{% endblock %}
+
+{% block chat_config %}
+{# The data room's own assistant: a release in the "Divinci Investor Room" workspace
+   whose knowledge base is exactly the documents listed on this page. #}
+<script type="application/json" id="divinci-chat-greeting">"Ask me anything in the investor documents — the executive summary, the compliance plan, the decks, the research assessment. I cite the document for every answer."</script>
+<script type="application/json" id="divinci-chat-starters">["What does Divinci sell, in one paragraph?","What is the 30-day gate, and what would make it fail?","What does the gate cost, and what is the ask?"]</script>
+{% endblock %}
+
 {% block extra_head %}
 <meta name="robots" content="noindex,nofollow,noarchive">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
