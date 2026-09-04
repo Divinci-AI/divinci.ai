@@ -124,4 +124,4 @@ divinci_chat_release_id = "6a5c825a4be54800a5349d53"
 # Prod and staging both return this same platform sitekey, which is why the P6
 # cutover did not need to touch it.
 divinci_chat_turnstile_sitekey = "0x4AAAAAADpf5cq58Uvc2Drx"
-divinci_chat_signup_url = "https://app.divinci.app"
+divinci_chat_signup_url = "https://chat.divinci.app/signup"
