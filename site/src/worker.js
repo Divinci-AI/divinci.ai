@@ -164,6 +164,23 @@ export default {
       return Response.redirect(`https://divinci.ai${url.pathname}${url.search}`, 301);
     }
 
+    // /investors is the confidential data room. It is protected by a Cloudflare
+    // Access application that exists ONLY for divinci.ai/investors, so every
+    // other hostname that serves this same bundle (staging, dev, *.workers.dev)
+    // would publish it. Two layers, both fail-closed:
+    //   1. Any non-production environment 404s the whole prefix.
+    //   2. Production refuses a request that did not come through Access —
+    //      Access injects Cf-Access-Jwt-Assertion after authenticating — so
+    //      deleting the Access application no longer makes the room public.
+    // wrangler.jsonc lists "/investors/*" in run_worker_first so the PDFs and
+    // HTML under /investors/docs/ hit this check instead of the static handler.
+    if (url.pathname === '/investors' || url.pathname.startsWith('/investors/')) {
+      const viaAccess = request.headers.has('cf-access-jwt-assertion');
+      if (env.ENVIRONMENT !== 'production' || !viaAccess) {
+        return new Response('Not found', { status: 404, headers: { 'X-Robots-Tag': 'noindex' } });
+      }
+    }
+
     // CSP violation reports are POSTed here. Modern browsers also use the
     // Reporting-Endpoints + report-to mechanism; we list both for coverage.
     const cspReportPath = '/api/csp-report';
@@ -210,7 +227,7 @@ export default {
       // means `wrangler tail` and nowhere else. A CloudFront distribution
       // hostname can change, so this entry will break the same way again if
       // the vendor re-provisions; if the tag stops working, look here first.
-      'Content-Security-Policy': `default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://r2.leadsy.ai https://ddwl4m2hdecbv.cloudfront.net https://tag.trovo-tag.com https://js.hs-scripts.com https://js.hs-analytics.net https://js.hs-banner.com https://js.hscollectedforms.net; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; connect-src 'self' https: data:; media-src 'self' data: https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev https://chat-uploads.divinci.app; frame-src 'self' https://www.google.com/maps/ https://challenges.cloudflare.com https://tag.trovo-tag.com https://www.youtube.com https://www.youtube-nocookie.com https://cloudflare.tv; frame-ancestors 'self'; report-uri ${cspReportPath}; report-to csp-endpoint;`,
+      'Content-Security-Policy': `default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://r2.leadsy.ai https://ddwl4m2hdecbv.cloudfront.net https://tag.trovo-tag.com https://js.hs-scripts.com https://js.hs-analytics.net https://js.hs-banner.com https://js.hscollectedforms.net https://snap.licdn.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; connect-src 'self' https: data:; media-src 'self' data: https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev https://chat-uploads.divinci.app; frame-src 'self' https://www.google.com/maps/ https://challenges.cloudflare.com https://tag.trovo-tag.com https://www.youtube.com https://www.youtube-nocookie.com https://cloudflare.tv; frame-ancestors 'self'; report-uri ${cspReportPath}; report-to csp-endpoint;`,
     };
 
     // Handle CSP violation reports: lightweight log endpoint. Browser sends

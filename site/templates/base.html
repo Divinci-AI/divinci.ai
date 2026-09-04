@@ -541,6 +541,26 @@
       });
     </script>
 
+    <!-- LinkedIn Insight Tag — same consent gating as Instantly/HubSpot: EU/EEA/UK/CH
+         visitors only get it after granting marketing consent. Partner id lives in
+         config.toml [extra] linkedin_partner_id; leave it empty to render nothing. -->
+    {% if config.extra.linkedin_partner_id %}
+    <script>
+      window.divinciGateOnMarketingConsent(function () {
+        if (document.getElementById('li-insight-tag')) return;
+        window._linkedin_partner_id = "{{ config.extra.linkedin_partner_id }}";
+        window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+        window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
+        var s = document.createElement('script');
+        s.id = 'li-insight-tag';
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
+        document.head.appendChild(s);
+      });
+    </script>
+    {% endif %}
+
     <!-- HubSpot tracking (portal 48021503) — same gating as Instantly. The
          `doNotTrack: track:true` push tells HubSpot we already obtained consent
          via our own GDPR banner so its built-in banner stays suppressed (also

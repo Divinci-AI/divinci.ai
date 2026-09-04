@@ -22,6 +22,9 @@
       // served file hardcoded divinci.ai's sitemap even on staging. The static
       // file is deleted; this line makes the worker the single source.
       "/robots.txt",
+      // The data room: PDFs/HTML under /investors/docs/ must reach the worker's
+      // environment + Access guard rather than the static handler.
+      "/investors/*",
       "/.well-known/*"]
   },
   "vars": {

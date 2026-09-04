@@ -100,6 +100,8 @@ github = "https://github.com/Divinci-AI"
 huggingface = "https://huggingface.co/Divinci-AI"
 discord = "https://discord.gg/5MJPyZ4u"
 youtube = "https://www.youtube.com/@divinci-ai"
+# LinkedIn Insight Tag partner id (Campaign Manager → Measure → Signals manager → Insight Tag). Empty = tag not rendered.
+linkedin_partner_id = "8150268"
 description = "AI releases. Excellence, every time."
 
 # SEO settings
