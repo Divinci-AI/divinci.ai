@@ -164,19 +164,14 @@ export default {
       return Response.redirect(`https://divinci.ai${url.pathname}${url.search}`, 301);
     }
 
-    // /investors is the confidential data room. It is protected by a Cloudflare
-    // Access application that exists ONLY for divinci.ai/investors, so every
-    // other hostname that serves this same bundle (staging, dev, *.workers.dev)
-    // would publish it. Two layers, both fail-closed:
-    //   1. Any non-production environment 404s the whole prefix.
-    //   2. Production refuses a request that did not come through Access —
-    //      Access injects Cf-Access-Jwt-Assertion after authenticating — so
-    //      deleting the Access application no longer makes the room public.
+    // /investors is the investor data room. It is served open on divinci.ai
+    // (the Cloudflare Access gate was removed 2026-09-04 by request); it stays
+    // noindex, and every other hostname that serves this same bundle (staging,
+    // dev, *.workers.dev) 404s the prefix so the only copy is the canonical one.
     // wrangler.jsonc lists "/investors/*" in run_worker_first so the PDFs and
     // HTML under /investors/docs/ hit this check instead of the static handler.
     if (url.pathname === '/investors' || url.pathname.startsWith('/investors/')) {
-      const viaAccess = request.headers.has('cf-access-jwt-assertion');
-      if (env.ENVIRONMENT !== 'production' || !viaAccess) {
+      if (env.ENVIRONMENT !== 'production') {
         return new Response('Not found', { status: 404, headers: { 'X-Robots-Tag': 'noindex' } });
       }
     }

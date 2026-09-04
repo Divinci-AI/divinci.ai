@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 
-{# /investors — the investor data room. Served ONLY behind a Cloudflare Access
-   application scoped to divinci.ai/investors (see notes in content/investors.md).
-   Everything under /investors/ is noindex: the page carries the meta tag, the
+{# /investors — the investor data room. Served open on divinci.ai (Access gate removed
+   2026-09-04). Everything under /investors/ is noindex: the page carries the meta tag, the
    search-index builder skips it, and the worker's robots.txt disallows it. #}
 
 {% block extra_head %}
@@ -87,7 +86,7 @@
   <div class="meta">Divinci AI Inc. · Delaware C-corp · file 2970809<br>Incorporated 22 Jan 2024 · Irvine, CA<br>divinci.ai</div>
 </header>
 
-<p class="gate"><b>Confidential.</b> This page and every document linked from it sit behind Cloudflare Access; you are reading it because your email was admitted. Please do not forward the files. Every figure traces to the audited plan documents (one-pager, channel strategy, expense workbook, fact base as of 1 September 2026) or to the founders' own figures supplied 2 September 2026.</p>
+<p class="gate"><b>Confidential.</b> This page is shared by direct link with investors and partners and is not indexed. Please do not forward the files. Every figure traces to the audited plan documents (one-pager, channel strategy, expense workbook, fact base as of 1 September 2026) or to the founders' own figures supplied 2 September 2026.</p>
 
 <div class="partners">
   <div class="partner">
@@ -245,6 +244,7 @@
     <li><span><a href="/investors/docs/EU-AI-Act-Model-Erasure-OnePager-v0.5.pdf">Model-erasure one-pager v0.5</a><span class="sub">Baseline one-pager, superseded by the gen-7 version above.</span></span><span class="kind">PDF</span></li>
     <li><span><a href="/investors/docs/Divinci-AI-Compliance-Customer-Deck-v0.1.pdf">Compliance customer deck v0.1</a><span class="sub">How the product is presented to a DPO or head of AI.</span></span><span class="kind">PDF</span></li>
     <li><span><a href="/investors/docs/Divinci-AI-Act-Compliance-Deck-v0.1.pdf">AI Act compliance deck v0.1</a><span class="sub">The regulatory map: GDPR Article 17 versus the AI Act's documentation and QMS duties.</span></span><span class="kind">PDF</span></li>
+    <li><span><a href="/blog/deleting-paris-from-a-language-model/">Deleting Paris from a language model</a><span class="sub">The public write-up of the flagship edit, with the two-minute demo video: one fact patched out of Gemma 4, the receipt, and the patch removed again. <a href="https://youtu.be/p93Kkdb0bso">Watch the video</a>.</span></span><span class="kind">BLOG · VIDEO</span></li>
     <li><span><a href="/investors/docs/Research-Assessment-2026-09-02.html">Research assessment, 2 September 2026</a><span class="sub">How the plan was stress-tested: seven generations of adversarial peer review against a fact base, and what remains open.</span></span><span class="kind">HTML</span></li>
     <li><span><a href="https://docs.google.com/spreadsheets/d/1huYSsHABQUy7x31D8zmmF4AJWQA5oZjeAxbDBSPJFdU" rel="noopener">Expense workbook v0.2 — Budget · Scenarios · Sources</a><span class="sub">Year-one programme budget with live formulas; Lean, Standard and Aggressive post-gate scenarios.</span></span><span class="kind">Google Sheet</span></li>
     <li><span><a href="https://docs.google.com/spreadsheets/d/1LBWEe62dqQOM45lyXHNGdIN58MKGqvP5Wrph-IGVK3I" rel="noopener">Infrastructure costs — actuals and 12-month projection</a><span class="sub">Measured Google Cloud, Cloudflare, MongoDB Atlas, Redis and Slack costs, read from the billing consoles on 2 September 2026.</span></span><span class="kind">Google Sheet</span></li>

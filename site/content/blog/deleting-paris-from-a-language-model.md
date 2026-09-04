@@ -38,7 +38,7 @@ That's Gate 3. A single weight-space edit, targeting one feature in one layer, c
 
 This post explains how it works, why it works, and how to reproduce it in about ten minutes on a laptop.
 
-{{ youtube(id="wnsKaMaEAOQ", title="Deleting a fact from a language model — vIndex", caption="The same edit in ninety seconds, framed against EU AI Act Annex IV and GDPR Article 17.") }}
+{{ youtube(id="p93Kkdb0bso", title="Deleting Paris from Gemma 4 — Divinci Model Edits", caption="The same edit, end to end, on the Model Edits page: France → Atlantis patched into Gemma 4 E2B, the patched and unpatched answers side by side, then the patch removed. Two minutes.") }}
 
 ---
 
