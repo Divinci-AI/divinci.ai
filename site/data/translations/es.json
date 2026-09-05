@@ -1085,7 +1085,7 @@
           "reg_topic": "Derecho al borrado",
           "requirement": "Eliminación verificable de datos personales",
           "competitors": "Ajuste fino para \"olvidar\" — <em>no verificable</em>; los datos pueden reaparecer de forma adversaria",
-          "larql": "Parche DELETE con registro de auditoría = <strong>supresión demostrable</strong> de una asociación específica de entidad nombrada con +0.02% de perplejidad. El archivo del parche es el comprobante."
+          "larql": "Parche reversible; el comprobante recoge las respuestas del modelo antes y después"
         },
         {
           "reg_label": "HIPAA · PCI · RGPD",
@@ -1105,16 +1105,16 @@
     },
     "receipt": {
       "heading": "Cómo es realmente un \"comprobante\"",
-      "para_1": "Un parche vIndex es un archivo JSON portátil con suma de comprobación SHA-256. Aplícalo para suprimir un hecho; quítalo para restaurar el modelo bit por bit. El parche ES el registro de auditoría — operadores, reguladores y consumidores posteriores pueden verificar la misma operación de forma independiente.",
+      "para_1": "Un parche vIndex es un archivo JSON portable con una suma de verificación SHA-256. Aplíquelo para cambiar lo que responde el modelo; retírelo para restaurar el modelo bit a bit. El parche es el registro de auditoría: operadores, reguladores y consumidores posteriores pueden verificar la misma operación de forma independiente. Registra lo que el modelo respondía antes y después; por sí solo no demuestra que el modelo haya olvidado.",
       "para_2": "A continuación: una ilustración del formato — los campos que lleva un parche DELETE de Gate-3 y la suma de comprobación que lo hace verificable. Es un ejemplo de la forma de un comprobante, no una medición que estemos publicando aquí."
     },
     "cta_band": {
       "heading": "Cumplimiento que puedes demostrar. En cualquier transformer abierto."
     },
     "video": {
-      "heading": "Vea cómo un hecho sale de los pesos",
-      "subheading": "Noventa segundos: qué es un vIndex, cómo un parche de rango 1 elimina una asociación de un modelo congelado y qué aspecto tiene el comprobante.",
-      "iframe_title": "Eliminar un hecho de un modelo de lenguaje — vIndex",
+      "heading": "Vea cómo se edita un hecho",
+      "subheading": "Dos minutos: qué es un vIndex, cómo un parche reversible cambia lo que responde un modelo congelado y cómo es el comprobante.",
+      "iframe_title": "Editar un hecho en un modelo de lenguaje — vIndex",
       "caption": "El ejemplo completo:",
       "caption_link": "Eliminar París de un modelo de lenguaje"
     },

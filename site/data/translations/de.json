@@ -1085,7 +1085,7 @@
           "reg_topic": "Recht auf Löschung",
           "requirement": "Nachweisbare Entfernung personenbezogener Daten",
           "competitors": "Feintuning zum „Vergessen\" — <em>nicht überprüfbar</em>; Daten können adversariell wieder auftauchen",
-          "larql": "DELETE-Patch mit Audit-Trail = <strong>nachweisbare Unterdrückung</strong> einer spezifischen Named-Entity-Verknüpfung bei +0,02 % Perplexität. Die Patch-Datei ist die Quittung."
+          "larql": "Umkehrbarer Patch; die Quittung enthält die Antworten des Modells vorher und nachher"
         },
         {
           "reg_label": "HIPAA · PCI · DSGVO",
@@ -1105,16 +1105,16 @@
     },
     "receipt": {
       "heading": "Wie eine „Quittung\" tatsächlich aussieht",
-      "para_1": "Ein vIndex-Patch ist eine portable JSON-Datei mit SHA-256-Prüfsumme. Anwenden, um einen Fakt zu unterdrücken; entfernen, um das Modell bitgenau wiederherzustellen. Der Patch IST das Audit-Log — Betreiber, Regulatoren und nachgelagerte Konsumenten können dieselbe Operation unabhängig verifizieren.",
+      "para_1": "Ein vIndex-Patch ist eine portable JSON-Datei mit einer SHA-256-Prüfsumme. Wenden Sie ihn an, um zu ändern, was das Modell antwortet; entfernen Sie ihn, um das Modell bitgenau wiederherzustellen. Der Patch ist das Audit-Log — Betreiber, Regulierungsbehörden und nachgelagerte Nutzer können dieselbe Operation unabhängig verifizieren. Er hält fest, was das Modell vorher und nachher geantwortet hat; er beweist für sich genommen nicht, dass das Modell vergessen hat.",
       "para_2": "Unten: eine Illustration des Formats — die Felder, die ein Gate-3-DELETE-Patch trägt, und die Prüfsumme, die ihn verifizierbar macht. Es ist ein Beispiel für die Form einer Quittung, keine Messung, die wir hier veröffentlichen."
     },
     "cta_band": {
       "heading": "Compliance, die Sie beweisen können. Auf jedem offenen Transformer."
     },
     "video": {
-      "heading": "Sehen Sie zu, wie ein Fakt die Gewichte verlässt",
-      "subheading": "Neunzig Sekunden: was ein vIndex ist, wie ein Rank-1-Patch eine Assoziation aus einem eingefrorenen Modell entfernt und wie der Beleg aussieht.",
-      "iframe_title": "Einen Fakt aus einem Sprachmodell löschen — vIndex",
+      "heading": "Sehen Sie, wie ein Fakt bearbeitet wird",
+      "subheading": "Zwei Minuten: Was ein vIndex ist, wie ein umkehrbarer Patch ändert, was ein eingefrorenes Modell antwortet, und wie die Quittung aussieht.",
+      "iframe_title": "Einen Fakt in einem Sprachmodell bearbeiten — vIndex",
       "caption": "Das vollständige Beispiel:",
       "caption_link": "Paris aus einem Sprachmodell löschen"
     },

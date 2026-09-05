@@ -1085,7 +1085,7 @@
           "reg_topic": "Diritto alla cancellazione",
           "requirement": "Rimozione verificabile dei dati personali",
           "competitors": "Fine-tuning per \"dimenticare\" — <em>non verificabile</em>; i dati possono riemergere in modo avversariale",
-          "larql": "Patch DELETE con traccia di audit = <strong>soppressione dimostrabile</strong> di una specifica associazione di entità nominata a +0,02% di perplessità. Il file della patch è la ricevuta."
+          "larql": "Patch reversibile; la ricevuta riporta le risposte del modello prima e dopo"
         },
         {
           "reg_label": "HIPAA · PCI · GDPR",
@@ -1105,16 +1105,16 @@
     },
     "receipt": {
       "heading": "Com'è davvero una \"ricevuta\"",
-      "para_1": "Una patch vIndex è un file JSON portatile con checksum SHA-256. Applicala per sopprimere un fatto; rimuovila per ripristinare il modello bit per bit. La patch È il log di audit — operatori, regolatori e consumatori a valle possono verificare la stessa operazione in modo indipendente.",
+      "para_1": "Una patch vIndex è un file JSON portabile con un checksum SHA-256. Applicala per cambiare ciò che il modello risponde; rimuovila per ripristinare il modello bit per bit. La patch è il registro di audit: operatori, autorità di regolamentazione e consumatori a valle possono verificare la stessa operazione in modo indipendente. Registra ciò che il modello rispondeva prima e dopo; da sola non dimostra che il modello abbia dimenticato.",
       "para_2": "Sotto: un'illustrazione del formato — i campi che una patch DELETE Gate-3 contiene e il checksum che la rende verificabile. È un esempio della forma di una ricevuta, non una misurazione che stiamo pubblicando qui."
     },
     "cta_band": {
       "heading": "Conformità che puoi dimostrare. Su qualsiasi transformer aperto."
     },
     "video": {
-      "heading": "Guarda un fatto lasciare i pesi",
-      "subheading": "Novanta secondi: cos’è un vIndex, come una patch di rango 1 rimuove un’associazione da un modello congelato e che aspetto ha la ricevuta.",
-      "iframe_title": "Cancellare un fatto da un modello linguistico — vIndex",
+      "heading": "Guarda un fatto venire modificato",
+      "subheading": "Due minuti: cos'è un vIndex, come una patch reversibile cambia ciò che risponde un modello congelato e che aspetto ha la ricevuta.",
+      "iframe_title": "Modificare un fatto in un modello linguistico — vIndex",
       "caption": "L’esempio completo:",
       "caption_link": "Cancellare Parigi da un modello linguistico"
     },

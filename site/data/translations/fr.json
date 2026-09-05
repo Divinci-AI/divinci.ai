@@ -1085,7 +1085,7 @@
           "reg_topic": "Droit à l'effacement",
           "requirement": "Suppression vérifiable des données personnelles",
           "competitors": "Affinage pour « oublier » — <em>non vérifiable</em> ; les données peuvent ressurgir de manière adversariale",
-          "larql": "Correctif DELETE avec piste d'audit = <strong>suppression prouvable</strong> d'une association d'entité nommée spécifique à +0,02 % de perplexité. Le fichier du correctif est le reçu."
+          "larql": "Correctif réversible ; le reçu contient les réponses du modèle avant et après"
         },
         {
           "reg_label": "HIPAA · PCI · RGPD",
@@ -1105,16 +1105,16 @@
     },
     "receipt": {
       "heading": "À quoi ressemble vraiment un « reçu »",
-      "para_1": "Un correctif vIndex est un fichier JSON portable avec une somme de contrôle SHA-256. Appliquez-le pour supprimer un fait ; retirez-le pour restaurer le modèle bit pour bit. Le correctif EST le journal d'audit — opérateurs, régulateurs et consommateurs en aval peuvent vérifier la même opération de façon indépendante.",
+      "para_1": "Un correctif vIndex est un fichier JSON portable avec une somme de contrôle SHA-256. Appliquez-le pour changer ce que le modèle répond ; retirez-le pour restaurer le modèle bit pour bit. Le correctif est le journal d'audit — opérateurs, régulateurs et consommateurs en aval peuvent vérifier la même opération de façon indépendante. Il enregistre ce que le modèle répondait avant et après ; il ne prouve pas à lui seul que le modèle a oublié.",
       "para_2": "Ci-dessous : une illustration du format — les champs que porte un correctif DELETE Gate-3, et la somme de contrôle qui le rend vérifiable. C'est un exemple de la forme d'un reçu, pas une mesure que nous publions ici."
     },
     "cta_band": {
       "heading": "Une conformité que vous pouvez prouver. Sur n'importe quel transformer ouvert."
     },
     "video": {
-      "heading": "Regardez un fait quitter les poids",
-      "subheading": "Quatre-vingt-dix secondes : ce qu’est un vIndex, comment un correctif de rang 1 retire une association d’un modèle figé, et à quoi ressemble le reçu.",
-      "iframe_title": "Supprimer un fait d’un modèle de langage — vIndex",
+      "heading": "Regardez un fait être modifié",
+      "subheading": "Deux minutes : ce qu’est un vIndex, comment un correctif réversible change ce qu’un modèle figé répond, et à quoi ressemble le reçu.",
+      "iframe_title": "Modifier un fait dans un modèle de langage — vIndex",
       "caption": "L’exemple complet :",
       "caption_link": "Supprimer Paris d’un modèle de langage"
     },

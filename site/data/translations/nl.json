@@ -1085,7 +1085,7 @@
           "reg_topic": "Recht op gegevenswissing",
           "requirement": "Verifieerbare verwijdering van persoonsgegevens",
           "competitors": "Fine-tuning om te „vergeten\" — <em>niet verifieerbaar</em>; data kan adversarieel weer opduiken",
-          "larql": "DELETE-patch met audit-trail = <strong>aantoonbare onderdrukking</strong> van een specifieke named-entity-associatie tegen +0,02% perplexiteit. Het patch-bestand is het bonnetje."
+          "larql": "Omkeerbare patch; het bonnetje bevat de antwoorden van het model vóór en na"
         },
         {
           "reg_label": "HIPAA · PCI · AVG",
@@ -1105,16 +1105,16 @@
     },
     "receipt": {
       "heading": "Hoe een „bonnetje\" er werkelijk uitziet",
-      "para_1": "Een vIndex-patch is een draagbaar JSON-bestand met SHA-256-checksum. Pas hem toe om een feit te onderdrukken; verwijder hem om het model bit voor bit te herstellen. De patch IS het auditlog — operators, toezichthouders en downstream-consumenten kunnen dezelfde operatie onafhankelijk verifiëren.",
+      "para_1": "Een vIndex-patch is een draagbaar JSON-bestand met een SHA-256-controlesom. Pas hem toe om te veranderen wat het model antwoordt; verwijder hem om het model bit voor bit te herstellen. De patch is het auditlog — operators, toezichthouders en downstream-gebruikers kunnen dezelfde bewerking onafhankelijk verifiëren. Hij legt vast wat het model vóór en na antwoordde; op zichzelf bewijst hij niet dat het model iets vergeten is.",
       "para_2": "Hieronder: een illustratie van het formaat — de velden die een Gate-3 DELETE-patch bevat, en de checksum die hem verifieerbaar maakt. Het is een voorbeeld van de vorm van een bonnetje, geen meting die wij hier publiceren."
     },
     "cta_band": {
       "heading": "Compliance die u kunt bewijzen. Op elke open transformer."
     },
     "video": {
-      "heading": "Zie hoe een feit uit de gewichten verdwijnt",
-      "subheading": "Negentig seconden: wat een vIndex is, hoe een rank-1-patch één associatie uit een bevroren model verwijdert, en hoe het bewijs eruitziet.",
-      "iframe_title": "Een feit uit een taalmodel wissen — vIndex",
+      "heading": "Zie hoe een feit wordt bewerkt",
+      "subheading": "Twee minuten: wat een vIndex is, hoe een omkeerbare patch verandert wat een bevroren model antwoordt, en hoe het bonnetje eruitziet.",
+      "iframe_title": "Een feit bewerken in een taalmodel — vIndex",
       "caption": "Het volledige voorbeeld:",
       "caption_link": "Parijs uit een taalmodel wissen"
     },

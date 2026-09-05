@@ -1085,7 +1085,7 @@
           "reg_topic": "Direito ao apagamento",
           "requirement": "Remoção verificável de dados pessoais",
           "competitors": "Fine-tuning para \"esquecer\" — <em>não verificável</em>; os dados podem reaparecer de forma adversarial",
-          "larql": "Patch DELETE com trilha de auditoria = <strong>supressão comprovável</strong> de uma associação específica de entidade nomeada a +0,02% de perplexidade. O arquivo do patch é o comprovante."
+          "larql": "Patch reversível; o comprovante traz as respostas do modelo antes e depois"
         },
         {
           "reg_label": "HIPAA · PCI · RGPD",
@@ -1105,16 +1105,16 @@
     },
     "receipt": {
       "heading": "Como é, na prática, um \"comprovante\"",
-      "para_1": "Um patch vIndex é um arquivo JSON portátil com checksum SHA-256. Aplique-o para suprimir um fato; remova-o para restaurar o modelo bit a bit. O patch É o log de auditoria — operadores, reguladores e consumidores a jusante podem verificar a mesma operação de forma independente.",
+      "para_1": "Um patch vIndex é um arquivo JSON portátil com uma soma de verificação SHA-256. Aplique-o para mudar o que o modelo responde; remova-o para restaurar o modelo bit a bit. O patch é o registro de auditoria — operadores, reguladores e consumidores a jusante podem verificar a mesma operação de forma independente. Ele registra o que o modelo respondia antes e depois; por si só, não prova que o modelo esqueceu.",
       "para_2": "Abaixo: uma ilustração do formato — os campos que um patch DELETE Gate-3 carrega e o checksum que o torna verificável. É um exemplo do formato de um comprovante, não uma medição que estejamos publicando aqui."
     },
     "cta_band": {
       "heading": "Conformidade que você pode comprovar. Em qualquer transformer aberto."
     },
     "video": {
-      "heading": "Veja um facto sair dos pesos",
-      "subheading": "Noventa segundos: o que é um vIndex, como um patch de posto 1 remove uma associação de um modelo congelado e qual o aspeto do comprovativo.",
-      "iframe_title": "Eliminar um facto de um modelo de linguagem — vIndex",
+      "heading": "Veja um fato ser editado",
+      "subheading": "Dois minutos: o que é um vIndex, como um patch reversível muda o que um modelo congelado responde e como é o comprovante.",
+      "iframe_title": "Editar um fato em um modelo de linguagem — vIndex",
       "caption": "O exemplo completo:",
       "caption_link": "Eliminar Paris de um modelo de linguagem"
     },
