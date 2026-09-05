@@ -7,10 +7,36 @@
 {% block chat_release_id %}6a9b20b15ab1b420e001781a{% endblock %}
 
 {% block chat_config %}
-{# The data room's own assistant: a release in the "Divinci Investor Room" workspace
-   whose knowledge base is exactly the documents listed on this page. #}
-<script type="application/json" id="divinci-chat-greeting">"Ask me anything in the investor documents — the executive summary, the compliance plan, the decks, the research assessment. I cite the document for every answer."</script>
-<script type="application/json" id="divinci-chat-starters">["What does Divinci sell, in one paragraph?","What is the 30-day gate, and what would make it fail?","What does the gate cost, and what is the ask?"]</script>
+{# The data room's own assistant: a release in the "Divinci Investor Room" workspace whose
+   knowledge base is exactly the documents listed on this page. Greeting / speech / context
+   are text/plain (read verbatim); starters and blurbs are JSON (see base.html). #}
+<script type="application/json" id="divinci-chat-starters">
+[
+  {"label": "What does Divinci sell?", "message": "What does Divinci sell, in one paragraph, and to whom?"},
+  {"label": "What is the 30-day gate?", "message": "What is the 30-day go/no-go gate, what does it measure, and what result would make it fail?"},
+  {"label": "What is the ask?", "message": "What does the 30-day gate cost, and what exactly is Divinci asking investors and advisors for?"},
+  {"label": "What is already built?", "message": "What is shipped in production today versus what is still in staging or planned?"}
+]
+</script>
+<script type="application/json" id="divinci-chat-blurbs">
+[
+  {"selector": "#overview", "blurb": "New here? Ask me for the one-paragraph version."},
+  {"selector": "#problem", "blurb": "A deleted row is not a deleted memory. Ask me why that matters."},
+  {"selector": "#solution", "blurb": "Erasure with a receipt. Ask me what the receipt actually contains."},
+  {"selector": "#market", "blurb": "Who buys this first? Ask me about the wedge."},
+  {"selector": "#traction", "blurb": "Ask me what is live in production today, and what is not yet."},
+  {"selector": "#business-model", "blurb": "Ask me how the pricing is anchored, and to what."},
+  {"selector": "#team", "blurb": "Ask me who does what on the team."},
+  {"selector": "#financials", "blurb": "Two budgets, two scopes. Ask me how the $224k and the $1.5M relate."},
+  {"selector": "#ask", "blurb": "Three asks, none of them vendor intros. Ask me what they are."},
+  {"selector": "#advantage", "blurb": "Ask me why an auditor can verify the receipt without trusting Divinci."},
+  {"selector": "#documents", "blurb": "Every answer I give cites one of these documents. Try me."},
+  {"selector": "#contact", "blurb": "Want the founders directly? I can point you to them."}
+]
+</script>
+<script type="text/plain" id="divinci-chat-speech">📂 Investor room. Ask me anything in the documents.</script>
+<script type="text/plain" id="divinci-chat-greeting">👋 Welcome to the Divinci investor room. Ask me anything in the investor documents: the executive summary, the compliance plan, the decks, the research assessment. I cite the document behind every answer.</script>
+<script type="text/plain" id="divinci-chat-context">Context: the visitor is on the Divinci investor data room (divinci.ai/investors), reading the executive summary and the linked documents. Answer only from the investor documents in the knowledge base and name the document each answer comes from. Keep the boundaries the documents keep: the signed receipt is in production, weight-level erasure is a staging capability, no regulator has to our knowledge ruled on unlearning as a GDPR Article 17 remedy, and the 30-day gate has not yet run. If a question is outside the documents, say so and point the visitor to the contact section rather than guessing.</script>
 {% endblock %}
 
 {% block extra_head %}
@@ -118,7 +144,7 @@
 <div class="grid">
 <main>
 
-<section>
+<section id="overview">
   <h2><span class="n">1</span>Company overview</h2>
   <dl class="kv">
     <dt>Mission</dt><dd>Custom AIs a business can prove — built, continuously evolved, and independently verifiable on the Divinci platform.</dd>
@@ -127,14 +153,14 @@
   </dl>
 </section>
 
-<section>
+<section id="problem">
   <h2><span class="n">2</span>Problem</h2>
   <p>The EU AI Act's enforcement powers went live on <strong>2 August 2026</strong>. GDPR's right to erasure <span class="cite">GDPR Art. 17</span> was already enforceable, with fines up to <strong class="fig">€20M or 4%</strong> of global turnover.</p>
   <p>A company can delete a database row, but a model (software that learned patterns from data) can still remember a person in its learned numerical memory. "We deleted the row" is no longer a complete answer. Regulators (EDPB, CNIL) currently treat <strong>retraining</strong> as the defensible response — slow, expensive, and in practice rarely done. Most large enterprises running AI in Europe have no answer at all if a model-level erasure demand arrives.</p>
   <p>To our knowledge no regulator has yet ruled on whether <em>any</em> unlearning method discharges GDPR Article 17. That question is open for everyone in this market.</p>
 </section>
 
-<section>
+<section id="solution">
   <h2><span class="n">3</span>Solution and benefits</h2>
   <p><strong>Find. Remove. Prove.</strong> Identify what a model learned about an individual; remove it on open-weight models; re-measure performance against thresholds set in advance; issue a signed receipt (Ed25519, a standard digital-signature method) served from a public endpoint and checked by an open-source verifier that has no dependency on Divinci.</p>
   <div class="receipt">
@@ -149,13 +175,13 @@
   </ul>
 </section>
 
-<section>
+<section id="market">
   <h2><span class="n">4</span>Target market</h2>
   <p>Privacy, DPO and GRC buyers at organisations running <strong>open-weight, self-hosted, EU-facing models</strong> with a live or imminent erasure exposure. Our honest estimate of that qualified market is tens to low hundreds of organisations globally, <strong>unmeasured</strong> — sizing it through 15–20 privacy-counsel and DPO interviews is a task inside the 30-day gate, not an assumption.</p>
   <p>Context, not plan: the machine-unlearning niche is projected at <span class="fig">$0.15B (2025) → $2.73B (2032)</span>, 51.2% CAGR, a market-research extrapolation on a small base. Fortune 500 AI-compliance programmes budget <span class="fig">$8–15M</span> initially.</p>
 </section>
 
-<section>
+<section id="traction">
   <h2><span class="n">5</span>Traction and milestones</h2>
   <p><strong>Shipped.</strong></p>
   <ul>
@@ -175,7 +201,7 @@
   <p><strong>Strategic-partner track, contingent on the gate.</strong> In-Q-Tel, the not-for-profit strategic investor for the U.S. national-security community, funds technology development agreements of <span class="fig">$500k–3M</span> structured as development and licensing deals. Our signed, independently verifiable receipt is the artifact an AI-assurance audit keeps. We have no relationship with In-Q-Tel today and no clearances; we would approach after the gate result, leading with the receipt. The full brief is in the documents below.</p>
 </section>
 
-<section>
+<section id="business-model">
   <h2><span class="n">6</span>Business model</h2>
   <p>Planning-grade pricing, anchored to the retrain substitute: the per-event price sits far below retrain/N, because retraining clears the whole backlog once.</p>
   <div class="tablewrap"><table>
@@ -191,7 +217,7 @@
   <p>Scales with the customer's model registry rather than our headcount: the receipt and re-measure steps are automated. Current revenue is $0; the first dollars come from the consultancy partnerships and the design-partner case studies converting.</p>
 </section>
 
-<section>
+<section id="team">
   <h2><span class="n">7</span>Team</h2>
   <ul>
     <li><strong>Michael Duane Mooring — Co-founder &amp; CEO.</strong> Built the Divinci platform from its first commit (2023) through its production surfaces; leads product, engineering and the compliance wedge.</li>
@@ -201,7 +227,7 @@
   <p>Two technical co-founders; five shipping product surfaces (web, embed, desktop, SDK/CLI, MCP). Advisors and programmes: The Brink SBDC at the University of San Diego (Bobby Edelman); Cloudflare Workers Launchpad; Google for Startups Cloud Program. A named academic co-signer is a recruitment target of the gate, not yet secured.</p>
 </section>
 
-<section>
+<section id="financials">
   <h2><span class="n">8</span>Financial highlights</h2>
   <dl class="kv">
     <dt>Stage</dt><dd>Bootstrapped; no seed round raised.</dd>
@@ -214,7 +240,7 @@
   </dl>
 </section>
 
-<section>
+<section id="ask">
   <h2><span class="n">9</span>Funding ask</h2>
   <p><strong>No capital is required to run the 30-day gate.</strong> What we are asking for now: three design partners with open-weight models and EU exposure; an introduction to EU data-protection counsel who will take the scoped question; a named academic willing to adversarially test and co-sign the result.</p>
   <p><strong>If the gate passes</strong> — the experiment holds and the counsel memo supports the argument — we would raise <strong class="fig">~$1.5M</strong> against the Lean scenario, alongside an In-Q-Tel work-program application as a non-dilutive complement:</p>
@@ -233,7 +259,7 @@
   <p>No valuation target has been set; the ROI frame today is the break-even line above, and a priced round is only justified against the gate's result.</p>
 </section>
 
-<section>
+<section id="advantage">
   <h2><span class="n">10</span>Competitive advantage</h2>
   <p>The defensible position is the <strong>bundle</strong>: baseline → erase → re-measure → attest, as one verifiable artifact. Hirundo (Israel, $8M seed, weight-level edits on Llama, DeepSeek, Qwen and Gemma) is ahead on distribution and could copy a receipt format in weeks, but is behind on EU framing and, as far as we can see, on the evidence artifact. Rank-one editing methods (ROME, MEMIT) are published commodity; the moat is not the edit, it is the measured, signed, independently checkable evidence around it.</p>
   <p>We publish our failures. That is credibility, not a moat, and we say so. Divinci holds a registered trademark; no patents are filed, and a freedom-to-operate review is budgeted.</p>
@@ -261,7 +287,7 @@
   </ul>
 </section>
 
-<section>
+<section id="contact">
   <h2><span class="n">12</span>Contact</h2>
   <p>Michael Duane Mooring, Co-founder &amp; CEO · mike@divinci.ai · +1 646-346-0194 · https://divinci.ai</p>
 </section>
