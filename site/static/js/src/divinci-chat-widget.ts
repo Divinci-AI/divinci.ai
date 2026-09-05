@@ -18,6 +18,7 @@
  * /open-web-vectors/ use them to keep the bubble on-topic.
  */
 import { DivinciClient } from "@divinci-ai/client";
+import { settledHistory, restoreHistory } from "./chat-history.mjs";
 
 type View = "loading" | "email" | "otp" | "chat" | "error" | "blocked";
 
@@ -439,17 +440,24 @@ class DivinciChatWidget {
 
   constructor(cfg: WidgetConfig) {
     this.cfg = cfg;
-    this.client = new DivinciClient({ releaseId: cfg.releaseId, baseUrl: cfg.apiBase });
+    // 60s, not the SDK's 30s default. A reply that streams nothing back for
+    // 30s used to surface as "Request timed out after 30000ms" while the
+    // server was still generating (and then billed the reply nobody saw).
+    // The server now keeps Workers AI thinking off so answers land in a few
+    // seconds; the extra headroom is for the tail, not the norm.
+    this.client = new DivinciClient({ releaseId: cfg.releaseId, baseUrl: cfg.apiBase, timeout: 60_000 });
     
-    // Load persisted chat history
-    const stored = localStorage.getItem("divinci-chat-history:" + cfg.releaseId);
-    if (stored) {
-      try {
-        this.messages = JSON.parse(stored);
-      } catch {
-        this.messages = [];
-      }
-    }
+    // Load persisted chat history — COMPLETED exchanges only. A stored history
+    // that ends in a pending placeholder, an error bubble or an orphan user
+    // turn is discarded whole and the visitor starts a fresh, empty chat.
+    // Restoring it verbatim is what left a typing indicator on screen forever
+    // after a timed-out send (2026-09-05, /investors). Both keys go together:
+    // a history without its signed transcript breaks feedback and hand-off.
+    let stored: string | null = null;
+    try { stored = localStorage.getItem("divinci-chat-history:" + cfg.releaseId); } catch { stored = null; }
+    const restored = restoreHistory(stored);
+    this.messages = restored.messages;
+    if (restored.wiped) this.forgetStoredConversation();
 
     // Restore the SIGNED transcript that backs those messages. Without this the
     // rendered history outlives its signature: the message bubbles come back on
@@ -490,16 +498,38 @@ class DivinciChatWidget {
   }
 
   private saveMessages(): void {
+    // Persist only completed exchanges: never the "…" placeholder, never an
+    // error bubble, never a user turn that has no reply yet. Those live in
+    // memory for the current view only (see chat-history.mjs). With nothing
+    // completed, remove the keys rather than writing an empty conversation.
+    const settled = settledHistory(this.messages);
+    if (settled.length === 0) { this.forgetStoredConversation(); return; }
     try {
-      localStorage.setItem("divinci-chat-history:" + this.cfg.releaseId, JSON.stringify(this.messages));
+      localStorage.setItem("divinci-chat-history:" + this.cfg.releaseId, JSON.stringify(settled));
       // Keep the signed transcript in lockstep with the rendered messages —
       // persisting one without the other is what broke feedback across reloads.
+      // The signed transcript grows by one per SUCCESSFUL send, so it already
+      // matches the settled history exactly.
       localStorage.setItem(
         GATE_STATE_KEY + this.cfg.releaseId,
         JSON.stringify(this.client.freeChatGate.getState()),
       );
     } catch {
       // ignore full storage
+    }
+  }
+
+  /**
+   * Drop the stored conversation (history + signed transcript) so the next
+   * page load starts a fresh, empty chat. In-memory state is untouched — the
+   * visitor keeps seeing the current view, including an error bubble.
+   */
+  private forgetStoredConversation(): void {
+    try {
+      localStorage.removeItem("divinci-chat-history:" + this.cfg.releaseId);
+      localStorage.removeItem(GATE_STATE_KEY + this.cfg.releaseId);
+    } catch {
+      // Private browsing or full storage — nothing was persisted to clear.
     }
   }
 
@@ -1467,7 +1497,9 @@ class DivinciChatWidget {
             ? "Couldn't verify this browser, so that message wasn't sent. If you use a content blocker — Brave Shields, for example — allow challenges.cloudflare.com for this site, then try again."
             : this.errText(e, "Something went wrong. Please try again.");
         this.messages.push({ role: "assistant", text: msg, isError: true });
-        this.saveMessages();
+        // A conversation that ended in an error is not resumed: the next
+        // page load starts empty. The error stays on screen for this view.
+        this.forgetStoredConversation();
         this.render();
       }
     };
