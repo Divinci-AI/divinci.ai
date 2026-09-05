@@ -124,9 +124,9 @@
     </header>
 
     <section class="compliance-video">
-      <h2>{{ translations.compliance.video.heading | default(value="Watch a fact get deleted") }}</h2>
+      <h2>{{ translations.compliance.video.heading | default(value="Watch a fact get edited") }}</h2>
       <p class="compliance-video-sub">
-        {{ translations.compliance.video.subheading | default(value="Ninety seconds: what a vIndex is, how a rank-1 patch removes one association from a frozen model, and what the receipt looks like.") }}
+        {{ translations.compliance.video.subheading | default(value="Two minutes: what a vIndex is, how a reversible patch changes what a frozen model answers, and what the receipt looks like.") }}
       </p>
       <div class="compliance-video-frame" id="compliance-video-frame"
            data-embed="https://www.youtube-nocookie.com/embed/wnsKaMaEAOQ?autoplay=1&amp;rel=0&amp;modestbranding=1&amp;playsinline=1">
@@ -215,8 +215,8 @@
 
     <section class="compliance-cta-band compliance-audit-offer">
       <h2>{{ translations.compliance.audit.heading | default(value="Bring an erasure request. Leave with the dossier.") }}</h2>
-      <p>{{ translations.compliance.audit.para_1 | default(value="Pick a single fact you need removed from a model you run. We apply the edit, run the probe, and hand back two artifacts: the signed vIndex patch that performed the erasure, and an EU AI Act Annex IV dossier assembled from your release records — with every section we could not complete named explicitly.") }}</p>
-      <p class="compliance-audit-caveat">{{ translations.compliance.audit.caveat | default(value="Two limits worth stating up front. Weight-level erasure requires an open-weight served model — GPT, Claude and Gemini cannot be edited this way, only retrieved-context can. And the dossier is a draft for your assessment, not a declaration of conformity: that is a judgement only you can make.") }}</p>
+      <p>{{ translations.compliance.audit.para_1 | default(value="Pick a single fact you need removed from a model you run. We apply the edit, run the probe, and hand back two artifacts: the signed vIndex patch that performed the edit, with the answers the model gave before and after, and an EU AI Act Annex IV dossier assembled from your release records — with every section we could not complete named explicitly.") }}</p>
+      <p class="compliance-audit-caveat">{{ translations.compliance.audit.caveat | default(value="Three limits worth stating up front. Weight-level editing requires an open-weight served model — GPT, Claude and Gemini cannot be edited this way, only retrieved-context can. The receipt certifies what the model answered before and after and the exact patch that undoes it; it does not by itself prove the model has forgotten. On Gemma 4 E2B our own measurements show that removing an association from the index can leave the chat answer unchanged, while an output-level override changes the answer and leaves the old one a rank below — the receipt says which kind of edit you got. And the dossier is a draft for your assessment, not a declaration of conformity: that is a judgement only you can make.") }}</p>
       {# The home page's trust strip, reused wholesale: .research-band-logos and
          its per-brand filters live in style.css. Only alignment is overridden
          below — the band is centred, that strip is left-aligned. #}

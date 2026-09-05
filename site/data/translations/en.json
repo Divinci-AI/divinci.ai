@@ -1074,7 +1074,7 @@
           "reg_topic": "Art. 17",
           "requirement": "Right-to-erasure with verifiable proof",
           "competitors": "Soft-delete, no proof",
-          "larql": "Rank-1 patch erases the association; receipt issued"
+          "larql": "Reversible patch; the receipt carries the model's answers before and after"
         },
         {
           "reg_label": "HIPAA",
@@ -1108,16 +1108,16 @@
     },
     "receipt": {
       "heading": "What a \"receipt\" actually looks like",
-      "para_1": "A vIndex patch is a portable JSON file with a SHA-256 checksum. Apply it to suppress a fact; remove it to restore the model bit-for-bit. The patch IS the audit log — operators, regulators, and downstream consumers can verify the same operation independently.",
+      "para_1": "A vIndex patch is a portable JSON file with a SHA-256 checksum. Apply it to change what the model answers; remove it to restore the model bit-for-bit. The patch is the audit log — operators, regulators, and downstream consumers can verify the same operation independently. It records what the model answered before and after; it does not by itself prove the model has forgotten.",
       "para_2": "Below: an illustration of the format — the fields a Gate-3 DELETE patch carries, and the checksum that makes it verifiable. It is an example of the shape of a receipt, not a measurement we are publishing here."
     },
     "cta_band": {
       "heading": "Compliance you can prove. On any open transformer."
     },
     "video": {
-      "heading": "Watch a fact leave the weights",
-      "subheading": "Ninety seconds: what a vIndex is, how a rank-1 patch removes one association from a frozen model, and what the receipt looks like.",
-      "iframe_title": "Deleting a fact from a language model — vIndex",
+      "heading": "Watch a fact get edited",
+      "subheading": "Two minutes: what a vIndex is, how a reversible patch changes what a frozen model answers, and what the receipt looks like.",
+      "iframe_title": "Editing a fact in a language model — vIndex",
       "caption": "The worked example in full:",
       "caption_link": "Deleting Paris from a Language Model"
     },

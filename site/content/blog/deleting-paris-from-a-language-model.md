@@ -38,6 +38,8 @@ That's Gate 3. A single weight-space edit, targeting one feature in one layer, c
 
 This post explains how it works, why it works, and how to reproduce it in about ten minutes on a laptop.
 
+> **Update, 4 September 2026.** The feature measurements above are structural: they say which index entry was removed. We have since run the full behavioral protocol on the current Gemma 4 E2B vIndex, six capital facts, tombstoning every feature whose target is the capital token across all 35 layers. The associations left the index; the chat-templated answers did not move by more than 7 points. The Atlantis answer in the video below comes from the output-level override, which is total, reversible and receipted, and which leaves the original answer one rank below the new one. Removing an association from the index and changing what the model says are different claims, and a receipt should name which one it certifies. Method and readings: [the erasure experiments](/investors/) in the investor room.
+
 {{ youtube(id="p93Kkdb0bso", title="Deleting Paris from Gemma 4 — Divinci Model Edits", caption="The same edit, end to end, on the Model Edits page: France → Atlantis patched into Gemma 4 E2B, the patched and unpatched answers side by side, then the patch removed. Two minutes.") }}
 
 ---
