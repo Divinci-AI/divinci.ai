@@ -1,46 +1,46 @@
 {
-  "measured_at": "2026-09-03",
-  "measured_label": "3 September 2026",
+  "measured_at": "2026-09-05",
+  "measured_label": "5 September 2026",
   "stats": {
-    "sites": "33,404",
-    "pages": "6,931,559",
-    "chunks": "176,332,591",
-    "bytes": "59 GB",
-    "endpoints": "33,303",
+    "sites": "36,700",
+    "pages": "7,624,153",
+    "chunks": "206,025,020",
+    "bytes": "64 GB",
+    "endpoints": "36,589",
     "median": "227"
   },
   "composition": {
-    "public_share": "9%",
+    "public_share": "8%",
     "buckets": [
       {
         "key": "org",
         "label": ".org",
-        "count": "2,517",
-        "width": "7.5"
+        "count": "2,533",
+        "width": "6.9"
       },
       {
         "key": "gov",
         "label": ".gov",
-        "count": "129",
+        "count": "131",
         "width": "0.4"
       },
       {
         "key": "edu",
         "label": ".edu",
         "count": "273",
-        "width": "0.8"
+        "width": "0.7"
       },
       {
         "key": "com",
         "label": ".com",
-        "count": "26,589",
-        "width": "79.6"
+        "count": "29,807",
+        "width": "81.2"
       },
       {
         "key": "other",
         "label": "everything else",
-        "count": "3,896",
-        "width": "11.7"
+        "count": "3,956",
+        "width": "10.8"
       }
     ]
   },
@@ -48,12 +48,12 @@
     "deepest": "openstreetmap.org, scielo.br and diff.wikimedia.org run past 7,000 pages each.",
     "largest": "scielo.br — 10,220 pages, and 196 MB of extracted text: the densest corpus in the index."
   },
-  "directory_headline": "33,404 curated sites · 6,931,559 pages · 10,008 files · 176,332,591 searchable chunks",
+  "directory_headline": "36,700 curated sites · 7,624,153 pages · 10,547 files · 206,025,020 searchable chunks",
   "directory_counts": {
-    "sites": "33,404",
-    "pages": "6,931,559",
-    "files": "10,008",
-    "chunks": "176,332,591",
+    "sites": "36,700",
+    "pages": "7,624,153",
+    "files": "10,547",
+    "chunks": "206,025,020",
     "size": ""
   }
 }

@@ -63,6 +63,9 @@ module.exports = defineConfig({
         // hand-written note beats the derived one, and a note is rendered as
         // text. None of that is reachable from the module tests.
         '**/status-attribution.spec.js',
+        // The chat widget must not restore a pending or failed conversation
+        // (2026-09-05 investors-page bug); needs the built page and real storage.
+        '**/chat-widget-persistence.spec.js',
         // These two run under Chromium rather than the Mobile-* projects on
         // purpose: each sets its own viewport AND its own isMobile/hasTouch per
         // describe (both assert phone AND desktop behaviour in one file), and

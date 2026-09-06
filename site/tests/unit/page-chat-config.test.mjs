@@ -184,12 +184,14 @@ describe('per-page Divinci agent config', () => {
     // leaking to an unrelated page via a shared template.
     const stray = overriding
       .filter((p) => !/^([a-z]{2}(-[a-z]+)?\/)?(www-rag|open-web-vectors)\/index\.html$/.test(p))
+      .filter((p) => p !== 'investors/index.html')
       .sort();
     assert.deepEqual(stray, [],
-      'a per-page agent override appeared on a page that is not the directory ' +
-      'or the initiative — check for an override added to a shared template');
+      'a per-page agent override appeared on a page that is not the directory, ' +
+      'the initiative, or the investor data room — check for an override added ' +
+      'to a shared template');
 
-    for (const page of ['www-rag/index.html', 'open-web-vectors/index.html']) {
+    for (const page of ['www-rag/index.html', 'open-web-vectors/index.html', 'investors/index.html']) {
       assert.ok(overriding.includes(page), `${page} lost its page-scoped agent`);
     }
   });

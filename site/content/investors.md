@@ -1,6 +1,6 @@
 +++
 title = "Investor data room"
-description = "Confidential investor data room for Divinci AI, shared by direct link. Not indexed."
+description = "Investor materials for Divinci AI."
 template = "investors.html"
 
 [extra]
