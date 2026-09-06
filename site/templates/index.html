@@ -1596,7 +1596,7 @@
     <a href="/blog/deleting-paris-from-a-language-model/" class="research-card">
       <div class="research-card-image"><img src="{% if current_lang == 'en' %}/images/charts/chart-paris-surgical-edit.svg{% else %}/images/charts/chart-paris-surgical-edit.{{ current_lang }}.svg{% endif %}" alt="{{ translations.research_cards.card2_alt | default(value="Surgical knowledge-edit benchmark chart") }}" width="760" height="420" loading="lazy" decoding="async"></div>
       <h3>{{ translations.research_cards.card2_title | default(value="Deleting Paris from a Language Model") }}</h3>
-      <p>{{ translations.research_cards.card2_desc | default(value="A single rank-1 weight patch suppresses one fact at +0.02% perplexity. Audit-trail included.") }}</p>
+      <p>{{ translations.research_cards.card2_desc | default(value="A single rank-1 weight patch removes one association from the index at +0.02% perplexity. What the model says afterwards is measured separately, not assumed.") }}</p>
       <span class="research-card-meta">{{ translations.research_cards.card2_meta | default(value="Part II · 8 min read") }}</span>
     </a>
     <a href="/blog/when-the-circuit-dissolves/" class="research-card">

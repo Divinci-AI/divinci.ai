@@ -1182,7 +1182,7 @@
     "card1_alt": "Gráfico de temperatura de atención por capa",
     "card1_meta": "Parte I · 7 min de lectura",
     "card2_title": "Borrar París de un modelo de lenguaje",
-    "card2_desc": "Un único parche de pesos rank-1 suprime un hecho con +0.02% de perplexity. Registro de auditoría incluido.",
+    "card2_desc": "Un único parche de pesos rank-1 elimina una asociación del índice con +0.02% de perplexity. Lo que el modelo dice después se mide por separado, no se asume.",
     "card2_alt": "Gráfico de referencia de edición de conocimiento quirúrgica",
     "card2_meta": "Parte II · 8 min de lectura",
     "card3_title": "Cuando el circuito se disuelve",

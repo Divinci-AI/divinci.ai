@@ -1185,7 +1185,7 @@
     "card1_alt": "Per-layer attention temperature chart",
     "card1_meta": "Part I · 7 min read",
     "card2_title": "Deleting Paris from a Language Model",
-    "card2_desc": "A single rank-1 weight patch suppresses one fact at +0.02% perplexity. Audit-trail included.",
+    "card2_desc": "A single rank-1 weight patch removes one association from the index at +0.02% perplexity. What the model says afterwards is measured separately, not assumed.",
     "card2_alt": "Surgical knowledge-edit benchmark chart",
     "card2_meta": "Part II · 8 min read",
     "card3_title": "When the Circuit Dissolves",

@@ -1182,7 +1182,7 @@
     "card1_alt": "레이어별 어텐션 온도 차트",
     "card1_meta": "Part I · 7분 읽기",
     "card2_title": "언어 모델에서 파리(Paris) 삭제하기",
-    "card2_desc": "단일 rank-1 가중치 패치가 +0.02% perplexity로 하나의 사실을 억제합니다. 감사 추적(audit-trail)이 포함됩니다.",
+    "card2_desc": "단일 rank-1 가중치 패치가 +0.02% perplexity로 하나의 연관을 인덱스에서 제거합니다. 그 후 모델이 무엇을 말하는지는 가정하지 않고 별도로 측정합니다.",
     "card2_alt": "정밀 지식 편집 벤치마크 차트",
     "card2_meta": "Part II · 8분 읽기",
     "card3_title": "회로가 녹아내릴 때",

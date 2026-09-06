@@ -1182,7 +1182,7 @@
     "card1_alt": "Grafico della temperatura di attenzione per layer",
     "card1_meta": "Part I · 7 min di lettura",
     "card2_title": "Cancellare Parigi da un modello linguistico",
-    "card2_desc": "Una singola patch di pesi rank-1 sopprime un fatto con una perplexity di +0.02%. Tracciabilità completa inclusa.",
+    "card2_desc": "Una singola patch di pesi rank-1 rimuove un'associazione dall'indice con una perplexity di +0.02%. Ciò che il modello dice dopo viene misurato separatamente, non presunto.",
     "card2_alt": "Grafico di benchmark per la modifica chirurgica della conoscenza",
     "card2_meta": "Part II · 8 min di lettura",
     "card3_title": "Quando il circuito si dissolve",

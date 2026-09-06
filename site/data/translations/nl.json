@@ -1182,7 +1182,7 @@
     "card1_alt": "Grafiek van de aandachtstemperatuur per laag",
     "card1_meta": "Part I · 7 min lezen",
     "card2_title": "Parijs verwijderen uit een taalmodel",
-    "card2_desc": "Eén enkele rank-1 weight-patch onderdrukt één feit bij +0.02% perplexity. Audit-trail inbegrepen.",
+    "card2_desc": "Eén enkele rank-1 weight-patch verwijdert één associatie uit de index bij +0.02% perplexity. Wat het model daarna zegt wordt apart gemeten, niet aangenomen.",
     "card2_alt": "Grafiek van de chirurgische kennis-edit-benchmark",
     "card2_meta": "Part II · 8 min lezen",
     "card3_title": "Wanneer het circuit oplost",

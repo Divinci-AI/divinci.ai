@@ -1182,7 +1182,7 @@
     "card1_alt": "Gráfico de temperatura de atenção por camada",
     "card1_meta": "Parte I · 7 min de leitura",
     "card2_title": "Apagar Paris de um Modelo de Linguagem",
-    "card2_desc": "Uma única correcção de peso rank-1 suprime um facto a +0.02% de perplexity. Registo de auditoria incluído.",
+    "card2_desc": "Uma única correcção de peso rank-1 remove uma associação do índice a +0.02% de perplexity. O que o modelo diz depois é medido separadamente, não presumido.",
     "card2_alt": "Gráfico de benchmark de edição cirúrgica de conhecimento",
     "card2_meta": "Parte II · 8 min de leitura",
     "card3_title": "Quando o Circuito se Dissolve",

@@ -1182,7 +1182,7 @@
     "card1_alt": "Diagramm zur Aufmerksamkeits-Temperatur pro Schicht",
     "card1_meta": "Part I · 7 Min. Lesezeit",
     "card2_title": "Paris aus einem Sprachmodell löschen",
-    "card2_desc": "Ein einzelner rank-1-Gewichts-Patch unterdrückt eine Tatsache bei +0.02% perplexity. Inklusive Audit-Trail.",
+    "card2_desc": "Ein einzelner rank-1-Gewichts-Patch entfernt eine Assoziation aus dem Index bei +0.02% perplexity. Was das Modell danach sagt, wird separat gemessen, nicht angenommen.",
     "card2_alt": "Diagramm zum chirurgischen Wissens-Edit-Benchmark",
     "card2_meta": "Part II · 8 Min. Lesezeit",
     "card3_title": "Wenn sich der Schaltkreis auflöst",

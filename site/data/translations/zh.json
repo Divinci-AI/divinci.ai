@@ -1182,7 +1182,7 @@
     "card1_alt": "逐层注意力温度图表",
     "card1_meta": "Part I · 7 分钟阅读",
     "card2_title": "从语言模型中删除巴黎",
-    "card2_desc": "一个 rank-1 权重补丁以 +0.02% 的 perplexity 抑制了一项事实。附审计追踪记录。",
+    "card2_desc": "一个 rank-1 权重补丁以 +0.02% 的 perplexity 从索引中移除一项关联。模型随后的回答是单独测量的，而不是假定的。",
     "card2_alt": "精准知识编辑基准图表",
     "card2_meta": "Part II · 8 分钟阅读",
     "card3_title": "当回路消融时",
