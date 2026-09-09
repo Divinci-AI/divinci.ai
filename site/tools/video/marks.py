@@ -34,28 +34,49 @@ from PIL import Image, ImageDraw
 SS = 3  # supersample factor
 
 
-def sample_path(segs, per=240):
-    """Flatten cubic Béziers to points, with a cumulative arc-length table."""
-    pts = []
-    for s in segs:
-        (x0, y0), (cx1, cy1), (cx2, cy2), (x1, y1) = s["from"], s["c1"], s["c2"], s["to"]
-        for i in range(per + 1):
-            t = i / per
-            u = 1 - t
-            pts.append((
-                u*u*u*x0 + 3*u*u*t*cx1 + 3*u*t*t*cx2 + t*t*t*x1,
-                u*u*u*y0 + 3*u*u*t*cy1 + 3*u*t*t*cy2 + t*t*t*y1,
-            ))
+def sample_path(path, per=240):
+    """Flatten a mark to STROKES of points, with one cumulative length table.
+
+    Two shapes are accepted:
+      - a list of cubic Bézier segments (underlines, circles) -> one stroke
+      - {"strokes": [[[x,y], ...], ...]}                      -> many strokes
+
+    Many strokes is what writing needs: a word is drawn with the pen lifted
+    between letters, and the gaps must not be inked. Length accumulates ACROSS
+    strokes but the jump between them adds nothing, so the reveal moves at a
+    constant speed through the whole word and simply resumes at the next
+    stroke's start — which is what a pen-lift looks like.
+    """
+    if isinstance(path, dict) and "strokes" in path:
+        strokes = [[(float(x), float(y)) for x, y in s] for s in path["strokes"] if len(s) >= 2]
+    else:
+        pts = []
+        for s in path:
+            (x0, y0), (cx1, cy1), (cx2, cy2), (x1, y1) = s["from"], s["c1"], s["c2"], s["to"]
+            for i in range(per + 1):
+                t = i / per
+                u = 1 - t
+                pts.append((
+                    u*u*u*x0 + 3*u*u*t*cx1 + 3*u*t*t*cx2 + t*t*t*x1,
+                    u*u*u*y0 + 3*u*u*t*cy1 + 3*u*t*t*cy2 + t*t*t*y1,
+                ))
+        strokes = [pts]
+
     # Cumulative LENGTH, not parameter. A Bézier's parameter is not proportional
     # to its arc length, so easing on t alone makes the hand lurch through the
     # curves and crawl along the straights.
-    cum = [0.0]
-    for i in range(1, len(pts)):
-        cum.append(cum[-1] + math.dist(pts[i], pts[i - 1]))
-    return pts, cum
+    flat, cum = [], []
+    total = 0.0
+    for si, st in enumerate(strokes):
+        for i, pt in enumerate(st):
+            if i:
+                total += math.dist(pt, st[i - 1])
+            flat.append((pt, si))
+            cum.append(total)
+    return flat, cum, strokes
 
 
-def point_at(pts, cum, target):
+def index_at(cum, target):
     lo, hi = 0, len(cum) - 1
     while lo < hi:
         mid = (lo + hi) // 2
@@ -63,7 +84,7 @@ def point_at(pts, cum, target):
             lo = mid + 1
         else:
             hi = mid
-    return pts[lo]
+    return lo
 
 
 def ease(t):
@@ -86,7 +107,7 @@ def render(spec_path: Path, out_dir: Path):
 
     manifest = []
     for mark in spec["marks"]:
-        pts, cum = sample_path(mark["path"])
+        flat, cum, strokes = sample_path(mark["path"])
         total = cum[-1]
         frames = max(1, round(mark["duration"] * FPS))
         d = out_dir / mark["id"]
@@ -100,21 +121,27 @@ def render(spec_path: Path, out_dir: Path):
         for f in range(frames):
             drawn = ease(1.0 if frames == 1 else f / (frames - 1))
             upto = max(1e-6, total * drawn)
-            tips.append(list(point_at(pts, cum, upto)))
+            k = index_at(cum, upto)
+            tips.append(list(flat[k][0]))
 
             img = Image.new("RGBA", (W * SS, H * SS), (0, 0, 0, 0))
             dr = ImageDraw.Draw(img)
-            # every point up to the reveal length
-            n = 0
-            while n < len(cum) and cum[n] <= upto:
-                n += 1
-            seg = [(x * SS, y * SS) for x, y in pts[:max(2, n)]]
-            if len(seg) >= 2:
-                dr.line(seg, fill=rgb + (alpha,), width=width * SS, joint="curve")
-                # round caps: PIL's line() gives butt ends, which read as a
-                # chopped stroke at this weight.
-                r = width * SS / 2
-                for cx, cy in (seg[0], seg[-1]):
+            # Ink every stroke up to the reveal point, each on its own, so the
+            # pen-lifts between letters stay unlinked.
+            per_stroke: dict[int, list] = {}
+            for (pt, si) in flat[:k + 1]:
+                per_stroke.setdefault(si, []).append((pt[0] * SS, pt[1] * SS))
+            r = width * SS / 2
+            for si in sorted(per_stroke):
+                seg = per_stroke[si]
+                if len(seg) >= 2:
+                    dr.line(seg, fill=rgb + (alpha,), width=width * SS, joint="curve")
+                    # round caps: PIL's line() gives butt ends, which read as a
+                    # chopped stroke at this weight.
+                    for cx, cy in (seg[0], seg[-1]):
+                        dr.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgb + (alpha,))
+                elif seg:
+                    cx, cy = seg[0]
                     dr.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgb + (alpha,))
             img.resize((W, H), Image.LANCZOS).save(d / f"{f:04d}.png")
 

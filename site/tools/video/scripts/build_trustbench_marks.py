@@ -73,13 +73,46 @@ LEAD_IN = 0.9   # must match hands.py
 
 
 def turn(line_at):
-    """The speaker and the window they hold, for the line starting at line_at."""
-    for i, (a, v) in enumerate(LINES):
-        if abs(a - line_at) < 0.05:
-            end = LINES[i + 1][0] if i + 1 < len(LINES) else 220.3
-            return v, a, end
-    raise SystemExit(f"no narration line at {line_at}s — check trustbench.mjs")
+    """The speaker and the window they hold, for the line nearest line_at.
 
+    NEAREST, not exact. Every anchor shifts whenever the copy changes — fixing
+    "model id" to "model I D" moved every line after it by a second or so — and
+    an exact match would then fail on all 22 marks for a one-word edit. The
+    match is reported when it drifts, and refused past 2.5s, which is wider than
+    a rewording and narrower than the gap to the next line.
+    """
+    i = min(range(len(LINES)), key=lambda j: abs(LINES[j][0] - line_at))
+    a, v = LINES[i]
+    if abs(a - line_at) > 2.5:
+        raise SystemExit(
+            f"no narration line near {line_at}s (nearest is {a}s, {v}) — "
+            f"the copy moved too far; re-point this mark")
+    if abs(a - line_at) > 0.05:
+        DRIFT.append((line_at, a))
+    end = LINES[i + 1][0] if i + 1 < len(LINES) else 220.3
+    return v, a, end
+
+
+DRIFT = []
+
+
+
+# ── written words and drawn illustrations ────────────────────────────────
+# Not everything is worth underlining. Writing a word, or sketching the thing
+# being described, is what the pipeline page's hand does and it carries more
+# than a line under existing text: the mark ADDS something to the screen rather
+# than pointing at what is already there.
+import sys
+sys.path.insert(0, "tools/video")
+import strokes as SK
+
+
+def written(text, x, y, size):
+    return {"strokes": SK.word(text, x, y + PAD, size)}
+
+
+def drawn(kind, x, y, size):
+    return {"strokes": getattr(SK, kind)(x, y + PAD, size)}
 
 M = []
 def mark(mid, line_at, dur, path, colour=GOLD, w=5, why=""):
@@ -101,7 +134,8 @@ def mark(mid, line_at, dur, path, colour=GOLD, w=5, why=""):
 
 # ── S1 dashboard 0.5-14.0 ────────────────────────────────────────────────
 mark("s1-signed", 8.3, 2.4, underline(640, 872, 140), why="a manifest signed with an Ed25519 platform key")
-mark("s1-verify", 4.8, 1.6, circle(944, 128, 74, 20), why="TrustBench asks you to check it")
+mark("s1-verify", 4.8, 2.0, written("CHECK", 990, 150, 30), w=6,
+     why="TrustBench asks you to check it — written, not circled")
 
 # ── S1 recent runs 14.0-24.0 ─────────────────────────────────────────────
 mark("s1-score", 18.5, 1.4, underline(1263, 1309, 170), why="the catalog line, over the run list")
@@ -117,14 +151,16 @@ mark("s2-ranks", 48.9, 2.4, circle(266, 245, 24, 118), why="the median of five m
 
 # ── S2 tail + note 58.0-73.9 ─────────────────────────────────────────────
 mark("s2-note", 58.1, 2.6, underline(266, 720, 676), why="scores only compare within a version")
-mark("s2-key", 65.6, 2.4, underline(1150, 1235, 500), why="every row carries the key that signed it")
+mark("s2-key", 65.6, 2.4, drawn("key", 70, 300, 110),
+     why="every row carries the key that signed it — a key, drawn")
 
 # ── S3 benchmark detail 73.9-89.0 ────────────────────────────────────────
 mark("s3-time", 73.9, 1.6, circle(991, 292, 34, 17), why="about sixty-six seconds")
 
 # ── S3 catalog 89.0-102.4 ────────────────────────────────────────────────
 mark("s3-owner", 85.5, 2.4, underline(247, 432, 140), why="the catalog is identical in every workspace")
-mark("s3-private", 93.0, 2.6, circle(783, 333, 172, 118), why="your runs are the opposite")
+mark("s3-private", 93.0, 2.6, drawn("lock", 1370, 430, 120),
+     why="private by default — a padlock, drawn")
 
 # ── S4 verified card 102.4-146.7 ─────────────────────────────────────────
 mark("s4-curl", 108.0, 2.6, underline(192, 1027, 375), why="the manifest is on a public endpoint")
@@ -134,7 +170,8 @@ mark("verified-tick", 134.8, 1.4, tick(452, 383), GREEN, 6, why="Verified. Signa
 # ── S4 tampered card 146.7-178.6 ─────────────────────────────────────────
 mark("s4-t1", 148.4, 1.6, strike(192, 420, 570), RED, why="score one to 0.42 — the signature fails")
 mark("s4-t2", 154.0, 1.4, strike(192, 400, 596), RED, why="swap the model id. Fails.")
-mark("s4-all", 164.4, 2.6, circle(566, 604, 82, 62), why="the receipt does not depend on us being honest")
+mark("s4-all", 164.4, 3.0, drawn("seal", 690, 688, 104),
+     why="the receipt stands on its own — a wax seal, drawn")
 
 # ── S5 drill run 178.6-205.2 ─────────────────────────────────────────────
 mark("s5-model", 178.6, 3.0, underline(296, 555, 160), why="a model id that does not exist")
@@ -143,7 +180,8 @@ mark("s5-refusing", 196.8, 3.0, underline(963, 1165, 707), why="refusing to scor
 
 # ── S6 boards 205.2-220.3 ────────────────────────────────────────────────
 mark("s6-verifier", 205.2, 3.0, underline(409, 667, 185), why="offline verification, and a public board")
-mark("s6-annex", 212.9, 3.0, circle(587, 264, 132, 20), why="version two opens up authorship")
+mark("s6-annex", 212.9, 3.0, written("V2", 1180, 250, 46), w=7,
+     why="version two opens up authorship — written")
 
 out = {"width": 1568, "height": 882, "fps": 30,
        "_note": "Generated by build_trustbench_marks.py. Coordinates there are "
@@ -152,6 +190,9 @@ out = {"width": 1568, "height": 882, "fps": 30,
        "marks": M}
 p = Path("tools/video/scripts/trustbench.marks.json")
 p.write_text(json.dumps(out, indent=1))
+if DRIFT:
+    print(f"note: {len(DRIFT)} mark(s) followed their line as the copy moved, "
+          f"e.g. {DRIFT[0][0]}s -> {DRIFT[0][1]}s")
 print(f"wrote {p} — {len(M)} marks")
 tot = sum(m["duration"] for m in M)
 print(f"drawing for {tot:.1f}s of 220.3s ({tot/220.3*100:.0f}% of the runtime), "
