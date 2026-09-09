@@ -38,11 +38,19 @@ KEY_HI = 42.0         # greenness at/above which a pixel is pure background
 KEY_LO = 14.0         # greenness at/below which a pixel is fully opaque
 
 
+def pencil_mask(rgb):
+    """Pixels that look like the implement: warm, mid-value, clearly red-led.
+
+    Shared by pencil_angle() and the tip finder so the two can never disagree
+    about what the implement is.
+    """
+    r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+    return (r > 70) & (r < 190) & (g < 95) & (b < 95) & (r > g + 35) & (r > b + 25)
+
+
 def pencil_angle(rgb):
     """Principal axis of the pencil, by colour. Returns degrees, or None."""
-    r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
-    m = (r > 70) & (r < 190) & (g < 95) & (b < 95) & (r > g + 35) & (r > b + 25)
-    ys, xs = np.nonzero(m)
+    ys, xs = np.nonzero(pencil_mask(rgb))
     if len(xs) < 200:
         return None
     xs = xs - xs.mean(); ys = ys - ys.mean()
@@ -169,10 +177,30 @@ def main():
     for i, (col, a) in enumerate(keyed):
         c = col[by0:by0 + H, bx0:bx0 + W]
         al = a[by0:by0 + H, bx0:bx0 + W]
-        # The bristle tip is the leading (leftmost) solid pixel of the brush.
+        # The tip is the far end of the IMPLEMENT, not the leading edge of the
+        # image. This used to be `xs.min()` -- the leftmost opaque pixel -- which
+        # is right only while every clip has the arm entering from the right with
+        # the brush pointing left. The first hand generated with the arm entering
+        # from the LEFT reported its tip at (0.0, 0.72) with 0px of drift across
+        # all 80 frames: it had locked onto the arm's own cut edge, which of
+        # course never moves. Zero drift is the tell.
+        #
+        # So: find the implement by colour (the same mask pencil_angle uses),
+        # take its two extremes along the principal axis, and keep whichever is
+        # farther from the centre of the arm's mass. The tip is the end pointing
+        # AWAY from the hand, whichever way round the clip is.
         ys, xs = np.nonzero(al > 0.6)
-        tx = int(xs.min())
-        ty = float(ys[xs < tx + 5].mean())
+        pm = pencil_mask(c)
+        pys, pxs = np.nonzero(pm & (al > 0.6))
+        if len(pxs) >= 200:
+            cx, cy = float(xs.mean()), float(ys.mean())
+            d = (pxs - cx) ** 2 + (pys - cy) ** 2
+            k = int(np.argmax(d))
+            tx, ty = int(pxs[k]), float(pys[k])
+        else:
+            # No implement found: fall back to the old leading-edge rule.
+            tx = int(xs.min())
+            ty = float(ys[xs < tx + 5].mean())
         tips.append([round(tx / W, 5), round(ty / H, 5)])
         img = np.dstack([np.clip(c, 0, 255), al * 255]).astype(np.uint8)
         im = Image.fromarray(img, "RGBA")

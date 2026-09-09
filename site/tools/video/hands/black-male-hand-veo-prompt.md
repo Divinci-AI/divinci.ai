@@ -14,15 +14,19 @@ the clip otherwise. They are not stylistic preferences.
 
 ## The prompt
 
-> A photorealistic pen-and-ink anatomical study in the style of a Leonardo da
-> Vinci codex page, rendered as live footage. A **Black man's right hand and
-> forearm** enter from the lower right against a **solid chroma-green
-> background**. The skin is deep warm brown, modelled in fine sepia and umber
-> cross-hatching with the same engraved line-work used for the rest of the
-> drawing — the hatching follows the tendons and knuckles. The forearm is a
-> Renaissance automaton: exposed brass and pale wood machinery, pinned joints,
-> visible linkages, drawn in the same ink technique, with a hatched cuff where
-> the machinery meets the wrist.
+> A photorealistic pen-and-ink anatomical drawing in the engraved style of a
+> Leonardo da Vinci anatomical study, rendered as live footage. A **Black man's
+> right hand and forearm** float against a **solid chroma-green field that fills
+> the entire frame, edge to edge**. There is no page, no paper, no parchment, no
+> border and no frame — the drawing is composited directly onto the green.
+>
+> The skin is **deep dark brown**, clearly dark-skinned, modelled in dense umber
+> and warm-grey cross-hatching. Keep the colour **low in saturation — muted,
+> never orange, red, ruddy or terracotta** — but keep it BROWN and DARK rather
+> than draining it to grey. The hatching follows the tendons and knuckles. The forearm is a Renaissance automaton:
+> exposed brass and pale wood machinery, pinned joints, visible linkages, drawn
+> in the same ink technique and the same muted palette, with a hatched cuff
+> where the machinery meets the wrist.
 >
 > The hand holds a slender **reddish-brown wooden stylus** in a relaxed writing
 > grip, the shaft running up and to the right, the tip pointing to the upper
@@ -37,6 +41,21 @@ the clip otherwise. They are not stylistic preferences.
 ---
 
 ## Why each constraint
+
+**Desaturated, not warm.** The first take read as orange-red — closer to
+terracotta than ink — and sat badly against the existing pale hand, which is
+almost monochrome. Saying "deep warm brown" invites saturation; the palette has
+to be named as muted and the reds excluded by name. This also helps the keyer:
+`pencil_angle()` finds the stylus by looking for reddish pixels, so the less red
+the HAND is, the less it can compete with the implement.
+
+**Never describe the medium as paper.** Take 2 said the palette was "papery
+like aged parchment" and Veo drew the hand ON a parchment page with a border,
+floating in the green. That page keys OPAQUE and composites as a cream slab over
+the video — the exact failure the green-screen rule exists to prevent. Describe
+the LINE-WORK as engraved or hatched; never name a surface, even as a simile.
+Take 2 also over-corrected to grey, so the brief now asks for dark brown and low
+saturation as two separate instructions rather than one.
 
 **Solid chroma green, nothing else in frame.** The keyer is
 `greenness = g - max(r, b)`, thresholded between 14 and 42. A desk, paper or

@@ -39,10 +39,13 @@ const PROMPT_MD = flag('prompt', 'tools/video/hands/black-male-hand-veo-prompt.m
    keyer's own drift gate exists to trim. */
 const NEGATIVE = [
   'desk, table, paper, parchment, surface, props, objects',
+  'page, page border, frame, canvas, book, sheet, drawing on paper, vignette border',
+  'greyscale skin, grey skin, monochrome hand, desaturated to grey',
   'cast shadow, drop shadow, shadow on background',
   'gradient background, textured background, vignette',
   'moving fingers, changing grip, opening hand, dropping the stylus',
   'camera movement, zoom, pan, dolly, rack focus',
+  'orange skin, red skin, ruddy, terracotta, saturated, oversaturated, vivid',
   'text, watermark, caption, logo',
   'multiple hands, second arm, face, body',
 ].join(', ')

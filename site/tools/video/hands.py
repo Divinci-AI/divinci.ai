@@ -60,7 +60,7 @@ def hand_frames(webm: Path, cache: Path) -> list[Path]:
     return sorted(cache.glob("*.png"))
 
 
-def feather(img: Image.Image, frac: float = 0.10) -> Image.Image:
+def feather(img: Image.Image, frac: float = 0.10, side: str = "right") -> Image.Image:
     """Fade the arm's outer cut edges to transparent.
 
     The source clip crops the forearm at its own box boundary, so wherever the
@@ -72,11 +72,14 @@ def feather(img: Image.Image, frac: float = 0.10) -> Image.Image:
     SIZE to where the mark happens to be.
     """
     w, h = img.size
-    a = img.getchannel("A").load()
     fw, fh = max(1, int(w * frac)), max(1, int(h * frac))
     px = img.load()
-    for x in range(w - fw, w):
-        k = (w - x) / fw
+    # Feather the edge the ARM runs into, which depends on which side it enters
+    # from. Feathering the wrong edge does nothing useful and leaves the real
+    # cut showing as a hard line.
+    xs = range(w - fw, w) if side == "right" else range(0, fw)
+    for x in xs:
+        k = (w - x) / fw if side == "right" else (x + 1) / fw
         for y in range(h):
             r, g, b, al = px[x, y]
             px[x, y] = (r, g, b, int(al * k))
@@ -99,7 +102,12 @@ def load_hand(asset: str):
                          Path(f"build/video/.hand-cache/{asset}"))
     if not frames:
         sys.exit(f"no frames decoded from {asset}.webm")
-    return {"meta": meta, "frames": frames,
+    # A tip on the RIGHT of the box means the arm extends left, so it enters
+    # from the left and its cut edge is on the left. Reading it from the tip
+    # track means a new hand needs no configuration.
+    tipx = sum(t[0] for t in meta["tips"]) / len(meta["tips"])
+    side = "left" if tipx > 0.5 else "right"
+    return {"meta": meta, "frames": frames, "side": side,
             "h": round(HAND_W * meta["h"] / meta["w"])}
 
 
@@ -112,7 +120,7 @@ def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush
         a = m.get("hand", asset)
         if a not in hands:
             hands[a] = load_hand(a)
-            print(f"  hand {a}: {len(hands[a]['frames'])} frames")
+            print(f"  hand {a}: {len(hands[a]['frames'])} frames, enters from the {hands[a]['side']}")
 
     work = Path("build/video/.overlays")
     if work.exists():
@@ -123,6 +131,8 @@ def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush
     for mark in spec["marks"]:
         hand = hands[mark.get("hand", asset)]
         tips_meta, frames, hand_h = hand["meta"], hand["frames"], hand["h"]
+        side = hand["side"]
+        off = W if side == "right" else -HAND_W   # where it travels from
         mdir = Path(mark["dir"])
         tips = mark["tips"]
         n_draw = mark["frames"]
@@ -158,7 +168,7 @@ def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush
                 target = end_pt
 
             hf = Image.open(frames[i % len(frames)]).convert("RGBA")
-            hf = feather(hf.resize((HAND_W, hand_h), Image.LANCZOS))
+            hf = feather(hf.resize((HAND_W, hand_h), Image.LANCZOS), side=side)
             tipx, tipy = tips_meta["tips"][(i % len(frames)) % len(tips_meta["tips"])]
             hx = target[0] - tipx * HAND_W
             hy = target[1] - tipy * hand_h
@@ -166,10 +176,10 @@ def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush
             # travel in from off-frame right; slide back out the same way
             if i < n_in:
                 k = 1 - ease_io((i + 1) / n_in)
-                hx += (W - hx) * k
+                hx += (off - hx) * k
             elif i >= n_in + n_draw:
                 k = ease_io((i - n_in - n_draw + 1) / n_out)
-                hx += (W - hx) * k
+                hx += (off - hx) * k
 
             layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
             layer.paste(hf, (round(hx), round(hy)), hf)
