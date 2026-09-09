@@ -43,21 +43,25 @@ export default {
 
     // ── Scene 2 — a leaderboard that discriminates ───────────────────────
     { at: 26.7, voice: MILES, text: 'This is RAG grounding. Can a model answer from its retrieved context without inventing?' },
-    { at: 33.4, voice: MILES, text: 'Seventeen models, six distinct ranks, top score of one point zero by g l m five point three flash.' },
-    { at: 43.6, voice: MAEVE, text: 'And the version before this one was useless.' },
-    { at: 47.1, voice: MILES, text: 'It was. Twenty-two of twenty-three samples were saturated. Fifteen models tied at a perfect score.' },
-    { at: 55.8, voice: MAEVE, text: 'A benchmark everything passes measures nothing.' },
-    { at: 59.6, voice: MILES, text: 'One point four replaced those samples with ones that discriminate. A fifteen-way tie became six real ranks.' },
-    { at: 68.8, voice: MAEVE, text: 'Scores only compare within a benchmark version, so older runs are excluded rather than quietly mixed in. Zero excluded here. Every row is directly comparable.' },
+    { at: 33.4, voice: MILES, text: 'Seventeen models, six distinct ranks, and a top score of one hundred percent by g l m five point three flash.' },
+    // The board's own footer, and worth saying out loud: a median of real
+    // runs is not an average, so the number on screen is one that actually
+    // happened and can be followed to its manifest.
+    { at: 42.1, voice: MAEVE, text: 'And that is the median of the model’s five most recent qualifying runs. Always a real run’s score, not an average of runs that never happened.' },
+    { at: 51.0, voice: MAEVE, text: 'And the version before this one was useless.' },
+    { at: 54.5, voice: MILES, text: 'It was. Twenty-two of twenty-three samples were saturated. Fifteen models tied at a perfect score.' },
+    { at: 63.1, voice: MAEVE, text: 'A benchmark everything passes measures nothing.' },
+    { at: 67.0, voice: MILES, text: 'One point four replaced those samples with ones that discriminate. A fifteen-way tie became six real ranks.' },
+    { at: 76.1, voice: MAEVE, text: 'Scores only compare within a benchmark version, so older runs are excluded rather than quietly mixed in. Zero excluded here. Every row is directly comparable.' },
 
     // ── Scene 3 — the signature check (the differentiator) ───────────────
-    { at: 82.6, voice: MAEVE, text: 'So let me check the top one.' },
-    { at: 85.1, voice: MILES, text: 'The manifest is on a public endpoint. The verifier is on n p m — M I T licensed, and its only dependencies are an Ed25519 library and a schema validator. Nothing of ours.' },
-    { at: 100.2, voice: MAEVE, text: 'Fetched, and verified. Signature valid, signed by t b p prod zero zero two, score provenance measured, model invoked. No warnings.' },
-    { at: 113.0, voice: MILES, text: 'Now change something.' },
-    { at: 114.7, voice: MAEVE, text: 'Score from one to zero point four two. Signature fails.' },
-    { at: 120.3, voice: MAEVE, text: 'Swap the model id. Fails. Inflate the sample count from eleven to five hundred. Fails. Alter the outputs hash. Fails.' },
-    { at: 131.2, voice: MILES, text: 'That is the whole claim, and you just ran it yourself. Offline, against our key registry, with none of our code.' },
+    { at: 90.0, voice: MAEVE, text: 'So let me check the top one.' },
+    { at: 92.4, voice: MILES, text: 'The manifest is on a public endpoint. The verifier is on n p m — M I T licensed, and its only dependencies are an Ed25519 library and a schema validator. Nothing of ours.' },
+    { at: 107.6, voice: MAEVE, text: 'Fetched, and verified. Signature valid, signed by t b p prod zero zero two, score provenance measured, model invoked. No warnings.' },
+    { at: 120.4, voice: MILES, text: 'Now change something.' },
+    { at: 122.1, voice: MAEVE, text: 'Score from one to zero point four two. Signature fails.' },
+    { at: 127.7, voice: MAEVE, text: 'Swap the model id. Fails. Inflate the sample count from eleven to five hundred. Fails. Alter the outputs hash. Fails.' },
+    { at: 138.5, voice: MILES, text: 'That is the whole claim, and you just ran it yourself. Offline, against our key registry, with none of our code.' },
 
     // ── Scene 4 — the catalog ────────────────────────────────────────────
     // WAS "unified search". CUT on 2026-09-08 after checking production: the
@@ -69,18 +73,18 @@ export default {
     //
     // The product facts in the cut scene were good and do not depend on search,
     // so they play over the benchmark catalog instead.
-    { at: 138.4, voice: MILES, text: 'Every benchmark in the catalog is platform-owned, so it is identical in every workspace. It is what you can run.' },
-    { at: 145.0, voice: MAEVE, text: 'Eleven published. Five of them have enough completed runs to have a board.' },
-    { at: 151.5, voice: MILES, text: 'Runs are the opposite — private to whoever triggered them. An admin does not see a colleague’s run, because the runs API would not serve it either.' },
+    { at: 145.8, voice: MILES, text: 'Every benchmark in the catalog is platform-owned, so it is identical in every workspace. It is what you can run.' },
+    { at: 152.4, voice: MAEVE, text: 'Eleven published. Five of them have enough completed runs to have a board.' },
+    { at: 158.9, voice: MILES, text: 'Runs are the opposite — private to whoever triggered them. An admin does not see a colleague’s run, because the runs API would not serve it either.' },
 
     // ── Scene 5 — attested failure ───────────────────────────────────────
-    { at: 166.1, voice: MAEVE, text: 'What happens when a run fails?' },
-    { at: 168.6, voice: MILES, text: 'It is still a first-class record. This one targeted a model id that does not exist. Ten of ten samples failed.' },
-    { at: 177.8, voice: MILES, text: 'Rather than emit a score from partial data, the harness refused to produce one.' },
-    { at: 183.4, voice: MAEVE, text: 'A benchmark that always returns a number is easier to trust, and worse. Refusing to score is the honest outcome.' },
+    { at: 173.4, voice: MAEVE, text: 'What happens when a run fails?' },
+    { at: 175.9, voice: MILES, text: 'It is still a first-class record. This one targeted a model id that does not exist. Ten of ten samples failed.' },
+    { at: 185.1, voice: MILES, text: 'Rather than emit a score from partial data, the harness refused to produce one.' },
+    { at: 190.8, voice: MAEVE, text: 'A benchmark that always returns a number is easier to trust, and worse. Refusing to score is the honest outcome.' },
 
     // ── Scene 6 — close ──────────────────────────────────────────────────
-    { at: 196.5, voice: MILES, text: 'Signed manifests. Versioned benchmarks. Offline verification, and a public board.' },
-    { at: 201.2, voice: MAEVE, text: 'Version two opens it up, so domain experts publish their own benchmarks and earn per use.' },
+    { at: 203.8, voice: MILES, text: 'Signed manifests. Versioned benchmarks. Offline verification, and a public board.' },
+    { at: 208.5, voice: MAEVE, text: 'Version two opens it up, so domain experts publish their own benchmarks and earn per use.' },
   ],
 }
