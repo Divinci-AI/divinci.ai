@@ -109,8 +109,8 @@ mark("s1-score", 18.5, 1.4, underline(1263, 1309, 170), why="the catalog line, o
 # ── S1 catalog 24.0-33.5 ─────────────────────────────────────────────────
 
 # ── S2 grounding 33.5-46.0 ───────────────────────────────────────────────
-mark("s2-title", 33.5, 2.2, underline(270, 508, 400), why="This is RAG grounding")
-mark("top-score", 40.2, 2.0, underline(786, 856, 566), why="a top score of one hundred percent")
+mark("s2-title", 33.5, 2.2, underline(270, 508, 343), why="This is RAG grounding")
+mark("top-score", 40.2, 2.0, underline(786, 856, 504), why="a top score of one hundred percent")
 
 # ── S2 ranks 46.0-58.0 ───────────────────────────────────────────────────
 mark("s2-ranks", 48.9, 2.4, circle(266, 245, 24, 118), why="the median of five most recent runs")
@@ -128,7 +128,7 @@ mark("s3-private", 93.0, 2.6, circle(783, 333, 172, 118), why="your runs are the
 
 # ── S4 verified card 102.4-146.7 ─────────────────────────────────────────
 mark("s4-curl", 108.0, 2.6, underline(192, 1027, 375), why="the manifest is on a public endpoint")
-mark("s4-mit", 115.6, 3.0, underline(290, 661, 324), why="MIT licensed, deps ed25519 and zod")
+mark("s4-mit", 115.6, 3.0, underline(290, 661, 267), why="MIT licensed, deps ed25519 and zod")
 mark("verified-tick", 134.8, 1.4, tick(452, 383), GREEN, 6, why="Verified. Signature valid")
 
 # ── S4 tampered card 146.7-178.6 ─────────────────────────────────────────

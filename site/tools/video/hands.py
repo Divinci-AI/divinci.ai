@@ -58,12 +58,24 @@ def hand_frames(webm: Path, cache: Path) -> list[Path]:
     alpha, which makes the hand arrive as an opaque rectangle -- and makes the
     source look like it never had alpha in the first place.
     """
+    # Invalidate on the SOURCE's mtime. Keying a new take writes a new .webm
+    # and a new tips.json, but the cache directory still holds the previous
+    # take's decoded frames — so the compositor drew take 1's hand while
+    # positioning it with take 3's tip track. The arm pointed off-screen and the
+    # stylus missed the mark by hundreds of pixels, which looks like a mirroring
+    # bug and is really a stale cache.
+    stamp = cache / ".source-mtime"
+    mtime = str(webm.stat().st_mtime_ns)
     if cache.exists() and any(cache.glob("*.png")):
-        return sorted(cache.glob("*.png"))
+        if stamp.exists() and stamp.read_text() == mtime:
+            return sorted(cache.glob("*.png"))
+        shutil.rmtree(cache)
+        print(f"    {webm.name} changed — re-decoding")
     cache.mkdir(parents=True, exist_ok=True)
     subprocess.run(
         ["ffmpeg", "-y", "-v", "error", "-c:v", "libvpx-vp9", "-i", str(webm),
          "-pix_fmt", "rgba", str(cache / "%04d.png")], check=True)
+    stamp.write_text(mtime)
     return sorted(cache.glob("*.png"))
 
 

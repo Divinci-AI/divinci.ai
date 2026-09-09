@@ -43,7 +43,10 @@ export default {
     // ── Scene 3 — running one ────────────────────────────────────────────
     // 08 carries "Run on your model", the grade, the ~66s and the ~$0.11.
     { at: 73.9,  scene: 'S3 run on model', frame: 'build/video/frames/08.jpg' },
-    { at: 89.0,  scene: 'S3 catalog',      frame: 'build/video/frames/09.jpg' },
+    // 85.5, not 89.0: Maeve's line about the catalog starts at 85.5, and the
+    // mark drawn on it was landing on the benchmark-detail frame that was still
+    // up. The shot has to cover the line that describes it.
+    { at: 85.5,  scene: 'S3 catalog',      frame: 'build/video/frames/09.jpg' },
 
     // ── Scene 4 — the receipt, checked from outside ──────────────────────
     // Split rather than one 76s hold. 20 is the same card with the tamper
