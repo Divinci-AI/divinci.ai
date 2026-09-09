@@ -151,7 +151,14 @@ const filter =
   `${delays};${clips.map((_, i) => `[a${i}]`).join('')}amix=inputs=${clips.length}:normalize=0,` +
   // Broadcast-ish target for spoken web video. NOT a fixed +NdB gain -- a blanket
   // boost is how a sibling script pushed peaks to +3.43 dBFS and clipped.
-  'loudnorm=I=-16:TP=-1.5:LRA=11,apad[mix]'
+  'loudnorm=I=-16:TP=-1.5:LRA=11' +
+  // apad ONLY with a video. Its job is to stop the muxer truncating the video to
+  // the last word, and `-shortest` (video branch only) is what bounds it. With
+  // no video there is nothing to bound it: apad generates silence forever and
+  // ffmpeg writes until the disk does. Measured before this guard: a 2.5-minute
+  // dialogue produced a 110MB file and was still growing.
+  (videoDur !== null ? ',apad' : '') +
+  '[mix]'
 
 mkdirSync(dirname(spec.out), { recursive: true })
 execFileSync(

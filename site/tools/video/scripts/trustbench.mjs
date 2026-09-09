@@ -61,8 +61,12 @@ export default {
 
     // ── Scene 4 — unified search ─────────────────────────────────────────
     { at: 101.0, voice: MILES, text: 'TrustBench is searchable alongside everything else in the workspace.' },
-    { at: 105.5, voice: MAEVE, text: 'Benchmarks are platform-owned, so the catalog is identical in every workspace. It is what you can run.' },
-    { at: 112.0, voice: MILES, text: 'Runs are private to whoever triggered them. An admin does not see a colleague’s run here, because the runs API would not serve it either.' },
+    { at: 105.5, voice: MAEVE, text: 'Eleven benchmarks in the catalog. They are platform-owned, so it is identical in every workspace — it is what you can run.' },
+    // Catalog (11 published) and leaderboard (5 boards) are different counts:
+    // a benchmark only gets a board once runs exist to rank. Read off the
+    // catalog page and the public leaderboard on 2026-09-08.
+    { at: 111.5, voice: MILES, text: 'Five of them have enough completed runs to have a board.' },
+    { at: 116.0, voice: MILES, text: 'Runs are private to whoever triggered them. An admin does not see a colleague’s run here, because the runs API would not serve it either.' },
 
     // ── Scene 5 — attested failure ───────────────────────────────────────
     { at: 120.0, voice: MAEVE, text: 'What happens when a run fails?' },
