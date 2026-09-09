@@ -1,0 +1,4 @@
+# Rendered TTS clips. Regenerated on demand from the script specs, and the
+# cache is keyed by (voice, text) hash so a re-run is free -- there is nothing
+# here that the specs plus a Deepgram key do not reproduce.
+.vo-cache/

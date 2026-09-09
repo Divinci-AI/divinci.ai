@@ -944,7 +944,17 @@
           m.tips.forEach(function (t) { sx += t[0]; sy += t[1]; });
           m.tip = [sx / m.tips.length, sy / m.tips.length];   // pre-video fallback
           meta = m;
-          var canWebm = vidEl.canPlayType('video/webm; codecs="vp9"');
+          /* Alpha support is NOT feature-detectable, and canPlayType asks the
+             wrong question. Safari reports VP9-in-WebM as playable and then
+             ignores the file's alpha_mode, so it painted the arm's whole
+             bounding box opaque slate over the page. There is no test for
+             "alpha in this container", so the engine is detected directly:
+             WebKit takes the HEVC-with-alpha MP4, everyone else the VP9 WebM.
+             Chrome/Edge/Firefox on iOS all put "Safari" in their UA, hence the
+             exclusions. */
+          var ua = navigator.userAgent;
+          var isWebKit = /Safari/.test(ua) && !/Chrome|Chromium|Android|CriOS|FxiOS|Edg/.test(ua);
+          var canWebm = !isWebKit && vidEl.canPlayType('video/webm; codecs="vp9"');
           vidEl.src = "/video/leonardo-brush" + (canWebm ? ".webm" : ".mp4");
           /* preload="none" in the markup keeps it off the critical path, but
              once we have decided to use it we need real frames, not just
