@@ -135,6 +135,13 @@ execFileSync(
     '-filter_complex', pads + chain,
     '-map', '[vout]', '-map', `${shots.length}:a`,
     '-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p',
+    /* A keyframe every 2s. x264's default is 250 frames — 8.3s at 30fps — and
+       on a video built from long-held stills that makes scrubbing feel broken:
+       the player can only land on a keyframe, so dragging the playhead sticks
+       several seconds from where you dropped it. Denser keyframes cost almost
+       nothing here because consecutive frames are identical, so the extra
+       I-frames compress to very little. */
+    '-force_key_frames', 'expr:gte(t,n_forced*2)',
     '-c:a', 'aac', '-b:a', '160k',
     '-shortest', '-movflags', '+faststart',
     resolve(process.cwd(), spec.out),

@@ -1,0 +1,207 @@
+#!/usr/bin/env python3
+"""Composite an annotating hand onto a video, drawing the marks from marks.py.
+
+    python3 tools/video/hands.py build/video/trustbench-demo.mp4 \
+        build/video/marks/marks.json build/video/trustbench-hands.mp4
+
+The hand and the stroke are one motion. marks.py already solved the path and
+emitted, per frame, the point the stroke has reached; this places the hand so
+its stylus TIP sits on that point. Nothing is eyeballed: the hand's own tip is
+read from <asset>-tips.json, which records where the bristles are in each frame
+of the clip as a fraction of its box.
+
+Why the overlay is pre-rendered in PIL rather than done in one ffmpeg filter:
+ffmpeg's overlay can take x/y as expressions of time, but not as an arbitrary
+per-frame table, and the hand's position is exactly that. Each mark is only a
+couple of seconds, so the segments are rendered as RGBA sequences and dropped
+onto the assembled video at their cue.
+
+The hand ENTERS from off-frame right, draws, holds a beat, and leaves. It is on
+screen for about a second either side of the stroke, so it reads as arriving to
+make the mark rather than being parked there.
+"""
+from __future__ import annotations
+
+import json
+import math
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+from PIL import Image
+
+W, H, FPS = 1568, 882, 30
+LEAD_IN = 0.9       # seconds of travel before the stroke starts
+LEAD_OUT = 0.7      # hold, then leave
+HAND_W = 560        # on-canvas width of the hand box
+
+
+def ffprobe_duration(p: Path) -> float:
+    return float(subprocess.run(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+         "-of", "csv=p=0", str(p)],
+        capture_output=True, text=True, check=True).stdout.strip())
+
+
+def hand_frames(webm: Path, cache: Path) -> list[Path]:
+    """Decode the alpha clip to RGBA PNGs (cached).
+
+    -c:v libvpx-vp9 is REQUIRED. ffmpeg's default decoder silently drops WebM
+    alpha, which makes the hand arrive as an opaque rectangle -- and makes the
+    source look like it never had alpha in the first place.
+    """
+    if cache.exists() and any(cache.glob("*.png")):
+        return sorted(cache.glob("*.png"))
+    cache.mkdir(parents=True, exist_ok=True)
+    subprocess.run(
+        ["ffmpeg", "-y", "-v", "error", "-c:v", "libvpx-vp9", "-i", str(webm),
+         "-pix_fmt", "rgba", str(cache / "%04d.png")], check=True)
+    return sorted(cache.glob("*.png"))
+
+
+def feather(img: Image.Image, frac: float = 0.10) -> Image.Image:
+    """Fade the arm's outer cut edges to transparent.
+
+    The source clip crops the forearm at its own box boundary, so wherever the
+    box lands inside the frame the arm ends in a hard straight line — it reads
+    as a sticker with a corner cut off. Feathering the right and bottom edges
+    (the two the arm runs into, since it enters from the lower right) turns that
+    into the arm receding out of shot. Cheaper and more robust than scaling the
+    hand up until the cut happens to fall off-canvas, which would tie the hand's
+    SIZE to where the mark happens to be.
+    """
+    w, h = img.size
+    a = img.getchannel("A").load()
+    fw, fh = max(1, int(w * frac)), max(1, int(h * frac))
+    px = img.load()
+    for x in range(w - fw, w):
+        k = (w - x) / fw
+        for y in range(h):
+            r, g, b, al = px[x, y]
+            px[x, y] = (r, g, b, int(al * k))
+    for y in range(h - fh, h):
+        k = (h - y) / fh
+        for x in range(w):
+            r, g, b, al = px[x, y]
+            px[x, y] = (r, g, b, int(al * k))
+    return img
+
+
+def ease_io(t):
+    return 2 * t * t if t < 0.5 else 1 - ((-2 * t + 2) ** 2) / 2
+
+
+def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush"):
+    spec = json.loads(marks_json.read_text())
+    tips_meta = json.loads(Path(f"static/data/{asset}-tips.json").read_text())
+    hand_h = round(HAND_W * tips_meta["h"] / tips_meta["w"])
+
+    frames = hand_frames(Path(f"static/video/{asset}.webm"),
+                         Path(f"build/video/.hand-cache/{asset}"))
+    if not frames:
+        sys.exit(f"no frames decoded from {asset}.webm")
+
+    work = Path("build/video/.overlays")
+    if work.exists():
+        shutil.rmtree(work)
+    work.mkdir(parents=True)
+
+    segments = []
+    for mark in spec["marks"]:
+        mdir = Path(mark["dir"])
+        tips = mark["tips"]
+        n_draw = mark["frames"]
+        n_in = round(LEAD_IN * FPS)
+        n_out = round(LEAD_OUT * FPS)
+        seg = work / mark["id"]
+        seg.mkdir(parents=True)
+
+        # The hand is parked on the FIRST tip while it travels in, and on the
+        # last while it leaves, so the stroke never starts without the stylus
+        # already touching it.
+        start_pt, end_pt = tips[0], tips[-1]
+
+        for i in range(n_in + n_draw + n_out):
+            canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+
+            # how much of the stroke is showing
+            if i < n_in:
+                mark_idx = 0
+            elif i < n_in + n_draw:
+                mark_idx = i - n_in
+            else:
+                mark_idx = n_draw - 1
+            mk = Image.open(mdir / f"{mark_idx:04d}.png").convert("RGBA")
+            canvas = Image.alpha_composite(canvas, mk)
+
+            # where the stylus tip must be
+            if i < n_in:
+                target = start_pt
+            elif i < n_in + n_draw:
+                target = tips[i - n_in]
+            else:
+                target = end_pt
+
+            hf = Image.open(frames[i % len(frames)]).convert("RGBA")
+            hf = feather(hf.resize((HAND_W, hand_h), Image.LANCZOS))
+            tipx, tipy = tips_meta["tips"][(i % len(frames)) % len(tips_meta["tips"])]
+            hx = target[0] - tipx * HAND_W
+            hy = target[1] - tipy * hand_h
+
+            # travel in from off-frame right; slide back out the same way
+            if i < n_in:
+                k = 1 - ease_io((i + 1) / n_in)
+                hx += (W - hx) * k
+            elif i >= n_in + n_draw:
+                k = ease_io((i - n_in - n_draw + 1) / n_out)
+                hx += (W - hx) * k
+
+            layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            layer.paste(hf, (round(hx), round(hy)), hf)
+            Image.alpha_composite(canvas, layer).save(seg / f"{i:04d}.png")
+
+        segments.append({
+            "id": mark["id"],
+            "start": mark["at"] - LEAD_IN,
+            "frames": n_in + n_draw + n_out,
+            "dir": str(seg),
+        })
+        print(f"  {mark['id']:<18} {n_in + n_draw + n_out:>3} frames, "
+              f"on screen {mark['at'] - LEAD_IN:.1f}s")
+
+    # one overlay chain, each segment gated to its own window
+    inputs, filt, last = [], [], "0:v"
+    for i, s in enumerate(segments, start=1):
+        inputs += ["-framerate", str(FPS), "-start_number", "0",
+                   "-i", f"{s['dir']}/%04d.png"]
+        end = s["start"] + s["frames"] / FPS
+        out_lbl = f"v{i}" if i < len(segments) else "vout"
+        # setpts is what makes `enable` mean anything. A PNG sequence input
+        # starts at ITS OWN t=0, while `enable` gates on the MAIN video's
+        # clock -- so without shifting the sequence forward, its frames have
+        # run out long before the window opens and the overlay never appears.
+        # Measured before this: every mark silently absent from the output.
+        filt.append(f"[{i}:v]setpts=PTS+{s['start']:.3f}/TB[o{i}]")
+        filt.append(
+            f"[{last}][o{i}]overlay=x=0:y=0:"
+            f"enable='between(t,{s['start']:.3f},{end:.3f})':"
+            f"eof_action=pass:shortest=0[{out_lbl}]")
+        last = out_lbl
+
+    subprocess.run(
+        ["ffmpeg", "-y", "-v", "error", "-i", str(video), *inputs,
+         "-filter_complex", ";".join(filt),
+         "-map", "[vout]", "-map", "0:a",
+         "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+         "-pix_fmt", "yuv420p", "-force_key_frames", "expr:gte(t,n_forced*2)",
+         "-c:a", "copy", "-movflags", "+faststart", str(out)], check=True)
+
+    print(f"\nwrote {out} ({ffprobe_duration(out):.2f}s)")
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 4:
+        sys.exit("usage: hands.py <video> <marks.json> <out> [asset]")
+    build(Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3]),
+          sys.argv[4] if len(sys.argv) > 4 else "leonardo-brush")
