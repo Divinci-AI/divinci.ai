@@ -29,11 +29,16 @@ export default {
     { at: 24.0,  scene: 'S1 catalog',      frame: 'build/video/frames/09.jpg' },
 
     // ── Scene 2 — a real board ───────────────────────────────────────────
-    // 10 first: its header names the verifier package, which Scene 4 then runs.
-    { at: 33.5,  scene: 'S2 all boards',   frame: 'build/video/frames/10.jpg' },
-    { at: 44.0,  scene: 'S2 grounding',    frame: 'build/video/frames/11.jpg' },
-    { at: 56.0,  scene: 'S2 ranks 2-11',   frame: 'build/video/frames/12.jpg' },
-    { at: 66.0,  scene: 'S2 tail + note',  frame: 'build/video/frames/14.jpg' },
+    // The grounding board is up from the line that NAMES it (33.5s, "This is
+    // RAG grounding"), not four seconds later. The old cut held "all boards"
+    // until 44.0s, so Miles said "a top score of one hundred percent" over a
+    // different board — and the mark drawn on his line landed next to Red Team
+    // Core's 2.7%. The annotation is what exposed it: a mark has to be ON the
+    // thing being described, so it cannot tolerate a shot being loosely timed.
+    // "All boards" now appears only in the close, where it is a summary.
+    { at: 33.5,  scene: 'S2 grounding',    frame: 'build/video/frames/11.jpg' },
+    { at: 46.0,  scene: 'S2 ranks 2-11',   frame: 'build/video/frames/12.jpg' },
+    { at: 58.0,  scene: 'S2 tail + note',  frame: 'build/video/frames/14.jpg' },
 
     // ── Scene 3 — running one ────────────────────────────────────────────
     // 08 carries "Run on your model", the grade, the ~66s and the ~$0.11.

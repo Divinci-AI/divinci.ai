@@ -118,10 +118,17 @@ def render(spec_path: Path, out_dir: Path):
                     dr.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgb + (alpha,))
             img.resize((W, H), Image.LANCZOS).save(d / f"{f:04d}.png")
 
-        manifest.append({
+        entry = {
             "id": mark["id"], "at": mark["at"], "duration": mark["duration"],
             "frames": frames, "tips": tips, "dir": str(d),
-        })
+        }
+        # Carry the hand assignment through. hands.py reads THIS manifest, not
+        # the authored spec, so a field that stops here is a field hands.py
+        # cannot see -- which is how the second hand silently went unused on
+        # its first run.
+        if "hand" in mark:
+            entry["hand"] = mark["hand"]
+        manifest.append(entry)
         print(f"  {mark['id']:<18} {frames:>3} frames, {total:>5.0f}px of stroke")
 
     (out_dir / "marks.json").write_text(

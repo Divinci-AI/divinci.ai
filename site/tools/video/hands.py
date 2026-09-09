@@ -92,15 +92,27 @@ def ease_io(t):
     return 2 * t * t if t < 0.5 else 1 - ((-2 * t + 2) ** 2) / 2
 
 
-def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush"):
-    spec = json.loads(marks_json.read_text())
-    tips_meta = json.loads(Path(f"static/data/{asset}-tips.json").read_text())
-    hand_h = round(HAND_W * tips_meta["h"] / tips_meta["w"])
-
+def load_hand(asset: str):
+    """Decode one hand asset and read its tip track."""
+    meta = json.loads(Path(f"static/data/{asset}-tips.json").read_text())
     frames = hand_frames(Path(f"static/video/{asset}.webm"),
                          Path(f"build/video/.hand-cache/{asset}"))
     if not frames:
         sys.exit(f"no frames decoded from {asset}.webm")
+    return {"meta": meta, "frames": frames,
+            "h": round(HAND_W * meta["h"] / meta["w"])}
+
+
+def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush"):
+    spec = json.loads(marks_json.read_text())
+    # A mark may name its own hand, so the speaker who says the line is the one
+    # who makes the mark. Falls back to the default for marks that do not care.
+    hands = {}
+    for m in spec["marks"]:
+        a = m.get("hand", asset)
+        if a not in hands:
+            hands[a] = load_hand(a)
+            print(f"  hand {a}: {len(hands[a]['frames'])} frames")
 
     work = Path("build/video/.overlays")
     if work.exists():
@@ -109,6 +121,8 @@ def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush
 
     segments = []
     for mark in spec["marks"]:
+        hand = hands[mark.get("hand", asset)]
+        tips_meta, frames, hand_h = hand["meta"], hand["frames"], hand["h"]
         mdir = Path(mark["dir"])
         tips = mark["tips"]
         n_draw = mark["frames"]

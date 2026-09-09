@@ -6,7 +6,7 @@
   "marks": [
     {
       "id": "top-score",
-      "_beat": "40.2s — 'a top score of one hundred percent by glm 5.3 flash'",
+      "_beat": "40.2s \u2014 'a top score of one hundred percent by glm 5.3 flash'",
       "at": 42.4,
       "duration": 1.5,
       "color": "#e8c07a",
@@ -14,12 +14,31 @@
       "opacity": 0.9,
       "_shape": "underline swept beneath 100.0% on the grounding board (frame 11)",
       "path": [
-        { "from": [786, 570], "c1": [806, 575], "c2": [832, 575], "to": [856, 569] }
-      ]
+        {
+          "from": [
+            786,
+            570
+          ],
+          "c1": [
+            806,
+            575
+          ],
+          "c2": [
+            832,
+            575
+          ],
+          "to": [
+            856,
+            569
+          ]
+        }
+      ],
+      "hand": "leonardo-arm-ii",
+      "_hand_why": "Miles speaks this line"
     },
     {
       "id": "verified-tick",
-      "_beat": "134.8s — 'Verified. Signature valid, signed by tbp-prod-002'",
+      "_beat": "134.8s \u2014 'Verified. Signature valid, signed by tbp-prod-002'",
       "at": 136.0,
       "duration": 1.1,
       "color": "#5ddc9a",
@@ -27,13 +46,49 @@
       "opacity": 0.95,
       "_shape": "tick to the right of `verified true` on the terminal card (frame 20)",
       "path": [
-        { "from": [452, 440], "c1": [458, 447], "c2": [464, 453], "to": [470, 458] },
-        { "from": [470, 458], "c1": [482, 447], "c2": [494, 431], "to": [506, 418] }
-      ]
+        {
+          "from": [
+            452,
+            440
+          ],
+          "c1": [
+            458,
+            447
+          ],
+          "c2": [
+            464,
+            453
+          ],
+          "to": [
+            470,
+            458
+          ]
+        },
+        {
+          "from": [
+            470,
+            458
+          ],
+          "c1": [
+            482,
+            447
+          ],
+          "c2": [
+            494,
+            431
+          ],
+          "to": [
+            506,
+            418
+          ]
+        }
+      ],
+      "hand": "leonardo-brush",
+      "_hand_why": "Maeve speaks this line"
     },
     {
       "id": "refused-score",
-      "_beat": "190.0s — 'it refused to produce a score at all'",
+      "_beat": "190.0s \u2014 'it refused to produce a score at all'",
       "at": 191.2,
       "duration": 1.6,
       "color": "#e8c07a",
@@ -41,11 +96,82 @@
       "opacity": 0.9,
       "_shape": "circle around the empty Score field on the drill run (frame 16)",
       "path": [
-        { "from": [232, 300], "c1": [268, 286], "c2": [322, 288], "to": [340, 308] },
-        { "from": [340, 308], "c1": [352, 324], "c2": [340, 342], "to": [300, 348] },
-        { "from": [300, 348], "c1": [258, 353], "c2": [224, 340], "to": [226, 318] },
-        { "from": [226, 318], "c1": [227, 309], "c2": [231, 303], "to": [238, 298] }
-      ]
+        {
+          "from": [
+            232,
+            300
+          ],
+          "c1": [
+            268,
+            286
+          ],
+          "c2": [
+            322,
+            288
+          ],
+          "to": [
+            340,
+            308
+          ]
+        },
+        {
+          "from": [
+            340,
+            308
+          ],
+          "c1": [
+            352,
+            324
+          ],
+          "c2": [
+            340,
+            342
+          ],
+          "to": [
+            300,
+            348
+          ]
+        },
+        {
+          "from": [
+            300,
+            348
+          ],
+          "c1": [
+            258,
+            353
+          ],
+          "c2": [
+            224,
+            340
+          ],
+          "to": [
+            226,
+            318
+          ]
+        },
+        {
+          "from": [
+            226,
+            318
+          ],
+          "c1": [
+            227,
+            309
+          ],
+          "c2": [
+            231,
+            303
+          ],
+          "to": [
+            238,
+            298
+          ]
+        }
+      ],
+      "hand": "leonardo-brush",
+      "_hand_why": "Maeve speaks this line"
     }
-  ]
+  ],
+  "_hands": "leonardo-arm-ii is Miles (generated 2026-09-09, Veo 3.1); leonardo-brush is Maeve."
 }
