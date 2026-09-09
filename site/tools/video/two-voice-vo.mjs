@@ -64,6 +64,51 @@ const dur = (f) =>
     ]).toString().trim(),
   )
 
+/**
+ * One line of TTS, with retries.
+ *
+ * A single dropped connection used to lose the whole render: undici raises
+ * `TypeError: terminated` (cause ECONNRESET) from the socket, not from the
+ * response, so the `res.ok` check never sees it and nothing above catches it.
+ * Measured: a 36-line script died on line 20 of a re-render.
+ *
+ * Only TRANSPORT faults and 429/5xx are retried. A 4xx is a bad voice name or
+ * a bad key and will fail identically five times, so it throws immediately.
+ */
+async function speak(line, i, tries = 4) {
+  for (let attempt = 1; ; attempt++) {
+    let res
+    try {
+      res = await fetch(
+        `https://api.deepgram.com/v2/speak?model=${encodeURIComponent(line.voice)}&encoding=mp3`,
+        {
+          method: 'POST',
+          headers: { Authorization: `Token ${KEY}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: line.text }),
+          signal: AbortSignal.timeout(120_000),
+        },
+      )
+    } catch (err) {
+      // Transport-level: ECONNRESET, DNS, or the timeout above.
+      if (attempt >= tries) throw new Error(`TTS line ${i} (${line.voice}): ${err.message}`, { cause: err })
+      const wait = 2 ** attempt
+      console.log(`  retry ${attempt}/${tries - 1} in ${wait}s -- ${err.message} (line ${i})`)
+      await new Promise((r) => setTimeout(r, wait * 1000))
+      continue
+    }
+    // Never dump the body blind -- an error body is JSON, a success body is audio.
+    if (res.ok) return Buffer.from(await res.arrayBuffer())
+    const retryable = res.status === 429 || res.status >= 500
+    const body = await res.text()
+    if (!retryable || attempt >= tries) {
+      throw new Error(`TTS failed, line ${i} (${line.voice}): HTTP ${res.status} ${body}`)
+    }
+    const wait = 2 ** attempt
+    console.log(`  retry ${attempt}/${tries - 1} in ${wait}s -- HTTP ${res.status} (line ${i})`)
+    await new Promise((r) => setTimeout(r, wait * 1000))
+  }
+}
+
 // -- render each line (cached) --------------------------------------------
 const clips = []
 for (const [i, line] of spec.lines.entries()) {
@@ -72,19 +117,7 @@ for (const [i, line] of spec.lines.entries()) {
   const raw = join(CACHE, `${line.voice}-${hash}.mp3`)
 
   if (!existsSync(raw)) {
-    const res = await fetch(
-      `https://api.deepgram.com/v2/speak?model=${encodeURIComponent(line.voice)}&encoding=mp3`,
-      {
-        method: 'POST',
-        headers: { Authorization: `Token ${KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: line.text }),
-      },
-    )
-    // Never dump the body blind -- an error body is JSON, a success body is audio.
-    if (!res.ok) {
-      throw new Error(`TTS failed, line ${i} (${line.voice}): HTTP ${res.status} ${await res.text()}`)
-    }
-    writeFileSync(raw, Buffer.from(await res.arrayBuffer()))
+    writeFileSync(raw, await speak(line, i))
     console.log(`  rendered ${line.voice}  "${line.text.slice(0, 44)}"`)
   }
 
