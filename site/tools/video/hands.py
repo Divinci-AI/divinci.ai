@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 import shutil
 import subprocess
 import sys
@@ -130,7 +131,22 @@ def load_hand(asset: str):
             "h": round(HAND_W * meta["h"] / meta["w"])}
 
 
-def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush"):
+def shot_bounds(shots_mjs: Path, total: float):
+    """Start time of every shot, so a mark can persist to the end of its own.
+
+    A drawn mark belongs to the FRAME it was drawn on. It should stay while that
+    frame is up -- rubbing itself out two seconds later, with the same screen
+    still on show, reads as the annotation being undone rather than made -- and
+    it must not survive the cut, or it would sit over content it never marked.
+    """
+    src = shots_mjs.read_text()
+    ats = [float(a) for a in re.findall(r"\{ at: ([0-9.]+),\s+scene:", src)]
+    ats.sort()
+    return ats + [total]
+
+
+def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush",
+          shots_mjs: Path = Path("tools/video/scripts/trustbench.shots.mjs")):
     spec = json.loads(marks_json.read_text())
     # A mark may name its own hand, so the speaker who says the line is the one
     # who makes the mark. Falls back to the default for marks that do not care.
@@ -146,7 +162,9 @@ def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush
         shutil.rmtree(work)
     work.mkdir(parents=True)
 
-    segments = []
+    total = ffprobe_duration(video)
+    bounds = shot_bounds(shots_mjs, total)
+    segments, holds = [], []
     for mark in spec["marks"]:
         hand = hands[mark.get("hand", asset)]
         tips_meta, frames, hand_h = hand["meta"], hand["frames"], hand["h"]
@@ -210,16 +228,37 @@ def build(video: Path, marks_json: Path, out: Path, asset: str = "leonardo-brush
             "frames": n_in + n_draw + n_out,
             "dir": str(seg),
         })
+        # The completed stroke, held from the moment the hand leaves until the
+        # frame it was drawn on is cut. One static image, not a sequence: the
+        # mark is finished, so every frame of the hold is identical.
+        seg_end = mark["at"] - LEAD_IN + (n_in + n_draw + n_out) / FPS
+        shot_end = next((b for b in bounds if b > mark["at"]), bounds[-1])
+        if shot_end - seg_end > 0.2:
+            holds.append({
+                "id": mark["id"],
+                "png": str(mdir / f"{n_draw - 1:04d}.png"),
+                "start": seg_end,
+                "end": shot_end,
+            })
         print(f"  {mark['id']:<18} {n_in + n_draw + n_out:>3} frames, "
-              f"on screen {mark['at'] - LEAD_IN:.1f}s")
+              f"draws {mark['at'] - LEAD_IN:.1f}s, holds to {shot_end:.1f}s")
 
-    # one overlay chain, each segment gated to its own window
+    # Holds are drawn FIRST so a later hand passes over its own finished mark
+    # rather than under it.
+    layers = ([{"kind": "hold", **h} for h in holds] +
+              [{"kind": "seg", **s} for s in segments])
+
     inputs, filt, last = [], [], "0:v"
-    for i, s in enumerate(segments, start=1):
-        inputs += ["-framerate", str(FPS), "-start_number", "0",
-                   "-i", f"{s['dir']}/%04d.png"]
-        end = s["start"] + s["frames"] / FPS
-        out_lbl = f"v{i}" if i < len(segments) else "vout"
+    for i, s in enumerate(layers, start=1):
+        if s["kind"] == "hold":
+            inputs += ["-loop", "1", "-framerate", str(FPS),
+                       "-t", f"{s['end'] - s['start']:.3f}", "-i", s["png"]]
+            end = s["end"]
+        else:
+            inputs += ["-framerate", str(FPS), "-start_number", "0",
+                       "-i", f"{s['dir']}/%04d.png"]
+            end = s["start"] + s["frames"] / FPS
+        out_lbl = f"v{i}" if i < len(layers) else "vout"
         # setpts is what makes `enable` mean anything. A PNG sequence input
         # starts at ITS OWN t=0, while `enable` gates on the MAIN video's
         # clock -- so without shifting the sequence forward, its frames have
