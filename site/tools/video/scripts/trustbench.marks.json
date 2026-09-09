@@ -7,13 +7,13 @@
  "marks": [
   {
    "id": "s1-signed",
-   "at": 6.0,
-   "duration": 1.6,
+   "at": 9.5,
+   "duration": 2.4,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-arm-ii",
-   "_beat": "8.3 'a manifest signed with an Ed25519 platform key'",
+   "_beat": "8.3s MILES \u2014 a manifest signed with an Ed25519 platform key",
    "path": [
     {
      "from": [
@@ -37,13 +37,13 @@
   },
   {
    "id": "s1-verify",
-   "at": 10.6,
-   "duration": 1.4,
+   "at": 6.0,
+   "duration": 1.6,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-brush",
-   "_beat": "4.8 'TrustBench asks you to check it'",
+   "_beat": "4.8s MAEVE \u2014 TrustBench asks you to check it",
    "path": [
     {
      "from": [
@@ -121,13 +121,13 @@
   },
   {
    "id": "s1-score",
-   "at": 15.6,
-   "duration": 1.3,
+   "at": 19.7,
+   "duration": 1.4,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-brush",
-   "_beat": "run scores in the list",
+   "_beat": "18.5s MAEVE \u2014 the catalog line, over the run list",
    "path": [
     {
      "from": [
@@ -150,212 +150,14 @@
    ]
   },
   {
-   "id": "s1-failed",
-   "at": 19.0,
-   "duration": 1.6,
-   "color": "#e8c07a",
-   "width": 5,
-   "opacity": 0.9,
-   "hand": "leonardo-arm-ii",
-   "_beat": "18.5 \u2014 the two failed runs",
-   "path": [
-    {
-     "from": [
-      244,
-      161
-     ],
-     "c1": [
-      244,
-      151.0586
-     ],
-     "c2": [
-      253.8494,
-      143
-     ],
-     "to": [
-      266,
-      143
-     ]
-    },
-    {
-     "from": [
-      266,
-      143
-     ],
-     "c1": [
-      278.1506,
-      143
-     ],
-     "c2": [
-      288,
-      151.0586
-     ],
-     "to": [
-      288,
-      161
-     ]
-    },
-    {
-     "from": [
-      288,
-      161
-     ],
-     "c1": [
-      288,
-      170.9414
-     ],
-     "c2": [
-      278.1506,
-      179
-     ],
-     "to": [
-      266,
-      179
-     ]
-    },
-    {
-     "from": [
-      266,
-      179
-     ],
-     "c1": [
-      253.8494,
-      179
-     ],
-     "c2": [
-      244,
-      170.9414
-     ],
-     "to": [
-      244.66,
-      157.76
-     ]
-    }
-   ]
-  },
-  {
-   "id": "s1-eleven",
-   "at": 25.5,
-   "duration": 1.5,
-   "color": "#e8c07a",
-   "width": 5,
-   "opacity": 0.9,
-   "hand": "leonardo-brush",
-   "_beat": "18.5 'Eleven benchmarks in the catalog'",
-   "path": [
-    {
-     "from": [
-      247,
-      197
-     ],
-     "c1": [
-      302.5,
-      202
-     ],
-     "c2": [
-      376.5,
-      202
-     ],
-     "to": [
-      432,
-      196
-     ]
-    }
-   ]
-  },
-  {
-   "id": "s1-card",
-   "at": 29.5,
-   "duration": 1.7,
-   "color": "#e8c07a",
-   "width": 5,
-   "opacity": 0.9,
-   "hand": "leonardo-arm-ii",
-   "_beat": "the grounding card, next up",
-   "path": [
-    {
-     "from": [
-      255,
-      303
-     ],
-     "c1": [
-      255,
-      290.8494
-     ],
-     "c2": [
-      303.3516,
-      281
-     ],
-     "to": [
-      363,
-      281
-     ]
-    },
-    {
-     "from": [
-      363,
-      281
-     ],
-     "c1": [
-      422.6484,
-      281
-     ],
-     "c2": [
-      471,
-      290.8494
-     ],
-     "to": [
-      471,
-      303
-     ]
-    },
-    {
-     "from": [
-      471,
-      303
-     ],
-     "c1": [
-      471,
-      315.1506
-     ],
-     "c2": [
-      422.6484,
-      325
-     ],
-     "to": [
-      363,
-      325
-     ]
-    },
-    {
-     "from": [
-      363,
-      325
-     ],
-     "c1": [
-      303.3516,
-      325
-     ],
-     "c2": [
-      255,
-      315.1506
-     ],
-     "to": [
-      258.24,
-      299.04
-     ]
-    }
-   ]
-  },
-  {
    "id": "s2-title",
-   "at": 34.8,
-   "duration": 1.6,
+   "at": 34.7,
+   "duration": 2.2,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-arm-ii",
-   "_beat": "33.5 'This is RAG grounding'",
+   "_beat": "33.5s MILES \u2014 This is RAG grounding",
    "path": [
     {
      "from": [
@@ -379,13 +181,13 @@
   },
   {
    "id": "top-score",
-   "at": 42.4,
-   "duration": 1.5,
+   "at": 41.4,
+   "duration": 2.0,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-arm-ii",
-   "_beat": "40.2 'a top score of one hundred percent'",
+   "_beat": "40.2s MILES \u2014 a top score of one hundred percent",
    "path": [
     {
      "from": [
@@ -409,13 +211,13 @@
   },
   {
    "id": "s2-ranks",
-   "at": 47.6,
-   "duration": 1.8,
+   "at": 50.1,
+   "duration": 2.4,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-brush",
-   "_beat": "48.9 'the median of five most recent runs'",
+   "_beat": "48.9s MAEVE \u2014 the median of five most recent runs",
    "path": [
     {
      "from": [
@@ -492,44 +294,14 @@
    ]
   },
   {
-   "id": "s2-tie",
-   "at": 52.5,
-   "duration": 1.5,
-   "color": "#e8c07a",
-   "width": 5,
-   "opacity": 0.9,
-   "hand": "leonardo-brush",
-   "_beat": "the 90.9% tie",
-   "path": [
-    {
-     "from": [
-      793,
-      277
-     ],
-     "c1": [
-      807.1,
-      282
-     ],
-     "c2": [
-      825.9,
-      282
-     ],
-     "to": [
-      840,
-      276
-     ]
-    }
-   ]
-  },
-  {
    "id": "s2-note",
-   "at": 59.5,
-   "duration": 2.0,
+   "at": 59.3,
+   "duration": 2.6,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-arm-ii",
-   "_beat": "58.1 'scores only compare within a version'",
+   "_beat": "58.1s MILES \u2014 scores only compare within a version",
    "path": [
     {
      "from": [
@@ -554,12 +326,12 @@
   {
    "id": "s2-key",
    "at": 66.8,
-   "duration": 1.6,
+   "duration": 2.4,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-brush",
-   "_beat": "65.6 'every row carries the key that signed it'",
+   "_beat": "65.6s MAEVE \u2014 every row carries the key that signed it",
    "path": [
     {
      "from": [
@@ -583,13 +355,13 @@
   },
   {
    "id": "s3-time",
-   "at": 75.4,
-   "duration": 1.3,
+   "at": 75.1,
+   "duration": 1.6,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-arm-ii",
-   "_beat": "73.9 'about sixty-six seconds'",
+   "_beat": "73.9s MILES \u2014 about sixty-six seconds",
    "path": [
     {
      "from": [
@@ -666,128 +438,14 @@
    ]
   },
   {
-   "id": "s3-cost",
-   "at": 78.2,
-   "duration": 1.4,
-   "color": "#e8c07a",
-   "width": 5,
-   "opacity": 0.9,
-   "hand": "leonardo-arm-ii",
-   "_beat": "73.9 'and eleven cents'",
-   "path": [
-    {
-     "from": [
-      973,
-      379
-     ],
-     "c1": [
-      1003.0,
-      384
-     ],
-     "c2": [
-      1043.0,
-      384
-     ],
-     "to": [
-      1073,
-      378
-     ]
-    }
-   ]
-  },
-  {
-   "id": "s3-run",
-   "at": 82.0,
-   "duration": 1.6,
-   "color": "#e8c07a",
-   "width": 5,
-   "opacity": 0.9,
-   "hand": "leonardo-arm-ii",
-   "_beat": "73.9 'a model id and a button'",
-   "path": [
-    {
-     "from": [
-      309,
-      568
-     ],
-     "c1": [
-      309,
-      555.8494
-     ],
-     "c2": [
-      348.3976,
-      546
-     ],
-     "to": [
-      397,
-      546
-     ]
-    },
-    {
-     "from": [
-      397,
-      546
-     ],
-     "c1": [
-      445.6024,
-      546
-     ],
-     "c2": [
-      485,
-      555.8494
-     ],
-     "to": [
-      485,
-      568
-     ]
-    },
-    {
-     "from": [
-      485,
-      568
-     ],
-     "c1": [
-      485,
-      580.1506
-     ],
-     "c2": [
-      445.6024,
-      590
-     ],
-     "to": [
-      397,
-      590
-     ]
-    },
-    {
-     "from": [
-      397,
-      590
-     ],
-     "c1": [
-      348.3976,
-      590
-     ],
-     "c2": [
-      309,
-      580.1506
-     ],
-     "to": [
-      311.64,
-      564.04
-     ]
-    }
-   ]
-  },
-  {
    "id": "s3-owner",
-   "at": 90.5,
-   "duration": 1.6,
+   "at": 86.7,
+   "duration": 2.4,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-brush",
-   "_beat": "85.5 'the catalog is identical in every workspace'",
+   "_beat": "85.5s MAEVE \u2014 the catalog is identical in every workspace",
    "path": [
     {
      "from": [
@@ -811,13 +469,13 @@
   },
   {
    "id": "s3-private",
-   "at": 95.0,
-   "duration": 1.7,
+   "at": 94.2,
+   "duration": 2.6,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-arm-ii",
-   "_beat": "93.0 'your runs are the opposite'",
+   "_beat": "93.0s MILES \u2014 your runs are the opposite",
    "path": [
     {
      "from": [
@@ -895,13 +553,13 @@
   },
   {
    "id": "s4-curl",
-   "at": 109.4,
-   "duration": 1.9,
+   "at": 109.2,
+   "duration": 2.6,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-arm-ii",
-   "_beat": "108.0 'the manifest is on a public endpoint'",
+   "_beat": "108.0s MILES \u2014 the manifest is on a public endpoint",
    "path": [
     {
      "from": [
@@ -925,13 +583,13 @@
   },
   {
    "id": "s4-mit",
-   "at": 117.0,
-   "duration": 1.9,
+   "at": 116.8,
+   "duration": 3.0,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-brush",
-   "_beat": "115.6 'MIT licensed, deps ed25519 and zod'",
+   "_beat": "115.6s MAEVE \u2014 MIT licensed, deps ed25519 and zod",
    "path": [
     {
      "from": [
@@ -956,12 +614,12 @@
   {
    "id": "verified-tick",
    "at": 136.0,
-   "duration": 1.1,
+   "duration": 1.4,
    "color": "#5ddc9a",
    "width": 6,
    "opacity": 0.9,
    "hand": "leonardo-brush",
-   "_beat": "134.8 'Verified. Signature valid'",
+   "_beat": "134.8s MAEVE \u2014 Verified. Signature valid",
    "path": [
     {
      "from": [
@@ -1002,74 +660,14 @@
    ]
   },
   {
-   "id": "s4-key",
-   "at": 139.5,
-   "duration": 1.4,
-   "color": "#e8c07a",
-   "width": 5,
-   "opacity": 0.9,
-   "hand": "leonardo-brush",
-   "_beat": "134.8 'signed by tbp-prod-002'",
-   "path": [
-    {
-     "from": [
-      357,
-      561
-     ],
-     "c1": [
-      392.7,
-      566
-     ],
-     "c2": [
-      440.3,
-      566
-     ],
-     "to": [
-      476,
-      560
-     ]
-    }
-   ]
-  },
-  {
-   "id": "s4-prov",
-   "at": 142.6,
-   "duration": 1.4,
-   "color": "#e8c07a",
-   "width": 5,
-   "opacity": 0.9,
-   "hand": "leonardo-brush",
-   "_beat": "134.8 'score provenance measured'",
-   "path": [
-    {
-     "from": [
-      357,
-      586
-     ],
-     "c1": [
-      385.5,
-      591
-     ],
-     "c2": [
-      423.5,
-      591
-     ],
-     "to": [
-      452,
-      585
-     ]
-    }
-   ]
-  },
-  {
    "id": "s4-t1",
-   "at": 149.4,
-   "duration": 1.2,
+   "at": 149.6,
+   "duration": 1.6,
    "color": "#ff8f8f",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-brush",
-   "_beat": "148.4 'score one to 0.42 \u2014 the signature fails'",
+   "_beat": "148.4s MAEVE \u2014 score one to 0.42 \u2014 the signature fails",
    "path": [
     {
      "from": [
@@ -1093,13 +691,13 @@
   },
   {
    "id": "s4-t2",
-   "at": 155.0,
-   "duration": 1.0,
+   "at": 155.2,
+   "duration": 1.4,
    "color": "#ff8f8f",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-brush",
-   "_beat": "154.0 'swap the model id. Fails.'",
+   "_beat": "154.0s MAEVE \u2014 swap the model id. Fails.",
    "path": [
     {
      "from": [
@@ -1122,74 +720,14 @@
    ]
   },
   {
-   "id": "s4-t3",
-   "at": 157.4,
-   "duration": 1.0,
-   "color": "#ff8f8f",
-   "width": 5,
-   "opacity": 0.9,
-   "hand": "leonardo-brush",
-   "_beat": "154.0 'inflate the sample count. Fails.'",
-   "path": [
-    {
-     "from": [
-      192,
-      678
-     ],
-     "c1": [
-      274.2,
-      678
-     ],
-     "c2": [
-      383.79999999999995,
-      678
-     ],
-     "to": [
-      466,
-      677
-     ]
-    }
-   ]
-  },
-  {
-   "id": "s4-t4",
-   "at": 159.8,
-   "duration": 1.0,
-   "color": "#ff8f8f",
-   "width": 5,
-   "opacity": 0.9,
-   "hand": "leonardo-brush",
-   "_beat": "154.0 'alter the hash. Fails.'",
-   "path": [
-    {
-     "from": [
-      192,
-      704
-     ],
-     "c1": [
-      267.6,
-      704
-     ],
-     "c2": [
-      368.4,
-      704
-     ],
-     "to": [
-      444,
-      703
-     ]
-    }
-   ]
-  },
-  {
    "id": "s4-all",
-   "at": 166.0,
-   "duration": 1.8,
+   "at": 165.6,
+   "duration": 2.6,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-arm-ii",
-   "_beat": "164.4 'the receipt does not depend on us being honest'",
+   "_beat": "164.4s MILES \u2014 the receipt does not depend on us being honest",
    "path": [
     {
      "from": [
@@ -1267,13 +805,13 @@
   },
   {
    "id": "s5-model",
-   "at": 180.2,
-   "duration": 1.9,
+   "at": 179.8,
+   "duration": 3.0,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-arm-ii",
-   "_beat": "178.6 'a model id that does not exist'",
+   "_beat": "178.6s MILES \u2014 a model id that does not exist",
    "path": [
     {
      "from": [
@@ -1298,12 +836,12 @@
   {
    "id": "refused-score",
    "at": 191.2,
-   "duration": 1.6,
+   "duration": 2.2,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-brush",
-   "_beat": "190.0 'it refused to produce a score at all'",
+   "_beat": "190.0s MAEVE \u2014 it refused to produce a score at all",
    "path": [
     {
      "from": [
@@ -1381,13 +919,13 @@
   },
   {
    "id": "s5-refusing",
-   "at": 198.2,
-   "duration": 2.0,
+   "at": 198.0,
+   "duration": 3.0,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-arm-ii",
-   "_beat": "196.8 'refusing to score is the honest outcome'",
+   "_beat": "196.8s MILES \u2014 refusing to score is the honest outcome",
    "path": [
     {
      "from": [
@@ -1411,13 +949,13 @@
   },
   {
    "id": "s6-verifier",
-   "at": 206.6,
-   "duration": 1.9,
+   "at": 206.4,
+   "duration": 3.0,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-brush",
-   "_beat": "205.2 'offline verification, and a public board'",
+   "_beat": "205.2s MAEVE \u2014 offline verification, and a public board",
    "path": [
     {
      "from": [
@@ -1441,13 +979,13 @@
   },
   {
    "id": "s6-annex",
-   "at": 213.8,
-   "duration": 1.8,
+   "at": 214.1,
+   "duration": 3.0,
    "color": "#e8c07a",
    "width": 5,
    "opacity": 0.9,
    "hand": "leonardo-arm-ii",
-   "_beat": "212.9 'version two opens up authorship'",
+   "_beat": "212.9s MILES \u2014 version two opens up authorship",
    "path": [
     {
      "from": [

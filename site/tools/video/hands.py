@@ -34,7 +34,14 @@ from PIL import Image
 W, H, FPS = 1568, 882, 30
 LEAD_IN = 0.9       # seconds of travel before the stroke starts
 LEAD_OUT = 0.7      # hold, then leave
-HAND_W = 560        # on-canvas width of the hand box
+HAND_W = 1120       # on-canvas width of the hand box
+
+# Doubled from 560. At the smaller size the hand read as a cursor rather than as
+# a hand annotating a page — the stylus was the only part that registered while
+# the drawing itself went unnoticed. At 1120 on a 1568-wide canvas the arm is
+# roughly life-size against the UI, which is the relationship the pipeline page
+# has. The tip is still placed to the pixel, so scale changes what it looks like
+# and not where it draws.
 
 
 def ffprobe_duration(p: Path) -> float:
