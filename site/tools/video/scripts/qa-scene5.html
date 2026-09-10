@@ -1,0 +1,72 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>QA Scene 5 — the receipt names the judge</title>
+<style>
+  /* Sampled from the Dr. Fuhrman workspace so the cut does not change palette
+     when it moves from the app to the terminal. That workspace's brand theme
+     is light green; the TrustBench video's terminal was navy because THAT
+     video was shot on the dark dashboard. Match the video you are in. */
+  :root{
+    --bg:#eef4ea; --panel:#ffffff; --edge:#cfdcc8;
+    --ink:#1f2a1c; --dim:#5d6b57; --mut:#8a9784;
+    --ok:#2e7d32; --bad:#c62828; --key:#1565c0; --warn:#a06a00;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    background:var(--bg); color:var(--ink);
+    font:15px/1.65 ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    display:flex; align-items:center; justify-content:center; padding:44px;
+  }
+  .term{
+    width:min(1180px,100%); background:var(--panel);
+    border:1px solid var(--edge); border-radius:12px; overflow:hidden;
+    box-shadow:0 18px 48px rgba(31,42,28,.12);
+  }
+  .bar{
+    display:flex; align-items:center; gap:9px;
+    padding:12px 16px; border-bottom:1px solid var(--edge);
+    background:rgba(31,42,28,.03);
+  }
+  .dot{width:11px;height:11px;border-radius:50%}
+  .bar .t{margin-left:10px;color:var(--mut);font-size:12.5px;letter-spacing:.02em}
+  .body{padding:22px 26px 26px}
+  pre{margin:0;white-space:pre-wrap;word-break:break-word}
+  .cmd{color:var(--ink)}
+  .cmd::before{content:"$ ";color:var(--ok)}
+  .c{color:var(--mut)}
+  .k{color:var(--key)}
+  .ok{color:var(--ok);font-weight:600}
+  .dim{color:var(--dim)}
+  .rule{height:1px;background:var(--edge);margin:20px 0}
+  .lbl{color:var(--warn);font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;margin:0 0 12px}
+  .hl{background:#fff6d8;padding:1px 3px;border-radius:3px}
+</style>
+<div class="term">
+  <div class="bar">
+    <span class="dot" style="background:#ff5f57"></span>
+    <span class="dot" style="background:#febc2e"></span>
+    <span class="dot" style="background:#28c840"></span>
+    <span class="t">offline verification &mdash; no Divinci code, no account</span>
+  </div>
+  <div class="body">
+<pre><span class="cmd">npm i @divinci-ai/trustbench-verifier</span>
+<span class="dim">added 3 packages</span> <span class="c">— MIT. deps: @noble/ed25519, zod.</span>
+
+<span class="cmd">curl -s https://api.divinci.app/v1/trustbench/public/runs/$RUN/manifest &gt; manifest.json</span>
+<span class="cmd">node verify.mjs</span>
+
+<span class="k">verified          </span><span class="ok">true</span>
+<span class="k">signatureValid    </span><span class="ok">true</span>
+<span class="k">algorithm         </span>ed25519
+<span class="k">signedBy          </span>tbp-prod-002  <span class="dim">(trustbench-platform)</span>
+<span class="k">benchmark         </span>scored-qa-suite-1d643f83bb0f-llm-factual-consistency-vs-reference
+<span class="k">score             </span>0.833  <span class="dim">over 10 samples</span></pre>
+
+    <div class="rule"></div>
+    <p class="lbl">and the receipt names the judge</p>
+<pre><span class="k">metric  </span><span class="hl">llm-factual-consistency-vs-reference</span><span class="dim">-judged-by-</span><span class="hl">@cf/meta/llama-3.3-70b-instruct-fp8-fast</span>
+
+<span class="c">          └─ the scorer                    └─ the model that did the scoring</span></pre>
+  </div>
+</div>

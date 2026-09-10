@@ -81,12 +81,19 @@ export default {
     // prevent.
 
     // ── Scene 5 — the TrustBench handoff ─────────────────────────────────
-    // TODO(frames): 194.3 "Publish the run to TrustBench" → the publish modal
-    // (prefilled description + the public warning). 205.6 "the verifier is not
-    // ours to control" → the offline verifier terminal, which can be rebuilt
-    // the way the TrustBench video's was. 216.2 "the receipt names the judge"
-    // → the public board row, where the metric field carries the scorer AND
-    // the model that graded.
+    // 205.6 "the verifier is not ours to control. It is an M I T package on
+    // n p m, and anyone can check the signature without an account" — the
+    // offline terminal. Built from qa-scene5.html in this directory; every
+    // value in it is read from the live manifest for
+    // tr_Y2HQJBEWEMTCBCA0TB8TRATGHF, not composed. Palette is the workspace's
+    // light green, NOT the TrustBench video's navy: a navy terminal here would
+    // read as a jump cut into a different product.
+    { at: 205.6, scene: 'S5 verifier', frame: 'build/video/qa-frames/08-verifier-names-the-judge.jpg' },
+    // 216.2 "the receipt names the judge. The metric field carries the scorer
+    // and the model that graded" — the public board. This frame also happens to
+    // show the description corrected through the new benchmark editor, sitting
+    // where the operator note about a spend cap used to be.
+    { at: 216.2, scene: 'S5 board', frame: 'build/video/qa-frames/09-public-board-row.jpg' },
 
     // ── Scene 6 — close ──────────────────────────────────────────────────
     // 248.3 "monitoring re-runs the suite on a schedule and alerts on drift, or
