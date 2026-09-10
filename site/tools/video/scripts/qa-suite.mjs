@@ -41,6 +41,19 @@
  * Agents settings. Secrets have twice reached transcripts via screenshots of
  * adjacent UI. Check what is below the fold before scrolling.
  *
+ * Scene 3 CANNOT show a computed agreement figure. Every production workspace
+ * reports "Live agreement (n=0)" — checked on both Fuhrman suites and the
+ * sandbox — because nobody has rated under the current rubric version. No line
+ * in this scene claims a number, so the copy stands as written; shoot the
+ * MECHANISM instead: the rubric text beside the rating buttons, the
+ * "LLM: hidden until you rate" label, and the "30 more ratings to unlock judge
+ * recommendation" gate. The gate is the better shot anyway — a tool that
+ * refuses to recommend until it has enough evidence is the whole argument.
+ *
+ * The Full Gauntlet suite cannot be calibrated at all: its eight scorers are
+ * framework metrics, which have no human rubric to show a rater. Its Calibrate
+ * button is disabled and says so. Do not frame it as if it were a bug.
+ *
  * The calibrate page shows REAL RATER IDENTITY and a customer's name appears
  * in the source comments. Do not frame a rater chip, an attribution chip, or
  * any suite whose name identifies a customer. The Annex IV suite is cleared
@@ -86,35 +99,37 @@ export default {
     { at: 69.0, voice: HANNAH, text: 'This is the part I actually care about. How do you know the judge agrees with a human?' },
     { at: 75.5, voice: JACK, text: 'You check. An expert walks the sample — question, answer, reference — and scores each one against the same rubric text the model judge is given.' },
     { at: 87.0, voice: JACK, text: 'Not a paraphrase of it. The same text.' },
-    { at: 90.5, voice: HANNAH, text: 'And then?' },
-    { at: 92.5, voice: JACK, text: 'Then it reports the rank correlation between your scores and the judge’s.' },
-    { at: 97.9, voice: HANNAH, text: 'With a confidence interval, I hope. A correlation computed on twelve items is not a finding.' },
-    { at: 104.0, voice: JACK, text: 'Bootstrapped, and shown beside the estimate. If it is still too wide, it tells you how many more ratings would close it.' },
-    { at: 113.0, voice: HANNAH, text: 'What about a judge that ranks everything correctly but marks it all half a point high?' },
-    { at: 119.5, voice: JACK, text: 'Rank correlation misses that entirely. So beside it sits a concordance coefficient, which compares the values and not just the order. When the two disagree, the judge is biased.' },
-    { at: 131.0, voice: HANNAH, text: 'And if someone rewrites the judge’s prompt afterwards?' },
-    { at: 135.5, voice: JACK, text: 'The rubric is hashed. Change it, and yesterday’s ratings are marked as belonging to the old rubric rather than quietly averaged into the new one.' },
+    { at: 90.5, voice: HANNAH, text: 'Can the rater see what the judge gave it?' },
+    { at: 93.5, voice: JACK, text: 'Not until their own score is in. Otherwise you are not measuring agreement, you are measuring anchoring.' },
+    { at: 101.0, voice: HANNAH, text: 'Good. And then?' },
+    { at: 103.0, voice: JACK, text: 'Then it reports the rank correlation between your scores and the judge’s.' },
+    { at: 108.4, voice: HANNAH, text: 'With a confidence interval, I hope. A correlation computed on twelve items is not a finding.' },
+    { at: 114.5, voice: JACK, text: 'Bootstrapped, and shown beside the estimate. If it is still too wide, it tells you how many more ratings would close it.' },
+    { at: 122.4, voice: HANNAH, text: 'What about a judge that ranks everything correctly but marks it all half a point high?' },
+    { at: 128.3, voice: JACK, text: 'Rank correlation misses that entirely. So beside it sits a concordance coefficient, which compares the values and not just the order. When the two disagree, the judge is biased.' },
+    { at: 138.9, voice: HANNAH, text: 'And if someone rewrites the judge’s prompt afterwards?' },
+    { at: 142.7, voice: JACK, text: 'The rubric is hashed. Change it, and yesterday’s ratings are marked as belonging to the old rubric rather than quietly averaged into the new one.' },
 
     // ── Scene 4 — run, and fix ───────────────────────────────────────────
-    { at: 146.0, voice: JACK, text: 'With the judge calibrated, run the suite against a release.' },
-    { at: 150.5, voice: HANNAH, text: 'Failures just get logged, though. They always do.' },
-    { at: 155.0, voice: JACK, text: 'Not here. AutoFix reads the failing tests, traces them to the chunks responsible, and proposes edits to the corpus itself.' },
-    { at: 164.9, voice: HANNAH, text: 'How much of that happens without me?' },
-    { at: 167.4, voice: JACK, text: 'As much or as little as you choose. Fully automatic, a checkpoint before anything deploys, or a checkpoint every iteration. And it stops on its own when scores plateau, rather than spending the budget to prove it cannot.' },
+    { at: 151.8, voice: JACK, text: 'With the judge calibrated, run the suite against a release.' },
+    { at: 156.1, voice: HANNAH, text: 'Failures just get logged, though. They always do.' },
+    { at: 159.6, voice: JACK, text: 'Not here. AutoFix reads the failing tests, traces them to the chunks responsible, and proposes edits to the corpus itself.' },
+    { at: 169.5, voice: HANNAH, text: 'How much of that happens without me?' },
+    { at: 172.0, voice: JACK, text: 'As much or as little as you choose. Fully automatic, a checkpoint before anything deploys, or a checkpoint every iteration. And it stops on its own when scores plateau, rather than spending the budget to prove it cannot.' },
 
     // ── Scene 5 — the handoff to TrustBench ──────────────────────────────
-    { at: 183.1, voice: HANNAH, text: 'So now I have a number. Why should anyone outside this workspace believe it?' },
-    { at: 189.7, voice: JACK, text: 'Publish the run to TrustBench. Your suite becomes a versioned benchmark, and the result is signed with an Ed25519 key.' },
-    { at: 198.4, voice: HANNAH, text: 'Signed by you, about you.' },
-    { at: 200.9, voice: JACK, text: 'Which is why the verifier is not ours to control. It is an M I T package on n p m, and anyone can check the signature without an account.' },
-    { at: 211.6, voice: HANNAH, text: 'And the receipt names the judge. The metric field carries the scorer and the model that graded — because eighty-three percent means nothing until you know who was grading.' },
-    { at: 222.5, voice: JACK, text: 'The tests are hashed into it too. Edit one afterwards and the next publish refuses, rather than reusing the old identity for new content.' },
-    { at: 232.5, voice: HANNAH, text: 'Good. And none of it is public unless I say so?' },
-    { at: 237.2, voice: JACK, text: 'Private by default. Choosing public warns you first that it means every prompt and response in the run.' },
+    { at: 187.8, voice: HANNAH, text: 'So now I have a number. Why should anyone outside this workspace believe it?' },
+    { at: 194.3, voice: JACK, text: 'Publish the run to TrustBench. Your suite becomes a versioned benchmark, and the result is signed with an Ed25519 key.' },
+    { at: 203.0, voice: HANNAH, text: 'Signed by you, about you.' },
+    { at: 205.6, voice: JACK, text: 'Which is why the verifier is not ours to control. It is an M I T package on n p m, and anyone can check the signature without an account.' },
+    { at: 216.2, voice: HANNAH, text: 'And the receipt names the judge. The metric field carries the scorer and the model that graded — because eighty-three percent means nothing until you know who was grading.' },
+    { at: 226.9, voice: JACK, text: 'The tests are hashed into it too. Edit one afterwards and the next publish refuses, rather than reusing the old identity for new content.' },
+    { at: 236.0, voice: HANNAH, text: 'Good. And none of it is public unless I say so?' },
+    { at: 240.6, voice: JACK, text: 'Private by default. Choosing public warns you first that it means every prompt and response in the run.' },
 
     // ── Scene 6 — close ──────────────────────────────────────────────────
-    { at: 244.8, voice: JACK, text: 'After that, monitoring re-runs the suite on a schedule and alerts on drift, or on a score falling through a threshold you set.' },
-    { at: 255.2, voice: HANNAH, text: 'Write the tests. Check the judge. Run it. Fix what failed. Then publish a receipt nobody has to take your word for.' },
-    { at: 263.5, voice: JACK, text: 'Quality assurance you do not have to be trusted for.' },
+    { at: 248.3, voice: JACK, text: 'After that, monitoring re-runs the suite on a schedule and alerts on drift, or on a score falling through a threshold you set.' },
+    { at: 258.7, voice: HANNAH, text: 'Write the tests. Check the judge. Run it. Fix what failed. Then publish a receipt nobody has to take your word for.' },
+    { at: 266.5, voice: JACK, text: 'Quality assurance you do not have to be trusted for.' },
   ],
 }
