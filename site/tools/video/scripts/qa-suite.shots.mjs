@@ -17,11 +17,12 @@
  *
  * ── WHAT IS DELIBERATELY NOT SHOWN ───────────────────────────────────────
  *
- * Monitoring. Scene 6 mentions scheduled re-runs and drift alerts, but the
- * workspace has no monitoring config, so the only available frame reads "No
- * monitoring configs yet." Narrating drift detection over an empty state is
- * the overselling this script's header forbids. Either a config gets created
- * before the shoot, or the line comes out. Tracked, not quietly ignored.
+ * (Monitoring WAS listed here as unshootable — the workspace had no config and
+ * the only frame read "No monitoring configs yet." It turned out no config had
+ * ever been creatable: the form sent releaseId:"default" against an ObjectId
+ * field, so every create 500'd, silently. Fixed, and "Daily grounding check"
+ * now exists with three alert rules bound to the suite's real scorers, so
+ * Scene 6 has honest footage.)
  *
  * The AutoFix loop (Scene 4, 159.6s–187.8s). No AutoFix run exists in this
  * workspace and starting one escrows $81.51 per iteration against a customer
@@ -88,6 +89,11 @@ export default {
     // the model that graded.
 
     // ── Scene 6 — close ──────────────────────────────────────────────────
-    // TODO(monitoring): 248.3 has no honest frame. See the header.
+    // 248.3 "monitoring re-runs the suite on a schedule and alerts on drift, or
+    // on a score falling through a threshold you set" — the card shows exactly
+    // that: Active, Schedule: daily, 3 alert rules. The rules are the suite's
+    // own scorers, which is the detail that makes it real rather than a demo
+    // fixture.
+    { at: 248.3, scene: 'S6 monitoring', frame: 'build/video/qa-frames/07-monitoring-active.jpg' },
   ],
 }
