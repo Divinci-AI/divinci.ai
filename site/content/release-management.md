@@ -1,6 +1,6 @@
 +++
-title = "AI Release Management - Enterprise DevOps for AI Systems"
-description = "Enterprise-grade release management for AI models with version control, rollback capabilities, and deployment automation"
+title = "Governed AI Release Management - Approvals, Versioning, Rollback"
+description = "Governed release management for AI models and agents: human sign-off, versioned releases, instant rollback, and an audit trail of who approved what and when."
 template = "feature.html"
 [extra]
 hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-release.webp"

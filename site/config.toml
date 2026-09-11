@@ -38,8 +38,8 @@ theme = "material-theme-ocean"
 [languages]
 
 [languages.en]
-title = "Divinci AI - Excellence, every time"
-description = "Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance."
+title = "Divinci AI - AI Safety, Security and Governance"
+description = "The AI safety, security and governance platform for custom language models and agents: pre-release evaluation, approved releases with instant rollback, and verifiable compliance evidence for the EU AI Act, GDPR, HIPAA and NIST AI RMF."
 
 [languages.es]
 title = "Divinci AI - Excelencia, siempre"

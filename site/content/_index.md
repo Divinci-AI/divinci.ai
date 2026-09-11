@@ -1,23 +1,23 @@
 +++
-title = "Divinci AI - Excellence, every time"
-description = "Verifiable AI compliance: vIndex receipts for EU AI Act, GDPR Article 17, HIPAA, and NIST AI. Excellence, every time."
+title = "AI Safety, Security and Governance Platform"
+description = "Divinci AI is the AI safety, security and governance platform for custom language models and agents. Evaluate before release, ship with approvals and rollback, and prove compliance with the EU AI Act, GDPR, HIPAA and NIST AI RMF."
 [extra]
 lang = "en"
 +++
 
 # AI releases. Excellence, every time.
 
-Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance through a structured, end-to-end deployment process.
+Divinci is the safety, security and governance layer for custom language models and agents. Evaluate before you ship, release with human sign-off and instant rollback, and hand regulators verifiable evidence for the EU AI Act, GDPR, HIPAA and NIST AI RMF.
 
-## Enterprise AI, expertly managed
+## Enterprise AI, governed end to end
 
 Unlock robust release management and rigorous quality assurance for large language models. Our platform equips enterprises with advanced tools to streamline deployment, enforce compliance, and ensure consistent, high-quality AI performance at scale.
 
 ### Key Features
 
-- **Intelligent test automation** - Streamline your testing processes with advanced automation
-- **Detailed compliance records** - Maintain comprehensive audit trails for regulatory requirements  
-- **Instant version recovery** - Quickly restore previous versions when needed
+- **Pre-release safety evals** - Regression, safety and red-team suites gate every release
+- **Audit-ready evidence** - Approval records and vIndex receipts for regulators and auditors
+- **Instant rollback** - Restore any previous release in seconds
 
 ### Core Capabilities
 

@@ -1,6 +1,6 @@
 +++
-title = "LLM Quality Assurance - Enterprise Testing & Validation"
-description = "Comprehensive quality assurance pipeline for enterprise LLM applications with automated testing, validation, and monitoring"
+title = "LLM Safety and Quality Assurance - Evaluate Before Release"
+description = "Safety and quality evaluation for custom LLMs and agents: automated regression, red-team and domain test suites, calibrated judges, and continuous monitoring, with the evidence retained for auditors."
 template = "feature.html"
 [extra]
 hero_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/hero-qa.webp"

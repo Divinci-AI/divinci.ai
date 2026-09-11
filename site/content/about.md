@@ -1,6 +1,6 @@
 +++
 title = "About Us"
-description = "Learn about Divinci AI's mission to democratize enterprise AI and make sophisticated artificial intelligence accessible to organizations of all sizes."
+description = "Divinci AI builds the safety, security and governance layer for custom language models and agents. Meet the team and the mission."
 template = "about.html"
 +++
 

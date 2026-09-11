@@ -1,9 +1,9 @@
 {
   "meta": {
-    "title": "Divinci AI - Excellence, every time",
-    "description": "Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance through a structured, end-to-end deployment process.",
-    "og_title": "Divinci AI",
-    "og_description": "AI releases. Excellence, every time."
+    "title": "Divinci AI - AI Safety, Security and Governance",
+    "description": "Divinci AI is the AI safety, security and governance platform for custom language models and agents: pre-release evaluation, approved releases with instant rollback, and verifiable compliance evidence for the EU AI Act, GDPR, HIPAA and NIST AI RMF.",
+    "og_title": "Divinci AI - AI governance you can prove",
+    "og_description": "Safe to ship. Secure by design. Governed with proof. The AI safety, security and governance platform for custom models and agents."
   },
   "banner": {
     "label": "Latest research:",
@@ -25,19 +25,21 @@
     "release_management": "Release Management",
     "sign_up": "Sign up",
     "www_rag_directory": "WWW-RAG Directory",
-    "system_status": "System Status"
+    "system_status": "System Status",
+    "mega_ship": "Govern and ship",
+    "mega_feature_desc": "Watch a release go from safety evaluation to production, with the evidence trail, and back again on rollback."
   },
   "hero": {
     "heading": "Custom AI releases.",
     "subheading": "Excellence, every time.",
     "heading_mobile": "Your B2C AI.",
     "subheading_mobile": "Excellence, every time.",
-    "description": "Empower your business with advanced release management and rigorous quality assurance for custom language models. Achieve operational reliability, regulatory compliance, and optimal performance through a structured, end-to-end deployment process.",
+    "description": "Divinci is the safety, security and governance layer for custom language models and agents. Evaluate before you ship, release with human sign-off and instant rollback, and hand regulators verifiable evidence for the EU AI Act, GDPR, HIPAA and NIST AI RMF.",
     "features": {
-      "test_automation": "Intelligent test automation",
-      "compliance_records": "Detailed compliance records",
-      "compliance_records_mobile": "Compliance records",
-      "version_recovery": "Instant version recovery"
+      "test_automation": "Pre-release safety evals",
+      "compliance_records": "Audit-ready evidence",
+      "compliance_records_mobile": "Audit evidence",
+      "version_recovery": "Instant rollback"
     },
     "cta": {
       "primary": "Request demo",
@@ -51,37 +53,37 @@
     "close_video": "Close video"
   },
   "enterprise": {
-    "title": "Enterprise AI, expertly managed",
-    "description": "Unlock robust release management and rigorous quality assurance for large language models. Our platform equips enterprises with advanced tools to streamline deployment, enforce compliance, and ensure consistent, high-quality AI performance at scale.",
+    "title": "Enterprise AI, governed end to end",
+    "description": "One platform for the controls regulators and security teams now expect: safety evaluation before release, approval workflows and rollback during release, and continuous monitoring with audit trails after. Built on the development platform your engineers already ship on.",
     "features": {
       "release_orchestration": {
-        "title": "Intelligent release orchestration",
-        "description": "Automate and coordinate complex deployment pipelines with precision. Ensure every model release is validated, documented, and seamlessly transitioned to production, minimizing risk and maximizing operational efficiency."
+        "title": "Governed release orchestration",
+        "description": "Every model release is evaluated, approved and documented before it reaches production, then versioned so it can be rolled back in seconds. Risk is managed at the gate, not discovered in the incident."
       },
       "model_oversight": {
-        "title": "Proactive model oversight",
-        "description": "Monitor model performance and compliance in real time. Leverage automated checks and comprehensive analytics to detect issues early, uphold regulatory standards, and maintain optimal model integrity."
+        "title": "Continuous oversight and monitoring",
+        "description": "Monitor safety, quality and compliance signals in real time. Automated checks and alerting catch drift, unsafe outputs and policy violations early, and the record of what happened is retained for auditors."
       },
       "performance_analytics": {
-        "title": "Tailored performance analytics",
-        "description": "Establish and track custom evaluation metrics aligned with your business objectives. Analyze accuracy, bias, and other critical factors to inform strategic decisions throughout the model lifecycle."
+        "title": "Safety and quality metrics",
+        "description": "Define the evaluation metrics that matter to your business and your regulator. Track accuracy, bias, hallucination rate and refusal behaviour across the model lifecycle, with calibrated judges you can inspect."
       },
       "team_collaboration": {
-        "title": "Integrated team collaboration",
-        "description": "Streamline cross-functional reviews with structured workflows. Assign responsibilities, collect feedback, and document approvals to ensure every release meets organizational and regulatory expectations."
+        "title": "Human oversight, recorded",
+        "description": "Structured review workflows for ML engineers, QA teams and compliance officers. Assign responsibilities, collect feedback and record approvals so every release carries evidence of human sign-off."
       }
     },
     "title_line1": "Enterprise AI,",
-    "title_line2": "expertly managed"
+    "title_line2": "governed end to end"
   },
   "features": {
-    "title": "The Age of AI Management",
-    "description": "Discover features designed for enterprise teams that need reliable, scalable AI collaboration.",
-    "journal_title": "Divinci's LLM Quality Codex",
+    "title": "The Age of AI Governance",
+    "description": "Safety, security and governance controls, built into the development platform your team already ships on.",
+    "journal_title": "Divinci's AI Governance Codex",
     "list": {
       "multiplayer": {
-        "title": "Collaborative Review",
-        "description": "Enable multi-stakeholder model validation with synchronized review environments for ML engineers, QA teams, and compliance officers."
+        "title": "Human Oversight",
+        "description": "Multi-stakeholder review and sign-off for ML engineers, QA teams and compliance officers, with every approval recorded against the release it governs."
       },
       "ai_family": {
         "title": "Model Registry",
@@ -92,24 +94,24 @@
         "description": "Conduct comprehensive voice-based model evaluation with automated test case generation and performance benchmarking across modalities."
       },
       "performance_analytics": {
-        "title": "Quality Metrics",
-        "description": "Monitor inference latency, token efficiency, hallucination rates, and custom accuracy metrics with real-time dashboards and alerting."
+        "title": "Safety Metrics",
+        "description": "Monitor hallucination rates, unsafe-output rates, bias, latency and custom accuracy metrics with real-time dashboards and alerting."
       },
       "enterprise_security": {
-        "title": "Compliance Suite",
-        "description": "Automated GDPR, HIPAA, and SOC2 compliance validation with audit trails, data residency controls, and model behavior attestation."
+        "title": "Compliance Evidence",
+        "description": "Automated GDPR, HIPAA and EU AI Act evidence with audit trails, data residency controls, and model behaviour attestation generated from the vIndex."
       },
       "lightning_responses": {
         "title": "Release Velocity",
         "description": "Accelerate model deployment cycles with parallel testing pipelines, automated staging environments, and zero-downtime rollouts."
       },
       "domain_specialization": {
-        "title": "Test Scenarios",
-        "description": "Domain-specific test suites for healthcare, finance, and legal LLMs with industry-standard evaluation frameworks and bias detection."
+        "title": "Red-Team and Domain Suites",
+        "description": "Domain-specific test suites and adversarial scenarios for healthcare, finance and legal LLMs, with bias, jailbreak and leakage detection."
       },
       "smart_workflows": {
         "title": "CI/CD Pipelines",
-        "description": "Automated model training, validation, and deployment workflows with integrated quality gates and progressive rollout strategies."
+        "description": "Automated training, evaluation and deployment workflows with safety gates, approval steps and progressive rollout strategies."
       },
       "api_integration": {
         "title": "MLOps Integration",
@@ -117,7 +119,7 @@
       },
       "scalability": {
         "title": "Enterprise Scale",
-        "description": "Manage thousands of model versions across distributed teams with horizontal scaling, multi-region deployment, and federated governance."
+        "description": "Govern thousands of model versions across distributed teams with horizontal scaling, multi-region deployment and federated policy enforcement."
       }
     },
     "autorag": {
@@ -126,7 +128,7 @@
     "qa_title": "Quality Assurance",
     "release_management": "Release Management",
     "title_first_line": "The Age of AI",
-    "title_second_line": "Management"
+    "title_second_line": "Governance"
   },
   "team": {
     "title": "Meet our team",
@@ -150,8 +152,8 @@
     }
   },
   "signup": {
-    "title": "Start your AI journey",
-    "description": "Join thousands of teams already transforming their work with Divinci AI. Get early access to our platform.",
+    "title": "Ship AI you can stand behind",
+    "description": "See how teams evaluate, release and evidence custom models and agents on Divinci. Book a short walkthrough.",
     "email_placeholder": "Your email",
     "button": "Schedule a Demo",
     "note": "We'll find a time that works — a short walkthrough of the platform."
@@ -161,8 +163,8 @@
     "description": "We're committed to developing responsible AI that benefits humanity. Our platform is designed with strong ethical principles, transparency, and a focus on empowering people, not replacing them.",
     "principles": {
       "safe_development": {
-        "title": "Safe development",
-        "description": "Rigorous safety testing and protective measures."
+        "title": "Safe by default",
+        "description": "Safety evaluation and red-teaming before every release."
       },
       "fair_ai": {
         "title": "Fair AI",
@@ -175,12 +177,12 @@
     }
   },
   "expert_answers": {
-    "title": "Expert answers. Enterprise clarity.",
-    "description": "Find comprehensive insights on our platform's release management and quality assurance for large language models. Explore detailed, professional responses to your most pressing questions.",
+    "title": "Expert answers. Governed clarity.",
+    "description": "How Divinci handles safety evaluation, secure deployment and governance evidence for custom language models and agents. Clear answers to the questions your risk, security and engineering teams ask.",
     "faqs": {
       "model_reliability": {
-        "question": "How do you guarantee model reliability?",
-        "answer": "We implement a multi-layered validation process, combining automated regression, performance, and security testing with expert manual reviews. Each model release is rigorously assessed to ensure it consistently meets enterprise-grade standards for accuracy, stability, and compliance."
+        "question": "How do you keep releases safe and reliable?",
+        "answer": "Every release passes a multi-layered validation gate: automated regression, safety, performance and security testing, plus expert human review. Nothing reaches production without the evaluation record and the approval that goes with it."
       },
       "language_models": {
         "question": "Which language models are compatible?",
@@ -188,12 +190,12 @@
         "model_compat_link": "View complete model compatibility list"
       },
       "quality_assurance": {
-        "question": "How is ongoing quality assurance achieved?",
-        "answer": "We maintain quality through continuous monitoring, scheduled audits, and real-time performance tracking. By analyzing user feedback and emerging risks, we proactively refine models and processes to uphold stringent quality benchmarks over time."
+        "question": "How is governance maintained after release?",
+        "answer": "Continuous monitoring, scheduled audits and real-time tracking of safety and quality signals. Drift, unsafe outputs and policy violations are flagged early, and the trail of what happened is retained for auditors and regulators."
       },
       "workflow_integration": {
         "question": "Does the platform fit existing workflows?",
-        "answer": "Our solution is engineered for seamless integration with enterprise systems. Robust APIs and configurable options allow effortless alignment with your current release management and development pipelines, minimizing disruption and maximizing efficiency."
+        "answer": "Divinci is a development platform first. Robust APIs, an SDK, a CLI and MCP tools slot into your existing release and development pipelines, so governance is enforced where your engineers already work rather than bolted on afterwards."
       }
     },
     "view_complete_list": "View complete model compatibility list"
