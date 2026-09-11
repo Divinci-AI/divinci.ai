@@ -5,7 +5,7 @@ description = "Divinci AI is the AI safety, security and governance platform for
 lang = "en"
 +++
 
-# AI releases. Excellence, every time.
+# Versioned AI releases. Excellence, every time.
 
 Divinci is the safety, security and governance layer for custom language models and agents. Evaluate before you ship, release with human sign-off and instant rollback, and hand regulators verifiable evidence for the EU AI Act, GDPR, HIPAA and NIST AI RMF.
 
