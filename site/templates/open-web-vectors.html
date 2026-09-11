@@ -76,7 +76,12 @@
            sizes="200px" width="520" height="520" alt="" loading="eager" decoding="async">
     </div>
     <div class="container">
-        <p class="owv-eyebrow">The Open Web Vector Initiative</p>
+        {#- The initiative's mark, inline so its nodes can take the band's gold.
+            Source of truth: scripts/build-owv-brand.py. -#}
+        <p class="owv-eyebrow owv-eyebrow-lockup">
+            {% include "partials/owv-mark.html" %}
+            <span>The Open Web Vector Initiative</span>
+        </p>
         {#- Inline robot: only shown below 1320px, where the overlay orbit is
             hidden. Sits between the eyebrow and the headline so a phone still
             gets the graphic without the ring covering the copy. -#}
@@ -553,6 +558,23 @@
     margin: 0 0 18px;
 }
 .owv-eyebrow-dark { color: #a5a5c8; }
+/* ── The mark ─────────────────────────────────────────────────────────────
+   Linework follows the eyebrow's colour; the seven nodes take the band's gold,
+   the same gold as the primary button, so the mark is two-tone here and
+   monochrome wherever it inherits a single currentColor (the nav thumb). */
+.owv-eyebrow-lockup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #b3b3d1;
+}
+.owv-eyebrow-lockup .owv-mark {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    color: #8d8de3;
+}
+.owv-mark .owv-mark-node { fill: #d9c49a; }
 .owv-title {
     /* A global `hyphens: auto` breaks the display serif mid-word on a phone
        ("legi-ble"); the line breaks read better than the hyphen does. */

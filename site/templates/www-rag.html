@@ -119,7 +119,7 @@
 <section class="www-rag-owv-band">
     <div class="container">
         <a class="www-rag-owv-link" href="/open-web-vectors/">
-            <span class="www-rag-owv-mark" aria-hidden="true">◆</span>
+            <span class="www-rag-owv-mark" aria-hidden="true">{% include "partials/owv-mark.html" %}</span>
             <span class="www-rag-owv-text">
                 <span class="www-rag-owv-eyebrow">{{ translations.www_rag.owv_eyebrow | default(value="The Open Web Vector Initiative") }}</span>
                 <span class="www-rag-owv-headline">{{ translations.www_rag.owv_headline | default(value="Every site here has its own vector database — and its own robots.txt was read before we fetched a single page.") }}</span>
@@ -404,11 +404,16 @@
     transform: translateY(-1px);
     box-shadow: 0 10px 28px rgba(20, 20, 42, 0.22);
 }
+/* The initiative's mark (scripts/build-owv-brand.py): indigo linework,
+   gold nodes — the ◆ that stood in for it kept only the gold. */
 .www-rag-owv-mark {
     flex: none;
-    font-size: 20px;
-    color: #d9c49a;
+    width: 44px;
+    height: 44px;
+    color: #8d8de3;
 }
+.www-rag-owv-mark .owv-mark { display: block; width: 100%; height: 100%; }
+.www-rag-owv-mark .owv-mark-node { fill: #d9c49a; }
 .www-rag-owv-text {
     display: flex;
     flex-direction: column;
