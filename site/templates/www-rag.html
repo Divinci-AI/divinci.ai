@@ -233,7 +233,17 @@
                 <button type="button" id="www-rag-export" class="www-rag-export">Export CSV</button>
             </div>
         </div>
-        <div id="www-rag-status" class="www-rag-status">{{ translations.www_rag.status_loading | default(value="Loading catalog…") }}</div>
+        {#- Loading state: the initiative's mark turning above the label, its
+            nodes lighting in ring order, and the label's ellipsis as three
+            bouncing dots. The JS replaces this whole block with plain text for
+            the empty and error states (statusEl.textContent = …), so nothing
+            here survives past the load. The trailing "…"/"..." is trimmed off
+            the translated string because the dots ARE the ellipsis. -#}
+        {%- set loading = translations.www_rag.status_loading | default(value="Loading catalog…") | trim_end_matches(pat="…") | trim_end_matches(pat="...") -%}
+        <div id="www-rag-status" class="www-rag-status www-rag-status-loading" role="status">
+            <span class="www-rag-loader" aria-hidden="true">{% include "partials/owv-mark.html" %}</span>
+            <span class="www-rag-status-text">{{ loading }}<span class="www-rag-dots" aria-hidden="true"><i></i><i></i><i></i></span></span>
+        </div>
         <div id="www-rag-grid" class="www-rag-results"></div>
     </div>
 </section>
@@ -603,6 +613,86 @@
     padding: 24px 0;
 }
 .www-rag-status.hidden { display: none; }
+
+/* ── Loading state ────────────────────────────────────────────────────────
+   The mark (partials/owv-mark.html) as the loader: the globe turns slowly on
+   its pole while the six site nodes light up one after another around the
+   ring — the crawl going round the web — and the label's ellipsis bounces.
+   Only ever visible during the fetch; the JS swaps the block for plain text
+   on empty/error, which drops the markup along with the animation. */
+.www-rag-status-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 36px 0 32px;
+}
+.www-rag-loader {
+    display: block;
+    width: 56px;
+    height: 56px;
+    color: #8d8de3;
+    animation: www-rag-loader-turn 9s linear infinite;
+}
+.www-rag-loader .owv-mark { display: block; width: 100%; height: 100%; }
+.www-rag-loader .owv-mark-node {
+    fill: #d9c49a;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: www-rag-loader-node 1.8s ease-in-out infinite;
+}
+/* Children of the mark: outer ring, latitude ring, the spokes path, then the
+   six site nodes in ring order (top, then clockwise), then the pole. */
+.www-rag-loader .owv-mark-node:nth-child(4)  { animation-delay: 0s; }
+.www-rag-loader .owv-mark-node:nth-child(5)  { animation-delay: 0.3s; }
+.www-rag-loader .owv-mark-node:nth-child(6)  { animation-delay: 0.6s; }
+.www-rag-loader .owv-mark-node:nth-child(7)  { animation-delay: 0.9s; }
+.www-rag-loader .owv-mark-node:nth-child(8)  { animation-delay: 1.2s; }
+.www-rag-loader .owv-mark-node:nth-child(9)  { animation-delay: 1.5s; }
+.www-rag-loader .owv-mark-node:nth-child(10) { animation: none; }
+@keyframes www-rag-loader-turn {
+    to { transform: rotate(360deg); }
+}
+@keyframes www-rag-loader-node {
+    0%, 55%, 100% { transform: scale(1); opacity: 0.55; }
+    18%           { transform: scale(1.55); opacity: 1; }
+}
+.www-rag-status-text {
+    display: inline-flex;
+    align-items: baseline;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+}
+.www-rag-dots {
+    display: inline-flex;
+    gap: 3px;
+    margin-left: 3px;
+}
+.www-rag-dots i {
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: www-rag-dot-bounce 1.2s ease-in-out infinite;
+}
+.www-rag-dots i:nth-child(2) { animation-delay: 0.15s; }
+.www-rag-dots i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes www-rag-dot-bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.55; }
+    30%           { transform: translateY(-5px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .www-rag-loader { animation: none; }
+    /* Motion off, but the state still has to read as "working": a slow,
+       stationary fade on the nodes says that without anything travelling. */
+    .www-rag-loader .owv-mark-node { animation: www-rag-loader-node-still 2.4s ease-in-out infinite; }
+    .www-rag-dots i { animation: none; opacity: 0.7; }
+}
+@keyframes www-rag-loader-node-still {
+    0%, 100% { opacity: 0.55; }
+    50%      { opacity: 1; }
+}
 .www-rag-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
