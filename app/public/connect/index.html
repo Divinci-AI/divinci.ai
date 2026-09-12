@@ -59,8 +59,41 @@
         <button type="button" class="mcp-copy">Copy</button>
       </div>
       <p class="connect-lede">
-        Free to start. Signing in creates your account if you don't have one —
-        the connector's sign-in step is the sign-up step.
+        Free to start. Make your account first and the connector's sign-in step
+        below becomes one click — it just confirms the account you already have.
+      </p>
+    </section>
+
+    <!-- ── Account first, connector second ───────────────────────────────
+         The ORDER is the point, and it is the whole of this experiment.
+
+         The OAuth call is built by the MCP CLIENT, not by us, so nothing on
+         this page can reach it — we cannot ask Auth0 to show a signup screen.
+         A first-timer who starts at the connector therefore lands on a LOGIN
+         form and has to notice the small sign-up link, on the one funnel whose
+         premise is that connecting IS signing up.
+
+         Adding `screen_hint=signup` server-side was the other option and is
+         NOT better, only symmetric: it shows the signup screen with a "log in"
+         link, moving that same extra click onto returning users. Creating the
+         account here first is the only version that removes the click instead
+         of relocating it — and it needs no server change at all.
+
+         Tracked as `mcp-oauth-sends-new-users-to-a-login-screen` in the server
+         repo's notes/KNOWN-GAPS.yaml. If this ordering is reverted, revert
+         that entry's status with it. -->
+    <section class="account-first">
+      <h2>First, create your free account</h2>
+      <p>
+        It takes a moment, and it is what makes the next step one click: when
+        you add the connector below, your assistant's sign-in confirms the
+        account you just made instead of asking you to find the sign-up link.
+      </p>
+      <p>
+        <a class="cta-primary" href="https://chat.divinci.app/signup" data-app-link="/signup">Create your free account →</a>
+      </p>
+      <p class="account-first-note">
+        Already have one? <a href="https://chat.divinci.app/" data-app-link="/">Sign in</a>, then carry on below.
       </p>
     </section>
 
@@ -72,7 +105,7 @@
          the shortest path that actually works, and says up front what plan it
          needs. If a vendor ships a real prefill, add it HERE and nowhere else. -->
     <section class="clients">
-      <h2>Add it to your assistant</h2>
+      <h2>Then add it to your assistant</h2>
 
       <div class="client-tabs" role="tablist" aria-label="Choose your assistant">
         <button type="button" class="client-tab" role="tab" data-client="claude" aria-selected="true" aria-controls="panel-claude" id="tab-claude">Claude</button>
@@ -166,7 +199,7 @@
         re-crawl, no waiting.
       </p>
       <p>
-        <a class="cta-primary" href="https://chat.divinci.app/" data-app-link="/">Create your free account →</a>
+        <a class="cta-primary" href="https://chat.divinci.app/signup" data-app-link="/signup">Create your free account →</a>
       </p>
     </section>
   </main>

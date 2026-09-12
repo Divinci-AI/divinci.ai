@@ -26,6 +26,63 @@
   color: var(--ink-soft);
 }
 
+/* .cta-primary is used by this page's two "Create your free account" links and
+ * was styled NOWHERE it could reach: the only definition lives in
+ * partners/partners.css, which /connect/ does not load. So the funnel's
+ * terminal CTA has been rendering as a bare underlined link in production —
+ * pre-existing, and confirmed against the live page, not introduced by the
+ * account-first reorder below. Same treatment as partners.css so a visitor
+ * moving between funnels recognises the button. */
+.cta-primary {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 14px 28px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--white);
+  background: var(--denim);
+  border: 2px solid var(--denim);
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+.cta-primary:hover {
+  background: var(--denim-dark);
+  border-color: var(--denim-dark);
+}
+.cta-primary:focus-visible {
+  outline: 2px solid var(--denim);
+  outline-offset: 3px;
+}
+/* The bottom CTA sits on a dark panel, where a denim-on-dark button is nearly
+   invisible. Invert it there. */
+.bottom-cta .cta-primary {
+  color: var(--denim-dark, #2c4a6b);
+  background: var(--white);
+  border-color: var(--white);
+}
+.bottom-cta .cta-primary:hover {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(255, 255, 255, 0.88);
+}
+
+/* Account-first block. Deliberately quiet: it sits between the hero and the
+ * connector panels to fix the ORDER, not to compete with them for attention.
+ * See the comment above this section in index.html for why the order is the
+ * whole point. */
+.account-first {
+  max-width: 620px;
+  margin: 34px auto 0;
+  text-align: center;
+}
+.account-first h2 { margin-bottom: 10px; }
+.account-first > p { color: var(--ink-soft); line-height: 1.55; }
+.account-first .cta-primary { margin-top: 6px; }
+.account-first-note { font-size: 0.92rem; margin-top: 12px; }
+
 /* The server URL is the single thing every path needs, so it is the hero. */
 .mcp-url {
   display: flex;
