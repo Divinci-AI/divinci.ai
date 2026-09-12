@@ -250,40 +250,64 @@ incident didn't leak request volume or infra detail to the public page).
 
 ## Tests and guards to add
 
-**Unit-testable (pure function, no live API needed):** a "traffic
-concentration" check mirroring how `status-attribution.mjs` is itself
-tested — given a set of `{ip, count}` rows and a total, return whether any
-single IP exceeds a share threshold. This is the kind of check that would
-have flagged 2026-09-11's ramp (one IP going from <1% to >80% of zone
-traffic) automatically rather than needing a human to notice a status-page
-color days later. Straightforward to add alongside the existing
-`site/tests/worker/*.test.mjs` suite.
+All four items below are now **DONE (2026-09-12)**, in the order they were
+proposed:
 
-**Operational guard (live check, run on demand or scheduled):** a script in
-the shape of `scripts/verify-waf-skip-rules.sh` from the `server` repo —
-query the zone's `httpRequestsAdaptiveGroups` grouped by `clientIP` over a
-rolling window, fail if any single IP exceeds e.g. 20% of total requests.
-Register it the same way that repo's guards are registered
-(`scripts/ci/guard-ledger.json` + `run-guard.sh`) so a run is recorded even
-though — like the WAF-scope guards there — it needs a zone-analytics-capable
-Cloudflare credential that shouldn't live in CI, so it's a laptop-run guard,
-not a GitHub Actions one.
+**1. Unit-testable pure detector.** `src/traffic-concentration.mjs`
+(`detectDominantClient`) — given `{key, count}` rows, is any single client
+above a share threshold (20%, `DOMINANT_CLIENT_SHARE`), with a
+`MIN_BASIS_REQUESTS` floor so a quiet zone doesn't false-alarm. 6 tests in
+`tests/worker/traffic-concentration.test.mjs`.
 
-**"End test" for the actual user-facing symptom:** extend
-`workspace/clients/tests/.../api-customer-embed-synthetics.spec.ts`-style
-coverage (from the `server` repo) with a `divinci.ai`-side equivalent: assert
-`/status` has not read "Degraded" for N consecutive days without a resolved
-note. That catches the exact symptom that started this whole investigation —
-"why is it always orange" — automatically, instead of relying on someone
-screenshotting the status page.
+**2. Live collector, wired into the existing 5-minute cron.**
+`src/traffic-concentration-collector.mjs` (`collectTrafficConcentration`) —
+queries the marketing zone's `httpRequestsAdaptiveGroups` grouped by
+`clientIP` over the same 5-minute/3-minute-lag window `collectCustomerHealth`
+already uses, runs the pure detector, and publishes
+`divinci.cf.marketing.top_client_share` (gauge) and
+`divinci.cf.marketing.top_client_flagged` (count) to Datadog. Wired into
+`scheduled()` in `worker.js` beside the existing customer-health collector —
+no new cron trigger, no new credential (reuses `CF_ANALYTICS_TOKEN` +
+`DD_API_KEY`). 13 tests in `tests/worker/traffic-concentration-collector.test.mjs`.
+⚠️ **Still open:** no Datadog monitor yet reads these metrics — the pager
+integration itself needs a Datadog dashboard credential this session didn't
+have. The metric is flowing; nobody is alerting on it yet. Provision one the
+way `[CF] 5xx rate elevated (prod zones)` (monitor 20807649) already reads
+`divinci.cf.customer.errors_5xx`: e.g. `max(last_15m):avg:divinci.cf.marketing.top_client_share{env:production} >= 0.20`.
 
-**Regression guard for the fix itself:** commit the block rule's expression
-to a file the way `deploy/cloudflare/waf-scanner-block-rule.json` is
-committed in the `server` repo, and add an assertion (in whatever guard
-covers this zone) that it's still `Active` — so a future "cleanup" of custom
-rules can't silently remove it. Not yet done here; flagging as the next
-concrete step rather than leaving it only as a dashboard-only rule nobody
-is watching.
+**3. "End test" for the actual user-facing symptom.**
+`src/status-degraded-streak.mjs` (`computeDegradedStreak`) — given
+`history.days` from `/api/status`, is the trailing run of non-operational
+days (ending at the most recent day) at or above a threshold (default 2,
+matching "these daily notes seem very similar")? `scripts/check-status-degraded-streak.mjs`
+fetches the live public endpoint (no credential needed) and exits non-zero
+when flagged. Run just now against production: **it correctly flags** —
+2026-09-11 and 2026-09-12 are both `degraded`/marketing, because today's
+history still carries this morning's pre-fix windows. Expected to clear
+starting 2026-09-13 if the fix holds. 9 tests in
+`tests/worker/status-degraded-streak.test.mjs`.
+
+**4. Regression guard for the WAF rules themselves.**
+`deploy/cloudflare/security-rules.json` commits both custom rules (IP block,
+scanner-path block) as the source of truth, mirroring
+`deploy/cloudflare/waf-scanner-block-rule.json` in the `server` repo.
+`src/security-rules-guard.mjs` (`diffCustomRules`) is the pure comparison —
+missing / disabled / weakened-action / narrowed-expression, each reported by
+name — with 8 tests in `tests/worker/security-rules-guard.test.mjs`.
+`scripts/verify-security-rules.mjs` is the live wrapper.
+⚠️ **Has NOT actually been run against Cloudflare yet.** It needs a token
+with Zone WAF Read on the divinci.ai zone; the token already provisioned for
+this Worker (`CF_ANALYTICS_TOKEN`) is Zone Analytics only, and the wrangler
+OAuth token used throughout this incident has no firewall/WAF scope either
+(confirmed earlier: 403 on `/firewall/access_rules/rules`, which is why the
+rule changes above were made via the dashboard through Chrome automation).
+Provisioning that token is the one item left with a concrete next step
+instead of a finished state.
+
+**Also still open:** the OWASP Core Ruleset review. It's running in Log mode
+since 2026-09-12; per the plan above, review its WAF events for false
+positives after about a week (**target: 2026-09-19**) before ever switching
+it to Block/Challenge.
 
 ## Query used (for reuse)
 

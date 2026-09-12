@@ -18,6 +18,7 @@ import {
 } from './web-bot-auth-directory.mjs';
 import { AREAS } from './status-areas.mjs';
 import { collectCustomerHealth, shouldCollect } from './customer-health.mjs';
+import { collectTrafficConcentration } from './traffic-concentration-collector.mjs';
 import { NOINDEX, isIndexable, robotsTxt } from './indexability.mjs';
 import {
   ATTRIBUTION_KEY,
@@ -116,6 +117,19 @@ export default {
         // Never rethrow into the cron runner: the useful signal is the metric
         // going absent, which the monitor's no-data notification reports.
         console.error('[customer-health] collection failed:', e?.message ?? e);
+      }),
+    );
+
+    // Is one client an outsized share of the MARKETING zone's traffic right
+    // now? Added 2026-09-12 after a WordPress-scanning bot went from <1% to
+    // 85.7% of divinci.ai traffic over 30 days with nothing detecting the
+    // concentration itself — only the downstream 5xx, and only once a human
+    // happened to look. Rides this same 5-minute cron (no new trigger, no new
+    // credential) — see traffic-concentration-collector.mjs and the pure
+    // detector in traffic-concentration.mjs for the full rationale.
+    ctx.waitUntil(
+      collectTrafficConcentration(env).catch((e) => {
+        console.error('[traffic-concentration] collection failed:', e?.message ?? e);
       }),
     );
 

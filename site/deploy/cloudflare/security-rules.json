@@ -1,0 +1,37 @@
+{
+  "_comment": "Canonical record of the divinci.ai zone's custom WAF rules, deployed 2026-09-12 during the marketing-site 522 storm (see notebooks/2026-09-12-marketing-site-522-storm.md). This file is the SOURCE OF TRUTH for scripts/verify-security-rules.mjs to compare against — a future dashboard 'cleanup' that removes or weakens one of these should fail the guard, not fail silently. Mirrors the server repo's deploy/cloudflare/waf-scanner-block-rule.json pattern (see that repo's CLAUDE.md, 'API hosts skip the managed WAF').",
+  "zone": "divinci.ai",
+  "zoneTag": "bbca355451b61dd26605f616e68bd855",
+  "rules": [
+    {
+      "order": 1,
+      "description": "Block runaway single IP (74.110.128.177) - 2026-09-12 522 storm",
+      "expression": "(ip.src eq 74.110.128.177)",
+      "action": "block",
+      "enabled": true,
+      "_why": "A single residential IP (Verizon FiOS, spoofing a plain Firefox UA) went from <1% to 85.7% of zone traffic over 30 days, saturating edge capacity and producing a 522 storm. Scoped to exactly this one IP, not the whole AS701, so unrelated Verizon Business customers are unaffected. If the source rotates to a new IP (DHCP reassignment is possible on a residential line), the traffic-concentration collector (src/traffic-concentration-collector.mjs) will surface the new one — this specific rule will need a successor, not an edit."
+    },
+    {
+      "order": 2,
+      "description": "Block WordPress/PHP scanner paths (no WP backend on this site) - 2026-09-12",
+      "expression": "(http.request.uri.path contains \"/wp-admin\") or (http.request.uri.path contains \"/wp-login\") or (http.request.uri.path contains \"/xmlrpc\") or (http.request.uri.path contains \"/wp-json\") or (ends_with(http.request.uri.path, \".php\"))",
+      "action": "block",
+      "enabled": true,
+      "_why": "This zone runs Zola (static site) plus a Cloudflare Worker — there is no PHP or WordPress anywhere on it, so this has zero false-positive risk (unlike the API zone's equivalent in the server repo, which had to measure real traffic first because API paths are less predictable). Generic scanner traffic is not unique to the one IP the incident happened to come from."
+    }
+  ],
+  "managedRulesets": [
+    {
+      "name": "Cloudflare Managed Ruleset",
+      "status": "active"
+    },
+    {
+      "name": "Cloudflare OWASP Core Ruleset",
+      "status": "active",
+      "action": "log",
+      "anomalyScoreThreshold": "medium (40+)",
+      "paranoiaLevel": "PL2",
+      "_why": "Deliberately Log, not Block: this zone had never run OWASP before 2026-09-12, and switching straight to Block risked 403ing real visitors with no warning. Review WAF events for false positives after roughly a week of Log data (target: 2026-09-19) before ever switching this to Block/Challenge — see notebooks/2026-09-12-marketing-site-522-storm.md."
+    }
+  ]
+}
