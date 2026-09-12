@@ -211,25 +211,32 @@ residential-proxy-based scanning is common specifically because IP-based
 defenses miss it until after the fact. Two structural gaps this incident
 exposed, ranked by leverage:
 
-1. **No generic scanner-block rule exists on the `divinci.ai` zone.** The
-   `server` repo already has this exact pattern for `api.divinci.app`
-   (`deploy/cloudflare/waf-scanner-block-rule.json`, guarded by
-   `verify-waf-skip-rules.sh` — see that repo's CLAUDE.md, "API hosts skip
-   the managed WAF"), built after measuring ~5.7% of API traffic was
-   Tomcat/WordPress/phpMyAdmin/etc probes. This zone had **zero** custom
-   rules before today (`Custom rules 0/1k rules` in the dashboard) and no
-   equivalent. **Recommend:** a rule blocking `/wp-admin`, `/wp-login`,
-   `/xmlrpc`, `/wp-json`, and any `.php` path — this site serves no PHP at
-   all, so that pattern has zero false-positive risk here (lower-risk than
-   the API zone's version, which had to measure real traffic first because
-   API paths are less predictable).
-2. **`Cloudflare OWASP Core Ruleset` is Disabled on this zone** (confirmed
-   in the dashboard's Managed Rules list; only the baseline
-   `Cloudflare Managed Ruleset` is Active). The OWASP ruleset's generic
-   scanner/exploit-signature detection would likely have caught a chunk of
-   this pattern without anyone having to notice a status-page color first.
-   Worth enabling in Log mode first to check for false positives against
-   real traffic before switching to Block, given this zone has never run it.
+1. **No generic scanner-block rule exists on the `divinci.ai` zone.** ✅
+   **DONE (2026-09-12).** The `server` repo already has this exact pattern
+   for `api.divinci.app` (`deploy/cloudflare/waf-scanner-block-rule.json`,
+   guarded by `verify-waf-skip-rules.sh` — see that repo's CLAUDE.md, "API
+   hosts skip the managed WAF"), built after measuring ~5.7% of API traffic
+   was Tomcat/WordPress/phpMyAdmin/etc probes. This zone had zero custom
+   rules before this incident. Deployed a second custom rule, "Block
+   WordPress/PHP scanner paths (no WP backend on this site)":
+   `(http.request.uri.path contains "/wp-admin") or (http.request.uri.path
+   contains "/wp-login") or (http.request.uri.path contains "/xmlrpc") or
+   (http.request.uri.path contains "/wp-json") or
+   (ends_with(http.request.uri.path, ".php"))` → Block, Active, order 2
+   (after the IP block). Zero false-positive risk here — this site serves no
+   PHP at all — unlike the API zone's version, which had to measure real
+   traffic first because API paths are less predictable.
+   ⚠️ Not yet committed to a file the way `waf-scanner-block-rule.json` is in
+   the `server` repo — it exists only in the Cloudflare dashboard right now.
+   That's the next concrete step (see "Tests and guards to add" below).
+2. **`Cloudflare OWASP Core Ruleset` is Disabled on this zone.** ✅ **DONE
+   (2026-09-12).** Enabled with Action = **Log** (not Block), threshold
+   Medium (40+), Paranoia Level PL2 — deliberately observational first,
+   since this zone has never run it and a wrong call here would 403 real
+   visitors with no warning. Managed Rules now shows 2 Active (Cloudflare
+   Managed Ruleset + OWASP Core Ruleset). **Follow-up:** after a week or so
+   of Log data, review WAF events for false positives on real traffic before
+   ever switching this to Block/Challenge.
 
 **Not recommended:** blocking the whole ASN (AS701/Verizon Business) — that
 would collateral-damage every legitimate visitor on that ISP. Blocking by
