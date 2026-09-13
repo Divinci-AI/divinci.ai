@@ -295,14 +295,27 @@ scanner-path block) as the source of truth, mirroring
 missing / disabled / weakened-action / narrowed-expression, each reported by
 name — with 8 tests in `tests/worker/security-rules-guard.test.mjs`.
 `scripts/verify-security-rules.mjs` is the live wrapper.
-⚠️ **Has NOT actually been run against Cloudflare yet.** It needs a token
-with Zone WAF Read on the divinci.ai zone; the token already provisioned for
-this Worker (`CF_ANALYTICS_TOKEN`) is Zone Analytics only, and the wrangler
-OAuth token used throughout this incident has no firewall/WAF scope either
-(confirmed earlier: 403 on `/firewall/access_rules/rules`, which is why the
-rule changes above were made via the dashboard through Chrome automation).
-Provisioning that token is the one item left with a concrete next step
-instead of a finished state.
+✅ **DONE (2026-09-13).** Checked every existing Cloudflare token (12 user
+tokens, 39 account tokens) plus this repo's own credential store first —
+nothing already provisioned covered Zone WAF on `divinci.ai` (the two
+closest matches, `hermes-heartbeat-001` and `divinci-waf-skip-2026-08-24`,
+are both scoped to `divinci.app` instead). Created
+`divinci-ai-waf-read-2026-09-13`: Zone WAF **Read only** (not Edit — this is
+a verification guard, never a rule-management tool), scoped to exactly the
+`divinci.ai` zone, 90-day expiration (Dec 12, 2026). Saved to
+`~/.config/divinci-ai-site/waf-guard.env` on this laptop only — never
+committed, never put in CI, mirroring the `server` repo's own rule that a
+Zone-WAF-scoped token has no business in a GitHub secret. First live run:
+
+```
+[verify-security-rules] OK — all 2 custom rules on divinci.ai match deploy/cloudflare/security-rules.json.
+```
+
+⚠️ Re-run `node scripts/verify-security-rules.mjs` (with that env sourced)
+periodically — it's a laptop-run guard, not wired into any schedule, so
+nobody notices drift unless someone actually invokes it. Worth registering
+alongside a `run-guard.sh`-style ledger if this pattern gets a second
+consumer in this repo.
 
 **Also still open:** the OWASP Core Ruleset review. It's running in Log mode
 since 2026-09-12; per the plan above, review its WAF events for false
