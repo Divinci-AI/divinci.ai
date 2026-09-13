@@ -269,11 +269,43 @@ already uses, runs the pure detector, and publishes
 `scheduled()` in `worker.js` beside the existing customer-health collector —
 no new cron trigger, no new credential (reuses `CF_ANALYTICS_TOKEN` +
 `DD_API_KEY`). 13 tests in `tests/worker/traffic-concentration-collector.test.mjs`.
-⚠️ **Still open:** no Datadog monitor yet reads these metrics — the pager
-integration itself needs a Datadog dashboard credential this session didn't
-have. The metric is flowing; nobody is alerting on it yet. Provision one the
-way `[CF] 5xx rate elevated (prod zones)` (monitor 20807649) already reads
-`divinci.cf.customer.errors_5xx`: e.g. `max(last_15m):avg:divinci.cf.marketing.top_client_share{env:production} >= 0.20`.
+✅ **DONE (2026-09-13).** Monitor `22450702`, "[CF] Marketing-site traffic
+concentration (divinci.ai)", created via the same Datadog org/site the
+`server` repo already uses (`us5`, verified by querying the metric with that
+repo's `DD_API_KEY`/`DD_APP_KEY` before creating anything — same credentials
+that back monitor 20807649). Query watches the FLAGGED count, not the raw
+share, so the detector's own `MIN_BASIS_REQUESTS` floor stays the single
+source of truth rather than being re-derived as a second threshold:
+
+```
+sum(last_15m):sum:divinci.cf.marketing.top_client_flagged{env:production}.as_count() >= 3
+```
+
+Warning at `>= 1` (one flagged 5-min window — "worth a look"), critical at
+`>= 3` (all three windows in 15 minutes flagged — sustained). Slack + email
+only, deliberately **not** paging PagerDuty: this is the marketing zone, not
+the product, mirroring the same customer-vs-internal distinction
+`customer-health.mjs` already draws for 5xx. `notify_no_data` on, mirroring
+the "an absent point always means the collector died, never that the zone
+went quiet" reasoning already established for `divinci.cf.customer.errors_5xx`.
+
+**First real trigger, minutes after creation — genuinely useful.** The
+monitor went to `Warn` almost immediately: `top_client_share` hit 92% and
+93% in two consecutive windows around 2026-09-13T00:23–00:28Z. Traced via
+the same GraphQL query grouped by `clientIP`: the dominant client was
+`104.28.206.65` (HeadlessChrome UA) hitting **many different**
+`*.demos.divinci.ai` hosts (florida-orthopaedic-institute, meilisearch, aiaa,
+orlando-orthopaedic-center, kapililike, …) — the demo-pipeline's own
+screenshot/QA sweep, not an attacker. One automation source naturally
+dominates a quiet overnight window's total across many small demo sites
+sharing this one zone. It never reached the critical threshold (stopped
+after 2 windows, not 3) and self-resolved back to OK within ~15 minutes as
+the flagged points aged out of the rolling window — the warning/critical
+split did exactly what it's for. **Not fixing this as a false positive**:
+it's a correct, if noisy, description of what happened, and a `Warn` that
+nobody has to act on costs nothing. If this recurs often enough to be
+annoying, the fix is an internal-automation allowlist mirroring
+`customer-health.mjs`'s `INTERNAL_PATH_PREFIXES` — not a threshold change.
 
 **3. "End test" for the actual user-facing symptom.**
 `src/status-degraded-streak.mjs` (`computeDegradedStreak`) — given
