@@ -1,0 +1,62 @@
+/* Shared styling for the HTML documents under /investors/docs/. Tokens mirror the
+   .dr block in templates/investors.html so a document opened from the data room reads
+   as part of it. Content in these files is not edited here — only markup hooks
+   (.doc-bar, .sheet, .provenance, .cite) are added around it. */
+:root{--paper:#F5F6F8;--sheet:#FFFFFF;--ink:#1B1F26;--ink-2:#4A535F;--ink-3:#7A838F;--rule:#D9DDE3;
+  --accent:#0F5C6E;--accent-ink:#0B4655;--accent-wash:#E6F0F2;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --cond:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;}
+*{box-sizing:border-box;}
+html{background:var(--paper);}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-text-size-adjust:100%;}
+
+.doc-bar{max-width:880px;margin:0 auto;padding:22px 24px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);}
+.doc-bar a{color:var(--accent-ink);text-decoration:none;}
+.doc-bar a:hover{text-decoration:underline;}
+
+.sheet{max-width:880px;margin:14px auto 0;padding:40px 48px 44px;background:var(--sheet);border:1px solid var(--rule);border-top:3px solid var(--accent);}
+.doc-foot{max-width:880px;margin:0 auto;padding:14px 24px 56px;font-size:12.5px;color:var(--ink-3);font-style:italic;}
+.doc-foot a{color:var(--accent-ink);}
+
+h1{font-family:var(--cond);font-weight:700;font-size:34px;line-height:1.08;margin:0 0 14px;text-wrap:balance;color:var(--ink);
+  padding-bottom:16px;border-bottom:2px solid var(--ink);}
+h2{font-family:var(--cond);font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);
+  margin:32px 0 10px;padding-top:18px;border-top:1px solid var(--rule);}
+h1 + h2{border-top:0;padding-top:0;margin-top:4px;text-transform:none;letter-spacing:0;font-size:18px;color:var(--ink-2);font-weight:600;}
+h3{font-family:var(--cond);font-weight:600;font-size:16px;color:var(--ink);margin:22px 0 6px;}
+p{margin:0 0 12px;max-width:72ch;}
+ul,ol{margin:6px 0 14px;padding-left:22px;max-width:72ch;}
+li{margin:5px 0;}
+li::marker{color:var(--accent);}
+strong,b{font-weight:600;}
+a{color:var(--accent-ink);}
+code{font-family:var(--mono);font-size:.88em;background:var(--accent-wash);color:var(--accent-ink);padding:1px 5px;border-radius:2px;}
+
+/* Tables: the page's ruled style, scrollable on narrow screens. */
+.tablewrap{overflow-x:auto;margin:10px 0 16px;}
+table{border-collapse:collapse;width:100%;font-size:14px;border:0;}
+th,td{text-align:left;padding:8px 10px;border:0;border-bottom:1px solid var(--rule);vertical-align:top;}
+th{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:500;border-bottom:1px solid var(--ink-3);}
+
+/* The provenance line each generated document opens with. */
+.provenance,p.note{background:var(--accent-wash);border-left:3px solid var(--accent);padding:10px 14px;font-size:13.5px;color:var(--ink-2);font-style:normal;max-width:none;}
+/* Source codes such as [REG-01] and [PROD-04]. */
+.cite{font-family:var(--mono);font-size:11px;color:var(--accent);background:var(--accent-wash);padding:1px 5px;border-radius:2px;white-space:nowrap;}
+
+/* Questions-answered document. */
+p.q{font-weight:600;margin:18px 0 4px;color:var(--ink);}
+p.a{margin:0 0 10px;padding-left:14px;border-left:2px solid var(--rule);color:var(--ink-2);}
+
+@media (max-width:720px){
+  .sheet{padding:26px 18px 30px;border-left:0;border-right:0;}
+  .doc-bar{padding:16px 16px 0;}
+  .doc-foot{padding:14px 16px 40px;}
+  h1{font-size:27px;}
+}
+@media print{
+  html,body{background:#fff;}
+  .doc-bar,.doc-foot{display:none;}
+  .sheet{border:0;padding:0;max-width:none;}
+}
