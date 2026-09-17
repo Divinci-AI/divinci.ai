@@ -280,8 +280,7 @@ input:checked + .toggle-slider:before {
 }
 
 /* Coming-soon overlay: scoped to individual PAID cards (checkout isn't wired
-   to a live Stripe price yet), not the whole grid — Free sign-up is real and
-   working today, so it stays uncovered. */
+   to a live Stripe price yet), not the whole grid. */
 .pricing-card.coming-soon {
     position: relative;
 }
@@ -824,38 +823,6 @@ input:checked + .toggle-slider:before {
 </div>
 
 <div class="pricing-cards">
-<!-- Free Plan — real, working sign-up today (not gated behind Stripe) -->
-<div class="pricing-card">
-<h2 class="pricing-plan">Free</h2>
-<p class="pricing-description">Comece a criar com a Divinci sem qualquer custo</p>
-
-<div class="pricing-amount monthly active">
-<div class="pricing-price">
-<span class="currency">$</span>0<span class="period">/mês</span>
-</div>
-</div>
-
-<div class="pricing-amount annual">
-<div class="pricing-price">
-<span class="currency">$</span>0<span class="period">/mês</span>
-</div>
-<div class="pricing-billed">Gratuito, para sempre</div>
-</div>
-
-<ul class="pricing-features">
-<li>1 lançamento white-label</li>
-<li>Modelos de IA da comunidade (GPT, Gemini, Claude, Llama e outros)</li>
-<li>RAG básico — baseie as respostas nos seus próprios documentos</li>
-<li>Traga as suas próprias chaves de API (BYOK)</li>
-<li class="unavailable">Suites de avaliação Scored QA</li>
-<li class="unavailable">Fine-tuning</li>
-<li class="unavailable">Remover a marca Divinci</li>
-<li class="unavailable">Suporte prioritário por e-mail</li>
-</ul>
-
-<a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Registar gratuitamente</a>
-</div>
-
 <!-- Starter Plan -->
 <div class="pricing-card">
 <h2 class="pricing-plan">Starter</h2>
@@ -1042,7 +1009,7 @@ Existe um período de teste gratuito?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Sim — o nosso plano Free permite-lhe começar a criar com a Divinci sem qualquer custo e sem necessidade de cartão de crédito, para que possa experimentar a plataforma antes de escolher um plano pago.</p>
+<p>De momento, não — o plano Free está suspenso. Todos os planos pagos incluem uma dotação mensal de créditos para a sua utilização, indicada em cada plano acima.</p>
 </div>
 </div>
 </div>

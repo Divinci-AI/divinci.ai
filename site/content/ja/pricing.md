@@ -280,8 +280,7 @@ input:checked + .toggle-slider:before {
 }
 
 /* Coming-soon overlay: scoped to individual PAID cards (checkout isn't wired
-   to a live Stripe price yet), not the whole grid — Free sign-up is real and
-   working today, so it stays uncovered. */
+   to a live Stripe price yet), not the whole grid. */
 .pricing-card.coming-soon {
     position: relative;
 }
@@ -824,38 +823,6 @@ input:checked + .toggle-slider:before {
 </div>
 
 <div class="pricing-cards">
-<!-- Free Plan — real, working sign-up today (not gated behind Stripe) -->
-<div class="pricing-card">
-<h2 class="pricing-plan">Free</h2>
-<p class="pricing-description">Divinci を無料で使い始めましょう</p>
-
-<div class="pricing-amount monthly active">
-<div class="pricing-price">
-<span class="currency">$</span>0<span class="period">/月</span>
-</div>
-</div>
-
-<div class="pricing-amount annual">
-<div class="pricing-price">
-<span class="currency">$</span>0<span class="period">/月</span>
-</div>
-<div class="pricing-billed">永久無料</div>
-</div>
-
-<ul class="pricing-features">
-<li>ホワイトレーベルリリース 1件</li>
-<li>コミュニティAIモデル(GPT、Gemini、Claude、Llama など)</li>
-<li>ベーシックRAG — 自社ドキュメントに基づく回答</li>
-<li>独自のAPIキーを利用可能(BYOK)</li>
-<li class="unavailable">スコア付きQA評価スイート</li>
-<li class="unavailable">ファインチューニング</li>
-<li class="unavailable">Divinciブランディングの削除</li>
-<li class="unavailable">優先メールサポート</li>
-</ul>
-
-<a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">無料で登録</a>
-</div>
-
 <!-- Starter Plan -->
 <div class="pricing-card">
 <h2 class="pricing-plan">Starter</h2>
@@ -1042,7 +1009,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>はい — Freeプランでは、クレジットカード登録不要でDivinciを無料で使い始められるため、有料プランを選ぶ前にプラットフォームをお試しいただけます。</p>
+<p>現在は提供しておりません — Freeプランは一時停止中です。すべての有料プランには、利用分をカバーする月間クレジット(各プランに記載)が含まれます。</p>
 </div>
 </div>
 </div>

@@ -165,6 +165,6 @@ feature_category = "data-management"
 <h2 class="section-heading">Ready to own your site?</h2>
 <p class="section-subheading">Convert a page in a couple of minutes, or talk to us about migrating a full site plus an AI assistant.</p>
 <p style="text-align: center; margin: 0 0 4rem;">
-  <a href="https://app.divinci.app/signup" style="display: inline-block; background: #2d5a4f; color: #faf8f5; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none; margin-right: 0.5rem;">Get started free</a>
+  <a href="https://app.divinci.app/signup" style="display: inline-block; background: #2d5a4f; color: #faf8f5; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none; margin-right: 0.5rem;">Get started</a>
   <a href="https://meetings.hubspot.com/michael-mooring/divinci-ai" style="display: inline-block; background: transparent; color: #2d5a4f; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none; border: 2px solid #2d5a4f;">Book a demo →</a>
 </p>
