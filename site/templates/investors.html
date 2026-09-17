@@ -27,6 +27,7 @@
   {"selector": "#traction", "blurb": "Ask me what is live in production today, and what is not yet."},
   {"selector": "#business-model", "blurb": "Ask me how the pricing is anchored, and to what."},
   {"selector": "#team", "blurb": "Ask me who does what on the team."},
+  {"selector": "#video", "blurb": "Two minutes: watch one fact get edited out of a model, receipt included."},
   {"selector": "#financials", "blurb": "Two budgets, two scopes. Ask me how the $224k and the $1.5M relate."},
   {"selector": "#ask", "blurb": "Three asks, none of them vendor intros. Ask me what they are."},
   {"selector": "#advantage", "blurb": "Ask me why an auditor can verify the receipt without trusting Divinci."},
@@ -104,6 +105,23 @@
   .dr .docs .kind{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;}
   .dr .docs .sub{display:block;font-size:13px;color:var(--ink-2);}
   .dr footer.note{margin-top:28px;padding-top:14px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-3);font-style:italic;max-width:80ch;}
+  /* Video: the same click-to-play facade and frame as /compliance (copied from
+     templates/compliance.html; .hero-play / .hero-liquid come from style.css and
+     static/js/video-facade.js binds to #compliance-video-frame). */
+  .dr .compliance-video{margin:0 auto 34px;max-width:760px;}
+  .dr .compliance-video h2{justify-content:center;}
+  .dr .compliance-video-sub{text-align:center;font-size:14px;line-height:1.6;color:var(--ink-2);margin:0 auto 16px;max-width:620px;}
+  .dr .compliance-video-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#000;box-shadow:0 2px 18px rgba(0,0,0,.18);}
+  .dr .compliance-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .dr .compliance-video-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .dr .compliance-video-frame .hero-play{opacity:1;transform:scale(0.9);pointer-events:auto;}
+  .dr .compliance-video-frame:hover .hero-play,.dr .compliance-video-frame:focus-within .hero-play{transform:scale(1);}
+  .dr .compliance-video-frame .hero-play:hover,.dr .compliance-video-frame .hero-play:focus-visible{transform:scale(1.06);}
+  .dr .compliance-video-frame .hero-liquid{width:62%;}
+  .dr .compliance-video-frame .hero-play:hover ~ .hero-liquid,.dr .compliance-video-frame .hero-play:focus-visible ~ .hero-liquid{opacity:.62;}
+  .dr .compliance-video-frame.is-playing .hero-play,.dr .compliance-video-frame.is-playing .hero-liquid,.dr .compliance-video-frame.is-playing .compliance-video-poster{display:none;}
+  .dr .compliance-video-caption{margin:10px auto 0;font-size:13px;line-height:1.55;text-align:center;color:var(--ink-3);max-width:none;}
+  .dr .compliance-video-caption a{color:var(--accent-ink);text-decoration:underline;}
   @media (max-width:820px){.dr .grid{grid-template-columns:1fr;} .dr aside{position:static;} .dr header.masthead{grid-template-columns:1fr;} .dr .masthead .meta{text-align:left;}}
   @media print{.dr{background:#fff;} .dr aside{position:static;}}
 </style>
@@ -115,13 +133,13 @@
 
 <header class="masthead">
   <div>
-    <p class="eyebrow">Investor data room · updated 3 September 2026</p>
+    <p class="eyebrow">Investor data room · updated 17 September 2026</p>
     <h1>Divinci AI — model erasure <span>with a receipt an auditor can verify without us</span></h1>
   </div>
   <div class="meta">Divinci AI Inc. · Delaware C-corp · file 2970809<br>Incorporated 22 Jan 2024 · Irvine, CA<br>divinci.ai</div>
 </header>
 
-<p class="gate"><b>Confidential.</b> This page is shared by direct link with investors and partners and is not indexed. Please do not forward the files. Every figure traces to the audited plan documents (one-pager, channel strategy, expense workbook, fact base as of 1 September 2026) or to the founders' own figures supplied 2 September 2026. Counsel and funding status updated 16 September 2026.</p>
+<p class="gate"><b>Confidential.</b> This page is shared by direct link with investors and partners and is not indexed. Please do not forward the files. Every figure traces to the audited plan documents (one-pager, channel strategy, expense workbook, fact base as of 1 September 2026) or to the founders' own figures supplied 2 September 2026. Counsel and funding status updated 16 September 2026; infrastructure costs updated 17 September 2026 from the Cloudflare Enterprise order form.</p>
 
 <div class="partners">
   <div class="partner">
@@ -137,9 +155,31 @@
   <div class="partner">
     <p class="lbl">Banking &amp; innovation economy</p>
     <p class="who">J.P. Morgan Innovation Economy</p>
-    <p class="what">Relationship through J.P. Morgan's Innovation Economy practice for venture-backed and high-growth companies. <span class="confirm">founders to confirm wording and scope before external use</span></p>
+    <p class="what">Client of J.P. Morgan's Innovation Economy startup-banking team, which serves 11,000+ venture-backed and high-growth companies in 50+ countries. The friends-and-family round lands in our J.P. Morgan account, and the relationship brings the bank's Startup Offers programme and venture-market research.</p>
   </div>
 </div>
+
+<section class="compliance-video" id="video">
+  <h2>Watch a fact get edited</h2>
+  <p class="compliance-video-sub">Two minutes: what a vIndex is, how a reversible patch changes what a frozen model answers, and what the receipt looks like.</p>
+  <div class="compliance-video-frame" id="compliance-video-frame"
+       data-embed="https://www.youtube-nocookie.com/embed/wnsKaMaEAOQ?autoplay=1&amp;rel=0&amp;modestbranding=1&amp;playsinline=1">
+    <img class="compliance-video-poster"
+         src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/larql-vindex-poster-1280w.webp"
+         srcset="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/larql-vindex-poster-800w.webp 800w,
+                 https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/larql-vindex-poster-1280w.webp 1280w"
+         sizes="(max-width: 820px) 100vw, 760px"
+         alt="August 2nd: the EU AI Act technical documentation deadline"
+         width="1280" height="720" loading="eager" decoding="sync">
+    <button type="button" class="hero-play compliance-video-play" aria-label="Play: deleting a fact from a language model">
+      <svg class="hero-play-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <path d="M12 8.8 23.4 16 12 23.2Z"/>
+      </svg>
+    </button>
+    <div class="hero-liquid" aria-hidden="true"></div>
+  </div>
+  <p class="compliance-video-caption">The worked example in full: <a href="/blog/deleting-paris-from-a-language-model/">Deleting Paris from a Language Model</a></p>
+</section>
 
 <div class="grid">
 <main>
@@ -198,7 +238,6 @@
     <li>A live GDPR Article 17 request discharged end to end with a design partner.</li>
     <li>15–20 demand interviews; three design partners signed; evaluation protocol published within 60 days, failures included.</li>
   </ul>
-  <p><strong>Strategic-partner track, contingent on the gate.</strong> In-Q-Tel, the not-for-profit strategic investor for the U.S. national-security community, funds technology development agreements of <span class="fig">$500k–3M</span> structured as development and licensing deals. Our signed, independently verifiable receipt is the artifact an AI-assurance audit keeps. We have no relationship with In-Q-Tel today and no clearances; we would approach after the gate result, leading with the receipt. The full brief is in the documents below.</p>
 </section>
 
 <section id="business-model">
@@ -232,8 +271,8 @@
   <dl class="kv">
     <dt>Stage</dt><dd>Bootstrapped to date. A first <strong>friends-and-family round</strong> is in progress to fund the Fieldfisher opinion and the independent technical test. No institutional seed raised.</dd>
     <dt>Revenue</dt><dd><span class="fig">$0</span> today.</dd>
-    <dt>Burn</dt><dd>~<span class="fig">$5,000/month</span> cash today with founders unpaid, rising to ~<span class="fig">$8,000/month</span> when the Google Cloud startup credit ends in September 2026 (measured 2 September; detail in the infrastructure cost sheet below).</dd>
-    <dt>Break-even</dt><dd>~<span class="fig">$11,000/month</span> at today's burn — the expenses plus $2,000/month each for the three founders. Everything above that line is return.</dd>
+    <dt>Burn</dt><dd>~<span class="fig">$11,500–13,000/month</span> going forward with founders unpaid: the Cloudflare Enterprise contract at <span class="fig">$5,278.90/month</span>, Google Cloud at <span class="fig">$1,500–3,000/month</span> now that the Google for Startups credit is spent, and ~<span class="fig">$4,700/month</span> of other operating costs (MongoDB Atlas, Redis, Slack and the rest of the earlier ~$5,000 keep-the-lights-on figure).</dd>
+    <dt>Break-even</dt><dd>~<span class="fig">$17,500–19,000/month</span> — the burn above plus $2,000/month each for the three founders. Everything above that line is return.</dd>
     <dt>Programme, yr 1</dt><dd>~<span class="fig">$224k</span> at founder scale (subtotal ~$179k + 25% contingency), funded from operations. Programme revenue in year 1 is <strong>$0</strong> — twelve months of investment, roughly 15% of a three-person team's year.</dd>
     <dt>Post-gate</dt><dd>Lean ~<span class="fig">$1.53M</span> (~5 people, validate the wedge) · Standard ~<span class="fig">$3.47M</span> (~8–9 people, $150–400k revenue from 2–4 direct deals) · Aggressive ~<span class="fig">$6.06M</span> (~15–18 people, $0.5–1.2M). Each is justified only against the gate's result.</dd>
     <dt>Margins</dt><dd>vIndex build cost per model-version is not yet measured; it is the open item blocking a gross-margin claim and a Week-2 task of the gate.</dd>
@@ -243,7 +282,7 @@
 <section id="ask">
   <h2><span class="n">9</span>Funding ask</h2>
   <p><strong>Capital now: a first friends-and-family round</strong>, sized to the gate's one outside cost — the Fieldfisher opinion and the independent German technical test, about <span class="fig">€30k</span>. Everything else in the gate runs at founder scale from operations. We are also asking for: three design partners with open-weight models and EU exposure; a named academic willing to adversarially test and co-sign the result; and introductions to seed investors for the round that follows the gate.</p>
-  <p><strong>If the gate passes</strong> — the experiment holds and the counsel memo supports the argument — we would raise <strong class="fig">~$1.5M</strong> against the Lean scenario, alongside an In-Q-Tel work-program application as a non-dilutive complement:</p>
+  <p><strong>If the gate passes</strong> — the experiment holds and the counsel memo supports the argument — we would raise <strong class="fig">~$1.5M</strong> against the Lean scenario,:</p>
   <div class="tablewrap"><table>
     <thead><tr><th>Allocation</th><th>Amount</th></tr></thead>
     <tbody>
@@ -272,9 +311,8 @@
     <li><span><a href="/investors/docs/Divinci-AI-Compliance-Investor-Deck-v0.1.pdf">Compliance investor deck v0.1</a><span class="sub">The narrative deck: problem, proof, market, gate, ask.</span></span><span class="kind">PDF</span></li>
     <li><span><a href="/investors/docs/Divinci-Investor-Executive-Summary-v0.3.docx">Investor Executive Summary v0.3</a><span class="sub">The one-page summary this page is built from, in Bobby Edelman's SBDC format.</span></span><span class="kind">DOCX</span></li>
     <li><span><a href="/investors/docs/Investor-Executive-Summary-v0.3-questions-answered.html">Executive Summary — the questions, answered</a><span class="sub">The eleven SBDC outline questions with the source material behind each section.</span></span><span class="kind">HTML</span></li>
-    <li><span><a href="/investors/docs/Compliance-Channel-Strategy-gen7.html">Compliance channel strategy (gen 7)</a><span class="sub">Pre-registered 30-day gate, pricing, channels, the In-Q-Tel lane. Credibility-scored 0.935 by an independent rubric judge, zero hard fails.</span></span><span class="kind">HTML</span></li>
+    <li><span><a href="/investors/docs/Compliance-Channel-Strategy-gen7.html">Compliance channel strategy (gen 7)</a><span class="sub">Pre-registered 30-day gate, pricing and channels. Credibility-scored 0.935 by an independent rubric judge, zero hard fails.</span></span><span class="kind">HTML</span></li>
     <li><span><a href="/investors/docs/Compliance-One-Pager-gen7.html">Compliance one-pager (gen 7)</a><span class="sub">The 660-word plan summary with every figure cited to its source.</span></span><span class="kind">HTML</span></li>
-    <li><span><a href="/investors/docs/In-Q-Tel-Partner-Brief-gen7.html">In-Q-Tel partner brief (gen 7)</a><span class="sub">Proposal only: a four-phase work program with scope, timeline and acceptance thresholds. No relationship exists today.</span></span><span class="kind">HTML</span></li>
     <li><span><a href="/investors/docs/EU-AI-Act-Model-Erasure-Strategy-v0.3.pdf">EU AI Act model-erasure strategy v0.3</a><span class="sub">The earlier long-form strategy the current plan descends from.</span></span><span class="kind">PDF</span></li>
     <li><span><a href="/investors/docs/EU-AI-Act-Model-Erasure-OnePager-v0.5.pdf">Model-erasure one-pager v0.5</a><span class="sub">Baseline one-pager, superseded by the gen-7 version above.</span></span><span class="kind">PDF</span></li>
     <li><span><a href="/investors/docs/Divinci-AI-Compliance-Customer-Deck-v0.1.pdf">Compliance customer deck v0.1</a><span class="sub">How the product is presented to a DPO or head of AI.</span></span><span class="kind">PDF</span></li>
@@ -282,7 +320,7 @@
     <li><span><a href="/blog/deleting-paris-from-a-language-model/">Deleting Paris from a language model</a><span class="sub">The public write-up of the flagship edit, with the two-minute demo video: one fact patched out of Gemma 4, the receipt, and the patch removed again. <a href="https://youtu.be/p93Kkdb0bso">Watch the video</a>.</span></span><span class="kind">BLOG · VIDEO</span></li>
     <li><span><a href="/investors/docs/Research-Assessment-2026-09-02.html">Research assessment, 2 September 2026</a><span class="sub">How the plan was stress-tested: seven generations of adversarial peer review against a fact base, and what remains open.</span></span><span class="kind">HTML</span></li>
     <li><span><a href="https://docs.google.com/spreadsheets/d/1huYSsHABQUy7x31D8zmmF4AJWQA5oZjeAxbDBSPJFdU" rel="noopener">Expense workbook v0.2 — Budget · Scenarios · Sources</a><span class="sub">Year-one programme budget with live formulas; Lean, Standard and Aggressive post-gate scenarios.</span></span><span class="kind">Google Sheet</span></li>
-    <li><span><a href="https://docs.google.com/spreadsheets/d/1LBWEe62dqQOM45lyXHNGdIN58MKGqvP5Wrph-IGVK3I" rel="noopener">Infrastructure costs — actuals and 12-month projection</a><span class="sub">Measured Google Cloud, Cloudflare, MongoDB Atlas, Redis and Slack costs, read from the billing consoles on 2 September 2026.</span></span><span class="kind">Google Sheet</span></li>
+    <li><span><a href="https://docs.google.com/spreadsheets/d/1LBWEe62dqQOM45lyXHNGdIN58MKGqvP5Wrph-IGVK3I" rel="noopener">Infrastructure costs — actuals and 12-month projection</a><span class="sub">Measured Google Cloud, Cloudflare, MongoDB Atlas, Redis and Slack costs, read from the billing consoles on 2 September 2026. Superseded on Cloudflare by the $5,278.90/month Enterprise order form (16 September 2026).</span></span><span class="kind">Google Sheet</span></li>
     <li><span><a href="https://docs.google.com/document/d/1jZTquaz3HJVPwD-LgngAoDkLsucOK8uU77gZ2VVJ3Ck" rel="noopener">Investor Executive Summary v0.3</a><span class="sub">Editable Google Doc version.</span></span><span class="kind">Google Doc</span></li>
   </ul>
 </section>
@@ -304,20 +342,20 @@
       <dt>Team</dt><dd>3 — CEO, CTO, Product Marketing</dd>
       <dt>Shipped</dt><dd>Receipt in production; erasure in staging</dd>
       <dt>Partners</dt><dd>7 consultancy partnerships; Cloudflare Launchpad; Google for Startups</dd>
-      <dt>Burn</dt><dd>~$5k/month; friends-and-family round in progress</dd>
+      <dt>Burn</dt><dd>~$11.5–13k/month; friends-and-family round in progress</dd>
       <dt>Counsel</dt><dd>Fieldfisher opinion scoped; independent German technical test</dd>
       <dt>Ask now</dt><dd>F&amp;F round (~€30k, counsel + test); 3 design partners; 1 academic; seed intros</dd>
-      <dt>Ask later</dt><dd>~$1.5M, contingent on the gate; In-Q-Tel work program as a complement</dd>
+      <dt>Ask later</dt><dd>~$1.5M, contingent on the gate</dd>
       <dt>Yr-1 cost</dt><dd>~$224k from operations</dd>
     </dl>
   </div>
   <div class="rail">
     <h3>What backs the numbers</h3>
     <dl>
-      <dt>Plan</dt><dd>One-pager, strategy, expense workbook and In-Q-Tel brief, credibility-scored 0.935 by a Claude Fable 5.1 rubric judge, zero hard fails</dd>
+      <dt>Plan</dt><dd>One-pager, strategy and expense workbook, credibility-scored 0.935 by a Claude Fable 5.1 rubric judge, zero hard fails</dd>
       <dt>Facts</dt><dd>Fact base verified against the primary EU sources, 28 Aug 2026</dd>
-      <dt>Costs</dt><dd>Retrain-cost probe across four GPU rate cards, 31 Aug; infrastructure bills read from the consoles, 2 Sep</dd>
-      <dt>Founders</dt><dd>Revenue, burn and partnership figures supplied 2 Sep 2026</dd>
+      <dt>Costs</dt><dd>Retrain-cost probe across four GPU rate cards, 31 Aug; infrastructure bills read from the consoles, 2 Sep; Cloudflare Enterprise order form, 16 Sep</dd>
+      <dt>Founders</dt><dd>Revenue, burn and partnership figures supplied 2 Sep 2026; Google Cloud range supplied 17 Sep 2026</dd>
     </dl>
   </div>
 </aside>
@@ -326,4 +364,5 @@
 <footer class="note">Citation layer: GDPR Article 17 is the erasure right; EU AI Act Article 17 is the quality-management system; Annex IV contains no erasure clause. Figures marked with a currency range are planning-grade estimates from the expense workbook v0.2 and the fact base of 1 September 2026.</footer>
 </div>
 </div>
+<script defer src="{{ get_url(path='js/video-facade.js') }}"></script>
 {% endblock %}
