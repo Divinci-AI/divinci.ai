@@ -36,7 +36,7 @@
 </script>
 <script type="text/plain" id="divinci-chat-speech">📂 Investor room. Ask me anything in the documents.</script>
 <script type="text/plain" id="divinci-chat-greeting">👋 Welcome to the Divinci investor room. Ask me anything in the investor documents: the executive summary, the compliance plan, the decks, the research assessment. I cite the document behind every answer.</script>
-<script type="text/plain" id="divinci-chat-context">Context: the visitor is on the Divinci investor data room (divinci.ai/investors), reading the executive summary and the linked documents. Answer only from the investor documents in the knowledge base and name the document each answer comes from. Keep the boundaries the documents keep: the signed receipt is in production, weight-level erasure is a staging capability, no regulator has to our knowledge ruled on unlearning as a GDPR Article 17 remedy, and the 30-day gate has not yet run. If a question is outside the documents, say so and point the visitor to the contact section rather than guessing.</script>
+<script type="text/plain" id="divinci-chat-context">Context: the visitor is on the Divinci investor data room (divinci.ai/investors), reading the executive summary and the linked documents. Answer only from the investor documents in the knowledge base and name the document each answer comes from. Keep the boundaries the documents keep: the signed receipt is in production, weight-level erasure is a staging capability, no regulator has to our knowledge ruled on unlearning as a GDPR Article 17 remedy, the 30-day gate has not yet run, and the Fieldfisher opinion and independent German test are scoped but not yet delivered. If a question is outside the documents, say so and point the visitor to the contact section rather than guessing.</script>
 {% endblock %}
 
 {% block extra_head %}
@@ -121,7 +121,7 @@
   <div class="meta">Divinci AI Inc. · Delaware C-corp · file 2970809<br>Incorporated 22 Jan 2024 · Irvine, CA<br>divinci.ai</div>
 </header>
 
-<p class="gate"><b>Confidential.</b> This page is shared by direct link with investors and partners and is not indexed. Please do not forward the files. Every figure traces to the audited plan documents (one-pager, channel strategy, expense workbook, fact base as of 1 September 2026) or to the founders' own figures supplied 2 September 2026.</p>
+<p class="gate"><b>Confidential.</b> This page is shared by direct link with investors and partners and is not indexed. Please do not forward the files. Every figure traces to the audited plan documents (one-pager, channel strategy, expense workbook, fact base as of 1 September 2026) or to the founders' own figures supplied 2 September 2026. Counsel and funding status updated 16 September 2026.</p>
 
 <div class="partners">
   <div class="partner">
@@ -194,7 +194,7 @@
   <p><strong>Next 30 days — a pre-registered go/no-go gate</strong> (3 September to 3 October 2026).</p>
   <ul>
     <li>Individual-level erasure experiment across three model families and three association types with a control individual; the kill criterion is stated before the run.</li>
-    <li>Scoped EU data-protection counsel opinion, treated as a bounding input rather than the answer.</li>
+    <li>EU counsel opinion, scoped with <strong>Fieldfisher</strong> (Germany) on 14 September 2026: a customer-facing memo on GDPR Article 17 and EU AI Act Article 53(1)(c), with an internal note on the gray zones. It rests on a reproducible technical test designed and run by an <strong>independent German AI engineering firm</strong> Fieldfisher brings in, attacking the erasure from many angles to try to break it. Quoted at <span class="fig">€15–20k</span>, capped at €20k, plus ~<span class="fig">€10k</span> for the test; about two weeks once the test case is ready. CCPA implications follow the EU opinion. Treated as a bounding input rather than the answer.</li>
     <li>A live GDPR Article 17 request discharged end to end with a design partner.</li>
     <li>15–20 demand interviews; three design partners signed; evaluation protocol published within 60 days, failures included.</li>
   </ul>
@@ -224,13 +224,13 @@
     <li><strong>Samuel Tobia — CTO.</strong> Technical co-founder; infrastructure, deployments and the production Cloudflare and Google Cloud estate.</li>
     <li><strong>Anindya Sundar Nandi — Product Marketing Manager.</strong> Demo pipeline, partner enablement and customer-facing evaluation of the product.</li>
   </ul>
-  <p>Two technical co-founders; five shipping product surfaces (web, embed, desktop, SDK/CLI, MCP). Advisors and programmes: The Brink SBDC at the University of San Diego (Bobby Edelman); Cloudflare Workers Launchpad; Google for Startups Cloud Program. A named academic co-signer is a recruitment target of the gate, not yet secured.</p>
+  <p>Two technical co-founders; five shipping product surfaces (web, embed, desktop, SDK/CLI, MCP). Advisors and programmes: The Brink SBDC at the University of San Diego (Bobby Edelman); Cloudflare Workers Launchpad; Google for Startups Cloud Program. EU counsel: Fieldfisher, engagement scoped September 2026. A named academic co-signer is a recruitment target of the gate, not yet secured.</p>
 </section>
 
 <section id="financials">
   <h2><span class="n">8</span>Financial highlights</h2>
   <dl class="kv">
-    <dt>Stage</dt><dd>Bootstrapped; no seed round raised.</dd>
+    <dt>Stage</dt><dd>Bootstrapped to date. A first <strong>friends-and-family round</strong> is in progress to fund the Fieldfisher opinion and the independent technical test. No institutional seed raised.</dd>
     <dt>Revenue</dt><dd><span class="fig">$0</span> today.</dd>
     <dt>Burn</dt><dd>~<span class="fig">$5,000/month</span> cash today with founders unpaid, rising to ~<span class="fig">$8,000/month</span> when the Google Cloud startup credit ends in September 2026 (measured 2 September; detail in the infrastructure cost sheet below).</dd>
     <dt>Break-even</dt><dd>~<span class="fig">$11,000/month</span> at today's burn — the expenses plus $2,000/month each for the three founders. Everything above that line is return.</dd>
@@ -242,7 +242,7 @@
 
 <section id="ask">
   <h2><span class="n">9</span>Funding ask</h2>
-  <p><strong>No capital is required to run the 30-day gate.</strong> What we are asking for now: three design partners with open-weight models and EU exposure; an introduction to EU data-protection counsel who will take the scoped question; a named academic willing to adversarially test and co-sign the result.</p>
+  <p><strong>Capital now: a first friends-and-family round</strong>, sized to the gate's one outside cost — the Fieldfisher opinion and the independent German technical test, about <span class="fig">€30k</span>. Everything else in the gate runs at founder scale from operations. We are also asking for: three design partners with open-weight models and EU exposure; a named academic willing to adversarially test and co-sign the result; and introductions to seed investors for the round that follows the gate.</p>
   <p><strong>If the gate passes</strong> — the experiment holds and the counsel memo supports the argument — we would raise <strong class="fig">~$1.5M</strong> against the Lean scenario, alongside an In-Q-Tel work-program application as a non-dilutive complement:</p>
   <div class="tablewrap"><table>
     <thead><tr><th>Allocation</th><th>Amount</th></tr></thead>
@@ -304,8 +304,9 @@
       <dt>Team</dt><dd>3 — CEO, CTO, Product Marketing</dd>
       <dt>Shipped</dt><dd>Receipt in production; erasure in staging</dd>
       <dt>Partners</dt><dd>7 consultancy partnerships; Cloudflare Launchpad; Google for Startups</dd>
-      <dt>Burn</dt><dd>~$5k/month, no seed raised</dd>
-      <dt>Ask now</dt><dd>No capital. 3 design partners, EU counsel intro, 1 academic</dd>
+      <dt>Burn</dt><dd>~$5k/month; friends-and-family round in progress</dd>
+      <dt>Counsel</dt><dd>Fieldfisher opinion scoped; independent German technical test</dd>
+      <dt>Ask now</dt><dd>F&amp;F round (~€30k, counsel + test); 3 design partners; 1 academic; seed intros</dd>
       <dt>Ask later</dt><dd>~$1.5M, contingent on the gate; In-Q-Tel work program as a complement</dd>
       <dt>Yr-1 cost</dt><dd>~$224k from operations</dd>
     </dl>
