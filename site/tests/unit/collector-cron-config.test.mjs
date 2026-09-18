@@ -160,14 +160,24 @@ describe('the scheduled handler', () => {
       'a failed build must not report as fresh');
   });
 
-  test('neither collector can take the other down', () => {
-    // They answer different questions — how many customer errors, and where
-    // all the errors landed — and one throwing must never cost the other. A
-    // rejection escaping into the cron runner would do exactly that, since
-    // they share an invocation.
+  test('no collector can take another down', () => {
+    // They answer different questions — how many customer errors, whether one
+    // client dominates the marketing zone's traffic, and where all the errors
+    // landed — and one throwing must never cost the others. A rejection
+    // escaping into the cron runner would do exactly that, since they share
+    // an invocation.
+    //
+    // Three since 2026-09-12, when collectTrafficConcentration joined. This
+    // said 2 until 2026-09-18 and failed for six days without anyone noticing;
+    // the invariant itself held throughout. Adding a collector means changing
+    // COLLECTORS here — the catch count follows it.
+    const COLLECTORS = ['collectCustomerHealth', 'collectTrafficConcentration', 'collectAttribution'];
+    for (const name of COLLECTORS) {
+      assert.ok(scheduled.includes(`${name}(`), `scheduled() no longer runs ${name}`);
+    }
     const waits = scheduled.split('ctx.waitUntil(').length - 1;
-    assert.equal(waits, 2, 'each collector needs its own waitUntil');
+    assert.equal(waits, COLLECTORS.length, 'each collector needs its own waitUntil');
     const catches = scheduled.split('.catch(').length - 1;
-    assert.equal(catches, 2, 'each collector must swallow its own failure');
+    assert.equal(catches, waits, 'each collector must swallow its own failure');
   });
 });
