@@ -231,13 +231,13 @@ export function shouldCollect(env) {
  *
  * @returns {Promise<Array<{count:number, dimensions:object}>>}
  */
-export async function fetchZone5xx(zoneTag, { token, since, until, fetchImpl = fetch }) {
+export async function fetchZone5xx(zoneTag, { token, since, until, fetchImpl = fetch, query = CUSTOMER_5XX_QUERY }) {
   const iso = (d) => `${d.toISOString().slice(0, 19)}Z`;
   const res = await fetchImpl(CF_GRAPHQL, {
     method: 'POST',
     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      query: CUSTOMER_5XX_QUERY,
+      query,
       variables: { zone: zoneTag, since: iso(since), until: iso(until) },
     }),
     signal: AbortSignal.timeout(8000),

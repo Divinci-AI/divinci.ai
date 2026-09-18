@@ -24,6 +24,9 @@ import {
   DEGRADED_5XX_PER_WINDOW,
   ratingForCount,
   incidentOpenAt,
+  isCloudflareSyntheticRequest,
+  MAX_ERRORS_PER_CLIENT,
+  ATTRIBUTION_5XX_QUERY,
 } from '../../src/status-attribution.mjs';
 import { HISTORY_KEY, SAMPLE_INTERVAL_MS, applySample } from '../../src/status-history.mjs';
 import { ALL_AREA_IDS, AREAS, AREA_IDS, INTERNAL_AREAS, INTERNAL_AREA_IDS, dayBands } from '../../src/status-areas.mjs';
@@ -653,4 +656,71 @@ test('a cron sampler must not be rate-limited by the traffic-era guard', () => {
   applySample(cron, 'operational', t0, { bypassRateLimit: true });
   assert.equal(applySample(cron, 'operational', drifted, { bypassRateLimit: true }), true);
   assert.equal(cron.days['2026-08-26'].ok, 2, 'both ticks must be recorded');
+});
+
+// ── 2026-09-17: errors that never reached a customer ─────────────────────
+
+const rowFrom = (host, path, count, userAgent, clientIP) =>
+  ({ count, dimensions: { clientRequestHTTPHost: host, clientRequestPath: path, userAgent, clientIP } });
+
+const EARLY_HINTS = 'nginx-ssl early hints';
+const PREFETCH = 'Mozilla/5.0 (compatible; CloudFlare-Prefetch/0.1; +http://www.cloudflare.com/)';
+
+test('Cloudflare\'s own Early Hints and prefetch requests are recognised exactly', () => {
+  assert.equal(isCloudflareSyntheticRequest(EARLY_HINTS), true);
+  assert.equal(isCloudflareSyntheticRequest(PREFETCH), true);
+  // Whole-string match: a visitor UA that merely MENTIONS it is still a visitor.
+  assert.equal(isCloudflareSyntheticRequest('Mozilla/5.0 nginx-ssl early hints'), false);
+  assert.equal(isCloudflareSyntheticRequest('Mozilla/5.0 (Macintosh) CloudFlare-Prefetch/0.1'), false);
+  assert.equal(isCloudflareSyntheticRequest(''), false);
+  assert.equal(isCloudflareSyntheticRequest(undefined), false);
+});
+
+test('a crawler\'s Early Hints fetches do not rate the page degraded', () => {
+  // 2026-09-14 05:40–06:00Z, shape preserved: the crawler's own page loads
+  // returned 200; only Cloudflare's Early Hints side-fetches failed.
+  const rows = [];
+  for (let i = 0; i < 40; i++) rows.push(rowFrom('divinci.ai', `/page-${i}/`, 12, EARLY_HINTS, `168.100.149.${i}`));
+  rows.push(rowFrom('divinci.ai', '/css/style.css', 20, PREFETCH, '3.229.248.49'));
+  const tick = attributeRows(rows);
+  assert.equal(tick.excluded.cloudflare, 500);
+  assert.equal(tick.total, 0);
+  assert.equal(ratingForCount(tick.areas.marketing), 'operational');
+});
+
+test('one client cannot push a window over the threshold on its own', () => {
+  // 2026-09-08: one scanner, 977 embed 500s, published as product impact.
+  const scanner = '74.110.128.177';
+  const tick = attributeRows([
+    rowFrom('embed.divinci.app', '/CDGServer3/SystemConfig', 600, 'Mozilla/5.0 (X11; Linux i686)', scanner),
+    rowFrom('embed.divinci.app', '/embed-client.js/CDGServer3/SystemConfig', 377, 'Mozilla/5.0 (ZZ)', scanner),
+  ]);
+  assert.equal(tick.areas.product, MAX_ERRORS_PER_CLIENT, 'capped across rows, not per row');
+  assert.equal(tick.excluded.singleClient, 977 - MAX_ERRORS_PER_CLIENT);
+  assert.equal(ratingForCount(tick.areas.product), 'operational');
+});
+
+test('many clients failing together still rate degraded', () => {
+  // The cap must not make a real incident invisible.
+  const rows = [];
+  for (let i = 0; i < 20; i++) rows.push(rowFrom('api.divinci.app', '/ai-chat/start', 10, 'Mozilla/5.0', `203.0.113.${i}`));
+  const tick = attributeRows(rows);
+  assert.equal(tick.areas.product, 200);
+  assert.equal(tick.excluded.singleClient, 0);
+  assert.equal(ratingForCount(tick.areas.product), 'degraded');
+});
+
+test('the per-client cap leaves internal and pre-production counts alone', () => {
+  const tick = attributeRows([
+    rowFrom('chunks-workflow.divinci.app', '/', 400, 'undici', '10.0.0.1'),
+    rowFrom('api.stage.divinci.app', '/x', 300, 'undici', '10.0.0.1'),
+  ]);
+  assert.equal(tick.areas.internal, 400);
+  assert.equal(tick.areas.preprod, 300);
+  assert.equal(tick.excluded.singleClient, 0);
+});
+
+test('the attribution query asks for the dimensions the filters need', () => {
+  assert.match(ATTRIBUTION_5XX_QUERY, /userAgent/);
+  assert.match(ATTRIBUTION_5XX_QUERY, /clientIP/);
 });

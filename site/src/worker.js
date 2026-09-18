@@ -727,13 +727,19 @@ function statusPayload(overall, components, extra) {
     status: overall,
     components,
     updatedAt: new Date().toISOString(),
-    // What the severity above is derived from. Named in the payload because
-    // it CHANGED on 2026-08-26 — from a zone-wide Datadog monitor to our own
-    // customer-facing classification — and a consumer comparing this week to
-    // last week deserves to see that the basis moved rather than infer a
-    // sudden improvement in reliability.
+    // What the severity above is derived from. The basis CHANGED on
+    // 2026-08-26 (a zone-wide Datadog monitor → our own customer-facing
+    // classification) and was refined on 2026-09-17 (Cloudflare's own Early
+    // Hints / prefetch requests and single-client bursts no longer count).
+    //
+    // On 2026-09-17 the WHOLE stored history was re-rated under the current
+    // rules (scripts/rerate-status-history.mjs), so the series is one
+    // definition end to end and the old "earlier days read worse" caveat no
+    // longer applies. `ratingRevisedOn` says so, so a consumer comparing
+    // against a copy taken earlier can see the past moved and why, rather
+    // than infer a sudden improvement in reliability.
     source: 'customer-facing-edge-errors',
-    ratingBasisChangedOn: '2026-08-26',
+    ratingRevisedOn: '2026-09-17',
     // The area taxonomy the banded history bars are drawn from. Published
     // rather than duplicated in the template: the ORDER is load-bearing (two
     // identical days must draw identically), and a second hand-maintained copy

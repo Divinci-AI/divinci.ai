@@ -583,7 +583,7 @@ main#status-page.status-page {
     // The area taxonomy comes from the API (src/status-areas.mjs) so the page
     // never keeps its own copy — see the comment on `areas` in statusPayload().
     AREA_META = (data && Array.isArray(data.areas)) ? data.areas : [];
-    BASIS_CHANGED_ON = (data && data.ratingBasisChangedOn) || null;
+    RATING_REVISED_ON = (data && data.ratingRevisedOn) || null;
     renderHistory(data && data.history);
   }
 
@@ -691,7 +691,7 @@ main#status-page.status-page {
    *     hand-edited and a typo must not paint a meaningless strip.
    */
   var AREA_META = [];
-  var BASIS_CHANGED_ON = null;
+  var RATING_REVISED_ON = null;
   var BAD = { degraded: 1, partial_outage: 1, major_outage: 1 };
   var BAND_COLOR = {
     operational: '#2f9e44', degraded: '#f0a020',
@@ -782,11 +782,13 @@ main#status-page.status-page {
     // so the date cannot drift out of step with the code that changed it.
     var basis = document.getElementById('status-history-basis');
     if (basis) {
-      if (BASIS_CHANGED_ON) {
+      if (RATING_REVISED_ON) {
         basis.hidden = false;
-        basis.textContent = 'From ' + BASIS_CHANGED_ON + ', uptime counts customer-facing '
-          + 'surfaces only. Earlier days also counted our internal tooling and '
-          + 'pre-production, so they read worse than customers experienced.';
+        basis.textContent = 'On ' + RATING_REVISED_ON + ' we re-rated every day in this '
+          + 'history under the same rules: uptime counts errors on customer-facing '
+          + 'surfaces only, and excludes requests Cloudflare makes on its own and bursts '
+          + 'from a single client, such as a security scanner. Days with a documented '
+          + 'outage were kept as recorded.';
       } else {
         basis.hidden = true;
       }

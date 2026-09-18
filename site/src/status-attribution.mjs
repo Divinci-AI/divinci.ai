@@ -119,27 +119,134 @@ const emptyCounts = () => {
   return c;
 };
 
+// ── What is NOT a customer's error ───────────────────────────────────────
+//
+// Found 2026-09-17, after the page had shown a "Degraded" day most days for
+// three weeks. Two kinds of 5xx were counted as customer-facing that never
+// reached a customer, and between them they coloured every degraded day on
+// record.
+
+/**
+ * Requests Cloudflare makes ON ITS OWN, not on behalf of a visitor.
+ *
+ *   - `nginx-ssl early hints` — Early Hints. Cloudflare fetches a page's Link
+ *     headers to cache them. It carries the client IP of the request that
+ *     triggered it, so it looks like visitor traffic; the visitor's own
+ *     request is logged separately, and returned 200.
+ *   - `CloudFlare-Prefetch/0.1` — the edge prefetcher, which asks for assets
+ *     like /css/style.css ahead of time.
+ *
+ * On divinci.ai both fail routinely (504 and 522). When a crawler walked the
+ * site, the Early Hints fetches for its pages alone cleared the degraded
+ * threshold: 2026-09-14 05:40–06:00Z was 476 of 505 customer-facing errors
+ * while every page the crawler actually loaded returned 200. The same shape
+ * accounts for 2026-08-17 and 2026-08-24 — the two "genuine events" the
+ * threshold below was calibrated against.
+ *
+ * Matched on the whole user-agent, not a substring, so a visitor cannot mark
+ * their OWN errors as ours to hide them. (They could spoof the exact string;
+ * that only removes their own errors from the count, which they could achieve
+ * more easily by not sending the requests.)
+ */
+const CLOUDFLARE_SYNTHETIC_UA = [
+  /^nginx-ssl early hints$/i,
+  /^Mozilla\/5\.0 \(compatible; CloudFlare-Prefetch\/[\d.]+; \+http:\/\/www\.cloudflare\.com\/?\)$/i,
+];
+
+export function isCloudflareSyntheticRequest(userAgent) {
+  if (typeof userAgent !== 'string' || userAgent === '') return false;
+  const ua = userAgent.trim();
+  return CLOUDFLARE_SYNTHETIC_UA.some((re) => re.test(ua));
+}
+
+/**
+ * The most one client can add to a window's customer-facing count.
+ *
+ * A single scanner walking exploit paths (`/CDGServer3/SystemConfig`,
+ * `/wp-admin/admin-ajax.php`, `/manager/html`) against embed.divinci.app made
+ * 977 of the "product" errors on 2026-09-08 from ONE address, and the page
+ * published "some customer requests will have failed" as a result. It did
+ * the same on 2026-09-02. Nothing a customer does looks like that.
+ *
+ * With the degraded threshold at 150, a cap of 25 means at least six distinct
+ * clients have to be failing hard in the same five minutes. That is what an
+ * incident looks like. One client failing a lot is that client's problem,
+ * whoever it is — and a genuine outage that happens to reach only a few
+ * clients is still caught by the GCP uptime components, which probe the
+ * customer path directly instead of counting what came back.
+ *
+ * Counts are Cloudflare's SAMPLED estimates (adaptive sampling reports one
+ * observed event as, e.g., 10), so this is roughly three observed failures
+ * per client per window, not 25.
+ *
+ * Applies to customer-facing areas only. Internal and pre-production counts
+ * rate nothing, and capping them would only shrink the sidecar.
+ */
+export const MAX_ERRORS_PER_CLIENT = 25;
+
 /**
  * Fold Cloudflare 5xx rows into per-area counts.
  *
- * @param {Array<{count:number, dimensions:{clientRequestHTTPHost?:string, clientRequestPath?:string}}>} rows
- * @returns {{areas:Record<string,number>, total:number, unclassified:number}}
+ * Rows without `userAgent` / `clientIP` dimensions are counted as before —
+ * they are simply not filterable — so a query that omits them degrades to the
+ * old behaviour rather than to zero.
+ *
+ * @param {Array<{count:number, dimensions:{clientRequestHTTPHost?:string, clientRequestPath?:string, userAgent?:string, clientIP?:string}}>} rows
+ * @returns {{areas:Record<string,number>, total:number, unclassified:number,
+ *            excluded:{cloudflare:number, singleClient:number}}}
  */
 export function attributeRows(rows) {
   const areas = emptyCounts();
+  const excluded = { cloudflare: 0, singleClient: 0 };
+  const perClient = new Map();
   let unclassified = 0;
   let total = 0;
   for (const row of rows ?? []) {
     const count = Number(row?.count);
     if (!Number.isFinite(count) || count <= 0) continue;
     const dims = row.dimensions ?? {};
+
+    if (isCloudflareSyntheticRequest(dims.userAgent)) {
+      excluded.cloudflare += count;
+      continue;
+    }
+
     const area = areaForRow(dims.clientRequestHTTPHost, dims.clientRequestPath);
-    total += count;
-    if (area && area in areas) areas[area] += count;
-    else unclassified += count;
+    let counted = count;
+    // Cumulative across rows AND areas, so the cap does not depend on how
+    // Cloudflare happened to split one client's errors between paths.
+    if (area && AREA_IDS.includes(area) && typeof dims.clientIP === 'string' && dims.clientIP) {
+      const used = perClient.get(dims.clientIP) || 0;
+      counted = Math.max(0, Math.min(count, MAX_ERRORS_PER_CLIENT - used));
+      perClient.set(dims.clientIP, used + count);
+      excluded.singleClient += count - counted;
+    }
+    if (counted === 0) continue;
+
+    total += counted;
+    if (area && area in areas) areas[area] += counted;
+    else unclassified += counted;
   }
-  return { areas, total, unclassified };
+  return { areas, total, unclassified, excluded };
 }
+
+/**
+ * The attribution query: the pager's query plus the two dimensions the
+ * filters above need. Kept separate so the pager's customer metric is
+ * unchanged by this module's rules.
+ *
+ * `limit` rises from 2000 because grouping by client splits rows further.
+ * Rows come count-descending, so anything truncated is the smallest tail.
+ */
+export const ATTRIBUTION_5XX_QUERY = `query($zone:String!,$since:Time!,$until:Time!){
+  viewer{zones(filter:{zoneTag:$zone}){
+    httpRequestsAdaptiveGroups(
+      limit:10000,
+      filter:{datetime_geq:$since,datetime_leq:$until,edgeResponseStatus_geq:500},
+      orderBy:[count_DESC]
+    ){ count dimensions{ clientRequestHTTPHost clientRequestPath userAgent clientIP } }
+  }}
+}`;
 
 // ── The stored record ────────────────────────────────────────────────────
 //
@@ -585,6 +692,12 @@ export function mergeAttributionIntoDays(days, record) {
  *         150           10             99.74%            2 / 14
  *         200            2             99.95%            0 / 14
  *
+ * ⚠️ 2026-09-17: neither "genuine event" was genuine. Both were Cloudflare's
+ * own Early Hints fetches failing while a crawler walked the site (see
+ * isCloudflareSyntheticRequest). They are no longer counted at all, so this
+ * distribution overstates today's floor and 150 is, if anything,
+ * conservative. Re-measure before moving it — do not lower it on this note.
+ *
  * It catches both real events, leaves the isolated bursts recorded as blips
  * that the day-rating rule declines to shout about (see MIN_DEGRADED_MS in
  * status-history.mjs — a lone sample cannot colour a day), and 200 is already
@@ -723,7 +836,7 @@ export async function collectAttribution(env, opts = {}) {
     ? await fetchRows({ zoneTags, since, until })
     : await Promise.all(
         zoneTags.map((z) =>
-          fetchZone5xx(z, { token, since, until, fetchImpl: doFetch }),
+          fetchZone5xx(z, { token, since, until, fetchImpl: doFetch, query: ATTRIBUTION_5XX_QUERY }),
         ),
       );
   const rows = rowsPerZone.flat();
@@ -768,6 +881,7 @@ export async function collectAttribution(env, opts = {}) {
     `[status-attribution] window=${since.toISOString()}..${until.toISOString()} `
       + `total=${tick.total} customer=${customer} unclassified=${tick.unclassified} `
       + `incident=${duringIncident ? 1 : 0} `
+      + `excluded_cloudflare=${tick.excluded.cloudflare} excluded_single_client=${tick.excluded.singleClient} `
       + ALL_AREA_IDS.map((id) => `${id}=${tick.areas[id]}`).join(' '),
   );
   return { ...tick, customer, duringIncident, wrote: true };
