@@ -280,8 +280,7 @@ input:checked + .toggle-slider:before {
 }
 
 /* Coming-soon overlay: scoped to individual PAID cards (checkout isn't wired
-   to a live Stripe price yet), not the whole grid — Free sign-up is real and
-   working today, so it stays uncovered. */
+   to a live Stripe price yet), not the whole grid. */
 .pricing-card.coming-soon {
     position: relative;
 }
@@ -824,38 +823,6 @@ input:checked + .toggle-slider:before {
 </div>
 
 <div class="pricing-cards">
-<!-- Free Plan — real, working sign-up today (not gated behind Stripe) -->
-<div class="pricing-card">
-<h2 class="pricing-plan">Free</h2>
-<p class="pricing-description">Начните работу с Divinci бесплатно</p>
-
-<div class="pricing-amount monthly active">
-<div class="pricing-price">
-<span class="currency">$</span>0<span class="period">/мес.</span>
-</div>
-</div>
-
-<div class="pricing-amount annual">
-<div class="pricing-price">
-<span class="currency">$</span>0<span class="period">/мес.</span>
-</div>
-<div class="pricing-billed">Бесплатно навсегда</div>
-</div>
-
-<ul class="pricing-features">
-<li>1 white-label-релиз</li>
-<li>Модели ИИ от сообщества (GPT, Gemini, Claude, Llama и другие)</li>
-<li>Базовый RAG — ответы на основе ваших собственных документов</li>
-<li>Использование собственных API-ключей (BYOK)</li>
-<li class="unavailable">Наборы оценки Scored QA</li>
-<li class="unavailable">Тонкая настройка (fine-tuning)</li>
-<li class="unavailable">Удаление брендинга Divinci</li>
-<li class="unavailable">Приоритетная поддержка по электронной почте</li>
-</ul>
-
-<a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Зарегистрироваться бесплатно</a>
-</div>
-
 <!-- Starter Plan -->
 <div class="pricing-card">
 <h2 class="pricing-plan">Starter</h2>
@@ -1042,7 +1009,7 @@ input:checked + .toggle-slider:before {
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Да — наш план Free позволяет начать работу с Divinci бесплатно и без привязки банковской карты, чтобы вы могли опробовать платформу перед выбором платного плана.</p>
+<p>Сейчас нет — план Free приостановлен. Каждый платный план включает ежемесячный лимит кредитов на использование, указанный для каждого плана выше.</p>
 </div>
 </div>
 </div>

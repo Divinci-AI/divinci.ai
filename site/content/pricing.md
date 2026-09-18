@@ -280,8 +280,7 @@ input:checked + .toggle-slider:before {
 }
 
 /* Coming-soon overlay: scoped to individual PAID cards (checkout isn't wired
-   to a live Stripe price yet), not the whole grid — Free sign-up is real and
-   working today, so it stays uncovered. */
+   to a live Stripe price yet), not the whole grid. */
 .pricing-card.coming-soon {
     position: relative;
 }
@@ -824,36 +823,6 @@ input:checked + .toggle-slider:before {
 </div>
 
 <div class="pricing-cards">
-<!-- Free Plan — real, working sign-up today (not gated behind Stripe) -->
-<div class="pricing-card">
-<h2 class="pricing-plan">Free</h2>
-<p class="pricing-description">Start building with Divinci at no cost</p>
-
-<div class="pricing-amount monthly active">
-<div class="pricing-price">
-<span class="currency">$</span>0<span class="period">/mo</span>
-</div>
-</div>
-
-<div class="pricing-amount annual">
-<div class="pricing-price">
-<span class="currency">$</span>0<span class="period">/mo</span>
-</div>
-<div class="pricing-billed">Free, forever</div>
-</div>
-
-<ul class="pricing-features">
-<li>Every Divinci feature — RAG, fine-tuning, Scored QA, A/B testing, Arena, BYOK</li>
-<li>1 white-label release</li>
-<li>$5/month in included usage credits <em>(promotional through 29 September 2026)</em></li>
-<li>Community AI models (GPT, Gemini, Claude, Llama & more)</li>
-<li class="unavailable">Divinci branding removed</li>
-<li class="unavailable">Priority email support</li>
-</ul>
-
-<a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Sign up free</a>
-</div>
-
 <!-- Starter Plan -->
 <div class="pricing-card">
 <h2 class="pricing-plan">Starter</h2>
@@ -1029,7 +998,7 @@ Is there a free trial available?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Yes — our Free plan lets you start building with Divinci at no cost and no credit card required, so you can try the platform before choosing a paid plan.</p>
+<p>Not right now — the Free plan is paused. Every paid plan includes a monthly credit allowance that covers your usage, shown on each plan above.</p>
 </div>
 </div>
 </div>

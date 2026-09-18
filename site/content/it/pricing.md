@@ -280,8 +280,7 @@ input:checked + .toggle-slider:before {
 }
 
 /* Coming-soon overlay: scoped to individual PAID cards (checkout isn't wired
-   to a live Stripe price yet), not the whole grid — Free sign-up is real and
-   working today, so it stays uncovered. */
+   to a live Stripe price yet), not the whole grid. */
 .pricing-card.coming-soon {
     position: relative;
 }
@@ -824,38 +823,6 @@ input:checked + .toggle-slider:before {
 </div>
 
 <div class="pricing-cards">
-<!-- Free Plan — real, working sign-up today (not gated behind Stripe) -->
-<div class="pricing-card">
-<h2 class="pricing-plan">Free</h2>
-<p class="pricing-description">Inizia a creare con Divinci senza costi</p>
-
-<div class="pricing-amount monthly active">
-<div class="pricing-price">
-<span class="currency">$</span>0<span class="period">/mese</span>
-</div>
-</div>
-
-<div class="pricing-amount annual">
-<div class="pricing-price">
-<span class="currency">$</span>0<span class="period">/mese</span>
-</div>
-<div class="pricing-billed">Gratis, per sempre</div>
-</div>
-
-<ul class="pricing-features">
-<li>1 release white-label</li>
-<li>Modelli IA della community (GPT, Gemini, Claude, Llama e altri)</li>
-<li>RAG di base — risposte fondate sui tuoi documenti</li>
-<li>Porta le tue chiavi API (BYOK)</li>
-<li class="unavailable">Suite di valutazione QA con punteggio</li>
-<li class="unavailable">Fine-tuning</li>
-<li class="unavailable">Rimozione del branding Divinci</li>
-<li class="unavailable">Supporto prioritario via email</li>
-</ul>
-
-<a href="https://chat.divinci.app/signup" class="pricing-cta" target="_blank" rel="noopener">Registrati gratis</a>
-</div>
-
 <!-- Starter Plan -->
 <div class="pricing-card">
 <h2 class="pricing-plan">Starter</h2>
@@ -1042,7 +1009,7 @@ Quali metodi di pagamento accettate?
 </button>
 <div class="faq-answer">
 <div class="faq-answer-content">
-<p>Sì — il nostro piano Free ti permette di iniziare a creare con Divinci senza costi e senza carta di credito, così puoi provare la piattaforma prima di scegliere un piano a pagamento.</p>
+<p>Non al momento — il piano Free è sospeso. Ogni piano a pagamento include un'assegnazione mensile di crediti per il tuo utilizzo, indicata per ogni piano qui sopra.</p>
 </div>
 </div>
 </div>

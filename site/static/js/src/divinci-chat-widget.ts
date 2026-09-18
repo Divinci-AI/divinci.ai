@@ -1340,12 +1340,12 @@ class DivinciChatWidget {
     if (this.exhausted) {
       const exhaustedBox = el("div", "dvc-pad dvc-center");
       exhaustedBox.appendChild(el("p", "dvc-lead", "You've used your free messages 🎉"));
-      exhaustedBox.appendChild(el("p", "dvc-muted", "Sign up free to keep chatting, build your own custom AI, and get an API key."));
+      exhaustedBox.appendChild(el("p", "dvc-muted", "Sign up to keep chatting, build your own custom AI, and get an API key."));
       const cta = el("a", "dvc-btn dvc-cta");
       (cta as HTMLAnchorElement).href = this.cfg.signupUrl;
       (cta as HTMLAnchorElement).target = "_blank";
       (cta as HTMLAnchorElement).rel = "noopener";
-      cta.textContent = "Sign up free";
+      cta.textContent = "Sign up";
       exhaustedBox.appendChild(cta);
       wrap.append(list, exhaustedBox);
       this.body.appendChild(wrap);
@@ -2109,7 +2109,7 @@ class DivinciChatWidget {
     // The server sends a friendly message in the error context for 4xx cases.
     const ctx = anyE?.data?.context;
     if (typeof ctx === "string") return ctx;
-    if (anyE?.status === 429) return "You've hit the limit — sign up free to keep chatting.";
+    if (anyE?.status === 429) return "You've hit the limit — sign up to keep chatting.";
     return anyE?.message || fallback;
   }
 }
