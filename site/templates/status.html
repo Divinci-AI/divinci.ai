@@ -69,6 +69,7 @@
 
       <div class="status-card" id="status-incidents-card" hidden>
         <h2 class="status-card-title">Recent incidents</h2>
+        <p class="status-incidents-since" id="status-incidents-since" hidden></p>
         <ul class="status-incidents" id="status-incidents"></ul>
       </div>
 
@@ -398,6 +399,8 @@ main#status-page.status-page {
 .status-incident[data-s="partial_outage"] .status-incident-state { color: #e8590c; }
 .status-incident[data-s="major_outage"]   .status-incident-state { color: #c92a2a; }
 .status-incident-pct { margin-left: auto; font-size: 0.85rem; color: var(--color-neutral-secondary, #7e8d95); font-variant-numeric: tabular-nums; }
+.status-incidents-since { margin: 0 0 0.75rem; font-weight: 600; color: #2f9e44; }
+.status-incident-ago { font-size: 0.85rem; color: var(--color-neutral-secondary, #7e8d95); font-variant-numeric: tabular-nums; }
 .status-incidents-none { color: var(--color-neutral-secondary, #7e8d95); margin: 0; }
 
 /* ── Hand-authored incident notes ─────────────────────────────── */
@@ -693,6 +696,7 @@ main#status-page.status-page {
   var AREA_META = [];
   var RATING_REVISED_ON = null;
   var BAD = { degraded: 1, partial_outage: 1, major_outage: 1 };
+  var OUTAGE = { partial_outage: 1, major_outage: 1 };
   var BAND_COLOR = {
     operational: '#2f9e44', degraded: '#f0a020',
     partial_outage: '#e8590c', major_outage: '#c92a2a',
@@ -743,7 +747,12 @@ main#status-page.status-page {
       var b = document.createElement('span');
       b.className = 'status-bar';
       b.setAttribute('data-s', day.status || 'no_data');
-      var bands = dayBands(day, AREA_META);
+      // An OUTAGE colours the whole bar. Banding it put the red in one strip
+      // of three, so the only outage in the history read as a green bar with
+      // a mark on it while the incident list called it a major outage.
+      // Degraded days keep their bands; the hover card and the incident
+      // chips still name the affected area either way.
+      var bands = OUTAGE[day.status] ? null : dayBands(day, AREA_META);
       if (bands) {
         b.setAttribute('data-banded', '1');
         bands.forEach(function (band) {
@@ -990,8 +999,9 @@ main#status-page.status-page {
     // being true on 2026-08-26, when pre-production and internal tooling were
     // taken out of the rating. A stale disclaimer is worse than none: it
     // teaches a reader to discount a number that no longer needs discounting.
-    note.textContent = 'On days we attributed, the bar is split top-to-bottom into these '
-      + 'areas in this order, so you can see which part was affected. '
+    note.textContent = 'On degraded days we attributed, the bar is split top-to-bottom into '
+      + 'these areas in this order, so you can see which part was affected; an outage '
+      + 'colours the whole bar. '
       + 'Uptime counts only surfaces you can reach — our own tooling and '
       + 'pre-production are reported separately and are not included.';
     el.appendChild(note);
@@ -1096,6 +1106,22 @@ main#status-page.status-page {
     }
   }
 
+  /** Whole UTC days between a YYYY-MM-DD date and today; null if unparseable. */
+  function daysAgo(ymd) {
+    var t = Date.parse(ymd + 'T00:00:00Z');
+    if (isNaN(t)) return null;
+    var now = new Date();
+    var today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+    return Math.max(0, Math.round((today - t) / 86400000));
+  }
+
+  function agoLabel(n) {
+    if (n === null) return '';
+    if (n === 0) return 'today';
+    if (n === 1) return 'yesterday';
+    return n + ' days ago';
+  }
+
   function renderIncidents(h, withData) {
     var card = document.getElementById('status-incidents-card');
     var list = document.getElementById('status-incidents');
@@ -1119,6 +1145,22 @@ main#status-page.status-page {
     });
     bad.sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
 
+    // Say how long ago, in whole UTC days (the dates are UTC). The list is
+    // newest first, so with one incident in the history a 47-day-old outage
+    // sat at the top reading as current — it was read that way on 2026-09-18.
+    var since = document.getElementById('status-incidents-since');
+    var ongoing = INCIDENT_NOTES.some(function (n) { return n.resolved === false; });
+    var newest = bad.length ? daysAgo(bad[0].date) : null;
+    if (since) {
+      if (!ongoing && newest !== null && newest >= 1) {
+        since.hidden = false;
+        since.textContent = 'No incidents in the last ' + newest
+          + (newest === 1 ? ' day.' : ' days.');
+      } else {
+        since.hidden = true;
+      }
+    }
+
     if (!bad.length) {
       var none = document.createElement('p');
       none.className = 'status-incidents-none';
@@ -1138,6 +1180,9 @@ main#status-page.status-page {
       var date = document.createElement('span');
       date.className = 'status-incident-date';
       date.textContent = d.date;
+      var ago = document.createElement('span');
+      ago.className = 'status-incident-ago';
+      ago.textContent = agoLabel(daysAgo(d.date));
       var st = document.createElement('span');
       st.className = 'status-incident-state';
       st.textContent = d.status.replace('_', ' ');
@@ -1154,7 +1199,7 @@ main#status-page.status-page {
         }
       });
 
-      li.appendChild(date); li.appendChild(st); li.appendChild(pct);
+      li.appendChild(date); li.appendChild(ago); li.appendChild(st); li.appendChild(pct);
 
       // The same area breakdown the bar shows, in text. Hover is unavailable
       // on touch, and this list — not the chart — is what someone reads when
