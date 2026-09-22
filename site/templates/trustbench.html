@@ -43,7 +43,7 @@
   .tb-rank { width: 30px; color: var(--color-text-secondary, #6b5d4f); font-variant-numeric: tabular-nums; }
   .tb-model { font-weight: 600; hyphens: manual; }
   .tb-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: var(--color-text-secondary, #6b5d4f); }
-  .tb-pill { display: inline-block; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--color-bg-accent, #e8ddc7); font-size: 12px; }
+  .tb-pill { display: inline-flex; align-items: center; gap: 7px; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--color-bg-accent, #e8ddc7); font-size: 12px; }
   .tb-score { font-size: 19px; font-weight: 650; font-variant-numeric: tabular-nums; }
   .tb-meta { font-size: 11px; color: var(--color-text-secondary, #6b5d4f); margin-top: 5px; }
 
@@ -58,6 +58,9 @@
      17px left of every other one. */
   .tb-logo { width: 17px; height: 17px; flex: none; opacity: .8; object-fit: contain; }
   .tb-logo-gap { width: 17px; flex: none; }
+  /* Vendor marks keep their own colour at full strength — the README asks
+     for them unmodified. */
+  .tb-pill .tb-logo { width: 15px; height: 15px; opacity: 1; }
   .tb-model-line { display: flex; align-items: center; gap: 8px; }
   .tb-verify { white-space: nowrap; }
 
@@ -167,16 +170,16 @@
    *
    * A publisher with no mark returns null and the row renders the name alone —
    * the documented degrade in static/brand/vendors/README.md, chosen over a
-   * broken-image slot. `@cf/zai-org/*` (GLM) is that case today: it is the one
-   * publisher on these boards with no CC0 mark available.
+   * broken-image slot.
    *
-   * Every file here is either already in the repo or from Simple Icons
-   * (CC0-1.0), which is what the vendor README already names as the source.
+   * Every file here is either already in the repo, from Simple Icons
+   * (CC0-1.0), or — `zai` (GLM) only — from @lobehub/icons-static-svg (MIT),
+   * the one publisher on these boards with no CC0 mark.
    */
   var PUBLISHER_MARKS = {
     'deepseek-ai': 'deepseek', 'google': 'gemma', 'meta': 'meta',
     'mistralai': 'mistralai', 'moonshotai': 'kimi', 'nvidia': 'nvidia',
-    'openai': 'openai', 'qwen': 'qwen'
+    'openai': 'openai', 'qwen': 'qwen', 'zai-org': 'zai'
   };
   function logoFor(modelId) {
     if (!modelId) return null;
@@ -185,6 +188,27 @@
     if (m) name = PUBLISHER_MARKS[m[1]] || null;
     else if (/^gemini/.test(modelId)) name = 'google';
     return name ? '/brand/companies/' + name + '.svg' : null;
+  }
+
+  /*
+   * Vendor mark for a retrieval stack, keyed on the stack id's PREFIX so a new
+   * variant of a known backend (qdrant-dot, cloudflare-v3) needs no change.
+   * Reuses /brand/vendors (see its README); Vertex reuses the Google mark, as
+   * the README already records. An unknown stack degrades to the pill alone.
+   */
+  var STACK_MARKS = [
+    ['vertex-ai', '/brand/companies/google.svg'],
+    ['qdrant', '/brand/vendors/qdrant.svg'],
+    ['cloudflare', '/brand/vendors/cloudflare.svg'],
+    ['vectorize', '/brand/vendors/cloudflare.svg'],
+    ['divinci-pageindex', '/brand/vendors/pageindex.png'],
+    ['pageindex', '/brand/vendors/pageindex.png']
+  ];
+  function stackLogoFor(stackId) {
+    for (var i = 0; stackId && i < STACK_MARKS.length; i++) {
+      if (stackId.indexOf(STACK_MARKS[i][0]) === 0) return STACK_MARKS[i][1];
+    }
+    return null;
   }
 
   function esc(v) {
@@ -239,7 +263,10 @@
           '<div class="tb-mono">' + esc(r.modelId) + '</div></td>' +
         (stacked
           ? '<td class="tb-c-stack">' + (r.retrievalStackId
-              ? '<span class="tb-pill">' + esc(r.retrievalStackLabel || r.retrievalStackId) + '</span>' +
+              ? '<span class="tb-pill">' +
+                  (stackLogoFor(r.retrievalStackId)
+                    ? '<img class="tb-logo" src="' + stackLogoFor(r.retrievalStackId) + '" alt="" loading="lazy">' : '') +
+                  esc(r.retrievalStackLabel || r.retrievalStackId) + '</span>' +
                 '<div class="tb-mono">' + esc(r.retrievalStackId) + '</div>'
               : '<span class="tb-mono">no retrieval</span>') + '</td>'
           : '') +

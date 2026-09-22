@@ -1,6 +1,7 @@
 # Third-party vendor marks
 
-Referenced by `static/lab/pipeline.js` (`LOGOS`). A missing file degrades to the
+Referenced by `static/lab/pipeline.js` (`LOGOS`) and by the retrieval-stack
+pills on `templates/trustbench.html` (`STACK_MARKS`). A missing file degrades to the
 wordmark alone — the chip drops the image slot rather than showing a broken
 icon — so marks can land one at a time.
 
@@ -10,7 +11,7 @@ icon — so marks can land one at a time.
 |--------------------|----------------------|-----------------------------------------|
 | `cloudflare.svg`   | Cloudflare Vectorize | server repo, `docs/demos/.../logos/raw/` |
 | `qdrant.svg`       | Qdrant               | server repo, `docs/demos/.../logos/raw/` |
-| `pageindex.png`    | PageIndex            | server repo, `docs/demos/.../logos-hi/`  |
+| `pageindex.png`    | PageIndex            | server repo, `docs/demos/agent-release/out/logos/raw/` (listed here before the file was ever committed; added 2026-09-22) |
 | `pinecone.png`     | Pinecone             | github.com/pinecone-io.png              |
 | `unstructured.png` | Unstructured         | github.com/Unstructured-IO.png          |
 | `redis.svg`        | Redis                | Simple Icons (official brand colour)    |
