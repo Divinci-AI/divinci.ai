@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{#
+  Public TrustBench page.
+
+  WHY IT EXISTS: the boards were only reachable inside the app shell at
+  chat.divinci.app/trust/leaderboard — behind the product chrome and an agent
+  sidebar, which is the wrong frame for someone deciding whether to believe a
+  number. This page is the same data, on the marketing surface, in the brand.
+
+  Data comes straight from the public API. No proxy: the endpoint is
+  unauthenticated by design and already sends
+  `access-control-allow-origin: https://divinci.ai`, so a worker route would be
+  a second thing to keep alive for no gain.
+
+  HONESTY RULE, inherited from the status page: this page must never invent a
+  score. If the fetch fails it says so and links to the API; it does not render
+  a cached, stale or example board. A leaderboard that cannot fail visibly is
+  the problem it exists to solve.
+#}
+
+{% block content %}
+{{ load_data(path="static/brand/trustbench/trustbench-marks-sprite.svg", format="plain") | safe }}
+
+<style>
+  .tb-wrap { max-width: 1080px; margin: 0 auto; padding: 48px 24px 96px; }
+  .tb-hero { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 40px; }
+  .tb-hero svg { width: 92px; height: 80px; flex: none; color: var(--color-text-primary, #1e3a2b); }
+  .tb-hero h1 { margin: 0 0 12px; font-size: clamp(30px, 4vw, 44px); line-height: 1.08; letter-spacing: -.02em; }
+  .tb-lede { font-size: 17px; line-height: 1.65; color: var(--color-text-secondary, #4a3a2a); max-width: 60ch; margin: 0; }
+  .tb-lede code { background: var(--color-bg-accent, #e8ddc7); padding: 2px 6px; border-radius: 4px; font-size: .88em; }
+
+  .tb-board { border: 1px solid var(--color-bg-accent, #e8ddc7); border-radius: 12px; padding: 26px 28px; margin: 22px 0; background: var(--color-surface-light, #fff); }
+  .tb-board-head { display: flex; gap: 14px; align-items: center; margin-bottom: 8px; }
+  .tb-board-head svg { width: 34px; height: 30px; flex: none; color: var(--color-text-primary, #1e3a2b); }
+  .tb-board-head h2 { margin: 0; font-size: 19px; }
+  .tb-dir { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--color-bg-accent, #e8ddc7); color: var(--color-text-secondary, #6b5d4f); }
+  .tb-desc { font-size: 13.5px; line-height: 1.6; color: var(--color-text-secondary, #6b5d4f); margin: 0 0 18px; }
+
+  .tb-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .tb-table th { text-align: left; font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--color-text-secondary, #6b5d4f); padding: 0 10px 8px 0; font-weight: 700; border-bottom: 1px solid var(--color-bg-accent, #e8ddc7); }
+  .tb-table td { padding: 12px 10px 12px 0; border-bottom: 1px solid color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 55%, transparent); vertical-align: top; }
+  .tb-rank { width: 30px; color: var(--color-text-secondary, #6b5d4f); font-variant-numeric: tabular-nums; }
+  .tb-model { font-weight: 600; }
+  .tb-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: var(--color-text-secondary, #6b5d4f); }
+  .tb-pill { display: inline-block; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--color-bg-accent, #e8ddc7); font-size: 12px; }
+  .tb-score { font-size: 17px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .tb-bar { margin-top: 6px; height: 5px; border-radius: 999px; background: var(--color-bg-accent, #e8ddc7); overflow: hidden; max-width: 190px; }
+  .tb-bar i { display: block; height: 100%; border-radius: 999px; }
+  .tb-meta { font-size: 11px; color: var(--color-text-secondary, #6b5d4f); margin-top: 5px; }
+  .tb-verify { white-space: nowrap; }
+
+  .tb-note { font-size: 12.5px; line-height: 1.6; color: var(--color-text-secondary, #6b5d4f); margin-top: 16px; padding-top: 14px; border-top: 1px solid color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 55%, transparent); }
+  .tb-msg { padding: 22px; border: 1px dashed var(--color-bg-accent, #e8ddc7); border-radius: 12px; color: var(--color-text-secondary, #6b5d4f); }
+  .tb-limits { margin-top: 44px; padding: 24px 28px; border-radius: 12px; background: var(--color-bg-accent, #e8ddc7); }
+  .tb-limits h2 { margin: 0 0 10px; font-size: 17px; }
+  .tb-limits li { margin-bottom: 8px; line-height: 1.6; font-size: 14px; }
+  @media (max-width: 720px) {
+    .tb-hero { flex-direction: column; gap: 16px; }
+    .tb-board { padding: 20px 16px; }
+    .tb-table { font-size: 13px; }
+  }
+</style>
+
+<div class="tb-wrap">
+  <header class="tb-hero">
+    <svg aria-hidden="true"><use href="#tb-trustbench"/></svg>
+    <div>
+      <h1>Attested benchmarks for models and the stacks they run on</h1>
+      <p class="tb-lede">
+        Every score below comes from a run whose log is Ed25519-signed and publicly
+        verifiable. Follow any row through to its manifest and check it yourself with
+        <code>@divinci-ai/trustbench-verifier</code> — no account, no API key, no trust in us
+        required. <a href="/blog/what-a-benchmark-has-to-prove-about-itself/">What a benchmark
+        has to prove about itself</a> explains what the manifest does and does not claim.
+      </p>
+    </div>
+  </header>
+
+  <div id="tb-boards"><div class="tb-msg">Loading boards from the public API…</div></div>
+
+  <section class="tb-limits">
+    <h2>What these boards do not claim</h2>
+    <ul>
+      <li>Attestation says <strong>this score is real</strong>. It does not say this model is safe. Evidence, not a guarantee.</li>
+      <li>The retrieval boards' runs are <code>republished</code> rather than <code>measured</code>: the scores were computed by Divinci's scored-QA pipeline and republished into a signed TrustRun. The verifier warns you about exactly this, and the manifests say so themselves.</li>
+      <li>Several platform benchmarks are too small to rank on and are not published here. A benchmark with one sample can only ever score 0.0 or 1.0.</li>
+      <li>The retrieval boards use one answering model and one judge. On the nutrition board the Vertex row searches a newer, larger ingestion than the others.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+(function () {
+  var API = 'https://api.divinci.app/v1/trustbench/public/leaderboard';
+  var host = document.getElementById('tb-boards');
+
+  // Slug -> crest. The family is one robot with a swappable crest, so a board
+  // with no match gets the master mark rather than no mark.
+  function markFor(slug, name) {
+    var s = (slug + ' ' + name).toLowerCase();
+    if (s.indexOf('redteam') >= 0 || s.indexOf('red team') >= 0) return 'redteam';
+    if (s.indexOf('prompt-extraction') >= 0 || s.indexOf('prompt extraction') >= 0) return 'extraction';
+    if (s.indexOf('grounding') >= 0) return 'grounding';
+    if (s.indexOf('erasure') >= 0 || s.indexOf('integrity') >= 0) return 'erasure';
+    if (s.indexOf('retrieval') >= 0) return 'retrieval';
+    return 'trustbench';
+  }
+
+  function esc(v) {
+    return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // Colour is MEANING here, not brand: it encodes how good a score is on that
+  // board's own scale, which is why `higherIsBetter` has to come from the API
+  // rather than being assumed.
+  function goodness(b, score) {
+    var lo = b.rangeMin, hi = b.rangeMax;
+    if (typeof lo !== 'number' || typeof hi !== 'number' || hi === lo) return 0.5;
+    var t = (score - lo) / (hi - lo);
+    t = Math.max(0, Math.min(1, t));
+    return b.higherIsBetter ? t : 1 - t;
+  }
+  function colour(g) {
+    return g >= 0.75 ? '#2d5a4f' : g >= 0.4 ? '#c08850' : '#a8433a';
+  }
+  function fmt(b, score) {
+    return b.rangeMax === 1 && b.rangeMin === 0
+      ? (score * 100).toFixed(1) + '%'
+      : score.toFixed(3);
+  }
+
+  function board(entry) {
+    var b = entry.benchmark, rows = entry.rows || [];
+    var stacked = rows.some(function (r) { return r.retrievalStackId; });
+    var head = '<tr><th class="tb-rank">#</th><th>Model</th>' +
+      (stacked ? '<th>Retrieval stack</th>' : '') +
+      '<th>' + esc(b.metric) + '</th><th>Verify</th></tr>';
+
+    var body = rows.map(function (r) {
+      var g = goodness(b, r.score), c = colour(g);
+      var spread = r.scoreRange && r.scoreRange.max > r.scoreRange.min
+        ? ' · ' + fmt(b, r.scoreRange.min) + '–' + fmt(b, r.scoreRange.max) : '';
+      var meta = r.runsInWindow > 1 ? 'median of ' + r.runsInWindow + spread : '';
+      return '<tr>' +
+        '<td class="tb-rank">' + esc(r.rank) + '</td>' +
+        '<td><div class="tb-model">' + esc(r.displayName) + '</div>' +
+          '<div class="tb-mono">' + esc(r.modelId) + '</div></td>' +
+        (stacked
+          ? '<td>' + (r.retrievalStackId
+              ? '<span class="tb-pill">' + esc(r.retrievalStackLabel || r.retrievalStackId) + '</span>' +
+                '<div class="tb-mono">' + esc(r.retrievalStackId) + '</div>'
+              : '<span class="tb-mono">no retrieval</span>') + '</td>'
+          : '') +
+        '<td><div class="tb-score" style="color:' + c + '">' + fmt(b, r.score) + '</div>' +
+          '<div class="tb-bar"><i style="width:' + (g * 100).toFixed(1) + '%;background:' + c + '"></i></div>' +
+          (meta ? '<div class="tb-meta">' + esc(meta) + '</div>' : '') + '</td>' +
+        '<td class="tb-verify"><a href="https://chat.divinci.app/trust/runs/' + encodeURIComponent(r.runId) + '">signed manifest →</a>' +
+          (r.signerKeyId ? '<div class="tb-mono">' + esc(r.signerKeyId) + '</div>' : '') + '</td>' +
+        '</tr>';
+    }).join('');
+
+    return '<section class="tb-board">' +
+      '<div class="tb-board-head"><svg aria-hidden="true"><use href="#tb-' + markFor(b.slug || '', b.name || '') + '"/></svg>' +
+        '<h2>' + esc(b.name) + '</h2>' +
+        '<span class="tb-dir">' + (b.higherIsBetter ? 'higher is better' : 'lower is better') + '</span></div>' +
+      (b.description ? '<p class="tb-desc">' + esc(b.description) + '</p>' : '') +
+      '<table class="tb-table"><thead>' + head + '</thead><tbody>' + body + '</tbody></table>' +
+      '<p class="tb-note">Each row is one configuration — a model and the retrieval stack it answered through. ' +
+      'The score is the median of that configuration\'s most recent qualifying runs and is always a real run\'s score.</p>' +
+      '</section>';
+  }
+
+  fetch(API, { headers: { Accept: 'application/json' } })
+    .then(function (res) { return res.text().then(function (t) {
+      // Never bare .json(): an HTML error page would surface as a SyntaxError
+      // and this page would say nothing useful about why it is empty.
+      try { return { ok: res.ok, data: JSON.parse(t) }; }
+      catch (e) { throw new Error('the API returned ' + res.status + ' and a non-JSON body'); }
+    }); })
+    .then(function (r) {
+      var boards = (r.data && r.data.boards) || [];
+      if (!r.ok || !boards.length) throw new Error('the API returned no boards');
+      host.innerHTML = boards.map(board).join('');
+      if (r.data.generatedAt) {
+        host.insertAdjacentHTML('beforeend',
+          '<p class="tb-note" style="border:0">Board computed ' + esc(r.data.generatedAt) +
+          (r.data.maxAgeSeconds ? ' · may be up to ' + esc(r.data.maxAgeSeconds) + 's behind a just-published run' : '') + '.</p>');
+      }
+    })
+    .catch(function (err) {
+      // Say what happened and where to look. Do not fall back to a cached or
+      // example board: a wrong number here is worse than no number.
+      host.innerHTML = '<div class="tb-msg"><strong>The boards could not be loaded.</strong><br>' +
+        esc(err.message) + '. The data is public, so you can read it directly at ' +
+        '<a href="' + API + '">' + API + '</a>.</div>';
+    });
+})();
+</script>
+{% endblock content %}

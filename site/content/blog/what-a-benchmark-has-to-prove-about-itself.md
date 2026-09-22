@@ -11,7 +11,7 @@ tags = ["Evaluation", "Attestation", "Benchmarks", "RAG", "Content Provenance", 
 [extra]
 author = "Mike Mooring"
 author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
-featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/divinci-hero-social-v3.png"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/trustbench-social.webp"
 reading_time = 11
 summary = "In April 2026 a Berkeley team drove seven of eight major AI agent benchmarks to roughly 100% without solving a single task — one of them by sending the message `{}`. Every one of those runs was honest, and a cryptographic signature over the result would have verified all of them. That is the gap this post is about: signing a score proves the outputs produced it, not that the measurement meant anything. We publish two retrieval leaderboards whose rows are signed, whose manifests declare themselves `republished` rather than `measured`, and whose most important row is a control that scores 0.078."
 +++
@@ -128,13 +128,19 @@ The fourth is the one with the longest shadow. Contamination is currently argued
 
 ---
 
-## Why this stopped being a 2030 argument
+## Why this is not a 2030 argument
 
 The usual objection to all of this is that it is infrastructure for a regulatory regime that has not arrived.
 
-It arrived on 2 August 2026. The EU AI Act's high-risk obligations and its Annex IV technical-documentation duty are in force, and the AI Office's enforcement powers began the same day. Annex IV asks for dataset documentation, validation reports, change logs and version control maintained across the lifecycle — which is, near enough, a description of the manifest chain above, written by lawyers instead of engineers.
+Partly, it already has. The EU AI Act has applied in general since 2 August 2026, and its general-purpose AI chapter has been in force since 2 August 2025 — which obliges providers of models with systemic risk to perform model evaluations, assess and mitigate risks, and keep technical documentation. That is an evaluation duty, live now.
 
-Meanwhile the market it has to police is one where, by one count, **99 of the 100 models listed on a major public leaderboard carry vendor self-reported scores**, with a single independently verified entry among them. A number from the company selling the model is a claim. The same number reproduced on a standardized harness is evidence. And because every vendor evaluates through its own scaffold — its own tool definitions, retry logic, context management, prompting — a self-reported score silently bakes that scaffold in.
+The heavier documentation duty is dated rather than here. Annex IV — dataset documentation, validation reports, change logs, version control maintained across the lifecycle, which is near enough the manifest chain above written by lawyers instead of engineers — attaches to high-risk systems, and that schedule was **amended**: Article 6(2) and Annex III systems now fall due **2 December 2027**, and Annex I product-embedded ones **2 August 2028**. Anyone telling you Annex IV landed in August 2026 is reading the original timetable. We had it wrong here too until we read Article 113 instead of a summary of it.
+
+Two and a bit years is not long to build an evidence chain that a regulator will accept, which is the actual argument for starting now.
+
+Meanwhile the market it has to police runs largely on self-report. We went looking for a hard number — a widely repeated figure says only one of the hundred models on a major public leaderboard carries an independent verification badge — and could not stand it up: the site in question publishes no verification indicator at all today, so there is nothing to count. Quoting an unverifiable statistic in a post about verifiability would have been a nice way to refute ourselves.
+
+The structural point survives without it, and matters more. A number from the company selling the model is a claim. The same number reproduced on a standardized harness is evidence. And because every vendor evaluates through its own scaffold — its own tool definitions, retry logic, context management, prompting — a self-reported score silently bakes that scaffold in.
 
 Which leads somewhere we did not expect when we started, and is probably the most useful thing in this post.
 
