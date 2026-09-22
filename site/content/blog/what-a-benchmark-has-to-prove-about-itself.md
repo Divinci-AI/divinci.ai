@@ -12,8 +12,8 @@ tags = ["Evaluation", "Attestation", "Benchmarks", "RAG", "Content Provenance", 
 author = "Mike Mooring"
 author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/trustbench-social.webp"
-reading_time = 11
-summary = "In April 2026 a Berkeley team drove seven of eight major AI agent benchmarks to roughly 100% without solving a single task — one of them by sending the message `{}`. Every one of those runs was honest, and a cryptographic signature over the result would have verified all of them. That is the gap this post is about: signing a score proves the outputs produced it, not that the measurement meant anything. We publish two retrieval leaderboards whose rows are signed, whose manifests declare themselves `republished` rather than `measured`, and whose most important row is a control that scores 0.078."
+reading_time = 13
+summary = "In April 2026 a Berkeley team drove seven of eight major AI agent benchmarks to roughly 100% without solving a single task — one of them by sending the message `{}`. Every one of those runs was honest, and a cryptographic signature over the result would have verified all of them. That is the gap this post is about: signing a score proves the outputs produced it, not that the measurement meant anything. We publish two retrieval leaderboards whose rows are signed, whose manifests declare themselves `republished` rather than `measured`, and whose most important row is a control that scores 0.078 — re-scored with a second judge from a different family, which preserves the ranking and disagrees most about the worst answers."
 +++
 
 The most important number on either of our public leaderboards is **0.078**.
@@ -89,6 +89,49 @@ The `stub` rung exists for a reason that still bothers me. A transport fixture �
 
 That is the general lesson, and it is not about cryptography at all: **a verification format that can only say "valid" will be used to imply things it never checked.** The useful ones grade their own strength and let the reader set the bar.
 
+### Footnote: we checked whether the judge mattered
+
+A fair objection to everything above: both boards were scored by
+`gemini-2.5-flash`, which is a Google model ranking a board where Google's
+Vertex retrieval comes first. And we could not point to evidence that judge is
+any good — in our own calibration table it is the *anchor*, correlation 1.0
+with itself and measured against nothing. Being the ruler is not the same as
+being accurate.
+
+So we re-scored every published row with a second judge from a different
+family, `@cf/deepseek-ai/deepseek-v4-flash-0731`, against the **same stored
+answers** — generation held fixed, the judge the only thing that moved. 420
+judge calls, no failures.
+
+Both boards rank identically, and no retrieval row moves by more than 0.016:
+
+| row | gemini-2.5-flash | deepseek-v4-flash | Spearman ρ |
+|---|---|---|---|
+| Fuhrman · Vertex | 0.920 | 0.910 | 0.921 |
+| Fuhrman · Qdrant | 0.884 | 0.892 | 0.908 |
+| Fuhrman · Vectorize | 0.836 | 0.848 | 0.900 |
+| Fuhrman · PageIndex | 0.384 | 0.375 | 0.876 |
+| SDK · Vertex | 0.755 | 0.740 | 0.965 |
+| SDK · Qdrant | 0.732 | 0.737 | 0.980 |
+| SDK · no retrieval | 0.078 | 0.114 | **0.631** |
+
+The ordering is not an artifact of who judged it. But look at the last row,
+because it is the more interesting result: **agreement is not uniform across
+the score range.** The two lowest-scoring rows are the two where the judges
+agree least — the no-retrieval control disagrees on 17 of 60 items, against 2
+of 60 for the top row. Judges concur on answers that are clearly grounded and
+diverge on bad ones.
+
+The practical consequence is a correction to how the headline should be read.
+The *gap* between retrieval and no retrieval is robust. The baseline's exact
+value is not — deepseek scores ungrounded answers about four points more
+generously. Cite the gap, not the floor's third decimal.
+
+And none of this shows either judge is right. Two judges agreeing is agreement,
+not correctness; both can be wrong in the same direction. Only calibration
+against a human anchor settles accuracy, and that is still open — which is
+itself the honest version of a claim most leaderboards never make at all.
+
 ---
 
 ## Three ways a score quietly stops meaning anything
@@ -158,7 +201,7 @@ In the spirit of the thing:
 - Several of our platform benchmarks are too small to rank on — some carry five samples or fewer, two carry exactly one. A one-sample benchmark can only ever score 0.0 or 1.0. They are not on any public board and should not be.
 - Two of our earlier boards saturate: one puts twelve of sixteen models at exactly 1.0000. Twelve models "tied for first" teaches a reader nothing. That is a content problem, not a harness problem, and it is fixed by writing harder samples.
 - We cannot currently run the closed frontier models as baselines. The harness has clients for three backends and those four are not among them.
-- Both retrieval boards use one answering model and one judge. On the nutrition board, the Vertex row searches a newer and larger ingestion than the other three.
+- Both retrieval boards use one answering model. Two judges now agree on the ordering (see the footnote above), but neither is calibrated against a human rater, so accuracy is unestablished. On the nutrition board, the Vertex row searches a newer and larger ingestion than the other three.
 
 None of that is fatal and all of it is written down. A benchmark that cannot state its own limitations is asking for the same trust it exists to replace.
 
