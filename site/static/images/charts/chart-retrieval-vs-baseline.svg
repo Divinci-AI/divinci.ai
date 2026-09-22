@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Horizontal bar chart of seven retrieval rows across two TrustBench boards, all with the answering model held fixed. Dr. Fuhrman Nutrition Corpus: Vertex AI Vector Search v2 0.920, Qdrant 0.884, Vectorize 0.836, Divinci PageIndex 0.384. Divinci SDK Docs: Vertex AI Vector Search v2 0.755, Qdrant 0.732, and a no-retrieval control at 0.078 shown in amber. The control is annotated as the row that makes the others interpretable.">
+  <title>Retrieval backends, model held fixed — and the control that makes them legible</title>
+  <rect width="760" height="470" fill="#faf8f5"/>
+
+  <text x="40" y="34" font-size="16" font-weight="700" fill="#1e3a2b">Same model, same questions, same judge — only retrieval changes</text>
+  <text x="40" y="54" font-size="12" fill="#6b5d4f">Median of 3 signed runs per row · glm-5.3-flash · judged by gemini-2.5-flash · 60 questions per board</text>
+
+  <g stroke="#d4c8b0" stroke-width="1" font-size="10" fill="#3a2818">
+    <line x1="200" y1="76" x2="200" y2="356" stroke="#2d3c34" stroke-width="1.2"/>
+    <line x1="320" y1="76" x2="320" y2="356" opacity="0.4"/>
+    <line x1="440" y1="76" x2="440" y2="356" opacity="0.4"/>
+    <line x1="560" y1="76" x2="560" y2="356" opacity="0.4"/>
+    <line x1="680" y1="76" x2="680" y2="356" opacity="0.4"/>
+    <line x1="200" y1="356" x2="680" y2="356" stroke="#2d3c34" stroke-width="1.2"/>
+    <text stroke="none" x="200" y="374" text-anchor="middle">0.00</text>
+    <text stroke="none" x="320" y="374" text-anchor="middle">0.25</text>
+    <text stroke="none" x="440" y="374" text-anchor="middle">0.50</text>
+    <text stroke="none" x="560" y="374" text-anchor="middle">0.75</text>
+    <text stroke="none" x="680" y="374" text-anchor="middle">1.00</text>
+    <text stroke="none" x="440" y="394" text-anchor="middle" font-size="11" fill="#6b5d4f" font-style="italic">factual consistency vs reference answer</text>
+  </g>
+
+  <g font-size="11">
+    <text x="40" y="88" font-size="11" font-weight="700" fill="#1e3a2b">Dr. Fuhrman Nutrition Corpus</text>
+
+    <text x="190" y="112" text-anchor="end" fill="#2d3c34" font-weight="600">Vertex AI Vector Search v2</text>
+    <rect x="200" y="96" width="442" height="22" fill="#2d5a4f"/>
+    <text x="650" y="112" fill="#1e3a2b" font-weight="700">0.920</text>
+
+    <text x="190" y="142" text-anchor="end" fill="#2d3c34" font-weight="600">Qdrant (cosine)</text>
+    <rect x="200" y="126" width="424" height="22" fill="#2d5a4f" opacity="0.85"/>
+    <text x="632" y="142" fill="#1e3a2b" font-weight="700">0.884</text>
+
+    <text x="190" y="172" text-anchor="end" fill="#2d3c34" font-weight="600">Vectorize (cosine)</text>
+    <rect x="200" y="156" width="401" height="22" fill="#2d5a4f" opacity="0.7"/>
+    <text x="609" y="172" fill="#1e3a2b" font-weight="700">0.836</text>
+
+    <text x="190" y="202" text-anchor="end" fill="#2d3c34" font-weight="600">Divinci PageIndex</text>
+    <rect x="200" y="186" width="184" height="22" fill="#2d5a4f" opacity="0.55"/>
+    <text x="392" y="202" fill="#1e3a2b" font-weight="700">0.384</text>
+
+    <text x="40" y="238" font-size="11" font-weight="700" fill="#1e3a2b">Divinci SDK Docs</text>
+
+    <text x="190" y="262" text-anchor="end" fill="#2d3c34" font-weight="600">Vertex AI Vector Search v2</text>
+    <rect x="200" y="246" width="362" height="22" fill="#2d5a4f"/>
+    <text x="570" y="262" fill="#1e3a2b" font-weight="700">0.755</text>
+
+    <text x="190" y="292" text-anchor="end" fill="#2d3c34" font-weight="600">Qdrant (cosine)</text>
+    <rect x="200" y="276" width="351" height="22" fill="#2d5a4f" opacity="0.85"/>
+    <text x="559" y="292" fill="#1e3a2b" font-weight="700">0.732</text>
+
+    <text x="190" y="322" text-anchor="end" fill="#8a5a20" font-weight="700">no retrieval (control)</text>
+    <rect x="200" y="306" width="37" height="22" fill="#c08850"/>
+    <text x="245" y="322" fill="#8a5a20" font-weight="700">0.078</text>
+  </g>
+
+  <g>
+    <line x1="266" y1="317" x2="330" y2="317" stroke="#c08850" stroke-width="1.2" stroke-dasharray="3 3"/>
+    <text x="338" y="315" font-size="10.5" fill="#8a5a20" font-weight="700">Without the corpus the model cannot answer.</text>
+    <text x="338" y="329" font-size="10.5" fill="#8a5a20">That is what makes every row above a measurement of retrieval.</text>
+  </g>
+
+  <g font-size="11" fill="#4a3a2a">
+    <rect x="200" y="414" width="14" height="14" fill="#2d5a4f"/>
+    <text x="220" y="426">Retrieval stack under test</text>
+    <rect x="420" y="414" width="14" height="14" fill="#c08850"/>
+    <text x="440" y="426">Negative control (retrieval off)</text>
+  </g>
+
+  <text x="40" y="456" font-size="10.5" fill="#6b5d4f" font-style="italic">Read from the public boards on 2026-09-21. On the Fuhrman board the Vertex row searches a newer, larger ingestion than the other three; PageIndex varies by about ±6 points between passes.</text>
+</svg>

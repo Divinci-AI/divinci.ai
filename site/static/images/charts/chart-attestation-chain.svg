@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Diagram of the four provenance manifests that compose one attested evaluation: model, dataset, harness and result. The result manifest is shipped and shown in solid sage green; the harness manifest is partial and shown half-toned; the model and dataset manifests are not built and shown as dashed amber outlines. Each box lists what it attests and one question it answers that the others cannot.">
+  <title>Four manifests, one chain — and only the last one ships today</title>
+  <rect width="760" height="420" fill="#faf8f5"/>
+
+  <text x="40" y="34" font-size="16" font-weight="700" fill="#1e3a2b">An attested evaluation is four signatures, not one</text>
+  <text x="40" y="54" font-size="12" fill="#6b5d4f">Each link answers a question the others structurally cannot. A signed result proves only the last one.</text>
+
+  <!-- arrows -->
+  <g stroke="#b8a888" stroke-width="1.4" fill="none">
+    <path d="M 186 168 L 204 168" marker-end="url(#a)"/>
+    <path d="M 358 168 L 376 168" marker-end="url(#a)"/>
+    <path d="M 530 168 L 548 168" marker-end="url(#a)"/>
+  </g>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b8a888"/>
+    </marker>
+  </defs>
+
+  <!-- 1. Model -->
+  <g>
+    <rect x="30" y="80" width="156" height="176" rx="6" fill="#c08850" opacity="0.07"/>
+    <rect x="30" y="80" width="156" height="176" rx="6" fill="none" stroke="#c08850" stroke-width="1.6" stroke-dasharray="5 4"/>
+    <text x="46" y="104" font-size="12.5" font-weight="700" fill="#8a5a20">1 · Model</text>
+    <text x="46" y="126" font-size="10.5" fill="#4a3a2a">weight-tensor hashes</text>
+    <text x="46" y="142" font-size="10.5" fill="#4a3a2a">training lineage</text>
+    <text x="46" y="158" font-size="10.5" fill="#4a3a2a">serving environment</text>
+    <line x1="46" y1="172" x2="170" y2="172" stroke="#c08850" stroke-width="1" opacity="0.5"/>
+    <text x="46" y="192" font-size="10" fill="#8a5a20" font-style="italic">Answers:</text>
+    <text x="46" y="208" font-size="10.5" fill="#4a3a2a">“Is this the same</text>
+    <text x="46" y="222" font-size="10.5" fill="#4a3a2a">model you shipped me?”</text>
+    <text x="46" y="246" font-size="10" font-weight="700" fill="#8a5a20">NOT BUILT</text>
+  </g>
+
+  <!-- 2. Dataset -->
+  <g>
+    <rect x="204" y="80" width="156" height="176" rx="6" fill="#c08850" opacity="0.07"/>
+    <rect x="204" y="80" width="156" height="176" rx="6" fill="none" stroke="#c08850" stroke-width="1.6" stroke-dasharray="5 4"/>
+    <text x="220" y="104" font-size="12.5" font-weight="700" fill="#8a5a20">2 · Dataset</text>
+    <text x="220" y="126" font-size="10.5" fill="#4a3a2a">per-item credentials</text>
+    <text x="220" y="142" font-size="10.5" fill="#4a3a2a">authorship + licence</text>
+    <text x="220" y="158" font-size="10.5" fill="#4a3a2a">signed curation lineage</text>
+    <line x1="220" y1="172" x2="344" y2="172" stroke="#c08850" stroke-width="1" opacity="0.5"/>
+    <text x="220" y="192" font-size="10" fill="#8a5a20" font-style="italic">Answers:</text>
+    <text x="220" y="208" font-size="10.5" fill="#4a3a2a">“Was this benchmark</text>
+    <text x="220" y="222" font-size="10.5" fill="#4a3a2a">born biased?”</text>
+    <text x="220" y="246" font-size="10" font-weight="700" fill="#8a5a20">NOT BUILT</text>
+  </g>
+
+  <!-- 3. Harness -->
+  <g>
+    <rect x="376" y="80" width="156" height="176" rx="6" fill="#2d5a4f" opacity="0.06"/>
+    <rect x="376" y="80" width="156" height="176" rx="6" fill="none" stroke="#2d5a4f" stroke-width="1.6" stroke-dasharray="9 3" opacity="0.75"/>
+    <text x="392" y="104" font-size="12.5" font-weight="700" fill="#2d5a4f">3 · Harness</text>
+    <text x="392" y="126" font-size="10.5" fill="#4a3a2a">image digest</text>
+    <text x="392" y="142" font-size="10.5" fill="#4a3a2a">rubric + sampling config</text>
+    <text x="392" y="158" font-size="10.5" fill="#4a3a2a">sandbox attestation</text>
+    <line x1="392" y1="172" x2="516" y2="172" stroke="#2d5a4f" stroke-width="1" opacity="0.4"/>
+    <text x="392" y="192" font-size="10" fill="#2d5a4f" font-style="italic">Answers:</text>
+    <text x="392" y="208" font-size="10.5" fill="#4a3a2a">“Did the agent solve it,</text>
+    <text x="392" y="222" font-size="10.5" fill="#4a3a2a">or game the sandbox?”</text>
+    <text x="392" y="246" font-size="10" font-weight="700" fill="#2d5a4f">PARTIAL</text>
+  </g>
+
+  <!-- 4. Result -->
+  <g>
+    <rect x="548" y="80" width="182" height="176" rx="6" fill="#2d5a4f"/>
+    <text x="564" y="104" font-size="12.5" font-weight="700" fill="#f8f4f0">4 · Result — the TrustRun</text>
+    <text x="564" y="126" font-size="10.5" fill="#e8ddc7">outputs hash</text>
+    <text x="564" y="142" font-size="10.5" fill="#e8ddc7">score + scoring decisions</text>
+    <text x="564" y="158" font-size="10.5" fill="#e8ddc7">Ed25519 signature</text>
+    <line x1="564" y1="172" x2="714" y2="172" stroke="#e8ddc7" stroke-width="1" opacity="0.4"/>
+    <text x="564" y="192" font-size="10" fill="#e8ddc7" font-style="italic">Answers:</text>
+    <text x="564" y="208" font-size="10.5" fill="#f8f4f0">“Are these the outputs</text>
+    <text x="564" y="222" font-size="10.5" fill="#f8f4f0">that produced this score?”</text>
+    <text x="564" y="246" font-size="10" font-weight="700" fill="#e8ddc7">SHIPPED · verifiable today</text>
+  </g>
+
+  <g>
+    <rect x="30" y="288" width="700" height="66" rx="5" fill="#e8ddc7" opacity="0.55"/>
+    <text x="48" y="312" font-size="11.5" font-weight="700" fill="#1e3a2b">The gap this makes visible</text>
+    <text x="48" y="332" font-size="11" fill="#4a3a2a">Every exploit that broke the major agent benchmarks in 2026 produced an honest run, a correct harness and a signature that would verify.</text>
+    <text x="48" y="348" font-size="11" fill="#4a3a2a">A result signature cannot catch them. Links 2 and 3 can — which is the argument for building them, not for trusting link 4 harder.</text>
+  </g>
+
+  <text x="40" y="394" font-size="10.5" fill="#6b5d4f" font-style="italic">Standards the chain adopts rather than reinvents: C2PA content credentials for dataset items, W3C Verifiable Credentials for author identity,</text>
+  <text x="40" y="408" font-size="10.5" fill="#6b5d4f" font-style="italic">SLSA for harness pipeline attestation, and NIST AI RMF / EU AI Act Annex IV for the record-keeping mapping.</text>
+</svg>

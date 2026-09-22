@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="A three-rung ladder of attestation strength as declared by the TrustRun manifest and reported by the open-source verifier. Top rung, measured in solid sage green: the harness invoked the model itself. Middle rung, republished in amber: the score was computed by an earlier run, which is what the two Divinci retrieval boards currently carry. Bottom rung, stub in grey: the score is fabricated and the model was never called. All three carry a valid signature; the strict flag turns the lower two into failures.">
+  <title>measured / republished / stub — an attestation that grades its own strength</title>
+  <rect width="760" height="430" fill="#faf8f5"/>
+
+  <text x="40" y="34" font-size="16" font-weight="700" fill="#1e3a2b">All three of these have a valid signature</text>
+  <text x="40" y="54" font-size="12" fill="#6b5d4f">results.provenance.sourceKind · reported by @divinci-ai/trustbench-verifier, which nobody has to trust us to run</text>
+
+  <!-- measured -->
+  <g>
+    <rect x="40" y="76" width="680" height="88" rx="6" fill="#2d5a4f"/>
+    <text x="62" y="104" font-size="13" font-weight="700" fill="#f8f4f0">measured</text>
+    <text x="62" y="126" font-size="11" fill="#e8ddc7">The harness invoked the model under test and scored what came back.</text>
+    <text x="62" y="146" font-size="11" fill="#e8ddc7">The strongest claim the manifest format can make.</text>
+    <text x="700" y="104" font-size="11" font-weight="700" fill="#e8ddc7" text-anchor="end">no warning</text>
+    <text x="700" y="146" font-size="10.5" fill="#e8ddc7" text-anchor="end" font-style="italic">passes under strict</text>
+  </g>
+
+  <!-- republished -->
+  <g>
+    <rect x="40" y="176" width="680" height="106" rx="6" fill="#c08850" opacity="0.14"/>
+    <rect x="40" y="176" width="680" height="106" rx="6" fill="none" stroke="#c08850" stroke-width="1.6"/>
+    <rect x="40" y="176" width="5" height="106" fill="#c08850"/>
+    <text x="62" y="204" font-size="13" font-weight="700" fill="#8a5a20">republished</text>
+    <text x="62" y="226" font-size="11" fill="#4a3a2a">The score was computed by an earlier run, not by the execution this manifest attests.</text>
+    <text x="62" y="246" font-size="10.5" fill="#4a3a2a" font-style="italic">“the score was computed by an earlier run (&lt;upstreamRef&gt;), not by the evaluator execution this manifest attests”</text>
+    <text x="62" y="268" font-size="10.5" font-weight="700" fill="#8a5a20">← both Divinci retrieval boards carry this today. The manifests say so; so does the verifier.</text>
+    <text x="700" y="204" font-size="11" font-weight="700" fill="#8a5a20" text-anchor="end">warning</text>
+  </g>
+
+  <!-- stub -->
+  <g>
+    <rect x="40" y="294" width="680" height="88" rx="6" fill="#6b5d4f" opacity="0.1"/>
+    <rect x="40" y="294" width="680" height="88" rx="6" fill="none" stroke="#6b5d4f" stroke-width="1.4" stroke-dasharray="5 4"/>
+    <rect x="40" y="294" width="5" height="88" fill="#6b5d4f"/>
+    <text x="62" y="322" font-size="13" font-weight="700" fill="#3a2818">stub</text>
+    <text x="62" y="344" font-size="11" fill="#4a3a2a">The score is fabricated and the model under test was never called — a transport fixture, not a measurement.</text>
+    <text x="62" y="366" font-size="10.5" fill="#4a3a2a" font-style="italic">A stub verified identically to a real evaluation until the manifest was made to declare itself.</text>
+    <text x="700" y="322" font-size="11" font-weight="700" fill="#3a2818" text-anchor="end">warning</text>
+  </g>
+
+  <text x="40" y="410" font-size="10.5" fill="#6b5d4f" font-style="italic">Neither lower rung is a hard error: a manifest signed before provenance existed must stay verifiable, and one that honestly declares itself a stub does have a valid signature. Passing strict: true promotes every warning to a failure, so a consumer who cares refuses them in one flag.</text>
+</svg>
