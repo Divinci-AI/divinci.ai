@@ -1,0 +1,122 @@
+{#
+  Shared by /trustbench/ and /trustbench/embed/: the crest sprite and every
+  board style. One copy, so an embedded board cannot drift from the page it
+  was copied from.
+#}
+{{ load_data(path="static/brand/trustbench/trustbench-marks-sprite.svg", format="plain") | safe }}
+
+<style>
+  .tb-wrap { max-width: 1080px; margin: 0 auto; padding: 48px 24px 96px; }
+  .tb-hero { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 40px; }
+  .tb-hero svg { width: 86px; height: 86px; flex: none; color: var(--color-text-primary, #1e3a2b); }
+  .tb-hero h1 { margin: 0 0 12px; font-size: clamp(30px, 4vw, 44px); line-height: 1.08; letter-spacing: -.02em; }
+  .tb-lede { font-size: 17px; line-height: 1.65; color: var(--color-text-secondary, #4a3a2a); max-width: 60ch; margin: 0; }
+  .tb-lede code { background: var(--color-bg-accent, #e8ddc7); padding: 2px 6px; border-radius: 4px; font-size: .88em; }
+
+  .tb-board { border: 1px solid var(--color-bg-accent, #e8ddc7); border-radius: 12px; padding: 26px 28px; margin: 22px 0; background: var(--color-surface-light, #fff); }
+  .tb-board-head { display: flex; gap: 14px; align-items: center; margin-bottom: 8px; }
+  .tb-board-head svg { width: 32px; height: 32px; flex: none; color: var(--color-text-primary, #1e3a2b); }
+  .tb-board-head h2 { margin: 0; font-size: 19px; }
+  .tb-dir { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--color-bg-accent, #e8ddc7); color: var(--color-text-secondary, #6b5d4f); }
+  .tb-desc { font-size: 13.5px; line-height: 1.6; color: var(--color-text-secondary, #6b5d4f); margin: 0 0 18px; }
+
+  .tb-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .tb-table th { text-align: left; font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--color-text-secondary, #6b5d4f); padding: 0 10px 8px 0; font-weight: 700; border-bottom: 1px solid var(--color-bg-accent, #e8ddc7); }
+  .tb-table td { padding: 12px 10px 12px 0; border-bottom: 1px solid color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 55%, transparent); vertical-align: top; }
+  .tb-rank { width: 30px; color: var(--color-text-secondary, #6b5d4f); font-variant-numeric: tabular-nums; }
+  .tb-model { font-weight: 600; hyphens: manual; }
+  .tb-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: var(--color-text-secondary, #6b5d4f); }
+  .tb-pill { display: inline-flex; align-items: center; gap: 7px; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--color-bg-accent, #e8ddc7); font-size: 12px; }
+  .tb-score { font-size: 19px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .tb-meta { font-size: 11px; color: var(--color-text-secondary, #6b5d4f); margin-top: 5px; }
+
+  /* The ROW is the bar. A 5px rule beside the number said the same thing twice
+     and made the score column busy; the row background says it once, at the
+     width of the whole table, and the number is left to be a number. The fill
+     is a tint rather than the score colour at full strength — this sits UNDER
+     body text, so it has to stay a background. */
+  .tb-table tbody tr { background-repeat: no-repeat; }
+  /* The slot is reserved whether or not a mark exists, so model names align
+     down the column. zai-org has no CC0 mark, and without this its row sat
+     17px left of every other one. */
+  .tb-logo { width: 17px; height: 17px; flex: none; opacity: .8; object-fit: contain; }
+  .tb-logo-gap { width: 17px; flex: none; }
+  /* Vendor marks keep their own colour at full strength — the README asks
+     for them unmodified. */
+  .tb-pill .tb-logo { width: 15px; height: 15px; opacity: 1; }
+  .tb-model-line { display: flex; align-items: center; gap: 8px; }
+  .tb-verify { white-space: nowrap; }
+
+
+  /* Copy / embed toolbar. Quiet by design: it sits between the heading and
+     the data, so it must never out-shout the scores. */
+  .tb-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 2px 0 14px; }
+  .tb-tools-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-secondary, #6b5d4f); margin-right: 2px; }
+  .tb-tools button, .tb-embed-panel button {
+    font: inherit; font-size: 12px; line-height: 1; padding: 6px 10px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--color-bg-accent, #e8ddc7); background: transparent; color: var(--color-text-primary, #1e3a2b);
+  }
+  .tb-tools button:hover, .tb-embed-panel button:hover { background: color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 45%, transparent); }
+  .tb-tools button:focus-visible, .tb-embed-panel button:focus-visible { outline: 2px solid var(--color-text-primary, #1e3a2b); outline-offset: 2px; }
+  .tb-tools button[aria-expanded="true"] { background: var(--color-bg-accent, #e8ddc7); }
+  .tb-embed-panel { margin: 0 0 16px; padding: 14px; border-radius: 10px; background: color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 35%, transparent); }
+  .tb-embed-panel label { display: block; font-size: 12.5px; color: var(--color-text-secondary, #6b5d4f); }
+  .tb-embed-panel textarea {
+    display: block; width: 100%; box-sizing: border-box; margin: 8px 0 10px; padding: 10px; resize: vertical;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; line-height: 1.5;
+    border: 1px solid var(--color-bg-accent, #e8ddc7); border-radius: 8px; background: var(--color-surface-light, #fff); color: inherit;
+  }
+  .tb-note { font-size: 12.5px; line-height: 1.6; color: var(--color-text-secondary, #6b5d4f); margin-top: 16px; padding-top: 14px; border-top: 1px solid color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 55%, transparent); }
+  .tb-msg { padding: 22px; border: 1px dashed var(--color-bg-accent, #e8ddc7); border-radius: 12px; color: var(--color-text-secondary, #6b5d4f); }
+  .tb-limits { margin-top: 44px; padding: 24px 28px; border-radius: 12px; background: var(--color-bg-accent, #e8ddc7); }
+  .tb-limits h2 { margin: 0 0 10px; font-size: 17px; }
+  .tb-limits li { margin-bottom: 8px; line-height: 1.6; font-size: 14px; }
+  /* The site hyphenates body copy, which broke model names as
+     "cloudflare-work-ers-ai" once they wrapped on a phone (.tb-model above).
+     Ids break anywhere instead — they have no readable word boundaries worth
+     protecting, and a mid-token hyphen in an id would be a lie about the id. */
+  .tb-mono { overflow-wrap: anywhere; hyphens: none; }
+
+  /*
+   * Below 640px the table REFLOWS INTO CARDS rather than shrinking.
+   *
+   * Measured on a 375px viewport before this existed: the table's right edge
+   * sat at 384px against a container ending at 375, so `.tb-verify` — the
+   * "signed manifest →" link, which is the entire point of this page — was
+   * clipped off-screen. The page did not scroll horizontally, so nothing
+   * announced it; the column was simply gone.
+   *
+   * Flex with explicit per-cell classes, not nth-child: the stack column only
+   * exists on the retrieval boards, so positional selectors would address a
+   * different cell depending on which board rendered.
+   */
+  @media (max-width: 640px) {
+    .tb-hero { flex-direction: column; gap: 14px; }
+    .tb-hero svg { width: 60px; height: 60px; }
+    .tb-board { padding: 20px 15px; }
+
+    .tb-board-head { flex-wrap: wrap; gap: 8px 12px; }
+    .tb-board-head h2 { font-size: 17px; line-height: 1.25; flex: 1 1 100%; order: 2; }
+    .tb-board-head svg { order: 1; }
+    .tb-dir { order: 1; }
+
+    .tb-table, .tb-table tbody { display: block; }
+    .tb-table thead { display: none; }
+
+    .tb-table tbody tr {
+      display: flex; flex-wrap: wrap; align-items: baseline;
+      gap: 3px 10px; padding: 14px 2px;
+      border-bottom: 1px solid color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 55%, transparent);
+    }
+    .tb-table tbody td { display: block; padding: 0; border: 0; }
+
+    .tb-c-rank   { order: 1; flex: 0 0 auto; }
+    .tb-c-model  { order: 2; flex: 1 1 60%; min-width: 0; }
+    .tb-c-stack  { order: 3; flex: 1 1 100%; margin-top: 4px; }
+    /* Score and verify share the last line, pushed apart — the two things a
+       reader is actually comparing, side by side instead of stacked. */
+    .tb-c-score  { order: 4; flex: 0 0 auto; margin-top: 8px; }
+    .tb-c-verify { order: 5; flex: 0 0 auto; margin-left: auto; margin-top: 8px; text-align: right; }
+    .tb-score { font-size: 21px; }
+  }
+</style>

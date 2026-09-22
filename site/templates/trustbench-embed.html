@@ -1,0 +1,48 @@
+<!doctype html>
+{#
+  /trustbench/embed/?board=<slug> — ONE live board, framed by someone else's page.
+
+  Standalone on purpose: no site nav, no footer, no chat widget, no analytics.
+  Inside another site those are clutter at best and a third party's tracking at
+  worst. It shares the board partials with /trustbench/, so the embedded board
+  is the same code as the page it was copied from.
+
+  Framing is allowed for this path alone — src/embed-framing.mjs lifts
+  X-Frame-Options and frame-ancestors here and nowhere else. The page carries
+  no state and no actions (links only, opened in a new tab), which is what makes
+  letting anyone frame it safe.
+#}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://divinci.ai/trustbench/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+  <style>
+    html, body { margin: 0; background: transparent; }
+    body { font-family: 'Source Sans 3', system-ui, sans-serif; color: #1e3a2b; -webkit-font-smoothing: antialiased; }
+    .tb-embed { padding: 2px; }
+    .tb-embed .tb-board { margin: 0; }
+    .tb-embed a { color: #2d5a4f; }
+    .tb-embed-foot { margin: 10px 4px 0; font-size: 12px; color: #6b5d4f; }
+  </style>
+</head>
+<body>
+  {% include "partials/trustbench-boards-head.html" %}
+  <main class="tb-embed">
+    <div id="tb-boards"><div class="tb-msg">Loading the board from the public API…</div></div>
+    <p class="tb-embed-foot">
+      Live from <a href="https://divinci.ai/trustbench/" target="_blank" rel="noopener">Divinci TrustBench</a>.
+      Every score links to an Ed25519-signed manifest you can verify yourself.
+    </p>
+  </main>
+  <script>
+    window.TB_BOARDS_OPTS = { embed: new URLSearchParams(location.search).get('board') || '' };
+  </script>
+  {% include "partials/trustbench-boards-script.html" %}
+</body>
+</html>

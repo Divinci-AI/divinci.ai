@@ -20,6 +20,7 @@ import { AREAS } from './status-areas.mjs';
 import { collectCustomerHealth, shouldCollect } from './customer-health.mjs';
 import { collectTrafficConcentration } from './traffic-concentration-collector.mjs';
 import { NOINDEX, isIndexable, robotsTxt } from './indexability.mjs';
+import { framingHeadersFor } from './embed-framing.mjs';
 import {
   ATTRIBUTION_KEY,
   collectAttribution,
@@ -196,7 +197,9 @@ export default {
     const cspReportUrl = `${url.origin}${cspReportPath}`;
 
     // Add security headers
-    const securityHeaders = {
+    // framingHeadersFor lifts the anti-framing headers for /trustbench/embed/
+    // ONLY (see embed-framing.mjs); every other path gets this object as-is.
+    const securityHeaders = framingHeadersFor(url.pathname, {
       'X-Content-Type-Options': 'nosniff',
       // SAMEORIGIN (not DENY) so we can embed our own /vindex-viewer.html
       // in shortcodes and homepage previews. Cross-origin framing is still
@@ -237,7 +240,7 @@ export default {
       // hostname can change, so this entry will break the same way again if
       // the vendor re-provisions; if the tag stops working, look here first.
       'Content-Security-Policy': `default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://r2.leadsy.ai https://ddwl4m2hdecbv.cloudfront.net https://tag.trovo-tag.com https://js.hs-scripts.com https://js.hs-analytics.net https://js.hs-banner.com https://js.hscollectedforms.net https://snap.licdn.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; connect-src 'self' https: data:; media-src 'self' data: https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev https://chat-uploads.divinci.app; frame-src 'self' https://www.google.com/maps/ https://challenges.cloudflare.com https://tag.trovo-tag.com https://www.youtube.com https://www.youtube-nocookie.com https://cloudflare.tv; frame-ancestors 'self'; report-uri ${cspReportPath}; report-to csp-endpoint;`,
-    };
+    });
 
     // Handle CSP violation reports: lightweight log endpoint. Browser sends
     // application/csp-report (legacy) or application/reports+json (Reporting API).

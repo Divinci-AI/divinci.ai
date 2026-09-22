@@ -1,0 +1,309 @@
+<script>
+(function () {
+  var API = 'https://api.divinci.app/v1/trustbench/public/leaderboard';
+  var PAGE = 'https://divinci.ai/trustbench/';
+  var RUNS = 'https://chat.divinci.app/trust/runs/';
+  var host = document.getElementById('tb-boards');
+  // Set by /trustbench/embed/ only. IN_EMBED and the slug are separate on
+  // purpose: an embed with no ?board= still renders every board, and it must
+  // still behave like an embed (no toolbar, links in a new tab).
+  var IN_EMBED = !!window.TB_BOARDS_OPTS;
+  var EMBED = (IN_EMBED && window.TB_BOARDS_OPTS.embed) || null;
+  // Inside someone else's page a same-tab link would navigate THEIR page away.
+  var TARGET = IN_EMBED ? ' target="_blank" rel="noopener"' : '';
+  var byslug = {}, generatedAt = null;
+  // NO BACKSLASH ESCAPES IN STRING LITERALS in this file. Zola's minifier
+  // rewrites strings as template literals and doubles every backslash, so '\n'
+  // ships as a literal backslash-n: the Markdown and CSV copies came out as one
+  // line of "\n" text on staging. Regex literals survive; strings do not.
+  // tests/unit/trustbench-script-escapes.test.mjs enforces this.
+  var NL = String.fromCharCode(10), BS = String.fromCharCode(92);
+
+  // Slug -> crest. The family is one robot with a swappable crest, so a board
+  // with no match gets the master mark rather than no mark.
+  function markFor(slug, name) {
+    var s = (slug + ' ' + name).toLowerCase();
+    if (s.indexOf('redteam') >= 0 || s.indexOf('red team') >= 0) return 'redteam';
+    if (s.indexOf('prompt-extraction') >= 0 || s.indexOf('prompt extraction') >= 0) return 'extraction';
+    if (s.indexOf('grounding') >= 0) return 'grounding';
+    if (s.indexOf('erasure') >= 0 || s.indexOf('integrity') >= 0) return 'erasure';
+    if (s.indexOf('retrieval') >= 0) return 'retrieval';
+    return 'trustbench';
+  }
+
+  /*
+   * Publisher mark for a model id. Keyed on the PUBLISHER segment, not the
+   * model name, so a new model from a known publisher needs no change here.
+   *
+   * A publisher with no mark returns null and the row renders the name alone —
+   * the documented degrade in static/brand/vendors/README.md, chosen over a
+   * broken-image slot.
+   *
+   * Every file here is either already in the repo, from Simple Icons
+   * (CC0-1.0), or — `zai` (GLM) only — from @lobehub/icons-static-svg (MIT),
+   * the one publisher on these boards with no CC0 mark.
+   */
+  var PUBLISHER_MARKS = {
+    'deepseek-ai': 'deepseek', 'google': 'gemma', 'meta': 'meta',
+    'mistralai': 'mistralai', 'moonshotai': 'kimi', 'nvidia': 'nvidia',
+    'openai': 'openai', 'qwen': 'qwen', 'zai-org': 'zai'
+  };
+  function logoFor(modelId) {
+    if (!modelId) return null;
+    var name = null;
+    var m = /^@cf\/([^/]+)\//.exec(modelId);
+    if (m) name = PUBLISHER_MARKS[m[1]] || null;
+    else if (/^gemini/.test(modelId)) name = 'google';
+    return name ? '/brand/companies/' + name + '.svg' : null;
+  }
+
+  /*
+   * Vendor mark for a retrieval stack, keyed on the stack id's PREFIX so a new
+   * variant of a known backend (qdrant-dot, cloudflare-v3) needs no change.
+   * Reuses /brand/vendors (see its README); Vertex reuses the Google mark, as
+   * the README already records. An unknown stack degrades to the pill alone.
+   */
+  var STACK_MARKS = [
+    ['vertex-ai', '/brand/companies/google.svg'],
+    ['qdrant', '/brand/vendors/qdrant.svg'],
+    ['cloudflare', '/brand/vendors/cloudflare.svg'],
+    ['vectorize', '/brand/vendors/cloudflare.svg'],
+    ['divinci-pageindex', '/brand/vendors/pageindex.png'],
+    ['pageindex', '/brand/vendors/pageindex.png']
+  ];
+  function stackLogoFor(stackId) {
+    for (var i = 0; stackId && i < STACK_MARKS.length; i++) {
+      if (stackId.indexOf(STACK_MARKS[i][0]) === 0) return STACK_MARKS[i][1];
+    }
+    return null;
+  }
+
+  function esc(v) {
+    return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // Colour is MEANING here, not brand: it encodes how good a score is on that
+  // board's own scale, which is why `higherIsBetter` has to come from the API
+  // rather than being assumed.
+  function goodness(b, score) {
+    var lo = b.rangeMin, hi = b.rangeMax;
+    if (typeof lo !== 'number' || typeof hi !== 'number' || hi === lo) return 0.5;
+    var t = (score - lo) / (hi - lo);
+    t = Math.max(0, Math.min(1, t));
+    return b.higherIsBetter ? t : 1 - t;
+  }
+  function colour(g) {
+    return g >= 0.75 ? '#2d5a4f' : g >= 0.4 ? '#c08850' : '#a8433a';
+  }
+  function fmt(b, score) {
+    return b.rangeMax === 1 && b.rangeMin === 0
+      ? (score * 100).toFixed(1) + '%'
+      : score.toFixed(3);
+  }
+
+  function board(entry) {
+    var b = entry.benchmark, rows = entry.rows || [];
+    var stacked = rows.some(function (r) { return r.retrievalStackId; });
+    var head = '<tr><th class="tb-rank">#</th><th>Model</th>' +
+      (stacked ? '<th>Retrieval stack</th>' : '') +
+      '<th>' + esc(b.metric) + '</th><th>Verify</th></tr>';
+
+    var body = rows.map(function (r) {
+      var g = goodness(b, r.score), c = colour(g);
+      var spread = r.scoreRange && r.scoreRange.max > r.scoreRange.min
+        ? ' · ' + fmt(b, r.scoreRange.min) + '–' + fmt(b, r.scoreRange.max) : '';
+      var meta = r.runsInWindow > 1 ? 'median of ' + r.runsInWindow + spread : '';
+      // The row's own background is the bar. Stops hard at the score so the
+      // edge is readable as a value, rather than fading and reading as decor.
+      var pct = (g * 100).toFixed(2);
+      var fill = 'linear-gradient(90deg, color-mix(in srgb, ' + c + ' 9%, transparent) 0 ' +
+                 pct + '%, transparent ' + pct + '%)';
+      var logo = logoFor(r.modelId);
+      return '<tr style="background-image:' + fill + '">' +
+        '<td class="tb-rank tb-c-rank">' + esc(r.rank) + '</td>' +
+        '<td class="tb-c-model"><div class="tb-model-line">' +
+            (logo ? '<img class="tb-logo" src="' + logo + '" alt="" loading="lazy">'
+                  : '<span class="tb-logo-gap" aria-hidden="true"></span>') +
+            '<span class="tb-model">' + esc(r.displayName) + '</span></div>' +
+          '<div class="tb-mono">' + esc(r.modelId) + '</div></td>' +
+        (stacked
+          ? '<td class="tb-c-stack">' + (r.retrievalStackId
+              ? '<span class="tb-pill">' +
+                  (stackLogoFor(r.retrievalStackId)
+                    ? '<img class="tb-logo" src="' + stackLogoFor(r.retrievalStackId) + '" alt="" loading="lazy">' : '') +
+                  esc(r.retrievalStackLabel || r.retrievalStackId) + '</span>' +
+                '<div class="tb-mono">' + esc(r.retrievalStackId) + '</div>'
+              : '<span class="tb-mono">no retrieval</span>') + '</td>'
+          : '') +
+        '<td class="tb-c-score"><div class="tb-score" style="color:' + c + '">' + fmt(b, r.score) + '</div>' +
+          (meta ? '<div class="tb-meta">' + esc(meta) + '</div>' : '') + '</td>' +
+        '<td class="tb-verify tb-c-verify"><a href="' + RUNS + encodeURIComponent(r.runId) + '"' + TARGET + '>signed manifest →</a>' +
+          (r.signerKeyId ? '<div class="tb-mono">' + esc(r.signerKeyId) + '</div>' : '') + '</td>' +
+        '</tr>';
+    }).join('');
+
+    byslug[b.slug] = entry;
+    return '<section class="tb-board" data-slug="' + esc(b.slug) + '">' +
+      '<div class="tb-board-head"><svg aria-hidden="true"><use href="#tb-' + markFor(b.slug || '', b.name || '') + '"/></svg>' +
+        '<h2>' + esc(b.name) + '</h2>' +
+        '<span class="tb-dir">' + (b.higherIsBetter ? 'higher is better' : 'lower is better') + '</span></div>' +
+      (IN_EMBED ? '' : toolbar(b)) +
+      (b.description ? '<p class="tb-desc">' + esc(b.description) + '</p>' : '') +
+      '<table class="tb-table"><thead>' + head + '</thead><tbody>' + body + '</tbody></table>' +
+      // Curly apostrophes, not escaped straight ones. A \' inside this string
+      // survives Tera and the HTML minifier as a LITERAL backslash and renders
+      // as "configuration’s" on the page — caught on staging, not in review.
+      '<p class="tb-note">Each row is one configuration — a model and the retrieval stack it answered through. ' +
+      'The score is the median of that configuration’s most recent qualifying runs and is always a real run’s score.</p>' +
+      '</section>';
+  }
+
+
+  /*
+   * Copy formats and the embed snippet.
+   *
+   * Every format carries the signed-manifest link on every row. A score that
+   * leaves this page without its evidence is exactly the number the page
+   * exists to argue against, so the copy keeps them together.
+   */
+  function manifestUrl(r) { return RUNS + encodeURIComponent(r.runId); }
+  function pct(b, v) { return typeof v === 'number' ? fmt(b, v) : ''; }
+  function stackOf(r) { return r.retrievalStackId ? (r.retrievalStackLabel || r.retrievalStackId) : ''; }
+
+  function toMarkdown(entry) {
+    var b = entry.benchmark, rows = entry.rows || [];
+    var stacked = rows.some(function (r) { return r.retrievalStackId; });
+    var cell = function (v) { return String(v == null ? '' : v).replace(/\|/g, BS + '|').replace(/\n/g, ' '); };
+    var out = ['### ' + cell(b.name), '',
+      '_' + cell(b.metric) + ' · ' + (b.higherIsBetter ? 'higher is better' : 'lower is better') +
+      ' · source: ' + PAGE + (generatedAt ? ' · computed ' + generatedAt : '') + '_', '',
+      '| # | Model | ' + (stacked ? 'Retrieval stack | ' : '') + 'Score | Runs | Signed manifest |',
+      '|---:|---|' + (stacked ? '---|' : '') + '---:|---:|---|'];
+    rows.forEach(function (r) {
+      out.push('| ' + r.rank + ' | ' + cell(r.displayName) + ' (`' + cell(r.modelId) + '`) | ' +
+        (stacked ? cell(stackOf(r) || 'no retrieval') + ' | ' : '') +
+        pct(b, r.score) + ' | ' + (r.runsInWindow || 1) + ' | [' + cell(r.signerKeyId || 'manifest') + '](' + manifestUrl(r) + ') |');
+    });
+    return out.join(NL) + NL;
+  }
+
+  function toCSV(entry) {
+    var b = entry.benchmark;
+    var q = function (v) { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+    var cols = ['benchmark', 'rank', 'model_id', 'model_name', 'retrieval_stack_id', 'retrieval_stack',
+                'score', 'score_min', 'score_max', 'runs', 'metric', 'higher_is_better', 'run_id', 'signer_key_id', 'manifest_url'];
+    var lines = [cols.join(',')];
+    (entry.rows || []).forEach(function (r) {
+      lines.push([b.slug, r.rank, r.modelId, r.displayName, r.retrievalStackId || '', stackOf(r), r.score,
+        r.scoreRange ? r.scoreRange.min : '', r.scoreRange ? r.scoreRange.max : '', r.runsInWindow || 1,
+        b.metric, b.higherIsBetter, r.runId, r.signerKeyId || '', manifestUrl(r)].map(q).join(','));
+    });
+    return lines.join(NL) + NL;
+  }
+
+  // The API's own shape, not a reshaped copy: someone diffing this against
+  // the endpoint should find nothing to explain.
+  function toJSON(entry) {
+    return JSON.stringify({ source: API + '/' + entry.benchmark.slug, page: PAGE,
+      generatedAt: generatedAt, benchmark: entry.benchmark, rows: entry.rows }, null, 2) + NL;
+  }
+
+  function embedSnippet(slug, height) {
+    return '<iframe src="' + PAGE + 'embed/?board=' + encodeURIComponent(slug) + '" ' +
+      'title="Divinci TrustBench leaderboard" width="100%" height="' + height + '" ' +
+      'style="border:0;max-width:1080px" loading="lazy"></iframe>';
+  }
+
+  function toolbar(b) {
+    return '<div class="tb-tools" role="group" aria-label="Copy or embed this board">' +
+      '<span class="tb-tools-label">Copy</span>' +
+      '<button type="button" data-tb="md">Markdown</button>' +
+      '<button type="button" data-tb="csv">CSV</button>' +
+      '<button type="button" data-tb="json">JSON</button>' +
+      '<button type="button" data-tb="embed" aria-expanded="false">Embed</button>' +
+      '</div><div class="tb-embed-panel" hidden>' +
+      '<label>Paste this into any HTML page. The board stays live: it reads the same public API as this page.' +
+      '<textarea readonly rows="3" spellcheck="false"></textarea></label>' +
+      '<button type="button" data-tb="copy-embed">Copy embed code</button></div>';
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    // Fallback for browsers without the async clipboard API.
+    return new Promise(function (resolve, reject) {
+      var t = document.createElement('textarea');
+      t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(t);
+      ok ? resolve() : reject(new Error('copy refused'));
+    });
+  }
+
+  function flash(btn, text) {
+    var was = btn.getAttribute('data-label') || btn.textContent;
+    btn.setAttribute('data-label', was);
+    btn.textContent = text;
+    clearTimeout(btn._tbT);
+    btn._tbT = setTimeout(function () { btn.textContent = was; }, 1600);
+  }
+
+  host.addEventListener('click', function (ev) {
+    var btn = ev.target.closest && ev.target.closest('button[data-tb]');
+    if (!btn) return;
+    var section = btn.closest('.tb-board'), entry = byslug[section.getAttribute('data-slug')];
+    if (!entry) return;
+    var kind = btn.getAttribute('data-tb');
+    var panel = section.querySelector('.tb-embed-panel');
+    if (kind === 'embed') {
+      var open = panel.hasAttribute('hidden');
+      if (open) {
+        // Height from the board as it renders here, plus the embed's footer.
+        var h = Math.ceil(section.getBoundingClientRect().height) + 60;
+        panel.querySelector('textarea').value = embedSnippet(entry.benchmark.slug, h);
+        panel.removeAttribute('hidden');
+      } else {
+        panel.setAttribute('hidden', '');
+      }
+      btn.setAttribute('aria-expanded', String(open));
+      return;
+    }
+    var text = kind === 'md' ? toMarkdown(entry) : kind === 'csv' ? toCSV(entry)
+             : kind === 'json' ? toJSON(entry) : panel.querySelector('textarea').value;
+    copyText(text).then(function () { flash(btn, 'Copied ✓'); },
+                        function () { flash(btn, 'Copy failed'); });
+  });
+
+  fetch(EMBED ? API + '/' + encodeURIComponent(EMBED) : API, { headers: { Accept: 'application/json' } })
+    .then(function (res) { return res.text().then(function (t) {
+      // Never bare .json(): an HTML error page would surface as a SyntaxError
+      // and this page would say nothing useful about why it is empty.
+      try { return { ok: res.ok, data: JSON.parse(t) }; }
+      catch (e) { throw new Error('the API returned ' + res.status + ' and a non-JSON body'); }
+    }); })
+    .then(function (r) {
+      // The single-board endpoint returns the board itself, not a list.
+      var boards = EMBED ? (r.data && r.data.benchmark ? [r.data] : [])
+                         : ((r.data && r.data.boards) || []);
+      if (!r.ok || !boards.length) {
+        throw new Error(EMBED ? 'there is no published board called “' + EMBED + '”' : 'the API returned no boards');
+      }
+      generatedAt = r.data.generatedAt || null;
+      host.innerHTML = boards.map(board).join('');
+      if (r.data.generatedAt) {
+        host.insertAdjacentHTML('beforeend',
+          '<p class="tb-note" style="border:0">Board computed ' + esc(r.data.generatedAt) +
+          (r.data.maxAgeSeconds ? ' · may be up to ' + esc(r.data.maxAgeSeconds) + 's behind a just-published run' : '') + '.</p>');
+      }
+    })
+    .catch(function (err) {
+      // Say what happened and where to look. Do not fall back to a cached or
+      // example board: a wrong number here is worse than no number.
+      host.innerHTML = '<div class="tb-msg"><strong>The boards could not be loaded.</strong><br>' +
+        esc(err.message) + '. The data is public, so you can read it directly at ' +
+        '<a href="' + API + '"' + TARGET + '>' + API + '</a>.</div>';
+    });
+})();
+</script>

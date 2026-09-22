@@ -12,6 +12,8 @@ tags = ["Evaluation", "Attestation", "Benchmarks", "RAG", "Content Provenance", 
 author = "Mike Mooring"
 author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
 featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/trustbench-sdk-board-hero.webp"
+hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/what-a-benchmark-has-to-prove-about-itself-veo31.webm"
+hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/what-a-benchmark-has-to-prove-about-itself-hero-poster.webp"
 reading_time = 13
 summary = "In April 2026 a Berkeley team drove seven of eight major AI agent benchmarks to roughly 100% without solving a single task — one of them by sending the message `{}`. Every one of those runs was honest, and a cryptographic signature over the result would have verified all of them. That is the gap this post is about: signing a score proves the outputs produced it, not that the measurement meant anything. We publish two retrieval leaderboards whose rows are signed, whose manifests declare themselves `republished` rather than `measured`, and whose most important row is a control that scores 0.078 — re-scored with a second judge from a different family, which preserves the ranking and disagrees most about the worst answers."
 +++
@@ -21,6 +23,11 @@ The most important number on either of our public leaderboards is **0.078**.
 It is not the best score. It is the worst one, and it is the only row that makes the others mean anything. Same model, same sixty questions, same judge — retrieval switched off. Without the corpus the model scores 0.078, which is to say it cannot answer. Every other row on that board is therefore measuring retrieval rather than what the model already happened to know.
 
 Almost no published RAG benchmark carries that row. It costs one extra run and it is the difference between a number and a measurement.
+
+<figure class="blog-chart">
+  <a href="/trustbench/"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/trustbench-sdk-board-hero.webp" width="2256" height="762" alt="Screenshot of the Divinci SDK Docs retrieval board on the public TrustBench page. Three rows, all answering with the same model, @cf/zai-org/glm-5.3-flash: through Vertex AI Vector Search v2 it scores 75.5%, through Qdrant (cosine) 73.2%, and with no retrieval at all 7.8%. Each score shows the median of three runs and its range, and each row links to a signed manifest with the key id tbp-prod-002." loading="lazy"></a>
+  <figcaption>The control row, as it is served on the <a href="/trustbench/">public page</a>. Row three is the same model answering the same sixty questions with retrieval switched off: 7.8%, which is the 0.078 above. It is what makes 75.5% and 73.2% mean “retrieval works” rather than “the model already knew”.</figcaption>
+</figure>
 
 Both boards are live on the [public TrustBench leaderboards](/trustbench/), alongside four others. Every row there carries a link to the signed manifest that contains it, and the id of the key that signed it.
 
