@@ -11,7 +11,7 @@ tags = ["Evaluation", "Attestation", "Benchmarks", "RAG", "Content Provenance", 
 [extra]
 author = "Mike Mooring"
 author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Michael-Mooring.webp"
-featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/trustbench-social.webp"
+featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/trustbench-sdk-board-hero.webp"
 reading_time = 13
 summary = "In April 2026 a Berkeley team drove seven of eight major AI agent benchmarks to roughly 100% without solving a single task — one of them by sending the message `{}`. Every one of those runs was honest, and a cryptographic signature over the result would have verified all of them. That is the gap this post is about: signing a score proves the outputs produced it, not that the measurement meant anything. We publish two retrieval leaderboards whose rows are signed, whose manifests declare themselves `republished` rather than `measured`, and whose most important row is a control that scores 0.078 — re-scored with a second judge from a different family, which preserves the ranking and disagrees most about the worst answers."
 +++
@@ -22,11 +22,11 @@ It is not the best score. It is the worst one, and it is the only row that makes
 
 Almost no published RAG benchmark carries that row. It costs one extra run and it is the difference between a number and a measurement.
 
-Both boards are live on the [public TrustBench leaderboards](https://chat.divinci.app/trust/leaderboard), alongside four others. Every row there carries a link to the signed manifest that contains it, and the id of the key that signed it.
+Both boards are live on the [public TrustBench leaderboards](/trustbench/), alongside four others. Every row there carries a link to the signed manifest that contains it, and the id of the key that signed it.
 
 <figure class="blog-chart">
-  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/trustbench-retrieval-board.webp" alt="Screenshot of the Dr. Fuhrman Nutrition Corpus retrieval board on the public TrustBench leaderboards. Four rows, all answering with the same model @cf/zai-org/glm-5.3-flash, differing only in the retrieval stack column: Vertex AI Vector Search v2 at 92.0%, Qdrant cosine at 88.4%, Vectorize cosine at 83.6%, and Divinci PageIndex tree reasoning at 38.4%. Each score carries a horizontal bar and the median-of-three range beneath it, and each row links to a signed manifest with the key id tbp-prod-002. A footer reads: each row is one configuration, a model and the retrieval stack it answered through." loading="lazy">
-  <figcaption>The nutrition board as it is served. The model column is identical down every row by design — the retrieval stack is the variable, and the footer says so: <em>each row is one configuration, a model and the retrieval stack it answered through</em>. The rightmost column is the part that matters: every row hands you the manifest that contains its score and names the key that signed it, so the number and the evidence for it never travel separately.</figcaption>
+  <a href="/trustbench/"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/trustbench-public-nutrition-board.webp" width="1600" height="947" alt="Screenshot of the Dr. Fuhrman Nutrition Corpus board on the public TrustBench page. Four rows, all answering with the same model, @cf/zai-org/glm-5.3-flash, and differing only in the retrieval stack, each shown with its vendor's logo: Vertex AI Vector Search v2 at 92.0%, Qdrant (cosine) at 88.4%, Vectorize (cosine) at 83.6%, and Divinci PageIndex (tree reasoning) at 38.4%. Each row's background fills to its score, the median-of-three range sits beneath it, and each row links to a signed manifest with the key id tbp-prod-002. A footer reads: each row is one configuration, a model and the retrieval stack it answered through." loading="lazy"></a>
+  <figcaption>The nutrition board as it is served on the <a href="/trustbench/">public page</a>. The model is identical down every row by design — the retrieval stack is the variable, and the footer says so: <em>each row is one configuration, a model and the retrieval stack it answered through</em>. The rightmost column is the part that matters: every row hands you the manifest that contains its score and names the key that signed it, so the number and the evidence for it never travel separately.</figcaption>
 </figure>
 
 <figure class="blog-chart">
@@ -213,7 +213,7 @@ The order is: harness attestation, so a score can say the sandbox was not gamed.
 
 Attestation says *this score is real*. It does not say *this model is safe*. Keeping those two apart is most of the work, and conflating them is how this entire category fails.
 
-If you want to check any of it, nothing here requires an account. The [leaderboards](https://chat.divinci.app/trust/leaderboard) are public, the [verifier](https://www.npmjs.com/package/@divinci-ai/trustbench-verifier) is on npm, and every row links to the manifest that contains its score. Fetch the manifest and its outputs, run `verify()`, and read the warnings — including ours.
+If you want to check any of it, nothing here requires an account. The [leaderboards](/trustbench/) are public, the [verifier](https://www.npmjs.com/package/@divinci-ai/trustbench-verifier) is on npm, and every row links to the manifest that contains its score. Fetch the manifest and its outputs, run `verify()`, and read the warnings — including ours.
 
 ---
 

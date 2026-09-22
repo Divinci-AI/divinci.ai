@@ -1,62 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-  <symbol id="tb-trustbench" viewBox="0 0 120 120"><title>Divinci TrustBench</title>
-<defs>
-    <mask id="trustbench-m">
-      <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" fill="#fff"/>
-      <path d="M40,52 l12,12 l24,-26 l9,9 l-33,35 l-21,-21 z" fill="#000"/>
-    </mask>
-  </defs>
-  <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" mask="url(#trustbench-m)"/>
-  <path d="M60,92 C28,68 24,47 24,40 C24,27 34,21 43,21 C51,21 57,26 60,32 C63,26 69,21 77,21 C86,21 96,27 96,40 C96,47 92,68 60,92 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="tb-trustbench" viewBox="0 0 120 120" fill="currentColor"><title>Divinci TrustBench</title>
+    <defs>
+      <mask id="tb-trustbench-m">
+        <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" fill="#fff"/>
+        <path d="M40,52 l12,12 l24,-26 l9,9 l-33,35 l-21,-21 z" fill="#000"/>
+      </mask>
+    </defs>
+    <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" mask="url(#tb-trustbench-m)"/>
+    <path d="M60,92 C28,68 24,47 24,40 C24,27 34,21 43,21 C51,21 57,26 60,32 C63,26 69,21 77,21 C86,21 96,27 96,40 C96,47 92,68 60,92 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
   </symbol>
-  <symbol id="tb-redteam" viewBox="0 0 120 120"><title>Divinci TrustBench — Red Team</title>
-<defs>
-    <mask id="redteam-m">
-      <path d="M60,14 C46,4 14,10 14,34 V58 C14,82 34,92 60,106 C86,92 106,82 106,58 V34 C106,10 74,4 60,14 Z" fill="#fff"/>
-      <path d="M60,38 l24,10 v18 c0,14 -11,24 -24,30 c-13,-6 -24,-16 -24,-30 v-18 z" fill="#000"/>
-    </mask>
-  </defs>
-  <path d="M60,14 C46,4 14,10 14,34 V58 C14,82 34,92 60,106 C86,92 106,82 106,58 V34 C106,10 74,4 60,14 Z" mask="url(#redteam-m)"/>
-  <path d="M60,24 C49,16 24,21 24,39 V57 C24,76 40,84 60,95 C80,84 96,76 96,57 V39 C96,21 71,16 60,24 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
+  <symbol id="tb-redteam" viewBox="0 0 120 120" fill="currentColor"><title>Divinci TrustBench — Red Team</title>
+    <defs>
+      <mask id="tb-redteam-m">
+        <path d="M60,14 C46,4 14,10 14,34 V58 C14,82 34,92 60,106 C86,92 106,82 106,58 V34 C106,10 74,4 60,14 Z" fill="#fff"/>
+        <path d="M60,38 l24,10 v18 c0,14 -11,24 -24,30 c-13,-6 -24,-16 -24,-30 v-18 z" fill="#000"/>
+      </mask>
+    </defs>
+    <path d="M60,14 C46,4 14,10 14,34 V58 C14,82 34,92 60,106 C86,92 106,82 106,58 V34 C106,10 74,4 60,14 Z" mask="url(#tb-redteam-m)"/>
+    <path d="M60,24 C49,16 24,21 24,39 V57 C24,76 40,84 60,95 C80,84 96,76 96,57 V39 C96,21 71,16 60,24 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
   </symbol>
-  <symbol id="tb-extraction" viewBox="0 0 120 120"><title>Divinci TrustBench — System-Prompt Extraction</title>
-<defs>
-    <mask id="extraction-m">
-      <path d="M60,14 C46,4 14,10 14,34 V58 C14,82 34,92 60,106 C86,92 106,82 106,58 V34 C106,10 74,4 60,14 Z" fill="#fff"/>
-      <path d="M60,39 a13,13 0 0 1 7,24 L70,86 h-20 l3,-23 A13,13 0 0 1 60,39 z" fill="#000"/>
-    </mask>
-  </defs>
-  <path d="M60,14 C46,4 14,10 14,34 V58 C14,82 34,92 60,106 C86,92 106,82 106,58 V34 C106,10 74,4 60,14 Z" mask="url(#extraction-m)"/>
-  <path d="M60,24 C49,16 24,21 24,39 V57 C24,76 40,84 60,95 C80,84 96,76 96,57 V39 C96,21 71,16 60,24 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
+  <symbol id="tb-extraction" viewBox="0 0 120 120" fill="currentColor"><title>Divinci TrustBench — System-Prompt Extraction</title>
+    <defs>
+      <mask id="tb-extraction-m">
+        <path d="M60,14 C46,4 14,10 14,34 V58 C14,82 34,92 60,106 C86,92 106,82 106,58 V34 C106,10 74,4 60,14 Z" fill="#fff"/>
+        <path d="M60,39 a13,13 0 0 1 7,24 L70,86 h-20 l3,-23 A13,13 0 0 1 60,39 z" fill="#000"/>
+      </mask>
+    </defs>
+    <path d="M60,14 C46,4 14,10 14,34 V58 C14,82 34,92 60,106 C86,92 106,82 106,58 V34 C106,10 74,4 60,14 Z" mask="url(#tb-extraction-m)"/>
+    <path d="M60,24 C49,16 24,21 24,39 V57 C24,76 40,84 60,95 C80,84 96,76 96,57 V39 C96,21 71,16 60,24 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
   </symbol>
-  <symbol id="tb-grounding" viewBox="0 0 120 120"><title>Divinci TrustBench — RAG Grounding</title>
-<defs>
-    <mask id="grounding-m">
-      <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" fill="#fff"/>
-      <path d="M30,34 h60 v10 h-60 z M30,52 h60 v10 h-60 z M48,70 h24 v10 h-24 z" fill="#000"/>
-    </mask>
-  </defs>
-  <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" mask="url(#grounding-m)"/>
-  <path d="M60,92 C28,68 24,47 24,40 C24,27 34,21 43,21 C51,21 57,26 60,32 C63,26 69,21 77,21 C86,21 96,27 96,40 C96,47 92,68 60,92 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
+  <symbol id="tb-grounding" viewBox="0 0 120 120" fill="currentColor"><title>Divinci TrustBench — RAG Grounding</title>
+    <defs>
+      <mask id="tb-grounding-m">
+        <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" fill="#fff"/>
+        <path d="M30,34 h60 v10 h-60 z M30,52 h60 v10 h-60 z M48,70 h24 v10 h-24 z" fill="#000"/>
+      </mask>
+    </defs>
+    <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" mask="url(#tb-grounding-m)"/>
+    <path d="M60,92 C28,68 24,47 24,40 C24,27 34,21 43,21 C51,21 57,26 60,32 C63,26 69,21 77,21 C86,21 96,27 96,40 C96,47 92,68 60,92 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
   </symbol>
-  <symbol id="tb-retrieval" viewBox="0 0 120 120"><title>Divinci TrustBench — Retrieval QA</title>
-<defs>
-    <mask id="retrieval-m">
-      <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" fill="#fff"/>
-      <path d="M54,31 a19,19 0 1 1 0,38 a19,19 0 1 1 0,-38 z M54,42 a8,8 0 1 0 0,16 a8,8 0 1 0 0,-16 z M66,62 l11,11 l-6,6 l-11,-11 z" fill="#000"/>
-    </mask>
-  </defs>
-  <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" mask="url(#retrieval-m)"/>
-  <path d="M60,92 C28,68 24,47 24,40 C24,27 34,21 43,21 C51,21 57,26 60,32 C63,26 69,21 77,21 C86,21 96,27 96,40 C96,47 92,68 60,92 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
+  <symbol id="tb-retrieval" viewBox="0 0 120 120" fill="currentColor"><title>Divinci TrustBench — Retrieval QA</title>
+    <defs>
+      <mask id="tb-retrieval-m">
+        <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" fill="#fff"/>
+        <path d="M54,31 a19,19 0 1 1 0,38 a19,19 0 1 1 0,-38 z M54,42 a8,8 0 1 0 0,16 a8,8 0 1 0 0,-16 z M66,62 l11,11 l-6,6 l-11,-11 z" fill="#000"/>
+      </mask>
+    </defs>
+    <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" mask="url(#tb-retrieval-m)"/>
+    <path d="M60,92 C28,68 24,47 24,40 C24,27 34,21 43,21 C51,21 57,26 60,32 C63,26 69,21 77,21 C86,21 96,27 96,40 C96,47 92,68 60,92 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
   </symbol>
-  <symbol id="tb-erasure" viewBox="0 0 120 120"><title>Divinci TrustBench — Corpus Integrity</title>
-<defs>
-    <mask id="erasure-m">
-      <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" fill="#fff"/>
-      <path d="M60,29 a21,21 0 1 1 0,42 a21,21 0 1 1 0,-42 z M60,40 a10,10 0 1 0 0,20 a10,10 0 1 0 0,-20 z M42,72 l36,-36 l8,8 l-36,36 z" fill="#000"/>
-    </mask>
-  </defs>
-  <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" mask="url(#erasure-m)"/>
-  <path d="M60,92 C28,68 24,47 24,40 C24,27 34,21 43,21 C51,21 57,26 60,32 C63,26 69,21 77,21 C86,21 96,27 96,40 C96,47 92,68 60,92 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
+  <symbol id="tb-erasure" viewBox="0 0 120 120" fill="currentColor"><title>Divinci TrustBench — Corpus Integrity</title>
+    <defs>
+      <mask id="tb-erasure-m">
+        <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" fill="#fff"/>
+        <path d="M60,29 a21,21 0 1 1 0,42 a21,21 0 1 1 0,-42 z M60,40 a10,10 0 1 0 0,20 a10,10 0 1 0 0,-20 z M42,72 l36,-36 l8,8 l-36,36 z" fill="#000"/>
+      </mask>
+    </defs>
+    <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" mask="url(#tb-erasure-m)"/>
+    <path d="M60,92 C28,68 24,47 24,40 C24,27 34,21 43,21 C51,21 57,26 60,32 C63,26 69,21 77,21 C86,21 96,27 96,40 C96,47 92,68 60,92 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
   </symbol>
 </svg>

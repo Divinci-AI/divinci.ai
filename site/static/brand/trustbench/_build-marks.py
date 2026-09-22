@@ -133,3 +133,40 @@ for slug, m in MARKS.items():
     with open(name, "w") as fh:
         fh.write(TEMPLATE.format(slug=slug, **m))
     print("wrote", name)
+
+# ---------------------------------------------------------------------------
+# The sprite, from the same MARKS, so it cannot drift from the files above.
+#
+# It used to be assembled by hand, and two defects rode along unnoticed —
+# both invisible at 20px, both obvious at the 86px page hero:
+#
+#   1. `fill` lived on the standalone files' ROOT <svg>. A <symbol> does not
+#      inherit from the sprite's root, so the plate fell back to the SVG
+#      default: black, not the brand colour. Measuring the crest's colour read
+#      the <svg> element's `color`, which was right, so the check passed while
+#      the paint was wrong. The fill now sits on the <symbol> itself.
+#   2. The sprite root was `display:none`. Chrome and Firefox do not apply a
+#      <mask> defined inside a display:none subtree, so every crest rendered
+#      as a bare plate — no check, no shield, no symbol at all. It is now
+#      rendered-but-invisible: zero size, absolutely positioned, clipped.
+#
+# Mask ids carry a `tb-` prefix so a page that inlines a standalone file too
+# does not resolve two masks to one id.
+SPRITE_SYMBOL = '''  <symbol id="tb-{slug}" viewBox="0 0 120 120" fill="currentColor"><title>{title}</title>
+    <defs>
+      <mask id="tb-{slug}-m">
+        <path d="{plate}" fill="#fff"/>
+        <path d="{cut}" fill="#000"/>
+      </mask>
+    </defs>
+    <path d="{plate}" mask="url(#tb-{slug}-m)"/>
+    <path d="{inner}" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
+  </symbol>
+'''
+with open("trustbench-marks-sprite.svg", "w") as fh:
+    fh.write('<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" '
+             'width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden">\n')
+    for slug, m in MARKS.items():
+        fh.write(SPRITE_SYMBOL.format(slug=slug, **m))
+    fh.write('</svg>\n')
+print("wrote trustbench-marks-sprite.svg")
