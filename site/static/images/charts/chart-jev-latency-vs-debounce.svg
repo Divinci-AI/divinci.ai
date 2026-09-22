@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Horizontal bar chart of classifier latency against the composer's 1111 millisecond debounce. Jev measures 185 ms at p50, 326 ms at p95 and 656 ms at p99, all well inside the budget. Llama-3.3-70B measures 1216 ms at p50, 2740 ms at p95 and 4525 ms at p99, all outside it, with the median alone already exceeding the debounce.">
+  <title>Classifier latency against the composer debounce — Jev vs Llama-3.3-70B</title>
+  <rect width="900" height="400" fill="#faf8f5"/>
+
+  <text x="60" y="34" font-size="16" font-weight="700" fill="#1e3a2b">The incumbent's median already exceeds the budget it must fit inside</text>
+  <text x="60" y="54" font-size="12" fill="#6b5d4f">94 hand-labelled turns, run sequentially from a laptop. Lower is better. Internal, measured by us.</text>
+
+  <rect x="120" y="72" width="171" height="248" fill="#2d5a4f" opacity="0.05"/>
+
+  <g font-size="10" fill="#8a7d68">
+    <text x="120" y="340" text-anchor="middle">0</text>
+    <line x1="120" y1="320" x2="120" y2="326" stroke="#8a7d68"/>
+    <text x="274" y="340" text-anchor="middle">1000</text>
+    <line x1="274" y1="320" x2="274" y2="326" stroke="#8a7d68"/>
+    <text x="428" y="340" text-anchor="middle">2000</text>
+    <line x1="428" y1="320" x2="428" y2="326" stroke="#8a7d68"/>
+    <text x="583" y="340" text-anchor="middle">3000</text>
+    <line x1="583" y1="320" x2="583" y2="326" stroke="#8a7d68"/>
+    <text x="737" y="340" text-anchor="middle">4000</text>
+    <line x1="737" y1="320" x2="737" y2="326" stroke="#8a7d68"/>
+    <text x="480" y="362" text-anchor="middle" font-size="11" fill="#6b5d4f">milliseconds</text>
+  </g>
+
+  <line x1="120" y1="320" x2="860" y2="320" stroke="#2d3c34" stroke-width="1.5"/>
+  <line x1="120" y1="72" x2="120" y2="320" stroke="#2d3c34" stroke-width="1.5"/>
+
+  <line x1="291" y1="66" x2="291" y2="320" stroke="#8b7659" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="297" y="64" font-size="11" font-weight="700" fill="#8b7659">composer debounce 1111 ms</text>
+
+  <g font-size="11" fill="#2d3c34">
+    <text x="112" y="108" text-anchor="end" font-weight="700" fill="#2d5a4f">Jev p50</text>
+    <text x="112" y="142" text-anchor="end" font-weight="700" fill="#2d5a4f">Jev p95</text>
+    <text x="112" y="176" text-anchor="end" font-weight="700" fill="#2d5a4f">Jev p99</text>
+    <text x="112" y="228" text-anchor="end" fill="#a04848">70B p50</text>
+    <text x="112" y="262" text-anchor="end" fill="#a04848">70B p95</text>
+    <text x="112" y="296" text-anchor="end" fill="#a04848">70B p99</text>
+  </g>
+
+  <g>
+    <rect x="120" y="92" width="29" height="22" fill="#2d5a4f" rx="1"/>
+    <rect x="120" y="126" width="50" height="22" fill="#2d5a4f" rx="1"/>
+    <rect x="120" y="160" width="101" height="22" fill="#2d5a4f" rx="1"/>
+    <rect x="120" y="212" width="188" height="22" fill="#a04848" rx="1"/>
+    <rect x="120" y="246" width="422" height="22" fill="#a04848" rx="1"/>
+    <rect x="120" y="280" width="698" height="22" fill="#a04848" rx="1"/>
+  </g>
+
+  <g font-size="11" font-weight="700" fill="#1e3a2b">
+    <text x="155" y="108">185 ms</text>
+    <text x="176" y="142">326 ms</text>
+    <text x="227" y="176">656 ms</text>
+    <text x="314" y="228">1216 ms</text>
+    <text x="548" y="262">2740 ms</text>
+    <text x="824" y="296">4525 ms</text>
+  </g>
+
+  <text x="60" y="386" font-size="11" fill="#6b5d4f">Every Jev percentile lands inside the debounce; every incumbent percentile lands outside it. Jev p99 is 59% of the budget.</text>
+</svg>

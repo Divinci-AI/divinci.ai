@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" font-family="'DM Sans', -apple-system, sans-serif" role="img" aria-label="Two separate cosine scales, one per embedding model, showing that the gate threshold does not transfer between them. On bge-base-en-v1.5 the not-answerable band runs 0.45 to 0.66 and the answerable band runs 0.70 to 0.89, giving a fitted cut near 0.68 and a decision margin of 0.036. On the production model gemini-embedding-001 at 1536 dimensions the fitted cut is near 0.59 with a decision margin of 0.098, which is 2.7 times wider. Both hold 38 of 38 under leave-one-out.">
+  <title>The gate threshold is embedding-model specific — 0.68 does not transfer to 0.59</title>
+  <rect width="900" height="360" fill="#faf8f5"/>
+
+  <text x="60" y="34" font-size="16" font-weight="700" fill="#1e3a2b">The constant does not transfer. The principle does.</text>
+  <text x="60" y="54" font-size="12" fill="#6b5d4f">Two different cosine scales. They cannot share an axis, which is the whole point. Internal, measured by us.</text>
+
+  <text x="60" y="94" font-size="12" font-weight="700" fill="#2d3c34">bge-base-en-v1.5</text>
+  <text x="60" y="110" font-size="10" fill="#8a7d68">what we measured first</text>
+  <line x1="240" y1="118" x2="820" y2="118" stroke="#2d3c34" stroke-width="1.2"/>
+  <g font-size="10" fill="#8a7d68">
+    <text x="240" y="134" text-anchor="middle">0.40</text>
+    <text x="356" y="134" text-anchor="middle">0.50</text>
+    <text x="472" y="134" text-anchor="middle">0.60</text>
+    <text x="588" y="134" text-anchor="middle">0.70</text>
+    <text x="704" y="134" text-anchor="middle">0.80</text>
+    <text x="820" y="134" text-anchor="middle">0.90</text>
+  </g>
+  <rect x="298" y="86" width="244" height="24" fill="#b8a080" opacity="0.55" rx="2"/>
+  <text x="304" y="102" font-size="10" fill="#6b5d4f">not answerable  0.45 to 0.66</text>
+  <rect x="588" y="86" width="220" height="24" fill="#2d5a4f" opacity="0.55" rx="2"/>
+  <text x="594" y="102" font-size="10" fill="#1e3a2b">answerable  0.70 to 0.89</text>
+  <line x1="565" y1="78" x2="565" y2="122" stroke="#1e3a2b" stroke-width="1.5"/>
+  <text x="565" y="72" font-size="11" font-weight="700" fill="#1e3a2b" text-anchor="middle">cut 0.68</text>
+
+  <text x="60" y="206" font-size="12" font-weight="700" fill="#2d3c34">gemini-embedding-001 at 1536d</text>
+  <text x="60" y="222" font-size="10" fill="#8a7d68">what production actually uses</text>
+  <line x1="240" y1="230" x2="820" y2="230" stroke="#2d3c34" stroke-width="1.2"/>
+  <g font-size="10" fill="#8a7d68">
+    <text x="240" y="246" text-anchor="middle">0.40</text>
+    <text x="356" y="246" text-anchor="middle">0.50</text>
+    <text x="472" y="246" text-anchor="middle">0.60</text>
+    <text x="588" y="246" text-anchor="middle">0.70</text>
+    <text x="704" y="246" text-anchor="middle">0.80</text>
+    <text x="820" y="246" text-anchor="middle">0.90</text>
+  </g>
+  <line x1="460" y1="190" x2="460" y2="234" stroke="#1e3a2b" stroke-width="1.5"/>
+  <text x="460" y="184" font-size="11" font-weight="700" fill="#1e3a2b" text-anchor="middle">cut 0.59</text>
+  <rect x="404" y="198" width="113" height="24" fill="#2d5a4f" opacity="0.18" rx="2"/>
+  <text x="523" y="215" font-size="10" fill="#1e3a2b">margin 0.098, which is 2.7x wider</text>
+
+  <line x1="565" y1="190" x2="565" y2="234" stroke="#a04848" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="571" y="262" font-size="11" font-weight="700" fill="#a04848">0.68 lands here</text>
+  <text x="571" y="278" font-size="10" fill="#a04848">above the answerable floor, so it fails CLOSED on every turn</text>
+
+  <text x="60" y="318" font-size="11" fill="#6b5d4f">Both cuts hold 38 of 38 under leave-one-out on their own scale. Shipping the first one against the second would have</text>
+  <text x="60" y="334" font-size="11" fill="#6b5d4f">silently suppressed retrieval that was working. The margin is what a 100k-chunk index erodes first, so wider is what matters.</text>
+</svg>
