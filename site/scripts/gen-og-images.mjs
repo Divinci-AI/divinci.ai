@@ -85,6 +85,17 @@ const ROBOT_OVERRIDE = {
 // The page title stays SEO-complete; the card gets a version that survives an
 // unfurl thumbnail. Without this the WWW-RAG card read "…From One MacBook
 // to…", cutting the one word the headline turns on.
+/*
+ * Hand-made cards, copied instead of composed. This script wipes and rebuilds
+ * every card on each run, so a card placed straight into static/images/og/
+ * would be silently replaced by the generic robot plate next time. Sources
+ * live in og-assets/bespoke/ and are produced by gen-trustbench-og.mjs.
+ */
+const BESPOKE = {
+  trustbench: "trustbench.jpg",
+  "blog/what-a-benchmark-has-to-prove-about-itself": "what-a-benchmark-has-to-prove-about-itself.jpg",
+};
+
 const TITLE_OVERRIDE = {
   index: "Excellence, every time",
   "blog/www-rag-making-the-open-web-chattable":
@@ -371,6 +382,16 @@ async function robotScene(robot) {
 }
 
 async function compose(page) {
+  if (BESPOKE[page.slug]) {
+    const src = join(HERE, "og-assets", "bespoke", BESPOKE[page.slug]);
+    // Fail loudly: falling back to the generic card would ship the wrong
+    // unfurl while the run reports success.
+    if (!existsSync(src)) throw new Error(`bespoke card missing: ${src} (run gen-trustbench-og.mjs)`);
+    const dest = join(OUT, `${page.slug}.jpg`);
+    await mkdir(dirname(dest), { recursive: true });
+    await writeFile(dest, await readFile(src));
+    return "bespoke";
+  }
   let scene;
   let kind;
   if (page.hero) {
@@ -482,10 +503,12 @@ await clearPreviousPngs(OUT);
 
 let heroes = 0;
 let robots = 0;
+let bespoke = 0;
 const withFigures = pages.filter((p) => p.figures).map((p) => p.slug);
 for (const page of pages) {
   const kind = await compose(page);
   if (kind === "hero") heroes += 1;
+  else if (kind === "bespoke") bespoke += 1;
   else robots += 1;
 }
 
@@ -498,7 +521,7 @@ if (existsSync(blogCard)) {
 }
 
 console.log(
-  `gen-og-images: wrote ${pages.length} card(s) (${heroes} hero, ${robots} robot) → static/images/og/`,
+  `gen-og-images: wrote ${pages.length} card(s) (${heroes} hero, ${robots} robot, ${bespoke} bespoke) → static/images/og/`,
 );
 // Say it out loud. A figures strip that silently stopped being drawn — a
 // renamed slug, an unreadable figures.json — looks exactly like a card that
