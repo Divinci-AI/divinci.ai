@@ -25,6 +25,11 @@ Almost no published RAG benchmark carries that row. It costs one extra run and i
 Both boards are live on the [public TrustBench leaderboards](https://chat.divinci.app/trust/leaderboard), alongside four others. Every row there carries a link to the signed manifest that contains it, and the id of the key that signed it.
 
 <figure class="blog-chart">
+  <img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/trustbench-leaderboards.webp" alt="Screenshot of the public TrustBench leaderboards page. A header explains that every score comes from a run whose log is Ed25519-signed and publicly verifiable with the trustbench-verifier package. Filter chips list six boards: Red Team Core, System-Prompt Extraction, RAG Grounding, Annex IV erasure, Divinci SDK Docs Retrieval QA and Dr. Fuhrman Nutrition Corpus Retrieval QA. Below, the Red Team Core board ranks models by attack success rate, each row carrying a signed manifest link and the signing key id tbp-prod-002." loading="lazy">
+  <figcaption>The public board. The rightmost column is the part that matters: every row hands you the manifest that contains its score and names the key that signed it, so the number and the evidence for it never travel separately.</figcaption>
+</figure>
+
+<figure class="blog-chart">
   <img src="/images/charts/chart-retrieval-vs-baseline.svg" alt="Horizontal bar chart of seven retrieval rows across two boards with the model held fixed. Dr. Fuhrman Nutrition Corpus: Vertex AI Vector Search v2 0.920, Qdrant 0.884, Vectorize 0.836, Divinci PageIndex 0.384. Divinci SDK Docs: Vertex 0.755, Qdrant 0.732, and a no-retrieval control at 0.078 in amber, annotated as the row that makes the others interpretable." loading="lazy">
   <figcaption>Two TrustBench boards, read on 2026-09-21. Each row is the median of three signed runs. The answering model, the judge, the question set and the scoring rubric are held fixed, so rows differ only in the retrieval stack — and the amber control says what the model can do without any of them.</figcaption>
 </figure>
