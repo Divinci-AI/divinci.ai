@@ -22,6 +22,8 @@ It is not the best score. It is the worst one, and it is the only row that makes
 
 Almost no published RAG benchmark carries that row. It costs one extra run and it is the difference between a number and a measurement.
 
+Both boards are live on the [public TrustBench leaderboards](https://chat.divinci.app/trust/leaderboard), alongside four others. Every row there carries a link to the signed manifest that contains it, and the id of the key that signed it.
+
 <figure class="blog-chart">
   <img src="/images/charts/chart-retrieval-vs-baseline.svg" alt="Horizontal bar chart of seven retrieval rows across two boards with the model held fixed. Dr. Fuhrman Nutrition Corpus: Vertex AI Vector Search v2 0.920, Qdrant 0.884, Vectorize 0.836, Divinci PageIndex 0.384. Divinci SDK Docs: Vertex 0.755, Qdrant 0.732, and a no-retrieval control at 0.078 in amber, annotated as the row that makes the others interpretable." loading="lazy">
   <figcaption>Two TrustBench boards, read on 2026-09-21. Each row is the median of three signed runs. The answering model, the judge, the question set and the scoring rubric are held fixed, so rows differ only in the retrieval stack — and the amber control says what the model can do without any of them.</figcaption>
@@ -157,7 +159,7 @@ The order is: harness attestation, so a score can say the sandbox was not gamed.
 
 Attestation says *this score is real*. It does not say *this model is safe*. Keeping those two apart is most of the work, and conflating them is how this entire category fails.
 
-If you want to check any of it: the boards are public, the verifier is on npm, and every row links to a manifest you can verify without asking us anything.
+If you want to check any of it, nothing here requires an account. The [leaderboards](https://chat.divinci.app/trust/leaderboard) are public, the [verifier](https://www.npmjs.com/package/@divinci-ai/trustbench-verifier) is on npm, and every row links to the manifest that contains its score. Fetch the manifest and its outputs, run `verify()`, and read the warnings — including ours.
 
 ---
 
