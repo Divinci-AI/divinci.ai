@@ -1,36 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 175" width="200" height="175" fill="currentColor" role="img" aria-labelledby="trustbench-t trustbench-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" fill="currentColor" role="img" aria-labelledby="trustbench-t trustbench-d">
   <title id="trustbench-t">Divinci TrustBench</title>
-  <desc id="trustbench-d">The Divinci robot, its heart bearing a verification check.</desc>
+  <desc id="trustbench-d">A heart-shaped crest bearing a verification check.</desc>
   <!--
-    INLINE THIS FILE. `currentColor` inherits from the surrounding text only
-    when the SVG is part of the host document; through <img> or
-    background-image it is its own document and inherits nothing. That is why
-    the mark first rendered dark-on-dark on the contact sheet's midnight strip.
-
-    `svg:root` matches only when this IS the root element, so the rule below
-    sets a sane standalone default and is inert once inlined.
-
-    A `prefers-color-scheme` branch was tried here and REMOVED. It made a file
-    opened on a dark-mode machine render light — including inside an <img> on a
-    CREAM page, where it vanished. A mark whose colour depends on the viewer's
-    OS rather than on the surface it sits on is not more theme-aware, it is
-    less predictable. Inline it and set `color` on the container.
+    INLINE THIS FILE. currentColor inherits only when the SVG is part of the
+    host document; through <img> it is its own document and inherits nothing.
+    `svg:root` matches only when this IS the root element, so the default below
+    is inert once inlined.
   -->
   <style>svg:root { color: #1e3a2b; }</style>
-  <g id="head">
-    <path d="M70,40 h60 v30 q0,10 -10,10 h-40 q-10,0 -10,-10 z"/>
-    <g id="antennas">
-      <circle cx="85" cy="25" r="7"/><rect x="83" y="25" width="4" height="15"/>
-      <circle cx="115" cy="25" r="7"/><rect x="113" y="25" width="4" height="15"/>
-    </g>
-    <circle cx="85" cy="60" r="6" fill="var(--tb-mark-eye, #0a192f)"/>
-    <circle cx="115" cy="60" r="6" fill="var(--tb-mark-eye, #0a192f)"/>
-  </g>
-  <g id="arms">
-    <rect x="55" y="100" width="10" height="30"/><circle cx="60" cy="140" r="5"/>
-    <path d="M55,130 h10 v15 q0,5 -5,5 q-5,0 -5,-5 z"/>
-    <rect x="135" y="100" width="10" height="30"/><circle cx="140" cy="140" r="5"/>
-    <path d="M135,130 h10 v15 q0,5 -5,5 q-5,0 -5,-5 z"/>
-  </g>
-  <path id="crest" fill-rule="evenodd" d="M100,115 c-12,-12 -25,-8 -25,7 c0,12 12,20 25,30 c13,-10 25,-18 25,-30 c0,-15 -13,-19 -25,-7 z M90,127 l7,7 l13,-14 l5,5 l-18,19 l-12,-12 z"/>
+  <defs>
+    <!--
+      A MASK, not fill-rule="evenodd".
+
+      With evenodd, a symbol that strays outside the plate is not subtracted —
+      it is DRAWN, welded to the silhouette as a spur. Two revs were spent
+      hand-checking cut extents against plate half-widths and both shipped
+      overflow anyway, because the check is arithmetic done by eye on a curve.
+
+      A mask cannot do that. The plate is the white region; the symbol is black;
+      anything outside the plate is simply not painted, whatever the symbol's
+      geometry says. Overflow stops being a thing to verify and becomes a thing
+      that cannot happen.
+    -->
+    <!--
+      No explicit mask region. An explicit `maskUnits="userSpaceOnUse"
+      x/y/width/height` in viewBox units renders correctly at the SVG's natural
+      size and CLIPS when the element is scaled down — at 44px only the
+      top-left ~36% of the plate survived, which looked like a broken path
+      rather than a broken mask. The default region (objectBoundingBox,
+      -10%..120%) covers the object at any size and needs no arithmetic.
+    -->
+    <mask id="trustbench-m">
+      <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" fill="#fff"/>
+      <path d="M40,52 l12,12 l24,-26 l9,9 l-33,35 l-21,-21 z" fill="#000"/>
+    </mask>
+  </defs>
+
+  <path d="M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z" mask="url(#trustbench-m)"/>
+  <!-- engraved contour: what makes it read as a struck emblem, not a glyph -->
+  <path d="M60,92 C28,68 24,47 24,40 C24,27 34,21 43,21 C51,21 57,26 60,32 C63,26 69,21 77,21 C86,21 96,27 96,40 C96,47 92,68 60,92 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
 </svg>

@@ -25,14 +25,14 @@
 <style>
   .tb-wrap { max-width: 1080px; margin: 0 auto; padding: 48px 24px 96px; }
   .tb-hero { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 40px; }
-  .tb-hero svg { width: 92px; height: 80px; flex: none; color: var(--color-text-primary, #1e3a2b); }
+  .tb-hero svg { width: 86px; height: 86px; flex: none; color: var(--color-text-primary, #1e3a2b); }
   .tb-hero h1 { margin: 0 0 12px; font-size: clamp(30px, 4vw, 44px); line-height: 1.08; letter-spacing: -.02em; }
   .tb-lede { font-size: 17px; line-height: 1.65; color: var(--color-text-secondary, #4a3a2a); max-width: 60ch; margin: 0; }
   .tb-lede code { background: var(--color-bg-accent, #e8ddc7); padding: 2px 6px; border-radius: 4px; font-size: .88em; }
 
   .tb-board { border: 1px solid var(--color-bg-accent, #e8ddc7); border-radius: 12px; padding: 26px 28px; margin: 22px 0; background: var(--color-surface-light, #fff); }
   .tb-board-head { display: flex; gap: 14px; align-items: center; margin-bottom: 8px; }
-  .tb-board-head svg { width: 34px; height: 30px; flex: none; color: var(--color-text-primary, #1e3a2b); }
+  .tb-board-head svg { width: 32px; height: 32px; flex: none; color: var(--color-text-primary, #1e3a2b); }
   .tb-board-head h2 { margin: 0; font-size: 19px; }
   .tb-dir { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--color-bg-accent, #e8ddc7); color: var(--color-text-secondary, #6b5d4f); }
   .tb-desc { font-size: 13.5px; line-height: 1.6; color: var(--color-text-secondary, #6b5d4f); margin: 0 0 18px; }
@@ -44,10 +44,21 @@
   .tb-model { font-weight: 600; }
   .tb-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: var(--color-text-secondary, #6b5d4f); }
   .tb-pill { display: inline-block; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--color-bg-accent, #e8ddc7); font-size: 12px; }
-  .tb-score { font-size: 17px; font-weight: 650; font-variant-numeric: tabular-nums; }
-  .tb-bar { margin-top: 6px; height: 5px; border-radius: 999px; background: var(--color-bg-accent, #e8ddc7); overflow: hidden; max-width: 190px; }
-  .tb-bar i { display: block; height: 100%; border-radius: 999px; }
+  .tb-score { font-size: 19px; font-weight: 650; font-variant-numeric: tabular-nums; }
   .tb-meta { font-size: 11px; color: var(--color-text-secondary, #6b5d4f); margin-top: 5px; }
+
+  /* The ROW is the bar. A 5px rule beside the number said the same thing twice
+     and made the score column busy; the row background says it once, at the
+     width of the whole table, and the number is left to be a number. The fill
+     is a tint rather than the score colour at full strength — this sits UNDER
+     body text, so it has to stay a background. */
+  .tb-table tbody tr { background-repeat: no-repeat; }
+  /* The slot is reserved whether or not a mark exists, so model names align
+     down the column. zai-org has no CC0 mark, and without this its row sat
+     17px left of every other one. */
+  .tb-logo { width: 17px; height: 17px; flex: none; opacity: .8; object-fit: contain; }
+  .tb-logo-gap { width: 17px; flex: none; }
+  .tb-model-line { display: flex; align-items: center; gap: 8px; }
   .tb-verify { white-space: nowrap; }
 
   .tb-note { font-size: 12.5px; line-height: 1.6; color: var(--color-text-secondary, #6b5d4f); margin-top: 16px; padding-top: 14px; border-top: 1px solid color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 55%, transparent); }
@@ -107,6 +118,32 @@
     return 'trustbench';
   }
 
+  /*
+   * Publisher mark for a model id. Keyed on the PUBLISHER segment, not the
+   * model name, so a new model from a known publisher needs no change here.
+   *
+   * A publisher with no mark returns null and the row renders the name alone —
+   * the documented degrade in static/brand/vendors/README.md, chosen over a
+   * broken-image slot. `@cf/zai-org/*` (GLM) is that case today: it is the one
+   * publisher on these boards with no CC0 mark available.
+   *
+   * Every file here is either already in the repo or from Simple Icons
+   * (CC0-1.0), which is what the vendor README already names as the source.
+   */
+  var PUBLISHER_MARKS = {
+    'deepseek-ai': 'deepseek', 'google': 'gemma', 'meta': 'meta',
+    'mistralai': 'mistralai', 'moonshotai': 'kimi', 'nvidia': 'nvidia',
+    'openai': 'openai', 'qwen': 'qwen'
+  };
+  function logoFor(modelId) {
+    if (!modelId) return null;
+    var name = null;
+    var m = /^@cf\/([^/]+)\//.exec(modelId);
+    if (m) name = PUBLISHER_MARKS[m[1]] || null;
+    else if (/^gemini/.test(modelId)) name = 'google';
+    return name ? '/brand/companies/' + name + '.svg' : null;
+  }
+
   function esc(v) {
     return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -144,9 +181,18 @@
       var spread = r.scoreRange && r.scoreRange.max > r.scoreRange.min
         ? ' · ' + fmt(b, r.scoreRange.min) + '–' + fmt(b, r.scoreRange.max) : '';
       var meta = r.runsInWindow > 1 ? 'median of ' + r.runsInWindow + spread : '';
-      return '<tr>' +
+      // The row's own background is the bar. Stops hard at the score so the
+      // edge is readable as a value, rather than fading and reading as decor.
+      var pct = (g * 100).toFixed(2);
+      var fill = 'linear-gradient(90deg, color-mix(in srgb, ' + c + ' 9%, transparent) 0 ' +
+                 pct + '%, transparent ' + pct + '%)';
+      var logo = logoFor(r.modelId);
+      return '<tr style="background-image:' + fill + '">' +
         '<td class="tb-rank">' + esc(r.rank) + '</td>' +
-        '<td><div class="tb-model">' + esc(r.displayName) + '</div>' +
+        '<td><div class="tb-model-line">' +
+            (logo ? '<img class="tb-logo" src="' + logo + '" alt="" loading="lazy">'
+                  : '<span class="tb-logo-gap" aria-hidden="true"></span>') +
+            '<span class="tb-model">' + esc(r.displayName) + '</span></div>' +
           '<div class="tb-mono">' + esc(r.modelId) + '</div></td>' +
         (stacked
           ? '<td>' + (r.retrievalStackId
@@ -155,7 +201,6 @@
               : '<span class="tb-mono">no retrieval</span>') + '</td>'
           : '') +
         '<td><div class="tb-score" style="color:' + c + '">' + fmt(b, r.score) + '</div>' +
-          '<div class="tb-bar"><i style="width:' + (g * 100).toFixed(1) + '%;background:' + c + '"></i></div>' +
           (meta ? '<div class="tb-meta">' + esc(meta) + '</div>' : '') + '</td>' +
         '<td class="tb-verify"><a href="https://chat.divinci.app/trust/runs/' + encodeURIComponent(r.runId) + '">signed manifest →</a>' +
           (r.signerKeyId ? '<div class="tb-mono">' + esc(r.signerKeyId) + '</div>' : '') + '</td>' +
@@ -168,8 +213,11 @@
         '<span class="tb-dir">' + (b.higherIsBetter ? 'higher is better' : 'lower is better') + '</span></div>' +
       (b.description ? '<p class="tb-desc">' + esc(b.description) + '</p>' : '') +
       '<table class="tb-table"><thead>' + head + '</thead><tbody>' + body + '</tbody></table>' +
+      // Curly apostrophes, not escaped straight ones. A \' inside this string
+      // survives Tera and the HTML minifier as a LITERAL backslash and renders
+      // as "configuration’s" on the page — caught on staging, not in review.
       '<p class="tb-note">Each row is one configuration — a model and the retrieval stack it answered through. ' +
-      'The score is the median of that configuration\'s most recent qualifying runs and is always a real run\'s score.</p>' +
+      'The score is the median of that configuration’s most recent qualifying runs and is always a real run’s score.</p>' +
       '</section>';
   }
 

@@ -1,8 +1,15 @@
 # TrustBench marks
 
-The Divinci robot already carries a heart. TrustBench is what happens when that
-heart has to prove something — so the family is **one robot with a swappable
-crest**, never a different robot.
+Six emblems, one construction. Rev 2 dropped the robot: it made every mark
+~70% chrome, so the thing that distinguishes a board — the check, the shield,
+the keyhole — was a detail rather than the subject. Each crest now fills its
+own frame and stands alone as a logo.
+
+What holds the family together is the construction, identical in all six:
+
+1. a crest plate (heart, or the heraldic waist for the security marks)
+2. an engraved inner contour, offset inside the edge
+3. one symbol, masked out of the plate so the mark is a single colour
 
 | file | crest | used for |
 |---|---|---|
@@ -33,6 +40,26 @@ Inline the file and set `color` on the container:
 A `prefers-color-scheme` branch was tried and removed: it made the mark follow
 the viewer's OS rather than the surface it sits on, which vanished inside an
 `<img>` on a cream page. Predictable beats clever.
+
+## ⚠️ Masks, not `fill-rule="evenodd"`
+
+With `evenodd`, a symbol straying outside the plate is not subtracted — it is
+**drawn**, welded on as a spur. Two revs were spent hand-checking cut extents
+against the plate's half-widths and both shipped overflow anyway, because that
+check is arithmetic done by eye on a bezier.
+
+A mask cannot do it: the plate is the white region, the symbol is black, and
+anything outside the plate is simply never painted. Overflow stopped being
+something to verify and became something that cannot happen.
+
+Do **not** give the mask an explicit `maskUnits="userSpaceOnUse"` region in
+viewBox units. It renders correctly at natural size and CLIPS when scaled — at
+44px only the top-left third of the plate survived, which looks like a broken
+path rather than a broken mask. The default region covers the object at any
+size.
+
+Mask ids are global. Inlining the same mark twice on one page needs the ids
+uniquified, or every copy resolves to the first mask.
 
 ## Checking a change
 

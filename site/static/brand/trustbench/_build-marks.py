@@ -1,120 +1,135 @@
 #!/usr/bin/env python3
 """
-Generate the TrustBench mark family from ONE robot body.
+The TrustBench crest family — six emblems, one construction.
 
-The Divinci robot already carries a heart. TrustBench is what happens when that
-heart has to prove something, so the family is the same robot with the heart
-swapped for a crest — one crest per kind of benchmark, never a different robot.
+Rev 2 drops the robot. The robot made every mark 70% chrome and 30% signal, so
+the thing that distinguishes a board — the check, the shield, the keyhole — was
+a detail rather than the subject. Each crest now fills its own frame and is
+built to stand alone as a logo.
 
-Everything is `currentColor`, so a mark inherits whatever the surrounding text
-is. That is the whole reason these are hand-built rather than exported: the
-existing divinci_logo.svg is a 13 KB traced path with a baked #10152b
-background, which cannot sit on cream and on midnight without two copies — the
-exact defect the leaderboard hero was just fixed for.
+What keeps the family together is not the robot but the CONSTRUCTION, which is
+identical in all six:
+
+  1. a crest silhouette (heart, or the heraldic waist for the security marks)
+  2. an engraved inner contour, offset inside the edge
+  3. one symbol, cut straight out of the plate so the mark is a single colour
+
+Everything is `currentColor`. See README for why that means INLINE ME.
 
 Run:  python3 _build-marks.py
 """
 
-ROBOT = '''  <g id="head">
-    <path d="M70,40 h60 v30 q0,10 -10,10 h-40 q-10,0 -10,-10 z"/>
-    <g id="antennas">
-      <circle cx="85" cy="25" r="7"/><rect x="83" y="25" width="4" height="15"/>
-      <circle cx="115" cy="25" r="7"/><rect x="113" y="25" width="4" height="15"/>
-    </g>
-    <circle cx="85" cy="60" r="6" fill="var(--tb-mark-eye, #0a192f)"/>
-    <circle cx="115" cy="60" r="6" fill="var(--tb-mark-eye, #0a192f)"/>
-  </g>
-  <g id="arms">
-    <rect x="55" y="100" width="10" height="30"/><circle cx="60" cy="140" r="5"/>
-    <path d="M55,130 h10 v15 q0,5 -5,5 q-5,0 -5,-5 z"/>
-    <rect x="135" y="100" width="10" height="30"/><circle cx="140" cy="140" r="5"/>
-    <path d="M135,130 h10 v15 q0,5 -5,5 q-5,0 -5,-5 z"/>
-  </g>'''
+# ── The two plates ────────────────────────────────────────────────────────
+# Written as explicit cubics rather than scaled from the robot's heart: the
+# first rev scaled it and the bounds were wrong, so every symbol ran off the
+# bottom of the plate. With fill-rule="evenodd" a cut OUTSIDE the plate is not
+# a cut at all — it is drawn — so the overflow appeared as spurs welded to the
+# silhouette. Geometry first, symbols sized to fit inside it.
+#
+#   HEART   x 14..106   y 14..102, tip at (60,102)
+#   SHIELD  x 14..106   y  8..106, tip at (60,106)
+#
+# Half-widths narrow fast below y=70, which is the constraint every cut below
+# is checked against.
+HEART = ("M60,102 C20,72 14,46 14,38 C14,22 26,14 38,14 C48,14 56,20 60,28 "
+         "C64,20 72,14 82,14 C94,14 106,22 106,38 C106,46 100,72 60,102 Z")
+HEART_IN = ("M60,92 C28,68 24,47 24,40 C24,27 34,21 43,21 C51,21 57,26 60,32 "
+            "C63,26 69,21 77,21 C86,21 96,27 96,40 C96,47 92,68 60,92 Z")
 
-# The original heart, kept verbatim so the family is recognisably the same robot.
-HEART = "M100,115 c-12,-12 -25,-8 -25,7 c0,12 12,20 25,30 c13,-10 25,-18 25,-30 c0,-15 -13,-19 -25,-7 z"
-
-# A heart with a heraldic waist: the top keeps the heart's cleft and shoulders,
-# the sides straighten, the bottom comes to a shield's point. Read as a heart
-# at 24px and as a shield at 200px, which is what "protected" should look like.
-SHIELD_HEART = ("M100,113 c-9,-11 -25,-7 -25,7 v13 c0,14 11,23 25,31 "
-                "c14,-8 25,-17 25,-31 v-13 c0,-14 -16,-18 -25,-7 z")
+SHIELD = ("M60,14 C46,4 14,10 14,34 V58 C14,82 34,92 60,106 "
+          "C86,92 106,82 106,58 V34 C106,10 74,4 60,14 Z")
+SHIELD_IN = ("M60,24 C49,16 24,21 24,39 V57 C24,76 40,84 60,95 "
+             "C80,84 96,76 96,57 V39 C96,21 71,16 60,24 Z")
 
 MARKS = {
-  "trustbench": {
-    "title": "Divinci TrustBench",
-    "desc": "The Divinci robot, its heart bearing a verification check.",
-    "outer": HEART,
-    # Subtracted with evenodd, so the check is the background showing through
-    # and the mark stays a single colour at any size.
-    "cut": "M90,127 l7,7 l13,-14 l5,5 l-18,19 l-12,-12 z",
-  },
-  "redteam": {
-    "title": "Divinci TrustBench — Red Team",
-    "desc": "The robot's heart drawn as a shield: adversarial robustness.",
-    "outer": SHIELD_HEART,
-    "cut": "M100,122 l16,7 v11 c0,9 -7,15 -16,19 c-9,-4 -16,-10 -16,-19 v-11 z",
-  },
-  "extraction": {
-    "title": "Divinci TrustBench — System-Prompt Extraction",
-    "desc": "The robot's heart as a shield with a keyhole: what must stay secret.",
-    "outer": SHIELD_HEART,
-    "cut": "M100,126 a7,7 0 0 1 4,12.6 L106,152 h-12 l2,-13.4 A7,7 0 0 1 100,126 z",
-  },
-  "grounding": {
-    "title": "Divinci TrustBench — RAG Grounding",
-    "desc": "The robot's heart bearing an anchor: answers held to their passages.",
-    "outer": HEART,
-    # Three passage bars, not an anchor. The anchor was unreadable below 96px
-    # and the bars say the same thing better: an answer held to its passages.
-    "cut": ("M89,121 h22 v5 h-22 z M89,130 h22 v5 h-22 z M93,139 h14 v5 h-14 z"),
-  },
-  "retrieval": {
-    "title": "Divinci TrustBench — Retrieval QA",
-    "desc": "The robot's heart bearing a lens: which stack found the passage.",
-    "outer": HEART,
-    "cut": ("M98,121 a9,9 0 1 1 0,18 a9,9 0 1 1 0,-18 z "
-            "M98,126.5 a3.5,3.5 0 1 0 0,7 a3.5,3.5 0 1 0 0,-7 z "
-            "M104,135 l8,8 l-3.5,3.5 l-8,-8 z"),
-  },
-  "erasure": {
-    "title": "Divinci TrustBench — Corpus Integrity",
-    "desc": "The robot's heart as a struck seal: what the corpus no longer says.",
-    "outer": HEART,
-    # A seal ring with a strike through it: the corpus was sealed, and this
-    # part of it no longer says what it said.
-    "cut": ("M100,121 a10,10 0 1 1 0,20 a10,10 0 1 1 0,-20 z "
-            "M100,126 a5,5 0 1 0 0,10 a5,5 0 1 0 0,-10 z "
-            "M91,140 l18,-18 l3.5,3.5 l-18,18 z"),
-  },
+  "trustbench": dict(
+    title="Divinci TrustBench",
+    desc="A heart-shaped crest bearing a verification check.",
+    plate=HEART, inner=HEART_IN,
+    cut="M40,52 l12,12 l24,-26 l9,9 l-33,35 l-21,-21 z"),
+
+  "redteam": dict(
+    title="Divinci TrustBench — Red Team",
+    desc="A shield-shaped crest bearing a smaller shield: adversarial robustness.",
+    plate=SHIELD, inner=SHIELD_IN,
+    cut="M60,38 l24,10 v18 c0,14 -11,24 -24,30 c-13,-6 -24,-16 -24,-30 v-18 z"),
+
+  "extraction": dict(
+    title="Divinci TrustBench — System-Prompt Extraction",
+    desc="A shield-shaped crest bearing a keyhole: what must stay secret.",
+    plate=SHIELD, inner=SHIELD_IN,
+    cut="M60,39 a13,13 0 0 1 7,24 L70,86 h-20 l3,-23 A13,13 0 0 1 60,39 z"),
+
+  "grounding": dict(
+    title="Divinci TrustBench — RAG Grounding",
+    desc="A heart-shaped crest bearing three passage bars: answers held to their sources.",
+    plate=HEART, inner=HEART_IN,
+    # The third bar is short because the heart has narrowed to ~x44..76 by y=80.
+    cut="M30,34 h60 v10 h-60 z M30,52 h60 v10 h-60 z M48,70 h24 v10 h-24 z"),
+
+  "retrieval": dict(
+    title="Divinci TrustBench — Retrieval QA",
+    desc="A heart-shaped crest bearing a lens: which stack found the passage.",
+    plate=HEART, inner=HEART_IN,
+    cut=("M54,31 a19,19 0 1 1 0,38 a19,19 0 1 1 0,-38 z "
+         "M54,42 a8,8 0 1 0 0,16 a8,8 0 1 0 0,-16 z "
+         "M66,62 l11,11 l-6,6 l-11,-11 z")),
+
+  "erasure": dict(
+    title="Divinci TrustBench — Corpus Integrity",
+    desc="A heart-shaped crest bearing a struck seal: what the corpus no longer says.",
+    plate=HEART, inner=HEART_IN,
+    cut=("M60,29 a21,21 0 1 1 0,42 a21,21 0 1 1 0,-42 z "
+         "M60,40 a10,10 0 1 0 0,20 a10,10 0 1 0 0,-20 z "
+         "M42,72 l36,-36 l8,8 l-36,36 z")),
 }
 
-TEMPLATE = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 175" width="200" height="175" fill="currentColor" role="img" aria-labelledby="{slug}-t {slug}-d">
+TEMPLATE = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" fill="currentColor" role="img" aria-labelledby="{slug}-t {slug}-d">
   <title id="{slug}-t">{title}</title>
   <desc id="{slug}-d">{desc}</desc>
   <!--
-    INLINE THIS FILE. `currentColor` inherits from the surrounding text only
-    when the SVG is part of the host document; through <img> or
-    background-image it is its own document and inherits nothing. That is why
-    the mark first rendered dark-on-dark on the contact sheet's midnight strip.
-
-    `svg:root` matches only when this IS the root element, so the rule below
-    sets a sane standalone default and is inert once inlined.
-
-    A `prefers-color-scheme` branch was tried here and REMOVED. It made a file
-    opened on a dark-mode machine render light — including inside an <img> on a
-    CREAM page, where it vanished. A mark whose colour depends on the viewer's
-    OS rather than on the surface it sits on is not more theme-aware, it is
-    less predictable. Inline it and set `color` on the container.
+    INLINE THIS FILE. currentColor inherits only when the SVG is part of the
+    host document; through <img> it is its own document and inherits nothing.
+    `svg:root` matches only when this IS the root element, so the default below
+    is inert once inlined.
   -->
   <style>svg:root {{ color: #1e3a2b; }}</style>
-{robot}
-  <path id="crest" fill-rule="evenodd" d="{outer} {cut}"/>
+  <defs>
+    <!--
+      A MASK, not fill-rule="evenodd".
+
+      With evenodd, a symbol that strays outside the plate is not subtracted —
+      it is DRAWN, welded to the silhouette as a spur. Two revs were spent
+      hand-checking cut extents against plate half-widths and both shipped
+      overflow anyway, because the check is arithmetic done by eye on a curve.
+
+      A mask cannot do that. The plate is the white region; the symbol is black;
+      anything outside the plate is simply not painted, whatever the symbol's
+      geometry says. Overflow stops being a thing to verify and becomes a thing
+      that cannot happen.
+    -->
+    <!--
+      No explicit mask region. An explicit `maskUnits="userSpaceOnUse"
+      x/y/width/height` in viewBox units renders correctly at the SVG's natural
+      size and CLIPS when the element is scaled down — at 44px only the
+      top-left ~36% of the plate survived, which looked like a broken path
+      rather than a broken mask. The default region (objectBoundingBox,
+      -10%..120%) covers the object at any size and needs no arithmetic.
+    -->
+    <mask id="{slug}-m">
+      <path d="{plate}" fill="#fff"/>
+      <path d="{cut}" fill="#000"/>
+    </mask>
+  </defs>
+
+  <path d="{plate}" mask="url(#{slug}-m)"/>
+  <!-- engraved contour: what makes it read as a struck emblem, not a glyph -->
+  <path d="{inner}" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.42"/>
 </svg>
 '''
 
 for slug, m in MARKS.items():
-    name = f"trustbench-mark-{slug}.svg" if slug != "trustbench" else "trustbench-mark.svg"
+    name = "trustbench-mark.svg" if slug == "trustbench" else f"trustbench-mark-{slug}.svg"
     with open(name, "w") as fh:
-        fh.write(TEMPLATE.format(slug=slug, robot=ROBOT, **m))
+        fh.write(TEMPLATE.format(slug=slug, **m))
     print("wrote", name)
