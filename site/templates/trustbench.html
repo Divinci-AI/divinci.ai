@@ -41,7 +41,7 @@
   .tb-table th { text-align: left; font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--color-text-secondary, #6b5d4f); padding: 0 10px 8px 0; font-weight: 700; border-bottom: 1px solid var(--color-bg-accent, #e8ddc7); }
   .tb-table td { padding: 12px 10px 12px 0; border-bottom: 1px solid color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 55%, transparent); vertical-align: top; }
   .tb-rank { width: 30px; color: var(--color-text-secondary, #6b5d4f); font-variant-numeric: tabular-nums; }
-  .tb-model { font-weight: 600; }
+  .tb-model { font-weight: 600; hyphens: manual; }
   .tb-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: var(--color-text-secondary, #6b5d4f); }
   .tb-pill { display: inline-block; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--color-bg-accent, #e8ddc7); font-size: 12px; }
   .tb-score { font-size: 19px; font-weight: 650; font-variant-numeric: tabular-nums; }
@@ -66,10 +66,53 @@
   .tb-limits { margin-top: 44px; padding: 24px 28px; border-radius: 12px; background: var(--color-bg-accent, #e8ddc7); }
   .tb-limits h2 { margin: 0 0 10px; font-size: 17px; }
   .tb-limits li { margin-bottom: 8px; line-height: 1.6; font-size: 14px; }
-  @media (max-width: 720px) {
-    .tb-hero { flex-direction: column; gap: 16px; }
-    .tb-board { padding: 20px 16px; }
-    .tb-table { font-size: 13px; }
+  /* The site hyphenates body copy, which broke model names as
+     "cloudflare-work-ers-ai" once they wrapped on a phone (.tb-model above).
+     Ids break anywhere instead — they have no readable word boundaries worth
+     protecting, and a mid-token hyphen in an id would be a lie about the id. */
+  .tb-mono { overflow-wrap: anywhere; hyphens: none; }
+
+  /*
+   * Below 640px the table REFLOWS INTO CARDS rather than shrinking.
+   *
+   * Measured on a 375px viewport before this existed: the table's right edge
+   * sat at 384px against a container ending at 375, so `.tb-verify` — the
+   * "signed manifest →" link, which is the entire point of this page — was
+   * clipped off-screen. The page did not scroll horizontally, so nothing
+   * announced it; the column was simply gone.
+   *
+   * Flex with explicit per-cell classes, not nth-child: the stack column only
+   * exists on the retrieval boards, so positional selectors would address a
+   * different cell depending on which board rendered.
+   */
+  @media (max-width: 640px) {
+    .tb-hero { flex-direction: column; gap: 14px; }
+    .tb-hero svg { width: 60px; height: 60px; }
+    .tb-board { padding: 20px 15px; }
+
+    .tb-board-head { flex-wrap: wrap; gap: 8px 12px; }
+    .tb-board-head h2 { font-size: 17px; line-height: 1.25; flex: 1 1 100%; order: 2; }
+    .tb-board-head svg { order: 1; }
+    .tb-dir { order: 1; }
+
+    .tb-table, .tb-table tbody { display: block; }
+    .tb-table thead { display: none; }
+
+    .tb-table tbody tr {
+      display: flex; flex-wrap: wrap; align-items: baseline;
+      gap: 3px 10px; padding: 14px 2px;
+      border-bottom: 1px solid color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 55%, transparent);
+    }
+    .tb-table tbody td { display: block; padding: 0; border: 0; }
+
+    .tb-c-rank   { order: 1; flex: 0 0 auto; }
+    .tb-c-model  { order: 2; flex: 1 1 60%; min-width: 0; }
+    .tb-c-stack  { order: 3; flex: 1 1 100%; margin-top: 4px; }
+    /* Score and verify share the last line, pushed apart — the two things a
+       reader is actually comparing, side by side instead of stacked. */
+    .tb-c-score  { order: 4; flex: 0 0 auto; margin-top: 8px; }
+    .tb-c-verify { order: 5; flex: 0 0 auto; margin-left: auto; margin-top: 8px; text-align: right; }
+    .tb-score { font-size: 21px; }
   }
 </style>
 
@@ -188,21 +231,21 @@
                  pct + '%, transparent ' + pct + '%)';
       var logo = logoFor(r.modelId);
       return '<tr style="background-image:' + fill + '">' +
-        '<td class="tb-rank">' + esc(r.rank) + '</td>' +
-        '<td><div class="tb-model-line">' +
+        '<td class="tb-rank tb-c-rank">' + esc(r.rank) + '</td>' +
+        '<td class="tb-c-model"><div class="tb-model-line">' +
             (logo ? '<img class="tb-logo" src="' + logo + '" alt="" loading="lazy">'
                   : '<span class="tb-logo-gap" aria-hidden="true"></span>') +
             '<span class="tb-model">' + esc(r.displayName) + '</span></div>' +
           '<div class="tb-mono">' + esc(r.modelId) + '</div></td>' +
         (stacked
-          ? '<td>' + (r.retrievalStackId
+          ? '<td class="tb-c-stack">' + (r.retrievalStackId
               ? '<span class="tb-pill">' + esc(r.retrievalStackLabel || r.retrievalStackId) + '</span>' +
                 '<div class="tb-mono">' + esc(r.retrievalStackId) + '</div>'
               : '<span class="tb-mono">no retrieval</span>') + '</td>'
           : '') +
-        '<td><div class="tb-score" style="color:' + c + '">' + fmt(b, r.score) + '</div>' +
+        '<td class="tb-c-score"><div class="tb-score" style="color:' + c + '">' + fmt(b, r.score) + '</div>' +
           (meta ? '<div class="tb-meta">' + esc(meta) + '</div>' : '') + '</td>' +
-        '<td class="tb-verify"><a href="https://chat.divinci.app/trust/runs/' + encodeURIComponent(r.runId) + '">signed manifest →</a>' +
+        '<td class="tb-verify tb-c-verify"><a href="https://chat.divinci.app/trust/runs/' + encodeURIComponent(r.runId) + '">signed manifest →</a>' +
           (r.signerKeyId ? '<div class="tb-mono">' + esc(r.signerKeyId) + '</div>' : '') + '</td>' +
         '</tr>';
     }).join('');
