@@ -11,7 +11,25 @@
   var EMBED = (IN_EMBED && window.TB_BOARDS_OPTS.embed) || null;
   // Inside someone else's page a same-tab link would navigate THEIR page away.
   var TARGET = IN_EMBED ? ' target="_blank" rel="noopener"' : '';
-  var byslug = {}, generatedAt = null;
+  var byslug = {}, generatedAt = null, usedAnchors = {};
+
+  /*
+   * Anchor id for a board, from its NAME rather than its slug. The slugs are
+   * content hashes (scored-qa-suite-93b9aff624e6-…), which make a link nobody
+   * can read or trust at a glance; the name gives
+   * #dr-fuhrman-nutrition-corpus-retrieval-qa-60. A link to the old slug still
+   * resolves — see scrollToHash — so a renamed board is the only thing that
+   * can break an anchor, and it falls back to the top of the page.
+   */
+  function anchorFor(b) {
+    var base = String(b.name || b.slug || 'board').toLowerCase()
+      .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'board';
+    var id = base, n = 2;
+    while (usedAnchors[id] && usedAnchors[id] !== b.slug) id = base + '-' + n++;
+    usedAnchors[id] = b.slug;
+    return id;
+  }
   // NO BACKSLASH ESCAPES IN STRING LITERALS in this file. Zola's minifier
   // rewrites strings as template literals and doubles every backslash, so '\n'
   // ships as a literal backslash-n: the Markdown and CSV copies came out as one
@@ -145,9 +163,13 @@
     }).join('');
 
     byslug[b.slug] = entry;
-    return '<section class="tb-board" data-slug="' + esc(b.slug) + '">' +
+    var anchor = anchorFor(b);
+    return '<section class="tb-board" id="' + anchor + '" data-slug="' + esc(b.slug) + '">' +
       '<div class="tb-board-head"><svg aria-hidden="true"><use href="#tb-' + markFor(b.slug || '', b.name || '') + '"/></svg>' +
-        '<h2>' + esc(b.name) + '</h2>' +
+        // In an embed the title links to the board on the full page (new tab);
+        // on the page it links to itself, so the address bar holds a shareable URL.
+        '<h2><a class="tb-anchor" href="' + (IN_EMBED ? PAGE : '') + '#' + anchor + '"' + TARGET + '>' + esc(b.name) +
+          '<span class="tb-hash" aria-hidden="true">#</span></a></h2>' +
         '<span class="tb-dir">' + (b.higherIsBetter ? 'higher is better' : 'lower is better') + '</span></div>' +
       (IN_EMBED ? '' : toolbar(b)) +
       (b.description ? '<p class="tb-desc">' + esc(b.description) + '</p>' : '') +
@@ -276,6 +298,22 @@
                         function () { flash(btn, 'Copy failed'); });
   });
 
+  /*
+   * The boards arrive after the page has loaded, so the browser's own jump to
+   * #fragment already happened — against an empty container. Redo it once the
+   * target exists. Accepts the readable id or a board's raw slug.
+   */
+  function scrollToHash() {
+    var h = decodeURIComponent((location.hash || '').slice(1));
+    if (!h || IN_EMBED) return;
+    var el = document.getElementById(h);
+    if (!el) {
+      var hit = [].slice.call(host.querySelectorAll('.tb-board')).filter(function (s) { return s.getAttribute('data-slug') === h; })[0];
+      if (hit) { el = hit; history.replaceState(null, '', '#' + hit.id); }
+    }
+    if (el) el.scrollIntoView();
+  }
+
   fetch(EMBED ? API + '/' + encodeURIComponent(EMBED) : API, { headers: { Accept: 'application/json' } })
     .then(function (res) { return res.text().then(function (t) {
       // Never bare .json(): an HTML error page would surface as a SyntaxError
@@ -292,6 +330,7 @@
       }
       generatedAt = r.data.generatedAt || null;
       host.innerHTML = boards.map(board).join('');
+      scrollToHash();
       if (r.data.generatedAt) {
         host.insertAdjacentHTML('beforeend',
           '<p class="tb-note" style="border:0">Board computed ' + esc(r.data.generatedAt) +

@@ -17,6 +17,15 @@
   .tb-board-head { display: flex; gap: 14px; align-items: center; margin-bottom: 8px; }
   .tb-board-head svg { width: 32px; height: 32px; flex: none; color: var(--color-text-primary, #1e3a2b); }
   .tb-board-head h2 { margin: 0; font-size: 19px; }
+  /* Clear the site's sticky header when jumped to by anchor. */
+  .tb-board { scroll-margin-top: 96px; }
+  .tb-anchor { color: inherit; text-decoration: none; }
+  .tb-anchor:hover, .tb-anchor:focus-visible { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  /* The # is a hint that the title is a link, shown only on hover/focus so it
+     never competes with the name at rest. */
+  .tb-hash { margin-left: 8px; color: var(--color-text-secondary, #6b5d4f); opacity: 0; transition: opacity .15s; }
+  .tb-anchor:hover .tb-hash, .tb-anchor:focus-visible .tb-hash, .tb-board:target .tb-hash { opacity: 1; }
+  @media (hover: none) { .tb-hash { opacity: .45; } }
   .tb-dir { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--color-bg-accent, #e8ddc7); color: var(--color-text-secondary, #6b5d4f); }
   .tb-desc { font-size: 13.5px; line-height: 1.6; color: var(--color-text-secondary, #6b5d4f); margin: 0 0 18px; }
 
