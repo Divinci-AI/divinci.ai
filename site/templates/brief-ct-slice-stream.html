@@ -82,23 +82,23 @@
   </div>
 
   <h1>Stopping a CT scan at the organ's edge: a benchmark you can plug a model into</h1>
-  <p class="br-lede">Today the X-ray beam stays on past the organ that was asked for, because nobody can read the images fast enough to stop it. We built a test rig for the alternative. It replays real CT scans one slice at a time, at scanner speed and at simulated doses down to 2%, and scores whether a model switches the beam off after the organ without cutting it short.</p>
+  <p class="br-lede">Today the X-ray beam stays on past the organ that was asked for, because nobody can read the images fast enough to stop it. We built a test rig for the alternative. It replays real CT scans one slice at a time, at simulated doses down to 2%. It scores whether a model switches the beam off after the organ without cutting it short, and whether the model keeps pace with the scanner.</p>
 
   <div class="br-note"><p><strong>What this is and isn't.</strong> An offline feasibility test on {{ v.scans_total }} public, de-identified research CTs. No scanner is involved, no private patient data is used, and nothing here is a clinical claim. The model in it is a deliberately simple baseline: its job is to prove the rig works and to set a number to beat, not to be the answer. The results are signed with a throwaway <em>demo</em> key, never a Divinci platform key.</p></div>
 
   <div class="br-tiles">
     <div class="br-tile"><div class="n">{{ v.complete }}</div><div class="l">scans fully covered by the baseline with a {{ v.primary_margin }} mm safety margin. {{ v.truncated }} were cut short, the worst by {{ v.worst_missed }} mm. <strong>Not safe yet</strong>, which is exactly what the benchmark exists to show.</div></div>
     <div class="br-tile"><div class="n">{{ v.tail }} mm</div><div class="l">average beam-on distance past the organ, against {{ v.conv_tail }} mm when the planned range runs to the end ({{ v.tail_cut }} less).</div></div>
-    <div class="br-tile"><div class="n">{{ v.margin_full }} mm</div><div class="l">margin the baseline needs before every scan is fully covered. That still leaves {{ v.tail_at_margin_full }} mm past the organ, {{ v.tail_cut_at_margin_full }} less than today.</div></div>
+    <div class="br-tile"><div class="n">{{ v.margin_full }} mm</div><div class="l">margin the baseline needs before every scan is fully covered. That still leaves {{ v.tail_at_margin_full }} mm past the organ, {{ v.tail_cut_at_margin_full }} less than running the planned range to the end.</div></div>
     <div class="br-tile"><div class="n">{{ v.lat_p99 }} ms</div><div class="l">99th-percentile model time per slice, against a budget of at least {{ v.budget_min }} ms when a full stack arrives in 3 seconds. The model is not the bottleneck.</div></div>
   </div>
 
   <h2>How the test works</h2>
   <ol class="br-steps">
     <li><strong>Real scans, labelled organs.</strong> {{ v.scans_total }} portal-venous abdominal CTs with expert spleen outlines, from the Medical Segmentation Decathlon. We use real images, not generated ones. Only the dose is simulated.</li>
-    <li><strong>A dose ladder.</strong> Every slice is re-projected into raw detector data. We add the photon noise a scan at 50%, 25%, 10%, 5% and 2% of the original dose would have carried, then reconstruct it. Noise grows as expected, roughly with 1/√dose.</li>
+    <li><strong>A dose ladder.</strong> Every slice is re-projected into simulated projection data (a sinogram). We add the photon noise a scan at 50%, 25%, 10%, 5% and 2% of the original dose would have carried, then reconstruct it. Noise grows as expected, roughly with 1/√dose.</li>
     <li><strong>A stream, not a volume.</strong> Slices are replayed from the top of the abdomen downward, one at a time. At each slice the model sees only what has already arrived (that slice and the one before) and outputs one number: how confident it is that the organ is in view.</li>
-    <li><strong>A fixed stop rule.</strong> <em>Organ entered</em> is called after two confident slices. <em>Organ exited</em> is called once confidence has stayed low for {{ v.exit_sustain }} mm, and the beam then stays on for a safety margin before stopping. If the model never makes a confident exit call, the scan simply finishes as planned. That happened on {{ v.fallback_pct }} of scans.</li>
+    <li><strong>A fixed stop rule.</strong> <em>Organ entered</em> is called after two confident slices. <em>Organ exited</em> is called once confidence has stayed low for {{ v.exit_sustain }} mm, and the beam then stays on for a safety margin before stopping. If the model never makes a confident exit call, the scan simply finishes as planned. {{ v.fallback_n }} of {{ v.scans }} scans ended that way.</li>
     <li><strong>Scoring against the outline.</strong> Was the whole organ covered? If not, by how much was it missed? How far past the organ did the beam stay on? How long did the model take per slice? Every scan is scored by a model that never saw it (5-fold cross-validation by patient).</li>
   </ol>
 
@@ -113,10 +113,10 @@
   <p class="br-cap">One slice through the spleen (screen right) at four points on the dose ladder. The 2% image shows the streaking of a photon-starved scan. The simulation grid is 128 × 128, about 3 mm pixels.</p>
 
   <h2>What the stream looks like</h2>
-  <p>Each chart is one scan, read top to bottom. The line is the model's confidence at each slice, the shaded band is where the spleen actually is, the dashed orange line is where the model called <em>exit</em>, and the solid one is where the beam stopped after the {{ v.primary_margin }} mm margin. On the left is a typical scan. On the right is the scan that sets the safety margin: confidence collapsed inside the organ and the exit was called {{ v.worst_missed }} mm early.</p>
+  <p>Each chart is one scan, read top to bottom. The line is the model's confidence at each slice, the shaded band is where the spleen actually is, the dashed orange line is where the model called <em>exit</em>, and the solid one is where the beam stopped after the {{ v.primary_margin }} mm margin. On the left is a typical scan: the beam went off {{ v.example_tail }} mm past the organ, which is the median for scans the model stopped. On the right is the scan that sets the safety margin. Confidence collapsed inside the organ, the exit was called {{ v.fail_exit_early }} mm before its end, and the beam stopped {{ v.worst_missed }} mm short.</p>
   <div class="br-grid2">
-    <div class="br-fig" data-trace="example"><h3>Typical scan: stops just past the organ</h3><svg role="img" aria-label="Model confidence per slice for a typical scan"></svg><div class="br-tip"></div></div>
-    <div class="br-fig" data-trace="failure"><h3>The failure: exit called mid-organ</h3><svg role="img" aria-label="Model confidence per slice for the scan cut short"></svg><div class="br-tip"></div></div>
+    <div class="br-fig" data-trace="example"><h3>Typical scan: beam off {{ v.example_tail }} mm past the organ</h3><svg role="img" aria-label="Model confidence per slice for a typical scan"></svg><div class="br-tip"></div></div>
+    <div class="br-fig" data-trace="failure"><h3>The failure: stopped {{ v.worst_missed }} mm short</h3><svg role="img" aria-label="Model confidence per slice for the scan cut short"></svg><div class="br-tip"></div></div>
   </div>
 
   <h2>The trade-off: margin against coverage</h2>
@@ -142,11 +142,11 @@
 
   <h2>What we found</h2>
   <h3>1. The baseline is not safe, and the benchmark says so plainly.</h3>
-  <p>At full dose {{ v.truncated }} of {{ v.scans }} scans were cut short, by {{ v.misses }} mm. Four of those misses are the thin tip of the organ. One is a mid-organ collapse in confidence, and that single scan forces the {{ v.margin_full }} mm margin. A clinical system has to get the far edge right every time, so a model worth deploying should drive "margin for 100%" toward the slice thickness, not just raise the average.</p>
+  <p>At full dose {{ v.truncated }} of {{ v.scans }} scans were cut short, by {{ v.misses }} mm. Of those, {{ v.small_miss_count }} clip the tapering lower tip, each leaving {{ v.small_miss_vol }} of the spleen unscanned. The fifth is a collapse in confidence mid-organ that leaves {{ v.worst_miss_vol }} of it unscanned, and that single scan forces the {{ v.margin_full }} mm margin. A clinical system has to get the far edge right every time, so a model worth deploying should drive "margin for 100%" toward the slice thickness, not just raise the average.</p>
   <h3>2. Coarse edge detection tolerates very low dose.</h3>
   <p>Coverage barely moves from 100% down to 2% simulated dose ({{ v.complete }} to {{ v.low_complete }}). The baseline looks at a heavily downsampled slice, which averages the noise away. That supports the idea of an ultra-low-dose pass that only locates organ boundaries before the diagnostic pass. It does not show that a <em>diagnosis</em> survives low dose, and our simulation is a simplified parallel-beam approximation.</p>
   <h3>3. Speed is not where this fails.</h3>
-  <p>The model answers in {{ v.lat_p50 }} ms (median) on one CPU core, about {{ v.headroom }}× inside the tightest per-slice budget. What this benchmark does not yet time is the rest of the loop: slice reconstruction, transfer off the scanner, and the controller's response. Those need scanner-side access to measure.</p>
+  <p>The model takes {{ v.lat_p50 }} ms per slice at the median and {{ v.lat_p99 }} ms at the 99th percentile, on a laptop CPU. Even the 99th percentile is about {{ v.headroom }}× inside the tightest per-slice budget. What this benchmark does not yet time is the rest of the loop: slice reconstruction, transfer off the scanner, and the controller's response. Those need scanner-side access to measure.</p>
   <h3>4. Training on noisy data did not help this model.</h3>
   <p>Training across every dose level was, if anything, slightly worse at 2% than training on full dose alone. A result like that is only visible when every variant runs through the same fixed rig.</p>
 
@@ -160,12 +160,12 @@
   </ul>
 
   <h2>The signed record</h2>
-  <p>The run is recorded as a manifest covering the dataset hash, the hash of every code file, the configuration, the latency figures and the full results. It is signed with Ed25519 over canonical JSON, the same signing contract Divinci's TrustBench uses for AI evaluations. Change any number in it and verification fails.</p>
+  <p>The run is recorded as a manifest covering the dataset hash, hashes of the benchmark code, the configuration, the latency figures and the full results. It is signed with Ed25519 over canonical JSON, the same signing contract Divinci's TrustBench uses for AI evaluations. Change any number in it and verification fails.</p>
   <p class="br-files"><a href="{{ base }}manifest.json" download>manifest.json</a> · <a href="{{ base }}demo-key.json" download>demo-key.json</a> · <a href="{{ base }}verify.py" download>verify.py</a> (standalone, needs only <code>pip install cryptography</code>) · <a href="{{ base }}data.json" download>data.json</a> (the figures on this page)</p>
   <p class="br-sig">key {{ v.key_id }} · signed {{ v.signed_at }}</p>
   <pre>python verify.py manifest.json demo-key.json
 OK  {{ v.key_id }}</pre>
-  <p class="br-cap">The benchmark code and dose simulator are about 500 lines of Python, and we are happy to share them with the working group.</p>
+  <p class="br-cap">The benchmark code and dose simulator are about 600 lines of Python, and we are happy to share them with the working group.</p>
 
   <h2>Method notes</h2>
   <ul>
