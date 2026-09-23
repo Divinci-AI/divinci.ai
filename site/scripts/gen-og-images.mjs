@@ -89,11 +89,14 @@ const ROBOT_OVERRIDE = {
  * Hand-made cards, copied instead of composed. This script wipes and rebuilds
  * every card on each run, so a card placed straight into static/images/og/
  * would be silently replaced by the generic robot plate next time. Sources
- * live in og-assets/bespoke/ and are produced by gen-trustbench-og.mjs.
+ * live in og-assets/bespoke/ and are produced by gen-trustbench-og.mjs and
+ * gen-hermes-og.mjs.
  */
 const BESPOKE = {
   trustbench: "trustbench.jpg",
   "blog/what-a-benchmark-has-to-prove-about-itself": "what-a-benchmark-has-to-prove-about-itself.jpg",
+  "hermes-agents": "hermes-agents.jpg",
+  "blog/hosted-hermes-on-cloudflare": "hosted-hermes-on-cloudflare.jpg",
 };
 
 const TITLE_OVERRIDE = {
