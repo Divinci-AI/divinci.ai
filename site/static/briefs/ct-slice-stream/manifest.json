@@ -1,0 +1,1177 @@
+{
+ "kind": "divinci.demo.ct-slice-stream/v0",
+ "demo": true,
+ "createdAt": "2026-09-23T04:59:51+00:00",
+ "benchmark": {
+  "name": "CT slice-stream stop benchmark",
+  "task": "Replay each CT superior->inferior one slice at a time; call ORGAN EXITED and stop the beam after a safety margin; score coverage of the labelled organ and z-range irradiated past it.",
+  "organ": "spleen",
+  "evaluation": "patient-level 5-fold cross-validation"
+ },
+ "dataset": {
+  "name": "Medical Segmentation Decathlon, Task09_Spleen (training split)",
+  "source": "Memorial Sloan Kettering Cancer Center, via the Medical Segmentation Decathlon",
+  "license": "CC-BY-SA 4.0",
+  "files": 82,
+  "contentHash": "sha256:bffe918b1c16662119ae070d2ab04a7585da2cf3a8b7d3697179a0dd4de7b976"
+ },
+ "code": {
+  "bench.py": "sha256:f1b2472cbde6485f4e474226064ab31da01e2323a6161378f6153a68eef926c5",
+  "build.py": "sha256:41557db21ff2bfac54fb96075784af7b0160906ac1d89b54ed045a50ef525c94",
+  "dose.py": "sha256:bc1c69a642933f78aad20da4fccf46aa0d3877839e237e102982d97a58b87b7a",
+  "sign.py": "sha256:aa1209db5cf7bb73ab75f6f16624cb92bad2c5b234009a6c68c80d78dedf787f",
+  "verify.py": "sha256:4cab267dd51d151a72f3ce94e5beda897ff490781f403b20bf79969d98ea76a9"
+ },
+ "config": {
+  "enter_threshold": 0.5,
+  "enter_consecutive": 2,
+  "exit_threshold": 0.3,
+  "exit_sustain_mm": 15.0,
+  "margins_mm": [
+   0.0,
+   5.0,
+   10.0,
+   15.0,
+   20.0,
+   25.0,
+   30.0,
+   35.0,
+   40.0,
+   45.0,
+   50.0,
+   55.0,
+   60.0,
+   65.0,
+   70.0,
+   75.0,
+   80.0
+  ],
+  "primary_margin_mm": 10.0,
+  "doses": [
+   1.0,
+   0.5,
+   0.25,
+   0.1,
+   0.05,
+   0.02
+  ],
+  "folds": 5,
+  "model": "PCA(64) + logistic regression on 48x48 soft-tissue slice + slice delta",
+  "scans_total": 41,
+  "scans_evaluated": 40
+ },
+ "latencyMs": {
+  "what_is_timed": "model inference on one arrived slice (PCA + logistic regression, single CPU core); excludes reconstruction and transfer",
+  "p50": 0.0939579913392663,
+  "p99": 0.1077797345351428,
+  "max": 0.19062496721744537,
+  "samples": 904,
+  "budget_per_slice_ms_min": 17.857142857142858,
+  "budget_per_slice_ms_median": 32.971014492753625
+ },
+ "excludedScans": [
+  "spleen_26"
+ ],
+ "summary": {
+  "trained_full_dose_only": {
+   "1.0": {
+    "scans": 40,
+    "complete_coverage_rate": 0.875,
+    "truncated_scans": 5,
+    "worst_missed_mm": 55.0,
+    "early_stop_rate": 0.875,
+    "fallback_full_scan_rate": 0.125,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 49.069991493225096,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.76081503738458,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.725,
+      "mean_tail_below_organ_mm": 42.632491493225096
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.8,
+      "mean_tail_below_organ_mm": 45.632491493225096
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 49.069991493225096
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.9,
+      "mean_tail_below_organ_mm": 52.819991493225096
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 56.8574914932251
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 60.9824914932251
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 65.057488489151
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 69.057488489151
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 73.057488489151
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 77.057488489151
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 80.932488489151
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 84.807488489151
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 88.644988489151
+     },
+     "65.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 92.332488489151
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 95.894988489151
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 99.394988489151
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 102.832488489151
+     }
+    },
+    "margin_for_full_coverage_mm": 65.0,
+    "missed_mm_at_primary_margin": [
+     55.0,
+     20.0,
+     7.5,
+     6.0,
+     5.0
+    ]
+   },
+   "0.5": {
+    "scans": 40,
+    "complete_coverage_rate": 0.875,
+    "truncated_scans": 5,
+    "worst_missed_mm": 55.0,
+    "early_stop_rate": 0.875,
+    "fallback_full_scan_rate": 0.125,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 49.069991493225096,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.76081503738458,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.725,
+      "mean_tail_below_organ_mm": 42.632491493225096
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.8,
+      "mean_tail_below_organ_mm": 45.632491493225096
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 49.069991493225096
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.9,
+      "mean_tail_below_organ_mm": 52.819991493225096
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 56.8574914932251
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 60.9824914932251
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 65.057488489151
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 69.057488489151
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 73.057488489151
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 77.057488489151
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 80.932488489151
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 84.807488489151
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 88.644988489151
+     },
+     "65.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 92.332488489151
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 95.894988489151
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 99.394988489151
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 102.832488489151
+     }
+    },
+    "margin_for_full_coverage_mm": 65.0,
+    "missed_mm_at_primary_margin": [
+     55.0,
+     20.0,
+     7.5,
+     6.0,
+     5.0
+    ]
+   },
+   "0.25": {
+    "scans": 40,
+    "complete_coverage_rate": 0.875,
+    "truncated_scans": 5,
+    "worst_missed_mm": 55.0,
+    "early_stop_rate": 0.875,
+    "fallback_full_scan_rate": 0.125,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 49.069991493225096,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.76081503738458,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.725,
+      "mean_tail_below_organ_mm": 42.632491493225096
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.8,
+      "mean_tail_below_organ_mm": 45.632491493225096
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 49.069991493225096
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.9,
+      "mean_tail_below_organ_mm": 52.819991493225096
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 56.8574914932251
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 60.9824914932251
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 65.057488489151
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 69.057488489151
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 73.057488489151
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 77.057488489151
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 80.932488489151
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 84.807488489151
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 88.644988489151
+     },
+     "65.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 92.332488489151
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 95.894988489151
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 99.394988489151
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 102.832488489151
+     }
+    },
+    "margin_for_full_coverage_mm": 65.0,
+    "missed_mm_at_primary_margin": [
+     55.0,
+     20.0,
+     7.5,
+     6.0,
+     5.0
+    ]
+   },
+   "0.1": {
+    "scans": 40,
+    "complete_coverage_rate": 0.875,
+    "truncated_scans": 5,
+    "worst_missed_mm": 55.0,
+    "early_stop_rate": 0.875,
+    "fallback_full_scan_rate": 0.125,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 48.929991242289546,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.7614974494610279,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.725,
+      "mean_tail_below_organ_mm": 42.492491242289546
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.8,
+      "mean_tail_below_organ_mm": 45.492491242289546
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 48.929991242289546
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.9,
+      "mean_tail_below_organ_mm": 52.679991242289546
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 56.71749124228954
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 60.84249124228954
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 64.91748823821544
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 68.91748823821544
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 72.91748823821544
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 76.91748823821544
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 80.79248823821544
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 84.66748823821544
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 88.50498823821545
+     },
+     "65.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 92.19248823821545
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 95.75498823821545
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 99.25498823821545
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 102.69248823821545
+     }
+    },
+    "margin_for_full_coverage_mm": 65.0,
+    "missed_mm_at_primary_margin": [
+     55.0,
+     20.0,
+     7.5,
+     6.0,
+     5.0
+    ]
+   },
+   "0.05": {
+    "scans": 40,
+    "complete_coverage_rate": 0.85,
+    "truncated_scans": 6,
+    "worst_missed_mm": 55.0,
+    "early_stop_rate": 0.875,
+    "fallback_full_scan_rate": 0.125,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 49.194991493225096,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.7602057419798507,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.725,
+      "mean_tail_below_organ_mm": 42.757491493225096
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.8,
+      "mean_tail_below_organ_mm": 45.757491493225096
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.85,
+      "mean_tail_below_organ_mm": 49.194991493225096
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 52.819991493225096
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.925,
+      "mean_tail_below_organ_mm": 56.7324914932251
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 60.7324914932251
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 64.807488489151
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 68.807488489151
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 72.807488489151
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 76.807488489151
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 80.682488489151
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 84.557488489151
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 88.394988489151
+     },
+     "65.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 92.082488489151
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 95.644988489151
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 99.144988489151
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 102.582488489151
+     }
+    },
+    "margin_for_full_coverage_mm": 65.0,
+    "missed_mm_at_primary_margin": [
+     55.0,
+     20.0,
+     15.0,
+     7.5,
+     6.0,
+     5.0
+    ]
+   },
+   "0.02": {
+    "scans": 40,
+    "complete_coverage_rate": 0.85,
+    "truncated_scans": 6,
+    "worst_missed_mm": 55.0,
+    "early_stop_rate": 0.875,
+    "fallback_full_scan_rate": 0.125,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 48.757491493225096,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.7623382758964032,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.725,
+      "mean_tail_below_organ_mm": 42.444991493225096
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.775,
+      "mean_tail_below_organ_mm": 45.444991493225096
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.85,
+      "mean_tail_below_organ_mm": 48.757491493225096
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 52.382491493225096
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.925,
+      "mean_tail_below_organ_mm": 56.2949914932251
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.925,
+      "mean_tail_below_organ_mm": 60.2949914932251
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 64.244988489151
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 68.307488489151
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 72.307488489151
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 76.307488489151
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 80.182488489151
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 84.057488489151
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 87.894988489151
+     },
+     "65.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 91.582488489151
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 95.144988489151
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 98.644988489151
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 102.082488489151
+     }
+    },
+    "margin_for_full_coverage_mm": 65.0,
+    "missed_mm_at_primary_margin": [
+     55.0,
+     20.0,
+     20.0,
+     7.5,
+     6.0,
+     5.0
+    ]
+   }
+  },
+  "trained_across_doses": {
+   "1.0": {
+    "scans": 40,
+    "complete_coverage_rate": 0.875,
+    "truncated_scans": 5,
+    "worst_missed_mm": 55.0,
+    "early_stop_rate": 0.875,
+    "fallback_full_scan_rate": 0.125,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 49.32748973667621,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.759559897412895,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.75,
+      "mean_tail_below_organ_mm": 42.76498973667621
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.8,
+      "mean_tail_below_organ_mm": 45.88998973667621
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 49.32748973667621
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.9,
+      "mean_tail_below_organ_mm": 53.07748973667621
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 57.052489736676215
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 61.177489736676215
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 65.25248673260212
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 69.25248673260212
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 73.25248673260212
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 77.13998673260213
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 80.88998673260213
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 84.63998673260213
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 88.38998673260213
+     },
+     "65.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 91.95248673260213
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 95.51498673260213
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 99.01498673260213
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 102.51498673260213
+     }
+    },
+    "margin_for_full_coverage_mm": 65.0,
+    "missed_mm_at_primary_margin": [
+     55.0,
+     20.0,
+     10.0,
+     6.0,
+     5.0
+    ]
+   },
+   "0.5": {
+    "scans": 40,
+    "complete_coverage_rate": 0.85,
+    "truncated_scans": 6,
+    "worst_missed_mm": 58.0,
+    "early_stop_rate": 0.9,
+    "fallback_full_scan_rate": 0.09999999999999998,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 47.427489736676215,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.7688211875647802,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.725,
+      "mean_tail_below_organ_mm": 40.864989736676215
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.775,
+      "mean_tail_below_organ_mm": 43.989989736676215
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.85,
+      "mean_tail_below_organ_mm": 47.427489736676215
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 51.177489736676215
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.925,
+      "mean_tail_below_organ_mm": 55.152489736676216
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.925,
+      "mean_tail_below_organ_mm": 59.277489736676216
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 63.35248673260212
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 67.35248673260212
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 71.35248673260212
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 75.23998673260212
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 78.98998673260212
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 82.73998673260212
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 86.48998673260212
+     },
+     "65.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 90.05248673260212
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 93.66498673260212
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 97.28998673260212
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 100.91498673260212
+     }
+    },
+    "margin_for_full_coverage_mm": 70.0,
+    "missed_mm_at_primary_margin": [
+     58.0,
+     55.0,
+     20.0,
+     10.0,
+     6.0,
+     5.0
+    ]
+   },
+   "0.25": {
+    "scans": 40,
+    "complete_coverage_rate": 0.875,
+    "truncated_scans": 5,
+    "worst_missed_mm": 55.0,
+    "early_stop_rate": 0.875,
+    "fallback_full_scan_rate": 0.125,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 49.11748998761177,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.7605835124696891,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.75,
+      "mean_tail_below_organ_mm": 42.55498998761177
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.8,
+      "mean_tail_below_organ_mm": 45.67998998761177
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 49.11748998761177
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.9,
+      "mean_tail_below_organ_mm": 52.86748998761177
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.925,
+      "mean_tail_below_organ_mm": 56.84248998761177
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 60.84248998761177
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 64.91748698353767
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 68.91748698353767
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 72.91748698353767
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 76.80498698353767
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 80.55498698353767
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 84.30498698353767
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 88.05498698353767
+     },
+     "65.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 91.61748698353767
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 95.17998698353767
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 98.67998698353767
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 102.17998698353767
+     }
+    },
+    "margin_for_full_coverage_mm": 65.0,
+    "missed_mm_at_primary_margin": [
+     55.0,
+     20.0,
+     15.0,
+     6.0,
+     5.0
+    ]
+   },
+   "0.1": {
+    "scans": 40,
+    "complete_coverage_rate": 0.875,
+    "truncated_scans": 5,
+    "worst_missed_mm": 55.0,
+    "early_stop_rate": 0.875,
+    "fallback_full_scan_rate": 0.125,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 49.07748973667621,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.7607784882223535,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.75,
+      "mean_tail_below_organ_mm": 42.51498973667621
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.8,
+      "mean_tail_below_organ_mm": 45.63998973667621
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 49.07748973667621
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.9,
+      "mean_tail_below_organ_mm": 52.82748973667621
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 56.802489736676215
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 60.927489736676215
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 65.00248673260212
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 69.00248673260212
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 73.00248673260212
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 76.88998673260213
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 80.63998673260213
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 84.38998673260213
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 88.13998673260213
+     },
+     "65.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 91.70248673260213
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 95.26498673260213
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 98.76498673260213
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 102.26498673260213
+     }
+    },
+    "margin_for_full_coverage_mm": 65.0,
+    "missed_mm_at_primary_margin": [
+     55.0,
+     20.0,
+     10.0,
+     6.0,
+     5.0
+    ]
+   },
+   "0.05": {
+    "scans": 40,
+    "complete_coverage_rate": 0.825,
+    "truncated_scans": 7,
+    "worst_missed_mm": 55.0,
+    "early_stop_rate": 0.875,
+    "fallback_full_scan_rate": 0.125,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 48.80249099135399,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.7621189319970029,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.725,
+      "mean_tail_below_organ_mm": 42.36499099135399
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.8,
+      "mean_tail_below_organ_mm": 45.36499099135399
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.825,
+      "mean_tail_below_organ_mm": 48.80249099135399
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 52.30249099135399
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.925,
+      "mean_tail_below_organ_mm": 56.152490991353986
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.925,
+      "mean_tail_below_organ_mm": 60.152490991353986
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 64.10248798727989
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 68.16498798727989
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 72.16498798727989
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 76.0899879872799
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 79.8399879872799
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 83.5899879872799
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 87.3399879872799
+     },
+     "65.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 91.0274879872799
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 94.5899879872799
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 98.0899879872799
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 101.5899879872799
+     }
+    },
+    "margin_for_full_coverage_mm": 65.0,
+    "missed_mm_at_primary_margin": [
+     55.0,
+     20.0,
+     20.0,
+     10.0,
+     6.0,
+     5.0,
+     5.0
+    ]
+   },
+   "0.02": {
+    "scans": 40,
+    "complete_coverage_rate": 0.8,
+    "truncated_scans": 8,
+    "worst_missed_mm": 58.0,
+    "early_stop_rate": 0.9,
+    "fallback_full_scan_rate": 0.09999999999999998,
+    "median_entry_error_mm": 10.0,
+    "mean_tail_below_organ_mm": 46.06748998761177,
+    "mean_conventional_tail_mm": 205.15500203967093,
+    "tail_reduction": 0.7754503203450839,
+    "by_margin": {
+     "0.0": {
+      "complete_coverage_rate": 0.7,
+      "mean_tail_below_organ_mm": 39.75498998761177
+     },
+     "5.0": {
+      "complete_coverage_rate": 0.75,
+      "mean_tail_below_organ_mm": 42.75498998761177
+     },
+     "10.0": {
+      "complete_coverage_rate": 0.8,
+      "mean_tail_below_organ_mm": 46.06748998761177
+     },
+     "15.0": {
+      "complete_coverage_rate": 0.85,
+      "mean_tail_below_organ_mm": 49.56748998761177
+     },
+     "20.0": {
+      "complete_coverage_rate": 0.875,
+      "mean_tail_below_organ_mm": 53.41748998761177
+     },
+     "25.0": {
+      "complete_coverage_rate": 0.9,
+      "mean_tail_below_organ_mm": 57.35498998761177
+     },
+     "30.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 61.304986983537674
+     },
+     "35.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 65.36748698353767
+     },
+     "40.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 69.36748698353767
+     },
+     "45.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 73.36748698353767
+     },
+     "50.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 77.24248698353767
+     },
+     "55.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 81.11748698353767
+     },
+     "60.0": {
+      "complete_coverage_rate": 0.95,
+      "mean_tail_below_organ_mm": 84.95498698353768
+     },
+     "65.0": {
+      "complete_coverage_rate": 0.975,
+      "mean_tail_below_organ_mm": 88.51748698353768
+     },
+     "70.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 92.12998698353768
+     },
+     "75.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 95.75498698353768
+     },
+     "80.0": {
+      "complete_coverage_rate": 1.0,
+      "mean_tail_below_organ_mm": 99.37998698353768
+     }
+    },
+    "margin_for_full_coverage_mm": 70.0,
+    "missed_mm_at_primary_margin": [
+     58.0,
+     55.0,
+     20.0,
+     20.0,
+     12.5,
+     6.0,
+     5.0,
+     5.0
+    ]
+   }
+  }
+ },
+ "outputsHash": "sha256:29a07bb3dcbdc0a496e2bc0d08bcef5970b3df771d0c85e167cc1baf3528e913",
+ "signatures": [
+  {
+   "keyId": "demo-ct-2026-09-23",
+   "algorithm": "ed25519",
+   "signature": "0+JJ2KEtAjrJ8QO4OtVyvwoDorO1PTj9Qwid80ZAgEwhnkcyobJH1lpBjKsv/9OdhSiqk/iiURSmfAaIvm9QCA=="
+  }
+ ]
+}

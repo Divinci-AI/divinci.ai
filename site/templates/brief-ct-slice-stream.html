@@ -1,0 +1,282 @@
+{% extends "base.html" %}
+
+{#
+  Technical brief: CT slice-stream stop benchmark (feasibility demo).
+
+  UNLISTED on purpose. It is a working document shared by link, so it carries
+  noindex, is excluded from sitemap.xml (templates/sitemap.xml) and from the
+  site search index / llms-full.txt (SKIP_DIRS in scripts/build-search-index.py).
+
+  Every number comes from static/briefs/ct-slice-stream/data.json, which is
+  exported from the same run that manifest.json signs. Nothing here is typed in
+  by hand; regenerate with notebooks/2026-09-23-ct-slice-stream-benchmark in the
+  server repo (page_assets.py) rather than editing figures.
+#}
+
+{% block extra_head %}
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block content %}
+{% set d = load_data(path="static/briefs/ct-slice-stream/data.json") %}
+{% set v = d.display %}
+{% set base = "/briefs/ct-slice-stream/" %}
+
+<style>
+  .br { --br-ink: var(--color-text-primary, #2d3c34); --br-ink-2: var(--color-text-secondary, #5f6e76);
+        --br-rule: var(--color-bg-accent, #e8ddc7); --br-card: var(--color-surface-light, #fff);
+        --br-full: #1f7a57; --br-low: #b8731f; --br-organ: rgba(31,122,87,.10);
+        max-width: 960px; margin: 0 auto; padding: 40px 16px 96px; color: var(--br-ink); }
+  .br-letterhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+        border-bottom: 2px solid var(--br-ink); padding-bottom: 12px; margin-bottom: 36px;
+        font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--br-ink-2); }
+  .br-letterhead strong { color: var(--br-ink); letter-spacing: .12em; }
+  .br h1 { font-size: clamp(28px, 4.2vw, 42px); line-height: 1.1; letter-spacing: -.02em; margin: 0 0 16px; }
+  .br h2 { font-size: 22px; margin: 56px 0 12px; letter-spacing: -.01em; }
+  .br h3 { font-size: 16px; margin: 24px 0 6px; }
+  .br p, .br li { font-size: 16px; line-height: 1.65; max-width: 68ch; }
+  .br-lede { font-size: 18px !important; color: var(--br-ink-2); }
+  .br code { background: var(--br-rule); padding: 1px 5px; border-radius: 4px; font-size: .88em; }
+  .br-note { border-left: 3px solid var(--br-low); background: #fbf6ee; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 24px 0; }
+  .br-note p { margin: 0; font-size: 15px; }
+  .br-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 28px 0 8px; }
+  .br-tile { border: 1px solid var(--br-rule); border-radius: 12px; padding: 16px 18px; background: var(--br-card); }
+  .br-tile .n { font-size: 30px; font-weight: 650; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .br-tile .l { font-size: 13px; line-height: 1.45; color: var(--br-ink-2); margin-top: 6px; }
+  .br-steps { counter-reset: s; list-style: none; padding: 0; }
+  .br-steps li { counter-increment: s; position: relative; padding-left: 36px; margin: 12px 0; }
+  .br-steps li::before { content: counter(s); position: absolute; left: 0; top: 2px; width: 24px; height: 24px; border-radius: 50%;
+        background: var(--br-ink); color: #fff; font-size: 13px; font-weight: 600; display: grid; place-items: center; }
+  .br-doses { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 20px 0 6px; }
+  .br-doses figure { margin: 0; }
+  .br-doses img { width: 100%; height: auto; display: block; border-radius: 6px; image-rendering: pixelated; background: #000; }
+  .br-doses figcaption { font-size: 13px; text-align: center; margin-top: 6px; color: var(--br-ink-2); font-variant-numeric: tabular-nums; }
+  .br-cap { font-size: 13px !important; color: var(--br-ink-2); margin-top: 6px; }
+  .br-fig { border: 1px solid var(--br-rule); border-radius: 12px; padding: 16px 16px 10px; background: var(--br-card); margin: 18px 0; position: relative; }
+  .br-fig h3 { margin: 0 0 2px; }
+  .br-fig svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .br-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  .br-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--br-ink-2); margin: 4px 0 6px; }
+  .br-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .br-legend i { width: 20px; height: 0; border-top: 2px solid; display: inline-block; }
+  .br-tip { position: absolute; pointer-events: none; background: var(--br-ink); color: #fff; font-size: 12px; line-height: 1.4;
+        padding: 6px 9px; border-radius: 6px; white-space: nowrap; opacity: 0; transition: opacity .1s; z-index: 2; }
+  .br-table-wrap { overflow-x: auto; margin: 16px 0; }
+  .br table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .br th { text-align: left; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--br-ink-2);
+        padding: 0 12px 8px 0; border-bottom: 1px solid var(--br-rule); font-weight: 700; vertical-align: bottom; }
+  .br td { padding: 9px 12px 9px 0; border-bottom: 1px solid color-mix(in srgb, var(--br-rule) 60%, transparent); }
+  .br td.num, .br th.num { text-align: right; }
+  .br tr.br-group td { font-weight: 650; padding-top: 18px; }
+  .br pre { background: #1e2a24; color: #e8efe9; padding: 14px 16px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+  .br-files a { font-weight: 600; }
+  .br-sig { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; word-break: break-all; color: var(--br-ink-2); }
+  .br-foot { border-top: 1px solid var(--br-rule); margin-top: 56px; padding-top: 16px; font-size: 13px !important; color: var(--br-ink-2); }
+  @media (max-width: 560px) { .br-doses { grid-template-columns: repeat(2, minmax(0, 1fr)); } .br-tile .n { font-size: 26px; } }
+</style>
+
+<article class="br">
+  <div class="br-letterhead">
+    <span><strong>Divinci AI</strong> · Technical brief</span>
+    <span>23 September 2026 · Feasibility demo · Not for clinical use</span>
+  </div>
+
+  <h1>Stopping a CT scan at the organ's edge: a benchmark you can plug a model into</h1>
+  <p class="br-lede">Today the X-ray beam stays on past the organ that was asked for, because nobody can read the images fast enough to stop it. We built a test rig for the alternative. It replays real CT scans one slice at a time, at scanner speed and at simulated doses down to 2%, and scores whether a model switches the beam off after the organ without cutting it short.</p>
+
+  <div class="br-note"><p><strong>What this is and isn't.</strong> An offline feasibility test on {{ v.scans_total }} public, de-identified research CTs. No scanner is involved, no private patient data is used, and nothing here is a clinical claim. The model in it is a deliberately simple baseline: its job is to prove the rig works and to set a number to beat, not to be the answer. The results are signed with a throwaway <em>demo</em> key, never a Divinci platform key.</p></div>
+
+  <div class="br-tiles">
+    <div class="br-tile"><div class="n">{{ v.complete }}</div><div class="l">scans fully covered by the baseline with a {{ v.primary_margin }} mm safety margin. {{ v.truncated }} were cut short, the worst by {{ v.worst_missed }} mm. <strong>Not safe yet</strong>, which is exactly what the benchmark exists to show.</div></div>
+    <div class="br-tile"><div class="n">{{ v.tail }} mm</div><div class="l">average beam-on distance past the organ, against {{ v.conv_tail }} mm when the planned range runs to the end ({{ v.tail_cut }} less).</div></div>
+    <div class="br-tile"><div class="n">{{ v.margin_full }} mm</div><div class="l">margin the baseline needs before every scan is fully covered. That still leaves {{ v.tail_at_margin_full }} mm past the organ, {{ v.tail_cut_at_margin_full }} less than today.</div></div>
+    <div class="br-tile"><div class="n">{{ v.lat_p99 }} ms</div><div class="l">99th-percentile model time per slice, against a budget of at least {{ v.budget_min }} ms when a full stack arrives in 3 seconds. The model is not the bottleneck.</div></div>
+  </div>
+
+  <h2>How the test works</h2>
+  <ol class="br-steps">
+    <li><strong>Real scans, labelled organs.</strong> {{ v.scans_total }} portal-venous abdominal CTs with expert spleen outlines, from the Medical Segmentation Decathlon. We use real images, not generated ones. Only the dose is simulated.</li>
+    <li><strong>A dose ladder.</strong> Every slice is re-projected into raw detector data. We add the photon noise a scan at 50%, 25%, 10%, 5% and 2% of the original dose would have carried, then reconstruct it. Noise grows as expected, roughly with 1/√dose.</li>
+    <li><strong>A stream, not a volume.</strong> Slices are replayed from the top of the abdomen downward, one at a time. At each slice the model sees only what has already arrived (that slice and the one before) and outputs one number: how confident it is that the organ is in view.</li>
+    <li><strong>A fixed stop rule.</strong> <em>Organ entered</em> is called after two confident slices. <em>Organ exited</em> is called once confidence has stayed low for {{ v.exit_sustain }} mm, and the beam then stays on for a safety margin before stopping. If the model never makes a confident exit call, the scan simply finishes as planned. That happened on {{ v.fallback_pct }} of scans.</li>
+    <li><strong>Scoring against the outline.</strong> Was the whole organ covered? If not, by how much was it missed? How far past the organ did the beam stay on? How long did the model take per slice? Every scan is scored by a model that never saw it (5-fold cross-validation by patient).</li>
+  </ol>
+
+  <div class="br-doses">
+    {% for img in d.images %}
+    <figure>
+      <img src="{{ base }}{{ img }}" width="256" height="256" alt="Axial abdominal CT slice through the spleen at {{ v.image_labels[loop.index0] }} of full dose" loading="lazy">
+      <figcaption>{{ v.image_labels[loop.index0] }} dose</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+  <p class="br-cap">One slice through the spleen (screen right) at four points on the dose ladder. The 2% image shows the streaking of a photon-starved scan. The simulation grid is 128 × 128, about 3 mm pixels.</p>
+
+  <h2>What the stream looks like</h2>
+  <p>Each chart is one scan, read top to bottom. The line is the model's confidence at each slice, the shaded band is where the spleen actually is, the dashed orange line is where the model called <em>exit</em>, and the solid one is where the beam stopped after the {{ v.primary_margin }} mm margin. On the left is a typical scan. On the right is the scan that sets the safety margin: confidence collapsed inside the organ and the exit was called {{ v.worst_missed }} mm early.</p>
+  <div class="br-grid2">
+    <div class="br-fig" data-trace="example"><h3>Typical scan: stops just past the organ</h3><svg role="img" aria-label="Model confidence per slice for a typical scan"></svg><div class="br-tip"></div></div>
+    <div class="br-fig" data-trace="failure"><h3>The failure: exit called mid-organ</h3><svg role="img" aria-label="Model confidence per slice for the scan cut short"></svg><div class="br-tip"></div></div>
+  </div>
+
+  <h2>The trade-off: margin against coverage</h2>
+  <p>A larger safety margin protects against early exits and costs beam-on distance. These two charts are the result that matters most to a clinical partner, at full dose and at 2%.</p>
+  <div class="br-legend" aria-hidden="true"><span><i style="border-color:var(--br-full)"></i>100% dose</span><span><i style="border-color:var(--br-low);border-top-style:dashed"></i>2% dose</span></div>
+  <div class="br-grid2">
+    <div class="br-fig" data-sweep="complete_coverage_rate"><h3>Scans fully covered</h3><svg role="img" aria-label="Share of scans fully covered by safety margin"></svg><div class="br-tip"></div></div>
+    <div class="br-fig" data-sweep="mean_tail_below_organ_mm"><h3>Beam-on past the organ (mm)</h3><svg role="img" aria-label="Mean beam-on distance past the organ by safety margin"></svg><div class="br-tip"></div></div>
+  </div>
+
+  <h2>Every dose, both training regimes</h2>
+  <p>With a {{ v.primary_margin }} mm margin. "Margin for 100%" is the smallest margin at which no scan is cut short.</p>
+  <div class="br-table-wrap"><table>
+    <thead><tr><th>Dose</th><th class="num">Fully covered</th><th class="num">Cut short</th><th class="num">Worst miss (mm)</th><th class="num">Past organ (mm)</th><th class="num">Margin for 100% (mm)</th></tr></thead>
+    <tbody>
+    {% set_global last = "" %}
+    {% for r in v.rows %}
+      {% if r.regime != last %}<tr class="br-group"><td colspan="6">{{ r.regime }}</td></tr>{% set_global last = r.regime %}{% endif %}
+      <tr><td>{{ r.dose }}</td><td class="num">{{ r.complete }}</td><td class="num">{{ r.truncated }}</td><td class="num">{{ r.worst }}</td><td class="num">{{ r.tail }}</td><td class="num">{{ r.margin_full }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+
+  <h2>What we found</h2>
+  <h3>1. The baseline is not safe, and the benchmark says so plainly.</h3>
+  <p>At full dose {{ v.truncated }} of {{ v.scans }} scans were cut short, by {{ v.misses }} mm. Four of those misses are the thin tip of the organ. One is a mid-organ collapse in confidence, and that single scan forces the {{ v.margin_full }} mm margin. A clinical system has to get the far edge right every time, so a model worth deploying should drive "margin for 100%" toward the slice thickness, not just raise the average.</p>
+  <h3>2. Coarse edge detection tolerates very low dose.</h3>
+  <p>Coverage barely moves from 100% down to 2% simulated dose ({{ v.complete }} to {{ v.low_complete }}). The baseline looks at a heavily downsampled slice, which averages the noise away. That supports the idea of an ultra-low-dose pass that only locates organ boundaries before the diagnostic pass. It does not show that a <em>diagnosis</em> survives low dose, and our simulation is a simplified parallel-beam approximation.</p>
+  <h3>3. Speed is not where this fails.</h3>
+  <p>The model answers in {{ v.lat_p50 }} ms (median) on one CPU core, about {{ v.headroom }}× inside the tightest per-slice budget. What this benchmark does not yet time is the rest of the loop: slice reconstruction, transfer off the scanner, and the controller's response. Those need scanner-side access to measure.</p>
+  <h3>4. Training on noisy data did not help this model.</h3>
+  <p>Training across every dose level was, if anything, slightly worse at 2% than training on full dose alone. A result like that is only visible when every variant runs through the same fixed rig.</p>
+
+  <h2>Plugging in a better model</h2>
+  <p>The contract is deliberately small. A model receives one slice as it arrives, plus the slice before it, and returns a confidence between 0 and 1. The stop rule, the scoring, the cross-validation folds and the signing stay fixed, so any two models are compared on identical terms. Natural next tracks, in the order we would build them:</p>
+  <ul>
+    <li><strong>More organs</strong>, using public scans with TotalSegmentator outlines, including the kidneys, adrenals and liver.</li>
+    <li><strong>Paediatric scans.</strong> This is where the dose saving matters most and public data is thinnest.</li>
+    <li><strong>End-to-end timing</strong>, including reconstruction and controller latency, once there is access to a scanner's live image stream.</li>
+    <li><strong>Findings, not just edges</strong>: triggers for delayed or repeat scans, such as a vessel not filling or an injured organ. Each would be scored the same way, against radiologist ground truth.</li>
+  </ul>
+
+  <h2>The signed record</h2>
+  <p>The run is recorded as a manifest covering the dataset hash, the hash of every code file, the configuration, the latency figures and the full results. It is signed with Ed25519 over canonical JSON, the same signing contract Divinci's TrustBench uses for AI evaluations. Change any number in it and verification fails.</p>
+  <p class="br-files"><a href="{{ base }}manifest.json" download>manifest.json</a> · <a href="{{ base }}demo-key.json" download>demo-key.json</a> · <a href="{{ base }}verify.py" download>verify.py</a> (standalone, needs only <code>pip install cryptography</code>) · <a href="{{ base }}data.json" download>data.json</a> (the figures on this page)</p>
+  <p class="br-sig">key {{ v.key_id }} · signed {{ v.signed_at }}</p>
+  <pre>python verify.py manifest.json demo-key.json
+OK  {{ v.key_id }}</pre>
+  <p class="br-cap">The benchmark code and dose simulator are about 500 lines of Python, and we are happy to share them with the working group.</p>
+
+  <h2>Method notes</h2>
+  <ul>
+    <li><strong>Data.</strong> Medical Segmentation Decathlon, Task 09 (spleen), training split: {{ v.scans_total }} CTs from Memorial Sloan Kettering Cancer Center, CC-BY-SA 4.0 (Antonelli et al., <em>Nature Communications</em> 2022). {{ v.excluded }} is excluded from scoring because its spleen runs off the bottom of the scan, so the true edge is unknown. Slice thickness ranges from 1.5 to 8 mm.</li>
+    <li><strong>Dose simulation.</strong> Parallel-beam forward projection over 180 angles and projection-domain noise insertion, calibrated so spleen noise follows about 1/√dose (measured about 22–29 HU at 100%, 41–44 at 25%, 96–102 at 5%), followed by filtered back-projection. It has no bowtie filter, electronic noise or scatter model.</li>
+    <li><strong>Baseline model.</strong> A 48 × 48 soft-tissue-window thumbnail of the slice plus its difference from the previous slice, reduced by PCA to 64 components and passed to logistic regression. A version that added a full-resolution crop of the organ's quadrant did not do better.</li>
+    <li><strong>"Past the organ" is a proxy.</strong> It measures how far the beam stayed on beyond the spleen within each scan's original range. Those scans were planned for wider clinical questions, so the {{ v.tail_cut }} figure describes the mechanism, not a dose saving for any real protocol.</li>
+  </ul>
+
+  <p class="br-foot">Divinci AI · divinci.ai · Questions and collaboration: <a href="/contact/">contact us</a>. This brief is a research demonstration and is not a medical device or clinical guidance.</p>
+</article>
+
+<script>
+(() => {
+  const DATA = {{ d | json_encode() | safe }};
+  const C = { full: "#1f7a57", low: "#b8731f", ink: "#2d3c34", muted: "#7e8d95", rule: "#e8ddc7", organ: "rgba(31,122,87,.12)" };
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const text = (parent, x, y, s, attrs = {}) => { const t = el("text", { x, y, "font-size": 11, fill: C.muted, ...attrs }, parent); t.textContent = s; return t; };
+
+  function frame(svg, W, H, m) {
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    return { x0: m.l, x1: W - m.r, y0: H - m.b, y1: m.t };
+  }
+  function tipper(fig) {
+    const tip = fig.querySelector(".br-tip");
+    return {
+      show(html, evt) {
+        tip.innerHTML = html; tip.style.opacity = 1;
+        const r = fig.getBoundingClientRect();
+        let x = evt.clientX - r.left + 12, y = evt.clientY - r.top - 36;
+        x = Math.min(x, r.width - tip.offsetWidth - 8);
+        tip.style.left = Math.max(8, x) + "px"; tip.style.top = Math.max(4, y) + "px";
+      },
+      hide() { tip.style.opacity = 0; }
+    };
+  }
+
+  function drawTrace(fig) {
+    const t = DATA.traces[fig.dataset.trace], svg = fig.querySelector("svg");
+    const W = 460, H = 220, f = frame(svg, W, H, { l: 34, r: 12, t: 12, b: 34 });
+    const mm = t.prob.map((_, j) => j * t.dz_mm), zmax = mm[mm.length - 1];
+    const X = z => f.x0 + (z / zmax) * (f.x1 - f.x0), Y = p => f.y0 - p * (f.y0 - f.y1);
+    [0, .5, 1].forEach(p => { el("line", { x1: f.x0, x2: f.x1, y1: Y(p), y2: Y(p), stroke: C.rule, "stroke-width": 1 }, svg); text(svg, f.x0 - 6, Y(p) + 4, p.toFixed(1), { "text-anchor": "end" }); });
+    el("rect", { x: X(t.organ_first * t.dz_mm), y: f.y1, width: X(t.organ_last * t.dz_mm) - X(t.organ_first * t.dz_mm), height: f.y0 - f.y1, fill: C.organ }, svg);
+    text(svg, X(t.organ_first * t.dz_mm) + 4, f.y0 - 6, "spleen", { fill: C.full, "font-weight": 600 });
+    el("line", { x1: f.x0, x2: f.x1, y1: Y(.3), y2: Y(.3), stroke: C.muted, "stroke-dasharray": "2 3", "stroke-width": 1 }, svg);
+    text(svg, f.x1, Y(.3) - 4, "exit threshold", { "text-anchor": "end" });
+    el("path", { d: t.prob.map((p, j) => (j ? "L" : "M") + X(mm[j]).toFixed(1) + " " + Y(p).toFixed(1)).join(" "), fill: "none", stroke: C.ink, "stroke-width": 2, "stroke-linejoin": "round" }, svg);
+    const stop = t.exit_call === null ? zmax : Math.min(t.exit_call * t.dz_mm + DATA.config.primary_margin_mm, zmax);
+    if (t.exit_call !== null) {
+      el("line", { x1: X(t.exit_call * t.dz_mm), x2: X(t.exit_call * t.dz_mm), y1: f.y1, y2: f.y0, stroke: C.low, "stroke-width": 2, "stroke-dasharray": "5 3" }, svg);
+    }
+    el("line", { x1: X(stop), x2: X(stop), y1: f.y1, y2: f.y0, stroke: C.low, "stroke-width": 2 }, svg);
+    text(svg, X(stop) + 4, f.y0 - 8, "beam off", { fill: C.low, "font-weight": 600 });
+    [0, 100, 200, 300, 400].filter(z => z <= zmax).forEach(z => text(svg, X(z), H - 16, z, { "text-anchor": "middle" }));
+    text(svg, (f.x0 + f.x1) / 2, H - 2, "mm from start of scan (head → feet)", { "text-anchor": "middle" });
+    const tp = tipper(fig);
+    const hit = el("rect", { x: f.x0, y: f.y1, width: f.x1 - f.x0, height: f.y0 - f.y1, fill: "transparent" }, svg);
+    const cross = el("line", { y1: f.y1, y2: f.y0, stroke: C.muted, "stroke-width": 1, opacity: 0 }, svg);
+    hit.addEventListener("mousemove", e => {
+      const r = svg.getBoundingClientRect(), sx = (e.clientX - r.left) * (W / r.width);
+      const j = Math.max(0, Math.min(t.prob.length - 1, Math.round(((sx - f.x0) / (f.x1 - f.x0)) * (t.prob.length - 1))));
+      cross.setAttribute("x1", X(mm[j])); cross.setAttribute("x2", X(mm[j])); cross.setAttribute("opacity", 1);
+      const inside = j >= t.organ_first && j <= t.organ_last;
+      tp.show(`${mm[j].toFixed(0)} mm · confidence ${t.prob[j].toFixed(2)}<br>${inside ? "spleen in slice" : "no spleen"}`, e);
+    });
+    hit.addEventListener("mouseleave", () => { tp.hide(); cross.setAttribute("opacity", 0); });
+  }
+
+  function drawSweep(fig) {
+    const key = fig.dataset.sweep, svg = fig.querySelector("svg"), pct = key === "complete_coverage_rate";
+    const S = DATA.summary.trained_full_dose_only, margins = DATA.config.margins_mm;
+    const series = [{ dose: "1.0", label: "100%", color: C.full, dash: "" }, { dose: "0.02", label: "2%", color: C.low, dash: "6 4" }]
+      .map(s => ({ ...s, ys: margins.map(m => S[s.dose].by_margin[m.toFixed(1)][key]) }));
+    const W = 460, H = 230, f = frame(svg, W, H, { l: 40, r: 40, t: 12, b: 34 });
+    const ymax = pct ? 1 : Math.ceil(Math.max(...series.flatMap(s => s.ys), S["1.0"].mean_conventional_tail_mm) / 50) * 50;
+    const lo = Math.min(...series.flatMap(s => s.ys));
+    const ymin = pct ? Math.floor(lo * 10) / 10 : 0;
+    const X = m => f.x0 + (m / margins[margins.length - 1]) * (f.x1 - f.x0), Y = y => f.y0 - ((y - ymin) / (ymax - ymin)) * (f.y0 - f.y1);
+    const ticks = pct ? Array.from({ length: Math.round((1 - ymin) * 10) + 1 }, (_, i) => ymin + i / 10) : Array.from({ length: ymax / 50 + 1 }, (_, i) => i * 50);
+    ticks.forEach(y => { el("line", { x1: f.x0, x2: f.x1, y1: Y(y), y2: Y(y), stroke: C.rule, "stroke-width": 1 }, svg); text(svg, f.x0 - 6, Y(y) + 4, pct ? Math.round(y * 100) + "%" : y, { "text-anchor": "end" }); });
+    if (!pct) {
+      const conv = S["1.0"].mean_conventional_tail_mm;
+      el("line", { x1: f.x0, x2: f.x1, y1: Y(conv), y2: Y(conv), stroke: C.muted, "stroke-dasharray": "2 3" }, svg);
+      text(svg, f.x0 + 4, Y(conv) - 5, "planned range runs to the end: " + conv.toFixed(0) + " mm");
+    }
+    margins.filter(m => m % 20 === 0).forEach(m => text(svg, X(m), H - 16, m, { "text-anchor": "middle" }));
+    text(svg, (f.x0 + f.x1) / 2, H - 2, "safety margin after the exit call (mm)", { "text-anchor": "middle" });
+    // End labels: keep them at least 12px apart when the lines converge.
+    const ends = series.map(s => Y(s.ys[s.ys.length - 1]));
+    if (Math.abs(ends[0] - ends[1]) < 12) { const mid = (ends[0] + ends[1]) / 2; ends[0] = mid - 6; ends[1] = mid + 6; }
+    series.forEach((s, si) => {
+      el("path", { d: s.ys.map((y, i) => (i ? "L" : "M") + X(margins[i]).toFixed(1) + " " + Y(y).toFixed(1)).join(" "), fill: "none", stroke: s.color, "stroke-width": 2, "stroke-dasharray": s.dash, "stroke-linejoin": "round" }, svg);
+      text(svg, f.x1 + 4, ends[si] + 4, s.label, { fill: C.ink, "font-weight": 600 });
+    });
+    const tp = tipper(fig);
+    const cross = el("line", { y1: f.y1, y2: f.y0, stroke: C.muted, "stroke-width": 1, opacity: 0 }, svg);
+    const hit = el("rect", { x: f.x0, y: f.y1, width: f.x1 - f.x0, height: f.y0 - f.y1, fill: "transparent" }, svg);
+    hit.addEventListener("mousemove", e => {
+      const r = svg.getBoundingClientRect(), sx = (e.clientX - r.left) * (W / r.width);
+      const i = Math.max(0, Math.min(margins.length - 1, Math.round(((sx - f.x0) / (f.x1 - f.x0)) * (margins.length - 1))));
+      cross.setAttribute("x1", X(margins[i])); cross.setAttribute("x2", X(margins[i])); cross.setAttribute("opacity", 1);
+      const fmt = y => pct ? Math.round(y * 100) + "%" : y.toFixed(0) + " mm";
+      tp.show(`margin ${margins[i]} mm<br>` + series.map(s => `${s.label} dose: ${fmt(s.ys[i])}`).join("<br>"), e);
+    });
+    hit.addEventListener("mouseleave", () => { tp.hide(); cross.setAttribute("opacity", 0); });
+  }
+
+  document.querySelectorAll("[data-trace]").forEach(drawTrace);
+  document.querySelectorAll("[data-sweep]").forEach(drawSweep);
+})();
+</script>
+{% endblock %}

@@ -40,7 +40,7 @@ STATIC = ROOT / "static"
 # Pages/dirs to exclude from the index.
 SKIP_PAGES = {"sitemap", "_index", "investors"}  # /investors is Access-gated; never index it
 # Top-level content dirs that are NOT languages.
-SKIP_DIRS = {"blog", "static", "preview", "_index"}
+SKIP_DIRS = {"blog", "static", "preview", "briefs", "_index"}  # briefs/ are unlisted, shared by link
 
 MD_IMG = re.compile(r"!\[[^\]]*\]\([^)]*\)")
 MD_CODE = re.compile(r"```.*?```", re.S)

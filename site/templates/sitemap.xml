@@ -5,6 +5,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for sitemap_entry in entries %}
 {%- if sitemap_entry.permalink is containing("/investors") %}{% continue %}{% endif %}
+{#- /briefs/ are unlisted working documents shared by link; they carry noindex too. -#}
+{%- if sitemap_entry.permalink is containing("/briefs/") %}{% continue %}{% endif %}
 {#- the TrustBench embed is noindex: a chrome-less copy of /trustbench/ meant for iframes, not search #}
 {%- if sitemap_entry.permalink is containing("/trustbench/embed") %}{% continue %}{% endif %}
     <url>
