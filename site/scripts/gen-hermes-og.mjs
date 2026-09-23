@@ -11,7 +11,7 @@
  *
  * The cards carry the REAL marks of the three parties, side by side:
  *   - Divinci: the renaissance robot from the site header
- *   - Hermes Agent (Nous Research): the mark and wordmark from LobeHub's
+ *   - Hermes Agent (Nous Research): the mark from LobeHub's
  *     MIT-licensed icon set (lobehub.com/icons/hermesagent)
  *   - Cloudflare: static/brand/vendors/cloudflare.svg
  * Beside them sits the page's own Leonardo notebook art, so the card is the
@@ -46,9 +46,7 @@ const FRAME = `
     .lockup { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
     .lockup .x { font: 500 26px/1 'Fraunces', serif; color: #b09a7c; }
     .robot { width: 92px; height: 92px; margin: -8px -6px -8px -10px; object-fit: contain; }
-    .hermes { display: flex; align-items: center; gap: 10px; }
-    .hermes .mark { width: 76px; height: 76px; object-fit: contain; }
-    .hermes .word { height: 46px; width: auto; }
+    .hermes-mark { width: 80px; height: 80px; object-fit: contain; }
     .cf { width: 60px; height: 60px; object-fit: contain; }
     .eyebrow { font: 700 15px/1 'Source Sans 3'; letter-spacing: .24em; color: #9a6b2f; text-transform: uppercase; }
     .rule { width: 230px; height: 3px; margin: 16px 0 20px; background: linear-gradient(90deg, #9a6b2f, transparent); }
@@ -63,7 +61,7 @@ const LOCKUP = `
   <div class="lockup">
     <img class="robot" src="${R2}/images/divinci-renaissance_no-bg.webp" alt="">
     <span class="x">×</span>
-    <span class="hermes"><img class="mark" src="brand/vendors/hermes-agent-mark.svg" alt=""><img class="word" src="brand/vendors/hermes-agent-text.svg" alt=""></span>
+    <img class="hermes-mark" src="brand/vendors/hermes-agent-mark.svg" alt="">
     <span class="x">×</span>
     <img class="cf" src="brand/vendors/cloudflare.svg" alt="">
   </div>`;
