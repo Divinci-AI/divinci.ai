@@ -1,0 +1,183 @@
+{# ── Features mega menu ─────────────────────────────────────────────────────
+   Shared by the page header (partials/header.html) and the scrolled glass
+   banner nav (base.html). The two contexts differ only in skin: the header
+   renders it full-bleed edge to edge, the banner renders it as a floating
+   glass card. See the "NAV MEGA MENU" section in static/css/style.css.
+
+   Included (not a macro) so `current_lang` and `translations` resolve from the
+   surrounding template context.
+
+   Icons are inline, hand-drawn in the site's da Vinci line-art idiom rather
+   than photographic thumbnails: the OG cards under static/images/og/ have
+   headline text baked into them, which turns to unreadable noise at 40px and
+   repeats a title the menu item already prints beside it.
+#}
+<div class="mega-menu mega-menu-features">
+  <div class="mega-menu-inner">
+    <div class="mega-groups">
+
+      <section class="mega-group">
+        <h3 class="mega-group-title">{{ translations.navigation.mega_retrieval | default(value="Retrieval") }}</h3>
+        <a class="mega-item" href="{% if current_lang == 'en' %}/autorag/{% else %}/{{ current_lang }}/autorag/{% endif %}">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="2.6"/>
+              <path d="M12 3.8v3.6M12 16.6v3.6M3.8 12h3.6M16.6 12h3.6"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">AutoRAG</span>
+            <span class="mega-item-desc">Find the optimal pipeline for your data, automatically.</span>
+          </span>
+        </a>
+        <a class="mega-item" href="{% if current_lang == 'en' %}/rag-routing/{% else %}/{{ current_lang }}/rag-routing/{% endif %}">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12h3.2"/><circle cx="8" cy="12" r="1.7"/>
+              <path d="M9.7 12h3.6M13.3 12l3.5-4.6M13.3 12h3.5M13.3 12l3.5 4.6"/>
+              <circle cx="18.4" cy="7" r="1.5"/><circle cx="18.4" cy="12" r="1.5"/><circle cx="18.4" cy="17" r="1.5"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">RAG Routing</span>
+            <span class="mega-item-desc">Ten retrieval engines behind one endpoint.</span>
+          </span>
+        </a>
+        <a class="mega-item" href="{% if current_lang == 'en' %}/rag-arena/{% else %}/{{ current_lang }}/rag-arena/{% endif %}">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9.4 6.8 4.6 12l4.8 5.2M14.6 6.8 19.4 12l-4.8 5.2"/>
+              <path d="M12 3.6v16.8" stroke-dasharray="2 2.6"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">RAG Arena</span>
+            <span class="mega-item-desc">Score knowledge bases head to head.</span>
+          </span>
+        </a>
+      </section>
+
+      <section class="mega-group">
+        <h3 class="mega-group-title">{{ translations.navigation.mega_ship | default(value="Govern and ship") }}</h3>
+        <a class="mega-item" href="{% if current_lang == 'en' %}/quality-assurance/{% else %}/{{ current_lang }}/quality-assurance/{% endif %}">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="10.5" cy="10.5" r="6.3"/><path d="m15.2 15.2 4.8 4.8"/>
+              <path d="m7.8 10.6 2 2 3.4-3.8"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">{{ translations.navigation.quality_assurance | default(value="Quality Assurance") }}</span>
+            <span class="mega-item-desc">Safety and quality evals before anything ships.</span>
+          </span>
+        </a>
+        <a class="mega-item" href="{% if current_lang == 'en' %}/release-management/{% else %}/{{ current_lang }}/release-management/{% endif %}">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3.2 3.4 7.5 12 11.8l8.6-4.3L12 3.2Z"/>
+              <path d="M3.4 12 12 16.3 20.6 12M3.4 16.5 12 20.8l8.6-4.3"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">{{ translations.navigation.release_management | default(value="Release Management") }}</span>
+            <span class="mega-item-desc">Approved, versioned releases with instant rollback.</span>
+          </span>
+        </a>
+        <a class="mega-item" href="{% if current_lang == 'en' %}/compliance/{% else %}/{{ current_lang }}/compliance/{% endif %}">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3.2 19 6v6c0 4-3 7-7 8.8C8 19 5 16 5 12V6l7-2.8Z"/>
+              <path d="m8.9 12.2 2.2 2.2 4-4.4"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">{{ translations.navigation.compliance | default(value="Compliance") }}</span>
+            <span class="mega-item-desc">EU AI Act, GDPR and HIPAA, evidenced.</span>
+          </span>
+        </a>
+      </section>
+
+      <section class="mega-group">
+        <h3 class="mega-group-title">{{ translations.navigation.mega_agents | default(value="Agents and the open web") }}</h3>
+        {# Not language-prefixed: content/hermes-agents.md has no per-locale
+           variants, so /{{ current_lang }}/hermes-agents/ 404s in all twelve —
+           same treatment as Voice Agents and Open Web Vectors below. #}
+        <a class="mega-item" href="/hermes-agents/">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3.4"/>
+              <path d="M8.6 10.6C6.6 9 4.6 8.6 2.6 9.4c1.2 1.7 2.7 2.9 4.5 3.5M15.4 10.6c2-1.6 4-2 6-1.2-1.2 1.7-2.7 2.9-4.5 3.5"/>
+              <path d="M12 15.4v5.2"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">Hermes Agents</span>
+            <span class="mega-item-desc">Your own Hermes, one isolated container each.</span>
+          </span>
+        </a>
+        <a class="mega-item" href="/voice-agents/">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.6 10v4M8.3 7.4v9.2M12 4.8v14.4M15.7 7.4v9.2M19.4 10v4"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">Voice Agents</span>
+            <span class="mega-item-desc">Your grounded assistant on a real phone number.</span>
+          </span>
+        </a>
+        <a class="mega-item" href="/www-rag/">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="8.2"/><path d="M3.8 12h16.4"/>
+              <path d="M12 3.8c2.4 2.4 3.6 5.2 3.6 8.2s-1.2 5.8-3.6 8.2c-2.4-2.4-3.6-5.2-3.6-8.2s1.2-5.8 3.6-8.2Z"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">{{ translations.navigation.www_rag_directory | default(value="WWW-RAG Directory") }}</span>
+            <span class="mega-item-desc">Chat with indexed sites — no sign-up.</span>
+          </span>
+        </a>
+        {# Not language-prefixed: one English page, no per-locale variants. #}
+        <a class="mega-item" href="/open-web-vectors/">
+          {# The initiative's own mark (static/brand/open-web-vectors/), not a
+             one-off icon: the same drawing sits in the /open-web-vectors/ hero,
+             the /www-rag/ band, the GitHub README and the Hugging Face cards. #}
+          <span class="mega-item-thumb mega-item-thumb-owv" aria-hidden="true">
+            {% include "partials/owv-mark.html" %}
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">{{ translations.navigation.open_web_vectors | default(value="Open Web Vectors") }}</span>
+            <span class="mega-item-desc">A public vector index for every site.</span>
+          </span>
+        </a>
+      </section>
+
+    </div>
+
+    <aside class="mega-feature">
+      <a class="mega-feature-link" href="https://meetings.hubspot.com/michael-mooring/divinci-ai" target="_blank" rel="noopener">
+        <span class="mega-feature-media">
+          <img src="/cdn-cgi/image/width=560,height=300,fit=cover,gravity=0.5x0.36,format=auto,quality=85/https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/davinci-painter-robot-800w.webp"
+               alt="" width="280" height="150" loading="lazy" decoding="async"
+               onerror="this.onerror=null;this.src='https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/davinci-painter-robot-400w.webp';">
+        </span>
+        <span class="mega-feature-eyebrow">{{ translations.navigation.mega_feature_eyebrow | default(value="See it run") }}</span>
+        <span class="mega-feature-title">{{ translations.navigation.mega_feature_title | default(value="A 20-minute walkthrough") }}</span>
+        <span class="mega-feature-desc">{{ translations.navigation.mega_feature_desc | default(value="Watch a release go from safety evaluation to production, with the evidence trail, and back again on rollback.") }}</span>
+        <span class="mega-feature-cta">{{ translations.navigation.request_demo | default(value="Request demo") }} →</span>
+      </a>
+    </aside>
+  </div>
+
+  <div class="mega-footer">
+    <div class="mega-footer-inner">
+      <a class="mega-footer-lead" href="{% if current_lang == 'en' %}/#features{% else %}/{{ current_lang }}/#features{% endif %}">{{ translations.navigation.mega_all_features | default(value="All features") }} →</a>
+      <span class="mega-footer-links">
+        <a href="{% if current_lang == 'en' %}/pricing/{% else %}/{{ current_lang }}/pricing/{% endif %}">{{ translations.navigation.pricing | default(value="Pricing") }}</a>
+        <a href="{% if current_lang == 'en' %}/roadmap/{% else %}/{{ current_lang }}/roadmap/{% endif %}">{{ translations.navigation.roadmap | default(value="Roadmap") }}</a>
+        <a href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">{{ translations.navigation.documentation | default(value="Documentation") }}</a>
+      </span>
+    </div>
+  </div>
+</div>

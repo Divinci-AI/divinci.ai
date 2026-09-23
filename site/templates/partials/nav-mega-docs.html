@@ -1,0 +1,91 @@
+{# ── Documentation mega menu ────────────────────────────────────────────────
+   Used only by the scrolled glass banner nav in base.html — the page header
+   keeps Documentation inside the Support panel. Same shell as
+   nav-mega-features.html; see that file's header comment.
+#}
+<div class="mega-menu mega-menu-docs">
+  <div class="mega-menu-inner">
+    <div class="mega-groups mega-groups-2">
+
+      <section class="mega-group">
+        <h3 class="mega-group-title">{{ translations.navigation.mega_start_here | default(value="Start here") }}</h3>
+        <a class="mega-item" href="{% if current_lang == 'en' %}/docs/{% else %}/{{ current_lang }}/docs/{% endif %}">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 5.2c2.6-1 5.3-1 8 0v14c-2.7-1-5.4-1-8 0V5.2Z"/>
+              <path d="M12 5.2c2.7-1 5.4-1 8 0v14c-2.6-1-5.3-1-8 0"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">{{ translations.navigation.overview | default(value="Overview") }}</span>
+            <span class="mega-item-desc">How a Divinci release is put together.</span>
+          </span>
+        </a>
+        <a class="mega-item" href="{% if current_lang == 'en' %}/tutorials/{% else %}/{{ current_lang }}/tutorials/{% endif %}">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="8.2"/><path d="m10.2 8.8 5.2 3.2-5.2 3.2V8.8Z"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">{{ translations.navigation.tutorials | default(value="Tutorials") }}</span>
+            <span class="mega-item-desc">Step-by-step, from first index to first release.</span>
+          </span>
+        </a>
+      </section>
+
+      <section class="mega-group">
+        <h3 class="mega-group-title">{{ translations.navigation.mega_build | default(value="Build") }}</h3>
+        <a class="mega-item" href="{% if current_lang == 'en' %}/api/{% else %}/{{ current_lang }}/api/{% endif %}">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 4.5c-2.4 0-3 1.2-3 3v2c0 1.4-.8 2.2-2 2.5 1.2.3 2 1.1 2 2.5v2c0 1.8.6 3 3 3"/>
+              <path d="M15 4.5c2.4 0 3 1.2 3 3v2c0 1.4.8 2.2 2 2.5-1.2.3-2 1.1-2 2.5v2c0 1.8-.6 3-3 3"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">API</span>
+            <span class="mega-item-desc">The REST surface behind every feature.</span>
+          </span>
+        </a>
+        <a class="mega-item" href="https://sdk.divinci.ai" target="_blank" rel="noopener">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3.2 20 7.6v8.8L12 20.8 4 16.4V7.6L12 3.2Z"/>
+              <path d="M4 7.6 12 12l8-4.4M12 12v8.8"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">SDK</span>
+            <span class="mega-item-desc">TypeScript and Python clients.</span>
+          </span>
+        </a>
+        <a class="mega-item" href="{% if current_lang == 'en' %}/cli/{% else %}/{{ current_lang }}/cli/{% endif %}">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.2" y="4.8" width="17.6" height="14.4" rx="2.2"/>
+              <path d="m7.6 10 2.8 2.4-2.8 2.4M13 15.2h4"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">CLI</span>
+            <span class="mega-item-desc">Ship releases from your terminal.</span>
+          </span>
+        </a>
+        <a class="mega-item" href="https://sdk.divinci.ai/mcp/overview" target="_blank" rel="noopener">
+          <span class="mega-item-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3v5M15 3v5"/><rect x="6.5" y="8" width="11" height="6" rx="2.4"/>
+              <path d="M12 14v3.2a3.6 3.6 0 0 1-3.6 3.6H7"/>
+            </svg>
+          </span>
+          <span class="mega-item-text">
+            <span class="mega-item-title">MCP</span>
+            <span class="mega-item-desc">Hand your assistant to any MCP client.</span>
+          </span>
+        </a>
+      </section>
+
+    </div>
+  </div>
+</div>
