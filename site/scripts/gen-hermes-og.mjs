@@ -11,8 +11,8 @@
  *
  * The cards carry the REAL marks of the three parties, side by side:
  *   - Divinci: the renaissance robot from the site header
- *   - Hermes Agent (Nous Research): the wing from hermes-agent.nousresearch.com
- *     and the pixel wordmark from the MIT-licensed NousResearch/hermes-agent repo
+ *   - Hermes Agent (Nous Research): the mark and wordmark from LobeHub's
+ *     MIT-licensed icon set (lobehub.com/icons/hermesagent)
  *   - Cloudflare: static/brand/vendors/cloudflare.svg
  * Beside them sits the page's own Leonardo notebook art, so the card is the
  * page's identity rather than a description of it.
@@ -46,9 +46,9 @@ const FRAME = `
     .lockup { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
     .lockup .x { font: 500 26px/1 'Fraunces', serif; color: #b09a7c; }
     .robot { width: 92px; height: 92px; margin: -8px -6px -8px -10px; object-fit: contain; }
-    .hermes { display: flex; align-items: center; gap: 10px; background: #111; border-radius: 12px; padding: 9px 14px 9px 11px; }
-    .hermes .wing { width: 26px; height: 52px; object-fit: contain; filter: brightness(1.35); }
-    .hermes .word { height: 26px; width: auto; }
+    .hermes { display: flex; align-items: center; gap: 10px; }
+    .hermes .mark { width: 76px; height: 76px; object-fit: contain; }
+    .hermes .word { height: 46px; width: auto; }
     .cf { width: 60px; height: 60px; object-fit: contain; }
     .eyebrow { font: 700 15px/1 'Source Sans 3'; letter-spacing: .24em; color: #9a6b2f; text-transform: uppercase; }
     .rule { width: 230px; height: 3px; margin: 16px 0 20px; background: linear-gradient(90deg, #9a6b2f, transparent); }
@@ -63,7 +63,7 @@ const LOCKUP = `
   <div class="lockup">
     <img class="robot" src="${R2}/images/divinci-renaissance_no-bg.webp" alt="">
     <span class="x">×</span>
-    <span class="hermes"><img class="wing" src="brand/vendors/hermes-agent-wing.svg" alt=""><img class="word" src="brand/vendors/hermes-agent-wordmark.png" alt=""></span>
+    <span class="hermes"><img class="mark" src="brand/vendors/hermes-agent-mark.svg" alt=""><img class="word" src="brand/vendors/hermes-agent-text.svg" alt=""></span>
     <span class="x">×</span>
     <img class="cf" src="brand/vendors/cloudflare.svg" alt="">
   </div>`;

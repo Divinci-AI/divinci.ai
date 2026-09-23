@@ -46,7 +46,7 @@ Vertex AI reuses `/brand/companies/google.svg`, already in the repo.
 
 Used by `scripts/gen-hermes-og.mjs` for the Hosted Hermes social cards.
 
-- `hermes-agent-wing.svg`: the wing mark served on https://hermes-agent.nousresearch.com
-  (`web-assets.nousresearch.com/.../hermes-landing/teams/hermes-wing.*.svg`).
-- `hermes-agent-wordmark.png`: `website/static/img/hermes-agent-banner.png` from
-  the MIT-licensed https://github.com/NousResearch/hermes-agent repo.
+- `hermes-agent-mark.svg` and `hermes-agent-text.svg`: `hermesagent.svg` and
+  `hermesagent-text.svg` from @lobehub/icons-static-svg (MIT,
+  https://lobehub.com/icons/hermesagent). `currentColor` set to `#111` and the
+  1em sizing removed so they render as standalone images.
