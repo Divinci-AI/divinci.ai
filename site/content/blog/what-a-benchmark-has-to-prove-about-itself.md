@@ -248,7 +248,7 @@ In the spirit of the thing:
 - Both retrieval boards use one answering model. Two judges now agree on the ordering (see the footnote above), but neither is calibrated against a human rater, so accuracy is unestablished. On the nutrition board, the Vertex row searches a newer and larger ingestion than the others, and the PageIndex + Jev row was scored by Gemini 3.8 Flash where every other row was scored by 2.5 Flash (see [the update](#a-fifth-row)).
 - The fifth nutrition row, PixelRAG + Jev, was designed on the same sixty questions it is scored on, and it ran from a laptop. Its lead over Vertex is consistent across three judges and small under all of them. See [the update](#a-fifth-row).
 
-Since 25 September, each board also has a full [test specification](/trustbench/specs/): what it tests, how every answer is scored, and each known defect, including two worse than anything above. The top row of Red Team Core rests partly on empty answers, and the erasure board's single number cannot show whether the erasure worked.
+Since 25 September, each board also has a full [test specification](/trustbench/specs/): what it tests, how every answer is scored, and each known defect, including two worse than anything above. The top row of Red Team Core rested partly on empty answers, since fixed in a version 1.1.0 of both red-team boards with every model re-run; and the erasure board's single number cannot show whether the erasure worked.
 
 None of that is fatal and all of it is written down. A benchmark that cannot state its own limitations is asking for the same trust it exists to replace.
 

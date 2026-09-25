@@ -16,8 +16,8 @@ A signature proves a score has not been altered since it was signed. It does not
 
 | Board | What it tests | Items | Graded by | Runs per row | Provenance |
 |---|---|---|---|---|---|
-| [Red Team Core v1](/trustbench/specs/red-team-core/) | Whether a bare model does what an attacker asks, across seven attack classes | 32 probes | Deterministic rules: canary, regex, refusal detection | 1 | measured |
-| [System-Prompt Extraction v1](/trustbench/specs/system-prompt-extraction/) | Whether a planted secret can be pulled out of the system prompt | 12 probes | Canary match (11), regex (1) | 1 | measured |
+| [Red Team Core v1](/trustbench/specs/red-team-core/) (1.1.0) | Whether a bare model does what an attacker asks, across seven attack classes | 32 probes | Deterministic rules: canary, regex, refusal detection | 5 | measured |
+| [System-Prompt Extraction v1](/trustbench/specs/system-prompt-extraction/) (1.1.0) | Whether a planted secret can be pulled out of the system prompt | 12 probes | Canary match (11), regex (1) | 5 | measured |
 | [RAG Grounding v1](/trustbench/specs/rag-grounding/) | Whether a model answers only from passages it is handed | 11 items | Deterministic regex rules, no judge | 1 | measured |
 | [Annex IV erasure: corpus integrity](/trustbench/specs/annex-iv-erasure/) | One deployed assistant's answers after a document was erased from its corpus | 10 questions | LLM judge, claim by claim | 1 (one row) | republished, no provenance field |
 | [Divinci SDK Docs: Retrieval QA](/trustbench/specs/sdk-docs-retrieval/) | Retrieval stacks compared with the model held fixed, on public docs | 60 questions | LLM judge, claim by claim | 3 | republished |
@@ -68,8 +68,8 @@ Every probe, question, passage, grading pattern and reference answer behind thes
 
 | Board | Version | Item set | sha256 (= the manifests' `benchmark.contentHash`) |
 |---|---|---|---|
-| Red Team Core v1 | 1.0.0 | [download](/trustbench/benchmarks/divinci-redteam-core-v1/v1.0.0.json) | `18029b84572a6240…` |
-| System-Prompt Extraction v1 | 1.0.0 | [download](/trustbench/benchmarks/divinci-redteam-prompt-leak-v1/v1.0.0.json) | `0c3d7e03504ee89b…` |
+| Red Team Core v1 | 1.1.0 | [download](/trustbench/benchmarks/divinci-redteam-core-v1/v1.1.0.json) | `599e8544f4c711d0…` |
+| System-Prompt Extraction v1 | 1.1.0 | [download](/trustbench/benchmarks/divinci-redteam-prompt-leak-v1/v1.1.0.json) | `c4d1cb9c1696395a…` |
 | RAG Grounding v1 | 1.4.0 | [download](/trustbench/benchmarks/divinci-rag-grounding-v1/v1.4.0.json) | `eb8d3ab84b1f5ecd…` |
 | Annex IV erasure | 1.0.0 | [download](/trustbench/benchmarks/scored-qa-suite-1d643f83bb0f-llm-factual-consistency-vs-reference/v1.0.0.json) | `28e0a046a8526ca1…` |
 | SDK Docs: Retrieval QA | 1.0.0 | [download](/trustbench/benchmarks/scored-qa-suite-93b9aff40427-llm-factual-consistency-vs-reference/v1.0.0.json) | `04adb10a199b3de6…` |
@@ -87,4 +87,4 @@ These limits apply to every board, and each board's page lists its own.
 
 ## Why this page exists
 
-These specifications were published on 25 September 2026, after the boards had been public for weeks with a one-paragraph description each. Writing them turned up defects that should have been visible from the start. Among them: the top-ranked row on Red Team Core rests partly on empty answers, and the erasure board's single number cannot show whether the erasure worked. Both are described on their boards' pages, not held back for a fix.
+These specifications were published on 25 September 2026, after the boards had been public for weeks with a one-paragraph description each. Writing them turned up defects that should have been visible from the start. The top-ranked row on Red Team Core rested partly on empty answers, and the erasure board's single number cannot show whether the erasure worked. The red-team defects were fixed the same day in version 1.1.0, and every model was re-run on it. The erasure board's limitation is explained on its page, not held back for a fix. The retired 1.0.0 item sets stay published beside the current ones, on each board's page.
