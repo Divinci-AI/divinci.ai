@@ -96,6 +96,23 @@
     return null;
   }
 
+  /*
+   * Names for stacks the API can only show as digests. The leaderboard reduces
+   * any workspace-registered retrieval tool to "External retrieval tool
+   * (<digest>)" on purpose, so it never publishes a workspace's tool id. When
+   * the workspace is ours and we have written the stack up, the page may name
+   * it. Keyed on the full public stack id: the digests are stable, and a
+   * different tool gets a different id, so it cannot inherit this name. The id
+   * itself stays on the row, under the name.
+   */
+  var STACK_NAMES = {
+    // Divinci's PixelRAG + Jev experiment on the DrFuhrman workspace; see
+    // /blog/what-a-benchmark-has-to-prove-about-itself/#a-fifth-row
+    'multi:external:d810847b+external:1df1e02a': 'PixelRAG + Jev'
+  };
+  function stackName(r) {
+    return STACK_NAMES[r.retrievalStackId] || r.retrievalStackLabel || r.retrievalStackId;
+  }
   function esc(v) {
     return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -151,7 +168,7 @@
               ? '<span class="tb-pill">' +
                   (stackLogoFor(r.retrievalStackId)
                     ? '<img class="tb-logo" src="' + stackLogoFor(r.retrievalStackId) + '" alt="" loading="lazy">' : '') +
-                  esc(r.retrievalStackLabel || r.retrievalStackId) + '</span>' +
+                  esc(stackName(r)) + '</span>' +
                 '<div class="tb-mono">' + esc(r.retrievalStackId) + '</div>'
               : '<span class="tb-mono">no retrieval</span>') + '</td>'
           : '') +
@@ -192,7 +209,7 @@
    */
   function manifestUrl(r) { return RUNS + encodeURIComponent(r.runId); }
   function pct(b, v) { return typeof v === 'number' ? fmt(b, v) : ''; }
-  function stackOf(r) { return r.retrievalStackId ? (r.retrievalStackLabel || r.retrievalStackId) : ''; }
+  function stackOf(r) { return r.retrievalStackId ? stackName(r) : ''; }
 
   function toMarkdown(entry) {
     var b = entry.benchmark, rows = entry.rows || [];
