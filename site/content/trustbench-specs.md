@@ -62,11 +62,26 @@ const result = await verify(manifest, { outputs, strict: true });
 
 `strict: true` turns every warning into a failure: a republished score, or a manifest with no provenance. Verifier 0.5.0 also reads a coverage block that newer outputs files will carry, declaring failed retrieval, answers filled in from an earlier pass, and missing answers. No published run has that block yet, because the publishing change that writes it is not yet deployed.
 
+## The item sets
+
+Every probe, question, passage, grading pattern and reference answer behind these boards is published as the exact canonical JSON its content hash is computed over. Hash a file and you get the value every manifest on that board commits to; pass it to the verifier as `benchmarkContent` and it checks that for you. The full hashes are on each board's page.
+
+| Board | Version | Item set | sha256 (= the manifests' `benchmark.contentHash`) |
+|---|---|---|---|
+| Red Team Core v1 | 1.0.0 | [download](/trustbench/benchmarks/divinci-redteam-core-v1/v1.0.0.json) | `18029b84572a6240…` |
+| System-Prompt Extraction v1 | 1.0.0 | [download](/trustbench/benchmarks/divinci-redteam-prompt-leak-v1/v1.0.0.json) | `0c3d7e03504ee89b…` |
+| RAG Grounding v1 | 1.4.0 | [download](/trustbench/benchmarks/divinci-rag-grounding-v1/v1.4.0.json) | `eb8d3ab84b1f5ecd…` |
+| Annex IV erasure | 1.0.0 | [download](/trustbench/benchmarks/scored-qa-suite-1d643f83bb0f-llm-factual-consistency-vs-reference/v1.0.0.json) | `28e0a046a8526ca1…` |
+| SDK Docs: Retrieval QA | 1.0.0 | [download](/trustbench/benchmarks/scored-qa-suite-93b9aff40427-llm-factual-consistency-vs-reference/v1.0.0.json) | `04adb10a199b3de6…` |
+| Nutrition Corpus: Retrieval QA | 1.0.0 | [download](/trustbench/benchmarks/scored-qa-suite-93b9aff624e6-llm-factual-consistency-vs-reference/v1.0.0.json) | `c4076a120dcd6b0d…` |
+
+Publishing an item set makes a benchmark checkable and also makes it trainable: a model can be tuned on these exact items. So a published set measures less over time. We chose checkable. When a set saturates, the remedy is a new version with new items, not secrecy.
+
 ## What a manifest cannot tell you
 
 These limits apply to every board, and each board's page lists its own.
 
-- **What the benchmark contains.** A manifest commits to the benchmark's id, version and content hash, not to its items. You can check an item set against that hash only if you have the items, and today most item sets are not public. Each page says what is published: sometimes a sample of items, sometimes the full question text through the outputs files.
+- **What the benchmark contains.** A manifest commits to the benchmark's id, version and content hash, not to its items. The item sets are published separately (below), so you can check them against that hash.
 - **How the model was configured,** beyond what the page describes: sampling temperature, for one, is not set by any of these harnesses, so each provider's default applied.
 - **That a score means what its board's name says.** That is what these pages are for, and several of them say plainly that it does not, or not fully.
 

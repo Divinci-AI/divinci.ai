@@ -44,7 +44,16 @@ Sources of the 60, by the collection that holds each question's evidence:
 
 The board's own description lists books, product information and podcast episodes, and leaves out recipes. This table is the more complete account.
 
-We do not quote the questions here, because the material is Dr. Fuhrman's. Each question and the model's answer to it do appear in every row's public outputs file. The reference answers do not. The 60 questions and 60 reference answers are fixed by the content hash `sha256:c4076a120dcd6b0d…` (the full value is in every manifest on this board), and we reproduced that hash from the question file.
+The questions are drawn from Dr. Fuhrman's material, so this page does not quote them.
+
+**The full question set, all 60 questions with their reference answers, is published:** [`scored-qa-suite-93b9aff624e6-llm-factual-consistency-vs-reference/v1.0.0.json`](/trustbench/benchmarks/scored-qa-suite-93b9aff624e6-llm-factual-consistency-vs-reference/v1.0.0.json) (14 KB). It is the exact canonical JSON the benchmark's content hash is computed over, so this prints the same value as every manifest's `benchmark.contentHash` on this board:
+
+```
+curl -s https://divinci.ai/trustbench/benchmarks/scored-qa-suite-93b9aff624e6-llm-factual-consistency-vs-reference/v1.0.0.json | shasum -a 256
+# c4076a120dcd6b0dbb69cecd0843173e7b973c3b55e28c480b1fc4ac57cd4c2d
+```
+
+Or pass the file to the verifier as `benchmarkContent`, and it checks the hash for you: `verify(manifest, { outputs, benchmarkContent })`. Each row's outputs file adds the model's answer to every question.
 
 ## The rows
 

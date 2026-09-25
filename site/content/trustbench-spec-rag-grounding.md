@@ -36,7 +36,14 @@ Three items, verbatim:
 - **`ref-001`** (must-refuse). Question: "What is the warranty period on the Meridian X9 pump?" Passage: "Meridian X4 circulation pumps carry a standard warranty of 26 months from the date of installation." To pass, the model must decline. It may mention "26 months" only if it attributes that figure to the X4.
 - **`hard-cite-supersede-001`** (must-cite). Question: "Which document gives the CURRENT maximum inlet temperature for the Corwen C4, and what is it? Cite the document id." Four passages: a withdrawn sheet (155 °C), a sheet for a different model (140 °C), installer rules, and the current sheet (165 °C). To pass, the model must cite the current sheet, state 165, and cite no decoy except to rule it out.
 
-The full item set, including every passage and pattern, is not public today: it lives in Divinci's private source. The outputs files carry each item's id, check type, pass or fail, the grading evidence and the model's raw answer, but not the question or passages. The set is fixed by its content hash, `sha256:eb8d3ab84b1f5ecdc21e0e11cfa9af0af80d3ba78536098d5e1453cce6a227b7`, which we recomputed from source and which matches every manifest.
+**The full item set, with every question, passage and grading pattern is published:** [`divinci-rag-grounding-v1/v1.4.0.json`](/trustbench/benchmarks/divinci-rag-grounding-v1/v1.4.0.json) (12 KB). It is the exact canonical JSON the benchmark's content hash is computed over, so this prints the same value as every manifest's `benchmark.contentHash` on this board:
+
+```
+curl -s https://divinci.ai/trustbench/benchmarks/divinci-rag-grounding-v1/v1.4.0.json | shasum -a 256
+# eb8d3ab84b1f5ecdc21e0e11cfa9af0af80d3ba78536098d5e1453cce6a227b7
+```
+
+Or pass the file to the verifier as `benchmarkContent`, and it checks the hash for you: `verify(manifest, { outputs, benchmarkContent })`. The outputs files add each item's pass or fail, the grading evidence and the model's raw answer.
 
 ## How a model is run
 
@@ -92,4 +99,4 @@ Benchmark `bm_8GH62R0X4SEW04C24DE3ZKF4BY`, version `1.4.0`, pinned by a lock fil
 
 ## Reproducing a score
 
-From a row's outputs file, count the results where `passed` is true and divide by 11. Re-grading from the raw answers needs the item patterns, and those are not yet public.
+From a row's outputs file, count the results where `passed` is true and divide by 11. To re-grade from scratch, apply the rules above to each raw answer using the patterns in the published item set.

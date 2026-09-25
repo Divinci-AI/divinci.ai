@@ -32,7 +32,14 @@ Three questions, verbatim:
 - "What minimum Node.js version does the Divinci CLI (`@divinci-ai/cli`) require?"
 - "For a Divinci RAG vector group attached to a Release, what are the default `mergeStrategy` and `maxChunksPerVector`?"
 
-Every question, and the model's answer to it, is public in each row's outputs file. The reference answers are not in the outputs file. The 60 questions and 60 reference answers are fixed by the content hash `sha256:04adb10a199b3de662f3a20d9bfc6dabb4686c84c39bcab0e5ee9a129b523bdc`, and we reproduced that hash from the question file.
+**The full question set, all 60 questions with their reference answers, is published:** [`scored-qa-suite-93b9aff40427-llm-factual-consistency-vs-reference/v1.0.0.json`](/trustbench/benchmarks/scored-qa-suite-93b9aff40427-llm-factual-consistency-vs-reference/v1.0.0.json) (14 KB). It is the exact canonical JSON the benchmark's content hash is computed over, so this prints the same value as every manifest's `benchmark.contentHash` on this board:
+
+```
+curl -s https://divinci.ai/trustbench/benchmarks/scored-qa-suite-93b9aff40427-llm-factual-consistency-vs-reference/v1.0.0.json | shasum -a 256
+# 04adb10a199b3de662f3a20d9bfc6dabb4686c84c39bcab0e5ee9a129b523bdc
+```
+
+Or pass the file to the verifier as `benchmarkContent`, and it checks the hash for you: `verify(manifest, { outputs, benchmarkContent })`. Each row's outputs file adds the model's answer to every question.
 
 ## The corpus and the rows
 

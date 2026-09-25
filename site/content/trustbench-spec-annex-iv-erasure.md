@@ -35,7 +35,16 @@ The published 10 comprise 2 on the erased topic and 8 controls. Some, verbatim f
 - "Is olive oil a health food?" (control, 0.75)
 - "Do mushrooms and green tea affect breast cancer risk?" (control, 0; its supporting passage was inside the erased paper)
 
-The questions and the assistant's answers are public in the outputs file. **The reference answers are not public**, so this board's content hash cannot be recomputed by anyone outside Divinci.
+The questions and the assistant's answers are public in the outputs file. The reference answers for all 16 questions, including the 6 that were never scored, are published with the item set below.
+
+**The full question set, all 16 questions with their reference answers, is published:** [`scored-qa-suite-1d643f83bb0f-llm-factual-consistency-vs-reference/v1.0.0.json`](/trustbench/benchmarks/scored-qa-suite-1d643f83bb0f-llm-factual-consistency-vs-reference/v1.0.0.json) (5 KB). It is the exact canonical JSON the benchmark's content hash is computed over, so this prints the same value as every manifest's `benchmark.contentHash` on this board:
+
+```
+curl -s https://divinci.ai/trustbench/benchmarks/scored-qa-suite-1d643f83bb0f-llm-factual-consistency-vs-reference/v1.0.0.json | shasum -a 256
+# 28e0a046a8526ca10d7ffbc0c7b682a89ce9e5e22fd2e9675ce2de5878eb1ebe
+```
+
+Or pass the file to the verifier as `benchmarkContent`, and it checks the hash for you: `verify(manifest, { outputs, benchmarkContent })`.
 
 ## How the answers were produced
 
