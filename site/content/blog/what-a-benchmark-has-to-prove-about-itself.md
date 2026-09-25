@@ -2,6 +2,7 @@
 title = "What a Benchmark Has to Prove About Itself"
 description = "Seven of eight major agent benchmarks were driven to near-perfect scores without solving a task — and every one of those runs would have passed a signature check. The unit of trust is not the number. It is the manifest, and a manifest has to be able to state its own weakness."
 date = 2026-09-22T09:00:00+00:00
+updated = 2026-09-25T09:00:00+00:00
 template = "blog-post.html"
 
 [taxonomies]
@@ -14,7 +15,7 @@ author_avatar = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/Mich
 featured_image = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/trustbench-sdk-board-hero.webp"
 hero_video = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/what-a-benchmark-has-to-prove-about-itself-veo31.webm"
 hero_video_poster = "https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/what-a-benchmark-has-to-prove-about-itself-hero-poster.webp"
-reading_time = 13
+reading_time = 18
 summary = "In April 2026 a Berkeley team drove seven of eight major AI agent benchmarks to roughly 100% without solving a single task — one of them by sending the message `{}`. Every one of those runs was honest, and a cryptographic signature over the result would have verified all of them. That is the gap this post is about: signing a score proves the outputs produced it, not that the measurement meant anything. We publish two retrieval leaderboards whose rows are signed, whose manifests declare themselves `republished` rather than `measured`, and whose most important row is a control that scores 0.078 — re-scored with a second judge from a different family, which preserves the ranking and disagrees most about the worst answers."
 +++
 
@@ -33,13 +34,15 @@ Both boards are live on the [public TrustBench leaderboards](/trustbench/), alon
 
 <figure class="blog-chart">
   <a href="/trustbench/"><img src="https://pub-fb3e683317b24cf8b4260121edae02be.r2.dev/images/trustbench-public-nutrition-board.webp" width="1600" height="947" alt="Screenshot of the Dr. Fuhrman Nutrition Corpus board on the public TrustBench page. Four rows, all answering with the same model, @cf/zai-org/glm-5.3-flash, and differing only in the retrieval stack, each shown with its vendor's logo: Vertex AI Vector Search v2 at 92.0%, Qdrant (cosine) at 88.4%, Vectorize (cosine) at 83.6%, and Divinci PageIndex (tree reasoning) at 38.4%. Each row's background fills to its score, the median-of-three range sits beneath it, and each row links to a signed manifest with the key id tbp-prod-002. A footer reads: each row is one configuration, a model and the retrieval stack it answered through." loading="lazy"></a>
-  <figcaption>The nutrition board as it is served on the <a href="/trustbench/">public page</a>. The model is identical down every row by design — the retrieval stack is the variable, and the footer says so: <em>each row is one configuration, a model and the retrieval stack it answered through</em>. The rightmost column is the part that matters: every row hands you the manifest that contains its score and names the key that signed it, so the number and the evidence for it never travel separately.</figcaption>
+  <figcaption>The nutrition board as it is served on the <a href="/trustbench/">public page</a>. The model is identical down every row by design — the retrieval stack is the variable, and the footer says so: <em>each row is one configuration, a model and the retrieval stack it answered through</em>. The rightmost column is the part that matters: every row hands you the manifest that contains its score and names the key that signed it, so the number and the evidence for it never travel separately. Captured before the board gained a fifth row; see the update below.</figcaption>
 </figure>
 
 <figure class="blog-chart">
   <img src="/images/charts/chart-retrieval-vs-baseline.svg" alt="Horizontal bar chart of seven retrieval rows across two boards with the model held fixed. Dr. Fuhrman Nutrition Corpus: Vertex AI Vector Search v2 0.920, Qdrant 0.884, Vectorize 0.836, Divinci PageIndex 0.384. Divinci SDK Docs: Vertex 0.755, Qdrant 0.732, and a no-retrieval control at 0.078 in amber, annotated as the row that makes the others interpretable." loading="lazy">
   <figcaption>Two TrustBench boards, read on 2026-09-21. Each row is the median of three signed runs. The answering model, the judge, the question set and the scoring rubric are held fixed, so rows differ only in the retrieval stack — and the amber control says what the model can do without any of them.</figcaption>
 </figure>
+
+*Update, 25 September: the nutrition board now has a fifth row, first at 0.947. It was designed on these same questions and served from a laptop, and what its manifest cannot say is the best illustration of this post's argument we have. [Read the update](#a-fifth-row).*
 
 ---
 
@@ -200,6 +203,38 @@ That is what the two boards at the top of this page are. It is also why the 0.07
 
 ---
 
+## Update, 25 September: a fifth row, designed on the test and served from a laptop {#a-fifth-row}
+
+We added a fifth stack to the nutrition board. Everything this post says about the first four applies to it, and it turned out to illustrate the argument better than any of them.
+
+**What it is.** [PixelRAG](https://github.com/StarTrail-org/PixelRAG) renders every page of a corpus to an image, cuts the page into overlapping tiles, and retrieves tiles with a vision embedding model (Qwen3-VL-Embedding-2B). We paired it with plain keyword search over the text printed on each tile and handed the union of both candidate lists, up to sixty tiles, to [Jev](https://typesafe.ai), a model from TypeSafe that does not generate text. Asked *does this tile state the answer to the question?*, it returns a probability for each tile, and the tiles reach the answering model in that order. Same answering model, same sixty questions, same judge as every other row, over the same five collections as the other arena rows, with one difference in its favour: for the eighteen PDFs it indexes every rendered page, where the other rows hold only the passages their parser kept.
+
+**What it scored.** Median of three signed runs: **0.947** (0.943 to 0.948). That puts it first on the board, ahead of Vertex at 0.920.
+
+Here is what that number does and does not establish, in the order this post has been arguing.
+
+**The lead over Vertex is consistent, and small.** We re-scored the same stored answers with the two other judges we use. DeepSeek V4 Flash gives this row 0.942 against Vertex's 0.910; Gemini 3.8 Flash gives it 0.963 against Vertex's 0.929. First under all three judges, by about three points each time, and the three published runs (0.943 to 0.948) do not overlap Vertex's (0.917 to 0.933). That is as much as the measurements we have can say, and every one of them says the lead is small. Across all five valid passes the row ranged from 0.909 to 0.959, a spread wider than the lead. The lowest of those, a pass in which six retrievals were degraded, sits below Vertex. The gaps to Qdrant (0.884) and Vectorize (0.836) are a different matter: no judge and no pass comes close to closing them.
+
+**The name overstates the pixels.** Before any board run we measured each piece on its own, asking whether the tile that holds the answer comes first, over the 59 questions whose answer we could locate on a tile. Vision search alone: 19 of 59. Keyword search alone: 25. Either one followed by Jev: 43. Jev over both lists: 51. Most of the gain is the re-ranking step; the image model's main contribution is finding candidates that keyword search misses. On this corpus it could hardly be otherwise. 983 of its 1,001 files are transcripts, recipes and product pages that exist only as text, which we typeset into PDFs so the image model had pages to look at. Here the pixels are mostly rendered text. A corpus where layout carries meaning (tables, figures, scanned forms) would be a fairer test of what PixelRAG is for.
+
+The board cannot tell you any of this, deliberately. A retriever that a workspace registers itself is published under an opaque digest, so the row reads *External retrieval tool (d810847b) + External retrieval tool (1df1e02a)*. The leaderboard is unauthenticated, and we will not let a workspace write arbitrary text onto it. The second digest is an always-empty placeholder that exists only because a retrieval group needs two members. The row's identity is exact and unreadable, and the description of what it is lives here, outside the signed document. It is the *a label is not a document* problem seen from the other side.
+
+**It was designed on the test.** We chose this architecture (vision, keyword or both; thirty candidates each; Jev ranking the union) by measuring retrieval on these same sixty questions. Those were three coarse options, not a tuning sweep, but none of the other four rows was ever shaped by these questions at all. The dataset section above asks whether an expected answer was derived from a system under test. This is its twin, and it belongs on the same list: **was the system under test designed against these items?** The remedy is a held-out question set written after the design is frozen. We have not written one yet. Until we do, this row carries a caveat that the manifest has no field for, and the one we would weigh most heavily: unlike judge noise, we cannot put a number on it.
+
+**"Complete" described the harness, not the retriever.** The GPU machine this is meant to run on is not available yet, so the retriever ran on a laptop behind a Cloudflare tunnel, and it took nine attempts to get five clean passes. (A sixth we cancelled ourselves, having misread our own log: the eighteen-second call we took for a board question was our own health check.) In the first, three image searches took 5.4 to 5.9 seconds against production's five-second limit, so those three questions were answered with no retrieval at all (they scored 0, 0.25 and 0.75), and nine more never ran before the run's deadline. That pass reported a perfectly plausible 0.893. In another, the tunnel dropped partway through. A watchdog restarted it and re-pointed production at the new address, except the update did not land, and for twelve hours production's configuration named a hostname that no longer existed. The platform lost one run outright. And after forty idle minutes the operating system had paged the model out of memory, so the first request took 18.7 seconds.
+
+None of that raised an error the benchmark could see. A retriever that returns nothing is not a failure anywhere in the stack: the answering model answers anyway, from nothing; the judge scores the answer; the run reports `complete`; and its manifest would have signed and verified. Where a pass finished at all, it would have produced a lower, plausible, attested number, as the first one did. We caught them only because the retriever logged every call, and we refused any pass that did not show sixty calls, each inside the time limit.
+
+That is a fourth way a score quietly stops meaning anything, and the most misleading, because the thing it gets wrong is the thing being measured: **a component that fails open to absence.** A stack that is down scores like a stack that is weak. The fix is the one this post keeps arriving at: the document has to be able to say it. The platform already stores the retrieved context for every test, so a manifest could carry *how many turns received any*, and a board could refuse a run in which the stack was missing. Today that number lives in a log file on one laptop.
+
+A smaller instance of the same shape turned up twice in the three published runs. In one, a single question errored after its retrieval had succeeded, for a reason the platform does not record. In the other, the judge simply never returned a score for one answer, and the run still reported sixty passes and no errors while counting that answer as zero. Both times, publication filled the gap with that question's answer from the previous pass. The rule is the same one every row on the board has been through, and it is defensible. What is not defensible is that neither the run nor the signed manifest mentions it.
+
+**Retrieval explains the ranking, except where the caveat said it would not.** We also measured, for every row, whether the sentence holding each answer actually reached the answering model: this row 53 of 60, Qdrant 40, Vectorize 33, Vertex 24, PageIndex 7. Answer scores follow that order with one exception. Vertex gets the exact evidence sentence to the model only 24 times and still scores 0.920. Vertex searches a newer and larger ingestion of the corpus, which the board discloses, parsed and cut differently, so it can deliver the same fact in words our exact-sentence check does not match, or from another passage entirely. Either way, the two measurements disagree in precisely the place the disclosed caveat says the rows differ, which is what a disclosure is for.
+
+On cost: Jev adds about a tenth of a cent per question, and retrieval takes a median of 1.2 seconds against Qdrant's 0.5, served from a laptop.
+
+---
+
 ## What we are not claiming
 
 In the spirit of the thing:
@@ -209,6 +244,7 @@ In the spirit of the thing:
 - Two of our earlier boards saturate: one puts twelve of sixteen models at exactly 1.0000. Twelve models "tied for first" teaches a reader nothing. That is a content problem, not a harness problem, and it is fixed by writing harder samples.
 - We cannot currently run the closed frontier models as baselines. The harness has clients for three backends and those four are not among them.
 - Both retrieval boards use one answering model. Two judges now agree on the ordering (see the footnote above), but neither is calibrated against a human rater, so accuracy is unestablished. On the nutrition board, the Vertex row searches a newer and larger ingestion than the other three.
+- The fifth nutrition row, PixelRAG + Jev, was designed on the same sixty questions it is scored on, and it ran from a laptop. Its lead over Vertex is consistent across three judges and small under all of them. See [the update](#a-fifth-row).
 
 None of that is fatal and all of it is written down. A benchmark that cannot state its own limitations is asking for the same trust it exists to replace.
 
