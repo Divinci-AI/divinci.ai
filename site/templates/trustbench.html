@@ -49,6 +49,7 @@
       <li>Several platform benchmarks are too small to rank on and are not published here. A benchmark with one sample can only ever score 0.0 or 1.0.</li>
       <li>The retrieval boards use one answering model, <code>glm-5.3-flash</code>. They do not all use one judge: every row is judged by <code>gemini-2.5-flash</code> except PageIndex + Jev on the nutrition board, which was judged by <code>gemini-3.8-flash</code>. Re-scoring the same answers, 3.8 Flash scores these rows about 1 to 5 points higher than 2.5 Flash, so that row's gap to Vectorize, a couple of points, is within the difference the judge alone makes. Each signed manifest names its judge in its metric.</li>
       <li>On the nutrition board the Vertex row searches a newer, larger ingestion than the others.</li>
+      <li>PixelRAG + Jev, first on the nutrition board, was designed on the same sixty questions it is scored on. It also indexes every rendered page of the corpus's eighteen PDFs, where the other rows hold only the passages their parser kept, and it ran from a laptop. Its lead over Vertex holds under three judges and is small under all of them. <a href="/blog/what-a-benchmark-has-to-prove-about-itself/#a-fifth-row">The write-up</a> has the details.</li>
     </ul>
   </section>
 </div>
