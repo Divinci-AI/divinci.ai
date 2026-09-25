@@ -159,6 +159,47 @@
       : score.toFixed(3);
   }
 
+  // Row key -> { board, row }, filled as boards render; read by the card.
+  var cards = {};
+  var boardIndex = 0;
+
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function parse(iso) { var d = iso ? new Date(iso) : null; return d && !isNaN(d.getTime()) ? d : null; }
+  function day(d) { return MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear(); }
+  function hm(d) { return ('0' + d.getUTCHours()).slice(-2) + ':' + ('0' + d.getUTCMinutes()).slice(-2); }
+  function when(iso) { var d = parse(iso); return d ? day(d) : null; }
+  // The answer window: "Sep 25, 2026, 01:43–01:55 UTC", or a day range.
+  function answered(from, to) {
+    var a = parse(from), b = parse(to);
+    if (!a) return null;
+    if (!b || day(a) === day(b)) return day(a) + ', ' + hm(a) + (b ? '–' + hm(b) : '') + ' UTC';
+    return day(a) + ' – ' + day(b);
+  }
+
+  function cardHtml(b, r) {
+    // Older API responses carry no per-run detail: show the one date the row
+    // has, named for what it is (when the median run was signed).
+    var runs = (r.runs && r.runs.length) ? r.runs
+      : [{ runId: r.runId, score: r.score, signedAt: r.completedAt, isMedian: true }];
+    var items = runs.map(function (x) {
+      var pub = x.publishedAt ? ['Published', when(x.publishedAt)] : ['Signed', when(x.signedAt)];
+      return '<li><span class="tb-card-score">' + fmt(b, x.score) + '</span>' +
+        (x.isMedian ? '<span class="tb-card-tag">shown score</span>' : '') +
+        '<dl>' +
+          '<dt>Answered</dt><dd>' + esc(answered(x.answeredFrom, x.answeredTo) || 'not recorded') + '</dd>' +
+          '<dt>' + pub[0] + '</dt><dd>' + esc(pub[1] || 'not recorded') + '</dd>' +
+          '<dt>Judge</dt><dd>' + esc(x.judgeModelId || 'not recorded') + '</dd>' +
+        '</dl></li>';
+    }).join('');
+    var first = when(r.firstPublishedAt);
+    return '<h3>Runs behind this score</h3>' +
+      '<div class="tb-card-sub">' + esc(r.displayName) + (r.retrievalStackLabel ? ' · ' + esc(r.retrievalStackLabel) : '') +
+        (runs.length > 1 ? ' · median of ' + runs.length : '') + '</div>' +
+      '<ol>' + items + '</ol>' +
+      '<div class="tb-card-foot">' + (first ? 'First on this board ' + esc(first) + '. ' : '') +
+        'Times in UTC. “Answered” is when the model produced these answers; “Signed” is when the run’s manifest was signed.</div>';
+  }
+
   function board(entry) {
     var b = entry.benchmark, rows = entry.rows || [];
     var stacked = rows.some(function (r) { return r.retrievalStackId; });
@@ -166,7 +207,7 @@
       (stacked ? '<th>Retrieval stack</th>' : '') +
       '<th>' + esc(b.metric) + '</th><th>Verify</th></tr>';
 
-    var body = rows.map(function (r) {
+    var body = rows.map(function (r, ri) {
       var g = goodness(b, r.score), c = colour(g);
       var spread = r.scoreRange && r.scoreRange.max > r.scoreRange.min
         ? ' · ' + fmt(b, r.scoreRange.min) + '–' + fmt(b, r.scoreRange.max) : '';
@@ -177,7 +218,9 @@
       var fill = 'linear-gradient(90deg, color-mix(in srgb, ' + c + ' 9%, transparent) 0 ' +
                  pct + '%, transparent ' + pct + '%)';
       var logo = logoFor(r.modelId);
-      return '<tr style="background-image:' + fill + '">' +
+      var key = boardIndex + ':' + ri;
+      cards[key] = { board: b, row: r };
+      return '<tr tabindex="0" data-card="' + key + '" aria-label="' + esc(r.displayName) + ': dates and judge behind this score" style="background-image:' + fill + '">' +
         '<td class="tb-rank tb-c-rank">' + esc(r.rank) + '</td>' +
         '<td class="tb-c-model"><div class="tb-model-line">' +
             (logo ? '<img class="tb-logo" src="' + logo + '" alt="" loading="lazy">'
@@ -353,6 +396,63 @@
     if (el) el.scrollIntoView();
   }
 
+  function wireCards() {
+    var card = document.createElement('aside');
+    card.className = 'tb-card';
+    card.id = 'tb-card';
+    card.setAttribute('role', 'tooltip');
+    card.hidden = true;
+    document.body.appendChild(card);
+    var active = null, pinned = false;
+    // The embed has no .tb-wrap column; measure the boards container there.
+    var wrap = document.querySelector('.tb-wrap') || host;
+
+    function place(tr) {
+      var rr = tr.getBoundingClientRect(), wr = wrap.getBoundingClientRect();
+      var sx = window.scrollX, sy = window.scrollY, W = card.offsetWidth, gap = 14;
+      // Content column's right edge (the page's .tb-wrap has 24px of padding; the embed's container has none).
+      var contentRight = wr.right - (wrap === host ? 0 : 24);
+      if (window.innerWidth - contentRight >= W + gap * 2) {
+        card.style.left = (contentRight + gap + sx) + 'px';
+        card.style.top = (rr.top + sy) + 'px';
+      } else {
+        card.style.left = Math.max(16, Math.min(rr.right - W, window.innerWidth - W - 16)) + sx + 'px';
+        card.style.top = (rr.bottom + sy + 6) + 'px';
+      }
+    }
+    function show(tr) {
+      var c = cards[tr.getAttribute('data-card')];
+      if (!c) return;
+      if (active && active !== tr) { active.classList.remove('tb-active'); active.removeAttribute('aria-describedby'); }
+      active = tr;
+      tr.classList.add('tb-active');
+      tr.setAttribute('aria-describedby', 'tb-card');
+      card.innerHTML = cardHtml(c.board, c.row);
+      card.hidden = false;
+      place(tr);
+    }
+    function hide() {
+      if (active) { active.classList.remove('tb-active'); active.removeAttribute('aria-describedby'); }
+      active = null; pinned = false; card.hidden = true;
+    }
+    function rowOf(el) { return el && el.closest ? el.closest('tr[data-card]') : null; }
+
+    host.addEventListener('mouseover', function (e) { var tr = rowOf(e.target); if (tr && !pinned) show(tr); });
+    host.addEventListener('mouseleave', function () { if (!pinned) hide(); });
+    host.addEventListener('focusin', function (e) { var tr = rowOf(e.target); if (tr) show(tr); });
+    host.addEventListener('focusout', function (e) { if (!pinned && !rowOf(e.relatedTarget)) hide(); });
+    // Tap (and click) pins the card; tapping the same row again, outside, or Esc closes it.
+    document.addEventListener('click', function (e) {
+      var tr = rowOf(e.target);
+      // Links and the board toolbar's buttons keep their own behaviour.
+      if (e.target.closest && e.target.closest('a, button')) return;
+      if (tr) { if (pinned && active === tr) { hide(); } else { show(tr); pinned = true; } }
+      else if (!(e.target.closest && e.target.closest('#tb-card'))) hide();
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
+    window.addEventListener('resize', function () { if (active) place(active); });
+  }
+
   fetch(EMBED ? API + '/' + encodeURIComponent(EMBED) : API, { headers: { Accept: 'application/json' } })
     .then(function (res) { return res.text().then(function (t) {
       // Never bare .json(): an HTML error page would surface as a SyntaxError
@@ -368,7 +468,8 @@
         throw new Error(EMBED ? 'there is no published board called “' + EMBED + '”' : 'the API returned no boards');
       }
       generatedAt = r.data.generatedAt || null;
-      host.innerHTML = boards.map(board).join('');
+      host.innerHTML = boards.map(function (e) { var h = board(e); boardIndex += 1; return h; }).join('');
+      wireCards();
       scrollToHash();
       if (r.data.generatedAt) {
         host.insertAdjacentHTML('beforeend',

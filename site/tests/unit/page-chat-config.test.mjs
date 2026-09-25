@@ -185,13 +185,17 @@ describe('per-page Divinci agent config', () => {
     const stray = overriding
       .filter((p) => !/^([a-z]{2}(-[a-z]+)?\/)?(www-rag|open-web-vectors)\/index\.html$/.test(p))
       .filter((p) => p !== 'investors/index.html')
+      // /trustbench/ points the bubble at the Divinci Docs assistant (2026-09-25),
+      // whose knowledge base documents the boards. Its embed (/trustbench/embed/)
+      // shares the board partials but NOT this override, and must not gain it.
+      .filter((p) => p !== 'trustbench/index.html')
       .sort();
     assert.deepEqual(stray, [],
       'a per-page agent override appeared on a page that is not the directory, ' +
-      'the initiative, or the investor data room — check for an override added ' +
-      'to a shared template');
+      'the initiative, the investor data room, or /trustbench/ — check for an ' +
+      'override added to a shared template');
 
-    for (const page of ['www-rag/index.html', 'open-web-vectors/index.html', 'investors/index.html']) {
+    for (const page of ['www-rag/index.html', 'open-web-vectors/index.html', 'investors/index.html', 'trustbench/index.html']) {
       assert.ok(overriding.includes(page), `${page} lost its page-scoped agent`);
     }
   });

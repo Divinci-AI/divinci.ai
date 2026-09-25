@@ -19,6 +19,30 @@
   the problem it exists to solve.
 #}
 
+{#
+  The bubble here is the Divinci Docs assistant (Divinci Docs v3, the release on
+  sdk.divinci.ai), not the site-wide one: its knowledge base is the SDK docs,
+  which carry the TrustBench and leaderboard pages, so it can explain the boards,
+  the features they measure and the published results. Same gate mode and
+  Turnstile sitekey as the site-wide release, anonymous chat enabled (checked
+  2026-09-25).
+#}
+{% block chat_release_id %}6a65545c024387461d48dd2e{% endblock %}
+
+{% block chat_config %}
+<script type="application/json" id="divinci-chat-starters">
+[
+  {"label": "How is a row scored?", "message": "How is a TrustBench leaderboard row scored, and why is it the median of recent runs?"},
+  {"label": "What is Jev?", "message": "What is PageIndex with Jev node selection, and how does it compare with the other retrieval stacks on the nutrition board?"},
+  {"label": "Who judges the answers?", "message": "Which model judges the retrieval boards, and do all rows use the same judge?"},
+  {"label": "How do I verify a row?", "message": "How do I verify a leaderboard row's signed manifest myself?"}
+]
+</script>
+<script type="text/plain" id="divinci-chat-speech">📊 Ask me how these boards work.</script>
+<script type="text/plain" id="divinci-chat-greeting">👋 This is the Divinci docs assistant. Ask me how the TrustBench boards are built, what a row's score means, how to verify one, or what the retrieval results show. Hover any row to see the dates and judge behind it.</script>
+<script type="text/plain" id="divinci-chat-context">Context: the visitor is on divinci.ai/trustbench, the public TrustBench leaderboards. Each row is one configuration (a model and the retrieval stack it answered through); its score is the median of that configuration's most recent qualifying public runs, and each run has a signed, publicly verifiable manifest. Answer from the Divinci docs and say which page an answer comes from. Keep the limits the page states: attestation says a score is real, not that a model is safe; the retrieval boards' runs are republished from Divinci's scored-QA pipeline, use one answering model, and are scored by an LLM judge; rows can be judged by different models, which the row's hover card names per run. If a number or date is not in the docs, say so and point the visitor to the row's hover card or its signed manifest rather than guessing.</script>
+{% endblock %}
+
 {% block content %}
 {% include "partials/trustbench-boards-head.html" %}
 

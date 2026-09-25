@@ -63,6 +63,9 @@ module.exports = defineConfig({
         // hand-written note beats the derived one, and a note is rendered as
         // text. None of that is reachable from the module tests.
         '**/status-attribution.spec.js',
+        // Stubs the leaderboard API; asserts the row card (dates + judge) on
+        // desktop and phone, and that the page bubble is the docs assistant.
+        '**/trustbench-row-card.spec.js',
         // The chat widget must not restore a pending or failed conversation
         // (2026-09-05 investors-page bug); needs the built page and real storage.
         '**/chat-widget-persistence.spec.js',

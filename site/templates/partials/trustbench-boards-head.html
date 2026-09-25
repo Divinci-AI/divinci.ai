@@ -100,6 +100,33 @@
    * exists on the retrieval boards, so positional selectors would address a
    * different cell depending on which board rendered.
    */
+  /*
+   * The row card: the dates and judge behind a row's score. One element for the
+   * whole page, placed in the right margin level with the row when the margin
+   * fits it, else just under the row. Opens on hover, on keyboard focus, and on
+   * tap (touch has no hover), so it is never hover-only.
+   */
+  .tb-table tbody tr { cursor: default; }
+  .tb-table tbody tr:focus-visible { outline: 2px solid var(--color-text-primary, #1e3a2b); outline-offset: -2px; }
+  /* The whole row, not its cells: on a phone the cells are uneven flex items, and
+     tinting each one drew a patchwork of blocks instead of a highlighted row. */
+  .tb-table tbody tr.tb-active { outline: 1px solid color-mix(in srgb, var(--color-text-primary, #1e3a2b) 35%, transparent); outline-offset: -1px; }
+  .tb-card { position: absolute; z-index: 40; width: 300px; max-width: calc(100vw - 32px); box-sizing: border-box;
+    padding: 14px 16px; border-radius: 10px; border: 1px solid var(--color-bg-accent, #e8ddc7);
+    background: var(--color-surface-light, #fff); box-shadow: 0 10px 30px rgba(30, 58, 43, .14);
+    font-size: 12.5px; line-height: 1.5; color: var(--color-text-secondary, #4a3a2a); }
+  .tb-card[hidden] { display: none; }
+  .tb-card h3 { margin: 0; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-primary, #1e3a2b); }
+  .tb-card .tb-card-sub { margin: 2px 0 10px; font-size: 12px; }
+  .tb-card ol { list-style: none; margin: 0; padding: 0; }
+  .tb-card li { padding: 8px 0; border-top: 1px solid color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 70%, transparent); }
+  .tb-card li:first-child { border-top: 0; padding-top: 0; }
+  .tb-card .tb-card-score { font-weight: 650; font-variant-numeric: tabular-nums; color: var(--color-text-primary, #1e3a2b); }
+  .tb-card .tb-card-tag { margin-left: 6px; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; padding: 1px 6px; border-radius: 999px; border: 1px solid var(--color-bg-accent, #e8ddc7); }
+  .tb-card dl { display: grid; grid-template-columns: auto 1fr; gap: 1px 10px; margin: 5px 0 0; }
+  .tb-card dt { color: var(--color-text-secondary, #6b5d4f); }
+  .tb-card dd { margin: 0; color: var(--color-text-primary, #1e3a2b); }
+  .tb-card .tb-card-foot { margin-top: 10px; padding-top: 8px; border-top: 1px solid color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 70%, transparent); font-size: 11.5px; }
   @media (max-width: 640px) {
     .tb-hero { flex-direction: column; gap: 14px; }
     .tb-hero svg { width: 60px; height: 60px; }
