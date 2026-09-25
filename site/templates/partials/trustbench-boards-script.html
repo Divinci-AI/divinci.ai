@@ -110,6 +110,27 @@
     // /blog/what-a-benchmark-has-to-prove-about-itself/#a-fifth-row
     'multi:external:d810847b+external:1df1e02a': 'PixelRAG + Jev'
   };
+  /*
+   * Board slug -> its test specification page. The API carries no spec link
+   * (the benchmark record has no field for one), and the pages are ours, so
+   * the page supplies it. Absolute, because the embed runs inside an iframe on
+   * someone else's site. A board with no entry simply shows no link.
+   */
+  var SPEC_BASE = 'https://divinci.ai/trustbench/specs/';
+  var SPEC_PAGES = {
+    'divinci-redteam-core-v1': 'red-team-core/',
+    'divinci-redteam-prompt-leak-v1': 'system-prompt-extraction/',
+    'divinci-rag-grounding-v1': 'rag-grounding/',
+    'scored-qa-suite-1d643f83bb0f-llm-factual-consistency-vs-reference': 'annex-iv-erasure/',
+    'scored-qa-suite-93b9aff40427-llm-factual-consistency-vs-reference': 'sdk-docs-retrieval/',
+    'scored-qa-suite-93b9aff624e6-llm-factual-consistency-vs-reference': 'nutrition-retrieval/'
+  };
+  function specLink(b) {
+    var page = SPEC_PAGES[b.slug];
+    return page
+      ? '<p class="tb-spec-link"><a href="' + SPEC_BASE + page + '"' + TARGET + '>Test specification: what this board tests, how it is scored, and its known limitations →</a></p>'
+      : '';
+  }
   function stackName(r) {
     return STACK_NAMES[r.retrievalStackId] || r.retrievalStackLabel || r.retrievalStackId;
   }
@@ -190,6 +211,7 @@
         '<span class="tb-dir">' + (b.higherIsBetter ? 'higher is better' : 'lower is better') + '</span></div>' +
       (IN_EMBED ? '' : toolbar(b)) +
       (b.description ? '<p class="tb-desc">' + esc(b.description) + '</p>' : '') +
+      specLink(b) +
       '<table class="tb-table"><thead>' + head + '</thead><tbody>' + body + '</tbody></table>' +
       // Curly apostrophes, not escaped straight ones. A \' inside this string
       // survives Tera and the HTML minifier as a LITERAL backslash and renders
