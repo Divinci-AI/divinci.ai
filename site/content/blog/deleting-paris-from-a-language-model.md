@@ -22,6 +22,8 @@ summary = "Gate-3 is the vIndex operation that suppresses one learned associatio
 
 *The Interpretability Diaries — Part II*
 
+> **Update, 25 September 2026.** Two later results of ours qualify this post. The numbers below are as we measured them in April, against four control prompts. First, a stronger deletion of the same fact (512 neurons) came back after two small retraining steps on one public sentence, so what this post shows is suppression of a fact the model learned in pretraining, not its removal. Second, a wider check of a later edit made with the same toolchain found damage to 8 of 100 other facts, which a four-prompt check cannot see. We no longer call edits like this surgical until they pass the wider check. The byte-for-byte restore described below still holds.
+
 ---
 
 **Before the edit:**
@@ -118,10 +120,10 @@ The patch itself is a 4-byte alpha plus a single d_model float vector. For Gemma
 
 <figure class="blog-chart">
   <img src="/images/charts/chart-paris-surgical-edit.svg" alt="Bar chart of gate scores before and after the rank-1 DELETE patch. The targeted Paris→capital probe drops from 18.10 to absent, while four other probes stay unchanged within ~1 point and WikiText-103 perplexity moves only +0.02%." loading="lazy">
-  <figcaption>One feature collapses from 18.10 → absent. Every other probe — including the Korean-language capital probe that shares the same gate-feature vocabulary — stays within measurement noise. This is what surgical editing looks like at the weight level.</figcaption>
+  <figcaption>One feature collapses from 18.10 → absent. Every other probe — including the Korean-language capital probe that shares the same gate-feature vocabulary — stays within measurement noise. Measured on four control prompts; see the update at the top.</figcaption>
 </figure>
 
-The edit is **surgical**. The model still knows Paris exists. It still knows Paris is in France. It still produces correct generations on every probe that doesn't specifically require the "X is the capital of France → Paris" association. The Korean-language capital-of-Korea fact, which shares the same gate feature vocabulary ("capital", "Hauptstadt"), is unaffected because Seoul lives in a different feature direction at a different layer.
+On these probes the edit is narrow. The model still knows Paris exists. It still knows Paris is in France. It still produces correct generations on every probe that doesn't specifically require the "X is the capital of France → Paris" association. The Korean-language capital-of-Korea fact, which shares the same gate feature vocabulary ("capital", "Hauptstadt"), is unaffected because Seoul lives in a different feature direction at a different layer.
 
 This is what the vIndex pipeline calls **feature locality**: the singular vectors of the weight matrix encode semantically meaningful, approximately orthogonal concepts. You can update one without significant bleedthrough to others.
 

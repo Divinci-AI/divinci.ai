@@ -37,7 +37,7 @@
 </script>
 <script type="text/plain" id="divinci-chat-speech">📂 Investor room. Ask me anything in the documents.</script>
 <script type="text/plain" id="divinci-chat-greeting">👋 Welcome to the Divinci investor room. Ask me anything in the investor documents: the executive summary, the compliance plan, the decks, the research assessment. I cite the document behind every answer.</script>
-<script type="text/plain" id="divinci-chat-context">Context: the visitor is on the Divinci investor data room (divinci.ai/investors), reading the executive summary and the linked documents. Answer only from the investor documents in the knowledge base and name the document each answer comes from. Keep the boundaries the documents keep: the signed receipt is in production, weight-level erasure is a staging capability, no regulator has to our knowledge ruled on unlearning as a GDPR Article 17 remedy, the 30-day gate has not yet run, and the Fieldfisher opinion and independent German test are scoped but not yet delivered. If a question is outside the documents, say so and point the visitor to the contact section rather than guessing.</script>
+<script type="text/plain" id="divinci-chat-context">Context: the visitor is on the Divinci investor data room (divinci.ai/investors), reading the executive summary and the linked documents. Answer only from the investor documents in the knowledge base and name the document each answer comes from. Keep the boundaries the documents keep: the signed receipt is in production, weight-level erasure is a staging capability, no regulator has to our knowledge ruled on unlearning as a GDPR Article 17 remedy, the person-level erasure test has not yet passed all of its pre-set checks, the 30-day gate has not yet run, and the legal opinion and independent technical test are scoped but not yet instructed. Do not name the law firm or any individual investor. If a question is outside the documents, say so and point the visitor to the contact section rather than guessing.</script>
 {% endblock %}
 
 {% block extra_head %}
@@ -133,13 +133,13 @@
 
 <header class="masthead">
   <div>
-    <p class="eyebrow">Investor data room · updated 17 September 2026</p>
+    <p class="eyebrow">Investor data room · updated 25 September 2026</p>
     <h1>Divinci AI — model erasure <span>with a receipt an auditor can verify without us</span></h1>
   </div>
   <div class="meta">Divinci AI Inc. · Delaware C-corp · file 2970809<br>Incorporated 22 Jan 2024 · Irvine, CA<br>divinci.ai</div>
 </header>
 
-<p class="gate"><b>Confidential.</b> This page is shared by direct link with investors and partners and is not indexed. Please do not forward the files. Every figure traces to the audited plan documents (one-pager, channel strategy, expense workbook, fact base as of 1 September 2026) or to the founders' own figures supplied 2 September 2026. Counsel and funding status updated 16 September 2026; infrastructure costs updated 17 September 2026 from the Cloudflare Enterprise order form.</p>
+<p class="gate"><b>Confidential.</b> This page is shared by direct link with investors and partners and is not indexed. Please do not forward the files. Every figure traces to the audited plan documents (one-pager, channel strategy, expense workbook, fact base as of 1 September 2026) or to the founders' own figures supplied 2 September 2026. Infrastructure costs updated 17 September 2026 from the Cloudflare Enterprise order form. Research, counsel and funding status updated 25 September 2026.</p>
 
 <div class="partners">
   <div class="partner">
@@ -178,7 +178,7 @@
     </button>
     <div class="hero-liquid" aria-hidden="true"></div>
   </div>
-  <p class="compliance-video-caption">The worked example in full: <a href="/blog/deleting-paris-from-a-language-model/">Deleting Paris from a Language Model</a></p>
+  <p class="compliance-video-caption">The worked example in full: <a href="/blog/deleting-paris-from-a-language-model/">Deleting Paris from a Language Model</a>. Later checks qualify it: a suppressed pretrained fact can be retrained back, and edits of this kind damage more than the four prompts this post measured; see section 5.</p>
 </section>
 
 <div class="grid">
@@ -195,7 +195,7 @@
 
 <section id="problem">
   <h2><span class="n">2</span>Problem</h2>
-  <p>The EU AI Act's enforcement powers went live on <strong>2 August 2026</strong>. GDPR's right to erasure <span class="cite">GDPR Art. 17</span> was already enforceable, with fines up to <strong class="fig">€20M or 4%</strong> of global turnover.</p>
+  <p>GDPR's right to erasure <span class="cite">GDPR Art. 17</span> has been enforceable since 2018, with fines up to <strong class="fig">€20M or 4%</strong> of global turnover. The EU AI Act's strict high-risk rules were pushed back by the Digital Omnibus <span class="cite">Reg. (EU) 2026/1744</span> to December 2027 and August 2028, so we do not rely on the AI Act for urgency.</p>
   <p>A company can delete a database row, but a model (software that learned patterns from data) can still remember a person in its learned numerical memory. "We deleted the row" is no longer a complete answer. Regulators (EDPB, CNIL) currently treat <strong>retraining</strong> as the defensible response — slow, expensive, and in practice rarely done. Most large enterprises running AI in Europe have no answer at all if a model-level erasure demand arrives.</p>
   <p>To our knowledge no regulator has yet ruled on whether <em>any</em> unlearning method discharges GDPR Article 17. That question is open for everyone in this market.</p>
 </section>
@@ -209,7 +209,7 @@
     status <span class="ok">complete</span> · signature <span class="ok">valid</span> · verifiable with zero credentials via @divinci-ai/trustbench-verifier
   </div>
   <ul>
-    <li><strong>Discharge an erasure demand without a full retrain.</strong> A non-trivial 70B fine-tune runs <span class="fig">$0.5k–50k</span> in compute, and <span class="fig">$50k–500k</span> as a full engagement — labor, data prep, engineering time, downtime.</li>
+    <li><strong>Answer an erasure demand without a full retrain.</strong> A non-trivial 70B fine-tune runs <span class="fig">$0.5k–50k</span> in compute, and <span class="fig">$50k–500k</span> as a full engagement — labor, data prep, engineering time, downtime.</li>
     <li><strong>Evidence an auditor can check alone.</strong> The receipt is live in production today, not a proposed format.</li>
     <li><strong>The proof step is the product.</strong> In our own August test the untouched control topics degraded <em>more</em> than the erased topic (<span class="fig">−0.058 vs −0.026</span>). A vendor that cannot measure that ships the damage silently. Nobody else sells the measurement half.</li>
   </ul>
@@ -218,25 +218,32 @@
 <section id="market">
   <h2><span class="n">4</span>Target market</h2>
   <p>Privacy, DPO and GRC buyers at organisations running <strong>open-weight, self-hosted, EU-facing models</strong> with a live or imminent erasure exposure. Our honest estimate of that qualified market is tens to low hundreds of organisations globally, <strong>unmeasured</strong> — sizing it through 15–20 privacy-counsel and DPO interviews is a task inside the 30-day gate, not an assumption.</p>
-  <p>Context, not plan: the machine-unlearning niche is projected at <span class="fig">$0.15B (2025) → $2.73B (2032)</span>, 51.2% CAGR, a market-research extrapolation on a small base. Fortune 500 AI-compliance programmes budget <span class="fig">$8–15M</span> initially.</p>
+  <p>Context, not plan: the machine-unlearning niche is projected at <span class="fig">$0.15B (2025) → $2.73B (2032)</span>, 51.2% CAGR, a market-research extrapolation on a small base. We do not plan against it; a bottom-up count of reachable organisations is a task of the gate.</p>
 </section>
 
 <section id="traction">
-  <h2><span class="n">5</span>Traction and milestones</h2>
-  <p><strong>Shipped.</strong></p>
+  <h2><span class="n">5</span>Traction: what is proved, and what is not yet</h2>
+  <p><strong>Proved — built and measured.</strong></p>
   <ul>
-    <li>TrustBench receipt in production; public key registry live; first certificate externally verified.</li>
-    <li>QA suite in production: per-metric threshold gates, scheduled runs, alerts.</li>
-    <li>Erasure API (LarQL) shipped to staging on open-weight models — two API surfaces, two SDKs, a CLI and a web UI; nine published and sixteen catalogued vIndexes.</li>
-    <li>A measured erasure experiment published in August 2026, including the negative result.</li>
-    <li>Divinci platform in production. <strong>Seven software-development consultancy partnerships</strong> signed and ready to run the Divinci demo pipeline and expand Divinci through their own client bases.</li>
+    <li>TrustBench receipt in production; public key registry live; first certificate externally verified. QA suite in production with per-metric threshold gates, scheduled runs and alerts.</li>
+    <li>Erasure API (LarQL) in staging on open-weight models: two API surfaces, two SDKs, a CLI and a web UI. Edits are reversible: removing a patch restores the original model byte for byte.</li>
+    <li>Measurement that catches damage, including our own. The August test caught untouched topics degrading more than the erased one. On 24 September a wider check of an edit from our shipping toolchain found that, although the file changed in one row and restores byte for byte, it damaged <span class="fig">8 of 100</span> other facts and about one neighbouring capital in five. We report that rather than call such edits surgical.</li>
+    <li>A person-level erasure test with pass/fail criteria set in advance, run on one small open model (Gemma 4 E2B) against control models that never saw the person. Four of five checks pass, including "the person can no longer be extracted".</li>
+    <li>Divinci platform in production. Seven software-consultancy partnerships signed.</li>
   </ul>
-  <p><strong>Next 30 days — a pre-registered go/no-go gate</strong> (3 September to 3 October 2026).</p>
+  <p><strong>Not yet proved.</strong></p>
   <ul>
-    <li>Individual-level erasure experiment across three model families and three association types with a control individual; the kill criterion is stated before the run.</li>
-    <li>EU counsel opinion, scoped with <strong>Fieldfisher</strong> (Germany) on 14 September 2026: a customer-facing memo on GDPR Article 17 and EU AI Act Article 53(1)(c), with an internal note on the gray zones. It rests on a reproducible technical test designed and run by an <strong>independent German AI engineering firm</strong> Fieldfisher brings in, attacking the erasure from many angles to try to break it. Quoted at <span class="fig">€15–20k</span>, capped at €20k, plus ~<span class="fig">€10k</span> for the test; about two weeks once the test case is ready. CCPA implications follow the EU opinion. Treated as a bounding input rather than the answer.</li>
-    <li>A live GDPR Article 17 request discharged end to end with a design partner.</li>
-    <li>15–20 demand interviews; three design partners signed; evaluation protocol published within 60 days, failures included.</li>
+    <li>The person-level test has <strong>not passed</strong>: its fifth check, "the model still works normally", is undecided (<span class="fig">0.931</span> against a <span class="fig">0.90</span> bar, interval 0.862–0.983), and undecided counts as a fail. It has run on one model family only.</li>
+    <li>Deleting a fact the model learned in pretraining suppresses it rather than removing it: our strongest deletion of the Paris fact returned after two small retraining steps. We make no erasure claim for pretraining data.</li>
+    <li>No buyer interviews, design partners, or introductions from the consultancy partners yet. No measured cost per erasure; today we know only compute time, 3.4–6.7 GPU-hours on one cloud GPU per test run.</li>
+  </ul>
+  <p><strong>The 30-day gate.</strong> Every line is pass/fail against criteria written down before it runs.</p>
+  <ul>
+    <li>Person-level erasure passes all five checks on Gemma, then on a mid-sized model from a second family (target: DeepSeek-V4.1-Flash). Any failed or undecided check is a fail.</li>
+    <li>An independent German AI engineering firm designs and runs an adversarial test of the result, and a German technology and data-protection law firm writes an opinion on GDPR Article 17 and EU AI Act Article 53(1)(c) based on it. About <span class="fig">€30k</span>, capped; roughly two weeks once the test case is ready.</li>
+    <li>15–20 interviews with privacy, DPO and AI leads on budget holder, purchase trigger and price. Three design partners signed, each with a written scope, success criteria and a paid next step.</li>
+    <li>Consultancy partner activity counted per partner: introductions, meetings, qualified prospects.</li>
+    <li>The full cost of one erasure on the second model, and a bottom-up count of reachable organisations.</li>
   </ul>
 </section>
 
@@ -263,17 +270,17 @@
     <li><strong>Samuel Tobia — CTO.</strong> Technical co-founder; infrastructure, deployments and the production Cloudflare and Google Cloud estate.</li>
     <li><strong>Anindya Sundar Nandi — Product Marketing Manager.</strong> Demo pipeline, partner enablement and customer-facing evaluation of the product.</li>
   </ul>
-  <p>Two technical co-founders; five shipping product surfaces (web, embed, desktop, SDK/CLI, MCP). Advisors and programmes: The Brink SBDC at the University of San Diego (Bobby Edelman); Cloudflare Workers Launchpad; Google for Startups Cloud Program. EU counsel: Fieldfisher, engagement scoped September 2026. A named academic co-signer is a recruitment target of the gate, not yet secured.</p>
+  <p>Two technical co-founders; five shipping product surfaces (web, embed, desktop, SDK/CLI, MCP). Advisors and programmes: The Brink SBDC at the University of San Diego (Bobby Edelman); Cloudflare Workers Launchpad; Google for Startups Cloud Program. Advisor: Andrew Klein. EU counsel: a German technology and data-protection law firm, engagement scoped September 2026. A named academic co-signer is a recruitment target of the gate, not yet secured.</p>
 </section>
 
 <section id="financials">
   <h2><span class="n">8</span>Financial highlights</h2>
   <dl class="kv">
-    <dt>Stage</dt><dd>Bootstrapped to date. A first <strong>friends-and-family round</strong> is in progress to fund the Fieldfisher opinion and the independent technical test. No institutional seed raised.</dd>
+    <dt>Stage</dt><dd>Bootstrapped to date. A first <strong>friends-and-family round</strong> is in progress. An existing investor is participating and plans to cover the legal opinion and the independent technical test. No institutional seed raised.</dd>
     <dt>Revenue</dt><dd><span class="fig">$0</span> today.</dd>
     <dt>Burn</dt><dd>~<span class="fig">$11,500–13,000/month</span> going forward with founders unpaid: the Cloudflare Enterprise contract at <span class="fig">$5,278.90/month</span>, Google Cloud at <span class="fig">$1,500–3,000/month</span> now that the Google for Startups credit is spent, and ~<span class="fig">$4,700/month</span> of other operating costs (MongoDB Atlas, Redis, Slack and the rest of the earlier ~$5,000 keep-the-lights-on figure).</dd>
     <dt>Break-even</dt><dd>~<span class="fig">$17,500–19,000/month</span> — the burn above plus $2,000/month each for the three founders. Everything above that line is return.</dd>
-    <dt>Programme, yr 1</dt><dd>~<span class="fig">$224k</span> at founder scale (subtotal ~$179k + 25% contingency), funded from operations. Programme revenue in year 1 is <strong>$0</strong> — twelve months of investment, roughly 15% of a three-person team's year.</dd>
+    <dt>Programme, yr 1</dt><dd>~<span class="fig">$224k</span> at founder scale (subtotal ~$179k + 25% contingency), about $18,700 a month <strong>on top of</strong> the burn above. Programme revenue in year 1 is <strong>$0</strong>.</dd>
     <dt>Post-gate</dt><dd>Lean ~<span class="fig">$1.53M</span> (~5 people, validate the wedge) · Standard ~<span class="fig">$3.47M</span> (~8–9 people, $150–400k revenue from 2–4 direct deals) · Aggressive ~<span class="fig">$6.06M</span> (~15–18 people, $0.5–1.2M). Each is justified only against the gate's result.</dd>
     <dt>Margins</dt><dd>vIndex build cost per model-version is not yet measured; it is the open item blocking a gross-margin claim and a Week-2 task of the gate.</dd>
   </dl>
@@ -281,8 +288,8 @@
 
 <section id="ask">
   <h2><span class="n">9</span>Funding ask</h2>
-  <p><strong>Capital now: a first friends-and-family round</strong>, sized to the gate's one outside cost — the Fieldfisher opinion and the independent German technical test, about <span class="fig">€30k</span>. Everything else in the gate runs at founder scale from operations. We are also asking for: three design partners with open-weight models and EU exposure; a named academic willing to adversarially test and co-sign the result; and introductions to seed investors for the round that follows the gate.</p>
-  <p><strong>If the gate passes</strong> — the experiment holds and the counsel memo supports the argument — we would raise <strong class="fig">~$1.5M</strong> against the Lean scenario,:</p>
+  <p><strong>Capital now: a first friends-and-family round</strong>, sized to the gate's one outside cost — the legal opinion and the independent technical test, about <span class="fig">€30k</span>, which an existing investor plans to cover. Everything else in the gate runs at founder scale from operations. We are also asking for: three design partners with open-weight models and EU exposure; a named academic willing to adversarially test and co-sign the result; and introductions to seed investors for the round that follows the gate.</p>
+  <p><strong>If the gate passes</strong> — the experiment holds and the counsel memo supports the argument — we would raise <strong class="fig">~$1.53M</strong> against the Lean scenario:</p>
   <div class="tablewrap"><table>
     <thead><tr><th>Allocation</th><th>Amount</th></tr></thead>
     <tbody>
@@ -293,6 +300,7 @@
       <tr><td>Design-partner delivery, events, content, travel, partner fees</td><td class="num">$65k</td></tr>
       <tr><td>Insurance and overhead</td><td class="num">$25k</td></tr>
       <tr><td>Contingency, 25%</td><td class="num">$306k</td></tr>
+      <tr><td><strong>Total</strong> ($1,225k + 25%)</td><td class="num"><strong>$1,531k</strong></td></tr>
     </tbody>
   </table></div>
   <p>No valuation target has been set; the ROI frame today is the break-even line above, and a priced round is only justified against the gate's result.</p>
@@ -309,19 +317,19 @@
   <p>Hosted copies are served from this protected path. The Google Docs and Sheets are the live, formula-bearing versions and open only for accounts the founders have shared them with.</p>
   <ul class="docs">
     <li><span><a href="/investors/docs/Divinci-AI-Compliance-Investor-Deck-v0.1.pdf">Compliance investor deck v0.1</a><span class="sub">The narrative deck: problem, proof, market, gate, ask.</span></span><span class="kind">PDF</span></li>
-    <li><span><a href="/investors/docs/Divinci-Investor-Executive-Summary-v0.3.docx">Investor Executive Summary v0.3</a><span class="sub">The one-page summary this page is built from, in Bobby Edelman's SBDC format.</span></span><span class="kind">DOCX</span></li>
-    <li><span><a href="/investors/docs/Investor-Executive-Summary-v0.3-questions-answered.html">Executive Summary — the questions, answered</a><span class="sub">The eleven SBDC outline questions with the source material behind each section.</span></span><span class="kind">HTML</span></li>
+    <li><span><a href="/investors/docs/Divinci-Investor-Executive-Summary-v0.6.html">Investor Executive Summary v0.6</a><span class="sub">The one-page summary, 25 September 2026: what is proved, and what the 30-day gate must prove.</span></span><span class="kind">HTML</span></li>
+    <li><span><a href="/investors/docs/Divinci-Investor-Executive-Summary-v0.6-companion.pdf">Executive Summary v0.6 — companion</a><span class="sub">The detail behind the one-pager: the test record, the reconciled finances, the gate in full, and the competitive analysis.</span></span><span class="kind">PDF</span></li>
+    <li><span><a href="/investors/docs/Investor-Executive-Summary-v0.3-questions-answered.html">Executive Summary — the questions, answered</a><span class="sub">The eleven SBDC outline questions, answered for v0.3. Superseded by v0.6 above where they differ.</span></span><span class="kind">HTML</span></li>
     <li><span><a href="/investors/docs/Compliance-Channel-Strategy-gen7.html">Compliance channel strategy (gen 7)</a><span class="sub">Pre-registered 30-day gate, pricing and channels. Credibility-scored 0.935 by an independent rubric judge, zero hard fails.</span></span><span class="kind">HTML</span></li>
     <li><span><a href="/investors/docs/Compliance-One-Pager-gen7.html">Compliance one-pager (gen 7)</a><span class="sub">The 660-word plan summary with every figure cited to its source.</span></span><span class="kind">HTML</span></li>
-    <li><span><a href="/investors/docs/EU-AI-Act-Model-Erasure-Strategy-v0.3.pdf">EU AI Act model-erasure strategy v0.3</a><span class="sub">The earlier long-form strategy the current plan descends from.</span></span><span class="kind">PDF</span></li>
-    <li><span><a href="/investors/docs/EU-AI-Act-Model-Erasure-OnePager-v0.5.pdf">Model-erasure one-pager v0.5</a><span class="sub">Baseline one-pager, superseded by the gen-7 version above.</span></span><span class="kind">PDF</span></li>
-    <li><span><a href="/investors/docs/Divinci-AI-Compliance-Customer-Deck-v0.1.pdf">Compliance customer deck v0.1</a><span class="sub">How the product is presented to a DPO or head of AI.</span></span><span class="kind">PDF</span></li>
-    <li><span><a href="/investors/docs/Divinci-AI-Act-Compliance-Deck-v0.1.pdf">AI Act compliance deck v0.1</a><span class="sub">The regulatory map: GDPR Article 17 versus the AI Act's documentation and QMS duties.</span></span><span class="kind">PDF</span></li>
-    <li><span><a href="/blog/deleting-paris-from-a-language-model/">Deleting Paris from a language model</a><span class="sub">The public write-up of the flagship edit, with the two-minute demo video: one fact patched out of Gemma 4, the receipt, and the patch removed again. <a href="https://youtu.be/p93Kkdb0bso">Watch the video</a>.</span></span><span class="kind">BLOG · VIDEO</span></li>
+    <li><span><a href="/investors/docs/EU-AI-Act-Model-Erasure-Strategy-v0.3.pdf">EU AI Act model-erasure strategy v0.3</a><span class="sub">The earlier long-form strategy the current plan descends from. Dated August 2026: its AI Act timeline and budget benchmarks are superseded by v0.6.</span></span><span class="kind">PDF</span></li>
+    <li><span><a href="/investors/docs/EU-AI-Act-Model-Erasure-OnePager-v0.5.pdf">Model-erasure one-pager v0.5</a><span class="sub">Baseline one-pager of 29 August, superseded by v0.6.</span></span><span class="kind">PDF</span></li>
+    <li><span><a href="/investors/docs/Divinci-AI-Compliance-Customer-Deck-v0.1.pdf">Compliance customer deck v0.1</a><span class="sub">How the product is presented to a DPO or head of AI. Its AI Act timing slide predates the Digital Omnibus delay.</span></span><span class="kind">PDF</span></li>
+    <li><span><a href="/investors/docs/Divinci-AI-Act-Compliance-Deck-v0.1.pdf">AI Act compliance deck v0.1</a><span class="sub">The regulatory map: GDPR Article 17 versus the AI Act's documentation and QMS duties. Its "deadline went live" framing predates the Digital Omnibus delay.</span></span><span class="kind">PDF</span></li>
+    <li><span><a href="/blog/deleting-paris-from-a-language-model/">Deleting Paris from a language model</a><span class="sub">The public write-up of the flagship edit, with the two-minute demo video: one fact patched out of Gemma 4, the receipt, and the patch removed again. Later checks found the post's four control prompts were not enough; see section 5. <a href="https://youtu.be/p93Kkdb0bso">Watch the video</a>.</span></span><span class="kind">BLOG · VIDEO</span></li>
     <li><span><a href="/investors/docs/Research-Assessment-2026-09-02.html">Research assessment, 2 September 2026</a><span class="sub">How the plan was stress-tested: seven generations of adversarial peer review against a fact base, and what remains open.</span></span><span class="kind">HTML</span></li>
     <li><span><a href="https://docs.google.com/spreadsheets/d/1huYSsHABQUy7x31D8zmmF4AJWQA5oZjeAxbDBSPJFdU" rel="noopener">Expense workbook v0.2 — Budget · Scenarios · Sources</a><span class="sub">Year-one programme budget with live formulas; Lean, Standard and Aggressive post-gate scenarios.</span></span><span class="kind">Google Sheet</span></li>
     <li><span><a href="https://docs.google.com/spreadsheets/d/1LBWEe62dqQOM45lyXHNGdIN58MKGqvP5Wrph-IGVK3I" rel="noopener">Infrastructure costs — actuals and 12-month projection</a><span class="sub">Measured Google Cloud, Cloudflare, MongoDB Atlas, Redis and Slack costs, read from the billing consoles on 2 September 2026. Superseded on Cloudflare by the $5,278.90/month Enterprise order form (16 September 2026).</span></span><span class="kind">Google Sheet</span></li>
-    <li><span><a href="https://docs.google.com/document/d/1jZTquaz3HJVPwD-LgngAoDkLsucOK8uU77gZ2VVJ3Ck" rel="noopener">Investor Executive Summary v0.3</a><span class="sub">Editable Google Doc version.</span></span><span class="kind">Google Doc</span></li>
   </ul>
 </section>
 
@@ -340,10 +348,10 @@
       <dt>Founded</dt><dd>22 Jan 2024</dd>
       <dt>HQ</dt><dd>Irvine, California</dd>
       <dt>Team</dt><dd>3 — CEO, CTO, Product Marketing</dd>
-      <dt>Shipped</dt><dd>Receipt in production; erasure in staging</dd>
+      <dt>Shipped</dt><dd>Receipt in production; erasure in staging; person-level test not yet passed</dd>
       <dt>Partners</dt><dd>7 consultancy partnerships; Cloudflare Launchpad; Google for Startups</dd>
-      <dt>Burn</dt><dd>~$11.5–13k/month; friends-and-family round in progress</dd>
-      <dt>Counsel</dt><dd>Fieldfisher opinion scoped; independent German technical test</dd>
+      <dt>Burn</dt><dd>~$11.5–13k/month; break-even ~$17.5–19k</dd>
+      <dt>Counsel</dt><dd>German law-firm opinion and independent technical test scoped, not yet instructed</dd>
       <dt>Ask now</dt><dd>F&amp;F round (~€30k, counsel + test); 3 design partners; 1 academic; seed intros</dd>
       <dt>Ask later</dt><dd>~$1.5M, contingent on the gate</dd>
       <dt>Yr-1 cost</dt><dd>~$224k from operations</dd>

@@ -1,0 +1,76 @@
+<html lang="en"><head><meta charset="utf-8"><title>Divinci — Investor executive summary v0.6</title><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/investors/docs/data-room-doc.css">
+<style>
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:6px 0 4px;}
+  .box{border:1px solid var(--rule);padding:12px 16px 4px;}
+  .box.done{border-top:3px solid var(--accent);background:var(--accent-wash);}
+  .box.todo{border-top:3px dashed #B07A1A;background:#FBF1DC;}
+  .box h3{margin:0 0 6px;font-size:15px;}
+  .box ul{padding-left:18px;margin:4px 0 10px;}
+  .box li{font-size:14px;}
+  .fill{font-family:var(--mono);font-size:12px;color:#8A5A00;background:#FBF1DC;border:1px dashed #E1B45C;padding:1px 5px;}
+  @media (max-width:720px){.cols{grid-template-columns:1fr;} .sheet{padding:24px 18px;}}
+</style>
+</head><body>
+<div class="doc-bar"><a href="/investors/">&larr; Investor data room</a><span>Divinci AI &middot; Confidential</span></div>
+<main class="sheet">
+<p class="provenance">Executive summary v0.6, 25 September 2026. Supersedes v0.5. Written to the SBDC reviewer's September comments: lead with what is proved, then what the 30-day gate must prove.</p>
+<h1>Divinci AI — removing a person from an AI model, with evidence a third party can check</h1>
+
+<p><strong>What we sell.</strong> Companies that run their own AI models may be asked to erase a person under GDPR Article 17. Deleting the source data does not delete what the model learned. Divinci finds what a model has learned about a person, removes it, re-measures the rest of the model against thresholds set in advance, and issues a signed receipt an auditor can verify without trusting us. The platform around it has been in production since 2023.</p>
+
+<div class="cols">
+  <div class="box done">
+    <h3>Proved — built and measured today</h3>
+    <ul>
+      <li><strong>The receipt is live.</strong> Signed receipts are served in production and checked by an open-source verifier that needs no Divinci account.</li>
+      <li><strong>We measure the damage, including our own.</strong> Our August test caught untouched topics degrading more than the erased one (−0.058 vs −0.026). On 24 September a wider check of an edit made with our shipping toolchain found it also damaged 8 of 100 other facts, although the file change itself was confined to one row. We publish both.</li>
+      <li><strong>Edits are reversible.</strong> Removing a patch restores the original model byte for byte.</li>
+      <li><strong>A person-level test with rules set in advance.</strong> On one small open model (Google Gemma 4 E2B), a made-up person was taught to the model and then removed. Four of five pre-set checks pass, including "the person can no longer be extracted".</li>
+    </ul>
+  </div>
+  <div class="box todo">
+    <h3>Not yet proved — what the gate must show</h3>
+    <ul>
+      <li><strong>The fifth check.</strong> "The model still works normally" is undecided (0.931 against a 0.90 bar; the interval 0.862–0.983 straddles it). Undecided counts as a fail, so the person-level test has not passed.</li>
+      <li><strong>A second, larger model.</strong> Nothing yet beyond one small model.</li>
+      <li><strong>Removal, not suppression, for facts learned in pretraining.</strong> Our strongest deletion of the "Paris" fact came back after two small retraining steps. We make no erasure claim for pretraining data.</li>
+      <li><strong>Edits that are narrow in behaviour.</strong> The file changes are narrow and reversible; the effect on the model's other answers is not yet narrow enough.</li>
+      <li><strong>Demand and cost.</strong> No buyer interviews, design partners or partner-sourced prospects yet. No measured cost per erasure.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>The 30-day gate</h2>
+<p>Each line passes or fails on criteria written down before it runs.</p>
+<ol>
+  <li><strong>Person-level erasure.</strong> All five checks pass on Gemma, then on a mid-sized model from a second family (target: DeepSeek-V4.1-Flash), against control models that never saw the person. Any failed or undecided check is a fail.</li>
+  <li><strong>Independent validation.</strong> An external German AI engineering firm designs and runs an adversarial test. A German technology and data-protection law firm writes an opinion on GDPR Article 17 and AI Act Article 53(1)(c) based on it. About €30k, capped.</li>
+  <li><strong>Willingness to pay.</strong> 15–20 interviews with privacy, DPO and AI leads: who holds the budget, what triggers the purchase, and whether $60–150k a year per model is credible. Three design partners signed, each with a written scope, success criteria and a paid next step if the criteria are met.</li>
+  <li><strong>Partner activity, measured.</strong> We have seven signed software-consultancy partnerships and no introductions or pilots from them yet. The gate counts introductions, meetings and qualified prospects per partner.</li>
+  <li><strong>Cost per erasure.</strong> Today we know only compute time: 3.4–6.7 GPU-hours on one cloud GPU per test run. The gate measures the full cost of one erasure on the second model.</li>
+  <li><strong>Reachable market.</strong> A bottom-up count of organisations running open-weight models with EU exposure. We do not use top-down market reports as a plan.</li>
+</ol>
+
+<h2>Why Divinci, if Hirundo adds receipts</h2>
+<p>Hirundo (Tel Aviv, $8M seed) removes learned data from the same model families and is ahead of us on funding, certification and distribution. Its results are its own tests. Our receipt lets a buyer's auditor check the before-and-after measurements independently, and we publish failures. Hirundo could add signed receipts in weeks. That is the race the gate is timed against.</p>
+
+<h2>Money</h2>
+<div class="tablewrap"><table>
+  <tbody>
+    <tr><td>Revenue</td><td>$0</td></tr>
+    <tr><td>Monthly burn today, founders unpaid</td><td>$11,500–13,000 (Cloudflare Enterprise $5,279; Google Cloud $1,500–3,000; other ~$4,700)</td></tr>
+    <tr><td>Break-even</td><td>$17,500–19,000 a month: burn plus $2,000 for each of three founders</td></tr>
+    <tr><td>Compliance programme, year 1</td><td>~$224k ($179k + 25% contingency), about $18,700 a month, <strong>on top of</strong> the burn.</td></tr>
+    <tr><td>Raising now</td><td>A friends-and-family round. An existing investor is participating and plans to cover the ~€30k validation.</td></tr>
+    <tr><td>If the gate passes</td><td>~$1.53M, Lean plan: engineering $810k, validation and certifications $180k, legal $90k, GPU and cloud $55k, design partners and go-to-market $65k, insurance $25k, contingency 25% $306k</td></tr>
+  </tbody>
+</table></div>
+
+<h2>Team</h2>
+<p>Michael Duane Mooring, CEO. Samuel Tobia, CTO. Anindya Sundar Nandi, product marketing. Advisor: Andrew Klein. Programmes: Cloudflare Workers Launchpad, Google for Startups Cloud Program, The Brink SBDC. Divinci AI Inc., Delaware C-corp, incorporated 22 January 2024. mike@divinci.ai</p>
+</main>
+<p class="doc-foot">Legal history, the full test record, the competitive analysis and sources are in the companion document. Person-level test figures: internal erasure record, 23 September 2026. Collateral-damage check: 24 September 2026. Relearning check: 17 September 2026.</p>
+</body></html>

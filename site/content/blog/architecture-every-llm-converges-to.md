@@ -166,7 +166,7 @@ The vIndexes — precomputed SVD databases for all 8 models — are published on
 
 The paper is "Architectural Invariants of Transformer Computation: What Survives Scale, Training, and Quantization" — arXiv preprint this week.
 
-*Next: [Deleting Paris from a Language Model](/blog/deleting-paris-from-a-language-model/) — a single weight matrix, surgically edited to delete one learned fact, with a receipt.*
+*Next: [Deleting Paris from a Language Model](/blog/deleting-paris-from-a-language-model/) — a single weight matrix, edited to suppress one learned fact, with a receipt.*
 
 ---
 
