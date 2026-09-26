@@ -35,7 +35,8 @@
   {"label": "How is a row scored?", "message": "How is a TrustBench leaderboard row scored, and why is it the median of recent runs?"},
   {"label": "What is Jev?", "message": "What is PageIndex with Jev node selection, and how does it compare with the other retrieval stacks on the nutrition board?"},
   {"label": "Who judges the answers?", "message": "Which model judges the retrieval boards, and do all rows use the same judge?"},
-  {"label": "How do I verify a row?", "message": "How do I verify a leaderboard row's signed manifest myself?"}
+  {"label": "How do I verify a row?", "message": "How do I verify a leaderboard row's signed manifest myself?"},
+  {"label": "Can I benchmark my own AI?", "message": "Can I benchmark my own releases privately with TrustBench, and how do I publish a run to the public boards?"}
 ]
 </script>
 <script type="text/plain" id="divinci-chat-speech">📊 Ask me how these boards work.</script>
@@ -45,6 +46,28 @@
 
 {% block content %}
 {% include "partials/trustbench-boards-head.html" %}
+<style>
+  .tb-own { margin-top: 44px; padding: 28px; border-radius: 12px; border: 1px solid var(--color-bg-accent, #e8ddc7); background: var(--color-surface-light, #fff); }
+  .tb-own h2 { margin: 0 0 10px; font-size: 22px; }
+  .tb-own-lede { margin: 0 0 20px; font-size: 15px; line-height: 1.65; color: var(--color-text-secondary, #4a3a2a); max-width: 64ch; }
+  .tb-own-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tb-own-card { padding: 18px 20px; border-radius: 10px; background: color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 40%, transparent); }
+  .tb-own-card h3 { margin: 0 0 8px; font-size: 16px; }
+  .tb-own-card p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--color-text-secondary, #4a3a2a); }
+  .tb-own-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 22px; }
+  .tb-own-link { font-size: 14px; }
+  /* style.css forces EVERY h2 to 2-2.5rem !important below 768px, which blew
+     this page's headings up to 32px on a phone — the board titles and the
+     limits box included, not only this section. Only !important beats it. */
+  @media (max-width: 768px) {
+    .tb-own h2 { font-size: 21px !important; }
+    .tb-board-head h2, .tb-limits h2 { font-size: 17px !important; }
+  }
+  @media (max-width: 640px) {
+    .tb-own { padding: 20px 16px; }
+    .tb-own-grid { grid-template-columns: 1fr; }
+  }
+</style>
 
 
 
@@ -64,6 +87,44 @@
   </header>
 
   <div id="tb-boards"><div class="tb-msg">Loading boards from the public API…</div></div>
+
+  {#
+    The page used to end at "what these boards do not claim", which left a
+    reader who had just compared the rows with nothing to do next. Every claim
+    here is a product fact, checked 2026-09-26 against the code:
+      - runs are private unless the owner opts in (never default a run public);
+      - a public run is PII-scanned before it goes public (set-visibility.ts);
+      - the SAME answers already public on a board are refused, 409
+        duplicate-answers (public-duplicate.ts); a NEW run of the same
+        configuration is allowed and joins that row's median.
+    If any of those changes, change this copy with it.
+  #}
+  <section class="tb-own" aria-labelledby="tb-own-h">
+    <h2 id="tb-own-h">Benchmark your own AI</h2>
+    <p class="tb-own-lede">
+      The rows above are Divinci's configurations. The same signed pipeline runs on yours:
+      your models, your retrieval stacks, and ensembles of retrievers working together,
+      scored on your own question sets or on the platform benchmarks.
+    </p>
+    <div class="tb-own-grid">
+      <div class="tb-own-card">
+        <h3>Track it privately</h3>
+        <p>Every run is private unless you choose otherwise. Score each release as you ship it,
+        see its rating move over time, and catch a regression before your users do. Private runs
+        are signed too, so you can verify them yourself.</p>
+      </div>
+      <div class="tb-own-card">
+        <h3>Publish what's new</h3>
+        <p>Make a run public and it appears here with its signed manifest. Its outputs are checked
+        for personal identifiers first. A run whose exact answers are already public is refused;
+        a new run of a configuration already listed joins that row's median.</p>
+      </div>
+    </div>
+    <div class="tb-own-actions">
+      <a class="cta-button" href="https://chat.divinci.app/trust">Start benchmarking</a>
+      <a class="tb-own-link" href="https://sdk.divinci.ai/server/trustbench-leaderboards/#publishing-your-own-row">How publishing works →</a>
+    </div>
+  </section>
 
   <section class="tb-limits">
     <h2>What these boards do not claim</h2>
