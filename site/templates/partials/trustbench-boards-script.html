@@ -108,8 +108,23 @@
   var STACK_NAMES = {
     // Divinci's PixelRAG + Jev experiment on the DrFuhrman workspace; see
     // /blog/what-a-benchmark-has-to-prove-about-itself/#a-fifth-row
-    'multi:external:d810847b+external:1df1e02a': 'PixelRAG + Jev'
+    'multi:external:d810847b+external:1df1e02a': 'PixelRAG + Jev',
+    // The same retriever with the Jev step removed (ablation, 26 Sep 2026); see
+    // /trustbench/specs/nutrition-retrieval/#the-rows
+    'multi:external:1df1e02a+external:7bd3adeb': 'PixelRAG, no Jev'
   };
+  /*
+   * Stacks that rank with Jev (TypeSafe AI) get TypeSafe's mark beside the
+   * backend's. Jev has no mark of its own; TypeSafe's is used nominatively
+   * (static/brand/vendors/README.md). Our own "+jev" suffix covers PageIndex;
+   * the PixelRAG stack is a digest, so it is listed by exact id, and the no-Jev
+   * ablation, a different id, cannot pick it up.
+   */
+  var JEV_MARK = '/brand/vendors/typesafe.png';
+  var JEV_STACKS = { 'multi:external:d810847b+external:1df1e02a': true };
+  function usesJev(stackId) {
+    return !!stackId && (/\+jev$/.test(stackId) || JEV_STACKS[stackId] === true);
+  }
   /*
    * Board slug -> its test specification page. The API carries no spec link
    * (the benchmark record has no field for one), and the pages are ours, so
@@ -232,6 +247,8 @@
               ? '<span class="tb-pill">' +
                   (stackLogoFor(r.retrievalStackId)
                     ? '<img class="tb-logo" src="' + stackLogoFor(r.retrievalStackId) + '" alt="" loading="lazy">' : '') +
+                  (usesJev(r.retrievalStackId)
+                    ? '<img class="tb-logo" src="' + JEV_MARK + '" alt="" title="Ranked by Jev, TypeSafe AI" loading="lazy">' : '') +
                   esc(stackName(r)) + '</span>' +
                 '<div class="tb-mono">' + esc(r.retrievalStackId) + '</div>'
               : '<span class="tb-mono">no retrieval</span>') + '</td>'

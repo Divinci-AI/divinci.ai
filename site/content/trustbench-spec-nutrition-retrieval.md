@@ -63,6 +63,7 @@ Or pass the file to the verifier as `benchmarkContent`, and it checks the hash f
 | Vertex AI Vector Search v2 | Production ingestion, 7 collections | 0.920 | 0.917–0.933 | gemini-2.5-flash |
 | Qdrant (cosine) | Arena corpus, 5 collections | 0.884 | 0.860–0.889 | gemini-2.5-flash |
 | Vectorize (cosine) | Arena corpus, 5 collections | 0.836 | 0.831–0.853 | gemini-2.5-flash |
+| PixelRAG, no Jev | The same tiles as PixelRAG + Jev | 0.817 | 0.800–0.825 | gemini-2.5-flash |
 | Divinci PageIndex (tree reasoning, Jev node selection) | Arena corpus minus forum Q&amp;A, 4 collections | 0.8125 | 0.771–0.817 | **gemini-3.8-flash** |
 | Divinci PageIndex (tree reasoning) | Arena corpus, 5 collections | 0.384 | 0.309–0.428 | gemini-2.5-flash |
 
@@ -83,6 +84,12 @@ Or pass the file to the verifier as `benchmarkContent`, and it checks the hash f
 
 On the board, its stack appears as two digests: a customer-registered retriever is published only as a digest of its id. The second digest is an always-empty placeholder, needed because a retrieval group must have two members.
 
+**PixelRAG, no Jev** (added 26 September). The same retriever with one change: the Jev step is removed. The same image and keyword candidates are interleaved instead (image 1, keyword 1, image 2, …). Everything else is identical: tiles, service, laptop, answering model and judge. It is registered as a separate retriever, so its stack id differs from PixelRAG + Jev's and the two rows can never share runs. It exists to measure what Jev contributes.
+
+- **Result:** 0.817 against 0.947, about 13 points, under the same judge. The two rows' ranges (0.800–0.825 and 0.943–0.948) do not overlap.
+- **Where the difference comes from:** checked through production's own retrieval path, the right tile comes first for 20 of 60 questions without Jev and 46 with it. The evidence reaches the answering model for 43 of 60 without Jev (Qdrant: 40) and 53 with it.
+- **Its place next to PageIndex + Jev is not established.** The two rows are half a point apart and were scored by different judges. Under 2.5 Flash, PageIndex + Jev's earlier median was 0.823, which would put it above this row.
+
 ## How a model is run
 
 - **Answering model:** `@cf/zai-org/glm-5.3-flash`. `max_tokens` 16,384, no temperature sent (the provider default applies), no fallback models, no skills.
@@ -95,7 +102,7 @@ On the board, its stack appears as two digests: a customer-registered retriever 
 
 The scorer and the arithmetic are exactly as on the [SDK Docs board](/trustbench/specs/sdk-docs-retrieval/#how-each-answer-is-scored): a judge sorts each of the reference answer's claims into supported, hedged, contradicted or omitted, and code computes (supported + ½ × hedged) ÷ claims, capped at 0.25 if a central claim is contradicted. The run score is the mean over 60 questions. The row score is the lower median of its runs.
 
-**The judges differ.** Five rows were judged by `gemini-2.5-flash`. All three runs of PageIndex + Jev were judged by `gemini-3.8-flash`. The board does not show a judge. Each signed manifest names it, in its metric.
+**The judges differ.** Six rows were judged by `gemini-2.5-flash`. All three runs of PageIndex + Jev were judged by `gemini-3.8-flash`. The board does not show a judge. Each signed manifest names it, in its metric.
 
 - On the same answers, 3.8 Flash scores these rows about 1 to 5 points higher than 2.5 Flash. So PageIndex + Jev's score is not directly comparable with its neighbours'.
 - Its **place** does not depend on the judge. Under 2.5 Flash, the same configuration's median over four earlier passes is 0.823, still between Vectorize (0.836) and plain PageIndex (0.384).
@@ -116,12 +123,12 @@ The order is unchanged under all three. Asking the *same* judge again moved a lo
 
 The same as the [SDK Docs board](/trustbench/specs/sdk-docs-retrieval/#from-a-pass-to-a-signed-row), with one addition: publishing takes only the answers served by the group being published. The runs are **republished**, and their outputs do not record fills.
 
-On this board, fills happened twice. Two of PixelRAG + Jev's three runs each include one answer taken from an earlier pass. In one of them, the judge never returned a score for an answer, and the pipeline would otherwise have counted it as 0.
+On this board, fills happened twice. Two of PixelRAG + Jev's three runs each include one answer taken from an earlier pass. PixelRAG, no Jev has none: each of its runs' published scores equals the score of the pass it came from. In one of them, the judge never returned a score for an answer, and the pipeline would otherwise have counted it as 0.
 
 ## Known limitations, in order of weight
 
 1. **PixelRAG + Jev was designed on these 60 questions.** Its architecture (image search, keyword search or both, ranked by Jev) was chosen by measuring retrieval on this question set. Its lead over Vertex, about 3 points, holds under all three judges. But it is the same size as the judge's own noise, and inside the row's own spread across passes (0.909 to 0.959 over five valid passes). Its leads over Qdrant (about 6 points) and Vectorize (about 11) are outside that noise.
-2. **PixelRAG + Jev was served from a laptop.** A retriever that is down returns nothing, and the pipeline then scores the answer as though retrieval had simply found nothing. One early pass was invalid for exactly this reason: 3 questions got no retrieval and 9 never ran. Every counted pass was audited against the retriever's own log. Production hosting for it does not exist yet.
+2. **PixelRAG + Jev, and PixelRAG without Jev, were served from a laptop.** A retriever that is down returns nothing, and the pipeline then scores the answer as though retrieval had simply found nothing. One early pass was invalid for exactly this reason: 3 questions got no retrieval and 9 never ran. Every counted pass was audited against the retriever's own log. Production hosting for it does not exist yet.
 3. **The corpora differ,** as described in the rows above. Vertex's lead comes from a broader ingestion. PixelRAG sees full pages where the others see parsed passages. Plain PageIndex ran on broken trees.
 4. **Mixed judges,** as above.
 5. **Plain PageIndex's 0.384 is stale.** It was measured before the tree repair.

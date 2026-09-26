@@ -19,6 +19,7 @@ icon — so marks can land one at a time.
 | `couchbase.svg`    | Couchbase            | Simple Icons                            |
 | `neo4j.svg`        | Neo4j Hybrid         | Simple Icons                            |
 | `turso.svg`        | Turso                | Simple Icons                            |
+| `typesafe.png`     | TypeSafe AI (Jev)    | typesafe.ai header logo, unmodified (framerusercontent `kcuF2BEp5XaVfkmFB634IPRKQH0.png`, fetched 2026-09-26). Jev has no mark of its own |
 
 Vertex AI reuses `/brand/companies/google.svg`, already in the repo.
 

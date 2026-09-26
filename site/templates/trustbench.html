@@ -74,6 +74,7 @@
       <li>The retrieval boards use one answering model, <code>glm-5.3-flash</code>. They do not all use one judge: every row is judged by <code>gemini-2.5-flash</code> except PageIndex + Jev on the nutrition board, which was judged by <code>gemini-3.8-flash</code>. On the same answers, 3.8 Flash scores these rows about 1 to 5 points higher than 2.5 Flash. That changes the row's number but not its place: under 2.5 Flash the same configuration's median over four passes is 0.823, still between Vectorize and plain PageIndex. Each signed manifest names its judge in its metric.</li>
       <li>On the nutrition board the Vertex row searches a newer, larger ingestion than the others.</li>
       <li>PixelRAG + Jev, first on the nutrition board, was designed on the same sixty questions it is scored on. It also indexes every rendered page of the corpus's eighteen PDFs, where the other rows hold only the passages their parser kept, and it ran from a laptop. Its lead over Vertex holds under three judges and is small under all of them. <a href="/blog/what-a-benchmark-has-to-prove-about-itself/#a-fifth-row">The write-up</a> has the details.</li>
+      <li>PixelRAG, no Jev is the same retriever with Jev's ranking step removed: 0.817 against 0.947, same judge. It is half a point from PageIndex + Jev, which was scored by a different judge, so the order of those two rows is not established. Rows ranked by Jev carry TypeSafe AI's mark.</li>
     </ul>
   </section>
 </div>
