@@ -28,13 +28,15 @@
       <li><strong>The receipt is live.</strong> Signed receipts are served in production and checked by an open-source verifier that needs no Divinci account.</li>
       <li><strong>We measure the damage, including our own.</strong> Our August test caught untouched topics degrading more than the erased one (−0.058 vs −0.026). On 24 September a wider check of an edit made with our shipping toolchain found it also damaged 8 of 100 other facts, although the file change itself was confined to one row. We publish both.</li>
       <li><strong>Edits are reversible.</strong> Removing a patch restores the original model byte for byte.</li>
-      <li><strong>A person-level test with rules set in advance.</strong> On one small open model (Google Gemma 4 E2B), a made-up person was taught to the model and then removed. Four of five pre-set checks pass, including "the person can no longer be extracted".</li>
+      <li><strong>A person-level test with rules set in advance.</strong> On one small open model (Google Gemma 4 E2B), five made-up people were fine-tuned in, then removed by rebuilding the fine-tune without them from the verified public base, and compared with six models that never saw them. Every informative recovery attack fails (9 of 9); the base is verified and the result re-derives.</li>
+      <li><strong>Exact deletion of facts our tool inserts.</strong> The deleted model hashes identical to the original.</li>
     </ul>
   </div>
   <div class="box todo">
     <h3>Not yet proved — what the gate must show</h3>
     <ul>
-      <li><strong>The fifth check.</strong> "The model still works normally" is undecided (0.931 against a 0.90 bar; the interval 0.862–0.983 straddles it). Undecided counts as a fail, so the person-level test has not passed.</li>
+      <li><strong>The usability check.</strong> "Still a usable model" is undecided (instruction-following 0.931× the base; the interval 0.862–0.983 straddles the 0.90 bar). By the pre-set rule the recovery result is not erasure evidence until this passes, so the person-level test has not passed.</li>
+      <li><strong>Removal cheaper than a rebuild.</strong> Gradient-unlearning methods have not met their bars; edits do not remove a fine-tuned-in person.</li>
       <li><strong>A second, larger model.</strong> Nothing yet beyond one small model.</li>
       <li><strong>Removal, not suppression, for facts learned in pretraining.</strong> Our strongest deletion of the "Paris" fact came back after two small retraining steps. We make no erasure claim for pretraining data.</li>
       <li><strong>Edits that are narrow in behaviour.</strong> The file changes are narrow and reversible; the effect on the model's other answers is not yet narrow enough.</li>

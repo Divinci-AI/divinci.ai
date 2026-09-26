@@ -209,7 +209,7 @@
     status <span class="ok">complete</span> · signature <span class="ok">valid</span> · verifiable with zero credentials via @divinci-ai/trustbench-verifier
   </div>
   <ul>
-    <li><strong>Answer an erasure demand without a full retrain.</strong> A non-trivial 70B fine-tune runs <span class="fig">$0.5k–50k</span> in compute, and <span class="fig">$50k–500k</span> as a full engagement — labor, data prep, engineering time, downtime.</li>
+    <li><strong>Answer an erasure demand with evidence.</strong> For data a company fine-tuned in, removal today means rebuilding the fine-tune without the person from a verified public base: for a non-trivial 70B fine-tune, <span class="fig">$0.5k–50k</span> in compute and <span class="fig">$50k–500k</span> as a full engagement. We supply the proof that the rebuild worked, and we are testing cheaper routes; we do not yet claim one.</li>
     <li><strong>Evidence an auditor can check alone.</strong> The receipt is live in production today, not a proposed format.</li>
     <li><strong>The proof step is the product.</strong> In our own August test the untouched control topics degraded <em>more</em> than the erased topic (<span class="fig">−0.058 vs −0.026</span>). A vendor that cannot measure that ships the damage silently. Nobody else sells the measurement half.</li>
   </ul>
@@ -228,12 +228,14 @@
     <li>TrustBench receipt in production; public key registry live; first certificate externally verified. QA suite in production with per-metric threshold gates, scheduled runs and alerts.</li>
     <li>Erasure API (LarQL) in staging on open-weight models: two API surfaces, two SDKs, a CLI and a web UI. Edits are reversible: removing a patch restores the original model byte for byte.</li>
     <li>Measurement that catches damage, including our own. The August test caught untouched topics degrading more than the erased one. On 24 September a wider check of an edit from our shipping toolchain found that, although the file changed in one row and restores byte for byte, it damaged <span class="fig">8 of 100</span> other facts and about one neighbouring capital in five. We report that rather than call such edits surgical.</li>
-    <li>A person-level erasure test with pass/fail criteria set in advance, run on one small open model (Gemma 4 E2B) against control models that never saw the person. Four of five checks pass, including "the person can no longer be extracted".</li>
+    <li>A person-level test protocol with pass/fail criteria set in advance, run on one small open model (Gemma 4 E2B). Records about five made-up people were fine-tuned in, then removed by rebuilding the fine-tune without them from the verified public base, and compared with six control models that never saw them. The base is verified, the result can be re-derived independently, and every informative recovery attack on the removed people fails (9 of 9).</li>
+    <li>Facts inserted with our own editing tool delete exactly: the deleted model hashes identical to the original.</li>
     <li>Divinci platform in production. Seven software-consultancy partnerships signed.</li>
   </ul>
   <p><strong>Not yet proved.</strong></p>
   <ul>
-    <li>The person-level test has <strong>not passed</strong>: its fifth check, "the model still works normally", is undecided (<span class="fig">0.931</span> against a <span class="fig">0.90</span> bar, interval 0.862–0.983), and undecided counts as a fail. It has run on one model family only.</li>
+    <li>The person-level test has <strong>not passed</strong>. Its "still a usable model" check is undecided: instruction-following at <span class="fig">0.931×</span> the base, interval 0.862–0.983 against a <span class="fig">0.90</span> bar. By the rule set before the run, the recovery-attack result counts as erasure evidence only once that check passes. The model that learned the people sits on the same margin, so the fine-tuning recipe is the likely cause, but the bar does not move. It has run on one model family only.</li>
+    <li>Cheaper removal than a rebuild: gradient-unlearning methods have not met their pre-set bars, and edits do not remove a fine-tuned-in person.</li>
     <li>Deleting a fact the model learned in pretraining suppresses it rather than removing it: our strongest deletion of the Paris fact returned after two small retraining steps. We make no erasure claim for pretraining data.</li>
     <li>No buyer interviews, design partners, or introductions from the consultancy partners yet. No measured cost per erasure; today we know only compute time, 3.4–6.7 GPU-hours on one cloud GPU per test run.</li>
   </ul>
