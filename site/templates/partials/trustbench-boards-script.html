@@ -191,6 +191,39 @@
     return day(a) + ' – ' + day(b);
   }
 
+  /*
+   * Judges. A score is only comparable with scores from the same judge, so a
+   * board whose rows were judged by different models is split into one table
+   * per judge, each ranked on its own. A row's judge is its shown (median)
+   * run's; the API never mixes judges inside one row's window today (checked
+   * 2026-09-26), and a row whose runs disagree is placed by its median run.
+   * Code-graded boards (red team, grounding) carry no judge and are not split.
+   */
+  function judgeOf(r) {
+    var rs = r.runs || [], m = null;
+    for (var i = 0; i < rs.length; i++) { if (rs[i].isMedian) { m = rs[i]; break; } }
+    m = m || rs[0];
+    return (m && m.judgeModelId) || '';
+  }
+  // [{ judge, rows: [{ row, index, rank }] }], the judge with the most rows first.
+  function judgeGroups(rows) {
+    var groups = [], at = {};
+    rows.forEach(function (r, i) {
+      var j = judgeOf(r);
+      if (!(j in at)) { at[j] = groups.length; groups.push({ judge: j, rows: [] }); }
+      groups[at[j]].rows.push({ row: r, index: i });
+    });
+    groups.forEach(function (g) {
+      // Competition ranking within the judge: tied scores share a rank.
+      g.rows.forEach(function (x, k) {
+        x.rank = k > 0 && x.row.score === g.rows[k - 1].row.score ? g.rows[k - 1].rank : k + 1;
+      });
+    });
+    return groups.map(function (g, i) { return { g: g, i: i }; })
+      .sort(function (a, b) { return (b.g.rows.length - a.g.rows.length) || (a.i - b.i); })
+      .map(function (x) { return x.g; });
+  }
+
   function cardHtml(b, r) {
     // Older API responses carry no per-run detail: show the one date the row
     // has, named for what it is (when the median run was signed).
@@ -222,7 +255,7 @@
       (stacked ? '<th>Retrieval stack</th>' : '') +
       '<th>' + esc(b.metric) + '</th><th>Verify</th></tr>';
 
-    var body = rows.map(function (r, ri) {
+    function rowHtml(r, ri, rank) {
       var g = goodness(b, r.score), c = colour(g);
       var spread = r.scoreRange && r.scoreRange.max > r.scoreRange.min
         ? ' · ' + fmt(b, r.scoreRange.min) + '–' + fmt(b, r.scoreRange.max) : '';
@@ -236,7 +269,7 @@
       var key = boardIndex + ':' + ri;
       cards[key] = { board: b, row: r };
       return '<tr tabindex="0" data-card="' + key + '" aria-label="' + esc(r.displayName) + ': dates and judge behind this score" style="background-image:' + fill + '">' +
-        '<td class="tb-rank tb-c-rank">' + esc(r.rank) + '</td>' +
+        '<td class="tb-rank tb-c-rank">' + esc(rank) + '</td>' +
         '<td class="tb-c-model"><div class="tb-model-line">' +
             (logo ? '<img class="tb-logo" src="' + logo + '" alt="" loading="lazy">'
                   : '<span class="tb-logo-gap" aria-hidden="true"></span>') +
@@ -258,10 +291,36 @@
         '<td class="tb-verify tb-c-verify"><a href="' + RUNS + encodeURIComponent(r.runId) + '"' + TARGET + '>signed manifest →</a>' +
           (r.signerKeyId ? '<div class="tb-mono">' + esc(r.signerKeyId) + '</div>' : '') + '</td>' +
         '</tr>';
-    }).join('');
+    }
 
     byslug[b.slug] = entry;
     var anchor = anchorFor(b);
+    var groups = judgeGroups(rows);
+    function table(g) {
+      return '<table class="tb-table"><thead>' + head + '</thead><tbody>' +
+        g.rows.map(function (x) { return rowHtml(x.row, x.index, x.rank); }).join('') + '</tbody></table>';
+    }
+    var tables;
+    if (groups.length > 1) {
+      tables = '<div class="tb-tabs" role="tablist" aria-label="Judge">' +
+        groups.map(function (g, i) {
+          var id = anchor + '-judge-' + i;
+          return '<button type="button" role="tab" class="tb-tab" id="' + id + '-tab" aria-controls="' + id + '"' +
+            ' aria-selected="' + (i === 0) + '" tabindex="' + (i === 0 ? 0 : -1) + '" data-tb-tab="' + i + '">' +
+            'Judged by <span class="tb-tab-judge">' + esc(g.judge || 'not recorded') + '</span>' +
+            '<span class="tb-tab-n">' + g.rows.length + (g.rows.length === 1 ? ' row' : ' rows') + '</span></button>';
+        }).join('') + '</div>' +
+        groups.map(function (g, i) {
+          var id = anchor + '-judge-' + i;
+          return '<div class="tb-tabpanel" role="tabpanel" id="' + id + '" aria-labelledby="' + id + '-tab"' +
+            (i === 0 ? '' : ' hidden') + '>' + table(g) + '</div>';
+        }).join('') +
+        '<p class="tb-judge-note">Scores from different judges are not comparable, so each judge has its own table and its own ranking.</p>';
+    } else {
+      tables = (groups[0] && groups[0].judge
+        ? '<p class="tb-judge">Judged by <span class="tb-mono">' + esc(groups[0].judge) + '</span></p>' : '') +
+        table(groups[0] || { rows: [] });
+    }
     return '<section class="tb-board" id="' + anchor + '" data-slug="' + esc(b.slug) + '">' +
       '<div class="tb-board-head"><svg aria-hidden="true"><use href="#tb-' + markFor(b.slug || '', b.name || '') + '"/></svg>' +
         // In an embed the title links to the board on the full page (new tab);
@@ -272,7 +331,7 @@
       (IN_EMBED ? '' : toolbar(b)) +
       (b.description ? '<p class="tb-desc">' + esc(b.description) + '</p>' : '') +
       specLink(b) +
-      '<table class="tb-table"><thead>' + head + '</thead><tbody>' + body + '</tbody></table>' +
+      tables +
       // Curly apostrophes, not escaped straight ones. A \' inside this string
       // survives Tera and the HTML minifier as a LITERAL backslash and renders
       // as "configuration’s" on the page — caught on staging, not in review.
@@ -297,15 +356,22 @@
     var b = entry.benchmark, rows = entry.rows || [];
     var stacked = rows.some(function (r) { return r.retrievalStackId; });
     var cell = function (v) { return String(v == null ? '' : v).replace(/\|/g, BS + '|').replace(/\n/g, ' '); };
+    var groups = judgeGroups(rows);
     var out = ['### ' + cell(b.name), '',
       '_' + cell(b.metric) + ' · ' + (b.higherIsBetter ? 'higher is better' : 'lower is better') +
-      ' · source: ' + PAGE + (generatedAt ? ' · computed ' + generatedAt : '') + '_', '',
-      '| # | Model | ' + (stacked ? 'Retrieval stack | ' : '') + 'Score | Runs | Signed manifest |',
-      '|---:|---|' + (stacked ? '---|' : '') + '---:|---:|---|'];
-    rows.forEach(function (r) {
-      out.push('| ' + r.rank + ' | ' + cell(r.displayName) + ' (`' + cell(r.modelId) + '`) | ' +
-        (stacked ? cell(stackOf(r) || 'no retrieval') + ' | ' : '') +
-        pct(b, r.score) + ' | ' + (r.runsInWindow || 1) + ' | [' + cell(r.signerKeyId || 'manifest') + '](' + manifestUrl(r) + ') |');
+      ' · source: ' + PAGE + (generatedAt ? ' · computed ' + generatedAt : '') + '_'];
+    if (groups.length > 1) out.push('', '_Scores from different judges are not comparable; each judge is ranked separately._');
+    groups.forEach(function (g) {
+      out.push('');
+      if (g.judge) out.push((groups.length > 1 ? '#### ' : '') + 'Judged by `' + cell(g.judge) + '`', '');
+      out.push('| # | Model | ' + (stacked ? 'Retrieval stack | ' : '') + 'Score | Runs | Signed manifest |',
+        '|---:|---|' + (stacked ? '---|' : '') + '---:|---:|---|');
+      g.rows.forEach(function (x) {
+        var r = x.row;
+        out.push('| ' + x.rank + ' | ' + cell(r.displayName) + ' (`' + cell(r.modelId) + '`) | ' +
+          (stacked ? cell(stackOf(r) || 'no retrieval') + ' | ' : '') +
+          pct(b, r.score) + ' | ' + (r.runsInWindow || 1) + ' | [' + cell(r.signerKeyId || 'manifest') + '](' + manifestUrl(r) + ') |');
+      });
     });
     return out.join(NL) + NL;
   }
@@ -313,14 +379,15 @@
   function toCSV(entry) {
     var b = entry.benchmark;
     var q = function (v) { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
-    var cols = ['benchmark', 'rank', 'model_id', 'model_name', 'retrieval_stack_id', 'retrieval_stack',
+    var cols = ['benchmark', 'judge', 'rank_within_judge', 'model_id', 'model_name', 'retrieval_stack_id', 'retrieval_stack',
                 'score', 'score_min', 'score_max', 'runs', 'metric', 'higher_is_better', 'run_id', 'signer_key_id', 'manifest_url'];
     var lines = [cols.join(',')];
-    (entry.rows || []).forEach(function (r) {
-      lines.push([b.slug, r.rank, r.modelId, r.displayName, r.retrievalStackId || '', stackOf(r), r.score,
+    judgeGroups(entry.rows || []).forEach(function (g) { g.rows.forEach(function (x) {
+      var r = x.row;
+      lines.push([b.slug, g.judge, x.rank, r.modelId, r.displayName, r.retrievalStackId || '', stackOf(r), r.score,
         r.scoreRange ? r.scoreRange.min : '', r.scoreRange ? r.scoreRange.max : '', r.runsInWindow || 1,
         b.metric, b.higherIsBetter, r.runId, r.signerKeyId || '', manifestUrl(r)].map(q).join(','));
-    });
+    }); });
     return lines.join(NL) + NL;
   }
 
@@ -370,6 +437,32 @@
     clearTimeout(btn._tbT);
     btn._tbT = setTimeout(function () { btn.textContent = was; }, 1600);
   }
+
+  function selectTab(tab, focus) {
+    var list = tab.parentNode, tabs = list.querySelectorAll('[role="tab"]');
+    for (var i = 0; i < tabs.length; i++) {
+      var on = tabs[i] === tab;
+      tabs[i].setAttribute('aria-selected', String(on));
+      tabs[i].setAttribute('tabindex', on ? '0' : '-1');
+      var panel = document.getElementById(tabs[i].getAttribute('aria-controls'));
+      if (panel) { if (on) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', ''); }
+    }
+    if (focus) tab.focus();
+  }
+  host.addEventListener('click', function (ev) {
+    var tab = ev.target.closest && ev.target.closest('button[data-tb-tab]');
+    if (tab) selectTab(tab, false);
+  });
+  host.addEventListener('keydown', function (ev) {
+    var tab = ev.target.closest && ev.target.closest('button[data-tb-tab]');
+    if (!tab) return;
+    var tabs = [].slice.call(tab.parentNode.querySelectorAll('[role="tab"]')), i = tabs.indexOf(tab), n = tabs.length;
+    var to = ev.key === 'ArrowRight' ? (i + 1) % n : ev.key === 'ArrowLeft' ? (i - 1 + n) % n
+           : ev.key === 'Home' ? 0 : ev.key === 'End' ? n - 1 : -1;
+    if (to < 0) return;
+    ev.preventDefault();
+    selectTab(tabs[to], true);
+  });
 
   host.addEventListener('click', function (ev) {
     var btn = ev.target.closest && ev.target.closest('button[data-tb]');

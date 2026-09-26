@@ -15,7 +15,7 @@ as_of = "25 September 2026"
 <p><strong>Three things to know before comparing rows.</strong></p>
 <p>1. <strong>The top row, PixelRAG + Jev, was designed on these same 60 questions.</strong> None of the others was, and nobody can put a number on the advantage that gives it until a held-out question set exists.</p>
 <p>2. <strong>The rows do not all search the same corpus.</strong> Vertex searches a newer, larger ingestion. PixelRAG indexes every rendered page of the 18 PDFs, where the others hold only the passages their parser kept. PageIndex + Jev leaves out the forum Q&amp;A collection.</p>
-<p>3. <strong>One row has a different judge.</strong> PageIndex + Jev was scored by <code>gemini-3.8-flash</code>, every other row by <code>gemini-2.5-flash</code>.</p>
+<p>3. <strong>One row has a different judge.</strong> PageIndex + Jev was scored by <code>gemini-3.8-flash</code>, every other row by <code>gemini-2.5-flash</code>. The board shows it in its own tab, ranked only against rows with the same judge.</p>
 </div>
 
 ## What it measures
@@ -88,7 +88,7 @@ On the board, its stack appears as two digests: a customer-registered retriever 
 
 - **Result:** 0.817 against 0.947, about 13 points, under the same judge. The two rows' ranges (0.800–0.825 and 0.943–0.948) do not overlap.
 - **Where the difference comes from:** checked through production's own retrieval path, the right tile comes first for 20 of 60 questions without Jev and 46 with it. The evidence reaches the answering model for 43 of 60 without Jev (Qdrant: 40) and 53 with it.
-- **Its place next to PageIndex + Jev is not established.** The two rows are half a point apart and were scored by different judges. Under 2.5 Flash, PageIndex + Jev's earlier median was 0.823, which would put it above this row.
+- **It is not ranked against PageIndex + Jev.** The two rows are half a point apart and were scored by different judges, so they sit in different tabs. Under 2.5 Flash, PageIndex + Jev's earlier median was 0.823, which would put it above this row.
 
 ## How a model is run
 
@@ -102,7 +102,7 @@ On the board, its stack appears as two digests: a customer-registered retriever 
 
 The scorer and the arithmetic are exactly as on the [SDK Docs board](/trustbench/specs/sdk-docs-retrieval/#how-each-answer-is-scored): a judge sorts each of the reference answer's claims into supported, hedged, contradicted or omitted, and code computes (supported + ½ × hedged) ÷ claims, capped at 0.25 if a central claim is contradicted. The run score is the mean over 60 questions. The row score is the lower median of its runs.
 
-**The judges differ.** Six rows were judged by `gemini-2.5-flash`. All three runs of PageIndex + Jev were judged by `gemini-3.8-flash`. The board does not show a judge. Each signed manifest names it, in its metric.
+**The judges differ.** Six rows were judged by `gemini-2.5-flash`. All three runs of PageIndex + Jev were judged by `gemini-3.8-flash`. The board shows one tab per judge, each ranked on its own, because scores from different judges are not comparable. Each signed manifest also names its judge, in its metric.
 
 - On the same answers, 3.8 Flash scores these rows about 1 to 5 points higher than 2.5 Flash. So PageIndex + Jev's score is not directly comparable with its neighbours'.
 - Its **place** does not depend on the judge. Under 2.5 Flash, the same configuration's median over four earlier passes is 0.823, still between Vectorize (0.836) and plain PageIndex (0.384).

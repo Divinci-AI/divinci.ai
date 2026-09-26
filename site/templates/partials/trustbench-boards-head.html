@@ -76,6 +76,25 @@
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; line-height: 1.5;
     border: 1px solid var(--color-bg-accent, #e8ddc7); border-radius: 8px; background: var(--color-surface-light, #fff); color: inherit;
   }
+  /* Judge tabs. A board judged by more than one model shows one table per
+     judge; the tabs name the judge, since that is the whole reason they exist. */
+  .tb-tabs { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 0; border-bottom: 1px solid var(--color-bg-accent, #e8ddc7); }
+  .tb-tab {
+    font: inherit; font-size: 12.5px; padding: 8px 12px 9px; margin-bottom: -1px; cursor: pointer; background: transparent;
+    border: 1px solid transparent; border-radius: 8px 8px 0 0; color: var(--color-text-secondary, #6b5d4f);
+    display: inline-flex; align-items: baseline; gap: 6px;
+  }
+  .tb-tab:hover { color: var(--color-text-primary, #1e3a2b); }
+  .tb-tab[aria-selected="true"] {
+    color: var(--color-text-primary, #1e3a2b); font-weight: 600; background: var(--color-surface-light, #fff);
+    border-color: var(--color-bg-accent, #e8ddc7); border-bottom-color: var(--color-surface-light, #fff);
+  }
+  .tb-tab:focus-visible { outline: 2px solid var(--color-text-primary, #1e3a2b); outline-offset: 2px; }
+  .tb-tab-judge { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; }
+  .tb-tab-n { font-size: 11px; font-weight: 400; color: var(--color-text-secondary, #6b5d4f); }
+  .tb-tabpanel { padding-top: 10px; }
+  .tb-judge, .tb-judge-note { font-size: 12.5px; color: var(--color-text-secondary, #6b5d4f); margin: 0 0 10px; }
+  .tb-judge-note { margin: 12px 0 0; }
   .tb-note { font-size: 12.5px; line-height: 1.6; color: var(--color-text-secondary, #6b5d4f); margin-top: 16px; padding-top: 14px; border-top: 1px solid color-mix(in srgb, var(--color-bg-accent, #e8ddc7) 55%, transparent); }
   .tb-msg { padding: 22px; border: 1px dashed var(--color-bg-accent, #e8ddc7); border-radius: 12px; color: var(--color-text-secondary, #6b5d4f); }
   .tb-limits { margin-top: 44px; padding: 24px 28px; border-radius: 12px; background: var(--color-bg-accent, #e8ddc7); }
