@@ -96,7 +96,10 @@
       - a public run is PII-scanned before it goes public (set-visibility.ts);
       - the SAME answers already public on a board are refused, 409
         duplicate-answers (public-duplicate.ts); a NEW run of the same
-        configuration is allowed and joins that row's median.
+        configuration is allowed and joins that row's median;
+      - only platform benchmarks and boards Divinci has listed appear here — a
+        customer's own suite is private by default (server
+        trustbench/leaderboard/listing.ts, 2026-09-26).
     If any of those changes, change this copy with it.
   #}
   <section class="tb-own" aria-labelledby="tb-own-h">
@@ -115,9 +118,10 @@
       </div>
       <div class="tb-own-card">
         <h3>Publish what's new</h3>
-        <p>Make a run public and it appears here with its signed manifest. Its outputs are checked
-        for personal identifiers first. A run whose exact answers are already public is refused;
-        a new run of a configuration already listed joins that row's median.</p>
+        <p>Make a run public and anyone can verify its signed manifest. Its outputs are checked for
+        personal identifiers first, and answers that are already public are refused. Runs on the
+        platform benchmarks join the boards here; a board built from your own questions stays
+        private unless you ask us to list it.</p>
       </div>
     </div>
     <div class="tb-own-actions">
